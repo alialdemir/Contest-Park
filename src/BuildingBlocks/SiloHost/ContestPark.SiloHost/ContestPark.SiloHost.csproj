@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="database.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Core.Legacy" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Orleans.OrleansSqlUtils" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Persistence.AdoNet" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Reminders.AdoNet" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Runtime.Legacy" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="2.0.4" />
+    <PackageReference Include="SignalR.Orleans" Version="1.0.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\Category\ContestPark.Domain.Category\ContestPark.Domain.Category.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Cp\ContestPark.Domain.Cp\ContestPark.Domain.Cp.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Duel\ContestPark.Domain.Duel\ContestPark.Domain.Duel.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Identity\ContestPark.Domain.Identity\ContestPark.Domain.Identity.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Question\ContestPark.Domain.Question\ContestPark.Domain.Question.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Signalr\ContestPark.Domain.Signalr\ContestPark.Domain.Signalr.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Category\ContestPark.Infrastructure.Category\ContestPark.Infrastructure.Category.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Cp\ContestPark.Infrastructure.Cp\ContestPark.Infrastructure.Cp.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Duel\ContestPark.Infrastructure.Duel\ContestPark.Infrastructure.Duel.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Identity\ContestPark.Infrastructure.Identity\ContestPark.Infrastructure.Identity.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Question\ContestPark.Infrastructure.Question\ContestPark.Infrastructure.Question.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Signalr\ContestPark.Infrastructure.Signalr\ContestPark.Infrastructure.Signalr.csproj" />
+  </ItemGroup>
+
+</Project>

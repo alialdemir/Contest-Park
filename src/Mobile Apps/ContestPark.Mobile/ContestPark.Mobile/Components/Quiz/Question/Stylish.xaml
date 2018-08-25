@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
+             x:Class="ContestPark.Mobile.Components.Stylish"
+             x:Name="page">
+    <ContentView.Content>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <components:StylishFrame Grid.Row="0"
+                                     Grid.Column="0"
+                                     x:Name="Stylish1"
+                                     Answer="{Binding Path=Answers.Item1, Source={x:Reference page}}"
+                                     AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference page}}" />
+
+            <components:StylishFrame Grid.Row="0"
+                                     Grid.Column="1"
+                                     x:Name="Stylish2"
+                                     Answer="{Binding Path=Answers.Item2, Source={x:Reference page}}"
+                                     AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference page}}" />
+
+            <components:StylishFrame Grid.Row="1"
+                                     Grid.Column="0"
+                                     x:Name="Stylish3"
+                                     Answer="{Binding Path=Answers.Item3, Source={x:Reference page}}"
+                                     AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference page}}" />
+
+            <components:StylishFrame Grid.Row="1"
+                                     Grid.Column="1"
+                                     x:Name="Stylish4"
+                                     Answer="{Binding Path=Answers.Item4, Source={x:Reference page}}"
+                                     AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference page}}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

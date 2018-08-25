@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters.CategoryDetail"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ContestPark.Mobile.Views.CategoryDetailView"
+             Title="{Binding Title}"
+             x:Name="page">
+    <StackLayout Orientation="Vertical">
+        <Button
+                                        Text="{Binding Title}"
+                                        Command="{Binding DuelOpenPanelCommand}"
+                                        FontAttributes="Bold"
+                                        HeightRequest="40"
+                                        BackgroundColor="{StaticResource Green}"
+                                        TextColor="{StaticResource White}" />
+    </StackLayout>
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:FollowButtonConverter x:Key="fbc" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_share_black_24dp.png"
+                     Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference page}}" />
+
+        <ToolbarItem Icon="{Binding IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
+                     Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference page}}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Components:NonPersistentSelectedItemListView x:Name="lstView"
+                                                      InfiniteScroll="{Binding InfiniteScroll}"
+                                                      Style="{StaticResource ListViewHeaderAndFooter}"
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+            <Components:NonPersistentSelectedItemListView.Header>
+                <Grid ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="145" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView Color="{StaticResource Primary}"
+                             Grid.Column="0"
+                             Grid.RowSpan="2" />
+
+                    <Components:CachedImage Grid.Row="0"
+                                            Grid.Column="0"
+                                            Source="{Binding SubCategoryPicturePath}"
+                                            Margin="0,0,0,0" VerticalOptions="Start"
+                                            HorizontalOptions="Center"
+                                            HeightRequest="128"
+                                            WidthRequest="128" />
+
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding Title}"
+                           Margin="0,16,0,64"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource Black}"
+                           FontSize="Large"
+                           FontAttributes="Bold" />
+
+                    <StackLayout Grid.Row="2"
+                                 Padding="8"
+                                 TranslationY="-50">
+
+                        <Frame IsClippedToBounds="True"
+                               Padding="0"
+                               HasShadow="True"
+                               HorizontalOptions="FillAndExpand"
+                               CornerRadius="10"
+                               BackgroundColor="{StaticResource White}">
+
+                            <Grid RowSpacing="3" Margin="16">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{i18n:Translate Followers}"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="#A6A7AA"
+                                       FontSize="Default"
+                                       FontAttributes="Bold" />
+
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="{Binding FollowersCount}"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{StaticResource Primary}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold" />
+
+                                <Button Grid.Row="2"
+                                        Grid.ColumnSpan="3"
+                                        Text="{i18n:Translate FindOpponent}"
+                                        Command="{Binding DuelOpenPanelCommand}"
+                                        FontAttributes="Bold"
+                                        HeightRequest="40"
+                                        BackgroundColor="{StaticResource Green}"
+                                        TextColor="{StaticResource White}" />
+
+                                <Button Grid.Row="3"
+                                        Grid.ColumnSpan="3"
+                                        Text="{i18n:Translate Ranking}"
+                                        Command="{Binding GoToRankingPageCommand}"
+                                        FontAttributes="Bold"
+                                        HeightRequest="40"
+                                        BackgroundColor="{StaticResource Accent}"
+                                        TextColor="{StaticResource White}" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+            </Components:NonPersistentSelectedItemListView.Header>
+            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        -->
+    <!--<Components:PostCardFactoryView NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference page}}" />-->
+    <!--
+                    </ViewCell>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.ItemTemplate>
+            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout BackgroundColor="{StaticResource White}">
+                        <Label IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
+                               Text="{i18n:Translate ContestPostEmptyMessage}"
+                               Style="{StaticResource EmptyModel}" />
+
+                        <Image Style="{StaticResource ZigZag}"
+                               IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
+                    </StackLayout>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.FooterTemplate>
+        </Components:NonPersistentSelectedItemListView>
+    </ContentPage.Content>-->
+</ContentPage>

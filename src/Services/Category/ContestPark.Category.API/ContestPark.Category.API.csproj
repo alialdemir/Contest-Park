@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Orleans.Client" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.OrleansClient\ContestPark.Core.OrleansClient.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\New folder\ContestPark.Core.Service\ContestPark.Core.Service.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Category\ContestPark.Domain.Category\ContestPark.Domain.Category.csproj" />
+  </ItemGroup>
+
+</Project>

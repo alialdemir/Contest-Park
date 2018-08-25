@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 prism:ViewModelLocator.AutowireViewModel="True"
+                 x:Class="ContestPark.Mobile.Views.DuelStartingPopupView"
+                 x:Name="page"
+                 BackgroundColor="{StaticResource Primary}">
+    <pages:PopupPage.Content>
+        <Grid VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              BackgroundColor="{StaticResource Black}"
+              RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="49*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="49*" />
+            </Grid.RowDefinitions>
+
+            <!-- Founder -->
+            <Grid x:Name="gridFounder"
+                  VerticalOptions="FillAndExpand">
+
+                <Image Grid.Row="0"
+                       Opacity="0.5"
+                       Aspect="AspectFill"
+                       VerticalOptions="FillAndExpand"
+                       Source="{Binding DuelScreen.FounderCoverPicturePath}" />
+
+                <StackLayout Grid.Row="0"
+                             WidthRequest="55"
+                             HeightRequest="55"
+                             Orientation="Horizontal"
+                             VerticalOptions="FillAndExpand">
+
+                    <Components:CircleImage Margin="20,0,0,0"
+                                            VerticalOptions="Center"
+                                            Source="{Binding DuelScreen.FounderProfilePicturePath}" />
+
+                    <Label FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           TextColor="{StaticResource White}"
+                           Text="{Binding DuelScreen.FounderFullName}" />
+                </StackLayout>
+            </Grid>
+
+            <!-- Line -->
+            <BoxView Grid.Row="1"
+                     BackgroundColor="{StaticResource Primary}" />
+
+            <!-- Opponent -->
+            <Grid Grid.Row="2"
+                  x:Name="gridOpponent"
+                  VerticalOptions="FillAndExpand">
+
+                <Image Grid.Row="0"
+                       Opacity="0.5"
+                       Aspect="AspectFill"
+                       VerticalOptions="FillAndExpand"
+                       Source="{Binding DuelScreen.OpponentCoverPicturePath}" />
+
+                <StackLayout Grid.Row="0"
+                     Orientation="Horizontal"
+                     VerticalOptions="FillAndExpand"
+                     HeightRequest="55"
+                     WidthRequest="55">
+
+                    <Components:CircleImage Margin="20,0,0,0"
+                                            VerticalOptions="Center"
+                                            Source="{Binding DuelScreen.OpponentProfilePicturePath}" />
+
+                    <Label FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           TextColor="{StaticResource White}"
+                           Text="{Binding DuelScreen.OpponentFullName}" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

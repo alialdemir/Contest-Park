@@ -1,0 +1,80 @@
+version: '3.4'
+
+services:
+  sql.data:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"    # Important: In a production environment your should remove the external port
+
+  redis.data:
+    ports:
+      - "6379:6379"    # Important: In a production environment your should remove the external port
+
+  contestpark.identity.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word} 
+    ports:
+      - "5101:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.category.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word}
+      - identityUrl=http://contestpark.identity.api
+      - Audience=category
+      - SiloHostIp=${CONTESTPARK_SILO_HOST_IP}
+      - SiloHostPort=30000
+    ports:
+      - "5102:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      
+  contestpark.cp.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word}
+      - identityUrl=http://contestpark.identity.api
+      - Audience=cp
+      - SiloHostIp=${CONTESTPARK_SILO_HOST_IP}
+      - SiloHostPort=30000
+    ports:
+      - "5103:80"
+
+  contestpark.duel.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word}
+      - identityUrl=http://contestpark.identity.api
+      - Audience=duel
+      - SiloHostIp=${CONTESTPARK_SILO_HOST_IP}
+      - SiloHostPort=30000
+    ports:
+      - "5104:80"
+
+  contestpark.signalr.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word}
+      - identityUrl=http://contestpark.identity.api
+      - Audience=signalrhub
+      - SiloHostIp=${CONTESTPARK_SILO_HOST_IP}
+      - SiloHostPort=30000
+    ports:
+      - "5105:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestPark.ocelotapigw:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityUrl=http://contestpark.identity.api              #Local: You need to open your local dev-machine firewall at range 5100-5110.
+    ports:
+      - "5106:80"

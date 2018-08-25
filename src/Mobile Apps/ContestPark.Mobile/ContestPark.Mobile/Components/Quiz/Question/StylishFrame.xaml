@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="ContestPark.Mobile.Components.StylishFrame"
+       x:Name="page"
+       HasShadow="True"
+       CornerRadius="8"
+       HeightRequest="100"
+       IsClippedToBounds="True"
+       VerticalOptions="FillAndExpand"
+       HorizontalOptions="FillAndExpand"
+       BackgroundColor="{Binding Path=Answer.Color, Source={x:Reference page}}">
+    <Frame.Content>
+        <Label TextColor="Black"
+               FontAttributes="Bold"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Text="{Binding Path=Answer.Answers, Source={x:Reference page}}" />
+    </Frame.Content>
+</Frame>    

@@ -1,0 +1,70 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.identity.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/token",
+      "UpstreamHttpMethod": [
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/category",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.category.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/category",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/duel/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.duel.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/duel/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/duel",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.duel.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/duel",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/cp",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.cp.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/cp",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}

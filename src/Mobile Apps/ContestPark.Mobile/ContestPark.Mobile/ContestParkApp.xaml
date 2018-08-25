@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
+             x:Class="ContestPark.Mobile.ContestParkApp">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+
+            <!-- Colors -->
+
+            <!-- Amber -->
+            <Color x:Key="Primary">#ffc107</Color>
+            <Color x:Key="Primary100">#FFECB3</Color>
+
+            <!-- Beyaz -->
+            <Color x:Key="White">#FFFFFF</Color>
+
+            <!-- Black -->
+            <Color x:Key="Black">#000000</Color>
+
+            <!-- Green -->
+            <Color x:Key="Green">#017d46</Color>
+
+            <!-- Red -->
+            <Color x:Key="Red">#993232</Color>
+
+            <!-- Blue-->
+            <Color x:Key="Blue">#4080FF</Color>
+
+            <Style x:Key="ContentParkLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="25"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+
+            <Style x:Key="ListView" TargetType="ListView">
+                <Setter Property="ItemsSource" Value="{Binding Items}" />
+                <Setter Property="RefreshCommand" Value="{Binding RefleshCommand}" />
+                <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
+                <Setter Property="IsPullToRefreshEnabled" Value="True" />
+                <Setter Property="SeparatorVisibility" Value="None" />
+                <Setter Property="HasUnevenRows" Value="True" />
+            </Style>
+
+            <Style x:Key="ListViewHeaderAndFooter" TargetType="ListView" BasedOn="{StaticResource ListView}">
+                <Setter Property="Footer" Value=" " />
+                <Setter Property="Header" Value=" " />
+            </Style>
+
+            <Style x:Key="Button" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource White}"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="BorderRadius" Value="2"></Setter>
+                <Setter Property="HeightRequest" Value="36"></Setter>
+            </Style>
+
+            <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource Button}">
+                <Setter Property="BackgroundColor" Value="#b71c1c"></Setter>
+            </Style>
+
+            <Style x:Key="FacebookButton" TargetType="Button" BasedOn="{StaticResource Button}">
+                <Setter Property="BackgroundColor" Value="#3b5999"></Setter>
+                <Setter Property="Image" Value="facebook24x.png"></Setter>
+            </Style>
+
+            <!-- ZigZag -->
+            <Style x:Key="ZigZag" TargetType="Image">
+                <Setter Property="Source" Value="zigzag.png" />
+                <Setter Property="Aspect" Value="Fill" />
+            </Style>
+
+            <!-- List empty message -->
+            <Style x:Key="EmptyModel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>

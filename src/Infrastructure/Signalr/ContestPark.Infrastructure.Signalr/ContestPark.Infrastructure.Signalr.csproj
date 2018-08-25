@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Redis" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ServiceStack.Redis" Version="5.1.0" />
+    <PackageReference Include="SignalR.Orleans" Version="1.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\Duel\ContestPark.Domain.Duel\ContestPark.Domain.Duel.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Question\ContestPark.Domain.Question\ContestPark.Domain.Question.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Signalr\ContestPark.Domain.Signalr\ContestPark.Domain.Signalr.csproj" />
+  </ItemGroup>
+
+</Project>

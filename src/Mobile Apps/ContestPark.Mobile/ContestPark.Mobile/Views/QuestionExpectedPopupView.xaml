@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 prism:ViewModelLocator.AutowireViewModel="True"
+                 x:Class="ContestPark.Mobile.Views.QuestionExpectedPopupView"
+                 BackgroundColor="Transparent">
+    <pages:PopupPage.Content>
+        <StackLayout Margin="0,70,0,0"
+                     Orientation="Vertical"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="{StaticResource Black}">
+
+            <StackLayout Spacing="0"
+                         Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+
+                <Image HeightRequest="100"
+                       Source="{Binding SubCategoryPicturePath}" />
+
+                <Label FontSize="15"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Text="{Binding SubcategoryName}"
+                       TextColor="{StaticResource White}" />
+
+                <Label FontSize="30"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       Text="{Binding RoundCount, StringFormat='ROUND {0}'}"
+                       TextColor="{StaticResource White}" />
+
+                <Label FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource White}"
+                       Text="{Binding RoundCount, StringFormat='{0} to 7'}" />
+
+                <Label FontSize="18"
+                       Text="Get ready!"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#ddd" />
+            </StackLayout>
+        </StackLayout>
+    </pages:PopupPage.Content>
+</pages:PopupPage>
