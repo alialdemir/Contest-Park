@@ -13,7 +13,7 @@ namespace ContestPark.Infrastructure.Signalr.Entities
 
         public string ConnectionId { get; set; }
 
-        public DateTime Date { get; } = DateTime.Now;
+        public DateTime Date { get; set; }
 
         public Languages Language { get; set; }
     }

@@ -68,7 +68,7 @@ namespace ContestPark.Identity.API.Data
             var demoUser =
             new ApplicationUser()
             {
-                Id = "2222-2222-2222-bot",
+                Id = "2222-2222-2222-2222",
                 ProfilePicturePath = "http://i.pravatar.cc/150?u=demo",
                 FullName = "Demo",
                 PhoneNumber = "1234567890",
@@ -81,7 +81,7 @@ namespace ContestPark.Identity.API.Data
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
 
-            demoUser.PasswordHash = _passwordHasher.HashPassword(demoUser, "demo");
+            demoUser.PasswordHash = _passwordHasher.HashPassword(demoUser, "demodemo");
 
             var botUser =
             new ApplicationUser()
@@ -90,16 +90,17 @@ namespace ContestPark.Identity.API.Data
                 ProfilePicturePath = "http://i.pravatar.cc/150?u=bot",
                 FullName = "Bot",
                 PhoneNumber = "1234567890",
-                UserName = "Bot",
-                NormalizedUserName = "BOT",
+                UserName = "bot12345",
+                NormalizedUserName = "BOT12345",
                 Email = "bot@bot.com",
                 NormalizedEmail = "BOT@BOT.COM",
                 Language = Languages.Turkish,
                 LanguageCode = "en_US",
+                IsBot = true,
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
 
-            demoUser.PasswordHash = _passwordHasher.HashPassword(demoUser, "contestparkbot123");
+            botUser.PasswordHash = _passwordHasher.HashPassword(botUser, "12345678");
 
             return new List<ApplicationUser>()
             {

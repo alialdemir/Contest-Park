@@ -208,6 +208,9 @@
     <PackageReference Include="Microsoft.Bcl">
       <Version>1.1.10</Version>
     </PackageReference>
+    <PackageReference Include="modernhttpclient">
+      <Version>2.4.2</Version>
+    </PackageReference>
     <PackageReference Include="MonkeyCache.SQLite">
       <Version>0.1.0.10-beta</Version>
     </PackageReference>
@@ -255,13 +258,16 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.172-pre" />
+    <PackageReference Include="Xamarin.LiveReload">
+      <Version>0.3.27</Version>
+    </PackageReference>
     <PackageReference Include="Xfx.Controls">
       <Version>1.1.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ContestPark.Mobile\ContestPark.Mobile.csproj">
-      <Project>{e5de24e5-9f5f-4620-90e0-acffb9ea0e85}</Project>
+      <Project>{d4ded53e-69aa-41eb-84a2-46c708698b32}</Project>
       <Name>ContestPark.Mobile</Name>
     </ProjectReference>
   </ItemGroup>

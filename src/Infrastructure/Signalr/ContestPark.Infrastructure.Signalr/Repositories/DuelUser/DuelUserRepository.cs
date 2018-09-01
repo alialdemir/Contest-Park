@@ -100,10 +100,9 @@ namespace ContestPark.Infrastructure.Signalr.Repositories.DuelUser
         public async void ClearExpiredDuelUserList()
         {
             var duelUsers = await GetAllAsync();
+            DateTime now = DateTime.Now;
 
-            duelUsers.Where(per => per.Date.Subtract(DateTime.Now).TotalSeconds > 30)
-                     .ToList()
-                     .ForEach(key => duelUsers.Remove(key));
+            duelUsers = duelUsers.Where(p => (now - p.Date).TotalSeconds < 30).ToList();
 
             await SetStringDuelUserListAsync(duelUsers);
         }

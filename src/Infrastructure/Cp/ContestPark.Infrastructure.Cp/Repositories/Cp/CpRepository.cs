@@ -2,10 +2,10 @@
 using ContestPark.Core.Interfaces;
 using ContestPark.Domain.Cp.Enums;
 using ContestPark.Infrastructure.Cp.Entities;
+using ContestPark.Infrastructure.Cp.Repositories.CpInfo;
 using Dapper;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
 
 namespace ContestPark.Infrastructure.Cp.Repositories.Cp
 {
@@ -15,14 +15,18 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
 
         private readonly ILogger<CpRepository> _logger;
 
+        private readonly ICpInfoRepository _cpInfoRepository;
+
         #endregion Private variables
 
         #region Constructor
 
         public CpRepository(ISettingsBase settingsBase,
+                            ICpInfoRepository cpInfoRepository,
                             ILogger<CpRepository> logger) : base(settingsBase)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _cpInfoRepository = cpInfoRepository;
         }
 
         #endregion Constructor
@@ -39,9 +43,9 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
             if (string.IsNullOrEmpty(userId))
                 return 0;
 
-            string sql = @"Select [Cps].[CpAmount] from [Cps] where [Cps].[UserId]=@userId";
+            string sql = @"Select top 1 [Cps].[CpAmount] from [Cps] where [Cps].[UserId]=@userId";
 
-            return Connection.Query<int>(sql, new { userId }).SingleOrDefault();
+            return Connection.QuerySingleOrDefault<int>(sql, new { userId });
         }
 
         /// <summary>
@@ -69,7 +73,17 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
                 userCp.CpAmount = 0;
             }
 
-            Update(userCp);
+            bool isSuccess = Update(userCp);
+
+            if (isSuccess)
+            {
+                _cpInfoRepository.Insert(new CpInfoEntity
+                {
+                    CpSpent = -diminishingGold,
+                    ChipProcessName = goldProcessName,
+                    UserId = userId,
+                });
+            }
 
             return userCp.CpAmount;
         }
@@ -85,8 +99,8 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
                 return null;
             }
 
-            string sql = "select * from [Cps] where [Cps].[UserId]=@userId";
-            CpEntity userCp = Connection.QueryFirstOrDefault<CpEntity>(sql, new { userId });
+            string sql = "select top 1 * from [Cps] where [Cps].[UserId]=@userId";
+            CpEntity userCp = Connection.QuerySingleOrDefault<CpEntity>(sql, new { userId });
 
             return userCp;
         }
@@ -106,11 +120,11 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
                 return null;
             }
 
-            if (gold < 0)
-            {
-                _logger.LogWarning($"Sıfırdan az miktarda altın eklemeye çalışıldı altın miktarı sıfırlandı. userId: {userId}");
-                gold = 0;
-            }
+            //if (gold < 0)
+            //{
+            //    _logger.LogWarning($"Sıfırdan az miktarda altın eklemeye çalışıldı altın miktarı sıfırlandı. userId: {userId}");
+            //    gold = 0;
+            //}
 
             CpEntity cp = new CpEntity
             {
@@ -128,6 +142,39 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
             }
 
             return cp;
+        }
+
+        /// <summary>
+        /// Kullanıcıya altın ekler
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="addedChips">Eklenecek altın miktarı</param>
+        /// <param name="goldProcessName">Hangi sebepten artıyor</param>
+        /// <returns>Azaldıktan sonraki altın miktarı</returns>
+        public int AddGold(string userId, int addedChips, GoldProcessNames goldProcessName)
+        {
+            CpEntity userCp = GetCpByUserId(userId);
+            if (userCp == null)
+            {
+                _logger.LogInformation($"Kullanıcıya ilk gold eklendi: {userId}");
+                CpEntity addedCp = AddGold(userId, 0);
+                return addedCp?.CpAmount ?? -1;
+            }
+
+            userCp.CpAmount += addedChips;
+
+            bool isSuccess = Update(userCp);
+            if (isSuccess)
+            {
+                _cpInfoRepository.Insert(new CpInfoEntity
+                {
+                    CpSpent = addedChips,
+                    ChipProcessName = goldProcessName,
+                    UserId = userId,
+                });
+            }
+
+            return userCp.CpAmount;
         }
 
         #endregion Methods

@@ -1,5 +1,4 @@
-﻿using ContestPark.Core.Enums;
-using ContestPark.Domain.Duel.Interfaces;
+﻿using ContestPark.Domain.Duel.Interfaces;
 using ContestPark.Domain.Signalr.Interfaces;
 using ContestPark.Domain.Signalr.Model.Request;
 using ContestPark.Infrastructure.Signalr.Entities;
@@ -47,16 +46,11 @@ namespace ContestPark.Infrastructure.Signalr.Grain
                 return;
             }
 
+            _duelUserRepository.ClearExpiredDuelUserList();
+
             _logger.LogInformation($"Rakip bekleyen kullanıcı id: {waitingOpponent.UserId}");
 
-            DuelUser waitingDuelUser = new DuelUser
-            {
-                Bet = waitingOpponent.Bet,
-                SubCategoryId = waitingOpponent.SubCategoryId,
-                ConnectionId = "",
-                UserId = "3333-3333-3333-bot",
-                Language = Languages.English
-            };// await _duelUserRepository.GetDuelUserAsync(@event.UserId, @event.SubCategoryId, @event.Bet);
+            DuelUser waitingDuelUser = await _duelUserRepository.GetDuelUserAsync(waitingOpponent.UserId, waitingOpponent.SubCategoryId, waitingOpponent.Bet);
 
             if (waitingDuelUser != null)
             {
@@ -66,8 +60,6 @@ namespace ContestPark.Infrastructure.Signalr.Grain
             {
                 await AddAwatingModeAsync(waitingOpponent);
             }
-
-            _duelUserRepository.ClearExpiredDuelUserList();
         }
 
         /// <summary>
@@ -81,7 +73,8 @@ namespace ContestPark.Infrastructure.Signalr.Grain
                 ConnectionId = waitingOpponent.ConnectionId,
                 SubCategoryId = waitingOpponent.SubCategoryId,
                 UserId = waitingOpponent.UserId,
-                Language = waitingOpponent.Language
+                Language = waitingOpponent.Language,
+                Date = DateTime.Now
             });
 
             _logger.LogInformation($"Rakip bekleyen kullanıcı sıraya alındı. kullanıcı id: {waitingOpponent.UserId}");

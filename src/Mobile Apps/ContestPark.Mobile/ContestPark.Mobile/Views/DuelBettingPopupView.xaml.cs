@@ -34,7 +34,7 @@ namespace ContestPark.Mobile.Views
             base.OnAppearing();
             var viewModel = ((DuelBettingPopupViewModel)BindingContext);
 
-            if (viewModel == null)
+            if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
             viewModel.SubcategoryId = SubcategoryId;

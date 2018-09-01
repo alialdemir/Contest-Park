@@ -47,10 +47,6 @@ namespace ContestPark.Mobile.Droid
     {
         public void RegisterTypes(IContainerRegistry container)
         {
-            if (container == null)
-            {
-                throw new System.ArgumentNullException(nameof(container));
-            }
             // Register any platform specific implementations
         }
     }

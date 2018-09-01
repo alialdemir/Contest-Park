@@ -9,6 +9,7 @@
         DailyChip = 5,
         Task = 6,
         Game = 7,
-        Boost = 8
+        Boost = 8,
+        Draw = 9
     }
 }

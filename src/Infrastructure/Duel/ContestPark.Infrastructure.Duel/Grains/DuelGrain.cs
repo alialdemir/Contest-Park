@@ -52,8 +52,11 @@ namespace ContestPark.Infrastructure.Duel.Grains
         /// Eşleşen kullanıcılara duello oluşturup DuelCreatedIntegrationEvent yayınlar
         /// </summary>
         /// <param name="duelStart">Eşleşen kullanıcı bilgileri</param>
-        public Task DuelStart(DuelStart duelStart)
+        public async Task DuelStart(DuelStart duelStart)
         {
+            // test
+            duelStart.OpponentLanguage = Languages.English;
+
             if (string.IsNullOrEmpty(duelStart.FounderUserId) || string.IsNullOrEmpty(duelStart.OpponentUserId) || duelStart.SubCategoryId <= 0)
             {
                 _logger.LogWarning($@"Duello oluşturulken değerler boş geldi.
@@ -61,7 +64,7 @@ namespace ContestPark.Infrastructure.Duel.Grains
                                     {nameof(duelStart.OpponentUserId)}: {duelStart.OpponentUserId}
                                     {nameof(duelStart.SubCategoryId)}: {duelStart.SubCategoryId}");
 
-                return Task.CompletedTask;
+                return;
             }
 
             int duelId = _duelRepository.Insert(new DuelEntity
@@ -75,168 +78,138 @@ namespace ContestPark.Infrastructure.Duel.Grains
             if (duelId <= 0)
             {
                 _logger.LogWarning($"Düello oluşturulamadı. Founder user id: {duelStart.FounderUserId} Opponent user id: {duelStart.OpponentUserId} Subcateogry id: {duelStart.SubCategoryId}");
-                return Task.CompletedTask;
+                return;
             }
 
-            DuelCreated(duelStart, duelId);
+            await AddToSignalrGroup(duelId,
+                                    duelStart.FounderConnectionId,
+                                    duelStart.OpponentConnectionId,
+                                    duelStart.FounderUserId,
+                                    duelStart.OpponentUserId);
+
+            await DuelStarting(duelId, duelStart.FounderConnectionId, duelStart.OpponentConnectionId, duelStart.SubCategoryId, duelStart.FounderLanguage, duelStart.OpponentLanguage);
 
             _logger.LogInformation($"Düello id {duelId} oluşturuldu. Düello kullanıcı bilgileri signalr tarafına gönderilmek için hazırlanıyor.");
 
-            DuelStarting(duelId, duelStart.FounderConnectionId, duelStart.OpponentConnectionId, duelStart.SubCategoryId, duelStart.FounderLanguage, duelStart.OpponentLanguage);
+            await DuelCreated(duelStart, duelId);
 
-            _logger.LogInformation($"Düello kullanıcı bilgileri signalr tarafına gönderildi.");
-
-            return Task.CompletedTask;
+            _logger.LogInformation($"Düello başladı. Duel Id: {duelId}");
         }
 
         /// <summary>
         /// Düello oluşturuldu eventini publish eder
         /// </summary>
-        private void DuelCreated(DuelStart duelStart, int duelId)
+        private async Task DuelCreated(DuelStart duelStart, int duelId)
         {
+            // Duelle için statee eklendi
+            await GrainFactory
+                 .GetGrain<IGameGrain>(duelId)
+                 .SetState(new GameState
+                 {
+                     DuelId = duelId,
+                     SubcategoryId = duelStart.SubCategoryId,
+                     Bet = duelStart.Bet * 2, //İki kullanıcılı olduğu için chip miktarının 2 katını alıyoruz
+
+                     FounderConnectionId = duelStart.FounderConnectionId,
+                     FounderLanguage = duelStart.FounderLanguage,
+                     FounderUserId = duelStart.FounderUserId,
+
+                     OpponentConnectionId = duelStart.OpponentConnectionId,
+                     OpponentLanguage = duelStart.OpponentLanguage,
+                     OpponentUserId = duelStart.OpponentUserId,
+                 });
+
             if (duelStart.Bet > 0)
             {
                 ICpGrain cpGrain = GrainFactory.GetGrain<ICpGrain>(1);
 
-                Task.WhenAll(
-                    cpGrain.RemoveGold(duelStart.FounderUserId, duelStart.Bet, GoldProcessNames.Game),
-                    cpGrain.RemoveGold(duelStart.OpponentUserId, duelStart.Bet, GoldProcessNames.Game));
+                await Task.WhenAll(
+                   cpGrain.RemoveGold(duelStart.FounderUserId, duelStart.Bet, GoldProcessNames.Game),
+                   cpGrain.RemoveGold(duelStart.OpponentUserId, duelStart.Bet, GoldProcessNames.Game));
             }
 
             _logger.LogInformation($@"{duelId} düello için bu kullanıcılardan bahis miktarları düşüldü.
                                    FounderUserUd: {duelStart.FounderUserId}  -  OpponentUserId: {duelStart.OpponentUserId}");
 
-            GrainFactory
-                .GetGrain<IQuestionGrain>(1)
+            var questionCreated = await GrainFactory
+                .GetGrain<IQuestionGrain>(duelId)
                 .QuestionCreate(new QuestionInfo(duelStart.SubCategoryId,
-                                                          duelStart.FounderUserId,
-                                                          duelStart.OpponentUserId,
-                                                          duelStart.FounderConnectionId,
-                                                          duelStart.OpponentConnectionId,
-                                                          duelStart.FounderLanguage,
-                                                          duelStart.OpponentLanguage));
+                                                 duelStart.FounderUserId,
+                                                 duelStart.OpponentUserId,
+                                                 duelStart.FounderLanguage,
+                                                 duelStart.OpponentLanguage));
 
             _logger.LogInformation($"Duello soruları oluşturma isteği gönderildi Duel Id: {duelId}");
+
+            await GrainFactory
+                .GetGrain<IQuestionSignalrGrain>(duelId)
+                  .NextQuestionAsync(new NextQuestion
+                  {
+                      DuelId = duelId,
+                      Id = Guid.NewGuid(),
+                      Question = questionCreated
+                  });
+        }
+
+        /// <summary>
+        /// Eğer kullanıcılar bot değilse duello id göre siganlr grubuna ekler
+        /// </summary>
+        private async Task AddToSignalrGroup(int duelId, string founderConnectionId, string opponentConnectionId, string founderUserId, string opponentUserId)
+        {
+            IQuestionSignalrGrain questionSignalrGrain = GrainFactory.GetGrain<IQuestionSignalrGrain>(duelId);
+
+            if (!founderUserId.Contains("-bot") && !string.IsNullOrEmpty(founderConnectionId))
+                await questionSignalrGrain.AddToGroup(duelId, founderConnectionId);
+
+            if (!opponentUserId.Contains("-bot") && !string.IsNullOrEmpty(opponentConnectionId))
+                await questionSignalrGrain.AddToGroup(duelId, opponentConnectionId);
         }
 
         /// <summary>
         /// Düello başlıyor eventini publish eder
         /// </summary>
-        private void DuelStarting(int duelId, string founderConnectionId, string opponentConnectionId, Int16 subCategoryId, Languages founderLanguage, Languages opponentLanguage)
+        private async Task DuelStarting(int duelId, string founderConnectionId, string opponentConnectionId, Int16 subCategoryId, Languages founderLanguage, Languages opponentLanguage)
         {
             DuelStarting duelStartingModel = _duelRepository.GetDuelStarting(duelId);
 
             var duelScreen = new DuelStartingScreen(
                 duelId: duelStartingModel.DuelId,
-                subCategoryId: subCategoryId,
+                // subCategoryId: subCategoryId,
 
                 founderFullName: duelStartingModel.FounderFullName,
                 founderProfilePicturePath: duelStartingModel.FounderProfilePicturePath,
                 founderCoverPicturePath: duelStartingModel.FounderCoverPicturePath,
-                founderConnectionId: founderConnectionId,
-                founderUserId: duelStartingModel.FounderUserId,
-                founderLanguage: founderLanguage,
+                   //  founderConnectionId: founderConnectionId,
+                   founderUserId: duelStartingModel.FounderUserId,
+                //  founderLanguage: founderLanguage,
 
                 opponentFullName: duelStartingModel.OpponentFullName,
                 opponentProfilePicturePath: duelStartingModel.OpponentProfilePicturePath,
                 opponentCoverPicturePath: duelStartingModel.OpponentCoverPicturePath,
-                opponentConnectionId: opponentConnectionId,
-                opponentUserId: duelStartingModel.OpponentUserId,
-                opponentLanguage: opponentLanguage);
+                //  opponentConnectionId: opponentConnectionId,
+                opponentUserId: duelStartingModel.OpponentUserId
+               // opponentLanguage: opponentLanguage
+               );
 
-            GrainFactory
-                .GetGrain<IQuestionSignalrGrain>(1)
-                .DuelStartingScreenAsync(duelScreen);
+            await GrainFactory
+                    .GetGrain<IQuestionSignalrGrain>(duelId)
+                    .DuelStartingScreenAsync(duelScreen);
         }
 
-        #endregion DuelCreate
-
-        #region User answer save
-
         /// <summary>
-        /// Oyunucunun verdiği cevabı kayıt eder
+        /// Düello total scores günceller
         /// </summary>
-        /// <param name="userAnswer">Duello bilgisi</param>
-        public Task SaveUserAnswer(UserAnswer userAnswer)
+        /// <param name="duelId">Düello id</param>
+        /// <param name="founderScore">Kurucu puan</param>
+        /// <param name="opponentScore">Rakip puan</param>
+        public Task UpdateTotalScores(int duelId, byte founderScore, byte opponentScore)
         {
-            bool isGameEnd = IsGameEnd(userAnswer.DuelId).Result;
-
-            if (isGameEnd)
-                return Task.CompletedTask;
-
-            #region Cevap kayıt edildi
-
-            DuelInfoEntity duelInfoEntity = _duelInfoRepository.GetDuelInfoByDuelId(userAnswer.DuelId, userAnswer.QuestionInfoId) ?? new DuelInfoEntity();
-
-            duelInfoEntity.DuelId = userAnswer.DuelId;
-            duelInfoEntity.CorrectAnswer = userAnswer.CorrectAnswer;
-            duelInfoEntity.QuestionInfoId = userAnswer.QuestionInfoId;
-
-            if (userAnswer.IsFounder)
-            {
-                duelInfoEntity.FounderAnswer = userAnswer.Stylish;
-                duelInfoEntity.FounderScore = userAnswer.IsCorrect ? (byte)10 : (byte)0;
-                duelInfoEntity.FounderTime = userAnswer.Time;
-            }
-            else
-            {
-                duelInfoEntity.OpponentAnswer = userAnswer.Stylish;
-                duelInfoEntity.OpponentScore = userAnswer.IsCorrect ? (byte)10 : (byte)0;
-                duelInfoEntity.OpponentTime = userAnswer.Time;
-            }
-
-            if (duelInfoEntity.DuelInfoId > 0) _duelInfoRepository.Update(duelInfoEntity);
-            else _duelInfoRepository.Insert(duelInfoEntity);
-
-            #endregion Cevap kayıt edildi
+            _duelRepository.UpdateTotalScores(duelId, founderScore, opponentScore);
 
             return Task.CompletedTask;
         }
 
-        /// <summary>
-        /// Düelloda soruyu cevaplayınca yapılacak işlemleri  çalıştırır
-        /// </summary>
-        /// <param name="userAnswer">Düello bilgisi</param>
-        public async Task SaveUserAnswerProcess(UserAnswer userAnswer)
-        {
-            IDuelGrain duelGrain = GrainFactory.GetGrain<IDuelGrain>(1);
-
-            await duelGrain.SaveUserAnswer(userAnswer);
-
-            bool isGameEnd = await duelGrain.IsGameEnd(userAnswer.DuelId);
-
-            if (!isGameEnd)
-            {
-                // Sonraki soruya geçildi
-                await GrainFactory
-                    .GetGrain<IQuestionGrain>(1)
-                    .QuestionCreate(new QuestionInfo(
-                        userAnswer.SubcategoryId,
-                        userAnswer.FounderUserId,
-                        userAnswer.OpponentUserId,
-                        userAnswer.FounderConnectionId,
-                        userAnswer.OpponentConnectionId,
-                        userAnswer.FounderLanguage,
-                        userAnswer.OpponentLanguage));
-            }
-
-            // TODO: Add to score
-            // TODO: Add to post
-            // TODO: Mission control
-            // TODO: Level control
-        }
-
-        /// <summary>
-        /// Düelloda 7 sorudan fazla soru sorulduysa false sorulmadıysa true döner
-        /// </summary>
-        /// <param name="duelId">Düello id</param>
-        /// <returns>Oyun bitti ise true bitmedi ise false</returns>
-        public Task<bool> IsGameEnd(int duelId)
-        {
-            return Task.FromResult(_duelInfoRepository.IsGameEnd(duelId));
-        }
-
-        #endregion User answer save
+        #endregion DuelCreate
 
         #endregion Methods
     }

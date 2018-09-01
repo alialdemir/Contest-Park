@@ -17,6 +17,8 @@ namespace ContestPark.Identity.API.Model
         [Required]
         public bool IsActive { get; set; } = true;
 
+        public bool IsBot { get; set; } = false;
+
         [Required]
         public string LanguageCode { get; set; }
 

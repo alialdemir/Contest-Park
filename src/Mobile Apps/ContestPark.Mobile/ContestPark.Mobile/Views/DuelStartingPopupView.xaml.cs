@@ -39,7 +39,7 @@ namespace ContestPark.Mobile.Views
             base.OnAppearing();
             var viewModel = ((DuelStartingPopupViewModel)BindingContext);
 
-            if (viewModel == null)
+            if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
             viewModel.StandbyModeModel.SubCategoryId = SubcategoryId;

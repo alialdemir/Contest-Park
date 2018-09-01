@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.Models.User;
 using JWT;
 using JWT.Serializers;
-using System;
 
 namespace ContestPark.Mobile.Helpers
 {
@@ -9,7 +8,7 @@ namespace ContestPark.Mobile.Helpers
     {
         public static UserInfoModel GetUserInfo(string accessToken)
         {
-            if (String.IsNullOrEmpty(accessToken))
+            if (string.IsNullOrEmpty(accessToken))
             {
                 return new UserInfoModel();
             }

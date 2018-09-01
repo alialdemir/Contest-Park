@@ -198,7 +198,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private HttpClient CreateHttpClient()
         {
-            var httpClient = new HttpClient();
+            var httpClient = new HttpClient(/*new NativeMessageHandler()*/);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();

@@ -1,8 +1,7 @@
-﻿using Autofac;
-using Foundation;
-using Prism.Autofac.Forms;
+﻿using Foundation;
+using Prism;
+using Prism.Ioc;
 using UIKit;
-using Xfx;
 
 namespace ContestPark.Mobile.iOS
 {
@@ -21,7 +20,12 @@ namespace ContestPark.Mobile.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            XfxControls.Init();
+            //      XfxControls.Init();
+            //    UserDialogs.Init(x=> { });
+            //    ImageCircleRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
+            //   Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new ContestParkApp(new IOSInitializer()));
@@ -32,7 +36,7 @@ namespace ContestPark.Mobile.iOS
 
     public class IOSInitializer : IPlatformInitializer
     {
-        public void RegisterTypes(IContainer container)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
         }
     }

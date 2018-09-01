@@ -3,16 +3,25 @@ using ContestPark.Core.Interfaces;
 using ContestPark.Domain.Duel.Model.Response;
 using ContestPark.Infrastructure.Duel.Entities;
 using Dapper;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 
 namespace ContestPark.Infrastructure.Duel.Repositories.Duel
 {
     internal class DuelRepository : DapperRepositoryBase<DuelEntity>, IDuelRepository
     {
+        #region MyRegion
+
+        private readonly ILogger<DuelRepository> _logger;
+
+        #endregion MyRegion
+
         #region Constructor
 
-        public DuelRepository(ISettingsBase settingsBase) : base(settingsBase)
+        public DuelRepository(ISettingsBase settingsBase,
+                              ILogger<DuelRepository> logger) : base(settingsBase)
         {
+            _logger = logger;
         }
 
         #endregion Constructor
@@ -21,12 +30,10 @@ namespace ContestPark.Infrastructure.Duel.Repositories.Duel
 
         public DuelStarting GetDuelStarting(int duelId)
         {
-            if (duelId < 0)
-            {
+            if (duelId <= 0)
                 return null;
-            }
 
-            var sql = @"SELECT TOP 1
+            string sql = @"SELECT TOP 1
                        [d].[DuelId],
                        [founder].[Id] as [FounderUserId],
                        [founder].[FullName] as [FounderFullName],
@@ -42,6 +49,26 @@ namespace ContestPark.Infrastructure.Duel.Repositories.Duel
                        WHERE [d].[DuelId]=@duelId";
 
             return Connection.Query<DuelStarting>(sql, new { duelId }).SingleOrDefault();
+        }
+
+        /// <summary>
+        /// Düello total scores günceller
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <param name="founderTotalScore">Kurucu puan</param>
+        /// <param name="opponentTotalScore">Rakip puan</param>
+        public void UpdateTotalScores(int duelId, byte founderTotalScore, byte opponentTotalScore)
+        {
+            if (duelId <= 0)
+                return;
+
+            string sql = @"UPDATE Duels SET FounderTotalScore=@founderTotalScore, OpponentTotalScore=@opponentTotalScore
+                           WHERE DuelId=@duelId";
+
+            int rowCount = Connection.Execute(sql, new { duelId, founderTotalScore, opponentTotalScore });
+
+            if (rowCount <= 0)
+                _logger.LogWarning($"Düello toplam skorlar güncellenemedi. Duel id: {duelId}");
         }
 
         #endregion Methods

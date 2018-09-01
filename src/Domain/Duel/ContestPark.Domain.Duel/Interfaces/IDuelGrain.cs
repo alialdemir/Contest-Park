@@ -1,17 +1,13 @@
-﻿using ContestPark.Domain.Duel.Model.Request;
-using Orleans;
+﻿using ContestPark.Core.Domain.Interfaces;
+using ContestPark.Domain.Duel.Model.Request;
 using System.Threading.Tasks;
 
 namespace ContestPark.Domain.Duel.Interfaces
 {
-    public interface IDuelGrain : IGrainWithIntegerKey
+    public interface IDuelGrain : IGrainBase
     {
         Task DuelStart(DuelStart duelStart);
 
-        Task SaveUserAnswer(UserAnswer userAnswer);
-
-        Task SaveUserAnswerProcess(UserAnswer userAnswer);
-
-        Task<bool> IsGameEnd(int duelId);
+        Task UpdateTotalScores(int duelId, byte founderScore, byte opponentScore);
     }
 }

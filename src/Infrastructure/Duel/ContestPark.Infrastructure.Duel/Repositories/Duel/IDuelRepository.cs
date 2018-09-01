@@ -7,5 +7,7 @@ namespace ContestPark.Infrastructure.Duel.Repositories.Duel
     public interface IDuelRepository : IRepository<DuelEntity>
     {
         DuelStarting GetDuelStarting(int duelId);
+
+        void UpdateTotalScores(int duelId, byte founderTotalScore, byte opponentTotalScore);
     }
 }

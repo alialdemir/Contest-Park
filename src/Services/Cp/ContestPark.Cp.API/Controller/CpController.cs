@@ -11,7 +11,7 @@ namespace ContestPark.Cp.API.Controller
     {
         #region Private variables
 
-        private readonly ICpGrain _categoryGrain;
+        private readonly ICpGrain _cpGrain;
 
         #endregion Private variables
 
@@ -22,7 +22,7 @@ namespace ContestPark.Cp.API.Controller
             IClusterClient clusterClient
         ) : base(logger)
         {
-            _categoryGrain = clusterClient.GetGrain<ICpGrain>(0);
+            _cpGrain = clusterClient.GetGrain<ICpGrain>(0);
         }
 
         #endregion Constructor
@@ -37,7 +37,9 @@ namespace ContestPark.Cp.API.Controller
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _categoryGrain.GetTotalGoldByUserId(UserId));
+            int gold = await _cpGrain.GetTotalGoldByUserId(UserId);
+
+            return Ok(gold);
         }
 
         #endregion Methods

@@ -168,6 +168,7 @@ namespace ContestPark.Mobile.Droid
 			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_unpinnedDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.ProgressButton_unpinnedDrawable;
 			global::com.refractored.monodroidtoolkit.Resource.Styleable.Theme = global::ContestPark.Mobile.Droid.Resource.Styleable.Theme;
 			global::com.refractored.monodroidtoolkit.Resource.Styleable.Theme_circularProgressBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.Theme_circularProgressBarStyle;
+			global::ModernHttpClient.Resource.String.library_name = global::ContestPark.Mobile.Droid.Resource.String.library_name;
 			global::PCLCrypto.Resource.String.ApplicationName = global::ContestPark.Mobile.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::ContestPark.Mobile.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarSize;

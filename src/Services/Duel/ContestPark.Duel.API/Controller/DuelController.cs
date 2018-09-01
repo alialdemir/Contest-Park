@@ -1,5 +1,4 @@
 ﻿using ContestPark.Core.Domain.Model;
-using ContestPark.Domain.Duel.Interfaces;
 using ContestPark.Domain.Duel.Model.Request;
 using ContestPark.Domain.Identity.Interfaces;
 using ContestPark.Domain.Signalr.Interfaces;
@@ -104,22 +103,30 @@ namespace ContestPark.Duel.API.Controller
         }
 
         /// <summary>
-        /// Kullanıcının verdiği cevabı kayıt eder
+        /// Bot devreye girer
         /// </summary>
-        /// <param name="userAnswer">Seçtiği cevap</param>
-        [HttpPost("saveanswer")]
+        /// <param name="botStandbyMode">Hangi kategoride oynamak istediği bilgisi</param>
+
+        [HttpPost("bot")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult SaveAnswer([FromBody]UserAnswer userAnswer)
+        public async Task<IActionResult> Post([FromBody]BotStandbyMode botStandbyMode)
         {
-            if (userAnswer.DuelId < 0)
+            if (botStandbyMode.Bet < 0 || botStandbyMode.SubCategoryId < 0)
             {
-                _logger.LogInformation($"Soruya verilen cevap kayıt edilemedi. DuelId: {userAnswer.DuelId}");
+                _logger.LogInformation($"Düello sıraya girme işlemi başarısız oldu. Bet: {botStandbyMode.Bet} SubcategoryId: {botStandbyMode.SubCategoryId}");
                 return NotFound();
             }
 
-            _clusterClient.GetGrain<IDuelGrain>(0)
-                 .SaveUserAnswerProcess(userAnswer);
+            string randomBotUserId = await _clusterClient
+                .GetGrain<IUserGrain>(0)
+                .GetRandomBotUserId();
+
+            var waitingOpponent = new WaitingOpponent(randomBotUserId, string.Empty, botStandbyMode.SubCategoryId, botStandbyMode.Bet, CurrentUserLanguage);
+
+            await _clusterClient
+                  .GetGrain<IDuelSignalrGrain>(0)
+                  .WaitingOpponentAsync(waitingOpponent);
 
             return Ok();
         }

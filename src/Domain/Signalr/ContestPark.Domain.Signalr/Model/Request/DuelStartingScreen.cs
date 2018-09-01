@@ -1,12 +1,9 @@
-﻿using ContestPark.Core.Enums;
-using System;
-
-namespace ContestPark.Domain.Signalr.Model.Request
+﻿namespace ContestPark.Domain.Signalr.Model.Request
 {
     public class DuelStartingScreen
     {
         public int DuelId { get; set; }
-        public Int16 SubCategoryId { get; set; }
+        //   public Int16 SubCategoryId { get; set; }
 
         // Founder
         public string FounderFullName { get; set; }
@@ -15,7 +12,7 @@ namespace ContestPark.Domain.Signalr.Model.Request
 
         public string FounderCoverPicturePath { get; set; }
 
-        public string FounderConnectionId { get; set; }
+        //  public string FounderConnectionId { get; set; }
 
         public string FounderUserId { get; set; }
 
@@ -26,46 +23,47 @@ namespace ContestPark.Domain.Signalr.Model.Request
 
         public string OpponentCoverPicturePath { get; set; }
 
-        public string OpponentConnectionId { get; set; }
+        //   public string OpponentConnectionId { get; set; }
 
         public string OpponentUserId { get; set; }
 
-        public Languages FounderLanguage { get; set; }
+        //public Languages FounderLanguage { get; set; }
 
-        public Languages OpponentLanguage { get; set; }
+        //public Languages OpponentLanguage { get; set; }
 
         public DuelStartingScreen(int duelId,
-            Int16 subCategoryId,
+        //    Int16 subCategoryId,
             string founderFullName,
             string founderProfilePicturePath,
             string founderCoverPicturePath,
-            string founderConnectionId,
-            string founderUserId,
-            Languages founderLanguage,
+               // string founderConnectionId,
+               string founderUserId,
+            //    Languages founderLanguage,
 
             string opponentFullName,
             string opponentProfilePicturePath,
             string opponentCoverPicturePath,
-            string opponentConnectionId,
-            string opponentUserId,
-            Languages opponentLanguage)
+            //string opponentConnectionId,
+            string opponentUserId
+            //Languages opponentLanguage
+            )
         {
             DuelId = duelId;
-            SubCategoryId = subCategoryId;
+            //     SubCategoryId = subCategoryId;
 
             FounderFullName = founderFullName;
             FounderProfilePicturePath = founderProfilePicturePath;
             FounderCoverPicturePath = founderCoverPicturePath;
-            FounderConnectionId = founderConnectionId;
+            //FounderConnectionId = founderConnectionId;
             FounderUserId = founderUserId;
-            FounderLanguage = founderLanguage;
+            //FounderLanguage = founderLanguage;
 
             OpponentFullName = opponentFullName;
             OpponentProfilePicturePath = opponentProfilePicturePath;
             OpponentCoverPicturePath = opponentCoverPicturePath;
-            OpponentConnectionId = opponentConnectionId;
+            //OpponentConnectionId = opponentConnectionId;
             OpponentUserId = opponentUserId;
-            OpponentLanguage = opponentLanguage;
+            //OpponentLanguage = opponentLanguage;
         }
     }
 }

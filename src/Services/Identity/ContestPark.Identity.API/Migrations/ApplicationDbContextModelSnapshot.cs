@@ -53,6 +53,8 @@ namespace ContestPark.Identity.API.Migrations
                     b.Property<bool>("IsActive")
                     .IsRequired();
 
+                    b.Property<bool>("IsBot");
+
                     b.Property<string>("FaceBookId");
 
 

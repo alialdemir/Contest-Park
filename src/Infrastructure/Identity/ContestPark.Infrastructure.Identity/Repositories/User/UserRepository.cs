@@ -2,6 +2,7 @@
 using ContestPark.Core.Domain.Model;
 using ContestPark.Core.Extensions;
 using ContestPark.Core.Interfaces;
+using Dapper;
 
 namespace ContestPark.Infrastructure.Identity.Repositories.User
 {
@@ -31,6 +32,20 @@ namespace ContestPark.Infrastructure.Identity.Repositories.User
                            ORDER BY NEWID()";
 
             return Connection.QueryPaging<string>(sql, new { userId, }, pagingModel);
+        }
+
+        /// <summary>
+        /// Rastgele bot kullanıcılarından birini user id döner
+        /// </summary>
+        /// <returns>Rastlele bot user id</returns>
+        public string GetRandomBotUserId()
+        {
+            string sql = @"SELECT [AspNetUsers].[Id]
+                           FROM [AspNetUsers]
+                           WHERE [AspNetUsers].[IsBot]=1
+                           ORDER BY NEWID()";
+
+            return Connection.QueryFirstOrDefault<string>(sql);
         }
 
         #endregion Methods

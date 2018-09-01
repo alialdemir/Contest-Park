@@ -39,14 +39,14 @@ namespace ContestPark.Mobile.Services.Cp
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
-            if (!_cacheService.IsExpired(key: uri))
-            {
-                return await _cacheService.Get<int>(uri);
-            }
+            //if (!_cacheService.IsExpired(key: uri))
+            //{
+            //    return await _cacheService.Get<int>(uri);
+            //}
 
             int userTotalCp = await _requestProvider.GetAsync<int>(uri);
 
-            _cacheService.Add(uri, userTotalCp);
+            //_cacheService.Add(uri, userTotalCp);
 
             return userTotalCp;
         }

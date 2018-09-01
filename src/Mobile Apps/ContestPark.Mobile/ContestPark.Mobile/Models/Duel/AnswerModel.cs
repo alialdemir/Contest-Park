@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Mobile.Enums;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -7,6 +8,8 @@ namespace ContestPark.Mobile.Models.Duel
 {
     public class AnswerModel : INotifyPropertyChanged
     {
+        public Languages Language { get; set; }
+
         public bool IsCorrect { get; set; }
 
         public string Answers { get; set; }

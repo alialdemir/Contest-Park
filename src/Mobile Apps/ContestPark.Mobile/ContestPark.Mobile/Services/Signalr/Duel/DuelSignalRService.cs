@@ -1,6 +1,8 @@
 ﻿using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.Signalr.Base;
 using System;
+using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Signalr.Duel
 {
@@ -25,7 +27,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         public EventHandler<DuelStartingModel> DuelScreenInfoEventHandler { get; set; }
 
-        public EventHandler<QuestionModel> NextQuestionEventHandler { get; set; }
+        public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
 
         #endregion Events
 
@@ -44,7 +46,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         /// </summary>
         public void NextQuestion()
         {
-            _signalRService?.On<QuestionModel>("NextQuestion", (data) => NextQuestionEventHandler?.Invoke(data, null));
+            _signalRService?.On<NextQuestion>("NextQuestion", (data) => NextQuestionEventHandler?.Invoke(data, null));
         }
 
         /// <summary>
@@ -61,6 +63,11 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public void OffNextQuestion()
         {
             _signalRService?.Off("NextQuestion");
+        }
+
+        public async Task SaveAnswer(UserAnswer userAnswer)
+        {
+            await _signalRService.SendMessage("SaveAnswer", userAnswer);
         }
 
         #endregion Method

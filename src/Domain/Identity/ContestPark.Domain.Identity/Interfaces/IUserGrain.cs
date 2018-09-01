@@ -1,11 +1,13 @@
-﻿using ContestPark.Core.Domain.Model;
-using Orleans;
+﻿using ContestPark.Core.Domain.Interfaces;
+using ContestPark.Core.Domain.Model;
 using System.Threading.Tasks;
 
 namespace ContestPark.Domain.Identity.Interfaces
 {
-    public interface IUserGrain : IGrainWithIntegerKey
+    public interface IUserGrain : IGrainBase
     {
         Task<ServiceResponse<string>> RandomUserProfilePictures(string userId, Paging pagingModel);
+
+        Task<string> GetRandomBotUserId();
     }
 }

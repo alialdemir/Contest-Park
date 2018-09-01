@@ -1,10 +1,7 @@
 ﻿using ContestPark.Domain.Question.Interfaces;
 using ContestPark.Domain.Question.Model.Request;
-using ContestPark.Domain.Question.Model.Response;
-using ContestPark.Domain.Signalr.Interfaces;
 using ContestPark.Infrastructure.Question.Repositories.Question;
 using Orleans;
-using System;
 using System.Threading.Tasks;
 
 namespace ContestPark.Infrastructure.Question.Grains
@@ -14,6 +11,8 @@ namespace ContestPark.Infrastructure.Question.Grains
         #region Private variables
 
         private readonly IQuestionRepository _questionRepository;
+
+        private IAskedQuestionGrain _askedQuestionGrain;
 
         #endregion Private variables
 
@@ -28,30 +27,32 @@ namespace ContestPark.Infrastructure.Question.Grains
 
         #region Methods
 
-        public async Task QuestionCreate(QuestionInfo questionInfo)
+        public override Task OnActivateAsync()
+        {
+            long primaryId = this.GetPrimaryKeyLong();
+            _askedQuestionGrain = GrainFactory.GetGrain<IAskedQuestionGrain>(primaryId);
+
+            return base.OnActivateAsync();
+        }
+
+        public override async Task OnDeactivateAsync()
+        {
+            await _askedQuestionGrain.OnDeactivateAsync();
+
+            await base.OnDeactivateAsync();
+        }
+
+        public async Task<Domain.Question.Model.Response.Question> QuestionCreate(QuestionInfo questionInfo)
         {
             var question = await _questionRepository.GetQuestionAsync(questionInfo);
 
-            if (question == null)
-            {
-                // TODO: question gelmese fail eventi publish edilmeli
-                throw new ArgumentNullException(nameof(question));
-            }
-
-            await GrainFactory
-                .GetGrain<IQuestionSignalrGrain>(1)
-                .NextQuestionAsync(new QuestionCreated(questionInfo.FounderConnectionId,
-                    questionInfo.OpponentConnectionId,
-                    question,
-                    questionInfo.FounderLanguage,
-                    questionInfo.OpponentLanguage));
-
-            await GrainFactory
-                .GetGrain<IAskedQuestionGrain>(1)
-                .Insert(questionInfo.SubCategoryId,
+            await _askedQuestionGrain
+                    .Insert(questionInfo.SubCategoryId,
                     question.QuestionInfoId,
                     questionInfo.FounderUserId,
                     questionInfo.OpponentUserId);
+
+            return question;
         }
 
         #endregion Methods

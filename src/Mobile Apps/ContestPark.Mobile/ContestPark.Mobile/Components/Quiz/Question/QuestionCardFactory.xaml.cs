@@ -27,15 +27,23 @@ namespace ContestPark.Mobile.Components
         {
             get
             {
-                switch (QuestionType)
-                {
-                    case QuestionTypes.Image: img.IsVisible = true; break;
-                    case QuestionTypes.Text: img.IsVisible = false; break;
-                }
+                ChangeImageVisible();
 
                 return (string)GetValue(QuestionProperty);
             }
             set => SetValue(QuestionProperty, value);
+        }
+
+        private void ChangeImageVisible()
+        {
+            if (img == null)
+                return;
+
+            switch (QuestionType)
+            {
+                case QuestionTypes.Image: img.IsVisible = true; break;
+                case QuestionTypes.Text: img.IsVisible = false; break;
+            }
         }
 
         public static readonly BindableProperty LinkProperty = BindableProperty.Create(propertyName: nameof(Link),

@@ -1,5 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Audio;
@@ -108,6 +110,12 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService.NextQuestion();
         }
 
+        private void OffNextQuestion()
+        {
+            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
+            _duelSignalRService.OffNextQuestion();
+        }
+
         #endregion SignalR
 
         #region Methods
@@ -136,7 +144,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 DuelCloseCommand.Execute(null);
             }
-            else if (!StandbyModes.Off.HasFlag(StandbyMode))
+            else if (StandbyModes.Off == StandbyMode)
             {
                 // TODO: direk user id ile gelirse veya direk Duel id(notification) ile gelirse gibi durumlar..
             }
@@ -194,22 +202,28 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Düellodaki sıradaki soruyu alır
         /// </summary>
-        private async void NextQuestion(object sender, QuestionModel e)
+        private async void NextQuestion(object sender, NextQuestion e)
         {
-            QuestionModel questionModel = (QuestionModel)sender;
+            NextQuestion questionModel = (NextQuestion)sender;
             if (questionModel == null)
             {
                 // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
                 return;
             }
 
-            if (DuelScreen.OpponentFullName != ContestParkResources.AwaitingOpponent)
+            if (DuelScreen.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
             {
                 AudioStop();
 
                 await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
 
                 IsNextQuestionExit = true;
+
+                OffNextQuestion();
+
+                Languages currentLanguage = _settingsService.Language;
+                questionModel.Question = questionModel.Question.GetQuestionByLanguage(currentLanguage);
+
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await PushPopupPageAsync(new QuestionPopupView
@@ -237,6 +251,8 @@ namespace ContestPark.Mobile.ViewModels
             StandbyModeModel.ConnectionId = _settingsService.SignalRConnectionId;
 
             await _duelService.StandbyMode(StandbyModeModel);// TODO: success kontrol et hata oluşursa mesaj çıksın
+
+            AddToBot();
         }
 
         /// <summary>
@@ -285,11 +301,11 @@ namespace ContestPark.Mobile.ViewModels
         {
             if (DuelScreen.DuelId != 0 && !IsNextQuestionExit)// Duel id 0 değilse düello başlamıştır
             {
-                bool isOk = await DisplayAlertAsync(ContestParkResources.Exit,
-                                                    ContestParkResources.AreYouSureYouWantToLeave,
-                                                    ContestParkResources.Okay,
-                                                    ContestParkResources.Cancel);
-                if (!isOk)
+                bool isOkay = await DisplayAlertAsync(ContestParkResources.Exit,
+                                                      ContestParkResources.AreYouSureYouWantToLeave,
+                                                      ContestParkResources.Okay,
+                                                      ContestParkResources.Cancel);
+                if (!isOkay)
                 {
                     return;
                 }
@@ -300,11 +316,11 @@ namespace ContestPark.Mobile.ViewModels
             RandomPicturStatus = false;
 
             // Signalr events remove
-            _duelSignalRService.DuelScreenInfoEventHandler -= SetDuelScreen;
-            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
+            if (DuelScreen.DuelId == 0)
+                OffNextQuestion();
 
+            _duelSignalRService.DuelScreenInfoEventHandler -= SetDuelScreen;
             _duelSignalRService.OffDuelScreenInfo();
-            _duelSignalRService.OffNextQuestion();
 
             await RemoveFirstPopupAsync();
 
@@ -312,6 +328,28 @@ namespace ContestPark.Mobile.ViewModels
             {
                 await _duelService.ExitStandMode(StandbyModeModel);
             }
+        }
+
+        /// <summary>
+        /// Kullanıcının beklediği düelloya rastgele bot ekler
+        /// </summary>
+        private void AddToBot()
+        {
+            int randomSecond = new Random().Next(5, 10);
+
+            Device.StartTimer(new TimeSpan(0, 0, 0, randomSecond, 0), () =>
+            {
+                if (IsNextQuestionExit || DuelScreen.DuelId > 0)
+                    return false;
+
+                _duelService.BotStandMode(new BotStandbyMode
+                {
+                    Bet = StandbyModeModel.Bet,
+                    SubCategoryId = StandbyModeModel.SubCategoryId
+                });
+
+                return false;
+            });
         }
 
         /// <summary>

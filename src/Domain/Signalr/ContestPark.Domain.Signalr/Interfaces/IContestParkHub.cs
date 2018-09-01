@@ -1,4 +1,4 @@
-﻿using ContestPark.Domain.Question.Model.Response;
+﻿using ContestPark.Domain.Duel.Model.Response;
 using ContestPark.Domain.Signalr.Model.Request;
 using System.Threading.Tasks;
 
@@ -10,7 +10,7 @@ namespace ContestPark.Domain.Signalr.Interfaces
 
         Task RemoveConnectionId(string connectionId);
 
-        Task NextQuestion(QuestionCreated questionCreated);
+        Task NextQuestion(NextQuestion questionCreated);
 
         Task DuelScreen(DuelStartingScreen duelStartingScreen);
     }

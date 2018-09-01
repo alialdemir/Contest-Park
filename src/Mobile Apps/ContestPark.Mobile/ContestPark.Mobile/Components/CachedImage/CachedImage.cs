@@ -18,7 +18,7 @@ namespace ContestPark.Mobile.Components
             VerticalOptions = LayoutOptions.Center;
             CacheDuration = new TimeSpan(0, 1, 0, 0);
             //CacheType = FFImageLoading.Cache.CacheType.Memory;
-            LoadingPlaceholder = DefaultImages.DefaultProfilePicture;
+            LoadingPlaceholder = ImageSource.FromFile(DefaultImages.DefaultProfilePicture);
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) => Command?.Execute(CommandParameter);
             GestureRecognizers.Add(tapGestureRecognizer);

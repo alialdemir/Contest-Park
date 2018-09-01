@@ -1,5 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.Quiz;
 using System;
+using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Signalr.Duel
 {
@@ -15,6 +17,8 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         EventHandler<DuelStartingModel> DuelScreenInfoEventHandler { get; set; }
 
-        EventHandler<QuestionModel> NextQuestionEventHandler { get; set; }
+        EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
+
+        Task SaveAnswer(UserAnswer userAnswer);
     }
 }

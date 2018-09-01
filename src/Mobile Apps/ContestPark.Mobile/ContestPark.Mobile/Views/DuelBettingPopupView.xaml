@@ -17,7 +17,24 @@
                                    EasingIn="BounceOut" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <ScrollView HorizontalOptions="Center"
+        <cv:CarouselView ItemsSource="{Binding Zoos}" x:Name="CarouselZoos">
+            <cv:CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" />
+                        <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                            <Label TextColor="White" Text="{Binding Name}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </cv:CarouselView.ItemTemplate>
+        </cv:CarouselView>
+
+        <!--<ScrollView HorizontalOptions="Center"
                 VerticalOptions="Center">
             <AbsoluteLayout>
                 <StackLayout Spacing="3"
@@ -99,6 +116,6 @@
                     </Grid>
                 </StackLayout>
             </AbsoluteLayout>
-        </ScrollView>
+        </ScrollView>-->
     </pages:PopupPage.Content>
 </pages:PopupPage>

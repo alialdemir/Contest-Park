@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ContestPark.Signalr.API
 {
@@ -24,6 +26,18 @@ namespace ContestPark.Signalr.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSignalR()
+                 .AddJsonProtocol(options =>
+                 {
+                     JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+                     {
+                         //ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                         //DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                         NullValueHandling = NullValueHandling.Ignore
+                     };
+                     jsonSerializerSettings.Converters.Add(new StringEnumConverter());
+
+                     options.PayloadSerializerSettings = jsonSerializerSettings;
+                 })
                 .AddOrleans();
 
             services.UseOrleansClient(Configuration);

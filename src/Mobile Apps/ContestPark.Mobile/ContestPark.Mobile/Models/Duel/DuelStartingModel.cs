@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Helpers;
+﻿using ContestPark.Mobile.Helpers;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -92,21 +91,21 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        public Int16 SubCategoryId { get; set; }
+        //  public Int16 SubCategoryId { get; set; }
 
         public int DuelId { get; set; }
 
-        public string FounderConnectionId { get; set; }
+        //public string FounderConnectionId { get; set; }
 
-        public string OpponentConnectionId { get; set; }
+        //public string OpponentConnectionId { get; set; }
 
         public string FounderUserId { get; set; }
 
         public string OpponentUserId { get; set; }
 
-        public Languages FounderLanguage { get; set; }
+        //public Languages FounderLanguage { get; set; }
 
-        public Languages OpponentLanguage { get; set; }
+        //public Languages OpponentLanguage { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

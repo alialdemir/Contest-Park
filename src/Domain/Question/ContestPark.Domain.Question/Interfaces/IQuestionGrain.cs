@@ -1,11 +1,11 @@
-﻿using ContestPark.Domain.Question.Model.Request;
-using Orleans;
+﻿using ContestPark.Core.Domain.Interfaces;
+using ContestPark.Domain.Question.Model.Request;
 using System.Threading.Tasks;
 
 namespace ContestPark.Domain.Question.Interfaces
 {
-    public interface IQuestionGrain : IGrainWithIntegerKey
+    public interface IQuestionGrain : IGrainBase
     {
-        Task QuestionCreate(QuestionInfo questionInfo);
+        Task<Domain.Question.Model.Response.Question> QuestionCreate(QuestionInfo questionInfo);
     }
 }

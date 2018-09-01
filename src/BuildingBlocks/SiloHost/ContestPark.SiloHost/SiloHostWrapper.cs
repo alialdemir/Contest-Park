@@ -49,7 +49,7 @@ namespace ContestPark.SiloHost
                     options.Invariant = invariant;
                     options.ConnectionString = connectionString;
                 })
-                .AddAdoNetGrainStorage("GrainStorageForTest", options =>
+                .AddAdoNetGrainStorage("GrainStorage", options =>
                 {
                     options.Invariant = invariant;
                     options.ConnectionString = connectionString;

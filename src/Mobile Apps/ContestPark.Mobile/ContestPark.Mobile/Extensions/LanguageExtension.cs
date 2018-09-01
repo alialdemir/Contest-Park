@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Extensions
     {
         public static string ToLanguageCode(this Languages language)
         {
-            return Languages.Turkish.HasFlag(language) ? "tr-TR" : "en-US";
+            return Languages.Turkish == language ? "tr-TR" : "en-US";
         }
 
         public static string ToLanguageCode(this string langCode)

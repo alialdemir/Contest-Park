@@ -1,0 +1,5 @@
+#1 Sıralama aylık sıfırlansın ve ilk üçe altın verilsin
+
+#2 Kişiye özel kilitli kategorilerde indirim yapılsın. Kullanıcı x sefer oynadığı alt kategoride olan diğer kilitli kategoride bir günlük yüzde x indirim olsun.
+indirim bittikten üç gün içinde tekrar indirim olmasın. Satın alırsada aynı şekilde.
+case: İndirimli iken altınla satın almak isterse ne olacak?

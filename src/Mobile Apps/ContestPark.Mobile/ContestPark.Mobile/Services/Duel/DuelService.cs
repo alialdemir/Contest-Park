@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
-using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -68,15 +67,15 @@ namespace ContestPark.Mobile.Services.Duel
         }
 
         /// <summary>
-        /// Kullanıcının verdiği cevabı kayıt eder
+        /// Rakip beklediği düelloya bot ekler
         /// </summary>
-        /// <param name="userAnswer">Seçtiği cevap</param>
-        public async Task SaveAnswer(UserAnswer userAnswer)
+        /// <param name="botStandbyMode">Bekleme modunda olduğu kategori ve bahis bilgileri</param>
+        public async Task BotStandMode(BotStandbyMode botStandbyMode)
         {
-            if (userAnswer != null && userAnswer.DuelId > 0)
+            if (botStandbyMode != null && botStandbyMode.SubCategoryId > 0)
             {
-                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/saveanswer");
-                await _requestProvider.PostAsync<string>(url, userAnswer);
+                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/bot");
+                await _requestProvider.PostAsync<string>(url, botStandbyMode);
             }
         }
 

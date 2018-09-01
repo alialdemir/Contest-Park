@@ -2,6 +2,9 @@
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Settings;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -23,6 +26,8 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         private readonly IEventAggregator _eventAggregator;
 
         private Dictionary<string, IDisposable> DisposableOns { get; } = new Dictionary<string, IDisposable>();
+
+        public bool IsConnect { get; private set; }
 
         #endregion Properties
 
@@ -47,6 +52,18 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             if (!String.IsNullOrEmpty(_settingsService.AuthAccessToken))
             {
                 HubConnection = new HubConnectionBuilder()
+                   .AddJsonProtocol(options =>
+                   {
+                       JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+                       {
+                           //ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                           //DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                           NullValueHandling = NullValueHandling.Ignore
+                       };
+                       jsonSerializerSettings.Converters.Add(new StringEnumConverter());
+
+                       options.PayloadSerializerSettings = jsonSerializerSettings;
+                   })
                     .WithUrl(GlobalSetting.Instance.SignalREndpoint, (options) =>
                 {
                     options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
@@ -80,14 +97,14 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                     {
                         ConnectionRetryCount++;
                         Debug.WriteLine($"Signalr bağlanmaya çalışılıyor. Retry count: {ConnectionRetryCount}");
-                        await Task.Delay(3000);
-                        await Task.Run(async () => await ConnectAsync());
+                        await Task.Delay(8000);
+                        await ConnectAsync();
                     }
 #else
                      else if (task.IsFaulted && ConnectionRetryCount < 10)
                     {
                         ConnectionRetryCount++;
-                        await Task.Delay(3000);
+                        await Task.Delay(8000);
                         await ConnectAsync();
                     }
 #endif
@@ -118,6 +135,11 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             }
         }
 
+        public async Task SendMessage(string methodName, params object[] param)
+        {
+            await HubConnection.InvokeCoreAsync(methodName, param);
+        }
+
         /// <summary>
         /// Signalr bağlantısını kapatır
         /// </summary>
@@ -144,7 +166,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             HubConnection?.On("GetConnectionId", (string connectionId) =>
                 {
                     _settingsService.SignalRConnectionId = connectionId;
-                    Debug.WriteLine($"Signalr bağlantısı yapıldı. Connection id: {connectionId}");
+                    IsConnect = true;
                 });
         }
 
@@ -153,7 +175,11 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// </summary>
         private void RemoveConnectionId()
         {
-            HubConnection?.On("RemoveConnectionId", (string connectionId) => _settingsService.SignalRConnectionId = "");
+            HubConnection?.On("RemoveConnectionId", (string connectionId) =>
+            {
+                _settingsService.SignalRConnectionId = "";
+                IsConnect = false;
+            });
         }
 
         /// <summary>

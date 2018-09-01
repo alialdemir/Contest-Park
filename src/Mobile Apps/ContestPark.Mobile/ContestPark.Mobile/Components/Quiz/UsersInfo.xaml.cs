@@ -52,6 +52,17 @@ namespace ContestPark.Mobile.Components
             set => SetValue(FounderScoreProperty, value);
         }
 
+        public static readonly BindableProperty FounderImageBorderColorProperty = BindableProperty.Create(propertyName: nameof(FounderImageBorderColor),
+            returnType: typeof(string),
+            declaringType: typeof(UsersInfo),
+            defaultValue: "#ffc107");
+
+        public string FounderImageBorderColor
+        {
+            get => (string)GetValue(FounderImageBorderColorProperty);
+            set => SetValue(FounderImageBorderColorProperty, value);
+        }
+
         // Opponent
 
         public static readonly BindableProperty OpponentSourceProperty = BindableProperty.Create(propertyName: nameof(OpponentSource),
@@ -85,6 +96,17 @@ namespace ContestPark.Mobile.Components
         {
             get => (string)GetValue(OpponentScoreProperty);
             set => SetValue(OpponentScoreProperty, value);
+        }
+
+        public static readonly BindableProperty OpponentImageBorderColorProperty = BindableProperty.Create(propertyName: nameof(OpponentImageBorderColor),
+            returnType: typeof(string),
+            declaringType: typeof(UsersInfo),
+            defaultValue: "#ffc107");
+
+        public string OpponentImageBorderColor
+        {
+            get => (string)GetValue(OpponentImageBorderColorProperty);
+            set => SetValue(OpponentImageBorderColorProperty, value);
         }
 
         // Score

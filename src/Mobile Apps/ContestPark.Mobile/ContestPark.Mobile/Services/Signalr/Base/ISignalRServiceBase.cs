@@ -5,6 +5,8 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 {
     public interface ISignalRServiceBase
     {
+        bool IsConnect { get; }
+
         void On<T>(string methodName, Action<T> action);
 
         void Off(string methodName);
@@ -14,5 +16,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         Task DisconnectAsync();
 
         Task Init();
+
+        Task SendMessage(string methodName, params object[] param);
     }
 }

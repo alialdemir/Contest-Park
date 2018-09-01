@@ -28,6 +28,10 @@ namespace ContestPark.Mobile
 
         protected override void OnInitialized()
         {
+#if DEBUG
+            // Initialize Live Reload.
+            LiveReload.Init();
+#endif
             InitializeComponent();
 
             Barrel.ApplicationId = "ContestPark";

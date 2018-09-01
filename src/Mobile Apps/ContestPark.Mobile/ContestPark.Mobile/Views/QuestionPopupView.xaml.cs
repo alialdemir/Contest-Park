@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
@@ -20,7 +21,7 @@ namespace ContestPark.Mobile.Views
 
         #region Properties
 
-        public QuestionModel Question { get; set; }
+        public NextQuestion Question { get; set; }
 
         public DuelStartingModel DuelScreen { get; set; }
 
@@ -37,7 +38,7 @@ namespace ContestPark.Mobile.Views
             base.OnAppearing();
 
             var viewModel = ((QuestionPopupViewModel)BindingContext);
-            if (viewModel == null)
+            if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
             viewModel.Question = Question;

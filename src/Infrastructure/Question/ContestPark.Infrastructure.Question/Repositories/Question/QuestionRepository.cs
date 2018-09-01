@@ -45,7 +45,7 @@ namespace ContestPark.Infrastructure.Question.Repositories.Question
             Domain.Question.Model.Response.Question question = GetQuestionModel(questionInfo);
 
             // Eğer null gelirse o kategorideki tüm sorular sorulmuştur o zaman sorulan soruları temizledik
-            if (question == null)
+            if (question == null || question.QuestionInfoId == 0)
             {
                 await _askedQuestion.DeleteAsync(questionInfo.FounderUserId, questionInfo.OpponentUserId, questionInfo.SubCategoryId);
 
@@ -62,12 +62,9 @@ namespace ContestPark.Infrastructure.Question.Repositories.Question
         private Domain.Question.Model.Response.Question GetQuestionModel(QuestionInfo questionInfo)
         {
             string sql = @"DECLARE @QuestionInfoId int
-
                            SELECT top 1 @QuestionInfoId=[qi].[QuestionInfoId]
-                           FROM QuestionInfos AS [qi]
-                           LEFT JOIN [AskedQuestions] AS [aq] ON ([qi].[QuestionInfoId]<>[aq].[QuestionInfoId] AND [aq].[SubCategoryId]=[qi].[SubCategoryId]) AND [aq].UserId=@founderUserId
-                           LEFT JOIN [AskedQuestions] AS [aq1] ON ([qi].[QuestionInfoId]<>[aq1].[QuestionInfoId] AND [aq1].[SubCategoryId]=[qi].[SubCategoryId]) AND [aq1].UserId=@opponentUserId
-                           where [qi].[SubCategoryId]=@subCategoryId
+                           FROM QuestionInfos AS [qi] WHERE [qi].[SubCategoryId]=@subCategoryId AND
+                           NOT EXISTS (SELECT [aq].[QuestionInfoId] FROM [AskedQuestions] AS [aq] WHERE [qi].[QuestionInfoId]=[aq].[QuestionInfoId] AND [aq].[SubCategoryId]=[qi].[SubCategoryId] AND ([aq].[UserId]=@founderUserId OR [aq].[UserId]=@opponentUserId ))
                            ORDER BY NEWID()
 
                            SELECT
@@ -84,8 +81,7 @@ namespace ContestPark.Infrastructure.Question.Repositories.Question
                            FROM [QuestionAnswers] [qa]
                            INNER JOIN [QuestionInfos] [qi] on [qa].[QuestionInfoId]=[qi].[QuestionInfoId]
                            JOIN [QuestionLangs] AS [ql] ON ([qi].[QuestionId]=[ql].[QuestionId] AND [ql].LanguageId=@founderLanguage) or ([qi].[QuestionId]=[ql].[QuestionId] and [ql].LanguageId=@opponentLanguage)
-                           where  ([qa].[QuestionInfoId]=@QuestionInfoId and [qa].LanguageId=@founderLanguage) or ([qa].[QuestionInfoId]=@QuestionInfoId AND [qa].LanguageId=@opponentLanguage)
-                           ORDER BY NEWID()";
+                           where  ([qa].[QuestionInfoId]=@QuestionInfoId and [qa].LanguageId=@founderLanguage) or ([qa].[QuestionInfoId]=@QuestionInfoId AND [qa].LanguageId=@opponentLanguage)";
 
             Domain.Question.Model.Response.Question questionModel = new Domain.Question.Model.Response.Question();
 

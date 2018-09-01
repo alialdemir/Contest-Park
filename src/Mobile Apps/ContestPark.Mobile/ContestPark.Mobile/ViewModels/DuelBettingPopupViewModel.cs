@@ -133,26 +133,26 @@ namespace ContestPark.Mobile.ViewModels
             if (!(total > 0 && (this.UserCp - total) > total)) ReduceBetIsVisible = false;
         }
 
-        private void ExecuteDuelStartCommand()
+        private async void ExecuteDuelStartCommand()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            Device.BeginInvokeOnMainThread(async () =>
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+            await PushPopupPageAsync(new DuelStartingPopupView()
             {
-                await PushPopupPageAsync(new DuelStartingPopupView()
-                {
-                    SubcategoryId = SubcategoryId,
-                    Bet = UserCp,
-                    StandbyMode = DuelStartingPopupViewModel.StandbyModes.On,
-                    SubcategoryName = SubcategoryName,
-                    SubCategoryPicturePath = SubCategoryPicturePath
-                });
-
-                ClosePopupCommand.Execute(null);
+                SubcategoryId = SubcategoryId,
+                Bet = UserCp,
+                StandbyMode = DuelStartingPopupViewModel.StandbyModes.On,
+                SubcategoryName = SubcategoryName,
+                SubCategoryPicturePath = SubCategoryPicturePath
             });
+
+            ClosePopupCommand.Execute(null);
+            //  });
 
             IsBusy = false;
         }

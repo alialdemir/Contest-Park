@@ -47,7 +47,7 @@ namespace ContestPark.Mobile.iOS.Dependencies
 
         public UIView ConvertFormsToNative(Xamarin.Forms.View view, CGRect size)
         {
-            var renderer = Platform.CreateRenderer(view);
+            var renderer = Xamarin.Forms.Platform.iOS.Platform.CreateRenderer(view);
 
             renderer.NativeView.Frame = size;
 

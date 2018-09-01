@@ -31,7 +31,7 @@ namespace ContestPark.Infrastructure.Duel.DataSeed
         {
             string witcherUser = "1111-1111-1111-1111";
             string demoUser = "2222-2222-2222-2222";
-            string bootUser = "3333-3333-3333-3333";
+            string bootUser = "3333-3333-3333-bot";
 
             return new List<DuelEntity>
             {

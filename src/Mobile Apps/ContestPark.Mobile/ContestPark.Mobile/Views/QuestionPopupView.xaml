@@ -24,12 +24,14 @@
                 <components:UsersInfo Grid.Row="0"
                                       FounderScore="{Binding FounderScore}"
                                       FounderFullname="{Binding DuelScreen.FounderFullName}"
+                                      FounderImageBorderColor="{Binding FounderImageBorderColor}"
                                       FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
 
                                       Time="{Binding Time}"
 
                                       OpponentScore="{Binding OpponentScore}"
                                       OpponentFullname="{Binding DuelScreen.OpponentFullName}"
+                                      OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
                                       OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}" />
 
                 <!-- Top End -->
@@ -37,9 +39,9 @@
                 <!-- Question Start -->
 
                 <components:QuestionCardFactory Grid.Row="1"
-                                                Link="{Binding Question.Link}"
-                                                Question="{Binding Question.NextQuestion}"
-                                                QuestionType="{Binding Question.QuestionType}" />
+                                                Link="{Binding Question.Question.Link}"
+                                                Question="{Binding Question.Question.NextQuestion}"
+                                                QuestionType="{Binding Question.Question.QuestionType}" />
 
                 <!-- Question End -->
 
@@ -48,7 +50,7 @@
                 <components:Stylish Grid.Row="2"
                                     Margin="0,10,0,0"
                                     x:Name="Stylishs"
-                                    AnswerType="{Binding Question.AnswerType}"
+                                    AnswerType="{Binding Question.Question.AnswerType}"
                                     AnswerCommand="{Binding AnswerCommand}"
                                     Answers="{Binding Answers}" />
 

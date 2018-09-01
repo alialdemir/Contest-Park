@@ -1,0 +1,30 @@
+### Duello rakip arama
+- Bahis ekranına gel
+- Bahisi seç
+- duel starting ekranına yönlendir
+- random profil resimlerini çek
+- Duel servisine istekte at beklemedeğim diye
+- Duel servisi onu WaitingOpponentIntegrationEvent publish et
+- Duelredis servisi WaitingOpponentIntegrationEvent subscription olduğu event gelince redisteki aynı kategori ve aynı bahis tutarında bekleyen kullanıcı var ise publish StartDuelIntegration
+- Duel serivsi DuelStartIntegrationEventHandler methodunda duel tablosuna insert eder ve DuelCreatedIntegrationEvent publish yapar
+  ve o düellodaki kullanıcı bilgilerini DuelStartingModeli ile DuelStartingIntegrationEvent publish eder
+
+- Signalr servisi DuelStartingntegrationEventHander methodunda  DuelStartingModel signalr ile clients gönderir
+
+- Question servisi DuelCreatedIntegrationEventHandler ile duel id alır ve o düello için random 1 soru getirir QuestionCreatedIntegrationEvent publish eder
+- Signalr serivis cliente QuestionCreatedIntegrationEventHander eder QuestionModel(hander ettiği eventin propertileri) şeklinde gönderir
+
+??????????? iptal - Duel servisi QuestionCreatedIntegrationEventHander eder ve DuelInfo tablosuna kaydı ekler
+- AskedQuestion için QuestionCreatedIntegrationEventHander eder ve tabloya ekler
+
+
+- DuelCreatedIntegrationEvent alanlar
+ - Question
+ - Post
+ - Mission
+ - Cp
+ - Notification
+
+
+ -- Oluşabilecek senaryolar
+   -- Düello esnasında connectionId değişirse ne olacak?

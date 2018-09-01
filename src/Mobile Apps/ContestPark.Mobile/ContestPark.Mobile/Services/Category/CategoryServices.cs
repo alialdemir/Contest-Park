@@ -43,14 +43,14 @@ namespace ContestPark.Mobile.Services.Category
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
 
-            if (!_cacheService.IsExpired(key: uri))
-            {
-                return await _cacheService.Get<ServiceModel<CategoryModel>>(uri);
-            }
+            //if (!_cacheService.IsExpired(key: uri))
+            //{
+            //    return await _cacheService.Get<ServiceModel<CategoryModel>>(uri);
+            //}
 
             var categories = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
 
-            _cacheService.Add(uri, categories);
+            // _cacheService.Add(uri, categories);
 
             return categories;
         }

@@ -88,7 +88,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if (!IsInitialized)
+            if (!_baseSignalRService.IsConnect)
                 await _baseSignalRService.Init();
 
             SetUserGoldCommand.Execute(null);

@@ -9,5 +9,7 @@ namespace ContestPark.Infrastructure.Cp.Repositories.Cp
         int GetTotalGoldByUserId(string userId);
 
         int RemoveGold(string userId, int diminishingGold, GoldProcessNames goldProcessName);
+
+        int AddGold(string userId, int addedChips, GoldProcessNames goldProcessName);
     }
 }

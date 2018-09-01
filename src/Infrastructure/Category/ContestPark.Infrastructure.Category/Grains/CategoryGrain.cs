@@ -42,11 +42,5 @@ namespace ContestPark.Infrastructure.Category.Grains
         }
 
         #endregion Methods
-
-        public override Task OnDeactivateAsync()
-        {
-            _categoryRepository.Dispose();
-            return base.OnDeactivateAsync();
-        }
     }
 }

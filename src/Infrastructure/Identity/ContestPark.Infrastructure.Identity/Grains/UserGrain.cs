@@ -39,6 +39,17 @@ namespace ContestPark.Infrastructure.Identity.Grains
             return Task.FromResult(_userRepository.RandomUserProfilePictures(userId, paging));
         }
 
+        /// <summary>
+        /// Rastgele bot kullanıcılarından birini user id döner
+        /// </summary>
+        /// <returns>Rastlele bot user id</returns>
+        public Task<string> GetRandomBotUserId()
+        {
+            string randomUserId = _userRepository.GetRandomBotUserId();
+
+            return Task.FromResult(randomUserId);
+        }
+
         #endregion Methods
     }
 }

@@ -70,6 +70,7 @@ namespace ContestPark.Infrastructure.Category.DataSeed
         {
             string userId = "1111-1111-1111-1111";
             string demoUserId = "2222-2222-2222-2222";
+            string botUser = "3333-3333-3333-bot";
 
             return new List<OpenSubCategoryEntity>
             {
@@ -78,6 +79,16 @@ namespace ContestPark.Infrastructure.Category.DataSeed
                      UserId = userId,
                      SubCategoryId = 1,
                 },
+                new OpenSubCategoryEntity
+                {
+                    UserId = demoUserId,
+                    SubCategoryId = 1
+                },
+                new OpenSubCategoryEntity
+                {
+                    UserId =botUser,
+                    SubCategoryId = 1
+                }
                 //new OpenSubCategoryEntity
                 //{
                 //     UserId = userId,
