@@ -32,7 +32,7 @@ namespace ContestPark.Core.Dapper
 
         private IDbConnection _connection;
 
-        protected IDbConnection Connection
+        public IDbConnection Connection
         {
             get
             {

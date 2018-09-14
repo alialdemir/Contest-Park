@@ -11,7 +11,7 @@ services:
   redis.data:
     ports:
       - "6379:6379"    # Important: In a production environment your should remove the external port
-
+       
   contestpark.identity.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

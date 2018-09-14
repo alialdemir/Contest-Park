@@ -299,13 +299,13 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <summary>
         /// Sayfalama için scrollbar aşayağıya gelince tekiklenen command
         /// </summary>
-        public Command<ViewModelBase> InfiniteScroll
+        public Command<BaseModel> InfiniteScroll
         {
             get
             {
-                return new Command<ViewModelBase>((currentItem) =>
+                return new Command<BaseModel>((currentItem) =>
                 {
-                    if (ServiceModel.IsLastPage || !(currentItem is ViewModelBase))
+                    if (ServiceModel.IsLastPage || !(currentItem is BaseModel))
                         return;
 
                     if (Items.LastOrDefault().Equals(currentItem))

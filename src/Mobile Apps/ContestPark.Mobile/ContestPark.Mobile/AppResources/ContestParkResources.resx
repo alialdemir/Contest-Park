@@ -201,4 +201,37 @@
   <data name="Exit" xml:space="preserve">
     <value>Çıkış?</value>
   </data>
+  <data name="EntryFee" xml:space="preserve">
+    <value>Giriş Ücreti</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>Oyna</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>İleri Düzeyde</value>
+  </data>
+  <data name="Beginner" xml:space="preserve">
+    <value>Acemi</value>
+  </data>
+  <data name="Expert" xml:space="preserve">
+    <value>Uzman</value>
+  </data>
+  <data name="Genius" xml:space="preserve">
+    <value>Dahi</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Usta</value>
+  </data>
+  <data name="Novice" xml:space="preserve">
+    <value>Çaylak</value>
+  </data>
+  <data name="Prize" xml:space="preserve">
+    <value>Ödül</value>
+  </data>
+  <data name="Freeloader" xml:space="preserve">
+    <value>Beleşçi</value>
+  </data>
+  <data name="CategorySearch" xml:space="preserve">
+    <value>Kategori Ara</value>
+  </data>
 </root>

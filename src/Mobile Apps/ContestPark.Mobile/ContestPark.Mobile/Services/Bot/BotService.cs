@@ -18,7 +18,7 @@ namespace ContestPark.Mobile.Services.Bot
         {
             Random rnd = new Random();
             Stylish ramdomStylish = (Stylish)rnd.Next(0, 3);
-            int randomSecound = rnd.Next(1, 8);
+            int randomSecound = rnd.Next(1, 5);
 
             Device.StartTimer(new TimeSpan(0, 0, 0, randomSecound, 0), () =>
             {

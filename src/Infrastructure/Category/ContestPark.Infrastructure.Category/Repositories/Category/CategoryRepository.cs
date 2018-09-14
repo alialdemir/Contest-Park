@@ -7,6 +7,7 @@ using ContestPark.Core.Interfaces;
 using ContestPark.Domain.Category.Model.Response;
 using ContestPark.Infrastructure.Category.Entities;
 using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -98,6 +99,61 @@ namespace ContestPark.Infrastructure.Category.Repositories.Category
                 PageSize = paging.PageSize,
                 Count = Connection.Query<int>($"SELECT COUNT(*) FROM ({ "SELECT TOP (100) PERCENT " + sql.Substring(6)}) AS c;", param).First()
             };
+        }
+
+        /// <summary>
+        /// Alt kategori Id'ye göre kategori listesi getirir
+        /// </summary>
+        /// <param name="userId">Kullanıcı Id</param>
+        /// <param name="categoryId">Alt kategori Id</param>
+        /// <param name="language">Kullanıcı dili</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Aranan kategorilerin listesi</returns>
+        public ServiceResponse<SubCategorySearch> CategorySearch(string userId, Int16 categoryId, Languages language, Paging paging)
+        {
+            string sql = @"SELECT
+						   [cl].[CategoryName],
+						   [scl].[SubCategoryName],
+						   [c].[Color] as [Color],
+						   [sc].[SubCategoryId],
+						   [sc].[DisplayPrice],
+						   (case (SELECT
+						   (CASE
+						   WHEN EXISTS(
+						   SELECT NULL AS [EMPTY]
+						   FROM OpenSubCategories AS osc  where osc.UserId =@userId and osc.SubCategoryId = sc.SubCategoryId
+						   ) THEN 1
+						   ELSE 0
+						   END) )
+						   when 1 then 0
+						   else sc.Price
+						   end) as Price,
+						   (case
+						   when [sc].[Price] = 0 then [sc].[PictuePath]
+						   when (SELECT
+						   (CASE
+						   WHEN EXISTS(
+						   SELECT NULL AS [EMPTY]
+						   FROM [OpenSubCategories] AS [osc]  where [osc].[UserId] =@userId and [osc].[SubCategoryId] = [sc].[SubCategoryId]
+						   ) THEN 1
+						   ELSE 0
+						   END) ) = 1 then [sc].[PictuePath]
+						   else @picturePath
+						   end) as PicturePath
+						   FROM [SubCategories] AS [sc]
+						   INNER JOIN  [Categories] AS [c] on [sc].[CategoryId]=[c].[CategoryId]
+						   INNER JOIN [CategoryLangs] AS [cl] on [c].[CategoryId]=[cl].[CategoryId]
+						   INNER JOIN [SubCategoryLangs] AS [scl] on [sc].SubCategoryId=[scl].[SubCategoryId]
+						   WHERE [cl].[LanguageId]=@language AND [scl].[LanguageId]=@language AND [c].[Visibility] = 1 AND [sc].[Visibility] = 1 AND [c].[CategoryId]=@categoryId
+						   ORDER BY [sc].[Price]";
+
+            return Connection.QueryPaging<SubCategorySearch>(sql, new
+            {
+                userId,
+                categoryId,
+                picturePath = DefaultImages.DefaultLock,
+                language
+            }, paging);
         }
 
         #endregion Methods

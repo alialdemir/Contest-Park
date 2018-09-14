@@ -43,14 +43,27 @@ namespace ContestPark.Mobile.Services.Category
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
 
-            //if (!_cacheService.IsExpired(key: uri))
-            //{
-            //    return await _cacheService.Get<ServiceModel<CategoryModel>>(uri);
-            //}
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<CategoryModel>>(uri);
+            }
 
             var categories = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
 
-            // _cacheService.Add(uri, categories);
+            _cacheService.Add(uri, categories);
+
+            return categories;
+        }
+
+        /// <summary>
+        /// Kategori Id'ye göre kategori listesi getirir 0 ise tüm kategorileri getirir
+        /// </summary>
+        /// <returns>Tüm kategorileri döndürür.</returns>
+        public async Task<ServiceModel<SubCategorySearch>> CategorySearchAsync(int categoryId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{categoryId}{pagingModel.ToString()}");
+
+            var categories = await _requestProvider.GetAsync<ServiceModel<SubCategorySearch>>(uri);
 
             return categories;
         }

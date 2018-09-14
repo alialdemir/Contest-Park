@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Game
 {
-    public class GameService : IGameervice
+    public class GameService : IGameService
     {
         #region Private variables
 

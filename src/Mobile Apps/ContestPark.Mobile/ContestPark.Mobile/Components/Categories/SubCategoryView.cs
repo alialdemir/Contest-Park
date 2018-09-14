@@ -47,7 +47,7 @@ namespace ContestPark.Mobile.Components
                     if (IsBusy) return;
                     IsBusy = true;
 
-                    IGameervice duelService = RegisterTypesConfig.Container.Resolve<IGameervice>();
+                    IGameService duelService = RegisterTypesConfig.Container.Resolve<IGameService>();
                     await duelService?.PushCategoryDetailViewAsync(subCategory);
 
                     IsBusy = false;

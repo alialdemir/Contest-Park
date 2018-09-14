@@ -15,6 +15,18 @@
       ]
     },
     {
+      "DownstreamPathTemplate": "/api/{version}/category/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.category.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/category/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/{version}/category",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

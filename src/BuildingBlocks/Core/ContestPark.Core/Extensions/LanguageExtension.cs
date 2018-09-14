@@ -11,7 +11,7 @@ namespace ContestPark.Core.Extensions
         /// <returns>Ülke kodu</returns>
         public static string ToLanguageCode(this Languages language)
         {
-            return Languages.Turkish.HasFlag(language) ? "tr-TR" : "en-US";
+            return Languages.Turkish == language ? "tr-TR" : "en-US";
         }
 
         ///// <summary>

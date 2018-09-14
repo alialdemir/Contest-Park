@@ -1,6 +1,9 @@
-﻿using ContestPark.Mobile.Services.Cp;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Duel.Bet;
+using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using MvvmHelpers;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using System;
@@ -31,16 +34,21 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
+        public ObservableRangeCollection<Bet> Bets { get; set; } = new ObservableRangeCollection<Bet>
+                            {
+                                new Bet { Title =ContestParkResources.Beginner, Prize = 20  * 2, EntryFee = 20},
+                                new Bet { Title = ContestParkResources.Novice, Prize = 150  * 2, EntryFee = 150},
+                                new Bet { Title = ContestParkResources.Advanced, Prize = 500  * 2, EntryFee = 500},
+                                new Bet { Title = ContestParkResources.Expert, Prize = 1500  * 2, EntryFee = 1500},
+                                new Bet { Title = ContestParkResources.Master, Prize = 5000  * 2, EntryFee = 5000},
+                                new Bet { Title = ContestParkResources.Genius, Prize = 16000  * 2, EntryFee = 16000},
+                            };
+
         public Int16 SubcategoryId { get; set; }
 
         public string SubcategoryName { get; set; }
 
         public string SubCategoryPicturePath { get; set; }
-
-        /// <summary>
-        /// Kullanıcının maksimum ne kadar arttırabileceği altın miktarını tutar
-        /// </summary>
-        private int MinCp { get; set; } = 0;
 
         /// <summary>
         /// Kullanıcının altın miktarını tutar
@@ -57,27 +65,15 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private bool _increaseBetIsEnabled;
+        private int _selectedIndex = 0;
 
-        public bool IncreaseBetIsEnabled
+        public int SelectedIndex
         {
-            get { return _increaseBetIsEnabled; }
+            get { return _selectedIndex; }
             set
             {
-                _increaseBetIsEnabled = value;
-                RaisePropertyChanged(() => IncreaseBetIsEnabled);
-            }
-        }
-
-        private bool _reduceBetIsVisible;
-
-        public bool ReduceBetIsVisible
-        {
-            get { return _reduceBetIsVisible; }
-            set
-            {
-                _reduceBetIsVisible = value;
-                RaisePropertyChanged(() => ReduceBetIsVisible);
+                _selectedIndex = value;
+                RaisePropertyChanged(() => SelectedIndex);
             }
         }
 
@@ -92,67 +88,55 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            int userCp = await _CpService.GetTotalCpByUserIdAsync();
-            if (userCp > 0) UserCp = userCp / 2;
+            UserCp = await _CpService.GetTotalCpByUserIdAsync();
 
-            MinCp = userCp;
-
-            if (UserCp <= 0)
-                IncreaseBetIsEnabled = false;//Kullanıcının altını 0 ise azalt buttonu pasif olsun
+            AddFreeLoader();
 
             IsBusy = false;
         }
 
-        private void ExecuteIncreaseBetCommand()
+        /// <summary>
+        /// Eğer kullanıcının altın miktarı sıfır ise altınsız oynaması için bahis miktari eklenir
+        /// </summary>
+        private void AddFreeLoader()
         {
-            decimal total = Math.Round((decimal)((this.MinCp / 100) * 10));
-            total = this.UserCp + total;
+            if (UserCp == 0)// Altını hiç yoksa 0 altınla oynayabilir
+            {
+                Bets.Insert(0, new Bet
+                {
+                    Title = ContestParkResources.Freeloader,
+                    EntryFee = 0,
+                    Prize = 0
+                });
 
-            if (total >= this.MinCp)
-            {
-                this.IncreaseBetIsEnabled = false;
-                this.ReduceBetIsVisible = true;
-                this.UserCp = this.MinCp;
-            }
-            else
-            {
-                this.UserCp = (int)total;
-                this.IncreaseBetIsEnabled = true;
-                this.ReduceBetIsVisible = true;
+                SelectedIndex = 0;
             }
         }
 
-        private void ExecuteReduceBetCommand()
-        {
-            decimal total = Math.Round((decimal)((this.MinCp / 100) * 10));
-            if (total > 0 && (this.UserCp - total) > total)
-            {
-                this.UserCp = this.UserCp - (int)total;
-                IncreaseBetIsEnabled = true;
-            }
-            if (!(total > 0 && (this.UserCp - total) > total)) ReduceBetIsVisible = false;
-        }
-
-        private async void ExecuteDuelStartCommand()
+        private async void ExecuteDuelStartCommand(int bet)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            //Device.BeginInvokeOnMainThread(async () =>
-            //{
-            await PushPopupPageAsync(new DuelStartingPopupView()
+            if (bet <= UserCp)
             {
-                SubcategoryId = SubcategoryId,
-                Bet = UserCp,
-                StandbyMode = DuelStartingPopupViewModel.StandbyModes.On,
-                SubcategoryName = SubcategoryName,
-                SubCategoryPicturePath = SubCategoryPicturePath
-            });
+                await PushPopupPageAsync(new DuelStartingPopupView()
+                {
+                    SubcategoryId = SubcategoryId,
+                    Bet = bet,
+                    StandbyMode = DuelStartingPopupViewModel.StandbyModes.On,
+                    SubcategoryName = SubcategoryName,
+                    SubCategoryPicturePath = SubCategoryPicturePath
+                });
 
-            ClosePopupCommand.Execute(null);
-            //  });
+                ClosePopupCommand.Execute(null);
+            }
+            else
+            {
+                // TODO: alert altık satın almak ister misiniz
+            }
 
             IsBusy = false;
         }
@@ -161,11 +145,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand IncreaseBetCommand => new Command(ExecuteIncreaseBetCommand);
-
-        public ICommand ReduceBetCommand => new Command(ExecuteReduceBetCommand);
-
-        public ICommand DuelStartCommand => new Command(ExecuteDuelStartCommand);
+        public ICommand DuelStartCommand => new Command<int>(ExecuteDuelStartCommand);
 
         public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
 

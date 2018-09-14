@@ -2,6 +2,8 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.Widget;
+using Android.Views;
 using ImageCircle.Forms.Plugin.Droid;
 using Prism;
 using Prism.Ioc;
@@ -12,6 +14,8 @@ namespace ContestPark.Mobile.Droid
     [Activity(Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public static Toolbar ToolBar { get; private set; }
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -27,7 +31,16 @@ namespace ContestPark.Mobile.Droid
             global::Rg.Plugins.Popup.Popup.Init(this, bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            Lottie.Forms.Droid.AnimationViewRenderer.Init();
+
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            ToolBar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            return base.OnCreateOptionsMenu(menu);
         }
 
         public override void OnBackPressed()

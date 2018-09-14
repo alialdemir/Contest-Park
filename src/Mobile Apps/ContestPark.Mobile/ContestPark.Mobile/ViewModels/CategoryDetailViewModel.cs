@@ -63,44 +63,6 @@ namespace ContestPark.Mobile.ViewModels
                 SubcategoryName = Title,
                 SubCategoryPicturePath = SubCategoryPicturePath,
             });
-            //await PushPopupPageAsync(new QuestionPopupView() // DuelBettingPopupView()
-            //{
-            //    DuelQuestionModel = new DuelQuestionModel()
-            //    {
-            //        SubCategoryId = 1,
-            //        QuestionModel = new QuestionModel()
-            //        {
-            //            Question = "Resimdeki bayrak hangi ülkenindir?",
-            //            Link = "http://flags.fmcdn.net/data/flags/h80/ca.png",
-            //            AnswerType = AnswerTypes.Text,
-            //            QuestionType = QuestionTypes.Image,
-            //            Answers =
-            //            {
-            //                new AnswerModel()
-            //                {
-            //                    IsCorrect = true,
-            //                    Answer = "Türkiye"
-            //                },
-            //                new AnswerModel()
-            //                {
-            //                    IsCorrect = false,
-            //                    Answer = "Brezilya"
-            //                },
-            //                new AnswerModel()
-            //                {
-            //                    IsCorrect = false,
-            //                    Answer = "Amerika"
-            //                },
-            //                new AnswerModel()
-            //                {
-            //                    IsCorrect = false,
-            //                    Answer = "Japonya"
-            //                },
-            //            }
-            //        }
-            //    }
-            //    //   SubcategoryId = _subCategoryId
-            //});
 
             IsBusy = false;
         }

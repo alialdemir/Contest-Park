@@ -6,6 +6,7 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.ViewModels.Base;
+using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
@@ -35,7 +36,7 @@ namespace ContestPark.Mobile.ViewModels
             ICpService cpService,
             INavigationService navigationService,
             IPageDialogService pageDialogService,
-            IGameervice duelService,
+            IGameService duelService,
             IEventAggregator eventAggregator) : base(navigationService, pageDialogService)
         {
             Title = ContestParkResources.Categories;
@@ -118,9 +119,20 @@ namespace ContestPark.Mobile.ViewModels
         private void EventSubscribe(IEventAggregator eventAggregator) => eventAggregator.GetEvent<SubCategoryRefleshEvent>()
                 .Subscribe(() => RefleshCommand.Execute(null));
 
+        private async Task ExecutGoToCategorySearchPageCommand(int CategoryId = 0)
+        {
+            await PushNavigationPageAsync($"{nameof(CategorySearchView)}", new NavigationParameters
+                                                {
+                                                    { "CategoryId", CategoryId }
+                                                }, useModalNavigation: false);
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand _goToCategorySearchPageCommand;
+        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<int>(async (CategoryId) => await ExecutGoToCategorySearchPageCommand(CategoryId)));
 
         public ICommand SetUserGoldCommand => new Command(async () => await SetUserGoldAsync());
 

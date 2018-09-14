@@ -1,0 +1,39 @@
+1-  Sign in
+2-  Sign up
+3-  ForgetYourPassword
+4-  Category
+5-  Category Search
+6-  Category Detail
+7-  Duel Starting 
+8-  Quiz
+9-  Duel Result
+10- Chat
+11- Chat detail
+12- Notification
+13- Profile
+14- Post detail
+15- Statistics
+16- Contest Store
+17- Missions
+18- Settings
+19- Account settings
+20- Chat settings
+21- Ranking
+22- Duel betting
+23- Follower
+24- Following
+
+
+Duel Starting
+Post detail
+Statistics
+Contest Store
+Settings
+Account settings
+Chat settings
+Duel betting
+
+
+
+
+

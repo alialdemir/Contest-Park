@@ -50,6 +50,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
 
+            containerRegistry.RegisterForNavigation<CategorySearchView, CategorySearchViewModel>();
+
             containerRegistry.RegisterForNavigation<DuelBettingPopupView, DuelBettingPopupViewModel>();
 
             containerRegistry.RegisterForNavigation<DuelResultPopupView, DuelResultPopupViewModel>();
@@ -87,15 +89,15 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.Register<IBotService, BotService>();
 
-            containerRegistry.Register<ICategoryServices, CategoryServices>();
+            containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
 
-            containerRegistry.Register<ICpService, CpService>();
+            containerRegistry.RegisterSingleton<ICpService, CpService>();
 
             containerRegistry.RegisterSingleton<ICacheService, CacheService>();
 
             containerRegistry.Register<IAudioService, AudioService>();
 
-            containerRegistry.RegisterSingleton<IGameervice, GameService>();
+            containerRegistry.RegisterSingleton<IGameService, GameService>();
 
             containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 

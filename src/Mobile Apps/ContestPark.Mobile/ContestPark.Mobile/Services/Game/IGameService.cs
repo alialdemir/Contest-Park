@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Game
 {
-    public interface IGameervice
+    public interface IGameService
     {
         Task<bool> PushCategoryDetailViewAsync(SubCategoryModel subCategoryModel);
 

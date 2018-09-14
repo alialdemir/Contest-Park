@@ -8,5 +8,7 @@ namespace ContestPark.Mobile.Services.Category
     public interface ICategoryServices
     {
         Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel);
+
+        Task<ServiceModel<SubCategorySearch>> CategorySearchAsync(int categoryId, PagingModel pagingModel);
     }
 }

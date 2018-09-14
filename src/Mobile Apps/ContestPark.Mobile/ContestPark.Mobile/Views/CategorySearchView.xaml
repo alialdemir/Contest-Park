@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Components:SearchPage xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+                        xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+                        xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                        SearchPlaceHolderText="Kategori ara..."
+						SearchCommand="{Binding SearchCommand}"
+                        SearchPlaceHolderColor="#191919"
+                        SeachTextColor="{StaticResource Black}"
+						prism:ViewModelLocator.AutowireViewModel="True"
+						x:Class="ContestPark.Mobile.Views.CategorySearchView"
+						x:Name="page"
+						Title="{Binding Title}">
+    <Components:SearchPage.Resources>
+        <ResourceDictionary>
+            <Converter:NegativeBooleanConverter x:Key="not" />
+            <Converter:CategorySearchGoldConverter x:Key="gold" />
+        </ResourceDictionary>
+    </Components:SearchPage.Resources>
+    <Components:SearchPage.Content>
+        <Components:NonPersistentSelectedItemListView x:Name="lstSearchCategories"
+													  AutomationId="lstSearchCategories"
+													  InfiniteScroll="{Binding InfiniteScroll}"
+													  Style="{StaticResource ListViewOnlyFooter}">
+
+            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10,10,10,10"
+									     BackgroundColor="#fff"
+									     Orientation="Horizontal">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding SubCategoryId}"
+													  Command="{Binding Path=BindingContext.PushEnterPageCommand, Source={x:Reference page}}" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Image WidthRequest="60"
+								   HeightRequest="60"
+								   Source="{Binding PicturePath}" />
+
+                            <StackLayout HorizontalOptions="Center"
+										 VerticalOptions="CenterAndExpand">
+
+                                <Label Text="{Binding SubCategoryName}"
+									   Style="{StaticResource LstUserFullName}" />
+
+                                <Label LineBreakMode="WordWrap"
+									   Text="{Binding CategoryName}"
+									   Style="{StaticResource LstMessage}" />
+                            </StackLayout>
+
+                            <StackLayout Spacing="0"
+										 Orientation="Vertical"
+										 HorizontalOptions="EndAndExpand"
+										 IsVisible="{Binding Price,Converter={StaticResource gold}}">
+
+                                <StackLayout Orientation="Horizontal"
+											 VerticalOptions="CenterAndExpand">
+
+                                    <Label TextColor="#01A8F7"
+										   Text="{Binding Price}"
+										   Style="{StaticResource LstDate}"
+										   VerticalOptions="CenterAndExpand" />
+
+                                    <Image WidthRequest="25"
+										   Source="coins.png"
+										   HeightRequest="25"
+										   VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.ItemTemplate>
+            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <Image Aspect="Fill"
+						   Source="zigzag.png"
+						   IsVisible="{Binding Source={x:Reference lstSearchCategories}, Path=IsRefreshing, Converter={StaticResource not}}" />
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.FooterTemplate>
+        </Components:NonPersistentSelectedItemListView>
+    </Components:SearchPage.Content>
+</Components:SearchPage>
