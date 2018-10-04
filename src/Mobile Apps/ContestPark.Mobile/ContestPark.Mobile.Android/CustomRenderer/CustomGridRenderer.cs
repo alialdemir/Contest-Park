@@ -1,5 +1,5 @@
 ﻿using Android.Views;
-using ContestPark.Mobile.Components.Categories;
+using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using System.Windows.Input;
 using Xamarin.Forms;

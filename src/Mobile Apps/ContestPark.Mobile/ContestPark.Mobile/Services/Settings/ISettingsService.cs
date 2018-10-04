@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.User;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Settings
@@ -8,20 +9,30 @@ namespace ContestPark.Mobile.Services.Settings
     {
         string AuthAccessToken { get; set; }
         Languages Language { get; set; }
-        UserInfoModel UserInfo { get; }
+        UserInfoModel CurrentUser { get; }
+
+        bool IsPrivatePrice { get; }
+
+        bool IsSoundEffectActive { get; }
 
         string SignalRConnectionId { get; set; }
 
-        bool GetValueOrDefault(string key, bool defaultValue);
+        bool GetValueOrDefault(bool defaultValue, [CallerMemberName]string methodName = "");
 
-        string GetValueOrDefault(string key, string defaultValue);
+        string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "");
 
-        int GetValueOrDefault(string key, byte defaultValue);
+        int GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "");
 
-        Task AddOrUpdateValue(string key, bool value);
+        Task AddOrUpdateValue(bool value, [CallerMemberName]string methodName = "");
 
-        Task AddOrUpdateValue(string key, string value);
+        Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "");
 
-        Task AddOrUpdateValue(string key, byte value);
+        Task AddOrUpdateValue(byte value, [CallerMemberName]string methodName = "");
+
+        //#region Api
+
+        //Task SetSettings(SettingTypes settingType, string settingValue);
+
+        //#endregion Api
     }
 }

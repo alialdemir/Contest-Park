@@ -46,7 +46,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
                 return;
             }
 
-            MainActivity.ToolBar.Title = Element.Title;
+            MainActivity.ToolBar.Title = Element?.Title;
             MainActivity.ToolBar.InflateMenu(Resource.Layout.SearchMenu);
 
             _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
@@ -72,10 +72,10 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
             // Close button color
             ImageView searchClose = (ImageView)_searchView.FindViewById(Resource.Id.search_close_btn);
-            searchClose.SetColorFilter(Color.FromHex("#000000").ToAndroid());
+            searchClose.SetColorFilter(searchPage.SearchCloseIconColor.ToAndroid());
 
             ImageView search = (ImageView)_searchView.FindViewById(Resource.Id.search_button);
-            search.SetColorFilter(Color.FromHex("#000000").ToAndroid());
+            search.SetColorFilter(searchPage.SearchIconColor.ToAndroid());
         }
 
         private void searchView_QueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e)

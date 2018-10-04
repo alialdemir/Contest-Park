@@ -8,10 +8,10 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     android:TabbedPage.ToolbarPlacement="Bottom"
-    android:TabbedPage.BarItemColor="#66000000"
-    android:TabbedPage.BarSelectedItemColor="{StaticResource Black}"
-    BarBackgroundColor="{StaticResource Primary}"
-    BarTextColor="{StaticResource Black}">
+    android:TabbedPage.BarItemColor="#66ffc107"
+    android:TabbedPage.BarSelectedItemColor="{StaticResource Primary}"
+    BarBackgroundColor="#181818"
+    BarTextColor="{StaticResource Primary}">
     <TabbedPage.Children>
         <!-- CategoriesPage -->
         <pages:CategoriesView
@@ -25,45 +25,46 @@
             </pages:CategoriesView.Icon>
         </pages:CategoriesView>
 
-        <!-- ChatAllPage -->
-        <!--
-        <pages:ChatAllPage
-        x:Name="tabChatAllPage"
-            plugin:TabBadge.BadgeText="{Binding BadgeCount}">
-            <pages:ChatAllPage.Icon>
+        <!-- ChatAllPage
+        plugin:TabBadge.BadgeText="{Binding BadgeCount}"
+        -->
+
+        <pages:ChatView
+        x:Name="tabChatPageChatView">
+            <pages:ChatView.Icon>
                 <OnPlatform
                 x:TypeArguments="FileImageSource"
                 Android="ic_message_black_24dp"
                 iOS="ic_message_black_24dp"
                 WinPhone="Assets\ic_message_black_24dp.png" />
-            </pages:ChatAllPage.Icon>
-        </pages:ChatAllPage>
-        -->
-        <!-- NotificationsPage -->
-        <!--
-        <pages:NotificationsPage
-        x:Name="tabNotificationsPage"
-            plugin:TabBadge.BadgeText="{Binding BadgeCount}">
-            <pages:NotificationsPage.Icon>
+            </pages:ChatView.Icon>
+        </pages:ChatView>
+
+        <!-- NotificationsPage
+            plugin:TabBadge.BadgeText="{Binding BadgeCount}" -->
+
+        <pages:NotificationsView
+        x:Name="tabNotificationsView">
+            <pages:NotificationsView.Icon>
                 <OnPlatform
                 x:TypeArguments="FileImageSource"
                 Android="ic_notifications_black_24dp"
                 iOS="ic_notifications_black_24dp"
                 WinPhone="Assets\ic_notifications_black_24dp.png" />
-            </pages:NotificationsPage.Icon>
-        </pages:NotificationsPage>
-        -->
+            </pages:NotificationsView.Icon>
+        </pages:NotificationsView>
+
         <!-- ProfilePage -->
-        <!--
-        <pages:ProfilePage
-        x:Name="tabProfilePage">
-            <pages:ProfilePage.Icon>
+
+        <pages:ProfileView
+        x:Name="tabProfileView">
+            <pages:ProfileView.Icon>
                 <OnPlatform
                 x:TypeArguments="FileImageSource"
                 Android="ic_account_circle_black_24dp"
                 iOS="ic_account_circle_black_24dp"
                 WinPhone="Assets\ic_account_circle_black_24dp.png" />
-            </pages:ProfilePage.Icon>
-        </pages:ProfilePage>-->
+            </pages:ProfileView.Icon>
+        </pages:ProfileView>
     </TabbedPage.Children>
 </TabbedPage>

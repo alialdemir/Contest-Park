@@ -59,6 +59,8 @@ namespace ContestPark.Mobile.Configs
 
         public string SignalREndpoint { get; set; }
 
+        public bool IsMockData { get; set; }
+
         private void UpdateEndpoint(string endpoint)
         {
             RegisterWebsite = $"{endpoint}/Account/Register";

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Helpers;
+using Newtonsoft.Json;
 
 namespace ContestPark.Mobile.Models.Categories
 {
@@ -23,7 +24,7 @@ namespace ContestPark.Mobile.Models.Categories
             }
         }
 
-        public int SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
 
         private int price;
 
@@ -41,5 +42,11 @@ namespace ContestPark.Mobile.Models.Categories
         }
 
         public string DisplayPrice { get; set; } = "0";
+
+        [JsonIgnore]
+        public bool IsCategoryOpen
+        {
+            get { return DisplayPrice.Equals("0"); }
+        }
     }
 }

@@ -37,7 +37,6 @@ namespace ContestPark.Infrastructure.Category.Repositories.Category
         {
             string sql = @"SELECT ( SELECT TOP(1) [p].[CategoryName] FROM [CategoryLangs] AS [p] WHERE ([p].[LanguageId] = @LangId) AND ([sc].[CategoryId] = [p].[CategoryId]) ) AS [CategoryName],
 						   [sc].[CategoryId] as [CategoryId],
-						   [cc].[Color] as [Color],
 						   [sc].[SubCategoryId],
 						   [sc].[DisplayPrice],
 						   (SELECT TOP(1) [scl].[SubCategoryName] FROM [SubCategoryLangs] AS [scl] WHERE ([scl].[LanguageId] = @LangId) AND ([sc].[SubCategoryId] = [scl].[SubCategoryId])) AS [SubCategoryName],
@@ -114,7 +113,6 @@ namespace ContestPark.Infrastructure.Category.Repositories.Category
             string sql = @"SELECT
 						   [cl].[CategoryName],
 						   [scl].[SubCategoryName],
-						   [c].[Color] as [Color],
 						   [sc].[SubCategoryId],
 						   [sc].[DisplayPrice],
 						   (case (SELECT

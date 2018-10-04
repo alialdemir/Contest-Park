@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Views
         public BaseNavigationPage()
         {
             InitializeComponent();
-            BarTextColor = (Color)ContestParkApp.Current.Resources["Black"];
+            BarTextColor = (Color)ContestParkApp.Current.Resources["Primary"];
         }
 
         #endregion Constructor

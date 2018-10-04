@@ -42,7 +42,6 @@ namespace ContestPark.Infrastructure.Category.DataSeed
                 {
                    Order=0,
                    Visibility=true,
-                   Color ="#F7931B",
                 }
             };
         }

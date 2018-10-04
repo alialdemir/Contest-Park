@@ -3,11 +3,14 @@ using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
+using ContestPark.Mobile.Services.Score;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
@@ -44,6 +47,10 @@ namespace ContestPark.Mobile.Configs
 
         private void RegisterTypeForNavigation(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
+
+            containerRegistry.RegisterForNavigation<BlockingView, BlockingViewViewModel>();
+
             containerRegistry.RegisterForNavigation<BaseNavigationPage>();
 
             containerRegistry.RegisterForNavigation<CategoriesView, CategoriesViewModel>();
@@ -51,6 +58,12 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<CategorySearchView, CategorySearchViewModel>();
+
+            containerRegistry.RegisterForNavigation<ChatDetailView, ChatDetailViewModel>();
+
+            containerRegistry.RegisterForNavigation<ChatView, ChatViewModel>();
+
+            containerRegistry.RegisterForNavigation<ContestStoreView, ContestStoreViewModel>();
 
             containerRegistry.RegisterForNavigation<DuelBettingPopupView, DuelBettingPopupViewModel>();
 
@@ -60,15 +73,31 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
 
+            containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
+
             containerRegistry.RegisterForNavigation<MainView, MainPageViewModel>();
+
+            containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
+
+            containerRegistry.RegisterForNavigation<PostView, PostViewModel>();
 
             containerRegistry.RegisterForNavigation<MasterDetailView, MasterDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<MasterView, MasterViewModel>();
 
+            containerRegistry.RegisterForNavigation<MissionsView, MissionsViewModel>();
+
+            containerRegistry.RegisterForNavigation<NotificationsView, NotificationsViewModel>();
+
+            containerRegistry.RegisterForNavigation<ProfileView, ProfileViewModel>();
+
             containerRegistry.RegisterForNavigation<QuestionExpectedPopupView, QuestionExpectedPopupViewModel>();
 
             containerRegistry.RegisterForNavigation<QuestionPopupView, QuestionPopupViewModel>();
+
+            containerRegistry.RegisterForNavigation<RankingView, RankingViewModel>();
+
+            containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
 
@@ -83,67 +112,74 @@ namespace ContestPark.Mobile.Configs
 
         private void RegisterTypeInstance(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterPopupNavigationService();
+            if (!GlobalSetting.Instance.IsMockData)
+            {
+                containerRegistry.RegisterPopupNavigationService();
 
-            containerRegistry.Register<IIdentityService, IdentityService>();
+                containerRegistry.Register<IIdentityService, IdentityService>();
 
-            containerRegistry.Register<IBotService, BotService>();
+                containerRegistry.Register<IBotService, BotService>();
 
-            containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
+                containerRegistry.Register<IPostService, PostService>();
 
-            containerRegistry.RegisterSingleton<ICpService, CpService>();
+                containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
 
-            containerRegistry.RegisterSingleton<ICacheService, CacheService>();
+                containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
-            containerRegistry.Register<IAudioService, AudioService>();
+                containerRegistry.RegisterSingleton<ICpService, CpService>();
 
-            containerRegistry.RegisterSingleton<IGameService, GameService>();
+                containerRegistry.RegisterSingleton<ICacheService, CacheService>();
 
-            containerRegistry.RegisterSingleton<IDuelService, DuelService>();
+                containerRegistry.Register<IAudioService, AudioService>();
 
-            containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
+                containerRegistry.RegisterSingleton<IGameService, GameService>();
 
-            containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
+                containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
-            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
-            containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
+                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
-            /*
-            containerBuilder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
-            containerBuilder.RegisterType<ChatsSignalRService>().As<IChatsSignalRService>().SingleInstance();
+                containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
 
-                containerBuilder.RegisterType<AccountService>().As<IAccountService>().SingleInstance();
-                containerBuilder.RegisterType<BoostsService>().As<IBoostsService>().SingleInstance();
-                containerBuilder.RegisterType<ChatBlocksService>().As<IChatBlocksService>().SingleInstance();
-                containerBuilder.RegisterType<ChatRepliesService>().As<IChatRepliesService>().SingleInstance();
-                containerBuilder.RegisterType<ChatsService>().As<IChatsService>().SingleInstance();
-                containerBuilder.RegisterType<CommentsService>().As<ICommentsService>().SingleInstance();
-                containerBuilder.RegisterType<CategoryServices>().As<ICategoryServices>().SingleInstance();
-                containerBuilder.RegisterType<ContestDatesService>().As<IContestDatesService>().SingleInstance();
-                containerBuilder.RegisterType<CoverPicturesService>().As<ICoverPicturesService>().SingleInstance();
-                containerBuilder.RegisterType<CpService>().As<ICpService>().SingleInstance();
-                containerBuilder.RegisterType<DuelInfosService>().As<IDuelInfosService>().SingleInstance();
-                containerBuilder.RegisterType<DuelSignalRService>().As<IDuelSignalRService>().SingleInstance();
-                containerBuilder.RegisterType<FollowCategoryService>().As<IFollowCategoryService>().SingleInstance();
-                containerBuilder.RegisterType<FollowsService>().As<IFollowsService>().SingleInstance();
-                containerBuilder.RegisterType<LanguageService>().As<ILanguageService>().SingleInstance();
-                containerBuilder.RegisterType<LikesService>().As<ILikesService>().SingleInstance();
-                containerBuilder.RegisterType<MissionsService>().As<IMissionsService>().SingleInstance();
-                containerBuilder.RegisterType<NotificationsService>().As<INotificationsService>().SingleInstance();
-                containerBuilder.RegisterType<OpenSubCategoryService>().As<IOpenSubCategoryService>().SingleInstance();
-                containerBuilder.RegisterType<PicturesService>().As<IPicturesService>().SingleInstance();
-                containerBuilder.RegisterType<QuestionsService>().As<IQuestionsService>().SingleInstance();
-                containerBuilder.RegisterType<ScoresService>().As<IScoresService>().SingleInstance();
-                containerBuilder.RegisterType<SettingsService>().As<ISettingsService>().SingleInstance();
-                containerBuilder.RegisterType<SignalRServiceBase>().As<ISignalRServiceBase>().SingleInstance();
-                containerBuilder.RegisterType<SQLiteService<UserModel>>().As<ISQLiteService<UserModel>>().SingleInstance();
-                containerBuilder.RegisterType<SQLiteService<LanguageModel>>().As<ISQLiteService<LanguageModel>>().SingleInstance();
-                containerBuilder.RegisterType<SubCategoriesService>().As<ISubCategoriesService>().SingleInstance();
-                containerBuilder.RegisterType<SupportService>().As<ISupportService>().SingleInstance();
-                containerBuilder.RegisterType<UserDataModule>().As<IUserDataModule>().SingleInstance();
-                containerBuilder.RegisterType<PostsService>().As<IPostsService>().SingleInstance();
-                containerBuilder.RegisterType<DuelModule>().As<IDuelModule>().SingleInstance();*/
+                containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+
+                containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
+            }
+            else
+            {
+                containerRegistry.RegisterPopupNavigationService();
+
+                containerRegistry.Register<IIdentityService, IdentityMockService>();
+
+                containerRegistry.Register<IBotService, BotService>();
+
+                containerRegistry.Register<IPostService, PostMockService>();
+
+                containerRegistry.RegisterSingleton<ICategoryServices, CategoryMockServices>();
+
+                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
+
+                containerRegistry.RegisterSingleton<ICpService, CpMockService>();
+
+                containerRegistry.RegisterSingleton<ICacheService, CacheService>();
+
+                containerRegistry.Register<IAudioService, AudioService>();
+
+                containerRegistry.RegisterSingleton<IGameService, GameService>();
+
+                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+
+                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
+
+                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
+
+                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
+
+                containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
+
+                containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
+            }
         }
 
         #endregion Register Instance

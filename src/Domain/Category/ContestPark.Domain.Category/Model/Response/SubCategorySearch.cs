@@ -23,7 +23,7 @@ namespace ContestPark.Domain.Category.Model.Response
             }
         }
 
-        public int SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
 
         private int price;
 

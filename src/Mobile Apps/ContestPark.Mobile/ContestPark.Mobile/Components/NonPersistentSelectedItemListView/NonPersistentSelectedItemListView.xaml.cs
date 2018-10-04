@@ -1,8 +1,10 @@
 ﻿using ContestPark.Mobile.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NonPersistentSelectedItemListView : ListView
     {
         #region Constructor

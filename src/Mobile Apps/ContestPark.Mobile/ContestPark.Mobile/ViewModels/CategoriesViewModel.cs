@@ -36,14 +36,14 @@ namespace ContestPark.Mobile.ViewModels
             ICpService cpService,
             INavigationService navigationService,
             IPageDialogService pageDialogService,
-            IGameService duelService,
+            IGameService gameService,
             IEventAggregator eventAggregator) : base(navigationService, pageDialogService)
         {
             Title = ContestParkResources.Categories;
             _cpService = cpService;
             _categoryServices = categoryServices;
 
-            duelService.NavigationService = navigationService;
+            gameService.NavigationService = navigationService;
 
             EventSubscribe(eventAggregator);
             ServiceModel.PageSize = 9999;// Şimdilik 9999 verdim kategorilerde safyalama yok
@@ -95,11 +95,10 @@ namespace ContestPark.Mobile.ViewModels
             SetUserGoldCommand.Execute(null);
 
             //TODO: Kategorileri sayfala
-            var subCategories = await _categoryServices.CategoryListAsync(ServiceModel);
-            if (subCategories != null && subCategories.Items != null) Items.AddRange(subCategories.Items);
+            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
 
-            IsBusy = false;
             await base.InitializeAsync();
+            IsBusy = false;
         }
 
         /// <summary>

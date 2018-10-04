@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
 using Newtonsoft.Json;
@@ -16,7 +17,10 @@ namespace ContestPark.Mobile.Services.Identity
         #region Private variables
 
         private readonly IRequestProvider _requestProvider;
+
         private readonly IPageDialogService _dialogService;
+
+        private const string ApiUrlBase = "api/v1/account";
 
         #endregion Private variables
 
@@ -34,6 +38,36 @@ namespace ContestPark.Mobile.Services.Identity
 
         #region Methods
 
+        /// <summary>
+        /// Üye ol servisine istek atar başarılı ise true başarısız ise mesaj çıkarır ve false döndürür
+        /// </summary>
+        /// <param name="signUpModel">Üye olma bilgileri</param>
+        /// <returns>Başarılı ise true başarısız ise false</returns>
+        public async Task<bool> SignUpAsync(SignUpModel signUpModel)
+        {
+            await Task.Delay(1000);
+            return false;
+        }
+
+        /// <summary>
+        /// Şifremi unuttum
+        /// </summary>
+        /// <param name="userNameOrEmailAddress">Kullanıcı adı veya eposta adresi</param>
+        public Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
+        {
+            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            //string message = await _requestProvider.PostAsync<string>(uri, new { userNameOrEmailAddress });
+
+            //await ShowErrorMessage(message);
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Kullanıcı adı ve şifre ile token bilgisi alır
+        /// </summary>
+        /// <param name="loginModel">Kullanıcı login bilgileri</param>
+        /// <returns>Token</returns>
         public async Task<UserToken> GetTokenAsync(LoginModel loginModel)
         {
             try
@@ -51,7 +85,7 @@ namespace ContestPark.Mobile.Services.Identity
                 else if (ex.GetType() == typeof(HttpRequestException))
                 {
 #if DEBUG
-                    await ShowMessage(ex.Message);
+                    await ShowErrorMessage(ex.Message);
 #else
        await ShowMessage(ContestParkResources.GlobalErrorMessage);
 #endif
@@ -82,16 +116,22 @@ namespace ContestPark.Mobile.Services.Identity
                     message = TranslateExtension.resmgr.Value.GetString(result.ErrorDescription);
                 }
 
-                await ShowMessage(message);
+                await ShowErrorMessage(message);
             }
         }
 
-        private async Task ShowMessage(string message)
+        private async Task ShowErrorMessage(string message)
         {
             await _dialogService.DisplayAlertAsync(
                              ContestParkResources.Error,
                         message,
                               ContestParkResources.Okay);
+        }
+
+        public Task Unauthorized()
+        {
+            // TODO: server tarafından çıkış yapılacak ve signalr connection kapatılacak
+            return Task.CompletedTask;
         }
 
         #endregion Methods

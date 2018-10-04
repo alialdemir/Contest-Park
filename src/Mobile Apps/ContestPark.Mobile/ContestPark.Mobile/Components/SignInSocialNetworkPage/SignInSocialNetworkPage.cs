@@ -8,10 +8,11 @@ namespace ContestPark.Mobile.Converters.SignInSocialNetworkPage
     {
         #region Enum
 
-        public enum SocialNetworkTypes
+        public enum SocialNetworkTypes : byte
         {
-            None = 0,
-            Facebook = 1
+            Facebook = 1,
+            Twitter = 2,
+            GooglePlus = 3
         }
 
         #endregion Enum
@@ -20,7 +21,9 @@ namespace ContestPark.Mobile.Converters.SignInSocialNetworkPage
 
         public SignInSocialNetworkPage(SocialNetworkTypes socialNetworkType)
         {
-            if (SocialNetworkTypes.None.HasFlag(socialNetworkType)) throw new ArgumentNullException(nameof(socialNetworkType));
+            if (!SocialNetworkTypes.Facebook.HasFlag(socialNetworkType) ||
+                !SocialNetworkTypes.Twitter.HasFlag(socialNetworkType) ||
+                !SocialNetworkTypes.GooglePlus.HasFlag(socialNetworkType)) throw new ArgumentNullException(nameof(socialNetworkType));
             CreateSocialInfo(socialNetworkType);
         }
 

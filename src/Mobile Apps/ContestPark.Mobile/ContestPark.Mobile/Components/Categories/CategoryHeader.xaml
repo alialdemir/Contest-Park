@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             x:Class="ContestPark.Mobile.Components.CategoryHeader">
+    <ContentView.Content>
+        <StackLayout HeightRequest="44"
+                     Orientation="Horizontal"
+                     BackgroundColor="{StaticResource ListBackgroundColor}">
+            <Label FontSize="16"
+                   Margin="10,0,0,0"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   x:Name="lblCategoryName"
+                   TextColor="{StaticResource Primary}" />
+
+            <Label FontSize="13"
+                   Margin="0,0,10,0"
+                   TextColor="#808080"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   x:Name="lblSeeAll"
+                   Text="{i18n:Translate SeeAll}"
+                   HorizontalOptions="EndAndExpand" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

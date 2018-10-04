@@ -11,7 +11,7 @@ namespace ContestPark.Mobile.Components
         {
             RetryCount = 0;
             //Aspect = Aspect.AspectFill;
-            DownsampleToViewSize = true;
+            DownsampleToViewSize = false;
             DownsampleUseDipUnits = false;
             AutomationId = "imgProfilePhoto";
             HorizontalOptions = LayoutOptions.Center;

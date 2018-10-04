@@ -6,3 +6,9 @@ case: İndirimli iken altınla satın almak isterse ne olacak?
 
 
 #3 Bahis sistemi poker gibi olsun oyun oynandığı esnada bahis artılılabilsin karşı taraf kabul etmezse oyunu arttıran kazansın
+
+#4 mesajlaşırken alt kategori seçip düello isteği yollama(mesaj sayfasında düello isteği yollama)
+
+#5 Markalara özel açılan alt kategoriler ileride ana kategori açıp markanın alt kategorisini oradaki sırasına göre para alınabilir
+
+#6 Alt kategorilerin aralarına markaların alt kategorileri diğer kategorilerin arasında sponsporlu kategori yazıp çıkartılabilir

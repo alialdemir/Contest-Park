@@ -8,6 +8,14 @@
 
             <!-- Colors -->
 
+            <!-- Dark gray -->
+            <Color x:Key="ListBackgroundColor">#171717</Color>
+
+            <!-- Black -->
+            <Color x:Key="GlobalBackgroundColor">#0d0d0d</Color>
+
+            <Color x:Key="Orange">#ff8800</Color>
+
             <!-- Amber -->
             <Color x:Key="Primary">#ffc107</Color>
             <Color x:Key="Primary100">#FFECB3</Color>
@@ -16,7 +24,7 @@
             <Color x:Key="White">#FFFFFF</Color>
 
             <!-- Black -->
-            <Color x:Key="Black">#000000</Color>
+            <Color x:Key="Black">#222222</Color>
 
             <!-- Green -->
             <Color x:Key="Green">#017d46</Color>
@@ -24,8 +32,14 @@
             <!-- Red -->
             <Color x:Key="Red">#993232</Color>
 
+            <!--Mavi-->
+            <Color x:Key="Accent">#536dfe</Color>
+
             <!-- Blue-->
             <Color x:Key="Blue">#4080FF</Color>
+
+            <!--Beyaz-->
+            <Color x:Key="PrimaryText">#212121</Color>
 
             <Style x:Key="ContentParkLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="25"></Setter>
@@ -39,29 +53,6 @@
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
                 <Setter Property="SeparatorVisibility" Value="None" />
                 <Setter Property="HasUnevenRows" Value="True" />
-            </Style>
-
-            <Style x:Key="LstUserFullName" TargetType="Label">
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="LineBreakMode" Value="TailTruncation" />
-                <Setter Property="VerticalOptions" Value="StartAndExpand" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-            </Style>
-
-            <Style x:Key="LstMessage" TargetType="Label">
-                <Setter Property="TextColor" Value="#666" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="LineBreakMode" Value="TailTruncation" />
-                <Setter Property="VerticalOptions" Value="EndAndExpand" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-            </Style>
-
-            <Style x:Key="LstDate" TargetType="Label">
-                <Setter Property="TextColor" Value="#666" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
             </Style>
 
             <Style x:Key="ListViewHeaderAndFooter" TargetType="ListView" BasedOn="{StaticResource ListView}">
@@ -86,7 +77,17 @@
 
             <Style x:Key="FacebookButton" TargetType="Button" BasedOn="{StaticResource Button}">
                 <Setter Property="BackgroundColor" Value="#3b5999"></Setter>
-                <Setter Property="Image" Value="facebook24x.png"></Setter>
+                <Setter Property="Image" Value="ic_favorite_black_24dp.png"></Setter>
+            </Style>
+
+            <Style x:Key="TwitterButton" TargetType="Button" BasedOn="{StaticResource Button}">
+                <Setter Property="BackgroundColor" Value="#993232"></Setter>
+                <Setter Property="Image" Value="ic_favorite_black_24dp.png"></Setter>
+            </Style>
+
+            <Style x:Key="GoolgePlusButton" TargetType="Button" BasedOn="{StaticResource Button}">
+                <Setter Property="BackgroundColor" Value="#3b5999"></Setter>
+                <Setter Property="Image" Value="ic_favorite_black_24dp.png"></Setter>
             </Style>
 
             <!-- ZigZag -->

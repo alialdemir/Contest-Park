@@ -1,7 +1,9 @@
 ﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.User;
+using ContestPark.Mobile.Services.RequestProvider;
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -11,40 +13,70 @@ namespace ContestPark.Mobile.Services.Settings
     {
         #region Setting Constants
 
-        private const string AccessToken = "access_token";
-        private const string language = "languages";
         private const string signalRConnectionIdDefault = "SignalRConnectionIdDefault";
+
         private readonly string AccessTokenDefault = string.Empty;
+
         private readonly string IdTokenDefault = string.Empty;
+
+        private readonly bool IsPrivatePriceDefault = false;
+
+        private readonly bool IsSoundEffectActiveDefaultDefault = true;
+
         private readonly Languages LanguageDefault = Languages.English;
+
         private readonly string SignalRConnectionIdDefault = string.Empty;
 
         #endregion Setting Constants
+
+        #region Private variables
+
+        private readonly IRequestProvider _requestProvider;
+
+        private const string ApiUrlBase = "api/v1/settings";
+
+        #endregion Private variables
+
+        #region Constructor
+
+        public SettingsService(IRequestProvider requestProvider)
+        {
+            _requestProvider = requestProvider;
+        }
+
+        #endregion Constructor
 
         #region Settings Properties
 
         public string AuthAccessToken
         {
-            get => GetValueOrDefault(AccessToken, AccessTokenDefault);
-            set => AddOrUpdateValue(AccessToken, value);
+            get => GetValueOrDefault(AccessTokenDefault);
+            set => AddOrUpdateValue(value);
         }
 
         public Languages Language
         {
-            get => (Languages)GetValueOrDefault(language, (byte)LanguageDefault);
-            set => AddOrUpdateValue(language, (byte)value);
+            get => (Languages)GetValueOrDefault((byte)LanguageDefault);
+            set => AddOrUpdateValue((byte)value);
         }
 
         public string SignalRConnectionId { get; set; }
-        //public string SignalRConnectionId
-        //{
-        //    get => GetValueOrDefault(signalRConnectionIdDefault, SignalRConnectionIdDefault);
-        //    set => AddOrUpdateValue(signalRConnectionIdDefault, value);
-        //}
+
+        public bool IsPrivatePrice
+        {
+            get => GetValueOrDefault(IsPrivatePriceDefault);
+            set => AddOrUpdateValue(value);
+        }
+
+        public bool IsSoundEffectActive
+        {
+            get => GetValueOrDefault(IsSoundEffectActiveDefaultDefault);
+            set => AddOrUpdateValue(value);
+        }
 
         private UserInfoModel _userInfo;
 
-        public UserInfoModel UserInfo
+        public UserInfoModel CurrentUser
         {
             get
             {
@@ -61,17 +93,17 @@ namespace ContestPark.Mobile.Services.Settings
 
         #region Public Methods
 
-        public Task AddOrUpdateValue(string key, bool value) => AddOrUpdateValueInternal(key, value);
+        public Task AddOrUpdateValue(bool value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
 
-        public Task AddOrUpdateValue(string key, string value) => AddOrUpdateValueInternal(key, value);
+        public Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
 
-        public Task AddOrUpdateValue(string key, byte value) => AddOrUpdateValueInternal(key, value);
+        public Task AddOrUpdateValue(byte value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
 
-        public bool GetValueOrDefault(string key, bool defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
+        public bool GetValueOrDefault(bool defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 
-        public string GetValueOrDefault(string key, string defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
+        public string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 
-        public int GetValueOrDefault(string key, byte defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
+        public int GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 
         #endregion Public Methods
 
@@ -122,5 +154,21 @@ namespace ContestPark.Mobile.Services.Settings
         }
 
         #endregion Internal Implementation
+
+        //#region Setting Service
+
+        ///// <summary>
+        ///// Ayar tipine göre değerini kayıt eder
+        ///// </summary>
+        ///// <param name="settingType">Ayar tipi</param>
+        ///// <param name="settingValue">Değeri</param>
+        //public async Task SetSettings(SettingTypes settingType, string settingValue)// TODO: parametreden gönderirke problem olabilir property name eklenmesi lazım
+        //{
+        //    string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{(byte)settingType}", settingValue);
+
+        //    await _requestProvider.PostAsync<string>(uri);
+        //}
+
+        //#endregion Setting Service
     }
 }

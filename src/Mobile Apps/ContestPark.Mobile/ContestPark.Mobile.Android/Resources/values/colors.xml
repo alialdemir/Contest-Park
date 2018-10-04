@@ -7,10 +7,20 @@
   <color name="textIcon">#212121</color>
   <color name="primaryText">#212121</color>
   <color name="secondaryText">#757575</color>
+  <color name="black">#222222</color>
   <!--Sayfaların arka plan rengi-->
   <color name="window_background">@drawable/splash</color>
 
+  <!-- Action Bar BackgroundColor -->
+  <color name="ActionBarBackgroundColor">#181818</color>
+  <!-- Action Bar BackgroundColor -->
+
   <!-- Hamburger menu color -->
-  <color name="tabHamburgerMenu">#222</color>
+  <color name="tabHamburgerMenu">@color/colorPrimary</color>
   <!-- Hamburger menu color -->
+
+  <!-- Segment -->
+  <color name="normal">@android:color/transparent</color>
+  <color name="selected">#ffa000</color>
+  <!-- Segment -->
 </resources>

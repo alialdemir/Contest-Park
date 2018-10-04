@@ -4,7 +4,6 @@ using ContestPark.Domain.Category.Model.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Orleans;
-using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,6 +16,8 @@ namespace ContestPark.Category.API.Controller
 
         private readonly ICategoryGrain _categoryGrain;
 
+        private readonly ICategorySearchGrain _categorySearchGrain;
+
         #endregion Private variables
 
         #region Constructor
@@ -27,6 +28,7 @@ namespace ContestPark.Category.API.Controller
             ) : base(logger)
         {
             _categoryGrain = clusterClient.GetGrain<ICategoryGrain>(0);
+            _categorySearchGrain = clusterClient.GetGrain<ICategorySearchGrain>(0);
         }
 
         #endregion Constructor
@@ -56,20 +58,30 @@ namespace ContestPark.Category.API.Controller
         /// Kategori Id'ye göre kategori listesi getirir 0 ise tüm kategorileri getirir
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
+        //[HttpGet]
+        //[Route("{categoryId}")]
+        //[ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(ServiceResponse<SubCategorySearch>), (int)HttpStatusCode.OK)]
+        //public async Task<IActionResult> Get(Int16 categoryId, [FromQuery]Paging pagingModel)
+        //{
+        //    var catgories = await _categoryGrain.CategorySearch(UserId, categoryId, CurrentUserLanguage, pagingModel);
+        //    if (catgories == null || !catgories.Items.Any())
+        //    {
+        //        Logger.LogCritical($"{nameof(catgories)} list returned empty.", catgories);
+        //        return NotFound();
+        //    }
+
+        //    return Ok(catgories);
+        //}
+
         [HttpGet]
-        [Route("{categoryId}")]
+        [Route("{q}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ServiceResponse<SubCategorySearch>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Get(Int16 categoryId, [FromQuery]Paging pagingModel)
+        public async Task<IActionResult> Get([FromQuery]string q, [FromQuery]Paging pagingModel)
         {
-            var catgories = await _categoryGrain.CategorySearch(UserId, categoryId, CurrentUserLanguage, pagingModel);
-            if (catgories == null || !catgories.Items.Any())
-            {
-                Logger.LogCritical($"{nameof(catgories)} list returned empty.", catgories);
-                return NotFound();
-            }
-
-            return Ok(catgories);
+            await _categorySearchGrain.Search();
+            return Ok();
         }
 
         #endregion Methods

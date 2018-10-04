@@ -39,7 +39,7 @@ namespace ContestPark.Mobile
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
             if (string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                NavigationService.NavigateAsync($"/{nameof(SignInView)}");
+                NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(SignInView)}");
             else
                 NavigationService.NavigateAsync($"{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}");
         }
@@ -50,6 +50,8 @@ namespace ContestPark.Mobile
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            GlobalSetting.Instance.IsMockData = true;
+
             RegisterTypesConfig.Init(Container, containerRegistry);
         }
 

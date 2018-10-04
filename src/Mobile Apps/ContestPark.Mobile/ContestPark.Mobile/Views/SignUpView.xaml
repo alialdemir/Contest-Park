@@ -1,14 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.SignUpView"
+             BackgroundColor="{StaticResource Primary}"
              Title="{Binding Title}">
     <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10,0,10,0"
+                         Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="SignUp" />
-        </StackLayout>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0"
+                           Source="logo.png"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+
+                    <StackLayout Grid.Row="1"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+
+                        <Label XAlign="End"
+                               Text="Contest"
+                               TextColor="White"
+                               Style="{StaticResource ContentParkLabel}" />
+
+                        <Label Text="Park"
+                               XAlign="Start"
+                               TextColor="Black"
+                               Style="{StaticResource ContentParkLabel}" />
+                    </StackLayout>
+
+                    <xfx:XfxEntry Grid.Row="2"
+                                  AutomationId="txtUserName"
+                                  Text="{Binding SignUpModel.UserName}"
+                                  Placeholder="{i18n:Translate UserName}"
+                                  ActivePlaceholderColor="{StaticResource Black}" />
+
+                    <xfx:XfxEntry Grid.Row="3"
+                                  AutomationId="txtFullname"
+                                  Text="{Binding SignUpModel.Fullname}"
+                                  Placeholder="{i18n:Translate Fullname}"
+                                  ActivePlaceholderColor="{StaticResource Black}" />
+
+                    <xfx:XfxEntry Grid.Row="4"
+                                  AutomationId="txtEmail"
+                                  Text="{Binding SignUpModel.Email}"
+                                  Placeholder="{i18n:Translate Email}"
+                                  ActivePlaceholderColor="{StaticResource Black}" />
+
+                    <xfx:XfxEntry Grid.Row="5"
+                                  IsPassword="True"
+                                  AutomationId="txtPassword"
+                                  Text="{Binding SignUpModel.Password}"
+                                  Placeholder="{i18n:Translate Password}"
+                                  ActivePlaceholderColor="{StaticResource Black}" />
+
+                    <Button Grid.Row="6"
+                            AutomationId="SignUp"
+                            Text="{i18n:Translate SignUp}"
+                            Command="{Binding SignUpCommand}"
+                            Style="{StaticResource DangerButton}" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

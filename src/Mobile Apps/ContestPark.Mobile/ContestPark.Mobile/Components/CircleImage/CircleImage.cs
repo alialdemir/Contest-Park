@@ -21,8 +21,8 @@ namespace ContestPark.Mobile.Components
 
         protected override void OnBindingContextChanged()
         {
-            if (WidthRequest < 0) WidthRequest = 60;
-            if (HeightRequest < 0) HeightRequest = 60;
+            if (WidthRequest < 0) WidthRequest = 50;
+            if (HeightRequest < 0) HeightRequest = 50;
             Transformations.Add(new CircleTransformation(20, BorderColor));
             base.OnBindingContextChanged();
         }

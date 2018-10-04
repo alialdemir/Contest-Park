@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Models.Categories
     public class SubCategoryModel : INotifyPropertyChanged
     {
         public string SubCategoryName { get; set; }
-        public int SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
         private string picturePath = "";
 
         public string PicturePath

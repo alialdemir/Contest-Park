@@ -165,9 +165,9 @@ namespace ContestPark.Mobile.ViewModels
         {
             DuelScreen = new DuelStartingModel()
             {
-                FounderFullName = _settingsService.UserInfo.FullName,
-                FounderCoverPicturePath = _settingsService.UserInfo.CoverPicturePath,
-                FounderProfilePicturePath = _settingsService.UserInfo.ProfilePicturePath
+                FounderFullName = _settingsService.CurrentUser.FullName,
+                FounderCoverPicturePath = _settingsService.CurrentUser.CoverPicturePath,
+                FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
             };
 
             _audioService.Play(Audio.AwaitingOpponent, true);

@@ -72,7 +72,7 @@ namespace ContestPark.Mobile.ViewModels
             get { return "#017d46"; }
         }
 
-        private bool IsFounder => _settingsService.UserInfo.UserId == DuelScreen.FounderUserId;
+        private bool IsFounder => _settingsService.CurrentUser.UserId == DuelScreen.FounderUserId;
 
         private bool IsTimerEnable { get; set; }
 

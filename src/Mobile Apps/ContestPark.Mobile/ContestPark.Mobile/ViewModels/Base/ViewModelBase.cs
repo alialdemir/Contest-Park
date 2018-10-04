@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Base;
 using ContestPark.Mobile.Models.ServiceModel;
 using MvvmHelpers;
 using Prism.Navigation;
@@ -221,13 +222,14 @@ namespace ContestPark.Mobile.ViewModels.Base
         #endregion Commands
     }
 
-    public abstract class ViewModelBase<TModel> : ViewModelBase where TModel : BaseModel
+    public abstract class ViewModelBase<TModel> : ViewModelBase where TModel : IModelBase
     {
         #region Constructor
 
         public ViewModelBase(
             INavigationService navigationService = null,
-            IPageDialogService dialogService = null) : base(navigationService, dialogService) { }
+            IPageDialogService dialogService = null,
+            IPopupNavigation popupNavigation = null) : base(navigationService, dialogService, popupNavigation) { }
 
         #endregion Constructor
 

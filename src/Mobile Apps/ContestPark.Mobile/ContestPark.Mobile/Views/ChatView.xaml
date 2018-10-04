@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ContestPark.Mobile.Views.ChatView"
+             x:Name="page"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:NegativeBooleanConverter x:Key="not" />
+            <Converter:DateTimeMomentConverter x:Key="moment" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Components:NonPersistentSelectedItemListView x:Name="lstView"
+                                                      InfiniteScroll="{Binding InfiniteScroll}"
+                                                      Style="{StaticResource ListViewOnlyFooter}"
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Components:ListItemView AutomationId="lstViewChat"
+                                                 Detail="{Binding Message}"
+                                                 Text="{Binding UserFullName}"
+                                                 UserName="{Binding UserName}"
+                                                 CommandParameter="{Binding SenderUserId}"
+                                                 Source="{Binding UserProfilePicturePath}"
+                                                 Date="{Binding Date,Converter={StaticResource moment}}"
+                                                 LongPressed="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference page}}"
+                                                 SingleTap="{Binding Path=BindingContext.GotoChatDetailCommand, Source={x:Reference page}}"
+                                                 GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference page}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.ItemTemplate>
+            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource EmptyModel}"
+                           Text="{i18n:Translate MessageYourListIsEmpty}"
+                           TextColor="White"
+                           IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.FooterTemplate>
+        </Components:NonPersistentSelectedItemListView>
+    </ContentPage.Content>
+</ContentPage>

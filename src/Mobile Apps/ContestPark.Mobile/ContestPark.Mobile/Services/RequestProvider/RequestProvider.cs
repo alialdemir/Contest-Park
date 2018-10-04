@@ -146,24 +146,32 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             return HttpInvoker(origin, async () =>
             {
-                HttpClient httpClient = CreateHttpClient();
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
-
-                if (data != null)
+                try
                 {
-                    string content = await Task.Run(() => JsonConvert.SerializeObject(data));
-                    httpRequestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
+                    HttpClient httpClient = CreateHttpClient();
+                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
+
+                    if (data != null)
+                    {
+                        string content = await Task.Run(() => JsonConvert.SerializeObject(data));
+                        httpRequestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
+                    }
+
+                    HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
+                    await HandleResponse(response);
+
+                    string serialized = await response.Content.ReadAsStringAsync();
+
+                    TResult result = await Task.Run(() =>
+                        JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
+
+                    return result;
+                }
+                catch (Exception)
+                {
                 }
 
-                HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
-                await HandleResponse(response);
-
-                string serialized = await response.Content.ReadAsStringAsync();
-
-                TResult result = await Task.Run(() =>
-                    JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
-
-                return result;
+                return default(TResult);
             });
         }
 

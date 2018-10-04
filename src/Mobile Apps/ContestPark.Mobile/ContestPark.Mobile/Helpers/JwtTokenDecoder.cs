@@ -8,7 +8,7 @@ namespace ContestPark.Mobile.Helpers
     {
         public static UserInfoModel GetUserInfo(string accessToken)
         {
-            if (string.IsNullOrEmpty(accessToken))
+            if (string.IsNullOrEmpty(accessToken) || accessToken.Contains("fake_token"))
             {
                 return new UserInfoModel();
             }

@@ -14,8 +14,6 @@ services:
       mynet:
         ipv4_address: 172.20.0.3
 
-
-
   contestpark.silohost:
     image: contestparksilohost:${TAG:-latest}
     build:
@@ -25,6 +23,7 @@ services:
       ConnectionString: ${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word}
       RedisConnectionString: ${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
       IsMigrateDatabase: enable
+      ElasticSearchURI: http://localhost:9200/
     depends_on:
       - sql.data
     networks:
@@ -92,16 +91,7 @@ services:
     networks:
       mynet:
         ipv4_address: 172.20.0.10
-
-  elasticsearch:
-    container_name: elasticsearch
-    image: elasticsearch:2.4.1
-    ports:
-      - 9200:9200
-      - 9300:9300
-
-
-
+            
 networks:
   mynet:
     driver: bridge

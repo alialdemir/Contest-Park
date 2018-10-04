@@ -1,4 +1,5 @@
-﻿using Prism.Events;
+﻿using ContestPark.Mobile.Events;
+using Prism.Events;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -11,9 +12,10 @@ namespace ContestPark.Mobile.Views
         public MasterDetailView(IEventAggregator eventAggregator)
         {
             InitializeComponent();
-            //eventAggregator
-            //            .GetEvent<MasterDetailPageIsPresentedEvent>()
-            //            .Subscribe((isPresented) => IsPresented = isPresented);
+
+            eventAggregator
+                        .GetEvent<MasterDetailPageIsPresentedEvent>()
+                        .Subscribe((isPresented) => IsPresented = isPresented);
         }
 
         #endregion Constructor

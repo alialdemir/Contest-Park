@@ -12,25 +12,26 @@
 12- Notification
 13- Profile
 14- Post detail
-15- Statistics
-16- Contest Store
-17- Missions
-18- Settings
-19- Account settings
-20- Chat settings
-21- Ranking
-22- Duel betting
-23- Follower
-24- Following
+15- Post Likes
+16- Statistics
+17- Contest Store
+18- Missions
+19- Settings
+20- Account settings
+21- Blocking
+22- Language
+23- Ranking
+24- Duel betting
+25- Follower
+26- Following
 
 
 Duel Starting
 Post detail
+Post Likes
 Statistics
 Contest Store
-Settings
 Account settings
-Chat settings
 Duel betting
 
 

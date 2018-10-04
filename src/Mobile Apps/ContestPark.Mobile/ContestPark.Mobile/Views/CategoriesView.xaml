@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
@@ -22,34 +21,8 @@
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Spacing="0">
-                            <StackLayout BackgroundColor="{Binding Color}"
-                                         Orientation="Horizontal"
-                                         HeightRequest="40">
-
-                                <Label FontSize="Medium"
-                                       Margin="10,0,0,0"
-                                       TextColor="{StaticResource White}"
-                                       FontAttributes="Bold" VerticalTextAlignment="Center"
-                                       HorizontalOptions="StartAndExpand"
-                                       Text="{Binding CategoryName}" />
-
-                                <Label  Margin="0,0,10,0"
-                                        TextColor="{StaticResource White}"
-                                        Text="{i18n:Translate SeeAll}"
-                                        AutomationId="SeeAll"
-                                        VerticalOptions="CenterAndExpand"
-                                        HorizontalOptions="EndAndExpand">
-
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}"
-                                                              CommandParameter="{Binding CategoryId}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </StackLayout>
-
-                            <components:SubCategoryView LongPressed="{Binding Path=BindingContext.SubCategoriesDisplayActionSheetCommand, Source={x:Reference page}}" />
-                        </StackLayout>
+                        <components:CategoryCard SeeAllCommandParameter="{Binding CategoryId}"
+                                                 SeeAllPressed="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

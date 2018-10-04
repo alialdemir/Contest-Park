@@ -8,6 +8,5 @@ namespace ContestPark.Infrastructure.Category.Entities
         public Int16 CategoryId { get; set; }
         public bool Visibility { get; set; }
         public byte Order { get; set; }
-        public string Color { get; set; }
     }
 }

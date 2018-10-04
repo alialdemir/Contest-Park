@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.OrleansClient\ContestPark.Core.OrleansClient.csproj" />
-    <ProjectReference Include="..\..\..\BuildingBlocks\Core\New folder\ContestPark.Core.Service\ContestPark.Core.Service.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.Service\ContestPark.Core.Service.csproj" />
     <ProjectReference Include="..\..\..\Domain\Cp\ContestPark.Domain.Cp\ContestPark.Domain.Cp.csproj" />
   </ItemGroup>
 

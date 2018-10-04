@@ -9,6 +9,7 @@
 
 ### Identity
 ApplicationUser
+** Settings
 
 ### Category
 Category
@@ -16,7 +17,7 @@ CategoryLang
 OpenSubCategory
 SubCategory
 SubCategoryLang
-** FollowCategory
+** FollowSubCategory
 
 ### Duel
 ** Duel

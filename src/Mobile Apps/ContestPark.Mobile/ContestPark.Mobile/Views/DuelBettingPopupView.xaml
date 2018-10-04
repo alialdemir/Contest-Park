@@ -20,114 +20,132 @@
 								   PositionOut="Center" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <cards:CarouselView ItemsSource="{Binding Bets}"
-                            SelectedIndex="{Binding SelectedIndex}">
-            <cards:CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <RelativeLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-                        <StackLayout>
-                            <Frame IsClippedToBounds="True"
+            <Image Grid.Row="0"
+				   Source="ic_account_circle_black_24dp"
+				   BackgroundColor="{StaticResource ListBackgroundColor}"
+				   Margin="10"
+				   VerticalOptions="Start"
+				   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference page}}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <cards:CarouselView Grid.Row="1"
+								ItemsSource="{Binding Bets}"
+								SelectedIndex="{Binding SelectedIndex}">
+                <cards:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <RelativeLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                            <StackLayout>
+                                <Frame IsClippedToBounds="True"
 								   Padding="0"
 						   CornerRadius="8"
 								 VerticalOptions="CenterAndExpand"
 								 HorizontalOptions="CenterAndExpand">
-                                <StackLayout WidthRequest="300"
+                                    <StackLayout WidthRequest="300"
 									 HeightRequest="170"
 									 Orientation="Vertical"
 											 Padding="0"
 											 Margin="0"
 									 BackgroundColor="White"
 									 HorizontalOptions="FillAndExpand">
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference page}}"
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference page}}"
 													  CommandParameter="{Binding EntryFee}" />
-                                    </StackLayout.GestureRecognizers>
+                                        </StackLayout.GestureRecognizers>
 
-                                    <StackLayout Spacing="0"
+                                        <StackLayout Spacing="0"
 										 VerticalOptions="EndAndExpand">
 
-                                        <Label Text="{i18n:Translate Prize}"
+                                            <Label Text="{i18n:Translate Prize}"
 									   FontSize="22"
 									   FontAttributes="Bold"
 									   TextColor="{StaticResource Red}"
 									   VerticalOptions="StartAndExpand"
 									   HorizontalOptions="CenterAndExpand" />
 
-                                        <StackLayout Spacing="0"
+                                            <StackLayout Spacing="0"
 											 Orientation="Horizontal"
 											 HorizontalOptions="CenterAndExpand">
 
-                                            <Image WidthRequest="40"
+                                                <Image WidthRequest="40"
 										   HeightRequest="40"
 										   Source="coins.png" />
 
-                                            <Label FontSize="20"
+                                                <Label FontSize="20"
 										   FontAttributes="Bold"
 										   Text="{Binding Prize}"
 										   VerticalOptions="Center"
 										   TextColor="{StaticResource Black}"
 										   HorizontalOptions="CenterAndExpand" />
-                                        </StackLayout>
+                                            </StackLayout>
 
-                                        <StackLayout Spacing="0"
+                                            <StackLayout Spacing="0"
 											  Orientation="Horizontal"
 											 HorizontalOptions="CenterAndExpand">
 
-                                            <Label Text="{i18n:Translate EntryFee}"
+                                                <Label Text="{i18n:Translate EntryFee}"
 										   FontAttributes="Bold"
 										   VerticalOptions="Center"
 										   TextColor="{StaticResource Black}"
 										   HorizontalOptions="CenterAndExpand" />
 
-                                            <Image Source="coins.png"
+                                                <Image Source="coins.png"
 										   HeightRequest="30"
 										   WidthRequest="30" />
 
-                                            <Label FontAttributes="Bold"
+                                                <Label FontAttributes="Bold"
 										   VerticalOptions="Center"
 										   Text="{Binding EntryFee}"
 										   TextColor="{StaticResource Black}"
 										   HorizontalOptions="CenterAndExpand" />
-                                        </StackLayout>
+                                            </StackLayout>
 
-                                        <StackLayout HeightRequest="40"
+                                            <StackLayout HeightRequest="45"
 													 BackgroundColor="#e91e18"
 													 VerticalOptions="EndAndExpand">
 
-                                            <Label FontSize="20"
+                                                <Label FontSize="20"
 												   Text="{i18n:Translate Play}"
 												   VerticalOptions="StartAndExpand"
 												   TextColor="{StaticResource White}"
 												   HorizontalOptions="CenterAndExpand" />
+                                            </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                        <StackLayout HeightRequest="50"
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout HeightRequest="50"
 									 WidthRequest="300"
 									 TranslationY="-200">
 
-                            <forms:AnimationView Loop="False"
+                                <forms:AnimationView Loop="False"
 												 AutoPlay="False"
 												 Animation="coin.json"
 												 VerticalOptions="FillAndExpand"
 												 HorizontalOptions="FillAndExpand" />
 
-                            <Label FontSize="22"
+                                <Label FontSize="22"
 								   TranslationY="-180"
 								   Text="{Binding Title}"
 								   VerticalOptions="StartAndExpand"
 								   TextColor="{StaticResource White}"
 								   HorizontalOptions="CenterAndExpand" />
-                        </StackLayout>
-                    </RelativeLayout>
-                </DataTemplate>
-            </cards:CarouselView.ItemTemplate>
+                            </StackLayout>
+                        </RelativeLayout>
+                    </DataTemplate>
+                </cards:CarouselView.ItemTemplate>
 
-            <controls:IndicatorsControl />
-        </cards:CarouselView>
+                <controls:IndicatorsControl />
+            </cards:CarouselView>
+        </Grid>
         <!--<ScrollView HorizontalOptions="Center"
 				VerticalOptions="Center">
 			<AbsoluteLayout>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<components:CustomGrid xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+                       xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       x:Class="ContestPark.Mobile.Components.SubCategoryCard"
+                       Margin="4,8,4,0"
+                       x:Name="customGrid">
+    <components:CustomGrid.RowDefinitions>
+        <RowDefinition Height="70" />
+        <RowDefinition Height="20" />
+    </components:CustomGrid.RowDefinitions>
+    <components:CustomGrid.ColumnDefinitions>
+        <ColumnDefinition Width="80" />
+    </components:CustomGrid.ColumnDefinitions>
+
+    <cacheImage:CachedImage Grid.Row="0"
+                            Grid.Column="0"
+                            WidthRequest="70"
+                            HeightRequest="70"
+                            CacheDuration="365"
+                            Aspect="AspectFill"
+                            DownsampleToViewSize="true"
+                            x:Name="imgSubCategoryImageSource" />
+
+    <Label Grid.Row="1"
+           Grid.Column="0"
+           FontSize="16"
+           TextColor="White"
+           FontAttributes="Bold"
+           x:Name="lblSubCategoryName"
+           HorizontalTextAlignment="Center" />
+
+    <Frame Margin="0"
+           Padding="0"
+           x:Name="goldBadge"
+           WidthRequest="33"
+           TranslationY="-4"
+           TranslationX="-10"
+           CornerRadius="30"
+           HeightRequest="33"
+           VerticalOptions="End"
+           HorizontalOptions="End"
+           BackgroundColor="{StaticResource Primary}">
+
+        <Label Margin="0"
+               FontSize="10"
+               TextColor="Black"
+               FontAttributes="Bold"
+               x:Name="lblDisplayPrice"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+    </Frame>
+</components:CustomGrid>

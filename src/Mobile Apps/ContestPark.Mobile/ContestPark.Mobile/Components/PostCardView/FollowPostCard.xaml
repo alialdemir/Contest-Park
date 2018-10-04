@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             x:Class="ContestPark.Mobile.Components.PostCardView.FollowPostCard"
+             x:Name="page">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converter:DateTimeMomentConverter x:Key="moment" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid Padding="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+
+            <Components:CircleImage Grid.Row="0"
+                                    Grid.Column="0"
+                                    CommandParameter="{Binding FounderUserName}"
+                                    Source="{Binding FounderProfilePicturePath}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+
+            <Components:HtmlLabel Grid.Row="0"
+                                  Grid.Column="1"
+                                  FontSize="Default"
+                                  LineBreakMode="WordWrap"
+                                  VerticalTextAlignment="Start"
+                                  HorizontalTextAlignment="Center"
+                                  Text="{Binding PostsDescription}"
+                                  TextColor="{StaticResource Black}" />
+
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   TextColor="#c5c5c5"
+                   VerticalTextAlignment="End"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding Date, Converter={StaticResource moment}}" />
+
+            <Components:CircleImage Grid.Row="0"
+                                    Grid.Column="2"
+                                    Source="{Binding CompetitorProfilePicturePath}"
+                                    CommandParameter="{Binding CompetitorUserName}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+
+            <Label Grid.Row="1"
+                   FontSize="Small"
+                   Grid.ColumnSpan="2"
+                   Text="{Binding FounderFullName}"
+                   TextColor="{StaticResource Black}" />
+
+            <Label Grid.Row="1"
+                   FontSize="Small"
+                   Grid.ColumnSpan="3"
+                   HorizontalTextAlignment="End"
+                   TextColor="{StaticResource Black}"
+                   Text="{Binding CompetitorFullName}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

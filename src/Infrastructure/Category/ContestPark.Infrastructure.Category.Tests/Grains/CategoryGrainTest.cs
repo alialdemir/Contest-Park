@@ -65,7 +65,6 @@ namespace ContestPark.Infrastructure.Category.Tests
                    {
                        CategoryId = (short)Faker.RandomNumber.Next(short.MinValue, short.MaxValue),
                        CategoryName= Faker.Name.FullName(),
-                       Color = Faker.Internet.DomainWord(),
                        SubCategories = new List<Domain.Category.Model.Response.SubCategory>
                        {
                            new Domain.Category.Model.Response.SubCategory

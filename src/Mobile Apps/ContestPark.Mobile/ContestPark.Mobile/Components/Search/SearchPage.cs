@@ -74,5 +74,33 @@ namespace ContestPark.Mobile.Components
                 SetValue(SearchCommandProperty, value);
             }
         }
+
+        public static readonly BindableProperty SearchIconColorProperty = BindableProperty.Create(nameof(SearchIconColor), typeof(Color), typeof(SearchPage), Color.FromHex("#fff"));
+
+        public Color SearchIconColor
+        {
+            get
+            {
+                return (Color)GetValue(SearchIconColorProperty);
+            }
+            set
+            {
+                SetValue(SearchIconColorProperty, value);
+            }
+        }
+
+        public static readonly BindableProperty SearchCloseIconColorProperty = BindableProperty.Create(nameof(SearchCloseIconColor), typeof(Color), typeof(SearchPage), Color.FromHex("#fff"));
+
+        public Color SearchCloseIconColor
+        {
+            get
+            {
+                return (Color)GetValue(SearchCloseIconColorProperty);
+            }
+            set
+            {
+                SetValue(SearchCloseIconColorProperty, value);
+            }
+        }
     }
 }

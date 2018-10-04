@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+             x:Class="ContestPark.Mobile.Components.RankView"
+             x:Name="page">
+    <ContentView.Content>
+        <Grid Padding="16,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="{Binding Source={x:Reference page}, Path=Rank}"
+                   TextColor="{StaticResource White}" VerticalOptions="Center" />
+
+            <Components:CircleImage Grid.Row="0"
+                                    Grid.Column="1"
+                                    HeightRequest="30"
+                                    VerticalOptions="Center"
+                                    CommandParameter="{Binding UserName}"
+                                    Source="{Binding UserProfilePicturePath}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+
+            <Label Grid.Row="0"
+                   Grid.Column="2"
+                   VerticalOptions="Center"
+                   Text="{Binding UserFullName}"
+                   LineBreakMode="TailTruncation" TextColor="{StaticResource White}" />
+
+            <Label Grid.Row="0"
+                   Grid.Column="3"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   Text="{Binding TotalScore}"
+                   TextColor="{StaticResource Primary}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

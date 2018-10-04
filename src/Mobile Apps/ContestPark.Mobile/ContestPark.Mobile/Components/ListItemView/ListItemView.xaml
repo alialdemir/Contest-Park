@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+             x:Class="ContestPark.Mobile.Components.ListItemView"
+             x:Name="page">
+    <ContentView.Content>
+        <Components:CustomGrid RowSpacing="0"
+                               Padding="8,4,8,4"
+                               BackgroundColor="{StaticResource ListBackgroundColor}"
+                               x:Name="cstmGrid">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+
+            <Components:CircleImage Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    CommandParameter="{Binding UserName}"
+                                    Source="{Binding Path=Source, Source={x:Reference page}}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   FontSize="Default"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   LineBreakMode="TailTruncation"
+                   Text="{Binding Path=Text,Source={x:Reference page}}" />
+
+            <Components:HtmlLabel Grid.Row="1"
+                                  Grid.Column="1"
+                                  TextColor="White"
+                                  FontSize="Small"
+                                  Grid.ColumnSpan="2"
+                                  LineBreakMode="TailTruncation"
+                                  Text="{Binding Path=Detail,Source={x:Reference page}}" />
+
+            <Label Grid.Column="2"
+                   Grid.RowSpan="1"
+                   FontSize="Small"
+                   HeightRequest="30"
+                   TextColor="#808080"
+                   HorizontalTextAlignment="End"
+                   Text="{Binding Path=Date,Source={x:Reference page}}" />
+
+            <Components:Line Grid.Row="2"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2" />
+        </Components:CustomGrid>
+    </ContentView.Content>
+</ContentView>

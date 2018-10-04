@@ -9,6 +9,8 @@ namespace ContestPark.Infrastructure.Category
         {
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 
+            services.AddElasticsearch();
+
             return services;
         }
     }

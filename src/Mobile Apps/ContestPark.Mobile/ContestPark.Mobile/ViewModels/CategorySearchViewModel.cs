@@ -19,8 +19,11 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variable
 
         private Int16 _categoryId = 0;
+
         private readonly ICategoryServices _CategoryServices;
+
         private readonly IEventAggregator _eventAggregator;
+
         private readonly IGameService _gameService;
 
         #endregion Private variable
@@ -40,6 +43,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Constructors
 
+        #region Properties
+
+        public bool IsActionSheetBusy { get; set; }
+
+        #endregion Properties
+
         #region Methods
 
         protected override async Task InitializeAsync()
@@ -48,13 +57,18 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
-            //if (_CategoryId == -1) ServiceModel = await _followCategoryService.FollowingSubCategorySearchAsync(ServiceModel);// _CategoryId  -1 gelirse takip ettiğim kategoriler
-            //  else
-            if (_categoryId > 0)
+
+            if (_categoryId == -1)// _categoryId  -1 gelirse takip ettiğim kategoriler
+            {
+                ServiceModel = await _CategoryServices.FollowingSubCategorySearchAsync(ServiceModel);
+            }
+            else if (_categoryId > 0)
             {
                 ServiceModel = await _CategoryServices.CategorySearchAsync(_categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
-                await base.InitializeAsync();
             }
+
+            await base.InitializeAsync();
+
             IsBusy = false;
         }
 
@@ -63,19 +77,16 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="subCategoryId">Alt kategori ıd</param>
         /// <returns></returns>
-        private void ExecutPushEnterPageCommandAsync(int subCategoryId)
+        private void ExecutPushEnterPageCommandAsync(short subCategoryId)
         {
             SubCategorySearch selectedModel = Items.Where(p => p.SubCategoryId == subCategoryId).First();
-            if (selectedModel == null)
-                return;
-
-            _gameService.PushCategoryDetailViewAsync(new SubCategoryModel()
+            if (selectedModel != null)
             {
-                PicturePath = selectedModel.PicturePath,
-                SubCategoryId = selectedModel.SubCategoryId,
-                SubCategoryName = selectedModel.SubCategoryName,
-                DisplayPrice = selectedModel.DisplayPrice
-            });
+                _gameService.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
+                                                         selectedModel.CategoryName,
+                                                         selectedModel.PicturePath,
+                                                         selectedModel.IsCategoryOpen);
+            }
         }
 
         /// <summary>
@@ -86,6 +97,26 @@ namespace ContestPark.Mobile.ViewModels
             _eventAggregator
                           .GetEvent<SubCategoryRefleshEvent>()
                           .Subscribe(() => RefleshCommand.Execute(null));
+        }
+
+        /// <summary>
+        /// Alt kategori için action sheet açar
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        private async Task ExecuteSubCategoriesDisplayActionSheetCommand(short subCategoryId)
+        {
+            if (IsActionSheetBusy)
+                return;
+
+            IsActionSheetBusy = true;
+
+            SubCategorySearch selectedModel = Items?.FirstOrDefault(P => P.SubCategoryId == subCategoryId);
+            if (selectedModel != null)
+            {
+                await _gameService?.SubCategoriesDisplayActionSheetAsync(selectedModel.SubCategoryId, selectedModel.CategoryName, selectedModel.IsCategoryOpen, selectedModel.PicturePath);
+            }
+
+            IsActionSheetBusy = false;
         }
 
         #endregion Methods
@@ -99,8 +130,13 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand PushEnterPageCommand
         {
-            get { return pushEnterPageCommand ?? (pushEnterPageCommand = new Command<int>((subCategoryId) => ExecutPushEnterPageCommandAsync(subCategoryId))); }
+            get { return pushEnterPageCommand ?? (pushEnterPageCommand = new Command<short>((subCategoryId) => ExecutPushEnterPageCommandAsync(subCategoryId))); }
         }
+
+        private ICommand _SubCategoriesDisplayActionSheetCommand;
+
+        public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(async (CategoryId) =>
+        await ExecuteSubCategoriesDisplayActionSheetCommand(CategoryId)));
 
         #endregion Commands
 

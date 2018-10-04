@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContestPark.Mobile.Components.IconListItem"
+             x:Name="page">
+    <ContentView.Content>
+        <Grid x:Name="gridIconList"
+              Padding="8"
+              ColumnSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   Source="{Binding Icon}"
+                   WidthRequest="27"
+                   HeightRequest="27"
+                   VerticalOptions="Center"
+                   BackgroundColor="{StaticResource Primary}" />
+
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding Title}"
+                   FontSize="Default"
+                   VerticalOptions="Center"
+                   TextColor="White" />
+
+            <Image Grid.Row="0"
+                   x:Name="imgIcon"
+                   Grid.Column="2"
+                   IsVisible="False"
+                   Source="right_arrow.png"
+                   BackgroundColor="White"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center" />
+
+            <Switch Grid.Row="0"
+                    x:Name="switchIcon"
+                    Grid.Column="2"
+                    IsVisible="False"
+                    HorizontalOptions="End"
+                    VerticalOptions="CenterAndExpand"
+                    OnColor="{StaticResource Primary}"
+                    Toggled="switchIcon_Toggled"
+                    IsToggled="{Binding IsToggled}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

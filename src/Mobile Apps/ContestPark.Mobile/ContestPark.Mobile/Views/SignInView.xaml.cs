@@ -11,6 +11,7 @@ namespace ContestPark.Mobile.Views
         public SignInView()
         {
             InitializeComponent();
+            BaseNavigationPage.SetHasNavigationBar(this, false);
         }
 
         #endregion Constructor
