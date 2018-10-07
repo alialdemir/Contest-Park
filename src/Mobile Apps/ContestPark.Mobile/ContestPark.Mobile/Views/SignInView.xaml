@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
@@ -9,7 +10,7 @@
              BackgroundColor="{StaticResource Primary}">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="10,0,10,0"
+            <StackLayout Padding="10"
                          Orientation="Vertical"
                          VerticalOptions="CenterAndExpand">
                 <Grid>
@@ -99,11 +100,21 @@
 
                     <Button Grid.Row="6"
                             Grid.Column="0"
-                            Text="Facebook"
-                            Style="{StaticResource FacebookButton}"
-                            Command="{Binding SocialNetworkkWithLoginCommand}"
+                            Text="    Facebook"
                             CommandParameter="1"
-                            AutomationId="LoginWithFacebook" />
+                            AutomationId="LoginWithFacebook"
+                            Style="{StaticResource FacebookButton}"
+                            Command="{Binding SocialNetworkkWithLoginCommand}" />
+
+                    <icon:IconButton Grid.Row="6"
+                                     Grid.Column="0"
+                                     Text="fab-facebook-square"
+                                     FontSize="20"
+                                     BackgroundColor="Transparent"
+                                     TextColor="White"
+                                     HorizontalOptions="Start"
+                                     CommandParameter="1"
+                                     Command="{Binding SocialNetworkkWithLoginCommand}" />
 
                     <Button Grid.Row="6"
                             Grid.Column="1"
@@ -113,13 +124,33 @@
                             CommandParameter="2"
                             AutomationId="LoginWithTwitter" />
 
+                    <icon:IconButton Grid.Row="6"
+                                     Grid.Column="1"
+                                     Text="fab-twitter-square"
+                                     FontSize="20"
+                                     BackgroundColor="Transparent"
+                                     TextColor="White"
+                                     HorizontalOptions="Start"
+                                     CommandParameter="2"
+                                     Command="{Binding SocialNetworkkWithLoginCommand}" />
+
                     <Button Grid.Row="6"
                             Grid.Column="2"
-                            Text="Google+"
+                            Text="    Google+"
                             Style="{StaticResource GoolgePlusButton}"
                             Command="{Binding SocialNetworkkWithLoginCommand}"
                             CommandParameter="3"
                             AutomationId="LoginWithGooglePlus" />
+
+                    <icon:IconButton Grid.Row="6"
+                                     Grid.Column="2"
+                                     Text="fab-google-plus-square"
+                                     FontSize="20"
+                                     BackgroundColor="Transparent"
+                                     TextColor="White"
+                                     HorizontalOptions="Start"
+                                     CommandParameter="3"
+                                     Command="{Binding SocialNetworkkWithLoginCommand}" />
                 </Grid>
             </StackLayout>
         </ScrollView>

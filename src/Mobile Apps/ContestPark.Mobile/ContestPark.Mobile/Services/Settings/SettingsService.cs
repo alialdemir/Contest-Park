@@ -155,6 +155,15 @@ namespace ContestPark.Mobile.Services.Settings
 
         #endregion Internal Implementation
 
+        #region RemoveCurrentUser
+
+        public void RemoveCurrentUser()
+        {
+            _userInfo = new UserInfoModel();
+        }
+
+        #endregion RemoveCurrentUser
+
         //#region Setting Service
 
         ///// <summary>

@@ -4,6 +4,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using MonkeyCache.SQLite;
+using Plugin.Iconize;
 using Prism;
 using Prism.Autofac;
 using Prism.Events;
@@ -33,6 +34,10 @@ namespace ContestPark.Mobile
             LiveReload.Init();
 #endif
             InitializeComponent();
+
+            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
+                   .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
+                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
             Barrel.ApplicationId = "ContestPark";
 

@@ -6,6 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.CategoriesView"
              x:Name="page"
+             Icon="fas-gamepad"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{Binding UserCoins}" />

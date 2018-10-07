@@ -6,105 +6,105 @@
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
              x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
              x:Name="page">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <Converter:NegativeBooleanConverter x:Key="not" />
-        </ResourceDictionary>
-    </ContentView.Resources>
-    <ContentView.Content>
-        <Grid Padding="8"
-              RowSpacing="0"
-              ColumnSpacing="0">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <Converter:NegativeBooleanConverter x:Key="not" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <ContentView.Content>
+    <Grid Padding="8"
+          RowSpacing="0"
+          ColumnSpacing="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.5" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="0.5" />
-                <RowDefinition Height="36" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="0.5" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="0.5" />
+        <RowDefinition Height="36" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
 
-            <BoxView Grid.Row="0"
-                     Grid.ColumnSpan="4"
-                     Style="{StaticResource Line}" />
+      <BoxView Grid.Row="0"
+               Grid.ColumnSpan="4"
+               Style="{StaticResource Line}" />
 
-            <Label Grid.Row="1"
-                   Grid.Column="0"
-                   FontSize="Small"
-                   TextColor="#dedede"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding Path=LikeText, Source={x:Reference page}}">
+      <Label Grid.Row="1"
+             Grid.Column="0"
+             FontSize="Small"
+             TextColor="#dedede"
+             VerticalTextAlignment="Center"
+             Text="{Binding Path=LikeText, Source={x:Reference page}}">
 
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=GoToPostLikesPageCommand, Source={x:Reference page}}" />
-                </Label.GestureRecognizers>
-            </Label>
+        <Label.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding Path=GoToPostLikesPageCommand, Source={x:Reference page}}" />
+        </Label.GestureRecognizers>
+      </Label>
 
-            <Label Grid.Row="1"
-                   Grid.Column="1"
-                   FontSize="Small"
-                   TextColor="#dedede"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding Path=CommentText, Source={x:Reference page}}">
+      <Label Grid.Row="1"
+             Grid.Column="1"
+             FontSize="Small"
+             TextColor="#dedede"
+             VerticalTextAlignment="Center"
+             Text="{Binding Path=CommentText, Source={x:Reference page}}">
 
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=GoToPosPostCommentPageCommand, Source={x:Reference page}}" />
-                </Label.GestureRecognizers>
-            </Label>
+        <Label.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding Path=GoToPosPostCommentPageCommand, Source={x:Reference page}}" />
+        </Label.GestureRecognizers>
+      </Label>
 
-            <BoxView Grid.Row="2"
-                     Grid.ColumnSpan="4"
-                     Style="{StaticResource Line}" />
+      <BoxView Grid.Row="2"
+               Grid.ColumnSpan="4"
+               Style="{StaticResource Line}" />
 
-            <!-- Like Button -->
-            <Components:ImageButton Grid.Row="3"
-                                    Grid.Column="0"
-                                    FontSize="Small"
-                                    HeightRequest="34"
-                                    ImageWidthRequest="24"
-                                    ImageHeightRequest="24"
-                                    Orientation="ImageToLeft"
-                                    Text="{i18n:Translate Like}"
-                                    Clicked="ImageButton_Clicked"
-                                    BackgroundColor="Transparent"
-                                    VerticalOptions="CenterAndExpand"
-                                    Source="ic_thumb_up_black_24dp.png"
-                                    TextColor="{StaticResource Primary}"
-                                    IsVisible="{Binding IsLike, Converter={StaticResource not}}" />
-            <!-- UnLike Button -->
-            <Components:ImageButton Grid.Row="3"
-                                    Grid.Column="0"
-                                    FontSize="Small"
-                                    HeightRequest="34"
-                                    ImageWidthRequest="24"
-                                    ImageHeightRequest="24"
-                                    Orientation="ImageToLeft"
-                                    Text="{i18n:Translate Like}"
-                                    IsVisible="{Binding IsLike}"
-                                    BackgroundColor="Transparent"
-                                    Clicked="ImageButton_Clicked"
-                                    VerticalOptions="CenterAndExpand"
-                                    TextColor="{StaticResource Black}"
-                                    Source="ic_thumb_down_black_24dp.png" />
-            <!-- Comment Button -->
-            <Components:ImageButton Grid.Row="3"
-                                    Grid.Column="1"
-                                    FontSize="Small"
-                                    HeightRequest="34"
-                                    ImageWidthRequest="24"
-                                    ImageHeightRequest="24"
-                                    Orientation="ImageToLeft"
-                                    BackgroundColor="Transparent"
-                                    Text="{i18n:Translate Comment}"
-                                    VerticalOptions="CenterAndExpand"
-                                    TextColor="{StaticResource Black}"
-                                    Source="ic_comment_black_24dp.png"
-                                    Command="{Binding Path=GoToPosPostCommentPageCommand, Source={x:Reference page}}" />
-        </Grid>
-    </ContentView.Content>
+      <!-- Like Button
+                             Clicked="ImageButton_Clicked" -->
+      <Components:ImageButton Grid.Row="3"
+                             Grid.Column="0"
+                             FontSize="Small"
+                             HeightRequest="34"
+                             ImageWidthRequest="24"
+                             ImageHeightRequest="24"
+                             Orientation="ImageToLeft"
+                             Text="{i18n:Translate Like}"
+                             BackgroundColor="Transparent"
+                             VerticalOptions="CenterAndExpand"
+                             Source="ic_thumb_up_black_24dp.png"
+                             TextColor="{StaticResource Primary}"
+                             IsVisible="{Binding IsLike, Converter={StaticResource not}}" />
+      <!-- UnLike Button
+                              Clicked="ImageButton_Clicked" -->
+      <Components:ImageButton Grid.Row="3"
+                              Grid.Column="0"
+                              FontSize="Small"
+                              HeightRequest="34"
+                              ImageWidthRequest="24"
+                              ImageHeightRequest="24"
+                              Orientation="ImageToLeft"
+                              Text="{i18n:Translate Like}"
+                              IsVisible="{Binding IsLike}"
+                              BackgroundColor="Transparent"
+                              VerticalOptions="CenterAndExpand"
+                              TextColor="{StaticResource Black}"
+                              Source="ic_thumb_down_black_24dp.png" />
+      <!-- Comment Button -->
+      <Components:ImageButton Grid.Row="3"
+                              Grid.Column="1"
+                              FontSize="Small"
+                              HeightRequest="34"
+                              ImageWidthRequest="24"
+                              ImageHeightRequest="24"
+                              Orientation="ImageToLeft"
+                              BackgroundColor="Transparent"
+                              Text="{i18n:Translate Comment}"
+                              VerticalOptions="CenterAndExpand"
+                              TextColor="{StaticResource Black}"
+                              Source="ic_comment_black_24dp.png"
+                              Command="{Binding Path=GoToPosPostCommentPageCommand, Source={x:Reference page}}" />
+    </Grid>
+  </ContentView.Content>
 </ContentView>

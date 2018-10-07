@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using ContestPark.Core.Domain;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
@@ -29,8 +30,8 @@ namespace ContestPark.Identity.API.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     LanguageCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
                     AccessFailedCount = table.Column<int>(type: "int", nullable: false),
-                    ProfilePicturePath = table.Column<string>(type: "nvarchar(256)", nullable: true),
-                    CoverPicturePath = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    ProfilePicturePath = table.Column<string>(type: "nvarchar(256)", nullable: true, defaultValue: DefaultImages.DefaultProfilePicture),
+                    CoverPicturePath = table.Column<string>(type: "nvarchar(256)", nullable: true, defaultValue: DefaultImages.DefaultCoverPicture),
                     FaceBookId = table.Column<string>(type: "nvarchar(256)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),

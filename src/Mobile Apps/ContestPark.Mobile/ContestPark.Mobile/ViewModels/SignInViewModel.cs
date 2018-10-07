@@ -58,6 +58,11 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        public string FacebookIcon
+        {
+            get { return "fab-facebook-square"; }
+        }
+
         #endregion Properties
 
         #region Methods

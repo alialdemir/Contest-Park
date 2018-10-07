@@ -8,6 +8,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.ChatView"
              x:Name="page"
+             Icon="fas-comments"
              Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>

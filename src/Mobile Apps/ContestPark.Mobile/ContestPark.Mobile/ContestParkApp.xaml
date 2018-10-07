@@ -76,18 +76,15 @@
             </Style>
 
             <Style x:Key="FacebookButton" TargetType="Button" BasedOn="{StaticResource Button}">
-                <Setter Property="BackgroundColor" Value="#3b5999"></Setter>
-                <Setter Property="Image" Value="ic_favorite_black_24dp.png"></Setter>
+                <Setter Property="BackgroundColor" Value="#3b5998"></Setter>
             </Style>
 
             <Style x:Key="TwitterButton" TargetType="Button" BasedOn="{StaticResource Button}">
-                <Setter Property="BackgroundColor" Value="#993232"></Setter>
-                <Setter Property="Image" Value="ic_favorite_black_24dp.png"></Setter>
+                <Setter Property="BackgroundColor" Value="#1da1f2"></Setter>
             </Style>
 
             <Style x:Key="GoolgePlusButton" TargetType="Button" BasedOn="{StaticResource Button}">
-                <Setter Property="BackgroundColor" Value="#3b5999"></Setter>
-                <Setter Property="Image" Value="ic_favorite_black_24dp.png"></Setter>
+                <Setter Property="BackgroundColor" Value="#dd4b39"></Setter>
             </Style>
 
             <!-- ZigZag -->

@@ -1,9 +1,12 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
+using ContestPark.Mobile.Services.Settings;
+using ContestPark.Mobile.Services.Signalr.Base;
 using Newtonsoft.Json;
 using Prism.Services;
 using System;
@@ -20,6 +23,10 @@ namespace ContestPark.Mobile.Services.Identity
 
         private readonly IPageDialogService _dialogService;
 
+        private readonly ISettingsService _settingsService;
+
+        private readonly ISignalRServiceBase _signalRServiceBase;
+
         private const string ApiUrlBase = "api/v1/account";
 
         #endregion Private variables
@@ -28,10 +35,14 @@ namespace ContestPark.Mobile.Services.Identity
 
         public IdentityService(
             IRequestProvider requestProvider,
-            IPageDialogService dialogService)
+            IPageDialogService dialogService,
+            ISettingsService settingsService,
+            ISignalRServiceBase signalRServiceBase)
         {
             _requestProvider = requestProvider;
             _dialogService = dialogService;
+            _settingsService = settingsService;
+            _signalRServiceBase = signalRServiceBase;
         }
 
         #endregion Constructor
@@ -128,10 +139,21 @@ namespace ContestPark.Mobile.Services.Identity
                               ContestParkResources.Okay);
         }
 
-        public Task Unauthorized()
+        /// <summary>
+        /// Çıkış yap
+        /// </summary>
+        public async Task Unauthorized()
         {
-            // TODO: server tarafından çıkış yapılacak ve signalr connection kapatılacak
-            return Task.CompletedTask;
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.LogoutEndpoint);
+
+            await _requestProvider.PostAsync<string>(uri);
+
+            _settingsService.AuthAccessToken = string.Empty;
+            _settingsService.SignalRConnectionId = string.Empty;
+
+            _settingsService.RemoveCurrentUser();
+
+            await _signalRServiceBase.DisconnectAsync();
         }
 
         #endregion Methods

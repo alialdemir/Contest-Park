@@ -4,5 +4,6 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.NotificationsView"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Icon="fas-bell">
 </ContentPage>

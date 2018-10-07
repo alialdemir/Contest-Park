@@ -35,6 +35,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Constructors
 
+        #region Properties
+
+        public bool IsExit { get; set; }
+
+        #endregion Properties
+
         #region Methods
 
         protected override Task InitializeAsync()
@@ -45,13 +51,13 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     new Models.MenuItem.MenuItem {
                                         PageName = nameof(LanguageView),
-                                        Icon = "ic_public_black_24dp.png",
+                                        Icon = "fas-globe",
                                         Title = ContestParkResources.Language,
                                         MenuType = Enums.MenuTypes.Icon
                                     },
                                     new Models.MenuItem.MenuItem {
                                         PageName = "SoundEffects",
-                                        Icon = "ic_public_black_24dp.png",
+                                        Icon = "fas-volume-up",
                                         Title = ContestParkResources.Sounds,
                                         MenuType = Enums.MenuTypes.Switch,
                                         IsToggled = _settingsService.IsSoundEffectActive
@@ -62,19 +68,19 @@ namespace ContestPark.Mobile.ViewModels
                                     {
                                     new Models.MenuItem.MenuItem {
                                         PageName = nameof(AccountSettingsView),
-                                        Icon = "ic_account_circle_black_24dp.png",
+                                        Icon = "fas-user-circle",
                                         Title = ContestParkResources.Account,
                                         MenuType = Enums.MenuTypes.Icon
                                     },
                                     new Models.MenuItem.MenuItem {
                                         PageName = nameof(BlockingView),
-                                        Icon = "",
+                                        Icon = "fas-exclamation-circle",
                                         Title = ContestParkResources.Blocking,
                                         MenuType = Enums.MenuTypes.Icon
                                     },
                                     new Models.MenuItem.MenuItem {
                                         PageName = "PrivateProfile",
-                                        Icon = "",
+                                        Icon = "fas-unlock-alt",
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = Enums.MenuTypes.Switch,
                                         IsToggled = _settingsService.IsPrivatePrice
@@ -85,7 +91,7 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     new Models.MenuItem.MenuItem {
                                         PageName ="Exit",
-                                        Icon = "ic_input_black_24dp.png",
+                                        Icon = "fas-sign-out-alt",
                                         Title = ContestParkResources.LogOut,
                                         MenuType = Enums.MenuTypes.None
                                     },
@@ -95,25 +101,36 @@ namespace ContestPark.Mobile.ViewModels
             return base.InitializeAsync();
         }
 
-        private void ExecutePushPageCommand(string name)
+        /// <summary>
+        /// Parametreden gelen sayfa adına göre işlem yapar
+        /// </summary>
+        /// <param name="name"></param>
+        private async Task ExecutePushPageCommand(string name)
         {
+            if (IsExit || IsBusy)
+                return;
+
+            IsBusy = true;
+
             if (name == "Exit")
             {
-                _identityService.Unauthorized();
-                PushNavigationPageAsync("app:///SignInPage?appModuleRefresh=OnInitialized");
+                await _identityService.Unauthorized();
+                await PushNavigationPageAsync($"app:///{nameof(SignInView)}?appModuleRefresh=OnInitialized");
             }
             else if (name == "SoundEffects")
             {
-                _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
+                await _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
             }
             else if (name == "PrivateProfile")
             {
-                _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
+                await _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
             }
             else if (!string.IsNullOrEmpty(name))
             {
-                PushNavigationPageAsync(name);
+                await PushNavigationPageAsync(name);
             }
+
+            IsBusy = false;
         }
 
         #endregion Methods
@@ -124,9 +141,25 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand PushPageCommand
         {
-            get { return _pushPageCommand ?? (_pushPageCommand = new Command<string>((pageName) => ExecutePushPageCommand(pageName))); }
+            get { return _pushPageCommand ?? (_pushPageCommand = new Command<string>(async (pageName) => await ExecutePushPageCommand(pageName))); }
         }
 
         #endregion Commands
+
+        #region Navigation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            IsExit = false;
+            base.OnNavigatedTo(parameters);
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            IsExit = true;
+            base.OnNavigatedFrom(parameters);
+        }
+
+        #endregion Navigation
     }
 }

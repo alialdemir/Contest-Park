@@ -29,6 +29,8 @@ namespace ContestPark.Mobile.Services.Settings
 
         Task AddOrUpdateValue(byte value, [CallerMemberName]string methodName = "");
 
+        void RemoveCurrentUser();
+
         //#region Api
 
         //Task SetSettings(SettingTypes settingType, string settingValue);

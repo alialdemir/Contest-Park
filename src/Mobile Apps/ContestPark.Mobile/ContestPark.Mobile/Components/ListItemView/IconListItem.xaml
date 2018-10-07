@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ContestPark.Mobile.Components.IconListItem"
              x:Name="page">
     <ContentView.Content>
@@ -14,13 +15,12 @@
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0"
-                   Grid.Column="0"
-                   Source="{Binding Icon}"
-                   WidthRequest="27"
-                   HeightRequest="27"
-                   VerticalOptions="Center"
-                   BackgroundColor="{StaticResource Primary}" />
+
+            <icon:IconImage Grid.Row="0"
+                            Grid.Column="0"
+                            IconSize="24"
+                            IconColor="{StaticResource Primary}"
+                            Icon="{Binding Icon}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
@@ -29,14 +29,15 @@
                    VerticalOptions="Center"
                    TextColor="White" />
 
-            <Image Grid.Row="0"
-                   x:Name="imgIcon"
-                   Grid.Column="2"
-                   IsVisible="False"
-                   Source="right_arrow.png"
-                   BackgroundColor="White"
-                   HorizontalOptions="End"
-                   VerticalOptions="Center" />
+            <icon:IconImage Grid.Row="0"
+                            x:Name="imgIcon"
+                            Grid.Column="2"
+                            IconSize="16"
+                            IconColor="{StaticResource Primary}"
+                            IsVisible="False"
+                            Icon="fas-angle-right"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center" />
 
             <Switch Grid.Row="0"
                     x:Name="switchIcon"
@@ -45,7 +46,6 @@
                     HorizontalOptions="End"
                     VerticalOptions="CenterAndExpand"
                     OnColor="{StaticResource Primary}"
-                    Toggled="switchIcon_Toggled"
                     IsToggled="{Binding IsToggled}" />
         </Grid>
     </ContentView.Content>

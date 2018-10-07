@@ -1,70 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage
+<icon:IconTabbedPage
     prism:ViewModelLocator.AutowireViewModel="True"
     x:Class="ContestPark.Mobile.Views.TabView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:ContestPark.Mobile.Views"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    android:TabbedPage.ToolbarPlacement="Bottom"
-    android:TabbedPage.BarItemColor="#66ffc107"
-    android:TabbedPage.BarSelectedItemColor="{StaticResource Primary}"
-    BarBackgroundColor="#181818"
-    BarTextColor="{StaticResource Primary}">
-    <TabbedPage.Children>
+    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms">
+    <icon:IconTabbedPage.Children>
+
         <!-- CategoriesPage -->
-        <pages:CategoriesView
-        x:Name="tabCategoriesPage">
-            <pages:CategoriesView.Icon>
-                <OnPlatform
-                x:TypeArguments="FileImageSource"
-                Android="ic_videogame_asset_black_24dp"
-                iOS="ic_videogame_asset_black_24dp"
-                WinPhone="Assets\ic_videogame_asset_black_24dp.png" />
-            </pages:CategoriesView.Icon>
-        </pages:CategoriesView>
+        <pages:CategoriesView />
 
-        <!-- ChatAllPage
-        plugin:TabBadge.BadgeText="{Binding BadgeCount}"
-        -->
+        <!-- ChatAllPage  plugin:TabBadge.BadgeText="{Binding BadgeCount}"-->
+        <pages:ChatView />
 
-        <pages:ChatView
-        x:Name="tabChatPageChatView">
-            <pages:ChatView.Icon>
-                <OnPlatform
-                x:TypeArguments="FileImageSource"
-                Android="ic_message_black_24dp"
-                iOS="ic_message_black_24dp"
-                WinPhone="Assets\ic_message_black_24dp.png" />
-            </pages:ChatView.Icon>
-        </pages:ChatView>
-
-        <!-- NotificationsPage
-            plugin:TabBadge.BadgeText="{Binding BadgeCount}" -->
-
-        <pages:NotificationsView
-        x:Name="tabNotificationsView">
-            <pages:NotificationsView.Icon>
-                <OnPlatform
-                x:TypeArguments="FileImageSource"
-                Android="ic_notifications_black_24dp"
-                iOS="ic_notifications_black_24dp"
-                WinPhone="Assets\ic_notifications_black_24dp.png" />
-            </pages:NotificationsView.Icon>
-        </pages:NotificationsView>
+        <!-- NotificationsPage plugin:TabBadge.BadgeText="{Binding BadgeCount}" -->
+        <pages:NotificationsView />
 
         <!-- ProfilePage -->
-
-        <pages:ProfileView
-        x:Name="tabProfileView">
-            <pages:ProfileView.Icon>
-                <OnPlatform
-                x:TypeArguments="FileImageSource"
-                Android="ic_account_circle_black_24dp"
-                iOS="ic_account_circle_black_24dp"
-                WinPhone="Assets\ic_account_circle_black_24dp.png" />
-            </pages:ProfileView.Icon>
-        </pages:ProfileView>
-    </TabbedPage.Children>
-</TabbedPage>
+        <pages:ProfileView />
+    </icon:IconTabbedPage.Children>
+</icon:IconTabbedPage>

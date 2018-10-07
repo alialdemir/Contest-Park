@@ -75,19 +75,19 @@ namespace ContestPark.Mobile.ViewModels
                             {
                                 new Models.MenuItem.MenuItem {
                                     PageName = nameof(ContestStoreView),
-                                    Icon = "ic_shopping_cart_black_24dp.png",
+                                    Icon = "fas-store",
                                     Title = ContestParkResources.ContestStore,
                                     MenuType = Enums.MenuTypes.Icon
                                 },
                                 new Models.MenuItem.MenuItem {
                                     PageName = nameof(MissionsView),
-                                    Icon = "ic_filter_list_black_24dp.png",
+                                    Icon = "fas-award",
                                     Title = ContestParkResources.Missions,
                                     MenuType = Enums.MenuTypes.Icon
                                 },
                                 new Models.MenuItem.MenuItem {
                                     PageName = nameof(SettingsView),
-                                    Icon = "ic_settings_applications_black_24dp.png",
+                                    Icon = "fas-cogs",
                                     Title = ContestParkResources.Settings,
                                     MenuType = Enums.MenuTypes.Icon
                                 },
@@ -96,19 +96,19 @@ namespace ContestPark.Mobile.ViewModels
                             {
                                  new Models.MenuItem.MenuItem {
                                      PageName = "FacebookAddress",
-                                     Icon = "facebook_36x.png",
+                                     Icon = "fab-facebook-square",
                                      Title = "Facebook",
                                      MenuType = Enums.MenuTypes.Icon
                                  },
                                  new Models.MenuItem.MenuItem {
                                      PageName = "TwitterAddress",
-                                     Icon = "twitter_36x.png",
+                                     Icon = "fab-twitter-square",
                                      Title = "Twitter",
                                      MenuType = Enums.MenuTypes.Icon
                                  },
                                  new Models.MenuItem.MenuItem {
                                      PageName = "InstagramAddress",
-                                     Icon = "instagram_36x.png",
+                                     Icon = "fab-instagram",
                                      Title = "Instagram",
                                      MenuType = Enums.MenuTypes.Icon
                                  }
