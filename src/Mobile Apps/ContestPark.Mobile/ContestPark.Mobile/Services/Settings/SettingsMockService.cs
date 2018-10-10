@@ -144,9 +144,9 @@ namespace ContestPark.Mobile.Services.Settings
             }
         }
 
-        public Task SetSettings(SettingTypes settingType, string settingValue)
+        public async Task SetSettingsAsync(SettingTypes settingType, string settingValue)
         {
-            return Task.CompletedTask;
+            await Task.Delay(2000);
         }
 
         #endregion Internal Implementation

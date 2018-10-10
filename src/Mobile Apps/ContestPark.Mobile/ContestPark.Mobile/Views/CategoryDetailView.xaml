@@ -5,22 +5,20 @@
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.CategoryDetailView"
              Title="{Binding Title}"
              x:Name="page">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Converter:NegativeBooleanConverter x:Key="not" />
             <Converter:FollowButtonConverter x:Key="fbc" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_share_black_24dp.png"
-                     Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference page}}" />
-
-        <!--<ToolbarItem Icon="{Binding IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
-                     Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference page}}" />-->
+        <icon:IconToolbarItem Icon="fas-share-alt"
+                              IconColor="{StaticResource Primary}"
+                              Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference page}}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView x:Name="lstView"
@@ -180,9 +178,6 @@
 
                         <Label Text="{i18n:Translate ContestPostEmptyMessage}"
                                Style="{StaticResource EmptyModel}"
-                               IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
-
-                        <Image Style="{StaticResource ZigZag}"
                                IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
                     </StackLayout>
                 </DataTemplate>

@@ -20,7 +20,6 @@
     <None Remove="MultilingualResources\**" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Remove="AppResources\ContestParkResources.tr-TR.resx" />
     <EmbeddedResource Remove="AppResources\ContestParkResources.tr.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +101,9 @@
     <EmbeddedResource Update="AppResources\ContestParkResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ContestParkResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AppResources\ContestParkResources.tr-TR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\Categories\CategoryHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

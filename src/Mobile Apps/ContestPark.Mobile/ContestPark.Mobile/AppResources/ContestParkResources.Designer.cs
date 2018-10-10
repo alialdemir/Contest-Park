@@ -70,7 +70,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hesap Ayarları.
+        ///   Looks up a localized string similar to Account Settings.
         /// </summary>
         public static string AccountSettings {
             get {
@@ -160,7 +160,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kategoriler.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {
             get {
@@ -264,6 +264,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -421,7 +430,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diller.
+        ///   Looks up a localized string similar to Languages.
         /// </summary>
         public static string Language {
             get {
@@ -628,6 +637,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dil Seçiniz.
+        /// </summary>
+        public static string SelectLanguage {
+            get {
+                return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to İşlem Seçiniz.
         /// </summary>
         public static string SelectProcess {
@@ -655,7 +673,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ayarlar.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
@@ -750,6 +768,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string TimeLeft {
             get {
                 return ResourceManager.GetString("TimeLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turkish.
+        /// </summary>
+        public static string Turkish {
+            get {
+                return ResourceManager.GetString("Turkish", resourceCulture);
             }
         }
         

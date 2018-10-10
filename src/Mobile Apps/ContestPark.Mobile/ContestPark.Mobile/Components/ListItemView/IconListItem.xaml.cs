@@ -61,10 +61,21 @@ namespace ContestPark.Mobile.Components
             }
         }
 
-        #endregion Methods
+        /// <summary>
+        /// Eğer icon boş gelirse icon componentinizi gizlier
+        /// </summary>
+        private void IconHide(Models.MenuItem.MenuItem menuItem)
+        {
+            if (string.IsNullOrEmpty(menuItem.Icon) && gridIconList.ColumnDefinitions.Count > 0)
+            {
+                gridIconList.ColumnDefinitions[0].Width = 0;
+            }
+        }
 
-        #region Override
-
+        /// <summary>
+        /// Binding den gelen commandtı TapGestureRecognizer olarak döndürür
+        /// </summary>
+        /// <returns>Command to TapGestureRecognizer</returns>
         private TapGestureRecognizer GetTapGesture(Models.MenuItem.MenuItem menuItem)
         {
             var tapGestureRecognizer = new TapGestureRecognizer();
@@ -73,6 +84,10 @@ namespace ContestPark.Mobile.Components
             return tapGestureRecognizer;
         }
 
+        #endregion Methods
+
+        #region Override
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -80,6 +95,8 @@ namespace ContestPark.Mobile.Components
             Models.MenuItem.MenuItem menuItem = (Models.MenuItem.MenuItem)BindingContext;
             if (menuItem == null)
                 return;
+
+            IconHide(menuItem);
 
             RightIconVisibility(menuItem.MenuType);
 

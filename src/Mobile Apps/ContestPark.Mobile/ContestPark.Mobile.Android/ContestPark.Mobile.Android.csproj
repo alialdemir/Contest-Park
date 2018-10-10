@@ -168,6 +168,7 @@
     <Compile Include="CustomRenderer\SignInSocialNetworkPageRenderer.cs" />
     <Compile Include="CustomRenderer\TabViewRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
+    <Compile Include="Dependencies\Localize .cs" />
     <Compile Include="Extensions\FontExtensions.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -229,9 +230,6 @@
     <AndroidResource Include="Resources\drawable\coins.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_search_black_36dp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\lock.png" />
   </ItemGroup>
   <ItemGroup>
@@ -239,9 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_favorite_border_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_share_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\left_arrow.png" />

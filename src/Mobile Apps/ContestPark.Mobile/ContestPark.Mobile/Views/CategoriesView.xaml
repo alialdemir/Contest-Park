@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.CategoriesView"
@@ -9,13 +10,16 @@
              Icon="fas-gamepad"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding UserCoins}" />
-        <ToolbarItem Icon="coins.png" />
+        <icon:IconToolbarItem Text="{Binding UserCoins}" />
 
-        <ToolbarItem Icon="ic_search_black_36dp.png"
-                     AutomationId="tbiCategorySearch"
-                     Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}"
-                     CommandParameter="{Binding SeeAllSubCateogryId}" />
+        <icon:IconToolbarItem Icon="far-gem"
+                              IconColor="{StaticResource Primary}" />
+
+        <icon:IconToolbarItem Icon="fas-search"
+                              IconColor="{StaticResource Primary}"
+                              AutomationId="tbiCategorySearch"
+                              Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}"
+                              CommandParameter="{Binding SeeAllSubCateogryId}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">

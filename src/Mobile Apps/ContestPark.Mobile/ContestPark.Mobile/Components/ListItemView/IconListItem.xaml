@@ -16,28 +16,28 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <icon:IconImage Grid.Row="0"
-                            Grid.Column="0"
+            <icon:IconImage Grid.Row="0"  x:Name="testd"
                             IconSize="24"
-                            IconColor="{StaticResource Primary}"
-                            Icon="{Binding Icon}" />
+                            Grid.Column="0"
+                            Icon="{Binding Icon}"
+                            IconColor="{StaticResource Primary}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   Text="{Binding Title}"
+                   TextColor="White"
                    FontSize="Default"
-                   VerticalOptions="Center"
-                   TextColor="White" />
+                   Text="{Binding Title}"
+                   VerticalOptions="Center" />
 
             <icon:IconImage Grid.Row="0"
-                            x:Name="imgIcon"
-                            Grid.Column="2"
                             IconSize="16"
-                            IconColor="{StaticResource Primary}"
+                            Grid.Column="2"
+                            x:Name="imgIcon"
                             IsVisible="False"
                             Icon="fas-angle-right"
                             HorizontalOptions="End"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Center"
+                            IconColor="{StaticResource Primary}" />
 
             <Switch Grid.Row="0"
                     x:Name="switchIcon"

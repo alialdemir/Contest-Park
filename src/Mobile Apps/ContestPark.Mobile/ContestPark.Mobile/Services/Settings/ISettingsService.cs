@@ -31,10 +31,10 @@ namespace ContestPark.Mobile.Services.Settings
 
         void RemoveCurrentUser();
 
-        //#region Api
+        #region Api
 
-        //Task SetSettings(SettingTypes settingType, string settingValue);
+        Task SetSettingsAsync(SettingTypes settingType, string settingValue);
 
-        //#endregion Api
+        #endregion Api
     }
 }

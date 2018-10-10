@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Enums;
+﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -164,20 +165,20 @@ namespace ContestPark.Mobile.Services.Settings
 
         #endregion RemoveCurrentUser
 
-        //#region Setting Service
+        #region Setting Service
 
-        ///// <summary>
-        ///// Ayar tipine göre değerini kayıt eder
-        ///// </summary>
-        ///// <param name="settingType">Ayar tipi</param>
-        ///// <param name="settingValue">Değeri</param>
-        //public async Task SetSettings(SettingTypes settingType, string settingValue)// TODO: parametreden gönderirke problem olabilir property name eklenmesi lazım
-        //{
-        //    string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{(byte)settingType}", settingValue);
+        /// <summary>
+        /// Ayar tipine göre değerini kayıt eder
+        /// </summary>
+        /// <param name="settingType">Ayar tipi</param>
+        /// <param name="settingValue">Değeri</param>
+        public async Task SetSettingsAsync(SettingTypes settingType, string settingValue)// TODO: parametreden gönderirke problem olabilir property name eklenmesi lazım
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{(byte)settingType}", settingValue);
 
-        //    await _requestProvider.PostAsync<string>(uri);
-        //}
+            await _requestProvider.PostAsync<string>(uri);
+        }
 
-        //#endregion Setting Service
+        #endregion Setting Service
     }
 }
