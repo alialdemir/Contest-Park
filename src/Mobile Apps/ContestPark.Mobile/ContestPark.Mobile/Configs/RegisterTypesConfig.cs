@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ContestPark.Mobile.Services.Audio;
+using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Category;
@@ -118,6 +119,8 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.Register<IIdentityService, IdentityService>();
 
+                containerRegistry.Register<IBlockingService, BlockingService>();
+
                 containerRegistry.Register<IBotService, BotService>();
 
                 containerRegistry.Register<IPostService, PostService>();
@@ -151,6 +154,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterPopupNavigationService();
 
                 containerRegistry.Register<IIdentityService, IdentityMockService>();
+
+                containerRegistry.Register<IBlockingService, BlockingMockService>();
 
                 containerRegistry.Register<IBotService, BotService>();
 

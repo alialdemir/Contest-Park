@@ -826,6 +826,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kimseyi engellemiş görünmüyorsun!.
+        /// </summary>
+        public static string YouDontSeemToBeBlockingAnyone {
+            get {
+                return ResourceManager.GetString("YouDontSeemToBeBlockingAnyone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seviyen.
         /// </summary>
         public static string YourLevel {

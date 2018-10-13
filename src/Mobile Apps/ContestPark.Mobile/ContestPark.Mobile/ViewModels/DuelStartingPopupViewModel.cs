@@ -170,7 +170,8 @@ namespace ContestPark.Mobile.ViewModels
                 FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
             };
 
-            _audioService.Play(Audio.AwaitingOpponent, true);
+            if (_settingsService.IsSoundEffectActive)
+                _audioService.Play(Audio.AwaitingOpponent, true);
 
             DuelSignalrListener();// SignalR listener load
 
@@ -357,7 +358,8 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void AudioStop()
         {
-            _audioService?.Stop();
+            if (_settingsService.IsSoundEffectActive)
+                _audioService?.Stop();
         }
 
         #endregion Methods

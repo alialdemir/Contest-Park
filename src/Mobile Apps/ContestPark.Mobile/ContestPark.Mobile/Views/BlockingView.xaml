@@ -1,8 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.BlockingView"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             x:Name="page">
+
+    <ContentPage.Content>
+        <Components:NonPersistentSelectedItemListView x:Name="lstView"
+                                                      InfiniteScroll="{Binding InfiniteScroll}"
+                                                      Style="{StaticResource ListViewOnlyFooter}"
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                        <Components:ListItemButtonView
+                                                 Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 Icon="fas-minus-square"
+                                                 Text="{Binding FullName}"
+                                                 AutomationId="lstViewChat"
+                                                 UserName="{Binding UserName}"
+                                                 IsIconStatus="{Binding IsBlocked}"
+                                                 CommandParameter="{Binding UserId}"
+                                                 Source="{Binding ProfilePicturePath}"
+                                                 Detail="{Binding UserName, StringFormat='@{0:N}'}"
+                                                 SingleTap="{Binding Path=BindingContext.BlockProcessingCommand, Source={x:Reference page}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.ItemTemplate>
+            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource EmptyModel}"
+                           Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}"
+                           TextColor="White"
+                           IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.FooterTemplate>
+        </Components:NonPersistentSelectedItemListView>
+    </ContentPage.Content>
 </ContentPage>

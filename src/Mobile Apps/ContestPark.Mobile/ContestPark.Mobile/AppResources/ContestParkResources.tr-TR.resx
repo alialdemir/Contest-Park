@@ -381,4 +381,7 @@
   <data name="YourLevel" xml:space="preserve">
     <value>Seviyen</value>
   </data>
+  <data name="YouDontSeemToBeBlockingAnyone" xml:space="preserve">
+    <value>Kimseyi engellemiş görünmüyorsun!</value>
+  </data>
 </root>
