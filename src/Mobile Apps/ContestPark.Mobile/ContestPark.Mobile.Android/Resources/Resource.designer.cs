@@ -858,13 +858,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Drawable.abc_textfield_search_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_material;
 			global::PanCardView.Droid.Resource.Drawable.abc_vector_test = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_vector_test;
 			global::PanCardView.Droid.Resource.Drawable.avd_hide_password = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password;
-			global::PanCardView.Droid.Resource.Drawable.avd_hide_password_1 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password_1;
-			global::PanCardView.Droid.Resource.Drawable.avd_hide_password_2 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password_2;
-			global::PanCardView.Droid.Resource.Drawable.avd_hide_password_3 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password_3;
 			global::PanCardView.Droid.Resource.Drawable.avd_show_password = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password;
-			global::PanCardView.Droid.Resource.Drawable.avd_show_password_1 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password_1;
-			global::PanCardView.Droid.Resource.Drawable.avd_show_password_2 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password_2;
-			global::PanCardView.Droid.Resource.Drawable.avd_show_password_3 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password_3;
 			global::PanCardView.Droid.Resource.Drawable.design_bottom_navigation_item_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_bottom_navigation_item_background;
 			global::PanCardView.Droid.Resource.Drawable.design_fab_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_fab_background;
 			global::PanCardView.Droid.Resource.Drawable.design_ic_visibility = global::ContestPark.Mobile.Droid.Resource.Drawable.design_ic_visibility;
@@ -4701,26 +4695,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020127
-			public const int avd_hide_password_1 = 2130837799;
-			
-			// aapt resource value: 0x7f020128
-			public const int avd_hide_password_2 = 2130837800;
-			
-			// aapt resource value: 0x7f020129
-			public const int avd_hide_password_3 = 2130837801;
-			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
-			
-			// aapt resource value: 0x7f02012a
-			public const int avd_show_password_1 = 2130837802;
-			
-			// aapt resource value: 0x7f02012b
-			public const int avd_show_password_2 = 2130837803;
-			
-			// aapt resource value: 0x7f02012c
-			public const int avd_show_password_3 = 2130837804;
 			
 			// aapt resource value: 0x7f020055
 			public const int coins = 2130837589;

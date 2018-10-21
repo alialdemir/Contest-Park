@@ -7,11 +7,43 @@ namespace ContestPark.Mobile.Models.Blocking
 {
     public class UserBlocking : IModelBase, INotifyPropertyChanged
     {
-        public string UserId { get; set; }
+        private string _userId;
 
-        public string FullName { get; set; }
+        public string UserId
+        {
+            get { return _userId; }
+            set
+            {
+                _userId = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserId)));
+            }
+        }
 
-        public string UserName { get; set; }
+        private string _fullName;
+
+        public string FullName
+        {
+            get { return _fullName; }
+            set
+            {
+                _fullName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FullName)));
+            }
+        }
+
+
+        private string _userName;
+
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserName)));
+            }
+        }
+
 
         private bool _isBlocked;
 

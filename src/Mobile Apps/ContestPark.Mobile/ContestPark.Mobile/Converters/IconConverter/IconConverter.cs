@@ -8,7 +8,7 @@ namespace ContestPark.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value.ToString().Replace("fas", "far").Replace("far", "fas");
+            return (bool)value ? "fas-minus-square" : "far-minus-square";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

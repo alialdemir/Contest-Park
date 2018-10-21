@@ -105,11 +105,6 @@ namespace ContestPark.Mobile.Components
                 gridIconList.GestureRecognizers.Add(GetTapGesture(menuItem));
             }
 
-            if (imgIcon.GestureRecognizers.Count == 0)
-            {
-                imgIcon.GestureRecognizers.Add(GetTapGesture(menuItem));
-            }
-
             if (switchIcon.Behaviors.Count == 0)
             {
                 switchIcon.Behaviors.Add(new EventToCommandBehavior()

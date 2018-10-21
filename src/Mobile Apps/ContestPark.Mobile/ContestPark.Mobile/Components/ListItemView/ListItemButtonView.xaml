@@ -6,6 +6,11 @@
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              x:Class="ContestPark.Mobile.Components.ListItemButtonView"
              x:Name="page">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converter:IconConverter x:Key="fbc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid RowSpacing="0"
               Padding="8,4,8,4"
@@ -48,7 +53,9 @@
                              Grid.Column="2"
                              Grid.RowSpan="2"
                              x:Name="btnRight"
-                             Text="{Binding Icon}"
+                             Text="{Binding Path=IsIconStatus,Source={x:Reference page}, Converter={StaticResource fbc}}"
+                             Command="{Binding Path=SingleTap, Source={x:Reference page}}"
+                             CommandParameter="{Binding Path=CommandParameter, Source={x:Reference page}}"
                              HorizontalOptions="Start"
                              BackgroundColor="Transparent"
                              TextColor="{StaticResource Red}" />

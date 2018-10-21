@@ -43,13 +43,29 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
-        private Task ExecuteBlockProcessingCommand(string userId)
+        /// <summary>
+        /// Kullanıcıyu engelle engeli kaldır işlemini yapar
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        private void ExecuteBlockProcessingCommand(string userId)
         {
+            bool isBlock = Items
+                .FirstOrDefault(p => p.UserId == userId)
+                .IsBlocked;
+
             Items
                 .FirstOrDefault(p => p.UserId == userId)
-                .IsBlocked = !Items.FirstOrDefault(p => p.UserId == userId)
-                .IsBlocked;
-            return Task.CompletedTask;
+                .IsBlocked = !isBlock;
+
+            if (isBlock)
+            {
+                _blockingService.UnBlock(userId);
+            }
+            else
+            {
+                _blockingService.Block(userId);
+            }
         }
 
         #endregion Methods
@@ -57,7 +73,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _blockProcessingCommand;
-        public ICommand BlockProcessingCommand => _blockProcessingCommand ?? (_blockProcessingCommand = new Command<string>(async (userId) => await ExecuteBlockProcessingCommand(userId)));
+        public ICommand BlockProcessingCommand => _blockProcessingCommand ?? (_blockProcessingCommand = new Command<string>((userId) => ExecuteBlockProcessingCommand(userId)));
 
         #endregion Commands
     }

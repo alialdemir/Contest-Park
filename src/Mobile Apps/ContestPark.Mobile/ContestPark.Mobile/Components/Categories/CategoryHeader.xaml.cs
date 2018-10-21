@@ -54,22 +54,5 @@ namespace ContestPark.Mobile.Components
 
         #endregion Property
 
-        #region Override
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            if (lblSeeAll.GestureRecognizers.Count == 0)
-            {
-                lblCategoryName.Text = CategoryName;
-
-                var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += (s, e) => SeeAllPressed?.Execute(SeeAllCommandParameter);
-                lblSeeAll.GestureRecognizers.Add(tapGestureRecognizer);
-            }
-        }
-
-        #endregion Override
     }
 }

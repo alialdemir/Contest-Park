@@ -4,11 +4,17 @@
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.BlockingView"
              Title="{Binding Title}"
              x:Name="page">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:IconConverter x:Key="fbc" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView x:Name="lstView"
                                                       InfiniteScroll="{Binding InfiniteScroll}"
@@ -17,7 +23,6 @@
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
                         <Components:ListItemButtonView
                                                  Grid.Row="0"
                                                  Grid.Column="0"

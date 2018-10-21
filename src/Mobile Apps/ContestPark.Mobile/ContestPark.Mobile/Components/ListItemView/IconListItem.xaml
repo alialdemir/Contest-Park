@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
              x:Class="ContestPark.Mobile.Components.IconListItem"
              x:Name="page">
     <ContentView.Content>
@@ -37,7 +38,12 @@
                             Icon="fas-angle-right"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
-                            IconColor="{StaticResource Primary}" />
+                            IconColor="{StaticResource Primary}" >
+                <icon:IconImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=PushPageCommand, Source={x:Reference page}}"
+                                          CommandParameter="{Binding Path=BindingContext.PageName, Source={x:Reference page}}"/>
+                </icon:IconImage.GestureRecognizers>
+            </icon:IconImage>
 
             <Switch Grid.Row="0"
                     x:Name="switchIcon"

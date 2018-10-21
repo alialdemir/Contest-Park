@@ -114,6 +114,7 @@ namespace ContestPark.Mobile.Components
         public static readonly BindableProperty IsIconStatusProperty = BindableProperty.Create(propertyName: nameof(IsIconStatus),
                                                                                                     returnType: typeof(bool),
                                                                                                     declaringType: typeof(ListItemButtonView),
+                                                                                                    defaultBindingMode: BindingMode.TwoWay,
                                                                                                     defaultValue: true);
 
         public bool IsIconStatus
@@ -126,18 +127,5 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Properties
-
-        #region Override
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            btnRight.Text = IsIconStatus ? Icon.Replace("fas", "far") : Icon.Replace("far", "fas");
-            btnRight.Command = SingleTap;
-            btnRight.CommandParameter = CommandParameter;
-        }
-
-        #endregion Override
     }
 }
