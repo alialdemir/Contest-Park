@@ -12,15 +12,24 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
+    /// <summary>
+    /// Defines the <see cref="SettingsViewModel"/>
+    /// </summary>
     public class SettingsViewModel : ViewModelBase<MenuItemList>
     {
-        #region Private variables
+        #region Fields
 
+        /// <summary>
+        /// Defines the _identityService
+        /// </summary>
         private readonly IIdentityService _identityService;
 
+        /// <summary>
+        /// Defines the _settingsService
+        /// </summary>
         private readonly ISettingsService _settingsService;
 
-        #endregion Private variables
+        #endregion Fields
 
         #region Constructors
 
@@ -37,74 +46,109 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets a value indicating whether IsExit
+        /// </summary>
         public bool IsExit { get; set; }
 
         #endregion Properties
 
         #region Methods
 
+        /// <summary>
+        /// The InitializeAsync
+        /// </summary>
         protected override Task InitializeAsync()
         {
+            if (IsBusy)
+                return Task.CompletedTask;
+
+            IsBusy = true;
+
+            ICommand pushPageCommand = new Command<string>(async (pageName) => await ExecutePushPageCommand(pageName));
+
             Items.AddRange(new List<MenuItemList>()
             {
                 new MenuItemList(ContestParkResources.AppSettings)
                                 {
                                     new Models.MenuItem.MenuItem {
-                                        PageName = nameof(LanguageView),
+                                        CommandParameter = nameof(LanguageView),
                                         Icon = "fas-globe",
                                         Title = ContestParkResources.Language,
-                                        MenuType = Enums.MenuTypes.Icon
+                                        MenuType = Enums.MenuTypes.Icon,
+                                        SingleTap = pushPageCommand
                                     },
                                     new Models.MenuItem.MenuItem {
-                                        PageName = "SoundEffects",
                                         Icon = "fas-volume-up",
                                         Title = ContestParkResources.Sounds,
                                         MenuType = Enums.MenuTypes.Switch,
-                                        IsToggled = _settingsService.IsSoundEffectActive
+                                        IsToggled = _settingsService.IsSoundEffectActive,
+                                        SingleTap =  new Command(async()=> await ChangeSoundAsync())
                                     },
                                 },
 
                 new MenuItemList(ContestParkResources.AccountSettings)
                                     {
                                     new Models.MenuItem.MenuItem {
-                                        PageName = nameof(AccountSettingsView),
+                                        CommandParameter = nameof(AccountSettingsView),
                                         Icon = "fas-user-circle",
-                                        Title = ContestParkResources.Account,
-                                        MenuType = Enums.MenuTypes.Icon
+                                        Title = ContestParkResources.EditProfile,
+                                        MenuType = Enums.MenuTypes.Icon,
+                                        SingleTap = pushPageCommand
                                     },
                                     new Models.MenuItem.MenuItem {
-                                        PageName = nameof(BlockingView),
+                                        CommandParameter = nameof(BlockingView),
                                         Icon = "fas-exclamation-circle",
                                         Title = ContestParkResources.Blocking,
-                                        MenuType = Enums.MenuTypes.Icon
+                                        MenuType = Enums.MenuTypes.Icon,
+                                        SingleTap = pushPageCommand
                                     },
                                     new Models.MenuItem.MenuItem {
-                                        PageName = "PrivateProfile",
                                         Icon = "fas-unlock-alt",
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = Enums.MenuTypes.Switch,
-                                        IsToggled = _settingsService.IsPrivatePrice
+                                        IsToggled = _settingsService.IsPrivatePrice,
+                                        SingleTap = new Command(async()=> await ChangePrivateProfileAsync())
                                     },
                             },
 
                 new MenuItemList(ContestParkResources.Other)
                                 {
                                     new Models.MenuItem.MenuItem {
-                                        PageName ="Exit",
                                         Icon = "fas-sign-out-alt",
                                         Title = ContestParkResources.LogOut,
-                                        MenuType = Enums.MenuTypes.None
+                                        MenuType = Enums.MenuTypes.None,
+                                        SingleTap = new Command(async()=> await ExitAppAsync())
                                     },
                                 },
             });
 
+            IsBusy = false;
+
             return base.InitializeAsync();
+        }
+
+        /// <summary>
+        /// Profili private/public olarak değiştirir
+        /// </summary>
+        private async Task ChangePrivateProfileAsync()
+        {
+            await _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
+        }
+
+        /// <summary>
+        /// Ses effecti aç/kapa
+        /// </summary>
+        private async Task ChangeSoundAsync()
+        {
+            await _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
         }
 
         /// <summary>
         /// Parametreden gelen sayfa adına göre işlem yapar
         /// </summary>
         /// <param name="name"></param>
+        /// <returns>The <see cref="Task"/></returns>
         private async Task ExecutePushPageCommand(string name)
         {
             if (IsExit || IsBusy)
@@ -112,20 +156,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if (name == "Exit")
-            {
-                await _identityService.Unauthorized();
-                await PushNavigationPageAsync($"app:///{nameof(SignInView)}?appModuleRefresh=OnInitialized");
-            }
-            else if (name == "SoundEffects")
-            {
-                await _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
-            }
-            else if (name == "PrivateProfile")
-            {
-                await _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
-            }
-            else if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 await PushNavigationPageAsync(name);
             }
@@ -133,31 +164,37 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
-        #endregion Methods
-
-        #region Commands
-
-        private ICommand _pushPageCommand;
-
-        public ICommand PushPageCommand
+        /// <summary>
+        /// Kullanıcı çıkış yap
+        /// </summary>
+        private async Task ExitAppAsync()
         {
-            get { return _pushPageCommand ?? (_pushPageCommand = new Command<string>(async (pageName) => await ExecutePushPageCommand(pageName))); }
+            await _identityService.Unauthorized();
+            await PushNavigationPageAsync($"app:///{nameof(SignInView)}?appModuleRefresh=OnInitialized");
         }
 
-        #endregion Commands
+        #endregion Methods
 
         #region Navigation
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            IsExit = false;
-            base.OnNavigatedTo(parameters);
-        }
-
+        /// <summary>
+        /// The OnNavigatedFrom
+        /// </summary>
+        /// <param name="parameters">The parameters <see cref="INavigationParameters"/></param>
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             IsExit = true;
             base.OnNavigatedFrom(parameters);
+        }
+
+        /// <summary>
+        /// The OnNavigatedTo
+        /// </summary>
+        /// <param name="parameters">The parameters <see cref="INavigationParameters"/></param>
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            IsExit = false;
+            base.OnNavigatedTo(parameters);
         }
 
         #endregion Navigation

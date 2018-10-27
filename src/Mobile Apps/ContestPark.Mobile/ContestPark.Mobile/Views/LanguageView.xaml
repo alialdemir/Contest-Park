@@ -7,26 +7,26 @@
              x:Class="ContestPark.Mobile.Views.LanguageView"
              Title="{Binding Title}"
              x:Name="page">
-    <ContentPage.Content>
-        <ListView HasUnevenRows="true"
-                  IsGroupingEnabled="true"
-                  SelectionMode="None"
-                  SeparatorColor="#333333"
-                  ItemsSource="{Binding Items}">
-            <ListView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:IconGroupHeader />
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.GroupHeaderTemplate>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:IconListItem PushPageCommand="{Binding Path=BindingContext.ChangeLanguageCommand, Source={x:Reference page}}" />
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage.Content>
+  <ContentPage.Content>
+    <ListView HasUnevenRows="true"
+              IsGroupingEnabled="true"
+              SelectionMode="None"
+              SeparatorColor="#333333"
+              ItemsSource="{Binding Items}">
+      <ListView.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <components:IconGroupHeader />
+          </ViewCell>
+        </DataTemplate>
+      </ListView.GroupHeaderTemplate>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <components:ListItemFactory />
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </ContentPage.Content>
 </ContentPage>

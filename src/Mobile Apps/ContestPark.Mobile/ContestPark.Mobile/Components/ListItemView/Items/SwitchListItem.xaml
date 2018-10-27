@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
-             x:Class="ContestPark.Mobile.Components.IconListItem"
-             x:Name="page">
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Class="ContestPark.Mobile.Components.SwitchListItem">
     <ContentView.Content>
-        <Grid x:Name="gridIconList"
-              Padding="8"
+        <Grid Padding="8"
               ColumnSpacing="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
@@ -17,7 +15,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <icon:IconImage Grid.Row="0"  x:Name="testd"
+            <icon:IconImage Grid.Row="0"
                             IconSize="24"
                             Grid.Column="0"
                             Icon="{Binding Icon}"
@@ -30,29 +28,19 @@
                    Text="{Binding Title}"
                    VerticalOptions="Center" />
 
-            <icon:IconImage Grid.Row="0"
-                            IconSize="16"
-                            Grid.Column="2"
-                            x:Name="imgIcon"
-                            IsVisible="False"
-                            Icon="fas-angle-right"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            IconColor="{StaticResource Primary}" >
-                <icon:IconImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=PushPageCommand, Source={x:Reference page}}"
-                                          CommandParameter="{Binding Path=BindingContext.PageName, Source={x:Reference page}}"/>
-                </icon:IconImage.GestureRecognizers>
-            </icon:IconImage>
-
             <Switch Grid.Row="0"
-                    x:Name="switchIcon"
                     Grid.Column="2"
-                    IsVisible="False"
+                    x:Name="switchIcon"
                     HorizontalOptions="End"
                     VerticalOptions="CenterAndExpand"
                     OnColor="{StaticResource Primary}"
-                    IsToggled="{Binding IsToggled}" />
+                    IsToggled="{Binding IsToggled}">
+                <Switch.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Toggled"
+                                                      Command="{Binding SingleTap}"
+                                                      CommandParameter="{Binding CommandParameter}" />
+                </Switch.Behaviors>
+            </Switch>
         </Grid>
     </ContentView.Content>
 </ContentView>

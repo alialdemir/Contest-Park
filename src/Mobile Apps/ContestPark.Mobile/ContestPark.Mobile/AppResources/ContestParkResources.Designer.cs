@@ -61,15 +61,6 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hesap.
-        /// </summary>
-        public static string Account {
-            get {
-                return ResourceManager.GetString("Account", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Account Settings.
         /// </summary>
         public static string AccountSettings {
@@ -255,6 +246,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string DeleteMessageTitle {
             get {
                 return ResourceManager.GetString("DeleteMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profil Güncelle.
+        /// </summary>
+        public static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
             }
         }
         
@@ -543,6 +543,24 @@ namespace ContestPark.Mobile.AppResources {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifre Değiştir.
+        /// </summary>
+        public static string PasswordChange {
+            get {
+                return ResourceManager.GetString("PasswordChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resim Ayarları.
+        /// </summary>
+        public static string PictureSettings {
+            get {
+                return ResourceManager.GetString("PictureSettings", resourceCulture);
             }
         }
         

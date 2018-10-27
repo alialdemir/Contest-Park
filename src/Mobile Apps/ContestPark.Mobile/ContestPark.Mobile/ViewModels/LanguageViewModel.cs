@@ -53,13 +53,13 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.SelectLanguage)
                                 {
                                     new Models.MenuItem.MenuItem {
-                                        PageName = "Turkish",
+                                        CommandParameter = "Turkish",
                                         Title = ContestParkResources.Turkish,
                                         MenuType = Enums.MenuTypes.Switch,
                                         IsToggled = isTurkish
                                     },
                                     new Models.MenuItem.MenuItem {
-                                        PageName = "English",
+                                        CommandParameter = "English",
                                         Title = ContestParkResources.English,
                                         MenuType = Enums.MenuTypes.Switch,
                                         IsToggled = !isTurkish
@@ -117,7 +117,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             Items
                  .FirstOrDefault()
-                 .Where(p => p.PageName != langName)
+                 .Where(p => p.CommandParameter != langName)
                  .ToList()
                  .ForEach(p => p.IsToggled = false);
         }

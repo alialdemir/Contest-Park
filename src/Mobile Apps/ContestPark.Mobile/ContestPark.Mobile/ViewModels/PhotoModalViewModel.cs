@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace ContestPark.Mobile.ViewModels
 {
-	public class PhotoModalViewViewModel : BindableBase
+	public class PhotoModalViewModel : BindableBase
 	{
-        public PhotoModalViewViewModel()
+        public PhotoModalViewModel()
         {
 
         }

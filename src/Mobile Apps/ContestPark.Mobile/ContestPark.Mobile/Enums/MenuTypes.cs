@@ -2,8 +2,9 @@
 {
     public enum MenuTypes : byte
     {
-        None = 0,
-        Icon = 1,
-        Switch = 2
+        None,
+        Icon,
+        Switch,
+        Input
     }
 }

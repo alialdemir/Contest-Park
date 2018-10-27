@@ -39,6 +39,8 @@ namespace ContestPark.Mobile.ViewModels
 
         private string _coverPicture;
 
+        private string _fullName;
+
         public string CoverPicture
         {
             get { return _coverPicture; }
@@ -49,8 +51,6 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => CoverPicture);
             }
         }
-
-        private string _fullName;
 
         public string FullName
         {
@@ -69,48 +69,56 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override Task InitializeAsync()
         {
+            ICommand pushPageCommand = new Command<string>((pageName) => ExecutePushPageCommand(pageName));
+
             Items.AddRange(new List<MenuItemList>()
             {
                 new MenuItemList("Menu")
                             {
                                 new Models.MenuItem.MenuItem {
-                                    PageName = nameof(ContestStoreView),
+                                    CommandParameter = nameof(ContestStoreView),
                                     Icon = "fas-store",
                                     Title = ContestParkResources.ContestStore,
-                                    MenuType = Enums.MenuTypes.Icon
+                                    MenuType = Enums.MenuTypes.Icon,
+                                    SingleTap = pushPageCommand
                                 },
                                 new Models.MenuItem.MenuItem {
-                                    PageName = nameof(MissionsView),
+                                    CommandParameter = nameof(MissionsView),
                                     Icon = "fas-award",
                                     Title = ContestParkResources.Missions,
-                                    MenuType = Enums.MenuTypes.Icon
+                                    MenuType = Enums.MenuTypes.Icon,
+                                    SingleTap = pushPageCommand
                                 },
                                 new Models.MenuItem.MenuItem {
-                                    PageName = nameof(SettingsView),
+                                    CommandParameter = nameof(SettingsView),
                                     Icon = "fas-cogs",
                                     Title = ContestParkResources.Settings,
-                                    MenuType = Enums.MenuTypes.Icon
+                                    MenuType = Enums.MenuTypes.Icon,
+                                    SingleTap = pushPageCommand
                                 },
                             },
                 new MenuItemList(ContestParkResources.FollowUsOnSocialNetworks)
                             {
                                  new Models.MenuItem.MenuItem {
-                                     PageName = "FacebookAddress",
+                                     CommandParameter = "FacebookAddress",
                                      Icon = "fab-facebook-square",
                                      Title = "Facebook",
-                                     MenuType = Enums.MenuTypes.Icon
+                                     MenuType = Enums.MenuTypes.Icon,
+                                        SingleTap = pushPageCommand
                                  },
                                  new Models.MenuItem.MenuItem {
-                                     PageName = "TwitterAddress",
+                                     CommandParameter = "TwitterAddress",
                                      Icon = "fab-twitter-square",
                                      Title = "Twitter",
-                                     MenuType = Enums.MenuTypes.Icon
+                                     MenuType = Enums.MenuTypes.Icon,
+                                        SingleTap = pushPageCommand
                                  },
                                  new Models.MenuItem.MenuItem {
-                                     PageName = "InstagramAddress",
+                                     CommandParameter = "InstagramAddress",
                                      Icon = "fab-instagram",
                                      Title = "Instagram",
-                                     MenuType = Enums.MenuTypes.Icon
+                                     MenuType = Enums.MenuTypes.Icon,
+                                     SingleTap = pushPageCommand
                                  }
                             }
             });
@@ -136,16 +144,5 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Methods
-
-        #region Commands
-
-        private ICommand _pushPageCommand;
-
-        public ICommand PushPageCommand
-        {
-            get { return _pushPageCommand ?? (_pushPageCommand = new Command<string>((pageName) => ExecutePushPageCommand(pageName))); }
-        }
-
-        #endregion Commands
     }
 }

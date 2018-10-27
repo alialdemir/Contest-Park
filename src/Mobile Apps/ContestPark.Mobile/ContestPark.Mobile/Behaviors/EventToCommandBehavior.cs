@@ -11,34 +11,28 @@ namespace ContestPark.Mobile.Behaviors
 {
     public class EventToCommandBehavior : BindableBehavior<View>
     {
-        public static BindableProperty EventNameProperty =
-            BindableProperty.CreateAttached("EventName", typeof(string), typeof(EventToCommandBehavior), null,
+        public static BindableProperty CommandParameterProperty =
+            BindableProperty.CreateAttached("CommandParameter", typeof(object), typeof(EventToCommandBehavior), null,
                 BindingMode.OneWay);
 
         public static BindableProperty CommandProperty =
             BindableProperty.CreateAttached("Command", typeof(ICommand), typeof(EventToCommandBehavior), null,
                 BindingMode.OneWay);
 
-        public static BindableProperty CommandParameterProperty =
-            BindableProperty.CreateAttached("CommandParameter", typeof(object), typeof(EventToCommandBehavior), null,
+        public static BindableProperty EventArgsConverterParameterProperty =
+            BindableProperty.CreateAttached("EventArgsConverterParameter", typeof(object), typeof(EventToCommandBehavior), null,
                 BindingMode.OneWay);
 
         public static BindableProperty EventArgsConverterProperty =
             BindableProperty.CreateAttached("EventArgsConverter", typeof(IValueConverter), typeof(EventToCommandBehavior), null,
                 BindingMode.OneWay);
 
-        public static BindableProperty EventArgsConverterParameterProperty =
-            BindableProperty.CreateAttached("EventArgsConverterParameter", typeof(object), typeof(EventToCommandBehavior), null,
+        public static BindableProperty EventNameProperty =
+                                            BindableProperty.CreateAttached("EventName", typeof(string), typeof(EventToCommandBehavior), null,
                 BindingMode.OneWay);
 
         protected Delegate _handler;
         private EventInfo _eventInfo;
-
-        public string EventName
-        {
-            get { return (string)GetValue(EventNameProperty); }
-            set { SetValue(EventNameProperty, value); }
-        }
 
         public ICommand Command
         {
@@ -62,6 +56,12 @@ namespace ContestPark.Mobile.Behaviors
         {
             get { return GetValue(EventArgsConverterParameterProperty); }
             set { SetValue(EventArgsConverterParameterProperty, value); }
+        }
+
+        public string EventName
+        {
+            get { return (string)GetValue(EventNameProperty); }
+            set { SetValue(EventNameProperty, value); }
         }
 
         protected override void OnAttachedTo(View visualElement)
@@ -115,15 +115,15 @@ namespace ContestPark.Mobile.Behaviors
 
             var parameter = CommandParameter;
 
-            if (eventArgs != null && eventArgs != EventArgs.Empty)
-            {
-                parameter = eventArgs;
+            //if (eventArgs != null && eventArgs != EventArgs.Empty)
+            //{
+            //    parameter = eventArgs;
 
-                if (EventArgsConverter != null)
-                {
-                    parameter = EventArgsConverter.Convert(eventArgs, typeof(object), EventArgsConverterParameter, CultureInfo.CurrentUICulture);
-                }
-            }
+            //    if (EventArgsConverter != null)
+            //    {
+            //        parameter = EventArgsConverter.Convert(eventArgs, typeof(object), EventArgsConverterParameter, CultureInfo.CurrentUICulture);
+            //    }
+            //}
 
             if (Command.CanExecute(parameter))
             {

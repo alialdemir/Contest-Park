@@ -2,20 +2,19 @@
 using ContestPark.Mobile.Models.Base;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace ContestPark.Mobile.Models.MenuItem
 {
     public class MenuItem : INotifyPropertyChanged
     {
-        public string Title { get; set; }
+        private bool _isToggled;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public object CommandParameter { get; set; }
 
         public string Icon { get; set; }
-
-        public string PageName { get; set; }
-
-        public MenuTypes MenuType { get; set; }
-
-        private bool _isToggled;
 
         public bool IsToggled
         {
@@ -27,7 +26,11 @@ namespace ContestPark.Mobile.Models.MenuItem
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public MenuTypes MenuType { get; set; }
+
+        public ICommand SingleTap { get; set; }
+
+        public string Title { get; set; }
     }
 
     public class MenuItemList : List<MenuItem>, IModelBase

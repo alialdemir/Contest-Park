@@ -23,7 +23,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:IconListItem PushPageCommand="{Binding Path=BindingContext.PushPageCommand, Source={x:Reference page}}" />
+                        <components:ListItemFactory />
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

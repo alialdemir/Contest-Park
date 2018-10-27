@@ -50,7 +50,7 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
 
-            containerRegistry.RegisterForNavigation<BlockingView, BlockingViewViewModel>();
+            containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 
             containerRegistry.RegisterForNavigation<BaseNavigationPage>();
 

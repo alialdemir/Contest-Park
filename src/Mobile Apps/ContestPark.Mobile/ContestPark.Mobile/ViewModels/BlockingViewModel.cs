@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class BlockingViewViewModel : ViewModelBase<UserBlocking>
+    public class BlockingViewModel : ViewModelBase<UserBlocking>
     {
         #region Private variables
 
@@ -19,7 +19,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public BlockingViewViewModel(IBlockingService blockingService)
+        public BlockingViewModel(IBlockingService blockingService)
         {
             Title = ContestParkResources.Blocking;
             _blockingService = blockingService;

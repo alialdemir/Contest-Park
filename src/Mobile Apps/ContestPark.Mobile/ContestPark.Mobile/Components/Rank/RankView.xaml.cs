@@ -19,21 +19,15 @@ namespace ContestPark.Mobile.Components
 
         #region Property
 
-        public static readonly BindableProperty RankProperty = BindableProperty.Create(propertyName: nameof(Rank),
-                                                                                                returnType: typeof(string),
-                                                                                                declaringType: typeof(RankView),
-                                                                                                defaultValue: String.Empty);
-
-        public string Rank
-        {
-            get { return (string)GetValue(RankProperty); }
-            set { SetValue(RankProperty, value); }
-        }
-
         public static readonly BindableProperty GotoProfilePageCommandProperty = BindableProperty.Create(propertyName: nameof(GotoProfilePageCommand),
                                                                                            returnType: typeof(ICommand),
-                                                                                           declaringType: typeof(ListItemView),
+                                                                                           declaringType: typeof(RankView),
                                                                                            defaultValue: null);
+
+        public static readonly BindableProperty RankProperty = BindableProperty.Create(propertyName: nameof(Rank),
+                                                                                                        returnType: typeof(string),
+                                                                                                declaringType: typeof(RankView),
+                                                                                                defaultValue: String.Empty);
 
         public ICommand GotoProfilePageCommand
         {
@@ -42,6 +36,12 @@ namespace ContestPark.Mobile.Components
             {
                 SetValue(GotoProfilePageCommandProperty, value);
             }
+        }
+
+        public string Rank
+        {
+            get { return (string)GetValue(RankProperty); }
+            set { SetValue(RankProperty, value); }
         }
 
         #endregion Property
