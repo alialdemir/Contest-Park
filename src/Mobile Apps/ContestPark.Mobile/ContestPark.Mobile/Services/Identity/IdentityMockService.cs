@@ -1,7 +1,9 @@
 ﻿using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.Settings;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Identity
@@ -23,6 +25,21 @@ namespace ContestPark.Mobile.Services.Identity
 
         #endregion Constructor
 
+        public Task ChangeCoverPictureAsync(Stream picture)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task ChangeProfilePictureAsync(Stream picture)
+        {
+            return Task.CompletedTask;
+        }
+
         public Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
         {
             return Task.CompletedTask;
@@ -40,6 +57,11 @@ namespace ContestPark.Mobile.Services.Identity
             });
         }
 
+        public Task RefreshTokenAsync()
+        {
+            return Task.CompletedTask;
+        }
+
         public Task<bool> SignUpAsync(SignUpModel signUpModel)
         {
             return Task.FromResult(true);
@@ -53,6 +75,11 @@ namespace ContestPark.Mobile.Services.Identity
             _settingsService.RemoveCurrentUser();
 
             return Task.CompletedTask;
+        }
+
+        public Task<bool> UpdateUserInfoAsync(UpdateUserInfoModel userInfo)
+        {
+            return Task.FromResult(true);
         }
     }
 }

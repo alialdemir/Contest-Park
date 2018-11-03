@@ -2,31 +2,62 @@
 
 namespace ContestPark.Mobile.Configs
 {
+    /// <summary>
+    /// Defines the <see cref="GlobalSetting"/>
+    /// </summary>
     public class GlobalSetting
     {
+        #region Constants
+
+        /// <summary>
+        /// Defines the DefaultEndpoint
+        /// </summary>
         public const string DefaultEndpoint = "http://169.254.80.80:5106";
 
-        private string _baseIdentityEndpoint;
+        #endregion Constants
+
+        #region Fields
+
+        /// <summary>
+        /// Defines the _baseGatewayShoppingEndpoint
+        /// </summary>
         private string _baseGatewayShoppingEndpoint;
 
+        /// <summary>
+        /// Defines the _baseIdentityEndpoint
+        /// </summary>
+        private string _baseIdentityEndpoint;
+
+        #endregion Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GlobalSetting"/> class.
+        /// </summary>
         public GlobalSetting()
         {
             BaseIdentityEndpoint = DefaultEndpoint;
             BaseGatewayCategoryEndpoint = DefaultEndpoint;
         }
 
+        #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the Instance
+        /// </summary>
         public static GlobalSetting Instance { get; } = new GlobalSetting();
 
-        public string BaseIdentityEndpoint
-        {
-            get { return _baseIdentityEndpoint; }
-            set
-            {
-                _baseIdentityEndpoint = value;
-                UpdateEndpoint(_baseIdentityEndpoint);
-            }
-        }
+        /// <summary>
+        /// Gets or sets the AuthorizeEndpoint
+        /// </summary>
+        public string AuthorizeEndpoint { get; set; }
 
+        /// <summary>
+        /// Gets or sets the BaseGatewayCategoryEndpoint
+        /// </summary>
         public string BaseGatewayCategoryEndpoint
         {
             get { return _baseGatewayShoppingEndpoint; }
@@ -37,30 +68,82 @@ namespace ContestPark.Mobile.Configs
             }
         }
 
-        public string ClientId => "xamarin";
+        /// <summary>
+        /// Gets or sets the BaseIdentityEndpoint
+        /// </summary>
+        public string BaseIdentityEndpoint
+        {
+            get { return _baseIdentityEndpoint; }
+            set
+            {
+                _baseIdentityEndpoint = value;
+                UpdateEndpoint(_baseIdentityEndpoint);
+            }
+        }
 
-        public string Scope { get; set; } = "category cp duel signalrhub question";
-
-        public string RegisterWebsite { get; set; }
-
-        public string AuthorizeEndpoint { get; set; }
-
-        public string UserInfoEndpoint { get; set; }
-
-        public string TokenEndpoint { get; set; }
-
-        public string LogoutEndpoint { get; set; }
-
-        public string LogoutCallback { get; set; }
-
-        public string GatewaEndpoint { get; set; }
-
+        /// <summary>
+        /// Gets the CacheExpireIn
+        /// </summary>
         public TimeSpan CacheExpireIn { get; } = TimeSpan.FromMinutes(60);
 
-        public string SignalREndpoint { get; set; }
+        /// <summary>
+        /// Gets the ClientId
+        /// </summary>
+        public string ClientId => "xamarin";
 
+        /// <summary>
+        /// Gets or sets the GatewaEndpoint
+        /// </summary>
+        public string GatewaEndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsMockData
+        /// </summary>
         public bool IsMockData { get; set; }
 
+        /// <summary>
+        /// Gets or sets the LogoutCallback
+        /// </summary>
+        public string LogoutCallback { get; set; }
+
+        /// <summary>
+        /// Gets or sets the LogoutEndpoint
+        /// </summary>
+        public string LogoutEndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets the RegisterWebsite
+        /// </summary>
+        public string RegisterWebsite { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Scope
+        /// </summary>
+        public string Scope { get; set; } = "category cp duel signalrhub question offline_access";
+
+        /// <summary>
+        /// Gets or sets the SignalREndpoint
+        /// </summary>
+        public string SignalREndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets the TokenEndpoint
+        /// </summary>
+        public string TokenEndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets the UserInfoEndpoint
+        /// </summary>
+        public string UserInfoEndpoint { get; set; }
+
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// The UpdateEndpoint
+        /// </summary>
+        /// <param name="endpoint">The endpoint <see cref="string"/></param>
         private void UpdateEndpoint(string endpoint)
         {
             RegisterWebsite = $"{endpoint}/Account/Register";
@@ -75,9 +158,15 @@ namespace ContestPark.Mobile.Configs
             SignalREndpoint = $"{endpoint.Replace(":5106", "")}:5105/contestpark";
         }
 
+        /// <summary>
+        /// The UpdateGatewayCategoryEndpoint
+        /// </summary>
+        /// <param name="endpoint">The endpoint <see cref="string"/></param>
         private void UpdateGatewayCategoryEndpoint(string endpoint)
         {
             GatewaEndpoint = $"{endpoint}";
         }
+
+        #endregion Methods
     }
 }

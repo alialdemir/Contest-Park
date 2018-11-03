@@ -9,8 +9,8 @@ namespace ContestPark.Domain.Category.Interfaces
 {
     public interface ICategoryGrain : IGrainBase
     {
-        Task<ServiceResponse<Model.Response.Category>> GetCategoryList(string userId, Languages language, Paging paging);
-
         Task<ServiceResponse<SubCategorySearch>> CategorySearch(string userId, Int16 categoryId, Languages language, Paging paging);
+
+        Task<ServiceResponse<Model.Response.Category>> GetCategoryList(string userId, Languages language, Paging paging);
     }
 }

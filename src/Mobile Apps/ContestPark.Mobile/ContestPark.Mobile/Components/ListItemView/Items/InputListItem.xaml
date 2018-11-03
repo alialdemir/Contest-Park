@@ -7,41 +7,27 @@
         <Grid Padding="8"
               ColumnSpacing="15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
+                <RowDefinition Height="45" />
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <icon:IconImage Grid.Row="0"  x:Name="testd"
+            <icon:IconImage Grid.Row="0"
                             IconSize="24"
                             Grid.Column="0"
                             Icon="{Binding Icon}"
                             IconColor="{StaticResource Primary}" />
 
-            <Label Grid.Row="0"
+            <Entry Grid.Row="0"
                    Grid.Column="1"
-                   TextColor="White"
-                   IsVisible="False"
-                   FontSize="Default"
                    Text="{Binding Title}"
-                   VerticalOptions="Center" />
-
-            <icon:IconImage Grid.Row="0"
-                            IconSize="16"
-                            Grid.Column="2"
-                            IsVisible="False"
-                            Icon="fas-angle-right"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            IconColor="{StaticResource Primary}">
-
-                <icon:IconImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SingleTap}"
-                                          CommandParameter="{Binding CommandParameter}" />
-                </icon:IconImage.GestureRecognizers>
-            </icon:IconImage>
+                   IsPassword="{Binding IsPassword}"
+                   TextColor="{StaticResource White}"
+                   Placeholder="{Binding Placeholder}"
+                   PlaceholderColor="{StaticResource White}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

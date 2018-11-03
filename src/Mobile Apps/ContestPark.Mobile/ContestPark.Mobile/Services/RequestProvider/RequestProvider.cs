@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Exceptions;
 using ContestPark.Mobile.Extensions;
-using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Services.Settings;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -12,6 +11,7 @@ using Prism.Ioc;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -22,9 +22,8 @@ using System.Threading.Tasks;
 namespace ContestPark.Mobile.Services.RequestProvider
 {
     /// <summary>
-    /// HttpClient wrapper that integrates Retry and Circuit
-    /// breaker policies when invoking HTTP services.
-    /// Based on Polly library: https://github.com/App-vNext/Polly
+    /// HttpClient wrapper that integrates Retry and Circuit breaker policies when invoking HTTP
+    /// services. Based on Polly library: https://github.com/App-vNext/Polly
     /// </summary>
     public class RequestProvider : IRequestProvider
     {
@@ -59,6 +58,18 @@ namespace ContestPark.Mobile.Services.RequestProvider
         #region Methods
 
         /// <summary>
+        /// Servisten delete işlemi yapar
+        /// </summary>
+        /// <typeparam name="TResult">İstenilen tip de değeri döndürür</typeparam>
+        /// <param name="url">Servis delete Url</param>
+        /// <param name="data">Content data</param>
+        /// <returns>TResult tipinde veri</returns>
+        public Task<TResult> DeleteAsync<TResult>(string url, object data = null)
+        {
+            return SendAsync<TResult>(HttpMethod.Delete, url, data);
+        }
+
+        /// <summary>
         /// Servisten get işlemi yapar
         /// </summary>
         /// <typeparam name="TResult">İstenilen tip de değeri döndürür</typeparam>
@@ -81,28 +92,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return SendAsync<TResult>(HttpMethod.Post, url, data);
         }
 
-        /// <summary>
-        /// Servisten delete işlemi yapar
-        /// </summary>
-        /// <typeparam name="TResult">İstenilen tip de değeri döndürür</typeparam>
-        /// <param name="url">Servis delete Url</param>
-        /// <param name="data">Content data</param>
-        /// <returns>TResult tipinde veri</returns>
-        public Task<TResult> DeleteAsync<TResult>(string url, object data = null)
-        {
-            return SendAsync<TResult>(HttpMethod.Delete, url, data);
-        }
-
-        /// <summary>
-        /// Login process
-        /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="url"></param>
-        /// <param name="clientId"></param>
-        /// <param name="scopes"></param>
-        /// <param name="loginModel"></param>
-        /// <></returns>
-        public async Task<TResult> PostAsync<TResult>(string url, string clientId, string scopes, LoginModel loginModel)
+        /// <summary> Login process </summary> <typeparam name="TResult"></typeparam> <param
+        /// name="url"></param> <param name="clientId"></param> <param name="scopes"></param> <param
+        /// name="loginModel"></param> <></returns>
+        public async Task<TResult> PostAsync<TResult>(string url, Dictionary<string, string> dictionary)
         {
             // a new StringContent must be created for each retry
             // as it is disposed after each call
@@ -112,17 +105,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
             HttpClient httpClient = CreateHttpClient();
 
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
-            var from = new Dictionary<string, string>
-                {
-                    {"username",loginModel.UserName },
-                    {"password",loginModel.Password },
-                    {"client_id",clientId },
-                    {"grant_type","password" },
-                    {"scope",scopes },
-                };
+
             var response = await httpClient.PostAsync(
                 url,
-                new FormUrlEncodedContent(from));
+                new FormUrlEncodedContent(dictionary));
 
             await HandleResponse(response);
             string serialized = await response.Content.ReadAsStringAsync();
@@ -134,14 +120,93 @@ namespace ContestPark.Mobile.Services.RequestProvider
             //});
         }
 
+        /// <summary>
+        /// Dosya upload işlemi yapar
+        /// </summary>
+        /// <typeparam name="TResult">İstenilen tip de değeri döndürür</typeparam>
+        /// <param name="url">Servis post Url</param>
+        /// <param name="file">Yüklenecek dosya</param>
+        /// <returns>TResult tipinde veri</returns>
+        public Task<TResult> PostAsync<TResult>(string url, Stream file)
+        {
+            if (file == null)
+                return Task.FromResult(default(TResult));
+
+            return SendAsync<TResult>(HttpMethod.Post, url, file);
+        }
+
         #endregion Methods
 
         #region Private methods
 
+        private static string GetOriginFromUri(string uri)
+        {
+            var url = new Uri(uri);
+
+            var origin = $"{url.Scheme}://{url.DnsSafeHost}:{url.Port}";
+
+            return origin;
+        }
+
+        private static string NormalizeOrigin(string origin)
+        {
+            return origin?.Trim().ToLower();
+        }
+
+        private HttpClient CreateHttpClient()
+        {
+            HttpClient httpClient = new HttpClient(/*new NativeMessageHandler()*/);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+            if (settingsService != null)
+            {
+                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(settingsService.CurrentUser.Language.ToLanguageCode()));
+
+                string token = settingsService.AuthAccessToken;
+                if (!string.IsNullOrEmpty(token))
+                {
+                    string tokenType = settingsService.TokenType ?? "Bearer";
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, token);
+                }
+            }
+
+            return httpClient;
+        }
+
+        private async Task HandleResponse(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode == HttpStatusCode.Forbidden ||
+                    response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new ServiceAuthenticationException(content);
+                }
+
+                throw new HttpRequestExceptionEx(response.StatusCode, content);
+            }
+        }
+
+        private async Task<T> HttpInvoker<T>(string origin, Func<Task<T>> action)
+        {
+            var normalizedOrigin = NormalizeOrigin(origin);
+
+            if (!_policyWrappers.TryGetValue(normalizedOrigin, out PolicyWrap policyWrap))
+            {
+                policyWrap = Policy.WrapAsync(_policyCreator(normalizedOrigin).ToArray());
+                _policyWrappers.TryAdd(normalizedOrigin, policyWrap);
+            }
+
+            // Executes the action applying all the policies defined in the wrapper
+            return await policyWrap.ExecuteAsync(action, new Context(normalizedOrigin));
+        }
+
         private Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
         {
-            // a new StringContent must be created for each retry
-            // as it is disposed after each call
+            // a new StringContent must be created for each retry as it is disposed after each call
             var origin = GetOriginFromUri(url);
 
             return HttpInvoker(origin, async () =>
@@ -151,7 +216,17 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     HttpClient httpClient = CreateHttpClient();
                     HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
 
-                    if (data != null)
+                    if (data.GetType() == typeof(FileStream))
+                    {
+                        if (data == null)
+                            return default(TResult);
+
+                        httpRequestMessage.Content = new MultipartFormDataContent
+                        {
+                            { new StreamContent((Stream)data), "file", "filename" }// TODO: filename kısmında uzantı isteyebilir
+                        };
+                    }
+                    else if (data != null)
                     {
                         string content = await Task.Run(() => JsonConvert.SerializeObject(data));
                         httpRequestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
@@ -173,71 +248,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                 return default(TResult);
             });
-        }
-
-        private async Task<T> HttpInvoker<T>(string origin, Func<Task<T>> action)
-        {
-            var normalizedOrigin = NormalizeOrigin(origin);
-
-            if (!_policyWrappers.TryGetValue(normalizedOrigin, out PolicyWrap policyWrap))
-            {
-                policyWrap = Policy.WrapAsync(_policyCreator(normalizedOrigin).ToArray());
-                _policyWrappers.TryAdd(normalizedOrigin, policyWrap);
-            }
-
-            // Executes the action applying all
-            // the policies defined in the wrapper
-            return await policyWrap.ExecuteAsync(action, new Context(normalizedOrigin));
-        }
-
-        private static string NormalizeOrigin(string origin)
-        {
-            return origin?.Trim().ToLower();
-        }
-
-        private static string GetOriginFromUri(string uri)
-        {
-            var url = new Uri(uri);
-
-            var origin = $"{url.Scheme}://{url.DnsSafeHost}:{url.Port}";
-
-            return origin;
-        }
-
-        private HttpClient CreateHttpClient()
-        {
-            var httpClient = new HttpClient(/*new NativeMessageHandler()*/);
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
-            if (settingsService != null)
-            {
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(settingsService.Language.ToLanguageCode()));
-
-                string token = settingsService.AuthAccessToken;
-                if (!string.IsNullOrEmpty(token))
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                }
-            }
-
-            return httpClient;
-        }
-
-        private async Task HandleResponse(HttpResponseMessage response)
-        {
-            if (!response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-
-                if (response.StatusCode == HttpStatusCode.Forbidden ||
-                    response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new ServiceAuthenticationException(content);
-                }
-
-                throw new HttpRequestExceptionEx(response.StatusCode, content);
-            }
         }
 
         #endregion Private methods

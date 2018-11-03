@@ -68,13 +68,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public StandbyModes StandbyMode { get; set; }
-
-        public string SubCategoryPicturePath { get; set; }
-
-        public string SubcategoryName { get; set; }
-
-        public StandbyModeModel StandbyModeModel { get; private set; } = new StandbyModeModel();
         private DuelStartingModel _duelScreen = new DuelStartingModel();
 
         public DuelStartingModel DuelScreen
@@ -90,12 +83,17 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private bool RandomPicturStatus { get; set; } = true;
-
         /// <summary>
         /// Eğer sorular gelmişse quiz view geçerken true ise alert çıkmasın
         /// </summary>
         public bool IsNextQuestionExit { get; set; } = false;
+
+        public StandbyModes StandbyMode { get; set; }
+
+        public StandbyModeModel StandbyModeModel { get; private set; } = new StandbyModeModel();
+        public string SubcategoryName { get; set; }
+        public string SubCategoryPicturePath { get; set; }
+        private bool RandomPicturStatus { get; set; } = true;
 
         #endregion Properties
 
@@ -159,140 +157,34 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Bekleme modundayken yapılan işlemler
+        /// Kullanıcının beklediği düelloya rastgele bot ekler
         /// </summary>
-        private async Task StandbyModeOff()
+        private void AddToBot()
         {
-            DuelScreen = new DuelStartingModel()
+            int randomSecond = new Random().Next(5, 10);
+
+            Device.StartTimer(new TimeSpan(0, 0, 0, randomSecond, 0), () =>
             {
-                FounderFullName = _settingsService.CurrentUser.FullName,
-                FounderCoverPicturePath = _settingsService.CurrentUser.CoverPicturePath,
-                FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
-            };
+                if (IsNextQuestionExit || DuelScreen.DuelId > 0)
+                    return false;
 
-            if (_settingsService.IsSoundEffectActive)
-                _audioService.Play(Audio.AwaitingOpponent, true);
-
-            DuelSignalrListener();// SignalR listener load
-
-            await RandomUserProfilePicturesAsync();
-
-            DuelOpenCommand.Execute(null);
-        }
-
-        /// <summary>
-        /// Ekrandaki bilgileri yeniler
-        /// </summary>
-        private void SetDuelScreen(object sender, DuelStartingModel e)
-        {
-            DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
-            if (duelEnterScreenModel != null)
-            {
-                RandomPicturStatus = false;
-
-                AnimationCommand?.Execute(null);
-
-                DuelScreen = duelEnterScreenModel;
-            }
-            else
-            {
-                // TODO: boş gelirse problem vardır bekleme modunu kapat
-            }
-        }
-
-        /// <summary>
-        /// Düellodaki sıradaki soruyu alır
-        /// </summary>
-        private async void NextQuestion(object sender, NextQuestion e)
-        {
-            NextQuestion questionModel = (NextQuestion)sender;
-            if (questionModel == null)
-            {
-                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
-                return;
-            }
-
-            if (DuelScreen.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
-            {
-                AudioStop();
-
-                await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
-
-                IsNextQuestionExit = true;
-
-                OffNextQuestion();
-
-                Languages currentLanguage = _settingsService.Language;
-                questionModel.Question = questionModel.Question.GetQuestionByLanguage(currentLanguage);
-
-                Device.BeginInvokeOnMainThread(async () =>
+                _duelService.BotStandMode(new BotStandbyMode
                 {
-                    await PushPopupPageAsync(new QuestionPopupView
-                    {
-                        Question = questionModel,
-                        DuelScreen = DuelScreen,
-                        SubcategoryName = SubcategoryName,
-                        SubCategoryPicturePath = SubCategoryPicturePath
-                    });
-
-                    DuelCloseCommand.Execute(null);
+                    Bet = StandbyModeModel.Bet,
+                    SubCategoryId = StandbyModeModel.SubCategoryId
                 });
-            }
-            else
-            {
-                // TODO: rakip fotoğrafınn gelmesini beklet
-            }
-        }
 
-        /// <summary>
-        /// Rakip bekliyor moduna aldık
-        /// </summary>
-        private async Task ExecuteDuelOpenRandomAsync()
-        {
-            StandbyModeModel.ConnectionId = _settingsService.SignalRConnectionId;
-
-            await _duelService.StandbyMode(StandbyModeModel);// TODO: success kontrol et hata oluşursa mesaj çıksın
-
-            AddToBot();
-        }
-
-        /// <summary>
-        /// Rakip araken bekleme ekranı için gerekli işlemler
-        /// </summary>
-        private async Task RandomUserProfilePicturesAsync()
-        {
-            DuelScreen.OpponentFullName = ContestParkResources.AwaitingOpponent;
-
-            await RandomPicturesAsync();
-        }
-
-        /// <summary>
-        /// Bekleme modundayken rakip profil resmini değiştir
-        /// </summary>
-        private async Task RandomPicturesAsync()
-        {
-            ServiceModel<string> serviceModel = await _duelService.RandomUserProfilePictures(new PagingModel() { PageSize = 30 });
-
-            if (serviceModel?.Items == null)
-                return;
-
-            string[] pictures = serviceModel.Items.ToArray();
-            int pictureIndex = pictures.Length;
-
-            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 700), () =>
-            {
-                if (pictureIndex >= 0)
-                {
-                    pictureIndex--;
-
-                    if (pictureIndex < 0)
-                        pictureIndex = pictures.Length - 1;
-
-                    DuelScreen.OpponentProfilePicturePath = pictures[pictureIndex];
-                }
-
-                return RandomPicturStatus;
+                return false;
             });
+        }
+
+        /// <summary>
+        /// Sesi kapatır
+        /// </summary>
+        private void AudioStop()
+        {
+            if (_settingsService.IsSoundEffectActive)
+                _audioService?.Stop();
         }
 
         /// <summary>
@@ -332,34 +224,140 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Kullanıcının beklediği düelloya rastgele bot ekler
+        /// Rakip bekliyor moduna aldık
         /// </summary>
-        private void AddToBot()
+        private async Task ExecuteDuelOpenRandomAsync()
         {
-            int randomSecond = new Random().Next(5, 10);
+            StandbyModeModel.ConnectionId = _settingsService.SignalRConnectionId;
 
-            Device.StartTimer(new TimeSpan(0, 0, 0, randomSecond, 0), () =>
+            await _duelService.StandbyMode(StandbyModeModel);// TODO: success kontrol et hata oluşursa mesaj çıksın
+
+            AddToBot();
+        }
+
+        /// <summary>
+        /// Düellodaki sıradaki soruyu alır
+        /// </summary>
+        private async void NextQuestion(object sender, NextQuestion e)
+        {
+            NextQuestion questionModel = (NextQuestion)sender;
+            if (questionModel == null)
             {
-                if (IsNextQuestionExit || DuelScreen.DuelId > 0)
-                    return false;
+                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+                return;
+            }
 
-                _duelService.BotStandMode(new BotStandbyMode
+            if (DuelScreen.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
+            {
+                AudioStop();
+
+                await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
+
+                IsNextQuestionExit = true;
+
+                OffNextQuestion();
+
+                Languages currentLanguage = _settingsService.CurrentUser.Language;
+                questionModel.Question = questionModel.Question.GetQuestionByLanguage(currentLanguage);
+
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    Bet = StandbyModeModel.Bet,
-                    SubCategoryId = StandbyModeModel.SubCategoryId
-                });
+                    await PushPopupPageAsync(new QuestionPopupView
+                    {
+                        Question = questionModel,
+                        DuelScreen = DuelScreen,
+                        SubcategoryName = SubcategoryName,
+                        SubCategoryPicturePath = SubCategoryPicturePath
+                    });
 
-                return false;
+                    DuelCloseCommand.Execute(null);
+                });
+            }
+            else
+            {
+                // TODO: rakip fotoğrafınn gelmesini beklet
+            }
+        }
+
+        /// <summary>
+        /// Bekleme modundayken rakip profil resmini değiştir
+        /// </summary>
+        private async Task RandomPicturesAsync()
+        {
+            ServiceModel<string> serviceModel = await _duelService.RandomUserProfilePictures(new PagingModel() { PageSize = 30 });
+
+            if (serviceModel?.Items == null)
+                return;
+
+            string[] pictures = serviceModel.Items.ToArray();
+            int pictureIndex = pictures.Length;
+
+            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 700), () =>
+            {
+                if (pictureIndex >= 0)
+                {
+                    pictureIndex--;
+
+                    if (pictureIndex < 0)
+                        pictureIndex = pictures.Length - 1;
+
+                    DuelScreen.OpponentProfilePicturePath = pictures[pictureIndex];
+                }
+
+                return RandomPicturStatus;
             });
         }
 
         /// <summary>
-        /// Sesi kapatır
+        /// Rakip araken bekleme ekranı için gerekli işlemler
         /// </summary>
-        private void AudioStop()
+        private async Task RandomUserProfilePicturesAsync()
         {
+            DuelScreen.OpponentFullName = ContestParkResources.AwaitingOpponent;
+
+            await RandomPicturesAsync();
+        }
+
+        /// <summary>
+        /// Ekrandaki bilgileri yeniler
+        /// </summary>
+        private void SetDuelScreen(object sender, DuelStartingModel e)
+        {
+            DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
+            if (duelEnterScreenModel != null)
+            {
+                RandomPicturStatus = false;
+
+                AnimationCommand?.Execute(null);
+
+                DuelScreen = duelEnterScreenModel;
+            }
+            else
+            {
+                // TODO: boş gelirse problem vardır bekleme modunu kapat
+            }
+        }
+
+        /// <summary>
+        /// Bekleme modundayken yapılan işlemler
+        /// </summary>
+        private async Task StandbyModeOff()
+        {
+            DuelScreen = new DuelStartingModel()
+            {
+                FounderFullName = _settingsService.CurrentUser.FullName,
+                FounderCoverPicturePath = _settingsService.CurrentUser.CoverPicturePath,
+                FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
+            };
+
             if (_settingsService.IsSoundEffectActive)
-                _audioService?.Stop();
+                _audioService.Play(Audio.AwaitingOpponent, true);
+
+            DuelSignalrListener();// SignalR listener load
+
+            await RandomUserProfilePicturesAsync();
+
+            DuelOpenCommand.Execute(null);
         }
 
         #endregion Methods
@@ -368,9 +366,8 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand AnimationCommand;
 
-        private ICommand DuelOpenCommand => new Command(async () => await ExecuteDuelOpenRandomAsync());
-
         public ICommand DuelCloseCommand => new Command(async () => await ExecuteDuelCloseCommandAsync());
+        private ICommand DuelOpenCommand => new Command(async () => await ExecuteDuelOpenRandomAsync());
 
         #endregion Commands
     }

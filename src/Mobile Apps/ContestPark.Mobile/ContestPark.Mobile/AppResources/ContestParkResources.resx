@@ -346,7 +346,7 @@
     <comment>Sıralama için saniye baş harfi</comment>
   </data>
   <data name="AccountSettings" xml:space="preserve">
-    <value>Account Settings</value>
+    <value>Hesap Ayarları</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
     <value>Uygulama Ayarları</value>
@@ -389,5 +389,44 @@
   </data>
   <data name="PasswordChange" xml:space="preserve">
     <value>Şifre Değiştir</value>
+  </data>
+  <data name="ChangeCoverPicture" xml:space="preserve">
+    <value>Kapat resmi değiştir</value>
+  </data>
+  <data name="ChangeProfilePicture" xml:space="preserve">
+    <value>Profile resmi değiştir</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Yeni Şifre</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Eski Şifre</value>
+  </data>
+  <data name="UpdateSuccessful" xml:space="preserve">
+    <value>Güncelleme Başarılı!</value>
+  </data>
+  <data name="YourInformationHasBeenUpdated" xml:space="preserve">
+    <value>Bilgileriniz güncellendi.</value>
+  </data>
+  <data name="YourPasswordHasBeenUpdated" xml:space="preserve">
+    <value>Şifreniz güncellendi.</value>
+  </data>
+  <data name="ChooseAnAction" xml:space="preserve">
+    <value>İşlem seçiniz</value>
+  </data>
+  <data name="ChooseFromLibrary" xml:space="preserve">
+    <value>Gallery'den seç</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>Erişim izni yok</value>
+  </data>
+  <data name="TakeAPhoto" xml:space="preserve">
+    <value>Fotoğraf çek</value>
+  </data>
+  <data name="UnableToTakePhotos" xml:space="preserve">
+    <value>Fotoğraf seçilemedi.</value>
   </data>
 </root>

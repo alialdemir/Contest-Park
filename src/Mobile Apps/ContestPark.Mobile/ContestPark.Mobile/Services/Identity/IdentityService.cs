@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -10,6 +11,8 @@ using ContestPark.Mobile.Services.Signalr.Base;
 using Newtonsoft.Json;
 using Prism.Services;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -19,15 +22,12 @@ namespace ContestPark.Mobile.Services.Identity
     {
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
+        private const string ApiUrlBase = "api/v1/account";
         private readonly IPageDialogService _dialogService;
-
+        private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
 
         private readonly ISignalRServiceBase _signalRServiceBase;
-
-        private const string ApiUrlBase = "api/v1/account";
 
         #endregion Private variables
 
@@ -50,14 +50,44 @@ namespace ContestPark.Mobile.Services.Identity
         #region Methods
 
         /// <summary>
-        /// Üye ol servisine istek atar başarılı ise true başarısız ise mesaj çıkarır ve false döndürür
+        /// Kapak resmi değiştir
         /// </summary>
-        /// <param name="signUpModel">Üye olma bilgileri</param>
-        /// <returns>Başarılı ise true başarısız ise false</returns>
-        public async Task<bool> SignUpAsync(SignUpModel signUpModel)
+        /// <param name="picture">Resim stream</param>
+        public Task ChangeCoverPictureAsync(Stream picture)// TODO: URL düzeltilecek
         {
-            await Task.Delay(1000);
-            return false;
+            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            //string message = await _requestProvider.PostAsync<string>(uri,picture);
+
+            //await ShowErrorMessage(message);
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Şifre değiştir
+        /// </summary>
+        /// <param name="changePasswordModel">Kullanıcı şifre bilgileri</param>
+        public Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
+        {
+            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            //string message = await _requestProvider.PostAsync<string>(uri, changePasswordModel);
+
+            //await ShowErrorMessage(message);
+            return Task.FromResult(true);
+        }
+
+        /// <summary>
+        /// Profil resmi değiştir
+        /// </summary>
+        /// <param name="picture">Resim stream</param>
+        public async Task ChangeProfilePictureAsync(Stream picture)// TODO: URL düzeltilecek
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            string message = await _requestProvider.PostAsync<string>(uri, picture);
+
+            await ShowErrorMessage(message);
         }
 
         /// <summary>
@@ -83,27 +113,113 @@ namespace ContestPark.Mobile.Services.Identity
         {
             try
             {
-                return await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint,
-                    GlobalSetting.Instance.ClientId,
-                    GlobalSetting.Instance.Scope, loginModel);
+                var from = new Dictionary<string, string>
+                {
+                    {"username", loginModel.UserName },
+                    {"password", loginModel.Password },
+                    {"client_id", GlobalSetting.Instance.ClientId },
+                    {"grant_type", "password" },
+                    {"scope", GlobalSetting.Instance.Scope },
+                };
+
+                return await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
             }
             catch (Exception ex)
             {
-                if (ex.GetType() == typeof(HttpRequestExceptionEx))
-                {
-                    await ShowHttpErrorMessage(ex);
-                }
-                else if (ex.GetType() == typeof(HttpRequestException))
-                {
-#if DEBUG
-                    await ShowErrorMessage(ex.Message);
-#else
-       await ShowMessage(ContestParkResources.GlobalErrorMessage);
-#endif
-                }
+                await ShowTokenErrorMessage(ex);
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Token refresh
+        /// </summary>
+        /// <returns></returns>
+        public async Task RefreshTokenAsync()
+        {
+            try
+            {
+                string refreshToken = _settingsService.RefreshToken;
+                if (string.IsNullOrEmpty(refreshToken))
+                    return;
+
+                var from = new Dictionary<string, string>
+                {
+                    {"grant_type", "refresh_token" },
+                    {"refresh_token", refreshToken },
+                    {"client_id", GlobalSetting.Instance.ClientId },
+                };
+
+                RefreshTokenModel refreshTokenModel = await _requestProvider.PostAsync<RefreshTokenModel>(GlobalSetting.Instance.TokenEndpoint, from);
+                if (refreshTokenModel != null)
+                {
+                    // Token bilgisi yenilendi
+                    _settingsService.AuthAccessToken = refreshTokenModel.AccessToken;
+                    _settingsService.RefreshToken = refreshTokenModel.RefreshToken;
+                    _settingsService.TokenType = refreshTokenModel.TokenType;
+
+                    // Current user yenilendi
+                    _settingsService.RefreshCurrentUser();
+                }
+            }
+            catch (Exception ex)
+            {
+                await ShowTokenErrorMessage(ex);
+            }
+        }
+
+        /// <summary>
+        /// Üye ol servisine istek atar başarılı ise true başarısız ise mesaj çıkarır ve false döndürür
+        /// </summary>
+        /// <param name="signUpModel">Üye olma bilgileri</param>
+        /// <returns>Başarılı ise true başarısız ise false</returns>
+        public async Task<bool> SignUpAsync(SignUpModel signUpModel)
+        {
+            await Task.Delay(1000);
+            return false;
+        }
+
+        /// <summary>
+        /// Çıkış yap
+        /// </summary>
+        public async Task Unauthorized()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.LogoutEndpoint);
+
+            await _requestProvider.PostAsync<string>(uri);
+
+            _settingsService.AuthAccessToken = string.Empty;
+            _settingsService.SignalRConnectionId = string.Empty;
+
+            _settingsService.RemoveCurrentUser();
+
+            await _signalRServiceBase.DisconnectAsync();
+        }
+
+        /// <summary>
+        /// Kullanıcının kullanıcı adı ve ad soyad bilgisini günceller
+        /// </summary>
+        /// <param name="userInfo">Ad soyad ve kullanıcı adı modeli</param>
+        public Task<bool> UpdateUserInfoAsync(UpdateUserInfoModel userInfo)
+        {
+            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            //string message = await _requestProvider.PostAsync<string>(uri, userInfo);
+
+            //await ShowErrorMessage(message);
+            return Task.FromResult(true);
+        }
+
+        private async Task ShowErrorMessage(string message)
+        {
+            if (!string.IsNullOrEmpty(message))
+            {
+                await _dialogService.DisplayAlertAsync(
+                              ContestParkResources.Error,
+                         message,
+                               ContestParkResources.Okay);
+            }
         }
 
         private async Task ShowHttpErrorMessage(Exception ex)
@@ -131,29 +247,23 @@ namespace ContestPark.Mobile.Services.Identity
             }
         }
 
-        private async Task ShowErrorMessage(string message)
-        {
-            await _dialogService.DisplayAlertAsync(
-                             ContestParkResources.Error,
-                        message,
-                              ContestParkResources.Okay);
-        }
-
         /// <summary>
-        /// Çıkış yap
+        /// Token alırken gelen hata mesajlarını gösterir
         /// </summary>
-        public async Task Unauthorized()
+        private async Task ShowTokenErrorMessage(Exception ex)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.LogoutEndpoint);
-
-            await _requestProvider.PostAsync<string>(uri);
-
-            _settingsService.AuthAccessToken = string.Empty;
-            _settingsService.SignalRConnectionId = string.Empty;
-
-            _settingsService.RemoveCurrentUser();
-
-            await _signalRServiceBase.DisconnectAsync();
+            if (ex.GetType() == typeof(HttpRequestExceptionEx))
+            {
+                await ShowHttpErrorMessage(ex);
+            }
+            else if (ex.GetType() == typeof(HttpRequestException))
+            {
+#if DEBUG
+                await ShowErrorMessage(ex.Message);
+#else
+       await ShowMessage(ContestParkResources.GlobalErrorMessage);
+#endif
+            }
         }
 
         #endregion Methods

@@ -55,7 +55,6 @@
                     <xfx:XfxEntry Grid.Row="2"
                                   ActivePlaceholderColor="{StaticResource Black}"
                                   Grid.ColumnSpan="3"
-                                  x:Name="txtUserName"
                                   AutomationId="txtUserName"
                                   Text="{Binding LoginModel.UserName}"
                                   Placeholder="{i18n:Translate UserName}" />
@@ -63,7 +62,6 @@
                     <xfx:XfxEntry Grid.Row="3"
                                   Grid.ColumnSpan="3"
                                   ActivePlaceholderColor="{StaticResource Black}"
-                                  x:Name="txtPassword"
                                   IsPassword="True"
                                   AutomationId="txtPassword"
                                   Text="{Binding LoginModel.Password}"

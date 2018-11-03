@@ -4,11 +4,11 @@ namespace ContestPark.Domain.Category.Model.Response
 {
     public class SubCategorySearch
     {
+        private string picturePath;
+        private int price;
         public string CategoryName { get; set; }
 
-        public string SubCategoryName { get; set; }
-
-        private string picturePath;
+        public string DisplayPrice { get; set; } = "0";
 
         public string PicturePath
         {
@@ -23,10 +23,6 @@ namespace ContestPark.Domain.Category.Model.Response
             }
         }
 
-        public short SubCategoryId { get; set; }
-
-        private int price;
-
         public int Price
         {
             get { return price; }
@@ -40,6 +36,7 @@ namespace ContestPark.Domain.Category.Model.Response
             }
         }
 
-        public string DisplayPrice { get; set; } = "0";
+        public short SubCategoryId { get; set; }
+        public string SubCategoryName { get; set; }
     }
 }

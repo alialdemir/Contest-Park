@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*" />
             </components:CustomGrid.ColumnDefinitions>
 
-            <icon:IconImage Grid.Row="0"  x:Name="testd"
+            <icon:IconImage Grid.Row="0"
                             IconSize="24"
                             Grid.Column="0"
                             Icon="{Binding Icon}"

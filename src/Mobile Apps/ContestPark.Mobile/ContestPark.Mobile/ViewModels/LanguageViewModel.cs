@@ -4,6 +4,7 @@ using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Models.MenuItem;
+using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -21,6 +22,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
+        private readonly IIdentityService _identityService;
         private readonly ISettingsService _settingsService;
 
         #endregion Private variables
@@ -28,10 +30,13 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public LanguageViewModel(INavigationService navigationService,
-                                 ISettingsService settingsService) : base(navigationService)
+                                 ISettingsService settingsService,
+                                 IIdentityService identityService) : base(navigationService)
         {
             Title = ContestParkResources.Language;
+
             _settingsService = settingsService;
+            _identityService = identityService;
         }
 
         #endregion Constructors
@@ -46,7 +51,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override Task InitializeAsync()
         {
-            bool isTurkish = _settingsService.Language == Languages.Turkish;
+            bool isTurkish = _settingsService.CurrentUser.Language == Languages.Turkish;
 
             Items.AddRange(new List<MenuItemList>()
             {
@@ -55,13 +60,13 @@ namespace ContestPark.Mobile.ViewModels
                                     new Models.MenuItem.MenuItem {
                                         CommandParameter = "Turkish",
                                         Title = ContestParkResources.Turkish,
-                                        MenuType = Enums.MenuTypes.Switch,
+                                        MenuType = MenuTypes.Switch,
                                         IsToggled = isTurkish
                                     },
                                     new Models.MenuItem.MenuItem {
                                         CommandParameter = "English",
                                         Title = ContestParkResources.English,
-                                        MenuType = Enums.MenuTypes.Switch,
+                                        MenuType = MenuTypes.Switch,
                                         IsToggled = !isTurkish
                                     },
                                 },
@@ -91,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
 
             await _settingsService.SetSettingsAsync(SettingTypes.Language, languageCode);
 
-            _settingsService.Language = language;
+            _settingsService.CurrentUser.Language = language;
 
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
@@ -101,6 +106,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 DependencyService.Get<ILocalize>().SetCultureInfo(culture);
             }
+
+            await _identityService.RefreshTokenAsync();
 
             await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
 
@@ -117,7 +124,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             Items
                  .FirstOrDefault()
-                 .Where(p => p.CommandParameter != langName)
+                 .Where(p => p.CommandParameter?.ToString() != langName)
                  .ToList()
                  .ForEach(p => p.IsToggled = false);
         }
@@ -137,16 +144,16 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigation
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            IsExit = false;
-            base.OnNavigatedTo(parameters);
-        }
-
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             IsExit = true;
             base.OnNavigatedFrom(parameters);
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            IsExit = false;
+            base.OnNavigatedTo(parameters);
         }
 
         #endregion Navigation

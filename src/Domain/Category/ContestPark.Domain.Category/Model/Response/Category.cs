@@ -6,8 +6,8 @@ namespace ContestPark.Domain.Category.Model.Response
 {
     public class Category : ModelBase
     {
-        public string CategoryName { get; set; }
         public Int16 CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public List<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
     }
 }

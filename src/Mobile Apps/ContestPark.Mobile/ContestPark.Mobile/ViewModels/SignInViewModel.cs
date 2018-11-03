@@ -45,6 +45,11 @@ namespace ContestPark.Mobile.ViewModels
 
         private LoginModel _loginModel = new LoginModel();
 
+        public string FacebookIcon
+        {
+            get { return "fab-facebook-square"; }
+        }
+
         public LoginModel LoginModel
         {
             get
@@ -58,24 +63,9 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public string FacebookIcon
-        {
-            get { return "fab-facebook-square"; }
-        }
-
         #endregion Properties
 
         #region Methods
-
-        private async Task ExecuteSignUpCommand()
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-            await PushNavigationPageAsync($"{nameof(SignUpView)}");
-            IsBusy = false;
-        }
 
         private async Task ExecuteForgetYourPasswordCommand()
         {
@@ -100,12 +90,24 @@ namespace ContestPark.Mobile.ViewModels
             if (token != null)
             {
                 _settingsService.AuthAccessToken = token.AccessToken;
-                _settingsService.Language = Enums.Languages.Turkish;// TODO: servisden al
+                _settingsService.RefreshToken = token.RefreshToken;
+                _settingsService.TokenType = token.TokenType;
+
                 await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
             }
 
             UserDialogs.Instance.HideLoading();
 
+            IsBusy = false;
+        }
+
+        private async Task ExecuteSignUpCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+            await PushNavigationPageAsync($"{nameof(SignUpView)}");
             IsBusy = false;
         }
 
@@ -140,11 +142,10 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand SignUpCommand => new Command(async () => await ExecuteSignUpCommand());
-        public ICommand SignInCommand => new Command(async () => await ExecuteSignInCommandAsync());
-        public ICommand ForgetYourPasswordCommand => new Command(async () => await ExecuteForgetYourPasswordCommand());
-
         private ICommand socialNetworkkWithLoginCommand;
+        public ICommand ForgetYourPasswordCommand => new Command(async () => await ExecuteForgetYourPasswordCommand());
+        public ICommand SignInCommand => new Command(async () => await ExecuteSignInCommandAsync());
+        public ICommand SignUpCommand => new Command(async () => await ExecuteSignUpCommand());
 
         public ICommand SocialNetworkkWithLoginCommand
         {

@@ -20,17 +20,6 @@ namespace ContestPark.Identity.API.Configuration
             };
         }
 
-        // Identity resources are data like user ID, name, or email address of a user
-        // see: http://docs.identityserver.io/en/release/configuration/resources.html
-        public static IEnumerable<IdentityResource> GetResources()
-        {
-            return new List<IdentityResource>
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-            };
-        }
-
         // client want to access resources (aka scopes)
         public static IEnumerable<Client> GetClients()
         {
@@ -43,6 +32,7 @@ namespace ContestPark.Identity.API.Configuration
                             AccessTokenLifetime = 3600 * 24 * 90,// 3 month
                             AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                             RequireClientSecret = false,
+                            AllowOfflineAccess = true,
                             AllowedScopes =new List<string>
                                     {
                                         IdentityServerConstants.StandardScopes.OpenId,
@@ -56,6 +46,17 @@ namespace ContestPark.Identity.API.Configuration
                                         "question"
                                     },
                         },
+            };
+        }
+
+        // Identity resources are data like user ID, name, or email address of a user
+        // see: http://docs.identityserver.io/en/release/configuration/resources.html
+        public static IEnumerable<IdentityResource> GetResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
             };
         }
     }

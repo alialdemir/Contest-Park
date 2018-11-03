@@ -9,6 +9,7 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Score;
@@ -135,6 +136,8 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.Register<IAudioService, AudioService>();
 
+                containerRegistry.Register<IMediaService, MediaService>();
+
                 containerRegistry.RegisterSingleton<IGameService, GameService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
@@ -170,6 +173,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<ICacheService, CacheService>();
 
                 containerRegistry.Register<IAudioService, AudioService>();
+
+                containerRegistry.Register<IMediaService, MediaService>();
 
                 containerRegistry.RegisterSingleton<IGameService, GameService>();
 

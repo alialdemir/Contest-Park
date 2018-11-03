@@ -5,13 +5,9 @@ namespace ContestPark.Domain.Category.Model.Response
 {
     public class SubCategory
     {
-        public string SubCategoryName { get; set; }
-
-        public Int16 SubCategoryId { get; set; }
-
-        public string PicturePath { get; set; } = DefaultImages.DefaultLock;
-
         private int price;
+        public string DisplayPrice { get; set; } = "0";
+        public string PicturePath { get; set; } = DefaultImages.DefaultLock;
 
         public int Price
         {
@@ -26,6 +22,7 @@ namespace ContestPark.Domain.Category.Model.Response
             }
         }
 
-        public string DisplayPrice { get; set; } = "0";
+        public Int16 SubCategoryId { get; set; }
+        public string SubCategoryName { get; set; }
     }
 }

@@ -19,22 +19,19 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly string AccessTokenDefault = string.Empty;
 
         private readonly string IdTokenDefault = string.Empty;
-
         private readonly bool IsPrivatePriceDefault = false;
-
         private readonly bool IsSoundEffectActiveDefaultDefault = true;
-
-        private readonly Languages LanguageDefault = Languages.English;
+        private readonly string RefleshTokenDefault = string.Empty;
 
         private readonly string SignalRConnectionIdDefault = string.Empty;
+        private readonly string TokenTypeDefault = "Bearer";
 
         #endregion Setting Constants
 
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
         private const string ApiUrlBase = "api/v1/settings";
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
@@ -49,19 +46,26 @@ namespace ContestPark.Mobile.Services.Settings
 
         #region Settings Properties
 
+        private UserInfoModel _userInfo;
+
         public string AuthAccessToken
         {
             get => GetValueOrDefault(AccessTokenDefault);
             set => AddOrUpdateValue(value);
         }
 
-        public Languages Language
+        public UserInfoModel CurrentUser
         {
-            get => (Languages)GetValueOrDefault((byte)LanguageDefault);
-            set => AddOrUpdateValue((byte)value);
-        }
+            get
+            {
+                if (_userInfo == null)
+                {
+                    RefreshCurrentUser();
+                }
 
-        public string SignalRConnectionId { get; set; }
+                return _userInfo;
+            }
+        }
 
         public bool IsPrivatePrice
         {
@@ -75,19 +79,18 @@ namespace ContestPark.Mobile.Services.Settings
             set => AddOrUpdateValue(value);
         }
 
-        private UserInfoModel _userInfo;
-
-        public UserInfoModel CurrentUser
+        public string RefreshToken
         {
-            get
-            {
-                if (_userInfo == null)
-                {
-                    _userInfo = JwtTokenDecoder.GetUserInfo(AuthAccessToken);
-                }
+            get => GetValueOrDefault(RefleshTokenDefault);
+            set => AddOrUpdateValue(value);
+        }
 
-                return _userInfo;
-            }
+        public string SignalRConnectionId { get; set; }
+
+        public string TokenType
+        {
+            get => GetValueOrDefault(TokenTypeDefault);
+            set => AddOrUpdateValue(value);
         }
 
         #endregion Settings Properties
@@ -156,14 +159,22 @@ namespace ContestPark.Mobile.Services.Settings
 
         #endregion Internal Implementation
 
-        #region RemoveCurrentUser
+        #region CurrentUser methods
+
+        /// <summary>
+        /// Current user refresh
+        /// </summary>
+        public void RefreshCurrentUser()
+        {
+            _userInfo = _userInfo.GetUserInfo(AuthAccessToken);
+        }
 
         public void RemoveCurrentUser()
         {
             _userInfo = new UserInfoModel();
         }
 
-        #endregion RemoveCurrentUser
+        #endregion CurrentUser methods
 
         #region Setting Service
 

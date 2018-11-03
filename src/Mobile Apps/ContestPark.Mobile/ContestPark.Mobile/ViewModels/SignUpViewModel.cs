@@ -97,7 +97,6 @@ namespace ContestPark.Mobile.ViewModels
             if (token != null)
             {
                 _settingsService.AuthAccessToken = token.AccessToken;
-                _settingsService.Language = Enums.Languages.Turkish;// TODO: servisden al
                 await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
             }
         }

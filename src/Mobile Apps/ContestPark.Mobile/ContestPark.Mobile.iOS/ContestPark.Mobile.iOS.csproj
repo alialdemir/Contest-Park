@@ -87,6 +87,9 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Main.cs" />
@@ -255,6 +258,9 @@
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Iconize.FontAwesome">
       <Version>3.2.0.75</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer">
       <Version>1.1.0</Version>

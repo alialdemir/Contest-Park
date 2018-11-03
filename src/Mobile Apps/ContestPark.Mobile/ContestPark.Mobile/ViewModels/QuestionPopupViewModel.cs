@@ -22,15 +22,11 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly IDuelSignalRService _duelSignalRService;
-
-        private readonly IDuelService _duelService;
-
-        private readonly ISettingsService _settingsService;
-
         private readonly IAudioService _audioService;
-
         private readonly IBotService _botService;
+        private readonly IDuelService _duelService;
+        private readonly IDuelSignalRService _duelSignalRService;
+        private readonly ISettingsService _settingsService;
 
         #endregion Private variables
 
@@ -57,32 +53,51 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public string RedColor
-        {
-            get { return "#993232"; }
-        }
+        private AnswerPair _answers;
 
-        public string PrimaryColor
-        {
-            get { return "#ffc107"; }
-        }
+        private DuelStartingModel _duelStarting;
 
-        public string GreenColor
-        {
-            get { return "#017d46"; }
-        }
-
-        private bool IsFounder => _settingsService.CurrentUser.UserId == DuelScreen.FounderUserId;
-
-        private bool IsTimerEnable { get; set; }
-
-        private bool IsStylishClick { get; set; }
-
-        private bool IsExit { get; set; }
-
-        public byte Round { get; set; } = 1;
+        private string _founderImageBorderColor;
 
         private byte _founderScore;
+
+        private string _opponentImageBorderColor;
+
+        private byte _opponentScore;
+
+        private NextQuestion _question;
+
+        private byte _time = 10;
+
+        public AnswerPair Answers
+        {
+            get => _answers;
+            set
+            {
+                _answers = value;
+                RaisePropertyChanged(() => Answers);
+            }
+        }
+
+        public DuelStartingModel DuelScreen
+        {
+            get => _duelStarting;
+            set
+            {
+                _duelStarting = value;
+                RaisePropertyChanged(() => DuelScreen);
+            }
+        }
+
+        public string FounderImageBorderColor
+        {
+            get => _founderImageBorderColor;
+            set
+            {
+                _founderImageBorderColor = value;
+                RaisePropertyChanged(() => FounderImageBorderColor);
+            }
+        }
 
         public byte FounderScore
         {
@@ -94,7 +109,20 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private byte _opponentScore;
+        public string GreenColor
+        {
+            get { return "#017d46"; }
+        }
+
+        public string OpponentImageBorderColor
+        {
+            get => _opponentImageBorderColor;
+            set
+            {
+                _opponentImageBorderColor = value;
+                RaisePropertyChanged(() => OpponentImageBorderColor);
+            }
+        }
 
         public byte OpponentScore
         {
@@ -106,19 +134,10 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private byte _time = 10;
-
-        public byte Time
+        public string PrimaryColor
         {
-            get => _time;
-            set
-            {
-                _time = value;
-                RaisePropertyChanged(() => Time);
-            }
+            get { return "#ffc107"; }
         }
-
-        private NextQuestion _question;
 
         public NextQuestion Question
         {
@@ -132,57 +151,30 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private AnswerPair _answers;
-
-        public AnswerPair Answers
+        public string RedColor
         {
-            get => _answers;
-            set
-            {
-                _answers = value;
-                RaisePropertyChanged(() => Answers);
-            }
+            get { return "#993232"; }
         }
 
-        private DuelStartingModel _duelStarting;
-
-        public DuelStartingModel DuelScreen
-        {
-            get => _duelStarting;
-            set
-            {
-                _duelStarting = value;
-                RaisePropertyChanged(() => DuelScreen);
-            }
-        }
-
+        public byte Round { get; set; } = 1;
         public string SubcategoryName { get; set; }
-
         public string SubCategoryPicturePath { get; set; }
 
-        private string _founderImageBorderColor;
-
-        public string FounderImageBorderColor
+        public byte Time
         {
-            get => _founderImageBorderColor;
+            get => _time;
             set
             {
-                _founderImageBorderColor = value;
-                RaisePropertyChanged(() => FounderImageBorderColor);
+                _time = value;
+                RaisePropertyChanged(() => Time);
             }
         }
 
-        private string _opponentImageBorderColor;
+        private bool IsExit { get; set; }
+        private bool IsFounder => _settingsService.CurrentUser.UserId == DuelScreen.FounderUserId;
 
-        public string OpponentImageBorderColor
-        {
-            get => _opponentImageBorderColor;
-            set
-            {
-                _opponentImageBorderColor = value;
-                RaisePropertyChanged(() => OpponentImageBorderColor);
-            }
-        }
+        private bool IsStylishClick { get; set; }
+        private bool IsTimerEnable { get; set; }
 
         #endregion Properties
 
@@ -220,108 +212,12 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Düellodaki sıradaki soruyu alır
-        /// </summary>
-        private void NextQuestion(object sender, NextQuestion e)
-        {
-            NextQuestion questionModel = (NextQuestion)sender;
-            if (questionModel == null)
-            {
-                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
-
-                IsExit = true;
-                DuelCloseCommand.Execute(null);
-
-                return;
-            }
-
-            IsTimerEnable = false;
-
-            FounderScore += questionModel.FounderScore;
-            OpponentScore += questionModel.OpponentScore;
-
-            ChangeStylishColor(questionModel.FounderStylish);
-            ChangeStylishColor(questionModel.OpponentStylish);
-
-            PlaySound(questionModel.FounderStylish, questionModel.OpponentStylish);
-
-            ChangeImageBorderColor(questionModel.FounderStylish, questionModel.OpponentStylish);
-
-            if (questionModel.IsGameEnd || questionModel?.Question == null || questionModel.Question.Questions?.Count == 0)
-            {
-                GameEnd();
-            }
-            else if (questionModel?.Question != null)
-            {
-                Languages currentLanguage = _settingsService.Language;
-                questionModel.Question = questionModel.Question.GetQuestionByLanguage(currentLanguage);
-
-                Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Hemen sonraki soruya geçmemesi için 2 sn beklettim
-                {
-                    if (IsExit)
-                        return false;
-
-                    DisplayQuestionExpectedPopup();
-
-                    Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Bekleme ekranı çıkmadan soru ekranda gözükmesin
-                    {
-                        if (IsExit)
-                            return false;
-
-                        Question = questionModel;
-
-                        return false;
-                    });
-
-                    return false;
-                });
-            }
-        }
-
-        /// <summary>
         /// Botu aktif eder
         /// </summary>
         private void BotActive()
         {
             if (DuelScreen.FounderUserId.Contains("-bot") || DuelScreen.OpponentUserId.Contains("-bot"))// Eğer bot ile oynuyorsa oyuna bot eklendi
                 _botService.Init(SaveAnswer, IsFounder);
-        }
-
-        /// <summary>
-        /// Oyun bittiği zaman 2 sn sonra duel result ekranına gider
-        /// </summary>
-        private void GameEnd()
-        {
-            Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Son sorunun cevabınıda görsün
-            {
-                if (IsExit)
-                    return false;
-
-                DuelCloseCommand.Execute(null);
-
-                return false;
-            });
-        }
-
-        /// <summary>
-        /// Verilen cevaplara göre sesleri çalar
-        /// </summary>
-        /// <param name="founderStylish">Kurucunun verdiği cevap</param>
-        /// <param name="opponentStylish">Rakip oyuncunun verdiği cevap</param>
-        private void PlaySound(Stylish founderStylish, Stylish opponentStylish)
-        {
-            Stylish correctAnswer = GetCorrectAnswer();
-            if (IsFounder)
-            {
-                bool isCorrectFounder = correctAnswer == founderStylish;
-
-                _audioService?.Play(isCorrectFounder ? Audio.Success : Audio.Fail);
-            }
-            else
-            {
-                bool isCorrectOpponent = correctAnswer == opponentStylish;
-                _audioService?.Play(isCorrectOpponent ? Audio.Success : Audio.Fail);
-            }
         }
 
         /// <summary>
@@ -367,6 +263,18 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// Cevapları yan yana sıralamak için ayrı bir model oluşturduk
+        /// </summary>
+        private void CreateAnswerPair()
+        {
+            var answers = Question?.Question?.Answers;
+            if (answers?.Count == 4)
+            {
+                Answers = new AnswerPair(answers[0], answers[1], answers[2], answers[3]);
+            }
+        }
+
+        /// <summary>
         /// Bekleme ekranı gösterir belirli süre sonra gizler
         /// </summary>
         private void DisplayQuestionExpectedPopup()
@@ -392,6 +300,171 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// Sorunun cevabını doğru bildimi kontrol eder
+        /// </summary>
+        /// <param name="answerModel">Şıkkın bilgisi</param>
+        private async Task ExecuteAnswerCommandCommand(AnswerModel answerModel)
+        {
+            if (answerModel == null || !IsStylishClick)
+                return;
+
+            IsStylishClick = false;
+
+            Stylish answerStylish = GetAnswerByUserAnswer(answerModel.Answers);
+
+            await SaveAnswer(answerStylish, IsFounder);
+        }
+
+        /// <summary>
+        /// Soru ekranını kapatır düel result ekranı açar
+        /// </summary>
+        private void ExecuteDuelCloseCommand()
+        {
+            IsExit = true;
+
+            IsStylishClick = false;
+
+            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
+            _duelSignalRService.OffNextQuestion();
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await PushPopupPageAsync(new DuelResultPopupView());
+
+                await RemoveFirstPopupAsync();
+            });
+        }
+
+        /// <summary>
+        /// Oyun bittiği zaman 2 sn sonra duel result ekranına gider
+        /// </summary>
+        private void GameEnd()
+        {
+            Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Son sorunun cevabınıda görsün
+            {
+                if (IsExit)
+                    return false;
+
+                DuelCloseCommand.Execute(null);
+
+                return false;
+            });
+        }
+
+        /// <summary>
+        /// Kullanıcının verdiği cevabı Stylish enuma çevirir
+        /// </summary>
+        /// <param name="answer">Kullanıcının verdiği cevap</param>
+        /// <returns></returns>
+        private Stylish GetAnswerByUserAnswer(string answer)
+        {
+            return (Stylish)Question
+                .Question
+                .Answers
+                .IndexOf(x => x.Answers == answer);
+        }
+
+        /// <summary>
+        /// Renk adına göre rengi döndürür
+        /// </summary>
+        private Color GetColor(string colorName)
+        {
+            return (Color)ContestParkApp.Current.Resources[colorName];
+        }
+
+        /// <summary>
+        /// Doğru cevabın Stylish enum verir
+        /// </summary>
+        /// <returns>Doğru cevap</returns>
+        private Stylish GetCorrectAnswer()
+        {
+            return (Stylish)Question
+                .Question
+                .Answers
+                .IndexOf(x => x.IsCorrect);
+        }
+
+        /// <summary>
+        /// Düellodaki sıradaki soruyu alır
+        /// </summary>
+        private void NextQuestion(object sender, NextQuestion e)
+        {
+            NextQuestion questionModel = (NextQuestion)sender;
+            if (questionModel == null)
+            {
+                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+
+                IsExit = true;
+                DuelCloseCommand.Execute(null);
+
+                return;
+            }
+
+            IsTimerEnable = false;
+
+            FounderScore += questionModel.FounderScore;
+            OpponentScore += questionModel.OpponentScore;
+
+            ChangeStylishColor(questionModel.FounderStylish);
+            ChangeStylishColor(questionModel.OpponentStylish);
+
+            PlaySound(questionModel.FounderStylish, questionModel.OpponentStylish);
+
+            ChangeImageBorderColor(questionModel.FounderStylish, questionModel.OpponentStylish);
+
+            if (questionModel.IsGameEnd || questionModel?.Question == null || questionModel.Question.Questions?.Count == 0)
+            {
+                GameEnd();
+            }
+            else if (questionModel?.Question != null)
+            {
+                Languages currentLanguage = _settingsService.CurrentUser.Language;
+                questionModel.Question = questionModel.Question.GetQuestionByLanguage(currentLanguage);
+
+                Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Hemen sonraki soruya geçmemesi için 2 sn beklettim
+                {
+                    if (IsExit)
+                        return false;
+
+                    DisplayQuestionExpectedPopup();
+
+                    Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Bekleme ekranı çıkmadan soru ekranda gözükmesin
+                    {
+                        if (IsExit)
+                            return false;
+
+                        Question = questionModel;
+
+                        return false;
+                    });
+
+                    return false;
+                });
+            }
+        }
+
+        /// <summary>
+        /// Verilen cevaplara göre sesleri çalar
+        /// </summary>
+        /// <param name="founderStylish">Kurucunun verdiği cevap</param>
+        /// <param name="opponentStylish">Rakip oyuncunun verdiği cevap</param>
+        private void PlaySound(Stylish founderStylish, Stylish opponentStylish)
+        {
+            Stylish correctAnswer = GetCorrectAnswer();
+            if (IsFounder)
+            {
+                bool isCorrectFounder = correctAnswer == founderStylish;
+
+                _audioService?.Play(isCorrectFounder ? Audio.Success : Audio.Fail);
+            }
+            else
+            {
+                bool isCorrectOpponent = correctAnswer == opponentStylish;
+                _audioService?.Play(isCorrectOpponent ? Audio.Success : Audio.Fail);
+            }
+        }
+
+        /// <summary>
         /// Bekleme ekranı göster
         /// </summary>
         private PopupPage QuestionExpectedPopup()
@@ -406,6 +479,52 @@ namespace ContestPark.Mobile.ViewModels
             Device.BeginInvokeOnMainThread(async () => await PushPopupPageAsync(popupPage));
 
             return popupPage;
+        }
+
+        /// <summary>
+        /// Kullanıcı resimlerinin borderleri default renği alır
+        /// </summary>
+        private void ResetImageBorderColor()
+        {
+            FounderImageBorderColor = PrimaryColor;
+
+            OpponentImageBorderColor = PrimaryColor;
+        }
+
+        /// <summary>
+        /// Tüm şıkların arka plan rengini beyaz yapar
+        /// </summary>
+        private void ResetStylishColor()
+        {
+            Color whiteColor = GetColor("White");
+            Question
+                .Question
+                .Answers
+                .ForEach((answer) => answer.Color = whiteColor);
+        }
+
+        /// <summary>
+        /// Verilen cevabı sunucuya gönderir
+        /// </summary>
+        private async Task SaveAnswer(Stylish answer, bool isFounder)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            await _duelSignalRService.SaveAnswer(new UserAnswer
+            {
+                DuelId = DuelScreen.DuelId,
+                Time = Time,
+                IsFounder = isFounder,
+                QuestionInfoId = Question.Question.QuestionInfoId,
+                CorrectAnswer = GetCorrectAnswer(),
+                Stylish = answer,
+                Id = Question.Id
+            });
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -461,7 +580,7 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        ///  Süre doldu. Soru cevaplanmadı
+        /// Süre doldu. Soru cevaplanmadı
         /// </summary>
         private void UnableToReply()
         {
@@ -470,147 +589,20 @@ namespace ContestPark.Mobile.ViewModels
             SaveAnswer(Stylish.UnableToReply, IsFounder);
         }
 
-        /// <summary>
-        /// Sorunun cevabını doğru bildimi kontrol eder
-        /// </summary>
-        /// <param name="answerModel">Şıkkın bilgisi</param>
-        private async Task ExecuteAnswerCommandCommand(AnswerModel answerModel)
-        {
-            if (answerModel == null || !IsStylishClick)
-                return;
-
-            IsStylishClick = false;
-
-            Stylish answerStylish = GetAnswerByUserAnswer(answerModel.Answers);
-
-            await SaveAnswer(answerStylish, IsFounder);
-        }
-
-        /// <summary>
-        /// Verilen cevabı sunucuya gönderir
-        /// </summary>
-        private async Task SaveAnswer(Stylish answer, bool isFounder)
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            await _duelSignalRService.SaveAnswer(new UserAnswer
-            {
-                DuelId = DuelScreen.DuelId,
-                Time = Time,
-                IsFounder = isFounder,
-                QuestionInfoId = Question.Question.QuestionInfoId,
-                CorrectAnswer = GetCorrectAnswer(),
-                Stylish = answer,
-                Id = Question.Id
-            });
-
-            IsBusy = false;
-        }
-
-        /// <summary>
-        /// Soru ekranını kapatır düel result ekranı açar
-        /// </summary>
-        private void ExecuteDuelCloseCommand()
-        {
-            IsExit = true;
-
-            IsStylishClick = false;
-
-            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
-            _duelSignalRService.OffNextQuestion();
-
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await PushPopupPageAsync(new DuelResultPopupView());
-
-                await RemoveFirstPopupAsync();
-            });
-        }
-
-        /// <summary>
-        /// Cevapları yan yana sıralamak için ayrı bir model oluşturduk
-        /// </summary>
-        private void CreateAnswerPair()
-        {
-            var answers = Question?.Question?.Answers;
-            if (answers?.Count == 4)
-            {
-                Answers = new AnswerPair(answers[0], answers[1], answers[2], answers[3]);
-            }
-        }
-
-        /// <summary>
-        /// Doğru cevabın Stylish enum verir
-        /// </summary>
-        /// <returns>Doğru cevap</returns>
-        private Stylish GetCorrectAnswer()
-        {
-            return (Stylish)Question
-                .Question
-                .Answers
-                .IndexOf(x => x.IsCorrect);
-        }
-
-        /// <summary>
-        /// Kullanıcının verdiği cevabı Stylish enuma çevirir
-        /// </summary>
-        /// <param name="answer">Kullanıcının verdiği cevap</param>
-        /// <returns></returns>
-        private Stylish GetAnswerByUserAnswer(string answer)
-        {
-            return (Stylish)Question
-                .Question
-                .Answers
-                .IndexOf(x => x.Answers == answer);
-        }
-
-        /// <summary>
-        /// Renk adına göre rengi döndürür
-        /// </summary>
-        private Color GetColor(string colorName)
-        {
-            return (Color)ContestParkApp.Current.Resources[colorName];
-        }
-
-        /// <summary>
-        /// Tüm şıkların arka plan rengini beyaz yapar
-        /// </summary>
-        private void ResetStylishColor()
-        {
-            Color whiteColor = GetColor("White");
-            Question
-                .Question
-                .Answers
-                .ForEach((answer) => answer.Color = whiteColor);
-        }
-
-        /// <summary>
-        /// Kullanıcı resimlerinin borderleri default renği alır
-        /// </summary>
-        private void ResetImageBorderColor()
-        {
-            FounderImageBorderColor = PrimaryColor;
-
-            OpponentImageBorderColor = PrimaryColor;
-        }
-
         #endregion Methods
 
         #region Commands
 
-        /// <summary>
-        /// Soru ekranı kapatır
-        /// </summary>
-        public ICommand DuelCloseCommand => new Command(() => ExecuteDuelCloseCommand());
+        public ICommand AnimateStylishCommand;
 
         private ICommand _answerCommand;
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>(async (answerModel) => await ExecuteAnswerCommandCommand(answerModel)));
 
-        public ICommand AnimateStylishCommand;
+        /// <summary>
+        /// Soru ekranı kapatır
+        /// </summary>
+        public ICommand DuelCloseCommand => new Command(() => ExecuteDuelCloseCommand());
 
         #endregion Commands
     }

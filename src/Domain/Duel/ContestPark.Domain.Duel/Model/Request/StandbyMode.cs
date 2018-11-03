@@ -6,8 +6,7 @@ namespace ContestPark.Domain.Duel.Model.Request
     {
         public int Bet { get; set; }
 
-        public Int16 SubCategoryId { get; set; }
-
         public string ConnectionId { get; set; }
+        public Int16 SubCategoryId { get; set; }
     }
 }

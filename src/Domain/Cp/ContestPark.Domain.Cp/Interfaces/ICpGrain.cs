@@ -6,10 +6,10 @@ namespace ContestPark.Domain.Cp.Interfaces
 {
     public interface ICpGrain : IGrainBase
     {
+        Task<int> AddGold(string userId, int diminishingGold, GoldProcessNames goldProcessName);
+
         Task<int> GetTotalGoldByUserId(string userId);
 
         Task<int> RemoveGold(string userId, int diminishingGold, GoldProcessNames goldProcessName);
-
-        Task<int> AddGold(string userId, int diminishingGold, GoldProcessNames goldProcessName);
     }
 }

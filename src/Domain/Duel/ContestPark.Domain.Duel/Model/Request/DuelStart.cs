@@ -5,22 +5,6 @@ namespace ContestPark.Domain.Duel.Model.Request
 {
     public class DuelStart
     {
-        public Int16 SubCategoryId { get; set; }
-
-        public int Bet { get; set; }
-
-        public string FounderUserId { get; set; }
-
-        public string OpponentUserId { get; set; }
-
-        public string FounderConnectionId { get; set; }
-
-        public Languages FounderLanguage { get; set; }
-
-        public Languages OpponentLanguage { get; set; }
-
-        public string OpponentConnectionId { get; set; }
-
         public DuelStart(Int16 subCategoryId,
             int bet,
             string founderUserId,
@@ -41,5 +25,14 @@ namespace ContestPark.Domain.Duel.Model.Request
             OpponentLanguage = opponentLanguage;
             OpponentUserId = opponentUserId;
         }
+
+        public int Bet { get; set; }
+        public string FounderConnectionId { get; set; }
+        public Languages FounderLanguage { get; set; }
+        public string FounderUserId { get; set; }
+        public string OpponentConnectionId { get; set; }
+        public Languages OpponentLanguage { get; set; }
+        public string OpponentUserId { get; set; }
+        public Int16 SubCategoryId { get; set; }
     }
 }

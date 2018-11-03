@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Helpers
 {
     public static class JwtTokenDecoder
     {
-        public static UserInfoModel GetUserInfo(string accessToken)
+        public static UserInfoModel GetUserInfo(this UserInfoModel userInfoModel, string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken) || accessToken.Contains("fake_token"))
             {
@@ -18,8 +18,9 @@ namespace ContestPark.Mobile.Helpers
 
             UtcDateTimeProvider utcDateTimeProvider = new UtcDateTimeProvider();
             JwtValidator jwtValidator = new JwtValidator(jsonNetSerializer, utcDateTimeProvider);
+            JwtDecoder jwtDecoder = new JwtDecoder(jsonNetSerializer, jwtValidator, base64UrlEncoder);
 
-            var userInfoModel = new JwtDecoder(jsonNetSerializer, jwtValidator, base64UrlEncoder).DecodeToObject<UserInfoModel>(accessToken);
+            userInfoModel = jwtDecoder.DecodeToObject<UserInfoModel>(accessToken);
 
             return userInfoModel;
         }

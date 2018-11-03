@@ -10,16 +10,6 @@ namespace ContestPark.Mobile.Converters
 {
     public class DateTimeMomentConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return GetPrettyDate((DateTime)value);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return GetPrettyDate((DateTime)value);
-        }
-
         /// <summary>
         /// Default dil ingilizce olarak ayarlandı
         /// </summary>
@@ -35,7 +25,7 @@ namespace ContestPark.Mobile.Converters
 
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
-            Languages language = settingsService.Language;
+            Languages language = settingsService.CurrentUser.Language;
 
             if (dayDiff == 0)
             {
@@ -107,6 +97,16 @@ namespace ContestPark.Mobile.Converters
                 else return string.Format("{0} years ago", years);
             }
             return string.Empty;
+        }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return GetPrettyDate((DateTime)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return GetPrettyDate((DateTime)value);
         }
     }
 }

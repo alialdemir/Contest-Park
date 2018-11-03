@@ -18,34 +18,24 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly string AccessTokenDefault = string.Empty;
 
         private readonly string IdTokenDefault = string.Empty;
-
         private readonly bool IsPrivatePriceDefault = false;
-
         private readonly bool IsSoundEffectActiveDefaultDefault = true;
-
-        private readonly Languages LanguageDefault = Languages.English;
+        private readonly string RefleshTokenDefault = string.Empty;
 
         private readonly string SignalRConnectionIdDefault = string.Empty;
+        private readonly string TokenTypeDefault = "Bearer";
 
         #endregion Setting Constants
 
         #region Settings Properties
+
+        private UserInfoModel _userInfo;
 
         public string AuthAccessToken
         {
             get => GetValueOrDefault(AccessTokenDefault);
             set => AddOrUpdateValue(value);
         }
-
-        public Languages Language
-        {
-            get => (Languages)GetValueOrDefault((byte)LanguageDefault);
-            set => AddOrUpdateValue((byte)value);
-        }
-
-        public string SignalRConnectionId { get; set; }
-
-        private UserInfoModel _userInfo;
 
         public UserInfoModel CurrentUser
         {
@@ -80,6 +70,20 @@ namespace ContestPark.Mobile.Services.Settings
             set => AddOrUpdateValue(value);
         }
 
+        public string RefreshToken
+        {
+            get => GetValueOrDefault(RefleshTokenDefault);
+            set => AddOrUpdateValue(value);
+        }
+
+        public string SignalRConnectionId { get; set; }
+
+        public string TokenType
+        {
+            get => GetValueOrDefault(TokenTypeDefault);
+            set => AddOrUpdateValue(value);
+        }
+
         #endregion Settings Properties
 
         #region Public Methods
@@ -99,6 +103,11 @@ namespace ContestPark.Mobile.Services.Settings
         #endregion Public Methods
 
         #region Internal Implementation
+
+        public async Task SetSettingsAsync(SettingTypes settingType, string settingValue)
+        {
+            await Task.Delay(2000);
+        }
 
         private async Task AddOrUpdateValueInternal<T>(string key, T value)
         {
@@ -144,20 +153,23 @@ namespace ContestPark.Mobile.Services.Settings
             }
         }
 
-        public async Task SetSettingsAsync(SettingTypes settingType, string settingValue)
-        {
-            await Task.Delay(2000);
-        }
-
         #endregion Internal Implementation
 
-        #region RemoveCurrentUser
+        #region CurrentUser methods
+
+        /// <summary>
+        /// Current user refresh
+        /// </summary>
+        public void RefreshCurrentUser()
+        {
+            _userInfo = _userInfo.GetUserInfo(AuthAccessToken);
+        }
 
         public void RemoveCurrentUser()
         {
             _userInfo = new UserInfoModel();
         }
 
-        #endregion RemoveCurrentUser
+        #endregion CurrentUser methods
     }
 }

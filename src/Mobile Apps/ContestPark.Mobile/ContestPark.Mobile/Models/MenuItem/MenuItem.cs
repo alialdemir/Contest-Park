@@ -10,11 +10,15 @@ namespace ContestPark.Mobile.Models.MenuItem
     {
         private bool _isToggled;
 
+        private string _title;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public object CommandParameter { get; set; }
 
         public string Icon { get; set; }
+
+        public bool IsPassword { get; set; }
 
         public bool IsToggled
         {
@@ -28,9 +32,19 @@ namespace ContestPark.Mobile.Models.MenuItem
 
         public MenuTypes MenuType { get; set; }
 
+        public string Placeholder { get; set; }
+
         public ICommand SingleTap { get; set; }
 
-        public string Title { get; set; }
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
+            }
+        }
     }
 
     public class MenuItemList : List<MenuItem>, IModelBase

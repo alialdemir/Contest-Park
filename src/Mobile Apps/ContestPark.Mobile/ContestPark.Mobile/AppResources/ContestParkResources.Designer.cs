@@ -61,7 +61,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account Settings.
+        ///   Looks up a localized string similar to Hesap Ayarları.
         /// </summary>
         public static string AccountSettings {
             get {
@@ -178,11 +178,47 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kapat resmi değiştir.
+        /// </summary>
+        public static string ChangeCoverPicture {
+            get {
+                return ResourceManager.GetString("ChangeCoverPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile resmi değiştir.
+        /// </summary>
+        public static string ChangeProfilePicture {
+            get {
+                return ResourceManager.GetString("ChangeProfilePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mesajlar.
         /// </summary>
         public static string Chat {
             get {
                 return ResourceManager.GetString("Chat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İşlem seçiniz.
+        /// </summary>
+        public static string ChooseAnAction {
+            get {
+                return ResourceManager.GetString("ChooseAnAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gallery&apos;den seç.
+        /// </summary>
+        public static string ChooseFromLibrary {
+            get {
+                return ResourceManager.GetString("ChooseFromLibrary", resourceCulture);
             }
         }
         
@@ -493,6 +529,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Yeni Şifre.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Altın yok.
         /// </summary>
         public static string NoGold {
@@ -529,6 +574,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eski Şifre.
+        /// </summary>
+        public static string OldPassword {
+            get {
+                return ResourceManager.GetString("OldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diğer.
         /// </summary>
         public static string Other {
@@ -552,6 +606,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string PasswordChange {
             get {
                 return ResourceManager.GetString("PasswordChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erişim izni yok.
+        /// </summary>
+        public static string PermissionsDenied {
+            get {
+                return ResourceManager.GetString("PermissionsDenied", resourceCulture);
             }
         }
         
@@ -624,6 +687,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Ranking {
             get {
                 return ResourceManager.GetString("Ranking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kaydet.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -772,6 +844,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fotoğraf çek.
+        /// </summary>
+        public static string TakeAPhoto {
+            get {
+                return ResourceManager.GetString("TakeAPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bu kategoride daha önce yarışan olmamış. İlk sırayı sen kapabilirsin!.
         /// </summary>
         public static string ThisCategoryRankNull {
@@ -799,6 +880,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fotoğraf seçilemedi..
+        /// </summary>
+        public static string UnableToTakePhotos {
+            get {
+                return ResourceManager.GetString("UnableToTakePhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Takibi Bırak.
         /// </summary>
         public static string UnFollow {
@@ -813,6 +903,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string UnLock {
             get {
                 return ResourceManager.GetString("UnLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Güncelleme Başarılı!.
+        /// </summary>
+        public static string UpdateSuccessful {
+            get {
+                return ResourceManager.GetString("UpdateSuccessful", resourceCulture);
             }
         }
         
@@ -853,11 +952,29 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bilgileriniz güncellendi..
+        /// </summary>
+        public static string YourInformationHasBeenUpdated {
+            get {
+                return ResourceManager.GetString("YourInformationHasBeenUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seviyen.
         /// </summary>
         public static string YourLevel {
             get {
                 return ResourceManager.GetString("YourLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifreniz güncellendi..
+        /// </summary>
+        public static string YourPasswordHasBeenUpdated {
+            get {
+                return ResourceManager.GetString("YourPasswordHasBeenUpdated", resourceCulture);
             }
         }
     }

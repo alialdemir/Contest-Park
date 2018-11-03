@@ -83,7 +83,7 @@ namespace ContestPark.Mobile.ViewModels
                                         Title = ContestParkResources.Sounds,
                                         MenuType = Enums.MenuTypes.Switch,
                                         IsToggled = _settingsService.IsSoundEffectActive,
-                                        SingleTap =  new Command(async()=> await ChangeSoundAsync())
+                                        SingleTap =  new Command(()=> ChangeSoundAsync())
                                     },
                                 },
 
@@ -108,7 +108,7 @@ namespace ContestPark.Mobile.ViewModels
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = Enums.MenuTypes.Switch,
                                         IsToggled = _settingsService.IsPrivatePrice,
-                                        SingleTap = new Command(async()=> await ChangePrivateProfileAsync())
+                                        SingleTap = new Command(()=>  ChangePrivateProfileAsync())
                                     },
                             },
 
@@ -117,7 +117,7 @@ namespace ContestPark.Mobile.ViewModels
                                     new Models.MenuItem.MenuItem {
                                         Icon = "fas-sign-out-alt",
                                         Title = ContestParkResources.LogOut,
-                                        MenuType = Enums.MenuTypes.None,
+                                        MenuType = Enums.MenuTypes.Label,
                                         SingleTap = new Command(async()=> await ExitAppAsync())
                                     },
                                 },
@@ -131,17 +131,17 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Profili private/public olarak değiştirir
         /// </summary>
-        private async Task ChangePrivateProfileAsync()
+        private void ChangePrivateProfileAsync()
         {
-            await _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
+            _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
         }
 
         /// <summary>
         /// Ses effecti aç/kapa
         /// </summary>
-        private async Task ChangeSoundAsync()
+        private void ChangeSoundAsync()
         {
-            await _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
+            _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
         }
 
         /// <summary>
