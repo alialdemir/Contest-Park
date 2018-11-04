@@ -1,8 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.MissionsView">
-  
+             x:Class="ContestPark.Mobile.Views.MissionsView"
+             Title="{Binding Title}"
+             x:Name="page">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:NegativeBooleanConverter x:Key="not" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <components:NonPersistentSelectedItemListView Header="{Binding ListViewHeader}"
+                                                      Style="{StaticResource ListViewSeparator}">
+            <components:NonPersistentSelectedItemListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label FontSize="15"
+                               Margin="0,10,0,0"
+                               Text="{Binding .}"
+                               FontAttributes="Bold"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="{StaticResource Primary}" />
+
+                        <BoxView HeightRequest="1"
+                                 BackgroundColor="#333333"
+                                 HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.HeaderTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:CustomGrid Padding="8"
+                                               ColumnSpacing="15"
+                                               SingleTap="{Binding SingleTap}"
+                                               CommandParameter="{Binding CommandParameter}">
+
+                            <components:CustomGrid.RowDefinitions>
+                                <RowDefinition Height="24" />
+                                <RowDefinition Height="*" />
+                            </components:CustomGrid.RowDefinitions>
+
+                            <components:CustomGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="48" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="70" />
+                            </components:CustomGrid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                                   Grid.RowSpan="2"
+                                   Aspect="AspectFill"
+                                   Source="{Binding MissionPicturePath}" />
+
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   TextColor="White"
+                                   FontSize="Default"
+                                   VerticalOptions="Center"
+                                   Text="{Binding MissionName}" />
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   TextColor="White"
+                                   FontSize="Default"
+                                   VerticalOptions="Center"
+                                   Text="{Binding MissionDescription}" />
+
+                            <Button FontSize="14"
+                                    BorderWidth="1"
+                                    Grid.Column="2"
+                                    BorderRadius="1"
+                                    Grid.RowSpan="2"
+                                    BorderColor="#ffc50d"
+                                    BackgroundColor="Transparent"
+                                    Style="{StaticResource Button}"
+                                    AutomationId="LoginWithGooglePlus"
+                                    CommandParameter="{Binding MissionId}"
+                                    Text="{Binding Gold, StringFormat='    {0}'}"
+                                    IsVisible="{Binding MissionStatus, Converter={StaticResource not}}"
+                                    Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference page}}" />
+
+                            <icon:IconButton FontSize="14"
+                                             Text="far-gem"
+                                             Grid.Column="2"
+                                             Grid.RowSpan="2"
+                                             TextColor="White"
+                                             HorizontalOptions="Start"
+                                             BackgroundColor="Transparent"
+                                             CommandParameter="{Binding MissionId}"
+                                             IsVisible="{Binding MissionStatus, Converter={StaticResource not}}"
+                                             Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference page}}" />
+                        </components:CustomGrid>
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <Label FontSize="15"
+                           Margin="0,10,0,0"
+                           FontAttributes="Bold"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="{StaticResource Primary}"
+                           Text="{i18n:Translate NewMissionsComingSoon}" />
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
+    </ContentPage.Content>
 </ContentPage>

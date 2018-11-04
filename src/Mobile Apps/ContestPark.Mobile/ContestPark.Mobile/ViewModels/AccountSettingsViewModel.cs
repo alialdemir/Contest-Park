@@ -190,6 +190,7 @@ namespace ContestPark.Mobile.ViewModels
 
             string fullName = menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "FullName").Title;
             string userName = menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "UserName").Title;
+
             if (!string.IsNullOrEmpty(fullName) &&
                 !string.IsNullOrEmpty(userName) &&
                 (_settingsService.CurrentUser.FullName != fullName || _settingsService.CurrentUser.UserName != userName)

@@ -132,7 +132,16 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="pageName">Yönlendirilecek sayfa adı</param>
         private void ExecutePushPageCommand(string pageName)
         {
-            if (!string.IsNullOrEmpty(pageName))
+            if (pageName.Equals("FacebookAddress"))
+            {
+            }
+            else if (pageName.Equals("TwitterAddress"))
+            {
+            }
+            else if (pageName.Equals("InstagramAddress"))
+            {
+            }
+            else if (!string.IsNullOrEmpty(pageName))
             {
                 _eventAggregator
                 .GetEvent<MasterDetailPageIsPresentedEvent>()

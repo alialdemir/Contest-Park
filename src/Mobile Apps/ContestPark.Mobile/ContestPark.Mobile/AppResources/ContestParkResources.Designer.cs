@@ -529,6 +529,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Yeni Görevler Yakında!.
+        /// </summary>
+        public static string NewMissionsComingSoon {
+            get {
+                return ResourceManager.GetString("NewMissionsComingSoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yeni Şifre.
         /// </summary>
         public static string NewPassword {

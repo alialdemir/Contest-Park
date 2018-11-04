@@ -131,10 +131,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\ListItemView\ListItemView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\ListItemView\ThumListItem.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\NonPersistentSelectedItemListView\NonPersistentSelectedItemListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

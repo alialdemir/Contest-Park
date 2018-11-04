@@ -5,6 +5,6 @@
         Label,
         Icon,
         Switch,
-        Input
+        Input,
     }
 }

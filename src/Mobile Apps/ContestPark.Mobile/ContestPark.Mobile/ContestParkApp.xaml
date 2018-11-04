@@ -51,17 +51,23 @@
                 <Setter Property="RefreshCommand" Value="{Binding RefleshCommand}" />
                 <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
-                <Setter Property="SeparatorVisibility" Value="None" />
                 <Setter Property="HasUnevenRows" Value="True" />
             </Style>
 
             <Style x:Key="ListViewHeaderAndFooter" TargetType="ListView" BasedOn="{StaticResource ListView}">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="Header" Value=" " />
+                <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
             <Style x:Key="ListViewOnlyFooter" TargetType="ListView" BasedOn="{StaticResource ListView}">
                 <Setter Property="Footer" Value=" " />
+                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
+
+            <Style x:Key="ListViewSeparator" TargetType="ListView" BasedOn="{StaticResource ListView}">
+                <Setter Property="Footer" Value=" " />
+                <Setter Property="SeparatorColor" Value="#333333" />
             </Style>
 
             <Style x:Key="Button" TargetType="Button">

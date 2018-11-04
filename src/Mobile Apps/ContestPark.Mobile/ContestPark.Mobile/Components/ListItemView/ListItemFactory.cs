@@ -20,15 +20,6 @@ namespace ContestPark.Mobile.Components
 
         #endregion Constructors
 
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets a value indicating whether IsFirstTogle
-        /// </summary>
-        public bool IsFirstTogle { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         /// <summary>

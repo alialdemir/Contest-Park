@@ -429,4 +429,7 @@
   <data name="UnableToTakePhotos" xml:space="preserve">
     <value>Fotoğraf seçilemedi.</value>
   </data>
+  <data name="NewMissionsComingSoon" xml:space="preserve">
+    <value>Yeni Görevler Yakında!</value>
+  </data>
 </root>

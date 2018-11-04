@@ -34,8 +34,8 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public SettingsViewModel(INavigationService navigationService,
-                                IIdentityService identityService,
-                                ISettingsService settingsService) : base(navigationService)
+                                 IIdentityService identityService,
+                                 ISettingsService settingsService) : base(navigationService)
         {
             Title = ContestParkResources.Settings;
             _identityService = identityService;

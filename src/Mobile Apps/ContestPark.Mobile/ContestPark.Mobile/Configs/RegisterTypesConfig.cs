@@ -10,6 +10,7 @@ using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
+using ContestPark.Mobile.Services.Mission;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Score;
@@ -114,17 +115,14 @@ namespace ContestPark.Mobile.Configs
 
         private void RegisterTypeInstance(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterPopupNavigationService();
+
             if (!GlobalSetting.Instance.IsMockData)
             {
-                containerRegistry.RegisterPopupNavigationService();
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
-                containerRegistry.Register<IIdentityService, IdentityService>();
-
-                containerRegistry.Register<IBlockingService, BlockingService>();
-
-                containerRegistry.Register<IBotService, BotService>();
-
-                containerRegistry.Register<IPostService, PostService>();
+                containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
+                containerRegistry.RegisterSingleton<IPostService, PostService>();
 
                 containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
 
@@ -132,13 +130,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<ICpService, CpService>();
 
-                containerRegistry.RegisterSingleton<ICacheService, CacheService>();
-
-                containerRegistry.Register<IAudioService, AudioService>();
-
-                containerRegistry.Register<IMediaService, MediaService>();
-
-                containerRegistry.RegisterSingleton<IGameService, GameService>();
+                containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
@@ -149,20 +141,14 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
 
                 containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
-
-                containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
             }
             else
             {
-                containerRegistry.RegisterPopupNavigationService();
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
-                containerRegistry.Register<IIdentityService, IdentityMockService>();
+                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
-                containerRegistry.Register<IBlockingService, BlockingMockService>();
-
-                containerRegistry.Register<IBotService, BotService>();
-
-                containerRegistry.Register<IPostService, PostMockService>();
+                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
                 containerRegistry.RegisterSingleton<ICategoryServices, CategoryMockServices>();
 
@@ -170,13 +156,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<ICpService, CpMockService>();
 
-                containerRegistry.RegisterSingleton<ICacheService, CacheService>();
-
-                containerRegistry.Register<IAudioService, AudioService>();
-
-                containerRegistry.Register<IMediaService, MediaService>();
-
-                containerRegistry.RegisterSingleton<IGameService, GameService>();
+                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
@@ -187,9 +167,19 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
                 containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
-
-                containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
             }
+
+            containerRegistry.RegisterSingleton<IBotService, BotService>();
+
+            containerRegistry.RegisterSingleton<IGameService, GameService>();
+
+            containerRegistry.RegisterSingleton<ICacheService, CacheService>();
+
+            containerRegistry.Register<IAudioService, AudioService>();
+
+            containerRegistry.Register<IMediaService, MediaService>();
+
+            containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
         }
 
         #endregion Register Instance

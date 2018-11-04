@@ -2,8 +2,14 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
              x:Class="ContestPark.Mobile.Components.ThumListItem"
              x:Name="page">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converter:NegativeBooleanConverter x:Key="not" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <Components:CustomGrid RowSpacing="0"
                                x:Name="cstmGrid"
