@@ -10,11 +10,6 @@
              Icon="fas-gamepad"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem Text="{Binding UserCoins}" />
-
-        <icon:IconToolbarItem Icon="far-gem"
-                              IconColor="{StaticResource Primary}" />
-
         <icon:IconToolbarItem Icon="fas-search"
                               IconColor="{StaticResource Primary}"
                               AutomationId="tbiCategorySearch"

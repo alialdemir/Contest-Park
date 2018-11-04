@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.MasterView"
@@ -23,28 +24,64 @@
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
             <ListView.Header>
-                <Grid RowSpacing="0">
+                <Grid RowSpacing="0" ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="10" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
                         <RowDefinition Height="120" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Image Margin="0"
                            Grid.RowSpan="2"
-                           Aspect="AspectFill"
                            Grid.ColumnSpan="3"
+                           Aspect="AspectFill"
                            Source="{Binding CoverPicture}" />
 
-                    <Label Grid.Row="1"
+                    <components:CircleImage Grid.Column="0"
+                                    Grid.Row="1"
+                                    CommandParameter="{Binding UserName}"
+                                    Source="{Binding ProfilePicture}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                    <Grid Grid.Row="1"
                            Grid.Column="1"
-                           Margin="0,60,0,0"
-                           Text="{Binding FullName}"
-                           TextColor="{StaticResource White}" />
+                           Margin="-10,50,0,0"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               FontSize="16"
+                               Text="{Binding FullName}"
+                               TextColor="{StaticResource White}" />
+
+                        <icon:IconLabel Grid.Row="1" 
+                                        FontSize="14"
+                                        Text="far-gem"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Start" 
+                                        TextColor="{StaticResource Primary}"/>
+
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               FontSize="14"
+                               Text="{Binding UserCoins}"
+                               TextColor="{StaticResource Primary}" />
+                    </Grid>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
