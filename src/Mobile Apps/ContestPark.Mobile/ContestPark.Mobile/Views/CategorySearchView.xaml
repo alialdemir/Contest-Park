@@ -8,6 +8,7 @@
                        SearchPlaceHolderText="{i18n:Translate SearchCategory}"
                        SearchCommand="{Binding SearchCommand}"
                        SearchPlaceHolderColor="{StaticResource Primary}"
+                       IsSearchFocus="{Binding IsSearchFocus}"
                        SeachTextColor="White"
                        SearchIconColor="{StaticResource Primary}"
                        SearchCloseIconColor="{StaticResource Primary}"
@@ -28,16 +29,16 @@
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:ThumListItem AutomationId="lstViewCategorySearch"
-                                                 Detail="{Binding SubCategoryName}"
-                                                 Text="{Binding CategoryName}"
-                                                 RightText="{Binding DisplayPrice}"
-                                                 CommandParameter="{Binding SubCategoryId}"
+                        <Components:ThumListItem Text="{Binding CategoryName}"
                                                  Source="{Binding PicturePath}"
-                                                 LongPressed="{Binding Path=BindingContext.SubCategoriesDisplayActionSheetCommand, Source={x:Reference page}}"
+                                                 Detail="{Binding SubCategoryName}"
+                                                 RightText="{Binding DisplayPrice}"
+                                                 AutomationId="lstViewCategorySearch"
+                                                 CommandParameter="{Binding SubCategoryId}"
+                                                 RightIconSource="fas-lock"
+                                                 IsShowRightText="{Binding IsCategoryOpen, Converter={StaticResource not}}"
                                                  SingleTap="{Binding Path=BindingContext.PushEnterPageCommand, Source={x:Reference page}}"
-                                                 RightIconSource="ic_lock_open_black_18dp.png"
-                                                 IsShowRightText="{Binding IsCategoryOpen, Converter={StaticResource not}}" />
+                                                 LongPressed="{Binding Path=BindingContext.SubCategoriesDisplayActionSheetCommand, Source={x:Reference page}}" />
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>

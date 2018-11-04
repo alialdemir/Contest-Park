@@ -5,6 +5,20 @@ namespace ContestPark.Mobile.Components
 {
     public class SearchPage : ContentPage
     {
+        public static readonly BindableProperty IsSearchFocusProperty = BindableProperty.Create(nameof(IsSearchFocus), typeof(bool), typeof(SearchPage), false);
+
+        public bool IsSearchFocus
+        {
+            get
+            {
+                return (bool)GetValue(IsSearchFocusProperty);
+            }
+            set
+            {
+                SetValue(IsSearchFocusProperty, value);
+            }
+        }
+
         public static readonly BindableProperty SearchPlaceHolderTextProperty = BindableProperty.Create(nameof(SearchPlaceHolderText), typeof(string), typeof(SearchPage), string.Empty);
 
         public string SearchPlaceHolderText

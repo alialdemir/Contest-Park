@@ -47,6 +47,18 @@ namespace ContestPark.Mobile.ViewModels
 
         public bool IsActionSheetBusy { get; set; }
 
+        private bool _isSearchFocus;
+
+        public bool IsSearchFocus
+        {
+            get { return _isSearchFocus; }
+            set
+            {
+                _isSearchFocus = value;
+                RaisePropertyChanged(() => IsSearchFocus);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -66,6 +78,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 ServiceModel = await _CategoryServices.CategorySearchAsync(_categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
             }
+            else
+            {
+                IsSearchFocus = true;
+            }
 
             await base.InitializeAsync();
 
@@ -82,7 +98,7 @@ namespace ContestPark.Mobile.ViewModels
             SubCategorySearch selectedModel = Items.Where(p => p.SubCategoryId == subCategoryId).First();
             if (selectedModel != null)
             {
-                _gameService.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
+                _gameService?.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
                                                          selectedModel.CategoryName,
                                                          selectedModel.PicturePath,
                                                          selectedModel.IsCategoryOpen);
@@ -90,7 +106,7 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Event dinleme
+        /// Alt kategori yenile event dinleme
         /// </summary>
         private void EventSubscribe()
         {
@@ -119,6 +135,14 @@ namespace ContestPark.Mobile.ViewModels
             IsActionSheetBusy = false;
         }
 
+        /// <summary>
+        /// Kategori ara
+        /// </summary>
+        /// <param name="categorySearch">Aranan kategori adı</param>
+        private void ExecutSearchCommandAsync(string categorySearch)
+        {
+        }
+
         #endregion Methods
 
         #region Commands
@@ -137,6 +161,13 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(async (CategoryId) =>
         await ExecuteSubCategoriesDisplayActionSheetCommand(CategoryId)));
+
+        private ICommand searchCommand;
+
+        public ICommand SearchCommand
+        {
+            get { return searchCommand ?? (searchCommand = new Command<string>((categorySearch) => ExecutSearchCommandAsync(categorySearch))); }
+        }
 
         #endregion Commands
 

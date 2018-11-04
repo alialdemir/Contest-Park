@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ContestPark.Mobile.Components.ThumListItem"
              x:Name="page">
     <ContentView.Resources>
@@ -59,14 +60,15 @@
                    Text="{Binding Path=RightText,Source={x:Reference page}}"
                    IsVisible="{Binding Path=IsShowRightText,Source={x:Reference page}}" />
 
-            <Image Grid.Column="3"
-                   Grid.RowSpan="3"
-                   WidthRequest="25"
-                   HeightRequest="25"
-                   VerticalOptions="CenterAndExpand"
-                   BackgroundColor="{StaticResource Primary}"
-                   Source="{Binding Path=RightIconSource,Source={x:Reference page}}"
-                   IsVisible="{Binding Path=IsShowRightText,Source={x:Reference page}}" />
+            <icon:IconImage IconSize="16"
+                            Grid.Column="3"
+                            Grid.RowSpan="3"
+                            WidthRequest="25"
+                            HeightRequest="25"
+                            VerticalOptions="CenterAndExpand"
+                            IconColor="{StaticResource Primary}"
+                            Icon="{Binding Path=RightIconSource,Source={x:Reference page}}"
+                            IsVisible="{Binding Path=IsShowRightText,Source={x:Reference page}}" />
 
             <Components:Line Grid.Row="2"
                              Grid.Column="1"

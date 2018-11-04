@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
             _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
 
-            if (_searchView == null)
+            if (_searchView == null || !(Element is SearchPage))
             {
                 return;
             }
@@ -63,7 +63,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             _searchView.QueryHint = searchPage?.SearchPlaceHolderText;
             _searchView.ImeOptions = (int)ImeAction.Search;
             _searchView.InputType = (int)InputTypes.TextVariationNormal;
-            _searchView.MaxWidth = int.MaxValue;        //Hack to go full width - http://stackoverflow.com/questions/31456102/searchview-doesnt-expand-full-width
+            _searchView.MaxWidth = int.MaxValue; // Hack to go full width - http://stackoverflow.com/questions/31456102/searchview-doesnt-expand-full-width
 
             // Search text color
             SearchView.SearchAutoComplete theTextArea = (SearchView.SearchAutoComplete)_searchView.FindViewById(Resource.Id.search_src_text);
@@ -76,6 +76,11 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
             ImageView search = (ImageView)_searchView.FindViewById(Resource.Id.search_button);
             search.SetColorFilter(searchPage.SearchIconColor.ToAndroid());
+
+            if (searchPage.IsSearchFocus)
+            {
+                search.CallOnClick();
+            }
         }
 
         private void searchView_QueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
@@ -90,6 +95,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             {
                 return;
             }
+
             searchPage.SearchText = e.Query;
             searchPage.SearchCommand?.Execute(e.Query);
             e.Handled = true;

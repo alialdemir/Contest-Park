@@ -279,9 +279,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_notifications_black_24dp.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_lock_open_black_18dp.png" />
-  </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml">
