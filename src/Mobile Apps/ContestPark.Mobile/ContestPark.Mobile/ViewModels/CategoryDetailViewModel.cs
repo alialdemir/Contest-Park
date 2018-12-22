@@ -20,9 +20,6 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variable
 
         private Int16 _subCategoryId = 0;
-
-        private readonly INavigationService _navigationService;
-
         private readonly IGameService _gameService;
 
         private readonly ICategoryServices _categoryServices;
@@ -42,7 +39,7 @@ namespace ContestPark.Mobile.ViewModels
                                        IGameService gameService,
                                        IEventAggregator eventAggregator) : base(navigationService, popupNavigation: popupNavigation)
         {
-            _navigationService = navigationService;
+            NavigationService = navigationService;
             _categoryServices = categoryServices;
             _postService = postService;
             _gameService = gameService;
@@ -230,10 +227,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Düello bahis paneli aç command
         /// </summary>
-        public INavigationService NavigationService
-        {
-            get { return _navigationService; }
-        }
+        public INavigationService NavigationService { get; }
 
         private ICommand followersCountCommand;
         private ICommand subCategoryFollowProgcessCommand;

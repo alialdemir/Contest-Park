@@ -11,6 +11,7 @@ using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
+using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Score;
@@ -132,6 +133,8 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
+                containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
+
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
@@ -157,6 +160,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<ICpService, CpMockService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+
+                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 

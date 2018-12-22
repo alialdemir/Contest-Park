@@ -139,6 +139,9 @@
     <EmbeddedResource Update="Components\NonPersistentSelectedItemListView\NonPersistentSelectedItemListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Components\NotificationCard\ContestNotificationCard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Components\PostCardView\BottomPostCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
