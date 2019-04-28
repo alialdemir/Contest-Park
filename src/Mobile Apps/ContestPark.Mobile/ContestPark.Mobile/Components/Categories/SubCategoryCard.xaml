@@ -7,11 +7,11 @@
                        Margin="4,8,4,0"
                        x:Name="customGrid">
     <components:CustomGrid.RowDefinitions>
-        <RowDefinition Height="70" />
+        <RowDefinition Height="90" />
         <RowDefinition Height="20" />
     </components:CustomGrid.RowDefinitions>
     <components:CustomGrid.ColumnDefinitions>
-        <ColumnDefinition Width="80" />
+        <ColumnDefinition Width="90" />
     </components:CustomGrid.ColumnDefinitions>
 
     <cacheImage:CachedImage Grid.Row="0"
