@@ -2,6 +2,7 @@
 using ContestPark.Core.Interfaces;
 using Microsoft.Extensions.Logging;
 using Polly;
+using Polly.Retry;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,13 +12,24 @@ namespace ContestPark.Core.DataSeed
 {
     public abstract class ContextSeedBase
     {
-        public abstract Task SeedAsync(ISettingsBase settings, ILogger logger);
-
         public string ConnectionString { get; set; }
 
         public ILogger Logger { get; set; }
 
         public string SeedName { get; set; }
+
+        public AsyncRetryPolicy CreatePolicy(int retries = 3)
+        {
+            return Policy.Handle<SqlException>()
+                .WaitAndRetryAsync(
+                    retryCount: retries,
+                    sleepDurationProvider: retry => TimeSpan.FromSeconds(5),
+                    onRetry: (exception, timeSpan, retry, ctx) =>
+                    {
+                        Logger.LogTrace($"[{SeedName}] Exception {exception.GetType().Name} with message ${exception.Message} detected on attempt {retry} of {retries}");
+                    }
+                );
+        }
 
         public async Task InsertDataAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, IEntity, new()
         {
@@ -33,17 +45,6 @@ namespace ContestPark.Core.DataSeed
             Logger.LogInformation($"The entities have been added.. {typeof(TEntity).Name}");
         }
 
-        public Policy CreatePolicy(int retries = 3)
-        {
-            return Policy.Handle<SqlException>()
-                .WaitAndRetryAsync(
-                    retryCount: retries,
-                    sleepDurationProvider: retry => TimeSpan.FromSeconds(5),
-                    onRetry: (exception, timeSpan, retry, ctx) =>
-                    {
-                        Logger.LogTrace($"[{SeedName}] Exception {exception.GetType().Name} with message ${exception.Message} detected on attempt {retry} of {retries}");
-                    }
-                );
-        }
+        public abstract Task SeedAsync(ISettingsBase settings, ILogger logger);
     }
 }
