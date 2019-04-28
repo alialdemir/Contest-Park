@@ -2,7 +2,6 @@
 using Android.Graphics.Drawables;
 using Android.Views;
 using ContestPark.Mobile.Components;
-using ContestPark.Mobile.Droid.CustomRenderer;
 using ContestPark.Mobile.Droid.Extensions;
 using System;
 using System.ComponentModel;
@@ -10,9 +9,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Xamarin.Forms.Color;
+using ImageButton = ContestPark.Mobile.Components.ImageButton;
 using View = Android.Views.View;
 
-[assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
+[assembly: ExportRenderer(typeof(ImageButton), typeof(ContestPark.Mobile.Droid.CustomRenderer.ImageButtonRenderer))]
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
@@ -30,6 +30,37 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         private ImageButton ImageButton
         {
             get { return (ImageButton)Element; }
+        }
+
+        /// <summary>
+        /// Returns a drawable dimension modified according to the current display DPI.
+        /// </summary>
+        /// <param name="sizeRequest">The requested size in relative units.</param>
+        /// <returns>Size in pixels.</returns>
+        public int RequestToPixels(int sizeRequest)
+        {
+            if (_density == float.MinValue)
+            {
+                if (Resources.Handle == IntPtr.Zero || Resources.DisplayMetrics.Handle == IntPtr.Zero)
+                    _density = 1.0f;
+                else
+                    _density = Resources.DisplayMetrics.Density;
+            }
+
+            return (int)(sizeRequest * _density);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (disposing && Control != null)
+            {
+                Control.Dispose();
+            }
         }
 
         /// <summary>
@@ -51,16 +82,55 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         }
 
         /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
+        /// Called when the underlying model's properties are changed.
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected override void Dispose(bool disposing)
+        /// <param name="sender">The Model used.</param>
+        /// <param name="e">The event arguments.</param>
+        protected override async void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            base.Dispose(disposing);
-            if (disposing && Control != null)
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == ImageButton.SourceProperty.PropertyName ||
+                e.PropertyName == ImageButton.DisabledSourceProperty.PropertyName ||
+                e.PropertyName == VisualElement.IsEnabledProperty.PropertyName ||
+                e.PropertyName == ImageButton.ImageTintColorProperty.PropertyName ||
+                e.PropertyName == ImageButton.DisabledImageTintColorProperty.PropertyName)
             {
-                Control.Dispose();
+                await SetImageSourceAsync(Control, ImageButton).ConfigureAwait(false);
             }
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Bitmap"/> for the supplied <see cref="ImageSource"/>.
+        /// </summary>
+        /// <param name="source">The <see cref="ImageSource"/> to get the image for.</param>
+        /// <returns>A loaded <see cref="Bitmap"/>.</returns>
+        private async Task<Bitmap> GetBitmapAsync(ImageSource source)
+        {
+            var handler = GetHandler(source);
+            var returnValue = (Bitmap)null;
+
+            if (handler != null)
+                returnValue = await handler.LoadImageAsync(source, Context).ConfigureAwait(false);
+
+            return returnValue;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="Drawable"/> with the correct dimensions from an
+        /// Android resource id.
+        /// </summary>
+        /// <param name="drawable">An android <see cref="Drawable"/>.</param>
+        /// <param name="width">The width to scale to.</param>
+        /// <param name="height">The height to scale to.</param>
+        /// <returns>A scaled <see cref="Drawable"/>.</returns>
+        private Drawable GetScaleDrawable(Drawable drawable, int width, int height)
+        {
+            var returnValue = new ScaleDrawable(drawable, 0, 100, 100).Drawable;
+
+            returnValue.SetBounds(0, 0, RequestToPixels(width), RequestToPixels(height));
+
+            return returnValue;
         }
 
         /// <summary>
@@ -132,96 +202,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
                 }
             }
         }
-
-        /// <summary>
-        /// Gets a <see cref="Bitmap"/> for the supplied <see cref="ImageSource"/>.
-        /// </summary>
-        /// <param name="source">The <see cref="ImageSource"/> to get the image for.</param>
-        /// <returns>A loaded <see cref="Bitmap"/>.</returns>
-        private async Task<Bitmap> GetBitmapAsync(ImageSource source)
-        {
-            var handler = GetHandler(source);
-            var returnValue = (Bitmap)null;
-
-            if (handler != null)
-                returnValue = await handler.LoadImageAsync(source, Context).ConfigureAwait(false);
-
-            return returnValue;
-        }
-
-        /// <summary>
-        /// Called when the underlying model's properties are changed.
-        /// </summary>
-        /// <param name="sender">The Model used.</param>
-        /// <param name="e">The event arguments.</param>
-        protected override async void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnElementPropertyChanged(sender, e);
-
-            if (e.PropertyName == ImageButton.SourceProperty.PropertyName ||
-                e.PropertyName == ImageButton.DisabledSourceProperty.PropertyName ||
-                e.PropertyName == VisualElement.IsEnabledProperty.PropertyName ||
-                e.PropertyName == ImageButton.ImageTintColorProperty.PropertyName ||
-                e.PropertyName == ImageButton.DisabledImageTintColorProperty.PropertyName)
-            {
-                await SetImageSourceAsync(Control, ImageButton).ConfigureAwait(false);
-            }
-        }
-
-        /// <summary>
-        /// Returns a <see cref="Drawable"/> with the correct dimensions from an
-        /// Android resource id.
-        /// </summary>
-        /// <param name="drawable">An android <see cref="Drawable"/>.</param>
-        /// <param name="width">The width to scale to.</param>
-        /// <param name="height">The height to scale to.</param>
-        /// <returns>A scaled <see cref="Drawable"/>.</returns>
-        private Drawable GetScaleDrawable(Drawable drawable, int width, int height)
-        {
-            var returnValue = new ScaleDrawable(drawable, 0, 100, 100).Drawable;
-
-            returnValue.SetBounds(0, 0, RequestToPixels(width), RequestToPixels(height));
-
-            return returnValue;
-        }
-
-        /// <summary>
-        /// Returns a drawable dimension modified according to the current display DPI.
-        /// </summary>
-        /// <param name="sizeRequest">The requested size in relative units.</param>
-        /// <returns>Size in pixels.</returns>
-        public int RequestToPixels(int sizeRequest)
-        {
-            if (_density == float.MinValue)
-            {
-                if (Resources.Handle == IntPtr.Zero || Resources.DisplayMetrics.Handle == IntPtr.Zero)
-                    _density = 1.0f;
-                else
-                    _density = Resources.DisplayMetrics.Density;
-            }
-
-            return (int)(sizeRequest * _density);
-        }
-    }
-
-    //Hot fix for the layout positioning issue on Android as described in http://forums.xamarin.com/discussion/20608/fix-for-button-layout-bug-on-android
-    internal class TouchListener : Java.Lang.Object, View.IOnTouchListener
-    {
-        public static readonly Lazy<TouchListener> Instance = new Lazy<TouchListener>(() => new TouchListener());
-
-        /// <summary>
-        /// Make TouchListener a singleton.
-        /// </summary>
-        private TouchListener()
-        { }
-
-        public bool OnTouch(View v, MotionEvent e)
-        {
-            var buttonRenderer = v.Tag as ButtonRenderer;
-            if (buttonRenderer != null && e.Action == MotionEventActions.Down) buttonRenderer.Control.Text = buttonRenderer.Element.Text;
-
-            return false;
-        }
     }
 
     /// <summary>
@@ -262,6 +242,17 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         }
 
         /// <summary>
+        /// Gets the height based on the requested height, if request less than 0, returns 50.
+        /// </summary>
+        /// <param name="requestedHeight">The requested height.</param>
+        /// <returns>The height to use.</returns>
+        private int GetHeight(int requestedHeight)
+        {
+            const int DefaultHeight = 50;
+            return requestedHeight <= 0 ? DefaultHeight : requestedHeight;
+        }
+
+        /// <summary>
         /// Gets the width based on the requested width, if request less than 0, returns 50.
         /// </summary>
         /// <param name="requestedWidth">The requested width.</param>
@@ -271,16 +262,25 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             const int DefaultWidth = 50;
             return requestedWidth <= 0 ? DefaultWidth : requestedWidth;
         }
+    }
+
+    //Hot fix for the layout positioning issue on Android as described in http://forums.xamarin.com/discussion/20608/fix-for-button-layout-bug-on-android
+    internal class TouchListener : Java.Lang.Object, View.IOnTouchListener
+    {
+        public static readonly Lazy<TouchListener> Instance = new Lazy<TouchListener>(() => new TouchListener());
 
         /// <summary>
-        /// Gets the height based on the requested height, if request less than 0, returns 50.
+        /// Make TouchListener a singleton.
         /// </summary>
-        /// <param name="requestedHeight">The requested height.</param>
-        /// <returns>The height to use.</returns>
-        private int GetHeight(int requestedHeight)
+        private TouchListener()
+        { }
+
+        public bool OnTouch(View v, MotionEvent e)
         {
-            const int DefaultHeight = 50;
-            return requestedHeight <= 0 ? DefaultHeight : requestedHeight;
+            var buttonRenderer = v.Tag as ButtonRenderer;
+            if (buttonRenderer != null && e.Action == MotionEventActions.Down) buttonRenderer.Control.Text = buttonRenderer.Element.Text;
+
+            return false;
         }
     }
 }

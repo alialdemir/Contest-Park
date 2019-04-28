@@ -46,6 +46,7 @@ namespace ContestPark.Mobile.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
@@ -65,6 +66,8 @@ namespace ContestPark.Mobile.Droid
             ImageCircleRenderer.Init();
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
             global::Rg.Plugins.Popup.Popup.Init(this, bundle);
 
