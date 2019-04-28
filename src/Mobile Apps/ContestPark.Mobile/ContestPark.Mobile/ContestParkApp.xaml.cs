@@ -19,7 +19,7 @@ namespace ContestPark.Mobile
     {
         #region Constructor
 
-        public ContestParkApp(IPlatformInitializer initializer = null) : base(initializer)
+        public ContestParkApp(IPlatformInitializer initializer = null) :base(initializer)
         {
         }
 
