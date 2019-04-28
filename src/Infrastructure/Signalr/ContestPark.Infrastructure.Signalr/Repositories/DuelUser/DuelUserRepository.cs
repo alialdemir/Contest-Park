@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ServiceStack.Redis;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace ContestPark.Infrastructure.Signalr.Repositories.DuelUser
         public async Task<Entities.DuelUser> GetDuelUserAsync(string userId, Int16 subCategoryId, int bet)
         {
             List<Entities.DuelUser> duelUsers = await GetAllAsync();
-
+            IRedisClientsManager d =
             return duelUsers.FirstOrDefault(p => p.UserId != userId && p.SubCategoryId == subCategoryId && p.Bet == bet);
         }
 

@@ -41,6 +41,14 @@
             <!--Beyaz-->
             <Color x:Key="PrimaryText">#212121</Color>
 
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
+            </Style>
+
+            <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+                <Setter Property="BarTextColor" Value="{StaticResource Primary}" />
+            </Style>
+
             <Style x:Key="ContentParkLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="25"></Setter>
                 <Setter Property="FontAttributes" Value="Bold"></Setter>

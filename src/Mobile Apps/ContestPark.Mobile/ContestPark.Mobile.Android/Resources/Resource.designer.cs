@@ -9645,8 +9645,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0d0192
 			public const int CircularProgressBarLight = 2131558802;
 			
-			// aapt resource value: 0x7f0d019a
-			public const int DrawerIcon = 2131558810;
+			// aapt resource value: 0x7f0d0199
+			public const int DrawerIcon = 2131558809;
 			
 			// aapt resource value: 0x7f0d0193
 			public const int MainTheme = 2131558803;
@@ -9654,11 +9654,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0d0194
 			public const int MainTheme_Base = 2131558804;
 			
-			// aapt resource value: 0x7f0d0198
-			public const int MineCustomTabText = 2131558808;
+			// aapt resource value: 0x7f0d0197
+			public const int MineCustomTabText = 2131558807;
 			
-			// aapt resource value: 0x7f0d0199
-			public const int NoShadowButton = 2131558809;
+			// aapt resource value: 0x7f0d0198
+			public const int NoShadowButton = 2131558808;
 			
 			// aapt resource value: 0x7f0d002d
 			public const int Platform_AppCompat = 2131558445;
@@ -10085,9 +10085,6 @@ namespace ContestPark.Mobile.Droid
 			
 			// aapt resource value: 0x7f0d0008
 			public const int ThemeOverlay_MediaRouter_Light = 2131558408;
-			
-			// aapt resource value: 0x7f0d0197
-			public const int ToolBarStyle = 2131558807;
 			
 			// aapt resource value: 0x7f0d011d
 			public const int Widget_AppCompat_ActionBar = 2131558685;

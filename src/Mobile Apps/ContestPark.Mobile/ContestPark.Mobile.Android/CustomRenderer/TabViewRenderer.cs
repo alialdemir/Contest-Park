@@ -20,6 +20,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         public TabViewRenderer(Context context)
             : base(context)
         {
+            SetBackgroundColor(Color.FromHex("#171717").ToAndroid());
             // Intentionally left blank
         }
 
