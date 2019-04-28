@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.Notification;
+﻿using ContestPark.Mobile.Components.PostCardView;
+using ContestPark.Mobile.Models.Notification;
 using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

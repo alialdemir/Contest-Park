@@ -29,9 +29,9 @@ namespace ContestPark.Mobile.Services.RequestProvider
     {
         #region Private variable
 
-        private readonly Func<string, IEnumerable<Policy>> _policyCreator;
+        private readonly Func<string, IEnumerable<AsyncPolicy>> _policyCreator;
 
-        private readonly ConcurrentDictionary<string, PolicyWrap> _policyWrappers;
+        private readonly ConcurrentDictionary<string, AsyncPolicyWrap> _policyWrappers;
 
         private readonly JsonSerializerSettings _serializerSettings;
 
@@ -39,10 +39,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         #region Constructor
 
-        public RequestProvider(Func<string, IEnumerable<Policy>> policyCreator)
+        public RequestProvider(Func<string, IEnumerable<AsyncPolicy>> policyCreator)
         {
             _policyCreator = policyCreator;
-            _policyWrappers = new ConcurrentDictionary<string, PolicyWrap>();
+            _policyWrappers = new ConcurrentDictionary<string, AsyncPolicyWrap>();
 
             _serializerSettings = new JsonSerializerSettings
             {
@@ -190,11 +190,11 @@ namespace ContestPark.Mobile.Services.RequestProvider
             }
         }
 
-        private async Task<T> HttpInvoker<T>(string origin, Func<Task<T>> action)
+        private async Task<T> HttpInvoker<T>(string origin, Func<Context, Task<T>> action)
         {
             var normalizedOrigin = NormalizeOrigin(origin);
 
-            if (!_policyWrappers.TryGetValue(normalizedOrigin, out PolicyWrap policyWrap))
+            if (!_policyWrappers.TryGetValue(normalizedOrigin, out AsyncPolicyWrap policyWrap))
             {
                 policyWrap = Policy.WrapAsync(_policyCreator(normalizedOrigin).ToArray());
                 _policyWrappers.TryAdd(normalizedOrigin, policyWrap);
@@ -209,7 +209,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             // a new StringContent must be created for each retry as it is disposed after each call
             var origin = GetOriginFromUri(url);
 
-            return HttpInvoker(origin, async () =>
+            return HttpInvoker(origin, async (context) =>
             {
                 try
                 {

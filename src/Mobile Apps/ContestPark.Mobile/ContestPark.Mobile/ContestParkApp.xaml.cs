@@ -29,10 +29,6 @@ namespace ContestPark.Mobile
 
         protected override void OnInitialized()
         {
-#if DEBUG
-            // Initialize Live Reload.
-            LiveReload.Init();
-#endif
             InitializeComponent();
 
             Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())

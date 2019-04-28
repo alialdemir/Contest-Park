@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using ImageCircle.Forms.Plugin.Droid;
-using Lottie.Forms.Droid;
 using Plugin.CurrentActivity;
 using Plugin.Iconize;
 using Prism;
@@ -71,7 +70,7 @@ namespace ContestPark.Mobile.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            AnimationViewRenderer.Init();
+            ////  AnimationViewRenderer.Init();
 
             Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 

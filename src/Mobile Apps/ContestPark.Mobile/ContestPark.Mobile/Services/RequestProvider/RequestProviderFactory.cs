@@ -15,7 +15,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return new RequestProvider(origin => CreatePolicies());
         }
 
-        private IEnumerable<Policy> CreatePolicies()
+        private IEnumerable<AsyncPolicy> CreatePolicies()
         {
             var waitAndRetryPolicy = Policy.Handle<HttpRequestException>()
                 // Policy 1: wait and retry policy (bypasses internet connectivity issues)
@@ -57,7 +57,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             //        //_logger.LogTrace("Circuit breaker reset");
             //    })-;
 
-            return new List<Policy>
+            return new List<AsyncPolicy>
             {
                 waitAndRetryPolicy,
                 circuitBreakerPolicy
