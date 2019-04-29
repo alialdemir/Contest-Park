@@ -5,7 +5,7 @@
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ContestPark.Mobile.Components.TextListItem">
     <ContentView.Content>
-        <components:CustomGrid Padding="8"
+        <components:CustomGrid Padding="16,8,16,8"
                                ColumnSpacing="15"
                                SingleTap="{Binding SingleTap}"
                                CommandParameter="{Binding CommandParameter}">

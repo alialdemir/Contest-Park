@@ -1,4 +1,8 @@
-﻿using Plugin.Iconize;
+﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Events;
+using Plugin.Iconize;
+using Prism.Events;
+using Prism.Ioc;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
@@ -19,6 +23,18 @@ namespace ContestPark.Mobile.Views
 
             Color primary = (Color)ContestParkApp.Current.Resources["Primary"];
             On<Xamarin.Forms.PlatformConfiguration.Android>().SetBarSelectedItemColor(primary);
+
+            IEventAggregator eventAggregator = RegisterTypesConfig.Container.Resolve<IEventAggregator>();
+            eventAggregator?
+                        .GetEvent<TabChangeEvent>()
+                        .Subscribe((tab) =>// parametreden gelen tab'a gider
+                        {
+                            byte index = (byte)tab;
+                            if (index >= 0 && index < Children.Count)
+                            {
+                                CurrentPage = Children[index];
+                            }
+                        });
         }
 
         #endregion Constructor
@@ -29,7 +45,6 @@ namespace ContestPark.Mobile.Views
         {
             base.OnCurrentPageChanged();
             this.Title = this.CurrentPage.Title;
-
             // NavigationParameters parameters = new NavigationParameters();
             //if (this.CurrentPage is ProfilePage)
             //{

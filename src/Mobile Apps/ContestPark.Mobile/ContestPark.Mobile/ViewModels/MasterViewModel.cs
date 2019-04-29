@@ -178,6 +178,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             if (IsBusy)
                 return;
+
             IsBusy = true;
 
             if (name == "facebook" || name == "twitter" || name == "instagram")
@@ -187,8 +188,8 @@ namespace ContestPark.Mobile.ViewModels
             else if (!string.IsNullOrEmpty(name))
             {
                 _eventAggregator
-                .GetEvent<MasterDetailPageIsPresentedEvent>()
-                .Publish(false);
+                        .GetEvent<MasterDetailPageIsPresentedEvent>()
+                        .Publish(false);
 
                 _eventAggregator
                         .GetEvent<TabPageNavigationEvent>()
@@ -217,13 +218,32 @@ namespace ContestPark.Mobile.ViewModels
         private async Task SetUserGoldAsync()
         {
             int userGold = await _cpService.GetTotalCpByUserIdAsync();
-            if (userGold > 0) UserCoins = userGold.ToString("##,#").Replace(",", ".");
-            else UserCoins = userGold.ToString();
+            UserCoins = userGold > 0 ?
+                userGold.ToString("##,#").Replace(",", ".") :
+                userGold.ToString();
         }
 
         #endregion Methods
 
         #region Commands
+
+        /// <summary>
+        /// Profil sayfasına yönlendirir
+        /// </summary>
+        public ICommand GotoProfileViewCommand
+        {
+            get => new Command(() =>
+            {
+                if (_eventAggregator != null)
+                {
+                    _eventAggregator.GetEvent<TabChangeEvent>().Publish(Enums.Tabs.Profile);
+
+                    _eventAggregator
+                                .GetEvent<MasterDetailPageIsPresentedEvent>()
+                                .Publish(false);
+                }
+            });
+        }
 
         private ICommand SetUserGoldCommand => new Command(async () => await SetUserGoldAsync());
 
