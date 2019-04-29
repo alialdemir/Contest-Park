@@ -5,7 +5,7 @@
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ContestPark.Mobile.Components.SwitchListItem">
     <ContentView.Content>
-        <Grid Padding="8"
+        <Grid Padding="16,8,16,8"
               ColumnSpacing="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />

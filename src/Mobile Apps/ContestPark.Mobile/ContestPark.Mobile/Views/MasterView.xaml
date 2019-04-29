@@ -42,22 +42,22 @@
                            Aspect="AspectFill"
                            Source="{Binding CoverPicture}" />
 
-                    <components:CircleImage Grid.Column="0"
-                                    Grid.Row="1"
-                                    CommandParameter="{Binding UserName}"
-                                    Source="{Binding ProfilePicture}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                    <components:CircleImage Grid.Row="1"
+                                            Grid.Column="0"
+                                            Margin="0,-60,0,0"
+                                            Source="{Binding ProfilePicture}"
+                                            Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference page}}" />
                     <Grid Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="-10,50,0,0"
+                          RowSpacing="0"
+                          Grid.Column="1"
                           ColumnSpacing="0"
-                          RowSpacing="0">
+                          Margin="-10,10,0,0">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25" />
                             <RowDefinition Height="*" />
@@ -66,15 +66,16 @@
                         <Label Grid.Row="0"
                                Grid.ColumnSpan="2"
                                FontSize="16"
+                               FontAttributes="Bold"
                                Text="{Binding FullName}"
                                TextColor="{StaticResource White}" />
 
-                        <icon:IconLabel Grid.Row="1" 
+                        <icon:IconLabel Grid.Row="1"
                                         FontSize="14"
                                         Text="far-gem"
                                         Grid.Column="0"
-                                        HorizontalOptions="Start" 
-                                        TextColor="{StaticResource Primary}"/>
+                                        HorizontalOptions="Start"
+                                        TextColor="{StaticResource Primary}" />
 
                         <Label Grid.Row="1"
                                Grid.Column="1"

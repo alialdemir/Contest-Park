@@ -5,7 +5,7 @@
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ContestPark.Mobile.Components.IconListItem">
     <ContentView.Content>
-        <components:CustomGrid Padding="8"
+        <components:CustomGrid Padding="16,8,16,8"
                                ColumnSpacing="15"
                                SingleTap="{Binding SingleTap}"
                                CommandParameter="{Binding CommandParameter}">
@@ -32,7 +32,7 @@
                    VerticalOptions="Center" />
 
             <icon:IconImage Grid.Row="0"
-                            IconSize="16"
+                            IconSize="18"
                             Grid.Column="2"
                             Icon="fas-angle-right"
                             HorizontalOptions="End"
