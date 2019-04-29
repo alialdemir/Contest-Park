@@ -44,15 +44,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Constructors
 
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets a value indicating whether IsExit
-        /// </summary>
-        public bool IsExit { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         /// <summary>
@@ -151,15 +142,12 @@ namespace ContestPark.Mobile.ViewModels
         /// <returns>The <see cref="Task"/></returns>
         private async Task ExecutePushPageCommand(string name)
         {
-            if (IsExit || IsBusy)
+            if (string.IsNullOrEmpty(name) || IsBusy)
                 return;
 
             IsBusy = true;
 
-            if (!string.IsNullOrEmpty(name))
-            {
-                await PushNavigationPageAsync(name);
-            }
+            await PushNavigationPageAsync(name);
 
             IsBusy = false;
         }
@@ -170,33 +158,10 @@ namespace ContestPark.Mobile.ViewModels
         private async Task ExitAppAsync()
         {
             await _identityService.Unauthorized();
+
             await PushNavigationPageAsync($"app:///{nameof(SignInView)}?appModuleRefresh=OnInitialized");
         }
 
         #endregion Methods
-
-        #region Navigation
-
-        /// <summary>
-        /// The OnNavigatedFrom
-        /// </summary>
-        /// <param name="parameters">The parameters <see cref="INavigationParameters"/></param>
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            IsExit = true;
-            base.OnNavigatedFrom(parameters);
-        }
-
-        /// <summary>
-        /// The OnNavigatedTo
-        /// </summary>
-        /// <param name="parameters">The parameters <see cref="INavigationParameters"/></param>
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            IsExit = false;
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }
