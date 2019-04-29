@@ -7,6 +7,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,9 +19,8 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly IEventAggregator _eventAggregator;
-
         private readonly ICpService _cpService;
+        private readonly IEventAggregator _eventAggregator;
 
         #endregion Private variables
 
@@ -47,6 +47,15 @@ namespace ContestPark.Mobile.ViewModels
 
         private string _coverPicture;
 
+        private string _fullName;
+
+        private string _profilePicture;
+
+        /// <summary>
+        /// Kullanıcı altın miktarı
+        /// </summary>
+        private string _userCoins = "0";
+
         public string CoverPicture
         {
             get { return _coverPicture; }
@@ -57,21 +66,6 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => CoverPicture);
             }
         }
-
-        private string _profilePicture;
-
-        public string ProfilePicture
-        {
-            get { return _profilePicture; }
-            set
-            {
-                _profilePicture = value;
-
-                RaisePropertyChanged(() => ProfilePicture);
-            }
-        }
-
-        private string _fullName;
 
         public string FullName
         {
@@ -84,10 +78,16 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        /// <summary>
-        /// Kullanıcı altın miktarı
-        /// </summary>
-        private string _userCoins = "0";
+        public string ProfilePicture
+        {
+            get { return _profilePicture; }
+            set
+            {
+                _profilePicture = value;
+
+                RaisePropertyChanged(() => ProfilePicture);
+            }
+        }
 
         /// <summary>
         /// Public property to set and get the title of the item
@@ -144,21 +144,21 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.FollowUsOnSocialNetworks)
                             {
                                  new Models.MenuItem.MenuItem {
-                                     CommandParameter = "FacebookAddress",
+                                     CommandParameter = "facebook",
                                      Icon = "fab-facebook-square",
                                      Title = "Facebook",
                                      MenuType = Enums.MenuTypes.Icon,
                                         SingleTap = pushPageCommand
                                  },
                                  new Models.MenuItem.MenuItem {
-                                     CommandParameter = "TwitterAddress",
+                                     CommandParameter = "twitter",
                                      Icon = "fab-twitter-square",
                                      Title = "Twitter",
                                      MenuType = Enums.MenuTypes.Icon,
                                         SingleTap = pushPageCommand
                                  },
                                  new Models.MenuItem.MenuItem {
-                                     CommandParameter = "InstagramAddress",
+                                     CommandParameter = "instagram",
                                      Icon = "fab-instagram",
                                      Title = "Instagram",
                                      MenuType = Enums.MenuTypes.Icon,
@@ -174,25 +174,39 @@ namespace ContestPark.Mobile.ViewModels
         /// Parametreden gelen view adına göre yönlendirme yapar ve sol menuyu kapatır
         /// </summary>
         /// <param name="pageName">Yönlendirilecek sayfa adı</param>
-        private void ExecutePushPageCommand(string pageName)
+        private void ExecutePushPageCommand(string name)
         {
-            if (pageName.Equals("FacebookAddress"))
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
+            if (name == "facebook" || name == "twitter" || name == "instagram")
             {
+                OpenUri($"https://www.{name}.com/contestpark");
             }
-            else if (pageName.Equals("TwitterAddress"))
-            {
-            }
-            else if (pageName.Equals("InstagramAddress"))
-            {
-            }
-            else if (!string.IsNullOrEmpty(pageName))
+            else if (!string.IsNullOrEmpty(name))
             {
                 _eventAggregator
                 .GetEvent<MasterDetailPageIsPresentedEvent>()
                 .Publish(false);
+
                 _eventAggregator
                         .GetEvent<TabPageNavigationEvent>()
-                        .Publish(pageName);
+                        .Publish(name);
+            }
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// gelen linki browser da açar
+        /// </summary>
+        /// <param name="url">web site link</param>
+        private void OpenUri(string url)
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                Device.OpenUri(new Uri(url));
             }
         }
 

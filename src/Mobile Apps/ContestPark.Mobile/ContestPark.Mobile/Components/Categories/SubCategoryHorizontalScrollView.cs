@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Components
         public SubCategoryHorizontalScrollView()
         {
             Orientation = ScrollOrientation.Horizontal;
-            HeightRequest = 120;
+            HeightRequest = 140;
         }
 
         #endregion Constructor
