@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using System;
 using System.Diagnostics;
@@ -168,6 +169,20 @@ namespace ContestPark.Mobile.Services.Settings
         public void RemoveCurrentUser()
         {
             _userInfo = new UserInfoModel();
+        }
+
+        /// <summary>
+        /// Login olunca set edilmesi gereken değerleri set eder
+        /// </summary>
+        /// <param name="userToken">Token info</param>
+        public void SetTokenInfo(UserToken userToken)
+        {
+            AuthAccessToken = userToken.AccessToken;
+            RefreshToken = userToken.RefreshToken;
+            TokenType = userToken.TokenType;
+
+            // Current user yenilendi
+            RefreshCurrentUser();
         }
 
         #endregion CurrentUser methods

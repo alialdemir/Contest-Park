@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Converters.SignInSocialNetworkPage;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Token;
@@ -45,11 +46,6 @@ namespace ContestPark.Mobile.ViewModels
 
         private LoginModel _loginModel = new LoginModel();
 
-        public string FacebookIcon
-        {
-            get { return "fab-facebook-square"; }
-        }
-
         public LoginModel LoginModel
         {
             get
@@ -67,16 +63,24 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Şifremi unuttum yönlendirme
+        /// </summary>
         private async Task ExecuteForgetYourPasswordCommand()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
             await PushNavigationPageAsync($"{nameof(ForgetYourPasswordView)}");
+
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Giriş yap
+        /// </summary>
         private async Task ExecuteSignInCommandAsync()
         {
             if (IsBusy)
@@ -89,9 +93,7 @@ namespace ContestPark.Mobile.ViewModels
             UserToken token = await _identityService.GetTokenAsync(LoginModel);
             if (token != null)
             {
-                _settingsService.AuthAccessToken = token.AccessToken;
-                _settingsService.RefreshToken = token.RefreshToken;
-                _settingsService.TokenType = token.TokenType;
+                _settingsService.SetTokenInfo(token);
 
                 await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
             }
@@ -101,13 +103,18 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Üye ol yönlendirme
+        /// </summary>
         private async Task ExecuteSignUpCommand()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
             await PushNavigationPageAsync($"{nameof(SignUpView)}");
+
             IsBusy = false;
         }
 

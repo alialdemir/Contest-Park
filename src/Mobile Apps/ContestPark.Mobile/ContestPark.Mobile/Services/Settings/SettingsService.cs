@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.RequestProvider;
 using System;
@@ -188,6 +189,20 @@ namespace ContestPark.Mobile.Services.Settings
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{(byte)settingType}", settingValue);
 
             await _requestProvider.PostAsync<string>(uri);
+        }
+
+        /// <summary>
+        /// Login olunca set edilmesi gereken değerleri set eder
+        /// </summary>
+        /// <param name="userToken">Token info</param>
+        public void SetTokenInfo(UserToken userToken)
+        {
+            AuthAccessToken = userToken.AccessToken;
+            RefreshToken = userToken.RefreshToken;
+            TokenType = userToken.TokenType;
+
+            // Current user yenilendi
+            RefreshCurrentUser();
         }
 
         #endregion Setting Service

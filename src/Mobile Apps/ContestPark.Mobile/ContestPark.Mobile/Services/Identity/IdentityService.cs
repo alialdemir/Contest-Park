@@ -94,14 +94,17 @@ namespace ContestPark.Mobile.Services.Identity
         /// Şifremi unuttum
         /// </summary>
         /// <param name="userNameOrEmailAddress">Kullanıcı adı veya eposta adresi</param>
-        public Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
+        public async Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
         {
+            if (string.IsNullOrEmpty(userNameOrEmailAddress))
+            {
+                await ShowErrorMessage(ContestParkResources.WriteYourUserNameOrEmailAddress);
+            }
             //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
             //string message = await _requestProvider.PostAsync<string>(uri, new { userNameOrEmailAddress });
 
             //await ShowErrorMessage(message);
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -124,9 +127,13 @@ namespace ContestPark.Mobile.Services.Identity
 
                 return await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
             }
-            catch (Exception ex)
+            catch (HttpRequestExceptionEx ex)
             {
-                await ShowTokenErrorMessage(ex);
+                await ShowHttpErrorMessage(ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                await ShowErrorMessage(ex.Message);
             }
 
             return null;
@@ -155,17 +162,21 @@ namespace ContestPark.Mobile.Services.Identity
                 if (refreshTokenModel != null)
                 {
                     // Token bilgisi yenilendi
-                    _settingsService.AuthAccessToken = refreshTokenModel.AccessToken;
-                    _settingsService.RefreshToken = refreshTokenModel.RefreshToken;
-                    _settingsService.TokenType = refreshTokenModel.TokenType;
-
-                    // Current user yenilendi
-                    _settingsService.RefreshCurrentUser();
+                    _settingsService.SetTokenInfo(new UserToken
+                    {
+                        AccessToken = refreshTokenModel.AccessToken,
+                        RefreshToken = refreshTokenModel.RefreshToken,
+                        TokenType = refreshTokenModel.TokenType
+                    });
                 }
             }
-            catch (Exception ex)
+            catch (HttpRequestExceptionEx ex)
             {
-                await ShowTokenErrorMessage(ex);
+                await ShowHttpErrorMessage(ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                await ShowErrorMessage(ex.Message);
             }
         }
 
@@ -215,10 +226,17 @@ namespace ContestPark.Mobile.Services.Identity
         {
             if (!string.IsNullOrEmpty(message))
             {
+#if DEBUG
                 await _dialogService.DisplayAlertAsync(
                               ContestParkResources.Error,
                          message,
                                ContestParkResources.Okay);
+#else
+                await _dialogService.DisplayAlertAsync(
+                              ContestParkResources.Error,
+                         ContestParkResources.GlobalErrorMessage,
+                               ContestParkResources.Okay);
+#endif
             }
         }
 
@@ -244,25 +262,6 @@ namespace ContestPark.Mobile.Services.Identity
                 }
 
                 await ShowErrorMessage(message);
-            }
-        }
-
-        /// <summary>
-        /// Token alırken gelen hata mesajlarını gösterir
-        /// </summary>
-        private async Task ShowTokenErrorMessage(Exception ex)
-        {
-            if (ex.GetType() == typeof(HttpRequestExceptionEx))
-            {
-                await ShowHttpErrorMessage(ex);
-            }
-            else if (ex.GetType() == typeof(HttpRequestException))
-            {
-#if DEBUG
-                await ShowErrorMessage(ex.Message);
-#else
-       await ShowMessage(ContestParkResources.GlobalErrorMessage);
-#endif
             }
         }
 
