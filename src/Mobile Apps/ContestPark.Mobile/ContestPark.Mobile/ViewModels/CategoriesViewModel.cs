@@ -19,9 +19,8 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly ICategoryServices _categoryServices;
-
         private readonly ISignalRServiceBase _baseSignalRService;
+        private readonly ICategoryServices _categoryServices;
 
         #endregion Private variables
 
@@ -50,7 +49,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public int SeeAllSubCateogryId { get; set; } = 0;
+        public short SeeAllSubCateogryId { get; set; } = 0;
 
         #endregion Properties
 
@@ -70,6 +69,7 @@ namespace ContestPark.Mobile.ViewModels
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
 
             await base.InitializeAsync();
+
             IsBusy = false;
         }
 
@@ -79,12 +79,24 @@ namespace ContestPark.Mobile.ViewModels
         private void EventSubscribe(IEventAggregator eventAggregator) => eventAggregator.GetEvent<SubCategoryRefleshEvent>()
                 .Subscribe(() => RefleshCommand.Execute(null));
 
-        private async Task ExecutGoToCategorySearchPageCommand(int CategoryId = 0)
+        /// <summary>
+        /// Kategori search sayfasına gider
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        private async Task ExecutGoToCategorySearchPageCommand(short categoryId = 0)
         {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
             await PushNavigationPageAsync($"{nameof(CategorySearchView)}", new NavigationParameters
                                                 {
-                                                    { "CategoryId", CategoryId }
+                                                    { "CategoryId", categoryId }
                                                 }, useModalNavigation: false);
+
+            IsBusy = false;
         }
 
         #endregion Methods
@@ -92,7 +104,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _goToCategorySearchPageCommand;
-        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<int>(async (CategoryId) => await ExecutGoToCategorySearchPageCommand(CategoryId)));
+        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>(async (categoryId) => await ExecutGoToCategorySearchPageCommand(categoryId)));
 
         #endregion Commands
     }
