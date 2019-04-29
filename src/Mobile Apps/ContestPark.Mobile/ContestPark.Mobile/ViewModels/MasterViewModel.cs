@@ -119,49 +119,49 @@ namespace ContestPark.Mobile.ViewModels
             {
                 new MenuItemList("Menu")
                             {
-                                new Models.MenuItem.MenuItem {
+                                new TextMenuItem {
                                     CommandParameter = nameof(ContestStoreView),
                                     Icon = "fas-store",
                                     Title = ContestParkResources.ContestStore,
-                                    MenuType = Enums.MenuTypes.Icon,
+                                    MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
                                 },
-                                new Models.MenuItem.MenuItem {
+                                new TextMenuItem {
                                     CommandParameter = nameof(MissionsView),
                                     Icon = "fas-award",
                                     Title = ContestParkResources.Missions,
-                                    MenuType = Enums.MenuTypes.Icon,
+                                    MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
                                 },
-                                new Models.MenuItem.MenuItem {
+                                new TextMenuItem {
                                     CommandParameter = nameof(SettingsView),
                                     Icon = "fas-cogs",
                                     Title = ContestParkResources.Settings,
-                                    MenuType = Enums.MenuTypes.Icon,
+                                    MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
                                 },
                             },
                 new MenuItemList(ContestParkResources.FollowUsOnSocialNetworks)
                             {
-                                 new Models.MenuItem.MenuItem {
+                                 new TextMenuItem {
                                      CommandParameter = "facebook",
                                      Icon = "fab-facebook-square",
                                      Title = "Facebook",
-                                     MenuType = Enums.MenuTypes.Icon,
+                                     MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                  },
-                                 new Models.MenuItem.MenuItem {
+                                 new TextMenuItem {
                                      CommandParameter = "twitter",
                                      Icon = "fab-twitter-square",
                                      Title = "Twitter",
-                                     MenuType = Enums.MenuTypes.Icon,
+                                     MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                  },
-                                 new Models.MenuItem.MenuItem {
+                                 new TextMenuItem {
                                      CommandParameter = "instagram",
                                      Icon = "fab-instagram",
                                      Title = "Instagram",
-                                     MenuType = Enums.MenuTypes.Icon,
+                                     MenuType = Enums.MenuTypes.Label,
                                      SingleTap = pushPageCommand
                                  }
                             }

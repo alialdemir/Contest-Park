@@ -12,10 +12,10 @@ namespace ContestPark.Infrastructure.Signalr.Repositories.DuelUser
     {
         #region Private Variables
 
+        private readonly IDatabase _database;
         private readonly string _key = "DuelUser";
 
         private readonly ConnectionMultiplexer _redis;
-        private readonly IDatabase _database;
 
         #endregion Private Variables
 
@@ -30,6 +30,36 @@ namespace ContestPark.Infrastructure.Signalr.Repositories.DuelUser
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Bekleme süresi 30 saniyeden büyük olan kullanıcıları siler
+        /// </summary>
+        public async void ClearExpiredDuelUserList()
+        {
+            var duelUsers = await GetAllAsync();
+            DateTime now = DateTime.Now;
+
+            duelUsers = duelUsers.Where(p => (now - p.Date).TotalSeconds < 30).ToList();
+
+            await SetStringDuelUserListAsync(duelUsers);
+        }
+
+        /// <summary>
+        /// Redis datadan kullanıcı sil
+        /// </summary>
+        /// <param name="duelUserModel">Silinecek kullanıcı</param>
+        /// <returns>Başarılı olma durumu</returns>
+        public async Task<bool> DeleteAsync(Entities.DuelUser duelUser)
+        {
+            List<Entities.DuelUser> duelUsers = await GetAllAsync();
+
+            if (duelUsers == null || duelUsers.Count <= 0)
+                return false;
+
+            duelUsers.Remove(duelUser);
+
+            return await SetStringDuelUserListAsync(duelUsers);
+        }
 
         /// <summary>
         /// Beklemede olan tüm kullanıcıları getirir
@@ -55,7 +85,7 @@ namespace ContestPark.Infrastructure.Signalr.Repositories.DuelUser
         public async Task<Entities.DuelUser> GetDuelUserAsync(string userId, Int16 subCategoryId, int bet)
         {
             List<Entities.DuelUser> duelUsers = await GetAllAsync();
-            IRedisClientsManager d =
+
             return duelUsers.FirstOrDefault(p => p.UserId != userId && p.SubCategoryId == subCategoryId && p.Bet == bet);
         }
 
@@ -78,51 +108,21 @@ namespace ContestPark.Infrastructure.Signalr.Repositories.DuelUser
             return await SetStringDuelUserListAsync(duelUsers);
         }
 
-        /// <summary>
-        /// Redis datadan kullanıcı sil
-        /// </summary>
-        /// <param name="duelUserModel">Silinecek kullanıcı</param>
-        /// <returns>Başarılı olma durumu</returns>
-        public async Task<bool> DeleteAsync(Entities.DuelUser duelUser)
-        {
-            List<Entities.DuelUser> duelUsers = await GetAllAsync();
-
-            if (duelUsers == null || duelUsers.Count <= 0)
-                return false;
-
-            duelUsers.Remove(duelUser);
-
-            return await SetStringDuelUserListAsync(duelUsers);
-        }
-
-        /// <summary>
-        /// Bekleme süresi 30 saniyeden büyük olan kullanıcıları siler
-        /// </summary>
-        public async void ClearExpiredDuelUserList()
-        {
-            var duelUsers = await GetAllAsync();
-            DateTime now = DateTime.Now;
-
-            duelUsers = duelUsers.Where(p => (now - p.Date).TotalSeconds < 30).ToList();
-
-            await SetStringDuelUserListAsync(duelUsers);
-        }
-
         #endregion Methods
 
         #region Private methds
+
+        private IServer GetServer()
+        {
+            var endpoint = _redis.GetEndPoints();
+            return _redis.GetServer(endpoint.First());
+        }
 
         private Task<bool> SetStringDuelUserListAsync(List<Entities.DuelUser> duelUsers)
         {
             string serialize = JsonConvert.SerializeObject(duelUsers);
 
             return _database.StringSetAsync(_key, serialize);
-        }
-
-        private IServer GetServer()
-        {
-            var endpoint = _redis.GetEndPoints();
-            return _redis.GetServer(endpoint.First());
         }
 
         #endregion Private methds
