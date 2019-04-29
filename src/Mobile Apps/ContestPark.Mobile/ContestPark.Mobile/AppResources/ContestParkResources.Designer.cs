@@ -151,7 +151,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categories.
+        ///   Looks up a localized string similar to Kategoriler.
         /// </summary>
         public static string Categories {
             get {
