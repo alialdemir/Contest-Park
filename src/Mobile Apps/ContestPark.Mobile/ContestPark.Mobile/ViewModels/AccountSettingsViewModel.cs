@@ -5,7 +5,6 @@ using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
-using Prism.Navigation;
 using Prism.Services;
 using System.Collections.Generic;
 using System.IO;
@@ -47,12 +46,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Constructors
 
-        #region Properties
-
-        public bool IsExit { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         protected override Task InitializeAsync()
@@ -61,31 +54,29 @@ namespace ContestPark.Mobile.ViewModels
             {
                 new MenuItemList(ContestParkResources.AccountSettings)
                                 {
-                                    new Models.MenuItem.MenuItem {
+                                    new InputMenuItem {
                                         Icon = "fas-user-circle",
-                                        CommandParameter = "FullName",
                                         MenuType = Enums.MenuTypes.Input,
                                         Placeholder = ContestParkResources.Fullname,
-                                        Title = _settingsService.CurrentUser.FullName,
+                                        Text = _settingsService.CurrentUser.FullName,
                                     },
-                                    new Models.MenuItem.MenuItem {
+                                    new InputMenuItem {
                                         Icon = "fas-user-edit",
-                                        CommandParameter = "UserName",
                                         MenuType = Enums.MenuTypes.Input,
                                         Placeholder = ContestParkResources.UserName,
-                                        Title = _settingsService.CurrentUser.UserName,
+                                        Text = _settingsService.CurrentUser.UserName,
                                     },
                                 },
 
                 new MenuItemList(ContestParkResources.PictureSettings)
                                 {
-                                    new Models.MenuItem.MenuItem {
+                                    new TextMenuItem {
                                         MenuType = Enums.MenuTypes.Label,
                                         Title = ContestParkResources.ChangeProfilePicture,
                                         Icon = _settingsService.CurrentUser.ProfilePicturePath,
                                         SingleTap = new Command(async () => await ChangeProfilePictureAsync())
         },
-                                    new Models.MenuItem.MenuItem {
+                                    new TextMenuItem {
                                         MenuType = Enums.MenuTypes.Label,
                                         Title = ContestParkResources.ChangeCoverPicture,
                                         Icon = _settingsService.CurrentUser.CoverPicturePath,
@@ -95,17 +86,15 @@ namespace ContestPark.Mobile.ViewModels
 
                 new MenuItemList(ContestParkResources.PasswordChange)
                                 {
-                                    new Models.MenuItem.MenuItem {
+                                    new InputMenuItem {
                                         Icon = "fas-lock",
                                         IsPassword = true,
-                                        CommandParameter = "OldPassword",
                                         MenuType = Enums.MenuTypes.Input,
                                         Placeholder = ContestParkResources.OldPassword,
                                     },
-                                    new Models.MenuItem.MenuItem {
+                                    new InputMenuItem {
                                         IsPassword = true,
                                         Icon = "fas-unlock",
-                                        CommandParameter = "NewPassword",
                                         MenuType = Enums.MenuTypes.Input,
                                         Placeholder = ContestParkResources.NewPassword,
                                     },
@@ -158,26 +147,26 @@ namespace ContestPark.Mobile.ViewModels
         {
             var menuItems = Items.Select(p => p.MenuItems).ToList().LastOrDefault();
 
-            string oldPassword = menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "OldPassword").Title;
-            string newPassword = menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "NewPassword").Title;
+            string oldPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text;
+            string newPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text;
 
-            if (!string.IsNullOrEmpty(oldPassword) && !string.IsNullOrEmpty(newPassword))
+            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
+                return;
+
+            bool isSuccess = await _identityService.ChangePasswordAsync(new ChangePasswordModel
             {
-                bool isSuccess = await _identityService.ChangePasswordAsync(new ChangePasswordModel
-                {
-                    OldPassword = oldPassword,
-                    NewPassword = newPassword,
-                });
+                OldPassword = oldPassword,
+                NewPassword = newPassword,
+            });
 
-                if (isSuccess)
-                {
-                    menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "OldPassword").Title = "";
-                    menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "NewPassword").Title = "";
+            if (isSuccess)
+            {
+                ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text = "";
+                ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text = "";
 
-                    await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
-                                            ContestParkResources.YourPasswordHasBeenUpdated,
-                                            ContestParkResources.Okay);
-                }
+                await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
+                                        ContestParkResources.YourPasswordHasBeenUpdated,
+                                        ContestParkResources.Okay);
             }
         }
 
@@ -188,28 +177,27 @@ namespace ContestPark.Mobile.ViewModels
         {
             var menuItems = Items.Select(p => p.MenuItems).ToList().FirstOrDefault();
 
-            string fullName = menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "FullName").Title;
-            string userName = menuItems.FirstOrDefault(p => p.CommandParameter?.ToString() == "UserName").Title;
+            string fullName = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.Fullname)).Text;
+            string userName = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.UserName)).Text;
 
-            if (!string.IsNullOrEmpty(fullName) &&
-                !string.IsNullOrEmpty(userName) &&
-                (_settingsService.CurrentUser.FullName != fullName || _settingsService.CurrentUser.UserName != userName)
-                )
+            if (!(!string.IsNullOrEmpty(fullName) &&
+                  !string.IsNullOrEmpty(userName) &&
+                (_settingsService.CurrentUser.FullName != fullName || _settingsService.CurrentUser.UserName != userName)))
+                return;
+
+            bool isSuccess = await _identityService.UpdateUserInfoAsync(new UpdateUserInfoModel
             {
-                bool isSuccess = await _identityService.UpdateUserInfoAsync(new UpdateUserInfoModel
-                {
-                    UserName = userName,
-                    FullName = fullName,
-                });
+                UserName = userName,
+                FullName = fullName,
+            });
 
-                if (isSuccess)
-                {
-                    await _identityService.RefreshTokenAsync();
+            if (isSuccess)
+            {
+                await _identityService.RefreshTokenAsync();
 
-                    await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
-                                            ContestParkResources.YourInformationHasBeenUpdated,
-                                            ContestParkResources.Okay);
-                }
+                await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
+                                        ContestParkResources.YourInformationHasBeenUpdated,
+                                        ContestParkResources.Okay);
             }
         }
 
@@ -222,21 +210,5 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(() => ExecuteSaveCommandAsync()));
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            IsExit = true;
-            base.OnNavigatedFrom(parameters);
-        }
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            IsExit = false;
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

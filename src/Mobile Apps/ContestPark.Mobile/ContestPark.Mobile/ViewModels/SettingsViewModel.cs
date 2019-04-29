@@ -62,14 +62,14 @@ namespace ContestPark.Mobile.ViewModels
             {
                 new MenuItemList(ContestParkResources.AppSettings)
                                 {
-                                    new Models.MenuItem.MenuItem {
+                                    new TextMenuItem {
                                         CommandParameter = nameof(LanguageView),
                                         Icon = "fas-globe",
                                         Title = ContestParkResources.Language,
-                                        MenuType = Enums.MenuTypes.Icon,
+                                        MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
-                                    new Models.MenuItem.MenuItem {
+                                    new Models.MenuItem.SwitchMenuItem {
                                         Icon = "fas-volume-up",
                                         Title = ContestParkResources.Sounds,
                                         MenuType = Enums.MenuTypes.Switch,
@@ -80,21 +80,21 @@ namespace ContestPark.Mobile.ViewModels
 
                 new MenuItemList(ContestParkResources.AccountSettings)
                                     {
-                                    new Models.MenuItem.MenuItem {
+                                    new TextMenuItem {
                                         CommandParameter = nameof(AccountSettingsView),
                                         Icon = "fas-user-circle",
                                         Title = ContestParkResources.EditProfile,
-                                        MenuType = Enums.MenuTypes.Icon,
+                                        MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
-                                    new Models.MenuItem.MenuItem {
+                                    new TextMenuItem {
                                         CommandParameter = nameof(BlockingView),
                                         Icon = "fas-exclamation-circle",
                                         Title = ContestParkResources.Blocking,
-                                        MenuType = Enums.MenuTypes.Icon,
+                                        MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
-                                    new Models.MenuItem.MenuItem {
+                                    new SwitchMenuItem {
                                         Icon = "fas-unlock-alt",
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = Enums.MenuTypes.Switch,
@@ -105,7 +105,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 new MenuItemList(ContestParkResources.Other)
                                 {
-                                    new Models.MenuItem.MenuItem {
+                                    new TextMenuItem {
                                         Icon = "fas-sign-out-alt",
                                         Title = ContestParkResources.LogOut,
                                         MenuType = Enums.MenuTypes.Label,

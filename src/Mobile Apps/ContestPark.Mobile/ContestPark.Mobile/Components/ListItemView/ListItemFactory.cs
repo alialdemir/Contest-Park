@@ -35,10 +35,6 @@ namespace ContestPark.Mobile.Components
 
             switch (menuItem.MenuType)
             {
-                case Enums.MenuTypes.Icon:
-                    Content = new IconListItem { BindingContext = this.BindingContext };
-                    break;
-
                 case Enums.MenuTypes.Switch:
                     Content = new SwitchListItem { BindingContext = this.BindingContext };
                     break;

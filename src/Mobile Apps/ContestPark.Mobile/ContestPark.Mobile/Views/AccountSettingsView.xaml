@@ -11,6 +11,7 @@
              x:Name="page">
     <ContentPage.ToolbarItems>
         <icon:IconToolbarItem Text="{i18n:Translate Save}"
+                              IconColor="{StaticResource Black}"
                               Command="{Binding Path=BindingContext.SaveCommand, Source={x:Reference page}}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

@@ -1,12 +1,18 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountSettingsView : ContentPage
     {
+        #region Constructor
+
         public AccountSettingsView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructor
     }
 }
