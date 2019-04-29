@@ -1,12 +1,11 @@
 ﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Settings
 {
-    #region Interfaces
-
     /// <summary>
     /// Defines the <see cref="ISettingsService"/>
     /// </summary>
@@ -116,8 +115,8 @@ namespace ContestPark.Mobile.Services.Settings
         /// <returns>The <see cref="Task"/></returns>
         Task SetSettingsAsync(SettingTypes settingType, string settingValue);
 
+        void SetTokenInfo(UserToken userToken);
+
         #endregion Methods
     }
-
-    #endregion Interfaces
 }

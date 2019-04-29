@@ -19,7 +19,7 @@ namespace ContestPark.Mobile.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ContestParkResources {
@@ -304,6 +304,24 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eposta maksimum 255 karakter olmalıdır..
+        /// </summary>
+        public static string EmailMaxLength {
+            get {
+                return ResourceManager.GetString("EmailMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eposta alanını doldurmak zorunludur..
+        /// </summary>
+        public static string EmailRequiredFields {
+            get {
+                return ResourceManager.GetString("EmailRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {
@@ -430,6 +448,33 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ad Soyad maksimum 255 karakter olmalıdır..
+        /// </summary>
+        public static string FullNameMaxLength {
+            get {
+                return ResourceManager.GetString("FullNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ad Soyad minimum 3 karakter ve üzeri olmalıdır..
+        /// </summary>
+        public static string FullNameMinLength {
+            get {
+                return ResourceManager.GetString("FullNameMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ad Soyad alanını doldurmak zorunludur..
+        /// </summary>
+        public static string FullNameRequiredFields {
+            get {
+                return ResourceManager.GetString("FullNameRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dahi.
         /// </summary>
         public static string Genius {
@@ -498,6 +543,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Master {
             get {
                 return ResourceManager.GetString("Master", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Üye olma işlemi başarılı oldu. Fakat giriş yapılamadı. Lütfen giriş yap sayfasından giriş yapınız..
+        /// </summary>
+        public static string MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage {
+            get {
+                return ResourceManager.GetString("MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage", resourceCulture);
             }
         }
         
@@ -619,6 +673,33 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Şifreniz maksimum 32 karakter olmalıdır..
+        /// </summary>
+        public static string PasswordMaxLength {
+            get {
+                return ResourceManager.GetString("PasswordMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifreniz minimum 8 karakter ve üzeri olmalıdır..
+        /// </summary>
+        public static string PasswordMinLength {
+            get {
+                return ResourceManager.GetString("PasswordMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifre alanını doldurmak zorunludur..
+        /// </summary>
+        public static string PasswordRequiredFields {
+            get {
+                return ResourceManager.GetString("PasswordRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erişim izni yok.
         /// </summary>
         public static string PermissionsDenied {
@@ -696,6 +777,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Ranking {
             get {
                 return ResourceManager.GetString("Ranking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gerekli alanları doldurunuz..
+        /// </summary>
+        public static string RequiredFields {
+            get {
+                return ResourceManager.GetString("RequiredFields", resourceCulture);
             }
         }
         
@@ -930,6 +1020,33 @@ namespace ContestPark.Mobile.AppResources {
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı adınız maksimum 255 karakter olmalıdır..
+        /// </summary>
+        public static string UserNameMaxLength {
+            get {
+                return ResourceManager.GetString("UserNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı adınız minimum 3 karakter ve üzeri olmalıdır..
+        /// </summary>
+        public static string UserNameMinLength {
+            get {
+                return ResourceManager.GetString("UserNameMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı adı alanını doldurmak zorunludur..
+        /// </summary>
+        public static string UserNameRequiredFields {
+            get {
+                return ResourceManager.GetString("UserNameRequiredFields", resourceCulture);
             }
         }
         

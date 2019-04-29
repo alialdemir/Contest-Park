@@ -8,6 +8,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
+using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -26,8 +27,9 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public SignUpViewModel(INavigationService navigationService,
+                               IPageDialogService pageDialogService,
                                IIdentityService identityService,
-                               ISettingsService settingsService) : base(navigationService)
+                               ISettingsService settingsService) : base(navigationService, pageDialogService)
         {
             _identityService = identityService;
             _settingsService = settingsService;
@@ -58,6 +60,44 @@ namespace ContestPark.Mobile.ViewModels
         #region Methods
 
         /// <summary>
+        /// Üye olma validasyonu
+        /// </summary>
+        /// <returns>Validasyona takıldıysa true</returns>
+        private async Task<bool> CheckValidationAsync()
+        {
+            string validationMessage = string.Empty;
+            if (string.IsNullOrEmpty(SignUpModel.UserName)
+                     || string.IsNullOrEmpty(SignUpModel.Fullname)
+                     || string.IsNullOrEmpty(SignUpModel.Email)
+                     || string.IsNullOrEmpty(SignUpModel.Password)) validationMessage = ContestParkResources.RequiredFields;// Tüm alanlar boş ise
+            else if (string.IsNullOrEmpty(SignUpModel.UserName)) validationMessage = ContestParkResources.UserNameRequiredFields;// Kullanıcı adı boş ise
+            else if (string.IsNullOrEmpty(SignUpModel.Fullname)) validationMessage = ContestParkResources.FullNameRequiredFields;// Ad soyad boş ise
+            else if (string.IsNullOrEmpty(SignUpModel.Email)) validationMessage = ContestParkResources.EmailRequiredFields;// Eposta boş ise
+            else if (string.IsNullOrEmpty(SignUpModel.Password)) validationMessage = ContestParkResources.PasswordRequiredFields;// Şifre adı boş ise
+            else if (SignUpModel.UserName.Length < 3) validationMessage = ContestParkResources.UserNameMinLength;// Kullanocı adı 3 karakterden küçük olamaz
+            else if (SignUpModel.UserName.Length > 255) validationMessage = ContestParkResources.UserNameMaxLength;// Kullanocı adı 255 karakterden büyük olamaz
+            else if (SignUpModel.Fullname.Length < 3) validationMessage = ContestParkResources.FullNameMinLength;// Ad soyad 3 karakterden küçük olamaz
+            else if (SignUpModel.Fullname.Length > 255) validationMessage = ContestParkResources.FullNameMaxLength;// Ad soyad 255 karakterden büyük olamaz
+            else if (SignUpModel.Email.Length > 255) validationMessage = ContestParkResources.EmailMaxLength;// Eposta adresi 255 karakterden büyük olamaz
+            // TODO: Eposta adresi doğru formatta mı kontrol edilcek
+            else if (SignUpModel.Password.Length < 8) validationMessage = ContestParkResources.PasswordMinLength;// Kullanocı adı 8 karakterden küçük olamaz
+            else if (SignUpModel.Password.Length > 32) validationMessage = ContestParkResources.PasswordMaxLength; // Kullanocı adı 32 karakterden büyük olamaz
+
+            if (!string.IsNullOrWhiteSpace(validationMessage))
+            {
+                await DisplayAlertAsync(ContestParkResources.Error,
+                                        validationMessage,
+                                        ContestParkResources.Okay);
+
+                UserDialogs.Instance.HideLoading();
+
+                IsBusy = false;
+            }
+
+            return !string.IsNullOrWhiteSpace(validationMessage);
+        }
+
+        /// <summary>
         /// Üye ol fonksiyonu
         /// </summary>
         private async Task ExecuteSignUpCommand()
@@ -69,11 +109,8 @@ namespace ContestPark.Mobile.ViewModels
 
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            var r = SignUpModel;
-            var d = SignUpModel.Email;
-            var rd = SignUpModel.Fullname;
-            var rd1 = SignUpModel.Password;
-            var rd2 = SignUpModel.UserName;
+            if (await CheckValidationAsync())
+                return;
 
             bool isRegister = await _identityService.SignUpAsync(SignUpModel);
             if (isRegister)
@@ -94,10 +131,18 @@ namespace ContestPark.Mobile.ViewModels
                 UserName = SignUpModel.UserName,
                 Password = SignUpModel.Password
             });
+
             if (token != null)
             {
-                _settingsService.AuthAccessToken = token.AccessToken;
+                _settingsService.SetTokenInfo(token);
+
                 await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
+            }
+            else
+            {
+                await DisplayAlertAsync("",
+                    ContestParkResources.MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage,
+                    ContestParkResources.Okay);
             }
         }
 

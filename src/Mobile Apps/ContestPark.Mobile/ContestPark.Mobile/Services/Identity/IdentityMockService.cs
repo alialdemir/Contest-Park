@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
 using System.IO;
 using System.Threading.Tasks;
@@ -45,16 +46,21 @@ namespace ContestPark.Mobile.Services.Identity
             return Task.CompletedTask;
         }
 
-        public Task<UserToken> GetTokenAsync(LoginModel loginModel)
+        public async Task<UserToken> GetTokenAsync(LoginModel loginModel)
         {
-            return Task.FromResult(new UserToken
+            await Task.Delay(3590);
+
+            if (!(loginModel.UserName.ToLower() == "witcherfearless" && loginModel.Password == "19931993"))
+                throw new HttpRequestExceptionEx(System.Net.HttpStatusCode.BadRequest, "invalid_username_or_password");
+
+            return new UserToken
             {
                 AccessToken = "fake_token",
                 ExpiresIn = 365,
                 IdToken = "123",
                 RefreshToken = "fake_refresh_token",
                 TokenType = "bearer"
-            });
+            };
         }
 
         public Task RefreshTokenAsync()

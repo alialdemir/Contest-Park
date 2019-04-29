@@ -432,4 +432,43 @@
   <data name="NewMissionsComingSoon" xml:space="preserve">
     <value>Yeni Görevler Yakında!</value>
   </data>
+  <data name="MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage" xml:space="preserve">
+    <value>Üye olma işlemi başarılı oldu. Fakat giriş yapılamadı. Lütfen giriş yap sayfasından giriş yapınız.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>Eposta maksimum 255 karakter olmalıdır.</value>
+  </data>
+  <data name="EmailRequiredFields" xml:space="preserve">
+    <value>Eposta alanını doldurmak zorunludur.</value>
+  </data>
+  <data name="FullNameMaxLength" xml:space="preserve">
+    <value>Ad Soyad maksimum 255 karakter olmalıdır.</value>
+  </data>
+  <data name="FullNameMinLength" xml:space="preserve">
+    <value>Ad Soyad minimum 3 karakter ve üzeri olmalıdır.</value>
+  </data>
+  <data name="FullNameRequiredFields" xml:space="preserve">
+    <value>Ad Soyad alanını doldurmak zorunludur.</value>
+  </data>
+  <data name="PasswordMaxLength" xml:space="preserve">
+    <value>Şifreniz maksimum 32 karakter olmalıdır.</value>
+  </data>
+  <data name="PasswordMinLength" xml:space="preserve">
+    <value>Şifreniz minimum 8 karakter ve üzeri olmalıdır.</value>
+  </data>
+  <data name="PasswordRequiredFields" xml:space="preserve">
+    <value>Şifre alanını doldurmak zorunludur.</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Gerekli alanları doldurunuz.</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>Kullanıcı adınız maksimum 255 karakter olmalıdır.</value>
+  </data>
+  <data name="UserNameMinLength" xml:space="preserve">
+    <value>Kullanıcı adınız minimum 3 karakter ve üzeri olmalıdır.</value>
+  </data>
+  <data name="UserNameRequiredFields" xml:space="preserve">
+    <value>Kullanıcı adı alanını doldurmak zorunludur.</value>
+  </data>
 </root>
