@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class BlockingViewModel : ViewModelBase<UserBlocking>
+    public class BlockingViewModel : ViewModelBase<BlockModel>
     {
         #region Private variables
 
@@ -36,7 +36,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _blockingService.UserBlockingList(ServiceModel);
+            ServiceModel = await _blockingService.BlockingList(ServiceModel);
 
             await base.InitializeAsync();
 
@@ -48,24 +48,27 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        private void ExecuteBlockProcessingCommand(string userId)
+        private async Task ExecuteBlockProcessingCommand(string userId)
         {
-            bool isBlock = Items
-                .FirstOrDefault(p => p.UserId == userId)
-                .IsBlocked;
+            if (IsBusy)
+                return;
 
-            Items
-                .FirstOrDefault(p => p.UserId == userId)
-                .IsBlocked = !isBlock;
+            IsBusy = true;
 
-            if (isBlock)
+            BlockModel selectedModel = Items.First(p => p.UserId == userId);
+            if (selectedModel != null)
             {
-                _blockingService.UnBlock(userId);
+                Items.Remove(selectedModel);
+
+                bool isSuccess = await (selectedModel.IsBlocked ?
+                    _blockingService.UnBlock(userId) :
+                    _blockingService.Block(userId));
+
+                if (!isSuccess)
+                    Items.Add(selectedModel);
             }
-            else
-            {
-                _blockingService.Block(userId);
-            }
+
+            IsBusy = false;
         }
 
         #endregion Methods
@@ -73,7 +76,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _blockProcessingCommand;
-        public ICommand BlockProcessingCommand => _blockProcessingCommand ?? (_blockProcessingCommand = new Command<string>((userId) => ExecuteBlockProcessingCommand(userId)));
+        public ICommand BlockProcessingCommand => _blockProcessingCommand ?? (_blockProcessingCommand = new Command<string>(async (userId) => await ExecuteBlockProcessingCommand(userId)));
 
         #endregion Commands
     }

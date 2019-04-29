@@ -471,4 +471,7 @@
   <data name="UserNameRequiredFields" xml:space="preserve">
     <value>Kullanıcı adı alanını doldurmak zorunludur.</value>
   </data>
+  <data name="NoInternet" xml:space="preserve">
+    <value>İnternet bağlantınızı kontrol ediniz.</value>
+  </data>
 </root>

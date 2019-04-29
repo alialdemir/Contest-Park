@@ -54,8 +54,6 @@
                              Grid.RowSpan="2"
                              x:Name="btnRight"
                              Text="{Binding Path=IsIconStatus,Source={x:Reference page}, Converter={StaticResource fbc}}"
-                             Command="{Binding Path=SingleTap, Source={x:Reference page}}"
-                             CommandParameter="{Binding Path=CommandParameter, Source={x:Reference page}}"
                              HorizontalOptions="Start"
                              BackgroundColor="Transparent"
                              TextColor="{StaticResource Red}" />

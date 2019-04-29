@@ -610,6 +610,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to İnternet bağlantınızı kontrol ediniz..
+        /// </summary>
+        public static string NoInternet {
+            get {
+                return ResourceManager.GetString("NoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bildirimler.
         /// </summary>
         public static string Notifications {

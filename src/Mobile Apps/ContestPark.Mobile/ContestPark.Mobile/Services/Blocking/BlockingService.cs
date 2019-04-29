@@ -13,12 +13,9 @@ namespace ContestPark.Mobile.Services.Blocking
     {
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
-        private readonly ICacheService _cacheService;
-
         private const string ApiUrlBase = "api/v1/blocking";
-
+        private readonly ICacheService _cacheService;
+        private readonly IRequestProvider _requestProvider;
         private string _lastUserBlockingListKey = string.Empty;
 
         #endregion Private variables
@@ -41,43 +38,47 @@ namespace ContestPark.Mobile.Services.Blocking
         /// Kullanıcıyı engelle
         /// </summary>
         /// <param name="userId">Kullanicii id</param>
-        public async Task Block(string userId)
+        public async Task<bool> Block(string userId)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userId}");
 
-            await _requestProvider.PostAsync<string>(uri);
+            string result = await _requestProvider.PostAsync<string>(uri);
 
             CacheEmpty();
+
+            return string.IsNullOrEmpty(result);
+        }
+
+        public async Task<ServiceModel<BlockModel>> BlockingList(PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<BlockModel>>(uri);
+            }
+
+            var blockingList = await _requestProvider.GetAsync<ServiceModel<BlockModel>>(uri);
+
+            _cacheService.Add(uri, blockingList);
+            _lastUserBlockingListKey = uri;
+
+            return blockingList;
         }
 
         /// <summary>
         /// Kullanıcının engellini kaldırır
         /// </summary>
         /// <param name="userId">Kullanicii id</param>
-        public async Task UnBlock(string userId)
+        public async Task<bool> UnBlock(string userId)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userId}");
 
-            await _requestProvider.DeleteAsync<string>(uri);
+            string result = await _requestProvider.DeleteAsync<string>(uri);
 
             CacheEmpty();
-        }
 
-        public async Task<ServiceModel<UserBlocking>> UserBlockingList(PagingModel pagingModel)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
-
-            if (!_cacheService.IsExpired(key: uri))
-            {
-                return await _cacheService.Get<ServiceModel<UserBlocking>>(uri);
-            }
-
-            var blockingList = await _requestProvider.GetAsync<ServiceModel<UserBlocking>>(uri);
-
-            _cacheService.Add(uri, blockingList);
-            _lastUserBlockingListKey = uri;
-
-            return blockingList;
+            return string.IsNullOrEmpty(result);
         }
 
         /// <summary>

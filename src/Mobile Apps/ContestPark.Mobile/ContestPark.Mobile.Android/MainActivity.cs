@@ -71,7 +71,11 @@ namespace ContestPark.Mobile.Droid
 
             global::Rg.Plugins.Popup.Popup.Init(this, bundle);
 
+            global::Xamarin.Forms.Forms.SetFlags("Visual_Experimental"); // ONLY if using a pre-release of Xamarin.Forms
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
             ////  AnimationViewRenderer.Init();
 

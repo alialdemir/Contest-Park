@@ -5,21 +5,15 @@ using System.ComponentModel;
 
 namespace ContestPark.Mobile.Models.Blocking
 {
-    public class UserBlocking : IModelBase, INotifyPropertyChanged
+    public class BlockModel : IModelBase, INotifyPropertyChanged
     {
+        private string _fullName;
+        private bool _isBlocked;
         private string _userId;
 
-        public string UserId
-        {
-            get { return _userId; }
-            set
-            {
-                _userId = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserId)));
-            }
-        }
+        private string _userName;
 
-        private string _fullName;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string FullName
         {
@@ -30,22 +24,6 @@ namespace ContestPark.Mobile.Models.Blocking
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FullName)));
             }
         }
-
-
-        private string _userName;
-
-        public string UserName
-        {
-            get { return _userName; }
-            set
-            {
-                _userName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserName)));
-            }
-        }
-
-
-        private bool _isBlocked;
 
         public bool IsBlocked
         {
@@ -66,6 +44,24 @@ namespace ContestPark.Mobile.Models.Blocking
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string UserId
+        {
+            get { return _userId; }
+            set
+            {
+                _userId = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserId)));
+            }
+        }
+
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserName)));
+            }
+        }
     }
 }
