@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Mission;
 using ContestPark.Mobile.Services.Mission;
 using ContestPark.Mobile.ViewModels.Base;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -46,13 +47,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override void Reflesh()
-        {
-            ListViewHeader = string.Empty;
-
-            base.Reflesh();
-        }
-
         protected override async Task InitializeAsync()
         {
             if (IsBusy)
@@ -65,13 +59,20 @@ namespace ContestPark.Mobile.ViewModels
             {
                 Items.AddRange(missionListModel.Items);
 
-                ListViewHeader = missionListModel.Count.ToString() + "/" + missionListModel.CompleteMissionCount.ToString();
+                SetListViewHeader(missionListModel.CompleteMissionCount);
             }
 
             ServiceModel = missionListModel;
 
             await base.InitializeAsync();
             IsBusy = false;
+        }
+
+        protected override void Reflesh()
+        {
+            ListViewHeader = string.Empty;
+
+            base.Reflesh();
         }
 
         /// <summary>
@@ -93,9 +94,26 @@ namespace ContestPark.Mobile.ViewModels
                    .Where(p => p.MissionId == missionId)
                    .FirstOrDefault()
                    .MissionStatus = true;
+
+                // Header da bulunan tamamlanan görev sayısıı güncelledik
+                string[] headerSplit = ListViewHeader.Split('/');
+                if (headerSplit.Length == 2)
+                {
+                    byte completeMissionCount = Convert.ToByte(headerSplit[1]);
+
+                    SetListViewHeader(completeMissionCount++);
+                }
             }
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// Tamamlanan görev sayısını header da günceller
+        /// </summary>
+        private void SetListViewHeader(byte completeMissionCount)
+        {
+            ListViewHeader = Items.Count.ToString() + "/" + completeMissionCount;
         }
 
         #endregion Methods
