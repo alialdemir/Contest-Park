@@ -37,10 +37,12 @@
                 </Image.GestureRecognizers>
             </Image>
 
-            <cards:CarouselView Grid.Row="1"
+            <cards:CoverFlowView Grid.Row="1"
+                PositionShiftValue="100"
+                IsCyclical="false"
 								ItemsSource="{Binding Bets}"
 								SelectedIndex="{Binding SelectedIndex}">
-                <cards:CarouselView.ItemTemplate>
+                <cards:CoverFlowView.ItemTemplate>
                     <DataTemplate>
                         <RelativeLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
                             <StackLayout>
@@ -49,7 +51,7 @@
 						   CornerRadius="8"
 								 VerticalOptions="CenterAndExpand"
 								 HorizontalOptions="CenterAndExpand">
-                                    <StackLayout WidthRequest="300"
+                                    <StackLayout WidthRequest="250"
 									 HeightRequest="170"
 									 Orientation="Vertical"
 											 Padding="0"
@@ -123,7 +125,7 @@
                                 </Frame>
                             </StackLayout>
                             <StackLayout HeightRequest="50"
-									 WidthRequest="300"
+									 WidthRequest="250"
 									 TranslationY="-200">
 
                                 <forms:AnimationView Loop="False"
@@ -141,10 +143,10 @@
                             </StackLayout>
                         </RelativeLayout>
                     </DataTemplate>
-                </cards:CarouselView.ItemTemplate>
+                </cards:CoverFlowView.ItemTemplate>
 
                 <controls:IndicatorsControl />
-            </cards:CarouselView>
+            </cards:CoverFlowView>
         </Grid>
         <!--<ScrollView HorizontalOptions="Center"
 				VerticalOptions="Center">
