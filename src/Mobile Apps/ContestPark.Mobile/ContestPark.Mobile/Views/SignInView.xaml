@@ -4,7 +4,6 @@
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.SignInView"
              BackgroundColor="{StaticResource Primary}">
@@ -17,8 +16,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="4*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -52,25 +51,26 @@
                                XAlign="Start" />
                     </StackLayout>
 
-                    <xfx:XfxEntry Grid.Row="2"
-                                  ActivePlaceholderColor="{StaticResource Black}"
-                                  Grid.ColumnSpan="3"
-                                  AutomationId="txtUserName"
-                                  Text="{Binding LoginModel.UserName}"
-                                  Placeholder="{i18n:Translate UserName}" />
+                    <Entry Grid.Row="2"
+                           Visual="Material"
+                           Grid.ColumnSpan="3"
+                           AutomationId="txtUserName"
+                           Text="{Binding LoginModel.UserName}"
+                           Placeholder="{i18n:Translate UserName}" />
 
-                    <xfx:XfxEntry Grid.Row="3"
-                                  Grid.ColumnSpan="3"
-                                  ActivePlaceholderColor="{StaticResource Black}"
-                                  IsPassword="True"
-                                  AutomationId="txtPassword"
-                                  Text="{Binding LoginModel.Password}"
-                                  Placeholder="{i18n:Translate Password}" />
+                    <Entry Grid.Row="3"
+                           Grid.ColumnSpan="3"
+                           Visual="Material"
+                           IsPassword="True"
+                           AutomationId="txtPassword"
+                           Text="{Binding LoginModel.Password}"
+                           Placeholder="{i18n:Translate Password}" />
 
                     <Button Grid.Row="4"
                             Grid.ColumnSpan="3"
-                            Text="{i18n:Translate SignIn}"
+                            Visual="Material"
                             AutomationId="SignIn"
+                            Text="{i18n:Translate SignIn}"
                             Style="{StaticResource DangerButton}"
                             Command="{Binding SignInCommand}" />
 

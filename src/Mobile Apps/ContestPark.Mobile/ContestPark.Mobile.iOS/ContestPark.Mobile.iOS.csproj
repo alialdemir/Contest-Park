@@ -285,9 +285,6 @@
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>3.6.0.344457</Version>
     </PackageReference>
-    <PackageReference Include="Xfx.Controls">
-      <Version>1.2.1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ContestPark.Mobile\ContestPark.Mobile.csproj">

@@ -9,7 +9,6 @@ using Plugin.CurrentActivity;
 using Plugin.Iconize;
 using Prism;
 using Prism.Ioc;
-using Xfx;
 
 namespace ContestPark.Mobile.Droid
 {
@@ -58,8 +57,6 @@ namespace ContestPark.Mobile.Droid
             base.OnCreate(bundle);
 
             CrossCurrentActivity.Current.Init(this, bundle);
-
-            XfxControls.Init();
 
             UserDialogs.Init(this);
 
