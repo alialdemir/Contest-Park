@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.ViewModels;
+﻿using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,15 +21,9 @@ namespace ContestPark.Mobile.Views
 
         #region Properties
 
-        public short SubcategoryId { get; set; }
-
         public int Bet { get; set; }
-
+        public SelectedSubCategoryModel SelectedSubCategory { get; set; }
         public StandbyModes StandbyMode { get; set; }
-
-        public string SubCategoryPicturePath { get; set; }
-
-        public string SubcategoryName { get; set; }
 
         #endregion Properties
 
@@ -42,9 +37,9 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
-            viewModel.StandbyModeModel.SubCategoryId = SubcategoryId;
-            viewModel.SubcategoryName = SubcategoryName;
-            viewModel.SubCategoryPicturePath = SubCategoryPicturePath;
+            viewModel.StandbyModeModel.SubCategoryId = viewModel.SelectedSubCategory.SubcategoryId = SelectedSubCategory.SubcategoryId;
+            viewModel.SelectedSubCategory.SubcategoryName = SelectedSubCategory.SubcategoryName;
+            viewModel.SelectedSubCategory.SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath;
             viewModel.StandbyModeModel.Bet = Bet;
             viewModel.StandbyMode = StandbyMode;
 

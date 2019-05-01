@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-				 xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-				 xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-				 xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
-				 xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-				 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-				 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-				 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-				 prism:ViewModelLocator.AutowireViewModel="True"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+                 xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+                 xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+                 xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 prism:ViewModelLocator.AutowireViewModel="True"
 				 x:Class="ContestPark.Mobile.Views.DuelBettingPopupView"
-				x:Name="page">
+				 x:Name="page">
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation ScaleIn="1"
 								   ScaleOut="0.7"
@@ -22,214 +22,137 @@
     <pages:PopupPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0"
-				   Source="ic_account_circle_black_24dp"
-				   BackgroundColor="{StaticResource ListBackgroundColor}"
-				   Margin="10"
-				   VerticalOptions="Start"
-				   HorizontalOptions="End">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference page}}" />
-                </Image.GestureRecognizers>
-            </Image>
+            <iconize:IconButton Margin="10"
+				                Grid.Row="0"
+				                VerticalOptions="Start"
+				                HorizontalOptions="End"
+                                FontSize="22"
+				                Text="fas-times-circle"
+                                TextColor="{StaticResource White}"
+				                BackgroundColor="Transparent"
+                                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference page}}" />
 
             <cards:CoverFlowView Grid.Row="1"
-                PositionShiftValue="100"
-                IsCyclical="false"
-								ItemsSource="{Binding Bets}"
-								SelectedIndex="{Binding SelectedIndex}">
+                                 PositionShiftValue="100"
+                                 IsCyclical="false"
+                                 ItemsSource="{Binding Bets}"
+                                 SelectedIndex="{Binding SelectedIndex}">
                 <cards:CoverFlowView.ItemTemplate>
                     <DataTemplate>
-                        <RelativeLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                        <RelativeLayout VerticalOptions="Center"
+                                        HorizontalOptions="CenterAndExpand">
                             <StackLayout>
-                                <Frame IsClippedToBounds="True"
-								   Padding="0"
-						   CornerRadius="8"
-								 VerticalOptions="CenterAndExpand"
-								 HorizontalOptions="CenterAndExpand">
+                                <Frame Padding="0"
+						               CornerRadius="8"
+                                       HasShadow="True"
+								       VerticalOptions="CenterAndExpand"
+								       HorizontalOptions="CenterAndExpand">
                                     <StackLayout WidthRequest="250"
-									 HeightRequest="170"
-									 Orientation="Vertical"
-											 Padding="0"
-											 Margin="0"
-									 BackgroundColor="White"
+									             HeightRequest="170"
+									             Orientation="Vertical"
+											     Padding="0"
+								                 Margin="0"
+									             BackgroundColor="White"
 									 HorizontalOptions="FillAndExpand">
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference page}}"
-													  CommandParameter="{Binding EntryFee}" />
+                                            <TapGestureRecognizer CommandParameter="{Binding EntryFee}"
+                                                                  Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference page}}" />
                                         </StackLayout.GestureRecognizers>
 
                                         <StackLayout Spacing="0"
-										 VerticalOptions="EndAndExpand">
+										             VerticalOptions="EndAndExpand">
 
                                             <Label Text="{i18n:Translate Prize}"
-									   FontSize="22"
-									   FontAttributes="Bold"
-									   TextColor="{StaticResource Red}"
-									   VerticalOptions="StartAndExpand"
-									   HorizontalOptions="CenterAndExpand" />
+									               FontSize="22"
+									               FontAttributes="Bold"
+									               TextColor="{StaticResource Red}"
+									               VerticalOptions="StartAndExpand"
+									               HorizontalOptions="CenterAndExpand" />
 
                                             <StackLayout Spacing="0"
-											 Orientation="Horizontal"
-											 HorizontalOptions="CenterAndExpand">
+                                                         Margin="0,0,0,8"
+											             Orientation="Horizontal"
+											             HorizontalOptions="CenterAndExpand">
 
-                                                <Image WidthRequest="40"
-										   HeightRequest="40"
-										   Source="coins.png" />
+                                                <iconize:IconImage IconSize="14"
+                                                                   Icon="far-gem"
+                                                                   WidthRequest="14"
+                                                                   HeightRequest="14"
+                                                                   VerticalOptions="Center"
+                                                                   IconColor="{StaticResource Primary}" />
 
                                                 <Label FontSize="20"
-										   FontAttributes="Bold"
-										   Text="{Binding Prize}"
-										   VerticalOptions="Center"
-										   TextColor="{StaticResource Black}"
-										   HorizontalOptions="CenterAndExpand" />
+										               FontAttributes="Bold"
+										               Text="{Binding Prize}"
+										               VerticalOptions="Center"
+										               TextColor="{StaticResource Black}"
+										               HorizontalOptions="CenterAndExpand" />
                                             </StackLayout>
 
-                                            <StackLayout Spacing="0"
-											  Orientation="Horizontal"
-											 HorizontalOptions="CenterAndExpand">
+                                            <StackLayout Margin="0,0,0,8"
+											             Orientation="Horizontal"
+											             HorizontalOptions="CenterAndExpand">
 
                                                 <Label Text="{i18n:Translate EntryFee}"
-										   FontAttributes="Bold"
-										   VerticalOptions="Center"
-										   TextColor="{StaticResource Black}"
-										   HorizontalOptions="CenterAndExpand" />
+										               FontAttributes="Bold"
+										               VerticalOptions="Center"
+										               TextColor="{StaticResource Black}"
+										               HorizontalOptions="CenterAndExpand" />
 
-                                                <Image Source="coins.png"
-										   HeightRequest="30"
-										   WidthRequest="30" />
+                                                <iconize:IconImage IconSize="14"
+                                                                   Icon="far-gem"
+                                                                   Margin="4,0,0,0"
+                                                                   WidthRequest="14"
+                                                                   HeightRequest="14"
+                                                                   VerticalOptions="Center"
+                                                                   IconColor="{StaticResource Primary}" />
 
                                                 <Label FontAttributes="Bold"
-										   VerticalOptions="Center"
-										   Text="{Binding EntryFee}"
-										   TextColor="{StaticResource Black}"
-										   HorizontalOptions="CenterAndExpand" />
+										               VerticalOptions="Center"
+										               Text="{Binding EntryFee}"
+										               TextColor="{StaticResource Black}"
+										               HorizontalOptions="CenterAndExpand" />
                                             </StackLayout>
 
                                             <StackLayout HeightRequest="45"
-													 BackgroundColor="#e91e18"
-													 VerticalOptions="EndAndExpand">
+													     BackgroundColor="#e91e18"
+											 		     VerticalOptions="EndAndExpand">
 
                                                 <Label FontSize="20"
-												   Text="{i18n:Translate Play}"
-												   VerticalOptions="StartAndExpand"
-												   TextColor="{StaticResource White}"
-												   HorizontalOptions="CenterAndExpand" />
+												       Text="{i18n:Translate Play}"
+												       VerticalOptions="Center"
+												       TextColor="{StaticResource White}"
+												       HorizontalOptions="CenterAndExpand" />
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
                             <StackLayout HeightRequest="50"
-									 WidthRequest="250"
-									 TranslationY="-200">
+									     WidthRequest="250"
+									     TranslationY="-200">
 
                                 <forms:AnimationView Loop="False"
-												 AutoPlay="False"
-												 Animation="coin.json"
-												 VerticalOptions="FillAndExpand"
-												 HorizontalOptions="FillAndExpand" />
+												     AutoPlay="False"
+												     Animation="coin.json"
+												     VerticalOptions="FillAndExpand"
+												     HorizontalOptions="FillAndExpand" />
 
                                 <Label FontSize="22"
-								   TranslationY="-180"
-								   Text="{Binding Title}"
-								   VerticalOptions="StartAndExpand"
-								   TextColor="{StaticResource White}"
-								   HorizontalOptions="CenterAndExpand" />
+								       TranslationY="-180"
+								       Text="{Binding Title}"
+								       VerticalOptions="StartAndExpand"
+								       TextColor="{StaticResource White}"
+								       HorizontalOptions="CenterAndExpand" />
                             </StackLayout>
                         </RelativeLayout>
                     </DataTemplate>
                 </cards:CoverFlowView.ItemTemplate>
-
-                <controls:IndicatorsControl />
             </cards:CoverFlowView>
         </Grid>
-        <!--<ScrollView HorizontalOptions="Center"
-				VerticalOptions="Center">
-			<AbsoluteLayout>
-				<StackLayout Spacing="3"
-						 WidthRequest="350"
-						 HeightRequest="140"
-						 Orientation="Vertical"
-						 BackgroundColor="White"
-						 IsClippedToBounds="True">
-
-					<Grid Margin="10">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="*" />
-							<RowDefinition Height="*" />
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="2*" />
-							<ColumnDefinition Width="3*" />
-							<ColumnDefinition Width="2*" />
-						</Grid.ColumnDefinitions>
-
-						<Label Grid.Row="0"
-						   Grid.ColumnSpan="3"
-						   Text="{i18n:Translate Bet}"
-						   TextColor="{StaticResource Black}" />
-
-						<Button Grid.Row="1"
-							Grid.Column="0"
-							HeightRequest="40"
-							FontAttributes="Bold"
-							Image="left_arrow.png"
-							BackgroundColor="Transparent"
-							Command="{Binding IncreaseBetCommand}" />
-
-						<Label Grid.Row="1"
-						   Grid.Column="1"
-						   FontAttributes="Bold"
-						   HorizontalOptions="Fill"
-						   VerticalTextAlignment="Center"
-						   HorizontalTextAlignment="Center"
-						   TextColor="{StaticResource Black}"
-						   Text="{Binding Path=BindingContext.UserCp, StringFormat='{0:N0}', Source={x:Reference page}}" />
-
-						<Button Grid.Row="1"
-							Grid.Column="2"
-							HeightRequest="40"
-							FontAttributes="Bold"
-							Image="right_arrow.png"
-							BackgroundColor="Transparent"
-							Command="{Binding ReduceBetCommand}" />
-					</Grid>
-					<Grid HorizontalOptions="End">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="40" />
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="80" />
-							<ColumnDefinition Width="80" />
-						</Grid.ColumnDefinitions>
-
-						<Button Grid.Row="0"
-							Grid.Column="0"
-							Clicked="OnClose"
-							WidthRequest="80"
-							HeightRequest="40"
-							FontAttributes="Bold"
-							Text="{i18n:Translate Cancel}"
-							BackgroundColor="Transparent"
-							TextColor="{StaticResource Red}" />
-
-						<Button Grid.Row="0"
-							Grid.Column="1"
-							WidthRequest="80"
-							HeightRequest="40"
-							FontAttributes="Bold"
-							Text="{i18n:Translate Okay}"
-							BackgroundColor="Transparent"
-							TextColor="{StaticResource Blue}"
-							Command="{Binding DuelStartCommand}" />
-					</Grid>
-				</StackLayout>
-			</AbsoluteLayout>
-		</ScrollView>-->
     </pages:PopupPage.Content>
 </pages:PopupPage>

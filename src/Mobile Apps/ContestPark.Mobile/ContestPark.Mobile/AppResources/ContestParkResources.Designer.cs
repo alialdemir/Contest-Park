@@ -1078,6 +1078,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oynamak için yeterli altınınız yok. Contest store üzerinden altın satın alabilirsiniz..
+        /// </summary>
+        public static string YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore {
+            get {
+                return ResourceManager.GetString("YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kimseyi engellemiş görünmüyorsun!.
         /// </summary>
         public static string YouDontSeemToBeBlockingAnyone {

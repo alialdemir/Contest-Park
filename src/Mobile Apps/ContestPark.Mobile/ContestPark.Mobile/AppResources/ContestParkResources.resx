@@ -474,4 +474,7 @@
   <data name="NoInternet" xml:space="preserve">
     <value>İnternet bağlantınızı kontrol ediniz.</value>
   </data>
+  <data name="YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore" xml:space="preserve">
+    <value>Oynamak için yeterli altınınız yok. Contest store üzerinden altın satın alabilirsiniz.</value>
+  </data>
 </root>
