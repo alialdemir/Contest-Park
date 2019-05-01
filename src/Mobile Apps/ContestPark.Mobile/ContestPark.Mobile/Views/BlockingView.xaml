@@ -16,7 +16,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}"
+        <Components:NonPersistentSelectedItemListView x:Name="lstView"
+                                                      InfiniteScroll="{Binding InfiniteScroll}"
                                                       Style="{StaticResource ListViewOnlyFooter}"
                                                       IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
