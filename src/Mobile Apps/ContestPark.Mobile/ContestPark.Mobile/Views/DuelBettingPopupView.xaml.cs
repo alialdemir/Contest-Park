@@ -32,27 +32,24 @@ namespace ContestPark.Mobile.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            var viewModel = ((DuelBettingPopupViewModel)BindingContext);
+
+            DuelBettingPopupViewModel viewModel = ((DuelBettingPopupViewModel)BindingContext);
 
             if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
-            viewModel.SubcategoryId = SubcategoryId;
-            viewModel.SubcategoryName = SubcategoryName;
-            viewModel.SubCategoryPicturePath = SubCategoryPicturePath;
+            viewModel.SelectedSubCategory.SubcategoryId = SubcategoryId;
+            viewModel.SelectedSubCategory.SubcategoryName = SubcategoryName;
+            viewModel.SelectedSubCategory.SubCategoryPicturePath = SubCategoryPicturePath;
 
             viewModel.InitializeCommand.Execute(null);
             viewModel.IsInitialized = true;
         }
 
-        /// <summary>
-        /// İptale basınca popup kapat
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnClose(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
         {
             CloseAllPopup();
+            return true;
         }
 
         /// <summary>
@@ -65,18 +62,22 @@ namespace ContestPark.Mobile.Views
             return false;
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            CloseAllPopup();
-            return true;
-        }
-
         /// <summary>
         /// Popup kapat
         /// </summary>
         private void CloseAllPopup()
         {
             ((DuelBettingPopupViewModel)BindingContext).ClosePopupCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// İptale basınca popup kapat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClose(object sender, EventArgs e)
+        {
+            CloseAllPopup();
         }
 
         #endregion Methods

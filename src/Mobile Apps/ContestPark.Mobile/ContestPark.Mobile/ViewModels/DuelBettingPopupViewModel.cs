@@ -1,12 +1,13 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using MvvmHelpers;
 using Prism.Navigation;
+using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,7 +18,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly ICpService _CpService;
+        private readonly ICpService _cpService;
 
         #endregion Private variables
 
@@ -25,47 +26,33 @@ namespace ContestPark.Mobile.ViewModels
 
         public DuelBettingPopupViewModel(INavigationService navigationService,
                                          ICpService cpService,
-                                         IPopupNavigation popupNavigation) : base(navigationService, popupNavigation: popupNavigation)
+                                         IPageDialogService pageDialogService,
+                                         IPopupNavigation popupNavigation
+            ) : base(navigationService, pageDialogService, popupNavigation)
         {
-            _CpService = cpService;
+            _cpService = cpService;
         }
 
         #endregion Constructor
 
         #region Properties
 
-        public ObservableRangeCollection<Bet> Bets { get; set; } = new ObservableRangeCollection<Bet>
-                            {
-                                new Bet { Title =ContestParkResources.Beginner, Prize = 20  * 2, EntryFee = 20},
-                                new Bet { Title = ContestParkResources.Novice, Prize = 150  * 2, EntryFee = 150},
-                                new Bet { Title = ContestParkResources.Advanced, Prize = 500  * 2, EntryFee = 500},
-                                new Bet { Title = ContestParkResources.Expert, Prize = 1500  * 2, EntryFee = 1500},
-                                new Bet { Title = ContestParkResources.Master, Prize = 5000  * 2, EntryFee = 5000},
-                                new Bet { Title = ContestParkResources.Genius, Prize = 16000  * 2, EntryFee = 16000},
-                            };
-
-        public Int16 SubcategoryId { get; set; }
-
-        public string SubcategoryName { get; set; }
-
-        public string SubCategoryPicturePath { get; set; }
+        private int _selectedIndex = 0;
 
         /// <summary>
         /// Kullanıcının altın miktarını tutar
         /// </summary>
         private int _userCp = 0;
 
-        public int UserCp
-        {
-            get { return _userCp; }
-            set
-            {
-                _userCp = value;
-                RaisePropertyChanged(() => UserCp);
-            }
-        }
-
-        private int _selectedIndex = 0;
+        public ObservableRangeCollection<BetModel> Bets { get; set; } = new ObservableRangeCollection<BetModel>
+                            {
+                                new BetModel { Title =ContestParkResources.Beginner, Prize = 40  * 2, EntryFee = 20},
+                                new BetModel { Title = ContestParkResources.Novice, Prize = 300  * 2, EntryFee = 150},
+                                new BetModel { Title = ContestParkResources.Advanced, Prize = 1000  * 2, EntryFee = 500},
+                                new BetModel { Title = ContestParkResources.Expert, Prize = 3000  * 2, EntryFee = 1500},
+                                new BetModel { Title = ContestParkResources.Master, Prize = 4600  * 2, EntryFee = 2300},
+                                new BetModel { Title = ContestParkResources.Genius, Prize = 10000  * 2, EntryFee = 5000},
+                            };
 
         public int SelectedIndex
         {
@@ -74,6 +61,18 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _selectedIndex = value;
                 RaisePropertyChanged(() => SelectedIndex);
+            }
+        }
+
+        public SelectedSubCategoryModel SelectedSubCategory { get; } = new SelectedSubCategoryModel();
+
+        public int UserCp
+        {
+            get { return _userCp; }
+            set
+            {
+                _userCp = value;
+                RaisePropertyChanged(() => UserCp);
             }
         }
 
@@ -88,7 +87,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            UserCp = await _CpService.GetTotalCpByUserIdAsync();
+            UserCp = await _cpService.GetTotalCpByUserIdAsync();
 
             AddFreeLoader();
 
@@ -100,9 +99,10 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void AddFreeLoader()
         {
+            // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
             if (UserCp == 0)// Altını hiç yoksa 0 altınla oynayabilir
             {
-                Bets.Insert(0, new Bet
+                Bets.Insert(0, new BetModel
                 {
                     Title = ContestParkResources.Freeloader,
                     EntryFee = 0,
@@ -113,7 +113,11 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private async void ExecuteDuelStartCommand(int bet)
+        /// <summary>
+        /// Seçilen altın miktarı kadar altını varsa düello başlatır yoksa mesaj verir
+        /// </summary>
+        /// <param name="bet">Seçilen bahis miktarı</param>
+        private async Task ExecuteDuelStartCommandAsync(int bet)
         {
             if (IsBusy)
                 return;
@@ -124,18 +128,19 @@ namespace ContestPark.Mobile.ViewModels
             {
                 await PushPopupPageAsync(new DuelStartingPopupView()
                 {
-                    SubcategoryId = SubcategoryId,
+                    SelectedSubCategory = SelectedSubCategory,
                     Bet = bet,
                     StandbyMode = DuelStartingPopupViewModel.StandbyModes.On,
-                    SubcategoryName = SubcategoryName,
-                    SubCategoryPicturePath = SubCategoryPicturePath
                 });
 
                 ClosePopupCommand.Execute(null);
             }
             else
             {
-                // TODO: alert altık satın almak ister misiniz
+                await DisplayAlertAsync("",
+                   ContestParkResources.YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore,
+                   ContestParkResources.Okay,
+                   ContestParkResources.Cancel);
             }
 
             IsBusy = false;
@@ -145,9 +150,9 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand DuelStartCommand => new Command<int>(ExecuteDuelStartCommand);
-
         public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
+
+        public ICommand DuelStartCommand => new Command<int>(async (bet) => await ExecuteDuelStartCommandAsync(bet));
 
         #endregion Commands
     }

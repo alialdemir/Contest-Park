@@ -88,11 +88,10 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public bool IsNextQuestionExit { get; set; } = false;
 
+        public SelectedSubCategoryModel SelectedSubCategory { get; set; }
         public StandbyModes StandbyMode { get; set; }
 
         public StandbyModeModel StandbyModeModel { get; private set; } = new StandbyModeModel();
-        public string SubcategoryName { get; set; }
-        public string SubCategoryPicturePath { get; set; }
         private bool RandomPicturStatus { get; set; } = true;
 
         #endregion Properties
@@ -266,8 +265,8 @@ namespace ContestPark.Mobile.ViewModels
                     {
                         Question = questionModel,
                         DuelScreen = DuelScreen,
-                        SubcategoryName = SubcategoryName,
-                        SubCategoryPicturePath = SubCategoryPicturePath
+                        SubcategoryName = SelectedSubCategory.SubcategoryName,
+                        SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
                     });
 
                     DuelCloseCommand.Execute(null);
