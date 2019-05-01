@@ -41,15 +41,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private string _rankEmptyMessage;
-        private TimeLeftModel _timeLeftModel;
-
-        /// <summary>
-        /// Sayfadan çıkınca timer durduruldu
-        /// </summary>
-        public bool IsTimerStop { get; set; } = true;
+        private short SubCategoryId { get; set; }
 
         public ListTypes ListType { get; set; }
+
+        private string _rankEmptyMessage;
 
         public string RankEmptyMessage
         {
@@ -61,6 +57,8 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        private TimeLeftModel _timeLeftModel;
+
         public TimeLeftModel TimeLeft
         {
             get { return _timeLeftModel; }
@@ -71,7 +69,10 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private short SubCategoryId { get; set; }
+        /// <summary>
+        /// Sayfadan çıkınca timer durduruldu
+        /// </summary>
+        public bool IsTimerStop { get; set; } = true;
 
         #endregion Properties
 
@@ -84,15 +85,13 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            switch (ListType)
+            if (ListTypes.ScoreRanking == ListType)
             {
-                case ListTypes.ScoreRanking:
-                    ServiceModel = await _scoreService.SubCategoryRankingAsync(SubCategoryId, ServiceModel);
-                    break;
-
-                case ListTypes.ScoreRankingFollowing:
-                    ServiceModel = await _scoreService.FollowingRankingAsync(SubCategoryId, ServiceModel);
-                    break;
+                ServiceModel = await _scoreService.SubCategoryRankingAsync(SubCategoryId, ServiceModel);
+            }
+            else if (ListTypes.ScoreRankingFollowing == ListType)
+            {
+                ServiceModel = await _scoreService.FollowingRankingAsync(SubCategoryId, ServiceModel);
             }
 
             await base.InitializeAsync();
@@ -105,6 +104,38 @@ namespace ContestPark.Mobile.ViewModels
             LoadRankEmptyMessage();
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// ListTypes göre listview boş olduğunda çıkacak mesajı ayarlar
+        /// </summary>
+        private void LoadRankEmptyMessage()
+        {
+            switch (ListType)
+            {
+                case ListTypes.ScoreRankingFollowing: RankEmptyMessage = ContestParkResources.RankFollowingNull; break;
+                default: RankEmptyMessage = ContestParkResources.ThisCategoryRankNull; break;
+            }
+        }
+
+        /// <summary>
+        /// Segmente tıklanınca listeleme tipi değiştir
+        /// </summary>
+        /// <param name="value">seçilen segment id</param>
+        private void SegmentValueChanged(int selectedSegmentIndex)
+        {
+            if (!IsInitialized)
+                return;
+
+            switch (selectedSegmentIndex)
+            {
+                case 1: ListType = ListTypes.ScoreRankingFollowing; break;
+                default: ListType = ListTypes.ScoreRanking; break;
+            }
+
+            LoadRankEmptyMessage();
+
+            RefleshCommand.Execute(null);
         }
 
         /// <summary>
@@ -146,60 +177,22 @@ namespace ContestPark.Mobile.ViewModels
             });
         }
 
-        /// <summary>
-        /// ListTypes göre listview boş olduğunda çıkacak mesajı ayarlar
-        /// </summary>
-        private void LoadRankEmptyMessage()
-        {
-            switch (ListType)
-            {
-                case ListTypes.ScoreRankingFollowing: RankEmptyMessage = ContestParkResources.RankFollowingNull; break;
-                default: RankEmptyMessage = ContestParkResources.ThisCategoryRankNull; break;
-            }
-        }
-
-        /// <summary>
-        /// Segmente tıklanınca listeleme tipi değiştir
-        /// </summary>
-        /// <param name="value">seçilen segment id</param>
-        private void SegmentValueChanged(int selectedSegmentIndex)
-        {
-            if (!IsInitialized)
-                return;
-
-            switch (selectedSegmentIndex)
-            {
-                case 1: ListType = ListTypes.ScoreRankingFollowing; break;
-                default: ListType = ListTypes.ScoreRanking; break;
-            }
-
-            LoadRankEmptyMessage();
-
-            RefleshCommand.Execute(null);
-        }
-
         #endregion Methods
 
         #region Commands
+
+        private ICommand TimeLeftCommand => new Command(async () => await ExecuteTimeLeftCommand());
+
+        public ICommand SegmentValueChangedCommand => new Command<int>((selectedSegmentIndex) => SegmentValueChanged(selectedSegmentIndex));
 
         private ICommand _gotoProfilePageCommand;
 
         public ICommand GotoProfilePageCommand =>
             _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)));
 
-        public ICommand SegmentValueChangedCommand => new Command<int>((selectedSegmentIndex) => SegmentValueChanged(selectedSegmentIndex));
-        private ICommand TimeLeftCommand => new Command(async () => await ExecuteTimeLeftCommand());
-
         #endregion Commands
 
         #region Navigation
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            IsTimerStop = false;
-
-            base.OnNavigatedFrom(parameters);
-        }
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
@@ -208,6 +201,13 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("ListType")) ListType = parameters.GetValue<ListTypes>("ListType");
 
             base.OnNavigatingTo(parameters);
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            IsTimerStop = false;
+
+            base.OnNavigatedFrom(parameters);
         }
 
         #endregion Navigation
