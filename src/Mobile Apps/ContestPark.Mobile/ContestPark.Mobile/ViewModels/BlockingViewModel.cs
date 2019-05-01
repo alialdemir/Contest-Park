@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Blocking;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Services;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,7 +20,10 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public BlockingViewModel(IBlockingService blockingService)
+        public BlockingViewModel(
+            IBlockingService blockingService,
+            IPageDialogService pageDialogService
+            ) : base(dialogService: pageDialogService)
         {
             Title = ContestParkResources.Blocking;
             _blockingService = blockingService;
@@ -48,7 +52,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        private async Task ExecuteBlockProcessingCommand(string userId)
+        private async Task ExecuteBlockingProgressCommand(string userId)
         {
             if (IsBusy)
                 return;
@@ -65,7 +69,12 @@ namespace ContestPark.Mobile.ViewModels
                     _blockingService.Block(userId));
 
                 if (!isSuccess)
+                {
                     Items.Add(selectedModel);
+                    await DisplayAlertAsync("",
+                        ContestParkResources.GlobalErrorMessage,
+                        ContestParkResources.Okay);
+                }
             }
 
             IsBusy = false;
@@ -75,8 +84,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        private ICommand _blockProcessingCommand;
-        public ICommand BlockProcessingCommand => _blockProcessingCommand ?? (_blockProcessingCommand = new Command<string>(async (userId) => await ExecuteBlockProcessingCommand(userId)));
+        private ICommand _blockingProgressCommand;
+
+        public ICommand BlockingProgressCommand
+        {
+            get
+            {
+                return _blockingProgressCommand ?? (_blockingProgressCommand = new Command<string>(async (userId) => await ExecuteBlockingProgressCommand(userId)));
+            }
+        }
 
         #endregion Commands
     }
