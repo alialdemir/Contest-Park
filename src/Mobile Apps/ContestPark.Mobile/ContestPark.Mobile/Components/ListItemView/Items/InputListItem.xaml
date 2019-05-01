@@ -2,13 +2,12 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="ContestPark.Mobile.Components.InputListItem">
     <ContentView.Content>
         <Grid Padding="16,8,16,8"
               ColumnSpacing="15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -22,15 +21,16 @@
                             Icon="{Binding Icon}"
                             IconColor="{StaticResource Primary}" />
 
-            <xfx:XfxEntry Grid.Row="0"
-                          Grid.Column="1"
-                          Text="{Binding Text}"
-                          Keyboard="Text"
-                          IsPassword="{Binding IsPassword}"
-                          TextColor="{StaticResource White}"
-                          Placeholder="{Binding Placeholder}"
-                          PlaceholderColor="{StaticResource White}"
-                          ActivePlaceholderColor="{StaticResource Primary}" />
+            <Entry Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding Text}"
+                   Keyboard="Text"
+                   BackgroundColor="Transparent"
+                   Visual="Material"
+                   IsPassword="{Binding IsPassword}"
+                   TextColor="{StaticResource White}"
+                   Placeholder="{Binding Placeholder}"
+                   PlaceholderColor="{StaticResource Primary}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

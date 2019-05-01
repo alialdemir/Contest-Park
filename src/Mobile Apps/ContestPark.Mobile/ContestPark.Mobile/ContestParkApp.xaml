@@ -109,7 +109,7 @@
 
             <!-- List empty message -->
             <Style x:Key="EmptyModel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />

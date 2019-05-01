@@ -7,6 +7,16 @@ namespace ContestPark.Mobile.Components
 {
     public class CachedImage : FFImageLoading.Forms.CachedImage
     {
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
+                                                                                                           returnType: typeof(object),
+                                                                                                           declaringType: typeof(CircleImage),
+                                                                                                           defaultValue: null);
+
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(propertyName: nameof(Command),
+                                                                                           returnType: typeof(ICommand),
+                                                                                           declaringType: typeof(CircleImage),
+                                                                                           defaultValue: null);
+
         public CachedImage()
         {
             RetryCount = 0;
@@ -24,11 +34,6 @@ namespace ContestPark.Mobile.Components
             GestureRecognizers.Add(tapGestureRecognizer);
         }
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(propertyName: nameof(Command),
-                                                                                           returnType: typeof(ICommand),
-                                                                                           declaringType: typeof(CircleImage),
-                                                                                           defaultValue: null);
-
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
@@ -37,11 +42,6 @@ namespace ContestPark.Mobile.Components
                 SetValue(CommandProperty, value);
             }
         }
-
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
-                                                                                                           returnType: typeof(object),
-                                                                                                           declaringType: typeof(CircleImage),
-                                                                                                           defaultValue: null);
 
         public object CommandParameter
         {

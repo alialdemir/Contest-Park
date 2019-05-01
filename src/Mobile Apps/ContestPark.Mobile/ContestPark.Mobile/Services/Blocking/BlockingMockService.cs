@@ -8,29 +8,25 @@ namespace ContestPark.Mobile.Services.Blocking
 {
     internal class BlockingMockService : IBlockingService
     {
-        public Task Block(string userId)
+        public async Task<bool> Block(string userId)
         {
-            return Task.CompletedTask;
+            await Task.Delay(5000);
+            return true;
         }
 
-        public Task UnBlock(string userId)
+        public Task<ServiceModel<BlockModel>> BlockingList(PagingModel pagingModel)
         {
-            return Task.CompletedTask;
-        }
-
-        public Task<ServiceModel<UserBlocking>> UserBlockingList(PagingModel pagingModel)
-        {
-            return Task.FromResult(new ServiceModel<UserBlocking>
+            return Task.FromResult(new ServiceModel<BlockModel>
             {
-                Items = new List<UserBlocking>
+                Items = new List<BlockModel>
                  {
-                     new UserBlocking
+                     new BlockModel
                      {
                          FullName ="Ali Aldemir",
                          UserName = "witcherfearless",
                          UserId ="1111-1111-1111-1111"
                      },
-                     new UserBlocking
+                     new BlockModel
                      {
                          FullName ="demo",
                          UserName = "demo",
@@ -38,6 +34,12 @@ namespace ContestPark.Mobile.Services.Blocking
                      }
                  }
             });
+        }
+
+        public async Task<bool> UnBlock(string userId)
+        {
+            await Task.Delay(5000);
+            return true;
         }
     }
 }

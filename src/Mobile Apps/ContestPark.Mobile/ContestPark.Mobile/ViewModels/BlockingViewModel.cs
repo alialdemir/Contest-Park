@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Blocking;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Services;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class BlockingViewModel : ViewModelBase<UserBlocking>
+    public class BlockingViewModel : ViewModelBase<BlockModel>
     {
         #region Private variables
 
@@ -19,7 +20,10 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public BlockingViewModel(IBlockingService blockingService)
+        public BlockingViewModel(
+            IBlockingService blockingService,
+            IPageDialogService pageDialogService
+            ) : base(dialogService: pageDialogService)
         {
             Title = ContestParkResources.Blocking;
             _blockingService = blockingService;
@@ -36,7 +40,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _blockingService.UserBlockingList(ServiceModel);
+            ServiceModel = await _blockingService.BlockingList(ServiceModel);
 
             await base.InitializeAsync();
 
@@ -48,32 +52,47 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        private void ExecuteBlockProcessingCommand(string userId)
+        private async Task ExecuteBlockingProgressCommand(string userId)
         {
-            bool isBlock = Items
-                .FirstOrDefault(p => p.UserId == userId)
-                .IsBlocked;
+            if (IsBusy)
+                return;
 
-            Items
-                .FirstOrDefault(p => p.UserId == userId)
-                .IsBlocked = !isBlock;
+            IsBusy = true;
 
-            if (isBlock)
+            BlockModel selectedModel = Items.First(p => p.UserId == userId);
+            if (selectedModel != null)
             {
-                _blockingService.UnBlock(userId);
+                Items.Remove(selectedModel);
+
+                bool isSuccess = await (selectedModel.IsBlocked ?
+                    _blockingService.UnBlock(userId) :
+                    _blockingService.Block(userId));
+
+                if (!isSuccess)
+                {
+                    Items.Add(selectedModel);
+                    await DisplayAlertAsync("",
+                        ContestParkResources.GlobalErrorMessage,
+                        ContestParkResources.Okay);
+                }
             }
-            else
-            {
-                _blockingService.Block(userId);
-            }
+
+            IsBusy = false;
         }
 
         #endregion Methods
 
         #region Commands
 
-        private ICommand _blockProcessingCommand;
-        public ICommand BlockProcessingCommand => _blockProcessingCommand ?? (_blockProcessingCommand = new Command<string>((userId) => ExecuteBlockProcessingCommand(userId)));
+        private ICommand _blockingProgressCommand;
+
+        public ICommand BlockingProgressCommand
+        {
+            get
+            {
+                return _blockingProgressCommand ?? (_blockingProgressCommand = new Command<string>(async (userId) => await ExecuteBlockingProgressCommand(userId)));
+            }
+        }
 
         #endregion Commands
     }

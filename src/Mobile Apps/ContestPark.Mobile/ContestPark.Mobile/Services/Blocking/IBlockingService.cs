@@ -7,10 +7,10 @@ namespace ContestPark.Mobile.Services.Blocking
 {
     public interface IBlockingService
     {
-        Task Block(string userId);
+        Task<bool> Block(string userId);
 
-        Task UnBlock(string userId);
+        Task<ServiceModel<BlockModel>> BlockingList(PagingModel pagingModel);
 
-        Task<ServiceModel<UserBlocking>> UserBlockingList(PagingModel pagingModel);
+        Task<bool> UnBlock(string userId);
     }
 }

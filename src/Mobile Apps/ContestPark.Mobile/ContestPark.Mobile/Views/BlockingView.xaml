@@ -4,6 +4,7 @@
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.BlockingView"
@@ -15,25 +16,63 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Components:NonPersistentSelectedItemListView x:Name="lstView"
-                                                      InfiniteScroll="{Binding InfiniteScroll}"
+        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}"
                                                       Style="{StaticResource ListViewOnlyFooter}"
                                                       IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:ListItemButtonView
-                                                 Grid.Row="0"
-                                                 Grid.Column="0"
-                                                 Icon="fas-minus-square"
-                                                 Text="{Binding FullName}"
-                                                 AutomationId="lstViewChat"
-                                                 UserName="{Binding UserName}"
-                                                 IsIconStatus="{Binding IsBlocked}"
-                                                 CommandParameter="{Binding UserId}"
-                                                 Source="{Binding ProfilePicturePath}"
-                                                 Detail="{Binding UserName, StringFormat='@{0:N}'}"
-                                                 SingleTap="{Binding Path=BindingContext.BlockProcessingCommand, Source={x:Reference page}}" />
+                        <Grid RowSpacing="0"
+                              Padding="8,4,8,4"
+                              BackgroundColor="{StaticResource ListBackgroundColor}">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="35" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+
+                            <Components:CircleImage Grid.Column="0"
+                                                    Grid.RowSpan="2"
+                                                    CommandParameter="{Binding UserName}"
+                                                    Source="{Binding ProfilePicturePath}"
+                                                    Command="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference page}}" />
+
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   TextColor="White"
+                                   FontSize="Default"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="TailTruncation"
+                                   Text="{Binding FullName}" />
+
+                            <Components:HtmlLabel Grid.Row="1"
+                                                  Grid.Column="1"
+                                                  TextColor="White"
+                                                  FontSize="Small"
+                                                  Grid.ColumnSpan="2"
+                                                  LineBreakMode="TailTruncation"
+                                                  Text="{Binding UserName, StringFormat='@{0:N}'}" />
+
+                            <icon:IconButton FontSize="20"
+                                             Grid.Column="2"
+                                             Grid.RowSpan="2"
+                                             HorizontalOptions="Start"
+                                             BackgroundColor="Transparent"
+                                             TextColor="{StaticResource Red}"
+                                             CommandParameter="{Binding UserId}"
+                                             Text="{Binding Path=IsBlocked, Converter={StaticResource fbc}}"
+                                             Command="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference page}}" />
+
+                            <Components:Line Grid.Row="2"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2" />
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>

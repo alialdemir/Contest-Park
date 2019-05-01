@@ -16,6 +16,17 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
     {
         private SearchView _searchView;
 
+        protected override void Dispose(bool disposing)
+        {
+            if (_searchView != null)
+            {
+                _searchView.QueryTextChange += searchView_QueryTextChange;
+                _searchView.QueryTextSubmit += searchView_QueryTextSubmit;
+            }
+            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Layout.SearchMenu);
+            base.Dispose(disposing);
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
         {
             base.OnElementChanged(e);
@@ -26,17 +37,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             }
 
             AddSearchToToolBar();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (_searchView != null)
-            {
-                _searchView.QueryTextChange += searchView_QueryTextChange;
-                _searchView.QueryTextSubmit += searchView_QueryTextSubmit;
-            }
-            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Layout.SearchMenu);
-            base.Dispose(disposing);
         }
 
         private void AddSearchToToolBar()
@@ -83,6 +83,16 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             }
         }
 
+        private void searchView_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
+        {
+            var searchPage = Element as SearchPage;
+            if (searchPage == null)
+            {
+                return;
+            }
+            searchPage.SearchText = e?.NewText;
+        }
+
         private void searchView_QueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
         {
             if (e == null)
@@ -96,19 +106,9 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
                 return;
             }
 
-            searchPage.SearchText = e.Query;
-            searchPage.SearchCommand?.Execute(e.Query);
+            searchPage.SearchText = e.NewText;
+            searchPage.SearchCommand?.Execute(e.NewText);
             e.Handled = true;
-        }
-
-        private void searchView_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
-        {
-            var searchPage = Element as SearchPage;
-            if (searchPage == null)
-            {
-                return;
-            }
-            searchPage.SearchText = e?.NewText;
         }
     }
 }

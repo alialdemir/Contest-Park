@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Exceptions;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Services.Settings;
@@ -8,9 +9,11 @@ using Newtonsoft.Json.Serialization;
 using Polly;
 using Polly.Wrap;
 using Prism.Ioc;
+using Prism.Services;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -18,6 +21,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.RequestProvider
 {
@@ -211,6 +215,15 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             return HttpInvoker(origin, async (context) =>
             {
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                {
+                    IPageDialogService pageDialogService = RegisterTypesConfig.Container.Resolve<IPageDialogService>();
+
+                    await pageDialogService?.DisplayAlertAsync(ContestParkResources.NoInternet, "", ContestParkResources.Okay);
+
+                    return default(TResult);
+                }
+
                 try
                 {
                     HttpClient httpClient = CreateHttpClient();
@@ -242,8 +255,9 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                     return result;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Debug.WriteLine(ex);
                 }
 
                 return default(TResult);
