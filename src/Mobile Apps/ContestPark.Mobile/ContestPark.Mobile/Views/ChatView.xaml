@@ -7,7 +7,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.ChatView"
-             x:Name="page"
+             x:Name="chatPage"
              Icon="fas-comments"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -31,9 +31,9 @@
                                                  CommandParameter="{Binding SenderUserId}"
                                                  Source="{Binding UserProfilePicturePath}"
                                                  Date="{Binding Date,Converter={StaticResource moment}}"
-                                                 LongPressed="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference page}}"
-                                                 SingleTap="{Binding Path=BindingContext.GotoChatDetailCommand, Source={x:Reference page}}"
-                                                 GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference page}}" />
+                                                 LongPressed="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference chatPage}}"
+                                                 SingleTap="{Binding Path=BindingContext.GotoChatDetailCommand, Source={x:Reference chatPage}}"
+                                                 GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference chatPage}}" />
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>

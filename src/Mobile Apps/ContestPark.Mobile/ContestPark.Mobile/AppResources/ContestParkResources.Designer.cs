@@ -1060,6 +1060,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz..
+        /// </summary>
+        public static string WeHadaProblemDeletingTheMessagePleaseTryAgain {
+            get {
+                return ResourceManager.GetString("WeHadaProblemDeletingTheMessagePleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kullanıcı adı veya eposta adresi yazınız..
         /// </summary>
         public static string WriteYourUserNameOrEmailAddress {

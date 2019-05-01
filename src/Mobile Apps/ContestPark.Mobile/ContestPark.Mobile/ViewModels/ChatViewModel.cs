@@ -53,26 +53,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            ServiceModel = await _chatService.UserChatList(ServiceModel);
-            await base.InitializeAsync();
-
-            if (!string.IsNullOrEmpty(BadgeCount))
-            {
-                bool isSuccess = await _chatService.ChatSeenAsync();
-                if (isSuccess)
-                    BadgeCount = string.Empty;
-            }
-
-            IsBusy = false;
-        }
-
         /// <summary>
         /// Mesaj sil
         /// </summary>
@@ -97,9 +77,18 @@ namespace ContestPark.Mobile.ViewModels
 
             if (isDelete)
             {
+                Items.Remove(selectedModel);
+
                 bool isSuccess = await _chatService.DeleteAsync(receiverUserId);
-                if (isSuccess)
-                    Items.Remove(selectedModel);
+                if (!isSuccess)
+                {
+                    Items.Add(selectedModel);
+                    Items.OrderByDescending(x => x.Date);
+
+                    await DisplayAlertAsync("",
+                        ContestParkResources.WeHadaProblemDeletingTheMessagePleaseTryAgain,
+                        ContestParkResources.Okay);
+                }
             }
 
             IsDeleteMessageBusy = false;
@@ -114,33 +103,38 @@ namespace ContestPark.Mobile.ViewModels
             if (IsBusy)
                 return;
 
-            var selectedModel = Items.FirstOrDefault(i => i.SenderUserId == receiverUserId);
-            if (selectedModel == null)
-                return;
-
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+            var selectedModel = Items.FirstOrDefault(i => i.SenderUserId == receiverUserId);
+            if (selectedModel != null)
             {
-                { "UserName", selectedModel.UserName},
-                { "FullName", selectedModel.UserFullName},
-                { "SenderUserId", selectedModel.SenderUserId},
-            });
+                await PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+                {
+                    { "UserName", selectedModel.UserName},
+                    { "FullName", selectedModel.UserFullName},
+                    { "SenderUserId", selectedModel.SenderUserId},
+                });
+            }
 
             IsBusy = false;
         }
 
-        /// <summary>
-        /// Kullanıcının görülmemiş mesaj sayısı
-        /// </summary>
-        private async Task UserChatVisibilityCountCommandAsync()
+        protected override async Task InitializeAsync()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            BadgeCount = (await _chatService.UserChatVisibilityCountAsync()).ToString();
+            ServiceModel = await _chatService.UserChatList(ServiceModel);
+            await base.InitializeAsync();
+
+            if (!string.IsNullOrEmpty(BadgeCount))
+            {
+                bool isSuccess = await _chatService.ChatSeenAsync();
+                if (isSuccess)
+                    BadgeCount = string.Empty;
+            }
 
             IsBusy = false;
         }
@@ -160,13 +154,28 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Kullanıcının görülmemiş mesaj sayısı
+        /// </summary>
+        private async Task UserChatVisibilityCountCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            BadgeCount = (await _chatService.UserChatVisibilityCountAsync()).ToString();
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
 
-        public ICommand UserChatVisibilityCountCommand => new Command(async () => await UserChatVisibilityCountCommandAsync());
-
+        private ICommand _gotoProfilePageCommand;
         private ICommand deleteItemCommand;
+        private ICommand gotoChatDetailCommand;
 
         public ICommand DeleteItemCommand
         {
@@ -176,17 +185,15 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private ICommand gotoChatDetailCommand;
-
         public ICommand GotoChatDetailCommand
         {
             get { return gotoChatDetailCommand ?? (gotoChatDetailCommand = new Command<string>(async (senderUserId) => await GotoChatDetail(senderUserId))); }
         }
 
-        private ICommand _gotoProfilePageCommand;
-
         public ICommand GotoProfilePageCommand =>
             _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)));
+
+        public ICommand UserChatVisibilityCountCommand => new Command(async () => await UserChatVisibilityCountCommandAsync());
 
         #endregion Commands
     }
