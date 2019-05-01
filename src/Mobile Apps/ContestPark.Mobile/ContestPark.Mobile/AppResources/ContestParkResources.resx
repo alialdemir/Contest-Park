@@ -477,4 +477,7 @@
   <data name="YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore" xml:space="preserve">
     <value>Oynamak için yeterli altınınız yok. Contest store üzerinden altın satın alabilirsiniz.</value>
   </data>
+  <data name="WeHadaProblemDeletingTheMessagePleaseTryAgain" xml:space="preserve">
+    <value>Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz.</value>
+  </data>
 </root>
