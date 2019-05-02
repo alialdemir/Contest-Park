@@ -261,11 +261,11 @@
   <data name="DeleteMessageTitle" xml:space="preserve">
     <value>Mesaj sil?</value>
   </data>
-  <data name="Comment" xml:space="preserve">
+  <data name="Comments" xml:space="preserve">
     <value>Yorum</value>
   </data>
-  <data name="Like" xml:space="preserve">
-    <value>Beğen</value>
+  <data name="Likes" xml:space="preserve">
+    <value>Beğeni</value>
   </data>
   <data name="YourLevel" xml:space="preserve">
     <value>Seviyen</value>
@@ -461,7 +461,7 @@
   </data>
   <data name="RequiredFields" xml:space="preserve">
     <value>Gerekli alanları doldurunuz.</value>
-  </data>
+  </data>                                                         
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>Kullanıcı adınız maksimum 255 karakter olmalıdır.</value>
   </data>
@@ -480,6 +480,14 @@
   <data name="WeHadaProblemDeletingTheMessagePleaseTryAgain" xml:space="preserve">
     <value>Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz.</value>
   </data>
+  <data name="Lose" xml:space="preserve">
+    <value>Kaybetti</value>
+  </data>
+  <data name="Tie" xml:space="preserve">
+    <value>Berabere</value>
+  </data>
+  <data name="Winning" xml:space="preserve">
+    <value>Kazanan</value>
   <data name="Block" xml:space="preserve">
     <value>Engelle</value>
   </data>
@@ -496,6 +504,6 @@
     <value>Bu Konuşmanın Tamamını Sil?</value>
   </data>
   <data name="IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone" xml:space="preserve">
-    <value>Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz.</value>
+    <value>Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz.</value>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
   </data>
 </root>

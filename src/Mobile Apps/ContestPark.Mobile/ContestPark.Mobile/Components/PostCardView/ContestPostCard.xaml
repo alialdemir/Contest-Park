@@ -4,7 +4,7 @@
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
              x:Class="ContestPark.Mobile.Components.PostCardView.ContestPostCard"
-             x:Name="page">
+             x:Name="contestPostCard">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:DateTimeMomentConverter x:Key="moment" />
@@ -31,7 +31,7 @@
                                     BorderColor="{Binding FounderColor}"
                                     Source="{Binding FounderProfilePicturePath}"
                                     CommandParameter="{Binding FounderUserName}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference contestPostCard}}" />
 
             <Label Grid.Row="1"
                    Grid.Column="0"
@@ -62,8 +62,8 @@
                                     WidthRequest="100"
                                     HeightRequest="100"
                                     CommandParameter="{Binding .}"
-                                    Source="{Binding AlternativePicturePath}"
-                                    Command="{Binding Path=GotoDuelResultPageCommand, Source={x:Reference page}}" />
+                                    Source="{Binding SubCategoryPicturePath}"
+                                    Command="{Binding Path=GotoDuelResultPageCommand, Source={x:Reference contestPostCard}}" />
 
             <Label Grid.Row="1"
                    Grid.Column="2"
@@ -84,7 +84,7 @@
                                     BorderColor="{Binding CompetitorColor}"
                                     Source="{Binding CompetitorProfilePicturePath}"
                                     CommandParameter="{Binding CompetitorUserName}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference contestPostCard}}" />
 
             <Label Grid.Row="1"
                    Grid.Column="4"

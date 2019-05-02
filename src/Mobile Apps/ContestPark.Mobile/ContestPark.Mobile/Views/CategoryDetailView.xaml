@@ -9,16 +9,20 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.CategoryDetailView"
              Title="{Binding Title}"
-             x:Name="page">
+             x:Name="categoryDetailPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:FollowButtonConverter x:Key="fbc" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
+        <icon:IconToolbarItem Icon="{Binding IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
+                              IconColor="{StaticResource Black}"
+                              Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}" />
+        
         <icon:IconToolbarItem Icon="fas-share-alt"
                               IconColor="{StaticResource Primary}"
-                              Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference page}}" />
+                              Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView x:Name="lstView"
@@ -116,50 +120,27 @@
                                        HorizontalTextAlignment="Center"
                                        TextColor="{StaticResource Primary}" />
 
-                                <Components:ImageButton Grid.Row="2"
-                                                        FontSize="Small"
-                                                        HeightRequest="40"
-                                                        Grid.ColumnSpan="2"
-                                                        FontAttributes="Bold"
-                                                        ImageWidthRequest="24"
-                                                        ImageHeightRequest="24"
-                                                        Source="play_button.png"
-                                                        Orientation="ImageToLeft"
-                                                        VerticalOptions="CenterAndExpand"
-                                                        TextColor="{StaticResource White}"
-                                                        Text="{i18n:Translate FindOpponent}"
-                                                        Command="{Binding DuelOpenPanelCommand}"
-                                                        BackgroundColor="{StaticResource Green}" />
+                                <Button Grid.Row="2"
+                                        FontSize="Small"
+                                        HeightRequest="40"
+                                        Grid.ColumnSpan="2"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource White}"
+                                        Text="{i18n:Translate FindOpponent}"
+                                        Command="{Binding DuelOpenPanelCommand}"
+                                        BackgroundColor="{StaticResource Green}" />
 
-                                <Components:ImageButton Grid.Row="3"
-                                                        Grid.Column="0"
-                                                        FontSize="Small"
-                                                        HeightRequest="40"
-                                                        FontAttributes="Bold"
-                                                        ImageWidthRequest="24"
-                                                        ImageHeightRequest="24"
-                                                        Source="play_button.png"
-                                                        Orientation="ImageToLeft"
-                                                        Text="{i18n:Translate Ranking}"
-                                                        VerticalOptions="CenterAndExpand"
-                                                        TextColor="{StaticResource White}"
-                                                        BackgroundColor="{StaticResource Accent}"
-                                                        Command="{Binding GoToRankingPageCommand}" />
-
-                                <Components:ImageButton Grid.Row="3"
-                                                        Grid.Column="1"
-                                                        FontSize="Small"
-                                                        HeightRequest="40"
-                                                        FontAttributes="Bold"
-                                                        ImageWidthRequest="24"
-                                                        ImageHeightRequest="24"
-                                                        Orientation="ImageToLeft"
-                                                        BackgroundColor="BlueViolet"
-                                                        Text="{i18n:Translate Follow}"
-                                                        VerticalOptions="CenterAndExpand"
-                                                        TextColor="{StaticResource Black}"
-                                                        Command="{Binding SubCategoryFollowProgcessCommand}"
-                                                        Source="{Binding IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}" />
+                                <Button Grid.Row="3"
+                                        Grid.ColumnSpan="2"
+                                        FontSize="Small"
+                                        HeightRequest="40"
+                                        FontAttributes="Bold"
+                                        Text="{i18n:Translate Ranking}"
+                                        VerticalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource White}"
+                                        BackgroundColor="{StaticResource Accent}"
+                                        Command="{Binding GoToRankingPageCommand}" />
                             </Grid>
                         </Frame>
                     </StackLayout>
@@ -168,7 +149,7 @@
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:PostCardFactoryView NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference page}}" />
+                        <Components:PostCardFactoryView NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference categoryDetailPage}}" />
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>

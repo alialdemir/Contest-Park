@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-             x:Class="ContestPark.Mobile.Components.PostCardView.FollowPostCard"
+             x:Class="ContestPark.Mobile.Components.PostCardView.TextPostCard"
              x:Name="page">
     <ContentView.Resources>
         <ResourceDictionary>

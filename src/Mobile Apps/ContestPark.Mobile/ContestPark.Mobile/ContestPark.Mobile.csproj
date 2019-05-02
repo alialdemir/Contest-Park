@@ -48,6 +48,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Polly" Version="7.1.0" />
     <PackageReference Include="Prism.Core" Version="7.1.0.431" />
     <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
@@ -76,6 +77,9 @@
     <Compile Update="Components\Categories\CategoryHeader.xaml.cs">
       <DependentUpon>CategoryHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Components\PostCardView\TextPostCard.xaml.cs">
+      <DependentUpon>TextPostCard.xaml</DependentUpon>
+    </Compile>
     <Compile Update="ContestParkApp.xaml.cs">
       <DependentUpon>ContestParkApp.xaml</DependentUpon>
     </Compile>
@@ -93,6 +97,9 @@
     </Compile>
     <Compile Update="Views\NotificationsView.xaml.cs">
       <DependentUpon>NotificationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PostDetailView.xaml.cs">
+      <DependentUpon>PostDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\QuestionPopupView.xaml.cs">
       <DependentUpon>QuestionPopupView.xaml</DependentUpon>
@@ -145,7 +152,7 @@
     <EmbeddedResource Update="Components\PostCardView\ContestPostCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\PostCardView\FollowPostCard.xaml">
+    <EmbeddedResource Update="Components\PostCardView\TextPostCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\PostCardView\ImagePostCard.xaml">
@@ -226,7 +233,7 @@
     <EmbeddedResource Update="Views\PostLikesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PostView.xaml">
+    <EmbeddedResource Update="Views\PostDetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProfileView.xaml">

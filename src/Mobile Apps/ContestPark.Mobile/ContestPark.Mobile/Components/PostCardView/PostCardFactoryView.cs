@@ -30,16 +30,15 @@ namespace ContestPark.Mobile.Components
             {
                 switch (postListModel.PostType)
                 {
-                    case PostTypes.ContestDuel:
+                    case PostTypes.Contest:
                         Content = CreateContent(new ContestPostCard(NavigationService));
                         break;
 
-                    case PostTypes.Follow:
-                        Content = CreateContent(new FollowPostCard(NavigationService));
+                    case PostTypes.Text:
+                        Content = CreateContent(new TextPostCard(NavigationService));
                         break;
 
-                    case PostTypes.ProfilePictureChanged:
-                    case PostTypes.CoverPictureChanged:
+                    case PostTypes.Image:
                         Content = CreateContent(new ImagePostCard(NavigationService));
                         break;
                 }
