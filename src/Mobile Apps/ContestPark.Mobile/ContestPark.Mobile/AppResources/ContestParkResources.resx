@@ -480,4 +480,22 @@
   <data name="WeHadaProblemDeletingTheMessagePleaseTryAgain" xml:space="preserve">
     <value>Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz.</value>
   </data>
+  <data name="Block" xml:space="preserve">
+    <value>Engelle</value>
+  </data>
+  <data name="ChatSettings" xml:space="preserve">
+    <value>Sohbet Ayarları</value>
+  </data>
+  <data name="DeleteConversation" xml:space="preserve">
+    <value>Konuşmayı sil</value>
+  </data>
+  <data name="RemoveBlock" xml:space="preserve">
+    <value>Engelli kaldır</value>
+  </data>
+  <data name="DeleteThisEntireConversation" xml:space="preserve">
+    <value>Bu Konuşmanın Tamamını Sil?</value>
+  </data>
+  <data name="IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone" xml:space="preserve">
+    <value>Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz.</value>
+  </data>
 </root>

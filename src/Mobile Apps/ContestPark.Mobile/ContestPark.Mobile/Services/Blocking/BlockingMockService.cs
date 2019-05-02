@@ -8,9 +8,12 @@ namespace ContestPark.Mobile.Services.Blocking
 {
     internal class BlockingMockService : IBlockingService
     {
+        private bool isBlocking = false;
+
         public async Task<bool> Block(string userId)
         {
             await Task.Delay(5000);
+            isBlocking = true;
             return true;
         }
 
@@ -36,9 +39,15 @@ namespace ContestPark.Mobile.Services.Blocking
             });
         }
 
+        public Task<bool> BlockingStatusAsync(string senderUserId)
+        {
+            return Task.FromResult(isBlocking);
+        }
+
         public async Task<bool> UnBlock(string userId)
         {
             await Task.Delay(5000);
+            isBlocking = false;
             return true;
         }
     }

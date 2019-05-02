@@ -11,6 +11,8 @@ namespace ContestPark.Mobile.Services.Blocking
 
         Task<ServiceModel<BlockModel>> BlockingList(PagingModel pagingModel);
 
+        Task<bool> BlockingStatusAsync(string senderUserId);
+
         Task<bool> UnBlock(string userId);
     }
 }

@@ -67,6 +67,16 @@ namespace ContestPark.Mobile.Services.Blocking
         }
 
         /// <summary>
+        /// İki kullanıcı arasında engelleme var mı kontrol eder
+        /// </summary>
+        public async Task<bool> BlockingStatusAsync(string senderUserId)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{senderUserId}");
+
+            return await _requestProvider.GetAsync<bool>(uri);
+        }
+
+        /// <summary>
         /// Kullanıcının engellini kaldırır
         /// </summary>
         /// <param name="userId">Kullanicii id</param>
