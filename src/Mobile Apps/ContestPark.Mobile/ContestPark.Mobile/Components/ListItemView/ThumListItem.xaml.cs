@@ -13,19 +13,15 @@ namespace ContestPark.Mobile.Components
         public ThumListItem()
         {
             InitializeComponent();
+            //BackgroundColor = (Color)ContestParkApp.Current.Resources["ListBackgroundColor"];
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public static readonly BindableProperty ButtonTextProperty = BindableProperty.Create(propertyName: nameof(ButtonText),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ThumListItem),
-                                                                                                    defaultValue: String.Empty);
-
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
-                                                                                                           returnType: typeof(object),
+                                                                                                                   returnType: typeof(object),
                                                                                                            declaringType: typeof(ListItemView),
                                                                                                            defaultValue: null);
 
@@ -34,8 +30,13 @@ namespace ContestPark.Mobile.Components
                                                                                                     declaringType: typeof(ListItemView),
                                                                                                     defaultValue: String.Empty);
 
+        public static readonly BindableProperty GridBackgroundColorProperty = BindableProperty.Create(propertyName: nameof(GridBackgroundColor),
+                                                                                                    returnType: typeof(Color),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: (Color)ContestParkApp.Current.Resources["ListBackgroundColor"]);
+
         public static readonly BindableProperty IsShowRightTextProperty = BindableProperty.Create(propertyName: nameof(IsShowRightText),
-                                                                                                    returnType: typeof(bool),
+                                                                                                            returnType: typeof(bool),
                                                                                                     declaringType: typeof(ListItemView),
                                                                                                     defaultValue: false);
 
@@ -49,8 +50,13 @@ namespace ContestPark.Mobile.Components
                                                                                                     declaringType: typeof(ListItemView),
                                                                                                     defaultValue: String.Empty);
 
+        public static readonly BindableProperty RightIconTextColorProperty = BindableProperty.Create(propertyName: nameof(RightIconTextColor),
+                                                                                                    returnType: typeof(Color),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: Color.FromHex("#dddddd"));
+
         public static readonly BindableProperty RightTextProperty = BindableProperty.Create(propertyName: nameof(RightText),
-                                                                                                    returnType: typeof(string),
+                                                                                                            returnType: typeof(string),
                                                                                                     declaringType: typeof(ListItemView),
                                                                                                     defaultValue: String.Empty);
 
@@ -69,15 +75,6 @@ namespace ContestPark.Mobile.Components
                                                                                                     declaringType: typeof(ListItemView),
                                                                                                     defaultValue: String.Empty);
 
-        public string ButtonText
-        {
-            get { return (string)GetValue(ButtonTextProperty); }
-            set
-            {
-                SetValue(ButtonTextProperty, value);
-            }
-        }
-
         public object CommandParameter
         {
             get { return GetValue(CommandParameterProperty); }
@@ -94,6 +91,12 @@ namespace ContestPark.Mobile.Components
             {
                 SetValue(DetailProperty, value);
             }
+        }
+
+        public Color GridBackgroundColor
+        {
+            get { return (Color)GetValue(GridBackgroundColorProperty); }
+            set { SetValue(GridBackgroundColorProperty, value); }
         }
 
         public bool IsShowRightText
@@ -118,6 +121,12 @@ namespace ContestPark.Mobile.Components
         {
             get { return (string)GetValue(RightIconSourceProperty); }
             set { SetValue(RightIconSourceProperty, value); }
+        }
+
+        public Color RightIconTextColor
+        {
+            get { return (Color)GetValue(RightIconTextColorProperty); }
+            set { SetValue(RightIconTextColorProperty, value); }
         }
 
         public string RightText

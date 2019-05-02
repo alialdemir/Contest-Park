@@ -14,13 +14,17 @@
                                                       IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
             <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="15"
-                                 HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="CenterAndExpand">
-                        <Label Text="Coins"
-                               TextColor="{StaticResource White}"
+                    <StackLayout Spacing="20"
+                                 Padding="50,10,0,10"
+                                 Orientation="Horizontal"
+                                 VerticalOptions="FillAndExpand"
+                                 BackgroundColor="{StaticResource ListBackgroundColor}">
+
+                        <Label FontSize="Default"
                                FontAttributes="Bold"
-                               VerticalTextAlignment="Center" />
+                               Text="Coins"
+                               VerticalOptions="Center"
+                               TextColor="#808080" />
                     </StackLayout>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.HeaderTemplate>
@@ -28,11 +32,14 @@
                 <DataTemplate>
                     <ViewCell>
                         <components:ThumListItem AutomationId="storeView"
-                                                 Detail="{Binding Description}"
-                                                 Text="{Binding ProductName}"
+                                                 IsShowRightText="True"
                                                  Source="{Binding Image}"
+                                                 Text="{Binding ProductName}"
+                                                 Detail="{Binding Description}"
+                                                 RightText="{Binding DisplayPrice}"
                                                  CommandParameter="{Binding ProductId}"
-                                                 ButtonText="{Binding DisplayPrice}"
+                                                 RightIconTextColor="{StaticResource Primary}"
+                                                 GridBackgroundColor="{StaticResource Black}"
                                                  SingleTap="{Binding Path=Parent.BindingContext.PurchaseCommand, Source={x:Reference lstView}}" />
                     </ViewCell>
                 </DataTemplate>
@@ -40,20 +47,27 @@
             <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Vertical">
-                        <StackLayout Padding="15"
-                                     HorizontalOptions="FillAndExpand"
-                                     VerticalOptions="CenterAndExpand">
-                            <Label Text="{i18n:Translate EarnCoins}"
-                                   TextColor="{StaticResource White}"
+                        <StackLayout Spacing="20"
+                                     Padding="50,10,0,10"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="FillAndExpand"
+                                     GridBackgroundColor="{StaticResource ListBackgroundColor}">
+
+                            <Label FontSize="Default"
                                    FontAttributes="Bold"
-                                   VerticalTextAlignment="Center" />
+                                   Text="{i18n:Translate EarnCoins}"
+                                   VerticalOptions="Center"
+                                   TextColor="#808080" />
                         </StackLayout>
 
-                        <components:ThumListItem AutomationId="WatchAdGetCoins"
-                                                 Detail="{i18n:Translate WatchAdGetCoins}"
+                        <components:ThumListItem RightText="+100 coins"
+                                                 IsShowRightText="True"
+                                                 AutomationId="WatchAdGetCoins"
                                                  Text="{i18n:Translate FreeCoins}"
+                                                 Detail="{i18n:Translate WatchAdGetCoins}"
                                                  Source="assets/images/WatchAdGetCoins.png"
-                                                 ButtonText="+100 coins"
+                                                 GridBackgroundColor="{StaticResource Black}"
+                                                 RightIconTextColor="{StaticResource Primary}"
                                                  SingleTap="{Binding Path=Parent.BindingContext.WatchAdsVideoCommand, Source={x:Reference lstView}}" />
                     </StackLayout>
                 </DataTemplate>
