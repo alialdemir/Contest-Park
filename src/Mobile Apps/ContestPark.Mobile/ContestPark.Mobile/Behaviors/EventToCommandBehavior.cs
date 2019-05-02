@@ -112,7 +112,7 @@ namespace ContestPark.Mobile.Behaviors
             if (Command == null)
                 return;
 
-            var parameter = CommandParameter;
+            //      var parameter = CommandParameter;
 
             //if (eventArgs != null && eventArgs != EventArgs.Empty)
             //{
@@ -124,9 +124,9 @@ namespace ContestPark.Mobile.Behaviors
             //    }
             //}
 
-            if (Command.CanExecute(parameter))
+            if (Command.CanExecute(CommandParameter))
             {
-                Command.Execute(parameter);
+                Command.Execute(CommandParameter);
             }
         }
     }

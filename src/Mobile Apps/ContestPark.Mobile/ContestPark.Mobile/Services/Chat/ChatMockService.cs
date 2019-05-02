@@ -10,6 +10,37 @@ namespace ContestPark.Mobile.Services.Chat
 {
     public class ChatMockService : IChatService
     {
+        public Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel)
+        {
+            return Task.FromResult(new ServiceModel<ChatDetailModel>
+            {
+                Count = 3,
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+                Items = new List<ChatDetailModel>
+                {
+                       new ChatDetailModel
+                        {
+                            Date = DateTime.Now.AddDays(-30),
+                            Message = "bu bir deneme mesajınız",
+                            SenderId = "1111-1111-1111-1111",
+                        },
+                       new ChatDetailModel
+                        {
+                            Date = DateTime.Now.AddDays(-30),
+                            Message = "Sellamm",
+                            SenderId = "2222-2222-2222-2222",
+                        },
+                       new ChatDetailModel
+                        {
+                            Date = DateTime.Now.AddDays(-30),
+                            Message = "123456789012345678901234567890123456789...",
+                            SenderId = "3333-3333-3333-3333",
+                        }
+                }
+            });
+        }
+
         public Task<bool> ChatSeenAsync()
         {
             return Task.FromResult(true);
@@ -24,7 +55,7 @@ namespace ContestPark.Mobile.Services.Chat
         {
             await Task.Delay(2000);
 
-            var categories = new ServiceModel<ChatModel>
+            var chats = new ServiceModel<ChatModel>
             {
                 Count = 3,
                 PageNumber = pagingModel.PageNumber,
@@ -64,7 +95,7 @@ namespace ContestPark.Mobile.Services.Chat
                 }
             };
 
-            return categories;
+            return chats;
         }
 
         public Task<int> UserChatVisibilityCountAsync()

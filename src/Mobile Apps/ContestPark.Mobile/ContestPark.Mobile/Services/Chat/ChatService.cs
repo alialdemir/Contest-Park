@@ -13,11 +13,9 @@ namespace ContestPark.Mobile.Services.Chat
     {
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
-        private readonly ICacheService _cacheService;
-
         private const string ApiUrlBase = "api/v1/chat";
+        private readonly ICacheService _cacheService;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
@@ -34,6 +32,47 @@ namespace ContestPark.Mobile.Services.Chat
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Parametreden geln kullanıcı arasındaki sohbet geçmişi
+        /// </summary>
+        /// <param name="senderId">kullanıcı Id</param>
+        /// <returns>Sohbet geçmiþinin listesi</returns>
+        public async Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{senderUserId}/{pagingModel.ToString()}");
+
+            return await _requestProvider.GetAsync<ServiceModel<ChatDetailModel>>(uri);
+        }
+
+        /// <summary>
+        /// Kullanıcının görmediği tüm mesajlarını görüldü yapar
+        /// </summary>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> ChatSeenAsync()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            bool isSuccess = await _requestProvider.PostAsync<bool>(uri);
+
+            return isSuccess;
+        }
+
+        /// <summary>
+        /// İlgili chat'deki tüm mesajları sil
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> DeleteAsync(string receiverUserId)
+        {
+            if (string.IsNullOrEmpty(receiverUserId))
+                return false;
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            bool isSuccess = await _requestProvider.DeleteAsync<bool>($"{uri}/{receiverUserId}");
+
+            return isSuccess;
+        }
 
         /// <summary>
         /// Login olan kullanıcının mesaj listesi
@@ -66,35 +105,6 @@ namespace ContestPark.Mobile.Services.Chat
             int chatCount = await _requestProvider.GetAsync<int>($"{uri}/VisibilityCount");
 
             return chatCount;
-        }
-
-        /// <summary>
-        /// Kullanıcının görmediği tüm mesajlarını görüldü yapar
-        /// </summary>
-        /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> ChatSeenAsync()
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
-
-            bool isSuccess = await _requestProvider.PostAsync<bool>(uri);
-
-            return isSuccess;
-        }
-
-        /// <summary>
-        /// İlgili chat'deki tüm mesajları sil
-        /// </summary>
-        /// <returns></returns>
-        public async Task<bool> DeleteAsync(string receiverUserId)
-        {
-            if (string.IsNullOrEmpty(receiverUserId))
-                return false;
-
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
-
-            bool isSuccess = await _requestProvider.DeleteAsync<bool>($"{uri}/{receiverUserId}");
-
-            return isSuccess;
         }
 
         #endregion Methods

@@ -124,6 +124,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Engelle.
+        /// </summary>
+        public static string Block {
+            get {
+                return ResourceManager.GetString("Block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Engellenenler.
         /// </summary>
         public static string Blocking {
@@ -205,6 +214,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sohbet Ayarları.
+        /// </summary>
+        public static string ChatSettings {
+            get {
+                return ResourceManager.GetString("ChatSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to İşlem seçiniz.
         /// </summary>
         public static string ChooseAnAction {
@@ -268,6 +286,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Konuşmayı sil.
+        /// </summary>
+        public static string DeleteConversation {
+            get {
+                return ResourceManager.GetString("DeleteConversation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} ile aranızdaki sohbeti silmek istediğinizden emin misiniz?.
         /// </summary>
         public static string DeleteMessage {
@@ -282,6 +309,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string DeleteMessageTitle {
             get {
                 return ResourceManager.GetString("DeleteMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bu Konuşmanın Tamamını Sil?.
+        /// </summary>
+        public static string DeleteThisEntireConversation {
+            get {
+                return ResourceManager.GetString("DeleteThisEntireConversation", resourceCulture);
             }
         }
         
@@ -498,6 +534,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string GlobalErrorMessage {
             get {
                 return ResourceManager.GetString("GlobalErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz..
+        /// </summary>
+        public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {
+            get {
+                return ResourceManager.GetString("IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone", resourceCulture);
             }
         }
         
@@ -795,6 +840,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Ranking {
             get {
                 return ResourceManager.GetString("Ranking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engelli kaldır.
+        /// </summary>
+        public static string RemoveBlock {
+            get {
+                return ResourceManager.GetString("RemoveBlock", resourceCulture);
             }
         }
         

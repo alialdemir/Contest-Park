@@ -113,6 +113,7 @@ namespace ContestPark.Mobile.ViewModels
                     { "UserName", selectedModel.UserName},
                     { "FullName", selectedModel.UserFullName},
                     { "SenderUserId", selectedModel.SenderUserId},
+                    {"SenderProfilePicturePath", selectedModel.UserProfilePicturePath }
                 });
             }
 
