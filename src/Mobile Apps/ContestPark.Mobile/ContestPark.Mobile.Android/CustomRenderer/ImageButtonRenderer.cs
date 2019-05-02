@@ -11,6 +11,7 @@ using Xamarin.Forms.Platform.Android;
 using Color = Xamarin.Forms.Color;
 using ImageButton = ContestPark.Mobile.Components.ImageButton;
 using View = Android.Views.View;
+using Android.Content;
 
 [assembly: ExportRenderer(typeof(ImageButton), typeof(ContestPark.Mobile.Droid.CustomRenderer.ImageButtonRenderer))]
 
@@ -23,6 +24,10 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
     public partial class ImageButtonRenderer : ButtonRenderer
     {
         private static float _density = float.MinValue;
+
+        public ImageButtonRenderer(Context context) : base(context)
+        {
+        }
 
         /// <summary>
         /// Gets the underlying control typed as an <see cref="ImageButton"/>.
@@ -67,6 +72,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         /// Sets up the button including the image.
         /// </summary>
         /// <param name="e">The event arguments.</param>
+        [Obsolete]
         protected async override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {
             base.OnElementChanged(e);
@@ -139,6 +145,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         /// <param name="targetButton">The target button.</param>
         /// <param name="model">The model.</param>
         /// <returns>A <see cref="Task"/> for the awaited operation.</returns>
+        [Obsolete]
         private async Task SetImageSourceAsync(Android.Widget.Button targetButton, ImageButton model)
         {
             if (targetButton == null || targetButton.Handle == IntPtr.Zero || model == null) return;

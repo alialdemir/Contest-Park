@@ -207,7 +207,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand _saveCommand;
 
-        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(() => ExecuteSaveCommandAsync()));
+        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(async () => await ExecuteSaveCommandAsync()));
 
         #endregion Commands
     }

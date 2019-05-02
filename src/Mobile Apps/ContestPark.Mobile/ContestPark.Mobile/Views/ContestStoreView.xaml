@@ -1,11 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.ContestStoreView"
-             Title="Contest Store">
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <Label Text="ContestStore!" TextColor="{StaticResource Primary}" />
+        <components:NonPersistentSelectedItemListView x:Name="lstView"
+                                                      InfiniteScroll="{Binding InfiniteScroll}"
+                                                      Style="{StaticResource ListViewHeaderAndFooter}"
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+            <components:NonPersistentSelectedItemListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="15"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="CenterAndExpand">
+                        <Label Text="Coins"
+                               TextColor="{StaticResource White}"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.HeaderTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:ThumListItem AutomationId="storeView"
+                                                 Detail="{Binding Description}"
+                                                 Text="{Binding ProductName}"
+                                                 Source="{Binding Image}"
+                                                 CommandParameter="{Binding ProductId}"
+                                                 ButtonText="{Binding DisplayPrice}"
+                                                 SingleTap="{Binding Path=Parent.BindingContext.PurchaseCommand, Source={x:Reference lstView}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Padding="15"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="{i18n:Translate EarnCoins}"
+                                   TextColor="{StaticResource White}"
+                                   FontAttributes="Bold"
+                                   VerticalTextAlignment="Center" />
+                        </StackLayout>
+
+                        <components:ThumListItem AutomationId="WatchAdGetCoins"
+                                                 Detail="{i18n:Translate WatchAdGetCoins}"
+                                                 Text="{i18n:Translate FreeCoins}"
+                                                 Source="assets/images/WatchAdGetCoins.png"
+                                                 ButtonText="+100 coins"
+                                                 SingleTap="{Binding Path=Parent.BindingContext.WatchAdsVideoCommand, Source={x:Reference lstView}}" />
+                    </StackLayout>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

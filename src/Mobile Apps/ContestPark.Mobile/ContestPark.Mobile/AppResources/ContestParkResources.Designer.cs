@@ -322,6 +322,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Altın Kazan.
+        /// </summary>
+        public static string EarnCoins {
+            get {
+                return ResourceManager.GetString("EarnCoins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profil Güncelle.
         /// </summary>
         public static string EditProfile {
@@ -466,6 +475,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ücretsiz Altın.
+        /// </summary>
+        public static string FreeCoins {
+            get {
+                return ResourceManager.GetString("FreeCoins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beleşçi.
         /// </summary>
         public static string Freeloader {
@@ -552,6 +570,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string invalid_username_or_password {
             get {
                 return ResourceManager.GetString("invalid_username_or_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geçersiz ürün id..
+        /// </summary>
+        public static string InvalidProductId {
+            get {
+                return ResourceManager.GetString("InvalidProductId", resourceCulture);
             }
         }
         
@@ -817,6 +844,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Satın alma işlemi başarısız. Altınlarınız hesabınıza yüklenemedi. Lütfen support@contestpark.com adresine mail atın..
+        /// </summary>
+        public static string PurchaseFail {
+            get {
+                return ResourceManager.GetString("PurchaseFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sıra.
         /// </summary>
         public static string Rank {
@@ -1015,11 +1051,29 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Başarılı.
+        /// </summary>
+        public static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fotoğraf çek.
         /// </summary>
         public static string TakeAPhoto {
             get {
                 return ResourceManager.GetString("TakeAPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi..
+        /// </summary>
+        public static string ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount {
+            get {
+                return ResourceManager.GetString("ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount", resourceCulture);
             }
         }
         
@@ -1056,6 +1110,24 @@ namespace ContestPark.Mobile.AppResources {
         public static string Turkish {
             get {
                 return ResourceManager.GetString("Turkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ürün listesine erişilemedi..
+        /// </summary>
+        public static string UnableToAccessTheProductList {
+            get {
+                return ResourceManager.GetString("UnableToAccessTheProductList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mağazaya bağlanılamadı..
+        /// </summary>
+        public static string UnableToConnectToTheStore {
+            get {
+                return ResourceManager.GetString("UnableToConnectToTheStore", resourceCulture);
             }
         }
         
@@ -1128,6 +1200,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string UserNameRequiredFields {
             get {
                 return ResourceManager.GetString("UserNameRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reklam izle, altın kazan!.
+        /// </summary>
+        public static string WatchAdGetCoins {
+            get {
+                return ResourceManager.GetString("WatchAdGetCoins", resourceCulture);
             }
         }
         
@@ -1209,6 +1290,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YourPasswordHasBeenUpdated {
             get {
                 return ResourceManager.GetString("YourPasswordHasBeenUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telefonunuz uygulama içi satın almayı desteklemiyor..
+        /// </summary>
+        public static string YourPhoneDoesNotSupportInAppPurchases {
+            get {
+                return ResourceManager.GetString("YourPhoneDoesNotSupportInAppPurchases", resourceCulture);
             }
         }
     }

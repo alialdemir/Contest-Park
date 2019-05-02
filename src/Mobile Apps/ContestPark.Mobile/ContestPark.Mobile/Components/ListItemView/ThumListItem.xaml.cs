@@ -19,85 +19,64 @@ namespace ContestPark.Mobile.Components
 
         #region Properties
 
-        public static readonly BindableProperty SourceProperty = BindableProperty.Create(propertyName: nameof(Source),
+        public static readonly BindableProperty ButtonTextProperty = BindableProperty.Create(propertyName: nameof(ButtonText),
                                                                                                     returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    declaringType: typeof(ThumListItem),
                                                                                                     defaultValue: String.Empty);
 
-        public string Source
-        {
-            get { return (string)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
-
-        public static readonly BindableProperty RightIconSourceProperty = BindableProperty.Create(propertyName: nameof(RightIconSource),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
-
-        public string RightIconSource
-        {
-            get { return (string)GetValue(RightIconSourceProperty); }
-            set { SetValue(RightIconSourceProperty, value); }
-        }
-
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(propertyName: nameof(Text),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
-
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
+                                                                                                           returnType: typeof(object),
+                                                                                                           declaringType: typeof(ListItemView),
+                                                                                                           defaultValue: null);
 
         public static readonly BindableProperty DetailProperty = BindableProperty.Create(propertyName: nameof(Detail),
                                                                                                     returnType: typeof(string),
                                                                                                     declaringType: typeof(ListItemView),
                                                                                                     defaultValue: String.Empty);
 
-        public string Detail
-        {
-            get { return (string)GetValue(DetailProperty); }
-            set
-            {
-                SetValue(DetailProperty, value);
-            }
-        }
-
-        public static readonly BindableProperty RightTextProperty = BindableProperty.Create(propertyName: nameof(RightText),
-                                                                                                    returnType: typeof(string),
+        public static readonly BindableProperty IsShowRightTextProperty = BindableProperty.Create(propertyName: nameof(IsShowRightText),
+                                                                                                    returnType: typeof(bool),
                                                                                                     declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
-
-        public string RightText
-        {
-            get { return (string)GetValue(RightTextProperty); }
-            set
-            {
-                SetValue(RightTextProperty, value);
-            }
-        }
+                                                                                                    defaultValue: false);
 
         public static readonly BindableProperty LongPressedProperty = BindableProperty.Create(propertyName: nameof(LongPressed),
                                                                                                       returnType: typeof(ICommand),
                                                                                                       declaringType: typeof(ListItemView),
                                                                                                       defaultValue: null);
 
-        public ICommand LongPressed
+        public static readonly BindableProperty RightIconSourceProperty = BindableProperty.Create(propertyName: nameof(RightIconSource),
+                                                                                                    returnType: typeof(string),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: String.Empty);
+
+        public static readonly BindableProperty RightTextProperty = BindableProperty.Create(propertyName: nameof(RightText),
+                                                                                                    returnType: typeof(string),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: String.Empty);
+
+        public static readonly BindableProperty SingleTapProperty = BindableProperty.Create(propertyName: nameof(SingleTap),
+                                                                                                    returnType: typeof(ICommand),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: null);
+
+        public static readonly BindableProperty SourceProperty = BindableProperty.Create(propertyName: nameof(Source),
+                                                                                                    returnType: typeof(string),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: String.Empty);
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(propertyName: nameof(Text),
+                                                                                                    returnType: typeof(string),
+                                                                                                    declaringType: typeof(ListItemView),
+                                                                                                    defaultValue: String.Empty);
+
+        public string ButtonText
         {
-            get { return (ICommand)GetValue(LongPressedProperty); }
+            get { return (string)GetValue(ButtonTextProperty); }
             set
             {
-                SetValue(LongPressedProperty, value);
+                SetValue(ButtonTextProperty, value);
             }
         }
-
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
-                                                                                                           returnType: typeof(object),
-                                                                                                           declaringType: typeof(ListItemView),
-                                                                                                           defaultValue: null);
 
         public object CommandParameter
         {
@@ -108,10 +87,47 @@ namespace ContestPark.Mobile.Components
             }
         }
 
-        public static readonly BindableProperty SingleTapProperty = BindableProperty.Create(propertyName: nameof(SingleTap),
-                                                                                                    returnType: typeof(ICommand),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: null);
+        public string Detail
+        {
+            get { return (string)GetValue(DetailProperty); }
+            set
+            {
+                SetValue(DetailProperty, value);
+            }
+        }
+
+        public bool IsShowRightText
+        {
+            get { return (bool)GetValue(IsShowRightTextProperty); }
+            set
+            {
+                SetValue(IsShowRightTextProperty, value);
+            }
+        }
+
+        public ICommand LongPressed
+        {
+            get { return (ICommand)GetValue(LongPressedProperty); }
+            set
+            {
+                SetValue(LongPressedProperty, value);
+            }
+        }
+
+        public string RightIconSource
+        {
+            get { return (string)GetValue(RightIconSourceProperty); }
+            set { SetValue(RightIconSourceProperty, value); }
+        }
+
+        public string RightText
+        {
+            get { return (string)GetValue(RightTextProperty); }
+            set
+            {
+                SetValue(RightTextProperty, value);
+            }
+        }
 
         public ICommand SingleTap
         {
@@ -122,18 +138,16 @@ namespace ContestPark.Mobile.Components
             }
         }
 
-        public static readonly BindableProperty IsShowRightTextProperty = BindableProperty.Create(propertyName: nameof(IsShowRightText),
-                                                                                                    returnType: typeof(bool),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: false);
-
-        public bool IsShowRightText
+        public string Source
         {
-            get { return (bool)GetValue(IsShowRightTextProperty); }
-            set
-            {
-                SetValue(IsShowRightTextProperty, value);
-            }
+            get { return (string)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
+        }
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
 
         #endregion Properties

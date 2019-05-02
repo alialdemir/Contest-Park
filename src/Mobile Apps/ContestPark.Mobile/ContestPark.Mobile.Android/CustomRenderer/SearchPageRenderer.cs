@@ -1,4 +1,5 @@
-﻿using Android.Runtime;
+﻿using Android.Content;
+using Android.Runtime;
 using Android.Text;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -15,6 +16,10 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
     public class SearchPageRenderer : PageRenderer
     {
         private SearchView _searchView;
+
+        public SearchPageRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void Dispose(bool disposing)
         {

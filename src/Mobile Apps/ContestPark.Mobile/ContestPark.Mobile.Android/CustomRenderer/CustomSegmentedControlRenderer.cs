@@ -1,4 +1,5 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content;
+using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
 using ContestPark.Mobile.Components;
@@ -18,15 +19,43 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
     public class CustomSegmentedControlRenderer : ViewRenderer<CustomSegmentedControl, RadioGroup>
     {
-        private RadioGroup nativeControl;
-        private RadioButton _v;
         private bool _isSelectedCheck;
+        private RadioButton _v;
+        private RadioGroup nativeControl;
+
+        public CustomSegmentedControlRenderer(Context context) : base(context)
+        {
+        }
+
+        /// <summary>
+        /// Used for registration with dependency service
+        /// </summary>
+        public static void Init()
+        {
+            var temp = DateTime.Now;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            nativeControl.Dispose();
+            nativeControl = null;
+            _v = null;
+
+            ////////try
+            ////////{
+            ////////    base.Dispose(disposing);
+            ////////}
+            ////////catch (Exception)
+            ////////{
+            ////////    return;
+            ////////}
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<CustomSegmentedControl> e)
         {
             base.OnElementChanged(e);
 
-            var layoutInflater = LayoutInflater.From(Forms.Context);
+            var layoutInflater = LayoutInflater.From(Context);
 
             if (Control == null)
             {
@@ -93,6 +122,24 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             }
         }
 
+        private void ConfigureRadioButton(int i, RadioButton v)
+        {
+            if (i == Element.SelectedSegment)
+            {
+                v.SetTextColor(Element.SelectedTextColor.ToAndroid());
+                _v = v;
+            }
+            else
+            {
+                var textColor = Element.IsEnabled ? Element.TintColor.ToAndroid() : Color.Gray.ToAndroid();
+                v.SetTextColor(textColor);
+            }
+
+            SetTintColor(i, v);
+
+            v.Enabled = Element.IsEnabled;
+        }
+
         private void Element_SelectTab(int index)
         {
             var newoption = (RadioButton)nativeControl.GetChildAt(index);
@@ -140,24 +187,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             }
         }
 
-        private void ConfigureRadioButton(int i, RadioButton v)
-        {
-            if (i == Element.SelectedSegment)
-            {
-                v.SetTextColor(Element.SelectedTextColor.ToAndroid());
-                _v = v;
-            }
-            else
-            {
-                var textColor = Element.IsEnabled ? Element.TintColor.ToAndroid() : Color.Gray.ToAndroid();
-                v.SetTextColor(textColor);
-            }
-
-            SetTintColor(i, v);
-
-            v.Enabled = Element.IsEnabled;
-        }
-
         private void SetTintColor(int index, RadioButton button)
         {
             GradientDrawable selectedShape;
@@ -175,30 +204,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             selectedShape.SetStroke(3, color);
             selectedShape.SetColor(color);
             unselectedShape.SetStroke(3, color);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            nativeControl.Dispose();
-            nativeControl = null;
-            _v = null;
-
-            ////////try
-            ////////{
-            ////////    base.Dispose(disposing);
-            ////////}
-            ////////catch (Exception)
-            ////////{
-            ////////    return;
-            ////////}
-        }
-
-        /// <summary>
-        /// Used for registration with dependency service
-        /// </summary>
-        public static void Init()
-        {
-            var temp = DateTime.Now;
         }
     }
 }
