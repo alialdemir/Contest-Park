@@ -38,6 +38,12 @@
             <!-- Blue-->
             <Color x:Key="Blue">#4080FF</Color>
 
+            <!-- Gray -->
+            <Color x:Key="Gray">#F1F0F0</Color>
+
+            <!-- Dark Gray -->
+            <Color x:Key="DarkGray">#65686E</Color>
+
             <!--Beyaz-->
             <Color x:Key="PrimaryText">#212121</Color>
 
