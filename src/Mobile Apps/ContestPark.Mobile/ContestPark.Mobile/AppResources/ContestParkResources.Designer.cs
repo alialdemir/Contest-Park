@@ -225,9 +225,9 @@ namespace ContestPark.Mobile.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Yorum.
         /// </summary>
-        public static string Comment {
+        public static string Comments {
             get {
-                return ResourceManager.GetString("Comment", resourceCulture);
+                return ResourceManager.GetString("Comments", resourceCulture);
             }
         }
         
@@ -520,11 +520,11 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beğen.
+        ///   Looks up a localized string similar to Beğeni.
         /// </summary>
-        public static string Like {
+        public static string Likes {
             get {
-                return ResourceManager.GetString("Like", resourceCulture);
+                return ResourceManager.GetString("Likes", resourceCulture);
             }
         }
         
@@ -534,6 +534,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string LogOut {
             get {
                 return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kaybetti.
+        /// </summary>
+        public static string Lose {
+            get {
+                return ResourceManager.GetString("Lose", resourceCulture);
             }
         }
         
@@ -970,6 +979,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Berabere.
+        /// </summary>
+        public static string Tie {
+            get {
+                return ResourceManager.GetString("Tie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kalan Süre.
         /// </summary>
         public static string TimeLeft {
@@ -1065,6 +1083,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string WeHadaProblemDeletingTheMessagePleaseTryAgain {
             get {
                 return ResourceManager.GetString("WeHadaProblemDeletingTheMessagePleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kazanan.
+        /// </summary>
+        public static string Winning {
+            get {
+                return ResourceManager.GetString("Winning", resourceCulture);
             }
         }
         

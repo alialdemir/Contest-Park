@@ -2,11 +2,14 @@
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Views;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Game
 {
@@ -14,12 +17,9 @@ namespace ContestPark.Mobile.Services.Game
     {
         #region Private variables
 
-        private readonly IPageDialogService _pageDialogService;
-
-        private readonly IEventAggregator _eventAggregator;
-
         private readonly ICategoryServices _categoryServices;
-
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IPageDialogService _pageDialogService;
         private readonly IPopupNavigation _popupNavigation;
 
         #endregion Private variables
@@ -42,9 +42,8 @@ namespace ContestPark.Mobile.Services.Game
 
         #region Property
 
-        public INavigationService NavigationService { get; set; }
-
         public bool IsBusy { get; set; }
+        public INavigationService NavigationService { get; set; }
 
         #endregion Property
 
@@ -71,23 +70,6 @@ namespace ContestPark.Mobile.Services.Game
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Alt kategoriyi paylaş
-        /// </summary>
-        /// <param name="Title">Alt kategori adı</param>
-        public void SubCategoryShare(string Title)
-        {
-            //string text = Title + " yarışması ContestPark'da";
-            //string title = "ContestPark'a gel " + Title + " yarışmasında bilgimizi yarıştıralım";
-            //string url = "https://play.google.com/store/apps/details?id=com.contestparkapp.app";
-            //CrossShare.Current.Share(new ShareMessage
-            //{
-            //    Text = text,
-            //    Title = title,
-            //    Url = url
-            //});
         }
 
         /// <summary>
@@ -136,9 +118,78 @@ namespace ContestPark.Mobile.Services.Game
             }
         }
 
+        /// <summary>
+        /// Alt kategoriyi sosyal medyada paylaş
+        /// </summary>
+        /// <param name="Title">Alt kategori adı</param>
+        public void SubCategoryShare(string Title)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            string appStoreLink = Device.OnPlatform("", "https://play.google.com/store/apps/details?id=com.contestparkapp.app", "");
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            CrossShare.Current.Share(new ShareMessage
+            {
+                Text = "Social competition platform.",
+                Title = "ContestPark",
+                Url = appStoreLink,
+            });
+        }
+
         #endregion Methods
 
         #region Private methods
+
+        /// <summary>
+        /// Altın satın almak istermisiniz sorusunu sorar onaylarsa Contest Store sayfasına gider
+        /// </summary>
+        private async Task BuyDisplayAlertAsync()
+        {
+            bool isOk = await _pageDialogService?.DisplayAlertAsync(ContestParkResources.NoGold,
+                                                                   ContestParkResources.YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory,
+                                                                   ContestParkResources.Buy,
+                                                                   ContestParkResources.Cancel);
+
+            if (isOk) await NavigationService?.NavigateAsync(nameof(ContestStoreView), useModalNavigation: false);
+        }
+
+        private async Task GoToCategoryDetailViewAsync(short subCategoryId, string subCategoryName, string subCategoryPicturePath)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            await NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
+                                                {
+                                                    { "SubCategoryName", subCategoryName },
+                                                    { "SubCategoryPicturePath", subCategoryPicturePath },
+                                                    { "SubCategoryId", subCategoryId }
+                                                }, useModalNavigation: false);
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// İlgili kategorinin sıralama sayfasına gider
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <param name="subCategoryName">Alt kategori adı</param>
+        private async Task GotoRankingPage(short subCategoryId, string subCategoryName)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            await NavigationService?.NavigateAsync(nameof(RankingView), new NavigationParameters
+                                                {
+                                                    { "SubCategoryName", subCategoryName },
+                                                    { "SubCategoryId", subCategoryId }
+                                                }, useModalNavigation: false);
+
+            IsBusy = false;
+        }
 
         /// <summary>
         /// Düello bahis panelini aç
@@ -156,23 +207,6 @@ namespace ContestPark.Mobile.Services.Game
                 SubcategoryName = subCategoryName,
                 SubCategoryPicturePath = subCategoryPicturePath,
             });
-
-            IsBusy = false;
-        }
-
-        private async Task GoToCategoryDetailViewAsync(short subCategoryId, string subCategoryName, string subCategoryPicturePath)
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            await NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
-                                                {
-                                                    { "SubCategoryName", subCategoryName },
-                                                    { "SubCategoryPicturePath", subCategoryPicturePath },
-                                                    { "SubCategoryId", subCategoryId }
-                                                }, useModalNavigation: false);
 
             IsBusy = false;
         }
@@ -199,16 +233,14 @@ namespace ContestPark.Mobile.Services.Game
         }
 
         /// <summary>
-        /// Altın satın almak istermisiniz sorusunu sorar onaylarsa Contest Store sayfasına gider
+        /// Alt kategori takip et veya takip bırakma işlemi yapar parametreden gelen isSubCategoryFollowUpStatus true ise takibi bırakır false ise
         /// </summary>
-        private async Task BuyDisplayAlertAsync()
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <param name="isSubCategoryFollowUpStatus">O anki alt kategori takip etme durumu</param>
+        private async Task SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
         {
-            bool isOk = await _pageDialogService?.DisplayAlertAsync(ContestParkResources.NoGold,
-                                                                   ContestParkResources.YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory,
-                                                                   ContestParkResources.Buy,
-                                                                   ContestParkResources.Cancel);
-
-            if (isOk) await NavigationService?.NavigateAsync(nameof(ContestStoreView), useModalNavigation: false);
+            bool isOk = await _categoryServices?.SubCategoryFollowProgcess(subCategoryId, isSubCategoryFollowUpStatus);
+            if (isOk) SubCategoryRefleshEvent();
         }
 
         /// <summary>
@@ -219,38 +251,6 @@ namespace ContestPark.Mobile.Services.Game
             _eventAggregator
                          .GetEvent<SubCategoryRefleshEvent>()
                          .Publish();
-        }
-
-        /// <summary>
-        /// İlgili kategorinin sıralama sayfasına gider
-        /// </summary>
-        /// <param name="subCategoryId">Alt kategori id</param>
-        /// <param name="subCategoryName">Alt kategori adı</param>
-        private async Task GotoRankingPage(short subCategoryId, string subCategoryName)
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            await NavigationService?.NavigateAsync(nameof(RankingView), new NavigationParameters
-                                                {
-                                                    { "SubCategoryName", subCategoryName },
-                                                    { "SubCategoryId", subCategoryId }
-                                                }, useModalNavigation: false);
-
-            IsBusy = false;
-        }
-
-        /// <summary>
-        /// Alt kategori takip et veya takip bırakma işlemi yapar parametreden gelen isSubCategoryFollowUpStatus true ise takibi bırakır false ise
-        /// </summary>
-        /// <param name="subCategoryId">Alt kategori id</param>
-        /// <param name="isSubCategoryFollowUpStatus">O anki alt kategori takip etme durumu</param>
-        private async Task SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
-        {
-            bool isOk = await _categoryServices?.SubCategoryFollowProgcess(subCategoryId, isSubCategoryFollowUpStatus);
-            if (isOk) SubCategoryRefleshEvent();
         }
 
         #endregion Private methods

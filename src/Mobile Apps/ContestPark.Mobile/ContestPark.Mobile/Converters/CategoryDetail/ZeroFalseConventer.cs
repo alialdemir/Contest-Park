@@ -4,16 +4,16 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Converters.CategoryDetail
 {
-    public class FollowButtonConverter : IValueConverter
+    public class ZeroFalseConventer : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? "fas-heart" : "far-heart";
+            return int.TryParse(value.ToString(), out int zero) && !(zero == 0);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Convert(value, targetType, parameter, culture);
+            return ConvertBack(value, targetType, parameter, culture);
         }
     }
 }

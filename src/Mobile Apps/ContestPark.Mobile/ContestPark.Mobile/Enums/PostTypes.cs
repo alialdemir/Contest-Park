@@ -2,9 +2,8 @@
 {
     public enum PostTypes : byte
     {
-        ContestDuel = 1,
-        Follow = 2,
-        ProfilePictureChanged = 3,
-        CoverPictureChanged = 4,
+        Image,
+        Contest,
+        Text,
     }
 }

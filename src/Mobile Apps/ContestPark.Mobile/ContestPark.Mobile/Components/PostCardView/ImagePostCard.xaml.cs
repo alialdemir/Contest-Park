@@ -12,9 +12,8 @@ namespace ContestPark.Mobile.Components.PostCardView
     {
         #region Private
 
-        private bool IsBusy;
-
         private readonly INavigationService _navigationService;
+        private bool IsBusy;
 
         #endregion Private
 
@@ -30,33 +29,8 @@ namespace ContestPark.Mobile.Components.PostCardView
 
         #region Commands
 
-        private Command<string> gotoProfilePageCommand;
-
-        /// <summary>
-        /// Go to ProfilePage load command
-        /// </summary>
-        public Command<string> GotoProfilePageCommand
-        {
-            get
-            {
-                return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>((userName) =>
-                {
-                    if (IsBusy || string.IsNullOrEmpty(userName))
-                        return;
-
-                    IsBusy = true;
-
-                    _navigationService?.NavigateAsync(nameof(ProfileView), new NavigationParameters
-                    {
-                         { "UserName", userName }
-                    });
-
-                    IsBusy = false;
-                }));
-            }
-        }
-
         private Command gotoPhotoModalCommand;
+        private Command<string> gotoProfilePageCommand;
 
         /// <summary>
         /// Fotoğrafı tam ekran olarak gösterir
@@ -77,9 +51,33 @@ namespace ContestPark.Mobile.Components.PostCardView
                     {
                         _navigationService?.NavigateAsync(nameof(PhotoModalView), new NavigationParameters
                                                     {
-                                                         { "userPictureList",  new PhotoModal { PicturePath = model.AlternativePicturePath } }
+                                                         { "userPictureList",  new PhotoModal { PicturePath = model.PicturePath } }
                                                     }, useModalNavigation: true);
                     }
+
+                    IsBusy = false;
+                }));
+            }
+        }
+
+        /// <summary>
+        /// Go to ProfilePage load command
+        /// </summary>
+        public Command<string> GotoProfilePageCommand
+        {
+            get
+            {
+                return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>((userName) =>
+                {
+                    if (IsBusy || string.IsNullOrEmpty(userName))
+                        return;
+
+                    IsBusy = true;
+
+                    _navigationService?.NavigateAsync(nameof(ProfileView), new NavigationParameters
+                    {
+                         { "UserName", userName }
+                    });
 
                     IsBusy = false;
                 }));

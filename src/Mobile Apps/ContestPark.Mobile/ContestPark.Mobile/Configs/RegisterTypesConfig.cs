@@ -83,7 +83,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
 
-            containerRegistry.RegisterForNavigation<PostView, PostViewModel>();
+            containerRegistry.RegisterForNavigation<PostDetailView, PostViewModel>();
 
             containerRegistry.RegisterForNavigation<MasterDetailView, MasterDetailViewModel>();
 

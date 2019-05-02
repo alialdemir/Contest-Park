@@ -1,11 +1,9 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Views;
 using Prism.Ioc;
 using Prism.Navigation;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,15 +14,14 @@ namespace ContestPark.Mobile.Components.PostCardView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BottomPostCard : ContentView
     {
-        #region Private
-
-        private bool IsBusy;
+        #region Private varaibles
 
         private readonly INavigationService _navigationService;
+        private bool IsBusy;
 
-        #endregion Private
+        #endregion Private varaibles
 
-        #region Constructors
+        #region Constructor
 
         public BottomPostCard(INavigationService navigationService)
         {
@@ -32,60 +29,58 @@ namespace ContestPark.Mobile.Components.PostCardView
             _navigationService = navigationService;
         }
 
-        #endregion Constructors
-
-        #region Properties
-
-        public string LikeText { get; set; }
-
-        public string CommentText { get; set; }
-
-        #endregion Properties
-
-        #region Override
-
-        protected override void OnBindingContextChanged()
-        {
-            PostModel model = (PostModel)BindingContext;
-            if (model != null)
-            {
-                LikeText = model.LikeCount + " " + ContestParkResources.Like;
-                CommentText = model.CommentCount + " " + ContestParkResources.Comment;
-            }
-
-            base.OnBindingContextChanged();
-        }
-
-        #endregion Override
+        #endregion Constructor
 
         #region Methods
 
         /// <summary>
-        /// Postu beğenenleri listeleme sayfasına git
+        /// Post deyay sayfasına git
         /// </summary>
-        private void ExecuteGoToPostLikesPageCommandAsync()
+        private void ExecuteGoToPosPostCommentViewCommand()
         {
             if (IsBusy)
                 return;
+
             IsBusy = true;
 
-            PostModel model = (PostModel)BindingContext;
+            PostModel postModel = (PostModel)BindingContext;
+            if (postModel == null)
+                return;
 
-            if (model != null)
+            _navigationService?.NavigateAsync(nameof(PostDetailView), new NavigationParameters
             {
-                _navigationService?.NavigateAsync(nameof(PostLikesView), new NavigationParameters
-                        {
-                            { "PostId", model.PostId }
-                        });
-            }
+                { "PostId", postModel.PostId }
+            });
 
             IsBusy = false;
         }
 
         /// <summary>
-        /// Beğen beğenemkten vazgeç
+        /// Postu beğenenleri listeleme sayfasına git
         /// </summary>
-        private async Task ImageButton_Clicked(object sender, EventArgs e)
+        private void ExecuteGoToPostLikesViewCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            PostModel postModel = (PostModel)BindingContext;
+            if (postModel == null)
+                return;
+
+            _navigationService?.NavigateAsync(nameof(PostLikesView), new NavigationParameters
+            {
+                { "PostId", postModel.PostId }
+            });
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Postu beğenmiyorsa beğen beğenmişse beğenmekten vazgeç
+        /// </summary>
+        private async Task ExecuteLikeProcessCommandAsync()
         {
             if (IsBusy)
                 return;
@@ -93,47 +88,30 @@ namespace ContestPark.Mobile.Components.PostCardView
             IsBusy = true;
 
             IPostService postService = RegisterTypesConfig.Container.Resolve<IPostService>();
+            PostModel postModel = (PostModel)BindingContext;
 
-            PostModel model = (PostModel)BindingContext;
-            if (model != null && postService != null)
-            {
-                if (model.IsLike)
-                {
-                    //un like
-                    model.IsLike = !model.IsLike;
-                    var isOK = await postService.DisLike(model.PostId);
-                    if (!isOK) model.IsLike = !model.IsLike;
-                }
-                else
-                {
-                    // like
-                    model.IsLike = !model.IsLike;
-                    var isOK = await postService.Like(model.PostId);
-                    if (!isOK) model.IsLike = !model.IsLike;
-                }
-            }
-
-            IsBusy = false;
-        }
-
-        /// <summary>
-        /// Post deyay sayfasına git
-        /// </summary>
-        private void ExecuteGoToPosPostCommentPageCommand()
-        {
-            if (IsBusy)
+            if (postService == null || postModel == null)
                 return;
 
-            IsBusy = true;
+            if (postModel.IsLike)
+                postModel.LikeCount -= 1;
+            else
+                postModel.LikeCount += 1;
 
-            PostModel model = (PostModel)BindingContext;
+            postModel.IsLike = !postModel.IsLike;
 
-            if (model != null)
+            bool isSuccess = await (postModel.IsLike ?
+                postService.DisLikeAsync(postModel.PostId) :
+                postService.LikeAsync(postModel.PostId));
+
+            if (!isSuccess)
             {
-                _navigationService?.NavigateAsync(nameof(PostView), new NavigationParameters
-                            {
-                                { "PostId", model.PostId }
-                            });
+                if (postModel.IsLike)
+                    postModel.LikeCount -= 1;
+                else
+                    postModel.LikeCount += 1;
+
+                postModel.IsLike = !postModel.IsLike;
             }
 
             IsBusy = false;
@@ -143,18 +121,24 @@ namespace ContestPark.Mobile.Components.PostCardView
 
         #region Commands
 
-        private ICommand _goToPostLikesPageCommand;
+        private ICommand _goToPosPostCommentViewCommand;
+        private ICommand _goToPostLikesViewCommand;
 
-        public ICommand GoToPostLikesPageCommand
+        private ICommand _likeProcessCommand;
+
+        public ICommand GoToPosPostCommentViewCommand
         {
-            get { return _goToPostLikesPageCommand ?? (_goToPostLikesPageCommand = new Command(() => ExecuteGoToPostLikesPageCommandAsync())); }
+            get { return _goToPosPostCommentViewCommand ?? (_goToPosPostCommentViewCommand = new Command(() => ExecuteGoToPosPostCommentViewCommand())); }
         }
 
-        private ICommand _goToPosPostCommentPageCommand;
-
-        public ICommand GoToPosPostCommentPageCommand
+        public ICommand GoToPostLikesViewCommand
         {
-            get { return _goToPosPostCommentPageCommand ?? (_goToPosPostCommentPageCommand = new Command(() => ExecuteGoToPosPostCommentPageCommand())); }
+            get { return _goToPostLikesViewCommand ?? (_goToPostLikesViewCommand = new Command(() => ExecuteGoToPostLikesViewCommandAsync())); }
+        }
+
+        public ICommand LikeProcessCommand
+        {
+            get { return _likeProcessCommand ?? (_likeProcessCommand = new Command(async () => await ExecuteLikeProcessCommandAsync())); }
         }
 
         #endregion Commands

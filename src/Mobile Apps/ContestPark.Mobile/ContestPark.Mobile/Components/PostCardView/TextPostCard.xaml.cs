@@ -7,19 +7,18 @@ using Xamarin.Forms.Xaml;
 namespace ContestPark.Mobile.Components.PostCardView
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FollowPostCard : ContentView
+    public partial class TextPostCard : ContentView
     {
         #region Private
 
-        private bool IsBusy;
-
         private readonly INavigationService _navigationService;
+        private bool IsBusy;
 
         #endregion Private
 
         #region Constructors
 
-        public FollowPostCard(INavigationService navigationService)
+        public TextPostCard(INavigationService navigationService)
         {
             _navigationService = navigationService;
             InitializeComponent();

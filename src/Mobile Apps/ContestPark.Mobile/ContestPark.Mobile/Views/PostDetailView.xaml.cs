@@ -2,9 +2,9 @@
 
 namespace ContestPark.Mobile.Views
 {
-    public partial class PostView : ContentPage
+    public partial class PostDetailView : ContentPage
     {
-        public PostView()
+        public PostDetailView()
         {
             InitializeComponent();
         }

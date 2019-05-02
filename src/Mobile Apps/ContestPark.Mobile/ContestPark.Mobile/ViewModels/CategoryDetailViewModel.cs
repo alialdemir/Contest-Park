@@ -19,14 +19,11 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variable
 
-        private Int16 _subCategoryId = 0;
-        private readonly IGameService _gameService;
-
         private readonly ICategoryServices _categoryServices;
-
         private readonly IEventAggregator _eventAggregator;
-
+        private readonly IGameService _gameService;
         private readonly IPostService _postService;
+        private short _subCategoryId = 0;
 
         #endregion Private variable
 
@@ -51,24 +48,18 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         /// <summary>
+        /// İlgili kategoriyi takip eden kişi sayısı
+        /// </summary>
+        private int _followersCount = 0;
+
+        /// <summary>
         /// Alt kategori takip etme durumu
         /// </summary>
         private bool _isSubCategoryFollowUpStatus;
 
-        public bool IsSubCategoryFollowUpStatus
-        {
-            get { return _isSubCategoryFollowUpStatus; }
-            set
-            {
-                _isSubCategoryFollowUpStatus = value;
-                RaisePropertyChanged(() => IsSubCategoryFollowUpStatus);
-            }
-        }
+        private int _level = 1;
 
-        /// <summary>
-        /// İlgili kategoriyi takip eden kişi sayısı
-        /// </summary>
-        private int _followersCount = 0;
+        private string _subCategoryPicturePath;
 
         public int FollowersCount
         {
@@ -80,7 +71,15 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private int _level = 1;
+        public bool IsSubCategoryFollowUpStatus
+        {
+            get { return _isSubCategoryFollowUpStatus; }
+            set
+            {
+                _isSubCategoryFollowUpStatus = value;
+                RaisePropertyChanged(() => IsSubCategoryFollowUpStatus);
+            }
+        }
 
         public int Level
         {
@@ -91,8 +90,6 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => Level);
             }
         }
-
-        private string _subCategoryPicturePath;
 
         public string SubCategoryPicturePath
         {
@@ -118,9 +115,10 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _postService.SubCategoryPostsAsync(_subCategoryId, ServiceModel);
+            SSubCategoryPostsCommand.Execute(null);
 
             IsFollowUpStatusCommand.Execute(null);
+
             FollowersCountCommand.Execute(null);
 
             await base.InitializeAsync();
@@ -146,14 +144,6 @@ namespace ContestPark.Mobile.ViewModels
             });
 
             IsBusy = false;
-        }
-
-        /// <summary>
-        /// İlgili kategoriyi takip etme durumu
-        /// </summary>
-        private async Task ExecuteIsFollowUpStatusCommandAsync()
-        {
-            IsSubCategoryFollowUpStatus = await _categoryServices?.IsFollowUpStatusAsync(_subCategoryId);
         }
 
         /// <summary>
@@ -183,6 +173,14 @@ namespace ContestPark.Mobile.ViewModels
             });
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// İlgili kategoriyi takip etme durumu
+        /// </summary>
+        private async Task ExecuteIsFollowUpStatusCommandAsync()
+        {
+            IsSubCategoryFollowUpStatus = await _categoryServices?.IsFollowUpStatusAsync(_subCategoryId);
         }
 
         /// <summary>
@@ -224,20 +222,24 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        /// <summary>
-        /// Düello bahis paneli aç command
-        /// </summary>
-        public INavigationService NavigationService { get; }
+        private ICommand duelOpenPanelCommand;
 
         private ICommand followersCountCommand;
+
+        private ICommand goToRankingPageCommand;
+
+        private ICommand isFollowUpStatusCommand;
+
+        private ICommand shareCommand;
+
         private ICommand subCategoryFollowProgcessCommand;
 
         /// <summary>
-        /// Alt kategori takip etme veya takip bırakma command
+        /// Düello bahis paneli aç command
         /// </summary>
-        public ICommand SubCategoryFollowProgcessCommand
+        public ICommand DuelOpenPanelCommand
         {
-            get { return subCategoryFollowProgcessCommand ?? (subCategoryFollowProgcessCommand = new Command(async () => await ExecuteSubCategoryFollowProgcessCommandAsync())); }
+            get { return duelOpenPanelCommand ?? (duelOpenPanelCommand = new Command(async () => await ExecuteduelOpenPanelCommandAsync())); }
         }
 
         /// <summary>
@@ -248,17 +250,13 @@ namespace ContestPark.Mobile.ViewModels
             get { return followersCountCommand ?? (followersCountCommand = new Command(async () => await ExecuteFollowersCountCommandAsync())); }
         }
 
-        private ICommand shareCommand;
-
         /// <summary>
-        /// Sosyal ağda paylaş command
+        /// Sıralama sayfasına git command
         /// </summary>
-        public ICommand ShareCommand
+        public ICommand GoToRankingPageCommand
         {
-            get { return shareCommand ?? (shareCommand = new Command(() => _gameService?.SubCategoryShare(Title))); }
+            get { return goToRankingPageCommand ?? (goToRankingPageCommand = new Command(async () => await ExecuteGoToRankingPageCommandAsync())); }
         }
-
-        private ICommand isFollowUpStatusCommand;
 
         /// <summary>
         /// Takip etme durmunu çalıştır command
@@ -268,24 +266,33 @@ namespace ContestPark.Mobile.ViewModels
             get { return isFollowUpStatusCommand ?? (isFollowUpStatusCommand = new Command(async () => await ExecuteIsFollowUpStatusCommandAsync())); }
         }
 
-        private ICommand duelOpenPanelCommand;
-
         /// <summary>
         /// Düello bahis paneli aç command
         /// </summary>
-        public ICommand DuelOpenPanelCommand
-        {
-            get { return duelOpenPanelCommand ?? (duelOpenPanelCommand = new Command(async () => await ExecuteduelOpenPanelCommandAsync())); }
-        }
-
-        private ICommand goToRankingPageCommand;
+        public INavigationService NavigationService { get; }
 
         /// <summary>
-        /// Sıralama sayfasına git command
+        /// Sosyal ağda paylaş command
         /// </summary>
-        public ICommand GoToRankingPageCommand
+        public ICommand ShareCommand
         {
-            get { return goToRankingPageCommand ?? (goToRankingPageCommand = new Command(async () => await ExecuteGoToRankingPageCommandAsync())); }
+            get { return shareCommand ?? (shareCommand = new Command(() => _gameService?.SubCategoryShare(Title))); }
+        }
+
+        /// <summary>
+        /// Alt kategori takip etme veya takip bırakma command
+        /// </summary>
+        public ICommand SubCategoryFollowProgcessCommand
+        {
+            get { return subCategoryFollowProgcessCommand ?? (subCategoryFollowProgcessCommand = new Command(async () => await ExecuteSubCategoryFollowProgcessCommandAsync())); }
+        }
+
+        private ICommand SSubCategoryPostsCommand
+        {
+            get
+            {
+                return new Command(async () => ServiceModel = await _postService.SubCategoryPostsAsync(_subCategoryId, ServiceModel));
+            }
         }
 
         #endregion Commands

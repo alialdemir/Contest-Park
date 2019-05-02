@@ -14,11 +14,9 @@ namespace ContestPark.Mobile.Services.Post
     {
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
-        private readonly ICacheService _cacheService;
-
         private const string ApiUrlBase = "api/v1/post";
+        private readonly ICacheService _cacheService;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
@@ -40,9 +38,9 @@ namespace ContestPark.Mobile.Services.Post
         /// </summary>
         /// <param name="postId">Post id</param>
         /// <returns>İşlem başarılı ise true değilse false</returns>
-        public async Task<bool> DisLike(int postId)
+        public async Task<bool> DisLikeAsync(string postId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/dislike");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
 
             try
             {
@@ -62,9 +60,9 @@ namespace ContestPark.Mobile.Services.Post
         /// </summary>
         /// <param name="postId">Post id</param>
         /// <returns>İşlem başarılı ise true değilse false</returns>
-        public async Task<bool> Like(int postId)
+        public async Task<bool> LikeAsync(string postId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/like");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
 
             try
             {

@@ -261,11 +261,11 @@
   <data name="DeleteMessageTitle" xml:space="preserve">
     <value>Mesaj sil?</value>
   </data>
-  <data name="Comment" xml:space="preserve">
+  <data name="Comments" xml:space="preserve">
     <value>Yorum</value>
   </data>
-  <data name="Like" xml:space="preserve">
-    <value>Beğen</value>
+  <data name="Likes" xml:space="preserve">
+    <value>Beğeni</value>
   </data>
   <data name="YourLevel" xml:space="preserve">
     <value>Seviyen</value>
@@ -479,5 +479,14 @@
   </data>
   <data name="WeHadaProblemDeletingTheMessagePleaseTryAgain" xml:space="preserve">
     <value>Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>Kaybetti</value>
+  </data>
+  <data name="Tie" xml:space="preserve">
+    <value>Berabere</value>
+  </data>
+  <data name="Winning" xml:space="preserve">
+    <value>Kazanan</value>
   </data>
 </root>
