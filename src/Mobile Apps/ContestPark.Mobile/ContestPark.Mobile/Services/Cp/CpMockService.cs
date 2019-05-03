@@ -8,5 +8,10 @@ namespace ContestPark.Mobile.Services.Cp
         {
             return Task.FromResult(100000);
         }
+
+        public Task<bool> PurchaseAsync(string productId)
+        {
+            return Task.FromResult(true);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Android.Views;
+﻿using Android.Content;
+using Android.Views;
 using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using System.Windows.Input;
@@ -11,13 +12,14 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 {
     public class CustomGridRenderer : ViewRenderer<CustomGrid, Android.Views.View>
     {
-        private readonly FancyGestureListener _listener;
         private readonly GestureDetector _detector;
+        private readonly FancyGestureListener _listener;
 
-        public CustomGridRenderer()
+        public CustomGridRenderer(Context context) : base(context)
+
         {
             _listener = new FancyGestureListener();
-            _detector = new GestureDetector(_listener);
+            _detector = new GestureDetector(context, _listener);
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<CustomGrid> e)
@@ -45,12 +47,12 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             }
         }
 
-        private void HandleTouch(object sender, TouchEventArgs e)
+        private void HandleGenericMotion(object sender, GenericMotionEventArgs e)
         {
             _detector.OnTouchEvent(e.Event);
         }
 
-        private void HandleGenericMotion(object sender, GenericMotionEventArgs e)
+        private void HandleTouch(object sender, TouchEventArgs e)
         {
             _detector.OnTouchEvent(e.Event);
         }
@@ -61,17 +63,10 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 {
     public class FancyGestureListener : GestureDetector.SimpleOnGestureListener
     {
+        public object CommandParameter { get; set; }
         public ICommand LongPressed { get; set; }
 
         public ICommand SingleTap { get; set; }
-
-        public object CommandParameter { get; set; }
-
-        public override void OnLongPress(MotionEvent e)
-        {
-            LongPressed?.Execute(CommandParameter);
-            base.OnLongPress(e);
-        }
 
         public override bool OnDoubleTap(MotionEvent e)
         {
@@ -83,12 +78,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             return base.OnDoubleTapEvent(e);
         }
 
-        public override bool OnSingleTapUp(MotionEvent e)
-        {
-            SingleTap?.Execute(CommandParameter);
-            return base.OnSingleTapUp(e);
-        }
-
         public override bool OnDown(MotionEvent e)
         {
             return base.OnDown(e);
@@ -97,6 +86,12 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         public override bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
         {
             return base.OnFling(e1, e2, velocityX, velocityY);
+        }
+
+        public override void OnLongPress(MotionEvent e)
+        {
+            LongPressed?.Execute(CommandParameter);
+            base.OnLongPress(e);
         }
 
         public override bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
@@ -112,6 +107,12 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         public override bool OnSingleTapConfirmed(MotionEvent e)
         {
             return base.OnSingleTapConfirmed(e);
+        }
+
+        public override bool OnSingleTapUp(MotionEvent e)
+        {
+            SingleTap?.Execute(CommandParameter);
+            return base.OnSingleTapUp(e);
         }
     }
 }

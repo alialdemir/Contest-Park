@@ -10,11 +10,9 @@ namespace ContestPark.Mobile.Services.Cp
     {
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
-        private readonly ICacheService _cacheService;
-
         private const string ApiUrlBase = "api/v1/cp";
+        private readonly ICacheService _cacheService;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
@@ -49,6 +47,22 @@ namespace ContestPark.Mobile.Services.Cp
             //_cacheService.Add(uri, userTotalCp);
 
             return userTotalCp;
+        }
+
+        /// <summary>
+        /// Uygulama içi ürün satın aldığında
+        /// </summary>
+        /// <param name="productId">Ürün id</param>
+        /// <returns>Altın miktarı eklendi ise true eklenemedi ise false döner</returns>
+        public async Task<bool> PurchaseAsync(string productId)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/purchase");
+
+            // TODO: Burada dışarıdan http istekleri dinlenir ve url yakalanırsa peş peşe istek atılıp altın alınabilir Bu durumu düzeltmeliyiz
+
+            string result = await _requestProvider.PostAsync<string>(uri, new { productId });
+
+            return string.IsNullOrEmpty(result);
         }
 
         #endregion Methods

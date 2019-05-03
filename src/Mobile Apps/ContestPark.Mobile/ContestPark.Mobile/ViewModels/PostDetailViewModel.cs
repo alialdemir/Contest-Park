@@ -2,9 +2,9 @@
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class PostViewModel : BindableBase
+    public class PostDetailViewModel : BindableBase
     {
-        public PostViewModel()
+        public PostDetailViewModel()
         {
         }
     }

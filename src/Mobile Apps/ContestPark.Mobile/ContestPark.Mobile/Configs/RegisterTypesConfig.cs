@@ -9,6 +9,7 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
 using ContestPark.Mobile.Services.Notification;
@@ -83,7 +84,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
 
-            containerRegistry.RegisterForNavigation<PostDetailView, PostViewModel>();
+            containerRegistry.RegisterForNavigation<PostDetailView, PostDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<MasterDetailView, MasterDetailViewModel>();
 
@@ -122,7 +123,10 @@ namespace ContestPark.Mobile.Configs
             {
                 containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
+                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
+
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
+
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
 
                 containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
@@ -148,6 +152,8 @@ namespace ContestPark.Mobile.Configs
             else
             {
                 containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+
+                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 

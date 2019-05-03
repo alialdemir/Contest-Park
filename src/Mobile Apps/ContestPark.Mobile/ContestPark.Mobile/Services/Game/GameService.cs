@@ -2,13 +2,12 @@
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Views;
-using Plugin.Share;
-using Plugin.Share.Abstractions;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Game
@@ -128,12 +127,18 @@ namespace ContestPark.Mobile.Services.Game
             string appStoreLink = Device.OnPlatform("", "https://play.google.com/store/apps/details?id=com.contestparkapp.app", "");
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            CrossShare.Current.Share(new ShareMessage
+            Share.RequestAsync(new ShareTextRequest
             {
                 Text = "Social competition platform.",
                 Title = "ContestPark",
-                Url = appStoreLink,
+                Uri = appStoreLink,
             });
+            //CrossShare.Current.Share(new ShareMessage
+            //{
+            //    Text = "Social competition platform.",
+            //    Title = "ContestPark",
+            //    Url = appStoreLink,
+            //});
         }
 
         #endregion Methods

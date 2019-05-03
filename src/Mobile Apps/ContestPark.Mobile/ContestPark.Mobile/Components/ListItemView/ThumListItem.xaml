@@ -5,7 +5,7 @@
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ContestPark.Mobile.Components.ThumListItem"
-             x:Name="page">
+             x:Name="thumListItemPage">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
@@ -15,7 +15,7 @@
         <Components:CustomGrid RowSpacing="0"
                                x:Name="cstmGrid"
                                Padding="8,4,8,4"
-                               BackgroundColor="{StaticResource ListBackgroundColor}">
+                               BackgroundColor="{Binding Path=GridBackgroundColor, Source={x:Reference thumListItemPage}}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
@@ -30,49 +30,49 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0"
-                   Grid.RowSpan="2"
-                   Source="{Binding Path=Source, Source={x:Reference page}}" />
+             Grid.RowSpan="2"
+             Source="{Binding Path=Source, Source={x:Reference thumListItemPage}}" />
 
             <Label Grid.Row="0"
-                   Grid.Column="1"
-                   FontSize="Small"
-                   TextColor="#808080"
-                   FontAttributes="Bold"
-                   LineBreakMode="TailTruncation"
-                   Text="{Binding Path=Text,Source={x:Reference page}}" />
+             Grid.Column="1"
+             FontSize="Small"
+             TextColor="#808080"
+             FontAttributes="Bold"
+             LineBreakMode="TailTruncation"
+             Text="{Binding Path=Text,Source={x:Reference thumListItemPage}}" />
 
             <Components:HtmlLabel Grid.Row="1"
-                                  Grid.Column="1"
-                                  TextColor="White"
-                                  FontSize="Small"
-                                  Grid.ColumnSpan="2"
-                                  LineBreakMode="TailTruncation"
-                                  Text="{Binding Path=Detail,Source={x:Reference page}}" />
+                            Grid.Column="1"
+                            TextColor="White"
+                            FontSize="Small"
+                            Grid.ColumnSpan="2"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding Path=Detail, Source={x:Reference thumListItemPage}}" />
 
             <Label Grid.Column="2"
-                   Grid.RowSpan="3"
-                   FontSize="Small"
-                   HeightRequest="30"
-                   TextColor="#dddddd"
-                   FontAttributes="Bold"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="End"
-                   Text="{Binding Path=RightText,Source={x:Reference page}}"
-                   IsVisible="{Binding Path=IsShowRightText,Source={x:Reference page}}" />
+             Grid.RowSpan="3"
+             FontSize="Small"
+             HeightRequest="30"
+             TextColor="{Binding Path=RightIconTextColor, Source={x:Reference thumListItemPage}}"
+             FontAttributes="Bold"
+             VerticalTextAlignment="Center"
+             HorizontalTextAlignment="End"
+             Text="{Binding Path=RightText,Source={x:Reference thumListItemPage}}"
+             IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}" />
 
             <icon:IconImage IconSize="16"
-                            Grid.Column="3"
-                            Grid.RowSpan="3"
-                            WidthRequest="25"
-                            HeightRequest="25"
-                            VerticalOptions="CenterAndExpand"
-                            IconColor="{StaticResource Primary}"
-                            Icon="{Binding Path=RightIconSource,Source={x:Reference page}}"
-                            IsVisible="{Binding Path=IsShowRightText,Source={x:Reference page}}" />
+                      Grid.Column="3"
+                      Grid.RowSpan="3"
+                      WidthRequest="25"
+                      HeightRequest="25"
+                      VerticalOptions="CenterAndExpand"
+                      IconColor="{StaticResource Primary}"
+                      Icon="{Binding Path=RightIconSource, Source={x:Reference thumListItemPage}}"
+                      IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}" />
 
             <Components:Line Grid.Row="2"
-                             Grid.Column="1"
-                             Grid.ColumnSpan="3" />
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3" />
         </Components:CustomGrid>
     </ContentView.Content>
 </ContentView>

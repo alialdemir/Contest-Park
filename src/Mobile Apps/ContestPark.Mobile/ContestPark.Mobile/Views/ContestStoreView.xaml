@@ -1,11 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.ContestStoreView"
-             Title="Contest Store">
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <Label Text="ContestStore!" TextColor="{StaticResource Primary}" />
+        <components:NonPersistentSelectedItemListView x:Name="lstView"
+                                                      InfiniteScroll="{Binding InfiniteScroll}"
+                                                      Style="{StaticResource ListViewHeaderAndFooter}"
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+            <components:NonPersistentSelectedItemListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="20"
+                                 Padding="50,10,0,10"
+                                 Orientation="Horizontal"
+                                 VerticalOptions="FillAndExpand"
+                                 BackgroundColor="{StaticResource Black}">
+
+                        <Label Text="Coins"
+                               FontSize="Default"
+                               TextColor="#808080"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.HeaderTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:ThumListItem IsShowRightText="True"
+                                                 Source="{Binding Image}"
+                                                 Text="{Binding ProductName}"
+                                                 Detail="{Binding Description}"
+                                                 RightText="{Binding DisplayPrice}"
+                                                 CommandParameter="{Binding ProductId}"
+                                                 RightIconTextColor="{StaticResource Primary}"
+                                                 GridBackgroundColor="{StaticResource ListBackgroundColor}"
+                                                 SingleTap="{Binding Path=Parent.BindingContext.PurchaseCommand, Source={x:Reference lstView}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Spacing="20"
+                                     Padding="50,10,0,10"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="FillAndExpand"
+                                     BackgroundColor="{StaticResource Black}">
+
+                            <Label FontSize="Default"
+                                   FontAttributes="Bold"
+                                   Text="{i18n:Translate EarnCoins}"
+                                   VerticalOptions="Center"
+                                   TextColor="#808080" />
+                        </StackLayout>
+
+                        <components:ThumListItem RightText="+100 coins"
+                                                 IsShowRightText="True"
+                                                 AutomationId="WatchAdGetCoins"
+                                                 Text="{i18n:Translate FreeCoins}"
+                                                 Detail="{i18n:Translate WatchAdGetCoins}"
+                                                 Source="assets/images/WatchAdGetCoins.png"
+                                                 RightIconTextColor="{StaticResource Primary}"
+                                                 GridBackgroundColor="{StaticResource ListBackgroundColor}"
+                                                 SingleTap="{Binding Path=Parent.BindingContext.WatchAdsVideoCommand, Source={x:Reference lstView}}" />
+                    </StackLayout>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -8,6 +9,7 @@ using ImageCircle.Forms.Plugin.Droid;
 using Lottie.Forms.Droid;
 using Plugin.CurrentActivity;
 using Plugin.Iconize;
+using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
 
@@ -50,6 +52,12 @@ namespace ContestPark.Mobile.Droid
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -58,6 +66,8 @@ namespace ContestPark.Mobile.Droid
             base.OnCreate(bundle);
 
             CrossCurrentActivity.Current.Init(this, bundle);
+
+            CrossCurrentActivity.Current.Activity = this;
 
             UserDialogs.Init(this);
 
