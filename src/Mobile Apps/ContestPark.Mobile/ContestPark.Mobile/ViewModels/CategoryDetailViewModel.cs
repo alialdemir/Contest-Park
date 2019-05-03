@@ -115,7 +115,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            SSubCategoryPostsCommand.Execute(null);
+            SubCategoryPostsCommand.Execute(null);
 
             IsFollowUpStatusCommand.Execute(null);
 
@@ -287,7 +287,7 @@ namespace ContestPark.Mobile.ViewModels
             get { return subCategoryFollowProgcessCommand ?? (subCategoryFollowProgcessCommand = new Command(async () => await ExecuteSubCategoryFollowProgcessCommandAsync())); }
         }
 
-        private ICommand SSubCategoryPostsCommand
+        private ICommand SubCategoryPostsCommand
         {
             get
             {
