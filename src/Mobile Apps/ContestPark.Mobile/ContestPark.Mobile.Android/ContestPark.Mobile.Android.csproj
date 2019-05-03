@@ -176,13 +176,11 @@
     <Compile Include="CustomRenderer\CircularProgressRenderer.cs" />
     <Compile Include="CustomRenderer\CustomGridRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSegmentedControlRenderer.cs" />
-    <Compile Include="CustomRenderer\ImageButtonRenderer.cs" />
     <Compile Include="CustomRenderer\SearchPageRenderer.cs" />
     <Compile Include="CustomRenderer\SignInSocialNetworkPageRenderer.cs" />
     <Compile Include="CustomRenderer\TabViewRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Dependencies\Localize .cs" />
-    <Compile Include="Extensions\FontExtensions.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

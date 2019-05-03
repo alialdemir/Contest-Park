@@ -13,9 +13,9 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Components:CustomGrid RowSpacing="0"
-                           x:Name="cstmGrid"
-                           Padding="8,4,8,4"
-                           BackgroundColor="{Binding Path=GridBackgroundColor, Source={x:Reference thumListItemPage}}">
+                               x:Name="cstmGrid"
+                               Padding="8,4,8,4"
+                               BackgroundColor="{Binding Path=GridBackgroundColor, Source={x:Reference thumListItemPage}}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />

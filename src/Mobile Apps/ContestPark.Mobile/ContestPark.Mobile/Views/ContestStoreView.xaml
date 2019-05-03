@@ -18,28 +18,27 @@
                                  Padding="50,10,0,10"
                                  Orientation="Horizontal"
                                  VerticalOptions="FillAndExpand"
-                                 BackgroundColor="{StaticResource ListBackgroundColor}">
+                                 BackgroundColor="{StaticResource Black}">
 
-                        <Label FontSize="Default"
+                        <Label Text="Coins"
+                               FontSize="Default"
+                               TextColor="#808080"
                                FontAttributes="Bold"
-                               Text="Coins"
-                               VerticalOptions="Center"
-                               TextColor="#808080" />
+                               VerticalOptions="Center" />
                     </StackLayout>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.HeaderTemplate>
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:ThumListItem AutomationId="storeView"
-                                                 IsShowRightText="True"
+                        <components:ThumListItem IsShowRightText="True"
                                                  Source="{Binding Image}"
                                                  Text="{Binding ProductName}"
                                                  Detail="{Binding Description}"
                                                  RightText="{Binding DisplayPrice}"
                                                  CommandParameter="{Binding ProductId}"
                                                  RightIconTextColor="{StaticResource Primary}"
-                                                 GridBackgroundColor="{StaticResource Black}"
+                                                 GridBackgroundColor="{StaticResource ListBackgroundColor}"
                                                  SingleTap="{Binding Path=Parent.BindingContext.PurchaseCommand, Source={x:Reference lstView}}" />
                     </ViewCell>
                 </DataTemplate>
@@ -51,7 +50,7 @@
                                      Padding="50,10,0,10"
                                      Orientation="Horizontal"
                                      VerticalOptions="FillAndExpand"
-                                     GridBackgroundColor="{StaticResource ListBackgroundColor}">
+                                     BackgroundColor="{StaticResource Black}">
 
                             <Label FontSize="Default"
                                    FontAttributes="Bold"
@@ -66,8 +65,8 @@
                                                  Text="{i18n:Translate FreeCoins}"
                                                  Detail="{i18n:Translate WatchAdGetCoins}"
                                                  Source="assets/images/WatchAdGetCoins.png"
-                                                 GridBackgroundColor="{StaticResource Black}"
                                                  RightIconTextColor="{StaticResource Primary}"
+                                                 GridBackgroundColor="{StaticResource ListBackgroundColor}"
                                                  SingleTap="{Binding Path=Parent.BindingContext.WatchAdsVideoCommand, Source={x:Reference lstView}}" />
                     </StackLayout>
                 </DataTemplate>
