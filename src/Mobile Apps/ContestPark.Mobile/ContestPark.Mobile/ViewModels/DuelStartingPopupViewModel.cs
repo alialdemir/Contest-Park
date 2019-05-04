@@ -88,7 +88,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public bool IsNextQuestionExit { get; set; } = false;
 
-        public SelectedSubCategoryModel SelectedSubCategory { get; set; }
+        public SelectedSubCategoryModel SelectedSubCategory { get; set; } = new SelectedSubCategoryModel();
         public StandbyModes StandbyMode { get; set; }
 
         public StandbyModeModel StandbyModeModel { get; private set; } = new StandbyModeModel();
@@ -126,18 +126,10 @@ namespace ContestPark.Mobile.ViewModels
 
             if (string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
             {
-#if !(DEBUG)
                 await DisplayAlertAsync(
                     ContestParkResources.Error,
                     ContestParkResources.ConnectionToTheServerForTheDuelWasNotEstablished,
                     ContestParkResources.Okay);
-
-#else
-                await DisplayAlertAsync(
-                    ContestParkResources.Error,
-                    "Signalr connection id boş geldi",
-                    ContestParkResources.Okay);
-#endif
 
                 DuelCloseCommand.Execute(null);
             }

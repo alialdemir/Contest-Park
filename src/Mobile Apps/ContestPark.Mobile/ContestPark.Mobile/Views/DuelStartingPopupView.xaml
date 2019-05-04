@@ -6,7 +6,6 @@
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  prism:ViewModelLocator.AutowireViewModel="True"
                  x:Class="ContestPark.Mobile.Views.DuelStartingPopupView"
-                 x:Name="page"
                  BackgroundColor="{StaticResource Primary}">
     <pages:PopupPage.Content>
         <Grid VerticalOptions="FillAndExpand"
