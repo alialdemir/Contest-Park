@@ -6,6 +6,7 @@ using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.ViewModels.Base;
+using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using System.Linq;
@@ -15,7 +16,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class CategorySearchViewModel : ViewModelBase<SearchModel>
+    public class SearchViewModel : ViewModelBase<SearchModel>
     {
         #region Private variable
 
@@ -29,12 +30,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructors
 
-        public CategorySearchViewModel(ICategoryFollowService categoryFollowService,
+        public SearchViewModel(ICategoryFollowService categoryFollowService,
                                        ICategoryService categoryServices,
                                        IEventAggregator eventAggregator,
                                        IGameService gameService)
         {
-            Title = ContestParkResources.CategorySearch;
+            Title = ContestParkResources.SearchPlayersOrCategories;
             _categoryFollowService = categoryFollowService;
             _categoryService = categoryServices;
             _eventAggregator = eventAggregator;
@@ -48,8 +49,6 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         private bool _isSearchFocus;
-        private bool myVar;
-        public bool IsActionSheetBusy { get; set; }
 
         /// <summary>
         ///  _categoryId  -1 gelirse takip ettiğim kategoriler demek
@@ -68,6 +67,8 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => IsSearchFocus);
             }
         }
+
+        private bool IsActionSheetBusy { get; set; }
 
         #endregion Properties
 
@@ -109,6 +110,25 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// Profile sayfasına git
+        /// </summary>
+        /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
+        private async Task ExecuteGotoProfilePageCommandAsync(string userName)
+        {
+            if (IsBusy || string.IsNullOrEmpty(userName))
+                return;
+
+            IsBusy = true;
+
+            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+                {
+                    {"UserName", userName }
+                });
+
+            IsBusy = false;
+        }
+
+        /// <summary>
         /// Alt kategori için action sheet açar
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
@@ -122,10 +142,34 @@ namespace ContestPark.Mobile.ViewModels
             SearchModel selectedModel = Items?.FirstOrDefault(P => P.SubCategoryId == subCategoryId);
             if (selectedModel != null)
             {
-                await _gameService?.SubCategoriesDisplayActionSheetAsync(selectedModel.SubCategoryId, selectedModel.CategoryName, selectedModel.IsCategoryOpen, selectedModel.PicturePath);
+                await _gameService?.SubCategoriesDisplayActionSheetAsync(selectedModel.SubCategoryId, selectedModel.CategoryName, selectedModel.IsCategoryOpen);
             }
 
             IsActionSheetBusy = false;
+        }
+
+        /// <summary>
+        /// Kategori giriş sayfasına git
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori ıd</param>
+        /// <returns></returns>
+        private async Task ExecutPushCategoryDetailCommandAsync(short subCategoryId)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            SearchModel selectedModel = Items.Where(p => p.SubCategoryId == subCategoryId).First();
+            if (selectedModel == null)
+            {
+                IsBusy = false;
+                return;
+            }
+
+            await _gameService.PushCategoryDetailViewAsync(selectedModel.SubCategoryId, selectedModel.IsCategoryOpen);
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -139,8 +183,6 @@ namespace ContestPark.Mobile.ViewModels
             if (selectedModel != null)
             {
                 _gameService?.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
-                                                          selectedModel.CategoryName,
-                                                          selectedModel.PicturePath,
                                                           selectedModel.IsCategoryOpen);
             }
         }
@@ -180,9 +222,27 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _SubCategoriesDisplayActionSheetCommand;
+        private ICommand gotoProfilePageCommand;
+        private ICommand pushCategoryDetailCommand;
         private ICommand pushEnterPageCommand;
 
         private ICommand searchTextCommand;
+
+        public ICommand GotoProfilePageCommand
+        {
+            get
+            {
+                return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommandAsync(userName)));
+            }
+        }
+
+        /// <summary>
+        /// Push category detailcommand
+        /// </summary>
+        public ICommand PushCategoryDetailCommand
+        {
+            get { return pushCategoryDetailCommand ?? (pushCategoryDetailCommand = new Command<short>(async (subCategoryId) => await ExecutPushCategoryDetailCommandAsync(subCategoryId))); }
+        }
 
         /// <summary>
         /// Yarışma kategorileri command

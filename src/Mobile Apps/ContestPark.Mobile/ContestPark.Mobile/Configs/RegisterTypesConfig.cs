@@ -8,6 +8,7 @@ using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Duel;
+using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InAppBilling;
@@ -63,7 +64,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
 
-            containerRegistry.RegisterForNavigation<CategorySearchView, CategorySearchViewModel>();
+            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
 
             containerRegistry.RegisterForNavigation<ChatDetailView, ChatDetailViewModel>();
 
@@ -144,6 +145,8 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
+                containerRegistry.RegisterSingleton<IFollowService, FollowService>();
+
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
@@ -175,6 +178,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+
+                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 

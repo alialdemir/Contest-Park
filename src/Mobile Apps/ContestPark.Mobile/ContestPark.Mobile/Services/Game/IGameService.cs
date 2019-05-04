@@ -5,12 +5,12 @@ namespace ContestPark.Mobile.Services.Game
 {
     public interface IGameService
     {
-        Task<bool> PushCategoryDetailViewAsync(short subCategoryId, string subCategoryName, string subCategoryPicturePath, bool isCategoryOpen);
-
         INavigationService NavigationService { get; set; }
 
-        void SubCategoryShare(string Title);
+        Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen);
 
-        Task SubCategoriesDisplayActionSheetAsync(short subCategoryId, string subCategoryName, bool isCategoryOpen, string subCategoryPicturePath);
+        Task SubCategoriesDisplayActionSheetAsync(short subCategoryId, string subCategoryName, bool isCategoryOpen);
+
+        void SubCategoryShare(string Title);
     }
 }

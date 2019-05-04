@@ -57,10 +57,10 @@ namespace ContestPark.Mobile.Services.Game
         /// </summary>
         /// <param name="subCategoryModel"></param>
         /// <returns>Kilitli ise kilidi açsınmı isteğini sorar açsın derse true döndürür</returns>
-        public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, string subCategoryName, string subCategoryPicturePath, bool isCategoryOpen)
+        public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen)
         {
             if (isCategoryOpen)
-                await GoToCategoryDetailViewAsync(subCategoryId, subCategoryName, subCategoryPicturePath);
+                await GoToCategoryDetailViewAsync(subCategoryId);
             else
             {
                 bool isUnLock = await OpenSubCategory(subCategoryId);
@@ -80,7 +80,7 @@ namespace ContestPark.Mobile.Services.Game
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <param name="subCategoryName">Alt kategori adı</param>
-        public async Task SubCategoriesDisplayActionSheetAsync(short subCategoryId, string subCategoryName, bool isCategoryOpen, string subCategoryPicturePath)
+        public async Task SubCategoriesDisplayActionSheetAsync(short subCategoryId, string subCategoryName, bool isCategoryOpen)
         {
             if (isCategoryOpen)
             {
@@ -96,7 +96,7 @@ namespace ContestPark.Mobile.Services.Game
                                                                                    ContestParkResources.Share);
                 if (string.Equals(selected, ContestParkResources.FindOpponent))
                 {
-                    await OpenBetPopup(subCategoryId, subCategoryName, subCategoryPicturePath);
+                    await OpenBetPopup(subCategoryId, subCategoryName);
                 }
                 else if (string.Equals(selected, ContestParkResources.Ranking))
                 {
@@ -162,7 +162,7 @@ namespace ContestPark.Mobile.Services.Game
             if (isOk) await NavigationService?.NavigateAsync(nameof(ContestStoreView), useModalNavigation: false);
         }
 
-        private async Task GoToCategoryDetailViewAsync(short subCategoryId, string subCategoryName, string subCategoryPicturePath)
+        private async Task GoToCategoryDetailViewAsync(short subCategoryId)
         {
             if (IsBusy)
                 return;
@@ -171,8 +171,6 @@ namespace ContestPark.Mobile.Services.Game
 
             await NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
                                                 {
-                                                    { "SubCategoryName", subCategoryName },
-                                                    { "SubCategoryPicturePath", subCategoryPicturePath },
                                                     { "SubCategoryId", subCategoryId }
                                                 }, useModalNavigation: false);
 
@@ -203,7 +201,7 @@ namespace ContestPark.Mobile.Services.Game
         /// <summary>
         /// Düello bahis panelini aç
         /// </summary>
-        private async Task OpenBetPopup(short subCategoryId, string subCategoryName, string subCategoryPicturePath)
+        private async Task OpenBetPopup(short subCategoryId, string subCategoryName)
         {
             if (IsBusy)
                 return;
@@ -214,7 +212,6 @@ namespace ContestPark.Mobile.Services.Game
             {
                 SubcategoryId = subCategoryId,
                 SubcategoryName = subCategoryName,
-                SubCategoryPicturePath = subCategoryPicturePath,
             });
 
             IsBusy = false;

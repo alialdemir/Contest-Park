@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             x:Class="ContestPark.Mobile.Components.Search.CategorySearchView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converter:NegativeBooleanConverter x:Key="not" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <components:ThumListItem Source="{Binding PicturePath}"
+                                 Text="{Binding CategoryName}"
+                                 Detail="{Binding SubCategoryName}"
+                                 RightText="{Binding DisplayPrice}"
+                                 CommandParameter="{Binding SubCategoryId}"
+                                 RightIconTextColor="{StaticResource Primary}"
+                                 GridBackgroundColor="{StaticResource ListBackgroundColor}"
+                                 IsShowRightText="{Binding IsCategoryOpen, Converter={StaticResource not}}"
+                                 x:Name="thumListItem" />
+    </ContentView.Content>
+</ContentView>

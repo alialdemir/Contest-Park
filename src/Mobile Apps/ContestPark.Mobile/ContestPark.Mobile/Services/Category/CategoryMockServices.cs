@@ -85,6 +85,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="0",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                      new SearchModel
                      {
@@ -94,6 +95,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="100k",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                      new SearchModel
                      {
@@ -103,6 +105,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="100k",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                      new SearchModel
                      {
@@ -112,6 +115,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="100k",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                      new SearchModel
                      {
@@ -121,6 +125,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="100k",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                      new SearchModel
                      {
@@ -130,6 +135,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="100k",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                      new SearchModel
                      {
@@ -139,6 +145,7 @@ namespace ContestPark.Mobile.Services.Category
                            CategoryName="Bayraklar",
                            DisplayPrice="100k",
                            PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
                      },
                  }
             });

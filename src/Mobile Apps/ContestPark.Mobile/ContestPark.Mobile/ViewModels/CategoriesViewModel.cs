@@ -91,7 +91,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            await PushNavigationPageAsync($"{nameof(CategorySearchView)}", new NavigationParameters
+            await PushNavigationPageAsync($"{nameof(SearchView)}", new NavigationParameters
                                                 {
                                                     { "CategoryId", categoryId }
                                                 }, useModalNavigation: false);

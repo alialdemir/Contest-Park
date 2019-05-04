@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Components:SearchPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+                       xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+                       xmlns:search="clr-namespace:ContestPark.Mobile.Components.Search"
+                       xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                       SearchPlaceHolderText="{i18n:Translate SearchPlayersOrCategories}"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchPlaceHolderColor="{StaticResource Primary}"
+                       IsSearchFocus="{Binding IsSearchFocus}"
+                       SeachTextColor="White"
+                       SearchIconColor="{StaticResource Primary}"
+                       SearchCloseIconColor="{StaticResource Primary}"
+                       prism:ViewModelLocator.AutowireViewModel="True"
+                       x:Class="ContestPark.Mobile.Views.SearchView"
+                       x:Name="searchViewPage"
+                       Title="{Binding Title}">
+    <Components:SearchPage.Content>
+        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}"
+                                                      Style="{StaticResource ListViewOnlyFooter}">
+            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <search:SearchFactory PushCategoryDetailCommand="{Binding Path=BindingContext.PushCategoryDetailCommand, Source={x:Reference searchViewPage}}"
+                                              GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference searchViewPage}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.ItemTemplate>
+        </Components:NonPersistentSelectedItemListView>
+    </Components:SearchPage.Content>
+</Components:SearchPage>

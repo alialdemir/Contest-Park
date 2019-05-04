@@ -4,11 +4,11 @@ using Xamarin.Forms.Xaml;
 namespace ContestPark.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CategorySearchView : SearchPage
+    public partial class SearchView : SearchPage
     {
         #region Constructors
 
-        public CategorySearchView()
+        public SearchView()
         {
             InitializeComponent();
         }
