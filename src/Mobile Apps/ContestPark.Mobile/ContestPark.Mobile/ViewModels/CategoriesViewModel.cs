@@ -20,14 +20,14 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly ISignalRServiceBase _baseSignalRService;
-        private readonly ICategoryServices _categoryServices;
+        private readonly ICategoryService _categoryServices;
 
         #endregion Private variables
 
         #region Constructor
 
         public CategoriesViewModel(
-            ICategoryServices categoryServices,
+            ICategoryService categoryServices,
             ISignalRServiceBase baseSignalRService,// signalr bağlantısı başlatılması için ekledim
             INavigationService navigationService,
             IPageDialogService pageDialogService,
@@ -77,7 +77,7 @@ namespace ContestPark.Mobile.ViewModels
         /// Event dinleme
         /// </summary>
         private void EventSubscribe(IEventAggregator eventAggregator) => eventAggregator.GetEvent<SubCategoryRefleshEvent>()
-                .Subscribe(() => RefleshCommand.Execute(null));
+                .Subscribe(() => RefreshCommand.Execute(null));
 
         /// <summary>
         /// Kategori search sayfasına gider

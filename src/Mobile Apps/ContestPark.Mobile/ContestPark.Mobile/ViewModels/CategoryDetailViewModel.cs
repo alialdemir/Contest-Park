@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.ViewModels.Base;
@@ -19,7 +20,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variable
 
-        private readonly ICategoryServices _categoryServices;
+        private readonly ICategoryFollowService _categoryFollowService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IGameService _gameService;
         private readonly IPostService _postService;
@@ -31,13 +32,13 @@ namespace ContestPark.Mobile.ViewModels
 
         public CategoryDetailViewModel(INavigationService navigationService,
                                        IPopupNavigation popupNavigation,
-                                       ICategoryServices categoryServices,
+                                       ICategoryFollowService categoryFollowService,
                                        IPostService postService,
                                        IGameService gameService,
                                        IEventAggregator eventAggregator) : base(navigationService, popupNavigation: popupNavigation)
         {
             NavigationService = navigationService;
-            _categoryServices = categoryServices;
+            _categoryFollowService = categoryFollowService;
             _postService = postService;
             _gameService = gameService;
             _eventAggregator = eventAggregator;
@@ -152,7 +153,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <returns></returns>
         private async Task ExecuteFollowersCountCommandAsync()
         {
-            FollowersCount = await _categoryServices?.FollowersCountAsync(_subCategoryId);
+            FollowersCount = await _categoryFollowService?.FollowersCountAsync(_subCategoryId);
         }
 
         /// <summary>
@@ -180,7 +181,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteIsFollowUpStatusCommandAsync()
         {
-            IsSubCategoryFollowUpStatus = await _categoryServices?.IsFollowUpStatusAsync(_subCategoryId);
+            IsSubCategoryFollowUpStatus = await _categoryFollowService?.IsFollowUpStatusAsync(_subCategoryId);
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace ContestPark.Mobile.ViewModels
 
             FollowCountChange();
 
-            bool isSuccess = await _categoryServices.SubCategoryFollowProgcess(_subCategoryId, IsSubCategoryFollowUpStatus);
+            bool isSuccess = await _categoryFollowService.SubCategoryFollowProgcess(_subCategoryId, IsSubCategoryFollowUpStatus);
             if (isSuccess)
             {
                 _eventAggregator

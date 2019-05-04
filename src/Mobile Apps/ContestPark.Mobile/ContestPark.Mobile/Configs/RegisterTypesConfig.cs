@@ -4,6 +4,7 @@ using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Duel;
@@ -129,7 +130,9 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
 
-                containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
+
+                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
                 containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
@@ -159,7 +162,9 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                containerRegistry.RegisterSingleton<ICategoryServices, CategoryMockServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+
+                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
                 containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 

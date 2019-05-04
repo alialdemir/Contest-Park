@@ -1,12 +1,13 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Navigation;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,30 +15,31 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class CategorySearchViewModel : ViewModelBase<SubCategorySearch>
+    public class CategorySearchViewModel : ViewModelBase<SearchModel>
     {
         #region Private variable
 
-        private Int16 _categoryId = 0;
-
-        private readonly ICategoryServices _CategoryServices;
-
+        private readonly ICategoryFollowService _categoryFollowService;
+        private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
-
         private readonly IGameService _gameService;
+        private short _categoryId = 0;
 
         #endregion Private variable
 
         #region Constructors
 
-        public CategorySearchViewModel(ICategoryServices CategoryServices,
+        public CategorySearchViewModel(ICategoryFollowService categoryFollowService,
+                                       ICategoryService categoryServices,
                                        IEventAggregator eventAggregator,
                                        IGameService gameService)
         {
             Title = ContestParkResources.CategorySearch;
-            _CategoryServices = CategoryServices;
+            _categoryFollowService = categoryFollowService;
+            _categoryService = categoryServices;
             _eventAggregator = eventAggregator;
             _gameService = gameService;
+
             EventSubscribe();
         }
 
@@ -45,9 +47,17 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
+        private bool _isSearchFocus;
+        private bool myVar;
         public bool IsActionSheetBusy { get; set; }
 
-        private bool _isSearchFocus;
+        /// <summary>
+        ///  _categoryId  -1 gelirse takip ettiğim kategoriler demek
+        /// </summary>
+        public bool IsFollowingCategory
+        {
+            get { return _categoryId == -1; }
+        }
 
         public bool IsSearchFocus
         {
@@ -70,13 +80,13 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if (_categoryId == -1)// _categoryId  -1 gelirse takip ettiğim kategoriler
+            if (IsFollowingCategory)
             {
-                ServiceModel = await _CategoryServices.FollowingSubCategorySearchAsync(ServiceModel);
+                ServiceModel = await _categoryFollowService.FollowingSubCategorySearchAsync("", _categoryId, ServiceModel);
             }
             else if (_categoryId > 0)
             {
-                ServiceModel = await _CategoryServices.CategorySearchAsync(_categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
+                ServiceModel = await _categoryService.SearchAsync(_categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
             }
             else
             {
@@ -89,30 +99,13 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Kategori giriş sayfasına git
-        /// </summary>
-        /// <param name="subCategoryId">Alt kategori ıd</param>
-        /// <returns></returns>
-        private void ExecutPushEnterPageCommandAsync(short subCategoryId)
-        {
-            SubCategorySearch selectedModel = Items.Where(p => p.SubCategoryId == subCategoryId).First();
-            if (selectedModel != null)
-            {
-                _gameService?.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
-                                                         selectedModel.CategoryName,
-                                                         selectedModel.PicturePath,
-                                                         selectedModel.IsCategoryOpen);
-            }
-        }
-
-        /// <summary>
         /// Alt kategori yenile event dinleme
         /// </summary>
         private void EventSubscribe()
         {
             _eventAggregator
                           .GetEvent<SubCategoryRefleshEvent>()
-                          .Subscribe(() => RefleshCommand.Execute(null));
+                          .Subscribe(() => RefreshCommand.Execute(null));
         }
 
         /// <summary>
@@ -126,7 +119,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsActionSheetBusy = true;
 
-            SubCategorySearch selectedModel = Items?.FirstOrDefault(P => P.SubCategoryId == subCategoryId);
+            SearchModel selectedModel = Items?.FirstOrDefault(P => P.SubCategoryId == subCategoryId);
             if (selectedModel != null)
             {
                 await _gameService?.SubCategoriesDisplayActionSheetAsync(selectedModel.SubCategoryId, selectedModel.CategoryName, selectedModel.IsCategoryOpen, selectedModel.PicturePath);
@@ -136,18 +129,60 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Kategori ara
+        /// Kategori giriş sayfasına git
         /// </summary>
-        /// <param name="categorySearch">Aranan kategori adı</param>
-        private void ExecutSearchCommandAsync(string categorySearch)
+        /// <param name="subCategoryId">Alt kategori ıd</param>
+        /// <returns></returns>
+        private void ExecutPushEnterPageCommandAsync(short subCategoryId)
         {
+            SearchModel selectedModel = Items.Where(p => p.SubCategoryId == subCategoryId).First();
+            if (selectedModel != null)
+            {
+                _gameService?.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
+                                                          selectedModel.CategoryName,
+                                                          selectedModel.PicturePath,
+                                                          selectedModel.IsCategoryOpen);
+            }
+        }
+
+        /// <summary>
+        /// Search input changed event
+        /// </summary>
+        /// <param name="e">Input value</param>
+        private async Task ExecutSearchTextCommandAsync(TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(e.NewTextValue))
+                RefreshCommand.Execute(null);
+
+            if (IsBusy || e.NewTextValue.Length < 3)
+                return;
+
+            IsBusy = true;
+
+            if (IsFollowingCategory)
+            {
+                ServiceModel = await _categoryFollowService.FollowingSubCategorySearchAsync(e.NewTextValue, _categoryId, new PagingModel { });
+            }
+            else
+            {
+                ServiceModel = await _categoryService.SearchAsync(e.NewTextValue, _categoryId, new PagingModel { });
+            }
+
+            Items.Clear();
+
+            await base.InitializeAsync();
+
+            IsBusy = false;
         }
 
         #endregion Methods
 
         #region Commands
 
+        private ICommand _SubCategoriesDisplayActionSheetCommand;
         private ICommand pushEnterPageCommand;
+
+        private ICommand searchTextCommand;
 
         /// <summary>
         /// Yarışma kategorileri command
@@ -157,17 +192,16 @@ namespace ContestPark.Mobile.ViewModels
             get { return pushEnterPageCommand ?? (pushEnterPageCommand = new Command<short>((subCategoryId) => ExecutPushEnterPageCommandAsync(subCategoryId))); }
         }
 
-        private ICommand _SubCategoriesDisplayActionSheetCommand;
+        /// <summary>
+        /// Push category detailcommand
+        /// </summary>
+        public ICommand SearchTextCommand
+        {
+            get { return searchTextCommand ?? (searchTextCommand = new Command<TextChangedEventArgs>(async (e) => await ExecutSearchTextCommandAsync(e))); }
+        }
 
         public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(async (CategoryId) =>
-        await ExecuteSubCategoriesDisplayActionSheetCommand(CategoryId)));
-
-        private ICommand searchCommand;
-
-        public ICommand SearchCommand
-        {
-            get { return searchCommand ?? (searchCommand = new Command<string>((categorySearch) => ExecutSearchCommandAsync(categorySearch))); }
-        }
+                        await ExecuteSubCategoriesDisplayActionSheetCommand(CategoryId)));
 
         #endregion Commands
 
@@ -175,7 +209,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("CategoryId")) _categoryId = parameters.GetValue<Int16>("CategoryId");
+            if (parameters.ContainsKey("CategoryId")) _categoryId = parameters.GetValue<short>("CategoryId");
 
             base.OnNavigatingTo(parameters);
         }

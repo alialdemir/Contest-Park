@@ -22,9 +22,7 @@
         </ResourceDictionary>
     </Components:SearchPage.Resources>
     <Components:SearchPage.Content>
-        <Components:NonPersistentSelectedItemListView x:Name="lstSearchCategories"
-                                                      AutomationId="lstSearchCategories"
-                                                      InfiniteScroll="{Binding InfiniteScroll}"
+        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}"
                                                       Style="{StaticResource ListViewOnlyFooter}">
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
