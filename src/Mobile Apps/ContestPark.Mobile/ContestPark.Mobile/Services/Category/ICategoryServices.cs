@@ -9,6 +9,8 @@ namespace ContestPark.Mobile.Services.Category
     {
         Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel);
 
+        Task<Models.Categories.CategoryDetail.CategoryDetailModel> GetSubCategoryDetail(short subCategoryId);
+
         Task<bool> OpenCategoryAsync(short subCategoryId);
 
         Task<ServiceModel<SearchModel>> SearchAsync(short subCategoryId, PagingModel pagingModel);

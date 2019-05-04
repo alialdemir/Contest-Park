@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using System;
@@ -58,6 +59,20 @@ namespace ContestPark.Mobile.Services.Category
             await Task.Delay(3000);
 
             return true;
+        }
+
+        public Task<CategoryDetailModel> GetSubCategoryDetail(short subCategoryId)
+        {
+            return Task.FromResult(new CategoryDetailModel
+            {
+                CategoryFollowersCount = 5,
+                Description = "Hava an happy day!",
+                IsSubCategoryFollowUpStatus = true,
+                Level = 33,
+                SubCategoryId = subCategoryId,
+                SubCategoryName = "Football Players",
+                SubCategoryPicturePath = DefaultImages.DefaultLock,
+            });
         }
 
         public Task<bool> IsFollowUpStatusAsync(short subCategoryId)

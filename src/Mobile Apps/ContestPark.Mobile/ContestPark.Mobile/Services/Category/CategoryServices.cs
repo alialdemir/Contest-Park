@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
@@ -65,6 +66,29 @@ namespace ContestPark.Mobile.Services.Category
             var searchs = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
 
             return searchs;
+        }
+
+        /// <summary>
+        /// Kategori detaydaki gerekli verileri döndürür
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Kategori detay ekranı</returns>
+        public async Task<CategoryDetailModel> GetSubCategoryDetail(short subCategoryId)
+        {
+            // TODO: kullanıcı kategoriyi takip ederse veya level atlarsa cache deki kategori detay bilgilerinin yenilenmesi lazım
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/detail"); ;
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<CategoryDetailModel>(uri);
+            }
+
+            CategoryDetailModel subCategoryDetail = await _requestProvider.GetAsync<CategoryDetailModel>(uri);
+
+            _cacheService.Add(uri, subCategoryDetail);
+
+            return subCategoryDetail;
         }
 
         /// <summary>
