@@ -9,11 +9,6 @@ namespace ContestPark.Mobile.Services.CategoryFollow
 {
     public class CategoryFollowMockService : ICategoryFollowService
     {
-        public Task<int> FollowersCountAsync(short subCategoryId)
-        {
-            return Task.FromResult(109);
-        }
-
         public Task<ServiceModel<SearchModel>> FollowingSubCategorySearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
         {
             return Task.FromResult(new ServiceModel<SearchModel>

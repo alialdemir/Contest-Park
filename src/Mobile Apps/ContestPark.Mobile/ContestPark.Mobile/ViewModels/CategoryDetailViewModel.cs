@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.CategoryFollow;
@@ -21,6 +22,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variable
 
         private readonly ICategoryFollowService _categoryFollowService;
+        private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IGameService _gameService;
         private readonly IPostService _postService;
@@ -32,12 +34,14 @@ namespace ContestPark.Mobile.ViewModels
 
         public CategoryDetailViewModel(INavigationService navigationService,
                                        IPopupNavigation popupNavigation,
+                                       ICategoryService categoryService,
                                        ICategoryFollowService categoryFollowService,
                                        IPostService postService,
                                        IGameService gameService,
                                        IEventAggregator eventAggregator) : base(navigationService, popupNavigation: popupNavigation)
         {
             NavigationService = navigationService;
+            _categoryService = categoryService;
             _categoryFollowService = categoryFollowService;
             _postService = postService;
             _gameService = gameService;
@@ -48,60 +52,18 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        /// <summary>
-        /// İlgili kategoriyi takip eden kişi sayısı
-        /// </summary>
-        private int _followersCount = 0;
+        private CategoryDetailModel _categoryDetail;
 
         /// <summary>
-        /// Alt kategori takip etme durumu
+        /// Kategori bilgileri
         /// </summary>
-        private bool _isSubCategoryFollowUpStatus;
-
-        private int _level = 1;
-
-        private string _subCategoryPicturePath;
-
-        public int FollowersCount
+        public CategoryDetailModel CategoryDetail
         {
-            get { return _followersCount; }
+            get => _categoryDetail ?? (_categoryDetail = new CategoryDetailModel());
             set
             {
-                _followersCount = value;
-                RaisePropertyChanged(() => FollowersCount);
-            }
-        }
-
-        public bool IsSubCategoryFollowUpStatus
-        {
-            get { return _isSubCategoryFollowUpStatus; }
-            set
-            {
-                _isSubCategoryFollowUpStatus = value;
-                RaisePropertyChanged(() => IsSubCategoryFollowUpStatus);
-            }
-        }
-
-        public int Level
-        {
-            get { return _level; }
-            set
-            {
-                _level = value;
-                RaisePropertyChanged(() => Level);
-            }
-        }
-
-        public string SubCategoryPicturePath
-        {
-            get
-            {
-                return _subCategoryPicturePath;
-            }
-            set
-            {
-                _subCategoryPicturePath = value;
-                RaisePropertyChanged(() => SubCategoryPicturePath);
+                _categoryDetail = value;
+                RaisePropertyChanged(() => CategoryDetail);
             }
         }
 
@@ -116,11 +78,9 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            SubCategoryDetailCommand.Execute(null);
+
             SubCategoryPostsCommand.Execute(null);
-
-            IsFollowUpStatusCommand.Execute(null);
-
-            FollowersCountCommand.Execute(null);
 
             await base.InitializeAsync();
 
@@ -141,19 +101,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 SubcategoryId = _subCategoryId,
                 SubcategoryName = Title,
-                SubCategoryPicturePath = SubCategoryPicturePath,
+                SubCategoryPicturePath = CategoryDetail.SubCategoryPicturePath,
             });
 
             IsBusy = false;
-        }
-
-        /// <summary>
-        /// Kategori takip eden kullanıcı sayısı
-        /// </summary>
-        /// <returns></returns>
-        private async Task ExecuteFollowersCountCommandAsync()
-        {
-            FollowersCount = await _categoryFollowService?.FollowersCountAsync(_subCategoryId);
         }
 
         /// <summary>
@@ -177,14 +128,6 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// İlgili kategoriyi takip etme durumu
-        /// </summary>
-        private async Task ExecuteIsFollowUpStatusCommandAsync()
-        {
-            IsSubCategoryFollowUpStatus = await _categoryFollowService?.IsFollowUpStatusAsync(_subCategoryId);
-        }
-
-        /// <summary>
         /// Alt kategori takip et takibi bırak methodu takip ediyorsa takibi bırakır takip etmiyorsa takip eder
         /// </summary>
         private async Task ExecuteSubCategoryFollowProgcessCommandAsync()
@@ -196,7 +139,7 @@ namespace ContestPark.Mobile.ViewModels
 
             FollowCountChange();
 
-            bool isSuccess = await _categoryFollowService.SubCategoryFollowProgcess(_subCategoryId, IsSubCategoryFollowUpStatus);
+            bool isSuccess = await _categoryFollowService.SubCategoryFollowProgcess(_subCategoryId, CategoryDetail.IsSubCategoryFollowUpStatus);
             if (isSuccess)
             {
                 _eventAggregator
@@ -213,10 +156,10 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void FollowCountChange()
         {
-            IsSubCategoryFollowUpStatus = !IsSubCategoryFollowUpStatus;
+            CategoryDetail.IsSubCategoryFollowUpStatus = !CategoryDetail.IsSubCategoryFollowUpStatus;
 
-            if (IsSubCategoryFollowUpStatus) FollowersCount++;
-            else FollowersCount--;
+            if (CategoryDetail.IsSubCategoryFollowUpStatus) CategoryDetail.CategoryFollowersCount++;
+            else CategoryDetail.CategoryFollowersCount--;
         }
 
         #endregion Methods
@@ -225,11 +168,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand duelOpenPanelCommand;
 
-        private ICommand followersCountCommand;
-
         private ICommand goToRankingPageCommand;
-
-        private ICommand isFollowUpStatusCommand;
 
         private ICommand shareCommand;
 
@@ -244,27 +183,11 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Alt kategori takipçi sayısı command
-        /// </summary>
-        public ICommand FollowersCountCommand
-        {
-            get { return followersCountCommand ?? (followersCountCommand = new Command(async () => await ExecuteFollowersCountCommandAsync())); }
-        }
-
-        /// <summary>
         /// Sıralama sayfasına git command
         /// </summary>
         public ICommand GoToRankingPageCommand
         {
             get { return goToRankingPageCommand ?? (goToRankingPageCommand = new Command(async () => await ExecuteGoToRankingPageCommandAsync())); }
-        }
-
-        /// <summary>
-        /// Takip etme durmunu çalıştır command
-        /// </summary>
-        public ICommand IsFollowUpStatusCommand
-        {
-            get { return isFollowUpStatusCommand ?? (isFollowUpStatusCommand = new Command(async () => await ExecuteIsFollowUpStatusCommandAsync())); }
         }
 
         /// <summary>
@@ -277,7 +200,15 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand ShareCommand
         {
-            get { return shareCommand ?? (shareCommand = new Command(() => _gameService?.SubCategoryShare(Title))); }
+            get { return shareCommand ?? (shareCommand = new Command(() => _gameService?.SubCategoryShare(CategoryDetail.SubCategoryName))); }
+        }
+
+        public ICommand SubCategoryDetailCommand
+        {
+            get
+            {
+                return new Command(async () => CategoryDetail = await _categoryService.GetSubCategoryDetail(CategoryDetail.SubCategoryId));
+            }
         }
 
         /// <summary>
@@ -292,7 +223,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () => ServiceModel = await _postService.SubCategoryPostsAsync(_subCategoryId, ServiceModel));
+                return new Command(async () => ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel));
             }
         }
 
@@ -302,9 +233,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("SubCategoryName")) Title = parameters.GetValue<string>("SubCategoryName");
-            if (parameters.ContainsKey("SubCategoryPicturePath")) SubCategoryPicturePath = parameters.GetValue<string>("SubCategoryPicturePath");
-            if (parameters.ContainsKey("SubCategoryId")) _subCategoryId = parameters.GetValue<Int16>("SubCategoryId");
+            if (parameters.ContainsKey("SubCategoryId")) _subCategoryId = parameters.GetValue<short>("SubCategoryId");
 
             base.OnNavigatingTo(parameters);
         }
