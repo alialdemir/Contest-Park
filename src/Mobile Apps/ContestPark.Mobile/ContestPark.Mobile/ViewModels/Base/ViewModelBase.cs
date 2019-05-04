@@ -19,8 +19,8 @@ namespace ContestPark.Mobile.ViewModels.Base
     {
         #region Private variables
 
-        private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
+        private readonly INavigationService _navigationService;
         private readonly IPopupNavigation _popupNavigation;
 
         #endregion Private variables
@@ -43,24 +43,9 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Page settings
 
-        public bool IsInitialized { get; set; } = false;
-
-        private bool _isShowEmptyMessage;
-
-        public bool IsShowEmptyMessage
-        {
-            get
-            {
-                return _isShowEmptyMessage;
-            }
-            set
-            {
-                _isShowEmptyMessage = value;
-                RaisePropertyChanged(() => IsShowEmptyMessage);
-            }
-        }
-
         private bool _isBusy;
+        private bool _isShowEmptyMessage;
+        private string _title;
 
         public bool IsBusy
         {
@@ -75,7 +60,20 @@ namespace ContestPark.Mobile.ViewModels.Base
             }
         }
 
-        private string _title;
+        public bool IsInitialized { get; set; } = false;
+
+        public bool IsShowEmptyMessage
+        {
+            get
+            {
+                return _isShowEmptyMessage;
+            }
+            set
+            {
+                _isShowEmptyMessage = value;
+                RaisePropertyChanged(() => IsShowEmptyMessage);
+            }
+        }
 
         public string Title
         {
@@ -143,6 +141,31 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Navigations
 
+        public Task GoBackAsync()
+        {
+            if (_navigationService == null)
+                return Task.CompletedTask;
+
+            return _navigationService?.GoBackAsync();
+        }
+
+        public virtual void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
+
+        public virtual void OnNavigatedTo(INavigationParameters parameters)
+        {
+        }
+
+        public virtual void OnNavigatingTo(INavigationParameters parameters)
+        {
+            if (IsInitialized)
+                return;
+
+            InitializeCommand.Execute(null);
+            IsInitialized = true;
+        }
+
         public Task PushModalAsync(string name, INavigationParameters parameters = null)
         {
             if (string.IsNullOrEmpty(name))
@@ -185,31 +208,6 @@ namespace ContestPark.Mobile.ViewModels.Base
             return _popupNavigation.RemovePageAsync(popupPage);
         }
 
-        public Task GoBackAsync()
-        {
-            if (_navigationService == null)
-                return Task.CompletedTask;
-
-            return _navigationService?.GoBackAsync();
-        }
-
-        public virtual void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
-        {
-            if (IsInitialized)
-                return;
-
-            InitializeCommand.Execute(null);
-            IsInitialized = true;
-        }
-
-        public virtual void OnNavigatedTo(INavigationParameters parameters)
-        {
-        }
-
         #endregion Navigations
 
         #region Commands
@@ -235,6 +233,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Virtual methods
 
+        protected ServiceModel<TModel> _serviceModel;
         private ObservableRangeCollection<TModel> items;
 
         /// <summary>
@@ -244,8 +243,6 @@ namespace ContestPark.Mobile.ViewModels.Base
         {
             get { return items ?? (items = new ObservableRangeCollection<TModel>()); }
         }
-
-        protected ServiceModel<TModel> _serviceModel;
 
         public ServiceModel<TModel> ServiceModel
         {
@@ -258,6 +255,22 @@ namespace ContestPark.Mobile.ViewModels.Base
                 if (value != null)
                     _serviceModel = value;
             }
+        }
+
+        /// <summary>
+        /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
+        /// </summary>
+        /// <returns></returns>
+        protected override Task InitializeAsync()
+        {
+            if (ServiceModel != null && ServiceModel.Items != null && ((List<TModel>)ServiceModel.Items).Count > 0) Items.AddRange(ServiceModel.Items);
+            else IsShowEmptyMessage = true;
+
+            if (ServiceModel != null && !ServiceModel.IsLastPage)
+                ServiceModel.PageNumber++;
+
+            ServiceModel.Items = null;
+            return base.InitializeAsync();
         }
 
         /// <summary>
@@ -276,22 +289,6 @@ namespace ContestPark.Mobile.ViewModels.Base
             }
 
             InitializeCommand.Execute(null);
-        }
-
-        /// <summary>
-        /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
-        /// </summary>
-        /// <returns></returns>
-        protected override Task InitializeAsync()
-        {
-            if (ServiceModel != null && ServiceModel.Items != null && ((List<TModel>)ServiceModel.Items).Count > 0) Items.AddRange(ServiceModel.Items);
-            else IsShowEmptyMessage = true;
-
-            if (ServiceModel != null && !ServiceModel.IsLastPage)
-                ServiceModel.PageNumber++;
-
-            ServiceModel.Items = null;
-            return base.InitializeAsync();
         }
 
         #endregion Virtual methods
@@ -323,7 +320,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <summary>
         /// Reflesh command
         /// </summary>
-        public ICommand RefleshCommand => new Command(() => Reflesh());
+        public ICommand RefreshCommand => new Command(() => Reflesh());
 
         #endregion Commands
     }

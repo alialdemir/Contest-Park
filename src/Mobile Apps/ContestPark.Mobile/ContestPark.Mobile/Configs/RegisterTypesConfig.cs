@@ -4,9 +4,11 @@ using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Duel;
+using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InAppBilling;
@@ -62,7 +64,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
 
-            containerRegistry.RegisterForNavigation<CategorySearchView, CategorySearchViewModel>();
+            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
 
             containerRegistry.RegisterForNavigation<ChatDetailView, ChatDetailViewModel>();
 
@@ -129,7 +131,9 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
 
-                containerRegistry.RegisterSingleton<ICategoryServices, CategoryServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
+
+                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
                 containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
@@ -140,6 +144,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
+
+                containerRegistry.RegisterSingleton<IFollowService, FollowService>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
@@ -159,7 +165,9 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                containerRegistry.RegisterSingleton<ICategoryServices, CategoryMockServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+
+                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
                 containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
@@ -170,6 +178,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+
+                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 

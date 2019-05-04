@@ -228,9 +228,6 @@
   <data name="Freeloader" xml:space="preserve">
     <value>Beleşçi</value>
   </data>
-  <data name="CategorySearch" xml:space="preserve">
-    <value>Kategori Ara</value>
-  </data>
   <data name="ForgetYourPasswordText" xml:space="preserve">
     <value>Eposta adresi veya kullanıcı adınızı giriniz. Hesap bilgilerinizi içeren bir e-posta alacaksınız.</value>
   </data>
@@ -314,8 +311,8 @@
   <data name="UnFollow" xml:space="preserve">
     <value>Takibi Bırak</value>
   </data>
-  <data name="SearchCategory" xml:space="preserve">
-    <value>Kategori ara...</value>
+  <data name="SearchPlayersOrCategories" xml:space="preserve">
+    <value>Oyuncu veya Kategori ara</value>
   </data>
   <data name="ContestStore" xml:space="preserve">
     <value>Contest Store</value>

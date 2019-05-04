@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Category
 {
-    public class CategoryMockServices : ICategoryServices
+    public class CategoryMockServices : ICategoryService
     {
         public Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel)
         {
@@ -26,6 +26,162 @@ namespace ContestPark.Mobile.Services.Category
                     GetCategoryModel(),
                  }
             });
+        }
+
+        public Task<int> FollowersCountAsync(short subCategoryId)
+        {
+            return Task.FromResult(1);
+        }
+
+        public Task<ServiceModel<SearchModel>> FollowingSearchModelAsync(PagingModel pagingModel)
+        {
+            return Task.FromResult(new ServiceModel<SearchModel>
+            {
+                Count = 1,
+                Items = new List<SearchModel>
+                 {
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=1,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="0",
+                           PicturePath = DefaultImages.DefaultLock,
+                     },
+                 }
+            });
+        }
+
+        public async Task<bool> FollowSubCategoryAsync(short subCategoryId)
+        {
+            await Task.Delay(3000);
+
+            return true;
+        }
+
+        public Task<bool> IsFollowUpStatusAsync(short subCategoryId)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> OpenCategoryAsync(short subCategoryId)
+        {
+            return Task.FromResult(false);
+        }
+
+        public Task<ServiceModel<SearchModel>> SearchAsync(short subCategoryId, PagingModel pagingModel)
+        {
+            return Task.FromResult(new ServiceModel<SearchModel>
+            {
+                Count = 1,
+                Items = new List<SearchModel>
+                 {
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=1,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="0",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=2,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="100k",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=3,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="100k",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=4,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="100k",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=5,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="100k",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=6,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="100k",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                     new SearchModel
+                     {
+                           SubCategoryName ="Bayraklar",
+                           Price=100000,
+                           SubCategoryId=7,
+                           CategoryName="Bayraklar",
+                           DisplayPrice="100k",
+                           PicturePath = DefaultImages.DefaultLock,
+                           SearchType = Enums.SearchTypes.Category,
+                     },
+                 }
+            });
+        }
+
+        public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
+        {
+            ServiceModel<SearchModel> items = await SearchAsync(subCategoryId, null);
+
+            searchText = searchText.ToLower();
+
+            items.Items = items
+                            .Items
+                            .Where(x =>
+                                    x.SubCategoryName.ToLower().Contains(searchText) ||
+                                    x.CategoryName.ToLower().Contains(searchText) ||
+                                    x.FullName.ToLower().Contains(searchText) ||
+                                    x.UserName.ToLower().Contains(searchText)
+                            )
+                            .ToList();
+
+            return items;
+        }
+
+        public async Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
+        {
+            //  await Task.Delay(3000);
+
+            return false;
+        }
+
+        public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)
+        {
+            await Task.Delay(3000);
+
+            return true;
         }
 
         private CategoryModel GetCategoryModel()
@@ -75,136 +231,6 @@ namespace ContestPark.Mobile.Services.Category
                 Price = price * 10000,
                 SubCategoryName = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10)
             };
-        }
-
-        public Task<ServiceModel<SubCategorySearch>> CategorySearchAsync(short subCategoryId, PagingModel pagingModel)
-        {
-            return Task.FromResult(new ServiceModel<SubCategorySearch>
-            {
-                Count = 1,
-                Items = new List<SubCategorySearch>
-                 {
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=1,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="0",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=2,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="100k",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=3,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="100k",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=4,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="100k",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=5,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="100k",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=6,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="100k",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=7,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="100k",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                 }
-            });
-        }
-
-        public Task<int> FollowersCountAsync(short subCategoryId)
-        {
-            return Task.FromResult(1);
-        }
-
-        public async Task<bool> FollowSubCategoryAsync(short subCategoryId)
-        {
-            await Task.Delay(3000);
-
-            return true;
-        }
-
-        public Task<bool> IsFollowUpStatusAsync(short subCategoryId)
-        {
-            return Task.FromResult(true);
-        }
-
-        public async Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
-        {
-            //  await Task.Delay(3000);
-
-            return false;
-        }
-
-        public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)
-        {
-            await Task.Delay(3000);
-
-            return true;
-        }
-
-        public Task<bool> OpenCategoryAsync(short subCategoryId)
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<ServiceModel<SubCategorySearch>> FollowingSubCategorySearchAsync(PagingModel pagingModel)
-        {
-            return Task.FromResult(new ServiceModel<SubCategorySearch>
-            {
-                Count = 1,
-                Items = new List<SubCategorySearch>
-                 {
-                     new SubCategorySearch
-                     {
-                           SubCategoryName ="Bayraklar",
-                           Price=100000,
-                           SubCategoryId=1,
-                           CategoryName="Bayraklar",
-                           DisplayPrice="0",
-                           PicturePath = DefaultImages.DefaultLock,
-                     },
-                 }
-            });
         }
     }
 }

@@ -24,9 +24,21 @@ namespace ContestPark.Mobile.Components
 
         #region Properties
 
-        public bool IsBusy { get; set; }
-
         private string _subCategoryImageSource;
+        private string _subCategoryNam;
+
+        public string DisplayPrice
+        {
+            set
+            {
+                lblDisplayPrice.Text = value;
+            }
+        }
+
+        public bool IsBusy { get; set; }
+        public bool IsCategoryOpen { get; set; }
+
+        public short SubCategoryId { get; set; }
 
         public string SubCategoryImageSource
         {
@@ -46,16 +58,6 @@ namespace ContestPark.Mobile.Components
             }
         }
 
-        public string DisplayPrice
-        {
-            set
-            {
-                lblDisplayPrice.Text = value;
-            }
-        }
-
-        private string _subCategoryNam;
-
         public string SubCategoryName
         {
             get => _subCategoryNam;
@@ -65,10 +67,6 @@ namespace ContestPark.Mobile.Components
                 lblSubCategoryName.Text = value;
             }
         }
-
-        public short SubCategoryId { get; set; }
-
-        public bool IsCategoryOpen { get; set; }
 
         #endregion Properties
 
@@ -88,7 +86,7 @@ namespace ContestPark.Mobile.Components
 
                 IGameService gameService = RegisterTypesConfig.Container.Resolve<IGameService>();
 
-                await gameService?.SubCategoriesDisplayActionSheetAsync(SubCategoryId, SubCategoryName, IsCategoryOpen, SubCategoryImageSource);
+                await gameService?.SubCategoriesDisplayActionSheetAsync(SubCategoryId, SubCategoryName, IsCategoryOpen);
 
                 IsBusy = false;
             });
@@ -108,7 +106,7 @@ namespace ContestPark.Mobile.Components
 
                 IGameService gameService = RegisterTypesConfig.Container.Resolve<IGameService>();
 
-                await gameService?.PushCategoryDetailViewAsync(SubCategoryId, SubCategoryName, SubCategoryImageSource, IsCategoryOpen);
+                await gameService?.PushCategoryDetailViewAsync(SubCategoryId, IsCategoryOpen);
 
                 IsBusy = false;
             });

@@ -175,7 +175,7 @@ namespace ContestPark.Mobile.ViewModels
 
             LoadRankEmptyMessage();
 
-            RefleshCommand.Execute(null);
+            RefreshCommand.Execute(null);
         }
 
         #endregion Methods

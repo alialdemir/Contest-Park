@@ -86,6 +86,9 @@
     <Compile Update="Views\BaseNavigationPage.xaml.cs">
       <DependentUpon>BaseNavigationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\DuelResultPopupView.xaml.cs">
       <DependentUpon>DuelResultPopupView.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,12 @@
     <EmbeddedResource Update="Components\Rank\RankView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Components\Search\CategorySearchView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Search\PlayerSearchView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\AccountSettingsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -188,7 +197,7 @@
     <EmbeddedResource Update="Views\CategoryDetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CategorySearchView.xaml">
+    <EmbeddedResource Update="Views\SearchView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ChatDetailView.xaml">

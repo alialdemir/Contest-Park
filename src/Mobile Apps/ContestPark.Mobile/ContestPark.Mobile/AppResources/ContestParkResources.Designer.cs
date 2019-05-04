@@ -178,15 +178,6 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kategori Ara.
-        /// </summary>
-        public static string CategorySearch {
-            get {
-                return ResourceManager.GetString("CategorySearch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kapat resmi değiştir.
         /// </summary>
         public static string ChangeCoverPicture {
@@ -916,11 +907,11 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kategori ara....
+        ///   Looks up a localized string similar to Oyuncu veya Kategori ara.
         /// </summary>
-        public static string SearchCategory {
+        public static string SearchPlayersOrCategories {
             get {
-                return ResourceManager.GetString("SearchCategory", resourceCulture);
+                return ResourceManager.GetString("SearchPlayersOrCategories", resourceCulture);
             }
         }
         
