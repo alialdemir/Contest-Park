@@ -9,8 +9,8 @@ namespace ContestPark.Mobile.Services.Post
     {
         Task<bool> DisLikeAsync(string postId);
 
-        Task<bool> LikeAsync(string postId);
+        Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel);
 
-        Task<ServiceModel<PostModel>> SubCategoryPostsAsync(short subCategoryId, PagingModel pagingModel);
+        Task<bool> LikeAsync(string postId);
     }
 }

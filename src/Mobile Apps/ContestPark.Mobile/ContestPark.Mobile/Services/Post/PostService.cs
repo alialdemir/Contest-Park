@@ -82,7 +82,7 @@ namespace ContestPark.Mobile.Services.Post
         /// </summary>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Alt kategori postları</returns>
-        public async Task<ServiceModel<PostModel>> SubCategoryPostsAsync(short subCategoryId, PagingModel pagingModel)
+        public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/subcategory/{subCategoryId}{pagingModel.ToString()}");
 

@@ -30,20 +30,6 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         #region Methods
 
         /// <summary>
-        /// Alt kategori Id'ye göre o kategoriyi takip eden kullanıcı sayısı
-        /// </summary>
-        /// <param name="subCategoryId">Alt kategori Id</param>
-        /// <returns>Kategoriyi takip eden kullanıcı sayısı</returns>
-        public async Task<int> FollowersCountAsync(short subCategoryId)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/follow/count");
-
-            var followCount = await _requestProvider.GetAsync<int>(uri);
-
-            return followCount;
-        }
-
-        /// <summary>
         /// Takip ettiği kategorileri search sayfasıbda listeleme
         /// </summary>
         /// <param name="pagingModel">Sayfalama</param>

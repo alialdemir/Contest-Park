@@ -8,7 +8,7 @@
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.CategoryDetailView"
-             Title="{Binding Title}"
+             Title="{Binding CategoryDetail.SubCategoryName}"
              x:Name="categoryDetailPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,10 +16,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem Icon="{Binding IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
+        <icon:IconToolbarItem Icon="{Binding CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
                               IconColor="{StaticResource Black}"
                               Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}" />
-        
+
         <icon:IconToolbarItem Icon="fas-share-alt"
                               IconColor="{StaticResource Primary}"
                               Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}" />
@@ -33,6 +33,7 @@
             <Components:NonPersistentSelectedItemListView.Header>
                 <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="145" />
@@ -52,24 +53,33 @@
                                             HeightRequest="128"
                                             VerticalOptions="Start"
                                             HorizontalOptions="Center"
-                                            Source="{Binding SubCategoryPicturePath}" />
+                                            Source="{Binding CategoryDetail.SubCategoryPicturePath}" />
 
                     <Label Grid.Row="1"
                            Grid.Column="0"
                            FontSize="Large"
                            Margin="0,16,0,64"
                            FontAttributes="Bold"
-                           Text="{Binding Title}"
+                           Text="{Binding CategoryDetail.SubCategoryName}"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource Black}" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           FontSize="Small"
+                           Margin="0,-60,0,64"
+                           FontAttributes="Bold"
+                           Text="{Binding CategoryDetail.Description}"
                            HorizontalOptions="Center"
                            TextColor="{StaticResource Black}" />
 
                     <StackLayout Padding="8"
-                                 Grid.Row="2">
+                                 Grid.Row="3">
 
                         <Frame Padding="0"
                                HasShadow="True"
                                CornerRadius="10"
-                               TranslationY="-50"
+                               TranslationY="-60"
                                IsClippedToBounds="True"
                                HorizontalOptions="FillAndExpand"
                                BackgroundColor="{StaticResource White}">
@@ -100,7 +110,7 @@
                                        Grid.Column="0"
                                        FontSize="Large"
                                        FontAttributes="Bold"
-                                       Text="{Binding Level}"
+                                       Text="{Binding CategoryDetail.Level}"
                                        HorizontalTextAlignment="Center"
                                        TextColor="{StaticResource Primary}" />
 
@@ -116,7 +126,7 @@
                                        Grid.Column="1"
                                        FontSize="Large"
                                        FontAttributes="Bold"
-                                       Text="{Binding FollowersCount, Mode=TwoWay}"
+                                       Text="{Binding CategoryDetail.CategoryFollowersCount, Mode=TwoWay}"
                                        HorizontalTextAlignment="Center"
                                        TextColor="{StaticResource Primary}" />
 
