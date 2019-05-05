@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Models.Post.PostLikes;
+using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Services.Follow;
-using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
@@ -13,28 +12,25 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class PostLikesViewModel : ViewModelBase<PostLikeModel>
+    public class FollowersViewModel : ViewModelBase<FollowModel>
     {
         #region Private variables
 
         private readonly IFollowService _followService;
-        private readonly IPostService _postService;
-        private string postId;
+        private string userId;
 
         #endregion Private variables
 
         #region Constructor
 
-        public PostLikesViewModel(
+        public FollowersViewModel(
                 INavigationService navigationService,
                 IPageDialogService dialogService,
-                IFollowService followService,
-                IPostService postService
+                IFollowService followService
             ) : base(navigationService, dialogService)
         {
             _followService = followService;
-            _postService = postService;
-            Title = ContestParkResources.PostLikes;
+            Title = ContestParkResources.Followers;
         }
 
         #endregion Constructor
@@ -43,7 +39,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            ServiceModel = await _postService.PostLikes(postId, ServiceModel);
+            ServiceModel = await _followService.Followers(userId, ServiceModel);
 
             await base.InitializeAsync();
         }
@@ -59,19 +55,19 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PostLikeModel postLikeModel = Items.Where(x => x.UserId == userId).First();
-            if (postLikeModel == null)
+            FollowModel followModel = Items.Where(x => x.UserId == userId).First();
+            if (followModel == null)
                 return;
 
-            Items.Where(x => x.UserId == userId).First().IsFollowing = !postLikeModel.IsFollowing;
+            Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
 
-            bool isSuccesss = await (postLikeModel.IsFollowing == true ?
+            bool isSuccesss = await (followModel.IsFollowing == true ?
                   _followService.UnFollowAsync(userId) :
                   _followService.FollowUpAsync(userId));
 
             if (!isSuccesss)
             {
-                Items.Where(x => x.UserId == userId).First().IsFollowing = !postLikeModel.IsFollowing;
+                Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
 
                 await DisplayAlertAsync("",
                     ContestParkResources.GlobalErrorMessage,
@@ -85,14 +81,14 @@ namespace ContestPark.Mobile.ViewModels
         /// Profil sayfasına yönlendirir
         /// </summary>
         /// <param name="userName">Kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommand(string userName)
+        private void ExecuteGotoProfilePageCommand(string userName)
         {
             if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -114,7 +110,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand GotoProfilePageCommand
         {
-            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName))); }
+            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName))); }
         }
 
         #endregion Commands
@@ -123,7 +119,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<string>("PostId");
+            if (parameters.ContainsKey("UserId")) userId = parameters.GetValue<string>("UserId");
 
             base.OnNavigatingTo(parameters);
         }

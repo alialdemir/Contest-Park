@@ -1,5 +1,8 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Follow;
+using ContestPark.Mobile.Models.PagingModel;
+using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Threading.Tasks;
 
@@ -24,6 +27,18 @@ namespace ContestPark.Mobile.Services.Follow
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Takip eden kullanıcılar
+        /// </summary>
+        /// <param name="followedUserId">Takip edilen user id</param>
+        /// <returns>Takip eden kullanıcı listesi</returns>
+        public async Task<ServiceModel<FollowModel>> Followers(string followedUserId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Followers/{followedUserId}{pagingModel.ToString()}");
+
+            return await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+        }
 
         /// <summary>
         /// Takip et
