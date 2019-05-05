@@ -1,11 +1,9 @@
 ﻿using ContestPark.Mobile.Helpers;
-using ContestPark.Mobile.Models.Base;
 using Newtonsoft.Json;
-using System.ComponentModel;
 
 namespace ContestPark.Mobile.Models.Blocking
 {
-    public class BlockModel : IModelBase, INotifyPropertyChanged
+    public class BlockModel : BaseModel
     {
         private string _fullName;
         private bool _isBlocked;
@@ -13,15 +11,13 @@ namespace ContestPark.Mobile.Models.Blocking
 
         private string _userName;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public string FullName
         {
             get { return _fullName; }
             set
             {
                 _fullName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FullName)));
+                RaisePropertyChanged(() => FullName);
             }
         }
 
@@ -31,7 +27,7 @@ namespace ContestPark.Mobile.Models.Blocking
             set
             {
                 _isBlocked = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsBlocked)));
+                RaisePropertyChanged(() => IsBlocked);
             }
         }
 
@@ -50,7 +46,7 @@ namespace ContestPark.Mobile.Models.Blocking
             set
             {
                 _userId = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserId)));
+                RaisePropertyChanged(() => UserId);
             }
         }
 
@@ -60,7 +56,7 @@ namespace ContestPark.Mobile.Models.Blocking
             set
             {
                 _userName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UserName)));
+                RaisePropertyChanged(() => UserName);
             }
         }
     }

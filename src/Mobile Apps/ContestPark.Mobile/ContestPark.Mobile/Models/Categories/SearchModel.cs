@@ -1,18 +1,14 @@
 ﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Models.Base;
 using Newtonsoft.Json;
-using System.ComponentModel;
 
 namespace ContestPark.Mobile.Models.Categories
 {
-    public class SearchModel : IModelBase, INotifyPropertyChanged
+    public class SearchModel : BaseModel
     {
         private string displayPrice = "0";
 
         private bool isFollow;
         private string picturePath;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public string CategoryName { get; set; } = "";
 
@@ -22,7 +18,8 @@ namespace ContestPark.Mobile.Models.Categories
             set
             {
                 displayPrice = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayPrice)));
+
+                RaisePropertyChanged(() => DisplayPrice);
             }
         }
 
@@ -40,7 +37,8 @@ namespace ContestPark.Mobile.Models.Categories
             set
             {
                 isFollow = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsFollow)));
+
+                RaisePropertyChanged(() => IsFollow);
             }
         }
 
@@ -50,7 +48,8 @@ namespace ContestPark.Mobile.Models.Categories
             set
             {
                 picturePath = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PicturePath)));
+
+                RaisePropertyChanged(() => PicturePath);
             }
         }
 

@@ -1,14 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.ComponentModel;
 
 namespace ContestPark.Mobile.Models.Ranking
 {
-    public class TimeLeftModel : INotifyPropertyChanged
+    public class TimeLeftModel : BaseModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string _months;
+
+        private string _timeLeft;
+
+        public DateTime FinsihDate { get; set; }
 
         public string Months
         {
@@ -17,11 +18,9 @@ namespace ContestPark.Mobile.Models.Ranking
             {
                 _months = value;
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Months)));
+                RaisePropertyChanged(() => Months);
             }
         }
-
-        private string _timeLeft;
 
         [JsonIgnore]
         public string TimeLeft
@@ -31,10 +30,8 @@ namespace ContestPark.Mobile.Models.Ranking
             {
                 _timeLeft = value;
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeLeft)));
+                RaisePropertyChanged(() => TimeLeft);
             }
         }
-
-        public DateTime FinsihDate { get; set; }
     }
 }

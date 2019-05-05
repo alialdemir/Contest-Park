@@ -63,6 +63,7 @@
                                    Grid.Column="1"
                                    TextColor="White"
                                    FontSize="Default"
+                                   FontAttributes="Bold"
                                    VerticalOptions="Center"
                                    Text="{Binding MissionName}" />
 
