@@ -10,7 +10,6 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

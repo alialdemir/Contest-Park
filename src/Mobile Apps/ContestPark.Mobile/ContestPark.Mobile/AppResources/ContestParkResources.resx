@@ -535,4 +535,7 @@
   <data name="ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount" xml:space="preserve">
     <value>Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi.</value>
   </data>
+  <data name="PostLikes" xml:space="preserve">
+    <value>Beğeniler</value>
+  </data>
 </root>

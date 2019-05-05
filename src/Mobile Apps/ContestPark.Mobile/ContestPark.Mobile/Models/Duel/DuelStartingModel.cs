@@ -1,28 +1,21 @@
 ﻿using ContestPark.Mobile.Helpers;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace ContestPark.Mobile.Models.Duel
 {
-    public class DuelStartingModel : BaseModel, INotifyPropertyChanged
+    public class DuelStartingModel : BaseModel
     {
+        private string _founderCoverPicturePath = DefaultImages.DefaultCoverPicture;
+        private string _founderFullName;
         private string _founderProfilePicturePath = DefaultImages.DefaultProfilePicture;
 
-        public string FounderProfilePicturePath
-        {
-            get { return _founderProfilePicturePath; }
-            set
-            {
-                if (!String.IsNullOrEmpty(value))
-                {
-                    _founderProfilePicturePath = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        private string _opponentCoverPicturePath = DefaultImages.DefaultCoverPicture;
 
-        private string _founderCoverPicturePath = DefaultImages.DefaultCoverPicture;
+        private string _opponentFullName;
+
+        private string _opponentProfilePicturePath = DefaultImages.DefaultProfilePicture;
+
+        public int DuelId { get; set; }
 
         public string FounderCoverPicturePath
         {
@@ -32,12 +25,10 @@ namespace ContestPark.Mobile.Models.Duel
                 if (!String.IsNullOrEmpty(value))
                 {
                     _founderCoverPicturePath = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged(() => FounderCoverPicturePath);
                 }
             }
         }
-
-        private string _founderFullName;
 
         public string FounderFullName
         {
@@ -45,26 +36,24 @@ namespace ContestPark.Mobile.Models.Duel
             set
             {
                 _founderFullName = value;
-                OnPropertyChanged();
+                RaisePropertyChanged(() => FounderFullName);
             }
         }
 
-        private string _opponentProfilePicturePath = DefaultImages.DefaultProfilePicture;
-
-        public string OpponentProfilePicturePath
+        public string FounderProfilePicturePath
         {
-            get { return _opponentProfilePicturePath; }
+            get { return _founderProfilePicturePath; }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))
                 {
-                    _opponentProfilePicturePath = value;
-                    OnPropertyChanged();
+                    _founderProfilePicturePath = value;
+                    RaisePropertyChanged(() => FounderProfilePicturePath);
                 }
             }
         }
 
-        private string _opponentCoverPicturePath = DefaultImages.DefaultCoverPicture;
+        public string FounderUserId { get; set; }
 
         public string OpponentCoverPicturePath
         {
@@ -74,12 +63,10 @@ namespace ContestPark.Mobile.Models.Duel
                 if (!String.IsNullOrEmpty(value))
                 {
                     _opponentCoverPicturePath = value;
-                    OnPropertyChanged();
+                    RaisePropertyChanged(() => OpponentCoverPicturePath);
                 }
             }
         }
-
-        private string _opponentFullName;
 
         public string OpponentFullName
         {
@@ -87,31 +74,31 @@ namespace ContestPark.Mobile.Models.Duel
             set
             {
                 _opponentFullName = value;
-                OnPropertyChanged();
+                RaisePropertyChanged(() => OpponentFullName);
+            }
+        }
+
+        public string OpponentProfilePicturePath
+        {
+            get { return _opponentProfilePicturePath; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _opponentProfilePicturePath = value;
+                    RaisePropertyChanged(() => OpponentProfilePicturePath);
+                }
             }
         }
 
         //  public Int16 SubCategoryId { get; set; }
-
-        public int DuelId { get; set; }
-
         //public string FounderConnectionId { get; set; }
 
         //public string OpponentConnectionId { get; set; }
-
-        public string FounderUserId { get; set; }
-
         public string OpponentUserId { get; set; }
 
         //public Languages FounderLanguage { get; set; }
 
         //public Languages OpponentLanguage { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

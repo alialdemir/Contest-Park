@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.Post;
+using ContestPark.Mobile.Models.Post.PostLikes;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -56,6 +57,27 @@ namespace ContestPark.Mobile.Services.Post
         }
 
         /// <summary>
+        /// Alt kategoriye ait postlar
+        /// </summary>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Alt kategori postları</returns>
+        public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/subcategory/{subCategoryId}{pagingModel.ToString()}");
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<PostModel>>(uri);
+            }
+
+            var posts = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
+
+            _cacheService.Add(uri, posts);
+
+            return posts;
+        }
+
+        /// <summary>
         /// Post beğe
         /// </summary>
         /// <param name="postId">Post id</param>
@@ -78,24 +100,25 @@ namespace ContestPark.Mobile.Services.Post
         }
 
         /// <summary>
-        /// Alt kategoriye ait postlar
+        /// Post id göre o postu beğenen kullanıcıları döndürür
         /// </summary>
+        /// <param name="postId">Post id</param>
         /// <param name="pagingModel">Sayfalama</param>
-        /// <returns>Alt kategori postları</returns>
-        public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel)
+        /// <returns>Postu beğenen kullanıcı listesi</returns>
+        public async Task<ServiceModel<PostLikeModel>> PostLikes(string postId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/subcategory/{subCategoryId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/like/{postId}{pagingModel.ToString()}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<PostModel>>(uri);
+                return await _cacheService.Get<ServiceModel<PostLikeModel>>(uri);
             }
 
-            var posts = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
+            var postLikes = await _requestProvider.GetAsync<ServiceModel<PostLikeModel>>(uri);
 
-            _cacheService.Add(uri, posts);
+            _cacheService.Add(uri, postLikes);
 
-            return posts;
+            return postLikes;
         }
 
         #endregion Methods

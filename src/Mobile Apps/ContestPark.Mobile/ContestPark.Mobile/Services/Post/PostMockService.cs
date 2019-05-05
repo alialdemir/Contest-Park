@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.Post;
+using ContestPark.Mobile.Models.Post.PostLikes;
 using ContestPark.Mobile.Models.ServiceModel;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,6 @@ namespace ContestPark.Mobile.Services.Post
     public class PostMockService : IPostService
     {
         public async Task<bool> DisLikeAsync(string postId)
-        {
-            await Task.Delay(300);
-            return true;
-        }
-
-        public async Task<bool> LikeAsync(string postId)
         {
             await Task.Delay(300);
             return true;
@@ -60,6 +55,37 @@ namespace ContestPark.Mobile.Services.Post
                 PageNumber = 1,
                 PageSize = 1,
                 Items = posts
+            });
+        }
+
+        public async Task<bool> LikeAsync(string postId)
+        {
+            await Task.Delay(300);
+            return true;
+        }
+
+        public Task<ServiceModel<PostLikeModel>> PostLikes(string postId, PagingModel pagingModel)
+        {
+            List<PostLikeModel> postLikes = new List<PostLikeModel>();
+
+            for (byte i = 0; i < 10; i++)
+            {
+                postLikes.Add(new PostLikeModel
+                {
+                    IsFollowing = i % 2 == 0,
+                    FullName = "User" + i.ToString(),
+                    ProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                    UserId = "1111-1111-1111-111" + i.ToString(),
+                    UserName = "witcher" + i.ToString(),
+                });
+            }
+
+            return Task.FromResult(new ServiceModel<PostLikeModel>
+            {
+                Count = 2,
+                PageNumber = 1,
+                PageSize = 1,
+                Items = postLikes
             });
         }
     }
