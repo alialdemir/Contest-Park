@@ -44,15 +44,36 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Takip edilen kullanıcı listesine yönlendirir
+        /// </summary>
+        private void ExecuteGotoFollowingCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            PushNavigationPageAsync(nameof(FollowingView), new NavigationParameters
+                {
+                    {"UserId", userId}
+                });
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
 
-        public ICommand _gotoFollowersCommand { get; set; }
-
         public ICommand GotoFollowersCommand
         {
-            get { return _gotoFollowersCommand ?? (_gotoFollowersCommand = new Command(() => ExecuteGotoFollowersCommand())); }
+            get { return new Command(() => ExecuteGotoFollowersCommand()); }
+        }
+
+        public ICommand GotoFollowingCommand
+        {
+            get { return new Command(() => ExecuteGotoFollowingCommand()); }
         }
 
         #endregion Commands

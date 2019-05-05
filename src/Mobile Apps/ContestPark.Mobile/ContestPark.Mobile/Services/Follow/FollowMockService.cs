@@ -34,6 +34,11 @@ namespace ContestPark.Mobile.Services.Follow
             });
         }
 
+        public Task<ServiceModel<FollowModel>> Following(string followedUserId, PagingModel pagingModel)
+        {
+            return Followers(followedUserId, pagingModel);// aynısı döndürdüm fark etmez
+        }
+
         public Task<bool> FollowUpAsync(string followedUserId)
         {
             return Task.FromResult(true);
