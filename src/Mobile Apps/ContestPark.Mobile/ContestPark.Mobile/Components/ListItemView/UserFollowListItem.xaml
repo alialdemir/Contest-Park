@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Class="ContestPark.Mobile.Components.UserFollowListItem"
+             x:Name="userFollowListItemPage">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:IconConverter x:Key="fbc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid RowSpacing="0"
+              Padding="8,4,8,4"
+              BackgroundColor="{StaticResource ListBackgroundColor}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+
+            <components:CircleImage Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    CommandParameter="{Binding UserName}"
+                                    Source="{Binding ProfilePicturePath}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}" />
+
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   TextColor="White"
+                   FontSize="Default"
+                   FontAttributes="Bold"
+                   LineBreakMode="TailTruncation"
+                   Text="{Binding FullName}" />
+
+            <components:HtmlLabel Grid.Row="1"
+                                  Grid.Column="1"
+                                  TextColor="White"
+                                  FontSize="Small"
+                                  Grid.ColumnSpan="2"
+                                  LineBreakMode="TailTruncation"
+                                  Text="{Binding UserName, StringFormat='@{0:N}'}" />
+
+            <icon:IconButton FontSize="20"
+                             Grid.Column="2"
+                             Grid.RowSpan="2"
+                             HorizontalOptions="Start"
+                             BackgroundColor="Transparent"
+                             TextColor="{StaticResource Red}"
+                             CommandParameter="{Binding UserId}"
+                             Text="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbc}}"
+                             Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}" />
+
+            <components:Line Grid.Row="2"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>
