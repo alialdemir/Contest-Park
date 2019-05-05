@@ -80,6 +80,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<FollowersView, FollowersViewModel>();
 
+            containerRegistry.RegisterForNavigation<FollowingView, FollowingViewModel>();
+
             containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
 
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();

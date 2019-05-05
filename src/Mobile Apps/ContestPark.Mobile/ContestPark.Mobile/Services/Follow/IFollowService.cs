@@ -9,6 +9,8 @@ namespace ContestPark.Mobile.Services.Follow
     {
         Task<ServiceModel<FollowModel>> Followers(string followedUserId, PagingModel pagingModel);
 
+        Task<ServiceModel<FollowModel>> Following(string followedUserId, PagingModel pagingModel);
+
         Task<bool> FollowUpAsync(string followedUserId);
 
         Task<bool> UnFollowAsync(string followedUserId);

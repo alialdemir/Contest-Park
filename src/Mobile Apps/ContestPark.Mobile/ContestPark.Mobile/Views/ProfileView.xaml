@@ -7,6 +7,10 @@
              Title="{Binding Title}"
              Icon="fas-user-circle">
     <ContentPage.Content>
-        <Button Text="followers" Command="{Binding GotoFollowersCommand}" />
+        <StackLayout Orientation="Vertical" Spacing="10">
+
+            <Button Text="followers" Command="{Binding GotoFollowersCommand}" />
+            <Button Text="followering" Command="{Binding GotoFollowingCommand}" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

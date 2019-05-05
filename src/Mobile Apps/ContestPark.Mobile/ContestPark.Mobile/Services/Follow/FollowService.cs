@@ -29,13 +29,25 @@ namespace ContestPark.Mobile.Services.Follow
         #region Methods
 
         /// <summary>
+        /// Takip edilen kullanıcılar
+        /// </summary>
+        /// <param name="followedUserId">Takip edilen user id</param>
+        /// <returns>Takip edilen kullanıcı listesi</returns>
+        public async Task<ServiceModel<FollowModel>> Followers(string followedUserId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Followers/{followedUserId}{pagingModel.ToString()}");
+
+            return await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+        }
+
+        /// <summary>
         /// Takip eden kullanıcılar
         /// </summary>
         /// <param name="followedUserId">Takip edilen user id</param>
         /// <returns>Takip eden kullanıcı listesi</returns>
-        public async Task<ServiceModel<FollowModel>> Followers(string followedUserId, PagingModel pagingModel)
+        public async Task<ServiceModel<FollowModel>> Following(string followedUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Followers/{followedUserId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Following/{followedUserId}{pagingModel.ToString()}");
 
             return await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
         }
