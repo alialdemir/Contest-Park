@@ -808,6 +808,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beğeniler.
+        /// </summary>
+        public static string PostLikes {
+            get {
+                return ResourceManager.GetString("PostLikes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profil Gizle.
         /// </summary>
         public static string PrivateProfile {

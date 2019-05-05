@@ -1,17 +1,13 @@
 ﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Models.Base;
 using System;
-using System.ComponentModel;
 
 namespace ContestPark.Mobile.Models.Post
 {
-    public partial class PostModel : IModelBase, INotifyPropertyChanged
+    public partial class PostModel : BaseModel
     {
         private int _commentCount;
         private bool _isLike;
         private int _likeCount;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public int CommentCount
         {
@@ -21,7 +17,7 @@ namespace ContestPark.Mobile.Models.Post
                 if (value >= 0)
                 {
                     _commentCount = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CommentCount)));
+                    RaisePropertyChanged(() => CommentCount);
                 }
             }
         }
@@ -34,7 +30,7 @@ namespace ContestPark.Mobile.Models.Post
             set
             {
                 _isLike = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsLike)));
+                RaisePropertyChanged(() => IsLike);
             }
         }
 
@@ -46,7 +42,7 @@ namespace ContestPark.Mobile.Models.Post
                 if (value >= 0)
                 {
                     _likeCount = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LikeCount)));
+                    RaisePropertyChanged(() => LikeCount);
                 }
             }
         }

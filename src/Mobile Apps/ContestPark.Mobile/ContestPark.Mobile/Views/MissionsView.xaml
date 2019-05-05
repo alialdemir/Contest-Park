@@ -9,7 +9,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.MissionsView"
              Title="{Binding Title}"
-             x:Name="page">
+             x:Name="missionsViewPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
@@ -84,7 +84,7 @@
                                     CommandParameter="{Binding MissionId}"
                                     Text="{Binding Gold, StringFormat='    {0}'}"
                                     IsVisible="{Binding MissionStatus, Converter={StaticResource not}}"
-                                    Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference page}}" />
+                                    Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}" />
 
                             <icon:IconButton FontSize="14"
                                              Text="far-gem"
@@ -95,7 +95,7 @@
                                              BackgroundColor="Transparent"
                                              CommandParameter="{Binding MissionId}"
                                              IsVisible="{Binding MissionStatus, Converter={StaticResource not}}"
-                                             Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference page}}" />
+                                             Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}" />
                         </components:CustomGrid>
                     </ViewCell>
                 </DataTemplate>

@@ -122,26 +122,32 @@
     <EmbeddedResource Update="Components\Categories\SubCategoryCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\ListItemView\IconGroupHeader.xaml">
+    <EmbeddedResource Update="Components\ListItemView\UserFollowListItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\ListItemView\Items\InputListItem.xaml">
+    <EmbeddedResource Update="Components\ListItem\IconGroupHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\ListItemView\Items\SwitchListItem.xaml">
+    <EmbeddedResource Update="Components\ListItem\Items\InputListItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\ListItemView\Items\TextListItem.xaml">
+    <EmbeddedResource Update="Components\ListItem\Items\SwitchListItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\ListItem\Items\TextListItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\ListItemView\ListItemButtonView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\ListItemView\ListItemView.xaml">
+    <EmbeddedResource Update="Components\ListItem\ListItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\ListItemView\ThumListItem.xaml">
+    <EmbeddedResource Update="Components\ListItem\ThumListItem.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\ListItem\UserFollowListItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\NonPersistentSelectedItemListView\NonPersistentSelectedItemListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
