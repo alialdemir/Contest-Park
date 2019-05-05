@@ -6,4 +6,7 @@
              x:Class="ContestPark.Mobile.Views.ProfileView"
              Title="{Binding Title}"
              Icon="fas-user-circle">
+    <ContentPage.Content>
+        <Button Text="followers" Command="{Binding GotoFollowersCommand}" />
+    </ContentPage.Content>
 </ContentPage>

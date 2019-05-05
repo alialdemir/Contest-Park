@@ -78,6 +78,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<DuelStartingPopupView, DuelStartingPopupViewModel>();
 
+            containerRegistry.RegisterForNavigation<FollowersView, FollowersViewModel>();
+
             containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
 
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
