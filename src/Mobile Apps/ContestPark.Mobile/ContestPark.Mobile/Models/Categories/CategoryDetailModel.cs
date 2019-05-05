@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace ContestPark.Mobile.Models.Categories.CategoryDetail
+﻿namespace ContestPark.Mobile.Models.Categories.CategoryDetail
 {
-    public class CategoryDetailModel : INotifyPropertyChanged
+    public class CategoryDetailModel : BaseModel
     {
         private bool _isSubCategoryFollowUpStatus;
         private byte _level = 1;
@@ -14,8 +12,6 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
 
         private string subCategoryName;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// Kategoriyi takip eden kullanıcı sayısı
         /// </summary>
@@ -25,7 +21,8 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
             set
             {
                 categoryFollowersCount = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CategoryFollowersCount)));
+
+                RaisePropertyChanged(() => CategoryFollowersCount);
             }
         }
 
@@ -38,7 +35,8 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
             set
             {
                 description = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+
+                RaisePropertyChanged(() => Description);
             }
         }
 
@@ -51,7 +49,8 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
             set
             {
                 _isSubCategoryFollowUpStatus = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSubCategoryFollowUpStatus)));
+
+                RaisePropertyChanged(() => IsSubCategoryFollowUpStatus);
             }
         }
 
@@ -64,7 +63,8 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
             set
             {
                 _level = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Level)));
+
+                RaisePropertyChanged(() => Level);
             }
         }
 
@@ -79,7 +79,8 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
             set
             {
                 subCategoryName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SubCategoryName)));
+
+                RaisePropertyChanged(() => SubCategoryName);
             }
         }
 
@@ -95,7 +96,8 @@ namespace ContestPark.Mobile.Models.Categories.CategoryDetail
             set
             {
                 _subCategoryPicturePath = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SubCategoryPicturePath)));
+
+                RaisePropertyChanged(() => SubCategoryPicturePath);
             }
         }
     }

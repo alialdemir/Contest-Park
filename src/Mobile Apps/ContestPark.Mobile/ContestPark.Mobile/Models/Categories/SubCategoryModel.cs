@@ -1,13 +1,29 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel;
 
 namespace ContestPark.Mobile.Models.Categories
 {
-    public class SubCategoryModel : INotifyPropertyChanged
+    public class SubCategoryModel : BaseModel
     {
-        public string SubCategoryName { get; set; }
-        public short SubCategoryId { get; set; }
+        private string displayPrice = "0";
         private string picturePath = "";
+        private int price;
+
+        public string DisplayPrice
+        {
+            get { return displayPrice; }
+            set
+            {
+                displayPrice = value;
+
+                RaisePropertyChanged(() => DisplayPrice);
+            }
+        }
+
+        [JsonIgnore]
+        public bool IsCategoryOpen
+        {
+            get { return DisplayPrice.Equals("0"); }
+        }
 
         public string PicturePath
         {
@@ -15,11 +31,10 @@ namespace ContestPark.Mobile.Models.Categories
             set
             {
                 picturePath = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PicturePath)));
+
+                RaisePropertyChanged(() => PicturePath);
             }
         }
-
-        private int price;
 
         public int Price
         {
@@ -30,24 +45,7 @@ namespace ContestPark.Mobile.Models.Categories
             }
         }
 
-        private string displayPrice = "0";
-
-        public string DisplayPrice
-        {
-            get { return displayPrice; }
-            set
-            {
-                displayPrice = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayPrice)));
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [JsonIgnore]
-        public bool IsCategoryOpen
-        {
-            get { return DisplayPrice.Equals("0"); }
-        }
+        public short SubCategoryId { get; set; }
+        public string SubCategoryName { get; set; }
     }
 }

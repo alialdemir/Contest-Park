@@ -1,20 +1,13 @@
 ﻿using ContestPark.Mobile.Enums;
 using Newtonsoft.Json;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Duel
 {
-    public class AnswerModel : INotifyPropertyChanged
+    public class AnswerModel : BaseModel
     {
-        public Languages Language { get; set; }
-
-        public bool IsCorrect { get; set; }
-
-        public string Answers { get; set; }
-
         private Color _color = Color.FromHex("#FFFFFF");
+        public string Answers { get; set; }
 
         [JsonIgnore]
         public Color Color
@@ -23,15 +16,12 @@ namespace ContestPark.Mobile.Models.Duel
             set
             {
                 _color = value;
-                OnPropertyChanged();
+
+                RaisePropertyChanged(() => Color);
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public bool IsCorrect { get; set; }
+        public Languages Language { get; set; }
     }
 }

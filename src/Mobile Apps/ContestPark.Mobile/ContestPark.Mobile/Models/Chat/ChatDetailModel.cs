@@ -1,17 +1,13 @@
-﻿using ContestPark.Mobile.Models.Base;
-using System;
-using System.ComponentModel;
+﻿using System;
 
 namespace ContestPark.Mobile.Models.Chat
 {
-    public class ChatDetailModel : IModelBase, INotifyPropertyChanged
+    public class ChatDetailModel : BaseModel
     {
         private DateTime date;
         private string message;
 
         private string senderId;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public DateTime Date
         {
@@ -19,7 +15,8 @@ namespace ContestPark.Mobile.Models.Chat
             set
             {
                 date = value;
-                NotifyPropertyChanged(nameof(Date));
+
+                RaisePropertyChanged(() => Date);
             }
         }
 
@@ -29,7 +26,8 @@ namespace ContestPark.Mobile.Models.Chat
             set
             {
                 message = value;
-                NotifyPropertyChanged(nameof(Message));
+
+                RaisePropertyChanged(() => Message);
             }
         }
 
@@ -39,13 +37,9 @@ namespace ContestPark.Mobile.Models.Chat
             set
             {
                 senderId = value;
-                NotifyPropertyChanged(nameof(SenderId));
-            }
-        }
 
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                RaisePropertyChanged(() => SenderId);
+            }
         }
     }
 }
