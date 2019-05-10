@@ -44,15 +44,7 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 if (_userInfo == null)
                 {
-                    _userInfo = new UserInfoModel
-                    {
-                        CoverPicturePath = DefaultImages.DefaultCoverPicture,
-                        FullName = "Ali Aldemir",
-                        Language = Languages.Turkish,
-                        ProfilePicturePath = DefaultImages.DefaultProfilePicture,
-                        UserId = "1111-1111-1111-1111",
-                        UserName = "witcherfearless"
-                    };
+                    RefreshCurrentUser();
                 }
 
                 return _userInfo;
@@ -168,7 +160,7 @@ namespace ContestPark.Mobile.Services.Settings
 
         public void RemoveCurrentUser()
         {
-            _userInfo = new UserInfoModel();
+            _userInfo = null;
         }
 
         /// <summary>
