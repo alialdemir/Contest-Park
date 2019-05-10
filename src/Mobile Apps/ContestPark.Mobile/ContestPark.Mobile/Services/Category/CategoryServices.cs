@@ -6,7 +6,6 @@ using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Category

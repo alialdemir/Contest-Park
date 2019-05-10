@@ -58,6 +58,91 @@ namespace ContestPark.Mobile.Services.Post
             });
         }
 
+        public Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel)
+        {
+            return Task.FromResult(new ServiceModel<PostModel>
+            {
+                Count = 2,
+                PageNumber = 1,
+                PageSize = 1,
+                Items = new List<PostModel>
+                {
+                    new PostModel
+                {
+                    CommentCount = 12,
+                    IsLike = false,
+                    Date = DateTime.Now.AddDays(2),
+                    LikeCount = 3,
+                    PostId = Guid.NewGuid().ToString(),
+                    PostType = Enums.PostTypes.Contest,
+                    Bet = 2500,
+
+                    SubCategoryId = 1,
+                    SubCategoryName = "Football Players",
+                    SubCategoryPicturePath = DefaultImages.DefaultLock,
+
+                    CompetitorFullName = "Elif Öz",
+                    CompetitorProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                    CompetitorUserName = "elfoz",
+                    CompetitorTrueAnswerCount =34,
+
+                    FounderFullName = "Ali Aldemir",
+                    FounderProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                    FounderTrueAnswerCount = 5,
+                    FounderUserName = "witcherfearless",
+                },
+
+                    new PostModel
+                    {
+                        CommentCount = 12,
+                        IsLike = false,
+                        Date = DateTime.Now.AddDays(2),
+                        LikeCount = 3,
+                        PostId = Guid.NewGuid().ToString(),
+                        PostType = Enums.PostTypes.Text,
+
+                        Description = "Merhaba dünya",
+
+                        OwnerProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                        OwnerFullName ="Ali aldemir",
+                        OwnerUserName ="Witcherfearless",
+                    },
+
+                    new PostModel
+                    {
+                        CommentCount = 12,
+                        IsLike = false,
+                        Date = DateTime.Now.AddDays(2),
+                        LikeCount = 3,
+                        PostId = Guid.NewGuid().ToString(),
+                        PostType = Enums.PostTypes.Image,
+
+                        Description = "textli yazıtextli yazıtextli yazıtextli yazıtextli yazı textli yazıtextli yazı",
+
+                        OwnerProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                        OwnerFullName ="Ali aldemir",
+                        OwnerUserName ="Witcherfearless",
+                        PicturePath = DefaultImages.DefaultCoverPicture
+                    },
+
+                    new PostModel
+                    {
+                        CommentCount = 12,
+                        IsLike = false,
+                        Date = DateTime.Now.AddDays(2),
+                        LikeCount = 3,
+                        PostId = Guid.NewGuid().ToString(),
+                        PostType = Enums.PostTypes.Image,
+
+                        OwnerProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                        OwnerFullName ="Ali aldemir",
+                        OwnerUserName ="Witcherfearless",
+                        PicturePath = DefaultImages.DefaultCoverPicture
+                    },
+                }
+            });
+        }
+
         public async Task<bool> LikeAsync(string postId)
         {
             await Task.Delay(300);

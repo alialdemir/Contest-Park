@@ -538,4 +538,10 @@
   <data name="PostLikes" xml:space="preserve">
     <value>Beğeniler</value>
   </data>
+  <data name="Duel" xml:space="preserve">
+    <value>Düello</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Kullanıcı bulunamadı.</value>
+  </data>
 </root>

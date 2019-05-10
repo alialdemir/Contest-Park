@@ -85,5 +85,12 @@ namespace ContestPark.Mobile.Components.PostCardView
         }
 
         #endregion Commands
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            lblDescription.IsVisible = BindingContext != null && !string.IsNullOrEmpty(((PostModel)BindingContext)?.Description);
+        }
     }
 }

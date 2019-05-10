@@ -197,5 +197,23 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand UserChatVisibilityCountCommand => new Command(async () => await UserChatVisibilityCountCommandAsync());
 
         #endregion Commands
+
+        #region Navigation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (IsInitialized)
+                return;
+
+            InitializeCommand.Execute(null);
+            IsInitialized = true;
+        }
+
+        public override void OnNavigatingTo(INavigationParameters parameters)
+        {
+            // tabs sayfalarında ilk açılışta tüm dataları çekmesin sayfaya gelirse çeksin diye base methodu ezdik
+        }
+
+        #endregion Navigation
     }
 }

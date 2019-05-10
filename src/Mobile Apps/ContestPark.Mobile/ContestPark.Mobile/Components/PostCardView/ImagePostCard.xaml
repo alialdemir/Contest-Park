@@ -4,7 +4,7 @@
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
              x:Class="ContestPark.Mobile.Components.PostCardView.ImagePostCard"
-             x:Name="page">
+             x:Name="imagePostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:DateTimeMomentConverter x:Key="moment" />
@@ -18,7 +18,8 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="0.5" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -28,41 +29,44 @@
 
             <Components:CircleImage Grid.Row="0"
                                     Grid.Column="0"
-                                    CommandParameter="{Binding FounderUserName}"
-                                    Source="{Binding FounderProfilePicturePath}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                                    CommandParameter="{Binding OwnerUserName}"
+                                    Source="{Binding OwnerProfilePicturePath}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference imagePostCardPage}}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
                    FontAttributes="Bold"
-                   Text="{Binding FounderFullName}"
+                   Text="{Binding OwnerFullName}"
+                   VerticalTextAlignment="Start"
                    TextColor="{StaticResource Black}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
                    TextColor="#c5c5c5"
-                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
                    Text="{Binding Date, Converter={StaticResource moment}}" />
 
-            <Components:HtmlLabel Grid.Row="0"
-                                  Grid.Column="1"
+            <Components:Line Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="#dedede" />
+
+            <Components:HtmlLabel Grid.Row="2"
+                                  x:Name="lblDescription"
+                                  Grid.ColumnSpan="2"
                                   FontSize="Default"
-                                  VerticalOptions="End"
+                                  Margin="0,10,10,10"
                                   LineBreakMode="WordWrap"
-                                  Text="{Binding PostsDescription}"
+                                  Text="{Binding Description}"
                                   TextColor="{StaticResource Black}" />
 
-            <BoxView Grid.Row="1"
-                     Grid.ColumnSpan="2"
-                     Style="{StaticResource Line}" />
-
-            <Image Grid.Row="2"
+            <Image Grid.Row="3"
                    Aspect="AspectFit"
+                   Margin="0,8,0,0"
                    Grid.ColumnSpan="2"
-                   Source="{Binding AlternativePicturePath}">
+                   Source="{Binding PicturePath}">
 
                 <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=GotoPhotoModalCommand, Source={x:Reference page}}" />
+                    <TapGestureRecognizer Command="{Binding Path=GotoPhotoModalCommand, Source={x:Reference imagePostCardPage}}" />
                 </Image.GestureRecognizers>
             </Image>
         </Grid>

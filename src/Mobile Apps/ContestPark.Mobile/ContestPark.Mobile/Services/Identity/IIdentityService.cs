@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
 using System.IO;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace ContestPark.Mobile.Services.Identity
         Task ChangeProfilePictureAsync(Stream picture);
 
         Task ForgetYourPasswordAsync(string userNameOrEmailAddress);
+
+        Task<ProfileInfoModel> GetProfileInfoByUserName(string userName);
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);
 

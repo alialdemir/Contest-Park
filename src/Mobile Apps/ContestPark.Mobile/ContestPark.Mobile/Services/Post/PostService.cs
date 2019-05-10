@@ -78,6 +78,28 @@ namespace ContestPark.Mobile.Services.Post
         }
 
         /// <summary>
+        /// Kullanıcı id'ye göre posts döner
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Posts listesi</returns>
+        public async Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/user/{userId}{pagingModel.ToString()}");
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<PostModel>>(uri);
+            }
+
+            var posts = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
+
+            _cacheService.Add(uri, posts);
+
+            return posts;
+        }
+
+        /// <summary>
         /// Post beğe
         /// </summary>
         /// <param name="postId">Post id</param>

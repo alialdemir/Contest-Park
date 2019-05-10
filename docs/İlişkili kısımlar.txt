@@ -96,3 +96,16 @@ Follow --> Notification // event ile çözülür
 Like --> Post
 Like --> Notification
 Question --> Score // eevent ile çözülür
+
+
+
+----------------------
+Chat
+Notification
+post
+Duel
+Identity
+Follow
+
+
+fullname, username, profilepicture, userid, 
