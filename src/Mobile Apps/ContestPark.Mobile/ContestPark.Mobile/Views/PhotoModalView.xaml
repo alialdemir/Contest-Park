@@ -1,8 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.PhotoModalView">
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+                 xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 prism:ViewModelLocator.AutowireViewModel="True"
+				 x:Class="ContestPark.Mobile.Views.PhotoModalView"
+				 x:Name="photoModalViewPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation ScaleIn="1"
+								   ScaleOut="0.7"
+								   DurationIn="700"
+								   PositionIn="Center"
+								   EasingIn="CubicOut"
+								   PositionOut="Center" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-</CarouselPage>
+            <iconize:IconButton Margin="10"
+				                Grid.Row="0"
+                                FontSize="22"
+				                VerticalOptions="Start"
+				                HorizontalOptions="End"
+				                Text="fas-times-circle"
+				                BackgroundColor="Transparent"
+                                TextColor="{StaticResource White}"
+                                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference photoModalViewPage}}" />
+
+            <cards:CoverFlowView Grid.Row="1"
+                                 IsCyclical="false"
+                                 PositionShiftValue="100"
+                                 VerticalOptions="FillAndExpand"
+                                 x:Name="listPictures"
+                                 HorizontalOptions="FillAndExpand"
+                                 SelectedIndex="{Binding SelectedIndex}">
+                <cards:CoverFlowView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding PicturePath}" />
+                    </DataTemplate>
+                </cards:CoverFlowView.ItemTemplate>
+            </cards:CoverFlowView>
+        </Grid>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

@@ -86,6 +86,9 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
                     <!-- header background -->
                     <Image HeightRequest="200"
@@ -93,7 +96,7 @@
                            Source="{Binding ProfileInfo.CoverPicture}">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer CommandParameter="Cover"
-                                                  Command="{Binding Path=GotoPhotoModalPageCommand}" />
+                                                  Command="{Binding GotoPhotoModalPageCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
                     <Image Aspect="Fill"
@@ -101,8 +104,8 @@
                            VerticalOptions="End"
                            Source="CurvedMask.png" />
                     <!-- Back button -->
-                    <iconize:IconButton Text="fas-arrow-left"
-                                        Margin="16,16,0,0"
+                    <iconize:IconButton Margin="16,16,0,0"
+                                        Text="fas-arrow-left"
                                         VerticalOptions="Start"
                                         HorizontalOptions="Start"
                                         BackgroundColor="Transparent"
@@ -111,10 +114,18 @@
                                         IsVisible="{Binding IsVisibleBackArrow}" />
 
                     <!-- profile name -->
-                    <StackLayout Grid.Row="1"
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand"
                                  Padding="0,50,0,0">
+                        <iconize:IconButton
+                                        WidthRequest="22"
+                                        HeightRequest="22"
+                                        Text="fas-arrow-left" />
                         <Label Text="{Binding ProfileInfo.FullName}"
                                Style="{StaticResource ProfileNameLabel}" />
+                        <iconize:IconButton
+                                        WidthRequest="22"
+                                        HeightRequest="22"
+                                        Text="fas-arrow-left" />
                     </StackLayout>
 
                     <!-- social stats -->
@@ -166,7 +177,7 @@
                                             HorizontalOptions="Center"
                                             CommandParameter="Profile"
                                             Source="{Binding ProfileInfo.ProfilePicturePath}"
-                                            Command="{Binding Path=GotoPhotoModalPageCommand}" />
+                                            Command="{Binding GotoPhotoModalPageCommand}" />
                 </Grid>
             </components:NonPersistentSelectedItemListView.Header>
             <components:NonPersistentSelectedItemListView.ItemTemplate>

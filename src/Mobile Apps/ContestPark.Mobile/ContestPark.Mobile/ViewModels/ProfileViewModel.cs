@@ -1,12 +1,16 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Post;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using MvvmHelpers;
 using Prism.Navigation;
 using Prism.Services;
+using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -19,6 +23,8 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IIdentityService _identityService;
         private readonly IPostService _postService;
+        private readonly ISettingsService _settingsService;
+
         private string userName;
 
         #endregion Private variables
@@ -29,13 +35,16 @@ namespace ContestPark.Mobile.ViewModels
             INavigationService navigationService,
             IPageDialogService dialogService,
             IIdentityService identityService,
-            IPostService postService
+            IPostService postService,
+            IPopupNavigation popupNavigation,
+            ISettingsService settingsService
 
-            ) : base(navigationService, dialogService)
+            ) : base(navigationService, dialogService, popupNavigation)
         {
             _identityService = identityService;
             _postService = postService;
             NavigationService = navigationService;
+            _settingsService = settingsService;
             Title = ContestParkResources.Profile;
         }
 
@@ -130,6 +139,47 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// modalName göre modal açar
+        /// </summary>
+        /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
+        private async Task GotoPhotoModalPageAsync(string modalName)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ObservableRangeCollection<PictureModel> pictures = new ObservableRangeCollection<PictureModel>();
+
+            if (modalName == "Profile")
+            {
+                pictures.Add(new PictureModel
+                {
+                    PicturePath = ProfileInfo.ProfilePicturePath,
+                    PictureType = Enums.PictureTypes.Profile,
+                });
+            }
+            else if (modalName == "Cover")
+            {
+                pictures.Add(new PictureModel
+                {
+                    PicturePath = ProfileInfo.CoverPicture,
+                    PictureType = Enums.PictureTypes.Cover,
+                });
+            }
+
+            if (pictures.Count != 0)
+            {
+                await PushPopupPageAsync(new PhotoModalView()
+                {
+                    Pictures = pictures
+                });
+            }
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
@@ -148,6 +198,8 @@ namespace ContestPark.Mobile.ViewModels
         {
             get { return new Command(() => ExecuteGotoFollowingCommand()); }
         }
+
+        public ICommand GotoPhotoModalPageCommand => new Command<string>(async (listTypes) => await GotoPhotoModalPageAsync(listTypes));
 
         #endregion Commands
 
