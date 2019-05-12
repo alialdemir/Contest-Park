@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.User;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.User;
 using JWT;
 using JWT.Serializers;
 
@@ -8,9 +9,17 @@ namespace ContestPark.Mobile.Helpers
     {
         public static UserInfoModel GetUserInfo(this UserInfoModel userInfoModel, string accessToken)
         {
-            if (string.IsNullOrEmpty(accessToken) || accessToken.Contains("fake_token"))
+            if (string.IsNullOrEmpty(accessToken) || accessToken.Contains("fake_token"))// mock data için fake token bilgisine göre user oluşturduk
             {
-                return new UserInfoModel();
+                return new UserInfoModel()
+                {
+                    CoverPicturePath = DefaultImages.DefaultCoverPicture,
+                    FullName = "Ali Aldemir",
+                    Language = Languages.Turkish,
+                    ProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                    UserId = "1111-1111-1111-1111",
+                    UserName = "witcherfearless"
+                };
             }
 
             JsonNetSerializer jsonNetSerializer = new JsonNetSerializer();
