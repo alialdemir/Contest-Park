@@ -544,4 +544,7 @@
   <data name="UserNotFound" xml:space="preserve">
     <value>Kullanıcı bulunamadı.</value>
   </data>
+  <data name="ShowImage" xml:space="preserve">
+    <value>Resmi görüntüle</value>
+  </data>
 </root>

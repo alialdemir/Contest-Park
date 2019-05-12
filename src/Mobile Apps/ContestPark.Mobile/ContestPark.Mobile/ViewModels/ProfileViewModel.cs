@@ -103,6 +103,27 @@ namespace ContestPark.Mobile.ViewModels
             await base.InitializeAsync();
         }
 
+        private async Task ChangePhotoAsync(string modalName)
+        {
+            string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
+                                                            ContestParkResources.Cancel,
+                                                            "",
+                                                            //buttons
+                                                            ContestParkResources.ShowImage,
+                                                            ContestParkResources.ChooseFromLibrary,
+                                                            ContestParkResources.TakeAPhoto);
+            if (string.Equals(selected, ContestParkResources.ChooseFromLibrary))
+            {
+            }
+            else if (string.Equals(selected, ContestParkResources.TakeAPhoto))
+            {
+            }
+            else if (string.Equals(selected, ContestParkResources.ShowImage))
+            {
+                GotoPhotoModalPage(modalName);
+            }
+        }
+
         /// <summary>
         /// Takip edenler listesine yönlendirir
         /// </summary>
@@ -143,7 +164,7 @@ namespace ContestPark.Mobile.ViewModels
         /// modalName göre modal açar
         /// </summary>
         /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
-        private async Task GotoPhotoModalPageAsync(string modalName)
+        private void GotoPhotoModalPage(string modalName)
         {
             if (IsBusy)
                 return;
@@ -171,7 +192,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (pictures.Count != 0)
             {
-                await PushPopupPageAsync(new PhotoModalView()
+                PushPopupPageAsync(new PhotoModalView()
                 {
                     Pictures = pictures
                 });
@@ -183,6 +204,8 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        public ICommand ChangePhotoCommand => new Command<string>(async (listTypes) => await ChangePhotoAsync(listTypes));
 
         public ICommand GotoBackCommand
         {
@@ -198,8 +221,6 @@ namespace ContestPark.Mobile.ViewModels
         {
             get { return new Command(() => ExecuteGotoFollowingCommand()); }
         }
-
-        public ICommand GotoPhotoModalPageCommand => new Command<string>(async (listTypes) => await GotoPhotoModalPageAsync(listTypes));
 
         #endregion Commands
 

@@ -96,7 +96,7 @@
                            Source="{Binding ProfileInfo.CoverPicture}">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer CommandParameter="Cover"
-                                                  Command="{Binding GotoPhotoModalPageCommand}" />
+                                                  Command="{Binding ChangePhotoCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
                     <Image Aspect="Fill"
@@ -177,7 +177,7 @@
                                             HorizontalOptions="Center"
                                             CommandParameter="Profile"
                                             Source="{Binding ProfileInfo.ProfilePicturePath}"
-                                            Command="{Binding GotoPhotoModalPageCommand}" />
+                                            Command="{Binding ChangePhotoCommand}" />
                 </Grid>
             </components:NonPersistentSelectedItemListView.Header>
             <components:NonPersistentSelectedItemListView.ItemTemplate>
