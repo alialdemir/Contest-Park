@@ -34,7 +34,8 @@
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
                 <components:NonPersistentSelectedItemListView x:Name="lstMessages"
                 IsRefreshing="False"
                 ItemAppearing="OnItemAppearing"

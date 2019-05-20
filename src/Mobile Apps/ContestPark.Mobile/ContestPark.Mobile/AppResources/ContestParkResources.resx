@@ -547,4 +547,7 @@
   <data name="ShowImage" xml:space="preserve">
     <value>Resmi görüntüle</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Yorumlar</value>
+  </data>
 </root>

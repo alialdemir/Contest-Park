@@ -146,13 +146,17 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
         private async Task ExecuteGotoProfilePageCommand(string userName)
         {
-            if (!string.IsNullOrEmpty(userName))
-            {
-                await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            if (IsBusy || string.IsNullOrEmpty(userName))
+                return;
+
+            IsBusy = true;
+
+            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
                 {
                     {"UserName", userName }
                 });
-            }
+
+            IsBusy = false;
         }
 
         /// <summary>

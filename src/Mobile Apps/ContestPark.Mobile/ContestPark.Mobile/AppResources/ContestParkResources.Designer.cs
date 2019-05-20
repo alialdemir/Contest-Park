@@ -232,6 +232,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Yorumlar.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yorum.
         /// </summary>
         public static string Comments {

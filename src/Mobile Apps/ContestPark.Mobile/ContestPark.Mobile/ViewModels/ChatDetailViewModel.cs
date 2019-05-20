@@ -260,7 +260,7 @@ namespace ContestPark.Mobile.ViewModels
 
             //////await _chatService.SendChat(new SendChatModel
             //////{
-            //////    Message = _message,
+            //////    Message = _message.Trim(),
             //////    ReceiverId = SenderUserId,
             //////    PublicKey = "675b5dce-10cc-4bcd-b635-1e911f6c4eaa"// TODO: config gibi bir yerden çekilmeli
             //////});
