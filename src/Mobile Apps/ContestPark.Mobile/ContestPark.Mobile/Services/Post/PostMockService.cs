@@ -17,6 +17,197 @@ namespace ContestPark.Mobile.Services.Post
             return true;
         }
 
+        public Task<PostDetailModel> GetPostByPostIdAsync(string postId)
+        {
+            return Task.FromResult(new PostDetailModel
+            {
+                Post = new PostModel
+                {
+                    CommentCount = 13,
+                    IsLike = false,
+                    Date = DateTime.Now.AddDays(1),
+                    LikeCount = 44,
+                    PostId = Guid.NewGuid().ToString(),
+                    PostType = Enums.PostTypes.Contest,
+                    Bet = 123,
+
+                    SubCategoryId = 1,
+                    SubCategoryName = "Football Players",
+                    SubCategoryPicturePath = DefaultImages.DefaultLock,
+
+                    CompetitorFullName = "Elif Öz",
+                    CompetitorProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                    CompetitorUserName = "elfoz",
+                    CompetitorTrueAnswerCount = 234,
+
+                    FounderFullName = "Ali Aldemir",
+                    FounderProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                    FounderTrueAnswerCount = 125,
+                    FounderUserName = "witcherfearless",
+                },
+                Comments = new ServiceModel<PostCommentModel>
+                {
+                    Count = 5,
+                    PageNumber = 1,
+                    PageSize = 10,
+                    Items = new List<PostCommentModel>
+                    {
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                        new PostCommentModel
+                        {
+                            Comment = "deneme comment",
+                            Date= DateTime.Now,
+                            FullName="Ali Aldemir",
+                            ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                            UserName = "witcherfearless"
+                        },
+                    }
+                },
+                Likes = new ServiceModel<PostDetailLikeModel>
+                {
+                    Count = 5,
+                    PageNumber = 1,
+                    PageSize = 10,
+                    Items = new List<PostDetailLikeModel>
+                {
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="witcherfearless"
+                    },
+                    new PostDetailLikeModel
+                    {
+                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
+                        UserName ="elifoz"
+                    },
+                }
+                }
+            });
+        }
+
         public Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel)
         {
             List<PostModel> posts = new List<PostModel>();
@@ -149,7 +340,7 @@ namespace ContestPark.Mobile.Services.Post
             return true;
         }
 
-        public Task<ServiceModel<PostLikeModel>> PostLikes(string postId, PagingModel pagingModel)
+        public Task<ServiceModel<PostLikeModel>> PostLikesAsync(string postId, PagingModel pagingModel)
         {
             List<PostLikeModel> postLikes = new List<PostLikeModel>();
 
@@ -172,6 +363,11 @@ namespace ContestPark.Mobile.Services.Post
                 PageSize = 1,
                 Items = postLikes
             });
+        }
+
+        public Task<bool> SendCommentAsync(string postId, string comment)
+        {
+            return Task.FromResult(true);
         }
     }
 }

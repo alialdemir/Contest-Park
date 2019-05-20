@@ -41,11 +41,11 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>İşlem başarılı ise true değilse false</returns>
         public async Task<bool> DisLikeAsync(string postId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}");
 
             try
             {
-                await _requestProvider.PostAsync<string>(uri);
+                await _requestProvider.DeleteAsync<string>(uri);
                 return true;
             }
             catch (System.Exception ex)
@@ -54,6 +54,22 @@ namespace ContestPark.Mobile.Services.Post
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Post id ait postu döndürür
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Post detayı</returns>
+        public async Task<PostDetailModel> GetPostByPostIdAsync(string postId)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}");
+
+            var posts = await _requestProvider.GetAsync<PostDetailModel>(uri);
+
+            _cacheService.Add(uri, posts);
+
+            return posts;
         }
 
         /// <summary>
@@ -106,11 +122,11 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>İşlem başarılı ise true değilse false</returns>
         public async Task<bool> LikeAsync(string postId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}");
 
             try
             {
-                await _requestProvider.DeleteAsync<string>(uri);
+                await _requestProvider.PostAsync<string>(uri);
                 return true;
             }
             catch (System.Exception ex)
@@ -127,7 +143,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <param name="postId">Post id</param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Postu beğenen kullanıcı listesi</returns>
-        public async Task<ServiceModel<PostLikeModel>> PostLikes(string postId, PagingModel pagingModel)
+        public async Task<ServiceModel<PostLikeModel>> PostLikesAsync(string postId, PagingModel pagingModel)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/like/{postId}{pagingModel.ToString()}");
 
@@ -141,6 +157,21 @@ namespace ContestPark.Mobile.Services.Post
             _cacheService.Add(uri, postLikes);
 
             return postLikes;
+        }
+
+        /// <summary>
+        /// Postaa yorum yaz
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <param name="comment">Yorumu</param>
+        /// <returns>Başarılı ise true değilsa falase</returns>
+        public async Task<bool> SendCommentAsync(string postId, string comment)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}");
+
+            string result = await _requestProvider.PostAsync<string>(uri, new { comment });
+
+            return string.IsNullOrEmpty(result);
         }
 
         #endregion Methods

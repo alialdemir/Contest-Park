@@ -43,7 +43,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            ServiceModel = await _postService.PostLikes(postId, ServiceModel);
+            ServiceModel = await _postService.PostLikesAsync(postId, ServiceModel);
 
             await base.InitializeAsync();
         }
