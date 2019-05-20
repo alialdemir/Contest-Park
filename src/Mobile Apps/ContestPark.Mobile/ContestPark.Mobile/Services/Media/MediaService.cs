@@ -39,19 +39,9 @@ namespace ContestPark.Mobile.Services.Media
 
         #region Methods
 
-        /// <summary>
-        /// The ShowMediaActionSheet
-        /// </summary>
-        /// <returns>The <see cref="Task"/></returns>
-        public async Task<Stream> ShowMediaActionSheet()
+        public async Task<Stream> GetPictureStream(string type)
         {
-            string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
-                                                                                    ContestParkResources.Cancel,
-                                                                                    "",
-                                                                                    //buttons
-                                                                                    ContestParkResources.ChooseFromLibrary,
-                                                                                    ContestParkResources.TakeAPhoto);
-            if (string.Equals(selected, ContestParkResources.ChooseFromLibrary))
+            if (string.Equals(type, ContestParkResources.ChooseFromLibrary))
             {
                 bool permissionStatus = await CheckPermissionStatusAsync(Permission.Storage);
                 if (!permissionStatus)
@@ -62,7 +52,7 @@ namespace ContestPark.Mobile.Services.Media
 
                 return await ChooseFromLibraryAsync();
             }
-            else if (string.Equals(selected, ContestParkResources.TakeAPhoto))
+            else if (string.Equals(type, ContestParkResources.TakeAPhoto))
             {
                 bool permissionStatus = await CheckPermissionStatusAsync(Permission.Camera);
                 if (!permissionStatus)
@@ -75,6 +65,21 @@ namespace ContestPark.Mobile.Services.Media
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// The ShowMediaActionSheet
+        /// </summary>
+        /// <returns>The <see cref="Task"/></returns>
+        public async Task<Stream> ShowMediaActionSheet()
+        {
+            string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
+                                                                                    ContestParkResources.Cancel,
+                                                                                    "",
+                                                                                    //buttons
+                                                                                    ContestParkResources.ChooseFromLibrary,
+                                                                                    ContestParkResources.TakeAPhoto);
+            return await GetPictureStream(selected);
         }
 
         /// <summary>

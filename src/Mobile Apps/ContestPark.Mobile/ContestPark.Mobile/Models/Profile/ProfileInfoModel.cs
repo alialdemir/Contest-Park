@@ -5,6 +5,7 @@ namespace ContestPark.Mobile.Models.Profile
     public class ProfileInfoModel : BaseModel
     {
         private string _fullName;
+        private bool _isBlocked;
         private string _userId;
         private string coverPicture = DefaultImages.DefaultCoverPicture;
         private int followersCount;
@@ -78,6 +79,17 @@ namespace ContestPark.Mobile.Models.Profile
 
                     RaisePropertyChanged(() => GameCount);
                 }
+            }
+        }
+
+        public bool IsBlocked
+        {
+            get { return _isBlocked; }
+            set
+            {
+                _isBlocked = value;
+
+                RaisePropertyChanged(() => IsBlocked);
             }
         }
 

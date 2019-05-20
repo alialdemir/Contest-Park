@@ -2,7 +2,10 @@
 using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.Profile;
+using ContestPark.Mobile.Services.Blocking;
+using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -11,6 +14,7 @@ using MvvmHelpers;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,10 +25,12 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
+        private readonly IBlockingService _blockingService;
+        private readonly IFollowService _followService;
         private readonly IIdentityService _identityService;
+        private readonly IMediaService _mediaService;
         private readonly IPostService _postService;
         private readonly ISettingsService _settingsService;
-
         private string userName;
 
         #endregion Private variables
@@ -37,7 +43,10 @@ namespace ContestPark.Mobile.ViewModels
             IIdentityService identityService,
             IPostService postService,
             IPopupNavigation popupNavigation,
-            ISettingsService settingsService
+            ISettingsService settingsService,
+            IBlockingService blockingService,
+            IFollowService followService,
+            IMediaService mediaService
 
             ) : base(navigationService, dialogService, popupNavigation)
         {
@@ -45,6 +54,9 @@ namespace ContestPark.Mobile.ViewModels
             _postService = postService;
             NavigationService = navigationService;
             _settingsService = settingsService;
+            _blockingService = blockingService;
+            _followService = followService;
+            _mediaService = mediaService;
             Title = ContestParkResources.Profile;
         }
 
@@ -52,8 +64,26 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
+        private bool _isMeProfile = false;
         private bool isVisibleBackArrow = false;
         private ProfileInfoModel profileInfo;
+
+        /// <summary>
+        /// Kendi profilindemi onu döndürür true ise kendi profili false ise başkasının profili
+        /// </summary>
+        public bool IsMeProfile
+        {
+            get
+            {
+                return _isMeProfile;
+            }
+
+            set
+            {
+                _isMeProfile = value;
+                RaisePropertyChanged(() => IsMeProfile);
+            }
+        }
 
         public bool IsVisibleBackArrow
         {
@@ -84,6 +114,28 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Mesaj detayına git
+        /// </summary>
+        /// <param name="receiverUserId">alıcının kullanıcı id</param>
+        public void GotoChatDetail()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+                {
+                    { "UserName", userName},
+                    { "FullName", ProfileInfo.FullName},
+                    { "SenderUserId", ProfileInfo.UserId},
+                    {"SenderProfilePicturePath", ProfileInfo.ProfilePicturePath }
+                });
+
+            IsBusy = false;
+        }
+
         protected override async Task InitializeAsync()
         {
             var profileInfo = await _identityService.GetProfileInfoByUserName(userName);
@@ -91,6 +143,9 @@ namespace ContestPark.Mobile.ViewModels
             if (profileInfo != null)
             {
                 ProfileInfo = profileInfo;
+
+                IsMeProfile = _settingsService.CurrentUser.UserName == ProfileInfo.UserId;
+
                 ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
             }
             else
@@ -103,8 +158,56 @@ namespace ContestPark.Mobile.ViewModels
             await base.InitializeAsync();
         }
 
-        private async Task ChangePhotoAsync(string modalName)
+        /// <summary>
+        /// Engelle engeli kaldır işlemi
+        /// </summary>
+        private async Task BlockProcess()
         {
+            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId))
+                return;
+
+            IsBusy = true;
+
+            // TODO: burada tersini aldığımız için aşağıda yanlış işlem yapıyor olabilir kontrol edilmesi lazım
+            ProfileInfo.IsBlocked = !ProfileInfo.IsBlocked;
+
+            bool isSuccesss = await (ProfileInfo.IsBlocked == true ?
+                  _blockingService.UnBlock(ProfileInfo.UserId) :
+                  _blockingService.Block(ProfileInfo.UserId));
+
+            if (!isSuccesss)
+            {
+                ProfileInfo.IsBlocked = !ProfileInfo.IsBlocked;
+
+                await DisplayAlertAsync("",
+                    ContestParkResources.GlobalErrorMessage,
+                    ContestParkResources.Okay);
+            }
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Profil yada kapak resmine tıklayınca
+        /// eğer kendi profili ise resmi değiştir görüntüle gibi seçenek çıkar
+        /// başkasının profili ise direk görüntüler
+        /// </summary>
+        /// <param name="pictureType">Kapak resmi yada profil resmi hangisine tıklanarak geldi</param>
+        private async Task ChangePhotoAsync(string pictureType)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            if (!IsMeProfile)
+            {
+                GotoPhotoModalPage(pictureType);
+                IsBusy = false;
+
+                return;
+            }
+
             string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
                                                             ContestParkResources.Cancel,
                                                             "",
@@ -112,16 +215,57 @@ namespace ContestPark.Mobile.ViewModels
                                                             ContestParkResources.ShowImage,
                                                             ContestParkResources.ChooseFromLibrary,
                                                             ContestParkResources.TakeAPhoto);
-            if (string.Equals(selected, ContestParkResources.ChooseFromLibrary))
+
+            if (string.Equals(selected, ContestParkResources.ChooseFromLibrary) || string.Equals(selected, ContestParkResources.TakeAPhoto))
             {
-            }
-            else if (string.Equals(selected, ContestParkResources.TakeAPhoto))
-            {
+                Stream pictureStream = await _mediaService.GetPictureStream(selected);
+                if (pictureStream == null)
+                {
+                    IsBusy = false;
+                    return;
+                }
+
+                switch (pictureType)
+                {
+                    case "Profile": await _identityService.ChangeCoverPictureAsync(pictureStream); break;
+                    case "Cover": await _identityService.ChangeProfilePictureAsync(pictureStream); break;
+                }
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))
             {
-                GotoPhotoModalPage(modalName);
+                GotoPhotoModalPage(pictureType);
             }
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Takip et takipten çıkar
+        /// </summary>
+        private async Task ExecuteFollowProcessCommand()
+        {
+            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId))
+                return;
+
+            IsBusy = true;
+
+            // TODO: burada tersini aldığımız için aşağıda yanlış işlem yapıyor olabilir kontrol edilmesi lazım
+            ProfileInfo.IsFollowing = !ProfileInfo.IsFollowing;
+
+            bool isSuccesss = await (ProfileInfo.IsFollowing == true ?
+                  _followService.UnFollowAsync(ProfileInfo.UserId) :
+                  _followService.FollowUpAsync(ProfileInfo.UserId));
+
+            if (!isSuccesss)
+            {
+                ProfileInfo.IsFollowing = !ProfileInfo.IsFollowing;
+
+                await DisplayAlertAsync("",
+                    ContestParkResources.GlobalErrorMessage,
+                    ContestParkResources.Okay);
+            }
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -161,16 +305,37 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// engelle, şikayet et gibi menüyü açar
+        /// </summary>
+        private async Task ExecuteInfoCommand()
+        {
+            string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
+                                                            ContestParkResources.Cancel,
+                                                               "",
+                                                           //buttons
+                                                           ProfileInfo.IsBlocked ? ContestParkResources.RemoveBlock : ContestParkResources.Block);
+            if (string.Equals(selected, ContestParkResources.RemoveBlock) || string.Equals(selected, ContestParkResources.Block))
+            {
+                await BlockProcess();
+            }
+        }
+
+        /// <summary>
+        /// Düello başlat
+        /// </summary>
+        private async Task ExecutePlayDuelCommand()
+        {
+            // TODO: Kategori listesi gelmeli seçilen kategoride düello başlatılmalı
+
+            await DisplayAlertAsync("", "Comingsoon", ContestParkResources.Okay);
+        }
+
+        /// <summary>
         /// modalName göre modal açar
         /// </summary>
         /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
         private void GotoPhotoModalPage(string modalName)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             ObservableRangeCollection<PictureModel> pictures = new ObservableRangeCollection<PictureModel>();
 
             if (modalName == "Profile")
@@ -197,8 +362,6 @@ namespace ContestPark.Mobile.ViewModels
                     Pictures = pictures
                 });
             }
-
-            IsBusy = false;
         }
 
         #endregion Methods
@@ -206,6 +369,16 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         public ICommand ChangePhotoCommand => new Command<string>(async (listTypes) => await ChangePhotoAsync(listTypes));
+
+        public ICommand FollowProcessCommand
+        {
+            get { return new Command(async () => await ExecuteFollowProcessCommand()); }
+        }
+
+        public ICommand GotChatDetailCommand
+        {
+            get { return new Command(() => GotoChatDetail()); }
+        }
 
         public ICommand GotoBackCommand
         {
@@ -220,6 +393,16 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand GotoFollowingCommand
         {
             get { return new Command(() => ExecuteGotoFollowingCommand()); }
+        }
+
+        public ICommand InfoCommand
+        {
+            get { return new Command(async () => await ExecuteInfoCommand()); }
+        }
+
+        public ICommand PlayDuelCommand
+        {
+            get { return new Command(async () => await ExecutePlayDuelCommand()); }
         }
 
         #endregion Commands

@@ -99,10 +99,18 @@
                                                   Command="{Binding ChangePhotoCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image Aspect="Fill"
-                           Margin="0,0,0,-1"
-                           VerticalOptions="End"
-                           Source="CurvedMask.png" />
+
+                    <!--Block-->
+                    <iconize:IconButton FontSize="22"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Text="fas-info-circle"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        BackgroundColor="Transparent"
+                                        IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
+                                        Command="{Binding InfoCommand}" />
+
                     <!-- Back button -->
                     <iconize:IconButton Margin="16,16,0,0"
                                         Text="fas-arrow-left"
@@ -114,18 +122,12 @@
                                         IsVisible="{Binding IsVisibleBackArrow}" />
 
                     <!-- profile name -->
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand"
-                                 Padding="0,50,0,0">
-                        <iconize:IconButton
-                                        WidthRequest="22"
-                                        HeightRequest="22"
-                                        Text="fas-arrow-left" />
+                    <StackLayout Grid.Row="1"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand"
+                                 Padding="0,20,0,0">
                         <Label Text="{Binding ProfileInfo.FullName}"
                                Style="{StaticResource ProfileNameLabel}" />
-                        <iconize:IconButton
-                                        WidthRequest="22"
-                                        HeightRequest="22"
-                                        Text="fas-arrow-left" />
                     </StackLayout>
 
                     <!-- social stats -->
@@ -137,14 +139,65 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <StackLayout Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Follow play, chat buttons -->
+                        <iconize:IconButton Grid.Row="0"
+                                            FontSize="22"
+                                            Text="{Binding Path=ProfileInfo.IsFollowing,  Converter={StaticResource isFollowIconConverter}}"
+                                            BorderWidth="3"
+                                            Grid.Column="0"
+                                            CornerRadius="50"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
+                                            BorderColor="{StaticResource Primary}"
+                                            Command="{Binding FollowProcessCommand}" />
+                        
+                        <iconize:IconButton Grid.Row="0"
+                                            FontSize="22"
+                                            Text="fas-play"
+                                            TextColor="{StaticResource Green}"
+                                            BorderWidth="3"
+                                            Grid.Column="1"
+                                            CornerRadius="50"
+                                            WidthRequest="50"
+                                            TranslationY="-70"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            Command="{Binding PlayDuelCommand}"
+                                            BorderColor="{StaticResource Primary}"
+                                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}" />
+
+
+                        <iconize:IconButton Grid.Row="0"
+                                            FontSize="22"
+                                            Grid.Column="2"
+                                            BorderWidth="3"
+                                            CornerRadius="50"
+                                            WidthRequest="50"
+                                            TranslationY="-70"
+                                            HeightRequest="50"
+                                            Text="fas-comments"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
+                                            BorderColor="{StaticResource Primary}"
+                                            Command="{Binding GotChatDetailCommand}" />
+
+                        <StackLayout Grid.Column="0"
+                                     Grid.Row="1">
                             <Label Text="{Binding ProfileInfo.GameCount}"
                                    Style="{StaticResource StatsNumberLabel}" />
                             <Label Text="{i18n:Translate Duel}"
                                    Style="{StaticResource StatsCaptionLabel}" />
                         </StackLayout>
 
-                        <StackLayout Grid.Column="1">
+                        <StackLayout Grid.Row="1"
+                            Grid.Column="1">
                             <Label Text="{Binding ProfileInfo.FollowUpCount}"
                                    Style="{StaticResource StatsNumberLabel}" />
 
@@ -156,7 +209,9 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
 
-                        <StackLayout Grid.Column="2">
+                        <StackLayout
+                                     Grid.Row="1"
+                            Grid.Column="2">
                             <Label Style="{StaticResource StatsNumberLabel}"
                                    Text="{Binding ProfileInfo.FollowersCount}" />
 
@@ -170,7 +225,7 @@
                         </StackLayout>
                     </Grid>
                     <!-- profile image -->
-                    <components:CircleImage TranslationY="50"
+                    <components:CircleImage TranslationY="5"
                                             WidthRequest="100"
                                             HeightRequest="100"
                                             VerticalOptions="End"

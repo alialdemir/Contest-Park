@@ -59,7 +59,8 @@ namespace ContestPark.Mobile.Services.Identity
                 FullName = "Ali Aldemir",
                 GameCount = 9876,
                 IsFollowing = false,
-                UserId = userId
+                UserId = userId,
+                IsBlocked = true,
             });
         }
 
