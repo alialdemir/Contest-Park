@@ -4,6 +4,7 @@
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:converters="clr-namespace:ContestPark.Mobile.Converters.CategoryDetail"
              xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
              x:Name="page">
     <ContentView.Resources>
@@ -104,9 +105,9 @@
                 </Label>
             </StackLayout>
 
-            <BoxView Grid.Row="1"
-                     Grid.ColumnSpan="3"
-                     BackgroundColor="#dedede" />
+            <components:Line Grid.Row="1"
+                             Grid.ColumnSpan="3"
+                             BackgroundColor="#dedede" />
 
             <iconize:IconImage Grid.Row="2"
                                Grid.Column="0"

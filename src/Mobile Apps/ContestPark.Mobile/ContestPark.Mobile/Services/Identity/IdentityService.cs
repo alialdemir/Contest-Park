@@ -4,6 +4,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
@@ -105,6 +106,21 @@ namespace ContestPark.Mobile.Services.Identity
             //string message = await _requestProvider.PostAsync<string>(uri, new { userNameOrEmailAddress });
 
             //await ShowErrorMessage(message);
+        }
+
+        /// <summary>
+        /// Kullanıcı id'sine göre profil sayfasında gösterilen dataları döndürür
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Profil sayfası görütülemek için gerekli bilgiler</returns>
+        public async Task<ProfileInfoModel> GetProfileInfoByUserName(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                return null;
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userId}");
+
+            return await _requestProvider.GetAsync<ProfileInfoModel>(uri);
         }
 
         /// <summary>

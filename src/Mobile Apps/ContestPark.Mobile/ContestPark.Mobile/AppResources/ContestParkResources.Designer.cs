@@ -313,6 +313,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Düello.
+        /// </summary>
+        public static string Duel {
+            get {
+                return ResourceManager.GetString("Duel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Altın Kazan.
         /// </summary>
         public static string EarnCoins {
@@ -1024,6 +1033,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resmi görüntüle.
+        /// </summary>
+        public static string ShowImage {
+            get {
+                return ResourceManager.GetString("ShowImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Giriş Yap.
         /// </summary>
         public static string SignIn {
@@ -1200,6 +1218,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string UserNameRequiredFields {
             get {
                 return ResourceManager.GetString("UserNameRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı bulunamadı..
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
         

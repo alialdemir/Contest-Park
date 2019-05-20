@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.ViewModels
@@ -41,5 +42,23 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Methods
+
+        #region Navigation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (IsInitialized)
+                return;
+
+            InitializeCommand.Execute(null);
+            IsInitialized = true;
+        }
+
+        public override void OnNavigatingTo(INavigationParameters parameters)
+        {
+            // tabs sayfalarında ilk açılışta tüm dataları çekmesin sayfaya gelirse çeksin diye base methodu ezdik
+        }
+
+        #endregion Navigation
     }
 }

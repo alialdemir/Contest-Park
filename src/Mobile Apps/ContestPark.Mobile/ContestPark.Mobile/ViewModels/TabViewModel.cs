@@ -1,4 +1,6 @@
 ﻿using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.User;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Navigation;
@@ -10,10 +12,11 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public TabViewModel(INavigationService navigationService,
-                            //IUserDataModule userDataModule,
+                            ISettingsService settingsService,
                             IEventAggregator eventAggregator) : base(navigationService)
         {
-            //   UserDataModule = userDataModule;
+            CurrentUser = settingsService.CurrentUser;
+
             eventAggregator
                         .GetEvent<TabPageNavigationEvent>()
                         .Subscribe((pageName) => PushNavigationPageAsync(pageName));
@@ -23,7 +26,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Property
 
-        //    public IUserDataModule UserDataModule { get; private set; }
+        public UserInfoModel CurrentUser { get; private set; }
 
         #endregion Property
 

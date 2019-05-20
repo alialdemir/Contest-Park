@@ -4,64 +4,57 @@
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
              x:Class="ContestPark.Mobile.Components.PostCardView.TextPostCard"
-             x:Name="page">
+             x:Name="textPostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:DateTimeMomentConverter x:Key="moment" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid Padding="8">
+        <Grid Padding="8"
+              RowSpacing="0"
+              ColumnSpacing="0">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="60" />
             </Grid.ColumnDefinitions>
 
             <Components:CircleImage Grid.Row="0"
                                     Grid.Column="0"
-                                    CommandParameter="{Binding FounderUserName}"
-                                    Source="{Binding FounderProfilePicturePath}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                                    CommandParameter="{Binding OwnerUserName}"
+                                    Source="{Binding OwnerProfilePicturePath}"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference textPostCardPage}}" />
 
-            <Components:HtmlLabel Grid.Row="0"
-                                  Grid.Column="1"
-                                  FontSize="Default"
-                                  LineBreakMode="WordWrap"
-                                  VerticalTextAlignment="Start"
-                                  HorizontalTextAlignment="Center"
-                                  Text="{Binding PostsDescription}"
-                                  TextColor="{StaticResource Black}" />
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   FontAttributes="Bold"
+                   Text="{Binding OwnerFullName}"
+                   VerticalTextAlignment="Start"
+                   TextColor="{StaticResource Black}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
                    TextColor="#c5c5c5"
-                   VerticalTextAlignment="End"
-                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
                    Text="{Binding Date, Converter={StaticResource moment}}" />
 
-            <Components:CircleImage Grid.Row="0"
-                                    Grid.Column="2"
-                                    Source="{Binding CompetitorProfilePicturePath}"
-                                    CommandParameter="{Binding CompetitorUserName}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+            <Components:Line Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="#dedede" />
 
-            <Label Grid.Row="1"
-                   FontSize="Small"
-                   Grid.ColumnSpan="2"
-                   Text="{Binding FounderFullName}"
-                   TextColor="{StaticResource Black}" />
-
-            <Label Grid.Row="1"
-                   FontSize="Small"
-                   Grid.ColumnSpan="3"
-                   HorizontalTextAlignment="End"
-                   TextColor="{StaticResource Black}"
-                   Text="{Binding CompetitorFullName}" />
+            <Components:HtmlLabel Grid.Row="2"
+                                  Grid.ColumnSpan="2"
+                                  FontSize="Default"
+                                  Margin="0,10,10,10"
+                                  LineBreakMode="WordWrap"
+                                  Text="{Binding Description}"
+                                  TextColor="{StaticResource Black}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

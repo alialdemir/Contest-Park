@@ -12,6 +12,8 @@ namespace ContestPark.Mobile.Services.Post
 
         Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel);
 
+        Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel);
+
         Task<bool> LikeAsync(string postId);
 
         Task<ServiceModel<PostLikeModel>> PostLikes(string postId, PagingModel pagingModel);

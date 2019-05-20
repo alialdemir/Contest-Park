@@ -1,16 +1,246 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:converter1="clr-namespace:ContestPark.Mobile.Converters.Follow"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ContestPark.Mobile.Views.ProfileView"
              Title="{Binding Title}"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="profilePage"
              Icon="fas-user-circle">
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="10">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:NegativeBooleanConverter x:Key="not" />
+            <converter1:FollowIconConverter x:Key="isFollowIconConverter" />
+            <!--  Application resource dictionary  -->
+            <!--  colors  -->
+            <Color x:Key="BodyTextColor">#C3C3C3</Color>
 
-            <Button Text="followers" Command="{Binding GotoFollowersCommand}" />
-            <Button Text="followering" Command="{Binding GotoFollowingCommand}" />
-        </StackLayout>
+            <!--  font families  -->
+            <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS">HelveticaNeue</On>
+                <On Platform="Android">sans-serif</On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="LightFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS">HelveticaNeue-Light</On>
+                <On Platform="Android">sans-serif-light</On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="MediumFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS">HelveticaNeue-Medium</On>
+                <On Platform="Android">sans-serif-medium</On>
+            </OnPlatform>
+
+            <!--  font sizes  -->
+            <x:Double x:Key="TitleFontSize">20</x:Double>
+            <x:Double x:Key="TagTextFontSize">18</x:Double>
+            <x:Double x:Key="StatsNumberFontSize">20</x:Double>
+            <x:Double x:Key="StatsCaptionFontSize">16</x:Double>
+
+            <!--  styles  -->
+            <Style x:Key="ProfileNameLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
+                <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ProfileTagLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
+                <Setter Property="FontSize" Value="{StaticResource TagTextFontSize}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="StatsNumberLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
+                <Setter Property="FontSize" Value="{StaticResource StatsNumberFontSize}" />
+            </Style>
+
+            <Style x:Key="StatsCaptionLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="0,-5,0,0" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
+                <Setter Property="FontSize" Value="{StaticResource StatsCaptionFontSize}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}"
+                                                      InfiniteScroll="{Binding InfiniteScroll}">
+            <components:NonPersistentSelectedItemListView.Header>
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- header background -->
+                    <Image HeightRequest="200"
+                           Aspect="AspectFill"
+                           Source="{Binding ProfileInfo.CoverPicture}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="Cover"
+                                                  Command="{Binding ChangePhotoCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <!--Block-->
+                    <iconize:IconButton FontSize="22"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        Text="fas-info-circle"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        BackgroundColor="Transparent"
+                                        IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
+                                        Command="{Binding InfoCommand}" />
+
+                    <!-- Back button -->
+                    <iconize:IconButton Margin="16,16,0,0"
+                                        Text="fas-arrow-left"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Start"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding GotoBackCommand}"
+                                        TextColor="{StaticResource Primary}"
+                                        IsVisible="{Binding IsVisibleBackArrow}" />
+
+                    <!-- profile name -->
+                    <StackLayout Grid.Row="1"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand"
+                                 Padding="0,20,0,0">
+                        <Label Text="{Binding ProfileInfo.FullName}"
+                               Style="{StaticResource ProfileNameLabel}" />
+                    </StackLayout>
+
+                    <!-- social stats -->
+                    <Grid Grid.Row="2"
+                          ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Follow play, chat buttons -->
+                        <iconize:IconButton Grid.Row="0"
+                                            FontSize="22"
+                                            Text="{Binding Path=ProfileInfo.IsFollowing,  Converter={StaticResource isFollowIconConverter}}"
+                                            BorderWidth="3"
+                                            Grid.Column="0"
+                                            CornerRadius="50"
+                                            TranslationY="-70"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
+                                            BorderColor="{StaticResource Primary}"
+                                            Command="{Binding FollowProcessCommand}" />
+
+                        <iconize:IconButton Grid.Row="0"
+                                            FontSize="22"
+                                            Text="fas-play"
+                                            TextColor="{StaticResource Green}"
+                                            BorderWidth="3"
+                                            Grid.Column="1"
+                                            CornerRadius="50"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            Command="{Binding PlayDuelCommand}"
+                                            BorderColor="{StaticResource Primary}"
+                                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}" />
+
+                        <iconize:IconButton Grid.Row="0"
+                                            FontSize="22"
+                                            Grid.Column="2"
+                                            BorderWidth="3"
+                                            CornerRadius="50"
+                                            WidthRequest="50"
+                                            TranslationY="-70"
+                                            HeightRequest="50"
+                                            Text="fas-comments"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
+                                            BorderColor="{StaticResource Primary}"
+                                            Command="{Binding GotChatDetailCommand}" />
+
+                        <StackLayout Grid.Column="0"
+                                     Grid.Row="1">
+                            <Label Text="{Binding ProfileInfo.GameCount}"
+                                   Style="{StaticResource StatsNumberLabel}" />
+                            <Label Text="{i18n:Translate Duel}"
+                                   Style="{StaticResource StatsCaptionLabel}" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1"
+                            Grid.Column="1">
+                            <Label Text="{Binding ProfileInfo.FollowUpCount}"
+                                   Style="{StaticResource StatsNumberLabel}" />
+
+                            <Label Text="{i18n:Translate Following}"
+                                   Style="{StaticResource StatsCaptionLabel}" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="2"
+                                                      Command="{Binding GotoFollowingCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout
+                                     Grid.Row="1"
+                            Grid.Column="2">
+                            <Label Style="{StaticResource StatsNumberLabel}"
+                                   Text="{Binding ProfileInfo.FollowersCount}" />
+
+                            <Label Text="{i18n:Translate Followers}"
+                                   Style="{StaticResource StatsCaptionLabel}" />
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="1"
+                                                      Command="{Binding GotoFollowersCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                    <!-- profile image -->
+                    <components:CircleImage TranslationY="5"
+                                            WidthRequest="100"
+                                            HeightRequest="100"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Center"
+                                            CommandParameter="Profile"
+                                            Source="{Binding ProfileInfo.ProfilePicturePath}"
+                                            Command="{Binding ChangePhotoCommand}" />
+                </Grid>
+            </components:NonPersistentSelectedItemListView.Header>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:PostCardFactoryView NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference profilePage}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

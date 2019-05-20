@@ -1,6 +1,8 @@
-﻿using ContestPark.Mobile.Models;
+﻿using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
@@ -44,6 +46,22 @@ namespace ContestPark.Mobile.Services.Identity
         public Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
         {
             return Task.CompletedTask;
+        }
+
+        public Task<ProfileInfoModel> GetProfileInfoByUserName(string userId)
+        {
+            return Task.FromResult(new ProfileInfoModel
+            {
+                CoverPicture = DefaultImages.DefaultCoverPicture,
+                ProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                FollowersCount = 99,
+                FollowUpCount = 101,
+                FullName = "Ali Aldemir",
+                GameCount = 9876,
+                IsFollowing = false,
+                UserId = userId,
+                IsBlocked = true,
+            });
         }
 
         public async Task<UserToken> GetTokenAsync(LoginModel loginModel)
