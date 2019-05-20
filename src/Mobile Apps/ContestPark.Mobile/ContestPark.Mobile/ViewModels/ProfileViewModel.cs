@@ -202,7 +202,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (!IsMeProfile)
             {
-                GotoPhotoModalPage(pictureType);
+                await GotoPhotoModalPage(pictureType);
                 IsBusy = false;
 
                 return;
@@ -233,7 +233,7 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))
             {
-                GotoPhotoModalPage(pictureType);
+                await GotoPhotoModalPage(pictureType);
             }
 
             IsBusy = false;
@@ -334,7 +334,7 @@ namespace ContestPark.Mobile.ViewModels
         /// modalName göre modal açar
         /// </summary>
         /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
-        private void GotoPhotoModalPage(string modalName)
+        private async Task GotoPhotoModalPage(string modalName)
         {
             ObservableRangeCollection<PictureModel> pictures = new ObservableRangeCollection<PictureModel>();
 
@@ -357,7 +357,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (pictures.Count != 0)
             {
-                PushPopupPageAsync(new PhotoModalView()
+                await PushPopupPageAsync(new PhotoModalView()
                 {
                     Pictures = pictures
                 });

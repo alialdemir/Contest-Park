@@ -151,13 +151,14 @@
                                             BorderWidth="3"
                                             Grid.Column="0"
                                             CornerRadius="50"
+                                            TranslationY="-70"
                                             WidthRequest="50"
                                             HeightRequest="50"
                                             HorizontalOptions="Center"
                                             IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
                                             BorderColor="{StaticResource Primary}"
                                             Command="{Binding FollowProcessCommand}" />
-                        
+
                         <iconize:IconButton Grid.Row="0"
                                             FontSize="22"
                                             Text="fas-play"
@@ -166,13 +167,11 @@
                                             Grid.Column="1"
                                             CornerRadius="50"
                                             WidthRequest="50"
-                                            TranslationY="-70"
                                             HeightRequest="50"
                                             HorizontalOptions="Center"
                                             Command="{Binding PlayDuelCommand}"
                                             BorderColor="{StaticResource Primary}"
                                             IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}" />
-
 
                         <iconize:IconButton Grid.Row="0"
                                             FontSize="22"
