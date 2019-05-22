@@ -85,7 +85,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             PostModel = await _postService.GetPostByPostIdAsync(postId);
-            if (PostModel != null && PostModel.Likes != null)
+            if (PostModel != null && PostModel.Comments != null)
             {
                 ServiceModel = PostModel.Comments;
             }

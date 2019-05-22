@@ -430,6 +430,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BİTİRME BONUSU.
+        /// </summary>
+        public static string FinishBonus {
+            get {
+                return ResourceManager.GetString("FinishBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Takip Et.
         /// </summary>
         public static string Follow {
@@ -633,6 +642,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Master {
             get {
                 return ResourceManager.GetString("Master", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAÇ SKORU.
+        /// </summary>
+        public static string MatchScore {
+            get {
+                return ResourceManager.GetString("MatchScore", resourceCulture);
             }
         }
         
@@ -916,6 +934,24 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SONUÇLAR.
+        /// </summary>
+        public static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rövanş.
+        /// </summary>
+        public static string Revenge {
+            get {
+                return ResourceManager.GetString("Revenge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kaydet.
         /// </summary>
         public static string Save {
@@ -1132,6 +1168,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TOPLAM XP.
+        /// </summary>
+        public static string TotalXp {
+            get {
+                return ResourceManager.GetString("TotalXp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Turkish.
         /// </summary>
         public static string Turkish {
@@ -1236,6 +1281,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string UserNotFound {
             get {
                 return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KAZANMA BONUSU.
+        /// </summary>
+        public static string VictoryBonus {
+            get {
+                return ResourceManager.GetString("VictoryBonus", resourceCulture);
             }
         }
         

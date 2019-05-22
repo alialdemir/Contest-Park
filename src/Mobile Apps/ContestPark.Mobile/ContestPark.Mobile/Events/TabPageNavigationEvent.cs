@@ -1,6 +1,7 @@
-﻿using Prism.Events;
+﻿using ContestPark.Mobile.Models.PageNavigation;
+using Prism.Events;
 
 namespace ContestPark.Mobile.Events
 {
-    public class TabPageNavigationEvent : PubSubEvent<string> { }
+    public class TabPageNavigationEvent : PubSubEvent<PageNavigation> { }
 }

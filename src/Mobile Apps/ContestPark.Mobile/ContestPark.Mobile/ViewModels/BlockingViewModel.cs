@@ -20,10 +20,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public BlockingViewModel(
-            IBlockingService blockingService,
-            IPageDialogService pageDialogService
-            ) : base(dialogService: pageDialogService)
+        public BlockingViewModel(IBlockingService blockingService,
+                                 IPageDialogService pageDialogService) : base(dialogService: pageDialogService)
         {
             Title = ContestParkResources.Blocking;
             _blockingService = blockingService;

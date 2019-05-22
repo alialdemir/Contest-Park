@@ -550,4 +550,22 @@
   <data name="Comment" xml:space="preserve">
     <value>Yorumlar</value>
   </data>
+  <data name="Results" xml:space="preserve">
+    <value>SONUÇLAR</value>
+  </data>
+  <data name="FinishBonus" xml:space="preserve">
+    <value>BİTİRME BONUSU</value>
+  </data>
+  <data name="MatchScore" xml:space="preserve">
+    <value>MAÇ SKORU</value>
+  </data>
+  <data name="TotalXp" xml:space="preserve">
+    <value>TOPLAM XP</value>
+  </data>
+  <data name="VictoryBonus" xml:space="preserve">
+    <value>KAZANMA BONUSU</value>
+  </data>
+  <data name="Revenge" xml:space="preserve">
+    <value>Rövanş</value>
+  </data>
 </root>

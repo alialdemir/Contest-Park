@@ -23,7 +23,6 @@ namespace ContestPark.Mobile.Components
             //Aspect = Aspect.AspectFill;
             DownsampleToViewSize = false;
             DownsampleUseDipUnits = false;
-            AutomationId = "imgProfilePhoto";
             HorizontalOptions = LayoutOptions.Center;
             VerticalOptions = LayoutOptions.Center;
             CacheDuration = new TimeSpan(0, 1, 0, 0);

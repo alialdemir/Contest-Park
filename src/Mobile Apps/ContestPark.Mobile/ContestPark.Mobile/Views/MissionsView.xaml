@@ -80,7 +80,6 @@
                                     Grid.RowSpan="2"
                                     BackgroundColor="Transparent"
                                     Style="{StaticResource Button}"
-                                    AutomationId="LoginWithGooglePlus"
                                     TextColor="{StaticResource Primary}"
                                     CommandParameter="{Binding MissionId}"
                                     Text="{Binding Gold, StringFormat='    {0}'}"

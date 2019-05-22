@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.MenuItem;
+using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -193,7 +194,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 _eventAggregator
                         .GetEvent<TabPageNavigationEvent>()
-                        .Publish(name);
+                        .Publish(new PageNavigation(name));
             }
 
             IsBusy = false;
