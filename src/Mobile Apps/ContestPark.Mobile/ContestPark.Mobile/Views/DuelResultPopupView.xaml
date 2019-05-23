@@ -8,6 +8,7 @@
                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
                  prism:ViewModelLocator.AutowireViewModel="True"
                  x:Class="ContestPark.Mobile.Views.DuelResultPopupView"
                  x:Name="duelResultPopupViewPage"
@@ -44,6 +45,14 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
 
+            <forms:AnimationView Loop="True"
+                                 Grid.RowSpan="8"
+                                 AutoPlay="{Binding DuelResult.IsShowFireworks}"
+                                 IsVisible="{Binding DuelResult.IsShowFireworks}"
+                                 Grid.ColumnSpan="5"
+                                 Animation="fireworks.json"
+                                 VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand" />
             <!-- Results -->
             <Label Grid.Row="0"
                    FontSize="Small"
@@ -89,7 +98,7 @@
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="CenterAndExpand"
                                    IconColor="{StaticResource Primary}" />
-            
+
             <!-- Founder score -->
             <Label Text="{Binding DuelResult.FounderScore}"
                    Grid.Row="4"
@@ -109,7 +118,6 @@
                                     Command="{Binding GotoProfilePageCommand}"
                                     CommandParameter="{Binding DuelResult.FounderUserName}"
                                     Source="{Binding DuelResult.FounderProfilePicturePath}" />
-
 
             <Label Text="VS"
                    Grid.Row="4"

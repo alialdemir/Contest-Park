@@ -188,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\coin.json" />
+    <AndroidAsset Include="Assets\fireworks.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

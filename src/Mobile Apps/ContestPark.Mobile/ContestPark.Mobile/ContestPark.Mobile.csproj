@@ -25,12 +25,14 @@
   <ItemGroup>
     <None Remove="Audios\AwaitingOpponent.mp3" />
     <None Remove="Audios\Fail.mp3" />
+    <None Remove="Audios\Fireworks.mp3" />
     <None Remove="Audios\Success.mp3" />
     <None Remove="Audios\_Success.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Audios\AwaitingOpponent.mp3" />
     <EmbeddedResource Include="Audios\Fail.mp3" />
+    <EmbeddedResource Include="Audios\Fireworks.mp3" />
     <EmbeddedResource Include="Audios\Success.mp3" />
     <EmbeddedResource Include="Audios\_Success.mp3" />
   </ItemGroup>

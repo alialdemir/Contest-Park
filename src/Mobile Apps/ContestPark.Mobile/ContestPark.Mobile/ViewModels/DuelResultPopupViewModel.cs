@@ -1,17 +1,17 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Components.DuelResultSocialMedia;
+﻿using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
+using ContestPark.Mobile.Services.Audio;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -23,7 +23,9 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
+        private readonly IAudioService _audioService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly ISettingsService _settingsService;
 
         #endregion Private variables
 
@@ -31,10 +33,14 @@ namespace ContestPark.Mobile.ViewModels
 
         public DuelResultPopupViewModel(
             IPopupNavigation popupNavigation,
-            IEventAggregator eventAggregator
+            IEventAggregator eventAggregator,
+            IAudioService audioService,
+            ISettingsService settingsService
             ) : base(popupNavigation: popupNavigation)
         {
             _eventAggregator = eventAggregator;
+            _audioService = audioService;
+            _settingsService = settingsService;
         }
 
         #endregion Constructors
@@ -66,10 +72,11 @@ namespace ContestPark.Mobile.ViewModels
                 OpponentProfilePicturePath = DefaultImages.DefaultProfilePicture,
                 OpponentUserName = "eliföz",
                 SubCategoryName = "Futbol",
-                WinnerOrLoseText = "Sen kazandın",
                 FounderFullName = "Ali Aldemir",
                 OpponentFullName = "Elif Öz",
-                FounderScore = 234,
+                FounderUserId = "1111-1111-1111-1111",
+                OpponentUserId = "2222-2222-2222-2222",
+                FounderScore = 12,
                 OpponentScore = 12,
                 FinishBonus = 40,
                 VictoryBonus = 30,
@@ -80,6 +87,10 @@ namespace ContestPark.Mobile.ViewModels
                 SubCategoryId = 1,
                 Gold = 6234
             };
+
+            if (_settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
+                _audioService.Play(Audio.Fireworks, true);
+
             return base.InitializeAsync();
         }
 

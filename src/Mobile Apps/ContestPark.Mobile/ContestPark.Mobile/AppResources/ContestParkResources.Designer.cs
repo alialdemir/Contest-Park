@@ -1384,6 +1384,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kaybettin!.
+        /// </summary>
+        public static string YouLose {
+            get {
+                return ResourceManager.GetString("YouLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bilgileriniz güncellendi..
         /// </summary>
         public static string YourInformationHasBeenUpdated {
@@ -1416,6 +1425,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YourPhoneDoesNotSupportInAppPurchases {
             get {
                 return ResourceManager.GetString("YourPhoneDoesNotSupportInAppPurchases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sen Kazandın!.
+        /// </summary>
+        public static string YouWin {
+            get {
+                return ResourceManager.GetString("YouWin", resourceCulture);
             }
         }
     }

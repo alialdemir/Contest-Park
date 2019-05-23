@@ -1,14 +1,18 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Services.Settings;
 using Newtonsoft.Json;
+using Prism.Ioc;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Duel.DuelResult
 {
     public class DuelResultModel
     {
-        private string _winnerOrLoseText = "Sen kazandın!";
-        private string _winnerOrLoseTextColor = "Green";
+        [JsonIgnore]
+        private int myVar;
 
+        private ISettingsService settingsService;
         public byte FinishBonus { get; set; }
 
         [JsonIgnore]
@@ -39,6 +43,26 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public string FounderUserName { get; set; }
         public int Gold { get; set; }
         public bool IsFounder { get; set; }
+
+        public bool IsShowFireworks
+        {
+            get
+            {
+                if (OpponentScore > FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == OpponentUserId;
+                }
+                else if (OpponentScore < FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == FounderUserId;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public byte MatchScore { get; set; }
 
         [JsonIgnore]
@@ -81,13 +105,56 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
 
         public byte VictoryBonus { get; set; }
 
-        [JsonIgnore]
-        public string WinnerOrLoseText { get; set; }
+        public string WinnerOrLoseText
+        {
+            get
+            {
+                if (OpponentScore > FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == OpponentUserId ? ContestParkResources.YouWin : ContestParkResources.YouLose;
+                }
+                else if (OpponentScore < FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == FounderUserId ? ContestParkResources.YouWin : ContestParkResources.YouLose;
+                }
+                else
+                {
+                    return ContestParkResources.Tie;
+                }
+            }
+        }
 
         [JsonIgnore]
         public string WinnerOrLoseTextColor
         {
-            get { return _winnerOrLoseTextColor; }
+            get
+            {
+                if (OpponentScore > FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == OpponentUserId ? GetHexString("Green") : GetHexString("Red");
+                }
+                else if (OpponentScore < FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == FounderUserId ? GetHexString("Green") : GetHexString("Red");
+                }
+                else
+                {
+                    return GetHexString("Primary");
+                }
+            }
+        }
+
+        private ISettingsService SettingsService
+        {
+            get
+            {
+                if (settingsService == null)
+                {
+                    settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                }
+
+                return settingsService;
+            }
         }
 
         public string GetHexString(string colorName)

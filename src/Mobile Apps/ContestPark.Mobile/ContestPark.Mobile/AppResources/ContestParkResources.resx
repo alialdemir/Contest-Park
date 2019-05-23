@@ -578,4 +578,10 @@
     <value />
     <comment>Türkçede bu boş olarak kalmalı</comment>
   </data>
+  <data name="YouLose" xml:space="preserve">
+    <value>Kaybettin!</value>
+  </data>
+  <data name="YouWin" xml:space="preserve">
+    <value>Sen Kazandın!</value>
+  </data>
 </root>

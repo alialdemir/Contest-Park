@@ -4,6 +4,7 @@
     {
         AwaitingOpponent,
         Success,
-        Fail
+        Fail,
+        Fireworks
     }
 }
