@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;

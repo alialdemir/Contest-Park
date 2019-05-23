@@ -1,13 +1,20 @@
-﻿using ContestPark.Mobile.Events;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Components.DuelResultSocialMedia;
+using ContestPark.Mobile.Dependencies;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.DuelResult;
+using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -58,7 +65,7 @@ namespace ContestPark.Mobile.ViewModels
                 FounderUserName = "witcherfearless",
                 OpponentProfilePicturePath = DefaultImages.DefaultProfilePicture,
                 OpponentUserName = "eliföz",
-                SubCategoryName = "Football",
+                SubCategoryName = "Futbol",
                 WinnerOrLoseText = "Sen kazandın",
                 FounderFullName = "Ali Aldemir",
                 OpponentFullName = "Elif Öz",
@@ -69,6 +76,9 @@ namespace ContestPark.Mobile.ViewModels
                 MatchScore = 234,
                 OpponentLevel = 1,
                 FounderLevel = 7,
+                SubCategoryPicturePath = DefaultImages.DefaultLock,
+                SubCategoryId = 1,
+                Gold = 6234
             };
             return base.InitializeAsync();
         }
@@ -78,7 +88,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteFindOpponentCommand()
         {
-            if (IsBusy)
+            if (IsBusy || DuelResult == null)
                 return;
 
             IsBusy = true;
@@ -135,7 +145,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
         private async Task ExecuteGotoProfilePageCommand(string userName)
         {
-            if (IsBusy)
+            if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
 
             IsBusy = true;
@@ -160,7 +170,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteRevengeCommand()
         {
-            if (IsBusy)
+            if (IsBusy || DuelResult == null)
                 return;
 
             IsBusy = true;
@@ -179,11 +189,56 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Düello sonucu sosyal medyada paylaş
+        /// Düello sonucunu sosyal medyada paylaş
         /// </summary>
-        private Task ExecuteShareCommand()
+        private async void ExecuteShareCommand()
         {
-            return Task.CompletedTask;
+            if (IsBusy || DuelResult == null)
+                return;
+
+            IsBusy = true;
+
+            IConvertUIToImage convertUIToImage = DependencyService.Get<IConvertUIToImage>();
+            if (convertUIToImage == null)
+            {
+                IsBusy = false;
+                return;
+            }
+
+            string path = convertUIToImage.GetImagePathByPage(new DuelResultSocialMediaView()
+            {
+                ViewModel = new DuelResultSocialMediaModel
+                {
+                    FounderColor = DuelResult.FounderColor,
+                    OpponentColor = DuelResult.OpponentColor,
+                    FounderProfilePicturePath = DuelResult.FounderProfilePicturePath,
+                    OpponentProfilePicturePath = DuelResult.OpponentProfilePicturePath,
+                    SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                    FounderFullName = DuelResult.FounderFullName,
+                    OpponentFullName = DuelResult.OpponentFullName,
+                    SubCategoryName = DuelResult.SubCategoryName,
+                    Date = DateTime.Now.ToString("MMMM dd, yyyy"),
+                    FounderScore = DuelResult.FounderScore,
+                    OpponentScore = DuelResult.OpponentScore,
+                    Gold = DuelResult.Gold
+                }
+            });
+
+            if (string.IsNullOrEmpty(path))
+            {
+                IsBusy = false;
+                return;
+            }
+
+            ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
+
+            await Share.RequestAsync(new ShareFileRequest
+            {
+                Title = Title,
+                File = new ShareFile(path)
+            });
+
+            IsBusy = false;
         }
 
         #endregion Methods
@@ -195,7 +250,7 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand GotoChatCommand { get { return new Command(async () => await ExecuteGotoChatCommand()); } }
         public ICommand GotoProfilePageCommand { get { return new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)); } }
         public ICommand RevengeCommand { get { return new Command(async () => await ExecuteRevengeCommand()); } }
-        public ICommand ShareCommand { get { return new Command(async () => await ExecuteShareCommand()); } }
+        public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
 
         #endregion Commands
     }

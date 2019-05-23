@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Mobile.AppResources;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Duel.DuelResult
@@ -36,6 +37,7 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public byte FounderScore { get; set; }
         public string FounderUserId { get; set; }
         public string FounderUserName { get; set; }
+        public int Gold { get; set; }
         public bool IsFounder { get; set; }
         public byte MatchScore { get; set; }
 
@@ -80,11 +82,7 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public byte VictoryBonus { get; set; }
 
         [JsonIgnore]
-        public string WinnerOrLoseText
-        {
-            get { return _winnerOrLoseText; }
-            set { _winnerOrLoseText = value; }
-        }
+        public string WinnerOrLoseText { get; set; }
 
         [JsonIgnore]
         public string WinnerOrLoseTextColor

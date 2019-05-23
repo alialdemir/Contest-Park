@@ -137,12 +137,6 @@ namespace ContestPark.Mobile.Services.Game
                 Title = "ContestPark",
                 Uri = appStoreLink,
             });
-            //CrossShare.Current.Share(new ShareMessage
-            //{
-            //    Text = "Social competition platform.",
-            //    Title = "ContestPark",
-            //    Url = appStoreLink,
-            //});
         }
 
         #endregion Methods

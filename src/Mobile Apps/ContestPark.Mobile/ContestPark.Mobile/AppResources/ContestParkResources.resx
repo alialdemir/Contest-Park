@@ -568,4 +568,14 @@
   <data name="Revenge" xml:space="preserve">
     <value>Rövanş</value>
   </data>
+  <data name="Playing" xml:space="preserve">
+    <value>OYNADI</value>
+  </data>
+  <data name="Victorious" xml:space="preserve">
+    <value>GALİP GELDİ</value>
+  </data>
+  <data name="Was" xml:space="preserve">
+    <value />
+    <comment>Türkçede bu boş olarak kalmalı</comment>
+  </data>
 </root>
