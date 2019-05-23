@@ -244,10 +244,10 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Mesaj gönder
         /// </summary>
-        private async Task ExecuteSendMessageCommand()
+        private Task ExecuteSendMessageCommand()
         {
             if (IsBusy || string.IsNullOrEmpty(_message))
-                return;
+                return Task.CompletedTask;
 
             IsBusy = true;
 
@@ -272,6 +272,8 @@ namespace ContestPark.Mobile.ViewModels
             Message = String.Empty;
 
             IsBusy = false;
+
+            return Task.CompletedTask;
         }
 
         /// <summary>

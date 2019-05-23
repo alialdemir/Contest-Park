@@ -584,4 +584,7 @@
   <data name="YouWin" xml:space="preserve">
     <value>Sen Kazandın!</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Sohbet</value>
+  </data>
 </root>

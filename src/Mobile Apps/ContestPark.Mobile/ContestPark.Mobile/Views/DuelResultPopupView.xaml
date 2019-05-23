@@ -23,29 +23,30 @@
 								   PositionOut="Center" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <Grid RowSpacing="0"
+        <ScrollView>
+            <Grid RowSpacing="0"
               ColumnSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="50" />
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
 
-            <forms:AnimationView Loop="True"
+                <forms:AnimationView Loop="True"
                                  Grid.RowSpan="8"
                                  AutoPlay="{Binding DuelResult.IsShowFireworks}"
                                  IsVisible="{Binding DuelResult.IsShowFireworks}"
@@ -53,8 +54,8 @@
                                  Animation="fireworks.json"
                                  VerticalOptions="FillAndExpand"
                                  HorizontalOptions="FillAndExpand" />
-            <!-- Results -->
-            <Label Grid.Row="0"
+                <!-- Results -->
+                <Label Grid.Row="0"
                    FontSize="Small"
                    Grid.ColumnSpan="5"
                    FontAttributes="Bold"
@@ -62,8 +63,8 @@
                    Text="{i18n:Translate Results}"
                    TextColor="{StaticResource DarkGray}" />
 
-            <!-- Close button -->
-            <iconize:IconButton Grid.Row="0"
+                <!-- Close button -->
+                <iconize:IconButton Grid.Row="0"
                                 Grid.Column="4"
 				                FontSize="22"
 				                Text="fas-times-circle"
@@ -72,8 +73,8 @@
                                 TextColor="{StaticResource White}"
                                 Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference duelResultPopupViewPage}}" />
 
-            <!-- Subcategory name -->
-            <Label Grid.Row="1"
+                <!-- Subcategory name -->
+                <Label Grid.Row="1"
                    Grid.ColumnSpan="5"
                    FontAttributes="Bold"
                    FontSize="Large"
@@ -81,8 +82,8 @@
                    TextColor="{StaticResource White}"
                    Text="{Binding DuelResult.SubCategoryName}" />
 
-            <!-- Winner or lose text -->
-            <Label Grid.Row="2"
+                <!-- Winner or lose text -->
+                <Label Grid.Row="2"
                    Grid.ColumnSpan="5"
                    HorizontalTextAlignment="Center"
                    FontAttributes="Bold"
@@ -90,8 +91,8 @@
                    Text="{Binding DuelResult.WinnerOrLoseText}"
                    TextColor="{Binding DuelResult.WinnerOrLoseTextColor}" />
 
-            <!-- Gold -->
-            <iconButton:IconButton Grid.Row="3"
+                <!-- Gold -->
+                <iconButton:IconButton Grid.Row="3"
                                    Icon="far-gem"
                                    Grid.ColumnSpan="5"
                                    Text="{Binding DuelResult.Gold}"
@@ -99,8 +100,8 @@
                                    HorizontalOptions="CenterAndExpand"
                                    IconColor="{StaticResource Primary}" />
 
-            <!-- Founder score -->
-            <Label Text="{Binding DuelResult.FounderScore}"
+                <!-- Founder score -->
+                <Label Text="{Binding DuelResult.FounderScore}"
                    Grid.Row="4"
                    FontSize="Large"
                    HorizontalOptions="EndAndExpand"
@@ -109,8 +110,8 @@
                    Grid.Column="0"
                    TextColor="{Binding DuelResult.FounderColor}" />
 
-            <!-- Founder image -->
-            <components:CircleImage Grid.Column="1"
+                <!-- Founder image -->
+                <components:CircleImage Grid.Column="1"
                                     Grid.Row="4"
                                     WidthRequest="100"
                                     HeightRequest="100"
@@ -119,7 +120,7 @@
                                     CommandParameter="{Binding DuelResult.FounderUserName}"
                                     Source="{Binding DuelResult.FounderProfilePicturePath}" />
 
-            <Label Text="VS"
+                <Label Text="VS"
                    Grid.Row="4"
                    VerticalTextAlignment="Center"
                    HorizontalOptions="CenterAndExpand"
@@ -127,8 +128,8 @@
                    Grid.Column="2"
                    TextColor="{StaticResource White}" />
 
-            <!-- Opponent image -->
-            <components:CircleImage Grid.Column="3"
+                <!-- Opponent image -->
+                <components:CircleImage Grid.Column="3"
                                     Grid.Row="4"
                                     WidthRequest="100"
                                     HeightRequest="100"
@@ -136,8 +137,8 @@
                                     Command="{Binding GotoProfilePageCommand}"
                                     CommandParameter="{Binding DuelResult.OpponentUserName}"
                                     Source="{Binding DuelResult.OpponentProfilePicturePath}" />
-            <!-- Opponent score-->
-            <Label Grid.Row="4"
+                <!-- Opponent score-->
+                <Label Grid.Row="4"
                    FontSize="Large"
                    Grid.Column="4"
                    FontAttributes="Bold"
@@ -146,15 +147,15 @@
                    Text="{Binding DuelResult.OpponentScore}"
                    TextColor="{Binding DuelResult.OpponentColor}" />
 
-            <!-- Founder image -->
-            <Label Grid.Row="5"
+                <!-- Founder image -->
+                <Label Grid.Row="5"
                    Grid.Column="1"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="End"
                    Text="{Binding DuelResult.FounderFullName }"
                    TextColor="{Binding DuelResult.FounderColor}" />
 
-            <Label Grid.Row="6"
+                <Label Grid.Row="6"
                    HorizontalTextAlignment="End"
                    FontAttributes="Bold"
                    Grid.Column="1"
@@ -162,45 +163,45 @@
                    TextColor="{StaticResource White}"
                    Text="{Binding DuelResult.FounderLevel, StringFormat='Level {0}' }" />
 
-            <!-- Opponent  -->
-            <Label Grid.Row="5"
+                <!-- Opponent  -->
+                <Label Grid.Row="5"
                    Grid.Column="3"
                    FontAttributes="Bold"
                    Text="{Binding DuelResult.OpponentFullName }"
                    TextColor="{Binding DuelResult.OpponentColor}" />
 
-            <Label Text="{Binding DuelResult.OpponentLevel, StringFormat='Level {0}' }"
+                <Label Text="{Binding DuelResult.OpponentLevel, StringFormat='Level {0}' }"
                    Grid.Row="6"
                    FontAttributes="Bold"
                    FontSize="Small"
                    Grid.Column="3"
                    TextColor="{StaticResource White}" />
 
-            <!-- Level stats -->
-            <Grid Grid.Row="7"
+                <!-- Level stats -->
+                <Grid Grid.Row="7"
                   Margin="0,10,0,0"
                   Grid.ColumnSpan="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                        Grid.Column="1"
                        TextColor="#ffbe1a"
                        LineBreakMode="WordWrap"
                        HorizontalTextAlignment="Center"
                        Text="{i18n:Translate MatchScore}" />
 
-                <Button Grid.Column="1"
+                    <Button Grid.Column="1"
                         Grid.Row="1"
                         BorderWidth="1"
                         CornerRadius="3"
@@ -211,14 +212,14 @@
                         BackgroundColor="Transparent"
                         Text="{Binding DuelResult.MatchScore}" />
 
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                        Grid.Column="2"
                        TextColor="#02d174"
                        LineBreakMode="WordWrap"
                        HorizontalTextAlignment="Center"
                        Text="{i18n:Translate FinishBonus}" />
 
-                <Button Grid.Column="2"
+                    <Button Grid.Column="2"
                         Grid.Row="1"
                         BorderWidth="1"
                         CornerRadius="3"
@@ -229,14 +230,14 @@
                         BackgroundColor="Transparent"
                         Text="{Binding DuelResult.VictoryBonus}" />
 
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                        Grid.Column="3"
                        TextColor="#00b5d9"
                        LineBreakMode="WordWrap"
                        HorizontalTextAlignment="Center"
                        Text="{i18n:Translate VictoryBonus}" />
 
-                <Button Grid.Column="3"
+                    <Button Grid.Column="3"
                         Grid.Row="1"
                         BorderWidth="1"
                         CornerRadius="3"
@@ -247,14 +248,14 @@
                         BackgroundColor="Transparent"
                         Text="{Binding DuelResult.VictoryBonus}" />
 
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                        Grid.Column="4"
                        TextColor="#ff5454"
                        LineBreakMode="WordWrap"
                        HorizontalTextAlignment="Center"
                        Text="{i18n:Translate TotalXp}" />
 
-                <Button Grid.Column="4"
+                    <Button Grid.Column="4"
                         Grid.Row="1"
                         BorderWidth="1"
                         CornerRadius="3"
@@ -264,23 +265,23 @@
                         BorderColor="#ff5454"
                         BackgroundColor="Transparent"
                         Text="{Binding DuelResult.TotalXp}" />
-            </Grid>
+                </Grid>
 
-            <!-- Buttons -->
-            <Grid Grid.Row="9"
+                <!-- Buttons -->
+                <Grid Grid.Row="9"
                   Margin="0,10,0,0"
                   Grid.ColumnSpan="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <iconButton:IconButton Grid.Row="0"
+                    <iconButton:IconButton Grid.Row="0"
                                        Grid.Column="0"
 				                       Icon="fas-redo-alt"
                                        BackgroundColor="#02d174"
@@ -288,15 +289,15 @@
                                        IconColor="{StaticResource White}"
                                        Command="{Binding RevengeCommand}" />
 
-                <iconButton:IconButton Grid.Row="0"
+                    <iconButton:IconButton Grid.Row="0"
                                        Grid.Column="1"
 				                       Icon="fas-comments"
                                        BackgroundColor="#00b5d9"
-                                       Text="{i18n:Translate Chat}"
+                                       Text="{i18n:Translate Message}"
                                        IconColor="{StaticResource Black}"
                                        Command="{Binding GotoChatCommand}" />
 
-                <iconButton:IconButton Grid.Row="0"
+                    <iconButton:IconButton Grid.Row="0"
                                        Grid.Column="2"
 				                       Icon="fas-star"
                                        BackgroundColor="#02d174"
@@ -304,14 +305,15 @@
                                        Text="{i18n:Translate FindOpponent}"
                                        Command="{Binding FindOpponentCommand}" />
 
-                <iconButton:IconButton Grid.Row="0"
+                    <iconButton:IconButton Grid.Row="0"
                                        Grid.Column="3"
 				                       Icon="fas-share-alt"
                                        Text="{i18n:Translate Share}"
                                        Command="{Binding ShareCommand}"
                                        IconColor="{StaticResource Black}"
                                        BackgroundColor="{StaticResource Primary}" />
+                </Grid>
             </Grid>
-        </Grid>
+        </ScrollView>
     </pages:PopupPage.Content>
 </pages:PopupPage>

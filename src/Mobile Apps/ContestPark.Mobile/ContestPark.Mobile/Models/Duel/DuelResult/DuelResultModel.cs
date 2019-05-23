@@ -9,9 +9,6 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
 {
     public class DuelResultModel
     {
-        [JsonIgnore]
-        private int myVar;
-
         private ISettingsService settingsService;
         public byte FinishBonus { get; set; }
 
