@@ -28,6 +28,7 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="20" />
                 <RowDefinition Height="20" />
@@ -80,9 +81,18 @@
                    Text="{Binding DuelResult.WinnerOrLoseText}"
                    TextColor="{Binding DuelResult.WinnerOrLoseTextColor}" />
 
+            <!-- Gold -->
+            <iconButton:IconButton Grid.Row="3"
+                                   Icon="far-gem"
+                                   Grid.ColumnSpan="5"
+                                   Text="{Binding DuelResult.Gold}"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   IconColor="{StaticResource Primary}" />
+            
             <!-- Founder score -->
             <Label Text="{Binding DuelResult.FounderScore}"
-                   Grid.Row="3"
+                   Grid.Row="4"
                    FontSize="Large"
                    HorizontalOptions="EndAndExpand"
                    VerticalTextAlignment="Center"
@@ -92,7 +102,7 @@
 
             <!-- Founder image -->
             <components:CircleImage Grid.Column="1"
-                                    Grid.Row="3"
+                                    Grid.Row="4"
                                     WidthRequest="100"
                                     HeightRequest="100"
                                     x:Name="FounderImage"
@@ -100,17 +110,18 @@
                                     CommandParameter="{Binding DuelResult.FounderUserName}"
                                     Source="{Binding DuelResult.FounderProfilePicturePath}" />
 
+
             <Label Text="VS"
-                   Grid.Row="3"
+                   Grid.Row="4"
                    VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand"
                    FontAttributes="Bold"
                    Grid.Column="2"
                    TextColor="{StaticResource White}" />
 
             <!-- Opponent image -->
             <components:CircleImage Grid.Column="3"
-                                    Grid.Row="3"
+                                    Grid.Row="4"
                                     WidthRequest="100"
                                     HeightRequest="100"
                                     x:Name="OpponentImage"
@@ -118,7 +129,7 @@
                                     CommandParameter="{Binding DuelResult.OpponentUserName}"
                                     Source="{Binding DuelResult.OpponentProfilePicturePath}" />
             <!-- Opponent score-->
-            <Label Grid.Row="3"
+            <Label Grid.Row="4"
                    FontSize="Large"
                    Grid.Column="4"
                    FontAttributes="Bold"
@@ -128,14 +139,14 @@
                    TextColor="{Binding DuelResult.OpponentColor}" />
 
             <!-- Founder image -->
-            <Label Grid.Row="4"
+            <Label Grid.Row="5"
                    Grid.Column="1"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="End"
                    Text="{Binding DuelResult.FounderFullName }"
                    TextColor="{Binding DuelResult.FounderColor}" />
 
-            <Label Grid.Row="5"
+            <Label Grid.Row="6"
                    HorizontalTextAlignment="End"
                    FontAttributes="Bold"
                    Grid.Column="1"
@@ -144,21 +155,21 @@
                    Text="{Binding DuelResult.FounderLevel, StringFormat='Level {0}' }" />
 
             <!-- Opponent  -->
-            <Label Grid.Row="4"
+            <Label Grid.Row="5"
                    Grid.Column="3"
                    FontAttributes="Bold"
                    Text="{Binding DuelResult.OpponentFullName }"
                    TextColor="{Binding DuelResult.OpponentColor}" />
 
             <Label Text="{Binding DuelResult.OpponentLevel, StringFormat='Level {0}' }"
-                   Grid.Row="5"
+                   Grid.Row="6"
                    FontAttributes="Bold"
                    FontSize="Small"
                    Grid.Column="3"
                    TextColor="{StaticResource White}" />
 
             <!-- Level stats -->
-            <Grid Grid.Row="6"
+            <Grid Grid.Row="7"
                   Margin="0,10,0,0"
                   Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
@@ -248,7 +259,7 @@
             </Grid>
 
             <!-- Buttons -->
-            <Grid Grid.Row="8"
+            <Grid Grid.Row="9"
                   Margin="0,10,0,0"
                   Grid.ColumnSpan="5">
                 <Grid.RowDefinitions>
