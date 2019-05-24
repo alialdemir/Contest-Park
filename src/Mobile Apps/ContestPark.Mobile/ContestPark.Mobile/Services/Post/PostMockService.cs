@@ -133,7 +133,7 @@ namespace ContestPark.Mobile.Services.Post
         {
             List<PostModel> posts = new List<PostModel>();
 
-            for (byte i = 0; i < 10; i++)
+            for (int i = pagingModel.PageNumber; i < pagingModel.PageSize + pagingModel.PageNumber; i++)
             {
                 posts.Add(new PostModel
                 {
