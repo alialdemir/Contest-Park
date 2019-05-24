@@ -50,8 +50,6 @@ namespace ContestPark.Mobile.Components.PostCardView
                     _navigationService?.NavigateAsync(nameof(DuelResultPopupView), new NavigationParameters
                     {
                         { "DuelId", duelId },
-                        { "SubCategoryId", model.SubCategoryId },
-                        { "IsNavBarShow", false },
                     });
 
                     IsBusy = false;

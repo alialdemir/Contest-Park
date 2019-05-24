@@ -5,6 +5,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using ContestPark.Mobile.Services.Audio;
+using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -24,6 +25,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IAudioService _audioService;
+        private readonly IDuelService _duelService;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
 
@@ -35,18 +37,21 @@ namespace ContestPark.Mobile.ViewModels
             IPopupNavigation popupNavigation,
             IEventAggregator eventAggregator,
             IAudioService audioService,
-            ISettingsService settingsService
+            ISettingsService settingsService,
+            IDuelService duelService
             ) : base(popupNavigation: popupNavigation)
         {
             _eventAggregator = eventAggregator;
             _audioService = audioService;
             _settingsService = settingsService;
+            _duelService = duelService;
         }
 
         #endregion Constructors
 
         #region Properties
 
+        private string _duelId;
         private DuelResultModel _duelResult;
 
         public DuelResultModel DuelResult
@@ -63,35 +68,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override async Task InitializeAsync()
         {
-            DuelResult = new DuelResultModel
-            {
-                FounderProfilePicturePath = DefaultImages.DefaultProfilePicture,
-                FounderUserName = "witcherfearless",
-                OpponentProfilePicturePath = DefaultImages.DefaultProfilePicture,
-                OpponentUserName = "eliföz",
-                SubCategoryName = "Futbol",
-                FounderFullName = "Ali Aldemir",
-                OpponentFullName = "Elif Öz",
-                FounderUserId = "1111-1111-1111-1111",
-                OpponentUserId = "2222-2222-2222-2222",
-                FounderScore = 12,
-                OpponentScore = 12,
-                FinishBonus = 40,
-                VictoryBonus = 30,
-                MatchScore = 234,
-                OpponentLevel = 1,
-                FounderLevel = 7,
-                SubCategoryPicturePath = DefaultImages.DefaultLock,
-                SubCategoryId = 1,
-                Gold = 6234
-            };
+            DuelResult = await _duelService.DuelResult(_duelId);
 
-            if (_settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
+            if (DuelResult != null && _settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
                 _audioService.Play(Audio.Fireworks, true);
 
-            return base.InitializeAsync();
+            await base.InitializeAsync();
         }
 
         /// <summary>
@@ -264,5 +248,16 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
 
         #endregion Commands
+
+        #region Navigation
+
+        public override void OnNavigatingTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("DuelId")) _duelId = parameters.GetValue<string>("DuelId");
+
+            base.OnNavigatingTo(parameters);
+        }
+
+        #endregion Navigation
     }
 }

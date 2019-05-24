@@ -1,125 +1,147 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
-             x:Class="ContestPark.Mobile.ContestParkApp">
-  <prism:PrismApplication.Resources>
-    <ResourceDictionary>
+<prism:PrismApplication
+    x:Class="ContestPark.Mobile.ContestParkApp"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
 
-      <!-- Colors -->
+            <!--  Colors  -->
 
-      <!-- Dark gray -->
-      <Color x:Key="ListBackgroundColor">#171717</Color>
+            <!--  Dark gray  -->
+            <Color x:Key="ListBackgroundColor">#171717</Color>
 
-      <!-- Black -->
-      <Color x:Key="GlobalBackgroundColor">#0d0d0d</Color>
+            <!--  Black  -->
+            <Color x:Key="GlobalBackgroundColor">#0d0d0d</Color>
 
-      <Color x:Key="Orange">#ff8800</Color>
+            <Color x:Key="Orange">#ff8800</Color>
 
-      <!-- Amber -->
-      <Color x:Key="Primary">#ffc107</Color>
-      <Color x:Key="Primary100">#FFECB3</Color>
+            <!--  Amber  -->
+            <Color x:Key="Primary">#ffc107</Color>
+            <Color x:Key="Primary100">#FFECB3</Color>
 
-      <!-- Beyaz -->
-      <Color x:Key="White">#FFFFFF</Color>
+            <!--  Beyaz  -->
+            <Color x:Key="White">#FFFFFF</Color>
 
-      <!-- Black -->
-      <Color x:Key="Black">#222222</Color>
+            <!--  Black  -->
+            <Color x:Key="Black">#222222</Color>
 
-      <!-- Green -->
-      <Color x:Key="Green">#017d46</Color>
+            <!--  Green  -->
+            <Color x:Key="Green">#017d46</Color>
 
-      <!-- Red -->
-      <Color x:Key="Red">#993232</Color>
+            <!--  Red  -->
+            <Color x:Key="Red">#993232</Color>
 
-      <!--Mavi-->
-      <Color x:Key="Accent">#536dfe</Color>
+            <!--  Mavi  -->
+            <Color x:Key="Accent">#536dfe</Color>
 
-      <!-- Blue-->
-      <Color x:Key="Blue">#4080FF</Color>
+            <!--  Blue  -->
+            <Color x:Key="Blue">#4080FF</Color>
 
-      <!-- Gray -->
-      <Color x:Key="Gray">#F1F0F0</Color>
+            <!--  Gray  -->
+            <Color x:Key="Gray">#F1F0F0</Color>
 
-      <!-- Dark Gray -->
-      <Color x:Key="DarkGray">#65686E</Color>
+            <!--  Dark Gray  -->
+            <Color x:Key="DarkGray">#65686E</Color>
 
-      <!--Beyaz-->
-      <Color x:Key="PrimaryText">#212121</Color>
+            <!--  Beyaz  -->
+            <Color x:Key="PrimaryText">#212121</Color>
 
-      <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
-      </Style>
+            <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
+            </Style>
 
-      <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
-        <Setter Property="BarTextColor" Value="{StaticResource Primary}" />
-      </Style>
+            <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
+                <Setter Property="BarTextColor" Value="{StaticResource Primary}" />
+            </Style>
 
-      <Style x:Key="ContentParkLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="25"></Setter>
-        <Setter Property="FontAttributes" Value="Bold"></Setter>
-      </Style>
+            <Style x:Key="ContentParkLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
 
-      <Style x:Key="ListView" TargetType="ListView">
-        <Setter Property="ItemsSource" Value="{Binding Items}" />
-        <Setter Property="RefreshCommand" Value="{Binding RefreshCommand}" />
-        <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
-        <Setter Property="IsPullToRefreshEnabled" Value="True" />
-        <Setter Property="HasUnevenRows" Value="True" />
-      </Style>
+            <Style x:Key="ListView" TargetType="ListView">
+                <Setter Property="ItemsSource" Value="{Binding Items}" />
+                <Setter Property="RefreshCommand" Value="{Binding RefreshCommand}" />
+                <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
+                <Setter Property="IsPullToRefreshEnabled" Value="True" />
+                <Setter Property="HasUnevenRows" Value="True" />
+            </Style>
 
-      <Style x:Key="ListViewHeaderAndFooter" TargetType="ListView" BasedOn="{StaticResource ListView}">
-        <Setter Property="Footer" Value=" " />
-        <Setter Property="Header" Value=" " />
-        <Setter Property="SeparatorVisibility" Value="None" />
-      </Style>
+            <Style
+                x:Key="ListViewHeaderAndFooter"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
+                <Setter Property="Footer" Value=" " />
+                <Setter Property="Header" Value=" " />
+                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
 
-      <Style x:Key="ListViewOnlyFooter" TargetType="ListView" BasedOn="{StaticResource ListView}">
-        <Setter Property="Footer" Value=" " />
-        <Setter Property="SeparatorVisibility" Value="None" />
-      </Style>
+            <Style
+                x:Key="ListViewOnlyFooter"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
+                <Setter Property="Footer" Value=" " />
+                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
 
-      <Style x:Key="ListViewSeparator" TargetType="ListView" BasedOn="{StaticResource ListView}">
-        <Setter Property="Footer" Value=" " />
-        <Setter Property="SeparatorColor" Value="#333333" />
-      </Style>
+            <Style
+                x:Key="ListViewSeparator"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
+                <Setter Property="Footer" Value=" " />
+                <Setter Property="SeparatorColor" Value="#333333" />
+            </Style>
 
-      <Style x:Key="Button" TargetType="Button">
-        <Setter Property="TextColor" Value="{StaticResource White}"></Setter>
-        <Setter Property="FontSize" Value="Medium"></Setter>
-        <Setter Property="BorderRadius" Value="2"></Setter>
-        <Setter Property="HeightRequest" Value="36"></Setter>
-      </Style>
+            <Style x:Key="Button" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BorderRadius" Value="2" />
+                <Setter Property="HeightRequest" Value="36" />
+            </Style>
 
-      <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource Button}">
-        <Setter Property="BackgroundColor" Value="#b71c1c"></Setter>
-      </Style>
+            <Style
+                x:Key="DangerButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#b71c1c" />
+            </Style>
 
-      <Style x:Key="FacebookButton" TargetType="Button" BasedOn="{StaticResource Button}">
-        <Setter Property="BackgroundColor" Value="#3b5998"></Setter>
-      </Style>
+            <Style
+                x:Key="FacebookButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#3b5998" />
+            </Style>
 
-      <Style x:Key="TwitterButton" TargetType="Button" BasedOn="{StaticResource Button}">
-        <Setter Property="BackgroundColor" Value="#1da1f2"></Setter>
-      </Style>
+            <Style
+                x:Key="TwitterButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#1da1f2" />
+            </Style>
 
-      <Style x:Key="GoolgePlusButton" TargetType="Button" BasedOn="{StaticResource Button}">
-        <Setter Property="BackgroundColor" Value="#dd4b39"></Setter>
-      </Style>
+            <Style
+                x:Key="GoolgePlusButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#dd4b39" />
+            </Style>
 
-      <!-- ZigZag -->
-      <Style x:Key="ZigZag" TargetType="Image">
-        <Setter Property="Source" Value="zigzag.png" />
-        <Setter Property="Aspect" Value="Fill" />
-      </Style>
+            <!--  ZigZag  -->
+            <Style x:Key="ZigZag" TargetType="Image">
+                <Setter Property="Source" Value="zigzag.png" />
+                <Setter Property="Aspect" Value="Fill" />
+            </Style>
 
-      <!-- List empty message -->
-      <Style x:Key="EmptyModel" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource White}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource White}" />
-        <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="VerticalTextAlignment" Value="Center" />
-      </Style>
-    </ResourceDictionary>
-  </prism:PrismApplication.Resources>
+            <!--  List empty message  -->
+            <Style x:Key="EmptyModel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
 </prism:PrismApplication>

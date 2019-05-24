@@ -1,13 +1,14 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Services.Settings;
+using ContestPark.Mobile.ViewModels.Base;
 using Newtonsoft.Json;
 using Prism.Ioc;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Duel.DuelResult
 {
-    public class DuelResultModel
+    public class DuelResultModel : ExtendedBindableObject
     {
         private ISettingsService settingsService;
         public byte FinishBonus { get; set; }
