@@ -403,6 +403,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Düello başlatılırken hata oluştu. Lütfen tekrar deneyiniz..
+        /// </summary>
+        public static string ErrorStartingDuelPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("ErrorStartingDuelPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Çıkış.
         /// </summary>
         public static string Exit {

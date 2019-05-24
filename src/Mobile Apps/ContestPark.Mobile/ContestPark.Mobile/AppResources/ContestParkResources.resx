@@ -587,4 +587,7 @@
   <data name="Message" xml:space="preserve">
     <value>Sohbet</value>
   </data>
+  <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
+    <value>Düello başlatılırken hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
 </root>

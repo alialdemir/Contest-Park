@@ -12,10 +12,14 @@ namespace ContestPark.Mobile.Services.Duel
 
         Task<DuelResultModel> DuelResult(string duelId);
 
+        //   Task<bool> DuelStartWithDuelId(string duelId);
+
+        Task<bool> DuelStartWithUserId(string userId);
+
         Task ExitStandMode(StandbyModeModel standbyModeModel);
 
         Task<ServiceModel<string>> RandomUserProfilePictures(PagingModel pagingModel);
 
-        Task StandbyMode(StandbyModeModel standbyModeModel);
+        Task<bool> StandbyMode(StandbyModeModel standbyModeModel);
     }
 }

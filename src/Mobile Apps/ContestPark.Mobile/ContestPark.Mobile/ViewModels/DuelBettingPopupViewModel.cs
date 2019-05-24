@@ -54,6 +54,8 @@ namespace ContestPark.Mobile.ViewModels
                                 new BetModel { Title = ContestParkResources.Genius, Prize = 10000  * 2, EntryFee = 5000},
                             };
 
+        public string OpponentUserId { get; set; }
+
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -130,7 +132,8 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     SelectedSubCategory = SelectedSubCategory,
                     Bet = bet,
-                    StandbyMode = DuelStartingPopupViewModel.StandbyModes.On,
+                    OpponentUserId = OpponentUserId,
+                    StandbyMode = string.IsNullOrEmpty(OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
                 });
 
                 ClosePopupCommand.Execute(null);

@@ -22,6 +22,7 @@ namespace ContestPark.Mobile.Views
         #region Properties
 
         public int Bet { get; set; }
+        public string OpponentUserId { get; set; }
         public SelectedSubCategoryModel SelectedSubCategory { get; set; }
         public StandbyModes StandbyMode { get; set; }
 
@@ -42,6 +43,7 @@ namespace ContestPark.Mobile.Views
             viewModel.SelectedSubCategory.SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath;
             viewModel.StandbyModeModel.Bet = Bet;
             viewModel.StandbyMode = StandbyMode;
+            viewModel.OpponentUserId = OpponentUserId;
 
             viewModel.InitializeCommand.Execute(null);
             viewModel.AnimationCommand = new Command(Animate);

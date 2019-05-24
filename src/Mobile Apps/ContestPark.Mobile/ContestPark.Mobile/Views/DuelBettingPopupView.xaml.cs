@@ -42,6 +42,7 @@ namespace ContestPark.Mobile.Views
             viewModel.SelectedSubCategory.SubcategoryId = SubcategoryId;
             viewModel.SelectedSubCategory.SubcategoryName = SubcategoryName;
             viewModel.SelectedSubCategory.SubCategoryPicturePath = SubCategoryPicturePath;
+            viewModel.OpponentUserId = OpponentUserId;
 
             viewModel.InitializeCommand.Execute(null);
             viewModel.IsInitialized = true;

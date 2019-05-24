@@ -69,6 +69,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         private DuelStartingModel _duelScreen = new DuelStartingModel();
+        public string DuelId { get; set; }
 
         public DuelStartingModel DuelScreen
         {
@@ -88,6 +89,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public bool IsNextQuestionExit { get; set; } = false;
 
+        public string OpponentUserId { get; set; }
         public SelectedSubCategoryModel SelectedSubCategory { get; set; } = new SelectedSubCategoryModel();
         public StandbyModes StandbyMode { get; set; }
 
@@ -135,7 +137,17 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (StandbyModes.Off == StandbyMode)
             {
-                // TODO: direk user id ile gelirse veya direk Duel id(notification) ile gelirse gibi durumlar..
+                if (!string.IsNullOrEmpty(OpponentUserId))
+                {
+                    bool isSuccess = await _duelService.DuelStartWithUserId(OpponentUserId);
+                    if (!isSuccess)
+                        await NotStartingDuel();
+                }
+                //else if (!string.IsNullOrEmpty(DuelId))
+                //{
+                //    bool isSuccess = await _duelService.DuelStartWithDuelId(DuelId);
+                //    // TODO: direk Duel id(notification) ile gelirse gibi durumlar..
+                //}
             }
             else
             {
@@ -221,7 +233,9 @@ namespace ContestPark.Mobile.ViewModels
         {
             StandbyModeModel.ConnectionId = _settingsService.SignalRConnectionId;
 
-            await _duelService.StandbyMode(StandbyModeModel);// TODO: success kontrol et hata oluşursa mesaj çıksın
+            bool isSuccess = await _duelService.StandbyMode(StandbyModeModel);// TODO: success kontrol et hata oluşursa mesaj çıksın
+            if (!isSuccess)
+                await NotStartingDuel();
 
             AddToBot();
         }
@@ -268,6 +282,20 @@ namespace ContestPark.Mobile.ViewModels
             {
                 // TODO: rakip fotoğrafınn gelmesini beklet
             }
+        }
+
+        /// <summary>
+        /// Düello başlatılırken hata oluşurse mesaj gösterip duello başlama ekranını kapatır
+        /// </summary>
+        /// <returns></returns>
+        private async Task NotStartingDuel()
+        {
+            await DisplayAlertAsync(
+          ContestParkResources.Error,
+          ContestParkResources.ErrorStartingDuelPleaseTryAgain,
+          ContestParkResources.Okay);
+
+            DuelCloseCommand.Execute(null);
         }
 
         /// <summary>
@@ -325,7 +353,7 @@ namespace ContestPark.Mobile.ViewModels
             }
             else
             {
-                // TODO: boş gelirse problem vardır bekleme modunu kapat
+                NotStartingDuel().Wait();
             }
         }
 

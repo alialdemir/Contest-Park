@@ -41,6 +41,11 @@ namespace ContestPark.Mobile.Services.Duel
             });
         }
 
+        public Task<bool> DuelStartWithUserId(string userId)
+        {
+            return Task.FromResult(true);
+        }
+
         public Task ExitStandMode(StandbyModeModel standbyModeModel)
         {
             return Task.CompletedTask;
@@ -58,9 +63,9 @@ namespace ContestPark.Mobile.Services.Duel
             });
         }
 
-        public Task StandbyMode(StandbyModeModel standbyModeModel)
+        public Task<bool> StandbyMode(StandbyModeModel standbyModeModel)
         {
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
     }
 }

@@ -54,6 +54,32 @@ namespace ContestPark.Mobile.Services.Duel
             return await _requestProvider.GetAsync<DuelResultModel>(uri);
         }
 
+        ///// <summary>
+        ///// Düel id ye ait düelloyu başlatır
+        ///// </summary>
+        ///// <param name="duelId">Duello id</param>
+        ///// <returns>İşlem başarılı ise true değilse fale</returns>
+        //public async Task<bool> DuelStartWithDuelId(string duelId)
+        //{
+        //    string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/duelStart");
+        //    string result = await _requestProvider.PostAsync<string>(url, new { duelId });
+
+        //    return string.IsNullOrEmpty(result);
+        //}
+
+        /// <summary>
+        /// Kullanıcı id ile arasında düello başlatır
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>İşlem başarılı ise true değilse fale</returns>
+        public async Task<bool> DuelStartWithUserId(string userId)
+        {
+            string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/duelStart");
+            string result = await _requestProvider.PostAsync<string>(url, new { userId });
+
+            return string.IsNullOrEmpty(result);
+        }
+
         /// <summary>
         /// Bekleme modundan çık
         /// </summary>
@@ -82,13 +108,17 @@ namespace ContestPark.Mobile.Services.Duel
         /// Bekleme moduna al
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modunda olduğu kategori ve bahis bilgileri</param>
-        public async Task StandbyMode(StandbyModeModel standbyModeModel)
+        public async Task<bool> StandbyMode(StandbyModeModel standbyModeModel)
         {
             if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
                 string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
-                await _requestProvider.PostAsync<string>(url, standbyModeModel);
+                string result = await _requestProvider.PostAsync<string>(url, standbyModeModel);
+
+                return string.IsNullOrEmpty(result);
             }
+
+            return false;
         }
 
         #endregion Methods
