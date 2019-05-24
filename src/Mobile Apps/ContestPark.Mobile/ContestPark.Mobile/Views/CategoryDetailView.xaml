@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.CategoryDetailView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.CategoryDetailView"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             x:Name="categoryDetailPage"
              Title="{Binding CategoryDetail.SubCategoryName}"
-             x:Name="categoryDetailPage">
+             prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:FollowButtonConverter x:Key="fbc" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem Icon="{Binding CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
-                              IconColor="{StaticResource Primary}"
-                              Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}" />
+        <icon:IconToolbarItem Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}"
+                              Icon="{Binding CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
+                              IconColor="{StaticResource Primary}" />
 
-        <icon:IconToolbarItem Icon="fas-share-alt"
-                              IconColor="{StaticResource Primary}"
-                              Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}" />
+        <icon:IconToolbarItem Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}"
+                              Icon="fas-share-alt"
+                              IconColor="{StaticResource Primary}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView x:Name="lstView"
                                                       InfiniteScroll="{Binding InfiniteScroll}"
-                                                      Style="{StaticResource ListViewHeaderAndFooter}"
-                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+                                                      Style="{StaticResource ListViewHeaderAndFooter}">
 
             <Components:NonPersistentSelectedItemListView.Header>
                 <Grid ColumnSpacing="0" RowSpacing="0">
@@ -42,50 +42,48 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <BoxView Grid.Column="0"
-                             Grid.RowSpan="2"
+                    <BoxView Grid.RowSpan="2"
+                             Grid.Column="0"
                              Color="{StaticResource Primary}" />
 
                     <Components:CachedImage Grid.Row="0"
                                             Grid.Column="0"
                                             Margin="0,10,0,0"
-                                            WidthRequest="128"
                                             HeightRequest="128"
-                                            VerticalOptions="Start"
                                             HorizontalOptions="Center"
-                                            Source="{Binding CategoryDetail.SubCategoryPicturePath}" />
+                                            Source="{Binding CategoryDetail.SubCategoryPicturePath}"
+                                            VerticalOptions="Start"
+                                            WidthRequest="128" />
 
                     <Label Grid.Row="1"
                            Grid.Column="0"
-                           FontSize="Large"
                            Margin="0,16,0,64"
                            FontAttributes="Bold"
-                           Text="{Binding CategoryDetail.SubCategoryName}"
+                           FontSize="Large"
                            HorizontalOptions="Center"
+                           Text="{Binding CategoryDetail.SubCategoryName}"
                            TextColor="{StaticResource Black}" />
 
                     <Label Grid.Row="2"
                            Grid.Column="0"
-                           FontSize="Small"
                            Margin="0,-60,0,64"
                            FontAttributes="Bold"
-                           Text="{Binding CategoryDetail.Description}"
+                           FontSize="Small"
                            HorizontalOptions="Center"
+                           Text="{Binding CategoryDetail.Description}"
                            TextColor="{StaticResource Black}" />
 
-                    <StackLayout Padding="8"
-                                 Grid.Row="3">
+                    <StackLayout Grid.Row="3" Padding="8">
 
                         <Frame Padding="0"
-                               HasShadow="True"
+                               BackgroundColor="{StaticResource White}"
                                CornerRadius="10"
-                               TranslationY="-60"
-                               IsClippedToBounds="True"
+                               HasShadow="True"
                                HorizontalOptions="FillAndExpand"
-                               BackgroundColor="{StaticResource White}">
+                               IsClippedToBounds="True"
+                               TranslationY="-60">
 
-                            <Grid RowSpacing="3"
-                                  Margin="16">
+                            <Grid Margin="16" RowSpacing="3">
 
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="20" />
@@ -100,57 +98,57 @@
 
                                 <Label Grid.Row="0"
                                        Grid.Column="0"
-                                       FontSize="Default"
-                                       TextColor="#A6A7AA"
                                        FontAttributes="Bold"
+                                       FontSize="Default"
                                        HorizontalTextAlignment="Center"
-                                       Text="{i18n:Translate YourLevel}" />
+                                       Text="{i18n:Translate YourLevel}"
+                                       TextColor="#A6A7AA" />
 
                                 <Label Grid.Row="1"
                                        Grid.Column="0"
-                                       FontSize="Large"
                                        FontAttributes="Bold"
-                                       Text="{Binding CategoryDetail.Level}"
+                                       FontSize="Large"
                                        HorizontalTextAlignment="Center"
+                                       Text="{Binding CategoryDetail.Level}"
                                        TextColor="{StaticResource Primary}" />
 
                                 <Label Grid.Row="0"
                                        Grid.Column="1"
-                                       FontSize="Default"
-                                       TextColor="#A6A7AA"
                                        FontAttributes="Bold"
+                                       FontSize="Default"
                                        HorizontalTextAlignment="Center"
-                                       Text="{i18n:Translate Followers}" />
+                                       Text="{i18n:Translate Followers}"
+                                       TextColor="#A6A7AA" />
 
                                 <Label Grid.Row="1"
                                        Grid.Column="1"
-                                       FontSize="Large"
                                        FontAttributes="Bold"
-                                       Text="{Binding CategoryDetail.CategoryFollowersCount, Mode=TwoWay}"
+                                       FontSize="Large"
                                        HorizontalTextAlignment="Center"
+                                       Text="{Binding CategoryDetail.CategoryFollowersCount, Mode=TwoWay}"
                                        TextColor="{StaticResource Primary}" />
 
                                 <Button Grid.Row="2"
+                                        Grid.ColumnSpan="2"
+                                        BackgroundColor="{StaticResource Green}"
+                                        Command="{Binding DuelOpenPanelCommand}"
+                                        FontAttributes="Bold"
                                         FontSize="Small"
                                         HeightRequest="40"
-                                        Grid.ColumnSpan="2"
-                                        FontAttributes="Bold"
-                                        VerticalOptions="CenterAndExpand"
-                                        TextColor="{StaticResource White}"
                                         Text="{i18n:Translate FindOpponent}"
-                                        Command="{Binding DuelOpenPanelCommand}"
-                                        BackgroundColor="{StaticResource Green}" />
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="CenterAndExpand" />
 
                                 <Button Grid.Row="3"
                                         Grid.ColumnSpan="2"
+                                        BackgroundColor="{StaticResource Accent}"
+                                        Command="{Binding GoToRankingPageCommand}"
+                                        FontAttributes="Bold"
                                         FontSize="Small"
                                         HeightRequest="40"
-                                        FontAttributes="Bold"
                                         Text="{i18n:Translate Ranking}"
-                                        VerticalOptions="CenterAndExpand"
                                         TextColor="{StaticResource White}"
-                                        BackgroundColor="{StaticResource Accent}"
-                                        Command="{Binding GoToRankingPageCommand}" />
+                                        VerticalOptions="CenterAndExpand" />
                             </Grid>
                         </Frame>
                     </StackLayout>
@@ -167,9 +165,9 @@
                 <DataTemplate>
                     <StackLayout BackgroundColor="{StaticResource White}">
 
-                        <Label Text="{i18n:Translate ContestPostEmptyMessage}"
+                        <Label IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
                                Style="{StaticResource EmptyModel}"
-                               IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
+                               Text="{i18n:Translate ContestPostEmptyMessage}" />
                     </StackLayout>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.FooterTemplate>

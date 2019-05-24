@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.InputListItem"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Class="ContestPark.Mobile.Components.InputListItem">
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize">
     <ContentView.Content>
-        <Grid Padding="16,8,16,8"
-              ColumnSpacing="15">
+        <Grid Padding="16,8,16,8" ColumnSpacing="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
@@ -16,21 +15,21 @@
             </Grid.ColumnDefinitions>
 
             <icon:IconImage Grid.Row="0"
-                            IconSize="24"
                             Grid.Column="0"
                             Icon="{Binding Icon}"
-                            IconColor="{StaticResource Primary}" />
+                            IconColor="{StaticResource Primary}"
+                            IconSize="24" />
 
             <Entry Grid.Row="0"
                    Grid.Column="1"
-                   Text="{Binding Text}"
-                   Keyboard="Text"
                    BackgroundColor="Transparent"
-                   Visual="Material"
                    IsPassword="{Binding IsPassword}"
-                   TextColor="{StaticResource White}"
+                   Keyboard="Text"
                    Placeholder="{Binding Placeholder}"
-                   PlaceholderColor="{StaticResource Primary}" />
+                   PlaceholderColor="{StaticResource Primary}"
+                   Text="{Binding Text}"
+                   TextColor="{StaticResource White}"
+                   Visual="Material" />
         </Grid>
     </ContentView.Content>
 </ContentView>

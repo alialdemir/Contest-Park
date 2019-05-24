@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.RankingView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.RankingView"
              x:Name="page"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:RankConverter x:Key="rank" />
@@ -19,12 +19,11 @@
         <Components:NonPersistentSelectedItemListView x:Name="lstView"
                                                       Footer="{Binding RankEmptyMessage}"
                                                       InfiniteScroll="{Binding InfiniteScroll}"
-                                                      Style="{StaticResource ListViewHeaderAndFooter}"
-                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}">
+                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+                                                      Style="{StaticResource ListViewHeaderAndFooter}">
             <Components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
-                    <Grid RowSpacing="0"
-                          ColumnSpacing="0">
+                    <Grid ColumnSpacing="0" RowSpacing="0">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -40,13 +39,13 @@
                             <ColumnDefinition Width="80" />
                         </Grid.ColumnDefinitions>
 
-                        <Components:CustomSegmentedControl Grid.Row="0"
+                        <Components:CustomSegmentedControl x:Name="SegControl"
+                                                           Grid.Row="0"
                                                            Grid.ColumnSpan="4"
-                                                           x:Name="SegControl"
                                                            Margin="10,10,10,0"
                                                            IsSelectedCheck="False"
-                                                           TintColor="{StaticResource White}"
                                                            SelectedTextColor="{StaticResource Black}"
+                                                           TintColor="{StaticResource White}"
                                                            ValueChangedCommand="{Binding Path=BindingContext.SegmentValueChangedCommand, Source={x:Reference page}}">
                             <Components:CustomSegmentedControl.Children>
                                 <Components:SegmentedControlOption Text="{i18n:Translate Global}" />
@@ -57,76 +56,76 @@
                         <Label Grid.Row="1"
                                Grid.ColumnSpan="4"
                                FontAttributes="Bold"
-                               VerticalOptions="Center"
                                HorizontalOptions="Center"
+                               Text="{Binding Path=BindingContext.TimeLeft.Months, Source={x:Reference page}}"
                                TextColor="{StaticResource White}"
-                               Text="{Binding Path=BindingContext.TimeLeft.Months, Source={x:Reference page}}" />
+                               VerticalOptions="Center" />
 
                         <Label Grid.Row="2"
-                               FontSize="Micro"
                                Grid.ColumnSpan="4"
-                               VerticalOptions="Center"
+                               FontSize="Micro"
                                HorizontalOptions="Center"
                                Text="{i18n:Translate TimeLeft}"
-                               TextColor="{StaticResource White}" />
+                               TextColor="{StaticResource White}"
+                               VerticalOptions="Center" />
 
                         <Label Grid.Row="3"
-                               FontSize="Small"
                                Grid.ColumnSpan="4"
-                               VerticalOptions="Center"
+                               FontSize="Small"
                                HorizontalOptions="Center"
+                               Text="{Binding Path=BindingContext.TimeLeft.TimeLeft, Source={x:Reference page}}"
                                TextColor="{StaticResource White}"
-                               Text="{Binding Path=BindingContext.TimeLeft.TimeLeft, Source={x:Reference page}}" />
+                               VerticalOptions="Center" />
 
                         <Label Grid.Row="4"
                                Grid.Column="0"
+                               BackgroundColor="{StaticResource ListBackgroundColor}"
                                HeightRequest="40"
-                               Text="{i18n:Translate Rank}"
-                               VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center"
+                               Text="{i18n:Translate Rank}"
                                TextColor="{StaticResource White}"
-                               BackgroundColor="{StaticResource ListBackgroundColor}" />
+                               VerticalTextAlignment="Center" />
 
                         <Label Grid.Row="4"
                                Grid.Column="1"
+                               BackgroundColor="{StaticResource ListBackgroundColor}"
                                HeightRequest="40"
-                               VerticalTextAlignment="Center"
                                TextColor="{StaticResource White}"
-                               BackgroundColor="{StaticResource ListBackgroundColor}" />
+                               VerticalTextAlignment="Center" />
 
                         <Label Grid.Row="4"
                                Grid.Column="2"
+                               BackgroundColor="{StaticResource ListBackgroundColor}"
                                HeightRequest="40"
-                               VerticalTextAlignment="Center"
                                Text="{i18n:Translate Name}"
                                TextColor="{StaticResource White}"
-                               BackgroundColor="{StaticResource ListBackgroundColor}" />
+                               VerticalTextAlignment="Center" />
 
                         <Label Grid.Row="4"
                                Grid.Column="3"
+                               BackgroundColor="{StaticResource ListBackgroundColor}"
                                HeightRequest="40"
-                               VerticalTextAlignment="Center"
                                Text="{i18n:Translate Score}"
                                TextColor="{StaticResource White}"
-                               BackgroundColor="{StaticResource ListBackgroundColor}" />
+                               VerticalTextAlignment="Center" />
                     </Grid>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.HeaderTemplate>
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:RankView Rank="{Binding .,Converter={StaticResource rank}, ConverterParameter={x:Reference lstView}}"
+                        <Components:RankView BackgroundColor="{Binding ., Converter={StaticResource background}, ConverterParameter={x:Reference lstView}}"
                                              GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference page}}"
-                                             BackgroundColor="{Binding .,Converter={StaticResource background}, ConverterParameter={x:Reference lstView}}" />
+                                             Rank="{Binding ., Converter={StaticResource rank}, ConverterParameter={x:Reference lstView}}" />
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>
             <Components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
                     <StackLayout BackgroundColor="{StaticResource White}">
-                        <Label Text="{Binding .}"
+                        <Label IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
                                Style="{StaticResource EmptyModel}"
-                               IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" />
+                               Text="{Binding .}" />
                     </StackLayout>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.FooterTemplate>

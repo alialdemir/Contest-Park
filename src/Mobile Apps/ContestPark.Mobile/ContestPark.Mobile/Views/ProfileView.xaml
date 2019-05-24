@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.ProfileView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
              xmlns:converter1="clr-namespace:ContestPark.Mobile.Converters.Follow"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.ProfileView"
-             Title="{Binding Title}"
-             NavigationPage.HasNavigationBar="False"
              x:Name="profilePage"
-             Icon="fas-user-circle">
+             Title="{Binding Title}"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Icon="fas-user-circle"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:NegativeBooleanConverter x:Key="not" />
@@ -76,8 +76,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}"
-                                                      InfiniteScroll="{Binding InfiniteScroll}">
+        <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.Header>
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
@@ -90,49 +89,46 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- header background -->
-                    <Image HeightRequest="200"
-                           Aspect="AspectFill"
+                    <!--  header background  -->
+                    <Image Aspect="AspectFill"
+                           HeightRequest="200"
                            Source="{Binding ProfileInfo.CoverPicture}">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer CommandParameter="Cover"
-                                                  Command="{Binding ChangePhotoCommand}" />
+                            <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" CommandParameter="Cover" />
                         </Image.GestureRecognizers>
                     </Image>
 
-                    <!--Block-->
-                    <iconize:IconButton FontSize="22"
-                                        WidthRequest="50"
+                    <!--  Block  -->
+                    <iconize:IconButton BackgroundColor="Transparent"
+                                        Command="{Binding InfoCommand}"
+                                        FontSize="22"
                                         HeightRequest="50"
-                                        Text="fas-info-circle"
                                         HorizontalOptions="End"
-                                        VerticalOptions="Start"
-                                        BackgroundColor="Transparent"
                                         IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
-                                        Command="{Binding InfoCommand}" />
-
-                    <!-- Back button -->
-                    <iconize:IconButton Margin="16,16,0,0"
-                                        Text="fas-arrow-left"
+                                        Text="fas-info-circle"
                                         VerticalOptions="Start"
-                                        HorizontalOptions="Start"
+                                        WidthRequest="50" />
+
+                    <!--  Back button  -->
+                    <iconize:IconButton Margin="16,16,0,0"
                                         BackgroundColor="Transparent"
                                         Command="{Binding GotoBackCommand}"
+                                        HorizontalOptions="Start"
+                                        IsVisible="{Binding IsVisibleBackArrow}"
+                                        Text="fas-arrow-left"
                                         TextColor="{StaticResource Primary}"
-                                        IsVisible="{Binding IsVisibleBackArrow}" />
+                                        VerticalOptions="Start" />
 
-                    <!-- profile name -->
+                    <!--  profile name  -->
                     <StackLayout Grid.Row="1"
-                                 Orientation="Horizontal"
+                                 Padding="0,20,0,0"
                                  HorizontalOptions="CenterAndExpand"
-                                 Padding="0,20,0,0">
-                        <Label Text="{Binding ProfileInfo.FullName}"
-                               Style="{StaticResource ProfileNameLabel}" />
+                                 Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileNameLabel}" Text="{Binding ProfileInfo.FullName}" />
                     </StackLayout>
 
-                    <!-- social stats -->
-                    <Grid Grid.Row="2"
-                          ColumnSpacing="0">
+                    <!--  social stats  -->
+                    <Grid Grid.Row="2" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -144,94 +140,82 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
 
-                        <!-- Follow play, chat buttons -->
+                        <!--  Follow play, chat buttons  -->
                         <iconize:IconButton Grid.Row="0"
-                                            FontSize="22"
-                                            Text="{Binding Path=ProfileInfo.IsFollowing,  Converter={StaticResource isFollowIconConverter}}"
-                                            BorderWidth="3"
                                             Grid.Column="0"
+                                            BorderColor="{StaticResource Primary}"
+                                            BorderWidth="3"
+                                            Command="{Binding FollowProcessCommand}"
                                             CornerRadius="50"
-                                            TranslationY="-70"
-                                            WidthRequest="50"
+                                            FontSize="22"
                                             HeightRequest="50"
                                             HorizontalOptions="Center"
-                                            IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
-                                            BorderColor="{StaticResource Primary}"
-                                            Command="{Binding FollowProcessCommand}" />
+                                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
+                                            Text="{Binding Path=ProfileInfo.IsFollowing, Converter={StaticResource isFollowIconConverter}}"
+                                            TranslationY="-70"
+                                            WidthRequest="50" />
 
                         <iconize:IconButton Grid.Row="0"
+                                            Grid.Column="1"
+                                            BorderColor="{StaticResource Primary}"
+                                            BorderWidth="3"
+                                            Command="{Binding PlayDuelCommand}"
+                                            CornerRadius="50"
                                             FontSize="22"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
                                             Text="fas-play"
                                             TextColor="{StaticResource Green}"
-                                            BorderWidth="3"
-                                            Grid.Column="1"
-                                            CornerRadius="50"
-                                            WidthRequest="50"
-                                            HeightRequest="50"
-                                            HorizontalOptions="Center"
-                                            Command="{Binding PlayDuelCommand}"
-                                            BorderColor="{StaticResource Primary}"
-                                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}" />
+                                            WidthRequest="50" />
 
                         <iconize:IconButton Grid.Row="0"
-                                            FontSize="22"
                                             Grid.Column="2"
-                                            BorderWidth="3"
-                                            CornerRadius="50"
-                                            WidthRequest="50"
-                                            TranslationY="-70"
-                                            HeightRequest="50"
-                                            Text="fas-comments"
-                                            HorizontalOptions="Center"
-                                            IsVisible="{Binding Path=IsMeProfile,  Converter={StaticResource not}}"
                                             BorderColor="{StaticResource Primary}"
-                                            Command="{Binding GotChatDetailCommand}" />
+                                            BorderWidth="3"
+                                            Command="{Binding GotChatDetailCommand}"
+                                            CornerRadius="50"
+                                            FontSize="22"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
+                                            Text="fas-comments"
+                                            TranslationY="-70"
+                                            WidthRequest="50" />
 
-                        <StackLayout Grid.Column="0"
-                                     Grid.Row="1">
-                            <Label Text="{Binding ProfileInfo.GameCount}"
-                                   Style="{StaticResource StatsNumberLabel}" />
-                            <Label Text="{i18n:Translate Duel}"
-                                   Style="{StaticResource StatsCaptionLabel}" />
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <Label Style="{StaticResource StatsNumberLabel}" Text="{Binding ProfileInfo.GameCount}" />
+                            <Label Style="{StaticResource StatsCaptionLabel}" Text="{i18n:Translate Duel}" />
                         </StackLayout>
 
-                        <StackLayout Grid.Row="1"
-                            Grid.Column="1">
-                            <Label Text="{Binding ProfileInfo.FollowUpCount}"
-                                   Style="{StaticResource StatsNumberLabel}" />
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <Label Style="{StaticResource StatsNumberLabel}" Text="{Binding ProfileInfo.FollowUpCount}" />
 
-                            <Label Text="{i18n:Translate Following}"
-                                   Style="{StaticResource StatsCaptionLabel}" />
+                            <Label Style="{StaticResource StatsCaptionLabel}" Text="{i18n:Translate Following}" />
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="2"
-                                                      Command="{Binding GotoFollowingCommand}" />
+                                <TapGestureRecognizer Command="{Binding GotoFollowingCommand}" CommandParameter="2" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
 
-                        <StackLayout
-                                     Grid.Row="1"
-                            Grid.Column="2">
-                            <Label Style="{StaticResource StatsNumberLabel}"
-                                   Text="{Binding ProfileInfo.FollowersCount}" />
+                        <StackLayout Grid.Row="1" Grid.Column="2">
+                            <Label Style="{StaticResource StatsNumberLabel}" Text="{Binding ProfileInfo.FollowersCount}" />
 
-                            <Label Text="{i18n:Translate Followers}"
-                                   Style="{StaticResource StatsCaptionLabel}" />
+                            <Label Style="{StaticResource StatsCaptionLabel}" Text="{i18n:Translate Followers}" />
 
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="1"
-                                                      Command="{Binding GotoFollowersCommand}" />
+                                <TapGestureRecognizer Command="{Binding GotoFollowersCommand}" CommandParameter="1" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>
-                    <!-- profile image -->
-                    <components:CircleImage TranslationY="5"
-                                            WidthRequest="100"
-                                            HeightRequest="100"
-                                            VerticalOptions="End"
-                                            HorizontalOptions="Center"
+                    <!--  profile image  -->
+                    <components:CircleImage Command="{Binding ChangePhotoCommand}"
                                             CommandParameter="Profile"
+                                            HeightRequest="100"
+                                            HorizontalOptions="Center"
                                             Source="{Binding ProfileInfo.ProfilePicturePath}"
-                                            Command="{Binding ChangePhotoCommand}" />
+                                            TranslationY="5"
+                                            VerticalOptions="End"
+                                            WidthRequest="100" />
                 </Grid>
             </components:NonPersistentSelectedItemListView.Header>
             <components:NonPersistentSelectedItemListView.ItemTemplate>

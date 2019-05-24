@@ -1,94 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.ChatDetailView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:chatDetail="clr-namespace:ContestPark.Mobile.Components.ChatDetail"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.ChatDetailView"
-             x:Name="chatDetailPage">
-  <ContentPage.ToolbarItems>
-    <iconize:IconToolbarItem
-        Icon="fas-ellipsis-v"
-        IconColor="Black"
-        Command="{Binding ChatSettingsCommand}" />
-  </ContentPage.ToolbarItems>
-  <NavigationPage.TitleView>
-    <StackLayout Orientation="Horizontal"
-                 Margin="0"
-                 Padding="0"
-                 HorizontalOptions="StartAndExpand"
-                 VerticalOptions="Center">
-      <components:CircleImage Source="{Binding SenderProfilePicturePath}"
-                              HeightRequest="32"
-                              WidthRequest="32"
-                              Command="{Binding GotoProfileCommand}" />
-      <Label Text="{Binding Title}"
-             FontSize="16"
-             FontAttributes="Bold"
-             VerticalOptions="Center"
-             TextColor="{StaticResource Primary}"
-             VerticalTextAlignment="Start" />
-    </StackLayout>
-  </NavigationPage.TitleView>
-  <ContentPage.Content>
-    <StackLayout Orientation="Vertical">
-      <StackLayout VerticalOptions="FillAndExpand"
-                   HorizontalOptions="FillAndExpand">
-        <components:NonPersistentSelectedItemListView x:Name="lstMessages"
-        IsRefreshing="False"
-        ItemAppearing="OnItemAppearing"
-        Style="{StaticResource ListView}">
-          <components:NonPersistentSelectedItemListView.ItemTemplate>
-            <DataTemplate>
-              <ViewCell>
-                <chatDetail:ChatDetail />
-              </ViewCell>
-            </DataTemplate>
-          </components:NonPersistentSelectedItemListView.ItemTemplate>
-          <components:NonPersistentSelectedItemListView.Footer>
-            <StackLayout HeightRequest="0" />
-          </components:NonPersistentSelectedItemListView.Footer>
-        </components:NonPersistentSelectedItemListView>
-      </StackLayout>
-      <Grid VerticalOptions="End"
-            BackgroundColor="#fff"
-            HorizontalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="60" />
-        </Grid.ColumnDefinitions>
+             x:Name="chatDetailPage"
+             prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.ToolbarItems>
+        <iconize:IconToolbarItem Command="{Binding ChatSettingsCommand}"
+                                 Icon="fas-ellipsis-v"
+                                 IconColor="Black" />
+    </ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+        <StackLayout Margin="0"
+                     Padding="0"
+                     HorizontalOptions="StartAndExpand"
+                     Orientation="Horizontal"
+                     VerticalOptions="Center">
+            <components:CircleImage Command="{Binding GotoProfileCommand}"
+                                    HeightRequest="32"
+                                    Source="{Binding SenderProfilePicturePath}"
+                                    WidthRequest="32" />
+            <Label FontAttributes="Bold"
+                   FontSize="16"
+                   Text="{Binding Title}"
+                   TextColor="{StaticResource Primary}"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Start" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <components:NonPersistentSelectedItemListView x:Name="lstMessages"
+                                                              IsRefreshing="False"
+                                                              ItemAppearing="OnItemAppearing"
+                                                              Style="{StaticResource ListView}">
+                    <components:NonPersistentSelectedItemListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <chatDetail:ChatDetail />
+                            </ViewCell>
+                        </DataTemplate>
+                    </components:NonPersistentSelectedItemListView.ItemTemplate>
+                    <components:NonPersistentSelectedItemListView.Footer>
+                        <StackLayout HeightRequest="0" />
+                    </components:NonPersistentSelectedItemListView.Footer>
+                </components:NonPersistentSelectedItemListView>
+            </StackLayout>
+            <Grid BackgroundColor="#fff"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
 
-        <Editor Keyboard="Chat"
-                Grid.Row="0"
-                Grid.Column="0"
-                MaxLength="140"
-                TextColor="#7b7b7b"
-                x:Name="txtChatbox"
-                AutoSize="TextChanges"
-                Text="{Binding Message}"
-                AutomationId="txtChatbox"
-                Focused="TxtChatbox_Focused"
-                VerticalOptions="FillAndExpand"
-                Completed="txtChatbox_Completed"
-                HorizontalOptions="FillAndExpand" />
+                <Editor x:Name="txtChatbox"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        AutoSize="TextChanges"
+                        AutomationId="txtChatbox"
+                        Completed="txtChatbox_Completed"
+                        Focused="TxtChatbox_Focused"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Chat"
+                        MaxLength="140"
+                        Text="{Binding Message}"
+                        TextColor="#7b7b7b"
+                        VerticalOptions="FillAndExpand" />
 
-        <iconize:IconButton x:Name="btnBtnSendMessage"
-                Grid.Row="0"
-                Grid.Column="1"
-                FontSize="32"
-                Opacity="0.20"
-                Margin="0,0,10,0"
-                Text="fas-paper-plane"
-                HorizontalOptions="End"
-                Command="{Binding SendMessageCommand}"
-                BackgroundColor="Transparent"
-                AutomationId="btnBtnSendMessage" />
-      </Grid>
-    </StackLayout>
-  </ContentPage.Content>
+                <iconize:IconButton x:Name="btnBtnSendMessage"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Margin="0,0,10,0"
+                                    AutomationId="btnBtnSendMessage"
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding SendMessageCommand}"
+                                    FontSize="32"
+                                    HorizontalOptions="End"
+                                    Opacity="0.20"
+                                    Text="fas-paper-plane" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

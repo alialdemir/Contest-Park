@@ -1,30 +1,29 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.CategoryHeader"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             x:Class="ContestPark.Mobile.Components.CategoryHeader"
              x:Name="page">
     <ContentView.Content>
-        <StackLayout HeightRequest="44"
-                     Orientation="Horizontal"
-                     BackgroundColor="{StaticResource ListBackgroundColor}">
-            <Label FontSize="16"
-                   Margin="10,0,0,0"
+        <StackLayout BackgroundColor="{StaticResource ListBackgroundColor}"
+                     HeightRequest="44"
+                     Orientation="Horizontal">
+            <Label Margin="10,0,0,0"
                    FontAttributes="Bold"
-                   VerticalOptions="Center"
+                   FontSize="16"
                    Text="{Binding Path=CategoryName, Source={x:Reference page}}"
-                   TextColor="{StaticResource Primary}" />
+                   TextColor="{StaticResource Primary}"
+                   VerticalOptions="Center" />
 
-            <Label FontSize="13"
-                   Margin="0,0,10,0"
-                   TextColor="#808080"
+            <Label Margin="0,0,10,0"
                    FontAttributes="Bold"
-                   VerticalOptions="Center"
+                   FontSize="13"
+                   HorizontalOptions="EndAndExpand"
                    Text="{i18n:Translate SeeAll}"
-                   HorizontalOptions="EndAndExpand" >
+                   TextColor="#808080"
+                   VerticalOptions="Center">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=SeeAllPressed, Source={x:Reference page}}"
-                                          CommandParameter="{Binding Path=SeeAllCommandParameter, Source={x:Reference page}}"/>
+                    <TapGestureRecognizer Command="{Binding Path=SeeAllPressed, Source={x:Reference page}}" CommandParameter="{Binding Path=SeeAllCommandParameter, Source={x:Reference page}}" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>

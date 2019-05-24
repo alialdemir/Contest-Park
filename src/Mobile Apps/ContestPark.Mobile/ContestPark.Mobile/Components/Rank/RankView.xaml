@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.RankView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-             x:Class="ContestPark.Mobile.Components.RankView"
              x:Name="page">
     <ContentView.Content>
         <Grid Padding="16,0,0,0">
@@ -19,28 +19,30 @@
             <Label Grid.Row="0"
                    Grid.Column="0"
                    Text="{Binding Source={x:Reference page}, Path=Rank}"
-                   TextColor="{StaticResource White}" VerticalOptions="Center" />
+                   TextColor="{StaticResource White}"
+                   VerticalOptions="Center" />
 
             <Components:CircleImage Grid.Row="0"
                                     Grid.Column="1"
-                                    HeightRequest="30"
-                                    VerticalOptions="Center"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}"
                                     CommandParameter="{Binding UserName}"
+                                    HeightRequest="30"
                                     Source="{Binding UserProfilePicturePath}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}" />
+                                    VerticalOptions="Center" />
 
             <Label Grid.Row="0"
                    Grid.Column="2"
-                   VerticalOptions="Center"
+                   LineBreakMode="TailTruncation"
                    Text="{Binding UserFullName}"
-                   LineBreakMode="TailTruncation" TextColor="{StaticResource White}" />
+                   TextColor="{StaticResource White}"
+                   VerticalOptions="Center" />
 
             <Label Grid.Row="0"
                    Grid.Column="3"
                    FontAttributes="Bold"
-                   VerticalOptions="Center"
                    Text="{Binding TotalScore}"
-                   TextColor="{StaticResource Primary}" />
+                   TextColor="{StaticResource Primary}"
+                   VerticalOptions="Center" />
         </Grid>
     </ContentView.Content>
 </ContentView>

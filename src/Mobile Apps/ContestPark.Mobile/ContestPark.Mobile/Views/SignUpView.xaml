@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.SignUpView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             Title="{Binding Title}"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.SignUpView"
              BackgroundColor="{StaticResource Primary}"
-             Visual="Material"
-             Title="{Binding Title}">
+             Visual="Material">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10,0,10,0"
@@ -29,51 +29,51 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0"
+                           HorizontalOptions="Center"
                            Source="logo.png"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
+                           VerticalOptions="Center" />
 
                     <StackLayout Grid.Row="1"
-                                 Orientation="Horizontal"
-                                 HorizontalOptions="CenterAndExpand">
+                                 HorizontalOptions="CenterAndExpand"
+                                 Orientation="Horizontal">
 
-                        <Label XAlign="End"
+                        <Label Style="{StaticResource ContentParkLabel}"
                                Text="Contest"
                                TextColor="White"
-                               Style="{StaticResource ContentParkLabel}" />
+                               XAlign="End" />
 
-                        <Label Text="Park"
-                               XAlign="Start"
+                        <Label Style="{StaticResource ContentParkLabel}"
+                               Text="Park"
                                TextColor="Black"
-                               Style="{StaticResource ContentParkLabel}" />
+                               XAlign="Start" />
                     </StackLayout>
 
                     <Entry Grid.Row="2"
-                            AutomationId="txtUserName"
-                            Text="{Binding SignUpModel.UserName}"
-                            Placeholder="{i18n:Translate UserName}" />
+                           AutomationId="txtUserName"
+                           Placeholder="{i18n:Translate UserName}"
+                           Text="{Binding SignUpModel.UserName}" />
 
                     <Entry Grid.Row="3"
                            AutomationId="txtFullname"
-                           Text="{Binding SignUpModel.Fullname}"
-                           Placeholder="{i18n:Translate Fullname}" />
+                           Placeholder="{i18n:Translate Fullname}"
+                           Text="{Binding SignUpModel.Fullname}" />
 
                     <Entry Grid.Row="4"
                            AutomationId="txtEmail"
-                           Text="{Binding SignUpModel.Email}"
-                           Placeholder="{i18n:Translate Email}" />
+                           Placeholder="{i18n:Translate Email}"
+                           Text="{Binding SignUpModel.Email}" />
 
                     <Entry Grid.Row="5"
-                           IsPassword="True"
                            AutomationId="txtPassword"
-                           Text="{Binding SignUpModel.Password}"
-                           Placeholder="{i18n:Translate Password}" />
+                           IsPassword="True"
+                           Placeholder="{i18n:Translate Password}"
+                           Text="{Binding SignUpModel.Password}" />
 
                     <Button Grid.Row="6"
                             AutomationId="SignUp"
-                            Text="{i18n:Translate SignUp}"
                             Command="{Binding SignUpCommand}"
-                            Style="{StaticResource DangerButton}" />
+                            Style="{StaticResource DangerButton}"
+                            Text="{i18n:Translate SignUp}" />
                 </Grid>
             </StackLayout>
         </ScrollView>

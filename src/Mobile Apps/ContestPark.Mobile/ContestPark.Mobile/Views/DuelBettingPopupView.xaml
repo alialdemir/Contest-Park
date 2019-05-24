@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage x:Class="ContestPark.Mobile.Views.DuelBettingPopupView"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-                 xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-                 xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-                 xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+                 xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+                 xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+                 xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 prism:ViewModelLocator.AutowireViewModel="True"
-				 x:Class="ContestPark.Mobile.Views.DuelBettingPopupView"
-				 x:Name="page">
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                 x:Name="page"
+                 prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation ScaleIn="1"
-								   ScaleOut="0.7"
-								   DurationIn="700"
-								   PositionIn="Bottom"
-								   EasingIn="BounceOut"
-								   PositionOut="Center" />
+        <animations:ScaleAnimation DurationIn="700"
+                                   EasingIn="BounceOut"
+                                   PositionIn="Bottom"
+                                   PositionOut="Center"
+                                   ScaleIn="1"
+                                   ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
         <Grid>
@@ -26,128 +26,125 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <iconize:IconButton Margin="10"
-				                Grid.Row="0"
-				                VerticalOptions="Start"
-				                HorizontalOptions="End"
+            <iconize:IconButton Grid.Row="0"
+                                Margin="10"
+                                BackgroundColor="Transparent"
+                                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference page}}"
                                 FontSize="22"
-				                Text="fas-times-circle"
+                                HorizontalOptions="End"
+                                Text="fas-times-circle"
                                 TextColor="{StaticResource White}"
-				                BackgroundColor="Transparent"
-                                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference page}}" />
+                                VerticalOptions="Start" />
 
             <cards:CoverFlowView Grid.Row="1"
-                                 PositionShiftValue="100"
                                  IsCyclical="false"
                                  ItemsSource="{Binding Bets}"
+                                 PositionShiftValue="100"
                                  SelectedIndex="{Binding SelectedIndex}">
                 <cards:CoverFlowView.ItemTemplate>
                     <DataTemplate>
-                        <RelativeLayout VerticalOptions="Center"
-                                        HorizontalOptions="CenterAndExpand">
+                        <RelativeLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                             <StackLayout>
                                 <Frame Padding="0"
-						               CornerRadius="8"
+                                       CornerRadius="8"
                                        HasShadow="True"
-								       VerticalOptions="CenterAndExpand"
-								       HorizontalOptions="CenterAndExpand">
-                                    <StackLayout WidthRequest="250"
-									             HeightRequest="170"
-									             Orientation="Vertical"
-											     Padding="0"
-								                 Margin="0"
-									             BackgroundColor="White"
-									 HorizontalOptions="FillAndExpand">
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand">
+                                    <StackLayout Margin="0"
+                                                 Padding="0"
+                                                 BackgroundColor="White"
+                                                 HeightRequest="170"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Orientation="Vertical"
+                                                 WidthRequest="250">
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer CommandParameter="{Binding EntryFee}"
-                                                                  Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference page}}" />
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference page}}" CommandParameter="{Binding EntryFee}" />
                                         </StackLayout.GestureRecognizers>
 
-                                        <StackLayout Spacing="0"
-										             VerticalOptions="EndAndExpand">
+                                        <StackLayout Spacing="0" VerticalOptions="EndAndExpand">
 
-                                            <Label Text="{i18n:Translate Prize}"
-									               FontSize="22"
-									               FontAttributes="Bold"
-									               TextColor="{StaticResource Red}"
-									               VerticalOptions="StartAndExpand"
-									               HorizontalOptions="CenterAndExpand" />
+                                            <Label FontAttributes="Bold"
+                                                   FontSize="22"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   Text="{i18n:Translate Prize}"
+                                                   TextColor="{StaticResource Red}"
+                                                   VerticalOptions="StartAndExpand" />
 
-                                            <StackLayout Spacing="0"
-                                                         Margin="0,0,0,8"
-											             Orientation="Horizontal"
-											             HorizontalOptions="CenterAndExpand">
+                                            <StackLayout Margin="0,0,0,8"
+                                                         HorizontalOptions="CenterAndExpand"
+                                                         Orientation="Horizontal"
+                                                         Spacing="0">
 
-                                                <iconize:IconImage IconSize="14"
+                                                <iconize:IconImage HeightRequest="14"
                                                                    Icon="far-gem"
-                                                                   WidthRequest="14"
-                                                                   HeightRequest="14"
+                                                                   IconColor="{StaticResource Primary}"
+                                                                   IconSize="14"
                                                                    VerticalOptions="Center"
-                                                                   IconColor="{StaticResource Primary}" />
+                                                                   WidthRequest="14" />
 
-                                                <Label FontSize="20"
-										               FontAttributes="Bold"
-										               Text="{Binding Prize}"
-										               VerticalOptions="Center"
-										               TextColor="{StaticResource Black}"
-										               HorizontalOptions="CenterAndExpand" />
+                                                <Label FontAttributes="Bold"
+                                                       FontSize="20"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       Text="{Binding Prize}"
+                                                       TextColor="{StaticResource Black}"
+                                                       VerticalOptions="Center" />
                                             </StackLayout>
 
                                             <StackLayout Margin="0,0,0,8"
-											             Orientation="Horizontal"
-											             HorizontalOptions="CenterAndExpand">
-
-                                                <Label Text="{i18n:Translate EntryFee}"
-										               FontAttributes="Bold"
-										               VerticalOptions="Center"
-										               TextColor="{StaticResource Black}"
-										               HorizontalOptions="CenterAndExpand" />
-
-                                                <iconize:IconImage IconSize="14"
-                                                                   Icon="far-gem"
-                                                                   Margin="4,0,0,0"
-                                                                   WidthRequest="14"
-                                                                   HeightRequest="14"
-                                                                   VerticalOptions="Center"
-                                                                   IconColor="{StaticResource Primary}" />
+                                                         HorizontalOptions="CenterAndExpand"
+                                                         Orientation="Horizontal">
 
                                                 <Label FontAttributes="Bold"
-										               VerticalOptions="Center"
-										               Text="{Binding EntryFee}"
-										               TextColor="{StaticResource Black}"
-										               HorizontalOptions="CenterAndExpand" />
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       Text="{i18n:Translate EntryFee}"
+                                                       TextColor="{StaticResource Black}"
+                                                       VerticalOptions="Center" />
+
+                                                <iconize:IconImage Margin="4,0,0,0"
+                                                                   HeightRequest="14"
+                                                                   Icon="far-gem"
+                                                                   IconColor="{StaticResource Primary}"
+                                                                   IconSize="14"
+                                                                   VerticalOptions="Center"
+                                                                   WidthRequest="14" />
+
+                                                <Label FontAttributes="Bold"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       Text="{Binding EntryFee}"
+                                                       TextColor="{StaticResource Black}"
+                                                       VerticalOptions="Center" />
                                             </StackLayout>
 
-                                            <StackLayout HeightRequest="45"
-													     BackgroundColor="#e91e18"
-											 		     VerticalOptions="EndAndExpand">
+                                            <StackLayout BackgroundColor="#e91e18"
+                                                         HeightRequest="45"
+                                                         VerticalOptions="EndAndExpand">
 
                                                 <Label FontSize="20"
-												       Text="{i18n:Translate Play}"
-												       VerticalOptions="Center"
-												       TextColor="{StaticResource White}"
-												       HorizontalOptions="CenterAndExpand" />
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       Text="{i18n:Translate Play}"
+                                                       TextColor="{StaticResource White}"
+                                                       VerticalOptions="Center" />
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
                             <StackLayout HeightRequest="50"
-									     WidthRequest="250"
-									     TranslationY="-200">
+                                         TranslationY="-200"
+                                         WidthRequest="250">
 
-                                <forms:AnimationView Loop="False"
-												     AutoPlay="False"
-												     Animation="coin.json"
-												     VerticalOptions="FillAndExpand"
-												     HorizontalOptions="FillAndExpand" />
+                                <forms:AnimationView Animation="coin.json"
+                                                     AutoPlay="False"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Loop="False"
+                                                     VerticalOptions="FillAndExpand" />
 
                                 <Label FontSize="22"
-								       TranslationY="-180"
-								       Text="{Binding Title}"
-								       VerticalOptions="StartAndExpand"
-								       TextColor="{StaticResource White}"
-								       HorizontalOptions="CenterAndExpand" />
+                                       HorizontalOptions="CenterAndExpand"
+                                       Text="{Binding Title}"
+                                       TextColor="{StaticResource White}"
+                                       TranslationY="-180"
+                                       VerticalOptions="StartAndExpand" />
                             </StackLayout>
                         </RelativeLayout>
                     </DataTemplate>

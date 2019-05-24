@@ -1,24 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<icon:IconTabbedPage
-    prism:ViewModelLocator.AutowireViewModel="True"
-    x:Class="ContestPark.Mobile.Views.TabView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:ContestPark.Mobile.Views"
-    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms">
+<icon:IconTabbedPage x:Class="ContestPark.Mobile.Views.TabView"
+                     xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+                     xmlns:pages="clr-namespace:ContestPark.Mobile.Views"
+                     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                     prism:ViewModelLocator.AutowireViewModel="True">
     <icon:IconTabbedPage.Children>
 
-        <!-- CategoriesPage -->
+        <!--  CategoriesPage  -->
         <pages:CategoriesView />
 
-        <!-- ChatAllPage  plugin:TabBadge.BadgeText="{Binding BadgeCount}"-->
+        <!--  ChatAllPage  plugin:TabBadge.BadgeText="{Binding BadgeCount}"  -->
         <pages:ChatView />
 
-        <!-- NotificationsPage plugin:TabBadge.BadgeText="{Binding BadgeCount}" -->
+        <!--  NotificationsPage plugin:TabBadge.BadgeText="{Binding BadgeCount}"  -->
         <pages:NotificationsView />
 
-        <!-- ProfilePage -->
+        <!--  ProfilePage  -->
         <pages:ProfileView />
     </icon:IconTabbedPage.Children>
 </icon:IconTabbedPage>

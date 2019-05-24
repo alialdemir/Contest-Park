@@ -1,27 +1,25 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.IconButton.IconButton"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Class="ContestPark.Mobile.Components.IconButton.IconButton"
              x:Name="iconButtonPage">
     <ContentView.Content>
-        <StackLayout Spacing="0"
-                     Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal" Spacing="0">
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Command, Source={x:Reference iconButtonPage}}" 
-                                      CommandParameter="{Binding Parameter, Source={x:Reference iconButtonPage}}" />
+                <TapGestureRecognizer Command="{Binding Command, Source={x:Reference iconButtonPage}}" CommandParameter="{Binding Parameter, Source={x:Reference iconButtonPage}}" />
             </StackLayout.GestureRecognizers>
-            <iconize:IconButton FontSize="22"
-                                VerticalOptions="Center"
-				                BackgroundColor="Transparent"
-				                Text="{Binding Icon, Source={x:Reference iconButtonPage}}"
-                                TextColor="{Binding IconColor, Source={x:Reference iconButtonPage}}" />
+            <iconize:IconButton BackgroundColor="Transparent"
+                                FontSize="22"
+                                Text="{Binding Icon, Source={x:Reference iconButtonPage}}"
+                                TextColor="{Binding IconColor, Source={x:Reference iconButtonPage}}"
+                                VerticalOptions="Center" />
 
-            <Label FontSize="12"
-                   FontAttributes="Bold"
-                   VerticalOptions="Center"
+            <Label FontAttributes="Bold"
+                   FontSize="12"
                    Text="{Binding Text, Source={x:Reference iconButtonPage}}"
-                   TextColor="{Binding IconColor, Source={x:Reference iconButtonPage}}" />
+                   TextColor="{Binding IconColor, Source={x:Reference iconButtonPage}}"
+                   VerticalOptions="Center" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

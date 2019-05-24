@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage x:Class="ContestPark.Mobile.Views.DuelStartingPopupView"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  prism:ViewModelLocator.AutowireViewModel="True"
-                 x:Class="ContestPark.Mobile.Views.DuelStartingPopupView"
                  BackgroundColor="{StaticResource Primary}">
     <pages:PopupPage.Content>
-        <Grid VerticalOptions="FillAndExpand"
+        <Grid BackgroundColor="{StaticResource Black}"
               HorizontalOptions="FillAndExpand"
-              BackgroundColor="{StaticResource Black}"
-              RowSpacing="0">
+              RowSpacing="0"
+              VerticalOptions="FillAndExpand">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="49*" />
@@ -19,64 +19,62 @@
                 <RowDefinition Height="49*" />
             </Grid.RowDefinitions>
 
-            <!-- Founder -->
-            <Grid x:Name="gridFounder"
-                  VerticalOptions="FillAndExpand">
+            <!--  Founder  -->
+            <Grid x:Name="gridFounder" VerticalOptions="FillAndExpand">
 
                 <Image Grid.Row="0"
-                       Opacity="0.5"
                        Aspect="AspectFill"
-                       VerticalOptions="FillAndExpand"
-                       Source="{Binding DuelScreen.FounderCoverPicturePath}" />
+                       Opacity="0.5"
+                       Source="{Binding DuelScreen.FounderCoverPicturePath}"
+                       VerticalOptions="FillAndExpand" />
 
                 <StackLayout Grid.Row="0"
-                             WidthRequest="55"
                              HeightRequest="55"
                              Orientation="Horizontal"
-                             VerticalOptions="FillAndExpand">
+                             VerticalOptions="FillAndExpand"
+                             WidthRequest="55">
 
                     <Components:CircleImage Margin="20,0,0,0"
-                                            VerticalOptions="Center"
-                                            Source="{Binding DuelScreen.FounderProfilePicturePath}" />
+                                            Source="{Binding DuelScreen.FounderProfilePicturePath}"
+                                            VerticalOptions="Center" />
 
                     <Label FontAttributes="Bold"
-                           VerticalOptions="Center"
                            HorizontalOptions="Start"
+                           Text="{Binding DuelScreen.FounderFullName}"
                            TextColor="{StaticResource White}"
-                           Text="{Binding DuelScreen.FounderFullName}" />
+                           VerticalOptions="Center" />
                 </StackLayout>
             </Grid>
 
-            <!-- Line -->
-            <BoxView Grid.Row="1"
-                     BackgroundColor="{StaticResource Primary}" />
+            <!--  Line  -->
+            <BoxView Grid.Row="1" BackgroundColor="{StaticResource Primary}" />
 
-            <!-- Opponent -->
-            <Grid Grid.Row="2"
-                  x:Name="gridOpponent"
+            <!--  Opponent  -->
+            <Grid x:Name="gridOpponent"
+                  Grid.Row="2"
                   VerticalOptions="FillAndExpand">
 
                 <Image Grid.Row="0"
-                       Opacity="0.5"
                        Aspect="AspectFill"
-                       VerticalOptions="FillAndExpand"
-                       Source="{Binding DuelScreen.OpponentCoverPicturePath}" />
+                       Opacity="0.5"
+                       Source="{Binding DuelScreen.OpponentCoverPicturePath}"
+                       VerticalOptions="FillAndExpand" />
 
                 <StackLayout Grid.Row="0"
-                     Orientation="Horizontal"
-                     VerticalOptions="FillAndExpand"
-                     HeightRequest="55"
-                     WidthRequest="55">
+                             HeightRequest="55"
+                             Orientation="Horizontal"
+                             VerticalOptions="FillAndExpand"
+                             WidthRequest="55">
 
                     <Components:CircleImage Margin="20,0,0,0"
-                                            VerticalOptions="Center"
-                                            Source="{Binding DuelScreen.OpponentProfilePicturePath}" />
+                                            Source="{Binding DuelScreen.OpponentProfilePicturePath}"
+                                            VerticalOptions="Center" />
 
                     <Label FontAttributes="Bold"
-                           VerticalOptions="Center"
                            HorizontalOptions="Start"
+                           Text="{Binding DuelScreen.OpponentFullName}"
                            TextColor="{StaticResource White}"
-                           Text="{Binding DuelScreen.OpponentFullName}" />
+                           VerticalOptions="Center" />
                 </StackLayout>
             </Grid>
         </Grid>

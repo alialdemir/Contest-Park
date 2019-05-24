@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.SignInView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.SignInView"
              BackgroundColor="{StaticResource Primary}">
     <ContentPage.Content>
         <ScrollView>
@@ -31,124 +31,124 @@
 
                     <Image Grid.Row="0"
                            Grid.ColumnSpan="3"
+                           HorizontalOptions="Center"
                            Source="logo.png"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
+                           VerticalOptions="Center" />
 
                     <StackLayout Grid.Row="1"
                                  Grid.ColumnSpan="3"
                                  HorizontalOptions="CenterAndExpand"
                                  Orientation="Horizontal">
 
-                        <Label Text="Contest"
-                               Style="{StaticResource ContentParkLabel}"
+                        <Label Style="{StaticResource ContentParkLabel}"
+                               Text="Contest"
                                TextColor="White"
                                XAlign="End" />
 
-                        <Label Text="Park"
-                               Style="{StaticResource ContentParkLabel}"
+                        <Label Style="{StaticResource ContentParkLabel}"
+                               Text="Park"
                                TextColor="Black"
                                XAlign="Start" />
                     </StackLayout>
 
                     <Entry Grid.Row="2"
-                           Visual="Material"
                            Grid.ColumnSpan="3"
                            AutomationId="txtUserName"
+                           Placeholder="{i18n:Translate UserName}"
                            Text="{Binding LoginModel.UserName}"
-                           Placeholder="{i18n:Translate UserName}" />
+                           Visual="Material" />
 
                     <Entry Grid.Row="3"
                            Grid.ColumnSpan="3"
-                           Visual="Material"
-                           IsPassword="True"
                            AutomationId="txtPassword"
+                           IsPassword="True"
+                           Placeholder="{i18n:Translate Password}"
                            Text="{Binding LoginModel.Password}"
-                           Placeholder="{i18n:Translate Password}" />
+                           Visual="Material" />
 
                     <Button Grid.Row="4"
                             Grid.ColumnSpan="3"
-                            Visual="Material"
                             AutomationId="SignIn"
-                            Text="{i18n:Translate SignIn}"
+                            Command="{Binding SignInCommand}"
                             Style="{StaticResource DangerButton}"
-                            Command="{Binding SignInCommand}" />
+                            Text="{i18n:Translate SignIn}"
+                            Visual="Material" />
 
                     <StackLayout Grid.Row="5"
                                  Grid.ColumnSpan="3"
                                  Orientation="Horizontal">
-                        <Button Text="{i18n:Translate SignUp}"
-                                AutomationId="SignUp"
-                                FontSize="Small"
-                                TextColor="#b71c1c"
-                                FontAttributes="Bold"
+                        <Button AutomationId="SignUp"
                                 BackgroundColor="Transparent"
+                                Command="{Binding SignUpCommand}"
+                                FontAttributes="Bold"
+                                FontSize="Small"
                                 HorizontalOptions="CenterAndExpand"
-                                Command="{Binding SignUpCommand}" />
+                                Text="{i18n:Translate SignUp}"
+                                TextColor="#b71c1c" />
 
-                        <Button Text="{i18n:Translate ForgotYourPassword}"
-                                AutomationId="ForgotYourPassword"
-                                FontSize="Small"
-                                TextColor="#b71c1c"
-                                FontAttributes="Bold"
+                        <Button AutomationId="ForgotYourPassword"
                                 BackgroundColor="Transparent"
+                                Command="{Binding ForgetYourPasswordCommand}"
+                                FontAttributes="Bold"
+                                FontSize="Small"
                                 HorizontalOptions="CenterAndExpand"
-                                Command="{Binding ForgetYourPasswordCommand}" />
+                                Text="{i18n:Translate ForgotYourPassword}"
+                                TextColor="#b71c1c" />
                     </StackLayout>
 
                     <Button Grid.Row="6"
                             Grid.Column="0"
-                            Text="    Facebook"
-                            CommandParameter="1"
                             AutomationId="LoginWithFacebook"
+                            Command="{Binding SocialNetworkkWithLoginCommand}"
+                            CommandParameter="1"
                             Style="{StaticResource FacebookButton}"
-                            Command="{Binding SocialNetworkkWithLoginCommand}" />
+                            Text="    Facebook" />
 
                     <icon:IconButton Grid.Row="6"
                                      Grid.Column="0"
-                                     Text="fab-facebook-square"
-                                     FontSize="20"
                                      BackgroundColor="Transparent"
-                                     TextColor="White"
-                                     HorizontalOptions="Start"
+                                     Command="{Binding SocialNetworkkWithLoginCommand}"
                                      CommandParameter="1"
-                                     Command="{Binding SocialNetworkkWithLoginCommand}" />
+                                     FontSize="20"
+                                     HorizontalOptions="Start"
+                                     Text="fab-facebook-square"
+                                     TextColor="White" />
 
                     <Button Grid.Row="6"
                             Grid.Column="1"
-                            Text="Twitter"
-                            Style="{StaticResource TwitterButton}"
+                            AutomationId="LoginWithTwitter"
                             Command="{Binding SocialNetworkkWithLoginCommand}"
                             CommandParameter="2"
-                            AutomationId="LoginWithTwitter" />
+                            Style="{StaticResource TwitterButton}"
+                            Text="Twitter" />
 
                     <icon:IconButton Grid.Row="6"
                                      Grid.Column="1"
-                                     Text="fab-twitter-square"
-                                     FontSize="20"
                                      BackgroundColor="Transparent"
-                                     TextColor="White"
-                                     HorizontalOptions="Start"
+                                     Command="{Binding SocialNetworkkWithLoginCommand}"
                                      CommandParameter="2"
-                                     Command="{Binding SocialNetworkkWithLoginCommand}" />
+                                     FontSize="20"
+                                     HorizontalOptions="Start"
+                                     Text="fab-twitter-square"
+                                     TextColor="White" />
 
                     <Button Grid.Row="6"
                             Grid.Column="2"
-                            Text="    Google+"
-                            Style="{StaticResource GoolgePlusButton}"
+                            AutomationId="LoginWithGooglePlus"
                             Command="{Binding SocialNetworkkWithLoginCommand}"
                             CommandParameter="3"
-                            AutomationId="LoginWithGooglePlus" />
+                            Style="{StaticResource GoolgePlusButton}"
+                            Text="    Google+" />
 
                     <icon:IconButton Grid.Row="6"
                                      Grid.Column="2"
-                                     Text="fab-google-plus-square"
-                                     FontSize="20"
                                      BackgroundColor="Transparent"
-                                     TextColor="White"
-                                     HorizontalOptions="Start"
+                                     Command="{Binding SocialNetworkkWithLoginCommand}"
                                      CommandParameter="3"
-                                     Command="{Binding SocialNetworkkWithLoginCommand}" />
+                                     FontSize="20"
+                                     HorizontalOptions="Start"
+                                     Text="fab-google-plus-square"
+                                     TextColor="White" />
                 </Grid>
             </StackLayout>
         </ScrollView>

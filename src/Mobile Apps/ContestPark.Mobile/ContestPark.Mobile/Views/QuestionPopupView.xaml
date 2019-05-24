@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage x:Class="ContestPark.Mobile.Views.QuestionPopupView"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  prism:ViewModelLocator.AutowireViewModel="True"
-                 x:Class="ContestPark.Mobile.Views.QuestionPopupView"
                  BackgroundColor="{StaticResource Black}">
     <pages:PopupPage.Content>
         <ScrollView>
@@ -19,42 +19,40 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Top Start -->
+                <!--  Top Start  -->
 
                 <components:UsersInfo Grid.Row="0"
-                                      FounderScore="{Binding FounderScore}"
                                       FounderFullname="{Binding DuelScreen.FounderFullName}"
                                       FounderImageBorderColor="{Binding FounderImageBorderColor}"
+                                      FounderScore="{Binding FounderScore}"
                                       FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
-
-                                      Time="{Binding Time}"
-
-                                      OpponentScore="{Binding OpponentScore}"
                                       OpponentFullname="{Binding DuelScreen.OpponentFullName}"
                                       OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
-                                      OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}" />
+                                      OpponentScore="{Binding OpponentScore}"
+                                      OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
+                                      Time="{Binding Time}" />
 
-                <!-- Top End -->
+                <!--  Top End  -->
 
-                <!-- Question Start -->
+                <!--  Question Start  -->
 
                 <components:QuestionCardFactory Grid.Row="1"
                                                 Link="{Binding Question.Question.Link}"
                                                 Question="{Binding Question.Question.NextQuestion}"
                                                 QuestionType="{Binding Question.Question.QuestionType}" />
 
-                <!-- Question End -->
+                <!--  Question End  -->
 
-                <!-- Stylish Start -->
+                <!--  Stylish Start  -->
 
-                <components:Stylish Grid.Row="2"
+                <components:Stylish x:Name="Stylishs"
+                                    Grid.Row="2"
                                     Margin="0,10,0,0"
-                                    x:Name="Stylishs"
-                                    AnswerType="{Binding Question.Question.AnswerType}"
                                     AnswerCommand="{Binding AnswerCommand}"
+                                    AnswerType="{Binding Question.Question.AnswerType}"
                                     Answers="{Binding Answers}" />
 
-                <!-- Stylish End -->
+                <!--  Stylish End  -->
             </Grid>
         </ScrollView>
     </pages:PopupPage.Content>

@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:converters="clr-namespace:ContestPark.Mobile.Converters.CategoryDetail"
-             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
+             xmlns:converters="clr-namespace:ContestPark.Mobile.Converters.CategoryDetail"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Name="page">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -26,79 +26,79 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Spacing="0"
-                         Grid.Row="0"
+            <StackLayout Grid.Row="0"
                          Grid.ColumnSpan="3"
+                         HorizontalOptions="Start"
                          Orientation="Horizontal"
-                         HorizontalOptions="Start">
-                <!--Beğeni-->
-                <iconize:IconImage Icon="far-heart"
-                                   WidthRequest="13"
-                                   HeightRequest="13"
-                                   VerticalOptions="CenterAndExpand"
+                         Spacing="0">
+                <!--  Beğeni  -->
+                <iconize:IconImage HeightRequest="13"
+                                   Icon="far-heart"
                                    IconColor="{StaticResource Black}"
-                                   IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}">
+                                   IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}"
+                                   VerticalOptions="CenterAndExpand"
+                                   WidthRequest="13">
                     <iconize:IconImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference page}}" />
                     </iconize:IconImage.GestureRecognizers>
                 </iconize:IconImage>
 
-                <Label FontSize="13"
-                       Margin="5,0,0,0"
+                <Label Margin="5,0,0,0"
+                       FontSize="13"
+                       HorizontalOptions="EndAndExpand"
+                       IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}"
                        Text="{Binding LikeCount}"
-                       HorizontalOptions="EndAndExpand"
-                       VerticalOptions="CenterAndExpand"
                        TextColor="{StaticResource Black}"
-                       IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}">
+                       VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference page}}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label FontSize="13"
-                       Margin="5,0,0,0"
+                <Label Margin="5,0,0,0"
+                       FontSize="13"
+                       HorizontalOptions="EndAndExpand"
+                       IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}"
                        Text="{i18n:Translate Likes}"
-                       HorizontalOptions="EndAndExpand"
-                       VerticalOptions="CenterAndExpand"
                        TextColor="{StaticResource Black}"
-                       IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}">
+                       VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference page}}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <!--Yorum-->
-                <iconize:IconImage Icon="far-comment"
-                                   WidthRequest="13"
+                <!--  Yorum  -->
+                <iconize:IconImage Margin="20,0,0,0"
                                    HeightRequest="13"
-                                   Margin="20,0,0,0"
-                                   VerticalOptions="CenterAndExpand"
+                                   Icon="far-comment"
                                    IconColor="{StaticResource Black}"
-                                   IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}">
+                                   IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}"
+                                   VerticalOptions="CenterAndExpand"
+                                   WidthRequest="13">
                     <iconize:IconImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
                     </iconize:IconImage.GestureRecognizers>
                 </iconize:IconImage>
 
-                <Label FontSize="13"
-                       Margin="5,0,0,0"
-                       Text="{Binding CommentCount}"
+                <Label Margin="5,0,0,0"
+                       FontSize="13"
                        HorizontalOptions="EndAndExpand"
-                       VerticalOptions="CenterAndExpand"
+                       IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}"
+                       Text="{Binding CommentCount}"
                        TextColor="{StaticResource Black}"
-                       IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}">
+                       VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label FontSize="13"
-                       Margin="5,0,0,0"
-                       Text="{i18n:Translate Comments}"
+                <Label Margin="5,0,0,0"
+                       FontSize="13"
                        HorizontalOptions="EndAndExpand"
-                       VerticalOptions="CenterAndExpand"
+                       IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}"
+                       Text="{i18n:Translate Comments}"
                        TextColor="{StaticResource Black}"
-                       IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}">
+                       VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
                     </Label.GestureRecognizers>
@@ -111,12 +111,12 @@
 
             <iconize:IconImage Grid.Row="2"
                                Grid.Column="0"
-                               WidthRequest="22"
                                HeightRequest="22"
                                HorizontalOptions="Start"
-                               VerticalOptions="CenterAndExpand"
+                               Icon="{Binding IsLike, Converter={StaticResource fbc}}"
                                IconColor="{StaticResource Black}"
-                               Icon="{Binding IsLike, Converter={StaticResource fbc}}">
+                               VerticalOptions="CenterAndExpand"
+                               WidthRequest="22">
                 <iconize:IconImage.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LikeProcessCommand, Source={x:Reference page}}" />
                 </iconize:IconImage.GestureRecognizers>
@@ -124,12 +124,12 @@
 
             <iconize:IconImage Grid.Row="2"
                                Grid.Column="1"
-                               WidthRequest="22"
-                               Icon="far-comment"
                                HeightRequest="22"
                                HorizontalOptions="Start"
+                               Icon="far-comment"
+                               IconColor="{StaticResource Black}"
                                VerticalOptions="CenterAndExpand"
-                               IconColor="{StaticResource Black}">
+                               WidthRequest="22">
                 <iconize:IconImage.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
                 </iconize:IconImage.GestureRecognizers>

@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.FollowersView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.FollowersView"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             x:Name="followersViewPage"
              Title="{Binding Title}"
-             x:Name="followersViewPage">
+             prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}"
-                                                      Style="{StaticResource ListView}">
+        <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:UserFollowListItem IconStatus="{Binding IsFollowing}"
-                                                       GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference followersViewPage}}"
+                        <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference followersViewPage}}"
+                                                       IconStatus="{Binding IsFollowing}"
                                                        RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference followersViewPage}}" />
                     </ViewCell>
                 </DataTemplate>

@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.AccountSettingsView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.AccountSettingsView"
+             x:Name="page"
              Title="{Binding Title}"
-             x:Name="page">
+             prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem Text="{i18n:Translate Save}"
+        <icon:IconToolbarItem Command="{Binding Path=BindingContext.SaveCommand, Source={x:Reference page}}"
                               IconColor="{StaticResource Black}"
-                              Command="{Binding Path=BindingContext.SaveCommand, Source={x:Reference page}}" />
+                              Text="{i18n:Translate Save}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ListView HasUnevenRows="true"
                   IsGroupingEnabled="true"
+                  ItemsSource="{Binding Items}"
                   SelectionMode="None"
-                  SeparatorColor="#333333"
-                  ItemsSource="{Binding Items}">
+                  SeparatorColor="#333333">
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>

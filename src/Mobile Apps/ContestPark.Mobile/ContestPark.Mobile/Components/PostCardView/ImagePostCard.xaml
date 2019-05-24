@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.PostCardView.ImagePostCard"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-             x:Class="ContestPark.Mobile.Components.PostCardView.ImagePostCard"
              x:Name="imagePostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -13,8 +13,8 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid Padding="8"
-              RowSpacing="0"
-              ColumnSpacing="0">
+              ColumnSpacing="0"
+              RowSpacing="0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -29,40 +29,40 @@
 
             <Components:CircleImage Grid.Row="0"
                                     Grid.Column="0"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference imagePostCardPage}}"
                                     CommandParameter="{Binding OwnerUserName}"
-                                    Source="{Binding OwnerProfilePicturePath}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference imagePostCardPage}}" />
+                                    Source="{Binding OwnerProfilePicturePath}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
                    FontAttributes="Bold"
                    Text="{Binding OwnerFullName}"
-                   VerticalTextAlignment="Start"
-                   TextColor="{StaticResource Black}" />
+                   TextColor="{StaticResource Black}"
+                   VerticalTextAlignment="Start" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
+                   Text="{Binding Date, Converter={StaticResource moment}}"
                    TextColor="#c5c5c5"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding Date, Converter={StaticResource moment}}" />
+                   VerticalTextAlignment="Center" />
 
             <Components:Line Grid.Row="1"
                              Grid.ColumnSpan="2"
                              BackgroundColor="#dedede" />
 
-            <Components:HtmlLabel Grid.Row="2"
-                                  x:Name="lblDescription"
+            <Components:HtmlLabel x:Name="lblDescription"
+                                  Grid.Row="2"
                                   Grid.ColumnSpan="2"
-                                  FontSize="Default"
                                   Margin="0,10,10,10"
+                                  FontSize="Default"
                                   LineBreakMode="WordWrap"
                                   Text="{Binding Description}"
                                   TextColor="{StaticResource Black}" />
 
             <Image Grid.Row="3"
-                   Aspect="AspectFit"
-                   Margin="0,8,0,0"
                    Grid.ColumnSpan="2"
+                   Margin="0,8,0,0"
+                   Aspect="AspectFit"
                    Source="{Binding PicturePath}">
 
                 <Image.GestureRecognizers>

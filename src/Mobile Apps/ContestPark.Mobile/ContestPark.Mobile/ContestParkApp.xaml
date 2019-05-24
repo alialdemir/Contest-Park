@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<prism:PrismApplication
-    x:Class="ContestPark.Mobile.ContestParkApp"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
+<prism:PrismApplication x:Class="ContestPark.Mobile.ContestParkApp"
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
 
@@ -69,27 +68,24 @@
                 <Setter Property="HasUnevenRows" Value="True" />
             </Style>
 
-            <Style
-                x:Key="ListViewHeaderAndFooter"
-                BasedOn="{StaticResource ListView}"
-                TargetType="ListView">
+            <Style x:Key="ListViewHeaderAndFooter"
+                   BasedOn="{StaticResource ListView}"
+                   TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="Header" Value=" " />
                 <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
-            <Style
-                x:Key="ListViewOnlyFooter"
-                BasedOn="{StaticResource ListView}"
-                TargetType="ListView">
+            <Style x:Key="ListViewOnlyFooter"
+                   BasedOn="{StaticResource ListView}"
+                   TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
-            <Style
-                x:Key="ListViewSeparator"
-                BasedOn="{StaticResource ListView}"
-                TargetType="ListView">
+            <Style x:Key="ListViewSeparator"
+                   BasedOn="{StaticResource ListView}"
+                   TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="SeparatorColor" Value="#333333" />
             </Style>
@@ -101,31 +97,27 @@
                 <Setter Property="HeightRequest" Value="36" />
             </Style>
 
-            <Style
-                x:Key="DangerButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
+            <Style x:Key="DangerButton"
+                   BasedOn="{StaticResource Button}"
+                   TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#b71c1c" />
             </Style>
 
-            <Style
-                x:Key="FacebookButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
+            <Style x:Key="FacebookButton"
+                   BasedOn="{StaticResource Button}"
+                   TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#3b5998" />
             </Style>
 
-            <Style
-                x:Key="TwitterButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
+            <Style x:Key="TwitterButton"
+                   BasedOn="{StaticResource Button}"
+                   TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#1da1f2" />
             </Style>
 
-            <Style
-                x:Key="GoolgePlusButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
+            <Style x:Key="GoolgePlusButton"
+                   BasedOn="{StaticResource Button}"
+                   TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#dd4b39" />
             </Style>
 

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.UserFollowListItem"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Class="ContestPark.Mobile.Components.UserFollowListItem"
              x:Name="userFollowListItemPage">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -12,9 +12,9 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid RowSpacing="0"
-              Padding="8,4,8,4"
-              BackgroundColor="{StaticResource ListBackgroundColor}">
+        <Grid Padding="8,4,8,4"
+              BackgroundColor="{StaticResource ListBackgroundColor}"
+              RowSpacing="0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
@@ -27,37 +27,37 @@
                 <ColumnDefinition Width="60" />
             </Grid.ColumnDefinitions>
 
-            <components:CircleImage Grid.Column="0"
-                                    Grid.RowSpan="2"
+            <components:CircleImage Grid.RowSpan="2"
+                                    Grid.Column="0"
+                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}"
                                     CommandParameter="{Binding UserName}"
-                                    Source="{Binding ProfilePicturePath}"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}" />
+                                    Source="{Binding ProfilePicturePath}" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   TextColor="White"
-                   FontSize="Default"
                    FontAttributes="Bold"
+                   FontSize="Default"
                    LineBreakMode="TailTruncation"
-                   Text="{Binding FullName}" />
+                   Text="{Binding FullName}"
+                   TextColor="White" />
 
             <components:HtmlLabel Grid.Row="1"
                                   Grid.Column="1"
-                                  TextColor="White"
-                                  FontSize="Small"
                                   Grid.ColumnSpan="2"
+                                  FontSize="Small"
                                   LineBreakMode="TailTruncation"
-                                  Text="{Binding UserName, StringFormat='@{0:N}'}" />
+                                  Text="{Binding UserName, StringFormat='@{0:N}'}"
+                                  TextColor="White" />
 
-            <icon:IconButton FontSize="20"
+            <icon:IconButton Grid.RowSpan="2"
                              Grid.Column="2"
-                             Grid.RowSpan="2"
-                             HorizontalOptions="Start"
                              BackgroundColor="Transparent"
-                             TextColor="{StaticResource Red}"
+                             Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}"
                              CommandParameter="{Binding UserId}"
+                             FontSize="20"
+                             HorizontalOptions="Start"
                              Text="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbc}}"
-                             Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}" />
+                             TextColor="{StaticResource Red}" />
 
             <components:Line Grid.Row="2"
                              Grid.Column="1"

@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.TextListItem"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Class="ContestPark.Mobile.Components.TextListItem">
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize">
     <ContentView.Content>
         <components:CustomGrid Padding="16,8,16,8"
                                ColumnSpacing="15"
-                               SingleTap="{Binding SingleTap}"
-                               CommandParameter="{Binding CommandParameter}">
+                               CommandParameter="{Binding CommandParameter}"
+                               SingleTap="{Binding SingleTap}">
             <components:CustomGrid.RowDefinitions>
                 <RowDefinition Height="30" />
             </components:CustomGrid.RowDefinitions>
@@ -18,25 +18,25 @@
             </components:CustomGrid.ColumnDefinitions>
 
             <icon:IconImage Grid.Row="0"
-                            IconSize="24"
                             Grid.Column="0"
                             Icon="{Binding Icon}"
-                            IconColor="{StaticResource Primary}" />
+                            IconColor="{StaticResource Primary}"
+                            IconSize="24" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   TextColor="White"
                    FontSize="Default"
                    Text="{Binding Title}"
+                   TextColor="White"
                    VerticalOptions="Center" />
 
             <icon:IconImage Grid.Row="0"
-                            IconSize="16"
                             Grid.Column="2"
-                            Icon="fas-angle-right"
                             HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            IconColor="{StaticResource Primary}" />
+                            Icon="fas-angle-right"
+                            IconColor="{StaticResource Primary}"
+                            IconSize="16"
+                            VerticalOptions="Center" />
         </components:CustomGrid>
     </ContentView.Content>
 </ContentView>

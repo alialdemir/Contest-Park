@@ -1,36 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.MissionsView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.MissionsView"
+             x:Name="missionsViewPage"
              Title="{Binding Title}"
-             x:Name="missionsViewPage">
+             prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView Header="{Binding ListViewHeader}"
-                                                      Style="{StaticResource ListViewSeparator}">
+        <components:NonPersistentSelectedItemListView Header="{Binding ListViewHeader}" Style="{StaticResource ListViewSeparator}">
             <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Label FontSize="15"
-                               Margin="0,10,0,0"
-                               Text="{Binding .}"
+                        <Label Margin="0,10,0,0"
                                FontAttributes="Bold"
-                               VerticalOptions="CenterAndExpand"
+                               FontSize="15"
                                HorizontalOptions="CenterAndExpand"
-                               TextColor="{StaticResource Primary}" />
+                               Text="{Binding .}"
+                               TextColor="{StaticResource Primary}"
+                               VerticalOptions="CenterAndExpand" />
 
-                        <BoxView HeightRequest="1"
-                                 BackgroundColor="#333333"
+                        <BoxView BackgroundColor="#333333"
+                                 HeightRequest="1"
                                  HorizontalOptions="FillAndExpand" />
                     </StackLayout>
                 </DataTemplate>
@@ -40,8 +39,8 @@
                     <ViewCell>
                         <components:CustomGrid Padding="8"
                                                ColumnSpacing="15"
-                                               SingleTap="{Binding SingleTap}"
-                                               CommandParameter="{Binding CommandParameter}">
+                                               CommandParameter="{Binding CommandParameter}"
+                                               SingleTap="{Binding SingleTap}">
 
                             <components:CustomGrid.RowDefinitions>
                                 <RowDefinition Height="24" />
@@ -54,61 +53,61 @@
                                 <ColumnDefinition Width="70" />
                             </components:CustomGrid.ColumnDefinitions>
 
-                            <Image Grid.Column="0"
-                                   Grid.RowSpan="2"
+                            <Image Grid.RowSpan="2"
+                                   Grid.Column="0"
                                    Aspect="AspectFill"
                                    Source="{Binding MissionPicturePath}" />
 
                             <Label Grid.Row="0"
                                    Grid.Column="1"
-                                   TextColor="White"
-                                   FontSize="Default"
                                    FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   Text="{Binding MissionName}" />
+                                   FontSize="Default"
+                                   Text="{Binding MissionName}"
+                                   TextColor="White"
+                                   VerticalOptions="Center" />
 
                             <Label Grid.Row="1"
                                    Grid.Column="1"
-                                   TextColor="White"
                                    FontSize="Default"
-                                   VerticalOptions="Center"
-                                   Text="{Binding MissionDescription}" />
+                                   Text="{Binding MissionDescription}"
+                                   TextColor="White"
+                                   VerticalOptions="Center" />
 
-                            <Button FontSize="14"
-                                    BorderWidth="0"
+                            <Button Grid.RowSpan="2"
                                     Grid.Column="2"
-                                    Grid.RowSpan="2"
                                     BackgroundColor="Transparent"
-                                    Style="{StaticResource Button}"
-                                    TextColor="{StaticResource Primary}"
+                                    BorderWidth="0"
+                                    Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}"
                                     CommandParameter="{Binding MissionId}"
-                                    Text="{Binding Gold, StringFormat='    {0}'}"
+                                    FontSize="14"
                                     IsVisible="{Binding MissionStatus, Converter={StaticResource not}}"
-                                    Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}" />
+                                    Style="{StaticResource Button}"
+                                    Text="{Binding Gold, StringFormat='    {0}'}"
+                                    TextColor="{StaticResource Primary}" />
 
-                            <icon:IconButton FontSize="14"
-                                             Text="far-gem"
+                            <icon:IconButton Grid.RowSpan="2"
                                              Grid.Column="2"
-                                             Grid.RowSpan="2"
-                                             TextColor="{StaticResource Primary}"
-                                             HorizontalOptions="Start"
                                              BackgroundColor="Transparent"
+                                             Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}"
                                              CommandParameter="{Binding MissionId}"
+                                             FontSize="14"
+                                             HorizontalOptions="Start"
                                              IsVisible="{Binding MissionStatus, Converter={StaticResource not}}"
-                                             Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}" />
+                                             Text="far-gem"
+                                             TextColor="{StaticResource Primary}" />
                         </components:CustomGrid>
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>
             <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <Label FontSize="15"
-                           Margin="0,10,0,0"
+                    <Label Margin="0,10,0,0"
                            FontAttributes="Bold"
-                           VerticalOptions="CenterAndExpand"
+                           FontSize="15"
                            HorizontalOptions="CenterAndExpand"
+                           Text="{i18n:Translate NewMissionsComingSoon}"
                            TextColor="{StaticResource Primary}"
-                           Text="{i18n:Translate NewMissionsComingSoon}" />
+                           VerticalOptions="CenterAndExpand" />
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>

@@ -1,19 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ContestPark.Mobile.Components.IconGroupHeader">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.IconGroupHeader"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentView.Content>
-        <StackLayout Spacing="20"
-                     Padding="50,10,0,10"
+        <StackLayout Padding="50,10,0,10"
+                     BackgroundColor="{StaticResource ListBackgroundColor}"
                      Orientation="Horizontal"
-                     VerticalOptions="FillAndExpand"
-                     BackgroundColor="{StaticResource ListBackgroundColor}">
+                     Spacing="20"
+                     VerticalOptions="FillAndExpand">
 
-            <Label FontSize="Default"
-                   FontAttributes="Bold"
+            <Label FontAttributes="Bold"
+                   FontSize="Default"
                    Text="{Binding Heading}"
-                   VerticalOptions="Center"
-                   TextColor="#808080" />
+                   TextColor="#808080"
+                   VerticalOptions="Center" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

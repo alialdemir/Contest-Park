@@ -1,29 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Components:SearchPage xmlns="http://xamarin.com/schemas/2014/forms"
+<Components:SearchPage x:Class="ContestPark.Mobile.Views.SearchView"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
                        xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-                       xmlns:search="clr-namespace:ContestPark.Mobile.Components.Search"
+                       xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
                        xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-                       SearchPlaceHolderText="{i18n:Translate SearchPlayersOrCategories}"
-                       SearchCommand="{Binding SearchCommand}"
-                       SearchPlaceHolderColor="{StaticResource Primary}"
+                       xmlns:search="clr-namespace:ContestPark.Mobile.Components.Search"
+                       x:Name="searchViewPage"
+                       Title="{Binding Title}"
+                       prism:ViewModelLocator.AutowireViewModel="True"
                        IsSearchFocus="{Binding IsSearchFocus}"
                        SeachTextColor="White"
-                       SearchIconColor="{StaticResource Primary}"
                        SearchCloseIconColor="{StaticResource Primary}"
-                       prism:ViewModelLocator.AutowireViewModel="True"
-                       x:Class="ContestPark.Mobile.Views.SearchView"
-                       x:Name="searchViewPage"
-                       Title="{Binding Title}">
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchIconColor="{StaticResource Primary}"
+                       SearchPlaceHolderColor="{StaticResource Primary}"
+                       SearchPlaceHolderText="{i18n:Translate SearchPlayersOrCategories}">
     <Components:SearchPage.Content>
-        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}"
-                                                      Style="{StaticResource ListViewOnlyFooter}">
+        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListViewOnlyFooter}">
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <search:SearchFactory PushCategoryDetailCommand="{Binding Path=BindingContext.PushCategoryDetailCommand, Source={x:Reference searchViewPage}}"
-                                              GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference searchViewPage}}" />
+                        <search:SearchFactory GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference searchViewPage}}" PushCategoryDetailCommand="{Binding Path=BindingContext.PushCategoryDetailCommand, Source={x:Reference searchViewPage}}" />
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>

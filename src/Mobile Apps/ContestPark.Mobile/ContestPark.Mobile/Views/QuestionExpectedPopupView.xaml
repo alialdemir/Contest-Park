@@ -1,25 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage x:Class="ContestPark.Mobile.Views.QuestionExpectedPopupView"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                  prism:ViewModelLocator.AutowireViewModel="True"
-                 x:Class="ContestPark.Mobile.Views.QuestionExpectedPopupView"
                  BackgroundColor="Transparent">
     <pages:PopupPage.Content>
         <StackLayout Margin="0,70,0,0"
-                     Orientation="Vertical"
-                     VerticalOptions="FillAndExpand"
+                     BackgroundColor="{StaticResource Black}"
                      HorizontalOptions="FillAndExpand"
-                     BackgroundColor="{StaticResource Black}">
+                     Orientation="Vertical"
+                     VerticalOptions="FillAndExpand">
 
-            <StackLayout Spacing="0"
+            <StackLayout HorizontalOptions="CenterAndExpand"
                          Orientation="Vertical"
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="CenterAndExpand">
+                         Spacing="0"
+                         VerticalOptions="CenterAndExpand">
 
-                <Image HeightRequest="100"
-                       Source="{Binding SubCategoryPicturePath}" />
+                <Image HeightRequest="100" Source="{Binding SubCategoryPicturePath}" />
 
                 <Label FontSize="15"
                        HorizontalOptions="Center"
@@ -27,20 +26,20 @@
                        Text="{Binding SubcategoryName}"
                        TextColor="{StaticResource White}" />
 
-                <Label FontSize="30"
+                <Label FontAttributes="Bold"
+                       FontSize="30"
                        HorizontalTextAlignment="Center"
-                       FontAttributes="Bold"
                        Text="{Binding RoundCount, StringFormat='ROUND {0}'}"
                        TextColor="{StaticResource White}" />
 
                 <Label FontSize="14"
                        HorizontalTextAlignment="Center"
-                       TextColor="{StaticResource White}"
-                       Text="{Binding RoundCount, StringFormat='{0} to 7'}" />
+                       Text="{Binding RoundCount, StringFormat='{0} to 7'}"
+                       TextColor="{StaticResource White}" />
 
                 <Label FontSize="18"
-                       Text="Get ready!"
                        HorizontalTextAlignment="Center"
+                       Text="Get ready!"
                        TextColor="#ddd" />
             </StackLayout>
         </StackLayout>

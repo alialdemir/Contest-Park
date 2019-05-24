@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ContestPark.Mobile.Components.SwitchListItem"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Class="ContestPark.Mobile.Components.SwitchListItem">
+             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize">
     <ContentView.Content>
-        <Grid Padding="16,8,16,8"
-              ColumnSpacing="15">
+        <Grid Padding="16,8,16,8" ColumnSpacing="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
@@ -16,29 +15,29 @@
             </Grid.ColumnDefinitions>
 
             <icon:IconImage Grid.Row="0"
-                            IconSize="24"
                             Grid.Column="0"
                             Icon="{Binding Icon}"
-                            IconColor="{StaticResource Primary}" />
+                            IconColor="{StaticResource Primary}"
+                            IconSize="24" />
 
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   TextColor="White"
                    FontSize="Default"
                    Text="{Binding Title}"
+                   TextColor="White"
                    VerticalOptions="Center" />
 
-            <Switch Grid.Row="0"
+            <Switch x:Name="switchIcon"
+                    Grid.Row="0"
                     Grid.Column="2"
-                    x:Name="switchIcon"
                     HorizontalOptions="End"
-                    VerticalOptions="CenterAndExpand"
+                    IsToggled="{Binding IsToggled}"
                     OnColor="{StaticResource Primary}"
-                    IsToggled="{Binding IsToggled}">
+                    VerticalOptions="CenterAndExpand">
                 <Switch.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="Toggled"
-                                                      Command="{Binding SingleTap}"
-                                                      CommandParameter="{Binding CommandParameter}" />
+                    <behaviors:EventToCommandBehavior Command="{Binding SingleTap}"
+                                                      CommandParameter="{Binding CommandParameter}"
+                                                      EventName="Toggled" />
                 </Switch.Behaviors>
             </Switch>
         </Grid>

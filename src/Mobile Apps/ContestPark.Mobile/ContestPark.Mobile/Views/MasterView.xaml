@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.MasterView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.MasterView"
              x:Name="page"
              Title="ContestPark"
+             prism:ViewModelLocator.AutowireViewModel="True"
              BackgroundColor="{StaticResource GlobalBackgroundColor}">
 
     <ContentPage.Content>
         <ListView HasUnevenRows="true"
                   IsGroupingEnabled="true"
+                  ItemsSource="{Binding Items}"
                   SelectionMode="None"
-                  SeparatorColor="#333333"
-                  ItemsSource="{Binding Items}">
+                  SeparatorColor="#333333">
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -24,7 +24,7 @@
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
             <ListView.Header>
-                <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
@@ -36,22 +36,22 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Image Margin="0"
-                           Grid.RowSpan="2"
+                    <Image Grid.RowSpan="2"
                            Grid.ColumnSpan="3"
+                           Margin="0"
                            Aspect="AspectFill"
                            Source="{Binding CoverPicture}" />
 
                     <components:CircleImage Grid.Row="1"
                                             Grid.Column="0"
                                             Margin="0,-60,0,0"
-                                            Source="{Binding ProfilePicture}"
-                                            Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference page}}" />
+                                            Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference page}}"
+                                            Source="{Binding ProfilePicture}" />
                     <Grid Grid.Row="1"
-                          RowSpacing="0"
                           Grid.Column="1"
+                          Margin="-10,10,0,0"
                           ColumnSpacing="0"
-                          Margin="-10,10,0,0">
+                          RowSpacing="0">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20" />
@@ -65,16 +65,16 @@
 
                         <Label Grid.Row="0"
                                Grid.ColumnSpan="2"
-                               FontSize="16"
                                FontAttributes="Bold"
+                               FontSize="16"
                                Text="{Binding FullName}"
                                TextColor="{StaticResource White}" />
 
                         <icon:IconLabel Grid.Row="1"
-                                        FontSize="14"
-                                        Text="far-gem"
                                         Grid.Column="0"
+                                        FontSize="14"
                                         HorizontalOptions="Start"
+                                        Text="far-gem"
                                         TextColor="{StaticResource Primary}" />
 
                         <Label Grid.Row="1"

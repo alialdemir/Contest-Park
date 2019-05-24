@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<components:CustomGrid xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<components:CustomGrid x:Class="ContestPark.Mobile.Components.SubCategoryCard"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:components="clr-namespace:ContestPark.Mobile.Components"
                        xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-                       x:Class="ContestPark.Mobile.Components.SubCategoryCard"
-                       Margin="4,8,4,0"
-                       x:Name="customGrid">
+                       xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+                       x:Name="customGrid"
+                       Margin="4,8,4,0">
     <components:CustomGrid.RowDefinitions>
         <RowDefinition Height="90" />
         <RowDefinition Height="20" />
@@ -14,41 +14,41 @@
         <ColumnDefinition Width="90" />
     </components:CustomGrid.ColumnDefinitions>
 
-    <cacheImage:CachedImage Grid.Row="0"
+    <cacheImage:CachedImage x:Name="imgSubCategoryImageSource"
+                            Grid.Row="0"
                             Grid.Column="0"
-                            WidthRequest="70"
-                            HeightRequest="70"
-                            CacheDuration="365"
                             Aspect="AspectFill"
+                            CacheDuration="365"
                             DownsampleToViewSize="true"
-                            x:Name="imgSubCategoryImageSource" />
+                            HeightRequest="70"
+                            WidthRequest="70" />
 
-    <Label Grid.Row="1"
+    <Label x:Name="lblSubCategoryName"
+           Grid.Row="1"
            Grid.Column="0"
-           FontSize="16"
-           TextColor="White"
            FontAttributes="Bold"
-           x:Name="lblSubCategoryName"
-           HorizontalTextAlignment="Center" />
+           FontSize="16"
+           HorizontalTextAlignment="Center"
+           TextColor="White" />
 
-    <Frame Margin="0"
+    <Frame x:Name="goldBadge"
+           Margin="0"
            Padding="0"
-           x:Name="goldBadge"
-           WidthRequest="33"
-           TranslationY="-4"
-           TranslationX="-10"
+           BackgroundColor="{StaticResource Primary}"
            CornerRadius="30"
            HeightRequest="33"
-           VerticalOptions="End"
            HorizontalOptions="End"
-           BackgroundColor="{StaticResource Primary}">
+           TranslationX="-10"
+           TranslationY="-4"
+           VerticalOptions="End"
+           WidthRequest="33">
 
-        <Label Margin="0"
-               FontSize="12"
-               TextColor="Black"
+        <Label x:Name="lblDisplayPrice"
+               Margin="0"
                FontAttributes="Bold"
-               x:Name="lblDisplayPrice"
-               VerticalOptions="Center"
-               HorizontalOptions="Center" />
+               FontSize="12"
+               HorizontalOptions="Center"
+               TextColor="Black"
+               VerticalOptions="Center" />
     </Frame>
 </components:CustomGrid>
