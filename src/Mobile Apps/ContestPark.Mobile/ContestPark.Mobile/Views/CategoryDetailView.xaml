@@ -17,7 +17,7 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <icon:IconToolbarItem Icon="{Binding CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
-                              IconColor="{StaticResource Black}"
+                              IconColor="{StaticResource Primary}"
                               Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}" />
 
         <icon:IconToolbarItem Icon="fas-share-alt"

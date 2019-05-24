@@ -16,6 +16,7 @@ namespace ContestPark.Mobile.Views
     {
         #region Constructor
 
+        [System.Obsolete]
         public TabView()
         {
             InitializeComponent();

@@ -1,6 +1,8 @@
 ﻿using Android.Content;
+using Android.Graphics.Drawables;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Graphics.Drawable;
+using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using ContestPark.Mobile.Views;
 using Plugin.Iconize;
@@ -24,13 +26,13 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             // Intentionally left blank
         }
 
-        /// <inheritdoc />
-        protected override void SetTabIcon(TabLayout.Tab tab, FileImageSource icon)
+        protected override void SetTabIconImageSource(TabLayout.Tab tab, Drawable icon)
         {
-            var iconize = Iconize.FindIconForKey(icon.File);
+            string iconKey = GetIconKey(tab.Text);
+            var iconize = Iconize.FindIconForKey(iconKey);
             if (iconize != null)
             {
-                var drawable = new IconDrawable(Context, icon).SizeDp(20);
+                var drawable = new IconDrawable(Context, iconKey).SizeDp(20);
 
                 int color = Color.FromHex("#66ffc107").ToAndroid();
 
@@ -40,8 +42,31 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
                 tab.SetIcon(drawable);
                 return;
             }
+            base.SetTabIconImageSource(tab, icon);
+        }
 
-            base.SetTabIcon(tab, icon);
+        private string GetIconKey(string pageName)
+        {
+            string categories = ContestParkResources.Categories;
+
+            if (ContestParkResources.Categories.Equals(pageName))
+            {
+                return "fas-gamepad";
+            }
+            else if (ContestParkResources.Chat.Equals(pageName))
+            {
+                return "fas-comments";
+            }
+            else if (ContestParkResources.Notifications.Equals(pageName))
+            {
+                return "fas-bell";
+            }
+            else if (ContestParkResources.Profile.Equals(pageName))
+            {
+                return "fas-user-circle";
+            }
+
+            return "";
         }
     }
 }

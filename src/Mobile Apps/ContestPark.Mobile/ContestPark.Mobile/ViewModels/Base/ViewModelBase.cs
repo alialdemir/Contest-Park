@@ -28,8 +28,8 @@ namespace ContestPark.Mobile.ViewModels.Base
         #region Constructor
 
         public ViewModelBase(INavigationService navigationService = null,
-            IPageDialogService dialogService = null,
-            IPopupNavigation popupNavigation = null)
+                             IPageDialogService dialogService = null,
+                             IPopupNavigation popupNavigation = null)
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
@@ -224,10 +224,9 @@ namespace ContestPark.Mobile.ViewModels.Base
     {
         #region Constructor
 
-        public ViewModelBase(
-            INavigationService navigationService = null,
-            IPageDialogService dialogService = null,
-            IPopupNavigation popupNavigation = null) : base(navigationService, dialogService, popupNavigation) { }
+        public ViewModelBase(INavigationService navigationService = null,
+                             IPageDialogService dialogService = null,
+                             IPopupNavigation popupNavigation = null) : base(navigationService, dialogService, popupNavigation) { }
 
         #endregion Constructor
 

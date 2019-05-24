@@ -9,78 +9,78 @@
              x:Class="ContestPark.Mobile.Views.PostDetailView"
              x:Name="postDetailPage"
              Title="{Binding Title}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converter:DateTimeMomentConverter x:Key="moment" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout VerticalOptions="FillAndExpand"
-                         HorizontalOptions="FillAndExpand">
-                <components:NonPersistentSelectedItemListView x:Name="lstMessages"
-                IsRefreshing="False"
-                ItemAppearing="OnItemAppearing"
-                Style="{StaticResource ListView}">
-                    <components:NonPersistentSelectedItemListView.Header>
-                        <components:PostCardFactoryView
-                    BindingContext="{Binding Path=BindingContext.PostModel.Post, Source={x:Reference postDetailPage}}"
-                    NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference postDetailPage}}" />
-                    </components:NonPersistentSelectedItemListView.Header>
-                    <components:NonPersistentSelectedItemListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <components:ListItemView Detail="{Binding Comment}"
-                                                 Text="{Binding FullName}"
-                                                 UserName="{Binding UserName}"
-                                                 Source="{Binding ProfilePicturePath}"
-                                                 Date="{Binding Date,Converter={StaticResource moment}}"
-                                                 GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference postDetailPage}}" />
-                            </ViewCell>
-                        </DataTemplate>
-                    </components:NonPersistentSelectedItemListView.ItemTemplate>
-                    <components:NonPersistentSelectedItemListView.Footer>
-                        <StackLayout HeightRequest="0" />
-                    </components:NonPersistentSelectedItemListView.Footer>
-                </components:NonPersistentSelectedItemListView>
-            </StackLayout>
-            <Grid VerticalOptions="End"
-                  BackgroundColor="#fff"
-                  HorizontalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="60" />
-                </Grid.ColumnDefinitions>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converter:DateTimeMomentConverter x:Key="moment" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+      <StackLayout VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand">
+        <components:NonPersistentSelectedItemListView x:Name="lstMessages"
+        IsRefreshing="False"
+        ItemAppearing="OnItemAppearing"
+        Style="{StaticResource ListView}">
+          <components:NonPersistentSelectedItemListView.Header>
+            <components:PostCardFactoryView
+        BindingContext="{Binding Path=BindingContext.PostModel.Post, Source={x:Reference postDetailPage}}"
+        NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference postDetailPage}}" />
+          </components:NonPersistentSelectedItemListView.Header>
+          <components:NonPersistentSelectedItemListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <components:ListItemView Detail="{Binding Comment}"
+                                 Text="{Binding FullName}"
+                                 UserName="{Binding UserName}"
+                                 Source="{Binding ProfilePicturePath}"
+                                 Date="{Binding Date,Converter={StaticResource moment}}"
+                                 GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference postDetailPage}}" />
+              </ViewCell>
+            </DataTemplate>
+          </components:NonPersistentSelectedItemListView.ItemTemplate>
+          <components:NonPersistentSelectedItemListView.Footer>
+            <StackLayout HeightRequest="0" />
+          </components:NonPersistentSelectedItemListView.Footer>
+        </components:NonPersistentSelectedItemListView>
+      </StackLayout>
+      <Grid VerticalOptions="End"
+            BackgroundColor="#fff"
+            HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="60" />
+        </Grid.ColumnDefinitions>
 
-                <Editor Keyboard="Chat"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        MaxLength="140"
-                        TextColor="#7b7b7b"
-                        x:Name="txtChatbox"
-                        AutoSize="TextChanges"
-                        Text="{Binding Message}"
-                        AutomationId="txtChatbox"
-                        Focused="TxtChatbox_Focused"
-                        VerticalOptions="FillAndExpand"
-                        Completed="txtChatbox_Completed"
-                        HorizontalOptions="FillAndExpand" />
+        <Editor Keyboard="Chat"
+                Grid.Row="0"
+                Grid.Column="0"
+                MaxLength="140"
+                TextColor="#7b7b7b"
+                x:Name="txtChatbox"
+                AutoSize="TextChanges"
+                Text="{Binding Message}"
+                AutomationId="txtChatbox"
+                Focused="TxtChatbox_Focused"
+                VerticalOptions="FillAndExpand"
+                Completed="txtChatbox_Completed"
+                HorizontalOptions="FillAndExpand" />
 
-                <iconize:IconButton x:Name="btnBtnSendMessage"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        FontSize="32"
-                        Opacity="0.20"
-                        Margin="0,0,10,0"
-                        Text="fas-paper-plane"
-                        HorizontalOptions="End"
-                        Command="SendCommentCommand"
-                        BackgroundColor="Transparent"
-                        AutomationId="btnBtnSendMessage" />
-            </Grid>
-        </StackLayout>
-    </ContentPage.Content>
+        <iconize:IconButton x:Name="btnBtnSendMessage"
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="32"
+                Opacity="0.20"
+                Margin="0,0,10,0"
+                Text="fas-paper-plane"
+                HorizontalOptions="End"
+                Command="{Binding SendCommentCommand}"
+                BackgroundColor="Transparent"
+                AutomationId="btnBtnSendMessage" />
+      </Grid>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

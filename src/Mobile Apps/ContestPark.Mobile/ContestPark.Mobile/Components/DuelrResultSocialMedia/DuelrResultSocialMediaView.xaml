@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Class="ContestPark.Mobile.Components.DuelResultSocialMedia.DuelResultSocialMediaView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Black">
+    <ContentPage.Content>
+        <Grid RowSpacing="0"
+              ColumnSpacing="0"
+              x:Name="gridPage"
+              VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="90" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                   FontSize="Medium"
+                   Grid.ColumnSpan="5"
+                   FontAttributes="Bold"
+                   x:Name="WinnerOrLoseText1"
+                   VerticalTextAlignment="End"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource White}" />
+
+            <Label Grid.Row="1"
+                   FontSize="Small"
+                   Grid.ColumnSpan="5"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource Gray}"
+                   x:Name="WinnerOrLoseText2" />
+
+            <Label Grid.Row="2"
+                   FontSize="40"
+                   Grid.ColumnSpan="5"
+                   FontAttributes="Bold"
+                   x:Name="WinnerOrLoseText3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource Green}" />
+
+            <StackLayout Spacing="0"
+                         Grid.Row="3"
+                         Grid.ColumnSpan="5"
+                         Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+
+                <iconize:IconButton FontSize="18"
+                                    Text="far-gem"
+                                    VerticalOptions="Center"
+				                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource Primary}" />
+
+                <Label FontSize="14"
+                       x:Name="Gold"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       TextColor="{StaticResource Primary}" />
+            </StackLayout>
+
+            <!-- Founder image -->
+            <components:CircleImage Grid.Row="4"
+                                    Grid.Column="1"
+                                    WidthRequest="100"
+                                    HeightRequest="100"
+                                    x:Name="FounderImage" />
+            <Label Text="VS"
+                   Grid.Row="4"
+                   Grid.Column="2"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource White}" />
+
+            <!-- Opponent image -->
+            <components:CircleImage Grid.Row="4"
+                                    Grid.Column="3"
+                                    WidthRequest="100"
+                                    HeightRequest="100"
+                                    x:Name="OpponentImage" />
+
+            <Label x:Name="FounderScore"
+                   Grid.Row="5"
+                   FontSize="40"
+                   Grid.Column="1"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="End"
+                   TextColor="{StaticResource Green}" />
+
+            <Image Grid.Row="5"
+                   Grid.Column="2"
+                   WidthRequest="70"
+                   HeightRequest="70"
+                  x:Name="SubCategoryPicturePath" />
+
+            <Label Grid.Row="5"
+                   FontSize="40"
+                   Grid.Column="3"
+                   FontAttributes="Bold"
+                   x:Name="OpponentScore"
+                   HorizontalTextAlignment="Start"
+                   TextColor="{StaticResource Red}" />
+
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   FontSize="Small"
+                   FontAttributes="Bold"
+                   x:Name="FounderFullName"
+                   HorizontalTextAlignment="End" />
+
+            <Label Grid.Row="6"
+                   Grid.Column="3"
+                   FontSize="Small"
+                   FontAttributes="Bold"
+                   x:Name="OpponentFullName"
+                   HorizontalTextAlignment="Start" />
+
+            <Label Grid.Row="7"
+                   Grid.ColumnSpan="5"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   Text="{i18n:Translate Playing}"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource Gray}" />
+
+            <Label Grid.Row="8"
+                   FontSize="30"
+                   Grid.ColumnSpan="5"
+                   FontAttributes="Bold"
+                   x:Name="SubCategoryName"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource White}" />
+
+            <Label Grid.Row="9"
+                   x:Name="Date"
+                   FontSize="Small"
+                   Grid.ColumnSpan="5"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource Gray}" />
+
+            <Grid Grid.Row="10"
+                  RowSpacing="0"
+                  ColumnSpacing="0"
+                  Margin="20,0,20,0"
+                  Grid.ColumnSpan="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0"
+                       Grid.Column="0"
+                       WidthRequest="40"
+                       HeightRequest="40"
+                       Source="assets/images/logo.png" />
+
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       FontSize="Medium"
+                       Text="ContestPark"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       TextColor="{StaticResource White}" />
+
+                <Image Grid.Row="0"
+                       Grid.Column="2"
+                       Source="assets/images/appstoreandgoogleplay.png" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

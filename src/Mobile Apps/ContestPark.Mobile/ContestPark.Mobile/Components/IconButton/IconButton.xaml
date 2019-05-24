@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Class="ContestPark.Mobile.Components.IconButton.IconButton"
+             x:Name="iconButtonPage">
+    <ContentView.Content>
+        <StackLayout Spacing="0"
+                     Orientation="Horizontal">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Command, Source={x:Reference iconButtonPage}}" 
+                                      CommandParameter="{Binding Parameter, Source={x:Reference iconButtonPage}}" />
+            </StackLayout.GestureRecognizers>
+            <iconize:IconButton FontSize="22"
+                                VerticalOptions="Center"
+				                BackgroundColor="Transparent"
+				                Text="{Binding Icon, Source={x:Reference iconButtonPage}}"
+                                TextColor="{Binding IconColor, Source={x:Reference iconButtonPage}}" />
+
+            <Label FontSize="12"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   Text="{Binding Text, Source={x:Reference iconButtonPage}}"
+                   TextColor="{Binding IconColor, Source={x:Reference iconButtonPage}}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

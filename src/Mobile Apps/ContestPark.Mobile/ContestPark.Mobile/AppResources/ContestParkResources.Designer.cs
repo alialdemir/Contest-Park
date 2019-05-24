@@ -430,6 +430,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BİTİRME BONUSU.
+        /// </summary>
+        public static string FinishBonus {
+            get {
+                return ResourceManager.GetString("FinishBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Takip Et.
         /// </summary>
         public static string Follow {
@@ -637,11 +646,29 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MAÇ SKORU.
+        /// </summary>
+        public static string MatchScore {
+            get {
+                return ResourceManager.GetString("MatchScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Üye olma işlemi başarılı oldu. Fakat giriş yapılamadı. Lütfen giriş yap sayfasından giriş yapınız..
         /// </summary>
         public static string MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage {
             get {
                 return ResourceManager.GetString("MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sohbet.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
             }
         }
         
@@ -826,6 +853,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OYNADI.
+        /// </summary>
+        public static string Playing {
+            get {
+                return ResourceManager.GetString("Playing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beğeniler.
         /// </summary>
         public static string PostLikes {
@@ -912,6 +948,24 @@ namespace ContestPark.Mobile.AppResources {
         public static string RequiredFields {
             get {
                 return ResourceManager.GetString("RequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SONUÇLAR.
+        /// </summary>
+        public static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rövanş.
+        /// </summary>
+        public static string Revenge {
+            get {
+                return ResourceManager.GetString("Revenge", resourceCulture);
             }
         }
         
@@ -1132,6 +1186,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TOPLAM XP.
+        /// </summary>
+        public static string TotalXp {
+            get {
+                return ResourceManager.GetString("TotalXp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Turkish.
         /// </summary>
         public static string Turkish {
@@ -1240,6 +1303,33 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GALİP GELDİ.
+        /// </summary>
+        public static string Victorious {
+            get {
+                return ResourceManager.GetString("Victorious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KAZANMA BONUSU.
+        /// </summary>
+        public static string VictoryBonus {
+            get {
+                return ResourceManager.GetString("VictoryBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Was {
+            get {
+                return ResourceManager.GetString("Was", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reklam izle, altın kazan!.
         /// </summary>
         public static string WatchAdGetCoins {
@@ -1303,6 +1393,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kaybettin!.
+        /// </summary>
+        public static string YouLose {
+            get {
+                return ResourceManager.GetString("YouLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bilgileriniz güncellendi..
         /// </summary>
         public static string YourInformationHasBeenUpdated {
@@ -1335,6 +1434,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YourPhoneDoesNotSupportInAppPurchases {
             get {
                 return ResourceManager.GetString("YourPhoneDoesNotSupportInAppPurchases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sen Kazandın!.
+        /// </summary>
+        public static string YouWin {
+            get {
+                return ResourceManager.GetString("YouWin", resourceCulture);
             }
         }
     }

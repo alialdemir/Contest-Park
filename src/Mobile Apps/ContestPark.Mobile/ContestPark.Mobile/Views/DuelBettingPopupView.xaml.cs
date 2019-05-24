@@ -19,6 +19,7 @@ namespace ContestPark.Mobile.Views
 
         #region Properties
 
+        public string OpponentUserId { get; set; }
         public short SubcategoryId { get; set; }
 
         public string SubcategoryName { get; set; }

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using System.Collections.Generic;
@@ -12,6 +13,32 @@ namespace ContestPark.Mobile.Services.Duel
         public Task BotStandMode(BotStandbyMode botStandbyMode)
         {
             return Task.CompletedTask;
+        }
+
+        public Task<DuelResultModel> DuelResult(string duelId)
+        {
+            return Task.FromResult(new DuelResultModel
+            {
+                FounderProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                FounderUserName = "witcherfearless",
+                OpponentProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                OpponentUserName = "eliföz",
+                SubCategoryName = "Futbol",
+                FounderFullName = "Ali Aldemir",
+                OpponentFullName = "Elif Öz",
+                FounderUserId = "1111-1111-1111-1111",
+                OpponentUserId = "2222-2222-2222-2222",
+                FounderScore = 12,
+                OpponentScore = 12,
+                FinishBonus = 40,
+                VictoryBonus = 30,
+                MatchScore = 234,
+                OpponentLevel = 1,
+                FounderLevel = 7,
+                SubCategoryPicturePath = DefaultImages.DefaultLock,
+                SubCategoryId = 1,
+                Gold = 6234
+            });
         }
 
         public Task ExitStandMode(StandbyModeModel standbyModeModel)

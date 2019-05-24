@@ -1,7 +1,5 @@
-﻿using ContestPark.Mobile.Models.Post;
-using ContestPark.Mobile.Views;
+﻿using ContestPark.Mobile.Views;
 using Prism.Navigation;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,35 +27,7 @@ namespace ContestPark.Mobile.Components.PostCardView
 
         #region Commands
 
-        private Command<PostModel> gotoDuelResultPageCommand;
         private Command<string> gotoProfilePageCommand;
-
-        /// <summary>
-        /// Go to DuelResultPage load command
-        /// </summary>
-        public Command<PostModel> GotoDuelResultPageCommand
-        {
-            get
-            {
-                return gotoDuelResultPageCommand ?? (gotoDuelResultPageCommand = new Command<PostModel>((model) =>
-                {
-                    if (IsBusy || model == null)
-                        return;
-
-                    IsBusy = true;
-                    int duelId = Convert.ToInt32(model?.DuelId);
-                    // TODO: Burası popup olarak açılması lazım
-                    _navigationService?.NavigateAsync(nameof(DuelResultPopupView), new NavigationParameters
-                    {
-                        { "DuelId", duelId },
-                        { "SubCategoryId", model.SubCategoryId },
-                        { "IsNavBarShow", false },
-                    });
-
-                    IsBusy = false;
-                }));
-            }
-        }
 
         /// <summary>
         /// Go to ProfilePage load command

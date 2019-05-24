@@ -586,7 +586,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             IsStylishClick = false;
 
-            SaveAnswer(Stylish.UnableToReply, IsFounder);
+            SaveAnswer(Stylish.UnableToReply, IsFounder).Wait();
         }
 
         #endregion Methods

@@ -19,7 +19,7 @@ namespace ContestPark.Mobile.ViewModels
 
             eventAggregator
                         .GetEvent<TabPageNavigationEvent>()
-                        .Subscribe((pageName) => PushNavigationPageAsync(pageName));
+                        .Subscribe((page) => PushNavigationPageAsync(page.PageName, page.Parameters));
         }
 
         #endregion Constructors

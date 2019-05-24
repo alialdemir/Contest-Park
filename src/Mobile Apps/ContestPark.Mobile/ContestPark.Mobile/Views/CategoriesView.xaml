@@ -1,28 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="ContestPark.Mobile.Views.CategoriesView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ContestPark.Mobile.Components"
              xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ContestPark.Mobile.Views.CategoriesView"
              x:Name="page"
-             Icon="fas-gamepad"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Icon="fas-gamepad">
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem Icon="fas-search"
-                              IconColor="{StaticResource Primary}"
-                              AutomationId="tbiCategorySearch"
+        <icon:IconToolbarItem AutomationId="tbiCategorySearch"
                               Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}"
-                              CommandParameter="{Binding SeeAllSubCateogryId}" />
+                              CommandParameter="{Binding SeeAllSubCateogryId}"
+                              Icon="fas-search"
+                              IconColor="{StaticResource Primary}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:CategoryCard SeeAllCommandParameter="{Binding CategoryId}"
-                                                 SeeAllPressed="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}" />
+                        <components:CategoryCard SeeAllCommandParameter="{Binding CategoryId}" SeeAllPressed="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

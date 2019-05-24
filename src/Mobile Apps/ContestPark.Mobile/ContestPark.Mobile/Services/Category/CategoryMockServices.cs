@@ -185,11 +185,11 @@ namespace ContestPark.Mobile.Services.Category
             return items;
         }
 
-        public async Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
+        public Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
         {
             //  await Task.Delay(3000);
 
-            return false;
+            return Task.FromResult(true);
         }
 
         public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)

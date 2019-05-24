@@ -126,85 +126,6 @@ namespace ContestPark.Mobile.Services.Post
                         },
                     }
                 },
-                Likes = new ServiceModel<PostDetailLikeModel>
-                {
-                    Count = 5,
-                    PageNumber = 1,
-                    PageSize = 10,
-                    Items = new List<PostDetailLikeModel>
-                {
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="witcherfearless"
-                    },
-                    new PostDetailLikeModel
-                    {
-                        ProfilePicturePath= DefaultImages.DefaultProfilePicture,
-                        UserName ="elifoz"
-                    },
-                }
-                }
             });
         }
 
@@ -212,7 +133,7 @@ namespace ContestPark.Mobile.Services.Post
         {
             List<PostModel> posts = new List<PostModel>();
 
-            for (byte i = 0; i < 10; i++)
+            for (int i = pagingModel.PageNumber; i < pagingModel.PageSize + pagingModel.PageNumber; i++)
             {
                 posts.Add(new PostModel
                 {

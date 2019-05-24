@@ -1,4 +1,4 @@
-/*
+﻿/*
  Hangi micro serviste hangi tablolar bulunmalı hangileri yazıldı yazılmadı buradan takip edilir
 */
 
@@ -6,7 +6,7 @@
 ** O serviste olmalı ama daha Yazılmadı
 //** O servistemi olmalı emin değilim ve Yazılmadı
 -------------------------------------------------------
-
+10
 ### Identity
 ApplicationUser
 ** Settings
