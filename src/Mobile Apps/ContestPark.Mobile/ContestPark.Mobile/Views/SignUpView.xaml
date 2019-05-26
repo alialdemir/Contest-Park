@@ -56,7 +56,7 @@
                     <Entry Grid.Row="3"
                            AutomationId="txtFullname"
                            Placeholder="{i18n:Translate Fullname}"
-                           Text="{Binding SignUpModel.Fullname}" />
+                           Text="{Binding SignUpModel.FullName}" />
 
                     <Entry Grid.Row="4"
                            AutomationId="txtEmail"

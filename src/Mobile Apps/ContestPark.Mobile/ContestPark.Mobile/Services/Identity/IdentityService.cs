@@ -1,7 +1,9 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Profile;
@@ -13,9 +15,12 @@ using Newtonsoft.Json;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 
 namespace ContestPark.Mobile.Services.Identity
 {
@@ -59,8 +64,8 @@ namespace ContestPark.Mobile.Services.Identity
             //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
             //string message = await _requestProvider.PostAsync<string>(uri,picture);
-
             //await ShowErrorMessage(message);
+
             return Task.CompletedTask;
         }
 
@@ -203,8 +208,26 @@ namespace ContestPark.Mobile.Services.Identity
         /// <returns>Başarılı ise true başarısız ise false</returns>
         public async Task<bool> SignUpAsync(SignUpModel signUpModel)
         {
-            await Task.Delay(1000);
-            return false;
+            if (signUpModel == null)
+                return false;
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            // TODO: uygulama dili değişince nuradaki dil değişecek mi test edilmesi lazım
+            CultureInfo cultureInfo = Xamarin.Forms.DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+            signUpModel.LanguageCode = cultureInfo.TwoLetterISOLanguageName;
+
+            ValidationResultModel validationResult = await _requestProvider.PostAsync<ValidationResultModel>(uri, signUpModel);
+
+            if (validationResult != null)
+            {
+                foreach (var item in validationResult.MemberNames)
+                {
+                    await _dialogService.DisplayAlertAsync("", item, ContestParkResources.Okay);
+                }
+            }
+
+            return validationResult.MemberNames.Count() == 0;
         }
 
         /// <summary>

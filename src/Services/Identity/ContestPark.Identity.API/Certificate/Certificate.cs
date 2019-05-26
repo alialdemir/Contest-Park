@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
-namespace ContestPark.Identity.API.Certificates
+namespace ContestPark.Identity.API.Certificate
 {
     internal static class Certificate
     {

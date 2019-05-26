@@ -1,101 +1,20 @@
-
 version: '3.4'
 
 services:
-
-  sql.data:
-    image: microsoft/mssql-server-linux:2017-latest 
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.2
-
-  redis.data:
-    image: redis:alpine
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.3
-
-  contestpark.silohost:
-    image: contestparksilohost:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/BuildingBlocks/SiloHost/ContestPark.SiloHost/Dockerfile
+  mysql-data:
+    image: mysql:5.7
+    volumes:
+    - ./data:/var/lib/mysql
+    restart: always
     environment:
-      ConnectionString: ${CONTESTPARK_AZURE_IDENTITY_DB:-Server=sql.data;Database=ContestPark;User Id=sa;Password=Pass@word}
-      RedisConnectionString: ${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
-      IsMigrateDatabase: enable
-      ElasticSearchURI: http://localhost:9200/
-    depends_on:
-      - sql.data
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.4
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
 
   contestpark.identity.api:
     image: contestparkidentity.api:${TAG:-latest}
+    depends_on:
+      - mysql-data
     build:
       context: .
       dockerfile: src/Services/Identity/ContestPark.Identity.API/Dockerfile
-    depends_on:
-      - sql.data
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.5
-
-  contestpark.category.api:
-    image: contestparkcategoryapi:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/Services/Category/ContestPark.Category.API/Dockerfile
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.6
-
-  contestpark.cp.api:
-    image: contestparkcpapi:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/Services/Cp/ContestPark.Cp.API/Dockerfile
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.7
-
-  contestpark.duel.api:
-    image: contestparkduelapi:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/Services/Duel/ContestPark.Duel.API/Dockerfile
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.8
-
-  contestpark.signalr.api:
-    image: contestparksignalrapi:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/Services/Signalr/ContestPark.Signalr.API/Dockerfile
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.9
-
-  contestPark.ocelotapigw:
-    image: contestparkocelotapigw:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: src/BuildingBlocks/ApiGateways/ContestPark.OcelotApiGw/Dockerfile
-    depends_on:
-      - sql.data
-      - contestpark.identity.api
-      - contestpark.category.api
-      - contestpark.cp.api
-      - contestpark.duel.api
-    networks:
-      mynet:
-        ipv4_address: 172.20.0.10
-            
-networks:
-  mynet:
-    driver: bridge
-    ipam:
-      config:
-      - subnet: 172.20.0.0/24

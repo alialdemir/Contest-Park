@@ -1,5 +1,5 @@
 ﻿using ContestPark.Core.Enums;
-using ContestPark.Identity.API.Model;
+using ContestPark.Identity.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -22,14 +22,42 @@ namespace ContestPark.Identity.API.Data
 
             try
             {
-                var contentRootPath = env.ContentRootPath;
-                var webroot = env.WebRootPath;
+                if (!context.Roles.Any())
+                {
+                    context.Roles.AddRange(GetRoles());
+
+                    await context.SaveChangesAsync();
+                }
 
                 if (!context.Users.Any())
                 {
                     context.Users.AddRange(GetDefaultUser());
 
                     await context.SaveChangesAsync();
+                }
+
+                foreach (var user in GetDefaultUser())
+                {
+                    if (!context.UserRoles.Any(x => x.UserId == user.Id))
+                    {
+                        context.UserRoles.Add(new IdentityUserRole<string>
+                        {
+                            UserId = user.Id,
+                            RoleId = "user"
+                        });
+
+                        await context.SaveChangesAsync();
+                    }
+                    if (user.Id == "1111-1111-1111-1111")
+                    {
+                        context.UserRoles.Add(new IdentityUserRole<string>
+                        {
+                            UserId = user.Id,
+                            RoleId = "admin"
+                        });
+
+                        await context.SaveChangesAsync();
+                    }
                 }
             }
             catch (Exception ex)
@@ -107,6 +135,28 @@ namespace ContestPark.Identity.API.Data
                witcherUser,
                demoUser,
                botUser
+            };
+        }
+
+        private List<IdentityRole> GetRoles()
+        {
+            IdentityRole adminRole = new IdentityRole
+            {
+                Id = "admin",
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            };
+            IdentityRole userRole = new IdentityRole
+            {
+                Id = "user",
+                Name = "User",
+                NormalizedName = "USER"
+            };
+
+            return new List<IdentityRole>
+            {
+                adminRole,
+                userRole
             };
         }
     }

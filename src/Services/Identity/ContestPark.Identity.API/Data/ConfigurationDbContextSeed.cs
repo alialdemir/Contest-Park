@@ -3,7 +3,6 @@ using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,14 +11,15 @@ namespace ContestPark.Identity.API.Data
 {
     public class ConfigurationDbContextSeed
     {
-        public async Task SeedAsync(ConfigurationDbContext context, IConfiguration configuration)
+        public async Task SeedAsync(ConfigurationDbContext context)
         {
             if (!context.Clients.Any())
             {
                 foreach (var client in Config.GetClients())
                 {
-                    context.Clients.Add(client.ToEntity());
+                    context.Add(client.ToEntity());
                 }
+
                 await context.SaveChangesAsync();
             }
             // Checking always for old redirects to fix existing deployments
