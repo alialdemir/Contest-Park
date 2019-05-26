@@ -79,8 +79,9 @@ namespace ContestPark.Mobile.ViewModels
             else if (SignUpModel.Fullname.Length < 3) validationMessage = ContestParkResources.FullNameMinLength;// Ad soyad 3 karakterden küçük olamaz
             else if (SignUpModel.Fullname.Length > 255) validationMessage = ContestParkResources.FullNameMaxLength;// Ad soyad 255 karakterden büyük olamaz
             else if (SignUpModel.Email.Length > 255) validationMessage = ContestParkResources.EmailMaxLength;// Eposta adresi 255 karakterden büyük olamaz
-            // TODO: Eposta adresi doğru formatta mı kontrol edilcek
-            else if (SignUpModel.Password.Length < 8) validationMessage = ContestParkResources.PasswordMinLength;// Kullanocı adı 8 karakterden küçük olamaz
+         //  else if (!new EmailAddressAttribute().IsValid(signUpModel.Email)) return IdentityResource.EmailFormating;// Eposta adresi formatı doğru mu
+           // TODO: Eposta adresi doğru formatta mı kontrol edilcek
+            else if (SignUpModel.Password.Length < 6) validationMessage = ContestParkResources.PasswordMinLength;// Kullanocı adı 8 karakterden küçük olamaz
             else if (SignUpModel.Password.Length > 32) validationMessage = ContestParkResources.PasswordMaxLength; // Kullanocı adı 32 karakterden büyük olamaz
 
             if (!string.IsNullOrWhiteSpace(validationMessage))

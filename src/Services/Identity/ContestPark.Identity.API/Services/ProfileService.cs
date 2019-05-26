@@ -1,4 +1,4 @@
-﻿using ContestPark.Identity.API.Model;
+﻿using ContestPark.Identity.API.Models;
 using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Services;

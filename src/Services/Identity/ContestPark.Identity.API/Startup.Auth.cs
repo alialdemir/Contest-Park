@@ -1,9 +1,7 @@
-﻿using ContestPark.Identity.API.Certificates;
-using ContestPark.Identity.API.Model;
+﻿using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Services;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,36 +10,34 @@ using System.Reflection;
 
 namespace ContestPark.Identity.API
 {
-    public partial class Startup
+    public static class IdentityServerStartup
     {
-        private void IdentityServerConfigureServices(IServiceCollection services, string connectionString)
+        public static IServiceCollection AddIdentityServer(this IServiceCollection services, string connectionString)
         {
             // Adds IdentityServer
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddIdentityServer(x => x.IssuerUri = "null")
-                .AddSigningCredential(Certificate.Get())
-
+                .AddSigningCredential(Certificate.Certificate.Get())
                 .AddAspNetIdentity<ApplicationUser>()
-
                 .AddConfigurationStore(options =>
                 {
-                    options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString,
-                                     sqlServerOptionsAction: sqlOptions =>
+                    options.ConfigureDbContext = builder => builder.UseMySql(connectionString,
+                                     mySqlOptionsAction: sqlOptions =>
                                      {
                                          sqlOptions.MigrationsAssembly(migrationsAssembly);
                                          //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
-                                         sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                                         //  sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                                      });
                 })
                 .AddOperationalStore(options =>
                 {
-                    options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString,
-                                    sqlServerOptionsAction: sqlOptions =>
+                    options.ConfigureDbContext = builder => builder.UseMySql(connectionString,
+                                    mySqlOptionsAction: sqlOptions =>
                                     {
                                         sqlOptions.MigrationsAssembly(migrationsAssembly);
                                         //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
-                                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                                        //       sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                                     });
                 })
                 .Services.AddTransient<IProfileService, ProfileService>()
@@ -59,9 +55,11 @@ namespace ContestPark.Identity.API
                     // User settings
                     options.User.RequireUniqueEmail = true;
                 });
+
+            return services;
         }
 
-        private void IdentityServerConfigure(IApplicationBuilder app, IHostingEnvironment env)
+        public static IApplicationBuilder AddIdentityServer(this IApplicationBuilder app)
         {
             app.Use(async (context, next) =>
             {
@@ -71,6 +69,8 @@ namespace ContestPark.Identity.API
 
             // Adds IdentityServer
             app.UseIdentityServer();
+
+            return app;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ContestPark.Identity.API.Model;
+﻿using ContestPark.Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
@@ -6,8 +6,8 @@ namespace ContestPark.Identity.API.Services.Login
 {
     public class EFLoginService : ILoginService<ApplicationUser>
     {
-        private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private UserManager<ApplicationUser> _userManager;
 
         public EFLoginService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
@@ -20,14 +20,14 @@ namespace ContestPark.Identity.API.Services.Login
             return await _userManager.FindByEmailAsync(user);
         }
 
-        public async Task<bool> ValidateCredentials(ApplicationUser user, string password)
-        {
-            return await _userManager.CheckPasswordAsync(user, password);
-        }
-
         public Task SignIn(ApplicationUser user)
         {
             return _signInManager.SignInAsync(user, true);
+        }
+
+        public async Task<bool> ValidateCredentials(ApplicationUser user, string password)
+        {
+            return await _userManager.CheckPasswordAsync(user, password);
         }
     }
 }

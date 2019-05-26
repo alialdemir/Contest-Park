@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>937637fc-c0c1-4b2d-a200-6e0a6700b1ae</ProjectGuid>
-    <DockerLaunchAction>None</DockerLaunchAction>
+    <ProjectGuid>9dfb67fa-4d9e-4ac9-80b8-a43fc26e5934</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>contestpark.category.api</DockerServiceName>
+    <DockerServiceName>contestpark.identity.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

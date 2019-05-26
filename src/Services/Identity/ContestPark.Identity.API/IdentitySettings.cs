@@ -2,8 +2,7 @@
 {
     public class IdentitySettings
     {
-        public bool UseCustomizationData { get; set; }
-
         public bool IsMigrateDatabase { get; set; }
+        public bool UseCustomizationData { get; set; }
     }
 }
