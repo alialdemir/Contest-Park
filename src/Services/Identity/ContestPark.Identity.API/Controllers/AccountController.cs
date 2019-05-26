@@ -12,14 +12,17 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Identity.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AccountController : Core.Controllers.ControllerBase
     {
-        //private readonly InMemoryUserLoginService _loginService;
+        #region Private variables
+
         private readonly ILogger<AccountController> _logger;
 
         private readonly UserManager<ApplicationUser> _userManager;
+
+        #endregion Private variables
 
         #region Constructor
 
