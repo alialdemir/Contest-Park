@@ -20,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 
 namespace ContestPark.Mobile.Services.Identity
 {
@@ -63,8 +64,8 @@ namespace ContestPark.Mobile.Services.Identity
             //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
             //string message = await _requestProvider.PostAsync<string>(uri,picture);
-
             //await ShowErrorMessage(message);
+
             return Task.CompletedTask;
         }
 

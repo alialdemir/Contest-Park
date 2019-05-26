@@ -33,42 +33,47 @@ namespace ContestPark.Identity.API.Extensions
                     var retry = GetRetryPolicy();
 
                     retry.Execute(() =>
-                    {
-                        //if the sql server container is not created on run docker compose this
-                        //migration can't fail for network related exception. The retry options for DbContext only
-                        //apply to transient exceptions.
-                        try
-                        {
-                            /*
-                                   Her db context için eğer tablolar oluşmamışsa exception fırlatır migrate çalışır sonra tekrar kontrol eder
-                            */
+                   {
+                       //if the sql server container is not created on run docker compose this
+                       //migration can't fail for network related exception. The retry options for DbContext only
+                       //apply to transient exceptions.
+                       try
+                       {
+                           /*
+                                  Her db context için eğer tablolar oluşmamışsa exception fırlatır migrate çalışır sonra tekrar kontrol eder
+                           */
 
-                            if (context is ApplicationDbContext)
-                            {
-                                (context as IdentityDbContext<ApplicationUser>).Users.Any();
-                            }
-                            else if (context is PersistedGrantDbContext)
-                            {
-                                (context as PersistedGrantDbContext).PersistedGrants.Any();
-                            }
-                            else if (context is ConfigurationDbContext)
-                            {
-                                (context as ConfigurationDbContext).Clients.Any();
-                            }
+                           if (context is ApplicationDbContext)
+                           {
+                               (context as IdentityDbContext<ApplicationUser>).Users.Any();
+                           }
+                           else if (context is PersistedGrantDbContext)
+                           {
+                               (context as PersistedGrantDbContext).PersistedGrants.Any();
+                           }
+                           else if (context is ConfigurationDbContext)
+                           {
+                               (context as ConfigurationDbContext).Clients.Any();
+                           }
 
-                            seeder(context, services);
-                        }
-                        catch (MySqlException e)
-                        {
-                            // entity framework kendi migrations scriptlerini çalıştırınca auto increment özelliğini aktif edemiyor. Sanırım bug var
-                            // o yüzden manuel çalıştırdım
-                            string dbScript = context.Database.GenerateCreateScript();
+                           seeder(context, services);
+                       }
+                       catch (MySqlException)
+                       {
+                           // entity framework kendi migrations scriptlerini çalıştırınca auto increment özelliğini aktif edemiyor. Sanırım bug var
+                           // o yüzden manuel çalıştırdım
 
-                            context.Database.ExecuteSqlCommand(new RawSqlString(dbScript));
+                           bool isEnsureCreated = context.Database.EnsureCreated();
+                           if (!isEnsureCreated)
+                           {
+                               string dbScript = context.Database.GenerateCreateScript();
 
-                            MigrateDatabase(webHost, seeder);
-                        }
-                    });
+                               context.Database.ExecuteSqlCommand(new RawSqlString(dbScript));
+                           }
+
+                           MigrateDatabase(webHost, seeder);
+                       }
+                   });
 
                     logger.LogInformation($"Migrated database associated with context {typeof(TContext).Name}");
                 }

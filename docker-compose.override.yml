@@ -4,7 +4,7 @@ services:
   contestpark.identity.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;database=ContestPark;uid=root;pwd=root;}  
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestPark;pwd=root;}  
     ports:
       - "5101:80"
     volumes:
