@@ -115,23 +115,39 @@ namespace ContestPark.Identity.API.Migrations
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ClaimType");
+                b.Property<string>("ClaimType");
 
-                    b.Property<string>("ClaimValue");
+                b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired();
+                b.Property<string>("RoleId")
+                    .IsRequired();
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
-                });
+                b.ToTable("AspNetRoleClaims");
+            });
+
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.ForgetPasswordCodes", b =>
+            {
+                b.Property<int>("ForgetPasswordCodeId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("UserId");
+
+                b.Property<int>("Code");
+
+                b.HasKey("ForgetPasswordCodeId");
+
+                b.HasIndex("UserId");
+
+                b.ToTable("ForgetPasswordCodes");
+            });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {

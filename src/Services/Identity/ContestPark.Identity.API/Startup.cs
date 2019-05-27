@@ -1,6 +1,8 @@
 ﻿using ContestPark.Identity.API.Data;
+using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
+using ContestPark.Identity.API.Services;
 using ContestPark.Identity.API.Services.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,6 +70,9 @@ namespace ContestPark.Identity.API
             #region AddTransient
 
             services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
+
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             #endregion AddTransient
 

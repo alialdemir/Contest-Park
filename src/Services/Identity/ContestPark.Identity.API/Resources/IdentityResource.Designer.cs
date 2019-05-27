@@ -88,6 +88,15 @@ namespace ContestPark.Identity.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the code below to refresh the password:.
+        /// </summary>
+        public static string EnterTheCodeBelowToRefreshThePassword {
+            get {
+                return ResourceManager.GetString("EnterTheCodeBelowToRefreshThePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name must be a maximum of 255 characters..
         /// </summary>
         public static string FullNameMaxLength {
@@ -111,6 +120,15 @@ namespace ContestPark.Identity.API.Resources {
         public static string FullNameReqired {
             get {
                 return ResourceManager.GetString("FullNameReqired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
             }
         }
         
@@ -160,6 +178,15 @@ namespace ContestPark.Identity.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error in sending password..
+        /// </summary>
+        public static string ThereWasAnErrorInSendingPassword {
+            get {
+                return ResourceManager.GetString("ThereWasAnErrorInSendingPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your username must be a maximum of 255 characters..
         /// </summary>
         public static string UserNameMaxLength {
@@ -183,6 +210,24 @@ namespace ContestPark.Identity.API.Resources {
         public static string UserNameReqired {
             get {
                 return ResourceManager.GetString("UserNameReqired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found..
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have received a request to renew your ContestPark password..
+        /// </summary>
+        public static string WeHaveReceivedARequestToRenewYourContestParkPassword {
+            get {
+                return ResourceManager.GetString("WeHaveReceivedARequestToRenewYourContestParkPassword", resourceCulture);
             }
         }
     }

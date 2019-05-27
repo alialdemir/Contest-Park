@@ -36,7 +36,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     await context.Response.WriteAsync(new ErrorDetailsModel()
                     {
                         StatusCode = context.Response.StatusCode,
+#if DEBUG
+                        Message = exception.Error.Message + "   " + exception.Error.StackTrace
+#else
                         Message = "Internal Server Error."
+#endif
                     }.ToString());
                 }
             });

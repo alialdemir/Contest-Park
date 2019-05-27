@@ -126,6 +126,9 @@
   <data name="EmailRequired" xml:space="preserve">
     <value>Email address required field.</value>
   </data>
+  <data name="EnterTheCodeBelowToRefreshThePassword" xml:space="preserve">
+    <value>Enter the code below to refresh the password:</value>
+  </data>
   <data name="FullNameMaxLength" xml:space="preserve">
     <value>Full Name must be a maximum of 255 characters.</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="FullNameReqired" xml:space="preserve">
     <value>Full name required field.</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
   </data>
   <data name="LanguageCodeReqired" xml:space="preserve">
     <value>Language code required field.</value>
@@ -150,6 +156,9 @@
   <data name="PasswordReqired" xml:space="preserve">
     <value>Password required field.</value>
   </data>
+  <data name="ThereWasAnErrorInSendingPassword" xml:space="preserve">
+    <value>There was an error in sending password.</value>
+  </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>Your username must be a maximum of 255 characters.</value>
   </data>
@@ -158,5 +167,11 @@
   </data>
   <data name="UserNameReqired" xml:space="preserve">
     <value>User name required field.</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User not found.</value>
+  </data>
+  <data name="WeHaveReceivedARequestToRenewYourContestParkPassword" xml:space="preserve">
+    <value>We have received a request to renew your ContestPark password.</value>
   </data>
 </root>

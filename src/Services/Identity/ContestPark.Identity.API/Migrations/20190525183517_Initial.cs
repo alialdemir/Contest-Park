@@ -27,6 +27,9 @@ namespace ContestPark.Identity.API.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "ForgetPasswordCodes");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
         }
 
@@ -44,6 +47,25 @@ namespace ContestPark.Identity.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ForgetPasswordCodes",
+                columns: table => new
+                {
+                    ForgetPasswordCodeId = table.Column<string>(maxLength: 450, nullable: false),
+                    UserId = table.Column<string>(maxLength: 450, nullable: false),
+                    Code = table.Column<int>(nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ForgetPasswordCodes", x => x.ForgetPasswordCodeId);
+                    table.ForeignKey(
+                        name: "FK_ForgetPasswordCodes_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
