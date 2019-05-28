@@ -16,6 +16,7 @@ namespace ContestPark.Identity.API.Configuration
                 new ApiResource("duel", "Duel Service"),
                 new ApiResource("signalrhub", "Duel Signalr"),
                 new ApiResource("question", "Question Service"),
+                new ApiResource("identity", "Identity Service"),
                 new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
             };
         }
@@ -43,7 +44,8 @@ namespace ContestPark.Identity.API.Configuration
                                         "duel",
                                         "mobileshoppingagg",
                                         "signalrhub",
-                                        "question"
+                                        "question",
+                                        "identity"
                                     },
                         },
             };

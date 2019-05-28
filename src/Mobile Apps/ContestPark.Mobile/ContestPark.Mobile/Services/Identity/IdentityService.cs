@@ -72,14 +72,13 @@ namespace ContestPark.Mobile.Services.Identity
         /// Şifre değiştir
         /// </summary>
         /// <param name="changePasswordModel">Kullanıcı şifre bilgileri</param>
-        public Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
+        public async Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
         {
-            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangePassword");
 
-            //string message = await _requestProvider.PostAsync<string>(uri, changePasswordModel);
+            string message = await _requestProvider.PostAsync<string>(uri, changePasswordModel);
 
-            //await ShowErrorMessage(message);
-            return Task.FromResult(true);
+            return string.IsNullOrEmpty(message);
         }
 
         /// <summary>

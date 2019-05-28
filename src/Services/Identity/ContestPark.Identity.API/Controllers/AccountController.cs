@@ -46,26 +46,55 @@ namespace ContestPark.Identity.API.Controllers
         #region Methods
 
         /// <summary>
-        /// Şifremi unuttum code kontrol
+        ///  Eski şifre ile şifre değiştir
         /// </summary>
-        /// <param name="model">Kullanıcı adı veya eposta adresi</param>
+        /// <param name="changePasswordModel">Şuanki şifre ve yeni şifre</param>
+        /// <returns>
+        /// Güncelleme başarılı olduysa başarılı yanıtı döndürür,
+        /// aksi takdirde hatanın hata nedenlerini döndürür
+        /// </returns>
+        [HttpPost]
+        [Route("ChangePassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordModel changePasswordModel)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+                return NotFound();
+
+            bool isPasswordSuccess = await _userManager.CheckPasswordAsync(user, changePasswordModel.OldPassword);
+
+            if (!isPasswordSuccess)
+                return BadRequest(IdentityResource.YourCurrentPasswordIsInvalid);
+
+            IdentityResult result = await ResetPasswordAsync(user, changePasswordModel.NewPassword);
+            if (!result.Succeeded)
+                return BadRequest(IdentityResource.ErrorChangingPasswordPleaseTryAgain);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Şifremi unuttum code kontrol ise şifre değiştir
+        /// </summary>
+        /// <param name="changePasswordModel">Kullanıcı adı veya eposta adresi</param>
         /// <returns>
         /// Güncelleme başarılı olduysa başarılı yanıtı döndürür,
         /// aksi takdirde hatanın hata nedenlerini döndürür
         /// </returns>
         [HttpPost]
         [AllowAnonymous]
-        [Route("ChangePassword")]
+        [Route("ChangePassword/code")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ChangePasswordWithCode([FromBody]ChangePasswordModel changePasswordModel)
+        public async Task<IActionResult> ChangePasswordWithCode([FromBody]ChangePasswordWithCodeModel changePasswordModel)
         {
             ApplicationUser user = _userRepository.GetUserByCode(changePasswordModel.Code);
             if (user == null)
                 return NotFound();
 
-            string code = await _userManager.GeneratePasswordResetTokenAsync(user);// şifre değiştirme için kod oluşturuldu
-            IdentityResult result = await _userManager.ResetPasswordAsync(user, code, changePasswordModel.Password);// şifre değiştirildi edildi
+            IdentityResult result = await ResetPasswordAsync(user, changePasswordModel.Password);
             if (!result.Succeeded)
                 return BadRequest(IdentityResource.ErrorChangingPasswordPleaseTryAgain);
 
@@ -80,7 +109,7 @@ namespace ContestPark.Identity.API.Controllers
         /// <param name="model">Kullanıcı adı veya eposta adresi</param>
         /// <returns>
         /// Güncelleme başarılı olduysa başarılı yanıtı döndürür,
-        /// aksi takdirde hatanın hata nedenlerini döndürür
+           /// aksi takdirde hatanın hata nedenlerini döndürür
         /// </returns>
         [HttpPost]
         [AllowAnonymous]
@@ -130,7 +159,7 @@ namespace ContestPark.Identity.API.Controllers
         /// <param name="model">Kullanıcı adı veya eposta adresi</param>
         /// <returns>
         /// Güncelleme başarılı olduysa başarılı yanıtı döndürür,
-        /// aksi takdirde hatanın hata nedenlerini döndürür
+           /// aksi takdirde hatanın hata nedenlerini döndürür
         /// </returns>
         [HttpGet]
         [AllowAnonymous]
@@ -200,6 +229,20 @@ namespace ContestPark.Identity.API.Controllers
                           {code}
                     </div><br/><br/>
                    ";
+        }
+
+        /// <summary>
+        /// Kullanıcının şifresini değiştir
+        /// </summary>
+        /// <param name="user">Şifresi değişecek kullanıcı</param>
+        /// <param name="newPassword">Yeni şifre</param>
+        /// <returns>İşem sonucu</returns>
+        private async Task<IdentityResult> ResetPasswordAsync(ApplicationUser user, string newPassword)
+        {
+            string code = await _userManager.GeneratePasswordResetTokenAsync(user);// şifre değiştirme için kod oluşturuldu
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, code, newPassword);// şifre değiştirildi edildi
+
+            return result;
         }
 
         #endregion Methods
