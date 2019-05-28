@@ -116,7 +116,7 @@ namespace ContestPark.Mobile.Services.Post
         }
 
         /// <summary>
-        /// Post beğe
+        /// Post beğenme
         /// </summary>
         /// <param name="postId">Post id</param>
         /// <returns>İşlem başarılı ise true değilse false</returns>

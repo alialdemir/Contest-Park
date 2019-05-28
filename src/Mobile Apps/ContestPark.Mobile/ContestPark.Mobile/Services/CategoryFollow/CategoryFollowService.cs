@@ -30,7 +30,7 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         #region Methods
 
         /// <summary>
-        /// Takip ettiği kategorileri search sayfasıbda listeleme
+        /// Takip ettiği kategorileri search sayfasında listeleme
         /// </summary>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Alt kategori listesi</returns>
@@ -91,7 +91,7 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         }
 
         /// <summary>
-        /// Alt kategori takip býrak
+        /// Alt kategori takip bırak
         /// </summary>
         /// <param name="subCategoryId">Alt kategori Id</param>
         public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)

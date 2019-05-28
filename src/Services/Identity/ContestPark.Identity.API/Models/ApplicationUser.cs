@@ -14,6 +14,8 @@ namespace ContestPark.Identity.API.Models
 
         public string FaceBookId { get; set; }
 
+        public int ForgetPasswordCode { get; set; }
+
         [Required]
         public string FullName { get; set; }
 

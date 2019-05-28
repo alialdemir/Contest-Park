@@ -141,6 +141,12 @@
   <data name="EmailRequired" xml:space="preserve">
     <value>Eposta adresi zorunlu alan.</value>
   </data>
+  <data name="EnterTheCodeBelowToRefreshThePassword" xml:space="preserve">
+    <value>Şifreyi yenilemek için aşağıdaki kodu girin:</value>
+  </data>
+  <data name="ErrorChangingPasswordPleaseTryAgain" xml:space="preserve">
+    <value>Şifre değiştirilirken hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
   <data name="FullNameMaxLength" xml:space="preserve">
     <value>Ad Soyad maksimum 255 karakter olmalıdır.</value>
   </data>
@@ -198,6 +204,9 @@
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Şifreler en az 6 karakter olmalıdır.</value>
   </data>
+  <data name="ThereWasAnErrorInSendingPassword" xml:space="preserve">
+    <value>Şifre gönderme işleminde bir hata oluştu.</value>
+  </data>
   <data name="UserAlreadyHasPassword" xml:space="preserve">
     <value>Kullanıcının zaten bir şifresi var.</value>
   </data>
@@ -216,7 +225,13 @@
   <data name="UserNameReqired" xml:space="preserve">
     <value>Kullanıcı adı zorunlu alan.</value>
   </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Bu bilgilere ait üyemiz bulunmamaktadır.</value>
+  </data>
   <data name="UserNotInRole" xml:space="preserve">
     <value>Kullanıcı bu role sahip değil.</value>
+  </data>
+  <data name="WeHaveReceivedARequestToRenewYourContestParkPassword" xml:space="preserve">
+    <value>ContestPark şifrenizi yenilemek için bir talep aldık.</value>
   </data>
 </root>

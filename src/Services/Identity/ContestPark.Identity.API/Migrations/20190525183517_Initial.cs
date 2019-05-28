@@ -74,7 +74,8 @@ namespace ContestPark.Identity.API.Migrations
                     Language = table.Column<byte>(nullable: false),
                     LanguageCode = table.Column<string>(maxLength: 5, nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
-                    ProfilePicturePath = table.Column<string>(maxLength: 256, nullable: true)
+                    ProfilePicturePath = table.Column<string>(maxLength: 256, nullable: true),
+                    ForgetPasswordCode = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
