@@ -1,8 +1,6 @@
 ﻿using ContestPark.Identity.API.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ContestPark.Identity.API.Data.Repositories.User
 {
@@ -26,6 +24,28 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         #region Methods
 
         /// <summary>
+        /// Code kayıtlı mı kontrol eder
+        /// </summary>
+        /// <param name="code">Şifre değiştir kodu</param>
+        /// <returns>Kayıtlı ise true değilse false</returns>
+        public bool CodeCheck(int code)
+        {
+            return _applicationDbContext.Users.Any(x => x.ForgetPasswordCode == code);
+        }
+
+        /// <summary>
+        /// Şifremi unuttum koduna ait  kullanıcıyı getirir
+        /// </summary>
+        /// <param name="code">Şifremi unuttum kodu</param>
+        /// <returns>Kullanıcı</returns>
+        public ApplicationUser GetUserByCode(int code)
+        {
+            return (from u in _applicationDbContext.Users
+                    where u.ForgetPasswordCode == code
+                    select u).First();
+        }
+
+        /// <summary>
         /// Kullanıcı id'ye şifre değiştirme kodu ekler
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
@@ -36,15 +56,31 @@ namespace ContestPark.Identity.API.Data.Repositories.User
             if (IsCodeRegistered(code))// TODO: burada db gitmek yerine her seferinde uniq bir kod oluşturulacak yapı yazılmalı
                 return InsertCode(userId);
 
-            _applicationDbContext.ForgetPasswordCodes.Add(new Tables.ForgetPasswordCode
-            {
-                UserId = userId,
-                Code = code
-            });
+            ApplicationUser user = _applicationDbContext.Users.Where(x => x.Id == userId).First();
+            if (user == null)
+                return 0;
+
+            user.ForgetPasswordCode = code;
 
             bool isSuccess = _applicationDbContext.SaveChanges() > 0;
 
             return isSuccess ? code : 0;
+        }
+
+        /// <summary>
+        /// Şifremi unuttum kodunu kaldırır
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns></returns>
+        public void RemoveCode(string userId)
+        {
+            ApplicationUser user = _applicationDbContext.Users.Where(x => x.Id == userId).First();
+            if (user == null)
+                return;
+
+            user.ForgetPasswordCode = 0;
+
+            _applicationDbContext.SaveChanges();
         }
 
         /// <summary>
@@ -54,7 +90,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         /// <returns></returns>
         private bool IsCodeRegistered(int code)
         {
-            return _applicationDbContext.ForgetPasswordCodes.Where(p => p.Code == code).Any();
+            return _applicationDbContext.Users.Where(p => p.ForgetPasswordCode == code).Any();
         }
 
         #endregion Methods

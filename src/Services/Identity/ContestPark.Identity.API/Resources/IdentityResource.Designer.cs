@@ -97,6 +97,15 @@ namespace ContestPark.Identity.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error changing password. Please try again..
+        /// </summary>
+        public static string ErrorChangingPasswordPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("ErrorChangingPasswordPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name must be a maximum of 255 characters..
         /// </summary>
         public static string FullNameMaxLength {

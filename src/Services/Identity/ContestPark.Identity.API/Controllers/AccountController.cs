@@ -46,6 +46,35 @@ namespace ContestPark.Identity.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Şifremi unuttum code kontrol
+        /// </summary>
+        /// <param name="model">Kullanıcı adı veya eposta adresi</param>
+        /// <returns>
+        /// Güncelleme başarılı olduysa başarılı yanıtı döndürür,
+        /// aksi takdirde hatanın hata nedenlerini döndürür
+        /// </returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ChangePassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangePasswordWithCode([FromBody]ChangePasswordModel changePasswordModel)
+        {
+            ApplicationUser user = _userRepository.GetUserByCode(changePasswordModel.Code);
+            if (user == null)
+                return NotFound();
+
+            string code = await _userManager.GeneratePasswordResetTokenAsync(user);// şifre değiştirme için kod oluşturuldu
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, code, changePasswordModel.Password);// şifre değiştirildi edildi
+            if (!result.Succeeded)
+                return BadRequest(IdentityResource.ErrorChangingPasswordPleaseTryAgain);
+
+            _userRepository.RemoveCode(user.Id);
+
+            return Ok();
+        }
+
+        /// <summary>
         /// Şifremi unuttum
         /// </summary>
         /// <param name="model">Kullanıcı adı veya eposta adresi</param>
@@ -64,6 +93,7 @@ namespace ContestPark.Identity.API.Controllers
                 return BadRequest();
 
             ApplicationUser user = null;
+
             if (new EmailAddressAttribute().IsValid(model.UserNameOrEmail))
             {
                 user = await _userManager.FindByEmailAsync(model.UserNameOrEmail.ToLower());
@@ -92,6 +122,28 @@ namespace ContestPark.Identity.API.Controllers
             }
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Şifremi unuttum code kontrol
+        /// </summary>
+        /// <param name="model">Kullanıcı adı veya eposta adresi</param>
+        /// <returns>
+        /// Güncelleme başarılı olduysa başarılı yanıtı döndürür,
+        /// aksi takdirde hatanın hata nedenlerini döndürür
+        /// </returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("ForgotYourPassword/codecheck")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult ForgetPasswordCodeCheckAsync([FromQuery]int code)
+        {
+            bool isSuccess = _userRepository.CodeCheck(code);
+            if (isSuccess)
+                return Ok();
+
+            return NotFound();
         }
 
         /// <summary>

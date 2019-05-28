@@ -13,11 +13,9 @@ namespace ContestPark.Mobile.Services.Score
     {
         #region Private variables
 
-        private readonly IRequestProvider _requestProvider;
-
-        private readonly ICacheService _cacheService;
-
         private const string ApiUrlBase = "api/v1/category";
+        private readonly ICacheService _cacheService;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
@@ -34,28 +32,6 @@ namespace ContestPark.Mobile.Services.Score
         #endregion Constructor
 
         #region Methods
-
-        /// <summary>
-        /// Alt kategori Id'ye göre sýralama getirir
-        /// </summary>
-        /// <param name="subCategoryId">Alt kategori Id</param>
-        /// <param name="pagingModel">Sayfalama</param>
-        /// <returns>Sıralama listesi</returns>
-        public async Task<ServiceModel<RankingModel>> SubCategoryRankingAsync(short subCategoryId, PagingModel pagingModel)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/ranking{pagingModel.ToString()}");
-
-            if (!_cacheService.IsExpired(key: uri))
-            {
-                return await _cacheService.Get<ServiceModel<RankingModel>>(uri);
-            }
-
-            ServiceModel<RankingModel> rankings = await _requestProvider.GetAsync<ServiceModel<RankingModel>>(uri);
-
-            _cacheService.Add(uri, rankings);
-
-            return rankings;
-        }
 
         /// <summary>
         /// kullanicinin takip ettigi arkadaşlarının sıralamadaki durumunu verir
@@ -80,7 +56,7 @@ namespace ContestPark.Mobile.Services.Score
         }
 
         /// <summary>
-        /// Yarışmanın biteceği tarihi verir
+        /// x
         /// </summary>
         /// <param name="subCategoryId">Alt kategori Id</param>
         /// <returns>Yarışmanın biteceği tarih</returns>
@@ -98,6 +74,28 @@ namespace ContestPark.Mobile.Services.Score
             _cacheService.Add(uri, timeLeft);
 
             return timeLeft;
+        }
+
+        /// <summary>
+        /// Alt kategori Id'ye göre sıralama getirir
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori Id</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Sıralama listesi</returns>
+        public async Task<ServiceModel<RankingModel>> SubCategoryRankingAsync(short subCategoryId, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/ranking{pagingModel.ToString()}");
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<RankingModel>>(uri);
+            }
+
+            ServiceModel<RankingModel> rankings = await _requestProvider.GetAsync<ServiceModel<RankingModel>>(uri);
+
+            _cacheService.Add(uri, rankings);
+
+            return rankings;
         }
 
         #endregion Methods

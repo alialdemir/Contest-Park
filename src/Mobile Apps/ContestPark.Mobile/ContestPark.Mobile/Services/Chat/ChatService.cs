@@ -34,7 +34,7 @@ namespace ContestPark.Mobile.Services.Chat
         #region Methods
 
         /// <summary>
-        /// Parametreden geln kullanıcı arasındaki sohbet geçmişi
+        /// Kullanıcının parametreden gelen kullanıcı ile arasındaki sohbet detayı
         /// </summary>
         /// <param name="senderId">kullanıcı Id</param>
         /// <returns>Sohbet geçmiþinin listesi</returns>

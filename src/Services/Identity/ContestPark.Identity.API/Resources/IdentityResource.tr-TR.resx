@@ -144,6 +144,9 @@
   <data name="EnterTheCodeBelowToRefreshThePassword" xml:space="preserve">
     <value>Şifreyi yenilemek için aşağıdaki kodu girin:</value>
   </data>
+  <data name="ErrorChangingPasswordPleaseTryAgain" xml:space="preserve">
+    <value>Şifre değiştirilirken hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
   <data name="FullNameMaxLength" xml:space="preserve">
     <value>Ad Soyad maksimum 255 karakter olmalıdır.</value>
   </data>

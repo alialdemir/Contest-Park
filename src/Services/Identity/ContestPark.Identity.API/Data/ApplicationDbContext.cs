@@ -1,5 +1,4 @@
-﻿using ContestPark.Identity.API.Data.Tables;
-using ContestPark.Identity.API.Models;
+﻿using ContestPark.Identity.API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +10,6 @@ namespace ContestPark.Identity.API.Data
             : base(options)
         {
         }
-
-        public DbSet<ForgetPasswordCode> ForgetPasswordCodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

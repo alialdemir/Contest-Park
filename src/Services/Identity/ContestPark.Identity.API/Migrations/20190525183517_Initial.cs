@@ -27,9 +27,6 @@ namespace ContestPark.Identity.API.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ForgetPasswordCodes");
-
-            migrationBuilder.DropTable(
                 name: "AspNetUsers");
         }
 
@@ -47,25 +44,6 @@ namespace ContestPark.Identity.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ForgetPasswordCodes",
-                columns: table => new
-                {
-                    ForgetPasswordCodeId = table.Column<string>(maxLength: 450, nullable: false),
-                    UserId = table.Column<string>(maxLength: 450, nullable: false),
-                    Code = table.Column<int>(nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ForgetPasswordCodes", x => x.ForgetPasswordCodeId);
-                    table.ForeignKey(
-                        name: "FK_ForgetPasswordCodes_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +74,8 @@ namespace ContestPark.Identity.API.Migrations
                     Language = table.Column<byte>(nullable: false),
                     LanguageCode = table.Column<string>(maxLength: 5, nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
-                    ProfilePicturePath = table.Column<string>(maxLength: 256, nullable: true)
+                    ProfilePicturePath = table.Column<string>(maxLength: 256, nullable: true),
+                    ForgetPasswordCode = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

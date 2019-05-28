@@ -129,6 +129,9 @@
   <data name="EnterTheCodeBelowToRefreshThePassword" xml:space="preserve">
     <value>Enter the code below to refresh the password:</value>
   </data>
+  <data name="ErrorChangingPasswordPleaseTryAgain" xml:space="preserve">
+    <value>Error changing password. Please try again.</value>
+  </data>
   <data name="FullNameMaxLength" xml:space="preserve">
     <value>Full Name must be a maximum of 255 characters.</value>
   </data>

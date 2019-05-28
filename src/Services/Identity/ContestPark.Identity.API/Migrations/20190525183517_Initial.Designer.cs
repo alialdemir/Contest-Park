@@ -133,22 +133,6 @@ namespace ContestPark.Identity.API.Migrations
                 b.ToTable("AspNetRoleClaims");
             });
 
-            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.ForgetPasswordCodes", b =>
-            {
-                b.Property<int>("ForgetPasswordCodeId")
-                    .ValueGeneratedOnAdd();
-
-                b.Property<string>("UserId");
-
-                b.Property<int>("Code");
-
-                b.HasKey("ForgetPasswordCodeId");
-
-                b.HasIndex("UserId");
-
-                b.ToTable("ForgetPasswordCodes");
-            });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
