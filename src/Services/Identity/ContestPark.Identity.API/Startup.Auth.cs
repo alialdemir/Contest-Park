@@ -4,6 +4,7 @@ using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
@@ -12,7 +13,7 @@ namespace ContestPark.Identity.API
 {
     public static class IdentityServerStartup
     {
-        public static IServiceCollection AddIdentityServer(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddIdentityServer(this IServiceCollection services, IConfiguration configuration, string connectionString)
         {
             // Adds IdentityServer
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -56,6 +57,8 @@ namespace ContestPark.Identity.API
                     options.User.RequireUniqueEmail = true;
                 });
 
+            services.AddAuth(configuration);
+
             return services;
         }
 
@@ -68,7 +71,8 @@ namespace ContestPark.Identity.API
             });
 
             // Adds IdentityServer
-            app.UseIdentityServer();
+            app.UseIdentityServer()
+               .UseAuth();
 
             return app;
         }

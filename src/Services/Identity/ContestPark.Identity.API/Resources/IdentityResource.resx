@@ -177,4 +177,7 @@
   <data name="WeHaveReceivedARequestToRenewYourContestParkPassword" xml:space="preserve">
     <value>We have received a request to renew your ContestPark password.</value>
   </data>
+  <data name="YourCurrentPasswordIsInvalid" xml:space="preserve">
+    <value>Your current password is invalid.</value>
+  </data>
 </root>

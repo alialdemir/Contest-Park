@@ -239,5 +239,14 @@ namespace ContestPark.Identity.API.Resources {
                 return ResourceManager.GetString("WeHaveReceivedARequestToRenewYourContestParkPassword", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your current password is invalid..
+        /// </summary>
+        public static string YourCurrentPasswordIsInvalid {
+            get {
+                return ResourceManager.GetString("YourCurrentPasswordIsInvalid", resourceCulture);
+            }
+        }
     }
 }

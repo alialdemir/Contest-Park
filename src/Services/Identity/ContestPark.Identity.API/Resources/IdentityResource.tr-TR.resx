@@ -234,4 +234,7 @@
   <data name="WeHaveReceivedARequestToRenewYourContestParkPassword" xml:space="preserve">
     <value>ContestPark şifrenizi yenilemek için bir talep aldık.</value>
   </data>
+  <data name="YourCurrentPasswordIsInvalid" xml:space="preserve">
+    <value>Şuanki şifreniz geçersiz.</value>
+  </data>
 </root>
