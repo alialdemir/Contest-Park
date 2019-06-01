@@ -44,6 +44,40 @@ namespace ContestPark.Identity.API.Controllers
         #endregion Constructor
 
         #region Methods
+        /// <summary>
+        /// Kullanıcı bilgilerini güncelleme
+        /// </summary>
+        /// <param name="updateUserInfo">Güncellenecek bilgiler</param>
+        /// <returns>Başarılı ise 200 ok değilse hata nedeni döner</returns>
+        [HttpPost]
+        [Route("update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateUserInfo([FromBody]UpdateUserInfoModel updateUserInfo)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+                return NotFound();
+
+            user.Email = updateUserInfo.Email;
+            user.UserName = updateUserInfo.UserName;
+            user.FullName = updateUserInfo.FullName;
+
+            IdentityResult   result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded && result.Errors.Count() > 0)
+            {
+                var errors = result.Errors.Select(e =>
+                        CurrentUserLanguage.HasFlag(Languages.Turkish) ? IdentityResource.ResourceManager.GetString(e.Code) : e.Description
+                        ).ToList();
+
+                return BadRequest(errors);
+            }
+
+            // TODO: Güncellenen user name ve full name bilgileri rabbitmq ile publish edilmeli
+
+            return Ok();
+        }
+
 
         /// <summary>
         ///  Eski şifre ile şifre değiştir
