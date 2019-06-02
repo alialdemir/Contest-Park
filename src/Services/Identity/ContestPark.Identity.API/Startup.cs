@@ -1,4 +1,6 @@
-﻿using ContestPark.Identity.API.Data;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using ContestPark.Identity.API.Data;
 using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
@@ -11,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Reflection;
 
 namespace ContestPark.Identity.API
@@ -39,12 +42,12 @@ namespace ContestPark.Identity.API
             }
 
             app.UseExceptionHandlerConfigure()
-                .AddIdentityServer()
+                .UseCustomIdentityServer()
                 .UseRequestLocalizationCustom()
                 .UseMvc();
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             string connectionString = Configuration["ConnectionString"];
 
@@ -76,12 +79,18 @@ namespace ContestPark.Identity.API
 
             #endregion AddTransient
 
-            services.AddIdentityServer(Configuration, connectionString)
+            services.AddCustomIdentityServer(Configuration, connectionString)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(IdentityResource).Name);
 
             services.AddLocalizationCustom();
+
+            services.AddRabbitMq(Configuration, connectionString);
+
+            var container = new ContainerBuilder();
+            container.Populate(services);
+            return new AutofacServiceProvider(container.Build());
         }
     }
 }

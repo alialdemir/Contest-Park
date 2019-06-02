@@ -1,4 +1,5 @@
-﻿using ContestPark.Identity.API.Data;
+﻿using ContestPark.EventBus.IntegrationEventLogEF;
+using ContestPark.Identity.API.Data;
 using ContestPark.Identity.API.Models;
 using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Hosting;
@@ -54,6 +55,10 @@ namespace ContestPark.Identity.API.Extensions
                            else if (context is ConfigurationDbContext)
                            {
                                (context as ConfigurationDbContext).Clients.Any();
+                           }
+                           else if (context is IntegrationEventLogContext)
+                           {
+                               (context as IntegrationEventLogContext).IntegrationEventLogs.Any();
                            }
 
                            seeder(context, services);
