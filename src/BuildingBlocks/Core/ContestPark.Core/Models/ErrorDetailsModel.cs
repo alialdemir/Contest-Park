@@ -7,6 +7,9 @@ namespace ContestPark.Core.Models
         [JsonProperty("message")]
         public string Message { get; set; }
 
+        [JsonProperty("developerMessage", NullValueHandling = NullValueHandling.Ignore)]
+        public object DeveloperMessage { get; set; }
+
         [JsonProperty("statusCode")]
         public int StatusCode { get; set; }
 

@@ -1,5 +1,7 @@
 ﻿using ContestPark.Core.Enums;
 using ContestPark.Identity.API.Data.Repositories.User;
+using ContestPark.Identity.API.IntegrationEvents;
+using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
@@ -25,6 +27,7 @@ namespace ContestPark.Identity.API.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserRepository _userRepository;
+        private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
 
         #endregion Private variables
 
@@ -33,12 +36,14 @@ namespace ContestPark.Identity.API.Controllers
         public AccountController(IEmailService emailService,
                                  ILogger<AccountController> logger,
                                  UserManager<ApplicationUser> userManager,
-                                 IUserRepository userRepository) : base(logger)
+                                 IUserRepository userRepository,
+                                 IIdentityIntegrationEventService identityIntegrationEventService) : base(logger)
         {
             _emailService = emailService;
             _logger = logger;
             _userManager = userManager;
             _userRepository = userRepository;
+            _identityIntegrationEventService = identityIntegrationEventService;
         }
 
         #endregion Constructor
@@ -218,7 +223,7 @@ namespace ContestPark.Identity.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SignUp([FromForm]SignUpModel signUpModel)
+        public async Task<IActionResult> SignUp([FromBody]SignUpModel signUpModel)
         {
             if (signUpModel == null)
                 return BadRequest();
@@ -240,6 +245,15 @@ namespace ContestPark.Identity.API.Controllers
 
                 return BadRequest(errors);
             }
+
+            //Create Integration Event to be published through the Event Bus
+            var newUserRegisterIntegrationEvent = new NewUserRegisterIntegrationEvent(user.Id, user.FullName, user.UserName, user.ProfilePicturePath);
+
+            // Achieving atomicity between original Catalog database operation and the IntegrationEventLog thanks to a local transaction
+            await _identityIntegrationEventService.SaveEventAndApplicationContextChangesAsync(newUserRegisterIntegrationEvent);
+
+            // Publish through the Event Bus and mark the saved event as published
+            await _identityIntegrationEventService.PublishThroughEventBusAsync(newUserRegisterIntegrationEvent);
 
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");
 
