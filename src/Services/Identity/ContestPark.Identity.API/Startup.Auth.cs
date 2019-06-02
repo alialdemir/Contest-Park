@@ -13,7 +13,7 @@ namespace ContestPark.Identity.API
 {
     public static class IdentityServerStartup
     {
-        public static IServiceCollection AddIdentityServer(this IServiceCollection services, IConfiguration configuration, string connectionString)
+        public static IServiceCollection AddCustomIdentityServer(this IServiceCollection services, IConfiguration configuration, string connectionString)
         {
             // Adds IdentityServer
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -62,7 +62,7 @@ namespace ContestPark.Identity.API
             return services;
         }
 
-        public static IApplicationBuilder AddIdentityServer(this IApplicationBuilder app)
+        public static IApplicationBuilder UseCustomIdentityServer(this IApplicationBuilder app)
         {
             app.Use(async (context, next) =>
             {

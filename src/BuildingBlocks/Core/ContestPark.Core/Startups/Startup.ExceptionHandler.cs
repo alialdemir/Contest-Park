@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net;
@@ -23,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 ILoggerFactory loggerFactory = app.ApplicationServices.GetService<ILoggerFactory>();
                 IExceptionHandlerFeature exception = context.Features.Get<IExceptionHandlerFeature>();
+
                 if (exception != null && loggerFactory != null)
                 {
                     var serviceName = Assembly.GetEntryAssembly().GetName().Name.Replace("ContestPark.", "");
@@ -33,15 +35,17 @@ namespace Microsoft.Extensions.DependencyInjection
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-                    await context.Response.WriteAsync(new ErrorDetailsModel()
+                    ErrorDetailsModel json = new ErrorDetailsModel()
                     {
                         StatusCode = context.Response.StatusCode,
+                        Message = "An error ocurred."
+                    };
+
 #if DEBUG
-                        Message = exception.Error.Message + "   " + exception.Error.StackTrace
-#else
-                        Message = "Internal Server Error."
+                    json.DeveloperMessage = exception;
 #endif
-                    }.ToString());
+
+                    await context.Response.WriteAsync(json.ToString());
                 }
             });
         });
