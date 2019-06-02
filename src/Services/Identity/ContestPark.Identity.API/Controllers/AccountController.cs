@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Enums;
+using ContestPark.EventBus.Events;
 using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,6 +51,40 @@ namespace ContestPark.Identity.API.Controllers
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Kullanıcı bilgilerini güncelleme
+        /// </summary>
+        /// <param name="updateUserInfo">Güncellenecek bilgiler</param>
+        /// <returns>Başarılı ise 200 ok değilse hata nedeni döner</returns>
+        [HttpPost]
+        [Route("update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateUserInfo([FromBody]UpdateUserInfoModel updateUserInfo)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+                return NotFound();
+
+            string oldUserName = user.UserName;
+            string oldFullName = user.FullName;
+
+            user.Email = updateUserInfo.Email;
+            user.UserName = updateUserInfo.UserName;
+            user.FullName = updateUserInfo.FullName;
+
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded && result.Errors.Count() > 0)
+                return BadRequest(IdentityResultErrors(result.Errors));
+
+            // Create Integration Event to be published through the Event Bus
+            var userInfoChangedIntegrationEvent = new UserInfoChangedIntegrationEvent(user.Id, user.FullName, user.UserName, oldFullName, oldUserName);
+
+            await PublishEvent(userInfoChangedIntegrationEvent);
+
+            return Ok();
+        }
 
         /// <summary>
         ///  Eski şifre ile şifre değiştir
@@ -203,23 +239,13 @@ namespace ContestPark.Identity.API.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, signUpModel.Password);
-            if (result.Errors.Count() > 0)
-            {
-                var errors = result.Errors.Select(e =>
-                        CurrentUserLanguage.HasFlag(Languages.Turkish) ? IdentityResource.ResourceManager.GetString(e.Code) : e.Description
-                        ).ToList();
+            if (!result.Succeeded && result.Errors.Count() > 0)
+                return BadRequest(IdentityResultErrors(result.Errors));
 
-                return BadRequest(errors);
-            }
-
-            //Create Integration Event to be published through the Event Bus
+            // Create Integration Event to be published through the Event Bus
             var newUserRegisterIntegrationEvent = new NewUserRegisterIntegrationEvent(user.Id, user.FullName, user.UserName, user.ProfilePicturePath);
 
-            // Achieving atomicity between original Catalog database operation and the IntegrationEventLog thanks to a local transaction
-            await _identityIntegrationEventService.SaveEventAndApplicationContextChangesAsync(newUserRegisterIntegrationEvent);
-
-            // Publish through the Event Bus and mark the saved event as published
-            await _identityIntegrationEventService.PublishThroughEventBusAsync(newUserRegisterIntegrationEvent);
+            await PublishEvent(newUserRegisterIntegrationEvent);
 
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");
 
@@ -257,6 +283,29 @@ namespace ContestPark.Identity.API.Controllers
             IdentityResult result = await _userManager.ResetPasswordAsync(user, code, newPassword);// şifre değiştirildi edildi
 
             return result;
+        }
+
+        /// <summary>
+        /// Identity result hatalarını translate edip Bad request olarak döndürür
+        /// </summary>
+        /// <param name="result">Errors</param>
+        /// <returns></returns>
+        private List<string> IdentityResultErrors(IEnumerable<IdentityError> identityErrors)
+        {
+            var errors = identityErrors.Select(e =>
+                    CurrentUserLanguage.HasFlag(Languages.Turkish) ? IdentityResource.ResourceManager.GetString(e.Code) : e.Description
+                    ).ToList();
+
+            return errors;
+        }
+
+        private async Task PublishEvent(IntegrationEvent @event)
+        {
+            // Achieving atomicity between original Catalog database operation and the IntegrationEventLog thanks to a local transaction
+            await _identityIntegrationEventService.SaveEventAndApplicationContextChangesAsync(@event);
+
+            // Publish through the Event Bus and mark the saved event as published
+            await _identityIntegrationEventService.PublishThroughEventBusAsync(@event);
         }
 
         #endregion Methods
