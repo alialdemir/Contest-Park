@@ -6,6 +6,7 @@ using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
+using ContestPark.Identity.API.Services.BlobStorage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +31,7 @@ namespace ContestPark.Identity.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
+        private readonly IBlobStorageService _blobStorageService;
 
         #endregion Private variables
 
@@ -46,11 +48,21 @@ namespace ContestPark.Identity.API.Controllers
             _userManager = userManager;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
+            //    _blobStorageService = blobStorageService;
         }
 
         #endregion Constructor
 
         #region Methods
+
+        [HttpPost]
+        [Route("changeProfilePicture")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangeProfilePicture(IFormFile file)
+        {
+            return Ok();
+        }
 
         /// <summary>
         /// Kullanıcı bilgilerini güncelleme

@@ -5,6 +5,7 @@ using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
+using ContestPark.Identity.API.Services.BlobStorage;
 using ContestPark.Identity.API.Services.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,6 +52,8 @@ namespace ContestPark.Identity.API
         {
             string connectionString = Configuration["ConnectionString"];
 
+            services.Configure<IdentitySettings>(Configuration);
+
             #region Ef Configuration
 
             // Add framework services.
@@ -76,6 +79,8 @@ namespace ContestPark.Identity.API
 
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IUserRepository, UserRepository>();
+
+            //       services.AddTransient<IBlobStorageService, BlobStorageService>();
 
             #endregion AddTransient
 
