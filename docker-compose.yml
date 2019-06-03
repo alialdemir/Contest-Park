@@ -9,7 +9,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-
+    
   contestpark.identity.api:
     image: contestparkidentity.api:${TAG:-latest}
     depends_on:
@@ -18,3 +18,11 @@ services:
     build:
       context: .
       dockerfile: src/Services/Identity/ContestPark.Identity.API/Dockerfile
+
+  contestpark.category.api:
+    image: contestparkcategory.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: src/Services/Category/ContestPark.Category.API/Dockerfile
