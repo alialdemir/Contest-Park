@@ -6,11 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ContestPark.Category.API.Infrastructure.DataSeed
+namespace ContestPark.Category.API.Infrastructure
 {
-    public class CategoryCollectionSeed : ContextSeedBase<CategoryCollectionSeed>
+    public class CategoryApiSeed : ContextSeedBase<CategoryApiSeed>
     {
-        public async Task SeedAsync(IServiceProvider service, ILogger<CategoryCollectionSeed> logger)
+        public async Task SeedAsync(IServiceProvider service, ILogger<CategoryApiSeed> logger)
         {
             var policy = CreatePolicy();
 
@@ -20,6 +20,28 @@ namespace ContestPark.Category.API.Infrastructure.DataSeed
             await policy.ExecuteAsync(async () =>
             {
                 Logger = logger;
+
+                SubCategory referee = new SubCategory
+                {
+                    Order = 2,
+                    Visibility = true,
+                    DisplayPrice = "0",
+                    PictuePath = "https://static.thenounproject.com/png/14039-200.png",
+                    Price = 0,
+                    SubCategoryLangs = new List<SubCategoryLang>
+                                {
+                                    new SubCategoryLang
+                                    {
+                                         LanguageId = Languages.Turkish,
+                                         SubCategoryName = "Hakem"
+                                    },
+                                    new SubCategoryLang
+                                    {
+                                         LanguageId = Languages.English,
+                                         SubCategoryName = "Referee"
+                                    },
+                                }
+                };
 
                 await InsertDataAsync(new List<Documents.Category>
                 {
@@ -42,27 +64,7 @@ namespace ContestPark.Category.API.Infrastructure.DataSeed
                         },
                         SubCategories = new List<SubCategory>
                         {
-                             new SubCategory
-                            {
-                                Order=2,
-                                Visibility=true,
-                                DisplayPrice="100k",
-                                PictuePath="https://static.thenounproject.com/png/14039-200.png",
-                                Price=100000,
-                                SubCategoryLangs= new List<SubCategoryLang>
-                                {
-                                    new SubCategoryLang
-                                    {
-                                         LanguageId = Languages.Turkish,
-                                         SubCategoryName = "Hakem"
-                                    },
-                                    new SubCategoryLang
-                                    {
-                                         LanguageId = Languages.English,
-                                         SubCategoryName = "Referee"
-                                    },
-                                }
-                            },
+                            referee,
                             new SubCategory
                             {
                                 Order=1,
@@ -127,6 +129,15 @@ namespace ContestPark.Category.API.Infrastructure.DataSeed
                                 }
                             }
                         }
+                    }
+                });
+
+                await InsertDataAsync(new List<OpenSubCategory>
+                {
+                    new OpenSubCategory
+                    {
+                         SubCategoryId = referee.Id,
+                         UserId = "1111-1111-1111-1111"
                     }
                 });
             });

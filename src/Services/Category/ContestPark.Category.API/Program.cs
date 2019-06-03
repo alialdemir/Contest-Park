@@ -1,10 +1,8 @@
-﻿using ContestPark.Category.API.Infrastructure.DataSeed;
+﻿using ContestPark.Category.API.Infrastructure;
 using ContestPark.Core.CosmosDb.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.IO;
@@ -39,9 +37,9 @@ namespace ContestPark.Category.API
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
-                host.MigrateDatabase<CategoryCollectionSeed>((services, logger) =>
+                host.MigrateDatabase<CategoryApiSeed>((services, logger) =>
                {
-                   new CategoryCollectionSeed()
+                   new CategoryApiSeed()
                        .SeedAsync(services, logger)
                        .Wait();
                });
