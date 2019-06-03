@@ -114,6 +114,8 @@ namespace ContestPark.Identity.API.Controllers
             var profilePictureChangedIntegrationEvent = new ProfilePictureChangedIntegrationEvent(UserId, fileName, oldProfilePicturePath);
             await PublishEvent(profilePictureChangedIntegrationEvent);
 
+            _logger.LogInformation($"Kullanıcı profil resmi değişti. userID: {UserId} new picture: {fileName}");
+
             return Ok(new ChangePictureModel
             {
                 PicturePath = user.ProfilePicturePath
