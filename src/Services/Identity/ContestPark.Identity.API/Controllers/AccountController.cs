@@ -61,6 +61,63 @@ namespace ContestPark.Identity.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Kapak resmi değiştir
+        /// </summary>
+        /// <param name="files">Yüklenen resim</param>
+        /// <returns>Resim url</returns>
+        [HttpPost]
+        [Route("changeCoverPicture")]
+        [ProducesResponseType(typeof(ChangePictureModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
+        public async Task<IActionResult> ChangeCoverPicture(IList<IFormFile> files)// Burda tek list olarak alınmaması lazım ama tek alınca yüklenmiyor
+        {
+            if (files.Count == 0)
+                return BadRequest();
+
+            IFormFile file = files.First();
+            if (file == null)
+                return NotFound();
+
+            if (_blobStorageService.CheckFileSize(file.Length))// 4 mb'den büyük ise dosya boyutu  geçersizdir
+            {
+                return BadRequest(IdentityResource.UnsupportedImageExtension);
+            }
+
+            string extension = Path.GetExtension(file.FileName);
+            if (!_blobStorageService.CheckPictureExtension(extension))
+            {
+                return StatusCode((int)HttpStatusCode.UnsupportedMediaType, new ValidationResult(IdentityResource.UnsupportedImageExtension));
+            }
+
+            Stream pictureStream = file.OpenReadStream();
+            if (pictureStream == null || pictureStream.Length == 0)
+                return NotFound();
+
+            string fileName = await _blobStorageService.UploadFileToStorage(pictureStream, file.FileName, UserId);
+            if (string.IsNullOrEmpty(fileName))
+                return BadRequest();
+
+            ApplicationUser user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+                return NotFound();
+
+            // Profil resmi db güncelle
+            user.CoverPicturePath = fileName;
+
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded && result.Errors.Count() > 0)
+                return BadRequest(IdentityResultErrors(result.Errors));
+
+            _logger.LogInformation($"Kullanıcı kapak resmi değişti. userID: {UserId} new picture: {fileName}");
+
+            return Ok(new ChangePictureModel
+            {
+                PicturePath = user.CoverPicturePath
+            });
+        }
+
+        /// <summary>
         /// Profil resmi değiştir
         /// </summary>
         /// <param name="files">Yüklenen resim</param>

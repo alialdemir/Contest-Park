@@ -71,7 +71,7 @@ namespace ContestPark.Identity.API.Services.BlobStorage
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Profil resmi yüklenken hata oluştu user Id: {userId}", ex);
+                _logger.LogError($"Resim yüklenken hata oluştu user Id: {userId}", ex);
 
                 if (blockBlob != null)// Dosya yükler ve hata oluşursa dosya boşa yer kaplamasın diye sildik
                     await blockBlob.DeleteIfExistsAsync();
