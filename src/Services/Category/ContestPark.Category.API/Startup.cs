@@ -26,6 +26,7 @@ namespace ContestPark.Category.API
             services.Configure<CategorySettings>(Configuration);
 
             services.AddAuth(Configuration)
+                    .AddCosmosDb(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(CategoryResource).Name)
