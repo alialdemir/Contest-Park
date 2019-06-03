@@ -21,9 +21,6 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Identity.API.Controllers
 {
-    [Authorize]
-    [Route("api/v1/[controller]")]
-    [ApiController]
     public class AccountController : Core.Controllers.ControllerBase
     {
         #region Private variables

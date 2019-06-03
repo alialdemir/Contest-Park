@@ -1,15 +1,26 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ContestPark.Category.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
+    public class CategoryController : Core.Controllers.ControllerBase
     {
+        #region Private variables
+
+        private readonly ILogger<CategoryController> _logger;
+
+        #endregion Private variables
+
+        #region Constructor
+
+        public CategoryController(ILogger<CategoryController> logger) : base(logger)
+        {
+            _logger = logger;
+        }
+
+        #endregion Constructor
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
