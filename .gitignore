@@ -340,5 +340,4 @@ ASALocalRun/
 healthchecksdb
 
 /data
-
 .env
