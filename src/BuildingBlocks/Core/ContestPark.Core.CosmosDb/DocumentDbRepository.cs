@@ -16,6 +16,7 @@ namespace ContestPark.Core.CosmosDb
         #region Private variables
 
         private AsyncLazy<DocumentCollection> _collection;
+        private readonly AsyncLazy<Database> _database;
 
         private readonly IDocumentClient _client;
         private readonly string _collectionName;
@@ -38,7 +39,7 @@ namespace ContestPark.Core.CosmosDb
 
             _collectionName = typeof(TDocument).Name;
 
-            new AsyncLazy<Database>(async () => await _client.CreateDatabaseIfNotExistsAsync(new Database { Id = dbConnection.CosmosDbDatabaseId }));// Database yoksa oluştur
+            _database = new AsyncLazy<Database>(async () => await _client.CreateDatabaseIfNotExistsAsync(new Database { Id = dbConnection.CosmosDbDatabaseId }));// Database yoksa oluştur
             _collection = new AsyncLazy<DocumentCollection>(async () =>// Collection yoksa oluştur
             {
                 return await _client.CreateDocumentCollectionIfNotExistsAsync(
@@ -52,6 +53,24 @@ namespace ContestPark.Core.CosmosDb
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Database ve collection data önce oluşturulmamış ise oluşturuyoruz
+        /// </summary>
+        public async Task Init()
+        {
+            string dbSelfLink = (await _database).SelfLink;// database oluşturdum
+            string collectionSelfLink = (await _collection).SelfLink;
+        }
+
+        /// <summary>
+        /// Toplam kayıt sayısını verir
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> CountAsync()
+        {
+            return _client.CreateDocumentQuery<TDocument>((await _collection).SelfLink).Count();
+        }
 
         /// <summary>
         /// Document sil
@@ -120,6 +139,8 @@ namespace ContestPark.Core.CosmosDb
         {
             try
             {
+                document.CreatedDate = DateTime.Now;
+
                 await _client.CreateDocumentAsync(_uri, document);
 
                 return true;
@@ -164,6 +185,8 @@ namespace ContestPark.Core.CosmosDb
         {
             try
             {
+                document.ModifiedDate = DateTime.Now;
+
                 await _client.ReplaceDocumentAsync(_uri, document);
 
                 return true;

@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using ContestPark.Category.API.Infrastructure.DataSeed;
+using ContestPark.Core.CosmosDb.Extensions;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.IO;
@@ -33,6 +37,15 @@ namespace ContestPark.Category.API
 
                 var host = BuildWebHost(configuration, args);
 
+                Log.Information("Applying migrations ({ApplicationContext})...", AppName);
+
+                host.MigrateDatabase<CategoryCollectionSeed>((services, logger) =>
+               {
+                   new CategoryCollectionSeed()
+                       .SeedAsync(services, logger)
+                       .Wait();
+               });
+
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
 
                 host.Run();
@@ -50,7 +63,7 @@ namespace ContestPark.Category.API
             }
         }
 
-        private static ILogger CreateSerilogLogger(IConfiguration configuration)
+        private static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         {
             return new LoggerConfiguration()
                 .MinimumLevel.Verbose()

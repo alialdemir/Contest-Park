@@ -11,6 +11,6 @@ namespace ContestPark.Category.API.Infrastructure.Documents
         public int Price { get; set; }
         public string DisplayPrice { get; set; }
 
-        public virtual ICollection<SubCategory> SubCategories { get; set; } = new HashSet<SubCategory>();
+        public virtual ICollection<SubCategoryLang> SubCategoryLangs { get; set; } = new HashSet<SubCategoryLang>();
     }
 }

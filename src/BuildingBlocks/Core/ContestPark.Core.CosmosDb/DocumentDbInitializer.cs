@@ -2,6 +2,9 @@
 using ContestPark.Core.CosmosDb.Models;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using System;
 
 namespace ContestPark.Core.CosmosDb
@@ -34,8 +37,16 @@ namespace ContestPark.Core.CosmosDb
                 };
             }
 
+            JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                Converters = { new StringEnumConverter() }
+            };
+
             var documentClient = new DocumentClient(new Uri(dbConnection.CosmosDbServiceEndpoint),
                                                     dbConnection.CosmosDbAuthKeyOrResourceToken,
+                                                    serializerSettings,
                                                     connectionPolicy);
 
             return documentClient;

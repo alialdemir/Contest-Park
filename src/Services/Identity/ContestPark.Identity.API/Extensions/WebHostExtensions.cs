@@ -27,65 +27,58 @@ namespace ContestPark.Identity.API.Extensions
 
                 var context = services.GetService<TContext>();
 
-                try
-                {
-                    logger.LogInformation($"Migrating database associated with context {typeof(TContext).Name}");
+                logger.LogInformation($"Migrating database associated with context {typeof(TContext).Name}");
 
-                    var retry = GetRetryPolicy();
+                var retry = GetRetryPolicy();
 
-                    retry.Execute(() =>
+                retry.Execute(() =>
+               {
+                   //if the sql server container is not created on run docker compose this
+                   //migration can't fail for network related exception. The retry options for DbContext only
+                   //apply to transient exceptions.
+                   try
                    {
-                       //if the sql server container is not created on run docker compose this
-                       //migration can't fail for network related exception. The retry options for DbContext only
-                       //apply to transient exceptions.
-                       try
+                       /*
+                              Her db context için eğer tablolar oluşmamışsa exception fırlatır migrate çalışır sonra tekrar kontrol eder
+                       */
+
+                       if (context is ApplicationDbContext)
                        {
-                           /*
-                                  Her db context için eğer tablolar oluşmamışsa exception fırlatır migrate çalışır sonra tekrar kontrol eder
-                           */
-
-                           if (context is ApplicationDbContext)
-                           {
-                               (context as IdentityDbContext<ApplicationUser>).Users.Any();
-                           }
-                           else if (context is PersistedGrantDbContext)
-                           {
-                               (context as PersistedGrantDbContext).PersistedGrants.Any();
-                           }
-                           else if (context is ConfigurationDbContext)
-                           {
-                               (context as ConfigurationDbContext).Clients.Any();
-                           }
-                           else if (context is IntegrationEventLogContext)
-                           {
-                               (context as IntegrationEventLogContext).IntegrationEventLogs.Any();
-                           }
-
-                           seeder(context, services);
+                           (context as IdentityDbContext<ApplicationUser>).Users.Any();
                        }
-                       catch (MySqlException)
+                       else if (context is PersistedGrantDbContext)
                        {
-                           // entity framework kendi migrations scriptlerini çalıştırınca auto increment özelliğini aktif edemiyor. Sanırım bug var
-                           // o yüzden manuel çalıştırdım
-
-                           bool isEnsureCreated = context.Database.EnsureCreated();
-                           if (!isEnsureCreated)
-                           {
-                               string dbScript = context.Database.GenerateCreateScript();
-
-                               context.Database.ExecuteSqlCommand(new RawSqlString(dbScript));
-                           }
-
-                           MigrateDatabase(webHost, seeder);
+                           (context as PersistedGrantDbContext).PersistedGrants.Any();
                        }
-                   });
+                       else if (context is ConfigurationDbContext)
+                       {
+                           (context as ConfigurationDbContext).Clients.Any();
+                       }
+                       else if (context is IntegrationEventLogContext)
+                       {
+                           (context as IntegrationEventLogContext).IntegrationEventLogs.Any();
+                       }
 
-                    logger.LogInformation($"Migrated database associated with context {typeof(TContext).Name}");
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, $"An error occurred while migrating the database used on context {typeof(TContext).Name}");
-                }
+                       seeder(context, services);
+                   }
+                   catch (MySqlException)
+                   {
+                       // entity framework kendi migrations scriptlerini çalıştırınca auto increment özelliğini aktif edemiyor. Sanırım bug var
+                       // o yüzden manuel çalıştırdım
+
+                       bool isEnsureCreated = context.Database.EnsureCreated();
+                       if (!isEnsureCreated)
+                       {
+                           string dbScript = context.Database.GenerateCreateScript();
+
+                           context.Database.ExecuteSqlCommand(new RawSqlString(dbScript));
+                       }
+
+                       MigrateDatabase(webHost, seeder);
+                   }
+               });
+
+                logger.LogInformation($"Migrated database associated with context {typeof(TContext).Name}");
             }
 
             return webHost;

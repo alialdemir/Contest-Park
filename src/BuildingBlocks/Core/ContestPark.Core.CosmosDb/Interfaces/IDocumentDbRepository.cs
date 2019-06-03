@@ -12,6 +12,10 @@ namespace ContestPark.Core.CosmosDb.Interfaces
     /// <typeparam name="T">Generic entity</typeparam>
     public interface IDocumentDbRepository<TDocument> where TDocument : class, IDocument, new()
     {
+        Task Init();
+
+        Task<int> CountAsync();
+
         TDocument GetById(string id);
 
         Task<bool> InsertAsync(TDocument document);
