@@ -64,9 +64,12 @@ namespace ContestPark.Identity.API.Controllers
         /// Profil resmi değiştir
         /// </summary>
         /// <param name="files">Yüklenen resim</param>
-        /// <returns></returns>
+        /// <returns>Resim url</returns>
         [HttpPost]
         [Route("changeProfilePicture")]
+        [ProducesResponseType(typeof(ChangePictureModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
         public async Task<IActionResult> ChangeProfilePicture(IList<IFormFile> files)// Burda tek list olarak alınmaması lazım ama tek alınca yüklenmiyor
         {
             if (files.Count == 0)
@@ -111,7 +114,10 @@ namespace ContestPark.Identity.API.Controllers
             var profilePictureChangedIntegrationEvent = new ProfilePictureChangedIntegrationEvent(UserId, fileName, oldProfilePicturePath);
             await PublishEvent(profilePictureChangedIntegrationEvent);
 
-            return Ok();
+            return Ok(new ChangePictureModel
+            {
+                PicturePath = user.ProfilePicturePath
+            });
         }
 
         /// <summary>
