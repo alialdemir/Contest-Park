@@ -207,6 +207,9 @@
   <data name="ThereWasAnErrorInSendingPassword" xml:space="preserve">
     <value>Şifre gönderme işleminde bir hata oluştu.</value>
   </data>
+  <data name="UnsupportedImageExtension" xml:space="preserve">
+    <value>Fotoğrafın yüklenemedi. Fotoğraf 4 MB'den az olmalı ve JPG, PNG dosyası olarak kaydedilmelidir</value>
+  </data>
   <data name="UserAlreadyHasPassword" xml:space="preserve">
     <value>Kullanıcının zaten bir şifresi var.</value>
   </data>

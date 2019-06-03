@@ -6,14 +6,19 @@ using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
+using ContestPark.Identity.API.Services.BlobStorage;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ContestPark.Identity.API.Controllers
@@ -30,6 +35,7 @@ namespace ContestPark.Identity.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
+        private readonly IBlobStorageService _blobStorageService;
 
         #endregion Private variables
 
@@ -39,18 +45,82 @@ namespace ContestPark.Identity.API.Controllers
                                  ILogger<AccountController> logger,
                                  UserManager<ApplicationUser> userManager,
                                  IUserRepository userRepository,
-                                 IIdentityIntegrationEventService identityIntegrationEventService) : base(logger)
+                                 IIdentityIntegrationEventService identityIntegrationEventService,
+                                 IBlobStorageService blobStorageService) : base(logger)
         {
             _emailService = emailService;
             _logger = logger;
             _userManager = userManager;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
+            _blobStorageService = blobStorageService;
         }
 
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Profil resmi değiştir
+        /// </summary>
+        /// <param name="files">Yüklenen resim</param>
+        /// <returns>Resim url</returns>
+        [HttpPost]
+        [Route("changeProfilePicture")]
+        [ProducesResponseType(typeof(ChangePictureModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
+        public async Task<IActionResult> ChangeProfilePicture(IList<IFormFile> files)// Burda tek list olarak alınmaması lazım ama tek alınca yüklenmiyor
+        {
+            if (files.Count == 0)
+                return BadRequest();
+
+            IFormFile file = files.First();
+            if (file == null)
+                return NotFound();
+
+            if (_blobStorageService.CheckFileSize(file.Length))// 4 mb'den büyük ise dosya boyutu  geçersizdir
+            {
+                return BadRequest(IdentityResource.UnsupportedImageExtension);
+            }
+
+            string extension = Path.GetExtension(file.FileName);
+            if (!_blobStorageService.CheckPictureExtension(extension))
+            {
+                return StatusCode((int)HttpStatusCode.UnsupportedMediaType, new ValidationResult(IdentityResource.UnsupportedImageExtension));
+            }
+
+            Stream pictureStream = file.OpenReadStream();
+            if (pictureStream == null || pictureStream.Length == 0)
+                return NotFound();
+
+            string fileName = await _blobStorageService.UploadFileToStorage(pictureStream, file.FileName, UserId);
+            if (string.IsNullOrEmpty(fileName))
+                return BadRequest();
+
+            ApplicationUser user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+                return NotFound();
+
+            // Profil resmi db güncelle
+            string oldProfilePicturePath = user.ProfilePicturePath;
+            user.ProfilePicturePath = fileName;
+
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded && result.Errors.Count() > 0)
+                return BadRequest(IdentityResultErrors(result.Errors));
+
+            // Diğer servislere resmin değiştiğini bildir
+            var profilePictureChangedIntegrationEvent = new ProfilePictureChangedIntegrationEvent(UserId, fileName, oldProfilePicturePath);
+            await PublishEvent(profilePictureChangedIntegrationEvent);
+
+            _logger.LogInformation($"Kullanıcı profil resmi değişti. userID: {UserId} new picture: {fileName}");
+
+            return Ok(new ChangePictureModel
+            {
+                PicturePath = user.ProfilePicturePath
+            });
+        }
 
         /// <summary>
         /// Kullanıcı bilgilerini güncelleme
