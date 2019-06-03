@@ -38,6 +38,7 @@ namespace ContestPark.Identity.API.Services.BlobStorage
             if (!CheckPictureExtension(extension))
                 return string.Empty;
 
+            CloudBlockBlob blockBlob = null;
             try
             {
                 // Create storagecredentials object by reading the values from the configuration (appsettings.json)
@@ -59,7 +60,7 @@ namespace ContestPark.Identity.API.Services.BlobStorage
                 string newFileName = GetUniqFileName() + extension;
 
                 // Get the reference to the block blob from the container
-                CloudBlockBlob blockBlob = container.GetBlockBlobReference(newFileName);
+                blockBlob = container.GetBlockBlobReference(newFileName);
                 if (await blockBlob.ExistsAsync())
                     return await UploadFileToStorage(fileStream, fileName, userId);
 
@@ -71,6 +72,9 @@ namespace ContestPark.Identity.API.Services.BlobStorage
             catch (Exception ex)
             {
                 _logger.LogError($"Profil resmi yüklenken hata oluştu user Id: {userId}", ex);
+
+                if (blockBlob != null)// Dosya yükler ve hata oluşursa dosya boşa yer kaplamasın diye sildik
+                    await blockBlob.DeleteIfExistsAsync();
 
                 return string.Empty;
             }
