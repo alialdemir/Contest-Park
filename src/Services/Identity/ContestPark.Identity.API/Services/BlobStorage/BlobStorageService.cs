@@ -90,11 +90,17 @@ namespace ContestPark.Identity.API.Services.BlobStorage
             return fileName;
         }
 
+        /// <summary>
+        /// Dosya boyutu yüklenebilecek boyuttamı
+        /// </summary>
+        /// <param name="size">Dosya boyutu</param>
+        /// <returns>Yüklenemeyecekse true yüklenebilecekse false</returns>
         public bool CheckFileSize(long size)
         {
             decimal fileSizeMb = ((decimal)((size / 1024f) / 1024f));// convert byte to mb
+            byte maximumFileSize = 4;// MB
 
-            return fileSizeMb > 4;// 4 mb'den büyük ise dosya boyutu  geçersizdir
+            return fileSizeMb > maximumFileSize;// 4 mb'den büyük ise dosya boyutu  geçersizdir
         }
 
         /// <summary>
