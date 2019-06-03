@@ -196,6 +196,15 @@ namespace ContestPark.Identity.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your photo couldn&apos;t be uploaded. Photo should be less than 4 MB and saved as JPG, PNG file..
+        /// </summary>
+        public static string UnsupportedImageExtension {
+            get {
+                return ResourceManager.GetString("UnsupportedImageExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your username must be a maximum of 255 characters..
         /// </summary>
         public static string UserNameMaxLength {

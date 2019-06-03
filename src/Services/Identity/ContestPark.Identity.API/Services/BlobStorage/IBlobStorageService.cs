@@ -5,6 +5,10 @@ namespace ContestPark.Identity.API.Services.BlobStorage
 {
     public interface IBlobStorageService
     {
-        Task<bool> UploadFileToStorage(Stream fileStream, string fileName);
+        bool CheckPictureExtension(string extension);
+
+        bool CheckFileSize(long size);
+
+        Task<string> UploadFileToStorage(Stream fileStream, string fileName, string userId);
     }
 }

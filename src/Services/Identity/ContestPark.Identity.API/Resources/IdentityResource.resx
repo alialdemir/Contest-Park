@@ -162,6 +162,9 @@
   <data name="ThereWasAnErrorInSendingPassword" xml:space="preserve">
     <value>There was an error in sending password.</value>
   </data>
+  <data name="UnsupportedImageExtension" xml:space="preserve">
+    <value>Your photo couldn't be uploaded. Photo should be less than 4 MB and saved as JPG, PNG file.</value>
+  </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>Your username must be a maximum of 255 characters.</value>
   </data>

@@ -24,7 +24,6 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
-      - AzureStoreImageContainer=${CONTESTPARK_AZURE_STORE_IMAGE_CONTAINER}
     ports:
       - "5100:80"
     volumes:

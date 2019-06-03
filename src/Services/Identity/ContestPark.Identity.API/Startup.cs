@@ -42,6 +42,8 @@ namespace ContestPark.Identity.API
                 app.UsePathBase(pathBase);
             }
 
+            app.UseStaticFiles();
+
             app.UseExceptionHandlerConfigure()
                 .UseCustomIdentityServer()
                 .UseRequestLocalizationCustom()
@@ -80,7 +82,7 @@ namespace ContestPark.Identity.API
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IUserRepository, UserRepository>();
 
-            //       services.AddTransient<IBlobStorageService, BlobStorageService>();
+            services.AddTransient<IBlobStorageService, BlobStorageService>();
 
             #endregion AddTransient
 

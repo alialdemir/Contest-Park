@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -9,34 +11,107 @@ namespace ContestPark.Identity.API.Services.BlobStorage
 {
     public class BlobStorageService : IBlobStorageService
     {
-        private readonly IOptions<IdentitySettings> _identitySettings;
+        private readonly IdentitySettings _identitySettings;
 
-        public BlobStorageService(IOptions<IdentitySettings> identitySettings)
+        private readonly ILogger<BlobStorageService> _logger;
+
+        public BlobStorageService(IOptions<IdentitySettings> identitySettings,
+                                  ILogger<BlobStorageService> logger)
         {
-            _identitySettings = identitySettings;
+            _identitySettings = identitySettings.Value;
+            _logger = logger;
         }
 
-        public async Task<bool> UploadFileToStorage(Stream fileStream, string fileName)
+        /// <summary>
+        /// Resim yükleme
+        /// </summary>
+        /// <param name="fileStream">Resim stream</param>
+        /// <param name="fileName">Dosyanın adı</param>
+        /// <param name="userId">Hangi kullanıcının resmi</param>
+        /// <returns></returns>
+        public async Task<string> UploadFileToStorage(Stream fileStream, string fileName, string userId)
         {
-            // Create storagecredentials object by reading the values from the configuration (appsettings.json)
-            StorageCredentials storageCredentials = new StorageCredentials(_identitySettings.Value.AzureStoreAccountName, _identitySettings.Value.AzureStoreAccountKey);
+            if (CheckFileSize(fileStream.Length))
+                return string.Empty;
 
-            // Create cloudstorage account by passing the storagecredentials
-            CloudStorageAccount storageAccount = new CloudStorageAccount(storageCredentials, true);
+            string extension = Path.GetExtension(fileName);
+            if (!CheckPictureExtension(extension))
+                return string.Empty;
 
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+            try
+            {
+                // Create storagecredentials object by reading the values from the configuration (appsettings.json)
+                StorageCredentials storageCredentials = new StorageCredentials(_identitySettings.AzureStoreAccountName, _identitySettings.AzureStoreAccountKey);
+                // Create cloudstorage account by passing the storagecredentials
+                CloudStorageAccount storageAccount = new CloudStorageAccount(storageCredentials, true);
 
-            // Get reference to the blob container by passing the name by reading the value from the configuration (appsettings.json)
-            CloudBlobContainer container = blobClient.GetContainerReference(_identitySettings.Value.AzureStoreImageContainer);
+                // Create the blob client.
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-            // Get the reference to the block blob from the container
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(fileName);
+                // Get reference to the blob container by passing the name by reading the value from the configuration (appsettings.json)
 
-            // Upload the file
-            await blockBlob.UploadFromStreamAsync(fileStream);
+                string containerName = "images";
 
-            return await Task.FromResult(true);
+                CloudBlobContainer container = blobClient.GetContainerReference(containerName);
+
+                await container.CreateIfNotExistsAsync();
+
+                string newFileName = GetUniqFileName() + extension;
+
+                // Get the reference to the block blob from the container
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(newFileName);
+                if (await blockBlob.ExistsAsync())
+                    return await UploadFileToStorage(fileStream, fileName, userId);
+
+                // Upload the file
+                await blockBlob.UploadFromStreamAsync(fileStream);
+
+                return blockBlob.Uri.AbsoluteUri;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Profil resmi yüklenken hata oluştu user Id: {userId}", ex);
+
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Uniq dosya adı oluşturur
+        /// format: gün + ay + yıl + saat + dakika + saniye + guid key
+        /// </summary>
+        /// <returns></returns>
+        private string GetUniqFileName()
+        {
+            DateTime now = DateTime.Now;
+
+            string fileName = now.ToShortDateString().Replace(".", "") + now.ToLongTimeString().Replace(":", "") + Guid.NewGuid().ToString().Replace("-", "");
+
+            return fileName;
+        }
+
+        public bool CheckFileSize(long size)
+        {
+            decimal fileSizeMb = ((decimal)((size / 1024f) / 1024f));// convert byte to mb
+
+            return fileSizeMb > 4;// 4 mb'den büyük ise dosya boyutu  geçersizdir
+        }
+
+        /// <summary>
+        /// Desteklenen resim formatı mı kontrol eder
+        /// </summary>
+        /// <param name="extension">Uzantı</param>
+        /// <returns>Resim uzantısı destekleniyor ise true desteklenmiyorsafaslse</returns>
+        public bool CheckPictureExtension(string extension)
+        {
+            switch (extension)
+            {
+                case ".jpg":
+                case ".png":
+                    return true;
+            }
+
+            return false;
         }
     }
 }
