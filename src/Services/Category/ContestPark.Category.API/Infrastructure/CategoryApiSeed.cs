@@ -29,6 +29,7 @@ namespace ContestPark.Category.API.Infrastructure
                     PicturePath = "https://static.thenounproject.com/png/14039-200.png",
                     Price = 120000,
                     FollowerCount = 1,
+                    Description = "açıklama bla bla bla",
                     SubCategoryLangs = new List<SubCategoryLang>
                                 {
                                     new SubCategoryLang
@@ -73,6 +74,7 @@ namespace ContestPark.Category.API.Infrastructure
                                 DisplayPrice = "0",
                                 Price = 0,
                                 PicturePath="https://cdn2.iconfinder.com/data/icons/location-map-vehicles/100/Locations-53-512.png",
+                                Description = "açıklama bla bla bla",
                                 SubCategoryLangs = new List<SubCategoryLang>
                                 {
                                         new SubCategoryLang
@@ -93,6 +95,7 @@ namespace ContestPark.Category.API.Infrastructure
                                 Visibility=true,
                                 DisplayPrice="1k",
                                 PicturePath="http://chittagongit.com/images/team-icon-png/team-icon-png-20.jpg",
+                                 Description = "açıklama bla bla bla",
                                 Price=1000,
                                 SubCategoryLangs = new List<SubCategoryLang>
                                 {
@@ -114,6 +117,7 @@ namespace ContestPark.Category.API.Infrastructure
                                 Visibility=true,
                                 DisplayPrice="150k",
                                 PicturePath="https://d2n3notmdf08g1.cloudfront.net/common/Login/gotr_icon_whistle.png",
+                                Description = "açıklama bla bla bla",
                                 Price=150000,
                                 SubCategoryLangs = new List<SubCategoryLang>
                                 {
