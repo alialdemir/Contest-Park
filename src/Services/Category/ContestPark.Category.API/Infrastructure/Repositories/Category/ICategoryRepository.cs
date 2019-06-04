@@ -11,6 +11,8 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 
         ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel);
 
+        ServiceModel<SubCategoryModel> GetFollowedSubCategories(string userId, Languages language, PagingModel pagingModel);
+
         bool IsSubCategoryFree(string subCategoryId);
 
         bool IncreasingFollowersCount(string subCategoryId);

@@ -58,6 +58,25 @@ namespace ContestPark.Category.API.Controllers
         }
 
         /// <summary>
+        /// Takip ettiğin alt kategoriler
+        /// </summary>
+        /// <returns>Tüm kategorileri döndürür.</returns>
+        [HttpGet("Followed")]
+        [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult FollowedSubCategories([FromQuery]PagingModel pagingModel)
+        {
+            ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId, CurrentUserLanguage, pagingModel);
+            if (followedSubCategories == null)
+            {
+                Logger.LogCritical($"{nameof(followedSubCategories)} list returned empty.", followedSubCategories);
+                return NotFound();
+            }
+
+            return Ok(followedSubCategories);
+        }
+
+        /// <summary>
         /// Alt kategori takip et
         /// </summary>
         /// <param name="subCategoryId">Alt kategori Id</param>
