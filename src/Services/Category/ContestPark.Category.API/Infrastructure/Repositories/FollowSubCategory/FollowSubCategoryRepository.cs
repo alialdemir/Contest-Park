@@ -68,6 +68,23 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
             return Repository.DeleteAsync(id);
         }
 
+        /// <summary>
+        /// Kullanıcının takip ettiği alt kategorilerin id'leri
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Takip edilen alt kategoriler</returns>
+        public string[] FollowedSubCategoryIds(string userId)
+        {
+            return Repository.Query<string>(new SqlQuerySpec
+            {
+                QueryText = "SELECT DISTINCT VALUE c.subCategoryId FROM c where c.userId = @userId",
+                Parameters = new SqlParameterCollection
+                 {
+                     new SqlParameter("@userId", userId)
+                 }
+            }).ToArray();
+        }
+
         #endregion Methods
     }
 }

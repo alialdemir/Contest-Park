@@ -1,7 +1,9 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.Category;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
+using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
+using ContestPark.Core.CosmosDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -35,6 +37,25 @@ namespace ContestPark.Category.API.Controllers
         #endregion Constructor
 
         #region Services
+
+        /// <summary>
+        /// Kategorileri listeleme
+        /// </summary>
+        /// <returns>Tüm kategorileri döndürür.</returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult Get([FromQuery]PagingModel pagingModel)
+        {
+            ServiceModel<CategoryModel> catgories = _categoryRepository.GetCategories(UserId, CurrentUserLanguage, pagingModel);
+            if (catgories == null)
+            {
+                Logger.LogCritical($"{nameof(catgories)} list returned empty.", catgories);
+                return NotFound();
+            }
+
+            return Ok(catgories);
+        }
 
         /// <summary>
         /// Alt kategori takip et
