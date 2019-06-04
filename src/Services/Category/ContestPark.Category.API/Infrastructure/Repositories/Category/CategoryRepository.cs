@@ -5,7 +5,6 @@ using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
 using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
 using System.Linq;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Category
@@ -86,9 +85,43 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             };
         }
 
+        /// <summary>
+        /// Kategori takipçi sayısını bir artıır
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>İşlem başarılı ise true değilse false</returns>
         public bool IncreasingFollowersCount(string subCategoryId)
         {
-            Documents.Category doc = Repository.Query<Documents.Category>(new SqlQuerySpec
+            Documents.Category doc = GetCategoryBySubCategoryId(subCategoryId);
+
+            if (doc == null)
+                return false;
+
+            doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount += 1;
+
+            return Repository.UpdateAsync(doc).Result;
+        }
+
+        /// <summary>
+        /// Kategori takipçi sayısını bir azaltır
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>İşlem başarılı ise true değilse false</returns>
+        public bool DecreasingFollowersCount(string subCategoryId)
+        {
+            Documents.Category doc = GetCategoryBySubCategoryId(subCategoryId);
+
+            if (doc == null || doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount == 0)
+                return false;
+
+            doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount -= 1;
+
+            return Repository.UpdateAsync(doc).Result;
+        }
+
+        private Documents.Category GetCategoryBySubCategoryId(string subCategoryId)
+        {
+            return Repository.Query<Documents.Category>(new SqlQuerySpec
             {
                 QueryText = @"SELECT DISTINCT VALUE  c FROM c
                               JOIN sc IN c.subCategories
@@ -98,13 +131,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                     new SqlParameter("@subCategoryId", subCategoryId)
                 }
             }).AsEnumerable().SingleOrDefault();
-
-            if (doc == null)
-                return false;
-
-            doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount += 1;
-
-            return Repository.UpdateAsync(doc).Result;
         }
 
         /// <summary>
