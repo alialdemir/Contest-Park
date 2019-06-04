@@ -8,12 +8,10 @@ using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
 using ContestPark.Identity.API.Services.BlobStorage;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
@@ -23,9 +21,6 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Identity.API.Controllers
 {
-    [Authorize]
-    [Route("api/v1/[controller]")]
-    [ApiController]
     public class AccountController : Core.Controllers.ControllerBase
     {
         #region Private variables

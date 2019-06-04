@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ContestPark.Mobile.Models.Categories
+namespace ContestPark.Category.API.Model
 {
-    public class CategoryModel : BaseModel
+    public class CategoryModel
     {
         public string CategoryId { get; set; }
         public string CategoryName { get; set; }

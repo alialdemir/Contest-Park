@@ -10,6 +10,7 @@ using ContestPark.Identity.API.Services.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,8 +42,6 @@ namespace ContestPark.Identity.API
                 loggerFactory.CreateLogger("init").LogDebug($"Using PATH BASE '{pathBase}'");
                 app.UsePathBase(pathBase);
             }
-
-            app.UseStaticFiles();
 
             app.UseExceptionHandlerConfigure()
                 .UseCustomIdentityServer()
@@ -89,11 +88,14 @@ namespace ContestPark.Identity.API
             services.AddCustomIdentityServer(Configuration, connectionString)
                     .AddMvc()
                     .AddJsonOptions()
-                    .AddDataAnnotationsLocalization(typeof(IdentityResource).Name);
+                    .AddDataAnnotationsLocalization(typeof(IdentityResource).Name)
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddLocalizationCustom();
 
-            services.AddRabbitMq(Configuration, connectionString);
+            services
+                .AddIntegrationEventLogEFDbContext(connectionString)
+                .AddRabbitMq(Configuration);
 
             var container = new ContainerBuilder();
             container.Populate(services);

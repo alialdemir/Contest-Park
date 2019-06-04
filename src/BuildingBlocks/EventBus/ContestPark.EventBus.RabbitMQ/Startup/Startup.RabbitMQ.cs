@@ -1,56 +1,26 @@
 ﻿using Autofac;
 using ContestPark.EventBus;
 using ContestPark.EventBus.Abstractions;
-using ContestPark.EventBus.IntegrationEventLogEF;
-using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.EventBus.RabbitMQ;
-using ContestPark.Identity.API.IntegrationEvents;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
-using System;
-using System.Data.Common;
-using System.Reflection;
 
-namespace ContestPark.Identity.API
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class RabbitMqStartup
+    public static partial class Startup
     {
-        public static IServiceCollection AddRabbitMq(this IServiceCollection services, IConfiguration configuration, string connectionString)
+        public static IServiceCollection AddRabbitMq(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddCustomDbContext(connectionString)
                 .AddIntegrationServices(configuration)
                 .AddEventBus(configuration);
 
             return services;
         }
 
-        private static IServiceCollection AddCustomDbContext(this IServiceCollection services, string connectionString)
-        {
-            services.AddDbContext<IntegrationEventLogContext>(options =>
-            {
-                options.UseMySql(connectionString,
-                                     mySqlOptionsAction: sqlOptions =>
-                                     {
-                                         sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
-                                         //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
-                                         sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-                                     });
-            });
-
-            return services;
-        }
-
         private static IServiceCollection AddIntegrationServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<Func<DbConnection, IIntegrationEventLogService>>(
-                sp => (DbConnection c) => new IntegrationEventLogService(c));
-
-            services.AddTransient<IIdentityIntegrationEventService, IdentityIntegrationEventService>();
-
             services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<DefaultRabbitMQPersistentConnection>>();
