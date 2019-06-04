@@ -89,7 +89,7 @@ namespace ContestPark.Identity.API.Controllers
             if (pictureStream == null || pictureStream.Length == 0)
                 return NotFound();
 
-            string fileName = await _blobStorageService.UploadFileToStorage(pictureStream, file.FileName, UserId);
+            string fileName = await _blobStorageService.UploadFileToStorageAsync(pictureStream, file.FileName, UserId);
             if (string.IsNullOrEmpty(fileName))
                 return BadRequest();
 
@@ -97,14 +97,17 @@ namespace ContestPark.Identity.API.Controllers
             if (user == null)
                 return NotFound();
 
+            if (!string.IsNullOrEmpty(user.CoverPicturePath))// Eğer varsa eski resmi sil
+            {
+                await _blobStorageService.DeleteFileAsync(user.CoverPicturePath);
+            }
+
             // Profil resmi db güncelle
             user.CoverPicturePath = fileName;
 
             IdentityResult result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded && result.Errors.Count() > 0)
                 return BadRequest(IdentityResultErrors(result.Errors));
-
-            _logger.LogInformation($"Kullanıcı kapak resmi değişti. userID: {UserId} new picture: {fileName}");
 
             return Ok(new ChangePictureModel
             {
@@ -146,13 +149,18 @@ namespace ContestPark.Identity.API.Controllers
             if (pictureStream == null || pictureStream.Length == 0)
                 return NotFound();
 
-            string fileName = await _blobStorageService.UploadFileToStorage(pictureStream, file.FileName, UserId);
+            string fileName = await _blobStorageService.UploadFileToStorageAsync(pictureStream, file.FileName, UserId);
             if (string.IsNullOrEmpty(fileName))
                 return BadRequest();
 
             ApplicationUser user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
                 return NotFound();
+
+            if (!string.IsNullOrEmpty(user.ProfilePicturePath))// Eğer varsa eski resmi sil
+            {
+                await _blobStorageService.DeleteFileAsync(user.ProfilePicturePath);
+            }
 
             // Profil resmi db güncelle
             string oldProfilePicturePath = user.ProfilePicturePath;
@@ -165,8 +173,6 @@ namespace ContestPark.Identity.API.Controllers
             // Diğer servislere resmin değiştiğini bildir
             var profilePictureChangedIntegrationEvent = new ProfilePictureChangedIntegrationEvent(UserId, fileName, oldProfilePicturePath);
             await PublishEvent(profilePictureChangedIntegrationEvent);
-
-            _logger.LogInformation($"Kullanıcı profil resmi değişti. userID: {UserId} new picture: {fileName}");
 
             return Ok(new ChangePictureModel
             {

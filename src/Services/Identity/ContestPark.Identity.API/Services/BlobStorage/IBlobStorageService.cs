@@ -9,6 +9,8 @@ namespace ContestPark.Identity.API.Services.BlobStorage
 
         bool CheckFileSize(long size);
 
-        Task<string> UploadFileToStorage(Stream fileStream, string fileName, string userId);
+        Task<string> UploadFileToStorageAsync(Stream fileStream, string fileName, string userId);
+
+        Task<bool> DeleteFileAsync(string uri);
     }
 }

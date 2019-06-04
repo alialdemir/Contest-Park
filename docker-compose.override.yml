@@ -25,7 +25,7 @@ services:
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
     ports:
-      - "5100:80"
+      - "5101:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

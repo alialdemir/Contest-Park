@@ -1,7 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.EventBus.Abstractions;
+using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.Identity.API.Data;
 using ContestPark.Identity.API.Data.Repositories.User;
+using ContestPark.Identity.API.IntegrationEvents;
+using ContestPark.Identity.API.IntegrationEvents.EventHandling;
+using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
@@ -16,6 +21,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Data.Common;
 using System.Reflection;
 
 namespace ContestPark.Identity.API
@@ -47,6 +53,14 @@ namespace ContestPark.Identity.API
                 .UseCustomIdentityServer()
                 .UseRequestLocalizationCustom()
                 .UseMvc();
+
+            ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureEventBus(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<DeleteFileIntegrationEvent, DeleteFileIntegrationEventHandler>();
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -96,6 +110,13 @@ namespace ContestPark.Identity.API
             services
                 .AddIntegrationEventLogEFDbContext(connectionString)
                 .AddRabbitMq(Configuration);
+
+            services.AddTransient<Func<DbConnection, IIntegrationEventLogService>>(
+            sp => (DbConnection c) => new IntegrationEventLogService(c));
+
+            services.AddTransient<IIdentityIntegrationEventService, IdentityIntegrationEventService>();
+
+            services.AddTransient<DeleteFileIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);

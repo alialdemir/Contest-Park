@@ -65,8 +65,4 @@
       <LastGenOutput>IdentityResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IntegrationEvents\EventHandling\" />
-  </ItemGroup>
 </Project>
