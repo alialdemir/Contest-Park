@@ -168,6 +168,38 @@ namespace ContestPark.Category.API.Controllers
             });
         }
 
+        /// <summary>
+        /// Kategorinin detayını döndürür
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori Id</param>
+        [HttpGet]
+        [Route("{subCategoryId}")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetDetail(string subCategoryId)
+        {
+            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+                return BadRequest();
+
+            SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, CurrentUserLanguage);
+            if (subCategoryDetail == null)
+                return NotFound();
+
+            return Ok(new SubCategoryDetailModel
+            {
+                Level = 1, // TODO: level bilgisi çekilmeli
+
+                // TODO: user id için login olmuş olması gerekir sadece bunun için identity serverden token kontrol eder sadece kategori takip etme durumunu ayri bir entpoint e alırsak bu entpointi AllowAnonymous yapıp performans kazanılabilir
+                IsSubCategoryFollowUpStatus = _followSubCategoryRepository.IsSubCategoryFollowed(UserId, subCategoryId),
+
+                CategoryFollowersCount = subCategoryDetail.CategoryFollowersCount,
+                Description = subCategoryDetail.Description,
+                SubCategoryId = subCategoryDetail.SubCategoryId,
+                SubCategoryName = subCategoryDetail.SubCategoryName,
+                SubCategoryPicturePath = subCategoryDetail.SubCategoryPicturePath
+            });
+        }
+
         #endregion Services
     }
 }

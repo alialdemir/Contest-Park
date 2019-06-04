@@ -201,6 +201,37 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             };
         }
 
+        /// <summary>
+        /// Alt kategori detay bilgilerini verir
+        /// </summary>
+        /// <param name="subCategoryId"></param>
+        /// <returns>Alt kategori detay</returns>
+        public SubCategoryDetailInfoModel GetSubCategoryDetail(string subCategoryId, Languages language)
+        {
+            string sql = @"SELECT
+                           sc.followerCount AS categoryFollowersCount,
+                           sc.description,
+                           sc.id AS subCategoryId,
+                           scl.subCategoryName,
+                           sc.picturePath AS SubCategoryPicturePath
+                           FROM c
+                           JOIN sc IN c.subCategories
+                           JOIN scl IN sc.subCategoryLangs
+                           WHERE c.visibility=true AND sc.visibility=true And sc.id = @subCategoryId AND scl.languageId=@languageId";
+
+            var subCategoryDetail = Repository.Query<SubCategoryDetailInfoModel>(new SqlQuerySpec// TODO: burada query kısında list yerine model veriilmeliydi ama o şekilde parse hatası aldım sql query de bir düzeltme yapılmalı
+            {
+                QueryText = sql,
+                Parameters = new SqlParameterCollection
+                 {
+                     new SqlParameter("@subCategoryId", subCategoryId),
+                     new SqlParameter("@languageId", language.ToString()),
+                 }
+            }).ToList().FirstOrDefault();
+
+            return subCategoryDetail;
+        }
+
         #endregion Methods
     }
 }
