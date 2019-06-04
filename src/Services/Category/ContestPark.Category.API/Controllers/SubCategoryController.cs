@@ -108,6 +108,26 @@ namespace ContestPark.Category.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Alt kategori takip etme durumu
+        /// true ise takip ediyor false ise takip etmiyor
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori Id</param>
+        [HttpGet]
+        [Route("{subCategoryId}/FollowStatus")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult Get(string subCategoryId)
+        {
+            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+                return BadRequest();
+
+            return Ok(new
+            {
+                IsSubCategoryFollowed = _followSubCategoryRepository.IsSubCategoryFollowed(UserId, subCategoryId)
+            });
+        }
+
         #endregion Services
     }
 }
