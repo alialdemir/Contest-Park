@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Category.API.Infrastructure.Repositories.Category;
+using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +39,9 @@ namespace ContestPark.Category.API
             services
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
+
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IOpenCategoryRepository, OpenCategoryRepository>();
 
             var container = new ContainerBuilder();
             container.Populate(services);

@@ -39,9 +39,4 @@
       <LastGenOutput>CategoryResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\Repositories\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
 </Project>

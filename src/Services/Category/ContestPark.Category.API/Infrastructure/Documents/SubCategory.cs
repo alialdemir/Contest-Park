@@ -5,9 +5,9 @@ namespace ContestPark.Category.API.Infrastructure.Documents
 {
     public class SubCategory : DocumentBase
     {
-        public string PictuePath { get; set; }
+        public string PicturePath { get; set; }
         public bool Visibility { get; set; }
-        public byte Order { get; set; }
+        public byte DisplayOrder { get; set; }
         public int Price { get; set; }
         public string DisplayPrice { get; set; }
 

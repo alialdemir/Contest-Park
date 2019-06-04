@@ -7,7 +7,7 @@ namespace ContestPark.Category.API.Infrastructure.Documents
     {
         public bool Visibility { get; set; }
 
-        public byte Order { get; set; }
+        public byte DisplayOrder { get; set; }
         public virtual ICollection<SubCategory> SubCategories { get; set; } = new HashSet<SubCategory>();
         public virtual ICollection<CategoryLang> CategoryLangs { get; set; } = new HashSet<CategoryLang>();
     }

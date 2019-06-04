@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContestPark.Category.API.Infrastructure.Repositories.Category;
+using ContestPark.Core.CosmosDb.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using ContestPark.Category.API.Infrastructure.Documents;
 
 namespace ContestPark.Category.API.Controllers
 {
@@ -10,23 +10,26 @@ namespace ContestPark.Category.API.Controllers
         #region Private variables
 
         private readonly ILogger<CategoryController> _logger;
+        private readonly ICategoryRepository _categoryRepository;
 
         #endregion Private variables
 
         #region Constructor
 
-        public CategoryController(ILogger<CategoryController> logger) : base(logger)
+        public CategoryController(ILogger<CategoryController> logger,
+                                  ICategoryRepository categoryRepository) : base(logger)
         {
             _logger = logger;
+            _categoryRepository = categoryRepository;
         }
 
         #endregion Constructor
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Get([FromQuery]PagingModel paingModel)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_categoryRepository.GetCategories(UserId, CurrentUserLanguage, paingModel));
         }
 
         // GET api/values/5
