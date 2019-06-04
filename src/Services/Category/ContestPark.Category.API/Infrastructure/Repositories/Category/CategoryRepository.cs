@@ -1,10 +1,12 @@
-﻿using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
+﻿using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
 using Microsoft.Azure.Documents;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Category
@@ -14,15 +16,18 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         #region Private
 
         private readonly IOpenCategoryRepository _openCategoryRepository;
+        private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
 
         #endregion Private
 
         #region Constructor
 
         public CategoryRepository(IDocumentDbRepository<Documents.Category> repository,
-            IOpenCategoryRepository openCategoryRepository)
+                                  IFollowSubCategoryRepository followSubCategoryRepository,
+                                  IOpenCategoryRepository openCategoryRepository)
         {
             Repository = repository;
+            _followSubCategoryRepository = followSubCategoryRepository;
             _openCategoryRepository = openCategoryRepository;
         }
 
@@ -150,6 +155,50 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                     new SqlParameter("@subCategoryId", subCategoryId)
                 }
             }).ToList().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Kullanıcının takip ettiği kategoriler
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="language">Dil</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Kullanıcının takip ettiği kategoriler</returns>
+        public ServiceModel<SubCategoryModel> GetFollowedSubCategories(string userId, Languages language, PagingModel pagingModel)
+        {
+            string[] followedSubCategories = _followSubCategoryRepository.FollowedSubCategoryIds(userId);
+
+            string sql = @"SELECT DISTINCT VALUE
+                           ARRAY(SELECT DISTINCT VALUE {
+                                subCategoryId: sc.id,
+                                picturePath: sc.picturePath,
+                                price: 0,
+                                displayPrice: '',
+                                displayOrder: sc.displayOrder,
+                                subCategoryName: scl.subCategoryName
+                             }  FROM sc IN c.subCategories JOIN scl IN sc.subCategoryLangs WHERE sc.visibility=true AND scl.languageId=@languageId AND ARRAY_CONTAINS(@followedSubCategories,  sc.id, true))
+                           FROM c
+                           JOIN cl IN c.categoryLangs
+                           WHERE c.visibility=true AND cl.languageId=@languageId
+                           ORDER BY c.displayOrder";
+
+            var subCategories = Repository.Query<List<SubCategoryModel>>(new SqlQuerySpec// TODO: burada query kısında list yerine model veriilmeliydi ama o şekilde parse hatası aldım sql query de bir düzeltme yapılmalı
+            {
+                QueryText = sql,
+                Parameters = new SqlParameterCollection
+                 {
+                     new SqlParameter("@followedSubCategories", followedSubCategories),
+                     new SqlParameter("@languageId", language.ToString()),
+                 }
+            }).ToList();
+
+            return new ServiceModel<SubCategoryModel>
+            {
+                Items = subCategories.FirstOrDefault(),
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+                Count = subCategories.FirstOrDefault().Count()
+            };
         }
 
         #endregion Methods

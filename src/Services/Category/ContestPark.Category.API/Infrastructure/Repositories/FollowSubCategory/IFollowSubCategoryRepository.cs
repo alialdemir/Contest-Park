@@ -9,6 +9,8 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 
         bool IsSubCategoryFollowed(string userId, string subCategoryId);
 
+        string[] FollowedSubCategoryIds(string userId);
+
         Task<bool> DeleteAsync(string userId, string subCategoryId);
     }
 }

@@ -14,7 +14,7 @@ namespace ContestPark.Mobile.Services.Category
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/category";
+        private const string ApiUrlBase = "api/v1/SubCategory";
         private readonly ICacheService _cacheService;
         private readonly IRequestProvider _requestProvider;
 
