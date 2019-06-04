@@ -5,6 +5,7 @@ using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
 using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
 using System.Linq;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Category
@@ -83,6 +84,46 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                 PageSize = pagingModel.PageSize,
                 Count = categories.Count()
             };
+        }
+
+        public bool IncreasingFollowersCount(string subCategoryId)
+        {
+            Documents.Category doc = Repository.Query<Documents.Category>(new SqlQuerySpec
+            {
+                QueryText = @"SELECT DISTINCT VALUE  c FROM c
+                              JOIN sc IN c.subCategories
+                              WHERE sc.id=@subCategoryId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@subCategoryId", subCategoryId)
+                }
+            }).AsEnumerable().SingleOrDefault();
+
+            if (doc == null)
+                return false;
+
+            doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount += 1;
+
+            return Repository.UpdateAsync(doc).Result;
+        }
+
+        /// <summary>
+        /// Alt kategori ücretsiz mi kontrol eder
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Kategori ücretsiz ise true değilse false</returns>
+        public bool IsSubCategoryFree(string subCategoryId)
+        {
+            return Repository.Query<bool>(new SqlQuerySpec
+            {
+                QueryText = @"SELECT DISTINCT VALUE sc.price=0 FROM c
+                              JOIN sc IN c.subCategories
+                              WHERE sc.id=@subCategoryId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@subCategoryId", subCategoryId)
+                }
+            }).ToList().FirstOrDefault();
         }
 
         #endregion Methods

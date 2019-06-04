@@ -25,9 +25,10 @@ namespace ContestPark.Category.API.Infrastructure
                 {
                     DisplayOrder = 2,
                     Visibility = true,
-                    DisplayPrice = "0",
+                    DisplayPrice = "120k",
                     PicturePath = "https://static.thenounproject.com/png/14039-200.png",
-                    Price = 0,
+                    Price = 120000,
+                    FollowerCount = 1,
                     SubCategoryLangs = new List<SubCategoryLang>
                                 {
                                     new SubCategoryLang
@@ -69,9 +70,9 @@ namespace ContestPark.Category.API.Infrastructure
                             {
                                 DisplayOrder=1,
                                 Visibility=true,
-                                DisplayPrice="120k",
+                                DisplayPrice = "0",
+                                Price = 0,
                                 PicturePath="https://cdn2.iconfinder.com/data/icons/location-map-vehicles/100/Locations-53-512.png",
-                                Price=120000,
                                 SubCategoryLangs = new List<SubCategoryLang>
                                 {
                                         new SubCategoryLang
@@ -138,6 +139,15 @@ namespace ContestPark.Category.API.Infrastructure
                     {
                          SubCategoryId = referee.Id,
                          UserId = "1111-1111-1111-1111"
+                    }
+                });
+
+                await InsertDataAsync(new List<FollowSubCategory>
+                {
+                    new FollowSubCategory
+                    {
+                        UserId = "1111-1111-1111-1111",
+                        SubCategoryId= referee.Id,
                     }
                 });
             });

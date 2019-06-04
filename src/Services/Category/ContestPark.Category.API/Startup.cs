@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Category.API.Infrastructure.Repositories.Category;
+using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Resources;
 using Microsoft.AspNetCore.Builder;
@@ -42,6 +43,7 @@ namespace ContestPark.Category.API
 
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOpenCategoryRepository, OpenCategoryRepository>();
+            services.AddTransient<IFollowSubCategoryRepository, FollowSubCategoryRepository>();
 
             var container = new ContainerBuilder();
             container.Populate(services);

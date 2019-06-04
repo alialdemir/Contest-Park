@@ -1,0 +1,47 @@
+﻿using ContestPark.Core.CosmosDb.Interfaces;
+using Microsoft.Azure.Documents;
+using System.Linq;
+
+namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
+{
+    public class FollowSubCategoryRepository : IFollowSubCategoryRepository
+    {
+        #region Constructor
+
+        public FollowSubCategoryRepository(IDocumentDbRepository<Documents.FollowSubCategory> repository)
+        {
+            Repository = repository;
+        }
+
+        #endregion Constructor
+
+        #region Properties
+
+        public IDocumentDbRepository<Documents.FollowSubCategory> Repository { get; private set; }
+
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Kullanıcı alt kategoriyi takip ediyor mu
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
+        public bool IsSubCategoryFollowed(string userId, string subCategoryId)
+        {
+            return Repository.Query<bool>(new SqlQuerySpec
+            {
+                QueryText = "SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.userId=@userId AND c.subCategoryId=@subCategoryId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@userId", userId),
+                    new SqlParameter("@subCategoryId", subCategoryId)
+                }
+            }).ToList().FirstOrDefault();
+        }
+
+        #endregion Methods
+    }
+}
