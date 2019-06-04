@@ -61,6 +61,24 @@ namespace ContestPark.Category.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not open subcategory lock..
+        /// </summary>
+        public static string CouldNotPpenSubcategoryLock {
+            get {
+                return ResourceManager.GetString("CouldNotPpenSubcategoryLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This category is already unlocked..
+        /// </summary>
+        public static string ThisCategoryIsAlreadyUnlocked {
+            get {
+                return ResourceManager.GetString("ThisCategoryIsAlreadyUnlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To be able to follow this category, you need to unlock it..
         /// </summary>
         public static string ToBeAbleToFollowThisCategoryYouNeedToUnlockIt {
