@@ -18,12 +18,9 @@ namespace ContestPark.Core.CosmosDb
         private AsyncLazy<DocumentCollection> _collection;
         private readonly AsyncLazy<Database> _database;
 
-        private readonly IDocumentClient _client;
         private readonly string _collectionName;
         private readonly string _databaseId;
         private readonly ILogger<DocumentDbRepository<TDocument>> _logger;
-
-        private readonly Uri _uri;
 
         #endregion Private variables
 
@@ -35,22 +32,29 @@ namespace ContestPark.Core.CosmosDb
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
             _databaseId = dbConnection.CosmosDbDatabaseId ?? throw new ArgumentNullException(nameof(dbConnection.CosmosDbDatabaseId));
-            _client = client.GetClient(dbConnection);
+            Client = client.GetClient(dbConnection);
 
             _collectionName = typeof(TDocument).Name;
 
-            _database = new AsyncLazy<Database>(async () => await _client.CreateDatabaseIfNotExistsAsync(new Database { Id = dbConnection.CosmosDbDatabaseId }));// Database yoksa oluştur
+            _database = new AsyncLazy<Database>(async () => await Client.CreateDatabaseIfNotExistsAsync(new Database { Id = dbConnection.CosmosDbDatabaseId }));// Database yoksa oluştur
             _collection = new AsyncLazy<DocumentCollection>(async () =>// Collection yoksa oluştur
             {
-                return await _client.CreateDocumentCollectionIfNotExistsAsync(
+                return await Client.CreateDocumentCollectionIfNotExistsAsync(
                    UriFactory.CreateDatabaseUri(dbConnection.CosmosDbDatabaseId),
                    new DocumentCollection { Id = _collectionName });
             });
 
-            _uri = UriFactory.CreateDocumentCollectionUri(_databaseId, _collectionName);
+            CollectionUri = UriFactory.CreateDocumentCollectionUri(_databaseId, _collectionName);
         }
 
         #endregion Constructor
+
+        #region Properties
+
+        public IDocumentClient Client { get; private set; }
+        public Uri CollectionUri { get; private set; }
+
+        #endregion Properties
 
         #region Methods
 
@@ -69,7 +73,7 @@ namespace ContestPark.Core.CosmosDb
         /// <returns></returns>
         public async Task<int> CountAsync()
         {
-            return _client.CreateDocumentQuery<TDocument>((await _collection).SelfLink).Count();
+            return Client.CreateDocumentQuery<TDocument>((await _collection).SelfLink).Count();
         }
 
         /// <summary>
@@ -81,19 +85,21 @@ namespace ContestPark.Core.CosmosDb
         {
             try
             {
-                Document document = _client.CreateDocumentQuery(
-                    _uri,
-                    new SqlQuerySpec(
-                        $"SELECT * FROM {_collectionName} d WHERE d.id = @id",
-                        new SqlParameterCollection(new[] { new SqlParameter { Name = "@id", Value = id } })
-                        )).FirstOrDefault();
+                //Document document = Client.CreateDocumentQuery(
+                //    CollectionUri,
+                //    new SqlQuerySpec(
+                //        $"SELECT * FROM {_collectionName} d WHERE d.id = @id",
+                //        new SqlParameterCollection(new[] { new SqlParameter { Name = "@id", Value = id } })
+                //        )).FirstOrDefault();
 
-                if (document != null)
-                {
-                    await _client.DeleteDocumentAsync(document.SelfLink);
+                //if (document != null)
+                //{
+                //    await Client.DeleteDocumentAsync(document.SelfLink);
 
-                    return true;
-                }
+                //    return true;
+                //}
+
+                await Client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionName, id));
 
                 return false;
             }
@@ -141,7 +147,7 @@ namespace ContestPark.Core.CosmosDb
             {
                 document.CreatedDate = DateTime.Now;
 
-                await _client.CreateDocumentAsync(_uri, document);
+                await Client.CreateDocumentAsync(CollectionUri, document);
 
                 return true;
             }
@@ -186,8 +192,7 @@ namespace ContestPark.Core.CosmosDb
             try
             {
                 document.ModifiedDate = DateTime.Now;
-
-                await _client.ReplaceDocumentAsync(_uri, document);
+                var result = await Client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionName, document.Id), document);
 
                 return true;
             }
@@ -223,7 +228,7 @@ namespace ContestPark.Core.CosmosDb
         /// <returns></returns>
         public IQueryable<T> Query<T>(SqlQuerySpec querySpec, FeedOptions feedOptions = null)
         {
-            return _client.CreateDocumentQuery<T>(_uri, querySpec, feedOptions);
+            return Client.CreateDocumentQuery<T>(CollectionUri, querySpec, feedOptions);
         }
 
         #endregion Methods

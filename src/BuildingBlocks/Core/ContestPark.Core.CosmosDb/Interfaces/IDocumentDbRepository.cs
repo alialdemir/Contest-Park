@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace ContestPark.Core.CosmosDb.Interfaces
     public interface IDocumentDbRepository<TDocument> where TDocument : class, IDocument, new()
     {
         Task Init();
+
+        IDocumentClient Client { get; }
+        Uri CollectionUri { get; }
 
         Task<int> CountAsync();
 

@@ -10,5 +10,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         IDocumentDbRepository<Documents.Category> Repository { get; }
 
         ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel);
+
+        bool IsSubCategoryFree(string subCategoryId);
+
+        bool IncreasingFollowersCount(string subCategoryId);
     }
 }

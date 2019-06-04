@@ -11,6 +11,17 @@ namespace ContestPark.Category.API.Infrastructure.Documents
         public int Price { get; set; }
         public string DisplayPrice { get; set; }
 
+        private long _followerCount;
+
+        public long FollowerCount
+        {
+            get { return _followerCount; }
+            set
+            {
+                if (value >= 0) _followerCount = value;
+            }
+        }
+
         public virtual ICollection<SubCategoryLang> SubCategoryLangs { get; set; } = new HashSet<SubCategoryLang>();
     }
 }

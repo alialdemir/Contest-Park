@@ -1,7 +1,10 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.Category;
+using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
 
 namespace ContestPark.Category.API.Controllers
 {
@@ -9,7 +12,6 @@ namespace ContestPark.Category.API.Controllers
     {
         #region Private variables
 
-        private readonly ILogger<CategoryController> _logger;
         private readonly ICategoryRepository _categoryRepository;
 
         #endregion Private variables
@@ -19,42 +21,32 @@ namespace ContestPark.Category.API.Controllers
         public CategoryController(ILogger<CategoryController> logger,
                                   ICategoryRepository categoryRepository) : base(logger)
         {
-            _logger = logger;
-            _categoryRepository = categoryRepository;
+            _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }
 
         #endregion Constructor
 
-        // GET api/values
+        #region Methods
+
+        /// <summary>
+        /// Kategorileri listeleme
+        /// </summary>
+        /// <returns>Tüm kategorileri döndürür.</returns>
         [HttpGet]
-        public IActionResult Get([FromQuery]PagingModel paingModel)
+        [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult Get([FromQuery]PagingModel pagingModel)
         {
-            return Ok(_categoryRepository.GetCategories(UserId, CurrentUserLanguage, paingModel));
+            ServiceModel<CategoryModel> catgories = _categoryRepository.GetCategories(UserId, CurrentUserLanguage, pagingModel);
+            if (catgories == null)
+            {
+                Logger.LogCritical($"{nameof(catgories)} list returned empty.", catgories);
+                return NotFound();
+            }
+
+            return Ok(catgories);
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        #endregion Methods
     }
 }

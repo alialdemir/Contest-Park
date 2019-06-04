@@ -41,6 +41,25 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
             }).ToArray();
         }
 
+        /// <summary>
+        /// Alt kategorinin kilidi açık mı kontrol eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Alt kategori kilidi açık ise true değilse false</returns>
+        public bool IsSubCategoryOpen(string userId, string subCategoryId)
+        {
+            return Repository.Query<bool>(new SqlQuerySpec
+            {
+                QueryText = "SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.userId=@userId AND c.subCategoryId=@subCategoryId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@userId", userId),
+                    new SqlParameter("@subCategoryId", subCategoryId)
+                }
+            }).ToList().FirstOrDefault();
+        }
+
         #endregion Methods
     }
 }

@@ -59,5 +59,23 @@ namespace ContestPark.Category.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To be able to follow this category, you need to unlock it..
+        /// </summary>
+        public static string ToBeAbleToFollowThisCategoryYouNeedToUnlockIt {
+            get {
+                return ResourceManager.GetString("ToBeAbleToFollowThisCategoryYouNeedToUnlockIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are already following this category..
+        /// </summary>
+        public static string YouAreAlreadyFollowingThisCategory {
+            get {
+                return ResourceManager.GetString("YouAreAlreadyFollowingThisCategory", resourceCulture);
+            }
+        }
     }
 }

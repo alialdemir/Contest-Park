@@ -8,5 +8,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
         IDocumentDbRepository<OpenSubCategory> Repository { get; }
 
         string[] OpenSubCategoryIds(string userId);
+
+        bool IsSubCategoryOpen(string userId, string subCategoryId);
     }
 }
