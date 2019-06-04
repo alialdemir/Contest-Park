@@ -101,7 +101,7 @@ namespace ContestPark.Core.CosmosDb
 
                 await Client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionName, id));
 
-                return false;
+                return true;
             }
             catch (Exception ex)
             {

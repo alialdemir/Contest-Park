@@ -14,5 +14,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         bool IsSubCategoryFree(string subCategoryId);
 
         bool IncreasingFollowersCount(string subCategoryId);
+
+        bool DecreasingFollowersCount(string subCategoryId);
     }
 }

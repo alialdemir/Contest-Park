@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Controllers
 {
-    public class FollowSubCategoryController : Core.Controllers.ControllerBase
+    public class SubCategoryController : Core.Controllers.ControllerBase
     {
         #region Private Variables
 
@@ -22,10 +22,10 @@ namespace ContestPark.Category.API.Controllers
 
         #region Constructor
 
-        public FollowSubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
+        public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
                                            IOpenCategoryRepository openCategoryRepository,
                                            ICategoryRepository categoryRepository,
-                                           ILogger<FollowSubCategoryController> logger) : base(logger)
+                                           ILogger<SubCategoryController> logger) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
@@ -37,12 +37,11 @@ namespace ContestPark.Category.API.Controllers
         #region Services
 
         /// <summary>
-        /// Alt kategori açma
+        /// Alt kategori takip et
         /// </summary>
         /// <param name="subCategoryId">Alt kategori Id</param>
-        /// <returns>Alt kategori açma durumu</returns>
         [HttpPost]
-        [Route("{subCategoryId}")]
+        [Route("{subCategoryId}/Follow")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Post(string subCategoryId)
@@ -74,6 +73,36 @@ namespace ContestPark.Category.API.Controllers
             if (!isSuccess)
             {
                 Logger.LogError($"Alt kategori takipçi sayısı artırılamadı. Alt kategori id {subCategoryId}");
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Alt kategori takipten çıkar
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori Id</param>
+        [HttpDelete]
+        [Route("{subCategoryId}/UnFollow")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Delete(string subCategoryId)
+        {
+            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+                return BadRequest();
+
+            bool isSuccess = await _followSubCategoryRepository.DeleteAsync(UserId, subCategoryId);
+            if (!isSuccess)
+            {
+                Logger.LogError($"Alt kategori takip etme sırasında hata oluştu. sub Category Id: {subCategoryId} user id: {UserId}");
+
+                return BadRequest();
+            }
+
+            isSuccess = _categoryRepository.DecreasingFollowersCount(subCategoryId);
+            if (!isSuccess)
+            {
+                Logger.LogError($"Alt kategori takipçi sayısı azaltılamadı. Alt kategori id {subCategoryId}");
             }
 
             return Ok();

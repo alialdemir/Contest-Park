@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
 using Microsoft.Azure.Documents;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 {
@@ -40,6 +41,31 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
                     new SqlParameter("@subCategoryId", subCategoryId)
                 }
             }).ToList().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Kullanıcı ve alt kategori id göre kategori takipten çıkar
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
+        public Task<bool> DeleteAsync(string userId, string subCategoryId)
+        {
+            string id = Repository.Query<string>(new SqlQuerySpec
+            {
+                QueryText = @"SELECT DISTINCT VALUE c.id FROM c
+                              WHERE c.subCategoryId=@subCategoryId AND c.userId=@userId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@userId", userId),
+                    new SqlParameter("@subCategoryId", subCategoryId)
+                }
+            }).AsEnumerable().SingleOrDefault();
+
+            if (string.IsNullOrEmpty(id))
+                return Task.FromResult(false);
+
+            return Repository.DeleteAsync(id);
         }
 
         #endregion Methods
