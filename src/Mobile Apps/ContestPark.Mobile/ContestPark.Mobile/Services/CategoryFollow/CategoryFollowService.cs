@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -13,7 +14,7 @@ namespace ContestPark.Mobile.Services.CategoryFollow
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/category/follow";
+        private const string ApiUrlBase = "api/v1/SubCategory";
         private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
@@ -69,11 +70,11 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         /// <returns>Alt kategoriyi ise takip ediyor true etmiyorsa ise false</returns>
         public async Task<bool> IsFollowUpStatusAsync(short subCategoryId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/follow/status");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/FollowStatus");
 
-            var isFollowSubCategory = await _requestProvider.GetAsync<bool>(uri);
+            var subCategoryFollowStatus = await _requestProvider.GetAsync<SubCategoryFollowModel>(uri);
 
-            return isFollowSubCategory;
+            return subCategoryFollowStatus.IsSubCategoryFollowed;
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         /// <param name="subCategoryId">Alt kategori Id</param>
         public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/unfollow");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/UnFollow");
 
             try
             {
