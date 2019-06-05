@@ -1,4 +1,5 @@
-﻿using ContestPark.Category.API.Infrastructure.Repositories.Category;
+﻿using ContestPark.Category.API.Infrastructure.Documents;
+using ContestPark.Category.API.Infrastructure.Repositories.Category;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Model;
@@ -155,7 +156,7 @@ namespace ContestPark.Category.API.Controllers
         /// <param name="subCategoryId">Alt kategori Id</param>
         [HttpGet]
         [Route("{subCategoryId}/FollowStatus")]
-        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult Get(string subCategoryId)
         {
@@ -174,7 +175,7 @@ namespace ContestPark.Category.API.Controllers
         /// <param name="subCategoryId">Alt kategori Id</param>
         [HttpGet]
         [Route("{subCategoryId}")]
-        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(SubCategoryDetailModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetDetail(string subCategoryId)
         {
@@ -198,6 +199,35 @@ namespace ContestPark.Category.API.Controllers
                 SubCategoryName = subCategoryDetail.SubCategoryName,
                 SubCategoryPicturePath = subCategoryDetail.SubCategoryPicturePath
             });
+        }
+
+        /// <summary>
+        /// Alt kategori kilit açma
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori Id</param>
+        [HttpPost]
+        [Route("{subCategoryId}/unlock")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> UnLockSubCategory(string subCategoryId)
+        {
+            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+                return BadRequest();
+
+            bool isSubCategoryOpen = _openCategoryRepository.IsSubCategoryOpen(UserId, subCategoryId);
+            if (isSubCategoryOpen)
+                return BadRequest(CategoryResource.ThisCategoryIsAlreadyUnlocked);
+
+            bool isSuccess = await _openCategoryRepository.Repository.InsertAsync(new OpenSubCategory
+            {
+                UserId = UserId,
+                SubCategoryId = subCategoryId
+            });
+
+            if (!isSuccess)
+                return BadRequest(CategoryResource.CouldNotPpenSubcategoryLock);
+
+            return Ok();
         }
 
         #endregion Services

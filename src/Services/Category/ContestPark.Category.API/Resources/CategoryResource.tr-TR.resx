@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CouldNotPpenSubcategoryLock" xml:space="preserve">
+    <value>Alt kategori kilidi açılamadı.</value>
+  </data>
+  <data name="ThisCategoryIsAlreadyUnlocked" xml:space="preserve">
+    <value>Bu kategorinin kilidi zaten açık.</value>
+  </data>
   <data name="ToBeAbleToFollowThisCategoryYouNeedToUnlockIt" xml:space="preserve">
     <value>Bu kategoriyi takip edebilmek için kilidini açmanız gerekmektedir.</value>
   </data>
