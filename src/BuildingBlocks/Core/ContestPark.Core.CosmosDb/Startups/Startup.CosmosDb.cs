@@ -19,8 +19,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 };
             });
 
-            services.AddTransient<IDocumentDbInitializer, DocumentDbInitializer>();
-            services.AddTransient(typeof(IDocumentDbRepository<>), typeof(DocumentDbRepository<>));
+            services.AddSingleton<IDocumentDbInitializer, DocumentDbInitializer>();
+            services.AddSingleton(typeof(IDocumentDbRepository<>), typeof(DocumentDbRepository<>));
 
             return services;
         }

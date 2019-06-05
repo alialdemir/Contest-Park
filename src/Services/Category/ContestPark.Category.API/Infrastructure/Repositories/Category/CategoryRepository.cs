@@ -166,7 +166,17 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         /// <returns>Kullanıcının takip ettiği kategoriler</returns>
         public ServiceModel<SubCategoryModel> GetFollowedSubCategories(string userId, Languages language, PagingModel pagingModel)
         {
+            ServiceModel<SubCategoryModel> serviceModel = new ServiceModel<SubCategoryModel>
+            {
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+            };
+
             string[] followedSubCategories = _followSubCategoryRepository.FollowedSubCategoryIds(userId);
+            if (followedSubCategories.Length == 0)
+            {
+                return serviceModel;
+            }
 
             string sql = @"SELECT DISTINCT VALUE
                            ARRAY(SELECT DISTINCT VALUE {
@@ -192,13 +202,10 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                  }
             }).ToList();
 
-            return new ServiceModel<SubCategoryModel>
-            {
-                Items = subCategories.FirstOrDefault(),
-                PageNumber = pagingModel.PageNumber,
-                PageSize = pagingModel.PageSize,
-                Count = subCategories.FirstOrDefault().Count()
-            };
+            serviceModel.Items = subCategories.FirstOrDefault();
+            serviceModel.Count = serviceModel.Items.Count();
+
+            return serviceModel;
         }
 
         /// <summary>

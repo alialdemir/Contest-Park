@@ -9,11 +9,31 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    
+
+  elasticsearch:
+    build:
+      context: ek/elasticsearch/
+    volumes:
+      - ./ek/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+  kibana:
+    build:
+      context: ek/kibana/
+    volumes:
+      - ./ek/kibana/config/:/usr/share/kibana/config:ro
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
   contestpark.identity.api:
     image: contestparkidentity.api:${TAG:-latest}
     depends_on:
-      - mysql-data
       - rabbitmq
     build:
       context: .
