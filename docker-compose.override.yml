@@ -25,7 +25,7 @@ services:
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
     ports:
-      - "5101:80"
+      - "5100:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -41,6 +41,8 @@ services:
       - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Category
+      - ElasticSearchURI=http://elasticsearch:9200
+      - ElasticSearchIndexName=categorysearch
     ports:
       - "5102:80"
     volumes:

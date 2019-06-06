@@ -196,15 +196,35 @@ namespace ContestPark.Identity.API.Controllers
                 return NotFound();
 
             string oldUserName = user.UserName;
+            string oldEmail = user.Email;
             string oldFullName = user.FullName;
 
-            user.Email = updateUserInfo.Email;
-            user.UserName = updateUserInfo.UserName;
-            user.FullName = updateUserInfo.FullName;
+            List<string> errors = new List<string>();
 
-            IdentityResult result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded && result.Errors.Count() > 0)
-                return BadRequest(IdentityResultErrors(result.Errors));
+            if (oldEmail != updateUserInfo.Email)
+            {
+                IdentityResult result = await _userManager.SetEmailAsync(user, updateUserInfo.Email);
+                if (!result.Succeeded && result.Errors.Count() > 0)
+                    errors.AddRange(IdentityResultErrors(result.Errors));
+            }
+
+            if (oldUserName != updateUserInfo.UserName)
+            {
+                IdentityResult result = await _userManager.SetUserNameAsync(user, updateUserInfo.UserName);
+                if (!result.Succeeded && result.Errors.Count() > 0)
+                    errors.AddRange(IdentityResultErrors(result.Errors));
+            }
+
+            if (oldFullName != updateUserInfo.FullName)
+            {
+                user.FullName = updateUserInfo.FullName;
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded && result.Errors.Count() > 0)
+                    errors.AddRange(IdentityResultErrors(result.Errors));
+            }
+
+            if (errors.Count > 0)
+                return BadRequest(errors);
 
             // Create Integration Event to be published through the Event Bus
             var userInfoChangedIntegrationEvent = new UserInfoChangedIntegrationEvent(user.Id, user.FullName, user.UserName, oldFullName, oldUserName);

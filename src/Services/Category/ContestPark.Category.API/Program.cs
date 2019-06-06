@@ -1,8 +1,11 @@
 ﻿using ContestPark.Category.API.Infrastructure;
+using ContestPark.Category.API.Infrastructure.ElasticSearch;
+using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Core.CosmosDb.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System;
 using System.IO;
@@ -42,6 +45,9 @@ namespace ContestPark.Category.API
                    new CategoryApiSeed()
                        .SeedAsync(services, logger)
                        .Wait();
+
+                   ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
+                   searchRepository.CreateCategoryIndex();
                });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);

@@ -1,4 +1,7 @@
 ﻿using ContestPark.Core.Enums;
+using ContestPark.EventBus.Abstractions;
+using ContestPark.Identity.API.IntegrationEvents;
+using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,8 +18,12 @@ namespace ContestPark.Identity.API.Data
     {
         private readonly IPasswordHasher<ApplicationUser> _passwordHasher = new PasswordHasher<ApplicationUser>();
 
-        public async Task SeedAsync(ApplicationDbContext context, IHostingEnvironment env,
-            ILogger<ApplicationDbContextSeed> logger, IOptions<IdentitySettings> settings, int? retry = 0)
+        public async Task SeedAsync(ApplicationDbContext context,
+                                    IHostingEnvironment env,
+                                    IEventBus eventBus,
+                                    ILogger<ApplicationDbContextSeed> logger,
+                                    IOptions<IdentitySettings> settings,
+                                    int? retry = 0)
         {
             int retryForAvaiability = retry.Value;
 
@@ -35,8 +42,11 @@ namespace ContestPark.Identity.API.Data
 
                     await context.SaveChangesAsync();
                 }
+                context.UserRoles.RemoveRange(context.UserRoles.ToList());
+                context.SaveChanges();
 
-                foreach (var user in GetDefaultUser())
+                var users = GetDefaultUser();
+                foreach (var user in users)
                 {
                     if (!context.UserRoles.Any(x => x.UserId == user.Id))
                     {
@@ -47,6 +57,12 @@ namespace ContestPark.Identity.API.Data
                         });
 
                         await context.SaveChangesAsync();
+
+                        // elasticsearch  kullanıcıları kayıt etmesi için eventleri yolladık
+                        var @event = new NewUserRegisterIntegrationEvent(user.Id, user.FullName, user.UserName, user.ProfilePicturePath);
+
+                        // Publish through the Event Bus and mark the saved event as published
+                        eventBus.Publish(@event);
                     }
                     if (user.Id == "1111-1111-1111-1111")
                     {
@@ -68,7 +84,7 @@ namespace ContestPark.Identity.API.Data
 
                     logger.LogError(ex.Message, $"There is an error migrating data for ApplicationDbContext");
 
-                    await SeedAsync(context, env, logger, settings, retryForAvaiability);
+                    await SeedAsync(context, env, eventBus, logger, settings, retryForAvaiability);
                 }
             }
         }
