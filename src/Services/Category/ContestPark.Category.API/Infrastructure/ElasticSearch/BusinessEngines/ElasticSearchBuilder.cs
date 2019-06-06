@@ -13,7 +13,8 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
         internal IQueryContainer QueryContainer;
         internal IElasticContext ElasticContext;
 
-        public ElasticSearchBuilder(string indexName, IElasticContext elasticContext)
+        public ElasticSearchBuilder(string indexName,
+                                    IElasticContext elasticContext)
         {
             IndexName = indexName;
             ElasticContext = elasticContext;

@@ -15,7 +15,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
         private readonly ILogger<UserInfoChangedIntegrationEventHandler> _logger;
 
         public UserInfoChangedIntegrationEventHandler(ISearchRepository searchRepository,
-            ILogger<UserInfoChangedIntegrationEventHandler> logger)
+                                                      ILogger<UserInfoChangedIntegrationEventHandler> logger)
         {
             _searchRepository = searchRepository;
             _logger = logger;

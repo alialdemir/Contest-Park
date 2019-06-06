@@ -15,7 +15,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
         private readonly ILogger<ProfilePictureChangedIntegrationEventHandler> _logger;
 
         public ProfilePictureChangedIntegrationEventHandler(ISearchRepository searchRepository,
-            ILogger<ProfilePictureChangedIntegrationEventHandler> logger)
+                                                            ILogger<ProfilePictureChangedIntegrationEventHandler> logger)
         {
             _searchRepository = searchRepository;
             _logger = logger;
