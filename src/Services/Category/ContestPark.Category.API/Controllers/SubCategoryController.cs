@@ -2,6 +2,7 @@
 using ContestPark.Category.API.Infrastructure.Repositories.Category;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Core.CosmosDb.Models;
@@ -20,6 +21,7 @@ namespace ContestPark.Category.API.Controllers
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ISearchRepository _searchRepository;
 
         #endregion Private Variables
 
@@ -28,11 +30,13 @@ namespace ContestPark.Category.API.Controllers
         public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
                                            IOpenCategoryRepository openCategoryRepository,
                                            ICategoryRepository categoryRepository,
+                                           ISearchRepository searchRepository,
                                            ILogger<SubCategoryController> logger) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+            _searchRepository = searchRepository ?? throw new ArgumentNullException(nameof(searchRepository));
         }
 
         #endregion Constructor
@@ -70,11 +74,32 @@ namespace ContestPark.Category.API.Controllers
             ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId, CurrentUserLanguage, pagingModel);
             if (followedSubCategories == null)
             {
-                Logger.LogCritical($"{nameof(followedSubCategories)} list returned empty.", followedSubCategories);
+                Logger.LogWarning($"{nameof(followedSubCategories)} list returned empty.", followedSubCategories);
+
                 return NotFound();
             }
 
             return Ok(followedSubCategories);
+        }
+
+        /// <summary>
+        /// Takip ettiğin alt kategoriler
+        /// </summary>
+        /// <returns>Tüm kategorileri döndürür.</returns>
+        [HttpGet("Followed/search")]
+        [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> FollowedSubCategories([FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
+        {
+            ServiceModel<SearchModel> followedSearchSubCategories = await _searchRepository.GetFollowedSubCategories(searchText, UserId, CurrentUserLanguage, pagingModel);
+            if (followedSearchSubCategories == null)
+            {
+                Logger.LogWarning($"{nameof(followedSearchSubCategories)} list returned empty.", followedSearchSubCategories);
+
+                return NotFound();
+            }
+
+            return Ok(followedSearchSubCategories);
         }
 
         /// <summary>

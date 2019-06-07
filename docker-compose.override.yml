@@ -44,7 +44,7 @@ services:
       - ElasticSearchURI=http://elasticsearch:9200
       - ElasticSearchIndexName=categorysearch
     ports:
-      - "5102:80"
+      - "5101:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

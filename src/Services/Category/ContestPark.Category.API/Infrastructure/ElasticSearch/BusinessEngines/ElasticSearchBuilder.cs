@@ -1,7 +1,7 @@
-﻿using Nest;
+﻿using ContestPark.Category.API.Extensions;
+using Nest;
 using System;
 using System.Linq.Expressions;
-using ContestPark.Category.API.Extensions;
 
 namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
 {
@@ -36,7 +36,7 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
             return this;
         }
 
-        public ElasticSearchBuilder AddTermQuery<T>(Expression<Func<T, object>> expression, string term)
+        public ElasticSearchBuilder AddTermQuery<T>(Expression<Func<T, object>> expression, object term)
         {
             string field = expression.Body.GetMemberName<T>();
             field = field.Substring(0, 1).ToLower() + field.Substring(1);
@@ -44,7 +44,7 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
             return AddTermQuery<T>(field, term);
         }
 
-        public ElasticSearchBuilder AddTermQuery<T>(string field, string term)
+        public ElasticSearchBuilder AddTermQuery<T>(string field, object term)
         {
             QueryContainer.Term = new TermQuery()
             {

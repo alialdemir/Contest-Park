@@ -1,11 +1,14 @@
-﻿using Nest;
+﻿using ContestPark.Category.API.Model;
+using ContestPark.Core.Enums;
+using Nest;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace ContestPark.Category.API.Model
+namespace ContestPark.Category.API.Infrastructure.Documents
 {
-    public class SearchModel
+    public class Search : ISearchBase
     {
+        public string Id { get; set; }
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string DisplayPrice { get; set; }
 
@@ -32,12 +35,17 @@ namespace ContestPark.Category.API.Model
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserName { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Languages Language { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
+
+        public CompletionField Suggest { get; set; }
     }
 
-    public enum SearchTypes : byte
+    public interface ISearchBase
     {
-        Player = 1,
-        Category = 2
+        CompletionField Suggest { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ContestPark.Category.API.Infrastructure.Repositories.Search;
+﻿using ContestPark.Category.API.Infrastructure.Documents;
+using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
@@ -29,14 +30,18 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
         {
             try
             {
-                _searchRepository.Insert(new Model.SearchModel
+                _searchRepository.Insert(new Search
                 {
                     SearchType = Model.SearchTypes.Player,
                     FullName = @event.FullName,
                     UserId = @event.UserId,
                     UserName = @event.UserName,
                     PicturePath = @event.ProfilePicturePath,
-                    Id = @event.UserId
+                    Id = @event.UserId,
+                    Suggest = new Nest.CompletionField
+                    {
+                        Input = new string[] { @event.UserName, @event.FullName }
+                    },
                 });
 
                 return Task.CompletedTask;

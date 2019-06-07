@@ -1,4 +1,7 @@
 ﻿using ContestPark.Category.API.Model;
+using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Enums;
+using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 {
@@ -6,10 +9,12 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
     {
         void CreateCategoryIndex();
 
-        void Insert(SearchModel searchModel);
+        void Insert(Documents.Search searchModel);
 
-        void Update(SearchModel searchModel);
+        void Update(Documents.Search searchModel);
 
-        SearchModel SearchByUserId(string userId);
+        Documents.Search SearchById(string id, SearchTypes searchType, Languages? language);
+
+        Task<ServiceModel<SearchModel>> GetFollowedSubCategories(string searchText, string userId, Languages language, PagingModel pagingModel);
     }
 }

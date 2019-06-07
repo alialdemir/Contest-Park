@@ -1,4 +1,5 @@
-﻿using ContestPark.Category.API.Infrastructure.Repositories.Search;
+﻿using ContestPark.Category.API.Infrastructure.Documents;
+using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Model;
 using ContestPark.EventBus.Abstractions;
@@ -30,10 +31,10 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
         {
             try
             {
-                SearchModel searchModel = _searchRepository.SearchByUserId(@event.UserId);
+                Search searchModel = _searchRepository.SearchById(@event.UserId, SearchTypes.Player, null);
                 if (searchModel == null)
                 {
-                    searchModel = new SearchModel
+                    searchModel = new Search
                     {
                         SearchType = SearchTypes.Player,
                         UserId = @event.UserId,

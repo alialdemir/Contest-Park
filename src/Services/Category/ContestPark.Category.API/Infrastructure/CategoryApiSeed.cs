@@ -1,10 +1,14 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Core.CosmosDb.Infrastructure;
 using ContestPark.Core.Enums;
+using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using ContestPark.Category.API.IntegrationEvents.Events;
+using System.Linq;
 
 namespace ContestPark.Category.API.Infrastructure
 {
@@ -45,7 +49,7 @@ namespace ContestPark.Category.API.Infrastructure
                                 }
                 };
 
-                await InsertDataAsync(new List<Documents.Category>
+                var subCategories = new List<Documents.Category>
                 {
                     new Documents.Category
                     {
@@ -135,7 +139,9 @@ namespace ContestPark.Category.API.Infrastructure
                             }
                         }
                     }
-                });
+                };
+
+                bool isAddedCategories = await InsertDataAsync(subCategories);
 
                 await InsertDataAsync(new List<OpenSubCategory>
                 {
@@ -154,6 +160,26 @@ namespace ContestPark.Category.API.Infrastructure
                         SubCategoryId= referee.Id,
                     }
                 });
+
+                if (isAddedCategories)
+                {
+                    IEventBus eventBus = service.GetService<IEventBus>();
+
+                    foreach (var subCategory in subCategories.Select(s => s.SubCategories).FirstOrDefault())// yeni kaydolan kategorileri elasticsearch tarafına yolladık
+                    {
+                        var @event = new NewSubCategoryAddedIntegrationEvent(subCategory.DisplayPrice,
+                                                                             subCategory.PicturePath,
+                                                                             subCategory.Price,
+                                                                             subCategory.Id,
+                                                                             subCategory.SubCategoryLangs.Select(s => new Model.LanguageModel
+                                                                             {
+                                                                                 Language = s.LanguageId,
+                                                                                 Name = s.SubCategoryName
+                                                                             }).ToList());
+
+                        eventBus.Publish(@event);
+                    }
+                }
             });
         }
     }

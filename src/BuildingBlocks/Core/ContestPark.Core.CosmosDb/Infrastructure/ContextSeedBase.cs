@@ -15,7 +15,7 @@ namespace ContestPark.Core.CosmosDb.Infrastructure
 
         public IServiceProvider Service { get; set; }
 
-        public async Task InsertDataAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, IDocument, new()
+        public async Task<bool> InsertDataAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, IDocument, new()
         {
             Logger.LogInformation($"The entities are being added. {typeof(TEntity).Name}");
 
@@ -25,10 +25,12 @@ namespace ContestPark.Core.CosmosDb.Infrastructure
 
             if (await dbRepository.CountAsync() == 0)
             {
-                await dbRepository.InsertAsync(entities);
+                return await dbRepository.InsertAsync(entities);
             }
 
             Logger.LogInformation($"The entities have been added.. {typeof(TEntity).Name}");
+
+            return false;
         }
 
         public AsyncRetryPolicy CreatePolicy(int retries = 3)
