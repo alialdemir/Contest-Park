@@ -23,8 +23,6 @@ namespace ContestPark.Category.API.Infrastructure
 
             await policy.ExecuteAsync(async () =>
             {
-                Logger = logger;
-
                 SubCategory referee = new SubCategory
                 {
                     DisplayOrder = 2,

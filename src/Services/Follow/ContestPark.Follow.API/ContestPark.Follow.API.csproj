@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Documents\" />
+    <Folder Include="Infrastructure\Repositories\" />
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.CosmosDb\ContestPark.Core.CosmosDb.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core\ContestPark.Core.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus.RabbitMQ\ContestPark.EventBus.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus\ContestPark.EventBus.csproj" />
+  </ItemGroup>
+
+</Project>
