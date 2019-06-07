@@ -1,9 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Category.API.Model;
+using ContestPark.Core.Enums;
+using Nest;
+using Newtonsoft.Json;
 
-namespace ContestPark.Category.API.Model
+namespace ContestPark.Category.API.Infrastructure.Documents
 {
-    public class SearchModel
+    public class Search : ISearchBase
     {
+        [JsonProperty("_id")]
+        public string Id { get; set; }
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string DisplayPrice { get; set; }
 
@@ -31,15 +37,19 @@ namespace ContestPark.Category.API.Model
         public string UserName { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string CategoryName { get; set; }
+        public Languages Language { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string CategoryName { get; set; }
+
+        public CompletionField Suggest { get; set; }
     }
 
-    public enum SearchTypes : byte
+    public interface ISearchBase
     {
-        Player = 1,
-        Category = 2
+        CompletionField Suggest { get; set; }
     }
 }

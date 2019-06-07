@@ -9,7 +9,7 @@ namespace ContestPark.Core.CosmosDb.Models
         public int Count { get; set; }
 
         [JsonProperty(Order = 2)]
-        public IEnumerable<T> Items { get; set; }
+        public IEnumerable<T> Items { get; set; } = new List<T>();
 
         [JsonIgnore]
         public bool IsLastPage

@@ -1,4 +1,5 @@
-﻿using ContestPark.EventBus.IntegrationEventLogEF;
+﻿using ContestPark.EventBus.Abstractions;
+using ContestPark.EventBus.IntegrationEventLogEF;
 using ContestPark.Identity.API.Data;
 using ContestPark.Identity.API.Extensions;
 using IdentityServer4.EntityFramework.DbContexts;
@@ -49,9 +50,10 @@ namespace ContestPark.Identity.API
                         var env = services.GetService<IHostingEnvironment>();
                         var logger = services.GetService<ILogger<ApplicationDbContextSeed>>();
                         var settings = services.GetService<IOptions<IdentitySettings>>();
+                        IEventBus eventBus = services.GetService<IEventBus>();
 
                         new ApplicationDbContextSeed()
-                            .SeedAsync(context, env, logger, settings)
+                            .SeedAsync(context, env, eventBus, logger, settings)
                             .Wait();
                     })
                     .MigrateDatabase<ConfigurationDbContext>((context, services) =>

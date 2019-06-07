@@ -43,6 +43,7 @@ services:
     image: contestparkcategory.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - elasticsearch
     build:
       context: .
       dockerfile: src/Services/Category/ContestPark.Category.API/Dockerfile
