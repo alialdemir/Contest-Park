@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.Repositories.Category;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
@@ -70,6 +71,8 @@ namespace ContestPark.Category.API
             services.AddTransient<UserInfoChangedIntegrationEventHandler>();
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
             services.AddTransient<NewSubCategoryAddedIntegrationEventHandler>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var container = new ContainerBuilder();
             container.Populate(services);

@@ -1,7 +1,5 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Category.API.Model;
-using ContestPark.Core.CosmosDb.Models;
-using ContestPark.Core.Enums;
 using Nest;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,6 +16,6 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
 
         SearchResponseModel<T> Search<T>(ISearchRequest searchRequest) where T : class;
 
-        Task<List<Search>> SearchAsync(string indexName, string searchText);
+        Task<List<T>> SearchAsync<T>(string indexName, string searchText) where T : class, ISearchBase;
     }
 }

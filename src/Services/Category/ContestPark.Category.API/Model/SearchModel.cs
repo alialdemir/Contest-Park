@@ -1,6 +1,4 @@
-﻿using Nest;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
 namespace ContestPark.Category.API.Model
 {
@@ -32,6 +30,10 @@ namespace ContestPark.Category.API.Model
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserName { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string CategoryName { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
     }
 

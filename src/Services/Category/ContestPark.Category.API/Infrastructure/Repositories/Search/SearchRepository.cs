@@ -1,4 +1,5 @@
-﻿using ContestPark.Category.API.Infrastructure.ElasticSearch;
+﻿using AutoMapper;
+using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Model;
@@ -13,18 +14,31 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 {
     public class SearchRepository : ISearchRepository
     {
+        #region Private Variables
+
         private readonly IElasticContext _elasticContext;
         private readonly string ElasticSearchIndexName;
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
+        private readonly IMapper _mapper;
+
+        #endregion Private Variables
+
+        #region Constructor
 
         public SearchRepository(IElasticContext elasticContext,
-                                IFollowSubCategoryRepository followSubCategoryRepository,
-                                IConfiguration configuration)
+                             IFollowSubCategoryRepository followSubCategoryRepository,
+                             IConfiguration configuration,
+                             IMapper mapper)
         {
             ElasticSearchIndexName = configuration["ElasticSearchIndexName"];
             _elasticContext = elasticContext;
             _followSubCategoryRepository = followSubCategoryRepository;
+            _mapper = mapper;
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         public void CreateCategoryIndex()
         {
@@ -112,29 +126,39 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             string indexName = GetIndexName(SearchTypes.Category, language);
 
-            List<Documents.Search> searchResponse = await _elasticContext.SearchAsync(indexName, searchText);
+            IEnumerable<Documents.Search> searchResponse = null;
+            if (string.IsNullOrEmpty(searchText))
+            {
+                searchResponse = new ElasticSearchBuilder(indexName, _elasticContext)
+                                                                          .SetSize(pagingModel.PageSize)
+                                                                          .SetFrom(pagingModel.PageNumber - 1)
+                                                                          .AddTermsQuery<Documents.Search>("_id", followedSubCategories)
+                                                                          .Build()
+                                                                          .Execute<Documents.Search>();
+            }
+            else
+            {
+                // Elasticsearch Suggest yaparken filtre koyamadığımız için burada gelen auto complate içinden sadece takip ettiği kategorileri filtreliyoruz
+                searchResponse = (await _elasticContext.SearchAsync<Documents.Search>(indexName, searchText))
+                                                                    .Where(search => followedSubCategories.Contains(search.SubCategoryId));
+            }
 
-            serviceModel.Items = (from search in searchResponse
-                                  where followedSubCategories.Contains(search.SubCategoryId) && search.SearchType == SearchTypes.Category
-                                  select new SearchModel
-                                  {
-                                      DisplayPrice = search.DisplayPrice,
-                                      FullName = search.FullName,
-                                      PicturePath = search.PicturePath,
-                                      Price = search.Price,
-                                      SearchType = search.SearchType,
-                                      SubCategoryId = search.SubCategoryId,
-                                      SubCategoryName = search.SubCategoryName,
-                                      UserId = search.UserId,
-                                      UserName = search.UserName
-                                  })
-                                  .Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1))
-                                  .Take(pagingModel.PageSize)
-                                  .AsEnumerable();
+            if (searchResponse != null && searchResponse.Count() > 0)
+            {
+                // Filtrenmiş hali ile kaç tane kaldığı sayısını ekledik
+                serviceModel.Count = searchResponse.Count();
 
-            serviceModel.Count = searchResponse.Count();
+                // Paing için skip take yaptık
+                searchResponse = searchResponse.Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1))
+                                               .Take(pagingModel.PageSize)
+                                               .AsEnumerable();
+
+                serviceModel.Items = _mapper.Map<List<SearchModel>>(searchResponse);
+            }
 
             return serviceModel;
         }
+
+        #endregion Methods
     }
 }

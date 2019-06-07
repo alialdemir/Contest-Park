@@ -7,6 +7,7 @@ namespace ContestPark.Category.API.Infrastructure.Documents
 {
     public class Search : ISearchBase
     {
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -40,6 +41,9 @@ namespace ContestPark.Category.API.Infrastructure.Documents
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string CategoryName { get; set; }
 
         public CompletionField Suggest { get; set; }
     }

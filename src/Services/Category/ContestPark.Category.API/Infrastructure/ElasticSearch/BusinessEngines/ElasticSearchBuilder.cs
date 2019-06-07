@@ -7,11 +7,17 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
 {
     public class ElasticSearchBuilder
     {
+        #region Private Variables
+
         internal string IndexName;
         internal int Size;
         internal int From;
         internal IQueryContainer QueryContainer;
         internal IElasticContext ElasticContext;
+
+        #endregion Private Variables
+
+        #region Constructor
 
         public ElasticSearchBuilder(string indexName,
                                     IElasticContext elasticContext)
@@ -21,6 +27,10 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
 
             QueryContainer = new QueryContainer();
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         public ElasticSearchBuilder SetSize(int size)
         {
@@ -55,9 +65,22 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
             return this;
         }
 
+        public ElasticSearchBuilder AddTermsQuery<T>(string field, params object[] term)
+        {
+            QueryContainer.Terms = new TermsQuery()
+            {
+                Field = new Field(field),
+                Terms = term
+            };
+
+            return this;
+        }
+
         public ElasticSearchEngine Build()
         {
             return new ElasticSearchEngine(this);
         }
+
+        #endregion Methods
     }
 }

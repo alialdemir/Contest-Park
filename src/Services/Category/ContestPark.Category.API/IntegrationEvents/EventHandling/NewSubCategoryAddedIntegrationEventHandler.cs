@@ -4,6 +4,7 @@ using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +32,13 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
             {
                 foreach (var item in @event.SubCategoryLangs)
                 {
-                    // TODO: burada event içinde category adı da gelebilir Suggest kısmına eklenebilir
+                    List<string> suggestInputs = new List<string>();
+
+                    string categoryName = @event.CategoryLangs.Where(x => x.Language == item.Language).FirstOrDefault().Name;
+
+                    suggestInputs.AddRange(item.Name.Split(" "));// alt kategorinin adı suggest olarak eklendi
+                    suggestInputs.AddRange(categoryName.Split(" "));// category adı suggest olarak eklendi
+
                     _searchRepository.Insert(new Search
                     {
                         SearchType = Model.SearchTypes.Category,
@@ -41,10 +48,11 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
                         PicturePath = @event.PicturePath,
                         SubCategoryId = @event.SubCategoryId,
                         SubCategoryName = item.Name,
+                        CategoryName = categoryName,
                         Language = item.Language,
                         Suggest = new Nest.CompletionField
                         {
-                            Input = item.Name.Split(" ")
+                            Input = suggestInputs
                         },
                     });
                 }

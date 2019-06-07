@@ -1,5 +1,6 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Category.API.Model;
+using Microsoft.Extensions.Logging;
 using Nest;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,29 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
 {
     public class ElasticContext : IElasticContext
     {
+        #region Private Variables
+
         private readonly ConnectionSettings _connectionSettings;
         private readonly ElasticClient _elasticClient;
+        private readonly ILogger<ElasticContext> _logger;
 
-        public ElasticContext(ConnectionSettings connectionSettings)
+        #endregion Private Variables
+
+        #region Constructor
+
+        public ElasticContext(ConnectionSettings connectionSettings,
+                              ILogger<ElasticContext> logger)
         {
             _connectionSettings = connectionSettings;
 
             _elasticClient = new ElasticClient(_connectionSettings);
+
+            _logger = logger;
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         /// <summary>
         /// Elasticsearch index oluşturur
@@ -101,26 +116,39 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
         /// <param name="indexName">Index adı</param>
         /// <param name="searchText">Aranan kelime</param>
         /// <returns>Arama sonucu</returns>
-        public async Task<List<Search>> SearchAsync(string indexName, string searchText)
+        public async Task<List<T>> SearchAsync<T>(string indexName, string searchText) where T : class, ISearchBase
         {
-            ISearchResponse<Search> searchResponse = await _elasticClient.SearchAsync<Search>(s => s
-                                 .Index(indexName)
-                                 .Type<Search>()
-                                 .Suggest(su => su
-                                      .Completion("suggestions", c => c
-                                           .Field(f => f.Suggest)
-                                           .Prefix(searchText)
-                                           .Fuzzy(f => f
-                                               .Fuzziness(Fuzziness.Auto)
-                                           ))
-                                         ));
-            if (!searchResponse.IsValid)
+            try
             {
-                // TODO: elasticsearch hatası oluştu logu yazılmalı
-                return new List<Search>();
-            }
+                ISearchResponse<T> searchResponse = await _elasticClient.SearchAsync<T>(s => s
+                                     .Index(indexName)
+                                     .Type<T>()
+                                     .Suggest(su => su
+                                          .Completion("suggestions", c => c
+                                               .Field(f => f.Suggest)
+                                               .Prefix(searchText)
+                                               .Fuzzy(f => f
+                                                   .Fuzziness(Fuzziness.Auto)
+                                               ))
+                                             ));
 
-            return searchResponse.Suggest["suggestions"].Select(p => p.Options.Select(x => x.Source).ToList()).FirstOrDefault();
+                if (searchResponse == null || !searchResponse.IsValid)
+                {
+                    _logger.LogCritical($"FATAL ERROR: elasticsearch arama kısmında IsValid false geldi. IndexName: {indexName}", searchResponse.OriginalException, searchResponse.DebugInformation);
+
+                    return new List<T>();
+                }
+
+                return searchResponse.Suggest["suggestions"].Select(p => p.Options.Select(x => x.Source).ToList()).FirstOrDefault();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogCritical($"FATAL ERROR: elasticsearch arama kısmında hata oluştu. IndexName: {indexName}", ex);
+
+                return new List<T>();
+            }
         }
+
+        #endregion Methods
     }
 }

@@ -1,5 +1,4 @@
 ﻿using ContestPark.Category.API.Infrastructure;
-using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Core.CosmosDb.Extensions;
 using Microsoft.AspNetCore;
