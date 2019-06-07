@@ -35,8 +35,11 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
                     List<string> suggestInputs = new List<string>();
 
                     string categoryName = @event.CategoryLangs.Where(x => x.Language == item.Language).FirstOrDefault().Name;
+                    string[] nameSplit = item.Name.Split(" ");
+                    if (nameSplit.Count() > 1)// Birden fazla kelimeden oluşuyorsa bütün olarakta ekledik
+                        suggestInputs.Add(item.Name);
 
-                    suggestInputs.AddRange(item.Name.Split(" "));// alt kategorinin adı suggest olarak eklendi
+                    suggestInputs.AddRange(nameSplit);// alt kategorinin adı suggest olarak eklendi
                     suggestInputs.AddRange(categoryName.Split(" "));// category adı suggest olarak eklendi
 
                     _searchRepository.Insert(new Search
@@ -47,6 +50,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
                         Price = @event.Price,
                         PicturePath = @event.PicturePath,
                         SubCategoryId = @event.SubCategoryId,
+                        CategoryId = @event.CategoryId,
                         SubCategoryName = item.Name,
                         CategoryName = categoryName,
                         Language = item.Language,

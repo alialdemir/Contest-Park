@@ -195,6 +195,7 @@ namespace ContestPark.Category.API.Infrastructure
                                                                             subCategory.PicturePath,
                                                                             subCategory.Price,
                                                                             subCategory.Id,
+                                                                            category.Id,
                                                                             subCategory.SubCategoryLangs.Select(s => new Model.LanguageModel
                                                                             {
                                                                                 Language = s.LanguageId,

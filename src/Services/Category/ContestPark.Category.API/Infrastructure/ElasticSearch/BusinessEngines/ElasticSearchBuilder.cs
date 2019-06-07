@@ -1,6 +1,6 @@
-﻿using ContestPark.Category.API.Extensions;
-using Nest;
+﻿using Nest;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
@@ -48,13 +48,16 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
 
         public ElasticSearchBuilder AddTermQuery<T>(Expression<Func<T, object>> expression, object term)
         {
-            string field = expression.Body.GetMemberName<T>();
-            field = field.Substring(0, 1).ToLower() + field.Substring(1);
+            QueryContainer.Term = new TermQuery()
+            {
+                Field = new Field(expression),
+                Value = term
+            };
 
-            return AddTermQuery<T>(field, term);
+            return this;
         }
 
-        public ElasticSearchBuilder AddTermQuery<T>(string field, object term)
+        public ElasticSearchBuilder AddTermQuery(string field, object term)
         {
             QueryContainer.Term = new TermQuery()
             {
@@ -65,11 +68,38 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
             return this;
         }
 
-        public ElasticSearchBuilder AddTermsQuery<T>(string field, params object[] term)
+        public ElasticSearchBuilder AddTermsQuery(string field, params object[] term)
         {
             QueryContainer.Terms = new TermsQuery()
             {
                 Field = new Field(field),
+                Terms = term.AsEnumerable()
+            };
+
+            return this;
+        }
+
+        public ElasticSearchBuilder AddFilter<T>(string field, params string[] term)
+        {
+            var queryContainer = new QueryContainer[term.Length];
+            for (int i = 0; i < term.Length; i++)
+            {
+                queryContainer[i] = new MatchQuery { Field = new Field(field), Query = term[i] };
+            }
+
+            QueryContainer.Bool = new BoolQuery
+            {
+                Filter = queryContainer
+            };
+
+            return this;
+        }
+
+        public ElasticSearchBuilder AddTermsQuery<T>(Expression<Func<T, object>> expression, params object[] term)
+        {
+            QueryContainer.Terms = new TermsQuery()
+            {
+                Field = new Field(expression),
                 Terms = term
             };
 

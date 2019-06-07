@@ -69,7 +69,7 @@ namespace ContestPark.Mobile.Services.Category
                 Description = "Hava an happy day!",
                 IsSubCategoryFollowUpStatus = true,
                 Level = 33,
-                SubCategoryId = subCategoryId,
+                SubCategoryId = subCategoryId.ToString(),
                 SubCategoryName = "Football Players",
                 SubCategoryPicturePath = DefaultImages.DefaultLock,
             });
@@ -85,9 +85,9 @@ namespace ContestPark.Mobile.Services.Category
             return Task.FromResult(false);
         }
 
-        public Task<ServiceModel<SearchModel>> SearchAsync(short subCategoryId, PagingModel pagingModel)
+        public Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
         {
-            return Task.FromResult(new ServiceModel<SearchModel>
+            ServiceModel<SearchModel> items = new ServiceModel<SearchModel>
             {
                 Count = 1,
                 Items = new List<SearchModel>
@@ -163,12 +163,7 @@ namespace ContestPark.Mobile.Services.Category
                            SearchType = Enums.SearchTypes.Category,
                      },
                  }
-            });
-        }
-
-        public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
-        {
-            ServiceModel<SearchModel> items = await SearchAsync(subCategoryId, null);
+            };
 
             searchText = searchText.ToLower();
 
@@ -182,7 +177,7 @@ namespace ContestPark.Mobile.Services.Category
                             )
                             .ToList();
 
-            return items;
+            return Task.FromResult(items);
         }
 
         public Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)

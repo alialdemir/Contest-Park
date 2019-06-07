@@ -35,9 +35,10 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         /// </summary>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Alt kategori listesi</returns>
-        public async Task<ServiceModel<SearchModel>> FollowingSubCategorySearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
+        public async Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel}&searchText={searchText}");
+            //{{url}}/Subcategory/Followed/search?q=h
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Followed/search{pagingModel.ToString()}&q={searchText}");
 
             return await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
         }
