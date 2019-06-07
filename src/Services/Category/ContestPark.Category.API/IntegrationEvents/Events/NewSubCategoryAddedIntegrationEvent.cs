@@ -13,6 +13,7 @@ namespace ContestPark.Category.API.IntegrationEvents.Events
         public int Price { get; set; }
 
         public string SubCategoryId { get; set; }
+        public string CategoryId { get; set; }
         public List<LanguageModel> SubCategoryLangs { get; set; }
         public List<LanguageModel> CategoryLangs { get; set; }
 
@@ -20,6 +21,7 @@ namespace ContestPark.Category.API.IntegrationEvents.Events
                                                    string picturePath,
                                                    int price,
                                                    string subCategoryId,
+                                                   string categoryId,
                                                    List<LanguageModel> subCategoryLangs,
                                                    List<LanguageModel> categoryLangs)
         {
@@ -30,6 +32,7 @@ namespace ContestPark.Category.API.IntegrationEvents.Events
             CategoryLangs = categoryLangs;
 
             SubCategoryId = subCategoryId;
+            CategoryId = categoryId;
         }
     }
 }

@@ -83,11 +83,11 @@ namespace ContestPark.Mobile.ViewModels
 
             if (IsFollowingCategory)
             {
-                ServiceModel = await _categoryFollowService.FollowingSubCategorySearchAsync("", _categoryId, ServiceModel);
+                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync("", ServiceModel);
             }
             else if (_categoryId > 0)
             {
-                ServiceModel = await _categoryService.SearchAsync(_categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
+                ServiceModel = await _categoryService.SearchAsync("", _categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
             }
             else
             {
@@ -203,7 +203,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (IsFollowingCategory)
             {
-                ServiceModel = await _categoryFollowService.FollowingSubCategorySearchAsync(e.NewTextValue, _categoryId, new PagingModel { });
+                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync(e.NewTextValue, new PagingModel { });
             }
             else
             {

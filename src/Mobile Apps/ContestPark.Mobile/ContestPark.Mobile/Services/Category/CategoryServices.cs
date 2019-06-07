@@ -113,19 +113,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Alt kategori listesi</returns>
         public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel}&searchText={searchText}");
-
-            return await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
-        }
-
-        /// <summary>
-        /// Alt kategori Id'ye göre kategori listesi getirir 0 ise tüm kategoriler gelir
-        /// </summary>
-        /// <param name="categoryId">Kategori id</param>
-        /// <returns>Alt kategori listesi</returns>
-        public async Task<ServiceModel<SearchModel>> SearchAsync(short categoryId, PagingModel pagingModel)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{categoryId}{pagingModel}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel}&q={searchText}");
 
             return await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
         }

@@ -7,7 +7,7 @@ namespace ContestPark.Mobile.Services.CategoryFollow
 {
     public interface ICategoryFollowService
     {
-        Task<ServiceModel<SearchModel>> FollowingSubCategorySearchAsync(string searchText, short subCategoryId, PagingModel pagingModel);
+        Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel);
 
         Task<bool> FollowSubCategoryAsync(short subCategoryId);
 

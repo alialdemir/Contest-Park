@@ -35,6 +35,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
                     SearchType = Model.SearchTypes.Player,
                     FullName = @event.FullName,
                     UserId = @event.UserId,
+                    Language = null,// index için null atadık
                     UserName = @event.UserName,
                     PicturePath = @event.ProfilePicturePath,
                     Id = @event.UserId,

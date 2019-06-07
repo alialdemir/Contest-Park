@@ -13,8 +13,6 @@ namespace ContestPark.Mobile.Services.Category
 
         Task<bool> OpenCategoryAsync(short subCategoryId);
 
-        Task<ServiceModel<SearchModel>> SearchAsync(short subCategoryId, PagingModel pagingModel);
-
-        Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel);
+        Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short categoryId, PagingModel pagingModel);
     }
 }

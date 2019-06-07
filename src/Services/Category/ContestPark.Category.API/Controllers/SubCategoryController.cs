@@ -6,11 +6,13 @@ using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Core.CosmosDb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using static ContestPark.Category.API.Infrastructure.Repositories.Search.SearchRepository;
 
 namespace ContestPark.Category.API.Controllers
 {
@@ -28,10 +30,10 @@ namespace ContestPark.Category.API.Controllers
         #region Constructor
 
         public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
-                                           IOpenCategoryRepository openCategoryRepository,
-                                           ICategoryRepository categoryRepository,
-                                           ISearchRepository searchRepository,
-                                           ILogger<SubCategoryController> logger) : base(logger)
+                                     IOpenCategoryRepository openCategoryRepository,
+                                     ICategoryRepository categoryRepository,
+                                     ISearchRepository searchRepository,
+                                     ILogger<SubCategoryController> logger) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
@@ -91,7 +93,7 @@ namespace ContestPark.Category.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> FollowedSubCategories([FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
         {
-            ServiceModel<SearchModel> followedSearchSubCategories = await _searchRepository.GetFollowedSubCategories(searchText, UserId, CurrentUserLanguage, pagingModel);
+            ServiceModel<SearchModel> followedSearchSubCategories = await _searchRepository.SearchFollowedSubCategoriesAsync(searchText, UserId, CurrentUserLanguage, pagingModel);
             if (followedSearchSubCategories == null)
             {
                 Logger.LogWarning($"{nameof(followedSearchSubCategories)} list returned empty.", followedSearchSubCategories);
@@ -100,6 +102,31 @@ namespace ContestPark.Category.API.Controllers
             }
 
             return Ok(followedSearchSubCategories);
+        }
+
+        /// <summary>
+        /// Kategori arama
+        /// </summary>
+        /// <returns>Tüm kategorileri döndürür.</returns>
+        [HttpGet("search/{categoryId?}")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> SearchAsync(string categoryId, [FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
+        {
+            ServiceModel<SearchModel> searchCategories = await _searchRepository.DynamicSearchAsync(searchText,
+                                                                                                    CurrentUserLanguage,
+                                                                                                    pagingModel,
+                                                                                                    SearchFilters.CategoryId,
+                                                                                                    categoryId);
+            if (searchCategories == null)
+            {
+                Logger.LogWarning($"{nameof(searchCategories)} list returned empty.", searchCategories);
+
+                return NotFound();
+            }
+
+            return Ok(searchCategories);
         }
 
         /// <summary>

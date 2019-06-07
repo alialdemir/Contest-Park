@@ -37,7 +37,7 @@ namespace ContestPark.Category.API.Infrastructure.Documents
         public string UserName { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Languages Language { get; set; }
+        public Languages? Language { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
@@ -46,6 +46,9 @@ namespace ContestPark.Category.API.Infrastructure.Documents
         public string CategoryName { get; set; }
 
         public CompletionField Suggest { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string CategoryId { get; set; }
     }
 
     public interface ISearchBase
