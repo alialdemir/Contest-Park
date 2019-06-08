@@ -47,7 +47,7 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
             }
             catch (Exception ex)
             {
-                _logger.LogCritical($"Yeni kullanıcı follow user database eklenme hatası. userId: {@event.UserId} event Id: {@event.Id}");
+                _logger.LogCritical($"Yeni kullanıcı follow user database eklenme hatası. userId: {@event.UserId} event Id: {@event.Id}", ex);
 
                 return Task.FromException(ex);
             }

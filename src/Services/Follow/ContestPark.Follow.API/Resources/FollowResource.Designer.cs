@@ -59,5 +59,14 @@ namespace ContestPark.Follow.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are already following this user..
+        /// </summary>
+        public static string YouAreAlreadyFollowingThisUser {
+            get {
+                return ResourceManager.GetString("YouAreAlreadyFollowingThisUser", resourceCulture);
+            }
+        }
     }
 }

@@ -53,7 +53,7 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
             }
             catch (Exception ex)
             {
-                _logger.LogCritical($"Kullanıcı bilgisi follow api güncelleme hatas. userId: {@event.UserId} event Id: {@event.Id}");
+                _logger.LogCritical($"Kullanıcı bilgisi follow api güncelleme hatas. userId: {@event.UserId} event Id: {@event.Id}", ex);
 
                 return Task.FromException(ex);
             }

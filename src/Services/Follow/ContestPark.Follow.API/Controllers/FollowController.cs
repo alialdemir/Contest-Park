@@ -1,45 +1,58 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
+using ContestPark.Follow.API.Resources;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace ContestPark.Follow.API.Controllers
 {
     public class FollowController : Core.Controllers.ControllerBase
     {
-        public FollowController(ILogger<FollowController> logger) : base(logger)
+        #region Private Variables
+
+        private readonly IFollowRepository _followRepository;
+
+        #endregion Private Variables
+
+        #region Constructor
+
+        public FollowController(IFollowRepository followRepository,
+                                ILogger<FollowController> logger) : base(logger)
         {
+            _followRepository = followRepository ?? throw new ArgumentNullException(nameof(followRepository));
         }
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        #endregion Constructor
+
+        #region Methods
+
+        /// <summary>
+        /// Parametreden gelen kullanıcıyı takip et
+        /// </summary>
+        /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
+        [HttpPost("{followedUserId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Post(string followedUserId)
         {
-            return new string[] { "value1", "value2" };
+            if (string.IsNullOrEmpty(followedUserId) || UserId == followedUserId)
+                return BadRequest();
+
+            if (_followRepository.IsFollowUpStatus(UserId, followedUserId))
+                return BadRequest(FollowResource.YouAreAlreadyFollowingThisUser);
+
+            // TODO: notification
+            // TODO: post
+
+            bool isSuccess = await _followRepository.FollowAsync(UserId, followedUserId);
+            if (!isSuccess)
+                return BadRequest();
+
+            return Ok();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        #endregion Methods
     }
 }

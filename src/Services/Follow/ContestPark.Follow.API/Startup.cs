@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using ContestPark.EventBus.Abstractions;
+using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
 using ContestPark.Follow.API.IntegrationEvents.EventHandling;
 using ContestPark.Follow.API.IntegrationEvents.Events;
 using ContestPark.Follow.API.Resources;
@@ -42,9 +43,12 @@ namespace ContestPark.Follow.API
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
+            services.AddTransient<IFollowRepository, FollowRepository>();
+
             services.AddTransient<NewUserRegisterIntegrationEventHandler>();
             services.AddTransient<UserInfoChangedIntegrationEventHandler>();
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
+            services.AddTransient<FollowIntegrationEventHandler>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -84,6 +88,7 @@ namespace ContestPark.Follow.API
             eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
             eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
             eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
+            eventBus.Subscribe<FollowIntegrationEvent, FollowIntegrationEventHandler>();
         }
     }
 }
