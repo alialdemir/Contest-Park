@@ -68,5 +68,14 @@ namespace ContestPark.Follow.API.Resources {
                 return ResourceManager.GetString("YouAreAlreadyFollowingThisUser", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not following this user..
+        /// </summary>
+        public static string YouAreNotFollowingThisUser {
+            get {
+                return ResourceManager.GetString("YouAreNotFollowingThisUser", resourceCulture);
+            }
+        }
     }
 }

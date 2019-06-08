@@ -120,4 +120,7 @@
   <data name="YouAreAlreadyFollowingThisUser" xml:space="preserve">
     <value>Bu kullanıcıyı zaten takip ediyorsunuz.</value>
   </data>
+  <data name="YouAreNotFollowingThisUser" xml:space="preserve">
+    <value>Bu kullanıcıyı takip etmiyorsunuz.</value>
+  </data>
 </root>

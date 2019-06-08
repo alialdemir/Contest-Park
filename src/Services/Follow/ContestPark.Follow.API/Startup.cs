@@ -48,7 +48,6 @@ namespace ContestPark.Follow.API
             services.AddTransient<NewUserRegisterIntegrationEventHandler>();
             services.AddTransient<UserInfoChangedIntegrationEventHandler>();
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
-            services.AddTransient<FollowIntegrationEventHandler>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -88,7 +87,6 @@ namespace ContestPark.Follow.API
             eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
             eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
             eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
-            eventBus.Subscribe<FollowIntegrationEvent, FollowIntegrationEventHandler>();
         }
     }
 }
