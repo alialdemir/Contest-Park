@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
 using Microsoft.Azure.Documents;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -68,6 +69,40 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         }
 
         /// <summary>
+        /// Kullanıcıyı takip edenlerin listesini verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Takipçi listesi</returns>
+        public string[] Followers(string userId)
+        {
+            return _repository.Query<string>(new SqlQuerySpec
+            {
+                QueryText = "SELECT DISTINCT VALUE f FROM c JOIN f IN c.followers WHERE c.id=@userId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@userId", userId),
+                }
+            }).ToArray();
+        }
+
+        /// <summary>
+        /// Kullanıcının takip ettiklerini verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Takip ettikleri</returns>
+        public string[] Following(string userId)
+        {
+            return _repository.Query<string>(new SqlQuerySpec
+            {
+                QueryText = "SELECT DISTINCT VALUE f FROM c JOIN f IN c.following WHERE c.id=@userId",
+                Parameters = new SqlParameterCollection
+                {
+                    new SqlParameter("@userId", userId),
+                }
+            }).ToArray();
+        }
+
+        /// <summary>
         /// Takip etme durumunu verir
         /// </summary>
         /// <param name="followingUserId">Takip eden</param>
@@ -77,7 +112,7 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         {
             return _repository.Query<bool>(new SqlQuerySpec
             {
-                QueryText = "SELECT DISTINCT VALUE ARRAY_CONTAINS(c.following, @followedUserId, true) FROM c WHERE c.id=@followingUserId ",
+                QueryText = "SELECT DISTINCT VALUE ARRAY_CONTAINS(c.following, @followedUserId, true) FROM c WHERE c.id=@followingUserId",
                 Parameters = new SqlParameterCollection
                 {
                     new SqlParameter("@followingUserId", followingUserId),

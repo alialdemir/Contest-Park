@@ -1,9 +1,9 @@
-﻿using ContestPark.EventBus.Abstractions;
+﻿using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.EventBus.Abstractions;
+using ContestPark.Follow.API.Infrastructure.Documents;
 using ContestPark.Follow.API.IntegrationEvents.Events;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
@@ -11,45 +11,40 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
     public class NewUserRegisterIntegrationEventHandler : IIntegrationEventHandler<NewUserRegisterIntegrationEvent>
 
     {
+        private readonly IDocumentDbRepository<User> _userRepository;
         private readonly ILogger<NewUserRegisterIntegrationEventHandler> _logger;
 
-        public NewUserRegisterIntegrationEventHandler(
+        public NewUserRegisterIntegrationEventHandler(IDocumentDbRepository<User> userRepository,
                                                       ILogger<NewUserRegisterIntegrationEventHandler> logger)
         {
+            _userRepository = userRepository;
             _logger = logger;
         }
 
         /// <summary>
-        /// Yeni kullanıcı üye olunca elasticsearch e o kullanıcının bilgilerini ekler
+        /// Yeni kullanıcı üye olunca database e o kullanıcının bilgilerini ekler
         /// </summary>
         /// <param name="event"></param>
         /// <returns></returns>
-        public Task Handle(NewUserRegisterIntegrationEvent @event)
+        public async Task Handle(NewUserRegisterIntegrationEvent @event)
         {
             try
             {
-                //_searchRepository.Insert(new Search
-                //{
-                //    SearchType = Model.SearchTypes.Player,
-                //    FullName = @event.FullName,
-                //    UserId = @event.UserId,
-                //    Language = null,// index için null atadık
-                //    UserName = @event.UserName,
-                //    PicturePath = @event.ProfilePicturePath,
-                //    Id = @event.UserId,
-                //    Suggest = new Nest.CompletionField
-                //    {
-                //        Input = new string[] { @event.UserName, @event.FullName }
-                //    },
-                //});
+                bool isSuccess = await _userRepository.InsertAsync(new User
+                {
+                    Id = @event.UserId,
+                    FullName = @event.FullName,
+                    ProfilePicturePath = @event.ProfilePicturePath,
+                    UserName = @event.UserName
+                });
 
-                return Task.CompletedTask;
+                if (!isSuccess)
+                    throw new ArgumentException("Yeni kullanıcı kayıt edilemedi");
             }
             catch (Exception ex)
             {
-                _logger.LogCritical($"Yeni kullanıcı follow user database eklenme hatası. userId: {@event.UserId} event Id: {@event.Id}", ex);
-
-                return Task.FromException(ex);
+                _logger.LogCritical($"CRITICAL: Yeni kullanıcı follow user database eklenme hatası. userId: {@event.UserId} event Id: {@event.Id}", ex);
+                // TODO: kullanıcı kayıt edilemediyse büyük sıkıntı var
             }
         }
     }

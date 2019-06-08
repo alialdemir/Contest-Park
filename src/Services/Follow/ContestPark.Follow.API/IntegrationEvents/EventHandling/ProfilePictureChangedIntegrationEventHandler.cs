@@ -1,4 +1,6 @@
-﻿using ContestPark.EventBus.Abstractions;
+﻿using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.EventBus.Abstractions;
+using ContestPark.Follow.API.Infrastructure.Documents;
 using ContestPark.Follow.API.IntegrationEvents.Events;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,16 +13,18 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
     public class ProfilePictureChangedIntegrationEventHandler : IIntegrationEventHandler<ProfilePictureChangedIntegrationEvent>
 
     {
+        private readonly IDocumentDbRepository<User> _userRepository;
         private readonly ILogger<ProfilePictureChangedIntegrationEventHandler> _logger;
 
-        public ProfilePictureChangedIntegrationEventHandler(
+        public ProfilePictureChangedIntegrationEventHandler(IDocumentDbRepository<User> userRepository,
                                                             ILogger<ProfilePictureChangedIntegrationEventHandler> logger)
         {
+            _userRepository = userRepository;
             _logger = logger;
         }
 
         /// <summary>
-        /// Kullanıcı profil resmini elasticsearch üzerinden günceller.
+        /// Kullanıcı profil resmini database üzerinden günceller.
         /// </summary>
         /// <param name="event"></param>
         /// <returns></returns>
@@ -28,22 +32,14 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
         {
             try
             {
-                //Search searchModel = _searchRepository.SearchById(@event.UserId, SearchTypes.Player, null);
-                //if (searchModel == null)
-                //{
-                //    searchModel = new Search
-                //    {
-                //        SearchType = SearchTypes.Player,
-                //        UserId = @event.UserId,
-                //        Id = @event.UserId
-                //    };
-                //}
-                //if (searchModel.PicturePath != @event.NewProfilePicturePath)
-                //{
-                //    searchModel.PicturePath = @event.NewProfilePicturePath;
+                User user = _userRepository.GetById(@event.UserId);
 
-                //    _searchRepository.Update(searchModel);
-                //}
+                if (user.ProfilePicturePath != @event.NewProfilePicturePath)
+                {
+                    user.ProfilePicturePath = @event.NewProfilePicturePath;
+
+                    _userRepository.UpdateAsync(user);
+                }
 
                 return Task.CompletedTask;
             }

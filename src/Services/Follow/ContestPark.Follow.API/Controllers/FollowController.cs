@@ -1,8 +1,13 @@
-﻿using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
+﻿using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Follow.API.Infrastructure.Documents;
+using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
+using ContestPark.Follow.API.Models;
 using ContestPark.Follow.API.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -13,15 +18,18 @@ namespace ContestPark.Follow.API.Controllers
         #region Private Variables
 
         private readonly IFollowRepository _followRepository;
+        private readonly IDocumentDbRepository<User> _userRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
         public FollowController(IFollowRepository followRepository,
+                                IDocumentDbRepository<User> userRepository,
                                 ILogger<FollowController> logger) : base(logger)
         {
             _followRepository = followRepository ?? throw new ArgumentNullException(nameof(followRepository));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
         #endregion Constructor
@@ -73,6 +81,48 @@ namespace ContestPark.Follow.API.Controllers
                 return BadRequest();
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Parametreden gelen kullanıcının takip ettikleri
+        /// </summary>
+        /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
+        [HttpGet("{userId}/Following")]
+        [ProducesResponseType(typeof(List<FollowModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetFollowing(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest();
+
+            string[] following = _followRepository.Following(userId);
+            if (following.Length == 0)
+                return NotFound();
+
+            string[] currentUserFollowers = _followRepository.Following(UserId);
+            IEnumerable<User> followingUsers = _userRepository.GetByIds(following);
+
+            List<FollowModel> follows = (from f in following
+                                         from u in followingUsers
+                                         where f == u.Id
+                                         select new FollowModel
+                                         {
+                                             UserId = u.Id,
+                                             IsFollowing = currentUserFollowers.Any(x => x == f),
+                                             FullName = u.FullName,
+                                             ProfilePicturePath = u.ProfilePicturePath,
+                                             UserName = u.UserName,
+                                         }).ToList();
+
+            // TODO: eğer kullanıcı tablosunda yoksa identity apiden olmayan kullanıcıları istemeli istemeli
+
+            //if (following.Count() != followingUsers.Count())
+            //{
+            //    // Kullanıcı tablosunsa olmayan kullanıcılar
+            //    string[] notFoundUsers = following.Where(p => !followingUsers.Any(x => x.Id == p)).ToArray();
+            //}
+
+            return Ok(follows);
         }
 
         #endregion Methods
