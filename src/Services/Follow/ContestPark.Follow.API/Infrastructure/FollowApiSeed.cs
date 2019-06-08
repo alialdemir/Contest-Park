@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Infrastructure;
+using ContestPark.Follow.API.Infrastructure.Documents;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,8 @@ namespace ContestPark.Follow.API.Infrastructure
                          Followers = new    List<string>{ "1111-1111-1111-1111", "2222-2222-2222-2222"  },
                     }
                 });
+
+                await InsertDataAsync(new List<User>());// user docs oluşturuldu
             });
         }
     }

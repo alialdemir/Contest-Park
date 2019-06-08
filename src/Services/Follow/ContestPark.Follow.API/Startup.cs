@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutoMapper;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
 using ContestPark.Follow.API.IntegrationEvents.EventHandling;
@@ -48,8 +47,6 @@ namespace ContestPark.Follow.API
             services.AddTransient<NewUserRegisterIntegrationEventHandler>();
             services.AddTransient<UserInfoChangedIntegrationEventHandler>();
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
-
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var container = new ContainerBuilder();
             container.Populate(services);

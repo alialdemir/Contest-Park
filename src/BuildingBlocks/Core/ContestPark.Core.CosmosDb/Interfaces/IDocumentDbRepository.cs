@@ -22,6 +22,8 @@ namespace ContestPark.Core.CosmosDb.Interfaces
 
         TDocument GetById(string id);
 
+        IEnumerable<TDocument> GetByIds(params string[] ids);
+
         Task<bool> InsertAsync(TDocument document);
 
         Task<bool> InsertAsync(IEnumerable<TDocument> documents);

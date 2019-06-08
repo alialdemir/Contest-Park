@@ -234,6 +234,29 @@ namespace ContestPark.Core.CosmosDb
             return Client.CreateDocumentQuery<T>(CollectionUri, querySpec, feedOptions);
         }
 
+        /// <summary>
+        /// Parametreden gelen idlere ait tüm kayıtlar
+        /// </summary>
+        /// <param name="ids">id</param>
+        /// <returns>Idlere ait tüm kayıtlar</returns>
+        public IEnumerable<TDocument> GetByIds(params string[] ids)
+        {
+            try
+            {
+                string parameters = string.Join(", ", ids.Select(s => $"'{s}'"));
+                return Query<TDocument>(new SqlQuerySpec
+                {
+                    QueryText = $"SELECT * FROM c WHERE c.id IN ({parameters})",
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"GetById hata oluştu. Collection Name: {_collectionName} ids: {ids}", ex);
+
+                return null;
+            }
+        }
+
         #endregion Methods
     }
 }
