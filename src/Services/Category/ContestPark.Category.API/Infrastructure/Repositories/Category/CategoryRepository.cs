@@ -5,8 +5,6 @@ using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
-using Microsoft.Azure.Documents;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Category
@@ -18,6 +16,8 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
 
+        private readonly IDocumentDbRepository<Documents.Category> _categoryRepository;
+
         #endregion Private Variables
 
         #region Constructor
@@ -26,18 +26,12 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                                   IFollowSubCategoryRepository followSubCategoryRepository,
                                   IOpenCategoryRepository openCategoryRepository)
         {
-            Repository = repository;
+            _categoryRepository = repository;
             _followSubCategoryRepository = followSubCategoryRepository;
             _openCategoryRepository = openCategoryRepository;
         }
 
         #endregion Constructor
-
-        #region Properties
-
-        public IDocumentDbRepository<Documents.Category> Repository { get; private set; }
-
-        #endregion Properties
 
         #region Methods
 
@@ -53,33 +47,27 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             string[] openSubCategories = _openCategoryRepository.OpenSubCategoryIds(userId);
 
             string sql = @"SELECT DISTINCT
-                           cl.categoryName AS categoryName,
+                           cl.CategoryName AS categoryName,
                            c.id as categoryId,
                            ARRAY(SELECT DISTINCT VALUE {
                                 subCategoryId: sc.id,
-                                displayPrice: ARRAY_CONTAINS(@openCategories,  sc.id, true) ? '' : sc.displayPrice,
-                                picturePath:  ARRAY_CONTAINS(@openCategories,  sc.id, true) ? sc.picturePath : @defaultImages,
-                                price: ARRAY_CONTAINS(@openCategories,  sc.id, true) ? 0 : sc.price,
-                                displayOrder: sc.displayOrder,
-                                subCategoryName: scl.subCategoryName
-                             }   FROM sc IN c.subCategories JOIN scl IN sc.subCategoryLangs WHERE sc.visibility=true AND scl.languageId=@languageId ) as subCategories
+                                displayPrice: ARRAY_CONTAINS(@openSubCategories,  sc.id, true) ? '' : sc.DisplayPrice,
+                                picturePath:  ARRAY_CONTAINS(@openSubCategories,  sc.id, true) ? sc.PicturePath : @defaultLock,
+                                price: ARRAY_CONTAINS(@openSubCategories,  sc.id, true) ? 0 : sc.Price,
+                                displayOrder: sc.DisplayOrder,
+                                subCategoryName: scl.SubCategoryName
+                             }   FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLangs WHERE sc.Visibility=true AND scl.LanguageId=@language) as subCategories
                            FROM c
-                           JOIN cl IN c.categoryLangs
-                           WHERE c.visibility=true AND cl.languageId=@languageId
-                           ORDER BY c.displayOrder";
+                           JOIN cl IN c.CategoryLangs
+                           WHERE c.Visibility=true AND cl.LanguageId=@language
+                           ORDER BY c.DisplayOrder";
 
-            var categories = Repository.Query<CategoryModel>(new SqlQuerySpec
+            var categories = _categoryRepository.QueryMultipleAsync<CategoryModel>(sql, new
             {
-                QueryText = sql,
-                Parameters = new SqlParameterCollection
-                 {
-                     new SqlParameter("@openCategories", openSubCategories),
-                     new SqlParameter("@defaultImages", DefaultImages.DefaultLock),
-                     new SqlParameter("@languageId", language.ToString()),
-                     //new SqlParameter("@pageSize", pagingModel.PageSize),
-                     //new SqlParameter("@pageNumber", QueryableExtension.PageNumberCalculate(pagingModel))
-                 }
-            }).ToList();
+                openSubCategories,
+                defaultLock = DefaultImages.DefaultLock,
+                language
+            });
 
             return new ServiceModel<CategoryModel>
             {
@@ -104,7 +92,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 
             doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount += 1;
 
-            return Repository.UpdateAsync(doc).Result;
+            return _categoryRepository.UpdateAsync(doc).Result;
         }
 
         /// <summary>
@@ -121,21 +109,16 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 
             doc.SubCategories.Where(x => x.Id == subCategoryId).FirstOrDefault().FollowerCount -= 1;
 
-            return Repository.UpdateAsync(doc).Result;
+            return _categoryRepository.UpdateAsync(doc).Result;
         }
 
         private Documents.Category GetCategoryBySubCategoryId(string subCategoryId)
         {
-            return Repository.Query<Documents.Category>(new SqlQuerySpec
-            {
-                QueryText = @"SELECT DISTINCT VALUE  c FROM c
-                              JOIN sc IN c.subCategories
-                              WHERE sc.id=@subCategoryId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@subCategoryId", subCategoryId)
-                }
-            }).AsEnumerable().SingleOrDefault();
+            string sql = @"SELECT DISTINCT VALUE c FROM c
+                          JOIN sc IN c.SubCategories
+                          WHERE sc.id = @subCategoryId";
+
+            return _categoryRepository.QuerySingleAsync(sql, new { subCategoryId });
         }
 
         /// <summary>
@@ -145,16 +128,11 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         /// <returns>Kategori ücretsiz ise true değilse false</returns>
         public bool IsSubCategoryFree(string subCategoryId)
         {
-            return Repository.Query<bool>(new SqlQuerySpec
-            {
-                QueryText = @"SELECT DISTINCT VALUE sc.price=0 FROM c
-                              JOIN sc IN c.subCategories
-                              WHERE sc.id=@subCategoryId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@subCategoryId", subCategoryId)
-                }
-            }).ToList().FirstOrDefault();
+            string sql = @"SELECT DISTINCT VALUE sc.Price=0 FROM c
+                           JOIN sc IN c.SubCategories
+                           WHERE sc.id=@subCategoryId";
+
+            return _categoryRepository.QuerySingleAsync<bool>(sql, new { subCategoryId });
         }
 
         /// <summary>
@@ -181,28 +159,22 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             string sql = @"SELECT DISTINCT VALUE
                            ARRAY(SELECT DISTINCT VALUE {
                                 subCategoryId: sc.id,
-                                picturePath: sc.picturePath,
+                                picturePath: sc.PicturePath,
                                 price: 0,
                                 displayPrice: '',
-                                displayOrder: sc.displayOrder,
-                                subCategoryName: scl.subCategoryName
-                             }  FROM sc IN c.subCategories JOIN scl IN sc.subCategoryLangs WHERE sc.visibility=true AND scl.languageId=@languageId AND ARRAY_CONTAINS(@followedSubCategories,  sc.id, true))
+                                displayOrder: sc.DisplayOrder,
+                                subCategoryName: scl.SubCategoryName
+                             }  FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLangs WHERE sc.Visibility=true AND scl.LanguageId=@languageId AND ARRAY_CONTAINS(@followedSubCategories,  sc.id, true))
                            FROM c
-                           JOIN cl IN c.categoryLangs
-                           WHERE c.visibility=true AND cl.languageId=@languageId
-                           ORDER BY c.displayOrder";
-
-            var subCategories = Repository.Query<List<SubCategoryModel>>(new SqlQuerySpec// TODO: burada query kısında list yerine model veriilmeliydi ama o şekilde parse hatası aldım sql query de bir düzeltme yapılmalı
+                           JOIN cl IN c.CategoryLangs
+                           WHERE c.Visibility=true AND cl.LanguageId=@languageId
+                           ORDER BY c.DisplayOrder";
+            serviceModel.Items = _categoryRepository.QueryMultipleAsync<SubCategoryModel>(sql, new
             {
-                QueryText = sql,
-                Parameters = new SqlParameterCollection
-                 {
-                     new SqlParameter("@followedSubCategories", followedSubCategories),
-                     new SqlParameter("@languageId", language.ToString()),
-                 }
-            }).ToList();
+                followedSubCategories,
+                languageId = language.ToString()
+            });
 
-            serviceModel.Items = subCategories.FirstOrDefault();
             serviceModel.Count = serviceModel.Items.Count();
 
             return serviceModel;
@@ -216,27 +188,21 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         public SubCategoryDetailInfoModel GetSubCategoryDetail(string subCategoryId, Languages language)
         {
             string sql = @"SELECT
-                           sc.followerCount AS categoryFollowersCount,
-                           sc.description,
+                           sc.FollowerCount AS categoryFollowersCount,
+                           sc.Description,
                            sc.id AS subCategoryId,
-                           scl.subCategoryName,
-                           sc.picturePath AS SubCategoryPicturePath
+                           scl.SubCategoryName,
+                           sc.PicturePath AS SubCategoryPicturePath
                            FROM c
-                           JOIN sc IN c.subCategories
-                           JOIN scl IN sc.subCategoryLangs
-                           WHERE c.visibility=true AND sc.visibility=true And sc.id = @subCategoryId AND scl.languageId=@languageId";
+                           JOIN sc IN c.SubCategories
+                           JOIN scl IN sc.SubCategoryLangs
+                           WHERE c.Visibility=true AND sc.Visibility=true And sc.id = @subCategoryId AND scl.LanguageId=@language";
 
-            var subCategoryDetail = Repository.Query<SubCategoryDetailInfoModel>(new SqlQuerySpec// TODO: burada query kısında list yerine model veriilmeliydi ama o şekilde parse hatası aldım sql query de bir düzeltme yapılmalı
+            return _categoryRepository.QuerySingleAsync<SubCategoryDetailInfoModel>(sql, new
             {
-                QueryText = sql,
-                Parameters = new SqlParameterCollection
-                 {
-                     new SqlParameter("@subCategoryId", subCategoryId),
-                     new SqlParameter("@languageId", language.ToString()),
-                 }
-            }).ToList().FirstOrDefault();
-
-            return subCategoryDetail;
+                subCategoryId,
+                language = language.ToString()
+            });
         }
 
         #endregion Methods

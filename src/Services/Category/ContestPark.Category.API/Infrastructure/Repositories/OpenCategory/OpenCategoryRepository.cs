@@ -1,26 +1,26 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Core.CosmosDb.Interfaces;
-using Microsoft.Azure.Documents;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
 {
     public class OpenCategoryRepository : IOpenCategoryRepository
     {
+        #region Private Variables
+
+        private readonly IDocumentDbRepository<OpenSubCategory> _openSubCategoryRepository;
+
+        #endregion Private Variables
+
         #region Constructor
 
         public OpenCategoryRepository(IDocumentDbRepository<OpenSubCategory> repository)
         {
-            Repository = repository;
+            _openSubCategoryRepository = repository;
         }
 
         #endregion Constructor
-
-        #region Properties
-
-        public IDocumentDbRepository<OpenSubCategory> Repository { get; private set; }
-
-        #endregion Properties
 
         #region Methods
 
@@ -31,13 +31,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
         /// <returns>Sub kategori id listesi</returns>
         public string[] OpenSubCategoryIds(string userId)
         {
-            return Repository.Query<string>(new SqlQuerySpec
+            return _openSubCategoryRepository.QueryMultipleAsync<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
             {
-                QueryText = "SELECT DISTINCT VALUE c.subCategoryId FROM c where c.userId = @userId",
-                Parameters = new SqlParameterCollection
-                 {
-                     new SqlParameter("@userId", userId)
-                 }
+                userId
             }).ToArray();
         }
 
@@ -49,15 +45,16 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
         /// <returns>Alt kategori kilidi açık ise true değilse false</returns>
         public bool IsSubCategoryOpen(string userId, string subCategoryId)
         {
-            return Repository.Query<bool>(new SqlQuerySpec
+            return _openSubCategoryRepository.QuerySingleAsync<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
             {
-                QueryText = "SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.userId=@userId AND c.subCategoryId=@subCategoryId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@userId", userId),
-                    new SqlParameter("@subCategoryId", subCategoryId)
-                }
-            }).ToList().FirstOrDefault();
+                userId,
+                subCategoryId
+            });
+        }
+
+        public Task<bool> AddAsync(OpenSubCategory openSubCategory)
+        {
+            return _openSubCategoryRepository.AddAsync(openSubCategory);
         }
 
         #endregion Methods

@@ -1,7 +1,4 @@
 ﻿using ContestPark.Core.Enums;
-using ContestPark.EventBus.Abstractions;
-using ContestPark.Identity.API.IntegrationEvents;
-using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +17,6 @@ namespace ContestPark.Identity.API.Data
 
         public async Task SeedAsync(ApplicationDbContext context,
                                     IHostingEnvironment env,
-                                    IEventBus eventBus,
                                     ILogger<ApplicationDbContextSeed> logger,
                                     IOptions<IdentitySettings> settings,
                                     int? retry = 0)
@@ -42,8 +38,6 @@ namespace ContestPark.Identity.API.Data
 
                     await context.SaveChangesAsync();
                 }
-                context.UserRoles.RemoveRange(context.UserRoles.ToList());
-                context.SaveChanges();
 
                 var users = GetDefaultUser();
                 foreach (var user in users)
@@ -57,12 +51,6 @@ namespace ContestPark.Identity.API.Data
                         });
 
                         await context.SaveChangesAsync();
-
-                        // elasticsearch  kullanıcıları kayıt etmesi için eventleri yolladık
-                        var @event = new NewUserRegisterIntegrationEvent(user.Id, user.FullName, user.UserName, user.ProfilePicturePath);
-
-                        // Publish through the Event Bus and mark the saved event as published
-                        eventBus.Publish(@event);
                     }
                     if (user.Id == "1111-1111-1111-1111")
                     {
@@ -84,22 +72,23 @@ namespace ContestPark.Identity.API.Data
 
                     logger.LogError(ex.Message, $"There is an error migrating data for ApplicationDbContext");
 
-                    await SeedAsync(context, env, eventBus, logger, settings, retryForAvaiability);
+                    await SeedAsync(context, env, logger, settings, retryForAvaiability);
                 }
             }
         }
 
         private IEnumerable<ApplicationUser> GetDefaultUser()
         {
+            // Buraya user ekleyince diğer servislerede eklenmeli
             var witcherUser =
             new ApplicationUser()
             {
                 Id = "1111-1111-1111-1111",
                 ProfilePicturePath = "http://i.pravatar.cc/150?u=witcherfearless",
                 FullName = "Ali Aldemir",
-                PhoneNumber = "1234567890",
                 UserName = "witcherfearless",
                 Email = "aldemirali93@gmail.com",
+                PhoneNumber = "1234567890",
                 NormalizedEmail = "ALDEMIRALI93@GMAIL.COM",
                 NormalizedUserName = "WITCHERFEARLESS",
                 LanguageCode = "tr_TR",
@@ -115,8 +104,8 @@ namespace ContestPark.Identity.API.Data
                 Id = "2222-2222-2222-2222",
                 ProfilePicturePath = "http://i.pravatar.cc/150?u=demo",
                 FullName = "Demo",
-                PhoneNumber = "1234567890",
                 UserName = "demo",
+                PhoneNumber = "1234567890",
                 NormalizedUserName = "DEMO",
                 Email = "demo@demo.com",
                 NormalizedEmail = "DEMO@DEMO.COM",
@@ -133,8 +122,8 @@ namespace ContestPark.Identity.API.Data
                 Id = "3333-3333-3333-bot",
                 ProfilePicturePath = "http://i.pravatar.cc/150?u=bot",
                 FullName = "Bot",
-                PhoneNumber = "1234567890",
                 UserName = "bot12345",
+                PhoneNumber = "1234567890",
                 NormalizedUserName = "BOT12345",
                 Email = "bot@bot.com",
                 NormalizedEmail = "BOT@BOT.COM",

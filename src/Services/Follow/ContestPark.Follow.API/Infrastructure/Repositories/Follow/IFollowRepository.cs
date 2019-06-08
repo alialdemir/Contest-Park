@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ContestPark.Core.CosmosDb.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
@@ -15,10 +16,12 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
 
         /// <param name="followingUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
-        bool IsFollowUpStatus(string followingUserId, string followedUserId);
+        bool CheckFollowUpStatus(string followingUserId, string followedUserId);
 
-        string[] Followers(string userId);
+        IEnumerable<string> CheckFollowUpStatus(string followingUserId, IEnumerable<string> userIds);
 
-        string[] Following(string userId);
+        IEnumerable<string> Followers(string userId, PagingModel pagingModel);
+
+        IEnumerable<string> Following(string userId, PagingModel pagingModel);
     }
 }

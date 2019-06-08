@@ -15,20 +15,20 @@ namespace ContestPark.Core.CosmosDb.Infrastructure
 
         public IServiceProvider Service { get; set; }
 
-        public async Task<bool> InsertDataAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, IDocument, new()
+        public async Task<bool> InsertDataAsync<TDocument>(IEnumerable<TDocument> entities) where TDocument : class, IDocument, new()
         {
-            Logger.LogInformation($"The entities are being added. {typeof(TEntity).Name}");
+            Logger.LogInformation($"The entities are being added. {typeof(TDocument).Name}");
 
-            IDocumentDbRepository<TEntity> dbRepository = (IDocumentDbRepository<TEntity>)Service.GetRequiredService(typeof(IDocumentDbRepository<TEntity>));
+            IDocumentDbRepository<TDocument> dbRepository = (IDocumentDbRepository<TDocument>)Service.GetRequiredService(typeof(IDocumentDbRepository<TDocument>));
 
-            await dbRepository.Init();// database ve collection oluşturuldu
+            //    await dbRepository.Init();// database ve collection oluşturuldu
 
             if (await dbRepository.CountAsync() == 0)
             {
-                return await dbRepository.InsertAsync(entities);
+                return (await dbRepository.AddRangeAsync(entities));
             }
 
-            Logger.LogInformation($"The entities have been added.. {typeof(TEntity).Name}");
+            Logger.LogInformation($"The entities have been added.. {typeof(TDocument).Name}");
 
             return false;
         }

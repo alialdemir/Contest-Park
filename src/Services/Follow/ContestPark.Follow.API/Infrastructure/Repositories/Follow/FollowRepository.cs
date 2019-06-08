@@ -1,5 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
-using Microsoft.Azure.Documents;
+using ContestPark.Core.CosmosDb.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +12,16 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         #region Private Variables
 
         private readonly ILogger<FollowRepository> _logger;
-        private readonly IDocumentDbRepository<Documents.Follow> _repository;
+        private readonly IDocumentDbRepository<Documents.Follow> _followRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public FollowRepository(IDocumentDbRepository<Documents.Follow> repository,
+        public FollowRepository(IDocumentDbRepository<Documents.Follow> followRepository,
                                 ILogger<FollowRepository> logger)
         {
-            _repository = repository;
+            _followRepository = followRepository;
             _logger = logger;
         }
 
@@ -48,20 +48,19 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
             {
                 following.Following.Add(followedUserId);
 
-                isAddedSuccess = await _repository.UpdateAsync(following);
-            }
-
-            if (isAddedSuccess)
-            {
                 followed.Followers.Add(followingUserId);
 
-                isAddedSuccess = await _repository.UpdateAsync(followed);
+                isAddedSuccess = await _followRepository.UpdateRangeAsync(new List<Documents.Follow>
+                {
+                    following,
+                    followed
+                });
+
                 if (!isAddedSuccess)
                 {
                     _logger.LogCritical($@"CRITICAL ERROR: Takip etme sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
                                             Lütfen kontrol edin followingUserId: {followingUserId} followedUserId:{followedUserId}");
                     // TODO: following.Following içinden followedUserId sil
-                    return false;
                 }
             }
 
@@ -73,16 +72,15 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Takipçi listesi</returns>
-        public string[] Followers(string userId)
+        public IEnumerable<string> Followers(string userId, PagingModel paging)
         {
-            return _repository.Query<string>(new SqlQuerySpec
-            {
-                QueryText = "SELECT DISTINCT VALUE f FROM c JOIN f IN c.followers WHERE c.id=@userId",
-                Parameters = new SqlParameterCollection
+            return _followRepository.QueryMultipleAsync<string>("SELECT value f  FROM c JOIN f IN c.Followers WHERE c.id=@userId OFFSET @pageNumber LIMIT @pageSize",
+                new
                 {
-                    new SqlParameter("@userId", userId),
-                }
-            }).ToArray();
+                    userId,
+                    pageSize = paging.PageSize,
+                    pageNumber = paging.PageNumber - 1
+                });
         }
 
         /// <summary>
@@ -90,16 +88,15 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Takip ettikleri</returns>
-        public string[] Following(string userId)
+        public IEnumerable<string> Following(string userId, PagingModel paging)
         {
-            return _repository.Query<string>(new SqlQuerySpec
-            {
-                QueryText = "SELECT DISTINCT VALUE f FROM c JOIN f IN c.following WHERE c.id=@userId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@userId", userId),
-                }
-            }).ToArray();
+            return _followRepository.QueryMultipleAsync<string>("SELECT value f  FROM c JOIN f IN c.Following WHERE c.id=@userId OFFSET @pageNumber LIMIT @pageSize",
+                   new
+                   {
+                       userId,
+                       pageSize = paging.PageSize,
+                       pageNumber = paging.PageNumber - 1
+                   });
         }
 
         /// <summary>
@@ -108,17 +105,25 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// <param name="followingUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
         /// <returns>Takip ediyorsa true etmiyorsa false</returns>
-        public bool IsFollowUpStatus(string followingUserId, string followedUserId)
+        public bool CheckFollowUpStatus(string followingUserId, string followedUserId)
         {
-            return _repository.Query<bool>(new SqlQuerySpec
-            {
-                QueryText = "SELECT DISTINCT VALUE ARRAY_CONTAINS(c.following, @followedUserId, true) FROM c WHERE c.id=@followingUserId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@followingUserId", followingUserId),
-                    new SqlParameter("@followedUserId", followedUserId)
-                }
-            }).ToList().FirstOrDefault();
+            return CheckFollowUpStatus(followingUserId, new List<string> { followedUserId })?.Count() == 1;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="followingUserId"></param>
+        /// <param name="userIds"></param>
+        /// <returns></returns>
+        public IEnumerable<string> CheckFollowUpStatus(string followingUserId, IEnumerable<string> userIds)
+        {
+            return _followRepository.QueryMultipleAsync<string>("SELECT value f FROM c JOIN f IN c.Following  WHERE c.id=@followingUserId AND ARRAY_CONTAINS(@userIds, f)",
+                     new
+                     {
+                         followingUserId,
+                         userIds
+                     });
         }
 
         /// <summary>
@@ -137,23 +142,22 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
 
             following.Following.Remove(followedUserId);
 
-            bool isAddedSuccess = await _repository.UpdateAsync(following);
+            followed.Followers.Remove(followingUserId);
 
-            if (isAddedSuccess)
+            bool isSuccess = await _followRepository.UpdateRangeAsync(new List<Documents.Follow>
             {
-                followed.Followers.Remove(followingUserId);
+                following,
+                followed
+            });
 
-                isAddedSuccess = await _repository.UpdateAsync(followed);
-                if (!isAddedSuccess)
-                {
-                    _logger.LogCritical($@"CRITICAL ERROR: Takipten çıkarma sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
+            if (!isSuccess)
+            {
+                _logger.LogCritical($@"CRITICAL ERROR: Takipten çıkarma sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
                                             Lütfen kontrol edin followingUserId: {followingUserId} followedUserId:{followedUserId}");
-                    // TODO: following.Following içinden followedUserId sil
-                    return false;
-                }
+                // TODO: following.Following içinden followedUserId sil
             }
 
-            return isAddedSuccess;
+            return isSuccess;
         }
 
         /// <summary>
@@ -163,11 +167,11 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// <returns></returns>
         private async Task<Documents.Follow> GetFollowIfNotExistsCreateAsync(string userId)
         {
-            var follow = _repository.GetById(userId);
+            var follow = _followRepository.FindById(userId);
             if (follow == null)// İlk takip işleminde update yapabilmek için extradan bir insert atacak
             {
                 follow = new Documents.Follow { Id = userId };
-                await _repository.InsertAsync(follow);
+                await _followRepository.AddAsync(follow);
             }
 
             return follow;

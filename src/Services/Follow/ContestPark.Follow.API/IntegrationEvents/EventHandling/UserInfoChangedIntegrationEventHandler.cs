@@ -30,7 +30,7 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
         {
             try
             {
-                User user = _userRepository.GetById(@event.UserId);
+                User user = _userRepository.FindById(@event.UserId);
 
                 user.FullName = @event.NewFullName;
                 user.UserName = @event.NewUserName;

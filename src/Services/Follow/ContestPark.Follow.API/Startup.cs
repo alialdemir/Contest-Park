@@ -69,12 +69,19 @@ namespace ContestPark.Follow.API
             }
 
             app.UseExceptionHandlerConfigure()
-               .AddCors()
-               .UseAuth()
-               .UseRequestLocalizationCustom()
-               .UseMvc();
+               .AddCors();
+
+            ConfigureAuth(app);
+
+            app.UseRequestLocalizationCustom()
+                .UseMvc();
 
             ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureAuth(IApplicationBuilder app)
+        {
+            app.UseAuth();
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
