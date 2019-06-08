@@ -53,6 +53,28 @@ namespace ContestPark.Follow.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Parametreden gelen kullanıcıyı takipten çıkar
+        /// </summary>
+        /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
+        [HttpDelete("{followedUserId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Delete(string followedUserId)
+        {
+            if (string.IsNullOrEmpty(followedUserId) || UserId == followedUserId)
+                return BadRequest();
+
+            if (!_followRepository.IsFollowUpStatus(UserId, followedUserId))
+                return BadRequest(FollowResource.YouAreNotFollowingThisUser);
+
+            bool isSuccess = await _followRepository.UnFollowAsync(UserId, followedUserId);
+            if (!isSuccess)
+                return BadRequest();
+
+            return Ok();
+        }
+
         #endregion Methods
     }
 }

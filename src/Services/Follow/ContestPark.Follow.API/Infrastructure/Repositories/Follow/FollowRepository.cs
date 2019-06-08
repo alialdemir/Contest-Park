@@ -39,38 +39,23 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
             if (followingUserId == followedUserId)
                 return false;
 
-            var following = _repository.GetById(followingUserId);
-            if (following == null)// İlk takip işleminde update yapabilmek için extradan bir insert atacak
-            {
-                following = new Documents.Follow { Id = followingUserId };
-                bool isRegistered = await _repository.InsertAsync(following);
-                if (!isRegistered)
-                    return false;
-            }
+            var following = await GetFollowIfNotExistsCreateAsync(followingUserId);
+            var followed = await GetFollowIfNotExistsCreateAsync(followedUserId);
 
-            var followed = _repository.GetById(followedUserId);
-            if (followed == null)// İlk takip işleminde update yapabilmek için extradan bir insert atacak
-            {
-                followed = new Documents.Follow { Id = followedUserId };
-                bool isRegistered = await _repository.InsertAsync(followed);
-                if (!isRegistered)
-                    return false;
-            }
-
-            bool isAdded = !following.Following.Any(userId => userId == followedUserId) && !followed.Followers.Any(userId => userId == followingUserId);
-            if (isAdded)
+            bool isAddedSuccess = !following.Following.Any(userId => userId == followedUserId) && !followed.Followers.Any(userId => userId == followingUserId);
+            if (isAddedSuccess)
             {
                 following.Following.Add(followedUserId);
 
-                isAdded = await _repository.UpdateAsync(following);
+                isAddedSuccess = await _repository.UpdateAsync(following);
             }
 
-            if (isAdded)
+            if (isAddedSuccess)
             {
                 followed.Followers.Add(followingUserId);
 
-                bool isSuccess = await _repository.UpdateAsync(followed);
-                if (!isSuccess)
+                isAddedSuccess = await _repository.UpdateAsync(followed);
+                if (!isAddedSuccess)
                 {
                     _logger.LogCritical($@"CRITICAL ERROR: Takip etme sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
                                             Lütfen kontrol edin followingUserId: {followingUserId} followedUserId:{followedUserId}");
@@ -79,7 +64,7 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
                 }
             }
 
-            return isAdded;
+            return isAddedSuccess;
         }
 
         /// <summary>
@@ -99,6 +84,58 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
                     new SqlParameter("@followedUserId", followedUserId)
                 }
             }).ToList().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Takipten çıkar
+        /// </summary>
+        /// <param name="followingUserId">Takip eden</param>
+        /// <param name="followedUserId">Takip edilen</param>
+        /// <returns>Takip ediyorsa true etmiyorsa false</returns>
+        public async Task<bool> UnFollowAsync(string followingUserId, string followedUserId)
+        {
+            if (followingUserId == followedUserId)
+                return false;
+
+            var following = await GetFollowIfNotExistsCreateAsync(followingUserId);
+            var followed = await GetFollowIfNotExistsCreateAsync(followedUserId);
+
+            following.Following.Remove(followedUserId);
+
+            bool isAddedSuccess = await _repository.UpdateAsync(following);
+
+            if (isAddedSuccess)
+            {
+                followed.Followers.Remove(followingUserId);
+
+                isAddedSuccess = await _repository.UpdateAsync(followed);
+                if (!isAddedSuccess)
+                {
+                    _logger.LogCritical($@"CRITICAL ERROR: Takipten çıkarma sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
+                                            Lütfen kontrol edin followingUserId: {followingUserId} followedUserId:{followedUserId}");
+                    // TODO: following.Following içinden followedUserId sil
+                    return false;
+                }
+            }
+
+            return isAddedSuccess;
+        }
+
+        /// <summary>
+        /// user id ait kayıt varsa onu döndürür yoksa yenisini insert edip döndürür
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns></returns>
+        private async Task<Documents.Follow> GetFollowIfNotExistsCreateAsync(string userId)
+        {
+            var follow = _repository.GetById(userId);
+            if (follow == null)// İlk takip işleminde update yapabilmek için extradan bir insert atacak
+            {
+                follow = new Documents.Follow { Id = userId };
+                await _repository.InsertAsync(follow);
+            }
+
+            return follow;
         }
 
         #endregion Methods
