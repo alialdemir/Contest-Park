@@ -65,7 +65,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
             }
             catch (Exception ex)
             {
-                _logger.LogCritical($"Yeni kategori elasticsearch eklenme hatası. userId: {@event.SubCategoryId} event Id: {@event.Id}");
+                _logger.LogCritical($"Yeni kategori elasticsearch eklenme hatası. userId: {@event.SubCategoryId} event Id: {@event.Id}", ex);
 
                 return Task.FromException(ex);
             }

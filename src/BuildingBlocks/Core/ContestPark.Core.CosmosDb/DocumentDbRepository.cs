@@ -121,12 +121,15 @@ namespace ContestPark.Core.CosmosDb
             {
                 return Query<TDocument>(new SqlQuerySpec
                 {
-                    QueryText = $"SELECT * FROM {_collection} c WHERE (c.id = @id)",
+                    QueryText = $"SELECT TOP 1 * FROM c WHERE (c.id = @id)",
                     Parameters = new SqlParameterCollection()
                     {
                           new SqlParameter("@id", id)
                     }
-                }).First();
+                }, new FeedOptions
+                {
+                    MaxItemCount = 1
+                }).ToList().First();
             }
             catch (Exception ex)
             {

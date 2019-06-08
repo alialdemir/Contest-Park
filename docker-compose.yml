@@ -47,3 +47,12 @@ services:
     build:
       context: .
       dockerfile: src/Services/Category/ContestPark.Category.API/Dockerfile
+
+
+  contestpark.follow.api:
+    image: contestparkcategory.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: src/Services/Follow/ContestPark.Follow.API/Dockerfile

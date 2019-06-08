@@ -13,12 +13,12 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 {
     public class CategoryRepository : ICategoryRepository
     {
-        #region Private
+        #region Private Variables
 
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
 
-        #endregion Private
+        #endregion Private Variables
 
         #region Constructor
 
