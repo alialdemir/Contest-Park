@@ -3,12 +3,12 @@ using Xunit;
 
 namespace ContestPark.Category.API.FunctionalTests
 {
-    public class UnitTest1
+    public class CategoryScenarios
     {
         [Fact]
         public void Test1()
         {
-
+            Assert.True(true);
         }
     }
 }

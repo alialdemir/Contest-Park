@@ -14,11 +14,11 @@ namespace ContestPark.Core.FunctionalTests
     {
         public TestServer CreateServer()
         {
-            var path = Assembly.GetAssembly(typeof(ScenariosBase<TStartup>))
+            var path = Assembly.GetAssembly(typeof(TStartup))
               .Location;
 
             var hostBuilder = new WebHostBuilder()
-                .UseContentRoot(Path.GetDirectoryName(path))
+                  .UseContentRoot(Path.GetDirectoryName(path))
                   .ConfigureAppConfiguration(cb =>
                   {
                       cb.AddJsonFile("appsettings.test.json", optional: false);

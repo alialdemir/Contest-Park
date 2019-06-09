@@ -95,12 +95,19 @@ namespace ContestPark.Category.API
             }
 
             app.UseExceptionHandlerConfigure()
-               .AddCors()
-               .UseAuth()
-               .UseRequestLocalizationCustom()
+               .AddCors();
+
+            ConfigureAuth(app);
+
+            app.UseRequestLocalizationCustom()
                .UseMvc();
 
             ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureAuth(IApplicationBuilder app)
+        {
+            app.UseAuth();
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
