@@ -2,9 +2,9 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ContestPark.Follow.API.FunctionalTests
+namespace ContestPark.Core.IntegrationTests
 {
-    internal class AutoAuthorizeMiddleware
+    public class AutoAuthorizeMiddleware
     {
         public const string IDENTITY_ID = "1111-1111-1111-1111";
 

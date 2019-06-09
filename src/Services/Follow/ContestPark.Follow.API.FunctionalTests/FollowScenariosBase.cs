@@ -1,50 +1,22 @@
 ﻿using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.IntegrationTests;
 using ContestPark.Follow.API.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-using System.Reflection;
-using Xunit;
 
 namespace ContestPark.Follow.API.FunctionalTests
 {
-    [Collection("Database remove")]
-    [TestCaseOrderer("ContestPark.Follow.API.FunctionalTests.TestCaseOrdering.PriorityOrderer", "ContestPark.Follow.API.FunctionalTests")]
-    public class FollowScenariosBase
-
+    public class FollowScenariosBase : ScenariosBase<FollowTestStartup>
     {
-        public static IConfiguration Configuration { get; set; }
-
-        public TestServer CreateServer()
+        public override void Seed(IWebHost host)
         {
-            var path = Assembly.GetAssembly(typeof(FollowScenariosBase))
-              .Location;
-
-            var hostBuilder = new WebHostBuilder()
-                .UseContentRoot(Path.GetDirectoryName(path))
-                  .ConfigureAppConfiguration(cb =>
-                  {
-                      cb.AddJsonFile("appsettings.test.json", optional: false);
-                      cb.AddEnvironmentVariables();
-                  })
-                .UseStartup<FollowTestStartup>();
-
-            var testServer = new TestServer(hostBuilder);
-
-            testServer.Host
-             .MigrateDatabase<FollowApiSeed>((services, logger) =>
-             {
-                 new FollowApiSeed()
-                     .SeedAsync(services, logger)
-                     .Wait();
-             });
-
-            FollowScenariosBase.Configuration = testServer.Host.Services.GetRequiredService<IConfiguration>();
-
-            return testServer;
+            host
+           .MigrateDatabase<FollowApiSeed>((services, logger) =>
+           {
+               new FollowApiSeed()
+                   .SeedAsync(services, logger)
+                   .Wait();
+           });
         }
 
         public static class Entpoints

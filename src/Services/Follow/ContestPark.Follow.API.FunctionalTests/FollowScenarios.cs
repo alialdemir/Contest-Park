@@ -1,9 +1,6 @@
 ﻿using ContestPark.Core.CosmosDb.Models;
-using ContestPark.Core.Enums;
 using ContestPark.Follow.API.Models;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
