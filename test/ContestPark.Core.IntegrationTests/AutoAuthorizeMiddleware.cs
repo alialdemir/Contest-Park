@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ContestPark.Core.IntegrationTests
+namespace ContestPark.Core.FunctionalTests
 {
     public class AutoAuthorizeMiddleware
     {

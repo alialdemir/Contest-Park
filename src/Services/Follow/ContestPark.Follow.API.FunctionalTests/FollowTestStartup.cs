@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.IntegrationTests;
+﻿using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 

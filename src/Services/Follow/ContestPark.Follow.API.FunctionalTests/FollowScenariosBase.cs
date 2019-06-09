@@ -1,6 +1,6 @@
 ﻿using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Models;
-using ContestPark.Core.IntegrationTests;
+using ContestPark.Core.FunctionalTests;
 using ContestPark.Follow.API.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 

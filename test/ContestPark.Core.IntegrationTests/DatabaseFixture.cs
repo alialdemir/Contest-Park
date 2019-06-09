@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace ContestPark.Core.IntegrationTests
+namespace ContestPark.Core.FunctionalTests
 {
     public class DatabaseFixtureBase : IDisposable
     {

@@ -6,10 +6,10 @@ using System.IO;
 using System.Reflection;
 using Xunit;
 
-namespace ContestPark.Core.IntegrationTests
+namespace ContestPark.Core.FunctionalTests
 {
     [Collection("Database remove")]
-    [TestCaseOrderer("ContestPark.Core.IntegrationTests.TestCaseOrdering.PriorityOrderer", "ContestPark.Core.IntegrationTests")]
+    [TestCaseOrderer("ContestPark.Core.FunctionalTests.TestCaseOrdering.PriorityOrderer", "ContestPark.Core.FunctionalTests")]
     public class ScenariosBase<TStartup> where TStartup : class
     {
         public TestServer CreateServer()

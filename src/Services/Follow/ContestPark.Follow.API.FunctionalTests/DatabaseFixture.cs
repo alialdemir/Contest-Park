@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.IntegrationTests;
+﻿using ContestPark.Core.FunctionalTests;
 using Microsoft.Azure.Documents.Client;
 using System;
 
