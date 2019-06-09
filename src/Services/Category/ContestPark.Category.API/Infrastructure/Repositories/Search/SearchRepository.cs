@@ -3,6 +3,7 @@ using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Model;
+using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using Microsoft.Extensions.Configuration;
@@ -185,7 +186,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             if (searchResponse != null && searchResponse.Count() > 0)
             {
                 // Filtrenmiş hali ile kaç tane kaldığı sayısını ekledik
-                serviceModel.Count = searchResponse.Count();
+                //    serviceModel.HasNextPage = searchResponse.HasNextPage(searchResponse.Count(), pagingModel);
 
                 // Paing için skip take yaptık
                 searchResponse = searchResponse.Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1))

@@ -1,24 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using ContestPark.Core.CosmosDb.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
 {
     public interface IFollowRepository
     {
-        /// <param name="followingUserId">Takip eden</param>
+        /// <param name="followUpUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
-        Task<bool> FollowAsync(string followingUserId, string followedUserId);
+        Task<bool> FollowAsync(string followUpUserId, string followedUserId);
 
-        /// <param name="followingUserId">Takip eden</param>
+        /// <param name="followUpUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
-        Task<bool> UnFollowAsync(string followingUserId, string followedUserId);
+        Task<bool> UnFollowAsync(string followUpUserId, string followedUserId);
 
-        /// <param name="followingUserId">Takip eden</param>
+        /// <param name="followUpUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
-        bool IsFollowUpStatus(string followingUserId, string followedUserId);
+        bool CheckFollowUpStatus(string followUpUserId, string followedUserId);
 
-        string[] Followers(string userId);
+        IEnumerable<string> CheckFollowUpStatus(string followUpUserId, IEnumerable<string> userIds);
 
-        string[] Following(string userId);
+        ServiceModel<string> Followers(string userId, PagingModel pagingModel);
+
+        ServiceModel<string> Following(string userId, PagingModel pagingModel);
     }
 }

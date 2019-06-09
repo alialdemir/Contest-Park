@@ -32,7 +32,7 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
         {
             try
             {
-                User user = _userRepository.GetById(@event.UserId);
+                User user = _userRepository.FindById(@event.UserId);
 
                 if (user.ProfilePicturePath != @event.NewProfilePicturePath)
                 {

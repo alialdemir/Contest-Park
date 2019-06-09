@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Follow.API.Infrastructure.Documents;
 using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
 using ContestPark.Follow.API.Models;
@@ -48,11 +49,8 @@ namespace ContestPark.Follow.API.Controllers
             if (string.IsNullOrEmpty(followedUserId) || UserId == followedUserId)
                 return BadRequest();
 
-            if (_followRepository.IsFollowUpStatus(UserId, followedUserId))
+            if (_followRepository.CheckFollowUpStatus(UserId, followedUserId))
                 return BadRequest(FollowResource.YouAreAlreadyFollowingThisUser);
-
-            // TODO: notification
-            // TODO: post
 
             bool isSuccess = await _followRepository.FollowAsync(UserId, followedUserId);
             if (!isSuccess)
@@ -73,7 +71,7 @@ namespace ContestPark.Follow.API.Controllers
             if (string.IsNullOrEmpty(followedUserId) || UserId == followedUserId)
                 return BadRequest();
 
-            if (!_followRepository.IsFollowUpStatus(UserId, followedUserId))
+            if (!_followRepository.CheckFollowUpStatus(UserId, followedUserId))
                 return BadRequest(FollowResource.YouAreNotFollowingThisUser);
 
             bool isSuccess = await _followRepository.UnFollowAsync(UserId, followedUserId);
@@ -88,41 +86,67 @@ namespace ContestPark.Follow.API.Controllers
         /// </summary>
         /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
         [HttpGet("{userId}/Following")]
-        [ProducesResponseType(typeof(List<FollowModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ServiceModel<FollowModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetFollowing(string userId)
+        public IActionResult GetFollowing(string userId, [FromQuery]PagingModel pagingModel)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            string[] following = _followRepository.Following(userId);
-            if (following.Length == 0)
+            ServiceModel<string> following = _followRepository.Following(userId, pagingModel);
+            if (following.Items.Count() == 0)
                 return NotFound();
 
-            string[] currentUserFollowers = _followRepository.Following(UserId);
-            IEnumerable<User> followingUsers = _userRepository.GetByIds(following);
+            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, following.Items);
+            IEnumerable<User> followingUsers = _userRepository.FindByIds(following.Items);
 
-            List<FollowModel> follows = (from f in following
-                                         from u in followingUsers
-                                         where f == u.Id
-                                         select new FollowModel
-                                         {
-                                             UserId = u.Id,
-                                             IsFollowing = currentUserFollowers.Any(x => x == f),
-                                             FullName = u.FullName,
-                                             ProfilePicturePath = u.ProfilePicturePath,
-                                             UserName = u.UserName,
-                                         }).ToList();
+            return Ok(GetFollowServiceModel(following, currentUserFollowers, followingUsers, pagingModel));
+        }
 
-            // TODO: eğer kullanıcı tablosunda yoksa identity apiden olmayan kullanıcıları istemeli istemeli
+        /// <summary>
+        /// Parametreden gelen kullanıcının takip edenler
+        /// </summary>
+        /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
+        [HttpGet("{userId}/Followers")]
+        [ProducesResponseType(typeof(ServiceModel<FollowModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetFollowers(string userId, [FromQuery]PagingModel pagingModel)
+        {
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest();
 
-            //if (following.Count() != followingUsers.Count())
-            //{
-            //    // Kullanıcı tablosunsa olmayan kullanıcılar
-            //    string[] notFoundUsers = following.Where(p => !followingUsers.Any(x => x.Id == p)).ToArray();
-            //}
+            ServiceModel<string> followers = _followRepository.Followers(userId, pagingModel);
+            if (followers.Items.Count() == 0)
+                return NotFound();
 
-            return Ok(follows);
+            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, followers.Items);
+            IEnumerable<User> followingUsers = _userRepository.FindByIds(followers.Items);
+
+            return Ok(GetFollowServiceModel(followers, currentUserFollowers, followingUsers, pagingModel));
+        }
+
+        private ServiceModel<FollowModel> GetFollowServiceModel(ServiceModel<string> followers,
+                                                                IEnumerable<string> currentUserFollowers,
+                                                                IEnumerable<User> followingUsers,
+                                                                PagingModel pagingModel)
+        {
+            return new ServiceModel<FollowModel>
+            {
+                HasNextPage = followers.HasNextPage,
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+                Items = (from f in followers.Items
+                         from u in followingUsers
+                         where f == u.Id
+                         select new FollowModel
+                         {
+                             UserId = u.Id,
+                             IsFollowing = currentUserFollowers.Any(x => x == f),
+                             FullName = u.FullName,
+                             ProfilePicturePath = u.ProfilePicturePath,
+                             UserName = u.UserName,
+                         }).ToList()
+            };
         }
 
         #endregion Methods

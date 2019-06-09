@@ -1,8 +1,6 @@
-﻿using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ContestPark.Core.CosmosDb.Interfaces
@@ -13,27 +11,28 @@ namespace ContestPark.Core.CosmosDb.Interfaces
     /// <typeparam name="T">Generic entity</typeparam>
     public interface IDocumentDbRepository<TDocument> where TDocument : class, IDocument, new()
     {
-        Task Init();
-
-        IDocumentClient Client { get; }
-        Uri CollectionUri { get; }
-
         Task<int> CountAsync();
 
-        TDocument GetById(string id);
+        TDocument FindById(string id);
 
-        IEnumerable<TDocument> GetByIds(params string[] ids);
+        IEnumerable<TDocument> FindByIds(IEnumerable<string> ids);
 
-        Task<bool> InsertAsync(TDocument document);
+        Task<bool> AddAsync(TDocument document);
 
-        Task<bool> InsertAsync(IEnumerable<TDocument> documents);
+        Task<bool> AddRangeAsync(IEnumerable<TDocument> documents);
 
         Task<bool> UpdateAsync(TDocument document);
 
-        Task<bool> DeleteAsync(string id);
+        Task<bool> UpdateRangeAsync(IEnumerable<TDocument> entities);
 
-        IQueryable<T> Query<T>(string sqlExpression, FeedOptions feedOptions = null);
+        Task<bool> RemoveAsync(string id);
 
-        IQueryable<T> Query<T>(SqlQuerySpec querySpec, FeedOptions feedOptions = null);
+        IEnumerable<T> QueryMultipleAsync<T>(string sql, object parameters = null);
+
+        TDocument QuerySingleAsync(string sql, object parameters = null);
+
+        T QuerySingleAsync<T>(string sql, object parameters = null);
+
+        Task<bool> RemoveAsync(Expression<Func<TDocument, bool>> predicate);
     }
 }

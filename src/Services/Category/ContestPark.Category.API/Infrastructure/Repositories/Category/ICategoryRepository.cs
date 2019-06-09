@@ -7,8 +7,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 {
     public interface ICategoryRepository
     {
-        IDocumentDbRepository<Documents.Category> Repository { get; }
-
         ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel);
 
         ServiceModel<SubCategoryModel> GetFollowedSubCategories(string userId, Languages language, PagingModel pagingModel);

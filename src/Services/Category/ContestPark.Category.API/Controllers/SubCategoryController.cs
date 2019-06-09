@@ -149,7 +149,7 @@ namespace ContestPark.Category.API.Controllers
                 _openCategoryRepository.IsSubCategoryOpen(UserId, subCategoryId)))// veya kategorinin kilidi açık değilse
                 return BadRequest(CategoryResource.ToBeAbleToFollowThisCategoryYouNeedToUnlockIt);
 
-            bool isSuccess = await _followSubCategoryRepository.Repository.InsertAsync(new Infrastructure.Documents.FollowSubCategory
+            bool isSuccess = await _followSubCategoryRepository.AddAsync(new Infrastructure.Documents.FollowSubCategory
             {
                 SubCategoryId = subCategoryId,
                 UserId = UserId
@@ -270,7 +270,7 @@ namespace ContestPark.Category.API.Controllers
             if (isSubCategoryOpen)
                 return BadRequest(CategoryResource.ThisCategoryIsAlreadyUnlocked);
 
-            bool isSuccess = await _openCategoryRepository.Repository.InsertAsync(new OpenSubCategory
+            bool isSuccess = await _openCategoryRepository.AddAsync(new OpenSubCategory
             {
                 UserId = UserId,
                 SubCategoryId = subCategoryId

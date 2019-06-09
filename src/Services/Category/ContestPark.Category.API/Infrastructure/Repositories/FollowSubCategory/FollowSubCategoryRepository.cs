@@ -1,5 +1,4 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
-using Microsoft.Azure.Documents;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,20 +6,20 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 {
     public class FollowSubCategoryRepository : IFollowSubCategoryRepository
     {
+        #region Private variables
+
+        private readonly IDocumentDbRepository<Documents.FollowSubCategory> _followRepository;
+
+        #endregion Private variables
+
         #region Constructor
 
         public FollowSubCategoryRepository(IDocumentDbRepository<Documents.FollowSubCategory> repository)
         {
-            Repository = repository;
+            _followRepository = repository;
         }
 
         #endregion Constructor
-
-        #region Properties
-
-        public IDocumentDbRepository<Documents.FollowSubCategory> Repository { get; private set; }
-
-        #endregion Properties
 
         #region Methods
 
@@ -32,15 +31,11 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
         public bool IsSubCategoryFollowed(string userId, string subCategoryId)
         {
-            return Repository.Query<bool>(new SqlQuerySpec
+            return _followRepository.QuerySingleAsync<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
             {
-                QueryText = "SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.userId=@userId AND c.subCategoryId=@subCategoryId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@userId", userId),
-                    new SqlParameter("@subCategoryId", subCategoryId)
-                }
-            }).ToList().FirstOrDefault();
+                userId,
+                subCategoryId
+            });
         }
 
         /// <summary>
@@ -51,21 +46,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
         public Task<bool> DeleteAsync(string userId, string subCategoryId)
         {
-            string id = Repository.Query<string>(new SqlQuerySpec
-            {
-                QueryText = @"SELECT DISTINCT VALUE c.id FROM c
-                              WHERE c.subCategoryId=@subCategoryId AND c.userId=@userId",
-                Parameters = new SqlParameterCollection
-                {
-                    new SqlParameter("@userId", userId),
-                    new SqlParameter("@subCategoryId", subCategoryId)
-                }
-            }).AsEnumerable().SingleOrDefault();
-
-            if (string.IsNullOrEmpty(id))
-                return Task.FromResult(false);
-
-            return Repository.DeleteAsync(id);
+            return _followRepository.RemoveAsync(x => x.UserId == userId && x.SubCategoryId == subCategoryId);
         }
 
         /// <summary>
@@ -75,14 +56,15 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Takip edilen alt kategoriler</returns>
         public string[] FollowedSubCategoryIds(string userId)
         {
-            return Repository.Query<string>(new SqlQuerySpec
+            return _followRepository.QueryMultipleAsync<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
             {
-                QueryText = "SELECT DISTINCT VALUE c.subCategoryId FROM c where c.userId = @userId",
-                Parameters = new SqlParameterCollection
-                 {
-                     new SqlParameter("@userId", userId)
-                 }
+                userId
             }).ToArray();
+        }
+
+        public Task<bool> AddAsync(Documents.FollowSubCategory followSubCategory)
+        {
+            return _followRepository.AddAsync(followSubCategory);
         }
 
         #endregion Methods

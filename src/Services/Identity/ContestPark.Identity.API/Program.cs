@@ -50,10 +50,9 @@ namespace ContestPark.Identity.API
                         var env = services.GetService<IHostingEnvironment>();
                         var logger = services.GetService<ILogger<ApplicationDbContextSeed>>();
                         var settings = services.GetService<IOptions<IdentitySettings>>();
-                        IEventBus eventBus = services.GetService<IEventBus>();
 
                         new ApplicationDbContextSeed()
-                            .SeedAsync(context, env, eventBus, logger, settings)
+                            .SeedAsync(context, env, logger, settings)
                             .Wait();
                     })
                     .MigrateDatabase<ConfigurationDbContext>((context, services) =>

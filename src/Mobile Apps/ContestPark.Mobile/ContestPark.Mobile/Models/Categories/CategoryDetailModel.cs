@@ -68,7 +68,7 @@
             }
         }
 
-        public string SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
 
         /// <summary>
         /// Kategori açıklaması

@@ -1,26 +1,45 @@
 ﻿using ContestPark.Core.CosmosDb;
 using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using Cosmonaut;
+using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static partial class Startup
     {
+        private static CosmosStoreSettings cosmosStoreSettings = null;
+
         public static IServiceCollection AddCosmosDb(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton((_) =>
             {
-                return new DocumentDbConnection
+                JsonSerializerSettings serializerSettings = new JsonSerializerSettings
                 {
-                    CosmosDbAuthKeyOrResourceToken = configuration["CosmosDbAuthKeyOrResourceToken"],
-                    CosmosDbServiceEndpoint = configuration["CosmosDbServiceEndpoint"],
-                    CosmosDbDatabaseId = configuration["CosmosDbDatabaseId"]
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                    Converters = { new StringEnumConverter() }
+                };
+
+                return new CosmosStoreSettings(configuration["CosmosDbDatabaseId"],
+                                               configuration["CosmosDbServiceEndpoint"],
+                                               configuration["CosmosDbAuthKeyOrResourceToken"])
+                {
+                    JsonSerializerSettings = serializerSettings,
+                    ConnectionPolicy = new ConnectionPolicy
+                    {
+                        ConnectionMode = ConnectionMode.Direct,
+                        ConnectionProtocol = Protocol.Https,
+                    }
                 };
             });
 
-            services.AddSingleton<IDocumentDbInitializer, DocumentDbInitializer>();
             services.AddSingleton(typeof(IDocumentDbRepository<>), typeof(DocumentDbRepository<>));
+
+            services.AddSingleton(typeof(ICosmosStore<>), typeof(CosmosStore<>));
 
             return services;
         }

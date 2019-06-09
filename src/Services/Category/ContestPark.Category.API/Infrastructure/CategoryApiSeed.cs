@@ -1,4 +1,5 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
+using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Core.CosmosDb.Infrastructure;
 using ContestPark.Core.Enums;
@@ -209,6 +210,57 @@ namespace ContestPark.Category.API.Infrastructure
                         }
                     }
                 }
+
+                ISearchRepository searchRepository = Service.GetRequiredService<ISearchRepository>();
+                LoadUsers(searchRepository);
+            });
+        }
+
+        private void LoadUsers(ISearchRepository searchRepository)
+        {
+            searchRepository.Insert(new Search
+            {
+                SearchType = Model.SearchTypes.Player,
+                FullName = "Ali Aldemir",
+                UserId = "1111-1111-1111-1111",
+                Language = null,// index için null atadık
+                UserName = "witcherfearless",
+                PicturePath = "http://i.pravatar.cc/150?u=witcherfearless",
+                Id = "1111-1111-1111-1111",
+                Suggest = new Nest.CompletionField
+                {
+                    Input = new string[] { "witcherfearless", "Ali Aldemir" }
+                },
+            });
+
+            searchRepository.Insert(new Search
+            {
+                SearchType = Model.SearchTypes.Player,
+                FullName = "Demo",
+                UserId = "2222-2222-2222-2222",
+                Language = null,// index için null atadık
+                UserName = "demo",
+                PicturePath = "http://i.pravatar.cc/150?u=demo",
+                Id = "2222-2222-2222-2222",
+                Suggest = new Nest.CompletionField
+                {
+                    Input = new string[] { "demo", "Demo" }
+                },
+            });
+
+            searchRepository.Insert(new Search
+            {
+                SearchType = Model.SearchTypes.Player,
+                FullName = "Bot",
+                UserId = "3333-3333-3333-bot",
+                Language = null,// index için null atadık
+                UserName = "bot12345",
+                PicturePath = "http://i.pravatar.cc/150?u=bot",
+                Id = "3333-3333-3333-bot",
+                Suggest = new Nest.CompletionField
+                {
+                    Input = new string[] { "bot12345", "Bot" }
+                },
             });
         }
     }

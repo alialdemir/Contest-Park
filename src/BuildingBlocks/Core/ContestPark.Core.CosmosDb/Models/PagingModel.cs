@@ -1,4 +1,6 @@
-﻿namespace ContestPark.Core.CosmosDb.Models
+﻿using Newtonsoft.Json;
+
+namespace ContestPark.Core.CosmosDb.Models
 {
     public class PagingModel
     {
@@ -27,6 +29,18 @@
         public override string ToString()
         {
             return $"?{nameof(PageSize)}={PageSize}&{nameof(PageNumber)}={PageNumber}";
+        }
+
+        [JsonIgnore]
+        public int Offset
+        {
+            get
+            {
+                if (PageNumber == 1)
+                    return PageSize * (PageNumber - 1);
+
+                return (PageSize * (PageNumber - 1));
+            }
         }
     }
 }

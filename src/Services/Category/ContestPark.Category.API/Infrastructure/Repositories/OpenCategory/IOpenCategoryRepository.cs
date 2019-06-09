@@ -1,14 +1,14 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
-using ContestPark.Core.CosmosDb.Interfaces;
+using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
 {
     public interface IOpenCategoryRepository
     {
-        IDocumentDbRepository<OpenSubCategory> Repository { get; }
-
         string[] OpenSubCategoryIds(string userId);
 
         bool IsSubCategoryOpen(string userId, string subCategoryId);
+
+        Task<bool> AddAsync(OpenSubCategory openSubCategory);
     }
 }

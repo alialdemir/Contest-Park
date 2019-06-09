@@ -30,7 +30,7 @@ namespace ContestPark.Follow.API.IntegrationEvents.EventHandling
         {
             try
             {
-                bool isSuccess = await _userRepository.InsertAsync(new User
+                bool isSuccess = await _userRepository.AddAsync(new User
                 {
                     Id = @event.UserId,
                     FullName = @event.FullName,

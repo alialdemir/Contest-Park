@@ -69,7 +69,7 @@ namespace ContestPark.Mobile.Services.Category
                 Description = "Hava an happy day!",
                 IsSubCategoryFollowUpStatus = true,
                 Level = 33,
-                SubCategoryId = subCategoryId.ToString(),
+                SubCategoryId = subCategoryId,
                 SubCategoryName = "Football Players",
                 SubCategoryPicturePath = DefaultImages.DefaultLock,
             });
