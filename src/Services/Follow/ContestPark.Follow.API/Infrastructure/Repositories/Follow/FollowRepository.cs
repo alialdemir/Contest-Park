@@ -1,5 +1,7 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.CosmosDb.Extensions;
+using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Follow.API.Infrastructure.Documents;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +15,18 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
 
         private readonly ILogger<FollowRepository> _logger;
         private readonly IDocumentDbRepository<Documents.Follow> _followRepository;
+        private readonly IDocumentDbRepository<Documents.User> _userRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
         public FollowRepository(IDocumentDbRepository<Documents.Follow> followRepository,
+                                IDocumentDbRepository<Documents.User> userRepository,
                                 ILogger<FollowRepository> logger)
         {
             _followRepository = followRepository;
+            _userRepository = userRepository;
             _logger = logger;
         }
 
@@ -30,57 +35,17 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         #region Methods
 
         /// <summary>
-        /// Kullanıcıyı takip et
-        /// </summary>
-        /// <param name="followingUserId">Takip eden</param>
-        /// <param name="followedUserId">Takip edilen</param>
-        /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> FollowAsync(string followingUserId, string followedUserId)
-        {
-            if (followingUserId == followedUserId)
-                return false;
-
-            var following = await GetFollowIfNotExistsCreateAsync(followingUserId);
-            var followed = await GetFollowIfNotExistsCreateAsync(followedUserId);
-
-            bool isAddedSuccess = !following.Following.Any(userId => userId == followedUserId) && !followed.Followers.Any(userId => userId == followingUserId);
-            if (isAddedSuccess)
-            {
-                following.Following.Add(followedUserId);
-
-                followed.Followers.Add(followingUserId);
-
-                isAddedSuccess = await _followRepository.UpdateRangeAsync(new List<Documents.Follow>
-                {
-                    following,
-                    followed
-                });
-
-                if (!isAddedSuccess)
-                {
-                    _logger.LogCritical($@"CRITICAL ERROR: Takip etme sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
-                                            Lütfen kontrol edin followingUserId: {followingUserId} followedUserId:{followedUserId}");
-                    // TODO: following.Following içinden followedUserId sil
-                }
-            }
-
-            return isAddedSuccess;
-        }
-
-        /// <summary>
         /// Kullanıcıyı takip edenlerin listesini verir
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Takipçi listesi</returns>
-        public IEnumerable<string> Followers(string userId, PagingModel paging)
+        public ServiceModel<string> Followers(string userId, PagingModel paging)
         {
-            return _followRepository.QueryMultipleAsync<string>("SELECT value f  FROM c JOIN f IN c.Followers WHERE c.id=@userId OFFSET @pageNumber LIMIT @pageSize",
-                new
-                {
-                    userId,
-                    pageSize = paging.PageSize,
-                    pageNumber = paging.PageNumber - 1
-                });
+            string sql = "SELECT VALUE c.FollowUpUserId FROM c WHERE c.FollowedUserId=@userId";
+            return _followRepository.ToServiceModel<Documents.Follow, string>(sql, new
+            {
+                userId,
+            }, paging);
         }
 
         /// <summary>
@@ -88,15 +53,13 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Takip ettikleri</returns>
-        public IEnumerable<string> Following(string userId, PagingModel paging)
+        public ServiceModel<string> Following(string userId, PagingModel paging)
         {
-            return _followRepository.QueryMultipleAsync<string>("SELECT value f  FROM c JOIN f IN c.Following WHERE c.id=@userId OFFSET @pageNumber LIMIT @pageSize",
-                   new
-                   {
-                       userId,
-                       pageSize = paging.PageSize,
-                       pageNumber = paging.PageNumber - 1
-                   });
+            string sql = "SELECT VALUE c.FollowedUserId FROM c WHERE c.FollowUpUserId=@userId";
+            return _followRepository.ToServiceModel<Documents.Follow, string>(sql, new
+            {
+                userId,
+            }, paging);
         }
 
         /// <summary>
@@ -118,7 +81,7 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// <returns></returns>
         public IEnumerable<string> CheckFollowUpStatus(string followingUserId, IEnumerable<string> userIds)
         {
-            return _followRepository.QueryMultipleAsync<string>("SELECT value f FROM c JOIN f IN c.Following  WHERE c.id=@followingUserId AND ARRAY_CONTAINS(@userIds, f)",
+            return _followRepository.QueryMultipleAsync<string>("SELECT VALUE c.FollowedUserId FROM c WHERE c.FollowUpUserId=@followingUserId AND ARRAY_CONTAINS(@userIds, c.FollowedUserId)",
                      new
                      {
                          followingUserId,
@@ -127,54 +90,98 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         }
 
         /// <summary>
-        /// Takipten çıkar
+        /// Kullanıcıyı takip et
         /// </summary>
-        /// <param name="followingUserId">Takip eden</param>
+        /// <param name="followUpUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
-        /// <returns>Takip ediyorsa true etmiyorsa false</returns>
-        public async Task<bool> UnFollowAsync(string followingUserId, string followedUserId)
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> FollowAsync(string followUpUserId, string followedUserId)
         {
-            if (followingUserId == followedUserId)
+            if (followUpUserId == followedUserId)
                 return false;
 
-            var following = await GetFollowIfNotExistsCreateAsync(followingUserId);
-            var followed = await GetFollowIfNotExistsCreateAsync(followedUserId);
-
-            following.Following.Remove(followedUserId);
-
-            followed.Followers.Remove(followingUserId);
-
-            bool isSuccess = await _followRepository.UpdateRangeAsync(new List<Documents.Follow>
+            User followUpUser = _userRepository.FindById(followUpUserId);
+            User followedUser = _userRepository.FindById(followedUserId);
+            if (followUpUser == null || followedUser == null)
             {
-                following,
-                followed
+                _logger.LogCritical($"CRITICAL: Takip etmek istenilen kullanıcılardan biri user toplasında bulunamadı", followUpUser, followedUser);
+
+                return false;
+            }
+
+            Documents.Follow follow = new Documents.Follow
+            {
+                FollowedUserId = followedUserId,
+                FollowUpUserId = followUpUserId
+            };
+            bool isSuccess = await _followRepository.AddAsync(follow);
+            if (!isSuccess)
+            {
+                _logger.LogCritical($"Takip etme sırasında hata oluştu. followUpUserId: {followUpUserId} followedUserId: {followedUserId}");
+
+                return false;
+            }
+
+            followUpUser.FollowingCount += 1;
+            followedUser.FollowersCount += 1;
+
+            isSuccess = await _userRepository.UpdateRangeAsync(new List<User>
+            {
+                followUpUser,
+                followedUser
             });
 
             if (!isSuccess)
             {
-                _logger.LogCritical($@"CRITICAL ERROR: Takipten çıkarma sırasında ilk kullanıcıya kayıt eklendi fakat ikinci kullanıcıya followers listesine eklenemedi.
-                                            Lütfen kontrol edin followingUserId: {followingUserId} followedUserId:{followedUserId}");
-                // TODO: following.Following içinden followedUserId sil
+                // TODO: burada ya takipçi sayılarını güncellemek için event yollanabilir yada işlem geri alınmalı
             }
 
-            return isSuccess;
+            return true;
         }
 
         /// <summary>
-        /// user id ait kayıt varsa onu döndürür yoksa yenisini insert edip döndürür
+        /// Takipten çıkar
         /// </summary>
-        /// <param name="userId">Kullanıcı id</param>
-        /// <returns></returns>
-        private async Task<Documents.Follow> GetFollowIfNotExistsCreateAsync(string userId)
+        /// <param name="followUpUserId">Takip eden</param>
+        /// <param name="followedUserId">Takip edilen</param>
+        /// <returns>Takip ediyorsa true etmiyorsa false</returns>
+        public async Task<bool> UnFollowAsync(string followUpUserId, string followedUserId)
         {
-            var follow = _followRepository.FindById(userId);
-            if (follow == null)// İlk takip işleminde update yapabilmek için extradan bir insert atacak
+            if (followUpUserId == followedUserId)
+                return false;
+
+            User followUpUser = _userRepository.FindById(followUpUserId);
+            User followedUser = _userRepository.FindById(followedUserId);
+            if (followUpUser == null || followedUser == null)
             {
-                follow = new Documents.Follow { Id = userId };
-                await _followRepository.AddAsync(follow);
+                _logger.LogCritical($"CRITICAL: Takipten çıkarılmak istenilen kullanıcılardan biri user toplasında bulunamadı", followUpUser, followedUser);
+
+                return false;
             }
 
-            return follow;
+            bool isSuccess = await _followRepository.RemoveAsync(f => f.FollowedUserId == followedUserId && f.FollowUpUserId == followUpUserId);
+            if (!isSuccess)
+            {
+                _logger.LogCritical($"Takipten çıkarma sırasında hata oluştu. followUpUserId: {followUpUserId} followedUserId: {followedUserId}");
+
+                return false;
+            }
+
+            followUpUser.FollowingCount -= 1;
+            followedUser.FollowersCount -= 1;
+
+            isSuccess = await _userRepository.UpdateRangeAsync(new List<User>
+            {
+                followUpUser,
+                followedUser
+            });
+
+            if (!isSuccess)
+            {
+                // TODO: burada ya takipçi sayılarını güncellemek için event yollanabilir yada işlem geri alınmalı
+            }
+
+            return isSuccess;
         }
 
         #endregion Methods

@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Enums;
+﻿using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Enums;
 using ContestPark.Follow.API.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -24,13 +25,15 @@ namespace ContestPark.Follow.API.FunctionalTests
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                List<FollowModel> followers = JsonConvert.DeserializeObject<List<FollowModel>>(responseContent);
+                ServiceModel<FollowModel> followers = JsonConvert.DeserializeObject<ServiceModel<FollowModel>>(responseContent);
 
-                Assert.Single(followers);
+                Assert.Single(followers.Items);
 
-                Assert.Equal("Demo", followers.First().FullName);
-                Assert.True(followers.First().IsFollowing);
-                Assert.Equal("2222-2222-2222-2222", followers.First().UserId);
+                FollowModel firstItem = followers.Items.First();
+
+                Assert.Equal("Demo", firstItem.FullName);
+                Assert.True(firstItem.IsFollowing);
+                Assert.Equal("2222-2222-2222-2222", firstItem.UserId);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -46,14 +49,77 @@ namespace ContestPark.Follow.API.FunctionalTests
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                List<FollowModel> followers = JsonConvert.DeserializeObject<List<FollowModel>>(responseContent);
+                ServiceModel<FollowModel> following = JsonConvert.DeserializeObject<ServiceModel<FollowModel>>(responseContent);
 
-                Assert.Single(followers);
+                Assert.Single(following.Items);
 
-                Assert.Equal("Demo", followers.First().FullName);
-                Assert.True(followers.First().IsFollowing);
-                Assert.Equal("2222-2222-2222-2222", followers.First().UserId);
+                FollowModel firstItem = following.Items.First();
 
+                Assert.Equal("Demo", firstItem.FullName);
+                Assert.True(firstItem.IsFollowing);
+                Assert.Equal("2222-2222-2222-2222", firstItem.UserId);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(2)]
+        [InlineData(1, 1)]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        public async Task Get_paging_following_and_response_ok_status_code(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetFollowing("2222-2222-2222-2222", true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<FollowModel> following = JsonConvert.DeserializeObject<ServiceModel<FollowModel>>(responseContent);
+
+                Assert.Equal(pageNumber, following.PageNumber);
+                Assert.Equal(pageSize, following.PageSize);
+                Assert.Equal(pageSize, following.Items.Count());
+                if (pageSize == 1 && pageNumber == 1)
+                {
+                    Assert.True(following.HasNextPage);
+                }
+                else if (pageNumber == 2)
+                {
+                    Assert.False(following.HasNextPage);
+                }
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(2)]
+        [InlineData(1, 1)]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        public async Task Get_paging_followers_and_response_ok_status_code(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetFollowers("2222-2222-2222-2222", true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<FollowModel> followers = JsonConvert.DeserializeObject<ServiceModel<FollowModel>>(responseContent);
+
+                Assert.Equal(pageNumber, followers.PageNumber);
+                Assert.Equal(pageSize, followers.PageSize);
+                Assert.Equal(pageSize, followers.Items.Count());
+                if (pageSize == 1 && pageNumber == 1)
+                {
+                    Assert.True(followers.HasNextPage);
+                }
+                else if (pageNumber == 2)
+                {
+                    Assert.False(followers.HasNextPage);
+                }
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
         }

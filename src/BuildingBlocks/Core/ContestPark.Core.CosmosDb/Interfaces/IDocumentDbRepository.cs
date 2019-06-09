@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ContestPark.Core.CosmosDb.Interfaces
@@ -24,12 +25,14 @@ namespace ContestPark.Core.CosmosDb.Interfaces
 
         Task<bool> UpdateRangeAsync(IEnumerable<TDocument> entities);
 
-        Task<bool> DeleteAsync(string id);
+        Task<bool> RemoveAsync(string id);
 
         IEnumerable<T> QueryMultipleAsync<T>(string sql, object parameters = null);
 
         TDocument QuerySingleAsync(string sql, object parameters = null);
 
         T QuerySingleAsync<T>(string sql, object parameters = null);
+
+        Task<bool> RemoveAsync(Expression<Func<TDocument, bool>> predicate);
     }
 }

@@ -52,9 +52,6 @@ namespace ContestPark.Follow.API.Controllers
             if (_followRepository.CheckFollowUpStatus(UserId, followedUserId))
                 return BadRequest(FollowResource.YouAreAlreadyFollowingThisUser);
 
-            // TODO: notification
-            // TODO: post
-
             bool isSuccess = await _followRepository.FollowAsync(UserId, followedUserId);
             if (!isSuccess)
                 return BadRequest();
@@ -89,41 +86,21 @@ namespace ContestPark.Follow.API.Controllers
         /// </summary>
         /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
         [HttpGet("{userId}/Following")]
-        [ProducesResponseType(typeof(List<FollowModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ServiceModel<FollowModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetFollowing(string userId, [FromQuery]PagingModel pagingModel)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            IEnumerable<string> following = _followRepository.Following(userId, pagingModel);
-            if (following.Count() == 0)
+            ServiceModel<string> following = _followRepository.Following(userId, pagingModel);
+            if (following.Items.Count() == 0)
                 return NotFound();
 
-            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, following);
-            IEnumerable<User> followingUsers = _userRepository.FindByIds(following);
+            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, following.Items);
+            IEnumerable<User> followingUsers = _userRepository.FindByIds(following.Items);
 
-            List<FollowModel> follows = (from f in following
-                                         from u in followingUsers
-                                         where f == u.Id
-                                         select new FollowModel
-                                         {
-                                             UserId = u.Id,
-                                             IsFollowing = currentUserFollowers.Any(x => x == f),
-                                             FullName = u.FullName,
-                                             ProfilePicturePath = u.ProfilePicturePath,
-                                             UserName = u.UserName,
-                                         }).ToList();
-
-            // TODO: eğer kullanıcı tablosunda yoksa identity apiden olmayan kullanıcıları istemeli istemeli
-
-            //if (following.Count() != followingUsers.Count())
-            //{
-            //    // Kullanıcı tablosunsa olmayan kullanıcılar
-            //    string[] notFoundUsers = following.Where(p => !followingUsers.Any(x => x.Id == p)).ToArray();
-            //}
-
-            return Ok(follows);
+            return Ok(GetFollowServiceModel(following, currentUserFollowers, followingUsers, pagingModel));
         }
 
         /// <summary>
@@ -131,41 +108,45 @@ namespace ContestPark.Follow.API.Controllers
         /// </summary>
         /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>
         [HttpGet("{userId}/Followers")]
-        [ProducesResponseType(typeof(List<FollowModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ServiceModel<FollowModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetFollowers(string userId, [FromQuery]PagingModel pagingModel)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            IEnumerable<string> followers = _followRepository.Followers(userId, pagingModel);
-            if (followers.Count() == 0)
+            ServiceModel<string> followers = _followRepository.Followers(userId, pagingModel);
+            if (followers.Items.Count() == 0)
                 return NotFound();
 
-            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, followers);
-            IEnumerable<User> followingUsers = _userRepository.FindByIds(followers);
+            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, followers.Items);
+            IEnumerable<User> followingUsers = _userRepository.FindByIds(followers.Items);
 
-            List<FollowModel> follows = (from f in followers
-                                         from u in followingUsers
-                                         where f == u.Id
-                                         select new FollowModel
-                                         {
-                                             UserId = u.Id,
-                                             IsFollowing = currentUserFollowers.Any(x => x == f),
-                                             FullName = u.FullName,
-                                             ProfilePicturePath = u.ProfilePicturePath,
-                                             UserName = u.UserName,
-                                         }).ToList();
+            return Ok(GetFollowServiceModel(followers, currentUserFollowers, followingUsers, pagingModel));
+        }
 
-            // TODO: eğer kullanıcı tablosunda yoksa identity apiden olmayan kullanıcıları istemeli istemeli
-
-            //if (following.Count() != followingUsers.Count())
-            //{
-            //    // Kullanıcı tablosunsa olmayan kullanıcılar
-            //    string[] notFoundUsers = following.Where(p => !followingUsers.Any(x => x.Id == p)).ToArray();
-            //}
-
-            return Ok(follows);
+        private ServiceModel<FollowModel> GetFollowServiceModel(ServiceModel<string> followers,
+                                                                IEnumerable<string> currentUserFollowers,
+                                                                IEnumerable<User> followingUsers,
+                                                                PagingModel pagingModel)
+        {
+            return new ServiceModel<FollowModel>
+            {
+                HasNextPage = followers.HasNextPage,
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+                Items = (from f in followers.Items
+                         from u in followingUsers
+                         where f == u.Id
+                         select new FollowModel
+                         {
+                             UserId = u.Id,
+                             IsFollowing = currentUserFollowers.Any(x => x == f),
+                             FullName = u.FullName,
+                             ProfilePicturePath = u.ProfilePicturePath,
+                             UserName = u.UserName,
+                         }).ToList()
+            };
         }
 
         #endregion Methods

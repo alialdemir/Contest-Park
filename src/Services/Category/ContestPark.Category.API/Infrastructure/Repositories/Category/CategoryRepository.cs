@@ -74,7 +74,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                 Items = categories,
                 PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
-                Count = categories.Count()
             };
         }
 
@@ -174,8 +173,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                 followedSubCategories,
                 languageId = language.ToString()
             });
-
-            serviceModel.Count = serviceModel.Items.Count();
 
             return serviceModel;
         }

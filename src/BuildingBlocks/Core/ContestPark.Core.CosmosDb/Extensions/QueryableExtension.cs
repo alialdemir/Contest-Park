@@ -1,18 +1,37 @@
-﻿using ContestPark.Core.CosmosDb.Models;
-using Microsoft.Azure.Documents;
-using System;
+﻿using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
 using System.Linq;
 
 namespace ContestPark.Core.CosmosDb.Extensions
 {
     public static class QueryableExtension
     {
-        public static long PageNumberCalculate(PagingModel paging)
+        public static ServiceModel<TResult> ToServiceModel<TDocument, TResult>(this IDocumentDbRepository<TDocument> dbRepository, string sql, object parameters, PagingModel paging) where TDocument : class, IDocument, new()
         {
-            return paging.PageSize * (paging.PageNumber - 1);
+            // Query olduğu gibi çalıştırıldı
+            IEnumerable<TResult> items = dbRepository.QueryMultipleAsync<TResult>($"{sql} OFFSET {paging.Offset} LIMIT {paging.PageSize}", parameters);
+
+            ServiceModel<TResult> serviceModel = new ServiceModel<TResult>
+            {
+                Items = items,
+                PageNumber = paging.PageNumber,
+                PageSize = paging.PageSize,
+            };
+
+            if (items == null || items.Count() == 0)// Kayıt sayısı 0 ise sonraki sayfa var mı kontrol etmeye gerek yok
+                return serviceModel;
+
+            int whereQueryIndex = sql.ToLowerInvariant().IndexOf("where");// where kısmının indexi alındı
+            string whereQuery = "";
+            if (whereQueryIndex != -1)// where koşulu varsa
+            {
+                whereQuery = sql.Substring(whereQueryIndex + 5);// koşul kısmından sonrası alındı
+            }
+
+            serviceModel.HasNextPage = dbRepository.QuerySingleAsync<bool>($"SELECT VALUE ({paging.PageSize} * ({paging.Offset} + 1)) < COUNT(c.id) FROM c WHERE {whereQuery}", parameters);// sonraki sayfa var mı kontrolü yapıldı
+
+            return serviceModel;
         }
     }
 }

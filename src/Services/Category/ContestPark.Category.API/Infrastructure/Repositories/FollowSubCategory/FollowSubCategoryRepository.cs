@@ -46,16 +46,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
         public Task<bool> DeleteAsync(string userId, string subCategoryId)
         {
-            string id = _followRepository.QuerySingleAsync<string>("SELECT DISTINCT VALUE c.id FROM c WHERE c.SubCategoryId=@subCategoryId AND c.UserId=@userId", new
-            {
-                userId,
-                subCategoryId
-            });
-
-            if (string.IsNullOrEmpty(id))
-                return Task.FromResult(false);
-
-            return _followRepository.DeleteAsync(id);
+            return _followRepository.RemoveAsync(x => x.UserId == userId && x.SubCategoryId == subCategoryId);
         }
 
         /// <summary>

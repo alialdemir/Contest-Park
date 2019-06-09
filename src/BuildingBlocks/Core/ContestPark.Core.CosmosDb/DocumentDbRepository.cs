@@ -1,9 +1,11 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
 using Cosmonaut;
+using Cosmonaut.Extensions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ContestPark.Core.CosmosDb
@@ -44,7 +46,7 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="id">document id</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> DeleteAsync(string id)
+        public async Task<bool> RemoveAsync(string id)
         {
             try
             {
@@ -199,6 +201,22 @@ namespace ContestPark.Core.CosmosDb
         public IEnumerable<T> QueryMultipleAsync<T>(string sql, object parameters = null)
         {
             return _cosmosStore.QueryMultipleAsync<T>(sql, parameters).Result;
+        }
+
+        public async Task<bool> RemoveAsync(Expression<Func<TDocument, bool>> predicate)
+        {
+            try
+            {
+                var result = await _cosmosStore.RemoveAsync(predicate);
+
+                return result.IsSuccess;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Documents silme hatası oluştu. Collection Name: {_cosmosStore.CollectionName}", ex);
+
+                return false;
+            }
         }
 
         #endregion Methods

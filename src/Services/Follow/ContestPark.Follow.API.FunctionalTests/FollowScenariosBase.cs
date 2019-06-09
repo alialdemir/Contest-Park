@@ -49,9 +49,6 @@ namespace ContestPark.Follow.API.FunctionalTests
 
         public static class Entpoints
         {
-            private const int PageSize = 4;
-            private const int PageNumber = 1;
-
             public static string Post(string followedUserId)
             {
                 return "api/v1/follow/" + followedUserId;
@@ -62,26 +59,26 @@ namespace ContestPark.Follow.API.FunctionalTests
                 return "api/v1/follow/" + followedUserId;
             }
 
-            public static string GetFollowing(string userId, bool paginated = false)
+            public static string GetFollowing(string userId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
             {
                 return paginated
-                    ? $"api/v1/follow/{userId}/Following" + Paginated()
+                    ? $"api/v1/follow/{userId}/Following" + Paginated(pageSize, pageNumber)
                     : $"api/v1/follow/{userId}/Following";
             }
 
-            public static string GetFollowers(string userId, bool paginated = false)
+            public static string GetFollowers(string userId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
             {
                 return paginated
-                    ? $"api/v1/follow/{userId}/Followers" + Paginated()
+                    ? $"api/v1/follow/{userId}/Followers" + Paginated(pageSize, pageNumber)
                     : $"api/v1/follow/{userId}/Followers";
             }
 
-            private static string Paginated()
+            private static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel
                 {
-                    PageSize = PageSize,
-                    PageNumber = PageNumber
+                    PageSize = pageSize,
+                    PageNumber = pageNumber
                 }.ToString();
             }
         }
