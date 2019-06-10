@@ -5,9 +5,11 @@ using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace ContestPark.Category.API.FunctionalTests
 {
+    [Collection("Database remove")]
     public class CategoryScenariosBase : ScenariosBase<CategoryTestStartup>
     {
         public override void Seed(IWebHost host)
@@ -25,6 +27,27 @@ namespace ContestPark.Category.API.FunctionalTests
 
         public static class Entpoints
         {
+            public static string Get(bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/subcategory" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/subcategory";
+            }
+
+            public static string GetFollowedSubCategories(bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Subcategory/Followed" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Subcategory/Followed";
+            }
+
+            public static string GetSearchFollowedSubCategories(string searchText, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Search/Followed" + Paginated(pageSize, pageNumber) + "&q=" + searchText
+                    : $"api/v1/Search/Followed?q=" + searchText;
+            }
+
             public static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

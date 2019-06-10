@@ -8,13 +8,12 @@ using Xunit;
 
 namespace ContestPark.Core.FunctionalTests
 {
-    [Collection("Database remove")]
     [TestCaseOrderer("ContestPark.Core.FunctionalTests.TestCaseOrdering.PriorityOrderer", "ContestPark.Core.FunctionalTests")]
     public class ScenariosBase<TStartup> where TStartup : class
     {
         public TestServer CreateServer()
         {
-            var path = Assembly.GetAssembly(typeof(TStartup))
+            var path = Assembly.GetAssembly(typeof(ScenariosBase<TStartup>))
               .Location;
 
             var hostBuilder = new WebHostBuilder()

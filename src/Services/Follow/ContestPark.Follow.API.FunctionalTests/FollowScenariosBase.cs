@@ -3,9 +3,11 @@ using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.FunctionalTests;
 using ContestPark.Follow.API.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Xunit;
 
 namespace ContestPark.Follow.API.FunctionalTests
 {
+    [Collection("Database remove")]
     public class FollowScenariosBase : ScenariosBase<FollowTestStartup>
     {
         public override void Seed(IWebHost host)

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.FunctionalTests;
 using ContestPark.Follow.API.Models;
 using Newtonsoft.Json;
 using System.Linq;
@@ -136,17 +137,16 @@ namespace ContestPark.Follow.API.FunctionalTests
         [Theory, TestPriority(6)]
         [InlineData("en-US", "You are not following this user.")]
         [InlineData("tr-TR", "Bu kullanıcıyı takip etmiyorsunuz.")]
+        [InlineData("fakelangoagecode", "You are not following this user.")]
         public async Task Delete_follow_and_response_badrequest_status_code_and_error_message(string langCode, string assetMessage)
         {
             using (var server = CreateServer())
             {
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, Entpoints.Post("fake-userid"));
 
-                var httpClient = server.CreateClient();
-
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(langCode));
-
-                var response = await httpClient.SendAsync(httpRequestMessage);
+                var response = await server.CreateClient()
+                    .AddLangCode(langCode)
+                    .SendAsync(httpRequestMessage);
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -190,15 +190,15 @@ namespace ContestPark.Follow.API.FunctionalTests
         [Theory, TestPriority(7)]
         [InlineData("en-US", "You are already following this user.")]
         [InlineData("tr-TR", "Bu kullanıcıyı zaten takip ediyorsunuz.")]
+        [InlineData("fakelangoagecode", "You are already following this user.")]
         public async Task Post_follow_and_response_badrequest_status_code_and_error_message(string langCode, string assetMessage)
         {
             using (var server = CreateServer())
             {
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, Entpoints.Post("2222-2222-2222-2222"));
 
-                var httpClient = server.CreateClient();
-
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(langCode));
+                var httpClient = server.CreateClient()
+                                    .AddLangCode(langCode);
 
                 var response = await httpClient.SendAsync(httpRequestMessage);
 

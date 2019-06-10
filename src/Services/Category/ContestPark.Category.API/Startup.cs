@@ -72,7 +72,7 @@ namespace ContestPark.Category.API
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
             services.AddTransient<NewSubCategoryAddedIntegrationEventHandler>();
 
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             var container = new ContainerBuilder();
             container.Populate(services);

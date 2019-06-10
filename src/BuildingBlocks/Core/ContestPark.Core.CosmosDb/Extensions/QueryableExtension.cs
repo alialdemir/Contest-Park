@@ -33,5 +33,12 @@ namespace ContestPark.Core.CosmosDb.Extensions
 
             return serviceModel;
         }
+
+        public static IEnumerable<TSource> ToPaging<TSource>(this IEnumerable<TSource> enumerable, PagingModel pagingModel)
+        {
+            return enumerable
+                .Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1))
+                .Take(pagingModel.PageSize);
+        }
     }
 }

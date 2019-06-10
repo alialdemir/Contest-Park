@@ -6,13 +6,12 @@ using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Core.CosmosDb.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using static ContestPark.Category.API.Infrastructure.Repositories.Search.SearchRepository;
 
 namespace ContestPark.Category.API.Controllers
 {
@@ -23,7 +22,6 @@ namespace ContestPark.Category.API.Controllers
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly ISearchRepository _searchRepository;
 
         #endregion Private Variables
 
@@ -32,13 +30,11 @@ namespace ContestPark.Category.API.Controllers
         public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
                                      IOpenCategoryRepository openCategoryRepository,
                                      ICategoryRepository categoryRepository,
-                                     ISearchRepository searchRepository,
                                      ILogger<SubCategoryController> logger) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
-            _searchRepository = searchRepository ?? throw new ArgumentNullException(nameof(searchRepository));
         }
 
         #endregion Constructor
@@ -49,15 +45,20 @@ namespace ContestPark.Category.API.Controllers
         /// Kategorileri listeleme
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
+        /// <param name="pagingModel">Hem kategorileri hemde alt kategorileri sayfalar</param>
         [HttpGet]
         [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult Get([FromQuery]PagingModel pagingModel)
         {
-            ServiceModel<CategoryModel> catgories = _categoryRepository.GetCategories(UserId, CurrentUserLanguage, pagingModel);
-            if (catgories == null)
+            ServiceModel<CategoryModel> catgories = _categoryRepository.GetCategories(UserId,
+                                                                                      CurrentUserLanguage,
+                                                                                      pagingModel);
+
+            if (catgories == null || catgories.Items == null || catgories.Items.Count() == 0)
             {
-                Logger.LogCritical($"{nameof(catgories)} list returned empty.", catgories);
+                Logger.LogCritical($"{nameof(catgories)} list returned empty.");
+
                 return NotFound();
             }
 
@@ -69,64 +70,22 @@ namespace ContestPark.Category.API.Controllers
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
         [HttpGet("Followed")]
-        [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ServiceModel<SubCategoryModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult FollowedSubCategories([FromQuery]PagingModel pagingModel)
         {
-            ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId, CurrentUserLanguage, pagingModel);
-            if (followedSubCategories == null)
+            ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
+                                                                                                                CurrentUserLanguage,
+                                                                                                                pagingModel);
+
+            if (followedSubCategories == null || followedSubCategories.Items == null || followedSubCategories.Items.Count() == 0)
             {
-                Logger.LogWarning($"{nameof(followedSubCategories)} list returned empty.", followedSubCategories);
+                Logger.LogInformation($"{nameof(followedSubCategories)} list returned empty.");
 
                 return NotFound();
             }
 
             return Ok(followedSubCategories);
-        }
-
-        /// <summary>
-        /// Takip ettiğin alt kategoriler
-        /// </summary>
-        /// <returns>Tüm kategorileri döndürür.</returns>
-        [HttpGet("Followed/search")]
-        [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> FollowedSubCategories([FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
-        {
-            ServiceModel<SearchModel> followedSearchSubCategories = await _searchRepository.SearchFollowedSubCategoriesAsync(searchText, UserId, CurrentUserLanguage, pagingModel);
-            if (followedSearchSubCategories == null)
-            {
-                Logger.LogWarning($"{nameof(followedSearchSubCategories)} list returned empty.", followedSearchSubCategories);
-
-                return NotFound();
-            }
-
-            return Ok(followedSearchSubCategories);
-        }
-
-        /// <summary>
-        /// Kategori arama
-        /// </summary>
-        /// <returns>Tüm kategorileri döndürür.</returns>
-        [HttpGet("search/{categoryId?}")]
-        [AllowAnonymous]
-        [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SearchAsync(string categoryId, [FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
-        {
-            ServiceModel<SearchModel> searchCategories = await _searchRepository.DynamicSearchAsync(searchText,
-                                                                                                    CurrentUserLanguage,
-                                                                                                    pagingModel,
-                                                                                                    SearchFilters.CategoryId,
-                                                                                                    categoryId);
-            if (searchCategories == null)
-            {
-                Logger.LogWarning($"{nameof(searchCategories)} list returned empty.", searchCategories);
-
-                return NotFound();
-            }
-
-            return Ok(searchCategories);
         }
 
         /// <summary>
@@ -149,7 +108,7 @@ namespace ContestPark.Category.API.Controllers
                 _openCategoryRepository.IsSubCategoryOpen(UserId, subCategoryId)))// veya kategorinin kilidi açık değilse
                 return BadRequest(CategoryResource.ToBeAbleToFollowThisCategoryYouNeedToUnlockIt);
 
-            bool isSuccess = await _followSubCategoryRepository.AddAsync(new Infrastructure.Documents.FollowSubCategory
+            bool isSuccess = await _followSubCategoryRepository.AddAsync(new FollowSubCategory
             {
                 SubCategoryId = subCategoryId,
                 UserId = UserId
@@ -269,6 +228,8 @@ namespace ContestPark.Category.API.Controllers
             bool isSubCategoryOpen = _openCategoryRepository.IsSubCategoryOpen(UserId, subCategoryId);
             if (isSubCategoryOpen)
                 return BadRequest(CategoryResource.ThisCategoryIsAlreadyUnlocked);
+
+            // TODO: check altın miktarı yeterli mi
 
             bool isSuccess = await _openCategoryRepository.AddAsync(new OpenSubCategory
             {

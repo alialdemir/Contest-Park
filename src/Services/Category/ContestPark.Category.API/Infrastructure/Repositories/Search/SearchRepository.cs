@@ -125,7 +125,14 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 return serviceModel;
             }
 
-            return await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories);
+            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories);
+            searchFollowedCategories.Items.ToList().ForEach(sc =>// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
+            {
+                sc.DisplayPrice = string.Empty;
+                sc.Price = 0;
+            });
+
+            return searchFollowedCategories;
         }
 
         /// <summary>
