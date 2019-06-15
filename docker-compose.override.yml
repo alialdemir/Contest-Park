@@ -24,6 +24,7 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
+      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
     ports:
       - "5103:80"
     volumes:
@@ -43,6 +44,7 @@ services:
       - CosmosDbDatabaseId=ContestPark.Category
       - ElasticSearchURI=http://elasticsearch:9200
       - ElasticSearchIndexName=categorysearch
+      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
     ports:
       - "5101:80"
     volumes:
@@ -60,6 +62,7 @@ services:
       - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Follow
+      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
     ports:
       - "5102:80"
     volumes:

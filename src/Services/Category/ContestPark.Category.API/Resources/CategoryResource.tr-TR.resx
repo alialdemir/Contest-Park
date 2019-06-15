@@ -129,4 +129,10 @@
   <data name="YouAreAlreadyFollowingThisCategory" xml:space="preserve">
     <value>Bu kategoriyi zaten takip ediyorsunuz.</value>
   </data>
+  <data name="YouCanNotUnlockTheFreeCategory" xml:space="preserve">
+    <value>Ücretsiz bir kategorinin kilidini açamazsınız.</value>
+  </data>
+  <data name="YouMustFollowThisCategoryToDeactivateTheCategory" xml:space="preserve">
+    <value>Kategoriyi takipten çıkarmak için bu kategoriyi takip etmelisiniz.</value>
+  </data>
 </root>

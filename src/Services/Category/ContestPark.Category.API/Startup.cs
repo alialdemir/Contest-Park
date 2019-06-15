@@ -37,6 +37,7 @@ namespace ContestPark.Category.API
 
             services.AddAuth(Configuration)
                     .AddCosmosDb(Configuration)
+                    .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(CategoryResource).Name)
@@ -72,7 +73,7 @@ namespace ContestPark.Category.API
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
             services.AddTransient<NewSubCategoryAddedIntegrationEventHandler>();
 
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -95,12 +96,19 @@ namespace ContestPark.Category.API
             }
 
             app.UseExceptionHandlerConfigure()
-               .AddCors()
-               .UseAuth()
-               .UseRequestLocalizationCustom()
+               .AddCors();
+
+            ConfigureAuth(app);
+
+            app.UseRequestLocalizationCustom()
                .UseMvc();
 
             ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureAuth(IApplicationBuilder app)
+        {
+            app.UseAuth();
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)

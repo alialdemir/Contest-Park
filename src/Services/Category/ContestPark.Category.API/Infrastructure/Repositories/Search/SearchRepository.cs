@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
+using ContestPark.Category.API.Extensions;
 using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Model;
-using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
         #region Methods
 
-        public void CreateCategoryIndex()
+        public void CreateSearchIndexs()
         {
             string indexNameCategoryTurkish = GetIndexName(SearchTypes.Category, Languages.English);
             string indexNameEnglish = GetIndexName(SearchTypes.Category, Languages.Turkish);
@@ -51,6 +52,17 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             _elasticContext.CreateIndex<Documents.Search>(indexNameCategoryTurkish, aliasName);
             _elasticContext.CreateIndex<Documents.Search>(indexNameEnglish, aliasName);
             _elasticContext.CreateIndex<Documents.Search>(indexNamePlayer, aliasName);
+        }
+
+        public void DeleteSearchIndexs()
+        {
+            string indexNameCategoryTurkish = GetIndexName(SearchTypes.Category, Languages.English);
+            string indexNameEnglish = GetIndexName(SearchTypes.Category, Languages.Turkish);
+            string indexNamePlayer = GetIndexName(SearchTypes.Player, null);
+
+            _elasticContext.DeleteIndex(indexNameCategoryTurkish);
+            _elasticContext.DeleteIndex(indexNameEnglish);
+            _elasticContext.DeleteIndex(indexNamePlayer);
         }
 
         public void Insert(Documents.Search searchModel)
@@ -125,7 +137,14 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 return serviceModel;
             }
 
-            return await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories);
+            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories);
+            searchFollowedCategories.Items.ToList().ForEach(sc =>// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
+            {
+                sc.DisplayPrice = string.Empty;
+                sc.Price = 0;
+            });
+
+            return searchFollowedCategories;
         }
 
         /// <summary>
@@ -161,22 +180,22 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             {
                 var elasticSearchBuilder = new ElasticSearchBuilder(indexName, _elasticContext)
                                                                             .SetSize(pagingModel.PageSize)
-                                                                            .SetFrom(pagingModel.PageNumber - 1);
+                                                                            .SetFrom(pagingModel.PageSize * (pagingModel.PageNumber - 1));
                 if (isFilterIdNull)
                 {
-                    elasticSearchBuilder.AddFilter<Documents.Search>(searchFilters.ToString(), filterIds);
+                    elasticSearchBuilder.AddFilter<Documents.Search>(searchFilters.GetDisplayName(), filterIds);
                 }
 
                 searchResponse = elasticSearchBuilder.Build()
-                                                        .Execute<Documents.Search>();
+                                                    .Execute<Documents.Search>();
             }
             else
             {
                 // Elasticsearch Suggest yaparken filtre koyamadığımız için burada gelen auto complate içinden sadece takip ettiği kategorileri filtreliyoruz
-                searchResponse = (await _elasticContext.SearchAsync<Documents.Search>(indexName, searchText))
+                searchResponse = (await _elasticContext.SearchAsync<Documents.Search>(indexName, searchText, pagingModel))
                                                                     .Where(search =>
                                                                     // eğer filterIds yoksa tüm alt kategorileri listelesin
-                                                                    filterIds.Length == 0
+                                                                    !isFilterIdNull
                                                                     ||
                                                                     // kategori aramadan geliyorsa CategoryId göre filtreledik alt kategori arama yapıyorsa SubCategoryId göre filtreledik
                                                                     filterIds.Contains(searchFilters == SearchFilters.SubCategoryId ? search.SubCategoryId : search.CategoryId)
@@ -188,21 +207,10 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 // Filtrenmiş hali ile kaç tane kaldığı sayısını ekledik
                 //    serviceModel.HasNextPage = searchResponse.HasNextPage(searchResponse.Count(), pagingModel);
 
-                // Paing için skip take yaptık
-                searchResponse = searchResponse.Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1))
-                                               .Take(pagingModel.PageSize)
-                                               .AsEnumerable();
-
                 serviceModel.Items = _mapper.Map<List<SearchModel>>(searchResponse);
             }
 
             return serviceModel;
-        }
-
-        public enum SearchFilters
-        {
-            SubCategoryId,
-            CategoryId
         }
 
         #endregion Methods

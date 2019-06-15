@@ -1,6 +1,7 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Model;
+using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
@@ -9,7 +10,7 @@ using System.Linq;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 {
-    public class CategoryRepository : ICategoryRepository
+    public partial class CategoryRepository : ICategoryRepository
     {
         #region Private Variables
 
@@ -40,7 +41,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="language">Dil</param>
-        /// <param name="pagingModel">Sayfalama</param>
+        /// <param name="pagingModel">Hem kategorileri hemde alt kategorileri sayfalar</param>
         /// <returns>Kategori ve alt kategorileri döndürür</returns>
         public ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel)
         {
@@ -69,11 +70,19 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                 language
             });
 
+            // TODO: Tam bu noktada kullanıcı id göre cache alınmalı bir sonraki geldiğinde cachdeki data üzerinden sayfalama yapmalı
+
+            categories.ToList().ForEach(c =>
+            {
+                c.SubCategories = c.SubCategories.Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1)).Take(pagingModel.PageSize).ToList();
+            });
+
             return new ServiceModel<CategoryModel>
             {
-                Items = categories,
+                Items = categories.Skip(pagingModel.PageSize * (pagingModel.PageNumber - 1)).Take(pagingModel.PageSize),// cosmos db queryde offset limit kullanmama izin vermediği için buradan filtreledik
                 PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
+                HasNextPage = (pagingModel.PageSize * (pagingModel.Offset + 1)) < categories.Count()
             };
         }
 
@@ -149,13 +158,16 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                 PageSize = pagingModel.PageSize,
             };
 
-            string[] followedSubCategories = _followSubCategoryRepository.FollowedSubCategoryIds(userId);
+            string[] followedSubCategories = _followSubCategoryRepository
+                                                            .FollowedSubCategoryIds(userId)
+                                                            .ToPaging(pagingModel)
+                                                            .ToArray();
             if (followedSubCategories.Length == 0)
             {
                 return serviceModel;
             }
 
-            string sql = @"SELECT DISTINCT VALUE
+            string sql = @"SELECT DISTINCT
                            ARRAY(SELECT DISTINCT VALUE {
                                 subCategoryId: sc.id,
                                 picturePath: sc.PicturePath,
@@ -164,15 +176,19 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                                 displayOrder: sc.DisplayOrder,
                                 subCategoryName: scl.SubCategoryName
                              }  FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLangs WHERE sc.Visibility=true AND scl.LanguageId=@languageId AND ARRAY_CONTAINS(@followedSubCategories,  sc.id, true))
+                             AS  SubCategories
                            FROM c
                            JOIN cl IN c.CategoryLangs
                            WHERE c.Visibility=true AND cl.LanguageId=@languageId
                            ORDER BY c.DisplayOrder";
-            serviceModel.Items = _categoryRepository.QueryMultipleAsync<SubCategoryModel>(sql, new
+
+            // NOTE: queryden datayı alabilmek için FollowedSubCategoryModel model oluşturup onun içinden alt kategorileri alabildim
+
+            serviceModel.Items = _categoryRepository.QuerySingleAsync<FollowedSubCategoryModel>(sql, new
             {
                 followedSubCategories,
-                languageId = language.ToString()
-            });
+                languageId = (byte)language
+            })?.SubCategories;
 
             return serviceModel;
         }
@@ -198,7 +214,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             return _categoryRepository.QuerySingleAsync<SubCategoryDetailInfoModel>(sql, new
             {
                 subCategoryId,
-                language = language.ToString()
+                language = (byte)language
             });
         }
 

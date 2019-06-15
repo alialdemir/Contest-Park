@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace ContestPark.Follow.API.FunctionalTests
+namespace ContestPark.Category.API.FunctionalTests
 {
-    public class FollowTestStartup : Startup
+    public class CategoryTestStartup : Startup
     {
-        public FollowTestStartup(IConfiguration env) : base(env)
+        public CategoryTestStartup(IConfiguration env) : base(env)
         {
         }
 

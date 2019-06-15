@@ -4,7 +4,7 @@ using System.Linq;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace ContestPark.Follow.API.FunctionalTests.TestCaseOrdering
+namespace ContestPark.Core.FunctionalTests.TestCaseOrdering
 {
     public class PriorityOrderer : ITestCaseOrderer
     {

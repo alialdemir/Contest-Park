@@ -6,11 +6,17 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
 {
     public class ElasticSearchEngine : IElasticSearchEngine
     {
+        #region Private Variables
+
         private readonly string _indexName;
         private readonly int _size;
         private readonly int _from;
         private readonly IQueryContainer _queryContainer;
         private readonly IElasticContext _elasticContext;
+
+        #endregion Private Variables
+
+        #region Methods
 
         public ElasticSearchEngine(ElasticSearchBuilder elasticSearchBuilder)
         {
@@ -20,6 +26,8 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
             _queryContainer = elasticSearchBuilder.QueryContainer;
             _elasticContext = elasticSearchBuilder.ElasticContext;
         }
+
+        #endregion Methods
 
         #region IElasticSearchEngine Members
 

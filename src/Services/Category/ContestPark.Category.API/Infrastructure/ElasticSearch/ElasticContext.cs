@@ -1,5 +1,6 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Category.API.Model;
+using ContestPark.Core.CosmosDb.Models;
 using Microsoft.Extensions.Logging;
 using Nest;
 using System.Collections.Generic;
@@ -62,6 +63,19 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
         }
 
         /// <summary>
+        /// Indexs sil
+        /// </summary>
+        /// <param name="indexName">Silinecek index adı</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public bool DeleteIndex(string indexName)
+        {
+            if (!_elasticClient.IndexExists(indexName).IsValid)
+                return false;
+
+            return _elasticClient.DeleteIndex(indexName).IsValid;
+        }
+
+        /// <summary>
         /// indexing işlemlerini gerçekleştirmektedir
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -116,13 +130,15 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
         /// <param name="indexName">Index adı</param>
         /// <param name="searchText">Aranan kelime</param>
         /// <returns>Arama sonucu</returns>
-        public async Task<List<T>> SearchAsync<T>(string indexName, string searchText) where T : class, ISearchBase
+        public async Task<List<T>> SearchAsync<T>(string indexName, string searchText, PagingModel pagingModel) where T : class, ISearchBase
         {
             try
             {
                 ISearchResponse<T> searchResponse = await _elasticClient.SearchAsync<T>(s => s
                                      .Index(indexName)
                                      .Type<T>()
+                                     .Size(pagingModel.PageSize)
+                                     .From(pagingModel.PageSize * (pagingModel.PageNumber - 1))
                                      .Suggest(su => su
                                           .Completion("suggestions", c => c
                                                .Field(f => f.Suggest)

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\test\ContestPark.Core.FunctionalTests\ContestPark.Core.FunctionalTests\ContestPark.Core.FunctionalTests.csproj" />
-    <ProjectReference Include="..\ContestPark.Follow.API\ContestPark.Follow.API.csproj" />
+    <ProjectReference Include="..\ContestPark.Category.API\ContestPark.Category.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,5 +24,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
 </Project>

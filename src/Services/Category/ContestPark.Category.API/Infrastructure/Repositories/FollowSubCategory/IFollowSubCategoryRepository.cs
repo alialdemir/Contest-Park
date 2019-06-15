@@ -1,5 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 {

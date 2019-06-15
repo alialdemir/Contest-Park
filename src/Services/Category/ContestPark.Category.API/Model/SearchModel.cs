@@ -36,10 +36,4 @@ namespace ContestPark.Category.API.Model
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
     }
-
-    public enum SearchTypes : byte
-    {
-        Player = 1,
-        Category = 2
-    }
 }

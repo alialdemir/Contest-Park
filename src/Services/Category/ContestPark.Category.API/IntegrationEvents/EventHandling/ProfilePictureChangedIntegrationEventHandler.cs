@@ -1,7 +1,6 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Category.API.Model;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;

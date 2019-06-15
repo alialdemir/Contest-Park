@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:51508/",
+      "applicationUrl": "http://localhost:51509/",
       "sslPort": 0
     }
   },
@@ -15,13 +15,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ContestPark.Follow.API.FunctionalTests": {
+    "ContestPark.Category.API.FunctionalTests": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:51510/"
+      "applicationUrl": "http://localhost:51511/"
     }
   }
 }
