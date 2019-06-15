@@ -95,5 +95,23 @@ namespace ContestPark.Category.API.Resources {
                 return ResourceManager.GetString("YouAreAlreadyFollowingThisCategory", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can not unlock the Free category..
+        /// </summary>
+        public static string YouCanNotUnlockTheFreeCategory {
+            get {
+                return ResourceManager.GetString("YouCanNotUnlockTheFreeCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must follow this category to deactivate the category..
+        /// </summary>
+        public static string YouMustFollowThisCategoryToDeactivateTheCategory {
+            get {
+                return ResourceManager.GetString("YouMustFollowThisCategoryToDeactivateTheCategory", resourceCulture);
+            }
+        }
     }
 }

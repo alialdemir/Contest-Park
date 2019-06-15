@@ -214,7 +214,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             return _categoryRepository.QuerySingleAsync<SubCategoryDetailInfoModel>(sql, new
             {
                 subCategoryId,
-                language = language.ToString()
+                language = (byte)language
             });
         }
 

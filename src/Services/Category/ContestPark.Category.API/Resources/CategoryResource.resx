@@ -129,4 +129,10 @@
   <data name="YouAreAlreadyFollowingThisCategory" xml:space="preserve">
     <value>You are already following this category.</value>
   </data>
+  <data name="YouCanNotUnlockTheFreeCategory" xml:space="preserve">
+    <value>You can not unlock the Free category.</value>
+  </data>
+  <data name="YouMustFollowThisCategoryToDeactivateTheCategory" xml:space="preserve">
+    <value>You must follow this category to deactivate the category.</value>
+  </data>
 </root>

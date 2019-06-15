@@ -5,7 +5,6 @@ using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Infrastructure;
 using ContestPark.Core.Enums;
-using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,6 +27,7 @@ namespace ContestPark.Category.API.Infrastructure
             {
                 SubCategory referee = new SubCategory
                 {
+                    Id = "9d15a162-9ffc-42aa-91dc-d7f02b6f0080",
                     DisplayOrder = 2,
                     Visibility = true,
                     DisplayPrice = "120k",
@@ -75,6 +75,7 @@ namespace ContestPark.Category.API.Infrastructure
                             referee,
                             new SubCategory
                             {
+                                Id ="7c3a26b7-74df-4128-aab9-a21f81a5ab36",
                                 DisplayOrder=1,
                                 Visibility=true,
                                 DisplayPrice = "0",
@@ -95,13 +96,14 @@ namespace ContestPark.Category.API.Infrastructure
                                         },
                                 }
                             },
-                            new SubCategory
+                            new SubCategory// takip etmediği bir kategori
                             {
+                                Id = "24461fb6-323d-43e6-9a85-b263cff51bcc",
                                 DisplayOrder=1,
                                 Visibility=true,
                                 DisplayPrice="1k",
                                 PicturePath="http://chittagongit.com/images/team-icon-png/team-icon-png-20.jpg",
-                                 Description = "açıklama bla bla bla",
+                                Description = "açıklama bla bla bla",
                                 Price=1000,
                                 SubCategoryLangs = new List<SubCategoryLang>
                                 {

@@ -44,8 +44,33 @@ namespace ContestPark.Category.API.FunctionalTests
             public static string GetSearchFollowedSubCategories(string searchText, bool paginated = false, int pageSize = 4, int pageNumber = 1)
             {
                 return paginated
-                    ? $"api/v1/Search/Followed" + Paginated(pageSize, pageNumber) + "&q=" + searchText
-                    : $"api/v1/Search/Followed?q=" + searchText;
+                    ? $"api/v1/Search/Followed{Paginated(pageSize, pageNumber)}&q={searchText}"
+                    : $"api/v1/Search/Followed?q={searchText}";
+            }
+
+            public static string PostFollowSubCategories(string subCategoryId)
+            {
+                return $"api/v1/subcategory/{subCategoryId}/Follow";
+            }
+
+            public static string DeleteUnFollowSubCategories(string subCategoryId)
+            {
+                return $"api/v1/subcategory/{subCategoryId}/UnFollow";
+            }
+
+            public static string GetFollowStatus(string subCategoryId)
+            {
+                return $"api/v1/subcategory/{subCategoryId}/FollowStatus";
+            }
+
+            public static string GetSubcategoryDetail(string subCategoryId)
+            {
+                return $"api/v1/subcategory/{subCategoryId}";
+            }
+
+            public static string PostUnLockSubcategory(string subCategoryId)
+            {
+                return $"api/v1/subcategory/{subCategoryId}/unlock";
             }
 
             public static string GetSearch(string categoryId, string searchText, bool paginated = false, int pageSize = 10, int pageNumber = 1)

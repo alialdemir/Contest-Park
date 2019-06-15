@@ -2,7 +2,6 @@
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 using System.Threading.Tasks;
-using static ContestPark.Category.API.Infrastructure.Repositories.Search.SearchRepository;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 {

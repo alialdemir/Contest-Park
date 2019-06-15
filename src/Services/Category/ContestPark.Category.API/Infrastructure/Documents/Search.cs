@@ -1,5 +1,4 @@
-﻿using ContestPark.Category.API.Model;
-using ContestPark.Core.Enums;
+﻿using ContestPark.Core.Enums;
 using Nest;
 using Newtonsoft.Json;
 

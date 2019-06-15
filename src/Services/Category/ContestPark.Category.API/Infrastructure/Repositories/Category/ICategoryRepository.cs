@@ -1,5 +1,4 @@
 ﻿using ContestPark.Category.API.Model;
-using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.Enums;
 

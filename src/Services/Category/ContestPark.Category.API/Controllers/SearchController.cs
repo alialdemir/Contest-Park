@@ -8,7 +8,6 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using static ContestPark.Category.API.Infrastructure.Repositories.Search.SearchRepository;
 
 namespace ContestPark.Category.API.Controllers
 {
