@@ -16,12 +16,12 @@ namespace ContestPark.Category.API.FunctionalTests
         {
             host.MigrateDatabase<CategoryApiSeed>((services, logger) =>
             {
+                ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
+                searchRepository.CreateSearchIndexs();
+
                 new CategoryApiSeed()
                     .SeedAsync(services, logger)
                     .Wait();
-
-                ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
-                searchRepository.CreateCategoryIndex();
             });
         }
 
@@ -46,6 +46,36 @@ namespace ContestPark.Category.API.FunctionalTests
                 return paginated
                     ? $"api/v1/Search/Followed" + Paginated(pageSize, pageNumber) + "&q=" + searchText
                     : $"api/v1/Search/Followed?q=" + searchText;
+            }
+
+            public static string GetSearch(string categoryId, string searchText, bool paginated = false, int pageSize = 10, int pageNumber = 1)
+            {
+                string url = "api/v1/Search";
+
+                if (paginated)
+                {
+                    url += Paginated(pageSize, pageNumber);
+                }
+
+                if (!paginated && !string.IsNullOrEmpty(searchText))
+                {
+                    url += "?q=" + searchText;
+                }
+                else if (!string.IsNullOrEmpty(searchText))
+                {
+                    url += "&q=" + searchText;
+                }
+
+                if (paginated || !string.IsNullOrEmpty(searchText))
+                {
+                    url += "&categoryId=" + categoryId;
+                }
+                else if (!string.IsNullOrEmpty(categoryId))
+                {
+                    url += "?categoryId=" + categoryId;
+                }
+
+                return url;
             }
 
             public static string Paginated(int pageSize, int pageNumber)

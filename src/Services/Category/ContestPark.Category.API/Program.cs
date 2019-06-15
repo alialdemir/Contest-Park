@@ -23,6 +23,7 @@ namespace ContestPark.Category.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
+                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)
@@ -40,14 +41,14 @@ namespace ContestPark.Category.API
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
                 host.MigrateDatabase<CategoryApiSeed>((services, logger) =>
-               {
-                   new CategoryApiSeed()
+                {
+                    ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
+                    searchRepository.CreateSearchIndexs();
+
+                    new CategoryApiSeed()
                        .SeedAsync(services, logger)
                        .Wait();
-
-                   ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
-                   searchRepository.CreateCategoryIndex();
-               });
+                });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
 

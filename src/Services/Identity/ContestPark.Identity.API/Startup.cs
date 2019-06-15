@@ -100,6 +100,7 @@ namespace ContestPark.Identity.API
             #endregion AddTransient
 
             services.AddCustomIdentityServer(Configuration, connectionString)
+                    .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(IdentityResource).Name)

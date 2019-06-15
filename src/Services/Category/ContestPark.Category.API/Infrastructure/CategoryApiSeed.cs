@@ -1,6 +1,8 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
+using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
+using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Infrastructure;
 using ContestPark.Core.Enums;
 using ContestPark.EventBus.Abstractions;
@@ -52,6 +54,7 @@ namespace ContestPark.Category.API.Infrastructure
                 {
                     new Documents.Category
                     {
+                        Id = "bb6d7a05-7801-4e97-b7fc-e607f2c89b09",
                         DisplayOrder = 0,
                         Visibility =true,
                         CategoryLangs= new List<CategoryLang>
@@ -184,8 +187,7 @@ namespace ContestPark.Category.API.Infrastructure
 
                 if (isAddedCategories)
                 {
-                    IEventBus eventBus = service.GetService<IEventBus>();
-
+                    ISearchRepository searchRepository = Service.GetRequiredService<ISearchRepository>();
                     foreach (var category in subCategories)// yeni kaydolan kategorileri elasticsearch tarafına yolladık
                     {
                         foreach (var subCategory in category.SubCategories)
@@ -195,24 +197,24 @@ namespace ContestPark.Category.API.Infrastructure
                                                                             subCategory.Price,
                                                                             subCategory.Id,
                                                                             category.Id,
-                                                                            subCategory.SubCategoryLangs.Select(s => new Model.LanguageModel
+                                                                            subCategory.SubCategoryLangs.Select(s => new LanguageModel
                                                                             {
                                                                                 Language = s.LanguageId,
                                                                                 Name = s.SubCategoryName
                                                                             }).ToList(),
-                                                                            category.CategoryLangs.Select(s => new Model.LanguageModel
+                                                                            category.CategoryLangs.Select(s => new LanguageModel
                                                                             {
                                                                                 Language = s.LanguageId,
                                                                                 Name = s.CategoryName
                                                                             }).ToList());
 
-                            eventBus.Publish(@event);
+                            ILogger<NewSubCategoryAddedIntegrationEventHandler> log = Service.GetRequiredService<ILogger<NewSubCategoryAddedIntegrationEventHandler>>();
+                            await new NewSubCategoryAddedIntegrationEventHandler(searchRepository, log).Handle(@event);
                         }
                     }
-                }
 
-                ISearchRepository searchRepository = Service.GetRequiredService<ISearchRepository>();
-                LoadUsers(searchRepository);
+                    LoadUsers(searchRepository);
+                }
             });
         }
 
@@ -220,7 +222,7 @@ namespace ContestPark.Category.API.Infrastructure
         {
             searchRepository.Insert(new Search
             {
-                SearchType = Model.SearchTypes.Player,
+                SearchType = SearchTypes.Player,
                 FullName = "Ali Aldemir",
                 UserId = "1111-1111-1111-1111",
                 Language = null,// index için null atadık
@@ -235,7 +237,7 @@ namespace ContestPark.Category.API.Infrastructure
 
             searchRepository.Insert(new Search
             {
-                SearchType = Model.SearchTypes.Player,
+                SearchType = SearchTypes.Player,
                 FullName = "Demo",
                 UserId = "2222-2222-2222-2222",
                 Language = null,// index için null atadık
@@ -250,7 +252,7 @@ namespace ContestPark.Category.API.Infrastructure
 
             searchRepository.Insert(new Search
             {
-                SearchType = Model.SearchTypes.Player,
+                SearchType = SearchTypes.Player,
                 FullName = "Bot",
                 UserId = "3333-3333-3333-bot",
                 Language = null,// index için null atadık

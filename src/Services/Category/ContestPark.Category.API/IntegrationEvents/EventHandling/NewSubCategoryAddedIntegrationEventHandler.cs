@@ -44,7 +44,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
 
                     _searchRepository.Insert(new Search
                     {
-                        SearchType = Model.SearchTypes.Category,
+                        SearchType = SearchTypes.Category,
                         DisplayPrice = @event.DisplayPrice,
                         Id = @event.SubCategoryId,
                         Price = @event.Price,

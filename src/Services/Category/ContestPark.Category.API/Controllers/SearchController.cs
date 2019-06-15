@@ -30,6 +30,8 @@ namespace ContestPark.Category.API.Controllers
 
         #endregion Constructor
 
+        #region Methods
+
         /// <summary>
         /// Takip ettiğin alt kategoriler
         /// </summary>
@@ -61,11 +63,11 @@ namespace ContestPark.Category.API.Controllers
         /// Kategori arama
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
-        [HttpGet("{categoryId?}")]
+        [HttpGet]
         [AllowAnonymous]
         [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SearchAsync(string categoryId, [FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> SearchAsync([FromQuery]string categoryId, [FromQuery]PagingModel pagingModel, [FromQuery(Name = "q")]string searchText = "")
         {
             ServiceModel<SearchModel> searchCategories = await _searchRepository.DynamicSearchAsync(searchText,
                                                                                                     CurrentUserLanguage,
@@ -82,5 +84,7 @@ namespace ContestPark.Category.API.Controllers
 
             return Ok(searchCategories);
         }
+
+        #endregion Methods
     }
 }

@@ -8,7 +8,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 {
     public interface ISearchRepository
     {
-        void CreateCategoryIndex();
+        void CreateSearchIndexs();
+
+        void DeleteSearchIndexs();
 
         void Insert(Documents.Search searchModel);
 

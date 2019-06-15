@@ -32,7 +32,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
             {
                 _searchRepository.Insert(new Search
                 {
-                    SearchType = Model.SearchTypes.Player,
+                    SearchType = SearchTypes.Player,
                     FullName = @event.FullName,
                     UserId = @event.UserId,
                     Language = null,// index için null atadık

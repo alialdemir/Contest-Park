@@ -1,5 +1,4 @@
-﻿using ContestPark.EventBus.Abstractions;
-using ContestPark.EventBus.IntegrationEventLogEF;
+﻿using ContestPark.EventBus.IntegrationEventLogEF;
 using ContestPark.Identity.API.Data;
 using ContestPark.Identity.API.Extensions;
 using IdentityServer4.EntityFramework.DbContexts;
@@ -27,6 +26,7 @@ namespace ContestPark.Identity.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
+                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)
