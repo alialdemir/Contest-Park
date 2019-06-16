@@ -1,6 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
 using Cosmonaut;
-using Cosmonaut.Extensions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -89,7 +88,7 @@ namespace ContestPark.Core.CosmosDb
         {
             try
             {
-                return _cosmosStore.QueryMultipleAsync("SELECT * FROM c").Result;
+                return _cosmosStore.QueryMultipleAsync("SELECT * FROM c WHERE ARRAY_CONTAINS(@ids, c.id, true)", new { ids }).Result;
             }
             catch (Exception ex)
             {

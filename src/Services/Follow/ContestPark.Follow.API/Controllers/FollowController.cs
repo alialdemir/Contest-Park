@@ -1,7 +1,9 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.EventBus.Abstractions;
 using ContestPark.Follow.API.Infrastructure.Documents;
 using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
+using ContestPark.Follow.API.IntegrationEvents.Events;
 using ContestPark.Follow.API.Models;
 using ContestPark.Follow.API.Resources;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +22,7 @@ namespace ContestPark.Follow.API.Controllers
 
         private readonly IFollowRepository _followRepository;
         private readonly IDocumentDbRepository<User> _userRepository;
+        private readonly IEventBus _eventBus;
 
         #endregion Private Variables
 
@@ -27,9 +30,11 @@ namespace ContestPark.Follow.API.Controllers
 
         public FollowController(IFollowRepository followRepository,
                                 IDocumentDbRepository<User> userRepository,
+                                IEventBus eventBus,
                                 ILogger<FollowController> logger) : base(logger)
         {
             _followRepository = followRepository ?? throw new ArgumentNullException(nameof(followRepository));
+            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
@@ -130,6 +135,14 @@ namespace ContestPark.Follow.API.Controllers
                                                                 IEnumerable<User> followingUsers,
                                                                 PagingModel pagingModel)
         {
+            // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
+            var notFoundUserIds = followers.Items.Where(u => !followingUsers.Any(x => x.Id == u)).AsEnumerable();
+            if (notFoundUserIds.Count() > 0)
+            {
+                var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
+                _eventBus.Publish(@event);
+            }
+
             return new ServiceModel<FollowModel>
             {
                 HasNextPage = followers.HasNextPage,

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ContestPark.Follow.API
+﻿namespace ContestPark.Follow.API
 {
     public class FollowSettings
     {
+        public string Audience { get; set; }
+        public string identityUrl { get; set; }
+        public string ClientKey { get; set; }
     }
 }

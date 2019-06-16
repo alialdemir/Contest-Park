@@ -456,6 +456,28 @@ namespace ContestPark.Identity.API.Controllers
             await _identityIntegrationEventService.PublishThroughEventBusAsync(@event);
         }
 
+        /// <summary>
+        /// Parametreden gelen kullanıcıların bilgilerini döner
+        /// sadece bizim servislerden istek atılabilir dışarıdan erişilemez!
+        /// </summary>
+        /// <param name="userInfos">Kullanıcı id listesi</param>
+        /// <returns>Parametreden gelen kullanıcıların bilgileri</returns>
+        [HttpPost]
+        [Route("UserInfos")]
+        [ProducesResponseType(typeof(List<UserNotFoundModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetUserInfos([FromBody]List<string> userInfos)
+        {
+            if (userInfos == null || userInfos.Count == 0)
+                return BadRequest();
+
+            var users = _userRepository.GetUserInfos(userInfos);
+            if (users == null || users.Count() == 0)
+                return NotFound();
+
+            return Ok(users);
+        }
+
         #endregion Methods
     }
 }

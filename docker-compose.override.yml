@@ -25,8 +25,9 @@ services:
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
-      - "5103:80"
+      - "5104:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -63,6 +64,7 @@ services:
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Follow
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
       - "5102:80"
     volumes:
