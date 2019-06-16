@@ -1,5 +1,6 @@
 ﻿using ContestPark.Identity.API.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ContestPark.Identity.API.Data.Repositories.User
@@ -91,6 +92,25 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         private bool IsCodeRegistered(int code)
         {
             return _applicationDbContext.Users.Where(p => p.ForgetPasswordCode == code).Any();
+        }
+
+        /// <summary>
+        /// Kullanıcı idlerine ait ad soyad, kullanıcı adı, profil resmi, user id gibi bilgileri döner
+        /// </summary>
+        /// <param name="userInfos">Kullanıcı idleri</param>
+        /// <returns>Kullanıcı bilgileri</returns>
+        public IEnumerable<UserNotFoundModel> GetUserInfos(List<string> userInfos)
+        {
+            return _applicationDbContext
+                .Users
+                .Where(u => userInfos.Any(s => s == u.Id))
+                .Select(u => new UserNotFoundModel
+                {
+                    UserId = u.Id,
+                    FullName = u.FullName,
+                    ProfilePicturePath = u.ProfilePicturePath,
+                    UserName = u.UserName
+                }).ToList();
         }
 
         #endregion Methods

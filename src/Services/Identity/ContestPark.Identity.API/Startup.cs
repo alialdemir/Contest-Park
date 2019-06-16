@@ -7,6 +7,7 @@ using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.EventHandling;
 using ContestPark.Identity.API.IntegrationEvents.Events;
+using ContestPark.Identity.API.Middlewares;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
@@ -50,6 +51,7 @@ namespace ContestPark.Identity.API
             }
 
             app.UseExceptionHandlerConfigure()
+                .UseMiddleware<ServiceAuthorizeMiddleware>()
                 .UseCustomIdentityServer()
                 .UseRequestLocalizationCustom()
                 .UseMvc();

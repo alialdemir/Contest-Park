@@ -1,4 +1,5 @@
 ﻿using ContestPark.Identity.API.Models;
+using System.Collections.Generic;
 
 namespace ContestPark.Identity.API.Data.Repositories.User
 {
@@ -11,5 +12,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         int InsertCode(string userId);
 
         void RemoveCode(string userId);
+
+        IEnumerable<UserNotFoundModel> GetUserInfos(List<string> userInfos);
     }
 }
