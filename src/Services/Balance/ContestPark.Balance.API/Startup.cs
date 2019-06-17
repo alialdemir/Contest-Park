@@ -26,6 +26,11 @@ namespace ContestPark.Balance.API
         {
             services.Configure<CpSettings>(Configuration);
 
+            services.AddAuthorization(options =>// Bizim servislerimizin kendi içinde haberleşebilmesi için bu policy eklendi
+            {
+                options.AddPolicy("ContestParkServices", policy => policy.RequireClaim("IsService", "true"));
+            });
+
             services.AddAuth(Configuration)
                     .AddCosmosDb(Configuration)
                     .AddApplicationInsightsTelemetry(Configuration)

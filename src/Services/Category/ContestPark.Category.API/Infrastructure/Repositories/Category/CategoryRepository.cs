@@ -218,6 +218,20 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
             });
         }
 
+        /// <summary>
+        /// Alt kategorinin fiyatını getirir
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Fiyat</returns>
+        public int GetSubCategoryPrice(string subCategoryId)
+        {
+            string sql = @"SELECT value sc.Price
+                           FROM c JOIN sc IN c.SubCategories
+                           where sc.id=@subCategoryId";
+
+            return _categoryRepository.QuerySingleAsync<int>(sql, new { subCategoryId });
+        }
+
         #endregion Methods
     }
 }

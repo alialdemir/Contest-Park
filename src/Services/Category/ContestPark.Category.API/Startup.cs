@@ -9,6 +9,7 @@ using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Resources;
+using ContestPark.Core.Services.HttpService;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +53,7 @@ namespace ContestPark.Category.API
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOpenCategoryRepository, OpenCategoryRepository>();
             services.AddTransient<IFollowSubCategoryRepository, FollowSubCategoryRepository>();
+            services.AddSingleton<IRequestProvider, RequestProvider>();
 
             #region ElasticSearch
 

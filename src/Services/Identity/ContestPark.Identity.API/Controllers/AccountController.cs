@@ -463,6 +463,7 @@ namespace ContestPark.Identity.API.Controllers
         /// <param name="userInfos">Kullanıcı id listesi</param>
         /// <returns>Parametreden gelen kullanıcıların bilgileri</returns>
         [HttpPost]
+        [Authorize(Policy = "ContestParkServices")]
         [Route("UserInfos")]
         [ProducesResponseType(typeof(List<UserNotFoundModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

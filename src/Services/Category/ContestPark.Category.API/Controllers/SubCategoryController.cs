@@ -5,8 +5,10 @@ using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Services.HttpService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
 using System.Net;
@@ -21,6 +23,8 @@ namespace ContestPark.Category.API.Controllers
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IRequestProvider _requestProvider;
+        private readonly CategorySettings _categorySettings;
 
         #endregion Private Variables
 
@@ -29,11 +33,15 @@ namespace ContestPark.Category.API.Controllers
         public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
                                      IOpenCategoryRepository openCategoryRepository,
                                      ICategoryRepository categoryRepository,
-                                     ILogger<SubCategoryController> logger) : base(logger)
+                                     ILogger<SubCategoryController> logger,
+                                     IRequestProvider requestProvider,
+                                     IOptions<CategorySettings> settings) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+            _requestProvider = requestProvider ?? throw new ArgumentNullException(nameof(requestProvider));
+            _categorySettings = settings.Value;
         }
 
         #endregion Constructor
@@ -237,7 +245,11 @@ namespace ContestPark.Category.API.Controllers
             if (isSubCategoryOpen)
                 return BadRequest(CategoryResource.ThisCategoryIsAlreadyUnlocked);
 
-            // TODO: check altın miktarı yeterli mi
+            int subCategoryPrice = _categoryRepository.GetSubCategoryPrice(subCategoryId);
+            BalanceModel balance = await _requestProvider.GetAsync<BalanceModel>(_categorySettings.BalanceUrl);
+
+            if (balance.Amount < subCategoryPrice)
+                return BadRequest("bakiyeniz yetersiz.");
 
             bool isSuccess = await _openCategoryRepository.AddAsync(new OpenSubCategory
             {
@@ -247,6 +259,8 @@ namespace ContestPark.Category.API.Controllers
 
             if (!isSuccess)
                 return BadRequest(CategoryResource.CouldNotPpenSubcategoryLock);
+
+            // TODO: altın düş event
 
             return Ok();
         }
