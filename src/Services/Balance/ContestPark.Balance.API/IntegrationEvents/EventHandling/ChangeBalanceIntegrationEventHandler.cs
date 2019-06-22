@@ -27,7 +27,7 @@ namespace ContestPark.Balance.API.IntegrationEvents.EventHandling
         public Task Handle(ChangeBalanceIntegrationEvent @event)
         {
             // TODO: işlem başarısız olursa rabbitmq eventi tekrar tetiklemeli
-            _balanceRepository.ChangeBalanceByUserId(new Models.ChangeBalanceModel
+            _balanceRepository.UpdateBalanceAsync(new Models.ChangeBalanceModel
             {
                 Amount = @event.Amount,
                 BalanceHistoryType = @event.BalanceHistoryType,

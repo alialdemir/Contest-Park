@@ -235,7 +235,7 @@ namespace ContestPark.Category.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> UnLockSubCategory([FromRoute]string subCategoryId, [FromQuery]BalanceTypes balanceType)
         {
-            if (string.IsNullOrEmpty(subCategoryId) || balanceType == null)
+            if (string.IsNullOrEmpty(subCategoryId))
                 return BadRequest();
 
             int subCategoryPrice = _categoryRepository.GetSubCategoryPrice(subCategoryId);

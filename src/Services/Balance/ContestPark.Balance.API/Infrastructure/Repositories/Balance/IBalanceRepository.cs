@@ -8,6 +8,6 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
     {
         IEnumerable<BalanceModel> GetUserBalances(string userId);
 
-        Task<bool> ChangeBalanceByUserId(ChangeBalanceModel changeBalance);
+        Task<bool> UpdateBalanceAsync(ChangeBalanceModel changeBalance);
     }
 }

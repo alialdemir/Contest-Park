@@ -59,5 +59,32 @@ namespace ContestPark.Balance.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid platform type..
+        /// </summary>
+        public static string InvalidPlatformType {
+            get {
+                return ResourceManager.GetString("InvalidPlatformType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package name is incorrect..
+        /// </summary>
+        public static string PackagenameIsIncorrect {
+            get {
+                return ResourceManager.GetString("PackagenameIsIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The purchase failed. Please email with our support team. I info@contestpark.com.
+        /// </summary>
+        public static string ThePurchaseFailedPleaseEmailWithOurSupportTeam {
+            get {
+                return ResourceManager.GetString("ThePurchaseFailedPleaseEmailWithOurSupportTeam", resourceCulture);
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var supportedCultures = new List<CultureInfo>
                      {
                            new CultureInfo("tr-TR"),
-                           new CultureInfo( "en-US"),
+                           new CultureInfo("en-US"),
                      };
             // SupportedCultures ve SupportedUICultures'a yukarıda oluşturduğumuz dil listesini tanımlıyoruz.
             // DefaultRequestCulture'a varsayılan olarak uygulamamızın hangi dil ile çalışması gerektiğini tanımlıyoruz.

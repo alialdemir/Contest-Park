@@ -28,6 +28,11 @@ namespace ContestPark.Balance.API.FunctionalTests
                 return "api/v1/balance";
             }
 
+            public static string PostBalance()
+            {
+                return "api/v1/balance";
+            }
+
             public static string GetBalanceByUserId(string userId, BalanceTypes? balanceType)
             {
                 string url = $"api/v1/Balance/{userId}";

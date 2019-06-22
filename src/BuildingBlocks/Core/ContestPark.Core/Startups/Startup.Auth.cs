@@ -12,15 +12,15 @@ namespace Microsoft.Extensions.DependencyInjection
             // prevent from mapping "sub" claim to nameidentifier.
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            var identityUrl = configuration.GetValue<string>("IdentityUrl");
-            var audience = configuration.GetValue<string>("Audience");
-
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
+                var identityUrl = configuration.GetValue<string>("IdentityUrl");
+                var audience = configuration.GetValue<string>("Audience");
+
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
                 options.Audience = audience;

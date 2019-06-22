@@ -85,6 +85,7 @@ services:
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Balance
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
       - "5104:80"
     volumes:

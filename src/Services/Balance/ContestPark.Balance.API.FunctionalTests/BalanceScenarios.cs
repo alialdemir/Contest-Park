@@ -1,9 +1,12 @@
 ﻿using ContestPark.Balance.API.Enums;
 using ContestPark.Balance.API.Models;
+using ContestPark.Core.FunctionalTests;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -118,6 +121,129 @@ namespace ContestPark.Balance.API.FunctionalTests
                     .GetAsync(Entpoints.GetBalanceByUserId("fake-userid", null));
 
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public async Task Post_purche_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                PurchaseModel purchase = new PurchaseModel
+                {
+                    PackageName = "com.contestparkapp.app.20000coins",
+                    ProductId = "dsaads",
+                    Token = "adsdsaddsaads",
+                    Platform = Platforms.Android
+                };
+
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(purchase));
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await server.CreateClient()
+                    .PostAsync(Entpoints.PostBalance(), content);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory]
+        [InlineData("en-US", "Invalid platform type.")]
+        [InlineData("tr-TR", "Geçersiz platform tipi.")]
+        public async Task Post_purche_and_response_invalid_platform_type(string langCode, string errorMessage)
+        {
+            using (var server = CreateServer())
+            {
+                PurchaseModel purchase = new PurchaseModel
+                {
+                    PackageName = "com.contestparkapp.app.20000coins",
+                    ProductId = "dsaads",
+                    Token = "adsdsaddsaads",
+                    Platform = (Platforms)1
+                };
+
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(purchase));
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await server.CreateClient()
+                    .AddLangCode(langCode)
+                    .PostAsync(Entpoints.PostBalance(), content);
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Dictionary<string, string[]> errors = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(responseContent);
+
+                Assert.Equal(errorMessage, errors.FirstOrDefault().Value.FirstOrDefault());
+            }
+        }
+
+        [Theory]
+        [InlineData("en-US", "Package name is incorrect.")]
+        [InlineData("tr-TR", "Paket adı hatalı.")]
+        public async Task Post_purche_and_response_invalid_package_name(string langCode, string errorMessage)
+        {
+            using (var server = CreateServer())
+            {
+                PurchaseModel purchase = new PurchaseModel
+                {
+                    PackageName = "fake-package-name",
+                    ProductId = "dsaads",
+                    Token = "adsdsaddsaads",
+                    Platform = Platforms.Android
+                };
+
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(purchase));
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await server.CreateClient()
+                    .AddLangCode(langCode)
+                    .PostAsync(Entpoints.PostBalance(), content);
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ValidationMessage errors = JsonConvert.DeserializeObject<ValidationMessage>(responseContent);
+
+                Assert.Equal(errorMessage, errors.ErrorMessage);
+            }
+        }
+
+        [Theory]
+        [InlineData("com.contestparkapp.app.250coins", 100000249)]
+        [InlineData("com.contestparkapp.app.1500coins", 100001749)]
+        [InlineData("com.contestparkapp.app.7000coins", 100008749)]
+        [InlineData("com.contestparkapp.app.20000coins", 100028749)]
+        public async Task Post_purche_all_package_names_and_response_ok_status_code(string packageName, decimal balance)
+        {
+            using (var server = CreateServer())
+            {
+                PurchaseModel purchase = new PurchaseModel
+                {
+                    PackageName = packageName,
+                    ProductId = "dsaads",
+                    Token = "adsdsaddsaads",
+                    Platform = Platforms.Android
+                };
+
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(purchase));
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var httpClient = server.CreateClient();
+
+                var response = await httpClient.PostAsync(Entpoints.PostBalance(), content);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                #region Bakiye yükleme başarılı ise getBalance üzerinden gelen değeri kontrol ediyoruz
+
+                var response2 = await httpClient.GetAsync(Entpoints.GetBalance());
+
+                string responseContent = await response2.Content.ReadAsStringAsync();
+
+                IEnumerable<BalanceModel> balances = JsonConvert.DeserializeObject<IEnumerable<BalanceModel>>(responseContent);
+
+                Assert.Equal(balance, balances.FirstOrDefault(x => x.BalanceType == BalanceTypes.Gold).Amount);
+
+                #endregion Bakiye yükleme başarılı ise getBalance üzerinden gelen değeri kontrol ediyoruz
             }
         }
     }
