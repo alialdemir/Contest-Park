@@ -18,6 +18,11 @@ namespace ContestPark.Identity.API
             // Adds IdentityServer
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
+            services.AddAuthorization(options =>// Bizim servislerimizin kendi içinde haberleşebilmesi için bu policy eklendi
+            {
+                options.AddPolicy("ContestParkServices", policy => policy.RequireClaim("IsService", "true"));
+            });
+
             services.AddIdentityServer(x => x.IssuerUri = "null")
                 .AddSigningCredential(Certificate.Certificate.Get())
                 .AddAspNetIdentity<ApplicationUser>()

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnErrorHasOccurredFromTheSystemPleaseTryAgain" xml:space="preserve">
+    <value>Sistemden kaynaklanan bir hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
   <data name="CouldNotPpenSubcategoryLock" xml:space="preserve">
     <value>Alt kategori kilidi açılamadı.</value>
   </data>
@@ -134,5 +137,8 @@
   </data>
   <data name="YouMustFollowThisCategoryToDeactivateTheCategory" xml:space="preserve">
     <value>Kategoriyi takipten çıkarmak için bu kategoriyi takip etmelisiniz.</value>
+  </data>
+  <data name="YourBalanceIsInsufficient" xml:space="preserve">
+    <value>Bakiyeniz yetersiz.</value>
   </data>
 </root>

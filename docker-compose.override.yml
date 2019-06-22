@@ -27,7 +27,7 @@ services:
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
       - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
-      - "5104:80"
+      - "5101:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -36,6 +36,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - identityUrl=http://contestpark.identity.api
+      - balanceUrl=http://contestpark.balance.api
       - Audience=category
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
@@ -46,8 +47,9 @@ services:
       - ElasticSearchURI=http://elasticsearch:9200
       - ElasticSearchIndexName=categorysearch
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
-      - "5101:80"
+      - "5102:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -66,7 +68,25 @@ services:
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
       - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
-      - "5102:80"
+      - "5103:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    
+  contestpark.balance.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - Audience=balance
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
+      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
+      - CosmosDbDatabaseId=ContestPark.Balance
+      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+    ports:
+      - "5104:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

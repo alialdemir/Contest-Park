@@ -21,6 +21,7 @@ namespace ContestPark.Core.FunctionalTests
 
             identity.AddClaim(new Claim("sub", IDENTITY_ID));
             identity.AddClaim(new Claim("unique_name", IDENTITY_ID));
+            identity.AddClaim(new Claim("IsService", "true"));// Bizim servisimiz olduğunu policy anlaması için bu değeri atadık
 
             httpContext.User.AddIdentity(identity);
 

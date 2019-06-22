@@ -81,7 +81,7 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         /// <returns></returns>
         public IEnumerable<string> CheckFollowUpStatus(string followingUserId, IEnumerable<string> userIds)
         {
-            return _followRepository.QueryMultipleAsync<string>("SELECT VALUE c.FollowedUserId FROM c WHERE c.FollowUpUserId=@followingUserId AND ARRAY_CONTAINS(@userIds, c.FollowedUserId)",
+            return _followRepository.QueryMultiple<string>("SELECT VALUE c.FollowedUserId FROM c WHERE c.FollowUpUserId=@followingUserId AND ARRAY_CONTAINS(@userIds, c.FollowedUserId)",
                      new
                      {
                          followingUserId,

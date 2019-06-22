@@ -1,4 +1,5 @@
-﻿using ContestPark.Category.API.Model;
+﻿using ContestPark.Category.API.IntegrationEvents.Events;
+using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.FunctionalTests;
 using Newtonsoft.Json;
@@ -12,7 +13,7 @@ namespace ContestPark.Category.API.FunctionalTests
     public class CategoryScenarios : CategoryScenariosBase
     {
         [Fact]
-        public async Task Get_get_all_categories_and_response_ok_status_code()
+        public async Task Get_all_categories_and_response_ok_status_code()
         {
             using (var server = CreateServer())
             {
@@ -24,7 +25,7 @@ namespace ContestPark.Category.API.FunctionalTests
         }
 
         [Fact]
-        public async Task Get_get_all_categories_and_response_notfound_status_code()
+        public async Task Get_all_categories_and_response_notfound_status_code()
         {
             using (var server = CreateServer())
             {
@@ -275,7 +276,7 @@ namespace ContestPark.Category.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                                           .PostAsync(Entpoints.PostUnLockSubcategory("24461fb6-323d-43e6-9a85-b263cff51bcc"), null);
+                                           .PostAsync(Entpoints.PostUnLockSubcategory("24461fb6-323d-43e6-9a85-b263cff51bcc", BalanceTypes.Gold), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -290,7 +291,7 @@ namespace ContestPark.Category.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                                            .AddLangCode(langCode)
-                                           .PostAsync(Entpoints.PostUnLockSubcategory("9d15a162-9ffc-42aa-91dc-d7f02b6f0080"), null);
+                                           .PostAsync(Entpoints.PostUnLockSubcategory("9d15a162-9ffc-42aa-91dc-d7f02b6f0080", BalanceTypes.Money), null);
 
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
@@ -311,7 +312,7 @@ namespace ContestPark.Category.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                                            .AddLangCode(langCode)
-                                           .PostAsync(Entpoints.PostUnLockSubcategory("7c3a26b7-74df-4128-aab9-a21f81a5ab36"), null);
+                                           .PostAsync(Entpoints.PostUnLockSubcategory("7c3a26b7-74df-4128-aab9-a21f81a5ab36", BalanceTypes.Money), null);
 
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 

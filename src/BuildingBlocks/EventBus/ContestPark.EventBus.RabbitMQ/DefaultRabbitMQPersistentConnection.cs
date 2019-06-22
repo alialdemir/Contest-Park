@@ -69,6 +69,7 @@ namespace ContestPark.EventBus.RabbitMQ
             lock (sync_root)
             {
                 var policy = RetryPolicy.Handle<SocketException>()
+                    .Or<SocketException>()
                     .Or<BrokerUnreachableException>()
                     .WaitAndRetry(_retryCount, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)), (ex, time) =>
                     {

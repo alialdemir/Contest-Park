@@ -60,6 +60,7 @@ namespace ContestPark.Identity.API.Middlewares
 
                 identity.AddClaim(new Claim("sub", USER_ID));
                 identity.AddClaim(new Claim("unique_name", USER_ID));
+                identity.AddClaim(new Claim("IsService", "true"));// Bizim servisimiz olduğunu policy anlaması için bu değeri atadık
 
                 httpContext.User.AddIdentity(identity);
             }

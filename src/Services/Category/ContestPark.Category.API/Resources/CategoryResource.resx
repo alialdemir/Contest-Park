@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnErrorHasOccurredFromTheSystemPleaseTryAgain" xml:space="preserve">
+    <value>An error has occurred from the system. Please try again.</value>
+  </data>
   <data name="CouldNotPpenSubcategoryLock" xml:space="preserve">
     <value>Could not open subcategory lock.</value>
   </data>
@@ -134,5 +137,8 @@
   </data>
   <data name="YouMustFollowThisCategoryToDeactivateTheCategory" xml:space="preserve">
     <value>You must follow this category to deactivate the category.</value>
+  </data>
+  <data name="YourBalanceIsInsufficient" xml:space="preserve">
+    <value>Your balance is insufficient.</value>
   </data>
 </root>

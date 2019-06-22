@@ -2,9 +2,12 @@
 using ContestPark.Category.API.Infrastructure.Repositories.Category;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
+using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
+using ContestPark.Category.API.Services.Balance;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,6 +24,8 @@ namespace ContestPark.Category.API.Controllers
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IEventBus _eventBus;
+        private readonly IBalanceService _balanceService;
 
         #endregion Private Variables
 
@@ -29,11 +34,15 @@ namespace ContestPark.Category.API.Controllers
         public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
                                      IOpenCategoryRepository openCategoryRepository,
                                      ICategoryRepository categoryRepository,
-                                     ILogger<SubCategoryController> logger) : base(logger)
+                                     ILogger<SubCategoryController> logger,
+                                     IBalanceService balanceService,
+                                     IEventBus eventBus) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+            _balanceService = balanceService ?? throw new ArgumentNullException(nameof(balanceService));
+            _eventBus = eventBus;
         }
 
         #endregion Constructor
@@ -224,20 +233,26 @@ namespace ContestPark.Category.API.Controllers
         [HttpPost("{subCategoryId}/unlock")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UnLockSubCategory([FromRoute]string subCategoryId)
+        public async Task<IActionResult> UnLockSubCategory([FromRoute]string subCategoryId, [FromQuery]BalanceTypes balanceType)
         {
-            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+            if (string.IsNullOrEmpty(subCategoryId) || balanceType == null)
                 return BadRequest();
 
-            bool isSubCategoryFree = _categoryRepository.IsSubCategoryFree(subCategoryId);
-            if (isSubCategoryFree)
+            int subCategoryPrice = _categoryRepository.GetSubCategoryPrice(subCategoryId);
+            if (subCategoryPrice == 0)// subCategoryPrice sıfır ise ücretsizdir kilidini açmaya gerek yok
                 return BadRequest(CategoryResource.YouCanNotUnlockTheFreeCategory);
 
             bool isSubCategoryOpen = _openCategoryRepository.IsSubCategoryOpen(UserId, subCategoryId);
             if (isSubCategoryOpen)
                 return BadRequest(CategoryResource.ThisCategoryIsAlreadyUnlocked);
 
-            // TODO: check altın miktarı yeterli mi
+            // Kullanıcı bakiye bilgisi alındı
+            BalanceModel balance = await _balanceService.GetBalance(UserId, balanceType);
+            if (balance == null)
+                return BadRequest(CategoryResource.AnErrorHasOccurredFromTheSystemPleaseTryAgain);
+
+            if (balance.Amount < subCategoryPrice)
+                return BadRequest(CategoryResource.YourBalanceIsInsufficient);
 
             bool isSuccess = await _openCategoryRepository.AddAsync(new OpenSubCategory
             {
@@ -247,6 +262,13 @@ namespace ContestPark.Category.API.Controllers
 
             if (!isSuccess)
                 return BadRequest(CategoryResource.CouldNotPpenSubcategoryLock);
+
+            // bakiyesinden alt kategori fiyatı kadar altın/para düşme eventi yollandı
+            var @event = new ChangeBalanceIntegrationEvent(-subCategoryPrice,
+                                                           UserId,
+                                                           balanceType,
+                                                           BalanceHistoryTypes.UnLockSubCategory);
+            _eventBus.Publish(@event);
 
             return Ok();
         }

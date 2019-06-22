@@ -12,7 +12,7 @@ namespace ContestPark.Identity.API.Configuration
             return new List<ApiResource>
             {
                 new ApiResource("category", "Category Service"),
-                new ApiResource("cp", "Cp Service"),
+                new ApiResource("balance", "Balance Service"),
                 new ApiResource("duel", "Duel Service"),
                 new ApiResource("follow", "Follow Service"),
                 new ApiResource("signalrhub", "Duel Signalr"),
@@ -41,7 +41,7 @@ namespace ContestPark.Identity.API.Configuration
                                         IdentityServerConstants.StandardScopes.Profile,
                                         IdentityServerConstants.StandardScopes.OfflineAccess,
                                         "category",
-                                        "cp",
+                                        "balance",
                                         "duel",
                                         "follow",
                                         "mobileshoppingagg",

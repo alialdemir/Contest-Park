@@ -31,7 +31,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
         /// <returns>Sub kategori id listesi</returns>
         public string[] OpenSubCategoryIds(string userId)
         {
-            return _openSubCategoryRepository.QueryMultipleAsync<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
+            return _openSubCategoryRepository.QueryMultiple<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
             {
                 userId
             }).ToArray();
@@ -45,7 +45,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
         /// <returns>Alt kategori kilidi açık ise true değilse false</returns>
         public bool IsSubCategoryOpen(string userId, string subCategoryId)
         {
-            return _openSubCategoryRepository.QuerySingleAsync<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
+            return _openSubCategoryRepository.QuerySingle<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
             {
                 userId,
                 subCategoryId

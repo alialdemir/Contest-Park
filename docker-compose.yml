@@ -50,9 +50,18 @@ services:
 
 
   contestpark.follow.api:
-    image: contestparkcategory.api:${TAG:-latest}
+    image: contestparkfollow.api:${TAG:-latest}
     depends_on:
       - rabbitmq
     build:
       context: .
       dockerfile: src/Services/Follow/ContestPark.Follow.API/Dockerfile
+
+
+  contestpark.balance.api:
+    image: contestparkbalance.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: src/Services/Balance/ContestPark.Balance.API/Dockerfile
