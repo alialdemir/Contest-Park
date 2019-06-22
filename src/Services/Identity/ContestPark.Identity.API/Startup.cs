@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Core.Middlewares;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.Identity.API.Data;
@@ -7,7 +8,6 @@ using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.EventHandling;
 using ContestPark.Identity.API.IntegrationEvents.Events;
-using ContestPark.Identity.API.Middlewares;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
@@ -101,14 +101,14 @@ namespace ContestPark.Identity.API
 
             #endregion AddTransient
 
+            services.AddLocalizationCustom();
+
             services.AddCustomIdentityServer(Configuration, connectionString)
                     .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(IdentityResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddLocalizationCustom();
 
             services
                 .AddIntegrationEventLogEFDbContext(connectionString)

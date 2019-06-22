@@ -55,11 +55,9 @@ namespace ContestPark.Core.Services.HttpService
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string serviceName = Configuration["Audience"];
             string clientKey = Configuration["ClientKey"];
-            if (!string.IsNullOrEmpty(serviceName) && !string.IsNullOrEmpty(clientKey))// servisler arası istek gittiğini anlaması için bunları ekledik
+            if (!string.IsNullOrEmpty(clientKey))// servisler arası istek gittiğini anlaması için bunları ekledik
             {
-                httpClient.DefaultRequestHeaders.Add("ServiceName", serviceName);
                 httpClient.DefaultRequestHeaders.Add("ClientKey", clientKey);
             }
 

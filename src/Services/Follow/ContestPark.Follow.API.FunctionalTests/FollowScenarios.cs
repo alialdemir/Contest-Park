@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -212,10 +211,5 @@ namespace ContestPark.Follow.API.FunctionalTests
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             }
         }
-    }
-
-    internal class ValidationMessage
-    {
-        public string ErrorMessage { get; set; }
     }
 }

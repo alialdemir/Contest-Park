@@ -19,7 +19,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace ContestPark.Identity.API.Controllers
+namespace ContestPark.Identity.API.ControllersIdentityResource
 {
     public class AccountController : Core.Controllers.ControllerBase
     {

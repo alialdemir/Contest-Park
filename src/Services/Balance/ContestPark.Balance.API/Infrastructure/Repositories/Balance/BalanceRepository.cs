@@ -57,12 +57,18 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="amount">Bakiye tutarı</param>
-        public async Task<bool> ChangeBalanceByUserId(ChangeBalanceModel changeBalance)
+        public async Task<bool> UpdateBalanceAsync(ChangeBalanceModel changeBalance)
         {
+            _logger.LogInformation("Bakiye yükleme işlemi başlatılıyor...",
+                                   changeBalance.UserId,
+                                   changeBalance.Amount,
+                                   changeBalance.BalanceType,
+                                   changeBalance.BalanceHistoryType);
+
             string sql = "SELECT * FROM c WHERE c.UserId=@userId";
             Documents.Balance balance = _balanceRepository.QuerySingle<Documents.Balance>(sql, new
             {
-                changeBalance.UserId
+                userId = changeBalance.UserId
             });
             if (balance == null)// Eğer ilk defa bakiye işlemi yapılacaksa null gelir o zaman yeni instance oluşturur
             {
@@ -98,6 +104,12 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
             {
                 isSuccess = await AddBalanceHistory(changeBalance, oldAmount, balanceAmount.Amount);
             }
+
+            _logger.LogInformation($"Bakiye yükleme işlemi bitti. Status: {isSuccess}",
+                                   changeBalance.UserId,
+                                   changeBalance.Amount,
+                                   changeBalance.BalanceType,
+                                   changeBalance.BalanceHistoryType);
 
             return isSuccess;
         }
@@ -159,7 +171,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
 
             if (!isSuccess)
             {
-                _logger.LogCritical("CRITICAL: Kullanıcı bakiyesi güncellenirken hata oluştu.",
+                _logger.LogCritical("CRITICAL: Kullanıcı bakiyesi güncelleme/ekleme sırasında hata oluştu.",
                                     balance.UserId,
                                     oldAmount,
                                     newAmount);

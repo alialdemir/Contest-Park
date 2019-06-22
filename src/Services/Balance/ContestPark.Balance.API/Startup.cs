@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
+using ContestPark.Balance.API.Infrastructure.Repositories.Purchase;
 using ContestPark.Balance.API.Resources;
+using ContestPark.Core.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +48,7 @@ namespace ContestPark.Balance.API
                     .AddCorsConfigure();
 
             services.AddTransient<IBalanceRepository, BalanceRepository>();
+            services.AddTransient<IPurchaseHistoryRepository, PurchaseHistoryRepository>();
 
             //services.AddTransient<NewUserRegisterIntegrationEventHandler>();
 
@@ -82,7 +85,9 @@ namespace ContestPark.Balance.API
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)
         {
-            app.UseAuth();
+            app
+                .UseMiddleware<ServiceAuthorizeMiddleware>()
+                .UseAuth();
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
