@@ -75,7 +75,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Category.API.Fu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Balance", "Balance", "{9C5FCEB9-3F5D-4639-9A0E-DD9482FA265E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestPark.Balance.API", "src\Services\Balance\ContestPark.Balance.API\ContestPark.Balance.API.csproj", "{B66C3BB8-4406-4758-925A-FF51BCED0ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Balance.API", "src\Services\Balance\ContestPark.Balance.API\ContestPark.Balance.API.csproj", "{B66C3BB8-4406-4758-925A-FF51BCED0ED6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABB75E79-336B-4046-866F-8818CAE6797E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestPark.Balance.API.FunctionalTests", "src\Services\Balance\ContestPark.Balance.API.FunctionalTests\ContestPark.Balance.API.FunctionalTests.csproj", "{DE7D165F-7C92-4213-B607-95B4255E4F87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -485,6 +489,30 @@ Global
 		{B66C3BB8-4406-4758-925A-FF51BCED0ED6}.Release|iPhone.Build.0 = Release|Any CPU
 		{B66C3BB8-4406-4758-925A-FF51BCED0ED6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{B66C3BB8-4406-4758-925A-FF51BCED0ED6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Release|iPhone.Build.0 = Release|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DE7D165F-7C92-4213-B607-95B4255E4F87}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -525,6 +553,8 @@ Global
 		{634228AD-8137-4B23-92A0-36567C2D7EDC} = {17A163E9-42EC-4C1E-BECB-240DFB6195F8}
 		{9C5FCEB9-3F5D-4639-9A0E-DD9482FA265E} = {71CAE9EB-0F48-453B-AFA9-B8F0DA48F221}
 		{B66C3BB8-4406-4758-925A-FF51BCED0ED6} = {9C5FCEB9-3F5D-4639-9A0E-DD9482FA265E}
+		{ABB75E79-336B-4046-866F-8818CAE6797E} = {9C5FCEB9-3F5D-4639-9A0E-DD9482FA265E}
+		{DE7D165F-7C92-4213-B607-95B4255E4F87} = {ABB75E79-336B-4046-866F-8818CAE6797E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6034DCEC-DC7A-4272-A07A-4DF9BB0BEFA3}

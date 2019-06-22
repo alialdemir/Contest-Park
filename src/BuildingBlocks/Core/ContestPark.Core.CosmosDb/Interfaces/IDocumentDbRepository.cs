@@ -27,11 +27,11 @@ namespace ContestPark.Core.CosmosDb.Interfaces
 
         Task<bool> RemoveAsync(string id);
 
-        IEnumerable<T> QueryMultipleAsync<T>(string sql, object parameters = null);
+        IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null);
 
-        TDocument QuerySingleAsync(string sql, object parameters = null);
+        TDocument QuerySingle(string sql, object parameters = null);
 
-        T QuerySingleAsync<T>(string sql, object parameters = null);
+        T QuerySingle<T>(string sql, object parameters = null);
 
         Task<bool> RemoveAsync(Expression<Func<TDocument, bool>> predicate);
     }

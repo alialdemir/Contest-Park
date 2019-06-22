@@ -61,6 +61,15 @@ namespace ContestPark.Category.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error has occurred from the system. Please try again..
+        /// </summary>
+        public static string AnErrorHasOccurredFromTheSystemPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("AnErrorHasOccurredFromTheSystemPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not open subcategory lock..
         /// </summary>
         public static string CouldNotPpenSubcategoryLock {
@@ -111,6 +120,15 @@ namespace ContestPark.Category.API.Resources {
         public static string YouMustFollowThisCategoryToDeactivateTheCategory {
             get {
                 return ResourceManager.GetString("YouMustFollowThisCategoryToDeactivateTheCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your balance is insufficient..
+        /// </summary>
+        public static string YourBalanceIsInsufficient {
+            get {
+                return ResourceManager.GetString("YourBalanceIsInsufficient", resourceCulture);
             }
         }
     }

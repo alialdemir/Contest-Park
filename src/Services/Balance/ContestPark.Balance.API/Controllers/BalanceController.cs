@@ -1,5 +1,5 @@
 ﻿using ContestPark.Balance.API.Enums;
-using ContestPark.Balance.API.Infrastructure.Repositories.Cp;
+using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
 using ContestPark.Balance.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -58,9 +58,8 @@ namespace ContestPark.Balance.API.Controllers
         /// <returns>Bakiye bilgileri</returns>
         [HttpGet("{userId}")]
         [Authorize(Policy = "ContestParkServices")]
-        [ProducesResponseType(typeof(IEnumerable<BalanceModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(BalanceModel), (int)HttpStatusCode.OK)]
-        public IActionResult GetBalances(string userId, BalanceTypes? balanceType = BalanceTypes.Gold)
+        public IActionResult GetBalances(string userId, [FromQuery]BalanceTypes balanceType = BalanceTypes.Gold)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
@@ -73,13 +72,13 @@ namespace ContestPark.Balance.API.Controllers
                 return NotFound();
             }
 
-            if (balanceType == null)// balanceType gelmezse tüm bakiye bilgileri döner. gold, money etc...
-                return Ok(balances);
-
-            var balance = balances.Where(b => b.BalanceType == balanceType).Select(b => new// veya isteği bakiye tipinin tutarını alabilir
-            {
-                b.Amount
-            });
+            var balance = balances
+                            .Where(b => b.BalanceType == balanceType)
+                            .Select(b => new BalanceModel
+                            {
+                                Amount = b.Amount
+                            })
+                            .FirstOrDefault();
 
             return Ok(balance);
         }

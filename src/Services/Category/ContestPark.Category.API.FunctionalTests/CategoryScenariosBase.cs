@@ -1,5 +1,6 @@
 ﻿using ContestPark.Category.API.Infrastructure;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
+using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.FunctionalTests;
@@ -68,9 +69,9 @@ namespace ContestPark.Category.API.FunctionalTests
                 return $"api/v1/subcategory/{subCategoryId}";
             }
 
-            public static string PostUnLockSubcategory(string subCategoryId)
+            public static string PostUnLockSubcategory(string subCategoryId, BalanceTypes balanceType)
             {
-                return $"api/v1/subcategory/{subCategoryId}/unlock";
+                return $"api/v1/subcategory/{subCategoryId}/unlock?balanceType={balanceType}";
             }
 
             public static string GetSearch(string categoryId, string searchText, bool paginated = false, int pageSize = 10, int pageNumber = 1)

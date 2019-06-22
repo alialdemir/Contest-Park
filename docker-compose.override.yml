@@ -47,6 +47,7 @@ services:
       - ElasticSearchURI=http://elasticsearch:9200
       - ElasticSearchIndexName=categorysearch
       - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
       - "5102:80"
     volumes:

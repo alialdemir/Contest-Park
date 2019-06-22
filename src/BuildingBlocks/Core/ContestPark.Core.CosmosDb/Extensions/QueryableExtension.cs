@@ -10,7 +10,7 @@ namespace ContestPark.Core.CosmosDb.Extensions
         public static ServiceModel<TResult> ToServiceModel<TDocument, TResult>(this IDocumentDbRepository<TDocument> dbRepository, string sql, object parameters, PagingModel paging) where TDocument : class, IDocument, new()
         {
             // Query olduğu gibi çalıştırıldı
-            IEnumerable<TResult> items = dbRepository.QueryMultipleAsync<TResult>($"{sql} OFFSET {paging.Offset} LIMIT {paging.PageSize}", parameters);
+            IEnumerable<TResult> items = dbRepository.QueryMultiple<TResult>($"{sql} OFFSET {paging.Offset} LIMIT {paging.PageSize}", parameters);
 
             ServiceModel<TResult> serviceModel = new ServiceModel<TResult>
             {
@@ -29,7 +29,7 @@ namespace ContestPark.Core.CosmosDb.Extensions
                 whereQuery = sql.Substring(whereQueryIndex + 5);// koşul kısmından sonrası alındı
             }
 
-            serviceModel.HasNextPage = dbRepository.QuerySingleAsync<bool>($"SELECT VALUE ({paging.PageSize} * ({paging.Offset} + 1)) < COUNT(c.id) FROM c WHERE {whereQuery}", parameters);// sonraki sayfa var mı kontrolü yapıldı
+            serviceModel.HasNextPage = dbRepository.QuerySingle<bool>($"SELECT VALUE ({paging.PageSize} * ({paging.Offset} + 1)) < COUNT(c.id) FROM c WHERE {whereQuery}", parameters);// sonraki sayfa var mı kontrolü yapıldı
 
             return serviceModel;
         }

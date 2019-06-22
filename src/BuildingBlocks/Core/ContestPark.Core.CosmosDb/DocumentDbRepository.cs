@@ -187,17 +187,17 @@ namespace ContestPark.Core.CosmosDb
             }
         }
 
-        public TDocument QuerySingleAsync(string sql, object parameters = null)
+        public TDocument QuerySingle(string sql, object parameters = null)
         {
             return _cosmosStore.QuerySingleAsync(sql, parameters).Result;
         }
 
-        public T QuerySingleAsync<T>(string sql, object parameters = null)
+        public T QuerySingle<T>(string sql, object parameters = null)
         {
             return _cosmosStore.QuerySingleAsync<T>(sql, parameters).Result;
         }
 
-        public IEnumerable<T> QueryMultipleAsync<T>(string sql, object parameters = null)
+        public IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null)
         {
             return _cosmosStore.QueryMultipleAsync<T>(sql, parameters).Result;
         }

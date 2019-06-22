@@ -31,7 +31,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
         public bool IsSubCategoryFollowed(string userId, string subCategoryId)
         {
-            return _followRepository.QuerySingleAsync<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
+            return _followRepository.QuerySingle<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
             {
                 userId,
                 subCategoryId
@@ -56,7 +56,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Takip edilen alt kategoriler</returns>
         public string[] FollowedSubCategoryIds(string userId)
         {
-            return _followRepository.QueryMultipleAsync<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
+            return _followRepository.QueryMultiple<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
             {
                 userId
             }).ToArray();

@@ -26,11 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IntegrationEvents\EventHandling\" />
-    <Folder Include="IntegrationEvents\Events\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Resources\BalanceResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

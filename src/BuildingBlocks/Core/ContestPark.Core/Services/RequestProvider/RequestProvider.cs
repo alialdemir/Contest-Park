@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -16,11 +17,13 @@ namespace ContestPark.Core.Services.HttpService
 
         private readonly JsonSerializerSettings _serializerSettings;
 
+        private IConfiguration Configuration { get; }
+
         #endregion Private variable
 
         #region Constructor
 
-        public RequestProvider()
+        public RequestProvider(IConfiguration configuration)
         {
             _serializerSettings = new JsonSerializerSettings
             {
@@ -29,6 +32,7 @@ namespace ContestPark.Core.Services.HttpService
                 NullValueHandling = NullValueHandling.Ignore
             };
             _serializerSettings.Converters.Add(new StringEnumConverter());
+            Configuration = configuration;
         }
 
         #endregion Constructor
@@ -50,6 +54,14 @@ namespace ContestPark.Core.Services.HttpService
             HttpClient httpClient = new HttpClient();
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            string serviceName = Configuration["Audience"];
+            string clientKey = Configuration["ClientKey"];
+            if (!string.IsNullOrEmpty(serviceName) && !string.IsNullOrEmpty(clientKey))// servisler arası istek gittiğini anlaması için bunları ekledik
+            {
+                httpClient.DefaultRequestHeaders.Add("ServiceName", serviceName);
+                httpClient.DefaultRequestHeaders.Add("ClientKey", clientKey);
+            }
 
             return httpClient;
         }
