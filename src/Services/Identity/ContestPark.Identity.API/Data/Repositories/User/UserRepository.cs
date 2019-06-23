@@ -43,7 +43,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         {
             return (from u in _applicationDbContext.Users
                     where u.ForgetPasswordCode == code
-                    select u).First();
+                    select u).FirstOrDefault();
         }
 
         /// <summary>

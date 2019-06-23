@@ -49,7 +49,7 @@ namespace ContestPark.Follow.API.Controllers
         [HttpPost("{followedUserId}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Post(string followedUserId)
+        public async Task<IActionResult> Post([FromRoute]string followedUserId)
         {
             if (string.IsNullOrEmpty(followedUserId) || UserId == followedUserId)
                 return BadRequest();
@@ -71,7 +71,7 @@ namespace ContestPark.Follow.API.Controllers
         [HttpDelete("{followedUserId}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Delete(string followedUserId)
+        public async Task<IActionResult> Delete([FromRoute]string followedUserId)
         {
             if (string.IsNullOrEmpty(followedUserId) || UserId == followedUserId)
                 return BadRequest();

@@ -56,7 +56,7 @@ services:
     build:
       context: .
       dockerfile: src/Services/Follow/ContestPark.Follow.API/Dockerfile
-
+      
 
   contestpark.balance.api:
     image: contestparkbalance.api:${TAG:-latest}
@@ -65,3 +65,17 @@ services:
     build:
       context: .
       dockerfile: src/Services/Balance/ContestPark.Balance.API/Dockerfile
+
+
+  contestpark.ocelotapigw.api:
+    image: contestparkocelotapigw.api:${TAG:-latest}
+    depends_on:
+      - contestpark.balance.api
+      - contestpark.follow.api
+      - contestpark.category.api
+      - contestpark.identity.api
+      - elasticsearch
+      - mysql-data
+    build:
+      context: .
+      dockerfile: src/ApiGateways/ContestPark.OcelotApiGw/Dockerfile
