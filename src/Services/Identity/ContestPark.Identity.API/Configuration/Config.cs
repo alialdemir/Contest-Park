@@ -13,9 +13,10 @@ namespace ContestPark.Identity.API.Configuration
             {
                 new ApiResource("category", "Category Service"),
                 new ApiResource("balance", "Balance Service"),
+                new ApiResource("chat", "Chat Service"),
                 new ApiResource("duel", "Duel Service"),
                 new ApiResource("follow", "Follow Service"),
-                new ApiResource("signalrhub", "Duel Signalr"),
+                new ApiResource("signalr", "Duel Signalr"),
                 new ApiResource("question", "Question Service"),
                 new ApiResource("identity", "Identity Service"),
                 new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
@@ -43,9 +44,10 @@ namespace ContestPark.Identity.API.Configuration
                                         "category",
                                         "balance",
                                         "duel",
+                                        "chat",
                                         "follow",
                                         "mobileshoppingagg",
-                                        "signalrhub",
+                                        "signalr",
                                         "question",
                                         "identity"
                                     },
