@@ -59,5 +59,14 @@ namespace ContestPark.Chat.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message sending failed. Please try again..
+        /// </summary>
+        public static string MessageSendingFailedPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("MessageSendingFailedPleaseTryAgain", resourceCulture);
+            }
+        }
     }
 }

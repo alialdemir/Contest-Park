@@ -4,8 +4,8 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
 {
     public interface IConversationRepository
     {
-        Task<string> AddConversationAsync(string senderUserId, string receiverUserId);
+        Task<Documents.Conversation> AddOrGetConversationAsync(string senderUserId, string receiverUserId);
 
-        string GetConversationIdByParticipants(string senderUserId, string receiverUserId);
+        Task<bool> UpdateAsync(Documents.Conversation conversation);
     }
 }

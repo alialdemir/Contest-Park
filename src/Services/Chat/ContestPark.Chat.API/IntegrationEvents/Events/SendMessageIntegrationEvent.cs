@@ -14,7 +14,5 @@ namespace ContestPark.Chat.API.IntegrationEvents.Events
         public string SenderUserId { get; }
         public string ReceiverUserId { get; }
         public string Message { get; }
-
-        public string AuthorUserId { get; set; }
     }
 }

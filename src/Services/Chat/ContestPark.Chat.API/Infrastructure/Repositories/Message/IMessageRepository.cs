@@ -5,6 +5,6 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
 {
     public interface IMessageRepository
     {
-        Task<bool> AddMessage(MessageModel message)
+        Task<bool> AddMessage(MessageModel message);
     }
 }

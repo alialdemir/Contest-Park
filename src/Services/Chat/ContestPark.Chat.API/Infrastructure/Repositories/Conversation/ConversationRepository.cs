@@ -27,17 +27,31 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
         #region Methods
 
         /// <summary>
-        /// İki kullanıcı arası mesaj ekle
+        /// Konuşma güncelle
+        /// </summary>
+        /// <param name="conversation">Konuşma bilgisi</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public Task<bool> UpdateAsync(Documents.Conversation conversation)
+        {
+            return _conversationRepository.UpdateAsync(conversation);
+        }
+
+        /// <summary>
+        /// Eğer iki kullanıcı arasında konuşma varsa o conversation id'sini verir yoksa konuşma ekler ve eklediği conversation id döner
         /// </summary>
         /// <param name="senderUserId">Gönderen kullanıcı id</param>
         /// <param name="receiverUserId">Alıcı kullanıcı id</param>
         /// <returns>Conversation id</returns>
-        public async Task<string> AddConversationAsync(string senderUserId, string receiverUserId)
+        public async Task<Documents.Conversation> AddOrGetConversationAsync(string senderUserId, string receiverUserId)
         {
             if (string.IsNullOrEmpty(senderUserId) || string.IsNullOrEmpty(receiverUserId))
-                return string.Empty;
+                return null;
 
-            var conversation = new Documents.Conversation
+            Documents.Conversation conversation = GetConversationIdByParticipants(senderUserId, receiverUserId);
+            if (conversation != null)
+                return conversation;
+
+            conversation = new Documents.Conversation
             {
                 SenderUserId = senderUserId,
                 ReceiverUserId = receiverUserId
@@ -48,10 +62,10 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             {
                 _logger.LogCritical("CRITICAL: iki kullanıcı arasında conversation ekleme işlemi başarısız oldu.", senderUserId, receiverUserId);
 
-                return string.Empty;
+                return null;
             }
 
-            return conversation.Id;
+            return conversation;
         }
 
         /// <summary>
@@ -60,12 +74,13 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
         /// <param name="senderUserId">Gönderen kullanıcı id</param>
         /// <param name="receiverUserId">Alıcı kullanıcı id</param>
         /// <returns>Conversation id</returns>
-        public string GetConversationIdByParticipants(string senderUserId, string receiverUserId)
+        private Documents.Conversation GetConversationIdByParticipants(string senderUserId, string receiverUserId)
         {
-            string sql = @"SELECT TOP 1 c.id FROM c
-                           WHERE c.SenderUserId = @senderUserId AND c.ReceiverUserId = @receiverUserId";
+            string sql = @"SELECT TOP 1 * FROM c
+                           WHERE c.SenderUserId = @senderUserId AND c.ReceiverUserId = @receiverUserId OR
+                                 c.SenderUserId = @receiverUserId AND c.ReceiverUserId = @senderUserId";
 
-            return _conversationRepository.QuerySingle<string>(sql, new
+            return _conversationRepository.QuerySingle<Documents.Conversation>(sql, new
             {
                 senderUserId,
                 receiverUserId

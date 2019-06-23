@@ -1,6 +1,7 @@
 ﻿using ContestPark.Chat.API.Infrastructure.Repositories.Conversation;
 using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.Events;
+using ContestPark.Chat.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
 
         private readonly IConversationRepository _conversationRepository;
         private readonly IMessageRepository _messageRepository;
+        private readonly IEventBus _eventBus;
         private readonly ILogger<SendMessageIntegrationEventHandler> _logger;
 
         #endregion Private Variables
@@ -21,10 +23,12 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
 
         public SendMessageIntegrationEventHandler(IConversationRepository conversationRepository,
                                                 IMessageRepository messageRepository,
+                                                IEventBus eventBus,
                                                 ILogger<SendMessageIntegrationEventHandler> logger)
         {
             _conversationRepository = conversationRepository;
             _messageRepository = messageRepository;
+            _eventBus = eventBus;
             _logger = logger;
         }
 
@@ -32,16 +36,20 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
 
         #region Methods
 
+        /// <summary>
+        /// Mesajma işlemini handler eder
+        /// </summary>
+        /// <param name="event">Mesaj bilgisi</param>
         public async Task Handle(SendMessageIntegrationEvent @event)
         {
-            string conversationId = await GetConversationId(@event.SenderUserId, @event.ReceiverUserId);
-            if (string.IsNullOrEmpty(conversationId))
+            var conversation = await _conversationRepository.AddOrGetConversationAsync(@event.SenderUserId, @event.ReceiverUserId);
+            if (conversation == null)
             {
                 _logger.LogCritical("Mesajlaşma sırasında iki kullanıcı arasındaki conversation id alınırken hata oluştu.",
-                                    conversationId,
                                     @event.SenderUserId,
                                     @event.ReceiverUserId);
-                // TODO: signalr ile mesaj gönderilemedi mesajı iletilmeli
+
+                SendErrorMessage(@event.SenderUserId);
 
                 return;
             }
@@ -49,36 +57,44 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
             bool isSuccess = await _messageRepository.AddMessage(new Model.MessageModel
             {
                 Text = @event.Message,
-                ConversationId = conversationId,
-                AuthorUserId = @event.AuthorUserId
+                ConversationId = conversation.Id,
+                AuthorUserId = @event.SenderUserId
             });
-
             if (!isSuccess)
             {
                 _logger.LogCritical("Mesaj eklenirken hata oluştu.",
-                                    conversationId,
+                                    conversation,
                                     @event.SenderUserId,
                                     @event.ReceiverUserId);
 
-                // TODO: signalr ile mesaj gönderilemedi mesajı iletilmeli
+                SendErrorMessage(@event.SenderUserId);
+
+                return;
             }
 
-            // TODO: konuştuğu kişi online ise signalr ile send mesaj
+            conversation.LastMessage = @event.Message;
+            conversation.LastWriterUserId = @event.SenderUserId;
+            isSuccess = await _conversationRepository.UpdateAsync(conversation);
+            if (!isSuccess)
+            {
+                _logger.LogInformation("Mesaj gönderilme işlemi sırasında son mesaj güncelleme işleminde hata alındı.", conversation.Id);
+            }
+
+            var @SendMessageEvent = new SendMessageWithSignalrIntegrationEvent(@event.SenderUserId,
+                                                                               conversation.Id,
+                                                                               @event.Message);
+            _eventBus.Publish(@SendMessageEvent);
         }
 
         /// <summary>
-        /// İki kullanıcı arasınadki conversation id verir eğer yoksa ekler
+        /// Kullanıcı id'ye mesaj gönderilemedi error mesajı gönderir
         /// </summary>
-        /// <param name="senderUserId">Gönderen kullanıcı id</param>
-        /// <param name="receiverUserId">Alıcı kullanıcı id</param>
-        /// <returns>Conversation id</returns>
-        private async Task<string> GetConversationId(string senderUserId, string receiverUserId)
+        /// <param name="userId">Error mesaj gösterilecek kullanıcı id</param>
+        private void SendErrorMessage(string userId)
         {
-            string conversationId = _conversationRepository.GetConversationIdByParticipants(senderUserId, receiverUserId);
-            if (string.IsNullOrEmpty(conversationId))
-                conversationId = await _conversationRepository.AddConversationAsync(senderUserId, receiverUserId);
-
-            return conversationId;
+            var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId,
+                                                                         ChatResource.MessageSendingFailedPleaseTryAgain);
+            _eventBus.Publish(@event);
         }
 
         #endregion Methods

@@ -275,6 +275,19 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Follow/{userId}/Followers?pageSize={pageSize}&pageNumber={pageNumber}",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    // Chat
+    {
+      "DownstreamPathTemplate": "/api/{version}/Chat",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.chat.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Chat",
+      "UpstreamHttpMethod": [ "Post" ]
     }
   ],
   "GlobalConfiguration": {

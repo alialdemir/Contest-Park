@@ -40,9 +40,9 @@ namespace ContestPark.Chat.API
 
                 host.MigrateDatabase<ChatApiSeed>((services, logger) =>
                 {
-                    new ChatApiSeed()
-                       .SeedAsync(services, logger)
-                       .Wait();
+                    //new ChatApiSeed()
+                    //   .SeedAsync(services, logger)
+                    //   .Wait();
                 });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
