@@ -79,3 +79,12 @@ services:
     build:
       context: .
       dockerfile: src/ApiGateways/ContestPark.OcelotApiGw/Dockerfile
+      
+
+  contestpark.chat.api:
+    image: contestparkchat.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: src/Services/Chat/ContestPark.Chat.API/Dockerfile
