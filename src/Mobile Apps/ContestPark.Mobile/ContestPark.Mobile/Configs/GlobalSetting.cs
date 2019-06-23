@@ -119,7 +119,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Gets or sets the Scope
         /// </summary>
-        public string Scope { get; set; } = "category identity balance duel follow signalrhub question offline_access";
+        public string Scope { get; set; } = "category identity balance duel follow signalr question offline_access";
 
         /// <summary>
         /// Gets or sets the SignalREndpoint

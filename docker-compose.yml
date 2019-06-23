@@ -88,3 +88,12 @@ services:
     build:
       context: .
       dockerfile: src/Services/Chat/ContestPark.Chat.API/Dockerfile
+
+  contestpark.signalr.api:
+    image: contestparksignalr.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+      - contestpark.chat.api
+    build:
+      context: .
+      dockerfile: src/Services/Signalr/ContestPark.Signalr.API/Dockerfile

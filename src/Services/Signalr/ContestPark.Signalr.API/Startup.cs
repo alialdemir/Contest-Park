@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Reflection;
 
 namespace ContestPark.Signalr.API
 {
@@ -21,7 +22,6 @@ namespace ContestPark.Signalr.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddAuth(Configuration)
@@ -49,16 +49,15 @@ namespace ContestPark.Signalr.API
                             .AllowCredentials());
                     });
 
-            services.AddAuth(Configuration);
-
             services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
+            services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
+            container.RegisterModule(new ApplicationModule());
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var pathBase = Configuration["PATH_BASE"];
@@ -92,6 +91,23 @@ namespace ContestPark.Signalr.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<SendErrorMessageWithSignalrIntegrationEvent, SendErrorMessageWithSignalrIntegrationEventHandler>();
+            eventBus.Subscribe<SendMessageWithSignalrIntegrationEvent, SendMessageWithSignalrIntegrationEventHandler>();
+        }
+    }
+
+    public class ApplicationModule
+      : Autofac.Module
+    {
+        public string QueriesConnectionString { get; }
+
+        public ApplicationModule()
+        {
+        }
+
+        protected override void Load(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyTypes(typeof(SendErrorMessageWithSignalrIntegrationEvent).GetTypeInfo().Assembly)
+                .AsClosedTypesOf(typeof(IIntegrationEventHandler<>));
         }
     }
 }
