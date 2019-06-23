@@ -18,7 +18,7 @@ namespace ContestPark.Chat.API.Controllers
         #region Constructor
 
         public ChatController(ILogger<ChatController> logger,
-            IEventBus eventBus) : base(logger)
+                              IEventBus eventBus) : base(logger)
         {
             _eventBus = eventBus;
         }
