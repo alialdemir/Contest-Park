@@ -61,7 +61,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// <param name="files">Yüklenen resim</param>
         /// <returns>Resim url</returns>
         [HttpPost]
-        [Route("changeCoverPicture")]
+        [Route("ChangeCoverPicture")]
         [ProducesResponseType(typeof(ChangePictureModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
@@ -121,7 +121,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// <param name="files">Yüklenen resim</param>
         /// <returns>Resim url</returns>
         [HttpPost]
-        [Route("changeProfilePicture")]
+        [Route("ChangeProfilePicture")]
         [ProducesResponseType(typeof(ChangePictureModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
@@ -186,7 +186,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// <param name="updateUserInfo">Güncellenecek bilgiler</param>
         /// <returns>Başarılı ise 200 ok değilse hata nedeni döner</returns>
         [HttpPost]
-        [Route("update")]
+        [Route("Update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateUserInfo([FromBody]UpdateUserInfoModel updateUserInfo)
@@ -401,6 +401,29 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Parametreden gelen kullanıcıların bilgilerini döner
+        /// sadece bizim servislerden istek atılabilir dışarıdan erişilemez!
+        /// </summary>
+        /// <param name="userInfos">Kullanıcı id listesi</param>
+        /// <returns>Parametreden gelen kullanıcıların bilgileri</returns>
+        [HttpPost]
+        [Authorize(Policy = "ContestParkServices")]
+        [Route("UserInfos")]
+        [ProducesResponseType(typeof(List<UserNotFoundModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetUserInfos([FromBody]List<string> userInfos)
+        {
+            if (userInfos == null || userInfos.Count == 0)
+                return BadRequest();
+
+            var users = _userRepository.GetUserInfos(userInfos);
+            if (users == null || users.Count() == 0)
+                return NotFound();
+
+            return Ok(users);
+        }
+
+        /// <summary>
         /// Şifremi unuttum email içeriği
         /// </summary>
         /// <param name="fullname"></param>
@@ -454,29 +477,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             // Publish through the Event Bus and mark the saved event as published
             await _identityIntegrationEventService.PublishThroughEventBusAsync(@event);
-        }
-
-        /// <summary>
-        /// Parametreden gelen kullanıcıların bilgilerini döner
-        /// sadece bizim servislerden istek atılabilir dışarıdan erişilemez!
-        /// </summary>
-        /// <param name="userInfos">Kullanıcı id listesi</param>
-        /// <returns>Parametreden gelen kullanıcıların bilgileri</returns>
-        [HttpPost]
-        [Authorize(Policy = "ContestParkServices")]
-        [Route("UserInfos")]
-        [ProducesResponseType(typeof(List<UserNotFoundModel>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetUserInfos([FromBody]List<string> userInfos)
-        {
-            if (userInfos == null || userInfos.Count == 0)
-                return BadRequest();
-
-            var users = _userRepository.GetUserInfos(userInfos);
-            if (users == null || users.Count() == 0)
-                return NotFound();
-
-            return Ok(users);
         }
 
         #endregion Methods
