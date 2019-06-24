@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Chat.API.Infrastructure.Repositories.Block;
 using ContestPark.Chat.API.Infrastructure.Repositories.Conversation;
 using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.EventHandling;
@@ -46,6 +47,7 @@ namespace ContestPark.Chat.API
 
             services.AddTransient<IConversationRepository, ConversationRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
+            services.AddTransient<IBlockRepository, BlockRepository>();
 
             services.AddTransient<SendMessageIntegrationEventHandler>();
 

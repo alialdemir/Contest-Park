@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnUnexpectedErrorHasOccurredPleaseTryAgain" xml:space="preserve">
+    <value>An unexpected error has occurred, please try again.</value>
+  </data>
   <data name="MessageSendingFailedPleaseTryAgain" xml:space="preserve">
     <value>Message sending failed. Please try again.</value>
+  </data>
+  <data name="ThereAreBetweenYouAndBlockThisUser.YouOrHeMayHaveBlockedYou" xml:space="preserve">
+    <value>There are between you and block this user. You or he may have blocked you.</value>
+  </data>
+  <data name="ThisIserIsAlreadyBlocked" xml:space="preserve">
+    <value>This user is already blocked.</value>
+  </data>
+  <data name="YouCanNotMendMessagesToYourself" xml:space="preserve">
+    <value>You can not send messages to yourself.</value>
+  </data>
+  <data name="YouHaveNotBlockedThisUser" xml:space="preserve">
+    <value>You have not blocked this user.</value>
   </data>
 </root>
