@@ -61,11 +61,56 @@ namespace ContestPark.Chat.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error has occurred, please try again..
+        /// </summary>
+        public static string AnUnexpectedErrorHasOccurredPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("AnUnexpectedErrorHasOccurredPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message sending failed. Please try again..
         /// </summary>
         public static string MessageSendingFailedPleaseTryAgain {
             get {
                 return ResourceManager.GetString("MessageSendingFailedPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are between you and block this user. You or he may have blocked you..
+        /// </summary>
+        public static string ThereAreBetweenYouAndBlockThisUser_YouOrHeMayHaveBlockedYou {
+            get {
+                return ResourceManager.GetString("ThereAreBetweenYouAndBlockThisUser.YouOrHeMayHaveBlockedYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user is already blocked..
+        /// </summary>
+        public static string ThisIserIsAlreadyBlocked {
+            get {
+                return ResourceManager.GetString("ThisIserIsAlreadyBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can not send messages to yourself..
+        /// </summary>
+        public static string YouCanNotMendMessagesToYourself {
+            get {
+                return ResourceManager.GetString("YouCanNotMendMessagesToYourself", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not blocked this user..
+        /// </summary>
+        public static string YouHaveNotBlockedThisUser {
+            get {
+                return ResourceManager.GetString("YouHaveNotBlockedThisUser", resourceCulture);
             }
         }
     }

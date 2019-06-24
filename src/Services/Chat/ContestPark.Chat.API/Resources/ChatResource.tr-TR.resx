@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnUnexpectedErrorHasOccurredPleaseTryAgain" xml:space="preserve">
+    <value>İstenmedik bir hata oluştu lütfen tekrar deneyiniz.</value>
+  </data>
   <data name="MessageSendingFailedPleaseTryAgain" xml:space="preserve">
     <value>Mesaj gönderme işlemi başarısız oldu. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="ThereAreBetweenYouAndBlockThisUser.YouOrHeMayHaveBlockedYou" xml:space="preserve">
+    <value>Bu kullanıcı ile aranızda engelleme var. Siz veya o sizi engellemiş olabilirsiniz.</value>
+  </data>
+  <data name="ThisIserIsAlreadyBlocked" xml:space="preserve">
+    <value>Bu kullanıcı zaten engellendi.</value>
+  </data>
+  <data name="YouCanNotMendMessagesToYourself" xml:space="preserve">
+    <value>Kendinize mesaj gönderemezsiniz.</value>
+  </data>
+  <data name="YouHaveNotBlockedThisUser" xml:space="preserve">
+    <value>Bu kullanıcıyı engellemediniz.</value>
   </data>
 </root>

@@ -27,6 +27,16 @@ namespace ContestPark.Chat.API.FunctionalTests
                 return $"api/v1/Chat";
             }
 
+            public static string PostBlock(string deterredUserId)
+            {
+                return $"api/v1/Chat/block/{deterredUserId}";
+            }
+
+            public static string PostUnBlock(string deterredUserId)
+            {
+                return $"api/v1/Chat/unblock/{deterredUserId}";
+            }
+
             public static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

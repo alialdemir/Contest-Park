@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System.IO;
+using System.Net.Http;
 using System.Reflection;
 using Xunit;
 
@@ -36,6 +38,15 @@ namespace ContestPark.Core.FunctionalTests
 
         public virtual void Seed(IWebHost host)
         {
+        }
+
+        public string GetErrorMessage(HttpResponseMessage response)
+        {
+            var jsonData = response.Content.ReadAsStringAsync().Result;
+
+            ValidationMessage result = JsonConvert.DeserializeObject<ValidationMessage>(jsonData);
+
+            return result.ErrorMessage;
         }
     }
 
