@@ -1,6 +1,8 @@
 ﻿using ContestPark.Chat.API.Model;
+using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.FunctionalTests;
 using Newtonsoft.Json;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -170,6 +172,66 @@ namespace ContestPark.Chat.API.FunctionalTests
                     .GetAsync(Entpoints.GetBlockedStatus("1111-1111-1111-1111"));
 
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(4)]
+        public async Task Get_user_blocked_list_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                       .GetAsync(Entpoints.GetUserBlockedList());
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(4)]
+        public async Task Get_user_blocked_list_and_check_values()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                       .GetAsync(Entpoints.GetUserBlockedList());
+
+                var jsonData = response.Content.ReadAsStringAsync().Result;
+
+                ServiceModel<BlockModel> result = JsonConvert.DeserializeObject<ServiceModel<BlockModel>>(jsonData);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                Assert.NotNull(result.Items);
+
+                BlockModel firstItem = result.Items.FirstOrDefault();
+
+                Assert.Equal("3333-3333-3333-bot", firstItem.UserId);
+
+                Assert.Equal("Bot", firstItem.FullName);
+
+                Assert.True(firstItem.IsBlocked);
+            }
+        }
+
+        [Fact]
+        public async Task Get_user_blocked_list_and_check_paging_values()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetUserBlockedList(true, 1, 1));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<BlockModel> result = JsonConvert.DeserializeObject<ServiceModel<BlockModel>>(responseContent);
+
+                Assert.NotNull(result);
+                Assert.Equal(1, result.PageNumber);
+                Assert.Equal(1, result.PageSize);
+                Assert.Single(result.Items);
+                Assert.False(result.HasNextPage);
             }
         }
 

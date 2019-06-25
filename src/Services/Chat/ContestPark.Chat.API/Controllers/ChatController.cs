@@ -1,11 +1,16 @@
-﻿using ContestPark.Chat.API.Infrastructure.Repositories.Block;
+﻿using ContestPark.Chat.API.Infrastructure.Documents;
+using ContestPark.Chat.API.Infrastructure.Repositories.Block;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Model;
 using ContestPark.Chat.API.Resources;
+using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -18,6 +23,7 @@ namespace ContestPark.Chat.API.Controllers
         private readonly IBlockRepository _blockRepository;
 
         private readonly IEventBus _eventBus;
+        private readonly IDocumentDbRepository<User> _userRepository;
 
         #endregion Private Variables
 
@@ -25,9 +31,11 @@ namespace ContestPark.Chat.API.Controllers
 
         public ChatController(ILogger<ChatController> logger,
                               IBlockRepository blockRepository,
+                              IDocumentDbRepository<User> userRepository,
                               IEventBus eventBus) : base(logger)
         {
             _blockRepository = blockRepository;
+            _userRepository = userRepository;
             _eventBus = eventBus;
         }
 
@@ -41,7 +49,7 @@ namespace ContestPark.Chat.API.Controllers
         /// <param name="message">Mesaj bilgisi</param>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public IActionResult Post([FromBody]Message message)
+        public IActionResult Post([FromBody]Model.Message message)
         {
             if (UserId == message.ReceiverUserId)
                 return BadRequest(ChatResource.YouCanNotMendMessagesToYourself);
@@ -104,7 +112,7 @@ namespace ContestPark.Chat.API.Controllers
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns></returns>
-        [HttpGet("BlockedStatus/{userId}")]
+        [HttpGet("Block/Status/{userId}")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult BlockedStatus([FromRoute]string userId)
@@ -116,6 +124,37 @@ namespace ContestPark.Chat.API.Controllers
             {
                 isBlocked = _blockRepository.BlockingStatus(UserId, userId)
             });
+        }
+
+        /// <summary>
+        /// Engellediği kullanıcların listesi
+        /// </summary>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Engellenen kullanıcılar</returns>
+        [HttpGet("Block")]
+        [ProducesResponseType(typeof(ServiceModel<BlockModel>), (int)HttpStatusCode.OK)]
+        public IActionResult UserBlockedList([FromQuery]PagingModel paging)
+        {
+            ServiceModel<BlockModel> result = _blockRepository.UserBlockedList(UserId, paging);
+            IEnumerable<User> users = _userRepository.FindByIds(result.Items.Select(x => x.UserId).AsEnumerable());
+
+            result.Items.ToList().ForEach(block =>
+            {
+                block.FullName = users.Where(u => u.Id == block.UserId).FirstOrDefault().FullName;
+            });
+
+            var notFoundUserIds = result
+                                    .Items
+                                    .Where(u => !users.Any(x => x.Id == u.UserId))
+                                    .Select(x => x.UserId)
+                                    .AsEnumerable();
+            if (notFoundUserIds.Count() > 0)// Bulunamayan kullanıcıları identity apiden alması için event yolladık
+            {
+                var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
+                _eventBus.Publish(@event);
+            }
+
+            return Ok(result);
         }
 
         #endregion Methods
