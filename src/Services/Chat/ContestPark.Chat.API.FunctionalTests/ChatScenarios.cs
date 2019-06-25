@@ -124,5 +124,58 @@ namespace ContestPark.Chat.API.FunctionalTests
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             }
         }
+
+        [Fact, TestPriority(0)]
+        public async Task Get_blocked_status_and_response_ok_status_code_and_isBlocked_true()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetBlockedStatus("2222-2222-2222-2222"));
+
+                var jsonData = response.Content.ReadAsStringAsync().Result;
+
+                IsBlockedModel result = JsonConvert.DeserializeObject<IsBlockedModel>(jsonData);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                Assert.False(result.IsBlocked);
+            }
+        }
+
+        [Fact, TestPriority(0)]
+        public async Task Get_blocked_status_and_response_ok_status_code_and_isBlocked_false()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetBlockedStatus("3333-3333-3333-bot"));
+
+                var jsonData = response.Content.ReadAsStringAsync().Result;
+
+                IsBlockedModel result = JsonConvert.DeserializeObject<IsBlockedModel>(jsonData);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                Assert.True(result.IsBlocked);
+            }
+        }
+
+        [Fact]
+        public async Task Get_blocked_status_yourself_and_response_badrequest()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetBlockedStatus("1111-1111-1111-1111"));
+
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            }
+        }
+
+        private class IsBlockedModel
+        {
+            public bool IsBlocked { get; set; }
+        }
     }
 }
