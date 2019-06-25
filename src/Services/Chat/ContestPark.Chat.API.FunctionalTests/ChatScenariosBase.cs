@@ -49,6 +49,11 @@ namespace ContestPark.Chat.API.FunctionalTests
                     : $"api/v1/Chat/block";
             }
 
+            internal static string DeleteMessages(string conversationId)
+            {
+                return $"api/v1/Chat/{conversationId}";
+            }
+
             public static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

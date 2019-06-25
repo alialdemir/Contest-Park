@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnErrorOccurredWhileDeletingYourMessagePleaseTryAgain" xml:space="preserve">
+    <value>Mesajınız silinirken hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
   <data name="AnUnexpectedErrorHasOccurredPleaseTryAgain" xml:space="preserve">
     <value>İstenmedik bir hata oluştu lütfen tekrar deneyiniz.</value>
   </data>
@@ -125,6 +128,9 @@
   </data>
   <data name="ThereAreBetweenYouAndBlockThisUser.YouOrHeMayHaveBlockedYou" xml:space="preserve">
     <value>Bu kullanıcı ile aranızda engelleme var. Siz veya o sizi engellemiş olabilirsiniz.</value>
+  </data>
+  <data name="ThisConversationIsNotYours" xml:space="preserve">
+    <value>Bu konuşma size ait değil.</value>
   </data>
   <data name="ThisIserIsAlreadyBlocked" xml:space="preserve">
     <value>Bu kullanıcı zaten engellendi.</value>

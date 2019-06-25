@@ -54,6 +54,7 @@ namespace ContestPark.Chat.API
             services.AddTransient<UserInfoChangedIntegrationEventHandler>();
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
             services.AddTransient<UserNotFoundIntegrationEventHandler>();
+            services.AddTransient<RemoveMessagesIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -100,6 +101,7 @@ namespace ContestPark.Chat.API
             eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
             eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
             eventBus.Subscribe<UserNotFoundIntegrationEvent, UserNotFoundIntegrationEventHandler>();
+            eventBus.Subscribe<RemoveMessagesIntegrationEvent, RemoveMessagesIntegrationEventHandler>();
         }
     }
 }

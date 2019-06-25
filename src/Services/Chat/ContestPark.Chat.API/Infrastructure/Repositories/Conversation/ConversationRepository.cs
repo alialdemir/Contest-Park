@@ -87,6 +87,42 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             });
         }
 
+        /// <summary>
+        /// Conversation id'deki mesajın göndereni user id mi kontrol eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="conversationId">Konuşma id</param>
+        /// <returns>Gönderen user id ise true değilse false</returns>
+        public bool IsSender(string userId, string conversationId)
+        {
+            string sql = @"SELECT TOP 1 VALUE CONTAINS(c.SenderUserId, @userId) FROM c
+                           WHERE c.id=@conversationId";
+
+            return _conversationRepository.QuerySingle<bool>(sql, new
+            {
+                userId,
+                conversationId
+            });
+        }
+
+        /// <summary>
+        /// Konuşma id'si ilgili kullanıcıya mı ait kontrol eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="conversationId">Konuşma id</param>
+        /// <returns>Kullanıcı konuşmada varsa true yoksa false</returns>
+        public bool IsConversationBelongUser(string userId, string conversationId)
+        {
+            string sql = @"SELECT TOP 1 VALUE (c.SenderUserId=@userId OR c.ReceiverUserId=@userId) FROM c
+                           WHERE c.id=@conversationId";
+
+            return _conversationRepository.QuerySingle<bool>(sql, new
+            {
+                userId,
+                conversationId
+            });
+        }
+
         #endregion Methods
     }
 }

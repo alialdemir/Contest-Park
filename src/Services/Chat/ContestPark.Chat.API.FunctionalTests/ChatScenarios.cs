@@ -34,6 +34,35 @@ namespace ContestPark.Chat.API.FunctionalTests
             }
         }
 
+        [Fact, TestPriority(1)]
+        public async Task Delete_messages_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .DeleteAsync(Entpoints.DeleteMessages("b7ede3b3-3621-40d0-9aea-b54157f3aa72"));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(1)]
+        [InlineData("tr-TR", "Bu konuşma size ait değil.")]
+        [InlineData("en-US", "This conversation is not yours.")]
+        public async Task Delete_messages_and_conversation_is_not_yours_and_response_badrequest_status_code(string langCode, string message)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .AddLangCode(langCode)
+                    .DeleteAsync(Entpoints.DeleteMessages("d82eab18-3d5d-43e4-9693-87d184af679e"));
+
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+                Assert.Equal(message, GetErrorMessage(response));
+            }
+        }
+
         [Theory, TestPriority(2)]
         [InlineData("en-US", "You can not send messages to yourself.")]
         [InlineData("tr-TR", "Kendinize mesaj gönderemezsiniz.")]

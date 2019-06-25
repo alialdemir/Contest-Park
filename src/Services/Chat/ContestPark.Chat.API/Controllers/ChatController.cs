@@ -1,5 +1,6 @@
 ﻿using ContestPark.Chat.API.Infrastructure.Documents;
 using ContestPark.Chat.API.Infrastructure.Repositories.Block;
+using ContestPark.Chat.API.Infrastructure.Repositories.Conversation;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Model;
 using ContestPark.Chat.API.Resources;
@@ -21,7 +22,7 @@ namespace ContestPark.Chat.API.Controllers
         #region Private Variables
 
         private readonly IBlockRepository _blockRepository;
-
+        private readonly IConversationRepository _conversationRepository;
         private readonly IEventBus _eventBus;
         private readonly IDocumentDbRepository<User> _userRepository;
 
@@ -31,10 +32,12 @@ namespace ContestPark.Chat.API.Controllers
 
         public ChatController(ILogger<ChatController> logger,
                               IBlockRepository blockRepository,
+                              IConversationRepository conversationRepository,
                               IDocumentDbRepository<User> userRepository,
                               IEventBus eventBus) : base(logger)
         {
             _blockRepository = blockRepository;
+            _conversationRepository = conversationRepository;
             _userRepository = userRepository;
             _eventBus = eventBus;
         }
@@ -58,6 +61,27 @@ namespace ContestPark.Chat.API.Controllers
                 return BadRequest(ChatResource.ThereAreBetweenYouAndBlockThisUser_YouOrHeMayHaveBlockedYou);
 
             var @event = new SendMessageIntegrationEvent(UserId, message.ReceiverUserId, message.Text);
+            _eventBus.Publish(@event);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Kullanıcının mesajlarını siler
+        /// </summary>
+        /// <param name="conversationId">Konuşma id</param>
+        [HttpDelete("{conversationId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
+        public IActionResult RemoveMessages([FromRoute]string conversationId)
+        {
+            if (string.IsNullOrEmpty(conversationId))
+                return BadRequest();
+
+            if (!_conversationRepository.IsConversationBelongUser(UserId, conversationId))// Conversation id o login olan kullanıcının bulunduğu bir konuşma mı kontrol ettik
+                return BadRequest(ChatResource.ThisConversationIsNotYours);
+
+            var @event = new RemoveMessagesIntegrationEvent(UserId, conversationId);
             _eventBus.Publish(@event);
 
             return Ok();

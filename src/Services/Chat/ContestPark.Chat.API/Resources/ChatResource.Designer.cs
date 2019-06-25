@@ -61,6 +61,15 @@ namespace ContestPark.Chat.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while deleting your message. Please try again..
+        /// </summary>
+        public static string AnErrorOccurredWhileDeletingYourMessagePleaseTryAgain {
+            get {
+                return ResourceManager.GetString("AnErrorOccurredWhileDeletingYourMessagePleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unexpected error has occurred, please try again..
         /// </summary>
         public static string AnUnexpectedErrorHasOccurredPleaseTryAgain {
@@ -84,6 +93,15 @@ namespace ContestPark.Chat.API.Resources {
         public static string ThereAreBetweenYouAndBlockThisUser_YouOrHeMayHaveBlockedYou {
             get {
                 return ResourceManager.GetString("ThereAreBetweenYouAndBlockThisUser.YouOrHeMayHaveBlockedYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This conversation is not yours..
+        /// </summary>
+        public static string ThisConversationIsNotYours {
+            get {
+                return ResourceManager.GetString("ThisConversationIsNotYours", resourceCulture);
             }
         }
         

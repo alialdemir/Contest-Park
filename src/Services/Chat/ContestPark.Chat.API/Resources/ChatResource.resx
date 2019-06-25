@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnErrorOccurredWhileDeletingYourMessagePleaseTryAgain" xml:space="preserve">
+    <value>An error occurred while deleting your message. Please try again.</value>
+  </data>
   <data name="AnUnexpectedErrorHasOccurredPleaseTryAgain" xml:space="preserve">
     <value>An unexpected error has occurred, please try again.</value>
   </data>
@@ -125,6 +128,9 @@
   </data>
   <data name="ThereAreBetweenYouAndBlockThisUser.YouOrHeMayHaveBlockedYou" xml:space="preserve">
     <value>There are between you and block this user. You or he may have blocked you.</value>
+  </data>
+  <data name="ThisConversationIsNotYours" xml:space="preserve">
+    <value>This conversation is not yours.</value>
   </data>
   <data name="ThisIserIsAlreadyBlocked" xml:space="preserve">
     <value>This user is already blocked.</value>
