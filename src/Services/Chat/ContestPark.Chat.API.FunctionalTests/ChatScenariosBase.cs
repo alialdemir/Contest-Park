@@ -39,7 +39,14 @@ namespace ContestPark.Chat.API.FunctionalTests
 
             public static string GetBlockedStatus(string deterredUserId)
             {
-                return $"api/v1/Chat/BlockedStatus/{deterredUserId}";
+                return $"api/v1/Chat/Block/Status/{deterredUserId}";
+            }
+
+            public static string GetUserBlockedList(bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Chat/block" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Chat/block";
             }
 
             public static string Paginated(int pageSize, int pageNumber)

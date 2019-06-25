@@ -1,4 +1,7 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Chat.API.Model;
+using ContestPark.Core.CosmosDb.Extensions;
+using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
@@ -68,6 +71,26 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
                 skirterUserId,
                 deterredUserId
             });
+        }
+
+        /// <summary>
+        /// Engellediği kullanıcların listesi
+        /// </summary>
+        /// <param name="SkirterUserId">Engelleyen kullanıcı id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Engellenen kullanıcılar</returns>
+        public ServiceModel<BlockModel> UserBlockedList(string SkirterUserId, PagingModel paging)
+        {
+            string sql = @"SELECT VALUE {
+                           IsBlocked: true,
+                           UserId: c.DeterredUserId
+                           } FROM c  WHERE c.SkirterUserId=@SkirterUserId
+                           ORDER BY c.CreatedDate DESC";
+
+            return _blockRepository.ToServiceModel<Documents.Block, BlockModel>(sql, new
+            {
+                SkirterUserId,
+            }, paging);
         }
 
         #endregion Methods

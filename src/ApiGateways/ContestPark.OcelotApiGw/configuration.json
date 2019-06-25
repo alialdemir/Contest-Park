@@ -302,7 +302,7 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/Chat/BlockedStatus/{userId}",
+      "DownstreamPathTemplate": "/api/{version}/Chat/Block/Status/{userId}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -310,7 +310,19 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/BlockedStatus/{userId}",
+      "UpstreamPathTemplate": "/api/{version}/Chat/Block/Status/{userId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Chat/Block",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.chat.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Chat/Block",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],

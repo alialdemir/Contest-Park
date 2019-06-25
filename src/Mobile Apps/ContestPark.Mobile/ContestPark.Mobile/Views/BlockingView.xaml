@@ -1,39 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.BlockingView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="blockingViewPage"
-             Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True">
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.BlockingView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="blockingViewPage"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:IconConverter x:Key="fbc" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView x:Name="lstView"
-                                                      InfiniteScroll="{Binding InfiniteScroll}"
-                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
-                                                      Style="{StaticResource ListViewOnlyFooter}">
+        <components:NonPersistentSelectedItemListView
+            x:Name="lstView"
+            InfiniteScroll="{Binding InfiniteScroll}"
+            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+            Style="{StaticResource ListViewOnlyFooter}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference blockingViewPage}}"
-                                                       IconStatus="{Binding IsBlocked}}"
-                                                       RightButtonCommand="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
+                        <components:UserFollowListItem IconStatus="{Binding IsBlocked}}" RightButtonCommand="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>
             <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <Label IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
-                           Style="{StaticResource EmptyModel}"
-                           Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}"
-                           TextColor="White" />
+                    <Label
+                        IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
+                        Style="{StaticResource EmptyModel}"
+                        Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}"
+                        TextColor="White" />
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>

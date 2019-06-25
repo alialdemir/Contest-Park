@@ -1,6 +1,6 @@
 ﻿using ContestPark.EventBus.Events;
 
-namespace ContestPark.Follow.API.IntegrationEvents.Events
+namespace ContestPark.Chat.API.IntegrationEvents.Events
 {
     public class ProfilePictureChangedIntegrationEvent : IntegrationEvent
     {

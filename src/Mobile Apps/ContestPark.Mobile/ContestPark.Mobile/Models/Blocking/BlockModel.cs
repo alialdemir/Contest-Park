@@ -9,8 +9,6 @@ namespace ContestPark.Mobile.Models.Blocking
         private bool _isBlocked;
         private string _userId;
 
-        private string _userName;
-
         public string FullName
         {
             get { return _fullName; }
@@ -47,16 +45,6 @@ namespace ContestPark.Mobile.Models.Blocking
             {
                 _userId = value;
                 RaisePropertyChanged(() => UserId);
-            }
-        }
-
-        public string UserName
-        {
-            get { return _userName; }
-            set
-            {
-                _userName = value;
-                RaisePropertyChanged(() => UserName);
             }
         }
     }
