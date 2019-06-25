@@ -99,6 +99,25 @@ namespace ContestPark.Chat.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Kullanıcı ile arasında engelleme durumunu döndürür
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns></returns>
+        [HttpGet("BlockedStatus/{userId}")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult BlockedStatus([FromRoute]string userId)
+        {
+            if (UserId == userId)
+                return BadRequest();
+
+            return Ok(new
+            {
+                isBlocked = _blockRepository.BlockingStatus(UserId, userId)
+            });
+        }
+
         #endregion Methods
     }
 }
