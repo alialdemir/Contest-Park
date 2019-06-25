@@ -12,9 +12,5 @@ namespace ContestPark.Chat.API.Infrastructure.Documents
         public string LastWriterUserId { get; set; }
 
         public bool VisibilityStatus { get; set; } = true;
-
-        public bool ReceiverDeletingStatus { get; set; } = true;
-
-        public bool SenderDeletingStatus { get; set; } = true;
     }
 }

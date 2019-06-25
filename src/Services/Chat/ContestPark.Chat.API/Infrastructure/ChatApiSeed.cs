@@ -18,17 +18,28 @@ namespace ContestPark.Chat.API.Infrastructure
 
             await policy.ExecuteAsync(async () =>
             {
-                var conversation = new Conversation
+                var conversation1 = new Conversation
                 {
+                    Id = "b7ede3b3-3621-40d0-9aea-b54157f3aa72",
                     SenderUserId = "1111-1111-1111-1111",
                     LastMessage = "test",
                     LastWriterUserId = "1111-1111-1111-1111",
                     ReceiverUserId = "2222-2222-2222-2222"
                 };
 
+                var conversation2 = new Conversation
+                {
+                    Id = "d82eab18-3d5d-43e4-9693-87d184af679e",
+                    SenderUserId = "3333-3333-3333-bot",
+                    LastMessage = "test",
+                    LastWriterUserId = "3333-3333-3333-bot",
+                    ReceiverUserId = "2222-2222-2222-2222"
+                };
+
                 await InsertDataAsync(new List<Conversation>
                 {
-                     conversation
+                     conversation1,
+                     conversation2
                 });
 
                 await InsertDataAsync(new List<Message>
@@ -36,7 +47,7 @@ namespace ContestPark.Chat.API.Infrastructure
                     new Message
                     {
                          AuthorUserId ="1111-1111-1111-1111",
-                         ConversationId=conversation.Id,
+                         ConversationId=conversation1.Id,
                          Text = "test"
                     }
                 });
