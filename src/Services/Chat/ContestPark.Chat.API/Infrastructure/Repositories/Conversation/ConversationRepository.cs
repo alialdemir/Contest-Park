@@ -123,6 +123,28 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             });
         }
 
+        /// <summary>
+        /// Okunmamış mesaj sayısını verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Okunmamış mesaj sayısı</returns>
+        public int UnReadMessageCount(string userId)
+        {
+            /*
+             SenderUnreadMessageCount ve ReceiverUnreadMessageCount alıcı ve gönderenin o konuşma içerisindeki okumadığı mesaj sayısını barındırır
+             eğer okunmayan mesajların sayısının toplamını sayarak(count) genel olarak kaç mesaj okumadığını bulduk
+             */
+            string sql = @"SELECT VALUE
+                           COUNT(c.id)
+                           FROM c WHERE (c.SenderUserId=@userId AND c.SenderUnreadMessageCount > 0)
+                           OR (c.ReceiverUserId=@userId AND c.ReceiverUnreadMessageCount > 0)";
+
+            return _conversationRepository.QuerySingle<int>(sql, new
+            {
+                userId
+            });
+        }
+
         #endregion Methods
     }
 }

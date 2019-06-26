@@ -8,9 +8,12 @@ namespace ContestPark.Chat.API.Infrastructure.Documents
 
         public string ReceiverUserId { get; set; }
 
-        public string LastMessage { get; set; }
-        public string LastWriterUserId { get; set; }
+        public int SenderUnreadMessageCount { get; set; }// bu konuşmadaki gönderenin okumadığı mesaj sayısı
 
-        public bool VisibilityStatus { get; set; } = true;
+        public int ReceiverUnreadMessageCount { get; set; }// bu konuşmadaki alıcının okumadığı  mesaj sayısı
+
+        public string LastMessage { get; set; }
+
+        public string LastWriterUserId { get; set; }
     }
 }

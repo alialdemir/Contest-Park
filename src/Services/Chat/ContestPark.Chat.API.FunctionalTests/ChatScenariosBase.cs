@@ -49,6 +49,11 @@ namespace ContestPark.Chat.API.FunctionalTests
                     : $"api/v1/Chat/block";
             }
 
+            public static string GetUnReadMessageCount()
+            {
+                return $"api/v1/Chat/UnReadMessageCount";
+            }
+
             internal static string DeleteMessages(string conversationId)
             {
                 return $"api/v1/Chat/{conversationId}";
