@@ -9,7 +9,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
         bool IsConversationBelongUser(string userId, string conversationId);
 
         bool IsSender(string userId, string conversationId);
-
+        int UnReadMessageCount(string userId);
         Task<bool> UpdateAsync(Documents.Conversation conversation);
     }
 }

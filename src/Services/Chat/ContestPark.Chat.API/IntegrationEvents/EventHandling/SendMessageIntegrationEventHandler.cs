@@ -72,6 +72,15 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
                 return;
             }
 
+            if (@event.SenderUserId == conversation.SenderUserId)// Okumadığı mesaj sayısı güncellendi
+            {
+                conversation.SenderUnreadMessageCount += 1;
+            }
+            else if (@event.ReceiverUserId == conversation.ReceiverUserId)
+            {
+                conversation.ReceiverUnreadMessageCount += 1;
+            }
+
             conversation.LastMessage = @event.Message;
             conversation.LastWriterUserId = @event.SenderUserId;
             isSuccess = await _conversationRepository.UpdateAsync(conversation);

@@ -13,5 +13,7 @@ namespace ContestPark.Chat.API.Infrastructure.Documents
         public bool ReceiverIsDeleted { get; set; }
 
         public bool SenderIsDeleted { get; set; }
+
+        public bool ReceiverIsReadMessage { get; set; }
     }
 }

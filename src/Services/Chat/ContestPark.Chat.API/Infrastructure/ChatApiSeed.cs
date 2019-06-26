@@ -24,7 +24,8 @@ namespace ContestPark.Chat.API.Infrastructure
                     SenderUserId = "1111-1111-1111-1111",
                     LastMessage = "test",
                     LastWriterUserId = "1111-1111-1111-1111",
-                    ReceiverUserId = "2222-2222-2222-2222"
+                    ReceiverUserId = "2222-2222-2222-2222",
+                    SenderUnreadMessageCount = 2
                 };
 
                 var conversation2 = new Conversation

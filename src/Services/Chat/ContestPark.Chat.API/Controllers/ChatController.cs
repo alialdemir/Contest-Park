@@ -47,6 +47,19 @@ namespace ContestPark.Chat.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Okunmamış mesaj sayısı
+        /// </summary>
+        [HttpGet("UnReadMessageCount")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public IActionResult Get()// TODO: dönen type ProducesResponseType typeof olarak gösterilmeli
+        {
+            return Ok(new
+            {
+                UnReadMessageCount = _conversationRepository.UnReadMessageCount(UserId)
+            });
+        }
+
+        /// <summary>
         /// Mesaj gönder
         /// </summary>
         /// <param name="message">Mesaj bilgisi</param>
