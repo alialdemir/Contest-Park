@@ -37,6 +37,11 @@ namespace ContestPark.Chat.API.FunctionalTests
                 return $"api/v1/Chat/unblock/{deterredUserId}";
             }
 
+            public static string PostReadMessages(string conversationId)
+            {
+                return $"api/v1/Chat/{conversationId}/ReadMessages";
+            }
+
             public static string GetBlockedStatus(string deterredUserId)
             {
                 return $"api/v1/Chat/Block/Status/{deterredUserId}";
@@ -54,7 +59,7 @@ namespace ContestPark.Chat.API.FunctionalTests
                 return $"api/v1/Chat/UnReadMessageCount";
             }
 
-            internal static string DeleteMessages(string conversationId)
+            public static string DeleteMessages(string conversationId)
             {
                 return $"api/v1/Chat/{conversationId}";
             }
