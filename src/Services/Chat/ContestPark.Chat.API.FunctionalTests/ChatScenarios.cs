@@ -35,6 +35,40 @@ namespace ContestPark.Chat.API.FunctionalTests
         }
 
         [Fact, TestPriority(1)]
+        public async Task Get_user_messages_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetUserMessages());
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public async Task Get_user_messages_and_check_paging_values()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetUserMessages(true, 1, 1));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<MessageModel> result = JsonConvert.DeserializeObject<ServiceModel<MessageModel>>(responseContent);
+
+                Assert.NotNull(result);
+                Assert.Equal(1, result.PageNumber);
+                Assert.Equal(1, result.PageSize);
+                Assert.Single(result.Items);
+                Assert.False(result.HasNextPage);
+            }
+        }
+
+        [Fact, TestPriority(1)]
         public async Task Post_all_read_messages_and_unread_response_ok_status_code()
         {
             using (var server = CreateServer())

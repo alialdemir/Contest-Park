@@ -1,4 +1,7 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Chat.API.Model;
+using ContestPark.Core.CosmosDb.Extensions;
+using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
@@ -167,6 +170,31 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             }
 
             return await _conversationRepository.UpdateAsync(conversation);
+        }
+
+        /// <summary>
+        /// Kullanıcının ilgili conversation id'deki konuşma listesi
+        /// </summary>
+        /// <param name="conversationId">Konuşma id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Konuşma detayı</returns>
+        public ServiceModel<MessageModel> UserMessages(string userId, PagingModel paging)
+        {
+            string sql = @"SELECT VALUE
+                           {
+                             Date: c.LastMessageDate ,
+                             Message:  c.LastMessage,
+                             ConversationId: c.id,
+                             SenderUserId: c.SenderUserId=@userId ? c.ReceiverUserId: c.SenderUserId,
+                             LastWriterUserId: c.LastWriterUserId
+                            }
+                            FROM c
+                            WHERE c.SenderUserId=@userId OR c.ReceiverUserId=@userId
+                            ORDER BY c.CreatedDate DESC";
+            return _conversationRepository.ToServiceModel<Documents.Conversation, MessageModel>(sql, new
+            {
+                userId,
+            }, paging);
         }
 
         #endregion Methods
