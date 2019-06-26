@@ -38,7 +38,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
         /// </summary>
         /// <param name="message">Mesaj içeriği</param>
         /// <returns>İşlem durumu</returns>
-        public Task<bool> AddMessage(MessageModel message)
+        public Task<bool> AddMessage(SendMessageModel message)
         {
             if (
                 message == null ||

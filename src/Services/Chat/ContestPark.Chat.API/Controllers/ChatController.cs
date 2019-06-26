@@ -51,6 +51,42 @@ namespace ContestPark.Chat.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Kullanıcı mesaj listesi
+        /// </summary>
+        [HttpGet]
+        [ProducesResponseType(typeof(ServiceModel<MessageModel>), (int)HttpStatusCode.OK)]
+        public IActionResult Get([FromQuery] PagingModel paging)
+        {
+            // TODO: VisibilityStatus ile ilgili birşey yapılmadı o kısım yazılacak
+
+            ServiceModel<MessageModel> result = _conversationRepository.UserMessages(UserId, paging);
+
+            if (result.Items.Count() > 0)
+            {
+                IEnumerable<User> users = _userRepository.FindByIds(result.Items.Select(x => x.SenderUserId).AsEnumerable());
+
+                result.Items.ToList().ForEach(message =>
+                {
+                    message.UserFullName = users.Where(u => u.Id == message.SenderUserId).FirstOrDefault().FullName;
+                    message.UserProfilePicturePath = users.Where(u => u.Id == message.SenderUserId).FirstOrDefault().ProfilePicturePath;
+                    message.UserName = users.Where(u => u.Id == message.SenderUserId).FirstOrDefault().UserName;
+
+                    if (message.LastWriterUserId == UserId)// en son mesajı gönderen kendiisi ise
+                    {
+                        message.Message = ChatResource.You + ": " + message.Message;
+                    }
+
+                    message.LastWriterUserId = null;// cliente gitmemesi için null atadım
+                });
+
+                GetUndefinedUsers(result.Items.Select(u => u.SenderUserId).AsEnumerable(),
+                                  users.Select(u => u.Id).AsEnumerable());
+            }
+
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Okunmamış mesaj sayısı
         /// </summary>
         [HttpGet("UnReadMessageCount")]
@@ -209,18 +245,28 @@ namespace ContestPark.Chat.API.Controllers
                 block.FullName = users.Where(u => u.Id == block.UserId).FirstOrDefault().FullName;
             });
 
-            var notFoundUserIds = result
-                                    .Items
-                                    .Where(u => !users.Any(x => x.Id == u.UserId))
-                                    .Select(x => x.UserId)
-                                    .AsEnumerable();
+            GetUndefinedUsers(result.Items.Select(u => u.UserId).AsEnumerable(),
+                              users.Select(x => x.Id).AsEnumerable());
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
+        /// </summary>
+        /// <param name="userIds"></param>
+        /// <param name="users"></param>
+        private void GetUndefinedUsers(IEnumerable<string> userIds, IEnumerable<string> users)
+        {
+            var notFoundUserIds = userIds
+                                  .Where(u => !users.Any(x => x == u))
+                                  .AsEnumerable();
+
             if (notFoundUserIds.Count() > 0)// Bulunamayan kullanıcıları identity apiden alması için event yolladık
             {
                 var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
                 _eventBus.Publish(@event);
             }
-
-            return Ok(result);
         }
 
         #endregion Methods

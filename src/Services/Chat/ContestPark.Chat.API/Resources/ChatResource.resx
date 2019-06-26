@@ -135,6 +135,9 @@
   <data name="ThisIserIsAlreadyBlocked" xml:space="preserve">
     <value>This user is already blocked.</value>
   </data>
+  <data name="You" xml:space="preserve">
+    <value>You</value>
+  </data>
   <data name="YouCanNotMendMessagesToYourself" xml:space="preserve">
     <value>You can not send messages to yourself.</value>
   </data>

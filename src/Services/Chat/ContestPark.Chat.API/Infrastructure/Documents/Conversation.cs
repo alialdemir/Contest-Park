@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Models;
+using System;
 
 namespace ContestPark.Chat.API.Infrastructure.Documents
 {
@@ -13,6 +14,8 @@ namespace ContestPark.Chat.API.Infrastructure.Documents
         public int ReceiverUnreadMessageCount { get; set; }// bu konuşmadaki alıcının okumadığı  mesaj sayısı
 
         public string LastMessage { get; set; }
+
+        public DateTime LastMessageDate { get; set; }
 
         public string LastWriterUserId { get; set; }
     }

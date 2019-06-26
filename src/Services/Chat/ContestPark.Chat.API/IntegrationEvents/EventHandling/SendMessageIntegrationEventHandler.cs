@@ -4,6 +4,7 @@ using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
@@ -54,7 +55,7 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            bool isSuccess = await _messageRepository.AddMessage(new Model.MessageModel
+            bool isSuccess = await _messageRepository.AddMessage(new Model.SendMessageModel
             {
                 Text = @event.Message,
                 ConversationId = conversation.Id,
@@ -83,6 +84,7 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
 
             conversation.LastMessage = @event.Message;
             conversation.LastWriterUserId = @event.SenderUserId;
+            conversation.LastMessageDate = DateTime.Now;
             isSuccess = await _conversationRepository.UpdateAsync(conversation);
             if (!isSuccess)
             {

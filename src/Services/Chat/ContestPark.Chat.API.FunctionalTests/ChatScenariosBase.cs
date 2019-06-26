@@ -54,6 +54,13 @@ namespace ContestPark.Chat.API.FunctionalTests
                     : $"api/v1/Chat/block";
             }
 
+            public static string GetUserMessages(bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Chat" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Chat";
+            }
+
             public static string GetUnReadMessageCount()
             {
                 return $"api/v1/Chat/UnReadMessageCount";

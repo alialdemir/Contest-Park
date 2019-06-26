@@ -115,6 +115,15 @@ namespace ContestPark.Chat.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You.
+        /// </summary>
+        public static string You {
+            get {
+                return ResourceManager.GetString("You", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can not send messages to yourself..
         /// </summary>
         public static string YouCanNotMendMessagesToYourself {

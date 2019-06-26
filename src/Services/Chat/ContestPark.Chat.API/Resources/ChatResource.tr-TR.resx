@@ -135,6 +135,9 @@
   <data name="ThisIserIsAlreadyBlocked" xml:space="preserve">
     <value>Bu kullanıcı zaten engellendi.</value>
   </data>
+  <data name="You" xml:space="preserve">
+    <value>Sen</value>
+  </data>
   <data name="YouCanNotMendMessagesToYourself" xml:space="preserve">
     <value>Kendinize mesaj gönderemezsiniz.</value>
   </data>

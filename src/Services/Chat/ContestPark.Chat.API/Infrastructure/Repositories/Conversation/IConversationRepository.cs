@@ -11,5 +11,6 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
         bool IsSender(string userId, string conversationId);
         int UnReadMessageCount(string userId);
         Task<bool> UpdateAsync(Documents.Conversation conversation);
+        Core.CosmosDb.Models.ServiceModel<Model.MessageModel> UserMessages(string userId, Core.CosmosDb.Models.PagingModel paging);
     }
 }
