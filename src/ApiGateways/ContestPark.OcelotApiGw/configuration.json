@@ -348,6 +348,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Chat/UnReadMessageCount",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.chat.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
+      "UpstreamHttpMethod": [ "Post" ]
     }
   ],
   "GlobalConfiguration": {

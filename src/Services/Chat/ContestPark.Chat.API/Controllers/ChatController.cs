@@ -1,6 +1,7 @@
 ﻿using ContestPark.Chat.API.Infrastructure.Documents;
 using ContestPark.Chat.API.Infrastructure.Repositories.Block;
 using ContestPark.Chat.API.Infrastructure.Repositories.Conversation;
+using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Model;
 using ContestPark.Chat.API.Resources;
@@ -25,6 +26,7 @@ namespace ContestPark.Chat.API.Controllers
         private readonly IConversationRepository _conversationRepository;
         private readonly IEventBus _eventBus;
         private readonly IDocumentDbRepository<User> _userRepository;
+        private readonly IMessageRepository _messageRepository;
 
         #endregion Private Variables
 
@@ -34,11 +36,13 @@ namespace ContestPark.Chat.API.Controllers
                               IBlockRepository blockRepository,
                               IConversationRepository conversationRepository,
                               IDocumentDbRepository<User> userRepository,
+                              IMessageRepository messageRepository,
                               IEventBus eventBus) : base(logger)
         {
             _blockRepository = blockRepository;
             _conversationRepository = conversationRepository;
             _userRepository = userRepository;
+            _messageRepository = messageRepository;
             _eventBus = eventBus;
         }
 
@@ -57,6 +61,31 @@ namespace ContestPark.Chat.API.Controllers
             {
                 UnReadMessageCount = _conversationRepository.UnReadMessageCount(UserId)
             });
+        }
+
+        /// <summary>
+        /// Konuşmadaki mesajları okundu yapar
+        /// </summary>
+        [HttpPost("{conversationId}/ReadMessages")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromRoute]string conversationId)// TODO: dönen type ProducesResponseType typeof olarak gösterilmeli
+        {
+            bool isSuccess = await _conversationRepository.AllMessagesRead(UserId, conversationId);
+
+            if (!isSuccess)
+            {
+                Logger.LogCritical("CRITICAL: konuşmadak mesajları okundu yap kısmı başarısız oldu", conversationId);
+            }
+            else
+            {
+                isSuccess = await _messageRepository.RemoveMessages(UserId, conversationId);
+                if (!isSuccess)
+                {
+                    Logger.LogCritical("CRITICAL: Mesajlar okundu yap kısmı başarısız oldu", conversationId);
+                }
+            }
+
+            return Ok();
         }
 
         /// <summary>

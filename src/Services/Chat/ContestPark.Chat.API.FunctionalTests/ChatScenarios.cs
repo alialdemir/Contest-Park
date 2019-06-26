@@ -35,19 +35,16 @@ namespace ContestPark.Chat.API.FunctionalTests
         }
 
         [Fact, TestPriority(1)]
-        public async Task Post_unread_message_count_and_unread_message_count_one_and_response_ok_status_code()
+        public async Task Post_all_read_messages_and_unread_response_ok_status_code()
         {
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetUnReadMessageCount());
+                    .PostAsync(Entpoints.PostReadMessages("b7ede3b3-3621-40d0-9aea-b54157f3aa72"), null);
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                UnReadMessage result = JsonConvert.DeserializeObject<UnReadMessage>(responseContent);
-
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-                Assert.Equal(1, result.UnReadMessageCount);
             }
         }
 

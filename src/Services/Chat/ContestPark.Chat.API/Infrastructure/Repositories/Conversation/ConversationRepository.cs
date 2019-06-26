@@ -145,6 +145,30 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             });
         }
 
+        /// <summary>
+        /// Konuşmadaki okunma sayısını 0 okundu yapar
+        /// </summary>
+        /// <param name="useerId"></param>
+        /// <param name="conversationId"></param>
+        /// <returns>İşlem başarılı ise true değilse false</returns>
+        public async Task<bool> AllMessagesRead(string useerId, string conversationId)
+        {
+            Documents.Conversation conversation = _conversationRepository.FindById(conversationId);
+            if (conversation == null || !(conversation.SenderUserId == useerId || conversation.ReceiverUserId == useerId))// konuşma  o kullanıcıya mı ait kontrol edildi
+                return false;
+
+            if (conversation.SenderUserId == useerId)
+            {
+                conversation.SenderUnreadMessageCount = 0;
+            }
+            else if (conversation.ReceiverUserId == useerId)
+            {
+                conversation.ReceiverUnreadMessageCount = 0;
+            }
+
+            return await _conversationRepository.UpdateAsync(conversation);
+        }
+
         #endregion Methods
     }
 }

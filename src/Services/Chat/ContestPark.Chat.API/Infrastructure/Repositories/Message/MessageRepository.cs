@@ -104,6 +104,27 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
             return isSuccess;
         }
 
+        /// <summary>
+        /// Okunmamış mesajları okundu yapar
+        /// </summary>
+        /// <param name="useerId">Kullanıcı id</param>
+        /// <param name="conversationId">Konuşma id</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> AllMessagesRead(string useerId, string conversationId)
+        {
+            string sql = @"SELECT * FROM c WHERE c.ConversationId=@conversationId AND c.AuthorUserId!=@useerId";
+
+            List<Documents.Message> messages = _messageRepository.QueryMultiple<Documents.Message>(sql, new
+            {
+                useerId,
+                conversationId
+            }).ToList();
+
+            messages.ForEach(message => message.ReceiverIsReadMessage = true);
+
+            return await _messageRepository.UpdateRangeAsync(messages);
+        }
+
         #endregion Methods
     }
 }
