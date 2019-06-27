@@ -71,6 +71,13 @@ namespace ContestPark.Chat.API.FunctionalTests
                 return $"api/v1/Chat/{conversationId}";
             }
 
+            public static string GetConversationDetail(string conversationId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Chat/{conversationId}" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Chat/{conversationId}";
+            }
+
             public static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

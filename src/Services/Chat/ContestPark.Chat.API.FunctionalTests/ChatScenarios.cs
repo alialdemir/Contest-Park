@@ -76,9 +76,58 @@ namespace ContestPark.Chat.API.FunctionalTests
                 var response = await server.CreateClient()
                     .PostAsync(Entpoints.PostReadMessages("b7ede3b3-3621-40d0-9aea-b54157f3aa72"), null);
 
-                string responseContent = await response.Content.ReadAsStringAsync();
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_conversation_detail_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetConversationDetail("b7ede3b3-3621-40d0-9aea-b54157f3aa72"));
+
+                Assert.Equal("You have not blocked this user.", GetErrorMessage(response));
+            }
+        }
+
+        [Theory, TestPriority(1)]
+        [InlineData("tr-TR", "Bu konuşma size ait değil.")]
+        [InlineData("en-US", "This conversation is not yours.")]
+        public async Task Get_conversation_detail_and_check_response_message(string langCode, string errorMessage)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .AddLangCode(langCode)
+                    .GetAsync(Entpoints.GetConversationDetail("fake-conversation-id"));
+
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+                Assert.Equal(errorMessage, GetErrorMessage(response));
+            }
+        }
+
+        [Fact]
+        public async Task Get_conversation_detail_and_check_paging_values()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                  .GetAsync(Entpoints.GetConversationDetail("b7ede3b3-3621-40d0-9aea-b54157f3aa72", true, 1, 1));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<ConversationDetailModel> result = JsonConvert.DeserializeObject<ServiceModel<ConversationDetailModel>>(responseContent);
+
+                Assert.NotNull(result);
+                Assert.Equal(1, result.PageNumber);
+                Assert.Equal(1, result.PageSize);
+                Assert.Single(result.Items);
+                Assert.False(result.HasNextPage);
             }
         }
 

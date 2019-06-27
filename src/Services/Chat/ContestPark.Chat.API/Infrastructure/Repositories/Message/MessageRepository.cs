@@ -1,6 +1,8 @@
 ﻿using ContestPark.Chat.API.Infrastructure.Repositories.Conversation;
 using ContestPark.Chat.API.Model;
+using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,6 +125,26 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
             messages.ForEach(message => message.ReceiverIsReadMessage = true);
 
             return await _messageRepository.UpdateRangeAsync(messages);
+        }
+
+        /// <summary>
+        /// Konuşma detayı
+        /// </summary>
+        /// <param name="conversationId">Konuşma id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Konuşma detayı</returns>
+        public ServiceModel<ConversationDetailModel> ConversationDetail(string conversationId, PagingModel paging)
+        {
+            string sql = @"SELECT
+                           c.CreatedDate as Date,
+                           c.Text as Message,
+                           c.AuthorUserId as SenderId
+                           FROM c WHERE c.ConversationId=@conversationId";
+
+            return _messageRepository.ToServiceModel<Documents.Message, ConversationDetailModel>(sql, new
+            {
+                conversationId
+            }, paging);
         }
 
         #endregion Methods
