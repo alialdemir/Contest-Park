@@ -87,6 +87,24 @@ namespace ContestPark.Chat.API.Controllers
         }
 
         /// <summary>
+        /// Konuşma detayını döndürür
+        /// </summary>
+        /// <param name="conversationId">Konuşma id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Konuşma detayı</returns>
+        [HttpGet("{conversationId}")]
+        [ProducesResponseType(typeof(ServiceModel<ConversationDetailModel>), (int)HttpStatusCode.OK)]
+        public IActionResult Get([FromRoute]string conversationId, [FromQuery] PagingModel paging)
+        {
+            if (!_conversationRepository.IsConversationBelongUser(UserId, conversationId))// Conversation id o login olan kullanıcının bulunduğu bir konuşma mı kontrol ettik
+                return BadRequest(ChatResource.ThisConversationIsNotYours);
+
+            ServiceModel<ConversationDetailModel> result = _messageRepository.ConversationDetail(conversationId, paging);
+
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Okunmamış mesaj sayısı
         /// </summary>
         [HttpGet("UnReadMessageCount")]
