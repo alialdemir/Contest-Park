@@ -97,3 +97,11 @@ services:
     build:
       context: .
       dockerfile: src/Services/Signalr/ContestPark.Signalr.API/Dockerfile
+      
+  contestpark.post.api:
+    image: contestparkpost.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: src/Services/Post/ContestPark.Post.API/Dockerfile

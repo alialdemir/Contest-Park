@@ -131,3 +131,23 @@ services:
       - "5107:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+      
+  contestpark.post.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - Audience=post
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
+      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
+      - CosmosDbDatabaseId=ContestPark.Post
+      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
+      - ClientKey=${CONTESTPARK_CLIENT_KEY}
+    ports:
+      - "5108:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
