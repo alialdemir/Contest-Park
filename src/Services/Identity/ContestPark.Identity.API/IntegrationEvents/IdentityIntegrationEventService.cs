@@ -3,6 +3,7 @@ using ContestPark.EventBus.Events;
 using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.EventBus.IntegrationEventLogEF.Utilities;
 using ContestPark.Identity.API.Data;
+using ContestPark.Identity.API.IntegrationEvents.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -61,6 +62,15 @@ namespace ContestPark.Identity.API.IntegrationEvents
                 await _applicationDbContext.SaveChangesAsync();
                 await _eventLogService.SaveEventAsync(evt, _applicationDbContext.Database.CurrentTransaction);
             });
+        }
+
+        /// <summary>
+        /// Post ekle eventi publish eder
+        /// </summary>
+        /// <param name="newPostAddedIntegrationEvent">Post detayı</param>
+        public void NewPostAdd(NewPostAddedIntegrationEvent @event)
+        {
+            _eventBus.Publish(@event);
         }
     }
 }

@@ -1,18 +1,17 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
-using ContestPark.Mobile.ViewModels.Base;
 using Newtonsoft.Json;
 
 namespace ContestPark.Mobile.Models.Post
 {
     public partial class PostModel
     {
-        private int _bet;
+        private decimal _bet;
         private string competitorProfilePicturePath = DefaultImages.DefaultProfilePicture;
         private string founderProfilePicturePath = DefaultImages.DefaultProfilePicture;
 
-        public int Bet
+        public decimal Bet
         {
             get { return _bet; }
             set

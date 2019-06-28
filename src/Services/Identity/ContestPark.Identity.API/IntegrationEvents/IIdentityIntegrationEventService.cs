@@ -8,5 +8,6 @@ namespace ContestPark.Identity.API.IntegrationEvents
         Task SaveEventAndApplicationContextChangesAsync(IntegrationEvent evt);
 
         Task PublishThroughEventBusAsync(IntegrationEvent evt);
+        void NewPostAdd(Events.NewPostAddedIntegrationEvent newPostAddedIntegrationEvent);
     }
 }

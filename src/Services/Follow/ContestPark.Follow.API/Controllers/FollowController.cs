@@ -135,30 +135,33 @@ namespace ContestPark.Follow.API.Controllers
                                                                 IEnumerable<User> followingUsers,
                                                                 PagingModel pagingModel)
         {
-            // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
-            var notFoundUserIds = followers.Items.Where(u => !followingUsers.Any(x => x.Id == u)).AsEnumerable();
-            if (notFoundUserIds.Count() > 0)
+            Task.Factory.StartNew(() =>
             {
-                var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
-                _eventBus.Publish(@event);
-            }
-
+                // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
+                var notFoundUserIds = followers.Items.Where(u => !followingUsers.Any(x => x.Id == u)).AsEnumerable();
+                if (notFoundUserIds.Count() > 0)
+                {
+                    var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
+                    _eventBus.Publish(@event);
+                }
+            });
             return new ServiceModel<FollowModel>
             {
                 HasNextPage = followers.HasNextPage,
                 PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
-                Items = (from f in followers.Items
-                         from u in followingUsers
-                         where f == u.Id
-                         select new FollowModel
-                         {
-                             UserId = u.Id,
-                             IsFollowing = currentUserFollowers.Any(x => x == f),
-                             FullName = u.FullName,
-                             ProfilePicturePath = u.ProfilePicturePath,
-                             UserName = u.UserName,
-                         }).ToList()
+                Items = from follower in followers.Items
+                        join followingUser in followingUsers on follower equals followingUser.Id
+                        join currentUserFollower in currentUserFollowers on follower equals currentUserFollower into currentUserFollowerData
+                        from p in currentUserFollowerData.DefaultIfEmpty()
+                        select new FollowModel
+                        {
+                            UserId = follower,
+                            IsFollowing = currentUserFollowerData.Any(),
+                            FullName = followingUser.FullName,
+                            ProfilePicturePath = followingUser.ProfilePicturePath,
+                            UserName = followingUser.UserName,
+                        }
             };
         }
 
