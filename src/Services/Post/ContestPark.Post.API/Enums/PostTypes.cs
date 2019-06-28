@@ -2,8 +2,8 @@
 {
     public enum PostTypes
     {
-        Image,
-        Contest,
-        Text,
+        Image = 1,
+        Contest = 2,
+        Text = 3,
     }
 }

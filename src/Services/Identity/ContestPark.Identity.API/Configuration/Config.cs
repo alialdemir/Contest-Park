@@ -49,7 +49,7 @@ namespace ContestPark.Identity.API.Configuration
                                         "follow",
                                         "mobileshoppingagg",
                                         "signalr",
-                                        "post"
+                                        "post",
                                         "question",
                                         "identity",
                                     },

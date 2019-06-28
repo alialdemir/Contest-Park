@@ -109,6 +109,13 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (!result.Succeeded && result.Errors.Count() > 0)
                 return BadRequest(IdentityResultErrors(result.Errors));
 
+            // Publish add post
+            var @event = new NewPostAddedIntegrationEvent(NewPostAddedIntegrationEvent.PostTypes.Image,
+                                                          NewPostAddedIntegrationEvent.PostImageTypes.CoverImage,
+                                                          UserId,
+                                                          fileName);
+            _identityIntegrationEventService.NewPostAdd(@event);
+
             return Ok(new ChangePictureModel
             {
                 PicturePath = user.CoverPicturePath
@@ -173,6 +180,13 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             // Diğer servislere resmin değiştiğini bildir
             var profilePictureChangedIntegrationEvent = new ProfilePictureChangedIntegrationEvent(UserId, fileName, oldProfilePicturePath);
             await PublishEvent(profilePictureChangedIntegrationEvent);
+
+            // Publish add post
+            var @event = new NewPostAddedIntegrationEvent(NewPostAddedIntegrationEvent.PostTypes.Image,
+                                                          NewPostAddedIntegrationEvent.PostImageTypes.ProfileImage,
+                                                          UserId,
+                                                          fileName);
+            _identityIntegrationEventService.NewPostAdd(@event);
 
             return Ok(new ChangePictureModel
             {

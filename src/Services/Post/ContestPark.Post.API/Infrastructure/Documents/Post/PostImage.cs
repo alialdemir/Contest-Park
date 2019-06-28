@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Post.API.Enums;
+using Newtonsoft.Json;
 
 namespace ContestPark.Post.API.Infrastructure.Documents
 {
@@ -6,5 +7,8 @@ namespace ContestPark.Post.API.Infrastructure.Documents
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string PicturePath { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public PostImageTypes? PostImageType { get; set; }
     }
 }

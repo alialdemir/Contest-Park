@@ -2,6 +2,8 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Post.API.Infrastructure.Repositories.PostRepository;
+using ContestPark.Post.API.IntegrationEvents.EventHandling;
+using ContestPark.Post.API.IntegrationEvents.Events;
 using ContestPark.Post.API.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +45,7 @@ namespace ContestPark.Post.API
 
             services.AddTransient<IPostRepository, PostRepository>();
 
-            //services.AddTransient<NewUserRegisterIntegrationEventHandler>();
+            services.AddTransient<NewPostAddedIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -85,7 +87,7 @@ namespace ContestPark.Post.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
-            //eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
+            eventBus.Subscribe<NewPostAddedIntegrationEvent, NewPostAddedIntegrationEventHandler>();
         }
     }
 }
