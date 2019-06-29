@@ -18,15 +18,5 @@ namespace ContestPark.Post.API.Infrastructure.Documents
             get { return !string.IsNullOrEmpty(_profilePicturePath) ? _profilePicturePath : DefaultImages.DefaultProfilePicture; }
             set { _profilePicturePath = value; }
         }
-
-        /// <summary>
-        /// Takip ettiklerim
-        /// </summary>
-        public long FollowingCount { get; set; }
-
-        /// <summary>
-        /// Takip edenler
-        /// </summary>
-        public long FollowersCount { get; set; }
     }
 }
