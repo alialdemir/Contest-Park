@@ -1,4 +1,6 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.CosmosDb.Extensions;
+using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.CosmosDb.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
@@ -118,6 +120,21 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
             }
 
             return isSuccess;
+        }
+
+        /// <summary>
+        /// Post id'ye göre postu beğenen kullanıcı idlerini verir
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Postu beğenen kullanıcı Listesi</returns>
+        public ServiceModel<string> PostLikes(string postId, PagingModel paging)
+        {
+            string sql = "SELECT VALUE c.UserId FROM c WHERE c.PostId=@postId";
+            return _likeRepository.ToServiceModel<Documents.Like, string>(sql, new
+            {
+                postId,
+            }, paging);
         }
 
         #endregion Methods

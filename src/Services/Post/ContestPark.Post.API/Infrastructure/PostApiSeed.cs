@@ -71,6 +71,30 @@ namespace ContestPark.Post.API.Infrastructure
                             PostId = "aee6685b-059e-4afe-b315-91146415e4b4"
                     },
                 });
+
+                await InsertDataAsync(new List<User>
+                {
+                    new User
+                    {
+                            Id = "1111-1111-1111-1111",
+                            ProfilePicturePath = "http://i.pravatar.cc/150?u=witcherfearless",
+                            FullName = "Ali Aldemir",
+                            UserName = "witcherfearless",
+                    },
+                    new User
+                    {
+                        Id = "2222-2222-2222-2222",
+                        ProfilePicturePath = "http://i.pravatar.cc/150?u=demo",
+                        FullName = "Demo",
+                        UserName = "demo",
+                    }, new User
+                    {
+                        Id = "3333-3333-3333-bot",
+                        ProfilePicturePath = "http://i.pravatar.cc/150?u=bot",
+                        FullName = "Bot",
+                        UserName = "bot12345",
+                    }
+                });
             });
         }
     }

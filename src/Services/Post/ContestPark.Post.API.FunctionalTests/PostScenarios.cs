@@ -1,5 +1,8 @@
-﻿using ContestPark.Core.FunctionalTests;
+﻿using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.FunctionalTests;
+using ContestPark.Post.API.Models;
 using Newtonsoft.Json;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Xunit;
@@ -17,6 +20,61 @@ namespace ContestPark.Post.API.FunctionalTests
                     .PostAsync(Entpoints.PostLike("410b33a7-cd16-4dc3-81ce-eb740fec9b78"), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_post_likes_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostLikes("aee6685b-059e-4afe-b315-91146415e4b4"));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(2)]
+        [InlineData(1, 1)]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        public async Task Get_paging_following_and_response_ok_status_code(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostLikes("aee6685b-059e-4afe-b315-91146415e4b4", true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<PostLikeModel> following = JsonConvert.DeserializeObject<ServiceModel<PostLikeModel>>(responseContent);
+
+                Assert.Equal(pageNumber, following.PageNumber);
+                Assert.Equal(pageSize, following.PageSize);
+                Assert.Equal(pageSize, following.Items.Count());
+                if (pageSize == 1 && pageNumber == 1)
+                {
+                    Assert.True(following.HasNextPage);
+                }
+                else if (pageNumber == 2)
+                {
+                    Assert.False(following.HasNextPage);
+                }
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(2)]
+        public async Task Get_paging_following_and_response_notfound_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostLikes("aee6685b-059e-4afe-b315-91146415e4b4", true, 10, 2));
+
+                Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
         }
 

@@ -2,7 +2,7 @@
 {
     public class PostLikeModel : BaseModel
     {
-        private bool isFollowing;
+        private bool isFollowing = true;
         public string FullName { get; set; }
 
         public bool IsFollowing
