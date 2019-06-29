@@ -48,6 +48,8 @@ namespace ContestPark.Post.API
             services.AddTransient<ILikeRepository, LikeRepository>();
 
             services.AddTransient<NewPostAddedIntegrationEventHandler>();
+            services.AddTransient<PostLikeIntegrationEventHandler>();
+            services.AddTransient<PostUnLikeIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -90,6 +92,8 @@ namespace ContestPark.Post.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<NewPostAddedIntegrationEvent, NewPostAddedIntegrationEventHandler>();
+            eventBus.Subscribe<PostLikeIntegrationEvent, PostLikeIntegrationEventHandler>();
+            eventBus.Subscribe<PostUnLikeIntegrationEvent, PostUnLikeIntegrationEventHandler>();
         }
     }
 }

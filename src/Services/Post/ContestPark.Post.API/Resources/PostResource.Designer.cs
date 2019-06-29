@@ -61,11 +61,38 @@ namespace ContestPark.Post.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error occurred during the rating removal..
+        /// </summary>
+        public static string AnUnexpectedErrorOccurredDuringTheRatingRemoval {
+            get {
+                return ResourceManager.GetString("AnUnexpectedErrorOccurredDuringTheRatingRemoval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You already liked this post..
         /// </summary>
         public static string YouAlreadyLikedThisPost {
             get {
                 return ResourceManager.GetString("YouAlreadyLikedThisPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have to like this post before to remove liking..
+        /// </summary>
+        public static string YouHaveToLikeThisPostBeforeToRemoveLiking {
+            get {
+                return ResourceManager.GetString("YouHaveToLikeThisPostBeforeToRemoveLiking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your like process did not happen, please try again..
+        /// </summary>
+        public static string YourLikeProcessDidNotHappenPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("YourLikeProcessDidNotHappenPleaseTryAgain", resourceCulture);
             }
         }
     }

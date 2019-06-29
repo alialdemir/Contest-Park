@@ -6,11 +6,29 @@ namespace ContestPark.Post.API.Infrastructure.Documents
 {
     public partial class Post : DocumentBase
     {
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? CommentCount { get; set; }
+        private int? commentCount;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? LikeCount { get; set; }
+        public int? CommentCount
+        {
+            get { return commentCount; }
+            set
+            {
+                commentCount = value > 0 ? value : null;
+            }
+        }
+
+        private int? likeCount;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? LikeCount
+        {
+            get { return likeCount; }
+            set
+            {
+                likeCount = value > 0 ? value : null;
+            }
+        }
 
         public string OwnerUserId { get; set; }
 

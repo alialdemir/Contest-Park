@@ -6,5 +6,6 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
     {
         bool CheckLikeStatus(string userId, string postId);
         Task<bool> LikeAsync(string userId, string postId);
+        Task<bool> UnLikeAsync(string userId, string postId);
     }
 }

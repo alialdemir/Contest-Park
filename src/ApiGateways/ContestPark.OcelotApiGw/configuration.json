@@ -396,6 +396,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
       "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/UnLike",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.post.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/UnLike",
+      "UpstreamHttpMethod": [ "Delete" ]
     }
   ],
   "GlobalConfiguration": {
