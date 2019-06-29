@@ -50,7 +50,10 @@ namespace ContestPark.Post.API
             services.AddTransient<NewPostAddedIntegrationEventHandler>();
             services.AddTransient<PostLikeIntegrationEventHandler>();
             services.AddTransient<PostUnLikeIntegrationEventHandler>();
-
+            services.AddTransient<NewUserRegisterIntegrationEventHandler>();
+            services.AddTransient<UserInfoChangedIntegrationEventHandler>();
+            services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
+            services.AddTransient<UserNotFoundIntegrationEventHandler>();
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -94,6 +97,10 @@ namespace ContestPark.Post.API
             eventBus.Subscribe<NewPostAddedIntegrationEvent, NewPostAddedIntegrationEventHandler>();
             eventBus.Subscribe<PostLikeIntegrationEvent, PostLikeIntegrationEventHandler>();
             eventBus.Subscribe<PostUnLikeIntegrationEvent, PostUnLikeIntegrationEventHandler>();
+            eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
+            eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
+            eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
+            eventBus.Subscribe<UserNotFoundIntegrationEvent, UserNotFoundIntegrationEventHandler>();
         }
     }
 }
