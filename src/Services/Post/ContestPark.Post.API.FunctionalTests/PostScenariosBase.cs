@@ -28,6 +28,11 @@ namespace ContestPark.Post.API.FunctionalTests
                 return $"api/v1/Post/{postId}/Like";
             }
 
+            public static string DeleteUnLike(string postId)
+            {
+                return $"api/v1/Post/{postId}/UnLike";
+            }
+
             private static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

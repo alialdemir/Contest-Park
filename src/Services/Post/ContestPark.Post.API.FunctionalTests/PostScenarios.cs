@@ -42,5 +42,40 @@ namespace ContestPark.Post.API.FunctionalTests
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             }
         }
+
+        [Fact, TestPriority(2)]
+        public async Task Delete_unlike_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .DeleteAsync(Entpoints.DeleteUnLike("410b33a7-cd16-4dc3-81ce-eb740fec9b78"));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(1)]
+        [InlineData("en-US", "You have to like this post before to remove liking.")]
+        [InlineData("tr-TR", "Beğeniyi kaldırmak için önce bu postu beğenmelisin.")]
+        [InlineData("fakelangoagecode", "You have to like this post before to remove liking.")]
+        public async Task Delete_unlike_and_response_notfound_status_code_and_check_errormessage(string langCode, string errorMessage)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .AddLangCode(langCode)
+                    .DeleteAsync(Entpoints.DeleteUnLike("410b33a7-cd16-4dc3-81ce-eb740fec9b78"));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ValidationMessage message = JsonConvert.DeserializeObject<ValidationMessage>(responseContent);
+
+                Assert.NotNull(message);
+                Assert.Equal(errorMessage, message.ErrorMessage);
+
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            }
+        }
     }
 }
