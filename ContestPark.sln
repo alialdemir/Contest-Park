@@ -95,7 +95,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Signalr.API", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Chat.API.FunctionalTests", "src\Services\Chat\ContestPark.Chat.API.FunctionalTests\ContestPark.Chat.API.FunctionalTests.csproj", "{9ED9A89C-1AD5-412C-B692-A6A69A1BC1B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestPark.Post.API", "src\Services\Post\ContestPark.Post.API\ContestPark.Post.API.csproj", "{E84F7A98-D11A-4C10-88E6-DBBA88562436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Post.API", "src\Services\Post\ContestPark.Post.API\ContestPark.Post.API.csproj", "{E84F7A98-D11A-4C10-88E6-DBBA88562436}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9424E3EB-03EA-4C45-A679-601F21CCDBAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestPark.Post.API.FunctionalTests", "src\Services\Post\ContestPark.Post.API.FunctionalTests\ContestPark.Post.API.FunctionalTests.csproj", "{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -649,6 +653,30 @@ Global
 		{E84F7A98-D11A-4C10-88E6-DBBA88562436}.Release|iPhone.Build.0 = Release|Any CPU
 		{E84F7A98-D11A-4C10-88E6-DBBA88562436}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{E84F7A98-D11A-4C10-88E6-DBBA88562436}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Release|iPhone.Build.0 = Release|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -699,6 +727,8 @@ Global
 		{377CB523-D948-406F-A303-AFF970C9D5C6} = {15033D7E-7942-4652-B4AA-5204438F6895}
 		{9ED9A89C-1AD5-412C-B692-A6A69A1BC1B6} = {08260725-33FE-446C-938B-AEEB1205B31E}
 		{E84F7A98-D11A-4C10-88E6-DBBA88562436} = {7138B7A6-D2D3-4F19-9634-BEA4159AAC83}
+		{9424E3EB-03EA-4C45-A679-601F21CCDBAE} = {7138B7A6-D2D3-4F19-9634-BEA4159AAC83}
+		{8C6E3C03-4214-4BA1-8A81-EFE6659FB510} = {9424E3EB-03EA-4C45-A679-601F21CCDBAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6034DCEC-DC7A-4272-A07A-4DF9BB0BEFA3}

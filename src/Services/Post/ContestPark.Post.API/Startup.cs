@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.EventBus.Abstractions;
-using ContestPark.Post.API.Infrastructure.Repositories.PostRepository;
+using ContestPark.Post.API.Infrastructure.Repositories.Like;
+using ContestPark.Post.API.Infrastructure.Repositories.Post;
 using ContestPark.Post.API.IntegrationEvents.EventHandling;
 using ContestPark.Post.API.IntegrationEvents.Events;
 using ContestPark.Post.API.Resources;
@@ -44,6 +45,7 @@ namespace ContestPark.Post.API
                     .AddCorsConfigure();
 
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<ILikeRepository, LikeRepository>();
 
             services.AddTransient<NewPostAddedIntegrationEventHandler>();
 

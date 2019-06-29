@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ContestPark.Post.API.Infrastructure.Repositories.PostRepository
+namespace ContestPark.Post.API.Infrastructure.Repositories.Post
 {
     public interface IPostRepository
     {

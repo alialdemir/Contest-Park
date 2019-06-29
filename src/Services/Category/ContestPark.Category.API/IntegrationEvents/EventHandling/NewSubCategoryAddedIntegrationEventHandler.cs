@@ -30,14 +30,14 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
         {
             try
             {
-                foreach (var item in @event.SubCategoryLangs)
+                foreach (var item in @event.SubCategoryLocalized)
                 {
                     List<string> suggestInputs = new List<string>();
 
-                    string categoryName = @event.CategoryLangs.Where(x => x.Language == item.Language).FirstOrDefault().Name;
-                    string[] nameSplit = item.Name.Split(" ");
+                    string categoryName = @event.CategoryLocalized.Where(x => x.Language == item.Language).FirstOrDefault().Text;
+                    string[] nameSplit = item.Text.Split(" ");
                     if (nameSplit.Count() > 1)// Birden fazla kelimeden oluşuyorsa bütün olarakta ekledik
-                        suggestInputs.Add(item.Name);
+                        suggestInputs.Add(item.Text);
 
                     suggestInputs.AddRange(nameSplit);// alt kategorinin adı suggest olarak eklendi
                     suggestInputs.AddRange(categoryName.Split(" "));// category adı suggest olarak eklendi
@@ -51,7 +51,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
                         PicturePath = @event.PicturePath,
                         SubCategoryId = @event.SubCategoryId,
                         CategoryId = @event.CategoryId,
-                        SubCategoryName = item.Name,
+                        SubCategoryName = item.Text,
                         CategoryName = categoryName,
                         Language = item.Language,
                         Suggest = new Nest.CompletionField

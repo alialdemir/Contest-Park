@@ -2,9 +2,9 @@
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Infrastructure;
 using ContestPark.Core.Enums;
+using ContestPark.Core.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -35,17 +35,17 @@ namespace ContestPark.Category.API.Infrastructure
                     Price = 120000,
                     FollowerCount = 1,
                     Description = "açıklama bla bla bla",
-                    SubCategoryLangs = new List<SubCategoryLang>
+                    SubCategoryLocalized = new List<Localized>
                                 {
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.Turkish,
-                                         SubCategoryName = "Hakem"
+                                         Language = Languages.Turkish,
+                                         Text = "Hakem"
                                     },
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.English,
-                                         SubCategoryName = "Referee"
+                                         Language = Languages.English,
+                                         Text = "Referee"
                                     },
                                 }
                 };
@@ -57,17 +57,17 @@ namespace ContestPark.Category.API.Infrastructure
                         Id = "bb6d7a05-7801-4e97-b7fc-e607f2c89b09",
                         DisplayOrder = 0,
                         Visibility =true,
-                        CategoryLangs= new List<CategoryLang>
+                        CategoryLocalized= new List<Localized>
                         {
-                            new CategoryLang
+                            new Localized
                             {
-                                 CategoryName = "Futbol",
-                                 LanguageId = Languages.Turkish
+                                 Text = "Futbol",
+                                 Language = Languages.Turkish
                             },
-                            new CategoryLang
+                            new Localized
                             {
-                                 CategoryName="Football",
-                                 LanguageId= Languages.English
+                                 Text="Football",
+                                 Language= Languages.English
                             },
                         },
                         SubCategories = new List<SubCategory>
@@ -82,17 +82,17 @@ namespace ContestPark.Category.API.Infrastructure
                                 Price = 0,
                                 PicturePath="https://cdn2.iconfinder.com/data/icons/location-map-vehicles/100/Locations-53-512.png",
                                 Description = "açıklama bla bla bla",
-                                SubCategoryLangs = new List<SubCategoryLang>
+                                SubCategoryLocalized = new List<Localized>
                                 {
-                                        new SubCategoryLang
+                                        new Localized
                                         {
-                                             LanguageId = Languages.Turkish,
-                                             SubCategoryName = "Stadyum"
+                                             Language = Languages.Turkish,
+                                             Text = "Stadyum"
                                         },
-                                        new SubCategoryLang
+                                        new Localized
                                         {
-                                             LanguageId = Languages.English,
-                                             SubCategoryName = "Stadium"
+                                             Language = Languages.English,
+                                             Text = "Stadium"
                                         },
                                 }
                             },
@@ -105,17 +105,17 @@ namespace ContestPark.Category.API.Infrastructure
                                 PicturePath="http://chittagongit.com/images/team-icon-png/team-icon-png-20.jpg",
                                 Description = "açıklama bla bla bla",
                                 Price=1000,
-                                SubCategoryLangs = new List<SubCategoryLang>
+                                SubCategoryLocalized = new List<Localized>
                                 {
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.Turkish,
-                                         SubCategoryName = "Takımlar"
+                                         Language = Languages.Turkish,
+                                         Text = "Takımlar"
                                     },
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.English,
-                                         SubCategoryName = "Teams"
+                                         Language = Languages.English,
+                                         Text = "Teams"
                                     },
                                 }
                             },
@@ -127,17 +127,17 @@ namespace ContestPark.Category.API.Infrastructure
                                 PicturePath="https://d2n3notmdf08g1.cloudfront.net/common/Login/gotr_icon_whistle.png",
                                 Description = "açıklama bla bla bla",
                                 Price=150000,
-                                SubCategoryLangs = new List<SubCategoryLang>
+                                SubCategoryLocalized = new List<Localized>
                                 {
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.Turkish,
-                                         SubCategoryName = "Antrenörler"
+                                         Language = Languages.Turkish,
+                                         Text = "Antrenörler"
                                     },
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.English,
-                                         SubCategoryName = "Coaches"
+                                         Language = Languages.English,
+                                         Text = "Coaches"
                                     }
                                 }
                             },
@@ -149,17 +149,17 @@ namespace ContestPark.Category.API.Infrastructure
                                 PicturePath="https://d2n3notmdf08g1.cloudfront.net/common/Login/gotr_icon_whistle.png",
                                 Description = "tEST bla bla bla",
                                 Price=150000,
-                                SubCategoryLangs = new List<SubCategoryLang>
+                                SubCategoryLocalized = new List<Localized>
                                 {
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.Turkish,
-                                         SubCategoryName = "Hakkılı test"
+                                         Language = Languages.Turkish,
+                                         Text = "Hakkılı test"
                                     },
-                                    new SubCategoryLang
+                                    new Localized
                                     {
-                                         LanguageId = Languages.English,
-                                         SubCategoryName = "Reference Test"
+                                         Language = Languages.English,
+                                         Text = "Reference Test"
                                     }
                                 }
                             }
@@ -199,15 +199,15 @@ namespace ContestPark.Category.API.Infrastructure
                                                                             subCategory.Price,
                                                                             subCategory.Id,
                                                                             category.Id,
-                                                                            subCategory.SubCategoryLangs.Select(s => new LanguageModel
+                                                                            subCategory.SubCategoryLocalized.Select(s => new Localized
                                                                             {
-                                                                                Language = s.LanguageId,
-                                                                                Name = s.SubCategoryName
+                                                                                Language = s.Language,
+                                                                                Text = s.Text
                                                                             }).ToList(),
-                                                                            category.CategoryLangs.Select(s => new LanguageModel
+                                                                            category.CategoryLocalized.Select(s => new Localized
                                                                             {
-                                                                                Language = s.LanguageId,
-                                                                                Name = s.CategoryName
+                                                                                Language = s.Language,
+                                                                                Text = s.Text
                                                                             }).ToList());
 
                             ILogger<NewSubCategoryAddedIntegrationEventHandler> log = Service.GetRequiredService<ILogger<NewSubCategoryAddedIntegrationEventHandler>>();

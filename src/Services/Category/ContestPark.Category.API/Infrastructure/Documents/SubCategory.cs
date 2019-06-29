@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Models;
 using System.Collections.Generic;
 
 namespace ContestPark.Category.API.Infrastructure.Documents
@@ -23,6 +24,6 @@ namespace ContestPark.Category.API.Infrastructure.Documents
             }
         }
 
-        public virtual ICollection<SubCategoryLang> SubCategoryLangs { get; set; } = new HashSet<SubCategoryLang>();
+        public virtual ICollection<Localized> SubCategoryLocalized { get; set; } = new HashSet<Localized>();
     }
 }

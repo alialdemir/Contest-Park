@@ -74,14 +74,17 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         }
 
         /// <summary>
-        ///
+        /// Kullanıcı parametreden gelen kullanıcı idlerini takip ediyor mu onu döndürür
         /// </summary>
         /// <param name="followingUserId"></param>
-        /// <param name="userIds"></param>
-        /// <returns></returns>
+        /// <param name="userIds">Kullanıcı idleri</param>
+        /// <returns>Takip etme durumları</returns>
         public IEnumerable<string> CheckFollowUpStatus(string followingUserId, IEnumerable<string> userIds)
         {
-            return _followRepository.QueryMultiple<string>("SELECT VALUE c.FollowedUserId FROM c WHERE c.FollowUpUserId=@followingUserId AND ARRAY_CONTAINS(@userIds, c.FollowedUserId)",
+            string sql = @"SELECT VALUE c.FollowedUserId
+                           FROM c
+                           WHERE c.FollowUpUserId=@followingUserId AND ARRAY_CONTAINS(@userIds, c.FollowedUserId)";
+            return _followRepository.QueryMultiple<string>(sql,
                      new
                      {
                          followingUserId,
@@ -133,6 +136,9 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
 
             if (!isSuccess)
             {
+                _logger.LogCritical("CRITICAL: Kullanıcının takip ettiği kişi takipçiler documentine eklendi ancak Kullanıcı takipçi sayısı güncellenemedi",
+                                    followedUserId,
+                                    followUpUserId);
                 // TODO: burada ya takipçi sayılarını güncellemek için event yollanabilir yada işlem geri alınmalı
             }
 

@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Core.CosmosDb.Models;
+using Newtonsoft.Json;
 
 namespace ContestPark.Post.API.Infrastructure.Documents
 {
-    public partial class Post
+    public partial class Post : DocumentBase
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public decimal? Bet { get; set; }
@@ -24,11 +25,5 @@ namespace ContestPark.Post.API.Infrastructure.Documents
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryId { get; set; }
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryName { get; set; }
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryPicturePath { get; set; }
     }
 }
