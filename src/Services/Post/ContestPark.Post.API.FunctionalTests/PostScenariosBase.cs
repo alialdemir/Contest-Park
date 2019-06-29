@@ -40,6 +40,13 @@ namespace ContestPark.Post.API.FunctionalTests
                     : $"api/v1/Post/{postId}/Like";
             }
 
+            public static string GetPostsBySubcategoryId(string subcategoryId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Post/subcategory/{subcategoryId}" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Post/subcategory/{subcategoryId}";
+            }
+
             private static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

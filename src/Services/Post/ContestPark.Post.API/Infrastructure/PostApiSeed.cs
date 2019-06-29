@@ -56,6 +56,19 @@ namespace ContestPark.Post.API.Infrastructure
                            CompetitorTrueAnswerCount = 35,
                            CompetitorUserId = "2222-2222-2222-2222",
                     },
+                        new Documents.Post
+                    {
+                            Id = "410b33a7-cd16-4dc3-81ce-eb740fec9b78",
+                            PostType = Enums.PostTypes.Contest,
+                            OwnerUserId = "1111-1111-1111-1111",
+                            FounderUserId = "1111-1111-1111-1111",
+                            FounderTrueAnswerCount = 23,
+                            Bet = 10000,
+                            DuelId = "123456789",// TODO: Bu id'yi duel servisinin eklediği bir düello ile eşleşmesi
+                            SubCategoryId = "7c3a26b7-74df-4128-aab9-a21f81a5ab36",
+                           CompetitorTrueAnswerCount = 44,
+                           CompetitorUserId = "2222-2222-2222-2222",
+                    },
                 });
 
                 await InsertDataAsync(new List<Like>

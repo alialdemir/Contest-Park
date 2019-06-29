@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.CosmosDb.Models;
 using ContestPark.Core.FunctionalTests;
 using ContestPark.Post.API.Models;
+using ContestPark.Post.API.Models.Post;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Net;
@@ -24,6 +25,49 @@ namespace ContestPark.Post.API.FunctionalTests
         }
 
         [Fact, TestPriority(1)]
+        public async Task Get_subcategory_posts_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsBySubcategoryId("7c3a26b7-74df-4128-aab9-a21f81a5ab36"));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(2)]
+        [InlineData(1, 1)]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        public async Task Get_subcategory_posts_and_check_paging(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsBySubcategoryId("7c3a26b7-74df-4128-aab9-a21f81a5ab36", true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                ServiceModel<PostModel> posts = JsonConvert.DeserializeObject<ServiceModel<PostModel>>(responseContent);
+
+                Assert.Equal(pageNumber, posts.PageNumber);
+                Assert.Equal(pageSize, posts.PageSize);
+                Assert.Equal(pageSize, posts.Items.Count());
+                if (pageSize == 1 && pageNumber == 1)
+                {
+                    Assert.True(posts.HasNextPage);
+                }
+                else if (pageNumber == 2)
+                {
+                    Assert.False(posts.HasNextPage);
+                }
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
         public async Task Get_post_likes_and_response_ok_status_code()
         {
             using (var server = CreateServer())
@@ -39,7 +83,7 @@ namespace ContestPark.Post.API.FunctionalTests
         [InlineData(1, 1)]
         [InlineData(1, 2)]
         [InlineData(2, 1)]
-        public async Task Get_paging_following_and_response_ok_status_code(int pageSize, int pageNumber)
+        public async Task Get_paging_following_and_check_paging(int pageSize, int pageNumber)
         {
             using (var server = CreateServer())
             {

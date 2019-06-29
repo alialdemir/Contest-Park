@@ -1,7 +1,10 @@
 ﻿using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Interfaces;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Post.API.Models;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Post.API.Infrastructure.Repositories.Like
@@ -39,14 +42,27 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         /// <returns>Beğenmiş ise true beğenmemiş ise false</returns>
         public bool CheckLikeStatus(string userId, string postId)
         {
-            string sql = @"SELECT VALUE true
+            return CheckLikeStatus(postId.Split(""), userId)?.Count() == 1;
+        }
+
+        /// <summary>
+        /// Kullanıcılar postları beğenmişmi kontrol eder
+        /// </summary>
+        /// <param name="postIds">Post id</param>
+        /// <param name="userIds">Kullanıcı idleri</param>
+        /// <returns>Beğenme etme durumları</returns>
+        public IEnumerable<CheckLikeModel> CheckLikeStatus(string[] postIds, string userId)
+        {
+            string sql = @"SELECT
+                            c.UserId,
+                            c.PostId
                            FROM c
-                           WHERE c.PostId=@postId AND c.UserId=@userId";
-            return _likeRepository.QuerySingle<bool>(sql,
+                           WHERE c.c.UserId=@userId AND ARRAY_CONTAINS(@postIds, c.PostId)";
+            return _likeRepository.QueryMultiple<CheckLikeModel>(sql,
                      new
                      {
-                         userId,
-                         postId
+                         postIds,
+                         userId
                      });
         }
 

@@ -420,6 +420,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Post/Subcategory/{subcategoryId}?pageSize={pageSize}?pageNumber={pageNumber}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.post.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Post/Subcategory/{subcategoryId}?pageSize={pageSize}&pageNumber={pageNumber}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {
