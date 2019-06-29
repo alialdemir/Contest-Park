@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Models;
 using System.Collections.Generic;
 
 namespace ContestPark.Category.API.Infrastructure.Documents
@@ -9,6 +10,6 @@ namespace ContestPark.Category.API.Infrastructure.Documents
 
         public byte DisplayOrder { get; set; }
         public virtual ICollection<SubCategory> SubCategories { get; set; } = new HashSet<SubCategory>();
-        public virtual ICollection<CategoryLang> CategoryLangs { get; set; } = new HashSet<CategoryLang>();
+        public virtual ICollection<Localized> CategoryLocalized { get; set; } = new HashSet<Localized>();
     }
 }

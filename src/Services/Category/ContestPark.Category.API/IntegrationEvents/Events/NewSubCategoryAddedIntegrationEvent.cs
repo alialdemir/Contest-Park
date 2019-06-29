@@ -1,4 +1,4 @@
-﻿using ContestPark.Category.API.Model;
+﻿using ContestPark.Core.Models;
 using ContestPark.EventBus.Events;
 using System.Collections.Generic;
 
@@ -14,22 +14,22 @@ namespace ContestPark.Category.API.IntegrationEvents.Events
 
         public string SubCategoryId { get; set; }
         public string CategoryId { get; set; }
-        public List<LanguageModel> SubCategoryLangs { get; set; }
-        public List<LanguageModel> CategoryLangs { get; set; }
+        public List<Localized> SubCategoryLocalized { get; set; }
+        public List<Localized> CategoryLocalized { get; set; }
 
         public NewSubCategoryAddedIntegrationEvent(string displayPrice,
                                                    string picturePath,
                                                    int price,
                                                    string subCategoryId,
                                                    string categoryId,
-                                                   List<LanguageModel> subCategoryLangs,
-                                                   List<LanguageModel> categoryLangs)
+                                                   List<Localized> subCategoryLocalized,
+                                                   List<Localized> categoryLocalized)
         {
             DisplayPrice = displayPrice;
             PicturePath = picturePath;
             Price = price;
-            SubCategoryLangs = subCategoryLangs;
-            CategoryLangs = categoryLangs;
+            SubCategoryLocalized = subCategoryLocalized;
+            CategoryLocalized = categoryLocalized;
 
             SubCategoryId = subCategoryId;
             CategoryId = categoryId;

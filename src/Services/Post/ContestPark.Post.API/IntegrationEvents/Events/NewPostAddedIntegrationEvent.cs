@@ -17,8 +17,6 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
                                           string founderUserId,
                                           byte? founderTrueAnswerCount,
                                           string subCategoryId,
-                                          string subCategoryName,
-                                          string subCategoryPicturePath,
                                           string picturePath,
                                           string description,
                                           PostImageTypes? postImageType)
@@ -32,8 +30,6 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
             FounderUserId = founderUserId;
             FounderTrueAnswerCount = founderTrueAnswerCount;
             SubCategoryId = subCategoryId;
-            SubCategoryName = subCategoryName;
-            SubCategoryPicturePath = subCategoryPicturePath;
             PicturePath = picturePath;
             Description = description;
             PostImageType = postImageType;
@@ -71,12 +67,6 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryId { get; set; }
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryName { get; set; }
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryPicturePath { get; set; }
 
         #endregion Post contest
 

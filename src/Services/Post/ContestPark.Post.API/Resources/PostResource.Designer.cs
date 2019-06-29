@@ -59,5 +59,14 @@ namespace ContestPark.Post.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You already liked this post..
+        /// </summary>
+        public static string YouAlreadyLikedThisPost {
+            get {
+                return ResourceManager.GetString("YouAlreadyLikedThisPost", resourceCulture);
+            }
+        }
     }
 }

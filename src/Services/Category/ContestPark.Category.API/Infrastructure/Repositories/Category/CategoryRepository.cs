@@ -57,9 +57,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                                 price: ARRAY_CONTAINS(@openSubCategories,  sc.id, true) ? 0 : sc.Price,
                                 displayOrder: sc.DisplayOrder,
                                 subCategoryName: scl.SubCategoryName
-                             }   FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLangs WHERE sc.Visibility=true AND scl.LanguageId=@language) as subCategories
+                             }   FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLocalized WHERE sc.Visibility=true AND scl.LanguageId=@language) as subCategories
                            FROM c
-                           JOIN cl IN c.CategoryLangs
+                           JOIN cl IN c.CategoryLocalized
                            WHERE c.Visibility=true AND cl.LanguageId=@language
                            ORDER BY c.DisplayOrder";
 
@@ -175,10 +175,10 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                                 displayPrice: '',
                                 displayOrder: sc.DisplayOrder,
                                 subCategoryName: scl.SubCategoryName
-                             }  FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLangs WHERE sc.Visibility=true AND scl.LanguageId=@languageId AND ARRAY_CONTAINS(@followedSubCategories,  sc.id, true))
+                             }  FROM sc IN c.SubCategories JOIN scl IN sc.SubCategoryLocalized WHERE sc.Visibility=true AND scl.LanguageId=@languageId AND ARRAY_CONTAINS(@followedSubCategories,  sc.id, true))
                              AS  SubCategories
                            FROM c
-                           JOIN cl IN c.CategoryLangs
+                           JOIN cl IN c.CategoryLocalized
                            WHERE c.Visibility=true AND cl.LanguageId=@languageId
                            ORDER BY c.DisplayOrder";
 
@@ -208,7 +208,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                            sc.PicturePath AS SubCategoryPicturePath
                            FROM c
                            JOIN sc IN c.SubCategories
-                           JOIN scl IN sc.SubCategoryLangs
+                           JOIN scl IN sc.SubCategoryLocalized
                            WHERE c.Visibility=true AND sc.Visibility=true And sc.id = @subCategoryId AND scl.LanguageId=@language";
 
             return _categoryRepository.QuerySingle<SubCategoryDetailInfoModel>(sql, new

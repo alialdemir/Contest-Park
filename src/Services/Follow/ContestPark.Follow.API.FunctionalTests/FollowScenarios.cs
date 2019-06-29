@@ -137,7 +137,7 @@ namespace ContestPark.Follow.API.FunctionalTests
         [InlineData("en-US", "You are not following this user.")]
         [InlineData("tr-TR", "Bu kullanıcıyı takip etmiyorsunuz.")]
         [InlineData("fakelangoagecode", "You are not following this user.")]
-        public async Task Delete_follow_and_response_badrequest_status_code_and_error_message(string langCode, string assetMessage)
+        public async Task Delete_follow_and_response_badrequest_status_code_and_error_message(string langCode, string errorMessage)
         {
             using (var server = CreateServer())
             {
@@ -152,7 +152,7 @@ namespace ContestPark.Follow.API.FunctionalTests
                 ValidationMessage message = JsonConvert.DeserializeObject<ValidationMessage>(responseContent);
 
                 Assert.NotNull(message);
-                Assert.Equal(assetMessage, message.ErrorMessage);
+                Assert.Equal(errorMessage, message.ErrorMessage);
 
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             }

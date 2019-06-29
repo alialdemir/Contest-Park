@@ -1,7 +1,7 @@
 ﻿using ContestPark.Core.CosmosDb.Interfaces;
 using System.Threading.Tasks;
 
-namespace ContestPark.Post.API.Infrastructure.Repositories.PostRepository
+namespace ContestPark.Post.API.Infrastructure.Repositories.Post
 {
     public class PostRepository : IPostRepository
     {

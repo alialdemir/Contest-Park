@@ -1,5 +1,5 @@
 ﻿using ContestPark.EventBus.Abstractions;
-using ContestPark.Post.API.Infrastructure.Repositories.PostRepository;
+using ContestPark.Post.API.Infrastructure.Repositories.Post;
 using ContestPark.Post.API.IntegrationEvents.Events;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -39,8 +39,6 @@ namespace ContestPark.Post.API.IntegrationEvents.EventHandling
                 PostImageType = @event.PostImageType,
                 SubCategoryId = @event.SubCategoryId,
                 PostType = @event.PostType,
-                SubCategoryName = @event.SubCategoryName,
-                SubCategoryPicturePath = @event.SubCategoryPicturePath
             });
 
             if (!isSuccess)
@@ -56,9 +54,7 @@ namespace ContestPark.Post.API.IntegrationEvents.EventHandling
                     @event.PicturePath,
                     @event.PostImageType,
                     @event.SubCategoryId,
-                    @event.PostType,
-                    @event.SubCategoryName,
-                    @event.SubCategoryPicturePath);
+                    @event.PostType);
             }
         }
     }
