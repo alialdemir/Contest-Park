@@ -88,6 +88,38 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
             return isSuccess;
         }
 
+        /// <summary>
+        /// Postu beğenmekten vazgeç
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> UnLikeAsync(string userId, string postId)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(postId))
+                return false;
+
+            Documents.Post post = _postRepository.FindById(postId);
+            if (post == null)
+                return false;
+
+            bool isSuccess = await _likeRepository.RemoveAsync(x => x.UserId == userId && x.PostId == postId);
+            if (!isSuccess)
+            {
+                _logger.LogCritical("CRITICAL: beğeni silme sırasında hata.", userId, postId);
+                return false;
+            }
+
+            post.LikeCount -= 1;
+            isSuccess = await _postRepository.UpdateAsync(post);
+            if (!isSuccess)
+            {
+                _logger.LogInformation("Uyarı! beğeni documentinden beğeni kaldırıldı fakat. post documenti üzerinden likeCount azaltılamadı.", userId, postId);
+            }
+
+            return isSuccess;
+        }
+
         #endregion Methods
     }
 }

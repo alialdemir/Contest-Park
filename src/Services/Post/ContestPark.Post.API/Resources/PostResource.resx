@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnUnexpectedErrorOccurredDuringTheRatingRemoval" xml:space="preserve">
+    <value>An unexpected error occurred during the rating removal.</value>
+  </data>
   <data name="YouAlreadyLikedThisPost" xml:space="preserve">
     <value>You already liked this post.</value>
+  </data>
+  <data name="YouHaveToLikeThisPostBeforeToRemoveLiking" xml:space="preserve">
+    <value>You have to like this post before to remove liking.</value>
+  </data>
+  <data name="YourLikeProcessDidNotHappenPleaseTryAgain" xml:space="preserve">
+    <value>Your like process did not happen, please try again.</value>
   </data>
 </root>

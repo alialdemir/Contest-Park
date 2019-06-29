@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnUnexpectedErrorOccurredDuringTheRatingRemoval" xml:space="preserve">
+    <value>Beğeni kaldırma işlemi sırasında beklenmedik bir hata oluştu.</value>
+  </data>
   <data name="YouAlreadyLikedThisPost" xml:space="preserve">
     <value>Bu postu zaten beğenmişsiniz.</value>
+  </data>
+  <data name="YouHaveToLikeThisPostBeforeToRemoveLiking" xml:space="preserve">
+    <value>Beğeniyi kaldırmak için önce bu postu beğenmelisin.</value>
+  </data>
+  <data name="YourLikeProcessDidNotHappenPleaseTryAgain" xml:space="preserve">
+    <value>Beğeni işleminiz gerçekleşmedi lütfen tekrar deneyiniz.</value>
   </data>
 </root>
