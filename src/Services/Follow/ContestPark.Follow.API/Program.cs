@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Extensions;
+﻿using ContestPark.Core.Database.Extensions;
 using ContestPark.Follow.API.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;

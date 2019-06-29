@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Infrastructure;
+﻿using ContestPark.Core.Database.Infrastructure;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

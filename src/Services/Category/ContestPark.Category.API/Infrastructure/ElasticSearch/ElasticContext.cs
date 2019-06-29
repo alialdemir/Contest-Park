@@ -1,6 +1,7 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
 using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Models;
 using Microsoft.Extensions.Logging;
 using Nest;
 using System.Collections.Generic;

@@ -6,7 +6,7 @@ using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Category.API.Services.Balance;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

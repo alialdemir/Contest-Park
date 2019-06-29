@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,13 +8,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
     {
         #region Private variables
 
-        private readonly IDocumentDbRepository<Documents.FollowSubCategory> _followRepository;
+        private readonly IRepository<Documents.FollowSubCategory> _followRepository;
 
         #endregion Private variables
 
         #region Constructor
 
-        public FollowSubCategoryRepository(IDocumentDbRepository<Documents.FollowSubCategory> repository)
+        public FollowSubCategoryRepository(IRepository<Documents.FollowSubCategory> repository)
         {
             _followRepository = repository;
         }

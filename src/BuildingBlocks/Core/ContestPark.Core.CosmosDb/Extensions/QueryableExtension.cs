@@ -1,5 +1,5 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +7,7 @@ namespace ContestPark.Core.CosmosDb.Extensions
 {
     public static class QueryableExtension
     {
-        public static ServiceModel<TResult> ToServiceModel<TDocument, TResult>(this IDocumentDbRepository<TDocument> dbRepository, string sql, object parameters, PagingModel paging) where TDocument : class, IDocument, new()
+        public static ServiceModel<TResult> ToServiceModel<TDocument, TResult>(this IRepository<TDocument> dbRepository, string sql, object parameters, PagingModel paging) where TDocument : class, IEntity<string>, new()
         {
             // Query olduğu gibi çalıştırıldı
             IEnumerable<TResult> items = dbRepository.QueryMultiple<TResult>($"{sql} OFFSET {paging.Offset} LIMIT {paging.PageSize}", parameters);

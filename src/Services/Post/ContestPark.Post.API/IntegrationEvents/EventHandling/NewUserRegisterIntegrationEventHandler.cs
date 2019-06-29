@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Post.API.Infrastructure.Documents;
 using ContestPark.Post.API.IntegrationEvents.Events;
@@ -11,10 +11,10 @@ namespace ContestPark.Post.API.IntegrationEvents.EventHandling
     public class NewUserRegisterIntegrationEventHandler : IIntegrationEventHandler<NewUserRegisterIntegrationEvent>
 
     {
-        private readonly IDocumentDbRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly ILogger<NewUserRegisterIntegrationEventHandler> _logger;
 
-        public NewUserRegisterIntegrationEventHandler(IDocumentDbRepository<User> userRepository,
+        public NewUserRegisterIntegrationEventHandler(IRepository<User> userRepository,
                                                       ILogger<NewUserRegisterIntegrationEventHandler> logger)
         {
             _userRepository = userRepository;

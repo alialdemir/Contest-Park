@@ -2,8 +2,8 @@
 using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
 using ContestPark.Category.API.Model;
 using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
 using System.Linq;
@@ -17,13 +17,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
 
-        private readonly IDocumentDbRepository<Documents.Category> _categoryRepository;
+        private readonly IRepository<Documents.Category> _categoryRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public CategoryRepository(IDocumentDbRepository<Documents.Category> repository,
+        public CategoryRepository(IRepository<Documents.Category> repository,
                                   IFollowSubCategoryRepository followSubCategoryRepository,
                                   IOpenCategoryRepository openCategoryRepository)
         {

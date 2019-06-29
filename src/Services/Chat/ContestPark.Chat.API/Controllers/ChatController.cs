@@ -5,8 +5,8 @@ using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Model;
 using ContestPark.Chat.API.Resources;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,7 +25,7 @@ namespace ContestPark.Chat.API.Controllers
         private readonly IBlockRepository _blockRepository;
         private readonly IConversationRepository _conversationRepository;
         private readonly IEventBus _eventBus;
-        private readonly IDocumentDbRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly IMessageRepository _messageRepository;
 
         #endregion Private Variables
@@ -35,7 +35,7 @@ namespace ContestPark.Chat.API.Controllers
         public ChatController(ILogger<ChatController> logger,
                               IBlockRepository blockRepository,
                               IConversationRepository conversationRepository,
-                              IDocumentDbRepository<User> userRepository,
+                              IRepository<User> userRepository,
                               IMessageRepository messageRepository,
                               IEventBus eventBus) : base(logger)
         {

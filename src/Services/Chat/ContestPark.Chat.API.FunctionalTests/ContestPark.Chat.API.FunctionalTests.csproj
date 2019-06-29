@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\ContestPark.Core.Database\ContestPark.Core.Database.csproj" />
     <ProjectReference Include="..\..\..\..\test\ContestPark.Core.FunctionalTests\ContestPark.Core.FunctionalTests\ContestPark.Core.FunctionalTests.csproj" />
     <ProjectReference Include="..\ContestPark.Chat.API\ContestPark.Chat.API.csproj" />
   </ItemGroup>

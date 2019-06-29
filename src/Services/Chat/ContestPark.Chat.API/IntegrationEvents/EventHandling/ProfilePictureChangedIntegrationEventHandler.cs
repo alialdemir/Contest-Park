@@ -1,6 +1,6 @@
 ﻿using ContestPark.Chat.API.Infrastructure.Documents;
 using ContestPark.Chat.API.IntegrationEvents.Events;
-using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.Database.Interfaces;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,10 +11,10 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
     public class ProfilePictureChangedIntegrationEventHandler : IIntegrationEventHandler<ProfilePictureChangedIntegrationEvent>
 
     {
-        private readonly IDocumentDbRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly ILogger<ProfilePictureChangedIntegrationEventHandler> _logger;
 
-        public ProfilePictureChangedIntegrationEventHandler(IDocumentDbRepository<User> userRepository,
+        public ProfilePictureChangedIntegrationEventHandler(IRepository<User> userRepository,
                                                             ILogger<ProfilePictureChangedIntegrationEventHandler> logger)
         {
             _userRepository = userRepository;

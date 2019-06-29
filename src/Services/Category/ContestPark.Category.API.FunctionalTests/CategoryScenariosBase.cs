@@ -1,8 +1,9 @@
 ﻿using ContestPark.Category.API.Infrastructure;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Extensions;
+using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

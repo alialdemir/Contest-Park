@@ -2,7 +2,7 @@
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Core.CosmosDb.Infrastructure;
+using ContestPark.Core.Database.Infrastructure;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
 using Microsoft.Extensions.DependencyInjection;

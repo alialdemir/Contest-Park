@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Models;
+﻿using ContestPark.Core.Database.Models;
 using ContestPark.Post.API.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
 
         Task<bool> LikeAsync(string userId, string postId);
 
-        ServiceModel<string> PostLikes(string postId, Core.CosmosDb.Models.PagingModel paging);
+        ServiceModel<string> PostLikes(string postId, Core.Database.Models.PagingModel paging);
 
         Task<bool> UnLikeAsync(string userId, string postId);
     }

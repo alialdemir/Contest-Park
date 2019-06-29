@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
 using Cosmonaut;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Core.CosmosDb
 {
-    public class DocumentDbRepository<TDocument> : IDocumentDbRepository<TDocument> where TDocument : class, IDocument, new()
+    public class DocumentDbRepository<TDocument> : IRepository<TDocument> where TDocument : class, IEntity, new()
     {
         #region Private variables
 
@@ -45,11 +45,13 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="id">document id</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> RemoveAsync(string id)
+        public async Task<bool> RemoveAsync(dynamic id)
         {
             try
             {
-                var response = await _cosmosStore.RemoveAsync(x => x.Id == id);
+                string idToString = (string)id;
+
+                var response = await _cosmosStore.RemoveAsync(x => ((string)x.Id) == idToString);
 
                 return response.IsSuccess;
             }
@@ -65,11 +67,11 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Document object or null</returns>
-        public TDocument FindById(string id)
+        public TDocument FindById(dynamic id)
         {
             try
             {
-                return _cosmosStore.FindAsync(id).Result;
+                return _cosmosStore.FindAsync(id.ToString()).Result;
             }
             catch (Exception ex)
             {
@@ -84,7 +86,7 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="ids">id</param>
         /// <returns>Idlere ait tüm kayıtlar</returns>
-        public IEnumerable<TDocument> FindByIds(IEnumerable<string> ids)
+        public IEnumerable<TDocument> FindByIds(IEnumerable<dynamic> ids)
         {
             try
             {

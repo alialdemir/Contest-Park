@@ -1,6 +1,6 @@
 ﻿using ContestPark.Balance.API.Infrastructure.Documents;
 using ContestPark.Balance.API.Models;
-using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.Database.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,16 +13,16 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.Balance> _balanceRepository;
-        private readonly IDocumentDbRepository<BalanceHistory> _balanceHistoryRepository;
+        private readonly IRepository<Documents.Balance> _balanceRepository;
+        private readonly IRepository<BalanceHistory> _balanceHistoryRepository;
         private readonly ILogger<BalanceRepository> _logger;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public BalanceRepository(IDocumentDbRepository<Documents.Balance> balanceRepository,
-                                 IDocumentDbRepository<BalanceHistory> balanceHistoryRepository,
+        public BalanceRepository(IRepository<Documents.Balance> balanceRepository,
+                                 IRepository<BalanceHistory> balanceHistoryRepository,
                                  ILogger<BalanceRepository> logger)
         {
             _balanceRepository = balanceRepository;

@@ -1,7 +1,7 @@
 ﻿using ContestPark.Chat.API.Model;
 using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
@@ -11,14 +11,14 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.Conversation> _conversationRepository;
+        private readonly IRepository<Documents.Conversation> _conversationRepository;
         private readonly ILogger<ConversationRepository> _logger;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public ConversationRepository(IDocumentDbRepository<Documents.Conversation> conversationRepository,
+        public ConversationRepository(IRepository<Documents.Conversation> conversationRepository,
                                       ILogger<ConversationRepository> logger)
         {
             _conversationRepository = conversationRepository;

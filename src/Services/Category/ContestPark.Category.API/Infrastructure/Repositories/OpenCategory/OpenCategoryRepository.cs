@@ -1,5 +1,8 @@
 ﻿using ContestPark.Category.API.Infrastructure.Documents;
-using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.Database.Interfaces;
+
+using ContestPark.Core.Database.Interfaces;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,13 +12,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<OpenSubCategory> _openSubCategoryRepository;
+        private readonly IRepository<OpenSubCategory> _openSubCategoryRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public OpenCategoryRepository(IDocumentDbRepository<OpenSubCategory> repository)
+        public OpenCategoryRepository(IRepository<OpenSubCategory> repository)
         {
             _openSubCategoryRepository = repository;
         }

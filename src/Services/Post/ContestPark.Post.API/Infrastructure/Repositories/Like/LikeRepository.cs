@@ -1,6 +1,6 @@
 ﻿using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.Post.API.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -14,15 +14,15 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         #region Private Variables
 
         private readonly ILogger<LikeRepository> _logger;
-        private readonly IDocumentDbRepository<Documents.Post> _postRepository;
-        private readonly IDocumentDbRepository<Documents.Like> _likeRepository;
+        private readonly IRepository<Documents.Post> _postRepository;
+        private readonly IRepository<Documents.Like> _likeRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public LikeRepository(IDocumentDbRepository<Documents.Post> postRepository,
-                                IDocumentDbRepository<Documents.Like> likeRepository,
+        public LikeRepository(IRepository<Documents.Post> postRepository,
+                                IRepository<Documents.Like> likeRepository,
                                 ILogger<LikeRepository> logger)
         {
             _postRepository = postRepository;

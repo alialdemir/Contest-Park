@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Infrastructure;
+﻿using ContestPark.Core.Database.Infrastructure;
 using ContestPark.Post.API.Infrastructure.Documents;
 using Microsoft.Extensions.Logging;
 using System;

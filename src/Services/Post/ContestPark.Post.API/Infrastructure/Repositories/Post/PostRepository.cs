@@ -1,6 +1,6 @@
 ﻿using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.Post.API.Models.Post;
 using System.Threading.Tasks;
 
@@ -10,13 +10,13 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Post
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.Post> _postRepository;
+        private readonly IRepository<Documents.Post> _postRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public PostRepository(IDocumentDbRepository<Documents.Post> postRepository)
+        public PostRepository(IRepository<Documents.Post> postRepository)
         {
             _postRepository = postRepository;
         }
