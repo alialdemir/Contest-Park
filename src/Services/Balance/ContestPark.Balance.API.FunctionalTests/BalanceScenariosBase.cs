@@ -1,4 +1,5 @@
-﻿using ContestPark.Balance.API.Infrastructure;
+﻿using ContestPark.Balance.API.Enums;
+using ContestPark.Balance.API.Infrastructure;
 using ContestPark.Balance.API.Migrations;
 using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
@@ -47,9 +48,16 @@ namespace ContestPark.Balance.API.FunctionalTests
                 return "api/v1/balance";
             }
 
-            public static string GetBalanceByUserId(string userId)
+            public static string GetBalanceByUserId(string userId, BalanceTypes? balanceType)
             {
-                return $"api/v1/Balance/{userId}";
+                string url = $"api/v1/Balance/{userId}";
+
+                if (balanceType != null)
+                {
+                    url += $"?balanceType={balanceType}";
+                }
+
+                return url;
             }
 
             public static string Paginated(int pageSize, int pageNumber)

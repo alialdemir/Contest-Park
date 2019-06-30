@@ -116,7 +116,7 @@ namespace ContestPark.Balance.API.Controllers
         [Authorize(Policy = "ContestParkServices")]
         [ProducesResponseType(typeof(BalanceModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public IActionResult GetBalances(string userId)
+        public IActionResult GetBalances(string userId, [FromQuery]BalanceTypes balanceType)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
@@ -129,7 +129,20 @@ namespace ContestPark.Balance.API.Controllers
                 return NotFound();
             }
 
-            return Ok(balance);
+            decimal amount = 0;
+
+            switch (balanceType)
+            {
+                case BalanceTypes.Gold:
+                    amount = balance.Gold;
+                    break;
+
+                case BalanceTypes.Money:
+                    amount = balance.Money;
+                    break;
+            }
+
+            return Ok(new { Amount = amount });
         }
 
         /// <summary>

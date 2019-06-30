@@ -46,19 +46,34 @@ namespace ContestPark.Balance.API.FunctionalTests
         }
 
         [Fact]
-        public async Task Get_balance_by_userid_and_check_gold_and_money_amount()
+        public async Task Get_balance_by_userid_and_check_gold_amount()
         {
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetBalanceByUserId("2222-2222-2222-2222"));
+                    .GetAsync(Entpoints.GetBalanceByUserId("2222-2222-2222-2222", BalanceTypes.Gold));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                BalanceModel balance = JsonConvert.DeserializeObject<BalanceModel>(responseContent);
+                BalanceResponse balance = JsonConvert.DeserializeObject<BalanceResponse>(responseContent);
 
-                Assert.Equal(10000, balance.Gold);
-                Assert.Equal(5432, balance.Money);
+                Assert.Equal(10000, balance.Amount);
+            }
+        }
+
+        [Fact]
+        public async Task Get_balance_by_userid_and_check_money_amount()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetBalanceByUserId("2222-2222-2222-2222", BalanceTypes.Money));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                BalanceResponse balance = JsonConvert.DeserializeObject<BalanceResponse>(responseContent);
+
+                Assert.Equal(5432, balance.Amount);
             }
         }
 
@@ -68,7 +83,7 @@ namespace ContestPark.Balance.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetBalanceByUserId("fake-userid"));
+                    .GetAsync(Entpoints.GetBalanceByUserId("fake-userid", null));
 
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
@@ -195,6 +210,11 @@ namespace ContestPark.Balance.API.FunctionalTests
 
                 #endregion Bakiye yükleme başarılı ise getBalance üzerinden gelen değeri kontrol ediyoruz
             }
+        }
+
+        private class BalanceResponse
+        {
+            public decimal Amount { get; set; }
         }
     }
 }
