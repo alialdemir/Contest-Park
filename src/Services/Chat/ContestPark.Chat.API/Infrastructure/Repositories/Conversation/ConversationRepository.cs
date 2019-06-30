@@ -83,7 +83,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
                            WHERE c.SenderUserId = @senderUserId AND c.ReceiverUserId = @receiverUserId OR
                                  c.SenderUserId = @receiverUserId AND c.ReceiverUserId = @senderUserId";
 
-            return _conversationRepository.QuerySingle<Documents.Conversation>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<Documents.Conversation>(sql, new
             {
                 senderUserId,
                 receiverUserId
@@ -101,7 +101,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             string sql = @"SELECT TOP 1 VALUE CONTAINS(c.SenderUserId, @userId) FROM c
                            WHERE c.id=@conversationId";
 
-            return _conversationRepository.QuerySingle<bool>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 userId,
                 conversationId
@@ -119,7 +119,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             string sql = @"SELECT TOP 1 VALUE (c.SenderUserId=@userId OR c.ReceiverUserId=@userId) FROM c
                            WHERE c.id=@conversationId";
 
-            return _conversationRepository.QuerySingle<bool>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 userId,
                 conversationId
@@ -142,7 +142,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
                            FROM c WHERE (c.SenderUserId=@userId AND c.SenderUnreadMessageCount > 0)
                            OR (c.ReceiverUserId=@userId AND c.ReceiverUnreadMessageCount > 0)";
 
-            return _conversationRepository.QuerySingle<int>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<int>(sql, new
             {
                 userId
             });

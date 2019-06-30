@@ -140,7 +140,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                            JOIN sc IN c.SubCategories
                            WHERE sc.id=@subCategoryId";
 
-            return _categoryRepository.QuerySingle<bool>(sql, new { subCategoryId });
+            return _categoryRepository.QuerySingleOrDefault<bool>(sql, new { subCategoryId });
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
 
             // NOTE: queryden datayı alabilmek için FollowedSubCategoryModel model oluşturup onun içinden alt kategorileri alabildim
 
-            serviceModel.Items = _categoryRepository.QuerySingle<FollowedSubCategoryModel>(sql, new
+            serviceModel.Items = _categoryRepository.QuerySingleOrDefault<FollowedSubCategoryModel>(sql, new
             {
                 followedSubCategories,
                 languageId = (byte)language
@@ -211,7 +211,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                            JOIN scl IN sc.SubCategoryLocalized
                            WHERE c.Visibility=true AND sc.Visibility=true And sc.id = @subCategoryId AND scl.LanguageId=@language";
 
-            return _categoryRepository.QuerySingle<SubCategoryDetailInfoModel>(sql, new
+            return _categoryRepository.QuerySingleOrDefault<SubCategoryDetailInfoModel>(sql, new
             {
                 subCategoryId,
                 language = (byte)language
@@ -229,7 +229,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Category
                            FROM c JOIN sc IN c.SubCategories
                            where sc.id=@subCategoryId";
 
-            return _categoryRepository.QuerySingle<int>(sql, new { subCategoryId });
+            return _categoryRepository.QuerySingleOrDefault<int>(sql, new { subCategoryId });
         }
 
         #endregion Methods

@@ -1,10 +1,8 @@
-﻿using ContestPark.Balance.API.Enums;
-
-namespace ContestPark.Balance.API.Models
+﻿namespace ContestPark.Balance.API.Models
 {
     public class BalanceModel
     {
-        public BalanceTypes BalanceType { get; set; }
-        public decimal Amount { get; set; }
+        public decimal Gold { get; set; }
+        public decimal Money { get; set; }
     }
 }

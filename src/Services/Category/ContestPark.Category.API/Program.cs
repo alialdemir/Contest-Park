@@ -1,8 +1,10 @@
 ﻿using ContestPark.Category.API.Infrastructure;
+using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Core.Database.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System;
 using System.IO;
@@ -40,8 +42,8 @@ namespace ContestPark.Category.API
 
                 host.MigrateDatabase<CategoryApiSeed>((services, logger) =>
                 {
-                    //ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
-                    //searchRepository.CreateSearchIndexs();
+                    ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
+                    searchRepository.CreateSearchIndexs();
 
                     new CategoryApiSeed()
                        .SeedAsync(services, logger)

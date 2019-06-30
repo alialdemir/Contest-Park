@@ -48,7 +48,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenCategory
         /// <returns>Alt kategori kilidi açık ise true değilse false</returns>
         public bool IsSubCategoryOpen(string userId, string subCategoryId)
         {
-            return _openSubCategoryRepository.QuerySingle<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
+            return _openSubCategoryRepository.QuerySingleOrDefault<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
             {
                 userId,
                 subCategoryId

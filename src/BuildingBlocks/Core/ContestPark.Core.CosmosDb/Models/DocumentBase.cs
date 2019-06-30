@@ -7,6 +7,6 @@ namespace ContestPark.Core.CosmosDb.Models
     public abstract class DocumentBase : EntityBase
     {
         [JsonProperty(PropertyName = "id")]
-        public override object Id { get; set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

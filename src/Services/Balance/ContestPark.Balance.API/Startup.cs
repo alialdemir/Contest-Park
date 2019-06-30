@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
-using ContestPark.Balance.API.Infrastructure.Repositories.Purchase;
+using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
 using ContestPark.Balance.API.Resources;
 using ContestPark.Core.Middlewares;
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +26,7 @@ namespace ContestPark.Balance.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CpSettings>(Configuration);
+            services.Configure<BalanceSettings>(Configuration);
 
             services.AddAuthorization(options =>// Bizim servislerimizin kendi içinde haberleşebilmesi için bu policy eklendi
             {
@@ -34,7 +34,8 @@ namespace ContestPark.Balance.API
             });
 
             services.AddAuth(Configuration)
-                    .AddCosmosDb(Configuration)
+                    //  .AddCosmosDb(Configuration)
+                    .AddMySql()
                     .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()

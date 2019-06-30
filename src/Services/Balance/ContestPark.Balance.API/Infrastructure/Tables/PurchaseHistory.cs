@@ -1,10 +1,15 @@
 ﻿using ContestPark.Balance.API.Enums;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Models;
+using Dapper;
 
-namespace ContestPark.Balance.API.Infrastructure.Documents
+namespace ContestPark.Balance.API.Infrastructure.Tables
 {
-    public class PurchaseHistory : DocumentBase
+    [Table("PurchaseHistories")]
+    public class PurchaseHistory : EntityBase
     {
+        [Key]
+        public int PurchaseHistoryId { get; set; }
+
         public string PackageName { get; set; }
 
         public string ProductId { get; set; }

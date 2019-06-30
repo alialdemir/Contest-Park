@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace ContestPark.Balance.API.Infrastructure.Repositories.Purchase
+namespace ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory
 {
     public interface IPurchaseHistoryRepository
     {
-        Task<bool> AddAsync(Documents.PurchaseHistory purchase);
+        Task<bool> AddAsync(Tables.PurchaseHistory purchase);
     }
 }

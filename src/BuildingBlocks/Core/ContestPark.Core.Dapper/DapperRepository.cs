@@ -1,11 +1,10 @@
 ﻿using ContestPark.Core.Dapper.Interfaces;
 using ContestPark.Core.Database.Interfaces;
 using Dapper;
-using DapperExtensions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -27,6 +26,9 @@ namespace ContestPark.Core.Dapper
                                 ILogger<DapperRepository<TEntity>> logger)
         {
             _databaseConnection = databaseConnection;
+
+            SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
+            var g = SimpleCRUD.GetDialect();
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
         }
 
@@ -40,7 +42,7 @@ namespace ContestPark.Core.Dapper
 
         #endregion Constructor
 
-        #region MyRegion
+        #region Methods
 
         /// <summary>
         /// Entity ekler
@@ -51,9 +53,7 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                entity.CreatedDate = DateTime.Now;
-
-                int id = await _databaseConnection.Connection.InsertAsync(entity);
+                int? id = await _databaseConnection.Connection.InsertAsync<TEntity>(entity);
 
                 return id > 0;
             }
@@ -74,7 +74,31 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                await _databaseConnection.Connection.InsertAsync(entities);
+                int result = 0;
+                foreach (var entity in entities)
+                {
+                    int? id = await _databaseConnection.Connection.InsertAsync<TEntity>(entity);
+                    result += id ?? 0;
+                }
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex);
+
+                return false;
+            }
+        }
+
+        public async Task<bool> AddRangeAsync<Key>(IEnumerable<TEntity> entities)
+        {
+            try
+            {
+                foreach (var entity in entities)
+                {
+                    Key id = await _databaseConnection.Connection.InsertAsync<Key, TEntity>(entity);
+                }
 
                 return true;
             }
@@ -92,7 +116,7 @@ namespace ContestPark.Core.Dapper
         /// <returns>Total docs count</returns>
         public Task<int> CountAsync()
         {
-            return _databaseConnection.Connection.CountAsync<TEntity>();
+            return _databaseConnection.Connection.RecordCountAsync<TEntity>();
         }
 
         /// <summary>
@@ -146,7 +170,9 @@ namespace ContestPark.Core.Dapper
 
                 var entity = FindById(id);
 
-                return await _databaseConnection.Connection.DeleteAsync<TEntity>(entity);
+                int recordsAffected = await _databaseConnection.Connection.DeleteAsync<TEntity>(entity);
+
+                return recordsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -165,7 +191,9 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                return await _databaseConnection.Connection.DeleteAsync(predicate);
+                int recordsAffected = await _databaseConnection.Connection.DeleteAsync<TEntity>(predicate);
+
+                return recordsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -184,12 +212,13 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                entity.ModifiedDate = DateTime.Now;
-                return await _databaseConnection.Connection.UpdateAsync<TEntity>(entity);
+                int recordsAffected = await _databaseConnection.Connection.UpdateAsync<TEntity>(entity);
+
+                return recordsAffected > 0;
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {TableName} id: {entity.Id}", ex);
+                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {TableName} ", ex);
 
                 return false;
             }
@@ -204,9 +233,14 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                entities.ToList().ForEach(x => x.ModifiedDate = DateTime.Now);
+                int recordsAffected = 0;
 
-                return await _databaseConnection.Connection.UpdateAsync(entities);
+                foreach (var item in entities)
+                {
+                    recordsAffected += await _databaseConnection.Connection.UpdateAsync<TEntity>(item);
+                }
+
+                return recordsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -226,11 +260,38 @@ namespace ContestPark.Core.Dapper
             return _databaseConnection.Connection.QuerySingle<TEntity>(sql, parameters);
         }
 
-        public T QuerySingle<T>(string sql, object parameters = null)
+        public T QuerySingleOrDefault<T>(string sql, object parameters = null)
         {
-            return _databaseConnection.Connection.QuerySingle<T>(sql, parameters);
+            return _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters);
         }
 
-        #endregion MyRegion
+        public T SpQuerySingleOrDefault<T>(string sql, object parameters = null)
+        {
+            return _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        /// <summary>
+        /// Sp çalıştırır
+        /// </summary>
+        /// <param name="sql">çalıştırılacak sql</param>
+        /// <param name="parameters">Parametreleri</param>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        public async Task<bool> ExecuteAsync(string sql, object parameters = null)
+        {
+            try
+            {
+                int result = await _databaseConnection.Connection.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure);
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex);
+                return false;
+            }
+        }
+
+        #endregion Methods
     }
 }

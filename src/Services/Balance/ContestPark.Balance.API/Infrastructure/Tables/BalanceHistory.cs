@@ -1,10 +1,15 @@
 ﻿using ContestPark.Balance.API.Enums;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Models;
+using Dapper;
 
-namespace ContestPark.Balance.API.Infrastructure.Documents
+namespace ContestPark.Balance.API.Infrastructure.Tables
 {
-    public class BalanceHistory : DocumentBase
+    [Table("BalanceHistories")]
+    public class BalanceHistory : EntityBase
     {
+        [Key]
+        public int BalanceHistoryId { get; set; }
+
         public BalanceHistoryTypes BalanceHistoryType { get; set; }
         public BalanceTypes BalanceType { get; set; }
         public decimal OldAmount { get; set; }

@@ -66,7 +66,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
                            WHERE (c.SkirterUserId=@skirterUserId AND c.DeterredUserId=@deterredUserId)
                               OR (c.SkirterUserId=@deterredUserId AND c.DeterredUserId=@skirterUserId)";
 
-            return _blockRepository.QuerySingle<bool>(sql, new
+            return _blockRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 skirterUserId,
                 deterredUserId

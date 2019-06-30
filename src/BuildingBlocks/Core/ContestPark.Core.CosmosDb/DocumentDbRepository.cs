@@ -49,9 +49,7 @@ namespace ContestPark.Core.CosmosDb
         {
             try
             {
-                string idToString = (string)id;
-
-                var response = await _cosmosStore.RemoveAsync(x => ((string)x.Id) == idToString);
+                var response = await _cosmosStore.RemoveByIdAsync(id);
 
                 return response.IsSuccess;
             }
@@ -160,7 +158,7 @@ namespace ContestPark.Core.CosmosDb
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {_cosmosStore.CollectionName} id: {document.Id}", ex);
+                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {_cosmosStore.CollectionName}", ex);
 
                 return false;
             }
@@ -218,6 +216,26 @@ namespace ContestPark.Core.CosmosDb
 
                 return false;
             }
+        }
+
+        public Task<bool> AddRangeAsync<TKey>(IEnumerable<TDocument> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T QuerySingleOrDefault<T>(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T SpQuerySingleOrDefault<T>(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExecuteAsync(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Methods

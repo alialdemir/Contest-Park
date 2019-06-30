@@ -1,7 +1,7 @@
 ﻿using ContestPark.Core.Dapper.Interfaces;
 using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace ContestPark.Core.Dapper.Abctract
 {
@@ -11,7 +11,17 @@ namespace ContestPark.Core.Dapper.Abctract
 
         public DatabaseConnection(IConfiguration configuration)
         {
-            _connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
+            CreateConnection(configuration["ConnectionString"]);
+        }
+
+        public DatabaseConnection(string connectionString)
+        {
+            CreateConnection(connectionString);
+        }
+
+        private void CreateConnection(string connectionString)
+        {
+            _connection = new MySqlConnection(connectionString);
         }
 
         #endregion Constructor
