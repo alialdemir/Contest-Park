@@ -2,14 +2,17 @@
 {
     public class SubCategoryDetailInfoModel
     {
-        public int CategoryFollowersCount { get; set; }
+        public bool IsSubCategoryFollowUpStatus { get; set; }
+
+        public byte Level { get; set; } = 1;
+        public int FollowerCount { get; set; }
 
         public string Description { get; set; }
 
-        public string SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
 
         public string SubCategoryName { get; set; }
 
-        public string SubCategoryPicturePath { get; set; }
+        public string PicturePath { get; set; }
     }
 }

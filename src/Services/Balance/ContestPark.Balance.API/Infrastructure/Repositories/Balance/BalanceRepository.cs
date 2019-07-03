@@ -39,10 +39,10 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
 
         public BalanceModel GetUserBalances(string userId)
         {
-            return _balanceRepository.SpQuerySingleOrDefault<BalanceModel>("SP_GetBalance", new
+            return _balanceRepository.QuerySingleOrDefault<BalanceModel>("SP_GetBalance", new
             {
                 userId
-            });
+            }, System.Data.CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
                 BalanceType = (byte)changeBalance.BalanceType,
                 BalanceHistoryType = (byte)changeBalance.BalanceHistoryType,
                 changeBalance.UserId,
-            });
+            }, System.Data.CommandType.StoredProcedure);
         }
 
         #endregion Methods

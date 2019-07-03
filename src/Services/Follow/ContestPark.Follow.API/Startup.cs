@@ -31,7 +31,6 @@ namespace ContestPark.Follow.API
 
             services.AddAuth(Configuration)
                     .AddCosmosDb(Configuration)
-                    .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(FollowResource).Name)

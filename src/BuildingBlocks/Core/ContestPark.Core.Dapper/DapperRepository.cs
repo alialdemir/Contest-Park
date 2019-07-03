@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Dapper.Interfaces;
 using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using Dapper;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,7 +29,7 @@ namespace ContestPark.Core.Dapper
             _databaseConnection = databaseConnection;
 
             SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
-            var g = SimpleCRUD.GetDialect();
+
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
         }
 
@@ -74,14 +75,12 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                int result = 0;
                 foreach (var entity in entities)
                 {
-                    int? id = await _databaseConnection.Connection.InsertAsync<TEntity>(entity);
-                    result += id ?? 0;
+                    await _databaseConnection.Connection.InsertAsync<TEntity>(entity);
                 }
 
-                return result > 0;
+                return true;
             }
             catch (Exception ex)
             {
@@ -250,24 +249,19 @@ namespace ContestPark.Core.Dapper
             }
         }
 
-        public IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null)
+        public IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null, CommandType? commandType = null)
         {
-            return _databaseConnection.Connection.QueryMultiple(sql, parameters).Read<T>();
+            return _databaseConnection.Connection.QueryMultiple(sql, parameters, commandType: commandType).Read<T>();
         }
 
-        public TEntity QuerySingle(string sql, object parameters = null)
+        public T QuerySingleOrDefault<T>(string sql, object parameters = null, CommandType? commandType = null)
         {
-            return _databaseConnection.Connection.QuerySingle<TEntity>(sql, parameters);
+            return _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters, commandType: commandType);
         }
 
-        public T QuerySingleOrDefault<T>(string sql, object parameters = null)
+        public IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "", CommandType? commandType = null)
         {
-            return _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters);
-        }
-
-        public T SpQuerySingleOrDefault<T>(string sql, object parameters = null)
-        {
-            return _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters, commandType: CommandType.StoredProcedure);
+            return _databaseConnection.Connection.Query<TFirst, TSecond, TThird>(sql, map, parameters, splitOn: splitOn, commandType: commandType);
         }
 
         /// <summary>
@@ -277,11 +271,11 @@ namespace ContestPark.Core.Dapper
         /// <param name="parameters">Parametreleri</param>
         /// <param name="commandType"></param>
         /// <returns></returns>
-        public async Task<bool> ExecuteAsync(string sql, object parameters = null)
+        public async Task<bool> ExecuteAsync(string sql, object parameters = null, CommandType? commandType = null)
         {
             try
             {
-                int result = await _databaseConnection.Connection.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure);
+                int result = await _databaseConnection.Connection.ExecuteAsync(sql, parameters, commandType: commandType);
 
                 return result > 0;
             }
@@ -290,6 +284,30 @@ namespace ContestPark.Core.Dapper
                 _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Sayfalama yaparak geriye döndürür
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <param name="commandType"></param>
+        /// <param name="pagingModel"></param>
+        /// <returns></returns>
+        public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null)
+        {
+            if (pagingModel == null)
+                pagingModel = new PagingModel();
+
+            var items = QueryMultiple<TResult>(sql, parameters, commandType: commandType);
+
+            return new ServiceModel<TResult>
+            {
+                Items = items,
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+            };
         }
 
         #endregion Methods

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ContestPark.Category.API.Infrastructure.Documents;
+using ContestPark.Category.API.Infrastructure.Tables;
 using ContestPark.Category.API.Model;
 
 namespace ContestPark.Category.API

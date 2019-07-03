@@ -66,7 +66,7 @@ namespace ContestPark.Category.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SearchAsync([FromQuery]string categoryId, [FromQuery]PagingModel pagingModel, [FromQuery(Name = "q")]string searchText = "")
+        public async Task<IActionResult> SearchAsync([FromQuery]short categoryId, [FromQuery]PagingModel pagingModel, [FromQuery(Name = "q")]string searchText = "")
         {
             ServiceModel<SearchModel> searchCategories = await _searchRepository.DynamicSearchAsync(searchText,
                                                                                                     CurrentUserLanguage,

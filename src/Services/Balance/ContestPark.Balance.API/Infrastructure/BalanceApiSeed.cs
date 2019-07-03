@@ -23,14 +23,14 @@ namespace ContestPark.Balance.API.Infrastructure
                     new Tables.Balance
                     {
                          UserId = "1111-1111-1111-1111",
-                            Gold=100000,
-                            Money = 500000,
+                            Gold= 10.00m,
+                            Money = 500.00m,
                     },
                      new Tables.Balance
                     {
                          UserId = "2222-2222-2222-2222",
-                         Gold =10000,
-                         Money=5432
+                         Gold =10.00m,
+                         Money=5.43m
                     },
                 });
 

@@ -1,5 +1,5 @@
 CREATE PROCEDURE SP_UpdateBalance(
-    Amount DECIMAL,
+    Amount DECIMAL(13,2),
     BalanceType TINYINT,
     BalanceHistoryType TINYINT,
     UserId VARCHAR(256)

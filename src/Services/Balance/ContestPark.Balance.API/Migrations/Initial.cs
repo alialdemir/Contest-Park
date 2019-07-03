@@ -1,8 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
 using FluentMigrator;
-using FluentMigrator.Builders.Create.Table;
-using FluentMigrator.Infrastructure;
-using System;
 using System.Reflection;
 
 namespace ContestPark.Balance.API.Migrations
@@ -21,12 +18,12 @@ namespace ContestPark.Balance.API.Migrations
                 .NotNullable()
 
                 .WithColumn("Gold")
-                .AsDecimal()
+                .AsDecimal(13, 2)
                 .NotNullable()
                 .WithDefaultValue(0)
 
                 .WithColumn("Money")
-                .AsDecimal()
+                .AsDecimal(13, 2)
                 .NotNullable()
                 .WithDefaultValue(0)
 
@@ -42,21 +39,22 @@ namespace ContestPark.Balance.API.Migrations
 
             this.CreateTableIfNotExists("BalanceHistories", table =>
             table
-                .WithColumn("Id")
+                .WithColumn("BalanceHistoryId")
                 .AsInt64()
                 .PrimaryKey()
                 .Identity()
 
                 .WithColumn("UserId")
                 .AsString(255)
+                .Indexed("Indexed_UserId")
                 .NotNullable()
 
                 .WithColumn("OldAmount")
-                .AsDecimal()
+                .AsDecimal(13, 2)
                 .NotNullable()
 
                 .WithColumn("NewAmount")
-                .AsDecimal()
+                .AsDecimal(13, 2)
                 .NotNullable()
 
                 .WithColumn("BalanceHistoryType")
@@ -81,17 +79,18 @@ namespace ContestPark.Balance.API.Migrations
             this.CreateTableIfNotExists("PurchaseHistories", table =>
             table
 
-                .WithColumn("Id")
+                .WithColumn("PurchaseHistoryId")
                 .AsInt64()
                 .PrimaryKey()
                 .Identity()
 
                 .WithColumn("UserId")
                 .AsString(255)
+                .Indexed("Indexed_UserId")
                 .NotNullable()
 
                 .WithColumn("Amount")
-                .AsDecimal()
+                .AsDecimal(13, 2)
                 .NotNullable()
 
                  .WithColumn("PackageName")
@@ -132,19 +131,6 @@ namespace ContestPark.Balance.API.Migrations
             Delete.Table("Balances");
             Delete.Table("BalanceHistories");
             Delete.Table("PurchaseHistories");
-        }
-    }
-
-    public static class Ex
-    {
-        public static IFluentSyntax CreateTableIfNotExists(this MigrationBase self, string tableName, Func<ICreateTableWithColumnOrSchemaOrDescriptionSyntax, IFluentSyntax> constructTableFunction, string schemaName = "dbo")
-        {
-            if (!self.Schema.Schema(schemaName).Table(tableName).Exists())
-            {
-                return constructTableFunction(self.Create.Table(tableName));
-            }
-            else
-                return null;
         }
     }
 }

@@ -50,10 +50,10 @@ namespace ContestPark.Balance.API.Controllers
                 {
                     _googlePlayPackages = new Dictionary<string, decimal>
                     {
-                        {"com.contestparkapp.app.250coins", 250 },
-                        {"com.contestparkapp.app.1500coins", 1500 },
-                        {"com.contestparkapp.app.7000coins", 7000 },
-                        {"com.contestparkapp.app.20000coins", 20000},
+                        {"com.contestparkapp.app.250coins", 2.50m },
+                        {"com.contestparkapp.app.1500coins", 15.00m },
+                        {"com.contestparkapp.app.7000coins", 7.000m },
+                        {"com.contestparkapp.app.20000coins", 20.000m },
                     };
                 }
                 return _googlePlayPackages;
@@ -113,7 +113,7 @@ namespace ContestPark.Balance.API.Controllers
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Bakiye bilgileri</returns>
         [HttpGet("{userId}")]
-        [Authorize(Policy = "ContestParkServices")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(BalanceModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public IActionResult GetBalances(string userId, [FromQuery]BalanceTypes balanceType)

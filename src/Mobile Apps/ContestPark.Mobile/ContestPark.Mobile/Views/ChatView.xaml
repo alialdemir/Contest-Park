@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.ChatView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
-             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="chatPage"
-             Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             Icon="fas-comments">
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.ChatView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="chatPage"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Icon="fas-comments">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
@@ -17,32 +18,35 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Components:NonPersistentSelectedItemListView x:Name="lstView"
-                                                      InfiniteScroll="{Binding InfiniteScroll}"
-                                                      IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
-                                                      Style="{StaticResource ListViewOnlyFooter}">
+        <Components:NonPersistentSelectedItemListView
+            x:Name="lstView"
+            InfiniteScroll="{Binding InfiniteScroll}"
+            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+            Style="{StaticResource ListViewOnlyFooter}">
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:ListItemView AutomationId="lstViewChat"
-                                                 CommandParameter="{Binding SenderUserId}"
-                                                 Date="{Binding Date, Converter={StaticResource moment}}"
-                                                 Detail="{Binding Message}"
-                                                 GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference chatPage}}"
-                                                 LongPressed="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference chatPage}}"
-                                                 SingleTap="{Binding Path=BindingContext.GotoChatDetailCommand, Source={x:Reference chatPage}}"
-                                                 Source="{Binding UserProfilePicturePath}"
-                                                 Text="{Binding UserFullName}"
-                                                 UserName="{Binding UserName}" />
+                        <Components:ListItemView
+                            AutomationId="lstViewChat"
+                            CommandParameter="{Binding SenderUserId}"
+                            Date="{Binding Date, Converter={StaticResource moment}}"
+                            Detail="{Binding Message}"
+                            GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference chatPage}}"
+                            LongPressed="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference chatPage}}"
+                            SingleTap="{Binding Path=BindingContext.GotoChatDetailCommand, Source={x:Reference chatPage}}"
+                            Source="{Binding UserProfilePicturePath}"
+                            Text="{Binding UserFullName}"
+                            UserName="{Binding UserName}" />
                     </ViewCell>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.ItemTemplate>
             <Components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <Label IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
-                           Style="{StaticResource EmptyModel}"
-                           Text="{i18n:Translate MessageYourListIsEmpty}"
-                           TextColor="White" />
+                    <Label
+                        IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
+                        Style="{StaticResource EmptyModel}"
+                        Text="{i18n:Translate MessageYourListIsEmpty}"
+                        TextColor="White" />
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.FooterTemplate>
         </Components:NonPersistentSelectedItemListView>

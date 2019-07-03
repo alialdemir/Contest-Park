@@ -18,10 +18,4 @@
     <ProjectReference Include="..\..\..\..\test\ContestPark.Core.FunctionalTests\ContestPark.Core.FunctionalTests\ContestPark.Core.FunctionalTests.csproj" />
     <ProjectReference Include="..\ContestPark.Category.API\ContestPark.Category.API.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="appsettings.test.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 </Project>

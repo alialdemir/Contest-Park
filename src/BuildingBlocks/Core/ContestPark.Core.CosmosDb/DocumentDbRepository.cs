@@ -1,8 +1,10 @@
 ﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using Cosmonaut;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -234,6 +236,36 @@ namespace ContestPark.Core.CosmosDb
         }
 
         public Task<bool> ExecuteAsync(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null, CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T QuerySingleOrDefault<T>(string sql, object parameters = null, CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "", CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExecuteAsync(string sql, object parameters = null, CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null)
         {
             throw new NotImplementedException();
         }

@@ -2,7 +2,7 @@
 using Nest;
 using Newtonsoft.Json;
 
-namespace ContestPark.Category.API.Infrastructure.Documents
+namespace ContestPark.Category.API.Infrastructure.Tables
 {
     public class Search : ISearchBase
     {
@@ -22,12 +22,12 @@ namespace ContestPark.Category.API.Infrastructure.Documents
         public string PicturePath { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? Price { get; set; }
+        public decimal? Price { get; set; }
 
         public SearchTypes SearchType { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
@@ -47,7 +47,7 @@ namespace ContestPark.Category.API.Infrastructure.Documents
         public CompletionField Suggest { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string CategoryId { get; set; }
+        public short CategoryId { get; set; }
     }
 
     public interface ISearchBase

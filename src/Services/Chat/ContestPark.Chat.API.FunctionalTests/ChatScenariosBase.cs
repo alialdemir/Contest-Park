@@ -1,10 +1,9 @@
 ﻿using ContestPark.Chat.API.Infrastructure;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Extensions;
+using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
 using Xunit;
-using ContestPark.Core.Database.Extensions;
-using ContestPark.Core.Database.Models;
 
 namespace ContestPark.Chat.API.FunctionalTests
 {

@@ -40,8 +40,8 @@ namespace ContestPark.Balance.API.FunctionalTests
 
                 Assert.NotNull(balance);
 
-                Assert.Equal(500000, balance.Money);
-                Assert.Equal(100000, balance.Gold);
+                Assert.Equal(500.00m, balance.Money);
+                Assert.Equal(10.00m, balance.Gold);
             }
         }
 
@@ -57,7 +57,7 @@ namespace ContestPark.Balance.API.FunctionalTests
 
                 BalanceResponse balance = JsonConvert.DeserializeObject<BalanceResponse>(responseContent);
 
-                Assert.Equal(10000, balance.Amount);
+                Assert.Equal(10.00m, balance.Amount);
             }
         }
 
@@ -73,7 +73,7 @@ namespace ContestPark.Balance.API.FunctionalTests
 
                 BalanceResponse balance = JsonConvert.DeserializeObject<BalanceResponse>(responseContent);
 
-                Assert.Equal(5432, balance.Amount);
+                Assert.Equal(5.43m, balance.Amount);
             }
         }
 
@@ -173,10 +173,10 @@ namespace ContestPark.Balance.API.FunctionalTests
         }
 
         [Theory]
-        [InlineData("com.contestparkapp.app.250coins", 100250)]
-        [InlineData("com.contestparkapp.app.1500coins", 101750)]
-        [InlineData("com.contestparkapp.app.7000coins", 108750)]
-        [InlineData("com.contestparkapp.app.20000coins", 128750)]
+        [InlineData("com.contestparkapp.app.250coins", 12.50)]
+        [InlineData("com.contestparkapp.app.1500coins", 27.50)]
+        [InlineData("com.contestparkapp.app.7000coins", 34.50)]
+        [InlineData("com.contestparkapp.app.20000coins", 54.50)]
         public async Task Post_purche_all_package_names_and_response_ok_status_code(string packageName, decimal balance)
         {
             using (var server = CreateServer())

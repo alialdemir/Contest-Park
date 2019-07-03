@@ -68,9 +68,12 @@ namespace ContestPark.Core.Dapper.Extensions
                     IServiceProvider serviceProvider = CreateServices(connectionString, assemblies);
                     var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
-                    runner
-                    .CreateDatabaseIfNotExists(connectionString)
-                    .MigrateUp();
+                    bool isCreatedDatabase = runner
+                        .CreateDatabaseIfNotExists(connectionString);
+                    if (isCreatedDatabase)
+                    {
+                        runner.MigrateUp();
+                    }
 
                     databaseSeeder();
 

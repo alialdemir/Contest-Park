@@ -21,7 +21,6 @@ namespace ContestPark.Post.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
-                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)

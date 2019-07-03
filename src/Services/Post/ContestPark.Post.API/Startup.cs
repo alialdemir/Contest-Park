@@ -32,7 +32,6 @@ namespace ContestPark.Post.API
 
             services.AddAuth(Configuration)
                     .AddCosmosDb(Configuration)
-                    .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(PostResource).Name)

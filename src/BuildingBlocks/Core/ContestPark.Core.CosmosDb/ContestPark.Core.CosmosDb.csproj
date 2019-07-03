@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\ContestPark.Core.Database\ContestPark.Core.Database.csproj" />
+    <ProjectReference Include="..\ContestPark.Core.Database\ContestPark.Core.Database.csproj" />
   </ItemGroup>
 </Project>

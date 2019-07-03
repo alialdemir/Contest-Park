@@ -2,10 +2,10 @@
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using ContestPark.Category.API.Infrastructure.ElasticSearch;
-using ContestPark.Category.API.Infrastructure.Repositories.Category;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
-using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
+using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
 using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Resources;
@@ -38,8 +38,8 @@ namespace ContestPark.Category.API
             services.Configure<CategorySettings>(Configuration);
 
             services.AddAuth(Configuration)
-                    .AddCosmosDb(Configuration)
-                    .AddApplicationInsightsTelemetry(Configuration)
+                    // .AddCosmosDb(Configuration)
+                    .AddMySql()
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(CategoryResource).Name)
@@ -51,7 +51,7 @@ namespace ContestPark.Category.API
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
             services.AddTransient<IOpenCategoryRepository, OpenCategoryRepository>();
             services.AddTransient<IFollowSubCategoryRepository, FollowSubCategoryRepository>();
             services.AddSingleton<IRequestProvider, RequestProvider>();

@@ -17,20 +17,22 @@ namespace ContestPark.Category.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetSearchFollowedSubCategories("Referee"));
+                    .GetAsync(Entpoints.GetSearchFollowedSubCategories("Stadium"));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
         }
 
         [Theory]
-        [InlineData("tr-TR", "Futbol", "Hakem")]
-        [InlineData("en-US", "Football", "Referee")]
-        [InlineData("fakelangoagecode", "Football", "Referee")]
+        [InlineData("tr-TR", "Futbol", "Stadyum")]
+        [InlineData("en-US", "Football", "Stadium")]
+        [InlineData("fakelangoagecode", "Football", "Stadium")]
         public async Task Get_search_followed_subcategories_and_data_check(string languageCode, string categoryName, string subcategoryName)
         {
             using (var server = CreateServer())
             {
+                await Task.Delay(500);
+
                 var response = await server.CreateClient()
                                                     .AddLangCode(languageCode)
                                                     .GetAsync(Entpoints.GetSearchFollowedSubCategories(subcategoryName));
@@ -47,7 +49,7 @@ namespace ContestPark.Category.API.FunctionalTests
 
                 Assert.Equal(subcategoryName, subCategoryFirstItem.SubCategoryName);
                 Assert.Equal(categoryName, subCategoryFirstItem.CategoryName);
-                Assert.Equal("https://static.thenounproject.com/png/14039-200.png", subCategoryFirstItem.PicturePath);
+                Assert.Equal("https://cdn2.iconfinder.com/data/icons/location-map-vehicles/100/Locations-53-512.png", subCategoryFirstItem.PicturePath);
                 Assert.Empty(subCategoryFirstItem.DisplayPrice);
                 Assert.Equal(0, subCategoryFirstItem.Price);
             }
@@ -73,7 +75,7 @@ namespace ContestPark.Category.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetSearch("bb6d7a05-7801-4e97-b7fc-e607f2c89b09", "Referee"));
+                    .GetAsync(Entpoints.GetSearch(1, "Referee"));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -92,7 +94,7 @@ namespace ContestPark.Category.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                                            .AddLangCode(languageCode)
-                                           .GetAsync(Entpoints.GetSearch("bb6d7a05-7801-4e97-b7fc-e607f2c89b09", searchText));
+                                           .GetAsync(Entpoints.GetSearch(1, searchText));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -117,7 +119,7 @@ namespace ContestPark.Category.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                                            .AddLangCode(languageCode)
-                                           .GetAsync(Entpoints.GetSearch("bb6d7a05-7801-4e97-b7fc-e607f2c89b09", searchText));
+                                           .GetAsync(Entpoints.GetSearch(1, searchText));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -137,13 +139,13 @@ namespace ContestPark.Category.API.FunctionalTests
                 await Task.Delay(1000);// Kategori dataları elasticsearch e yüklenemesini bekletmek için 5sn beklettim
 
                 var response = await server.CreateClient()
-                                           .GetAsync(Entpoints.GetSearch("bb6d7a05-7801-4e97-b7fc-e607f2c89b09", ""));
+                                           .GetAsync(Entpoints.GetSearch(1, ""));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
                 ServiceModel<SearchModel> search = JsonConvert.DeserializeObject<ServiceModel<SearchModel>>(responseContent);
 
-                Assert.Equal(5, search.Items.Count());
+                Assert.Equal(4, search.Items.Count());
             }
         }
 
@@ -155,13 +157,13 @@ namespace ContestPark.Category.API.FunctionalTests
                 await Task.Delay(500);// Kategori dataları elasticsearch e yüklenemesini bekletmek için 5sn beklettim
 
                 var response = await server.CreateClient()
-                                           .GetAsync(Entpoints.GetSearch("", ""));
+                                           .GetAsync(Entpoints.GetSearch(0, ""));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
                 ServiceModel<SearchModel> search = JsonConvert.DeserializeObject<ServiceModel<SearchModel>>(responseContent);
 
-                Assert.Equal(8, search.Items.Count());
+                Assert.Equal(7, search.Items.Count());
             }
         }
 
@@ -184,7 +186,7 @@ namespace ContestPark.Category.API.FunctionalTests
                 await Task.Delay(500);// Kategori dataları elasticsearch e yüklenemesini bekletmek için 5sn beklettim
 
                 var response = await server.CreateClient()
-                                           .GetAsync(Entpoints.GetSearch("", searchText));
+                                           .GetAsync(Entpoints.GetSearch(0, searchText));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 

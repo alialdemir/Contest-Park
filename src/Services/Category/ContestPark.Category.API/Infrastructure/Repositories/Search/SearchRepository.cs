@@ -49,9 +49,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             string indexNamePlayer = GetIndexName(SearchTypes.Player, null);
             string aliasName = ElasticSearchIndexName;
 
-            _elasticContext.CreateIndex<Documents.Search>(indexNameCategoryTurkish, aliasName);
-            _elasticContext.CreateIndex<Documents.Search>(indexNameEnglish, aliasName);
-            _elasticContext.CreateIndex<Documents.Search>(indexNamePlayer, aliasName);
+            _elasticContext.CreateIndex<Tables.Search>(indexNameCategoryTurkish, aliasName);
+            _elasticContext.CreateIndex<Tables.Search>(indexNameEnglish, aliasName);
+            _elasticContext.CreateIndex<Tables.Search>(indexNamePlayer, aliasName);
         }
 
         public void DeleteSearchIndexs()
@@ -65,16 +65,16 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             _elasticContext.DeleteIndex(indexNamePlayer);
         }
 
-        public void Insert(Documents.Search searchModel)
+        public void Insert(Tables.Search searchModel)
         {
             string indexName = GetIndexName(searchModel.SearchType, searchModel.Language);
             _elasticContext.Index(indexName, searchModel);
         }
 
-        public void Update(Documents.Search searchModel)
+        public void Update(Tables.Search searchModel)
         {
             string indexName = GetIndexName(searchModel.SearchType, searchModel.Language);
-            _elasticContext.BulkIndex<Documents.Search>(indexName, new List<Documents.Search>
+            _elasticContext.BulkIndex<Tables.Search>(indexName, new List<Tables.Search>
             {
                 searchModel
             });
@@ -102,7 +102,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Documents.Search SearchById(string id, SearchTypes searchType, Languages? language)
+        public Tables.Search SearchById(string id, SearchTypes searchType, Languages? language)
         {
             string indexName = GetIndexName(searchType, language);
             var elasticSearchEngine = new ElasticSearchBuilder(indexName, _elasticContext)
@@ -110,7 +110,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                     .SetFrom(0)
                     .AddTermQuery("_id", id)
                     .Build()
-                    .Execute<Documents.Search>();
+                    .Execute<Tables.Search>();
 
             return elasticSearchEngine.FirstOrDefault();
         }
@@ -131,13 +131,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 PageSize = pagingModel.PageSize
             };
 
-            string[] followedSubCategories = _followSubCategoryRepository.FollowedSubCategoryIds(userId);
-            if (followedSubCategories.Length == 0)
+            IEnumerable<short> followedSubCategories = _followSubCategoryRepository.FollowedSubCategoryIds(userId);
+            if (followedSubCategories == null || followedSubCategories.Count() == 0)
             {
                 return serviceModel;
             }
 
-            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories);
+            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories.ToArray());
             searchFollowedCategories.Items.ToList().ForEach(sc =>// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
             {
                 sc.DisplayPrice = string.Empty;
@@ -158,7 +158,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// <param name="searchFilters">Dönen data neye göre filtrelenecek kategor id göre mi yoksa alt kategori id göre mi</param>
         /// <param name="filterIds">Filtrelenmek istenen idler</param>
         /// <returns>Aranan veri listesi</returns>
-        public async Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, PagingModel pagingModel, SearchFilters searchFilters, params string[] filterIds)
+        public async Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
         {
             var serviceModel = new ServiceModel<SearchModel>
             {
@@ -168,13 +168,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             string indexName = GetIndexName(SearchTypes.Category, language);
 
-            bool isFilterIdNull = filterIds != null && filterIds[0] != null;
+            bool isFilterIdNull = filterIds != null && filterIds[0] != 0;
             if (!isFilterIdNull)// eğer filterIds boş ise tüm kategoriler ve oyuncular üzerinde arama yapmalı o yüzden player indexinide ekledik
             {
                 indexName += "," + GetIndexName(SearchTypes.Player, null);
             }
 
-            IEnumerable<Documents.Search> searchResponse = null;
+            IEnumerable<Tables.Search> searchResponse = null;
 
             if (string.IsNullOrEmpty(searchText))
             {
@@ -183,23 +183,23 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                                                             .SetFrom(pagingModel.PageSize * (pagingModel.PageNumber - 1));
                 if (isFilterIdNull)
                 {
-                    elasticSearchBuilder.AddFilter<Documents.Search>(searchFilters.GetDisplayName(), filterIds);
+                    elasticSearchBuilder.AddFilter<Tables.Search>(searchFilters.GetDisplayName(), filterIds.Select(x => x.ToString()).ToArray());
                 }
 
                 searchResponse = elasticSearchBuilder.Build()
-                                                    .Execute<Documents.Search>();
+                                                    .Execute<Tables.Search>();
             }
             else
             {
                 // Elasticsearch Suggest yaparken filtre koyamadığımız için burada gelen auto complate içinden sadece takip ettiği kategorileri filtreliyoruz
-                searchResponse = (await _elasticContext.SearchAsync<Documents.Search>(indexName, searchText, pagingModel))
+                searchResponse = (await _elasticContext.SearchAsync<Tables.Search>(indexName, searchText, pagingModel))
                                                                     .Where(search =>
                                                                     // eğer filterIds yoksa tüm alt kategorileri listelesin
                                                                     !isFilterIdNull
                                                                     ||
                                                                     // kategori aramadan geliyorsa CategoryId göre filtreledik alt kategori arama yapıyorsa SubCategoryId göre filtreledik
                                                                     filterIds.Contains(searchFilters == SearchFilters.SubCategoryId ? search.SubCategoryId : search.CategoryId)
-                                                                    );
+                                                                    ).ToList();
             }
 
             if (searchResponse != null && searchResponse.Count() > 0)

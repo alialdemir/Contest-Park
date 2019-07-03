@@ -17,12 +17,12 @@ namespace ContestPark.Category.API.Model
         public string PicturePath { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? Price { get; set; }
+        public decimal? Price { get; set; }
 
         public SearchTypes SearchType { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryId { get; set; }
+        public short SubCategoryId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }

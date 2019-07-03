@@ -11,14 +11,14 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
         void DeleteSearchIndexs();
 
-        void Insert(Documents.Search searchModel);
+        void Insert(Tables.Search searchModel);
 
-        void Update(Documents.Search searchModel);
+        void Update(Tables.Search searchModel);
 
-        Documents.Search SearchById(string id, SearchTypes searchType, Languages? language);
+        Tables.Search SearchById(string id, SearchTypes searchType, Languages? language);
 
         Task<ServiceModel<SearchModel>> SearchFollowedSubCategoriesAsync(string searchText, string userId, Languages language, PagingModel pagingModel);
 
-        Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, PagingModel pagingModel, SearchFilters searchFilters, params string[] filterIds);
+        Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds);
     }
 }

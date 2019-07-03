@@ -1,10 +1,14 @@
 ﻿using ContestPark.Category.API.Infrastructure;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
+using ContestPark.Category.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System;
 using System.IO;
@@ -23,7 +27,6 @@ namespace ContestPark.Category.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
-                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)
@@ -40,14 +43,27 @@ namespace ContestPark.Category.API
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
-                host.MigrateDatabase<CategoryApiSeed>((services, logger) =>
+                host.MigrateDatabase((services, updateDatabase) =>
                 {
-                    ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
-                    searchRepository.CreateSearchIndexs();
+                    var settings = services.GetService<IOptions<CategorySettings>>();
 
-                    new CategoryApiSeed()
-                       .SeedAsync(services, logger)
-                       .Wait();
+                    if (!settings.Value.IsMigrateDatabase)
+                        return;
+
+                    updateDatabase(
+                        settings.Value.ConnectionString,
+                        MigrationAssembly.GetAssemblies(),
+                        () =>
+                        {
+                            var logger = services.GetService<ILogger<CategoryApiSeed>>();
+
+                            ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
+                            searchRepository.CreateSearchIndexs();
+
+                            new CategoryApiSeed()
+                               .SeedAsync(services, logger)
+                               .Wait();
+                        });
                 });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);

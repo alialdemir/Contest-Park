@@ -1,12 +1,15 @@
 ﻿using ContestPark.Category.API.Infrastructure;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Category.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace ContestPark.Category.API.FunctionalTests
@@ -16,14 +19,27 @@ namespace ContestPark.Category.API.FunctionalTests
     {
         public override void Seed(IWebHost host)
         {
-            host.MigrateDatabase<CategoryApiSeed>((services, logger) =>
+            host.MigrateDatabase((services, updateDatabase) =>
             {
-                ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
-                searchRepository.CreateSearchIndexs();
+                var settings = services.GetService<IOptions<CategorySettings>>();
 
-                new CategoryApiSeed()
-                    .SeedAsync(services, logger)
-                    .Wait();
+                if (!settings.Value.IsMigrateDatabase)
+                    return;
+
+                updateDatabase(
+                    settings.Value.ConnectionString,
+                    MigrationAssembly.GetAssemblies(),
+                    () =>
+                    {
+                        var logger = services.GetService<ILogger<CategoryApiSeed>>();
+
+                        ISearchRepository searchRepository = (ISearchRepository)services.GetRequiredService(typeof(ISearchRepository));
+                        searchRepository.CreateSearchIndexs();
+
+                        new CategoryApiSeed()
+                           .SeedAsync(services, logger)
+                           .Wait();
+                    });
             });
         }
 
@@ -50,32 +66,32 @@ namespace ContestPark.Category.API.FunctionalTests
                     : $"api/v1/Search/Followed?q={searchText}";
             }
 
-            public static string PostFollowSubCategories(string subCategoryId)
+            public static string PostFollowSubCategories(short subCategoryId)
             {
                 return $"api/v1/subcategory/{subCategoryId}/Follow";
             }
 
-            public static string DeleteUnFollowSubCategories(string subCategoryId)
+            public static string DeleteUnFollowSubCategories(short subCategoryId)
             {
                 return $"api/v1/subcategory/{subCategoryId}/UnFollow";
             }
 
-            public static string GetFollowStatus(string subCategoryId)
+            public static string GetFollowStatus(short subCategoryId)
             {
                 return $"api/v1/subcategory/{subCategoryId}/FollowStatus";
             }
 
-            public static string GetSubcategoryDetail(string subCategoryId)
+            public static string GetSubcategoryDetail(short subCategoryId)
             {
                 return $"api/v1/subcategory/{subCategoryId}";
             }
 
-            public static string PostUnLockSubcategory(string subCategoryId, BalanceTypes balanceType)
+            public static string PostUnLockSubcategory(short subCategoryId, BalanceTypes balanceType)
             {
                 return $"api/v1/subcategory/{subCategoryId}/unlock?balanceType={balanceType}";
             }
 
-            public static string GetSearch(string categoryId, string searchText, bool paginated = false, int pageSize = 10, int pageNumber = 1)
+            public static string GetSearch(short categoryId, string searchText, bool paginated = false, int pageSize = 10, int pageNumber = 1)
             {
                 string url = "api/v1/Search";
 
@@ -97,7 +113,7 @@ namespace ContestPark.Category.API.FunctionalTests
                 {
                     url += "&categoryId=" + categoryId;
                 }
-                else if (!string.IsNullOrEmpty(categoryId))
+                else if (categoryId != 0)
                 {
                     url += "?categoryId=" + categoryId;
                 }

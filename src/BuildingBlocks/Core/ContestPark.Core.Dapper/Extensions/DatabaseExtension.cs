@@ -1,7 +1,12 @@
 ﻿using ContestPark.Core.Dapper.Abctract;
 using Dapper;
+using FluentMigrator;
+using FluentMigrator.Builders.Create.Table;
 using FluentMigrator.Builders.Execute;
+using FluentMigrator.Infrastructure;
 using FluentMigrator.Runner;
+using System;
+using System.Data;
 using System.Data.Common;
 using System.IO;
 using System.Linq;
@@ -11,8 +16,21 @@ namespace ContestPark.Core.Dapper.Extensions
 {
     public static class DatabaseExtension
     {
+        public static IFluentSyntax CreateTableIfNotExists(this MigrationBase self, string tableName, Func<ICreateTableWithColumnOrSchemaOrDescriptionSyntax, IFluentSyntax> constructTableFunction, string schemaName = "dbo")
+        {
+            if (!self.Schema.Schema(schemaName).Table(tableName).Exists())
+            {
+                return constructTableFunction(self.Create.Table(tableName));
+            }
+            else
+                return null;
+        }
+
         private static DatabaseInfo GetDatabaseInfo(string connectionString)
         {
+            if (string.IsNullOrEmpty(connectionString))
+                throw new ArgumentNullException(nameof(connectionString));
+
             DbConnectionStringBuilder builder = new DbConnectionStringBuilder
             {
                 ConnectionString = connectionString
@@ -32,14 +50,16 @@ namespace ContestPark.Core.Dapper.Extensions
             return new DatabaseConnection($"server={databaseInfo.Server};uid={databaseInfo.UserId};pwd={databaseInfo.Password};");
         }
 
-        public static IMigrationRunner CreateDatabaseIfNotExists(this IMigrationRunner runner, string connectionString)
+        public static bool CreateDatabaseIfNotExists(this IMigrationRunner runner, string connectionString)
         {
             DatabaseInfo databaseInfo = GetDatabaseInfo(connectionString);
 
-            GetConnection(databaseInfo)
-                .Connection.Execute($"CREATE DATABASE IF NOT EXISTS {databaseInfo.DatabaseName};");
+            IDbConnection dbConnection = GetConnection(databaseInfo).Connection;
 
-            return runner;
+            string dbName = dbConnection.QuerySingleOrDefault<string>($"SHOW DATABASES LIKE '{databaseInfo.DatabaseName}'");
+            int result = dbConnection.Execute($"CREATE DATABASE IF NOT EXISTS `{databaseInfo.DatabaseName}`;");
+
+            return result > 0 && string.IsNullOrEmpty(dbName);
         }
 
         /// <summary>
