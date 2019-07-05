@@ -126,7 +126,7 @@ namespace ContestPark.Category.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                                           .PostAsync(Entpoints.PostFollowSubCategories(4), null);
+                                           .PostAsync(Entpoints.PostFollowSubCategories(1), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -144,8 +144,8 @@ namespace ContestPark.Category.API.FunctionalTests
             }
         }
 
-        [Theory]
-        [InlineData(2, "You are already following this category.")]
+        [Theory, TestPriority(1)]
+        [InlineData(4, "You are already following this category.")]
         [InlineData(3, "To be able to follow this category, you need to unlock it.")]
         public async Task Post_follow_subcategories_and_followed_by_subcategory_and_response_error_message(short subCategoryId, string message)
         {
@@ -192,13 +192,13 @@ namespace ContestPark.Category.API.FunctionalTests
             }
         }
 
-        [Fact]
+        [Fact, TestPriority(2)]
         public async Task Get_subcategory_check_follow_status_and_response_true()
         {
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                                           .GetAsync(Entpoints.GetFollowStatus(2));
+                                           .GetAsync(Entpoints.GetFollowStatus(4));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -270,7 +270,7 @@ namespace ContestPark.Category.API.FunctionalTests
             }
         }
 
-        [Fact]
+        [Fact, TestPriority(2)]
         public async Task Post_unlock_subcategory_and_response_ok_status_code()
         {
             using (var server = CreateServer())

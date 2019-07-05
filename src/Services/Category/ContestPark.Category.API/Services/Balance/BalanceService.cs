@@ -1,6 +1,6 @@
 ﻿using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Model;
-using ContestPark.Core.Services.HttpService;
+using ContestPark.Core.Services.RequestProvider;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;

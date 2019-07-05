@@ -103,13 +103,21 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         /// <returns></returns>
         public ServiceModel<SubCategoryModel> GetFollowedSubCategories(string userId, Languages language, PagingModel pagingModel)
         {
-            return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_GetFollowedSubCategories", new
+            ServiceModel<SubCategoryModel> result = new ServiceModel<SubCategoryModel>
+            {
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize
+            };
+
+            result.Items = _subCategoryRepository.QueryMultiple<SubCategoryModel>("SP_GetFollowedSubCategories", new
             {
                 userId,
                 langId = (byte)language,
                 pagingModel.Offset,
                 pagingModel.PageSize
-            }, CommandType.StoredProcedure, pagingModel);
+            }, commandType: CommandType.StoredProcedure);
+
+            return result;
         }
 
         /// <summary>

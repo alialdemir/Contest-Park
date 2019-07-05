@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Enums;
+using ContestPark.Core.Models;
 using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
@@ -406,9 +407,9 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// <param name="userInfos">Kullanıcı id listesi</param>
         /// <returns>Parametreden gelen kullanıcıların bilgileri</returns>
         [HttpPost]
-        [Authorize(Policy = "ContestParkServices")]
+        [AllowAnonymous]
         [Route("UserInfos")]
-        [ProducesResponseType(typeof(List<UserNotFoundModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<UserModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetUserInfos([FromBody]List<string> userInfos)
         {

@@ -1,29 +1,27 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContestPark.Core.Services.HttpService
+namespace ContestPark.Core.Services.RequestProvider
 {
     public class RequestProvider : IRequestProvider
     {
         #region Private variable
 
         private readonly JsonSerializerSettings _serializerSettings;
-
-        private IConfiguration Configuration { get; }
+        private readonly ILogger<RequestProvider> _logger;
 
         #endregion Private variable
 
         #region Constructor
 
-        public RequestProvider(IConfiguration configuration)
+        public RequestProvider(ILogger<RequestProvider> logger)
         {
             _serializerSettings = new JsonSerializerSettings
             {
@@ -32,7 +30,7 @@ namespace ContestPark.Core.Services.HttpService
                 NullValueHandling = NullValueHandling.Ignore
             };
             _serializerSettings.Converters.Add(new StringEnumConverter());
-            Configuration = configuration;
+            _logger = logger;
         }
 
         #endregion Constructor
@@ -54,12 +52,6 @@ namespace ContestPark.Core.Services.HttpService
             HttpClient httpClient = new HttpClient();
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            string clientKey = Configuration["ClientKey"];
-            if (!string.IsNullOrEmpty(clientKey))// servisler arası istek gittiğini anlaması için bunları ekledik
-            {
-                httpClient.DefaultRequestHeaders.Add("ClientKey", clientKey);
-            }
 
             return httpClient;
         }
@@ -90,10 +82,10 @@ namespace ContestPark.Core.Services.HttpService
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                _logger.LogError($"Request isteği atılırken hata oluştu Http Method: {httpMethod.Method} Url{url}", ex);
             }
 
-            return default(TResult);
+            return default;
         }
 
         #endregion Methods

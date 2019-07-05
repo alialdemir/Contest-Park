@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -297,17 +299,49 @@ namespace ContestPark.Core.Dapper
         /// <returns></returns>
         public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null)
         {
-            if (pagingModel == null)
-                pagingModel = new PagingModel();
+            dynamic paramss = CreateExpandoFromObject(parameters);
+            paramss.PageSize = pagingModel.PageSize;
+            paramss.Offset = pagingModel.Offset;
+            paramss.Offset2 = NextOffset(pagingModel.PageSize, pagingModel.PageNumber);
 
-            var items = QueryMultiple<TResult>(sql, parameters, commandType: commandType);
+            string query1 = sql + " LIMIT @Offset2, @PageSize; ";
+            string query2 = sql + " LIMIT @Offset, @PageSize";
 
-            return new ServiceModel<TResult>
+            long nextPageCount = QueryMultiple<object>(query1, (object)paramss).Count();
+
+            ServiceModel<TResult> serviceModel = new ServiceModel<TResult>
             {
-                Items = items,
-                PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
+                PageNumber = pagingModel.PageNumber,
+                HasNextPage = nextPageCount > 0
             };
+
+            serviceModel.Items = QueryMultiple<TResult>(query2, (object)paramss);
+
+            return serviceModel;
+        }
+
+        private int NextOffset(int pageSize, int pageNumber)
+        {
+            pageNumber = pageNumber + 1;
+
+            return pageSize * (pageNumber - 1);
+        }
+
+        private static ExpandoObject CreateExpandoFromObject(object source)
+        {
+            var result = new ExpandoObject();
+            if (source == null) return result;
+
+            IDictionary<string, object> dictionary = result;
+            foreach (var property in source
+                .GetType()
+                .GetProperties()
+                .Where(p => p.CanRead && p.GetMethod.IsPublic))
+            {
+                dictionary[property.Name] = property.GetValue(source, null);
+            }
+            return result;
         }
 
         #endregion Methods

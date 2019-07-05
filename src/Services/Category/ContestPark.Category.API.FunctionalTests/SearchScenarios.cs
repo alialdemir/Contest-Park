@@ -16,6 +16,7 @@ namespace ContestPark.Category.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
+                await Task.Delay(500);
                 var response = await server.CreateClient()
                     .GetAsync(Entpoints.GetSearchFollowedSubCategories("Stadium"));
 
@@ -31,7 +32,7 @@ namespace ContestPark.Category.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
-                await Task.Delay(500);
+                await Task.Delay(900);
 
                 var response = await server.CreateClient()
                                                     .AddLangCode(languageCode)
@@ -154,7 +155,7 @@ namespace ContestPark.Category.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
-                await Task.Delay(500);// Kategori dataları elasticsearch e yüklenemesini bekletmek için 5sn beklettim
+                await Task.Delay(800);// Kategori dataları elasticsearch e yüklenemesini bekletmek için 5sn beklettim
 
                 var response = await server.CreateClient()
                                            .GetAsync(Entpoints.GetSearch(0, ""));

@@ -11,6 +11,7 @@ using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace ContestPark.Core.Dapper.Extensions
 {
@@ -50,14 +51,14 @@ namespace ContestPark.Core.Dapper.Extensions
             return new DatabaseConnection($"server={databaseInfo.Server};uid={databaseInfo.UserId};pwd={databaseInfo.Password};");
         }
 
-        public static bool CreateDatabaseIfNotExists(this IMigrationRunner runner, string connectionString)
+        public static async Task<bool> CreateDatabaseIfNotExistsAsync(this IMigrationRunner runner, string connectionString)
         {
             DatabaseInfo databaseInfo = GetDatabaseInfo(connectionString);
 
             IDbConnection dbConnection = GetConnection(databaseInfo).Connection;
 
             string dbName = dbConnection.QuerySingleOrDefault<string>($"SHOW DATABASES LIKE '{databaseInfo.DatabaseName}'");
-            int result = dbConnection.Execute($"CREATE DATABASE IF NOT EXISTS `{databaseInfo.DatabaseName}`;");
+            int result = await dbConnection.ExecuteAsync($"CREATE DATABASE IF NOT EXISTS `{databaseInfo.DatabaseName}`;");
 
             return result > 0 && string.IsNullOrEmpty(dbName);
         }

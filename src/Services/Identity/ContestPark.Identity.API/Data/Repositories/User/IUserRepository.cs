@@ -1,4 +1,5 @@
-﻿using ContestPark.Identity.API.Models;
+﻿using ContestPark.Core.Models;
+using ContestPark.Identity.API.Models;
 using System.Collections.Generic;
 
 namespace ContestPark.Identity.API.Data.Repositories.User
@@ -13,6 +14,6 @@ namespace ContestPark.Identity.API.Data.Repositories.User
 
         void RemoveCode(string userId);
 
-        IEnumerable<UserNotFoundModel> GetUserInfos(List<string> userInfos);
+        IEnumerable<UserModel> GetUserInfos(List<string> userInfos);
     }
 }

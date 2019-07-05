@@ -1,8 +1,8 @@
 ﻿using ContestPark.Core.Database.Models;
-using System.Collections.Generic;
+using ContestPark.Follow.API.Models;
 using System.Threading.Tasks;
 
-namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
+namespace ContestPark.Follow.API.Infrastructure.MySql.Repositories
 {
     public interface IFollowRepository
     {
@@ -16,12 +16,10 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
 
         /// <param name="followUpUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
-        bool CheckFollowUpStatus(string followUpUserId, string followedUserId);
+        bool CheckFollowUpStatus(string FollowUpUserId, string followedUserId);
 
-        IEnumerable<string> CheckFollowUpStatus(string followUpUserId, IEnumerable<string> userIds);
+        ServiceModel<FollowUserModel> Followers(string userId, PagingModel pagingModel);
 
-        ServiceModel<string> Followers(string userId, PagingModel pagingModel);
-
-        ServiceModel<string> Following(string userId, PagingModel pagingModel);
+        ServiceModel<FollowUserModel> Following(string userId, PagingModel pagingModel);
     }
 }
