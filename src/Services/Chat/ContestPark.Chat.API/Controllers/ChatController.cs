@@ -282,8 +282,8 @@ namespace ContestPark.Chat.API.Controllers
 
             if (notFoundUserIds.Count() > 0)// Bulunamayan kullanıcıları identity apiden alması için event yolladık
             {
-                var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
-                _eventBus.Publish(@event);
+                ////////////////////////var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
+                ////////////////////////_eventBus.Publish(@event);
             }
         }
 

@@ -74,9 +74,6 @@ services:
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
-      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
-      - CosmosDbDatabaseId=ContestPark.Balance
       - IsMigrateDatabase=true
     ports:
       - "5104:80"
@@ -97,13 +94,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - identityUrl=http://contestpark.identity.api
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkChat;pwd=root;}
       - Audience=chat
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
-      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
-      - CosmosDbDatabaseId=ContestPark.Chat
+      - IsMigrateDatabase=true
     ports:
       - "5106:80"
     volumes:

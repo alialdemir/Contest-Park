@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.CosmosDb\ContestPark.Core.CosmosDb.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.Dapper\ContestPark.Core.Dapper.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core\ContestPark.Core.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus.RabbitMQ\ContestPark.EventBus.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus\ContestPark.EventBus.csproj" />
@@ -37,5 +38,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ChatResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\Scripts\" />
   </ItemGroup>
 </Project>

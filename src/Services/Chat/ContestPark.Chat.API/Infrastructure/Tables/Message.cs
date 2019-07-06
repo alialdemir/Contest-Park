@@ -1,9 +1,14 @@
-﻿using ContestPark.Core.CosmosDb.Models;
+﻿using ContestPark.Core.Database.Models;
+using Dapper;
 
-namespace ContestPark.Chat.API.Infrastructure.Documents
+namespace ContestPark.Chat.API.Infrastructure.Tables
 {
-    public class Message : DocumentBase
+    [Table("Messages")]
+    public class Message : EntityBase
     {
+        [Key]
+        public int MessageId { get; set; }
+
         public string ConversationId { get; set; }
 
         public string Text { get; set; }

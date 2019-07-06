@@ -32,7 +32,7 @@ namespace ContestPark.Chat.API
             services.Configure<ChatSettings>(Configuration);
 
             services.AddAuth(Configuration)
-                    .AddCosmosDb(Configuration)
+                    .AddMySql()
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(ChatResource).Name)
@@ -49,10 +49,6 @@ namespace ContestPark.Chat.API
             services.AddTransient<IBlockRepository, BlockRepository>();
 
             services.AddTransient<SendMessageIntegrationEventHandler>();
-            services.AddTransient<NewUserRegisterIntegrationEventHandler>();
-            services.AddTransient<UserInfoChangedIntegrationEventHandler>();
-            services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
-            services.AddTransient<UserNotFoundIntegrationEventHandler>();
             services.AddTransient<RemoveMessagesIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
@@ -96,10 +92,6 @@ namespace ContestPark.Chat.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<SendMessageIntegrationEvent, SendMessageIntegrationEventHandler>();
-            eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
-            eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
-            eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
-            eventBus.Subscribe<UserNotFoundIntegrationEvent, UserNotFoundIntegrationEventHandler>();
             eventBus.Subscribe<RemoveMessagesIntegrationEvent, RemoveMessagesIntegrationEventHandler>();
         }
     }

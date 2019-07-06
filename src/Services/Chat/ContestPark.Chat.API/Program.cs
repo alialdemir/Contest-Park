@@ -1,8 +1,13 @@
 ﻿using ContestPark.Chat.API.Infrastructure;
+using ContestPark.Chat.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System;
 using System.IO;
@@ -37,11 +42,24 @@ namespace ContestPark.Chat.API
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
-                host.MigrateDatabase<ChatApiSeed>((services, logger) =>
+                host.MigrateDatabase((services, updateDatabase) =>
                 {
-                    new ChatApiSeed()
-                       .SeedAsync(services, logger)
-                       .Wait();
+                    var settings = services.GetService<IOptions<ChatSettings>>();
+
+                    if (!settings.Value.IsMigrateDatabase)
+                        return;
+
+                    var logger = services.GetService<ILogger<ChatApiSeed>>();
+
+                    updateDatabase(
+                        settings.Value.ConnectionString,
+                        MigrationAssembly.GetAssemblies(),
+                        () =>
+                        {
+                            new ChatApiSeed()
+                             .SeedAsync(services, logger)
+                             .Wait();
+                        });
                 });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
