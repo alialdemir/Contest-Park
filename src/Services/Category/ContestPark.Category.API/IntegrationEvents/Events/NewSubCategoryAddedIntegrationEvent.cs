@@ -10,18 +10,18 @@ namespace ContestPark.Category.API.IntegrationEvents.Events
 
         public string PicturePath { get; set; }
 
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
-        public string SubCategoryId { get; set; }
-        public string CategoryId { get; set; }
+        public short SubCategoryId { get; set; }
+        public short CategoryId { get; set; }
         public List<Localized> SubCategoryLocalized { get; set; }
         public List<Localized> CategoryLocalized { get; set; }
 
         public NewSubCategoryAddedIntegrationEvent(string displayPrice,
                                                    string picturePath,
-                                                   int price,
-                                                   string subCategoryId,
-                                                   string categoryId,
+                                                   decimal price,
+                                                   short subCategoryId,
+                                                   short categoryId,
                                                    List<Localized> subCategoryLocalized,
                                                    List<Localized> categoryLocalized)
         {

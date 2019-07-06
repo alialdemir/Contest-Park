@@ -1,7 +1,7 @@
 ﻿using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
+using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.FunctionalTests;
-using Microsoft.Azure.Documents.Client;
 using System;
 using Xunit;
 
@@ -17,9 +17,7 @@ namespace ContestPark.Category.API.FunctionalTests
         {
             // ... clean up test data from the database ...
 
-            DocumentClient documentClient = new DocumentClient(new Uri(Conf.Configuration["CosmosDbServiceEndpoint"]),
-                Conf.Configuration["CosmosDbAuthKeyOrResourceToken"]);
-            documentClient.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri(Conf.Configuration["CosmosDbDatabaseId"])).Wait();
+            DatabaseExtension.DeleteDatabase(Conf.Configuration["ConnectionString"]);
 
             ElasticContext elasticContext = new ElasticContext(new Nest.ConnectionSettings(new Uri(Conf.Configuration["ElasticSearchURI"])), null);
             SearchRepository searchRepository = new SearchRepository(elasticContext, null, Conf.Configuration, null);

@@ -1,5 +1,4 @@
 ﻿using ContestPark.Core.Enums;
-using ContestPark.EventBus.Events;
 using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
@@ -177,10 +176,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (!result.Succeeded && result.Errors.Count() > 0)
                 return BadRequest(IdentityResultErrors(result.Errors));
 
-            // Diğer servislere resmin değiştiğini bildir
-            var profilePictureChangedIntegrationEvent = new ProfilePictureChangedIntegrationEvent(UserId, fileName, oldProfilePicturePath);
-            await PublishEvent(profilePictureChangedIntegrationEvent);
-
             // Publish add post
             var @event = new NewPostAddedIntegrationEvent(NewPostAddedIntegrationEvent.PostTypes.Image,
                                                           NewPostAddedIntegrationEvent.PostImageTypes.ProfileImage,
@@ -239,11 +234,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             if (errors.Count > 0)
                 return BadRequest(errors);
-
-            // Create Integration Event to be published through the Event Bus
-            var userInfoChangedIntegrationEvent = new UserInfoChangedIntegrationEvent(user.Id, user.FullName, user.UserName, oldFullName, oldUserName);
-
-            await PublishEvent(userInfoChangedIntegrationEvent);
 
             return Ok();
         }
@@ -404,11 +394,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (!result.Succeeded && result.Errors.Count() > 0)
                 return BadRequest(IdentityResultErrors(result.Errors));
 
-            // Create Integration Event to be published through the Event Bus
-            var newUserRegisterIntegrationEvent = new NewUserRegisterIntegrationEvent(user.Id, user.FullName, user.UserName, user.ProfilePicturePath);
-
-            await PublishEvent(newUserRegisterIntegrationEvent);
-
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");
 
             return Ok();
@@ -482,15 +467,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                     ).ToList();
 
             return errors;
-        }
-
-        private async Task PublishEvent(IntegrationEvent @event)
-        {
-            // Achieving atomicity between original Catalog database operation and the IntegrationEventLog thanks to a local transaction
-            await _identityIntegrationEventService.SaveEventAndApplicationContextChangesAsync(@event);
-
-            // Publish through the Event Bus and mark the saved event as published
-            await _identityIntegrationEventService.PublishThroughEventBusAsync(@event);
         }
 
         #endregion Methods

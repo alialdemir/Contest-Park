@@ -1,9 +1,14 @@
 ﻿using ContestPark.Balance.API.Enums;
 using ContestPark.Balance.API.Infrastructure;
-using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Balance.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Extensions;
+using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace ContestPark.Balance.API.FunctionalTests
@@ -13,11 +18,21 @@ namespace ContestPark.Balance.API.FunctionalTests
     {
         public override void Seed(IWebHost host)
         {
-            host.MigrateDatabase<BalanceApiSeed>((services, logger) =>
+            host.MigrateDatabase((services, updateDatabase) =>
             {
-                new BalanceApiSeed()
-                    .SeedAsync(services, logger)
-                    .Wait();
+                var settings = services.GetService<IOptions<BalanceSettings>>();
+
+                var logger = services.GetService<ILogger<BalanceApiSeed>>();
+
+                updateDatabase(
+                    settings.Value.ConnectionString,
+                    MigrationAssembly.GetAssemblies(),
+                    () =>
+                    {
+                        new BalanceApiSeed()
+                         .SeedAsync(services, logger)
+                         .Wait();
+                    });
             });
         }
 

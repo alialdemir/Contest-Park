@@ -15,7 +15,7 @@ services:
   contestpark.identity.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestPark.Identity;pwd=root;}
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkIdentity;pwd=root;}
       - identityUrl=http://contestpark.identity.api
       - Audience=identity
       - SendGridApiKey=Test
@@ -24,8 +24,6 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
-      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
       - "5101:80"
     volumes:
@@ -35,19 +33,16 @@ services:
   contestpark.category.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkCategory;pwd=root;}
       - identityUrl=http://contestpark.identity.api
       - balanceUrl=http://contestpark.balance.api
       - Audience=category
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
-      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
-      - CosmosDbDatabaseId=ContestPark.Category
       - ElasticSearchURI=http://elasticsearch:9200
       - ElasticSearchIndexName=categorysearch
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
-      - ClientKey=${CONTESTPARK_CLIENT_KEY}
+      - IsMigrateDatabase=true
     ports:
       - "5102:80"
     volumes:
@@ -65,8 +60,6 @@ services:
       - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Follow
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
-      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
       - "5103:80"
     volumes:
@@ -76,6 +69,7 @@ services:
   contestpark.balance.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkBalance;pwd=root;}
       - identityUrl=http://contestpark.identity.api
       - Audience=balance
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
@@ -84,8 +78,7 @@ services:
       - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Balance
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
-      - ClientKey=${CONTESTPARK_CLIENT_KEY}
+      - IsMigrateDatabase=true
     ports:
       - "5104:80"
     volumes:
@@ -112,7 +105,6 @@ services:
       - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Chat
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
     ports:
       - "5106:80"
     volumes:
@@ -126,7 +118,6 @@ services:
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
     ports:
       - "5107:80"
     volumes:
@@ -144,8 +135,6 @@ services:
       - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
       - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
       - CosmosDbDatabaseId=ContestPark.Post
-      - ApplicationInsights_InstrumentationKey=${CONTESTPARK_APPINSIGHTS_INSTRUMENTATIONKEY}
-      - ClientKey=${CONTESTPARK_CLIENT_KEY}
     ports:
       - "5108:80"
     volumes:

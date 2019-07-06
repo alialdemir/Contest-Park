@@ -1,4 +1,4 @@
-﻿using ContestPark.Core.CosmosDb.Extensions;
+﻿using ContestPark.Core.Database.Extensions;
 using ContestPark.Post.API.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -21,7 +21,6 @@ namespace ContestPark.Post.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
-                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)

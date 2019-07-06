@@ -1,5 +1,5 @@
-﻿using ContestPark.Category.API.Infrastructure.Documents;
-using ContestPark.Category.API.Infrastructure.Repositories.Search;
+﻿using ContestPark.Category.API.Infrastructure.Repositories.Search;
+using ContestPark.Category.API.Infrastructure.Tables;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
@@ -46,7 +46,7 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
                     {
                         SearchType = SearchTypes.Category,
                         DisplayPrice = @event.DisplayPrice,
-                        Id = @event.SubCategoryId,
+                        Id = @event.SubCategoryId.ToString(),
                         Price = @event.Price,
                         PicturePath = @event.PicturePath,
                         SubCategoryId = @event.SubCategoryId,

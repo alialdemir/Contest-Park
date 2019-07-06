@@ -1,5 +1,5 @@
 ﻿using ContestPark.Chat.API.Model;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.Infrastructure.Repositories.Block

@@ -24,8 +24,7 @@ namespace ContestPark.Signalr.API
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddAuth(Configuration)
-                     .AddApplicationInsightsTelemetry(Configuration);
+            services.AddAuth(Configuration);
 
             string signalrStoreConnectionString = Configuration.GetValue<string>("SignalrStoreConnectionString");
             if (!string.IsNullOrEmpty(signalrStoreConnectionString))

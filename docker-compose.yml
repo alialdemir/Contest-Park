@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   mysql-data:
-    image: mysql:5.7
+    image: mysql:8.0.16
     volumes:
     - ./data:/var/lib/mysql
     restart: always
@@ -35,6 +35,7 @@ services:
     image: contestparkidentity.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - mysql-data
     build:
       context: .
       dockerfile: src/Services/Identity/ContestPark.Identity.API/Dockerfile
@@ -62,6 +63,7 @@ services:
     image: contestparkbalance.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - mysql-data
     build:
       context: .
       dockerfile: src/Services/Balance/ContestPark.Balance.API/Dockerfile

@@ -1,5 +1,5 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Post.API.Infrastructure.Documents;
 using ContestPark.Post.API.Infrastructure.Repositories.Like;
@@ -25,7 +25,7 @@ namespace ContestPark.Post.API.Controllers
         private readonly ILikeRepository _likeRepository;
         private readonly IEventBus _eventBus;
         private readonly IPostRepository _postRepository;
-        private readonly IDocumentDbRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
 
         #endregion Private Variables
 
@@ -34,7 +34,7 @@ namespace ContestPark.Post.API.Controllers
         public PostController(ILogger<PostController> logger,
                               IEventBus eventBus,
                               IPostRepository postRepository,
-                              IDocumentDbRepository<User> userRepository,
+                              IRepository<User> userRepository,
                               ILikeRepository likeRepository) : base(logger)
         {
             _eventBus = eventBus;

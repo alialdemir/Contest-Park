@@ -1,6 +1,6 @@
 ﻿using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.Follow.API.Infrastructure.Documents;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -14,15 +14,15 @@ namespace ContestPark.Follow.API.Infrastructure.Repositories.Follow
         #region Private Variables
 
         private readonly ILogger<FollowRepository> _logger;
-        private readonly IDocumentDbRepository<Documents.Follow> _followRepository;
-        private readonly IDocumentDbRepository<Documents.User> _userRepository;
+        private readonly IRepository<Documents.Follow> _followRepository;
+        private readonly IRepository<Documents.User> _userRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public FollowRepository(IDocumentDbRepository<Documents.Follow> followRepository,
-                                IDocumentDbRepository<Documents.User> userRepository,
+        public FollowRepository(IRepository<Documents.Follow> followRepository,
+                                IRepository<Documents.User> userRepository,
                                 ILogger<FollowRepository> logger)
         {
             _followRepository = followRepository;

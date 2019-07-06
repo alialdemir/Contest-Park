@@ -1,7 +1,7 @@
 ﻿using ContestPark.Chat.API.Model;
 using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
@@ -11,14 +11,14 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.Conversation> _conversationRepository;
+        private readonly IRepository<Documents.Conversation> _conversationRepository;
         private readonly ILogger<ConversationRepository> _logger;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public ConversationRepository(IDocumentDbRepository<Documents.Conversation> conversationRepository,
+        public ConversationRepository(IRepository<Documents.Conversation> conversationRepository,
                                       ILogger<ConversationRepository> logger)
         {
             _conversationRepository = conversationRepository;
@@ -83,7 +83,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
                            WHERE c.SenderUserId = @senderUserId AND c.ReceiverUserId = @receiverUserId OR
                                  c.SenderUserId = @receiverUserId AND c.ReceiverUserId = @senderUserId";
 
-            return _conversationRepository.QuerySingle<Documents.Conversation>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<Documents.Conversation>(sql, new
             {
                 senderUserId,
                 receiverUserId
@@ -101,7 +101,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             string sql = @"SELECT TOP 1 VALUE CONTAINS(c.SenderUserId, @userId) FROM c
                            WHERE c.id=@conversationId";
 
-            return _conversationRepository.QuerySingle<bool>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 userId,
                 conversationId
@@ -119,7 +119,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
             string sql = @"SELECT TOP 1 VALUE (c.SenderUserId=@userId OR c.ReceiverUserId=@userId) FROM c
                            WHERE c.id=@conversationId";
 
-            return _conversationRepository.QuerySingle<bool>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 userId,
                 conversationId
@@ -142,7 +142,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
                            FROM c WHERE (c.SenderUserId=@userId AND c.SenderUnreadMessageCount > 0)
                            OR (c.ReceiverUserId=@userId AND c.ReceiverUnreadMessageCount > 0)";
 
-            return _conversationRepository.QuerySingle<int>(sql, new
+            return _conversationRepository.QuerySingleOrDefault<int>(sql, new
             {
                 userId
             });

@@ -1,21 +1,21 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace ContestPark.Balance.API.Infrastructure.Repositories.Purchase
+namespace ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory
 {
     public class PurchaseHistoryRepository : IPurchaseHistoryRepository
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.PurchaseHistory> _purchaseHistoryRepository;
+        private readonly IRepository<Tables.PurchaseHistory> _purchaseHistoryRepository;
         private readonly ILogger<PurchaseHistoryRepository> _logger;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public PurchaseHistoryRepository(IDocumentDbRepository<Documents.PurchaseHistory> purchaseHistoryRepository,
+        public PurchaseHistoryRepository(IRepository<Tables.PurchaseHistory> purchaseHistoryRepository,
                                  ILogger<PurchaseHistoryRepository> logger)
         {
             _purchaseHistoryRepository = purchaseHistoryRepository;
@@ -31,7 +31,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Purchase
         /// </summary>
         /// <param name="purchase">Satın alma bilgisi</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> AddAsync(Documents.PurchaseHistory purchase)
+        public async Task<bool> AddAsync(Tables.PurchaseHistory purchase)
         {
             _logger.LogInformation("Satın alma işlemi gerçekleşti",
                                    purchase.UserId,
@@ -42,11 +42,11 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Purchase
                                    purchase.Token);
 
             bool issuccsess = await _purchaseHistoryRepository.AddAsync(purchase);
-
             if (!issuccsess)
             {
                 _logger.LogCritical("CRITTICAL: Satın alma geçmişi eklenirken hata oluştu", purchase.UserId);
             }
+
             return issuccsess;
         }
 

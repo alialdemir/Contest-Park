@@ -1,5 +1,5 @@
 ﻿using ContestPark.Core.CosmosDb;
-using ContestPark.Core.CosmosDb.Interfaces;
+using ContestPark.Core.Database.Interfaces;
 using Cosmonaut;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 };
             });
 
-            services.AddSingleton(typeof(IDocumentDbRepository<>), typeof(DocumentDbRepository<>));
+            services.AddSingleton(typeof(IRepository<>), typeof(DocumentDbRepository<>));
 
             services.AddSingleton(typeof(ICosmosStore<>), typeof(CosmosStore<>));
 

@@ -1,15 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 {
     public interface IFollowSubCategoryRepository
     {
-        bool IsSubCategoryFollowed(string userId, string subCategoryId);
+        bool IsSubCategoryFollowed(string userId, short subCategoryId);
 
-        string[] FollowedSubCategoryIds(string userId);
+        Task<bool> UnFollowSubCategoryAsync(string userId, short subCategoryId);
 
-        Task<bool> DeleteAsync(string userId, string subCategoryId);
+        Task<bool> FollowSubCategoryAsync(string userId, short subCategoryId);
 
-        Task<bool> AddAsync(Documents.FollowSubCategory followSubCategory);
+        IEnumerable<short> FollowedSubCategoryIds(string userId);
     }
 }

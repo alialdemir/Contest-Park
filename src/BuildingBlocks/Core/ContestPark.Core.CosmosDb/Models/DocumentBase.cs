@@ -1,20 +1,12 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.Database.Models;
 using Newtonsoft.Json;
 using System;
 
 namespace ContestPark.Core.CosmosDb.Models
 {
-    public abstract class DocumentBase : IDocument
+    public abstract class DocumentBase : EntityBase
     {
         [JsonProperty(PropertyName = "id")]
-        public virtual string Id { get; set; } = Guid.NewGuid().ToString();
-
-        public DateTime ModifiedDate { get; set; } = DateTime.Now;
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

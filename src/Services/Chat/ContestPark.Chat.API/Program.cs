@@ -1,5 +1,5 @@
 ﻿using ContestPark.Chat.API.Infrastructure;
-using ContestPark.Core.CosmosDb.Extensions;
+using ContestPark.Core.Database.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +21,6 @@ namespace ContestPark.Chat.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
-                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)

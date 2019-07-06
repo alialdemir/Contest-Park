@@ -6,5 +6,8 @@ namespace ContestPark.Category.API
     {
         [JsonProperty("balanceUrl")]
         public string BalanceUrl { get; set; }
+
+        public bool IsMigrateDatabase { get; set; }
+        public string ConnectionString { get; set; }
     }
 }

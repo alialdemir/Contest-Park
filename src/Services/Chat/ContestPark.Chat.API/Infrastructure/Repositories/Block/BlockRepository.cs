@@ -1,7 +1,7 @@
 ﻿using ContestPark.Chat.API.Model;
 using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.CosmosDb.Interfaces;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
@@ -10,13 +10,13 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
     {
         #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.Block> _blockRepository;
+        private readonly IRepository<Documents.Block> _blockRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public BlockRepository(IDocumentDbRepository<Documents.Block> blockRepository)
+        public BlockRepository(IRepository<Documents.Block> blockRepository)
         {
             _blockRepository = blockRepository;
         }
@@ -66,7 +66,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
                            WHERE (c.SkirterUserId=@skirterUserId AND c.DeterredUserId=@deterredUserId)
                               OR (c.SkirterUserId=@deterredUserId AND c.DeterredUserId=@skirterUserId)";
 
-            return _blockRepository.QuerySingle<bool>(sql, new
+            return _blockRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 skirterUserId,
                 deterredUserId

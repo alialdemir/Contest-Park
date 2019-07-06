@@ -104,7 +104,6 @@ namespace ContestPark.Identity.API
             services.AddLocalizationCustom();
 
             services.AddCustomIdentityServer(Configuration, connectionString)
-                    .AddApplicationInsightsTelemetry(Configuration)
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(IdentityResource).Name)

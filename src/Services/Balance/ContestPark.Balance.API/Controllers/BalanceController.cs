@@ -1,7 +1,7 @@
 ﻿using ContestPark.Balance.API.Enums;
-using ContestPark.Balance.API.Infrastructure.Documents;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
-using ContestPark.Balance.API.Infrastructure.Repositories.Purchase;
+using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
+using ContestPark.Balance.API.Infrastructure.Tables;
 using ContestPark.Balance.API.Models;
 using ContestPark.Balance.API.Resources;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -51,10 +50,10 @@ namespace ContestPark.Balance.API.Controllers
                 {
                     _googlePlayPackages = new Dictionary<string, decimal>
                     {
-                        {"com.contestparkapp.app.250coins", 250 },
-                        {"com.contestparkapp.app.1500coins", 1500 },
-                        {"com.contestparkapp.app.7000coins", 7000 },
-                        {"com.contestparkapp.app.20000coins", 20000},
+                        {"com.contestparkapp.app.250coins", 2.50m },
+                        {"com.contestparkapp.app.1500coins", 15.00m },
+                        {"com.contestparkapp.app.7000coins", 7.000m },
+                        {"com.contestparkapp.app.20000coins", 20.000m },
                     };
                 }
                 return _googlePlayPackages;
@@ -93,12 +92,12 @@ namespace ContestPark.Balance.API.Controllers
         /// </summary>
         /// <returns>Bakiye bilgileri</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<BalanceModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(BalanceModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public IActionResult GetBalances()
         {
-            IEnumerable<BalanceModel> result = _balanceRepository.GetUserBalances(UserId);
-            if (result == null || result.Count() == 0)
+            BalanceModel result = _balanceRepository.GetUserBalances(UserId);
+            if (result == null)
             {
                 Logger.LogInformation($"Kullanıcının bakiye bilgilerine ulaşılamadı.", UserId);
 
@@ -114,31 +113,36 @@ namespace ContestPark.Balance.API.Controllers
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Bakiye bilgileri</returns>
         [HttpGet("{userId}")]
-        [Authorize(Policy = "ContestParkServices")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(BalanceModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public IActionResult GetBalances(string userId, [FromQuery]BalanceTypes balanceType = BalanceTypes.Gold)
+        public IActionResult GetBalances(string userId, [FromQuery]BalanceTypes balanceType)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            IEnumerable<BalanceModel> balances = _balanceRepository.GetUserBalances(userId);
-            if (balances == null || balances.Count() == 0)
+            BalanceModel balance = _balanceRepository.GetUserBalances(userId);
+            if (balance == null)
             {
                 Logger.LogInformation($"Kullanıcının bakiye bilgilerine ulaşılamadı.", userId);
 
                 return NotFound();
             }
 
-            var result = balances
-                            .Where(b => b.BalanceType == balanceType)
-                            .Select(b => new BalanceModel
-                            {
-                                Amount = b.Amount
-                            })
-                            .FirstOrDefault();
+            decimal amount = 0;
 
-            return Ok(result);
+            switch (balanceType)
+            {
+                case BalanceTypes.Gold:
+                    amount = balance.Gold;
+                    break;
+
+                case BalanceTypes.Money:
+                    amount = balance.Money;
+                    break;
+            }
+
+            return Ok(new { Amount = amount });
         }
 
         /// <summary>

@@ -1,12 +1,12 @@
-﻿using ContestPark.Category.API.Infrastructure.Documents;
-using ContestPark.Category.API.Infrastructure.Repositories.Category;
-using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
-using ContestPark.Category.API.Infrastructure.Repositories.OpenCategory;
+﻿using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
+using ContestPark.Category.API.Infrastructure.Tables;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Category.API.Services.Balance;
-using ContestPark.Core.CosmosDb.Models;
+using ContestPark.Core.Database.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,7 +23,7 @@ namespace ContestPark.Category.API.Controllers
 
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
         private readonly IOpenCategoryRepository _openCategoryRepository;
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ISubCategoryRepository _categoryRepository;
         private readonly IEventBus _eventBus;
         private readonly IBalanceService _balanceService;
 
@@ -33,7 +33,7 @@ namespace ContestPark.Category.API.Controllers
 
         public SubCategoryController(IFollowSubCategoryRepository followSubCategoryRepository,
                                      IOpenCategoryRepository openCategoryRepository,
-                                     ICategoryRepository categoryRepository,
+                                     ISubCategoryRepository categoryRepository,
                                      ILogger<SubCategoryController> logger,
                                      IBalanceService balanceService,
                                      IEventBus eventBus) : base(logger)
@@ -103,9 +103,9 @@ namespace ContestPark.Category.API.Controllers
         [HttpPost("{subCategoryId}/Follow")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Post([FromRoute]string subCategoryId)
+        public async Task<IActionResult> Post([FromRoute]short subCategoryId)
         {
-            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+            if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
 
             if (_followSubCategoryRepository.IsSubCategoryFollowed(UserId, subCategoryId))// Kategoriyi daha önceden takip etmişmi
@@ -119,11 +119,7 @@ namespace ContestPark.Category.API.Controllers
                 return BadRequest(CategoryResource.ToBeAbleToFollowThisCategoryYouNeedToUnlockIt);
             }
 
-            bool isSuccess = await _followSubCategoryRepository.AddAsync(new FollowSubCategory
-            {
-                SubCategoryId = subCategoryId,
-                UserId = UserId
-            });
+            bool isSuccess = await _followSubCategoryRepository.FollowSubCategoryAsync(UserId, subCategoryId);
 
             if (!isSuccess)
             {
@@ -149,15 +145,15 @@ namespace ContestPark.Category.API.Controllers
         [Route("{subCategoryId}/UnFollow")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Delete([FromRoute]string subCategoryId)
+        public async Task<IActionResult> Delete([FromRoute]short subCategoryId)
         {
-            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+            if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
 
             if (!_followSubCategoryRepository.IsSubCategoryFollowed(UserId, subCategoryId))
                 return BadRequest(CategoryResource.YouMustFollowThisCategoryToDeactivateTheCategory);
 
-            bool isSuccess = await _followSubCategoryRepository.DeleteAsync(UserId, subCategoryId);
+            bool isSuccess = await _followSubCategoryRepository.UnFollowSubCategoryAsync(UserId, subCategoryId);
             if (!isSuccess)
             {
                 Logger.LogError($"Alt kategori takip etme sırasında hata oluştu. sub Category Id: {subCategoryId} user id: {UserId}");
@@ -183,9 +179,9 @@ namespace ContestPark.Category.API.Controllers
         [Route("{subCategoryId}/FollowStatus")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult Get([FromRoute]string subCategoryId)
+        public IActionResult Get([FromRoute]short subCategoryId)
         {
-            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+            if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
 
             return Ok(new
@@ -200,30 +196,18 @@ namespace ContestPark.Category.API.Controllers
         /// <param name="subCategoryId">Alt kategori Id</param>
         [HttpGet]
         [Route("{subCategoryId}")]
-        [ProducesResponseType(typeof(SubCategoryDetailModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(SubCategoryDetailInfoModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetDetail([FromRoute]string subCategoryId)
+        public IActionResult GetDetail([FromRoute]short subCategoryId)
         {
-            if (string.IsNullOrEmpty(subCategoryId) || string.IsNullOrEmpty(UserId))
+            if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
 
             SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, CurrentUserLanguage);
             if (subCategoryDetail == null)
                 return NotFound();
 
-            return Ok(new SubCategoryDetailModel
-            {
-                Level = 1, // TODO: level bilgisi çekilmeli
-
-                // TODO: user id için login olmuş olması gerekir sadece bunun için identity serverden token kontrol eder sadece kategori takip etme durumunu ayri bir entpoint e alırsak bu entpointi AllowAnonymous yapıp performans kazanılabilir
-                IsSubCategoryFollowUpStatus = _followSubCategoryRepository.IsSubCategoryFollowed(UserId, subCategoryId),
-
-                CategoryFollowersCount = subCategoryDetail.CategoryFollowersCount,
-                Description = subCategoryDetail.Description,
-                SubCategoryId = subCategoryDetail.SubCategoryId,
-                SubCategoryName = subCategoryDetail.SubCategoryName,
-                SubCategoryPicturePath = subCategoryDetail.SubCategoryPicturePath
-            });
+            return Ok(subCategoryDetail);
         }
 
         /// <summary>
@@ -233,12 +217,12 @@ namespace ContestPark.Category.API.Controllers
         [HttpPost("{subCategoryId}/unlock")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UnLockSubCategory([FromRoute]string subCategoryId, [FromQuery]BalanceTypes balanceType)
+        public async Task<IActionResult> UnLockSubCategory([FromRoute]short subCategoryId, [FromQuery]BalanceTypes balanceType)
         {
-            if (string.IsNullOrEmpty(subCategoryId))
+            if (subCategoryId < 0)
                 return BadRequest();
 
-            int subCategoryPrice = _categoryRepository.GetSubCategoryPrice(subCategoryId);
+            decimal subCategoryPrice = _categoryRepository.GetSubCategoryPrice(subCategoryId);
             if (subCategoryPrice == 0)// subCategoryPrice sıfır ise ücretsizdir kilidini açmaya gerek yok
                 return BadRequest(CategoryResource.YouCanNotUnlockTheFreeCategory);
 
@@ -254,7 +238,7 @@ namespace ContestPark.Category.API.Controllers
             if (balance.Amount < subCategoryPrice)
                 return BadRequest(CategoryResource.YourBalanceIsInsufficient);
 
-            bool isSuccess = await _openCategoryRepository.AddAsync(new OpenSubCategory
+            bool isSuccess = await _openCategoryRepository.UnLockSubCategory(new OpenSubCategory
             {
                 UserId = UserId,
                 SubCategoryId = subCategoryId

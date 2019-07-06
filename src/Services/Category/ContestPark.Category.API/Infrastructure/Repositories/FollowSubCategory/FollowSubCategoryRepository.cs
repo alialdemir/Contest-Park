@@ -1,22 +1,22 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
-using System.Linq;
+﻿using ContestPark.Core.Database.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 {
     public class FollowSubCategoryRepository : IFollowSubCategoryRepository
     {
-        #region Private variables
+        #region Private Variables
 
-        private readonly IDocumentDbRepository<Documents.FollowSubCategory> _followRepository;
+        private readonly IRepository<Tables.FollowSubCategory> _followSubCategoryRepository;
 
-        #endregion Private variables
+        #endregion Private Variables
 
         #region Constructor
 
-        public FollowSubCategoryRepository(IDocumentDbRepository<Documents.FollowSubCategory> repository)
+        public FollowSubCategoryRepository(IRepository<Tables.FollowSubCategory> followSubCategoryRepository)
         {
-            _followRepository = repository;
+            _followSubCategoryRepository = followSubCategoryRepository;
         }
 
         #endregion Constructor
@@ -24,17 +24,17 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         #region Methods
 
         /// <summary>
-        /// Kullanıcı alt kategoriyi takip ediyor mu
+        /// Alt kategori takip et
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
-        public bool IsSubCategoryFollowed(string userId, string subCategoryId)
+        public Task<bool> FollowSubCategoryAsync(string userId, short subCategoryId)
         {
-            return _followRepository.QuerySingle<bool>("SELECT DISTINCT VALUE NOT(IS_NULL(c.id)) FROM c WHERE c.UserId=@userId AND c.SubCategoryId=@subCategoryId", new
+            return _followSubCategoryRepository.AddAsync(new Tables.FollowSubCategory
             {
-                userId,
-                subCategoryId
+                UserId = userId,
+                SubCategoryId = subCategoryId,
             });
         }
 
@@ -44,27 +44,55 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
-        public Task<bool> DeleteAsync(string userId, string subCategoryId)
+        public Task<bool> UnFollowSubCategoryAsync(string userId, short subCategoryId)
         {
-            return _followRepository.RemoveAsync(x => x.UserId == userId && x.SubCategoryId == subCategoryId);
+            string sql = "DELETE FROM FollowSubCategories WHERE UserId=@userId AND SubCategoryId=@subCategoryId;";
+
+            return _followSubCategoryRepository.ExecuteAsync(sql, new
+            {
+                userId,
+                subCategoryId
+            });
         }
 
         /// <summary>
-        /// Kullanıcının takip ettiği alt kategorilerin id'leri
+        /// Kullanıcı alt kategoriyi takip ediyor mu
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
-        /// <returns>Takip edilen alt kategoriler</returns>
-        public string[] FollowedSubCategoryIds(string userId)
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
+        public bool IsSubCategoryFollowed(string userId, short subCategoryId)
         {
-            return _followRepository.QueryMultiple<string>("SELECT DISTINCT VALUE c.SubCategoryId FROM c where c.UserId = @userId", new
+            string sql = @"SELECT (CASE
+                           WHEN EXISTS(
+                           SELECT NULL
+                           FROM FollowSubCategories fsc WHERE fsc.UserId = @userId AND fsc.SubCategoryId = @subCategoryId)
+                           THEN 1
+                           ELSE 0
+                           END) ";
+
+            return _followSubCategoryRepository.QuerySingleOrDefault<bool>(sql, new
             {
-                userId
-            }).ToArray();
+                userId,
+                subCategoryId
+            });
         }
 
-        public Task<bool> AddAsync(Documents.FollowSubCategory followSubCategory)
+        /// <summary>
+        /// Kullanıcının takip ettiği alt kategorilerin idlerini döndürür
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Alt kategori id</returns>
+        public IEnumerable<short> FollowedSubCategoryIds(string userId)
         {
-            return _followRepository.AddAsync(followSubCategory);
+            string sql = @"SELECT fsc.SubCategoryId
+                           FROM FollowSubCategories fsc
+                           WHERE fsc.UserId = @userId";
+
+            return _followSubCategoryRepository.QueryMultiple<short>(sql, new
+            {
+                userId
+            });
         }
 
         #endregion Methods

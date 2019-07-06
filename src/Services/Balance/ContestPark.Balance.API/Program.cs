@@ -1,9 +1,13 @@
-﻿using ContestPark.Balance.API;
-using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Balance.API.Infrastructure;
+﻿using ContestPark.Balance.API.Infrastructure;
+using ContestPark.Balance.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System;
 using System.IO;
@@ -22,7 +26,6 @@ namespace ContestPark.Balance.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                 .UseSerilog()
-                .UseApplicationInsights(configuration.GetSection("ApplicationInsights_InstrumentationKey").Value)
                 .Build();
 
         public static int Main(string[] args)
@@ -39,12 +42,25 @@ namespace ContestPark.Balance.API
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
-                host.MigrateDatabase<BalanceApiSeed>((services, logger) =>
-                {
-                    new BalanceApiSeed()
-                       .SeedAsync(services, logger)
-                       .Wait();
-                });
+                host.MigrateDatabase((services, updateDatabase) =>
+                   {
+                       var settings = services.GetService<IOptions<BalanceSettings>>();
+
+                       if (!settings.Value.IsMigrateDatabase)
+                           return;
+
+                       var logger = services.GetService<ILogger<BalanceApiSeed>>();
+
+                       updateDatabase(
+                           settings.Value.ConnectionString,
+                           MigrationAssembly.GetAssemblies(),
+                           () =>
+                           {
+                               new BalanceApiSeed()
+                                .SeedAsync(services, logger)
+                                .Wait();
+                           });
+                   });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
 

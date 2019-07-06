@@ -1,15 +1,17 @@
-﻿using ContestPark.Core.CosmosDb.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using Cosmonaut;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ContestPark.Core.CosmosDb
 {
-    public class DocumentDbRepository<TDocument> : IDocumentDbRepository<TDocument> where TDocument : class, IDocument, new()
+    public class DocumentDbRepository<TDocument> : IRepository<TDocument> where TDocument : class, IEntity, new()
     {
         #region Private variables
 
@@ -45,11 +47,11 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="id">document id</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> RemoveAsync(string id)
+        public async Task<bool> RemoveAsync(dynamic id)
         {
             try
             {
-                var response = await _cosmosStore.RemoveAsync(x => x.Id == id);
+                var response = await _cosmosStore.RemoveByIdAsync(id);
 
                 return response.IsSuccess;
             }
@@ -65,11 +67,11 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Document object or null</returns>
-        public TDocument FindById(string id)
+        public TDocument FindById(dynamic id)
         {
             try
             {
-                return _cosmosStore.FindAsync(id).Result;
+                return _cosmosStore.FindAsync(id.ToString()).Result;
             }
             catch (Exception ex)
             {
@@ -84,7 +86,7 @@ namespace ContestPark.Core.CosmosDb
         /// </summary>
         /// <param name="ids">id</param>
         /// <returns>Idlere ait tüm kayıtlar</returns>
-        public IEnumerable<TDocument> FindByIds(IEnumerable<string> ids)
+        public IEnumerable<TDocument> FindByIds(IEnumerable<dynamic> ids)
         {
             try
             {
@@ -158,7 +160,7 @@ namespace ContestPark.Core.CosmosDb
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {_cosmosStore.CollectionName} id: {document.Id}", ex);
+                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {_cosmosStore.CollectionName}", ex);
 
                 return false;
             }
@@ -216,6 +218,56 @@ namespace ContestPark.Core.CosmosDb
 
                 return false;
             }
+        }
+
+        public Task<bool> AddRangeAsync<TKey>(IEnumerable<TDocument> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T QuerySingleOrDefault<T>(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T SpQuerySingleOrDefault<T>(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExecuteAsync(string sql, object parameters = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null, CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T QuerySingleOrDefault<T>(string sql, object parameters = null, CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "", CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExecuteAsync(string sql, object parameters = null, CommandType? commandType = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Methods

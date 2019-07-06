@@ -1,0 +1,21 @@
+﻿using ContestPark.Core.Database.Interfaces;
+using Newtonsoft.Json;
+using System;
+using System.ComponentModel;
+
+namespace ContestPark.Core.Database.Models
+{
+    public class EntityBase : IEntity
+    {
+        [ReadOnly(true)]
+        public DateTime ModifiedDate { get; set; } = DateTime.Now;
+
+        [ReadOnly(true)]
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}
