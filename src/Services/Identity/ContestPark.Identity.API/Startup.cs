@@ -63,6 +63,7 @@ namespace ContestPark.Identity.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<DeleteFileIntegrationEvent, DeleteFileIntegrationEventHandler>();
+            eventBus.Subscribe<FollowIntegrationEvent, FollowIntegrationEventHandler>();
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -119,6 +120,7 @@ namespace ContestPark.Identity.API
             services.AddTransient<IIdentityIntegrationEventService, IdentityIntegrationEventService>();
 
             services.AddTransient<DeleteFileIntegrationEventHandler>();
+            services.AddTransient<FollowIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);

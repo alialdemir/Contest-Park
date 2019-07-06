@@ -1,6 +1,6 @@
-﻿namespace ContestPark.Identity.API.Models
+﻿namespace ContestPark.Core.Models
 {
-    public class UserNotFoundModel
+    public class UserModel
     {
         public string FullName { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using ContestPark.Identity.API.Models;
+﻿using ContestPark.Core.Models;
+using ContestPark.Identity.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,12 +100,12 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         /// </summary>
         /// <param name="userInfos">Kullanıcı idleri</param>
         /// <returns>Kullanıcı bilgileri</returns>
-        public IEnumerable<UserNotFoundModel> GetUserInfos(List<string> userInfos)
+        public IEnumerable<UserModel> GetUserInfos(List<string> userInfos)
         {
             return _applicationDbContext
                 .Users
                 .Where(u => userInfos.Any(s => s == u.Id))
-                .Select(u => new UserNotFoundModel
+                .Select(u => new UserModel
                 {
                     UserId = u.Id,
                     FullName = u.FullName,

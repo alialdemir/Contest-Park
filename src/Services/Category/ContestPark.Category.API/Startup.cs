@@ -10,7 +10,7 @@ using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Resources;
 using ContestPark.Category.API.Services.Balance;
-using ContestPark.Core.Services.HttpService;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,8 +37,9 @@ namespace ContestPark.Category.API
         {
             services.Configure<CategorySettings>(Configuration);
 
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+
             services.AddAuth(Configuration)
-                    // .AddCosmosDb(Configuration)
                     .AddMySql()
                     .AddMvc()
                     .AddJsonOptions()
@@ -54,7 +55,7 @@ namespace ContestPark.Category.API
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
             services.AddTransient<IOpenCategoryRepository, OpenCategoryRepository>();
             services.AddTransient<IFollowSubCategoryRepository, FollowSubCategoryRepository>();
-            services.AddSingleton<IRequestProvider, RequestProvider>();
+
             AddTransient(services);
 
             #region ElasticSearch
@@ -117,7 +118,7 @@ namespace ContestPark.Category.API
 
         protected virtual void AddTransient(IServiceCollection services)
         {
-            services.AddTransient<IBalanceService, BalanceService>();
+            services.AddSingleton<IBalanceService, BalanceService>();
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)

@@ -1,8 +1,13 @@
-﻿using ContestPark.Core.Database.Extensions;
+﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Extensions;
 using ContestPark.Follow.API.Infrastructure;
+using ContestPark.Follow.API.Migrations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System;
 using System.IO;
@@ -37,11 +42,24 @@ namespace ContestPark.Follow.API
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
 
-                host.MigrateDatabase<FollowApiSeed>((services, logger) =>
+                host.MigrateDatabase((services, updateDatabase) =>
                 {
-                    new FollowApiSeed()
-                        .SeedAsync(services, logger)
-                        .Wait();
+                    var settings = services.GetService<IOptions<FollowSettings>>();
+
+                    if (!settings.Value.IsMigrateDatabase)
+                        return;
+
+                    var logger = services.GetService<ILogger<FollowApiSeed>>();
+
+                    updateDatabase(
+                        settings.Value.ConnectionString,
+                        MigrationAssembly.GetAssemblies(),
+                        () =>
+                        {
+                            new FollowApiSeed()
+                                .SeedAsync(services, logger)
+                                .Wait();
+                        });
                 });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);

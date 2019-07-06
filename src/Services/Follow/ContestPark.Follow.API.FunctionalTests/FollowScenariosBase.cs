@@ -1,9 +1,13 @@
-﻿using ContestPark.Core.CosmosDb.Models;
+﻿using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using ContestPark.Follow.API.Infrastructure;
+using ContestPark.Follow.API.Migrations;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace ContestPark.Follow.API.FunctionalTests
@@ -13,13 +17,25 @@ namespace ContestPark.Follow.API.FunctionalTests
     {
         public override void Seed(IWebHost host)
         {
-            host
-           .MigrateDatabase<FollowApiSeed>((services, logger) =>
-           {
-               new FollowApiSeed()
-                   .SeedAsync(services, logger)
-                   .Wait();
-           });
+            host.MigrateDatabase((services, updateDatabase) =>
+            {
+                var settings = services.GetService<IOptions<FollowSettings>>();
+
+                if (!settings.Value.IsMigrateDatabase)
+                    return;
+
+                var logger = services.GetService<ILogger<FollowApiSeed>>();
+
+                updateDatabase(
+                    settings.Value.ConnectionString,
+                    MigrationAssembly.GetAssemblies(),
+                    () =>
+                    {
+                        new FollowApiSeed()
+                            .SeedAsync(services, logger)
+                            .Wait();
+                    });
+            });
         }
 
         public static class Entpoints

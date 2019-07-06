@@ -31,9 +31,9 @@ namespace ContestPark.Category.API.Infrastructure
                             {
                                 DisplayOrder = 2,
                                 Visibility = true,
-                                DisplayPrice = "120k",
+                                DisplayPrice = "0",
                                 PicturePath = "https://static.thenounproject.com/png/14039-200.png",
-                                Price = 1200.00m,
+                                Price = 0,
                                 FollowerCount = 1,
                             },
 
@@ -207,6 +207,11 @@ namespace ContestPark.Category.API.Infrastructure
                     {
                         UserId = "1111-1111-1111-1111",
                         SubCategoryId= 2,
+                    },
+                    new FollowSubCategory
+                    {
+                        UserId = "1111-1111-1111-1111",
+                        SubCategoryId= 4,
                     }
                 });
 

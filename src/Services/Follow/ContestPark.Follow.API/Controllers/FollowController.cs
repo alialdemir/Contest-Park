@@ -1,8 +1,8 @@
-﻿using ContestPark.Core.Database.Interfaces;
-using ContestPark.Core.Database.Models;
+﻿using ContestPark.Core.Database.Models;
+using ContestPark.Core.Models;
+using ContestPark.Core.Services.Identity;
 using ContestPark.EventBus.Abstractions;
-using ContestPark.Follow.API.Infrastructure.Documents;
-using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
+using ContestPark.Follow.API.Infrastructure.MySql.Repositories;
 using ContestPark.Follow.API.IntegrationEvents.Events;
 using ContestPark.Follow.API.Models;
 using ContestPark.Follow.API.Resources;
@@ -21,21 +21,21 @@ namespace ContestPark.Follow.API.Controllers
         #region Private Variables
 
         private readonly IFollowRepository _followRepository;
-        private readonly IRepository<User> _userRepository;
         private readonly IEventBus _eventBus;
+        private readonly IIdentityService _identityService;
 
         #endregion Private Variables
 
         #region Constructor
 
         public FollowController(IFollowRepository followRepository,
-                                IRepository<User> userRepository,
                                 IEventBus eventBus,
+                                IIdentityService identityService,
                                 ILogger<FollowController> logger) : base(logger)
         {
             _followRepository = followRepository ?? throw new ArgumentNullException(nameof(followRepository));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _identityService = identityService;
         }
 
         #endregion Constructor
@@ -61,6 +61,10 @@ namespace ContestPark.Follow.API.Controllers
             if (!isSuccess)
                 return BadRequest();
 
+            // Kullanıcıların takipçi sayısının değiştiğini diğer servise bildirdik
+            var @event = new FollowIntegrationEvent(UserId, followedUserId);
+            _eventBus.Publish(@event);
+
             return Ok();
         }
 
@@ -83,6 +87,10 @@ namespace ContestPark.Follow.API.Controllers
             if (!isSuccess)
                 return BadRequest();
 
+            // Kullanıcıların takipçi sayısının değiştiğini diğer servise bildirdik
+            var @event = new UnFollowIntegrationEvent(UserId, followedUserId);
+            _eventBus.Publish(@event);
+
             return Ok();
         }
 
@@ -93,19 +101,18 @@ namespace ContestPark.Follow.API.Controllers
         [HttpGet("{userId}/Following")]
         [ProducesResponseType(typeof(ServiceModel<FollowModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetFollowing(string userId, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetFollowing(string userId, [FromQuery]PagingModel pagingModel)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            ServiceModel<string> following = _followRepository.Following(userId, pagingModel);
+            ServiceModel<FollowUserModel> following = _followRepository.Following(userId, pagingModel);
             if (following.Items.Count() == 0)
                 return NotFound();
 
-            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, following.Items);
-            IEnumerable<User> followingUsers = _userRepository.FindByIds(following.Items);
+            ServiceModel<FollowModel> result = await GetFollowServiceModel(following, pagingModel);
 
-            return Ok(GetFollowServiceModel(following, currentUserFollowers, followingUsers, pagingModel));
+            return Ok(result);
         }
 
         /// <summary>
@@ -115,49 +122,42 @@ namespace ContestPark.Follow.API.Controllers
         [HttpGet("{userId}/Followers")]
         [ProducesResponseType(typeof(ServiceModel<FollowModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetFollowers(string userId, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetFollowers(string userId, [FromQuery]PagingModel pagingModel)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            ServiceModel<string> followers = _followRepository.Followers(userId, pagingModel);
+            ServiceModel<FollowUserModel> followers = _followRepository.Followers(userId, pagingModel);
             if (followers.Items.Count() == 0)
                 return NotFound();
 
-            IEnumerable<string> currentUserFollowers = _followRepository.CheckFollowUpStatus(UserId, followers.Items);
-            IEnumerable<User> followingUsers = _userRepository.FindByIds(followers.Items);
+            ServiceModel<FollowModel> result = await GetFollowServiceModel(followers, pagingModel);
 
-            return Ok(GetFollowServiceModel(followers, currentUserFollowers, followingUsers, pagingModel));
+            return Ok(result);
         }
 
-        private ServiceModel<FollowModel> GetFollowServiceModel(ServiceModel<string> followers,
-                                                                IEnumerable<string> currentUserFollowers,
-                                                                IEnumerable<User> followingUsers,
+        /// <summary>
+        /// Takip listeesindeki kullanıcıların bilgileri Identity servisinden alıp birleştirerek döndürür
+        /// </summary>
+        /// <param name="followers"></param>
+        /// <param name="pagingModel"></param>
+        /// <returns></returns>
+        private async Task<ServiceModel<FollowModel>> GetFollowServiceModel(ServiceModel<FollowUserModel> followers,
                                                                 PagingModel pagingModel)
         {
-            Task.Factory.StartNew(() =>
-            {
-                // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
-                var notFoundUserIds = followers.Items.Where(u => !followingUsers.Any(x => x.Id == u)).AsEnumerable();
-                if (notFoundUserIds.Count() > 0)
-                {
-                    var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
-                    _eventBus.Publish(@event);
-                }
-            });
+            IEnumerable<UserModel> followingUsers = await _identityService.GetUserInfosAsync(followers.Items.Select(x => x.UserId).ToList());
+
             return new ServiceModel<FollowModel>
             {
                 HasNextPage = followers.HasNextPage,
                 PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
                 Items = from follower in followers.Items
-                        join followingUser in followingUsers on follower equals followingUser.Id
-                        join currentUserFollower in currentUserFollowers on follower equals currentUserFollower into currentUserFollowerData
-                        from p in currentUserFollowerData.DefaultIfEmpty()
+                        join followingUser in followingUsers on follower.UserId equals followingUser.UserId
                         select new FollowModel
                         {
-                            UserId = follower,
-                            IsFollowing = currentUserFollowerData.Any(),
+                            UserId = follower.UserId,
+                            IsFollowing = follower.IsFollow,
                             FullName = followingUser.FullName,
                             ProfilePicturePath = followingUser.ProfilePicturePath,
                             UserName = followingUser.UserName,

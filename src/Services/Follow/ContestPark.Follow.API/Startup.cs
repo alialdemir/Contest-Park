@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Core.Services.Identity;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
-using ContestPark.Follow.API.Infrastructure.Repositories.Follow;
-using ContestPark.Follow.API.IntegrationEvents.EventHandling;
-using ContestPark.Follow.API.IntegrationEvents.Events;
+using ContestPark.Follow.API.Infrastructure.MySql.Repositories;
 using ContestPark.Follow.API.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +29,10 @@ namespace ContestPark.Follow.API
         {
             services.Configure<FollowSettings>(Configuration);
 
+            services.AddMemoryCache();
+
             services.AddAuth(Configuration)
-                    .AddCosmosDb(Configuration)
+                    .AddMySql()
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(FollowResource).Name)
@@ -42,12 +44,12 @@ namespace ContestPark.Follow.API
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
-            services.AddTransient<IFollowRepository, FollowRepository>();
+            services.AddTransient<IFollowRepository, Infrastructure.MySql.Repositories.FollowRepository>();
 
-            services.AddTransient<NewUserRegisterIntegrationEventHandler>();
-            services.AddTransient<UserInfoChangedIntegrationEventHandler>();
-            services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
-            services.AddTransient<UserNotFoundIntegrationEventHandler>();
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+            AddSingleton(services);
+
+            //services.AddTransient<NewUserRegisterIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -85,14 +87,15 @@ namespace ContestPark.Follow.API
             app.UseAuth();
         }
 
+        protected virtual void AddSingleton(IServiceCollection services)
+        {
+            services.AddSingleton<IIdentityService, IdentityService>();
+        }
+
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-
-            eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
-            eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
-            eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
-            eventBus.Subscribe<UserNotFoundIntegrationEvent, UserNotFoundIntegrationEventHandler>();
+            // eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
         }
     }
 }

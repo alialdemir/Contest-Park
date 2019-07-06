@@ -36,10 +36,6 @@ namespace ContestPark.Core.Database.Models
         {
             get
             {
-                if (PageNumber == 1)
-                    return PageSize * (PageNumber - 1);
-
-                // TODO: örneğin veritabanında bir kayıt olsun ve pageNumber 2 page size 1 olsun yine 2. sayfada kayıt olmaması lazımken  yine 1 dönüyor
                 return PageSize * (PageNumber - 1);
             }
         }

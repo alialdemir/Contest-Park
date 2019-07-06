@@ -32,5 +32,15 @@ namespace ContestPark.Identity.API.Models
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
 
         public string ProfilePicturePath { get; set; }
+
+        /// <summary>
+        /// Takip ettiklerim
+        /// </summary>
+        public long FollowingCount { get; set; }
+
+        /// <summary>
+        /// Takip edenler
+        /// </summary>
+        public long FollowersCount { get; set; }
     }
 }
