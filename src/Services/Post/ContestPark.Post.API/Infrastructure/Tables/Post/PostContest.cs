@@ -1,9 +1,8 @@
-﻿using ContestPark.Core.CosmosDb.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace ContestPark.Post.API.Infrastructure.Documents
+namespace ContestPark.Post.API.Infrastructure.Tables.Post
 {
-    public partial class Post : DocumentBase
+    public partial class Post
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public decimal? Bet { get; set; }
@@ -15,7 +14,7 @@ namespace ContestPark.Post.API.Infrastructure.Documents
         public byte? CompetitorTrueAnswerCount { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string DuelId { get; set; }
+        public int? DuelId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string FounderUserId { get; set; }
@@ -24,6 +23,6 @@ namespace ContestPark.Post.API.Infrastructure.Documents
         public byte? FounderTrueAnswerCount { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryId { get; set; }
+        public int? SubCategoryId { get; set; }
     }
 }

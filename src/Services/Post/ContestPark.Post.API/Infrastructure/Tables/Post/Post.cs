@@ -1,11 +1,16 @@
-﻿using ContestPark.Core.CosmosDb.Models;
+﻿using ContestPark.Core.Database.Models;
 using ContestPark.Post.API.Enums;
+using Dapper;
 using Newtonsoft.Json;
 
-namespace ContestPark.Post.API.Infrastructure.Documents
+namespace ContestPark.Post.API.Infrastructure.Tables.Post
 {
-    public partial class Post : DocumentBase
+    [Table("Posts")]
+    public partial class Post : EntityBase
     {
+        [Key]
+        public int PostId { get; set; }
+
         private int? commentCount;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

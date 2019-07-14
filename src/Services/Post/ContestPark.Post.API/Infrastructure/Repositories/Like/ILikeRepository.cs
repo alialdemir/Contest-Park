@@ -1,20 +1,16 @@
 ﻿using ContestPark.Core.Database.Models;
-using ContestPark.Post.API.Models;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Post.API.Infrastructure.Repositories.Like
 {
     public interface ILikeRepository
     {
-        bool CheckLikeStatus(string userId, string postId);
+        bool CheckLikeStatus(string userId, int postId);
 
-        IEnumerable<CheckLikeModel> CheckLikeStatus(string[] postIds, string userId);
+        Task<bool> LikeAsync(string userId, int postId);
 
-        Task<bool> LikeAsync(string userId, string postId);
+        ServiceModel<string> PostLikes(int postId, PagingModel paging);
 
-        ServiceModel<string> PostLikes(string postId, Core.Database.Models.PagingModel paging);
-
-        Task<bool> UnLikeAsync(string userId, string postId);
+        Task<bool> UnLikeAsync(string userId, int postId);
     }
 }

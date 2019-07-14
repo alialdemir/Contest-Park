@@ -1,10 +1,9 @@
-﻿using ContestPark.Core.CosmosDb.Models;
-using ContestPark.Post.API.Enums;
+﻿using ContestPark.Post.API.Enums;
 using Newtonsoft.Json;
 
-namespace ContestPark.Post.API.Infrastructure.Documents
+namespace ContestPark.Post.API.Infrastructure.Tables.Post
 {
-    public partial class Post : DocumentBase
+    public partial class Post
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string PicturePath { get; set; }

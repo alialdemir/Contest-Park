@@ -1,9 +1,9 @@
-﻿using ContestPark.Core.Database.Interfaces;
-using ContestPark.Core.Database.Models;
+﻿using ContestPark.Core.Database.Models;
+using ContestPark.Core.Models;
+using ContestPark.Core.Services.Identity;
 using ContestPark.EventBus.Abstractions;
-using ContestPark.Post.API.Infrastructure.Documents;
+using ContestPark.Post.API.Infrastructure.MySql.Post;
 using ContestPark.Post.API.Infrastructure.Repositories.Like;
-using ContestPark.Post.API.Infrastructure.Repositories.Post;
 using ContestPark.Post.API.IntegrationEvents.Events;
 using ContestPark.Post.API.Models;
 using ContestPark.Post.API.Models.Post;
@@ -25,7 +25,7 @@ namespace ContestPark.Post.API.Controllers
         private readonly ILikeRepository _likeRepository;
         private readonly IEventBus _eventBus;
         private readonly IPostRepository _postRepository;
-        private readonly IRepository<User> _userRepository;
+        private readonly IIdentityService _identityService;
 
         #endregion Private Variables
 
@@ -34,12 +34,12 @@ namespace ContestPark.Post.API.Controllers
         public PostController(ILogger<PostController> logger,
                               IEventBus eventBus,
                               IPostRepository postRepository,
-                              IRepository<User> userRepository,
+                              IIdentityService identityService,
                               ILikeRepository likeRepository) : base(logger)
         {
             _eventBus = eventBus;
             _postRepository = postRepository;
-            _userRepository = userRepository;
+            _identityService = identityService;
             _likeRepository = likeRepository;
         }
 
@@ -50,12 +50,12 @@ namespace ContestPark.Post.API.Controllers
         [HttpGet("subcategory/{subcategoryId}")]
         [ProducesResponseType(typeof(ServiceModel<PostModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetPostsBySubcategoryId(string subcategoryId, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetPostsBySubcategoryIdAsync(int subcategoryId, [FromQuery]PagingModel pagingModel)
         {
-            if (string.IsNullOrEmpty(subcategoryId))
+            if (subcategoryId <= 0)
                 return BadRequest();
 
-            ServiceModel<PostModel> posts = _postRepository.GetPostsBySubcategoryId(subcategoryId, pagingModel);
+            ServiceModel<PostModel> posts = _postRepository.GetPostsBySubcategoryId(UserId, subcategoryId, pagingModel);
             if (posts.Items.Count() == 0)
                 return NotFound();
 
@@ -64,12 +64,11 @@ namespace ContestPark.Post.API.Controllers
                                                 .Select(x => x.UserIds.Distinct())
                                                 .FirstOrDefault();
 
-            IEnumerable<User> postUsers = _userRepository.FindByIds(postUserIds);
+            IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
             // postları beğenen kullanıcılar
-            List<CheckLikeModel> likedPosts = _likeRepository.CheckLikeStatus(posts.Items.Select(p => p.PostId).ToArray(), UserId).ToList();
 
-            return Ok(GetPostModel(posts, postUserIds, postUsers, likedPosts));
+            return Ok(GetPostModel(posts, postUserIds, postUsers));
         }
 
         /// <summary>
@@ -80,9 +79,9 @@ namespace ContestPark.Post.API.Controllers
         [HttpPost("{postId}/Like")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
-        public IActionResult PostLike([FromRoute]string postId)
+        public IActionResult PostLike([FromRoute]int postId)
         {
-            if (string.IsNullOrEmpty(postId))
+            if (postId <= 0)
                 return BadRequest();
 
             if (_likeRepository.CheckLikeStatus(UserId, postId))
@@ -102,9 +101,9 @@ namespace ContestPark.Post.API.Controllers
         [HttpDelete("{postId}/UnLike")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
-        public IActionResult DeleteUnLike([FromRoute]string postId)
+        public IActionResult DeleteUnLike([FromRoute]int postId)
         {
-            if (string.IsNullOrEmpty(postId))
+            if (postId <= 0)
                 return BadRequest();
 
             if (!_likeRepository.CheckLikeStatus(UserId, postId))
@@ -125,33 +124,31 @@ namespace ContestPark.Post.API.Controllers
         [HttpGet("{postId}/Like")]
         [ProducesResponseType(typeof(ServiceModel<PostLikeModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetPostLikes(string postId, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetPostLikesAsync([FromRoute]int postId, [FromQuery]PagingModel pagingModel)
         {
-            if (string.IsNullOrEmpty(postId))
+            if (postId <= 0)
                 return BadRequest();
 
             ServiceModel<string> postLikes = _likeRepository.PostLikes(postId, pagingModel);
             if (postLikes.Items.Count() == 0)
                 return NotFound();
 
-            IEnumerable<User> likedUsers = _userRepository.FindByIds(postLikes.Items);
+            IEnumerable<UserModel> likedUsers = await _identityService.GetUserInfosAsync(postLikes.Items);
 
             return Ok(GetPostLikeModel(postLikes, likedUsers, pagingModel));
         }
 
         private ServiceModel<PostLikeModel> GetPostLikeModel(ServiceModel<string> postLikes,
-                                                             IEnumerable<User> likedUsers,
+                                                             IEnumerable<UserModel> likedUsers,
                                                              PagingModel pagingModel)
         {
-            CheckUserIdsRegistred(postLikes.Items.ToList(), likedUsers.Select(x => x.Id).ToList());
-
             return new ServiceModel<PostLikeModel>
             {
                 HasNextPage = postLikes.HasNextPage,
                 PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
                 Items = from follower in postLikes.Items
-                        join followingUser in likedUsers on follower equals followingUser.Id
+                        join followingUser in likedUsers on follower equals followingUser.UserId
                         select new PostLikeModel
                         {
                             UserId = follower,
@@ -172,27 +169,24 @@ namespace ContestPark.Post.API.Controllers
         /// <returns></returns>
         private ServiceModel<PostModel> GetPostModel(ServiceModel<PostModel> posts,
                                                      IEnumerable<string> postUserIds,
-                                                     IEnumerable<User> postUsers,
-                                                     List<CheckLikeModel> likedPosts)
+                                                     IEnumerable<UserModel> postUsers)
         {
-            CheckUserIdsRegistred(postUserIds.ToList(), postUsers.Select(x => x.Id).ToList());
-
             return new ServiceModel<PostModel>
             {
                 HasNextPage = posts.HasNextPage,
                 PageNumber = posts.PageNumber,
                 PageSize = posts.PageSize,
                 Items = from post in posts.Items
-                        join ownerUser in postUsers on post.OwnerUserId equals ownerUser.Id
-                        join founderUser in postUsers on post.FounderUserId equals founderUser.Id
-                        join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.Id
+                        join ownerUser in postUsers on post.OwnerUserId equals ownerUser.UserId
+                        join founderUser in postUsers on post.FounderUserId equals founderUser.UserId
+                        join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId
                         select new PostModel
                         {
                             // Post bilgileri
                             Date = post.Date,
                             CommentCount = post.CommentCount,
                             LikeCount = post.LikeCount,
-                            IsLike = likedPosts.Any(x => x.PostId == post.PostId && x.UserId == UserId),
+                            IsLike = post.IsLike,
                             PostId = post.PostId,
                             PostType = post.PostType,
 
@@ -210,7 +204,7 @@ namespace ContestPark.Post.API.Controllers
                             PicturePath = post.PicturePath,
 
                             // Postun sahibi eğer düello ise kurucu postun sahibi olur
-                            OwnerUserId = ownerUser.Id,
+                            OwnerUserId = ownerUser.UserId,
                             OwnerFullName = ownerUser.FullName,
                             OwnerProfilePicturePath = ownerUser.ProfilePicturePath,
                             OwnerUserName = ownerUser.UserName,
@@ -230,25 +224,6 @@ namespace ContestPark.Post.API.Controllers
                             CompetitorUserName = competitorUser.UserName
                         }
             };
-        }
-
-        /// <summary>
-        /// List 1 içinde olmayan list 2 user idlerini  identity apiden alması için event yayınlar
-        /// </summary>
-        /// <param name="userIds1">Bu serviste olan kullanıcılar</param>
-        /// <param name="userIds2">Bu servisin user tablosunda olan kullanıcılar</param>
-        private void CheckUserIdsRegistred(List<string> userIds1, List<string> userIds2)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
-                var notFoundUserIds = userIds1.Where(u => !userIds2.Any(x => x == u)).AsEnumerable();
-                if (notFoundUserIds.Count() > 0)
-                {
-                    var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
-                    _eventBus.Publish(@event);
-                }
-            });
         }
 
         #endregion Methods

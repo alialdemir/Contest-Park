@@ -13,10 +13,10 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
                                           decimal? bet,
                                           string competitorUserId,
                                           byte? competitorTrueAnswerCount,
-                                          string duelId,
+                                          int duelId,
                                           string founderUserId,
                                           byte? founderTrueAnswerCount,
-                                          string subCategoryId,
+                                          int subCategoryId,
                                           string picturePath,
                                           string description,
                                           PostImageTypes? postImageType)
@@ -57,7 +57,7 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
         public byte? CompetitorTrueAnswerCount { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string DuelId { get; set; }
+        public int DuelId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string FounderUserId { get; set; }
@@ -66,7 +66,7 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
         public byte? FounderTrueAnswerCount { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string SubCategoryId { get; set; }
+        public int SubCategoryId { get; set; }
 
         #endregion Post contest
 

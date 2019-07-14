@@ -1,5 +1,5 @@
 ﻿using ContestPark.Core.Database.Infrastructure;
-using ContestPark.Post.API.Infrastructure.Documents;
+using ContestPark.Post.API.Infrastructure.Tables;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -18,54 +18,51 @@ namespace ContestPark.Post.API.Infrastructure
 
             await policy.ExecuteAsync(async () =>
             {
-                await InsertDataAsync(new List<Documents.Post>
+                await InsertDataAsync(new List<Tables.Post.Post>
                 {
-                        new Documents.Post
+                        new Tables.Post.Post
                     {
                             PostType = Enums.PostTypes.Image,
                             PostImageType = Enums.PostImageTypes.ProfileImage,
                             OwnerUserId = "1111-1111-1111-1111",
                             PicturePath= "http://i.pravatar.cc/150?u=witcherfearless"
                     },
-                        new Documents.Post
+                        new Tables.Post.Post
                     {
                             PostType = Enums.PostTypes.Image,
                             PostImageType = Enums.PostImageTypes.CoverImage,
                             OwnerUserId = "1111-1111-1111-1111",
                             PicturePath= "http://i.pravatar.cc/150?u=witcherfearlessCOVER"
                     },
-                        new Documents.Post
+                        new Tables.Post.Post
                     {
-                            Id = "aee6685b-059e-4afe-b315-91146415e4b4",
                             PostType = Enums.PostTypes.Text,
                             OwnerUserId = "1111-1111-1111-1111",
                             Description = "İlk postumu yazdım oleyyy",
                             LikeCount = 2,
                             CommentCount = 1
                     },
-                        new Documents.Post
+                        new Tables.Post.Post
                     {
-                            Id = "410b33a7-cd16-4dc3-81ce-eb740fec9b78",
                             PostType = Enums.PostTypes.Contest,
                             OwnerUserId = "1111-1111-1111-1111",
                             FounderUserId = "1111-1111-1111-1111",
                             FounderTrueAnswerCount = 253,
                             Bet = 500,
-                            DuelId = "123456789",// TODO: Bu id'yi duel servisinin eklediği bir düello ile eşleşmesi
-                            SubCategoryId = "7c3a26b7-74df-4128-aab9-a21f81a5ab36",
+                            DuelId = 1,
+                            SubCategoryId = 1,
                            CompetitorTrueAnswerCount = 35,
                            CompetitorUserId = "2222-2222-2222-2222",
                     },
-                        new Documents.Post
+                        new Tables.Post.Post
                     {
-                            Id = "410b33a7-cd16-4dc3-81ce-eb740fec9b78",
                             PostType = Enums.PostTypes.Contest,
                             OwnerUserId = "1111-1111-1111-1111",
                             FounderUserId = "1111-1111-1111-1111",
                             FounderTrueAnswerCount = 23,
                             Bet = 10000,
-                            DuelId = "123456789",// TODO: Bu id'yi duel servisinin eklediği bir düello ile eşleşmesi
-                            SubCategoryId = "7c3a26b7-74df-4128-aab9-a21f81a5ab36",
+                            DuelId = 1,
+                            SubCategoryId = 1,
                            CompetitorTrueAnswerCount = 44,
                            CompetitorUserId = "2222-2222-2222-2222",
                     },
@@ -76,37 +73,13 @@ namespace ContestPark.Post.API.Infrastructure
                     new Like
                     {
                             UserId = "1111-1111-1111-1111",
-                            PostId = "aee6685b-059e-4afe-b315-91146415e4b4"
+                            PostId = 1
                     },
                     new Like
                     {
                             UserId = "2222-2222-2222-2222",
-                            PostId = "aee6685b-059e-4afe-b315-91146415e4b4"
+                            PostId = 1
                     },
-                });
-
-                await InsertDataAsync(new List<User>
-                {
-                    new User
-                    {
-                            Id = "1111-1111-1111-1111",
-                            ProfilePicturePath = "http://i.pravatar.cc/150?u=witcherfearless",
-                            FullName = "Ali Aldemir",
-                            UserName = "witcherfearless",
-                    },
-                    new User
-                    {
-                        Id = "2222-2222-2222-2222",
-                        ProfilePicturePath = "http://i.pravatar.cc/150?u=demo",
-                        FullName = "Demo",
-                        UserName = "demo",
-                    }, new User
-                    {
-                        Id = "3333-3333-3333-bot",
-                        ProfilePicturePath = "http://i.pravatar.cc/150?u=bot",
-                        FullName = "Bot",
-                        UserName = "bot12345",
-                    }
                 });
             });
         }
