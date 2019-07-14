@@ -28,11 +28,10 @@ namespace ContestPark.Follow.API.Migrations
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
         }
 

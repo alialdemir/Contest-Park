@@ -7,6 +7,9 @@ services:
     - ./data:/var/lib/mysql
     restart: always
 
+  redis.data:
+    image: redis:alpine
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
@@ -87,6 +90,7 @@ services:
     image: contestparkchat.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - redis.data
     build:
       context: .
       dockerfile: src/Services/Chat/ContestPark.Chat.API/Dockerfile

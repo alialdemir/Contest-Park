@@ -1,5 +1,4 @@
-﻿using ContestPark.Chat.API.Model;
-using ContestPark.Core.Database.Models;
+﻿using ContestPark.Core.Database.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
@@ -12,6 +11,6 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
 
         Task<bool> UnBlockAsync(string skirterUserId, string deterredUserId);
 
-        ServiceModel<BlockModel> UserBlockedList(string SkirterUserId, PagingModel paging);
+        ServiceModel<Model.BlockModel> UserBlockedList(string SkirterUserId, PagingModel paging);
     }
 }

@@ -30,11 +30,10 @@ namespace ContestPark.Balance.API.Migrations
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("BalanceHistories", table =>
@@ -68,11 +67,10 @@ namespace ContestPark.Balance.API.Migrations
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime)
             );
 
@@ -116,11 +114,10 @@ namespace ContestPark.Balance.API.Migrations
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
             Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "UpdateBalance.sql", "GetBalance.sql");

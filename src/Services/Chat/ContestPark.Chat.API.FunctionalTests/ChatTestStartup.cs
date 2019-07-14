@@ -1,6 +1,8 @@
 ﻿using ContestPark.Core.FunctionalTests;
+using ContestPark.Core.Services.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ContestPark.Chat.API.FunctionalTests
 {
@@ -8,6 +10,11 @@ namespace ContestPark.Chat.API.FunctionalTests
     {
         public ChatTestStartup(IConfiguration env) : base(env)
         {
+        }
+
+        protected override void ConfigureIdentityService(IServiceCollection services)
+        {
+            services.AddSingleton<IIdentityService, IIdentityMockService>();
         }
 
         protected override void ConfigureAuth(IApplicationBuilder app)

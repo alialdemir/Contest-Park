@@ -4,7 +4,6 @@ using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
@@ -23,9 +22,9 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
         #region Constructor
 
         public SendMessageIntegrationEventHandler(IConversationRepository conversationRepository,
-                                                IMessageRepository messageRepository,
-                                                IEventBus eventBus,
-                                                ILogger<SendMessageIntegrationEventHandler> logger)
+                                                  IMessageRepository messageRepository,
+                                                  IEventBus eventBus,
+                                                  ILogger<SendMessageIntegrationEventHandler> logger)
         {
             _conversationRepository = conversationRepository;
             _messageRepository = messageRepository;
@@ -41,60 +40,31 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
         /// Mesajma işlemini handler eder
         /// </summary>
         /// <param name="event">Mesaj bilgisi</param>
-        public async Task Handle(SendMessageIntegrationEvent @event)
+        public Task Handle(SendMessageIntegrationEvent @event)
         {
-            var conversation = await _conversationRepository.AddOrGetConversationAsync(@event.SenderUserId, @event.ReceiverUserId);
-            if (conversation == null)
-            {
-                _logger.LogCritical("Mesajlaşma sırasında iki kullanıcı arasındaki conversation id alınırken hata oluştu.",
-                                    @event.SenderUserId,
-                                    @event.ReceiverUserId);
-
-                SendErrorMessage(@event.SenderUserId);
-
-                return;
-            }
-
-            bool isSuccess = await _messageRepository.AddMessage(new Model.SendMessageModel
+            long conversationId = _messageRepository.AddMessage(new Model.SendMessageModel
             {
                 Text = @event.Message,
-                ConversationId = conversation.Id,
+                ReceiverUserId = @event.ReceiverUserId,
                 AuthorUserId = @event.SenderUserId
             });
-            if (!isSuccess)
+            if (conversationId <= 0)
             {
                 _logger.LogCritical("Mesaj eklenirken hata oluştu.",
-                                    conversation,
                                     @event.SenderUserId,
                                     @event.ReceiverUserId);
 
                 SendErrorMessage(@event.SenderUserId);
 
-                return;
-            }
-
-            if (@event.SenderUserId == conversation.SenderUserId)// Okumadığı mesaj sayısı güncellendi
-            {
-                conversation.SenderUnreadMessageCount += 1;
-            }
-            else if (@event.ReceiverUserId == conversation.ReceiverUserId)
-            {
-                conversation.ReceiverUnreadMessageCount += 1;
-            }
-
-            conversation.LastMessage = @event.Message;
-            conversation.LastWriterUserId = @event.SenderUserId;
-            conversation.LastMessageDate = DateTime.Now;
-            isSuccess = await _conversationRepository.UpdateAsync(conversation);
-            if (!isSuccess)
-            {
-                _logger.LogInformation("Mesaj gönderilme işlemi sırasında son mesaj güncelleme işleminde hata alındı.", conversation.Id);
+                return Task.CompletedTask;
             }
 
             var @SendMessageEvent = new SendMessageWithSignalrIntegrationEvent(@event.SenderUserId,
-                                                                               conversation.Id,
+                                                                               conversationId,
                                                                                @event.Message);
             _eventBus.Publish(@SendMessageEvent);
+
+            return Task.CompletedTask;
         }
 
         /// <summary>

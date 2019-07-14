@@ -6,6 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\Scripts\AddMessage.sql" />
+    <None Remove="Migrations\Scripts\AllMessagesRead.sql" />
+    <None Remove="Migrations\Scripts\RemoveMessages.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\AddMessage.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Scripts\RemoveMessages.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\AllMessagesRead.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
@@ -19,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.CosmosDb\ContestPark.Core.CosmosDb.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.Dapper\ContestPark.Core.Dapper.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core\ContestPark.Core.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus.RabbitMQ\ContestPark.EventBus.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus\ContestPark.EventBus.csproj" />
@@ -33,6 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Migrations\Scripts\RemoveMessages.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\ChatResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ChatResource.Designer.cs</LastGenOutput>

@@ -1,4 +1,4 @@
-﻿using ContestPark.Chat.API.Infrastructure.Documents;
+﻿using ContestPark.Chat.API.Infrastructure.Tables;
 using ContestPark.Core.Database.Infrastructure;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,7 +20,6 @@ namespace ContestPark.Chat.API.Infrastructure
             {
                 var conversation1 = new Conversation
                 {
-                    Id = "b7ede3b3-3621-40d0-9aea-b54157f3aa72",
                     SenderUserId = "1111-1111-1111-1111",
                     LastMessage = "test",
                     LastWriterUserId = "1111-1111-1111-1111",
@@ -30,7 +29,6 @@ namespace ContestPark.Chat.API.Infrastructure
 
                 var conversation2 = new Conversation
                 {
-                    Id = "d82eab18-3d5d-43e4-9693-87d184af679e",
                     SenderUserId = "3333-3333-3333-bot",
                     LastMessage = "test",
                     LastWriterUserId = "3333-3333-3333-bot",
@@ -48,7 +46,7 @@ namespace ContestPark.Chat.API.Infrastructure
                     new Message
                     {
                          AuthorUserId ="1111-1111-1111-1111",
-                         ConversationId=conversation1.Id,
+                         ConversationId = 1,
                          Text = "test"
                     }
                 });
@@ -59,30 +57,6 @@ namespace ContestPark.Chat.API.Infrastructure
                     {
                          SkirterUserId = "1111-1111-1111-1111",
                          DeterredUserId = "3333-3333-3333-bot"
-                    }
-                });
-
-                await InsertDataAsync(new List<User>
-                {
-                    new User
-                    {
-                            Id = "1111-1111-1111-1111",
-                            ProfilePicturePath = "http://i.pravatar.cc/150?u=witcherfearless",
-                            FullName = "Ali Aldemir",
-                            UserName = "witcherfearless",
-                    },
-                    new User
-                    {
-                        Id = "2222-2222-2222-2222",
-                        ProfilePicturePath = "http://i.pravatar.cc/150?u=demo",
-                        FullName = "Demo",
-                        UserName = "demo",
-                    }, new User
-                    {
-                        Id = "3333-3333-3333-bot",
-                        ProfilePicturePath = "http://i.pravatar.cc/150?u=bot",
-                        FullName = "Bot",
-                        UserName = "bot12345",
                     }
                 });
             });

@@ -6,6 +6,8 @@ using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.EventHandling;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Resources;
+using ContestPark.Core.Services.Identity;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 using System;
 
 namespace ContestPark.Chat.API
@@ -32,11 +36,27 @@ namespace ContestPark.Chat.API
             services.Configure<ChatSettings>(Configuration);
 
             services.AddAuth(Configuration)
-                    .AddCosmosDb(Configuration)
+                    .AddMySql()
                     .AddMvc()
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(ChatResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //By connecting here we are making sure that our service
+            //cannot start until redis is ready. This might slow down startup,
+            //but given that there is a delay on resolving the ip address
+            //and then creating the connection it seems reasonable to move
+            //that cost to startup instead of having the first request pay the
+            //penalty.
+            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            {
+                var settings = sp.GetRequiredService<IOptions<ChatSettings>>().Value;
+                var configuration = ConfigurationOptions.Parse(settings.Redis, true);
+
+                configuration.ResolveDns = true;
+
+                return ConnectionMultiplexer.Connect(configuration);
+            });
 
             services.AddLocalizationCustom();
 
@@ -44,15 +64,13 @@ namespace ContestPark.Chat.API
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
+            ConfigureIdentityService(services);
+
             services.AddTransient<IConversationRepository, ConversationRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<IBlockRepository, BlockRepository>();
 
             services.AddTransient<SendMessageIntegrationEventHandler>();
-            services.AddTransient<NewUserRegisterIntegrationEventHandler>();
-            services.AddTransient<UserInfoChangedIntegrationEventHandler>();
-            services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
-            services.AddTransient<UserNotFoundIntegrationEventHandler>();
             services.AddTransient<RemoveMessagesIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
@@ -86,6 +104,12 @@ namespace ContestPark.Chat.API
             ConfigureEventBus(app);
         }
 
+        protected virtual void ConfigureIdentityService(IServiceCollection services)
+        {
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+            services.AddSingleton<IIdentityService, IdentityService>();
+        }
+
         protected virtual void ConfigureAuth(IApplicationBuilder app)
         {
             app.UseAuth();
@@ -96,10 +120,6 @@ namespace ContestPark.Chat.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<SendMessageIntegrationEvent, SendMessageIntegrationEventHandler>();
-            eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
-            eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
-            eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
-            eventBus.Subscribe<UserNotFoundIntegrationEvent, UserNotFoundIntegrationEventHandler>();
             eventBus.Subscribe<RemoveMessagesIntegrationEvent, RemoveMessagesIntegrationEventHandler>();
         }
     }

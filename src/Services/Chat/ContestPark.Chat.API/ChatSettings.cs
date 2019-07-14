@@ -2,8 +2,8 @@
 {
     public class ChatSettings
     {
-        public string Audience { get; set; }
-        public string ClientKey { get; set; }
-        public string identityUrl { get; set; }
+        public string Redis { get; set; }
+        public bool IsMigrateDatabase { get; set; }
+        public string ConnectionString { get; set; }
     }
 }

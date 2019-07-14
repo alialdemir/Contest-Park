@@ -6,7 +6,11 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3306:3306"    # Important: In a production environment your should remove the external port
-
+      
+  redis.data:
+    ports:
+      - "6379:6379"    # Important: In a production environment your should remove the external port
+      
   rabbitmq:
     ports:
       - "15672:15672"  # Important: In a production environment your should remove the external port
@@ -74,9 +78,6 @@ services:
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
-      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
-      - CosmosDbDatabaseId=ContestPark.Balance
       - IsMigrateDatabase=true
     ports:
       - "5104:80"
@@ -97,13 +98,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - identityUrl=http://contestpark.identity.api
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkChat;pwd=root;}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
       - Audience=chat
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - CosmosDbServiceEndpoint=${CONTESTPARK_COSMOSDB_SERVICE_ENDPOINT}
-      - CosmosDbAuthKeyOrResourceToken=${CONTESTPARK_COSMOSDB_AUTH_KEY_OR_RESOURCE_TOKEN}
-      - CosmosDbDatabaseId=ContestPark.Chat
+      - IsMigrateDatabase=true
     ports:
       - "5106:80"
     volumes:

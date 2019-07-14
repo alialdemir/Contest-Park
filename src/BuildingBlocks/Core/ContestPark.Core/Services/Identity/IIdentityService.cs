@@ -1,7 +1,11 @@
-﻿namespace ContestPark.Core.Services.Identity
+﻿using ContestPark.Core.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ContestPark.Core.Services.Identity
 {
     public interface IIdentityService
     {
-        System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Models.UserModel>> GetUserInfosAsync(System.Collections.Generic.IEnumerable<string> userIds);
+        Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds);
     }
 }

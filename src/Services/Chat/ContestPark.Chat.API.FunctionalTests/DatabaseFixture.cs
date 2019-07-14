@@ -1,5 +1,5 @@
-﻿using ContestPark.Core.FunctionalTests;
-using Microsoft.Azure.Documents.Client;
+﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.FunctionalTests;
 using System;
 using Xunit;
 
@@ -14,10 +14,7 @@ namespace ContestPark.Chat.API.FunctionalTests
         public void Dispose()
         {
             // ... clean up test data from the database ...
-
-            DocumentClient documentClient = new DocumentClient(new Uri(Conf.Configuration["CosmosDbServiceEndpoint"]),
-                Conf.Configuration["CosmosDbAuthKeyOrResourceToken"]);
-            documentClient.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri(Conf.Configuration["CosmosDbDatabaseId"])).Wait();
+            DatabaseExtension.DeleteDatabase(Conf.Configuration["ConnectionString"]);
         }
     }
 

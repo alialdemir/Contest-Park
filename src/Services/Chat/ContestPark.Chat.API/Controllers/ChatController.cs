@@ -1,12 +1,12 @@
-﻿using ContestPark.Chat.API.Infrastructure.Documents;
-using ContestPark.Chat.API.Infrastructure.Repositories.Block;
+﻿using ContestPark.Chat.API.Infrastructure.Repositories.Block;
 using ContestPark.Chat.API.Infrastructure.Repositories.Conversation;
 using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Model;
 using ContestPark.Chat.API.Resources;
-using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
+using ContestPark.Core.Models;
+using ContestPark.Core.Services.Identity;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -24,8 +24,8 @@ namespace ContestPark.Chat.API.Controllers
 
         private readonly IBlockRepository _blockRepository;
         private readonly IConversationRepository _conversationRepository;
+        private readonly IIdentityService _identityService;
         private readonly IEventBus _eventBus;
-        private readonly IRepository<User> _userRepository;
         private readonly IMessageRepository _messageRepository;
 
         #endregion Private Variables
@@ -35,13 +35,13 @@ namespace ContestPark.Chat.API.Controllers
         public ChatController(ILogger<ChatController> logger,
                               IBlockRepository blockRepository,
                               IConversationRepository conversationRepository,
-                              IRepository<User> userRepository,
+                              IIdentityService identityService,
                               IMessageRepository messageRepository,
                               IEventBus eventBus) : base(logger)
         {
             _blockRepository = blockRepository;
             _conversationRepository = conversationRepository;
-            _userRepository = userRepository;
+            _identityService = identityService;
             _messageRepository = messageRepository;
             _eventBus = eventBus;
         }
@@ -55,33 +55,32 @@ namespace ContestPark.Chat.API.Controllers
         /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(ServiceModel<MessageModel>), (int)HttpStatusCode.OK)]
-        public IActionResult Get([FromQuery] PagingModel paging)
+        public async Task<IActionResult> Get([FromQuery] PagingModel paging)
         {
             // TODO: VisibilityStatus ile ilgili birşey yapılmadı o kısım yazılacak
 
             ServiceModel<MessageModel> result = _conversationRepository.UserMessages(UserId, paging);
 
-            if (result.Items.Count() > 0)
+            if (result == null || result.Items == null || result.Items.Count() == 0)
+                return Ok(result);
+
+            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.SenderUserId).AsEnumerable());
+
+            result.Items.ToList().ForEach(message =>
             {
-                IEnumerable<User> users = _userRepository.FindByIds(result.Items.Select(x => x.SenderUserId).AsEnumerable());
+                UserModel user = users.FirstOrDefault(x => x.UserId == message.SenderUserId);
 
-                result.Items.ToList().ForEach(message =>
+                message.UserFullName = user.FullName;
+                message.UserProfilePicturePath = user.ProfilePicturePath;
+                message.UserName = user.UserName;
+
+                if (message.LastWriterUserId == UserId)// en son mesajı gönderen kendiisi ise
                 {
-                    message.UserFullName = users.Where(u => u.Id == message.SenderUserId).FirstOrDefault().FullName;
-                    message.UserProfilePicturePath = users.Where(u => u.Id == message.SenderUserId).FirstOrDefault().ProfilePicturePath;
-                    message.UserName = users.Where(u => u.Id == message.SenderUserId).FirstOrDefault().UserName;
+                    message.Message = ChatResource.You + ": " + message.Message;
+                }
 
-                    if (message.LastWriterUserId == UserId)// en son mesajı gönderen kendiisi ise
-                    {
-                        message.Message = ChatResource.You + ": " + message.Message;
-                    }
-
-                    message.LastWriterUserId = null;// cliente gitmemesi için null atadım
-                });
-
-                GetUndefinedUsers(result.Items.Select(u => u.SenderUserId).AsEnumerable(),
-                                  users.Select(u => u.Id).AsEnumerable());
-            }
+                message.LastWriterUserId = null;// cliente gitmemesi için null atadım
+            });
 
             return Ok(result);
         }
@@ -94,12 +93,12 @@ namespace ContestPark.Chat.API.Controllers
         /// <returns>Konuşma detayı</returns>
         [HttpGet("{conversationId}")]
         [ProducesResponseType(typeof(ServiceModel<ConversationDetailModel>), (int)HttpStatusCode.OK)]
-        public IActionResult Get([FromRoute]string conversationId, [FromQuery] PagingModel paging)
+        public IActionResult Get([FromRoute]long conversationId, [FromQuery] PagingModel paging)
         {
             if (!_conversationRepository.IsConversationBelongUser(UserId, conversationId))// Conversation id o login olan kullanıcının bulunduğu bir konuşma mı kontrol ettik
                 return BadRequest(ChatResource.ThisConversationIsNotYours);
 
-            ServiceModel<ConversationDetailModel> result = _messageRepository.ConversationDetail(conversationId, paging);
+            ServiceModel<ConversationDetailModel> result = _messageRepository.ConversationDetail(UserId, conversationId, paging);
 
             return Ok(result);
         }
@@ -122,7 +121,7 @@ namespace ContestPark.Chat.API.Controllers
         /// </summary>
         [HttpPost("{conversationId}/ReadMessages")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromRoute]string conversationId)// TODO: dönen type ProducesResponseType typeof olarak gösterilmeli
+        public async Task<IActionResult> Post([FromRoute]long conversationId)// TODO: dönen type ProducesResponseType typeof olarak gösterilmeli
         {
             bool isSuccess = await _conversationRepository.AllMessagesRead(UserId, conversationId);
 
@@ -132,7 +131,7 @@ namespace ContestPark.Chat.API.Controllers
             }
             else
             {
-                isSuccess = await _messageRepository.RemoveMessages(UserId, conversationId);
+                isSuccess = await _messageRepository.RemoveMessagesAsync(UserId, conversationId);
                 if (!isSuccess)
                 {
                     Logger.LogCritical("CRITICAL: Mesajlar okundu yap kısmı başarısız oldu", conversationId);
@@ -169,9 +168,9 @@ namespace ContestPark.Chat.API.Controllers
         [HttpDelete("{conversationId}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
-        public IActionResult RemoveMessages([FromRoute]string conversationId)
+        public IActionResult RemoveMessages([FromRoute]long conversationId)
         {
-            if (string.IsNullOrEmpty(conversationId))
+            if (conversationId <= 0)
                 return BadRequest();
 
             if (!_conversationRepository.IsConversationBelongUser(UserId, conversationId))// Conversation id o login olan kullanıcının bulunduğu bir konuşma mı kontrol ettik
@@ -253,38 +252,14 @@ namespace ContestPark.Chat.API.Controllers
         /// <returns>Engellenen kullanıcılar</returns>
         [HttpGet("Block")]
         [ProducesResponseType(typeof(ServiceModel<BlockModel>), (int)HttpStatusCode.OK)]
-        public IActionResult UserBlockedList([FromQuery]PagingModel paging)
+        public async Task<IActionResult> UserBlockedList([FromQuery]PagingModel paging)
         {
             ServiceModel<BlockModel> result = _blockRepository.UserBlockedList(UserId, paging);
-            IEnumerable<User> users = _userRepository.FindByIds(result.Items.Select(x => x.UserId).AsEnumerable());
+            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.UserId).AsEnumerable());
 
-            result.Items.ToList().ForEach(block =>
-            {
-                block.FullName = users.Where(u => u.Id == block.UserId).FirstOrDefault().FullName;
-            });
-
-            GetUndefinedUsers(result.Items.Select(u => u.UserId).AsEnumerable(),
-                              users.Select(x => x.Id).AsEnumerable());
+            result.Items.ToList().ForEach(block => block.FullName = users.FirstOrDefault(u => u.UserId == block.UserId).FullName);
 
             return Ok(result);
-        }
-
-        /// <summary>
-        // User tablosunda olmayan kullanıcıları identity den istemek için event publish ettik
-        /// </summary>
-        /// <param name="userIds"></param>
-        /// <param name="users"></param>
-        private void GetUndefinedUsers(IEnumerable<string> userIds, IEnumerable<string> users)
-        {
-            var notFoundUserIds = userIds
-                                  .Where(u => !users.Any(x => x == u))
-                                  .AsEnumerable();
-
-            if (notFoundUserIds.Count() > 0)// Bulunamayan kullanıcıları identity apiden alması için event yolladık
-            {
-                var @event = new UserNotFoundIntegrationEvent(notFoundUserIds);
-                _eventBus.Publish(@event);
-            }
         }
 
         #endregion Methods
