@@ -74,7 +74,7 @@ namespace ContestPark.Chat.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .PostAsync(Entpoints.PostReadMessages("b7ede3b3-3621-40d0-9aea-b54157f3aa72"), null);
+                    .PostAsync(Entpoints.PostReadMessages(2), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -86,9 +86,9 @@ namespace ContestPark.Chat.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetConversationDetail("b7ede3b3-3621-40d0-9aea-b54157f3aa72"));
+                    .GetAsync(Entpoints.GetConversationDetail(1));
 
-                Assert.Equal("You have not blocked this user.", GetErrorMessage(response));
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
         }
 
@@ -101,7 +101,7 @@ namespace ContestPark.Chat.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                     .AddLangCode(langCode)
-                    .GetAsync(Entpoints.GetConversationDetail("fake-conversation-id"));
+                    .GetAsync(Entpoints.GetConversationDetail(9999));
 
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
@@ -115,7 +115,7 @@ namespace ContestPark.Chat.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                  .GetAsync(Entpoints.GetConversationDetail("b7ede3b3-3621-40d0-9aea-b54157f3aa72", true, 1, 1));
+                  .GetAsync(Entpoints.GetConversationDetail(1, true, 1, 1));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -131,13 +131,13 @@ namespace ContestPark.Chat.API.FunctionalTests
             }
         }
 
-        [Fact, TestPriority(1)]
+        [Fact, TestPriority(2)]
         public async Task Delete_messages_and_response_ok_status_code()
         {
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .DeleteAsync(Entpoints.DeleteMessages("b7ede3b3-3621-40d0-9aea-b54157f3aa72"));
+                    .DeleteAsync(Entpoints.DeleteMessages(1));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -152,7 +152,7 @@ namespace ContestPark.Chat.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                     .AddLangCode(langCode)
-                    .DeleteAsync(Entpoints.DeleteMessages("d82eab18-3d5d-43e4-9693-87d184af679e"));
+                    .DeleteAsync(Entpoints.DeleteMessages(2));
 
                 Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 

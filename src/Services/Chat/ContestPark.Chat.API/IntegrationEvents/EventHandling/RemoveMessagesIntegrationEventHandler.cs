@@ -34,7 +34,7 @@ namespace ContestPark.Chat.API.IntegrationEvents.EventHandling
         /// </summary>
         public async Task Handle(RemoveMessagesIntegrationEvent @event)
         {
-            bool isSuccess = await _messageRepository.RemoveMessages(@event.UserId, @event.ConversationId);
+            bool isSuccess = await _messageRepository.RemoveMessagesAsync(@event.UserId, @event.ConversationId);
             if (!isSuccess)
             {
                 var @eventSendError = new SendErrorMessageWithSignalrIntegrationEvent(@event.UserId,

@@ -1,5 +1,4 @@
 ﻿using ContestPark.Chat.API.Model;
-using ContestPark.Core.CosmosDb.Extensions;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using System.Threading.Tasks;
@@ -10,13 +9,13 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
     {
         #region Private Variables
 
-        private readonly IRepository<Documents.Block> _blockRepository;
+        private readonly IRepository<Tables.Block> _blockRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public BlockRepository(IRepository<Documents.Block> blockRepository)
+        public BlockRepository(IRepository<Tables.Block> blockRepository)
         {
             _blockRepository = blockRepository;
         }
@@ -36,7 +35,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
             if (string.IsNullOrEmpty(skirterUserId) || string.IsNullOrEmpty(deterredUserId))
                 return Task.FromResult(false);
 
-            return _blockRepository.AddAsync(new Documents.Block
+            return _blockRepository.AddAsync(new Tables.Block
             {
                 SkirterUserId = skirterUserId,
                 DeterredUserId = deterredUserId
@@ -51,7 +50,13 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
         /// <returns>İşlem durumu başarılı ise true değilse false</returns>
         public Task<bool> UnBlockAsync(string skirterUserId, string deterredUserId)
         {
-            return _blockRepository.RemoveAsync(x => x.DeterredUserId == deterredUserId && x.SkirterUserId == skirterUserId);
+            string sql = "DELETE FROM Blocks WHERE DeterredUserId = @deterredUserId AND SkirterUserId = @skirterUserId";
+
+            return _blockRepository.ExecuteAsync(sql, new
+            {
+                skirterUserId,
+                deterredUserId
+            });
         }
 
         /// <summary>
@@ -62,9 +67,14 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
         /// <returns>İki tarafdan biri engellemiş mi true değilse false</returns>
         public bool BlockingStatus(string skirterUserId, string deterredUserId)
         {
-            string sql = @"SELECT TOP 1 VALUE true FROM c
-                           WHERE (c.SkirterUserId=@skirterUserId AND c.DeterredUserId=@deterredUserId)
-                              OR (c.SkirterUserId=@deterredUserId AND c.DeterredUserId=@skirterUserId)";
+            string sql = @"SELECT (CASE
+                           WHEN EXISTS(
+                           SELECT NULL
+                           FROM Blocks b WHERE (b.SkirterUserId=@skirterUserId AND b.DeterredUserId=@deterredUserId)
+                              OR (b.SkirterUserId=@deterredUserId AND b.DeterredUserId=@skirterUserId))
+                           THEN 1
+                           ELSE 0
+                           END)";
 
             return _blockRepository.QuerySingleOrDefault<bool>(sql, new
             {
@@ -81,16 +91,14 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
         /// <returns>Engellenen kullanıcılar</returns>
         public ServiceModel<BlockModel> UserBlockedList(string SkirterUserId, PagingModel paging)
         {
-            string sql = @"SELECT VALUE {
-                           IsBlocked: true,
-                           UserId: c.DeterredUserId
-                           } FROM c  WHERE c.SkirterUserId=@SkirterUserId
-                           ORDER BY c.CreatedDate DESC";
+            string sql = @"SELECT b.DeterredUserId AS UserId FROM Blocks b
+                           WHERE b.SkirterUserId=@SkirterUserId
+                           ORDER BY b.CreatedDate DESC";
 
-            return _blockRepository.ToServiceModel<Documents.Block, BlockModel>(sql, new
+            return _blockRepository.ToServiceModel<BlockModel>(sql, new
             {
                 SkirterUserId,
-            }, paging);
+            }, pagingModel: paging);
         }
 
         #endregion Methods

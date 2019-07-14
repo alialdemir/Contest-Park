@@ -2,21 +2,21 @@
 using Dapper;
 using System;
 
-namespace ContestPark.Chat.API.Infrastructure.Mysql
+namespace ContestPark.Chat.API.Infrastructure.Tables
 {
     [Table("Conversations")]
     public class Conversation : EntityBase
     {
         [Key]
-        public int ConversationId { get; set; }
+        public long ConversationId { get; set; }
 
         public string SenderUserId { get; set; }
 
         public string ReceiverUserId { get; set; }
 
-        public int SenderUnreadMessageCount { get; set; }// bu konuşmadaki gönderenin okumadığı mesaj sayısı
+        public short SenderUnreadMessageCount { get; set; }// bu konuşmadaki gönderenin okumadığı mesaj sayısı
 
-        public int ReceiverUnreadMessageCount { get; set; }// bu konuşmadaki alıcının okumadığı  mesaj sayısı
+        public short ReceiverUnreadMessageCount { get; set; }// bu konuşmadaki alıcının okumadığı  mesaj sayısı
 
         public string LastMessage { get; set; }
 

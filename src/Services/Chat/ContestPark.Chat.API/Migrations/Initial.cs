@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
 using FluentMigrator;
+using System.Reflection;
 
 namespace ContestPark.Chat.API.Migrations
 {
@@ -8,6 +9,8 @@ namespace ContestPark.Chat.API.Migrations
     {
         public override void Up()
         {
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "AllMessagesRead.sql", "RemoveMessages.sql", "AddMessage.sql");
+
             this.CreateTableIfNotExists("Blocks", table =>
             table
 
@@ -18,22 +21,19 @@ namespace ContestPark.Chat.API.Migrations
 
                 .WithColumn("SkirterUserId")
                 .AsString(255)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("DeterredUserId")
                 .AsString(255)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("Conversations", table =>
@@ -46,44 +46,40 @@ namespace ContestPark.Chat.API.Migrations
 
                 .WithColumn("SenderUserId")
                 .AsString(255)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("ReceiverUserId")
                 .AsString(255)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("SenderUnreadMessageCount")
                 .AsInt16()
-                .Unique()
+                .WithDefaultValue(0)
 
                 .WithColumn("ReceiverUnreadMessageCount")
                 .AsInt16()
-                .Unique()
+                .WithDefaultValue(0)
 
                 .WithColumn("LastMessage")
                 .AsString(1000)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("LastMessageDate")
                 .AsDateTime()
                 .Nullable()
+                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("LastWriterUserId")
                 .AsString(255)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("Messages", table =>
@@ -91,21 +87,20 @@ namespace ContestPark.Chat.API.Migrations
 
                 .WithColumn("MessageId")
                 .AsInt64()
-                .ForeignKey()
+                .PrimaryKey()
+                .Identity()
 
                 .WithColumn("ConversationId")
-                .AsString(255)
+                .AsInt64()
                 .ForeignKey("Conversations", "ConversationId")
                 .NotNullable()
 
                 .WithColumn("Text")
                 .AsString(1000)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("AuthorUserId")
                 .AsString(255)
-                .Unique()
                 .NotNullable()
 
                 .WithColumn("ReceiverIsDeleted")
@@ -120,11 +115,10 @@ namespace ContestPark.Chat.API.Migrations
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
         }
 

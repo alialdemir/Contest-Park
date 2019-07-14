@@ -4,7 +4,7 @@ namespace ContestPark.Core.Database.Interfaces
 {
     public interface IEntity
     {
-        DateTime ModifiedDate { get; set; }
+        DateTime? ModifiedDate { get; set; }
         DateTime CreatedDate { get; set; }
     }
 }

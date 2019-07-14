@@ -7,9 +7,9 @@ namespace ContestPark.Chat.API.Infrastructure.Tables
     public class Message : EntityBase
     {
         [Key]
-        public int MessageId { get; set; }
+        public long MessageId { get; set; }
 
-        public string ConversationId { get; set; }
+        public long ConversationId { get; set; }
 
         public string Text { get; set; }
 

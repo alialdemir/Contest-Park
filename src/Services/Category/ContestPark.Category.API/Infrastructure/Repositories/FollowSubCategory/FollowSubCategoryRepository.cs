@@ -69,7 +69,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
                            FROM FollowSubCategories fsc WHERE fsc.UserId = @userId AND fsc.SubCategoryId = @subCategoryId)
                            THEN 1
                            ELSE 0
-                           END) ";
+                           END)";
 
             return _followSubCategoryRepository.QuerySingleOrDefault<bool>(sql, new
             {

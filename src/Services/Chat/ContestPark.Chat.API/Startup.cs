@@ -6,6 +6,8 @@ using ContestPark.Chat.API.Infrastructure.Repositories.Message;
 using ContestPark.Chat.API.IntegrationEvents.EventHandling;
 using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Resources;
+using ContestPark.Core.Services.Identity;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 using System;
 
 namespace ContestPark.Chat.API
@@ -38,11 +42,29 @@ namespace ContestPark.Chat.API
                     .AddDataAnnotationsLocalization(typeof(ChatResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //By connecting here we are making sure that our service
+            //cannot start until redis is ready. This might slow down startup,
+            //but given that there is a delay on resolving the ip address
+            //and then creating the connection it seems reasonable to move
+            //that cost to startup instead of having the first request pay the
+            //penalty.
+            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            {
+                var settings = sp.GetRequiredService<IOptions<ChatSettings>>().Value;
+                var configuration = ConfigurationOptions.Parse(settings.Redis, true);
+
+                configuration.ResolveDns = true;
+
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
             services.AddLocalizationCustom();
 
             services
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
+
+            ConfigureIdentityService(services);
 
             services.AddTransient<IConversationRepository, ConversationRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
@@ -80,6 +102,12 @@ namespace ContestPark.Chat.API
                .UseMvc();
 
             ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureIdentityService(IServiceCollection services)
+        {
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+            services.AddSingleton<IIdentityService, IdentityService>();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

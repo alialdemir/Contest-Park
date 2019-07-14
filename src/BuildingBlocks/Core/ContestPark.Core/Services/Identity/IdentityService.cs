@@ -1,9 +1,11 @@
 ﻿using ContestPark.Core.Models;
 using ContestPark.Core.Services.RequestProvider;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Core.Services.Identity
@@ -13,8 +15,11 @@ namespace ContestPark.Core.Services.Identity
         #region Private Variables
 
         private readonly IRequestProvider _requestProvider;
-        private readonly IMemoryCache _memoryCache;
+        private readonly ConnectionMultiplexer _redis;
+        private readonly IDatabase _database;
+
         private readonly string baseUrl = "";
+        private readonly string redisKey = "UserInfos";
 
         #endregion Private Variables
 
@@ -22,11 +27,15 @@ namespace ContestPark.Core.Services.Identity
 
         public IdentityService(IRequestProvider requestProvider,
                                IConfiguration configuration,
-                               IMemoryCache memoryCache)
+                               ConnectionMultiplexer redis)
         {
             _requestProvider = requestProvider ?? throw new ArgumentNullException(nameof(requestProvider));
-            _memoryCache = memoryCache;
-            baseUrl = configuration["identityUrl"] ?? throw new ArgumentNullException(nameof(baseUrl));
+
+            _redis = redis ?? throw new ArgumentNullException(nameof(redis));
+            _database = redis.GetDatabase();
+
+            string identityUrl = configuration["identityUrl"] ?? throw new ArgumentNullException(nameof(baseUrl));
+            baseUrl = identityUrl + "/api/v1/account";
         }
 
         #endregion Constructor
@@ -40,13 +49,60 @@ namespace ContestPark.Core.Services.Identity
         /// <returns>Kullanıcı bilgilei</returns>
         public async Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
         {
-            var result = await _memoryCache.GetOrCreate("UserInfos", async (entry) =>
+            List<UserModel> users = await GetUsersAsync();
+
+            var notFoundUserIds = userIds.Where(u => !users.Any(x => x.UserId == u)).AsEnumerable();
+            if (notFoundUserIds.Count() > 0) // users listesinde yani redisde olmayan kullanıcıları gidip identity serviceden alıp redise ekleyip return ediyoruz
             {
-                entry.SlidingExpiration = TimeSpan.FromSeconds(10);
-                return await _requestProvider.PostAsync<IEnumerable<UserModel>>($"{baseUrl}/api/v1/account/UserInfos", userIds);
-            });
+                IEnumerable<UserModel> serviceUsers = await _requestProvider.PostAsync<IEnumerable<UserModel>>($"{baseUrl}/UserInfos", userIds);
+
+                if (serviceUsers != null || serviceUsers.Count() > 0)// Eğer identity servisten yeni kullanıcılar gelirse onlarıda result listesine ve redis'e ekledik
+                {
+                    users.AddRange(serviceUsers);
+
+                    _ = Task.Factory.StartNew(() =>
+                      {
+                          SetUsers(users.Distinct());
+                      });
+                }
+            }
+
+            List<UserModel> result = users
+                                        .Where(x => userIds.Any(user => user == x.UserId))
+                                        .ToList();
 
             return result;
+        }
+
+        /// <summary>
+        /// Redise kullanıcı listesi set eder
+        /// 30 dakkika işlem yapılmazsa siler
+        /// 60 dakkika da bir tümünü siler
+        /// </summary>
+        /// <param name="users">Redise eklenecek kullanıcılar</param>
+        private void SetUsers(IEnumerable<UserModel> users)
+        {
+            if (users == null || users.ToList().Count == 0)
+                return;
+
+            string userJson = JsonConvert.SerializeObject(users);
+
+            _database.StringSetAsync(redisKey, userJson, expiry: TimeSpan.FromMinutes(30), when: When.NotExists);
+        }
+
+        /// <summary>
+        /// Redisdeki tüm kullanıcı listesini getirir
+        /// </summary>
+        /// <returns>Kullanıcı listesi</returns>
+        private async Task<List<UserModel>> GetUsersAsync()
+        {
+            string users = await _database.StringGetAsync(redisKey);
+            if (string.IsNullOrEmpty(users))
+                return new List<UserModel>();
+
+            List<UserModel> userModels = JsonConvert.DeserializeObject<List<UserModel>>(users);
+
+            return userModels;
         }
 
         #endregion Methods

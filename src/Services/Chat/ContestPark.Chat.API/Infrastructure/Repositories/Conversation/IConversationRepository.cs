@@ -1,17 +1,17 @@
-﻿using ContestPark.Core.Database.Models;
+﻿using ContestPark.Chat.API.Model;
+using ContestPark.Core.Database.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
 {
     public interface IConversationRepository
     {
-        Task<Documents.Conversation> AddOrGetConversationAsync(string senderUserId, string receiverUserId);
-        Task<bool> AllMessagesRead(string useerId, string conversationId);
-        bool IsConversationBelongUser(string userId, string conversationId);
+        Task<bool> AllMessagesRead(string useerId, long conversationId);
 
-        bool IsSender(string userId, string conversationId);
+        bool IsConversationBelongUser(string userId, long conversationId);
+
         int UnReadMessageCount(string userId);
-        Task<bool> UpdateAsync(Documents.Conversation conversation);
-        ServiceModel<Model.MessageModel> UserMessages(string userId, PagingModel paging);
+
+        ServiceModel<MessageModel> UserMessages(string userId, PagingModel paging);
     }
 }

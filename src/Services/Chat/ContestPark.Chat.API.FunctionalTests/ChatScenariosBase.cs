@@ -1,8 +1,13 @@
 ﻿using ContestPark.Chat.API.Infrastructure;
+using ContestPark.Chat.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace ContestPark.Chat.API.FunctionalTests
@@ -12,11 +17,24 @@ namespace ContestPark.Chat.API.FunctionalTests
     {
         public override void Seed(IWebHost host)
         {
-            host.MigrateDatabase<ChatApiSeed>((services, logger) =>
+            host.MigrateDatabase((services, updateDatabase) =>
             {
-                new ChatApiSeed()
-                    .SeedAsync(services, logger)
-                    .Wait();
+                var settings = services.GetService<IOptions<ChatSettings>>();
+
+                if (!settings.Value.IsMigrateDatabase)
+                    return;
+
+                var logger = services.GetService<ILogger<ChatApiSeed>>();
+
+                updateDatabase(
+                    settings.Value.ConnectionString,
+                    MigrationAssembly.GetAssemblies(),
+                    () =>
+                    {
+                        new ChatApiSeed()
+                         .SeedAsync(services, logger)
+                         .Wait();
+                    });
             });
         }
 
@@ -37,7 +55,7 @@ namespace ContestPark.Chat.API.FunctionalTests
                 return $"api/v1/Chat/unblock/{deterredUserId}";
             }
 
-            public static string PostReadMessages(string conversationId)
+            public static string PostReadMessages(long conversationId)
             {
                 return $"api/v1/Chat/{conversationId}/ReadMessages";
             }
@@ -66,12 +84,12 @@ namespace ContestPark.Chat.API.FunctionalTests
                 return $"api/v1/Chat/UnReadMessageCount";
             }
 
-            public static string DeleteMessages(string conversationId)
+            public static string DeleteMessages(long conversationId)
             {
                 return $"api/v1/Chat/{conversationId}";
             }
 
-            public static string GetConversationDetail(string conversationId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            public static string GetConversationDetail(long conversationId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
             {
                 return paginated
                     ? $"api/v1/Chat/{conversationId}" + Paginated(pageSize, pageNumber)

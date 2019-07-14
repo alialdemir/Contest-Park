@@ -6,8 +6,10 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
 {
     public interface IMessageRepository
     {
-        Task<bool> AddMessage(SendMessageModel message);
-        ServiceModel<ConversationDetailModel> ConversationDetail(string conversationId, PagingModel paging);
-        Task<bool> RemoveMessages(string userId, string conversationId);
+        long AddMessage(SendMessageModel message);
+
+        ServiceModel<ConversationDetailModel> ConversationDetail(string userId, long conversationId, PagingModel paging);
+
+        Task<bool> RemoveMessagesAsync(string userId, long conversationId);
     }
 }

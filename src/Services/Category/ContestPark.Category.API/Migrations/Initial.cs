@@ -33,11 +33,10 @@ namespace ContestPark.Category.API.Migrations
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
-                .WithDefault(SystemMethods.CurrentDateTime)
 
                 .WithColumn("CreatedDate")
                 .AsDateTime()
-                .Nullable()
+                .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("CategoryLocalizeds", table =>
@@ -62,11 +61,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
-                        .WithDefault(SystemMethods.CurrentDateTime)
 
                         .WithColumn("CreatedDate")
                         .AsDateTime()
-                        .Nullable()
+                        .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("FollowSubCategories", table =>
@@ -87,11 +85,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
-                        .WithDefault(SystemMethods.CurrentDateTime)
 
                         .WithColumn("CreatedDate")
                         .AsDateTime()
-                        .Nullable()
+                        .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("OpenSubCategories", table =>
@@ -112,11 +109,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
-                        .WithDefault(SystemMethods.CurrentDateTime)
 
                         .WithColumn("CreatedDate")
                         .AsDateTime()
-                        .Nullable()
+                        .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("SubCategoryRls", table =>
@@ -137,11 +133,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
-                        .WithDefault(SystemMethods.CurrentDateTime)
 
                         .WithColumn("CreatedDate")
                         .AsDateTime()
-                        .Nullable()
+                        .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("SubCategories", table =>
@@ -178,11 +173,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
-                        .WithDefault(SystemMethods.CurrentDateTime)
 
                         .WithColumn("CreatedDate")
                         .AsDateTime()
-                        .Nullable()
+                        .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("SubCategoryLangs", table =>
@@ -211,11 +205,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
-                        .WithDefault(SystemMethods.CurrentDateTime)
 
                         .WithColumn("CreatedDate")
                         .AsDateTime()
-                        .Nullable()
+                        .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
             Create.ForeignKey()
