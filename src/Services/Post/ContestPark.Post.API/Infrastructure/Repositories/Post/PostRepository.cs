@@ -50,7 +50,6 @@ namespace ContestPark.Post.API.Infrastructure.MySql
                              p.OwnerUserId,
                              p.PostId,
                              p.PostType,
-
                              p.Bet,
                              p.DuelId,
                              p.SubCategoryId,
@@ -58,7 +57,6 @@ namespace ContestPark.Post.API.Infrastructure.MySql
                              p.CompetitorTrueAnswerCount,
                              p.FounderUserId,
                              p.FounderTrueAnswerCount,
-
                              (SELECT (CASE
                              WHEN EXISTS(
                              SELECT NULL
