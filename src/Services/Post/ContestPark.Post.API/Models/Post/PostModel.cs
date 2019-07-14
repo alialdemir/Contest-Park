@@ -23,6 +23,17 @@ namespace ContestPark.Post.API.Models.Post
         public PostTypes PostType { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> UserIds { get; set; }
+        public List<string> UserIds
+        {
+            get
+            {
+                return new List<string>
+                {
+                    OwnerUserId,
+                    FounderUserId,
+                    CompetitorUserId
+                };
+            }
+        }
     }
 }

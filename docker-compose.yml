@@ -108,6 +108,7 @@ services:
     image: contestparkpost.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - redis.data
     build:
       context: .
       dockerfile: src/Services/Post/ContestPark.Post.API/Dockerfile

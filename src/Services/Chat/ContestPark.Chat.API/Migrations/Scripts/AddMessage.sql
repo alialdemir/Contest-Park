@@ -9,7 +9,7 @@ READS SQL DATA
 BEGIN
 DECLARE ConversationId BIGINT;
 
-SET ConversationId= (SELECT c.ConversationId FROM Conversations c 
+SET ConversationId = (SELECT c.ConversationId FROM Conversations c 
 WHERE (c.ReceiverUserId = receiverUserId AND c.SenderUserId = senderUserId) 
 OR (c.ReceiverUserId = senderUserId AND c.SenderUserId = receiverUserId));
 

@@ -4,13 +4,13 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
 {
     public class PostLikeIntegrationEvent : IntegrationEvent
     {
-        public PostLikeIntegrationEvent(string userId, string postId)
+        public PostLikeIntegrationEvent(string userId, int postId)
         {
             UserId = userId;
             PostId = postId;
         }
 
         public string UserId { get; }
-        public string PostId { get; }
+        public int PostId { get; }
     }
 }

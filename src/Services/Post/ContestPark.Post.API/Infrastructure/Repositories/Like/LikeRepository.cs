@@ -1,10 +1,6 @@
-﻿using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.Database.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
-using ContestPark.Post.API.Models;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Post.API.Infrastructure.Repositories.Like
@@ -14,16 +10,16 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         #region Private Variables
 
         private readonly ILogger<LikeRepository> _logger;
-        private readonly IRepository<Documents.Post> _postRepository;
-        private readonly IRepository<Documents.Like> _likeRepository;
+        private readonly IRepository<Tables.Post.Post> _postRepository;
+        private readonly IRepository<Tables.Like> _likeRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public LikeRepository(IRepository<Documents.Post> postRepository,
-                                IRepository<Documents.Like> likeRepository,
-                                ILogger<LikeRepository> logger)
+        public LikeRepository(IRepository<Tables.Post.Post> postRepository,
+                              IRepository<Tables.Like> likeRepository,
+                              ILogger<LikeRepository> logger)
         {
             _postRepository = postRepository;
             _likeRepository = likeRepository;
@@ -40,30 +36,21 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="postId">Beğenilen post</param>
         /// <returns>Beğenmiş ise true beğenmemiş ise false</returns>
-        public bool CheckLikeStatus(string userId, string postId)
+        public bool CheckLikeStatus(string userId, int postId)
         {
-            return CheckLikeStatus(postId.Split(""), userId)?.Count() == 1;
-        }
+            string sql = @"SELECT (CASE
+                           WHEN EXISTS(
+                           SELECT NULL
+                           FROM Likes l WHERE l.UserId = @userId AND l.PostID = @postId)
+                           THEN 1
+                           ELSE 0
+                           END)";
 
-        /// <summary>
-        /// Kullanıcılar postları beğenmişmi kontrol eder
-        /// </summary>
-        /// <param name="postIds">Post id</param>
-        /// <param name="userIds">Kullanıcı idleri</param>
-        /// <returns>Beğenme etme durumları</returns>
-        public IEnumerable<CheckLikeModel> CheckLikeStatus(string[] postIds, string userId)
-        {
-            string sql = @"SELECT
-                            c.UserId,
-                            c.PostId
-                           FROM c
-                           WHERE c.c.UserId=@userId AND ARRAY_CONTAINS(@postIds, c.PostId)";
-            return _likeRepository.QueryMultiple<CheckLikeModel>(sql,
-                     new
-                     {
-                         postIds,
-                         userId
-                     });
+            return _postRepository.QuerySingleOrDefault<bool>(sql, new
+            {
+                userId,
+                postId
+            });
         }
 
         /// <summary>
@@ -72,38 +59,16 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="postId">Beğenilen post</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> LikeAsync(string userId, string postId)
+        public Task<bool> LikeAsync(string userId, int postId)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(postId))
-                return false;
+            if (string.IsNullOrEmpty(userId) || postId <= 0)
+                return Task.FromResult(false);
 
-            Documents.Post post = _postRepository.FindById(postId);
-            if (post == null)
-                return false;
-
-            bool isSuccess = await _likeRepository.AddAsync(new Documents.Like
+            return _postRepository.ExecuteAsync("SP_PostLike", new
             {
-                UserId = userId,
-                PostId = postId
-            });
-
-            if (!isSuccess)
-            {
-                _logger.LogCritical("CRITICAL: beğeni işlemi gerçekleşemedi.", userId, postId);
-
-                return false;
-            }
-
-            post.LikeCount = (post.LikeCount ?? 0) + 1;
-
-            isSuccess = await _postRepository.UpdateAsync(post);
-            if (!isSuccess)
-            {
-                _logger.LogCritical("CRITICAL: beğeni kayıdı eklendi ancak post beğeni sayısı güncelleme hatası.", userId, postId);
-                return true;
-            }
-
-            return isSuccess;
+                userId,
+                postId
+            }, System.Data.CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -112,30 +77,16 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="postId">Post id</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> UnLikeAsync(string userId, string postId)
+        public Task<bool> UnLikeAsync(string userId, int postId)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(postId))
-                return false;
+            if (string.IsNullOrEmpty(userId) || postId <= 0)
+                return Task.FromResult(false);
 
-            Documents.Post post = _postRepository.FindById(postId);
-            if (post == null)
-                return false;
-
-            bool isSuccess = await _likeRepository.RemoveAsync(x => x.UserId == userId && x.PostId == postId);
-            if (!isSuccess)
+            return _postRepository.ExecuteAsync("SP_PostUnLike", new
             {
-                _logger.LogCritical("CRITICAL: beğeni silme sırasında hata.", userId, postId);
-                return false;
-            }
-
-            post.LikeCount -= 1;
-            isSuccess = await _postRepository.UpdateAsync(post);
-            if (!isSuccess)
-            {
-                _logger.LogInformation("Uyarı! beğeni documentinden beğeni kaldırıldı fakat. post documenti üzerinden likeCount azaltılamadı.", userId, postId);
-            }
-
-            return isSuccess;
+                userId,
+                postId
+            }, System.Data.CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -144,13 +95,13 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         /// <param name="postId">Post id</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Postu beğenen kullanıcı Listesi</returns>
-        public ServiceModel<string> PostLikes(string postId, PagingModel paging)
+        public ServiceModel<string> PostLikes(int postId, PagingModel paging)
         {
-            string sql = "SELECT VALUE c.UserId FROM c WHERE c.PostId=@postId";
-            return _likeRepository.ToServiceModel<Documents.Like, string>(sql, new
+            string sql = "SELECT l.UserId FROM Likes l WHERE l.PostId=@postId";
+            return _likeRepository.ToServiceModel<string>(sql, new
             {
                 postId,
-            }, paging);
+            }, pagingModel: paging);
         }
 
         #endregion Methods

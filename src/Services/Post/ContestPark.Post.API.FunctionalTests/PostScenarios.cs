@@ -18,7 +18,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .PostAsync(Entpoints.PostLike("410b33a7-cd16-4dc3-81ce-eb740fec9b78"), null);
+                    .PostAsync(Entpoints.PostLike(2), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -30,7 +30,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetPostsBySubcategoryId("7c3a26b7-74df-4128-aab9-a21f81a5ab36"));
+                    .GetAsync(Entpoints.GetPostsBySubcategoryId(1));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -45,7 +45,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetPostsBySubcategoryId("7c3a26b7-74df-4128-aab9-a21f81a5ab36", true, pageSize, pageNumber));
+                    .GetAsync(Entpoints.GetPostsBySubcategoryId(1, true, pageSize, pageNumber));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -73,7 +73,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetPostLikes("aee6685b-059e-4afe-b315-91146415e4b4"));
+                    .GetAsync(Entpoints.GetPostLikes(1));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -88,7 +88,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetPostLikes("aee6685b-059e-4afe-b315-91146415e4b4", true, pageSize, pageNumber));
+                    .GetAsync(Entpoints.GetPostLikes(1, true, pageSize, pageNumber));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -116,7 +116,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .GetAsync(Entpoints.GetPostLikes("aee6685b-059e-4afe-b315-91146415e4b4", true, 10, 2));
+                    .GetAsync(Entpoints.GetPostLikes(1, true, 10, 2));
 
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
@@ -132,7 +132,7 @@ namespace ContestPark.Post.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                     .AddLangCode(langCode)
-                    .PostAsync(Entpoints.PostLike("aee6685b-059e-4afe-b315-91146415e4b4"), null);
+                    .PostAsync(Entpoints.PostLike(1), null);
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -151,7 +151,7 @@ namespace ContestPark.Post.API.FunctionalTests
             using (var server = CreateServer())
             {
                 var response = await server.CreateClient()
-                    .DeleteAsync(Entpoints.DeleteUnLike("410b33a7-cd16-4dc3-81ce-eb740fec9b78"));
+                    .DeleteAsync(Entpoints.DeleteUnLike(1));
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
@@ -167,7 +167,7 @@ namespace ContestPark.Post.API.FunctionalTests
             {
                 var response = await server.CreateClient()
                     .AddLangCode(langCode)
-                    .DeleteAsync(Entpoints.DeleteUnLike("410b33a7-cd16-4dc3-81ce-eb740fec9b78"));
+                    .DeleteAsync(Entpoints.DeleteUnLike(2));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 

@@ -1,22 +1,22 @@
-﻿using ContestPark.Core.CosmosDb.Extensions;
-using ContestPark.Core.Database.Interfaces;
+﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
+using ContestPark.Post.API.Infrastructure.MySql.Post;
 using ContestPark.Post.API.Models.Post;
 using System.Threading.Tasks;
 
-namespace ContestPark.Post.API.Infrastructure.Repositories.Post
+namespace ContestPark.Post.API.Infrastructure.MySql
 {
     public class PostRepository : IPostRepository
     {
         #region Private Variables
 
-        private readonly IRepository<Documents.Post> _postRepository;
+        private readonly IRepository<Tables.Post.Post> _postRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public PostRepository(IRepository<Documents.Post> postRepository)
+        public PostRepository(IRepository<Tables.Post.Post> postRepository)
         {
             _postRepository = postRepository;
         }
@@ -30,7 +30,7 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Post
         /// </summary>
         /// <param name="post">Post detayı</param>
         /// <returns>İşlem başarılı ise true değilse false</returns>
-        public Task<bool> AddPost(Documents.Post post)
+        public Task<bool> AddPost(Tables.Post.Post post)
         {
             return _postRepository.AddAsync(post);
         }
@@ -41,32 +41,40 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Post
         /// <param name="subCategoryId">Subcategory</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Subcategory posts</returns>
-        public ServiceModel<PostModel> GetPostsBySubcategoryId(string subCategoryId, PagingModel paging)
+        public ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, PagingModel paging)
         {
             string sql = @"SELECT
-                             c.CreatedDate AS Date,
-                             c.LikeCount ?? 0 AS LikeCount,
-                             c.CommentCount ?? 0 AS CommentCount,
-                             c.OwnerUserId,
-                             c.id AS PostId,
-                             c.PostType,
+                             p.CreatedDate AS Date,
+                             p.LikeCount,
+                             p.CommentCount,
+                             p.OwnerUserId,
+                             p.PostId,
+                             p.PostType,
 
-                             c.Bet,
-                             c.DuelId,
-                             c.SubCategoryId,
-                             c.CompetitorUserId,
-                             c.CompetitorTrueAnswerCount,
-                             c.FounderUserId,
-                             c.FounderTrueAnswerCount,
+                             p.Bet,
+                             p.DuelId,
+                             p.SubCategoryId,
+                             p.CompetitorUserId,
+                             p.CompetitorTrueAnswerCount,
+                             p.FounderUserId,
+                             p.FounderTrueAnswerCount,
 
-                             [c.CompetitorUserId, c.OwnerUserId,  c.FounderUserId] as UserIds
-                          FROM c
-                          WHERE c.SubCategoryId=@subCategoryId
-                          ORDER BY c.CreatedDate DESC";
-            return _postRepository.ToServiceModel<Documents.Post, PostModel>(sql, new
+                             (SELECT (CASE
+                             WHEN EXISTS(
+                             SELECT NULL
+                             FROM Likes l WHERE l.UserId = @userId AND l.PostID = p.PostId)
+                             THEN 1
+                             ELSE 0
+                             END)) AS IsLike
+                            FROM  Posts p
+                            WHERE p.SubCategoryId=@subCategoryId
+                            ORDER BY p.CreatedDate DESC";
+
+            return _postRepository.ToServiceModel<PostModel>(sql, new
             {
+                userId,
                 subCategoryId,
-            }, paging);
+            }, pagingModel: paging);
         }
 
         #endregion Methods

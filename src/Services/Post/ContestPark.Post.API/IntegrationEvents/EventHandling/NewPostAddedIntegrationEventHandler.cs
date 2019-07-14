@@ -1,5 +1,5 @@
 ﻿using ContestPark.EventBus.Abstractions;
-using ContestPark.Post.API.Infrastructure.Repositories.Post;
+using ContestPark.Post.API.Infrastructure.MySql.Post;
 using ContestPark.Post.API.IntegrationEvents.Events;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace ContestPark.Post.API.IntegrationEvents.EventHandling
         /// <param name="event">Eklenen post detayı</param>
         public async Task Handle(NewPostAddedIntegrationEvent @event)
         {
-            bool isSuccess = await _postRepository.AddPost(new Infrastructure.Documents.Post
+            bool isSuccess = await _postRepository.AddPost(new Infrastructure.Tables.Post.Post
             {
                 Bet = @event.Bet,
                 CompetitorTrueAnswerCount = @event.CompetitorTrueAnswerCount,
