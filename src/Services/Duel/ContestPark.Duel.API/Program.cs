@@ -49,16 +49,16 @@ namespace ContestPark.Duel.API
                     if (!settings.Value.IsMigrateDatabase)
                         return;
 
+                    var logger = services.GetService<ILogger<DuelApiSeed>>();
+
                     updateDatabase(
                         settings.Value.ConnectionString,
                         MigrationAssembly.GetAssemblies(),
                         () =>
                         {
-                            var logger = services.GetService<ILogger<DuelApiSeed>>();
-
                             new DuelApiSeed()
-                               .SeedAsync(services, logger)
-                               .Wait();
+                             .SeedAsync(services, logger)
+                             .Wait();
                         });
                 });
 

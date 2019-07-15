@@ -33,8 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Tables\" />
-    <Folder Include="Infrastructure\Repositories\" />
     <Folder Include="IntegrationEvents\EventHandling\" />
     <Folder Include="IntegrationEvents\Events\" />
     <Folder Include="Migrations\Scripts\" />
