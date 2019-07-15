@@ -424,6 +424,28 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Kullanıcı adına ait kullanıcı id döndürür
+        /// </summary>
+        /// <param name="userName">Kullanıcı adı</param>
+        /// <returns>Kullanıcı id</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("UserId")]
+        [ProducesResponseType(typeof(List<UserModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetUserId([FromQuery]string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+                return BadRequest();
+
+            string userId = _userRepository.GetUserIdByUserName(userName);
+            if (string.IsNullOrEmpty(userId))
+                return NotFound();
+
+            return Ok(new { userId });
+        }
+
+        /// <summary>
         /// Şifremi unuttum email içeriği
         /// </summary>
         /// <param name="fullname"></param>

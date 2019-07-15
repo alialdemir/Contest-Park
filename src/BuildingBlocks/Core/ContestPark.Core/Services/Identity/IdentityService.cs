@@ -68,6 +68,7 @@ namespace ContestPark.Core.Services.Identity
             }
 
             List<UserModel> result = users
+                                        .Distinct()// TODO: redise eklerken zaten varsa eklememeli
                                         .Where(x => userIds.Any(user => user == x.UserId))
                                         .ToList();
 
@@ -103,6 +104,24 @@ namespace ContestPark.Core.Services.Identity
             List<UserModel> userModels = JsonConvert.DeserializeObject<List<UserModel>>(users);
 
             return userModels;
+        }
+
+        /// <summary>
+        /// Kullannıcı adına ait user name döndürür
+        /// </summary>
+        /// <param name="userName">Kullanıcı adı</param>
+        /// <returns>Kullanıcı id</returns>
+        public async Task<UserIdModel> GetUserIdByUserName(string userName)
+        {
+            List<UserModel> users = await GetUsersAsync();
+            if (users != null && users.Count != 0)
+            {
+                string userId = users.FirstOrDefault(x => x.UserName.ToLower() == userName.ToLower()).UserId;
+                if (!string.IsNullOrEmpty(userName))
+                    return new UserIdModel { UserId = userId };
+            }
+
+            return await _requestProvider.GetAsync<UserIdModel>($"{baseUrl}/UserId?userName={userName}");
         }
 
         #endregion Methods

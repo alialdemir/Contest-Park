@@ -1,4 +1,4 @@
-CREATE FUNCTION SP_AddMessage(
+CREATE FUNCTION FNC_AddMessage(
     senderUserId VARCHAR(256),
     receiverUserId VARCHAR(256),
     lastWriterUserId VARCHAR(256),

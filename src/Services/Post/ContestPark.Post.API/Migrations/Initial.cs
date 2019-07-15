@@ -9,7 +9,7 @@ namespace ContestPark.Post.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "PostLike.sql");
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "PostIsLike.sql", "PostLike.sql", "PostUnLike.sql");
 
             this.CreateTableIfNotExists("Posts", table =>
             table
@@ -42,7 +42,7 @@ namespace ContestPark.Post.API.Migrations
             #region PostConstest
 
                 .WithColumn("Bet")
-                .AsDecimal()
+                .AsDecimal(13, 2)
                 .Nullable()
 
                 .WithColumn("DuelId")

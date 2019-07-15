@@ -15,5 +15,6 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         void RemoveCode(string userId);
 
         IEnumerable<UserModel> GetUserInfos(List<string> userInfos);
+        string GetUserIdByUserName(string userName);
     }
 }

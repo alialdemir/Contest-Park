@@ -1,7 +1,6 @@
 ﻿using ContestPark.Post.API.Enums;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace ContestPark.Post.API.Models.Post
 {
@@ -9,8 +8,11 @@ namespace ContestPark.Post.API.Models.Post
     {
         public DateTime Date { get; set; }
 
-        public int LikeCount { get; set; }
-        public int CommentCount { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? LikeCount { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int? CommentCount { get; set; }
 
         public bool IsLike { get; set; }
 
@@ -18,22 +20,8 @@ namespace ContestPark.Post.API.Models.Post
         public string OwnerProfilePicturePath { get; set; }
         public string OwnerUserName { get; set; }
         public string OwnerUserId { get; set; }
-        public string PostId { get; set; }
+        public int PostId { get; set; }
 
         public PostTypes PostType { get; set; }
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> UserIds
-        {
-            get
-            {
-                return new List<string>
-                {
-                    OwnerUserId,
-                    FounderUserId,
-                    CompetitorUserId
-                };
-            }
-        }
     }
 }

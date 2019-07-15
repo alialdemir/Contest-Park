@@ -7,5 +7,7 @@ namespace ContestPark.Core.Services.Identity
     public interface IIdentityService
     {
         Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds);
+
+        Task<UserIdModel> GetUserIdByUserName(string userName);
     }
 }

@@ -38,15 +38,7 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Like
         /// <returns>Beğenmiş ise true beğenmemiş ise false</returns>
         public bool CheckLikeStatus(string userId, int postId)
         {
-            string sql = @"SELECT (CASE
-                           WHEN EXISTS(
-                           SELECT NULL
-                           FROM Likes l WHERE l.UserId = @userId AND l.PostID = @postId)
-                           THEN 1
-                           ELSE 0
-                           END)";
-
-            return _postRepository.QuerySingleOrDefault<bool>(sql, new
+            return _postRepository.QuerySingleOrDefault<bool>(@"SELECT FNC_PostIsLike(@userId, @PostId)", new
             {
                 userId,
                 postId
