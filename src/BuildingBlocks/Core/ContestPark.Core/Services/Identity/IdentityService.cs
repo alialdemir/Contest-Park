@@ -19,7 +19,7 @@ namespace ContestPark.Core.Services.Identity
         private readonly IDatabase _database;
 
         private readonly string baseUrl = "";
-        private readonly string redisKey = "UserInfos";
+        private const string redisKey = "UserInfos";
 
         #endregion Private Variables
 

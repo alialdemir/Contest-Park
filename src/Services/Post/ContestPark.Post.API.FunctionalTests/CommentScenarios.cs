@@ -25,7 +25,7 @@ namespace ContestPark.Post.API.FunctionalTests
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 var response = await server.CreateClient()
-                    .PostAsync(Entpoints.PostComment(1), content);
+                    .PostAsync(Entpoints.PostComment(2), content);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }

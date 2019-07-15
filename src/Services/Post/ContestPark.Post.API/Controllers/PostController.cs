@@ -3,6 +3,7 @@ using ContestPark.Core.Models;
 using ContestPark.Core.Services.Identity;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Post.API.Infrastructure.MySql.Post;
+using ContestPark.Post.API.Infrastructure.Repositories.Comment;
 using ContestPark.Post.API.Infrastructure.Repositories.Like;
 using ContestPark.Post.API.IntegrationEvents.Events;
 using ContestPark.Post.API.Models;
@@ -26,6 +27,7 @@ namespace ContestPark.Post.API.Controllers
         private readonly IEventBus _eventBus;
         private readonly IPostRepository _postRepository;
         private readonly IIdentityService _identityService;
+        private readonly ICommentRepository _commentRepository;
 
         #endregion Private Variables
 
@@ -35,11 +37,13 @@ namespace ContestPark.Post.API.Controllers
                               IEventBus eventBus,
                               IPostRepository postRepository,
                               IIdentityService identityService,
+                              ICommentRepository commentRepository,
                               ILikeRepository likeRepository) : base(logger)
         {
             _eventBus = eventBus;
             _postRepository = postRepository;
             _identityService = identityService;
+            _commentRepository = commentRepository;
             _likeRepository = likeRepository;
         }
 
@@ -47,6 +51,41 @@ namespace ContestPark.Post.API.Controllers
 
         #region Methods
 
+        /// <summary>
+        ///  Post id'nin postunu ve yorumlarını döndürür
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <param name="pagingModel">Yorumlar kısmının sayfalaması</param>
+        /// <returns>Post detayı</returns>
+        [HttpGet("{postId}")]
+        [ProducesResponseType(typeof(PostDetailModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetPostDetail([FromRoute]int postId, [FromQuery]PagingModel pagingModel)
+        {
+            if (postId <= 0)
+                return BadRequest();
+
+            Task<PostModel> taskPost = GetPostDetailByPostId(postId);
+            Task<ServiceModel<PostCommentModel>> taskComment = GetCommentByPostId(postId, pagingModel);
+
+            taskPost.Start();
+            taskComment.Start();
+
+            Task.WaitAll(taskPost, taskComment);
+
+            return Ok(new PostDetailModel
+            {
+                Comments = taskComment.Result,
+                Post = taskPost.Result
+            });
+        }
+
+        /// <summary>
+        /// Subcategory id'ye ait postları döndürür
+        /// </summary>
+        /// <param name="subcategoryId">Alt kategori id</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Post listesi</returns>
         [HttpGet("subcategory/{subcategoryId}")]
         [ProducesResponseType(typeof(ServiceModel<PostModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -55,7 +94,7 @@ namespace ContestPark.Post.API.Controllers
             if (subcategoryId <= 0)
                 return BadRequest();
 
-            ServiceModel<PostModel> posts = _postRepository.GetPostsBySubcategoryId(UserId, subcategoryId, pagingModel);
+            ServiceModel<PostModel> posts = _postRepository.GetPostsBySubcategoryId(UserId, subcategoryId, CurrentUserLanguage, pagingModel);
             if (posts.Items.Count() == 0)
                 return NotFound();
 
@@ -66,6 +105,12 @@ namespace ContestPark.Post.API.Controllers
             return Ok(GetPostModel(posts, postUserIds, postUsers));
         }
 
+        /// <summary>
+        /// Kullanıcı adına ait post listesi döndürür
+        /// </summary>
+        /// <param name="userName">Kullanıcı adı</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Post listesi</returns>
         [HttpGet("subcategory/user/{userName}")]
         [ProducesResponseType(typeof(ServiceModel<PostModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -270,6 +315,48 @@ namespace ContestPark.Post.API.Controllers
                             CompetitorUserName = competitorUser?.UserName
                         }
             };
+        }
+
+        /// <summary>
+        /// Post detay
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Post detay</returns>
+        private Task<PostModel> GetPostDetailByPostId(int postId)
+        {
+            return new Task<PostModel>(() => _postRepository.GetPostDetailByPostId(UserId, postId, CurrentUserLanguage));
+        }
+
+        /// <summary>
+        /// Post yorumlarını getirir
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Post yorumları</returns>
+        private Task<ServiceModel<PostCommentModel>> GetCommentByPostId(int postId, PagingModel pagingModel)
+        {
+            return new Task<ServiceModel<PostCommentModel>>(() =>
+           {
+               ServiceModel<PostCommentModel> comments = _commentRepository.GetCommentByPostId(postId, pagingModel);
+
+               if (comments.Items.Count() != 0)
+               {
+                   IEnumerable<UserModel> postUsers = _identityService.GetUserInfosAsync(comments.Items.Select(c => c.UserId).AsEnumerable()).Result;
+
+                   if (postUsers != null && postUsers.Count() != 0)
+                   {
+                       comments.Items.ToList().ForEach(c =>
+                       {
+                           UserModel user = postUsers.FirstOrDefault(u => u.UserId == c.UserId);
+                           c.FullName = user.FullName;
+                           c.ProfilePicturePath = user.ProfilePicturePath;
+                           c.UserName = user.UserName;
+                       });
+                   }
+               }
+
+               return comments;
+           });
         }
 
         #endregion Methods

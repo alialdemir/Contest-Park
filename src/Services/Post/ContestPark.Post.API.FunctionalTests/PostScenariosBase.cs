@@ -76,6 +76,13 @@ namespace ContestPark.Post.API.FunctionalTests
                     : $"api/v1/Post/subcategory/User/{userName}";
             }
 
+            public static string GetPostDetail(int postId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Post/{postId}" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Post/{postId}";
+            }
+
             private static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

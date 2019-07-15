@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Database.Models;
+using ContestPark.Core.Enums;
 using ContestPark.Post.API.Models.Post;
 using System.Threading.Tasks;
 
@@ -8,8 +9,10 @@ namespace ContestPark.Post.API.Infrastructure.MySql.Post
     {
         Task<bool> AddPost(Tables.Post.Post post);
 
-        ServiceModel<PostModel> GetPostByUserName(string profileUserId, string userId, Core.Enums.Languages language, PagingModel paging);
+        ServiceModel<PostModel> GetPostByUserName(string profileUserId, string userId, Languages language, PagingModel paging);
 
-        ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, PagingModel paging);
+        PostModel GetPostDetailByPostId(string userId, int postId, Languages language);
+
+        ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, Languages language, PagingModel paging);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
 using ContestPark.Post.API.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -40,6 +41,24 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Comment
                 postId = comment.PostId,
                 text = comment.Text
             }, System.Data.CommandType.StoredProcedure);
+        }
+
+        /// <summary>
+        /// Post id'ye ait yorumlar
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Yorum listesi</returns>
+        public ServiceModel<PostCommentModel> GetCommentByPostId(int postId, PagingModel pagingModel)
+        {
+            string sql = @"SELECT c.TEXT AS Comment, c.UserId, c.CreatedDate AS Date
+                           FROM Comments c
+                           WHERE c.PostId = @postId
+                           ORDER BY c.CreatedDate DESC";
+
+            return _commentRepository.ToServiceModel<PostCommentModel>(sql, new
+            {
+                postId
+            }, pagingModel: pagingModel);
         }
 
         #endregion Methods
