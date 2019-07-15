@@ -123,7 +123,6 @@ services:
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-      
   contestpark.post.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -137,6 +136,23 @@ services:
       - IsMigrateDatabase=true
     ports:
       - "5108:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      
+  contestpark.duel.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkDuel;pwd=root;}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - Audience=duel
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=true
+    ports:
+      - "5109:80"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

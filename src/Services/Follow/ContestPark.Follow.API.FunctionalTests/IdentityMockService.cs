@@ -8,16 +8,18 @@ namespace ContestPark.Follow.API.FunctionalTests
 {
     public class IdentityMockService : IIdentityService
     {
-        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        private readonly List<UserModel> users;
+
+        public IdentityMockService()
         {
-            return Task.FromResult(new List<UserModel>
+            users = new List<UserModel>
             {
                 new UserModel
                 {
                     UserId = "1111-1111-1111-1111",
+                    ProfilePicturePath = "http://i.pravatar.cc/150?u=witcherfearless",
                     FullName = "Ali Aldemir",
-                    ProfilePicturePath="http://i.pravatar.cc/150?u=witcherfearless",
-                    UserName="witcherfearless"
+                    UserName = "witcherfearless",
                 },
                 new UserModel
                 {
@@ -33,7 +35,22 @@ namespace ContestPark.Follow.API.FunctionalTests
                     FullName = "Bot",
                     UserName = "bot12345",
                 }
-            }.Where(x => userIds.Any(ids => ids == x.UserId)).AsEnumerable());
+            };
+        }
+
+        public Task<UserIdModel> GetUserIdByUserName(string userName)
+        {
+            var user = users.Where(u => u.UserName == userName).Select(u => new UserIdModel
+            {
+                UserId = u.UserId
+            }).FirstOrDefault();
+
+            return Task.FromResult(user);
+        }
+
+        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        {
+            return Task.FromResult(users.AsEnumerable());
         }
     }
 }
