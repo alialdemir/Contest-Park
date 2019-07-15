@@ -45,6 +45,11 @@ namespace ContestPark.Post.API.FunctionalTests
                 return $"api/v1/Post/{postId}/Like";
             }
 
+            public static string PostComment(int postId)
+            {
+                return $"api/v1/Post/{postId}/Comment";
+            }
+
             public static string DeleteUnLike(int postId)
             {
                 return $"api/v1/Post/{postId}/UnLike";
@@ -62,6 +67,13 @@ namespace ContestPark.Post.API.FunctionalTests
                 return paginated
                     ? $"api/v1/Post/subcategory/{subcategoryId}" + Paginated(pageSize, pageNumber)
                     : $"api/v1/Post/subcategory/{subcategoryId}";
+            }
+
+            public static string GetPostsByUserIdAsync(string userName, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/Post/subcategory/User/{userName}" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/Post/subcategory/User/{userName}";
             }
 
             private static string Paginated(int pageSize, int pageNumber)

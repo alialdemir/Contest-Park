@@ -6,12 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\Scripts\AddComment.sql" />
     <None Remove="Migrations\Scripts\PostIsLike.sql" />
     <None Remove="Migrations\Scripts\PostLike.sql" />
     <None Remove="Migrations\Scripts\PostUnLike.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\AddComment.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\PostIsLike.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>

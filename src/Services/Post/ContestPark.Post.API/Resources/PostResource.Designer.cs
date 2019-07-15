@@ -61,6 +61,15 @@ namespace ContestPark.Post.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding comment failed..
+        /// </summary>
+        public static string AddingCommentFailed {
+            get {
+                return ResourceManager.GetString("AddingCommentFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unexpected error occurred during the rating removal..
         /// </summary>
         public static string AnUnexpectedErrorOccurredDuringTheRatingRemoval {
