@@ -5,6 +5,7 @@ using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Post.API.Infrastructure.MySql;
 using ContestPark.Post.API.Infrastructure.MySql.Post;
+using ContestPark.Post.API.Infrastructure.Repositories.Comment;
 using ContestPark.Post.API.Infrastructure.Repositories.Like;
 using ContestPark.Post.API.IntegrationEvents.EventHandling;
 using ContestPark.Post.API.IntegrationEvents.Events;
@@ -67,6 +68,7 @@ namespace ContestPark.Post.API
             ConfigureIdentityService(services);
 
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<ILikeRepository, LikeRepository>();
 
             services.AddTransient<NewPostAddedIntegrationEventHandler>();

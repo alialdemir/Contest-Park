@@ -45,6 +45,11 @@ namespace ContestPark.Post.API.FunctionalTests
                 return $"api/v1/Post/{postId}/Like";
             }
 
+            public static string PostComment(int postId)
+            {
+                return $"api/v1/Post/{postId}/Comment";
+            }
+
             public static string DeleteUnLike(int postId)
             {
                 return $"api/v1/Post/{postId}/UnLike";

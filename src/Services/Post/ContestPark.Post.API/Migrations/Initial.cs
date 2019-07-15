@@ -9,7 +9,7 @@ namespace ContestPark.Post.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "PostIsLike.sql", "PostLike.sql", "PostUnLike.sql");
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "PostIsLike.sql", "PostLike.sql", "PostUnLike.sql", "AddComment.sql");
 
             this.CreateTableIfNotExists("Posts", table =>
             table
@@ -125,8 +125,43 @@ namespace ContestPark.Post.API.Migrations
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
+            this.CreateTableIfNotExists("Comments", table =>
+            table
+
+                .WithColumn("CommentId")
+                .AsInt32()
+                .PrimaryKey()
+                .Identity()
+
+                .WithColumn("Text")
+                .AsString(500)
+                .NotNullable()
+
+                .WithColumn("UserId")
+                .AsString(255)
+                .NotNullable()
+
+                .WithColumn("PostId")
+                .AsInt32()
+                .NotNullable()
+
+                .WithColumn("ModifiedDate")
+                .AsDateTime()
+                .Nullable()
+
+                .WithColumn("CreatedDate")
+                .AsDateTime()
+                .NotNullable()
+                .WithDefault(SystemMethods.CurrentDateTime));
+
             Create.ForeignKey()
                         .FromTable("Likes")
+                        .ForeignColumn("PostId")
+                        .ToTable("Posts")
+                        .PrimaryColumn("PostId");
+
+            Create.ForeignKey()
+                        .FromTable("Comments")
                         .ForeignColumn("PostId")
                         .ToTable("Posts")
                         .PrimaryColumn("PostId");
