@@ -8,9 +8,11 @@ namespace ContestPark.Chat.API.FunctionalTests
 {
     public class IIdentityMockService : IIdentityService
     {
-        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        private readonly List<UserModel> users;
+
+        public IIdentityMockService()
         {
-            return Task.FromResult(new List<UserModel>
+            users = new List<UserModel>
             {
                 new UserModel
                 {
@@ -33,7 +35,22 @@ namespace ContestPark.Chat.API.FunctionalTests
                     FullName = "Bot",
                     UserName = "bot12345",
                 }
-            }.AsEnumerable());
+            };
+        }
+
+        public Task<UserIdModel> GetUserIdByUserName(string userName)
+        {
+            var user = users.Where(u => u.UserName == userName).Select(u => new UserIdModel
+            {
+                UserId = u.UserId
+            }).FirstOrDefault();
+
+            return Task.FromResult(user);
+        }
+
+        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        {
+            return Task.FromResult(users.AsEnumerable());
         }
     }
 }

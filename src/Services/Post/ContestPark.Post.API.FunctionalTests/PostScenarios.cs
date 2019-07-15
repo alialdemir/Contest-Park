@@ -36,6 +36,54 @@ namespace ContestPark.Post.API.FunctionalTests
             }
         }
 
+        [Fact, TestPriority(1)]
+        public async Task Get_user_posts_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsByUserIdAsync("witcherfearless"));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_user_posts_and_response_notfound_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsByUserIdAsync("fake-username"));
+
+                Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_bot_user_posts_and_response_notfound_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsByUserIdAsync("bot12345"));
+
+                Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_user_posts_and_username_empty_and_response_badrequest_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsByUserIdAsync(""));
+
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            }
+        }
+
         [Theory, TestPriority(2)]
         [InlineData(1, 1)]
         [InlineData(1, 2)]
@@ -48,6 +96,8 @@ namespace ContestPark.Post.API.FunctionalTests
                     .GetAsync(Entpoints.GetPostsBySubcategoryId(1, true, pageSize, pageNumber));
 
                 string responseContent = await response.Content.ReadAsStringAsync();
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
                 ServiceModel<PostModel> posts = JsonConvert.DeserializeObject<ServiceModel<PostModel>>(responseContent);
 
@@ -62,8 +112,37 @@ namespace ContestPark.Post.API.FunctionalTests
                 {
                     Assert.False(posts.HasNextPage);
                 }
+            }
+        }
+
+        [Theory, TestPriority(2)]
+        [InlineData(1, 1)]
+        [InlineData(1, 5)]
+        [InlineData(2, 1)]
+        public async Task Get_user_posts_and_check_paging(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostsByUserIdAsync("witcherfearless", true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                ServiceModel<PostModel> posts = JsonConvert.DeserializeObject<ServiceModel<PostModel>>(responseContent);
+
+                Assert.Equal(pageNumber, posts.PageNumber);
+                Assert.Equal(pageSize, posts.PageSize);
+                Assert.Equal(pageSize, posts.Items.Count());
+                if (pageSize == 1 && pageNumber == 1)
+                {
+                    Assert.True(posts.HasNextPage);
+                }
+                else if (pageNumber == 5)
+                {
+                    Assert.False(posts.HasNextPage);
+                }
             }
         }
 
