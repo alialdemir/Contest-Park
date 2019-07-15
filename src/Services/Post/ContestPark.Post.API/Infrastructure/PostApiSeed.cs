@@ -25,6 +25,8 @@ namespace ContestPark.Post.API.Infrastructure
                             PostType = Enums.PostTypes.Image,
                             PostImageType = Enums.PostImageTypes.ProfileImage,
                             OwnerUserId = "1111-1111-1111-1111",
+                            CommentCount = 3,
+                            LikeCount =7,
                             PicturePath= "http://i.pravatar.cc/150?u=witcherfearless"
                     },
                         new Tables.Post.Post
@@ -79,6 +81,28 @@ namespace ContestPark.Post.API.Infrastructure
                     {
                             UserId = "2222-2222-2222-2222",
                             PostId = 1
+                    },
+                });
+
+                await InsertDataAsync(new List<Comment>
+                {
+                    new Comment
+                    {
+                         PostId = 1,
+                         UserId = "1111-1111-1111-1111",
+                         Text = "deneme",
+                    },
+                    new Comment
+                    {
+                         PostId = 1,
+                         UserId = "2222-2222-2222-2222",
+                         Text = "test 1 2 3",
+                    },
+                    new Comment
+                    {
+                         PostId = 2,
+                         UserId = "3333-3333-3333-bot",
+                         Text = "ben bir botum",
                     },
                 });
             });

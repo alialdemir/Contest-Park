@@ -456,6 +456,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Comment",
       "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}?pageNumber={pageNumber}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.post.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}&pageNumber={pageNumber}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {

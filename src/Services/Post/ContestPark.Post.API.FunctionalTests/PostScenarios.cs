@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
+using ContestPark.Post.API.Enums;
 using ContestPark.Post.API.Models;
 using ContestPark.Post.API.Models.Post;
 using Newtonsoft.Json;
@@ -21,6 +22,30 @@ namespace ContestPark.Post.API.FunctionalTests
                     .PostAsync(Entpoints.PostLike(2), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_post_detail_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostDetail(1));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_post_detail_and_response_badrequest_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostDetail(0));
+
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             }
         }
 
@@ -115,6 +140,72 @@ namespace ContestPark.Post.API.FunctionalTests
             }
         }
 
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        public async Task Get_post_detail_and_check_paging(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostDetail(1, true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                PostDetailModel postDetail = JsonConvert.DeserializeObject<PostDetailModel>(responseContent);
+
+                Assert.NotNull(postDetail.Post);
+
+                Assert.Equal(pageNumber, postDetail.Comments.PageNumber);
+                Assert.Equal(pageSize, postDetail.Comments.PageSize);
+                Assert.Equal(pageSize, postDetail.Comments.Items.Count());
+                if (pageSize == 1 && pageNumber == 1)
+                {
+                    Assert.True(postDetail.Comments.HasNextPage);
+                }
+                else if (pageNumber == 2)
+                {
+                    Assert.False(postDetail.Comments.HasNextPage);
+                }
+            }
+        }
+
+        [Fact, TestPriority(1)]
+        public async Task Get_post_detail_and_check_data()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetPostDetail(1, true, 1, 1));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+                PostDetailModel postDetail = JsonConvert.DeserializeObject<PostDetailModel>(responseContent);
+
+                Assert.NotNull(postDetail.Post);
+
+                var firstComment = postDetail.Comments.Items.FirstOrDefault();
+
+                Assert.Equal("deneme", firstComment.Comment);
+                Assert.Equal("1111-1111-1111-1111", firstComment.UserId);
+                Assert.Equal("Ali Aldemir", firstComment.FullName);
+                Assert.Equal("http://i.pravatar.cc/150?u=witcherfearless", firstComment.ProfilePicturePath);
+
+                Assert.Equal("http://i.pravatar.cc/150?u=witcherfearless", postDetail.Post.PicturePath);
+                Assert.Equal(4, postDetail.Post.CommentCount);
+                Assert.Equal(7, postDetail.Post.LikeCount);
+                Assert.Equal(1, postDetail.Post.PostId);
+                Assert.Equal(PostTypes.Image, postDetail.Post.PostType);
+                Assert.Equal("1111-1111-1111-1111", postDetail.Post.OwnerUserId);
+                Assert.True(postDetail.Post.IsLike);
+            }
+        }
+
         [Theory, TestPriority(2)]
         [InlineData(1, 1)]
         [InlineData(1, 5)]
@@ -158,7 +249,7 @@ namespace ContestPark.Post.API.FunctionalTests
             }
         }
 
-        [Theory, TestPriority(2)]
+        [Theory, TestPriority(1)]
         [InlineData(1, 1)]
         [InlineData(1, 2)]
         [InlineData(2, 1)]
