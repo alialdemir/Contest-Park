@@ -7,7 +7,7 @@ BEGIN
 INSERT INTO Likes (UserId, PostId) VALUES (userId, postId);
 
 UPDATE Posts SET
-LikeCount = (CASE WHEN LikeCount IS NOT NULL THEN LikeCount + 1 ELSE  1 END)
+LikeCount = (CASE WHEN LikeCount IS NOT NULL THEN LikeCount + 1 ELSE  null END)
 WHERE PostId = postId;
 
 END;

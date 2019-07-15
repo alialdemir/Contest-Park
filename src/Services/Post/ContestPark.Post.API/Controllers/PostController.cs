@@ -50,7 +50,7 @@ namespace ContestPark.Post.API.Controllers
         [HttpGet("subcategory/{subcategoryId}")]
         [ProducesResponseType(typeof(ServiceModel<PostModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetPostsBySubcategoryIdAsync(int subcategoryId, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetPostsBySubcategoryIdAsync([FromRoute]int subcategoryId, [FromQuery]PagingModel pagingModel)
         {
             if (subcategoryId <= 0)
                 return BadRequest();
@@ -59,14 +59,32 @@ namespace ContestPark.Post.API.Controllers
             if (posts.Items.Count() == 0)
                 return NotFound();
 
-            IEnumerable<string> postUserIds = posts
-                                                .Items
-                                                .Select(x => x.UserIds.Distinct())
-                                                .FirstOrDefault();
+            var postUserIds = GetPostUserIds(posts.Items);
 
             IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
-            // postları beğenen kullanıcılar
+            return Ok(GetPostModel(posts, postUserIds, postUsers));
+        }
+
+        [HttpGet("subcategory/user/{userName}")]
+        [ProducesResponseType(typeof(ServiceModel<PostModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetPostsByUserIdAsync([FromRoute]string userName, [FromQuery]PagingModel pagingModel)
+        {
+            if (string.IsNullOrEmpty(userName))
+                return BadRequest();
+
+            UserIdModel profileUserId = await _identityService.GetUserIdByUserName(userName);
+            if (profileUserId == null || string.IsNullOrEmpty(profileUserId.UserId))
+                return NotFound();
+
+            ServiceModel<PostModel> posts = _postRepository.GetPostByUserName(profileUserId.UserId, UserId, CurrentUserLanguage, pagingModel);
+            if (posts.Items.Count() == 0)
+                return NotFound();
+
+            var postUserIds = GetPostUserIds(posts.Items);
+
+            IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
             return Ok(GetPostModel(posts, postUserIds, postUsers));
         }
@@ -160,6 +178,32 @@ namespace ContestPark.Post.API.Controllers
         }
 
         /// <summary>
+        /// Postun içinde bulunan kullanıcı idlerini liste olarak döndürür
+        /// bu method identity servisten kullanıcı id'sine göre bilgileri almak için yazıldı
+        /// </summary>
+        /// <param name="posts">Posts</param>
+        /// <returns>Postların içindeki kullanıcı idleri</returns>
+
+        private IEnumerable<string> GetPostUserIds(IEnumerable<PostModel> posts)
+        {
+            List<string> postUserIds = new List<string>();
+
+            foreach (var post in posts)
+            {
+                if (!string.IsNullOrEmpty(post.OwnerUserId) && !postUserIds.Any(u => u == post.OwnerUserId))
+                    postUserIds.Add(post.OwnerUserId);
+
+                if (!string.IsNullOrEmpty(post.FounderUserId) && !postUserIds.Any(u => u == post.FounderUserId))
+                    postUserIds.Add(post.FounderUserId);
+
+                if (!string.IsNullOrEmpty(post.CompetitorUserId) && !postUserIds.Any(u => u == post.CompetitorUserId))
+                    postUserIds.Add(post.CompetitorUserId);
+            }
+
+            return postUserIds;
+        }
+
+        /// <summary>
         /// Post verilerini birleştirme
         /// </summary>
         /// <param name="posts"></param>
@@ -178,8 +222,10 @@ namespace ContestPark.Post.API.Controllers
                 PageSize = posts.PageSize,
                 Items = from post in posts.Items
                         join ownerUser in postUsers on post.OwnerUserId equals ownerUser.UserId
-                        join founderUser in postUsers on post.FounderUserId equals founderUser.UserId
-                        join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId
+                        join founderUser in postUsers on post.FounderUserId equals founderUser.UserId into founderUserData
+                        from founderUser in founderUserData.DefaultIfEmpty()
+                        join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId into competitorUserData
+                        from competitorUser in competitorUserData.DefaultIfEmpty()
                         select new PostModel
                         {
                             // Post bilgileri
@@ -210,18 +256,18 @@ namespace ContestPark.Post.API.Controllers
                             OwnerUserName = ownerUser.UserName,
 
                             // Düelloyu kuran
-                            FounderFullName = founderUser.FullName,
-                            FounderProfilePicturePath = founderUser.ProfilePicturePath,
-                            FounderUserName = founderUser.FullName,
+                            FounderFullName = founderUser?.FullName,
+                            FounderProfilePicturePath = founderUser?.ProfilePicturePath,
+                            FounderUserName = founderUser?.FullName,
                             FounderUserId = post.FounderUserId,
                             FounderTrueAnswerCount = post.FounderTrueAnswerCount,
 
                             // Rakip
-                            CompetitorFullName = competitorUser.FullName,
-                            CompetitorProfilePicturePath = competitorUser.ProfilePicturePath,
+                            CompetitorFullName = competitorUser?.FullName,
+                            CompetitorProfilePicturePath = competitorUser?.ProfilePicturePath,
                             CompetitorTrueAnswerCount = post.CompetitorTrueAnswerCount,
                             CompetitorUserId = post.CompetitorUserId,
-                            CompetitorUserName = competitorUser.UserName
+                            CompetitorUserName = competitorUser?.UserName
                         }
             };
         }

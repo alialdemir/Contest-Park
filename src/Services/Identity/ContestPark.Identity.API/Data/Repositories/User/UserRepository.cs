@@ -114,6 +114,23 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                 }).ToList();
         }
 
+        /// <summary>
+        /// Kullanıcı adına ait kullanıcı id döner
+        /// </summary>
+        /// <param name="userName">Kullanıcı adı</param>
+        /// <returns>Kullanıcı id</returns>
+        public string GetUserIdByUserName(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+                return string.Empty;
+
+            return _applicationDbContext
+                .Users
+                .Where(u => u.NormalizedUserName == userName.ToUpper())
+                .Select(u => u.Id)
+                .FirstOrDefault();
+        }
+
         #endregion Methods
     }
 }

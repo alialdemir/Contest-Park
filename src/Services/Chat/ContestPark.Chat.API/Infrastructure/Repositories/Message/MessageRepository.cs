@@ -47,7 +47,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
                 return 0;
             }
 
-            return _messageRepository.QuerySingleOrDefault<long>("SELECT SP_AddMessage(@AuthorUserId, @ReceiverUserId, @AuthorUserId, @Text)", new
+            return _messageRepository.QuerySingleOrDefault<long>("SELECT FNC_AddMessage(@AuthorUserId, @ReceiverUserId, @AuthorUserId, @Text)", new
             {
                 message.AuthorUserId,
                 message.ReceiverUserId,

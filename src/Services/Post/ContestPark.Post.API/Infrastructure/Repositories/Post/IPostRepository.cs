@@ -8,6 +8,8 @@ namespace ContestPark.Post.API.Infrastructure.MySql.Post
     {
         Task<bool> AddPost(Tables.Post.Post post);
 
+        ServiceModel<PostModel> GetPostByUserName(string profileUserId, string userId, Core.Enums.Languages language, PagingModel paging);
+
         ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, PagingModel paging);
     }
 }
