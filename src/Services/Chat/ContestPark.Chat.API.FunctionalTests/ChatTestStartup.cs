@@ -14,7 +14,7 @@ namespace ContestPark.Chat.API.FunctionalTests
 
         protected override void ConfigureIdentityService(IServiceCollection services)
         {
-            services.AddSingleton<IIdentityService, IIdentityMockService>();
+            services.AddSingleton<IIdentityService, IdentityMockService>();
         }
 
         protected override void ConfigureAuth(IApplicationBuilder app)

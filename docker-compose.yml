@@ -47,6 +47,7 @@ services:
     image: contestparkcategory.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - mysql-data
       - elasticsearch
     build:
       context: .
@@ -57,6 +58,7 @@ services:
     image: contestparkfollow.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - mysql-data
     build:
       context: .
       dockerfile: src/Services/Follow/ContestPark.Follow.API/Dockerfile
@@ -90,6 +92,7 @@ services:
     image: contestparkchat.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - mysql-data
       - redis.data
     build:
       context: .
@@ -99,6 +102,7 @@ services:
     image: contestparksignalr.api:${TAG:-latest}
     depends_on:
       - rabbitmq
+      - mysql-data
       - contestpark.chat.api
     build:
       context: .
@@ -107,8 +111,19 @@ services:
   contestpark.post.api:
     image: contestparkpost.api:${TAG:-latest}
     depends_on:
+      - mysql-data
       - rabbitmq
       - redis.data
     build:
       context: .
       dockerfile: src/Services/Post/ContestPark.Post.API/Dockerfile
+      
+  contestpark.duel.api:
+    image: contestparkduel.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+      - mysql-data
+      - redis.data
+    build:
+      context: .
+      dockerfile: src/Services/Duel/ContestPark.Duel.API/Dockerfile

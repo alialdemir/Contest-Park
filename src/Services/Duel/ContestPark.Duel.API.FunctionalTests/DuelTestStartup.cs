@@ -1,15 +1,14 @@
-﻿using ContestPark.Chat.API.FunctionalTests;
-using ContestPark.Core.FunctionalTests;
+﻿using ContestPark.Core.FunctionalTests;
 using ContestPark.Core.Services.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ContestPark.Post.API.FunctionalTests
+namespace ContestPark.Duel.API.FunctionalTests
 {
-    public class PostTestStartup : Startup
+    public class DuelTestStartup : Startup
     {
-        public PostTestStartup(IConfiguration env) : base(env)
+        public DuelTestStartup(IConfiguration env) : base(env)
         {
         }
 

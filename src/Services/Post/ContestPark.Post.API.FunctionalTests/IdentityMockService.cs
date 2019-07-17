@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.FunctionalTests
 {
-    public class IIdentityMockService : IIdentityService
+    public class IdentityMockService : IIdentityService
     {
         private readonly List<UserModel> users;
 
-        public IIdentityMockService()
+        public IdentityMockService()
         {
             users = new List<UserModel>
             {
