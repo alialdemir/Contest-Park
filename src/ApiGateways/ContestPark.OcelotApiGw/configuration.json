@@ -468,6 +468,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}&pageNumber={pageNumber}",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}?pageSize={pageSize}?pageNumber={pageNumber}?balanceType={balanceType}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.duel.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}?pageSize={pageSize}&pageNumber={pageNumber}&balanceType={balanceType}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {

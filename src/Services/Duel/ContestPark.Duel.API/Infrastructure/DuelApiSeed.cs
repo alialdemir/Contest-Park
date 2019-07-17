@@ -18,14 +18,17 @@ namespace ContestPark.Duel.API.Infrastructure
 
             await policy.ExecuteAsync(async () =>
             {
+                DateTime now = DateTime.Now;
+                now = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);
+
                 await InsertDataAsync(new List<ContestDate>
                 {
                     new ContestDate
                     {
-                        StartDate = DateTime.Now,
-                        FinishDate = DateTime.Now.AddDays(30)
+                        StartDate = now,
+                        FinishDate = now.AddDays(30)
                     }
-                });
+                }); ; ;
 
                 await InsertDataAsync(new List<ScoreRanking>
                 {
@@ -54,8 +57,8 @@ namespace ContestPark.Duel.API.Infrastructure
                         UserId = "3333-3333-3333-bot",
                         SubCategoryId = 1,
                         DisplayTotalGoldScore = "134",
-                        DisplayTotalMoneyScore = "1",
-                        TotalGoldScore = 134,
+                        DisplayTotalMoneyScore = "7k",
+                        TotalGoldScore = 7004,
                         TotalMoneyScore = 1,
                         ContestDateId = 1,
                     },

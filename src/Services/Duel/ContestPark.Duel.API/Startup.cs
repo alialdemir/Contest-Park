@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
+using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 using System;
 
 namespace ContestPark.Duel.API
@@ -41,7 +46,26 @@ namespace ContestPark.Duel.API
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
-            // services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
+            //By connecting here we are making sure that our service
+            //cannot start until redis is ready. This might slow down startup,
+            //but given that there is a delay on resolving the ip address
+            //and then creating the connection it seems reasonable to move
+            //that cost to startup instead of having the first request pay the
+            //penalty.
+            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            {
+                var settings = sp.GetRequiredService<IOptions<DuelSettings>>().Value;
+                var configuration = ConfigurationOptions.Parse(settings.Redis, true);
+
+                configuration.ResolveDns = true;
+
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
+            ConfigureIdentityService(services);
+
+            services.AddTransient<IScoreRankingRepository, ScoreRankingRepository>();
+            services.AddTransient<IContestDateRepository, ContestDateRepository>();
 
             // services.AddTransient<UserInfoChangedIntegrationEventHandler>();
 
@@ -74,6 +98,12 @@ namespace ContestPark.Duel.API
                .UseMvc();
 
             ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureIdentityService(IServiceCollection services)
+        {
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+            services.AddSingleton<IIdentityService, IdentityService>();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)
