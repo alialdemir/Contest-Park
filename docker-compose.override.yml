@@ -21,6 +21,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkIdentity;pwd=root;}
       - identityUrl=http://contestpark.identity.api
+      - ChatUrl=http://contestpark.chat.api
+      - FollowUrl=http://contestpark.follow.api
       - Audience=identity
       - SendGridApiKey=Test
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}

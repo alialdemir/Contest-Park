@@ -36,11 +36,25 @@ namespace ContestPark.Identity.API.Models
         /// <summary>
         /// Takip ettiklerim
         /// </summary>
-        public long FollowingCount { get; set; }
+        public int FollowingCount { get; set; }
 
         /// <summary>
         /// Takip edenler
         /// </summary>
-        public long FollowersCount { get; set; }
+        public int FollowersCount { get; set; }
+
+        public int GameCount { get; set; }
+
+        /// <summary>
+        /// Takip ettiklerim
+        /// </summary>
+        public string DisplayFollowingCount { get; set; }
+
+        /// <summary>
+        /// Takip edenler
+        /// </summary>
+        public string DisplayFollowersCount { get; set; }
+
+        public string DisplayGameCount { get; set; }
     }
 }

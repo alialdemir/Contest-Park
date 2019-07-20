@@ -8,6 +8,7 @@ using ContestPark.Core.Database.Models;
 using ContestPark.Core.Models;
 using ContestPark.Core.Services.Identity;
 using ContestPark.EventBus.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -236,12 +237,32 @@ namespace ContestPark.Chat.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult BlockedStatus([FromRoute]string userId)
         {
-            if (UserId == userId)
+            if (UserId == userId || string.IsNullOrEmpty(userId))
                 return BadRequest();
 
             return Ok(new
             {
                 isBlocked = _blockRepository.BlockingStatus(UserId, userId)
+            });
+        }
+
+        /// <summary>
+        /// İki kullanıcı arasındaki engelleme durumu
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet("Block/Status/{userId1}/{userId2}")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult BlockedStatus([FromRoute]string userId1, [FromRoute]string userId2)
+        {
+            if (userId1 == userId2 || string.IsNullOrEmpty(userId1) || string.IsNullOrEmpty(userId2))
+                return BadRequest();
+
+            return Ok(new
+            {
+                isBlocked = _blockRepository.BlockingStatus(userId1, userId2)
             });
         }
 

@@ -7,6 +7,8 @@ using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
 using ContestPark.Identity.API.Services.BlobStorage;
+using ContestPark.Identity.API.Services.Block;
+using ContestPark.Identity.API.Services.Follow;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +30,8 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         private readonly IEmailService _emailService;
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IBlockService _blockService;
+        private readonly IFollowService _followService;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
         private readonly IBlobStorageService _blobStorageService;
@@ -39,6 +43,8 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         public AccountController(IEmailService emailService,
                                  ILogger<AccountController> logger,
                                  UserManager<ApplicationUser> userManager,
+                                 IBlockService blockService,
+                                 IFollowService followService,
                                  IUserRepository userRepository,
                                  IIdentityIntegrationEventService identityIntegrationEventService,
                                  IBlobStorageService blobStorageService) : base(logger)
@@ -46,6 +52,8 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             _emailService = emailService;
             _logger = logger;
             _userManager = userManager;
+            _blockService = blockService;
+            _followService = followService;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
             _blobStorageService = blobStorageService;
@@ -54,6 +62,43 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Kullanıcı adına göre profil bilgilerini verir
+        /// </summary>
+        /// <param name="userName">Kullanıcı adı</param>
+        /// <returns>Profil bilgileri</returns>
+        [HttpGet]
+        [Route("Profile/{userName}")]
+        [ProducesResponseType(typeof(ProfileInfoModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetProfile([FromRoute] string userName)
+        {
+            UserProfileModel userProfile = _userRepository.GetUserInfoByUserName(userName);
+            if (userProfile == null)
+                return NotFound();
+
+            bool? isBlocked = null;
+            bool? isFollowing = null;
+            if (!string.IsNullOrEmpty(UserId) && userProfile.UserId != UserId)
+            {
+                isBlocked = await _blockService.BlockedStatusAsync(UserId, userProfile.UserId);
+                isFollowing = await _followService.FollowStatusAsync(UserId, userProfile.UserId);
+            }
+
+            return Ok(new ProfileInfoModel
+            {
+                CoverPicture = isBlocked == false ? userProfile.CoverPicture : DefaultImages.DefaultCoverPicture,
+                ProfilePicturePath = isBlocked == false ? userProfile.ProfilePicturePath : DefaultImages.DefaultProfilePicture,
+                FullName = userProfile.FullName,
+                UserId = userProfile.UserId,
+                FollowersCount = userProfile.FollowersCount,
+                FollowUpCount = userProfile.FollowUpCount,
+                GameCount = userProfile.GameCount,
+                IsBlocked = isBlocked,
+                IsFollowing = isFollowing,
+            });
+        }
 
         /// <summary>
         /// Random bot kullanıcı profil resmi  verir
