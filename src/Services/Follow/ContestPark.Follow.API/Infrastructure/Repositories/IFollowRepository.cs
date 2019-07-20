@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Database.Models;
 using ContestPark.Follow.API.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Follow.API.Infrastructure.MySql.Repositories
@@ -21,5 +22,7 @@ namespace ContestPark.Follow.API.Infrastructure.MySql.Repositories
         ServiceModel<FollowUserModel> Followers(string userId, PagingModel pagingModel);
 
         ServiceModel<FollowUserModel> Following(string userId, PagingModel pagingModel);
+
+        IEnumerable<string> GetFollowingUserIds(string userId, PagingModel paging);
     }
 }

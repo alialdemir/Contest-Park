@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 using System;
 
 namespace ContestPark.Follow.API
@@ -40,14 +42,29 @@ namespace ContestPark.Follow.API
 
             services.AddLocalizationCustom();
 
+            //By connecting here we are making sure that our service
+            //cannot start until redis is ready. This might slow down startup,
+            //but given that there is a delay on resolving the ip address
+            //and then creating the connection it seems reasonable to move
+            //that cost to startup instead of having the first request pay the
+            //penalty.
+            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            {
+                var settings = sp.GetRequiredService<IOptions<FollowSettings>>().Value;
+                var configuration = ConfigurationOptions.Parse(settings.Redis, true);
+
+                configuration.ResolveDns = true;
+
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
+            ConfigureOtherService(services);
+
             services
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
-            services.AddTransient<IFollowRepository, Infrastructure.MySql.Repositories.FollowRepository>();
-
-            services.AddSingleton<IRequestProvider, RequestProvider>();
-            AddSingleton(services);
+            services.AddTransient<IFollowRepository, FollowRepository>();
 
             //services.AddTransient<NewUserRegisterIntegrationEventHandler>();
 
@@ -87,8 +104,9 @@ namespace ContestPark.Follow.API
             app.UseAuth();
         }
 
-        protected virtual void AddSingleton(IServiceCollection services)
+        protected virtual void ConfigureOtherService(IServiceCollection services)
         {
+            services.AddSingleton<IRequestProvider, RequestProvider>();
             services.AddSingleton<IIdentityService, IdentityService>();
         }
 

@@ -2,6 +2,7 @@
 using ContestPark.Core.Database.Models;
 using ContestPark.Follow.API.Models;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Follow.API.Infrastructure.MySql.Repositories
@@ -80,6 +81,29 @@ namespace ContestPark.Follow.API.Infrastructure.MySql.Repositories
             {
                 userId,
             }, pagingModel: paging);
+        }
+
+        /// <summary>
+        /// Kullanıcının takip ettiği user id'lerini verir
+        /// bu kısım duel servisinde takip ettiklerim sıralaması için eklendi
+        /// </summary>
+        /// <param name="userId">Takip eden kullanıcı id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Takip edilen kullanıcı idleri</returns>
+        public IEnumerable<string> GetFollowingUserIds(string userId, PagingModel paging)
+        {
+            string sql = @"SELECT
+                           f.FollowedUserId AS UserId
+                           FROM Follows f
+                           WHERE f.FollowUpUserId = @userId
+                           LIMIT @Offset, @PageSize";
+
+            return _followRepository.QueryMultiple<string>(sql, new
+            {
+                userId,
+                paging.PageSize,
+                paging.Offset
+            });
         }
 
         /// <summary>
