@@ -12,7 +12,7 @@ namespace ContestPark.Follow.API.FunctionalTests
         {
         }
 
-        protected override void AddSingleton(IServiceCollection services)
+        protected override void ConfigureOtherService(IServiceCollection services)
         {
             services.AddSingleton<IIdentityService, IdentityMockService>();
         }

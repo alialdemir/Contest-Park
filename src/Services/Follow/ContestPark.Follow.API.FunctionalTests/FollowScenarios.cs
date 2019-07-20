@@ -2,6 +2,7 @@
 using ContestPark.Core.FunctionalTests;
 using ContestPark.Follow.API.Models;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -95,7 +96,7 @@ namespace ContestPark.Follow.API.FunctionalTests
         [InlineData(1, 1)]
         [InlineData(1, 2)]
         [InlineData(2, 1)]
-        public async Task Get_paging_followers_and_response_ok_status_code(int pageSize, int pageNumber)
+        public async Task Get_paging_followers_and_check_paging(int pageSize, int pageNumber)
         {
             using (var server = CreateServer())
             {
@@ -117,6 +118,7 @@ namespace ContestPark.Follow.API.FunctionalTests
                 {
                     Assert.False(followers.HasNextPage);
                 }
+
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
         }
@@ -181,6 +183,51 @@ namespace ContestPark.Follow.API.FunctionalTests
 
                 var response = await server.CreateClient()
                     .SendAsync(httpRequestMessage);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(4)]
+        public async Task Get_following_userIds_and_response_ok_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetFollowingUserIds("2222-2222-2222-2222"));
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
+        [Fact, TestPriority(4)]
+        public async Task Get_following_userIds_and_emptry_userid_and_response_badrequest_status_code()
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetFollowingUserIds("fakeuserid"));
+
+                Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            }
+        }
+
+        [Theory, TestPriority(2)]
+        [InlineData(1, 1)]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        public async Task Get_following_userIds_and_check_paing(int pageSize, int pageNumber)
+        {
+            using (var server = CreateServer())
+            {
+                var response = await server.CreateClient()
+                    .GetAsync(Entpoints.GetFollowingUserIds("2222-2222-2222-2222", true, pageSize, pageNumber));
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                IEnumerable<string> followers = JsonConvert.DeserializeObject<IEnumerable<string>>(responseContent);
+
+                Assert.Equal(pageSize, followers.Count());
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }

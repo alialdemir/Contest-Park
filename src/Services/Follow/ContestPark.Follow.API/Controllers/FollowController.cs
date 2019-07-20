@@ -6,6 +6,7 @@ using ContestPark.Follow.API.Infrastructure.MySql.Repositories;
 using ContestPark.Follow.API.IntegrationEvents.Events;
 using ContestPark.Follow.API.Models;
 using ContestPark.Follow.API.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -92,6 +93,29 @@ namespace ContestPark.Follow.API.Controllers
             _eventBus.Publish(@event);
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Kullanıcının takip ettiği user id'lerini verir
+        /// bu kısım duel servisinde takip ettiklerim sıralaması için eklendi
+        /// </summary>
+        /// <param name="userId">Takip eden kullanıcı id</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Takip edilen kullanıcı idleri</returns>
+        [AllowAnonymous]
+        [HttpGet("{userId}/FollowingUserIds")]
+        [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetFollowingUserIds([FromRoute]string userId, [FromQuery]PagingModel pagingModel)
+        {
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest();
+
+            IEnumerable<string> result = _followRepository.GetFollowingUserIds(userId, pagingModel);
+            if (result.Count() == 0)
+                return NotFound();
+
+            return Ok(result);
         }
 
         /// <summary>

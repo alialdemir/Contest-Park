@@ -5,6 +5,7 @@ using ContestPark.Core.Services.RequestProvider;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.Resources;
+using ContestPark.Duel.API.Services.Follow;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,10 +43,6 @@ namespace ContestPark.Duel.API
 
             services.AddLocalizationCustom();
 
-            services
-                    .AddRabbitMq(Configuration)
-                    .AddCorsConfigure();
-
             //By connecting here we are making sure that our service
             //cannot start until redis is ready. This might slow down startup,
             //but given that there is a delay on resolving the ip address
@@ -62,7 +59,11 @@ namespace ContestPark.Duel.API
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
-            ConfigureIdentityService(services);
+            ConfigureOtherService(services);
+
+            services
+                    .AddRabbitMq(Configuration)
+                    .AddCorsConfigure();
 
             services.AddTransient<IScoreRankingRepository, ScoreRankingRepository>();
             services.AddTransient<IContestDateRepository, ContestDateRepository>();
@@ -100,10 +101,11 @@ namespace ContestPark.Duel.API
             ConfigureEventBus(app);
         }
 
-        protected virtual void ConfigureIdentityService(IServiceCollection services)
+        protected virtual void ConfigureOtherService(IServiceCollection services)
         {
             services.AddSingleton<IRequestProvider, RequestProvider>();
             services.AddSingleton<IIdentityService, IdentityService>();
+            services.AddSingleton<IFollowService, FollowService>();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

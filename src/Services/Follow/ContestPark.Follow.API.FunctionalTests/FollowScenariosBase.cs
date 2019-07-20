@@ -64,6 +64,13 @@ namespace ContestPark.Follow.API.FunctionalTests
                     : $"api/v1/follow/{userId}/Followers";
             }
 
+            public static string GetFollowingUserIds(string userId, bool paginated = false, int pageSize = 4, int pageNumber = 1)
+            {
+                return paginated
+                    ? $"api/v1/follow/{userId}/FollowingUserIds" + Paginated(pageSize, pageNumber)
+                    : $"api/v1/follow/{userId}/FollowingUserIds";
+            }
+
             private static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel
