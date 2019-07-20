@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Models;
 using ContestPark.Identity.API.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,24 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Random bot kullanıcı profil resmi  verir
+        /// </summary>
+        /// <returns>Kullanıcı profil resimleri</returns>
+        public IEnumerable<string> GetRandomProfilePictures()
+        {
+            string sql = @"SELECT a.ProfilePicturePath FROM AspNetUsers a
+                           WHERE a.IsBot = true
+                           ORDER BY RAND()
+                           LIMIT 30";
+
+            return _applicationDbContext
+                .Users
+                .FromSql(sql)
+                .Select(u => u.ProfilePicturePath)
+                .ToList();
+        }
 
         /// <summary>
         /// Code kayıtlı mı kontrol eder
