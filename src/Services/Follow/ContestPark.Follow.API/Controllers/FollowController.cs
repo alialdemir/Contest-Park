@@ -44,6 +44,26 @@ namespace ContestPark.Follow.API.Controllers
         #region Methods
 
         /// <summary>
+        /// User1'in User2'yi takip etme durumunu verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet("Status/{userId1}/{userId2}")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult FollowStatus([FromRoute]string userId1, [FromRoute]string userId2)
+        {
+            if (userId1 == userId2 || string.IsNullOrEmpty(userId1) || string.IsNullOrEmpty(userId2))
+                return BadRequest();
+
+            return Ok(new
+            {
+                isBlocked = _followRepository.CheckFollowUpStatus(userId1, userId2)
+            });
+        }
+
+        /// <summary>
         /// Parametreden gelen kullanıcıyı takip et
         /// </summary>
         /// <returns>Başarılı ise OK değilse BadRequest mesajı döndürür.</returns>

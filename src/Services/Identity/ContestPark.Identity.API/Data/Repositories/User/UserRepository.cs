@@ -150,6 +150,29 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                 .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Kullanıcı adına göre profil bilgilerini verir
+        /// </summary>
+        /// <param name="userName">Kullanıcı adı</param>
+        /// <returns>Profil bilgileri</returns>
+        public UserProfileModel GetUserInfoByUserName(string userName)
+        {
+            userName = userName.ToUpper();
+            return _applicationDbContext
+                .Users
+                .Where(u => u.NormalizedUserName.Equals(userName))
+                .Select(u => new UserProfileModel
+                {
+                    UserId = u.Id,
+                    FullName = u.FullName,
+                    ProfilePicturePath = u.ProfilePicturePath,
+                    CoverPicture = u.CoverPicturePath,
+                    FollowersCount = u.FollowersCount,
+                    FollowUpCount = u.FollowingCount,
+                    GameCount = u.GameCount
+                }).FirstOrDefault();
+        }
+
         #endregion Methods
     }
 }

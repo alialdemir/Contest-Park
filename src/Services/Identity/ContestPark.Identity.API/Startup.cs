@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Middlewares;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.Identity.API.Data;
@@ -12,7 +13,10 @@ using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Services;
 using ContestPark.Identity.API.Services.BlobStorage;
+using ContestPark.Identity.API.Services.Block;
+using ContestPark.Identity.API.Services.Follow;
 using ContestPark.Identity.API.Services.Login;
+using ContestPark.Identity.API.Services.NumberFormat;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -99,6 +103,11 @@ namespace ContestPark.Identity.API
             services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
+
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+            services.AddTransient<IBlockService, BlockService>();
+            services.AddTransient<IFollowService, FollowService>();
+            services.AddSingleton<INumberFormatService, NumberFormatService>();
 
             #endregion AddTransient
 

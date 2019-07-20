@@ -68,7 +68,7 @@ namespace ContestPark.Mobile.Models.Profile
             }
         }
 
-        public int GameCount
+        public long GameCount
         {
             get { return gameCount; }
             set

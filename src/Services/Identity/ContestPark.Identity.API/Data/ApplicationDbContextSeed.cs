@@ -92,6 +92,12 @@ namespace ContestPark.Identity.API.Data
                 NormalizedEmail = "ALDEMIRALI93@GMAIL.COM",
                 NormalizedUserName = "WITCHERFEARLESS",
                 LanguageCode = "tr_TR",
+                GameCount = 6778,
+                DisplayGameCount = "6k",
+                FollowersCount = 78,
+                DisplayFollowersCount = "78",
+                FollowingCount = 53,
+                DisplayFollowingCount = "53",
                 Language = Languages.Turkish,
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
@@ -111,6 +117,12 @@ namespace ContestPark.Identity.API.Data
                 NormalizedEmail = "DEMO@DEMO.COM",
                 Language = Languages.English,
                 LanguageCode = "tr_TR",
+                GameCount = 3456,
+                DisplayGameCount = "3k",
+                FollowersCount = 89,
+                DisplayFollowersCount = "89",
+                FollowingCount = 156789,
+                DisplayFollowingCount = "156k",
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
 
@@ -130,6 +142,12 @@ namespace ContestPark.Identity.API.Data
                 Language = Languages.Turkish,
                 LanguageCode = "en_US",
                 IsBot = true,
+                GameCount = 234,
+                DisplayGameCount = "234",
+                FollowersCount = 42142,
+                DisplayFollowersCount = "42.1k",
+                FollowingCount = 96312,
+                DisplayFollowingCount = "96.3k",
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
 

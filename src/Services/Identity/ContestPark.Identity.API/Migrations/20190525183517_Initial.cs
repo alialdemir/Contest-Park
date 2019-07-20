@@ -76,6 +76,12 @@ namespace ContestPark.Identity.API.Migrations
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     ProfilePicturePath = table.Column<string>(maxLength: 256, nullable: true),
                     ForgetPasswordCode = table.Column<int>(nullable: false),
+                    FollowingCount = table.Column<int>(nullable: true),
+                    FollowersCount = table.Column<int>(nullable: true),
+                    GameCount = table.Column<int>(nullable: true),
+                    DisplayFollowingCount = table.Column<string>(maxLength: 10, nullable: true),
+                    DisplayFollowersCount = table.Column<string>(maxLength: 10, nullable: true),
+                    DisplayGameCount = table.Column<string>(maxLength: 10, nullable: true),
                 },
                 constraints: table =>
                 {

@@ -114,14 +114,14 @@ namespace ContestPark.Mobile.Services.Identity
         /// <summary>
         /// Kullanıcı id'sine göre profil sayfasında gösterilen dataları döndürür
         /// </summary>
-        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="userName">Kullanıcı id</param>
         /// <returns>Profil sayfası görütülemek için gerekli bilgiler</returns>
-        public async Task<ProfileInfoModel> GetProfileInfoByUserName(string userId)
+        public async Task<ProfileInfoModel> GetProfileInfoByUserName(string userName)
         {
-            if (string.IsNullOrEmpty(userId))
+            if (string.IsNullOrEmpty(userName))
                 return null;
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userId}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userName}");
 
             return await _requestProvider.GetAsync<ProfileInfoModel>(uri);
         }

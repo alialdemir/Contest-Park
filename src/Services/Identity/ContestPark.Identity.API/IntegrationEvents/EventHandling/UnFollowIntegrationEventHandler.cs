@@ -1,6 +1,7 @@
 ﻿using ContestPark.EventBus.Abstractions;
 using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
+using ContestPark.Identity.API.Services.NumberFormat;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -11,13 +12,16 @@ namespace ContestPark.Identity.API.IntegrationEvents.EventHandling
         IIntegrationEventHandler<UnFollowIntegrationEvent>
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly INumberFormatService _numberFormatService;
         private readonly ILogger<UnFollowIntegrationEventHandler> _logger;
 
         public UnFollowIntegrationEventHandler(UserManager<ApplicationUser> userManager,
-                                             ILogger<UnFollowIntegrationEventHandler> logger)
+                                               INumberFormatService numberFormatService,
+                                               ILogger<UnFollowIntegrationEventHandler> logger)
 
         {
             _userManager = userManager;
+            _numberFormatService = numberFormatService;
             _logger = logger;
         }
 
@@ -34,6 +38,15 @@ namespace ContestPark.Identity.API.IntegrationEvents.EventHandling
 
             followUpUser.FollowingCount -= 1;
             followedUser.FollowersCount -= 1;
+
+            if (followUpUser.FollowingCount < 0)
+                followUpUser.FollowingCount = 0;
+
+            if (followedUser.FollowersCount < 0)
+                followedUser.FollowersCount = 0;
+
+            followUpUser.DisplayFollowingCount = _numberFormatService.NumberFormating(followUpUser.FollowingCount);
+            followedUser.DisplayFollowersCount = _numberFormatService.NumberFormating(followedUser.FollowersCount);
 
             IdentityResult identityResultFollowUpUser = await _userManager.UpdateAsync(followUpUser);
             IdentityResult identityResultFollowedUser = await _userManager.UpdateAsync(followedUser);
