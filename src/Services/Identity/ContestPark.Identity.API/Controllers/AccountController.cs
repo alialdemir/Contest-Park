@@ -56,6 +56,24 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         #region Methods
 
         /// <summary>
+        /// Random bot kullanıcı profil resmi  verir
+        /// </summary>
+        /// <returns>Kullanıcı profil resimleri</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetRandomProfilePictures")]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        public IActionResult GetRandomProfilePictures()
+        {
+            IEnumerable<string> randomProfilePictures = _userRepository.GetRandomProfilePictures();
+            if (randomProfilePictures == null || randomProfilePictures.Count() == 0)
+                return NotFound();
+
+            return Ok(randomProfilePictures);
+        }
+
+        /// <summary>
         /// Kapak resmi değiştir
         /// </summary>
         /// <param name="files">Yüklenen resim</param>

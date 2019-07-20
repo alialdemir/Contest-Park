@@ -26,6 +26,18 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
+      "DownstreamPathTemplate": "/api/{version}/Account/GetRandomProfilePictures",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.identity.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Account/GetRandomProfilePictures",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/{version}/Account/ChangeProfilePicture",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
