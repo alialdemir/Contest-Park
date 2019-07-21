@@ -1,4 +1,4 @@
-﻿using ContestPark.Category.API.IntegrationEvents.Events;
+﻿using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
@@ -28,13 +28,13 @@ namespace ContestPark.Duel.API.Controllers
         #region Methods
 
         /// <summary>
-        /// Duello bekleme moduna al
+        /// Duello rakip bekleme moduna al
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult Post([FromBody]StandbyModeModel standbyModeModel)
+        public IActionResult AddStandbyMode([FromBody]StandbyModeModel standbyModeModel)
         {
             if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
             {
@@ -46,6 +46,33 @@ namespace ContestPark.Duel.API.Controllers
                                                              standbyModeModel.SubCategoryId,
                                                              standbyModeModel.Bet,
                                                              standbyModeModel.BalanceType);
+
+            _eventBus.Publish(@event);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Rakip bekleme modundan çıkar
+        /// </summary>
+        /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
+        [HttpPost("DeleteStandbyMode")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult DeleteStandbyMode([FromBody]StandbyModeModel standbyModeModel)
+        {
+            if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
+            {
+                return BadRequest();
+            }
+
+            // TODO: öncesinde kullanıcı gerçekten bekleme modundamı redisden kontrol edilebilir
+
+            var @event = new RemoveWaitingOpponentIntegrationEvent(UserId,
+                                                                   standbyModeModel.ConnectionId,
+                                                                   standbyModeModel.SubCategoryId,
+                                                                   standbyModeModel.Bet,
+                                                                   standbyModeModel.BalanceType);
 
             _eventBus.Publish(@event);
 
