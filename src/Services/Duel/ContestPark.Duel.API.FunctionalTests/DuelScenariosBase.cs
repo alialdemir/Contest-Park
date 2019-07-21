@@ -48,6 +48,11 @@ namespace ContestPark.Duel.API.FunctionalTests
                     : $"api/v1/Ranking/SubCategory/{subCategoryId}?balanceType=" + balanceType.ToString();
             }
 
+            public static string PostStandbyMode()
+            {
+                return "api/v1/Duel";
+            }
+
             public static string Paginated(int pageSize, int pageNumber)
             {
                 return new PagingModel

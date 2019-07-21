@@ -1,9 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
+using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
+using ContestPark.Duel.API.IntegrationEvents.EventHandling;
 using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Follow;
 using ContestPark.EventBus.Abstractions;
@@ -14,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using StackExchange.Redis;
+using ServiceStack.Redis;
 using System;
 
 namespace ContestPark.Duel.API
@@ -43,20 +46,11 @@ namespace ContestPark.Duel.API
 
             services.AddLocalizationCustom();
 
-            //By connecting here we are making sure that our service
-            //cannot start until redis is ready. This might slow down startup,
-            //but given that there is a delay on resolving the ip address
-            //and then creating the connection it seems reasonable to move
-            //that cost to startup instead of having the first request pay the
-            //penalty.
-            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            services.AddSingleton<IRedisClient>(sp =>
             {
                 var settings = sp.GetRequiredService<IOptions<DuelSettings>>().Value;
-                var configuration = ConfigurationOptions.Parse(settings.Redis, true);
 
-                configuration.ResolveDns = true;
-
-                return ConnectionMultiplexer.Connect(configuration);
+                return new RedisClient(settings.Redis);
             });
 
             ConfigureOtherService(services);
@@ -68,7 +62,9 @@ namespace ContestPark.Duel.API
             services.AddTransient<IScoreRankingRepository, ScoreRankingRepository>();
             services.AddTransient<IContestDateRepository, ContestDateRepository>();
 
-            // services.AddTransient<UserInfoChangedIntegrationEventHandler>();
+            services.AddTransient<IDuelUserRepository, DuelUserRepository>();
+
+            services.AddTransient<WaitingOpponentIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -117,7 +113,7 @@ namespace ContestPark.Duel.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
-            //eventBus.Subscribe<NewUserRegisterIntegrationEvent, NewUserRegisterIntegrationEventHandler>();
+            eventBus.Subscribe<WaitingOpponentIntegrationEvent, WaitingOpponentIntegrationEventHandler>();
         }
     }
 }
