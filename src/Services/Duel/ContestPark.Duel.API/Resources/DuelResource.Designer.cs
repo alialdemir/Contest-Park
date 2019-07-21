@@ -59,5 +59,14 @@ namespace ContestPark.Duel.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred during the process of exiting the standby mode..
+        /// </summary>
+        public static string AnErrorOccurredDuringTheProcessOfExitingTheStandbyMode {
+            get {
+                return ResourceManager.GetString("AnErrorOccurredDuringTheProcessOfExitingTheStandbyMode", resourceCulture);
+            }
+        }
     }
 }

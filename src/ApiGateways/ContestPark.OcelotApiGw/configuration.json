@@ -527,7 +527,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/Duel",
-      "UpstreamHttpMethod": [ "Post" ]
+      "UpstreamHttpMethod": [ "Post", "Delete" ]
     }
   ],
   "GlobalConfiguration": {

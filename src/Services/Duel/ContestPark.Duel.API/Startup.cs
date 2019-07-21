@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.EventHandling;
+using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Follow;
 using ContestPark.EventBus.Abstractions;
@@ -60,11 +60,14 @@ namespace ContestPark.Duel.API
                     .AddCorsConfigure();
 
             services.AddTransient<IScoreRankingRepository, ScoreRankingRepository>();
+
             services.AddTransient<IContestDateRepository, ContestDateRepository>();
 
             services.AddTransient<IDuelUserRepository, DuelUserRepository>();
 
             services.AddTransient<WaitingOpponentIntegrationEventHandler>();
+
+            services.AddTransient<RemoveWaitingOpponentIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -100,7 +103,9 @@ namespace ContestPark.Duel.API
         protected virtual void ConfigureOtherService(IServiceCollection services)
         {
             services.AddSingleton<IRequestProvider, RequestProvider>();
+
             services.AddSingleton<IIdentityService, IdentityService>();
+
             services.AddSingleton<IFollowService, FollowService>();
         }
 
@@ -114,6 +119,8 @@ namespace ContestPark.Duel.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<WaitingOpponentIntegrationEvent, WaitingOpponentIntegrationEventHandler>();
+
+            eventBus.Subscribe<RemoveWaitingOpponentIntegrationEvent, RemoveWaitingOpponentIntegrationEventHandler>();
         }
     }
 }

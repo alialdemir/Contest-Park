@@ -3,7 +3,7 @@ using ContestPark.EventBus.Events;
 
 namespace ContestPark.Duel.API.IntegrationEvents.Events
 {
-    public class WaitingOpponentIntegrationEvent : IntegrationEvent
+    public class RemoveWaitingOpponentIntegrationEvent : IntegrationEvent
     {
         public decimal Bet { get; }
 
@@ -15,11 +15,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 
         public BalanceTypes BalanceType { get; }
 
-        public WaitingOpponentIntegrationEvent(string userId,
-                                               string connectionId,
-                                               short subCategoryId,
-                                               decimal bet,
-                                               BalanceTypes balanceType)
+        public RemoveWaitingOpponentIntegrationEvent(string userId,
+                                                     string connectionId,
+                                                     short subCategoryId,
+                                                     decimal bet,
+                                                     BalanceTypes balanceType)
         {
             UserId = userId;
             ConnectionId = connectionId;

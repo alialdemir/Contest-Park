@@ -1,5 +1,4 @@
-﻿using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
+﻿using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
