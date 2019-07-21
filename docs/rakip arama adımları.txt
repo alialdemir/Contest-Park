@@ -1,11 +1,11 @@
-### Duello rakip arama
+﻿### Duello rakip arama
 - Bahis ekranına gel
 - Bahisi seç
 - duel starting ekranına yönlendir
 - random profil resimlerini çek
 - Duel servisine istekte at beklemedeğim diye
 - Duel servisi onu WaitingOpponentIntegrationEvent publish et
-- Duelredis servisi WaitingOpponentIntegrationEvent subscription olduğu event gelince redisteki aynı kategori ve aynı bahis tutarında bekleyen kullanıcı var ise publish StartDuelIntegration
+- Duel redis servisi WaitingOpponentIntegrationEvent subscription olduğu event gelince redisteki aynı kategori ve aynı bahis tutarında bekleyen kullanıcı var ise publish StartDuelIntegration
 - Duel serivsi DuelStartIntegrationEventHandler methodunda duel tablosuna insert eder ve DuelCreatedIntegrationEvent publish yapar
   ve o düellodaki kullanıcı bilgilerini DuelStartingModeli ile DuelStartingIntegrationEvent publish eder
 
