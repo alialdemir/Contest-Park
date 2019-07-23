@@ -1,14 +1,18 @@
-﻿using ContestPark.Duel.API.IntegrationEvents.Events;
+﻿using ContestPark.Duel.API.Infrastructure.Repositories.Question;
+using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Controllers
 {
     public class DuelController : Core.Controllers.ControllerBase
     {
+        private readonly IQuestionRepository questionRepository;
+
         #region Private Variables
 
         private readonly IEventBus _eventBus;
@@ -18,8 +22,10 @@ namespace ContestPark.Duel.API.Controllers
         #region Constructor
 
         public DuelController(ILogger<DuelController> logger,
+            IQuestionRepository questionRepository,
                               IEventBus eventBus) : base(logger)
         {
+            this.questionRepository = questionRepository;
             _eventBus = eventBus;
         }
 
@@ -77,6 +83,14 @@ namespace ContestPark.Duel.API.Controllers
             _eventBus.Publish(@event);
 
             return Ok();
+        }
+
+        [HttpGet("test")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Test()
+        {
+            return Ok(await questionRepository.DuelQuestions(1, UserId, "2222-2222-2222-2222", Core.Enums.Languages.English, Core.Enums.Languages.Turkish));
         }
 
         #endregion Methods

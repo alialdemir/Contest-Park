@@ -17,6 +17,6 @@ namespace ContestPark.Mobile.Models.Duel.Quiz
 
         public byte Time { get; set; }
 
-        public int QuestionInfoId { get; set; }
+        public int QuestionId { get; set; }
     }
 }

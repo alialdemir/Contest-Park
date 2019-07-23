@@ -2,7 +2,10 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
+using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
+using ContestPark.Duel.API.Infrastructure.Repositories.Question;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.EventHandling;
@@ -64,6 +67,12 @@ namespace ContestPark.Duel.API
             services.AddTransient<IContestDateRepository, ContestDateRepository>();
 
             services.AddTransient<IDuelUserRepository, DuelUserRepository>();
+
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+
+            services.AddTransient<IAskedQuestionRepository, AskedQuestionRepository>();
+
+            services.AddTransient<IDuelRepository, DuelRepository>();
 
             services.AddTransient<WaitingOpponentIntegrationEventHandler>();
 
