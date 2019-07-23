@@ -1,7 +1,9 @@
-﻿namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
+﻿using System.Threading.Tasks;
+
+namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
 {
     public interface IDuelRepository
     {
-        System.Threading.Tasks.Task<bool> Insert(Tables.Duel duel);
+        Task<int?> Insert(Tables.Duel duel);
     }
 }

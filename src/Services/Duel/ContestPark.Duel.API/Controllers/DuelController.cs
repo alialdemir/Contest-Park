@@ -51,7 +51,8 @@ namespace ContestPark.Duel.API.Controllers
                                                              standbyModeModel.ConnectionId,
                                                              standbyModeModel.SubCategoryId,
                                                              standbyModeModel.Bet,
-                                                             standbyModeModel.BalanceType);
+                                                             standbyModeModel.BalanceType,
+                                                             CurrentUserLanguage);
 
             _eventBus.Publish(@event);
 

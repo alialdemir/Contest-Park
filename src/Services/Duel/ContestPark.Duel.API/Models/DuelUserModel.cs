@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Enums;
+﻿using ContestPark.Core.Enums;
+using ContestPark.Duel.API.Enums;
 using System;
 
 namespace ContestPark.Duel.API.Models
@@ -15,5 +16,6 @@ namespace ContestPark.Duel.API.Models
         public string ConnectionId { get; set; }
 
         public BalanceTypes BalanceType { get; set; }
+        public Languages Language { get; set; }
     }
 }

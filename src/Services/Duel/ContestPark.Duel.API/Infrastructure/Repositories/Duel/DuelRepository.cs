@@ -27,9 +27,9 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         /// </summary>
         /// <param name="duel">Duello bilgileri</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public Task<bool> Insert(Tables.Duel duel)
+        public Task<int?> Insert(Tables.Duel duel)
         {
-            return _askedQuestionRepository.AddAsync(duel);
+            return _askedQuestionRepository.AddAndGetIdAsync(duel);
         }
 
         #endregion Methods

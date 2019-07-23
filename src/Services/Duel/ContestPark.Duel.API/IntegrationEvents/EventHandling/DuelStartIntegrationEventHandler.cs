@@ -1,7 +1,8 @@
 ﻿using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
-using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
+using ContestPark.Duel.API.Infrastructure.Repositories.Question;
 using ContestPark.Duel.API.IntegrationEvents.Events;
+using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,10 +14,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
     {
         #region Private variables
 
-        private readonly IDuelUserRepository _duelUserRepository;
-
         private readonly IEventBus _eventBus;
         private readonly IDuelRepository _duelRepository;
+        private readonly IQuestionRepository _questionRepository;
         private readonly IContestDateRepository _contestDateRepository;
         private readonly ILogger<DuelStartIntegrationEventHandler> _logger;
 
@@ -24,16 +24,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         #region Constructor
 
-        public DuelStartIntegrationEventHandler(IDuelUserRepository duelUserRepository,
-                                                IEventBus eventBus,
+        public DuelStartIntegrationEventHandler(IEventBus eventBus,
                                                 IDuelRepository duelRepository,
+                                                IQuestionRepository questionRepository,
                                                 IContestDateRepository contestDateRepository,
                                                 ILogger<DuelStartIntegrationEventHandler> logger)
         {
-            _duelUserRepository = duelUserRepository ?? throw new ArgumentNullException(nameof(duelUserRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             this._duelRepository = duelRepository;
+            _questionRepository = questionRepository;
             _contestDateRepository = contestDateRepository;
         }
 
@@ -41,28 +41,53 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         #region Methos
 
+        /// <summary>
+        /// Kullanıcılar arasında düello başlat 7 soru çek kullanıcılara gönder
+        /// </summary>
+        /// <param name="event">Düello bilgileri</param>
         public async Task Handle(DuelStartIntegrationEvent @event)
         {
-            short contestDateId = _contestDateRepository.ActiveContestDate().ContestDateId;
+            ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
+            if (contestDate == null)
+            {
+                SendErrorMessage(@event.FounderUserId, "düello hatası düello iptal");
+                SendErrorMessage(@event.OpponentUserId, "düello hatası düello iptal");
 
-            bool isSuccess = await _duelRepository.Insert(new Infrastructure.Tables.Duel
+                return;
+            }
+
+            int? duelId = await _duelRepository.Insert(new Infrastructure.Tables.Duel
             {
                 BalanceType = @event.BalanceType,
                 Bet = @event.Bet,
                 SubCategoryId = @event.SubCategoryId,
                 OpponentUserId = @event.OpponentUserId,
                 FounderUserId = @event.FounderUserId,
-                ContestDateId = contestDateId,
+                ContestDateId = contestDate.ContestDateId
             });
-            if (!isSuccess)
+            if (!duelId.HasValue)
             {
-                _logger.LogCritical("CRITICAL: Düello başlatılamadı.");
+                _logger.LogCritical($@"CRITICAL: Düello başlatılamadı.
+                                                 founder user id: {@event.FounderUserId}
+                                                 founder user id: {@event.OpponentUserId}
+                                                 balance type: {@event.BalanceType}
+                                                 subCategory id: {@event.SubCategoryId}
+                                                 bet: {@event.Bet}");
 
                 SendErrorMessage(@event.FounderUserId, "düello hatası düello iptal");
                 SendErrorMessage(@event.OpponentUserId, "düello hatası düello iptal");
 
                 return;
             }
+
+            var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
+                                                                    @event.FounderUserId,
+                                                                    @event.OpponentUserId,
+                                                                    @event.FounderLanguage,
+                                                                    @event.OpponentLanguage);
+
+            var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
+                                                             questions);
         }
 
         private void SendErrorMessage(string userId, string message)
