@@ -120,4 +120,7 @@
   <data name="AnErrorOccurredDuringTheProcessOfExitingTheStandbyMode" xml:space="preserve">
     <value>Bekleme modundan çıkma işlemi sırasında hata oluştu.</value>
   </data>
+  <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
+    <value>Düello başlarken hata oluştu. Lütfen tekrar  deneyiniz.</value>
+  </data>
 </root>

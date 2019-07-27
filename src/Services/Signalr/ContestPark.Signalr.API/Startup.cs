@@ -50,6 +50,8 @@ namespace ContestPark.Signalr.API
 
             services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
             services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
+            services.AddTransient<DuelCreatedIntegrationEventHandler>();
+            services.AddTransient<DuelStartingModelIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.RegisterModule(new ApplicationModule());
@@ -91,6 +93,8 @@ namespace ContestPark.Signalr.API
 
             eventBus.Subscribe<SendErrorMessageWithSignalrIntegrationEvent, SendErrorMessageWithSignalrIntegrationEventHandler>();
             eventBus.Subscribe<SendMessageWithSignalrIntegrationEvent, SendMessageWithSignalrIntegrationEventHandler>();
+            eventBus.Subscribe<DuelCreatedIntegrationEvent, DuelCreatedIntegrationEventHandler>();
+            eventBus.Subscribe<DuelStartingModelIntegrationEvent, DuelStartingModelIntegrationEventHandler>();
         }
     }
 

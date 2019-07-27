@@ -57,14 +57,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                     { nameof(@event.Bet)}: { @event.Bet}
                                     { nameof(@event.BalanceType)}: { @event.BalanceType}");
 
-            /* new DuelUserModel
-            {
-                Bet = @event.Bet,
-                SubCategoryId = @event.SubCategoryId,
-                ConnectionId = Guid.NewGuid(),
-                UserId = "3333-3333-3333-3333"
-            };
-            */
             DuelUserModel waitingDuelUser = _duelUserRepository.GetDuelUser(new DuelUserModel
             {
                 BalanceType = @event.BalanceType,
@@ -101,7 +93,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 ConnectionId = @event.ConnectionId,
                 SubCategoryId = @event.SubCategoryId,
                 UserId = @event.UserId,
-                BalanceType = @event.BalanceType
+                BalanceType = @event.BalanceType,
+                Language = @event.Language
             });
 
             if (isSuccess)
@@ -126,9 +119,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                                                        founderUserId: waitingOpponentIntegration.UserId,
                                                        founderConnectionId: waitingOpponentIntegration.ConnectionId,
+                                                       founderLanguage: waitingOpponentIntegration.Language,
 
                                                        opponentUserId: duelUserModel.UserId,
                                                        opponentConnectionId: duelUserModel.ConnectionId,
+                                                       opponentLanguage: duelUserModel.Language,
+
                                                        balanceType: duelUserModel.BalanceType);
             _eventBus.Publish(@event);
 

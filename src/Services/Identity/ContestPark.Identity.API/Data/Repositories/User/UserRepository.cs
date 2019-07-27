@@ -119,7 +119,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         /// </summary>
         /// <param name="userInfos">Kullanıcı idleri</param>
         /// <returns>Kullanıcı bilgileri</returns>
-        public IEnumerable<UserModel> GetUserInfos(List<string> userInfos)
+        public IEnumerable<UserModel> GetUserInfos(List<string> userInfos, bool includeCoverPicturePath = false)
         {
             return _applicationDbContext
                 .Users
@@ -129,7 +129,8 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                     UserId = u.Id,
                     FullName = u.FullName,
                     ProfilePicturePath = u.ProfilePicturePath,
-                    UserName = u.UserName
+                    UserName = u.UserName,
+                    CoverPicturePath = includeCoverPicturePath ? u.CoverPicturePath : string.Empty
                 }).ToList();
         }
 

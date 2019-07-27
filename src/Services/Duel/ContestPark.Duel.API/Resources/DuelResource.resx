@@ -120,4 +120,7 @@
   <data name="AnErrorOccurredDuringTheProcessOfExitingTheStandbyMode" xml:space="preserve">
     <value>An error occurred during the process of exiting the standby mode.</value>
   </data>
+  <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
+    <value>Error starting duel. Please try again.</value>
+  </data>
 </root>

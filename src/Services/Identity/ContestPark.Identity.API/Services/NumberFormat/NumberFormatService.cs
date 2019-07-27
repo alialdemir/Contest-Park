@@ -27,7 +27,7 @@
                     return number1.Substring(0, 3) + "M";
             }
 
-            return "-1";
+            return number.ToString();
         }
     }
 }

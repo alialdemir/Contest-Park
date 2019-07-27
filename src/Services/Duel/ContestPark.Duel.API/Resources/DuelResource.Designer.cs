@@ -68,5 +68,14 @@ namespace ContestPark.Duel.API.Resources {
                 return ResourceManager.GetString("AnErrorOccurredDuringTheProcessOfExitingTheStandbyMode", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error starting duel. Please try again..
+        /// </summary>
+        public static string ErrorStartingDuelPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("ErrorStartingDuelPleaseTryAgain", resourceCulture);
+            }
+        }
     }
 }

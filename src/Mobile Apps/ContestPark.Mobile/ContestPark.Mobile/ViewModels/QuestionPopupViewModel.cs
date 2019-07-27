@@ -518,7 +518,7 @@ namespace ContestPark.Mobile.ViewModels
                 DuelId = DuelScreen.DuelId,
                 Time = Time,
                 IsFounder = isFounder,
-                QuestionInfoId = Question.Question.QuestionInfoId,
+                QuestionId = Question.Question.QuestionId,
                 CorrectAnswer = GetCorrectAnswer(),
                 Stylish = answer,
                 Id = Question.Id

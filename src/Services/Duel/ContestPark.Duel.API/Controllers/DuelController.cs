@@ -45,7 +45,8 @@ namespace ContestPark.Duel.API.Controllers
                                                              standbyModeModel.ConnectionId,
                                                              standbyModeModel.SubCategoryId,
                                                              standbyModeModel.Bet,
-                                                             standbyModeModel.BalanceType);
+                                                             standbyModeModel.BalanceType,
+                                                             CurrentUserLanguage);
 
             _eventBus.Publish(@event);
 
@@ -73,6 +74,25 @@ namespace ContestPark.Duel.API.Controllers
                                                                    standbyModeModel.SubCategoryId,
                                                                    standbyModeModel.Bet,
                                                                    standbyModeModel.BalanceType);
+
+            _eventBus.Publish(@event);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Düellodan çık
+        /// </summary>
+        [HttpPost("DuelEscape")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult DuelEscape([FromBody]DuelEscapeModel duelEscapeModel)
+        {
+            var @event = new DuelEscapeIntegrationEvent(duelEscapeModel.DuelId,
+                                                        UserId,
+                                                        duelEscapeModel.FounderUserId,
+                                                        duelEscapeModel.OpponentUserId,
+                                                        duelEscapeModel.Questions);
 
             _eventBus.Publish(@event);
 

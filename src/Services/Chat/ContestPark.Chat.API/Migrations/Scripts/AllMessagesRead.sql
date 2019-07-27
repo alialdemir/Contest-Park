@@ -1,5 +1,5 @@
 CREATE PROCEDURE SP_AllMessagesRead(
-    UserId VARCHAR(256),
+    UserId VARCHAR(255),
     ChatId TINYINT
 )
 BEGIN

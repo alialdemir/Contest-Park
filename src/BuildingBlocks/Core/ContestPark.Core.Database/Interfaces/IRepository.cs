@@ -42,5 +42,6 @@ namespace ContestPark.Core.Database.Interfaces
         Task<bool> ExecuteAsync(string sql, object parameters = null, CommandType? commandType = null);
 
         ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null);
+        Task<int?> AddAndGetIdAsync(TEntity entity);
     }
 }

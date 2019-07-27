@@ -24,18 +24,37 @@ namespace ContestPark.Balance.API.IntegrationEvents.EventHandling
         /// Amount değeri negatif ise bakiye düşer pozitif ise bakiye ekler
         /// </summary>
         /// <param name="event">Bakiye bilgileri</param>
-        public Task Handle(ChangeBalanceIntegrationEvent @event)
+        public async Task Handle(ChangeBalanceIntegrationEvent @event)
         {
+            _logger.LogInformation("Bakiye değiştirme işlemi handler edildi...",
+                                   @event.UserId,
+                                   @event.Amount,
+                                   @event.BalanceType,
+                                   @event.BalanceHistoryType);
+
             // TODO: işlem başarısız olursa rabbitmq eventi tekrar tetiklemeli
-            _balanceRepository.UpdateBalanceAsync(new Models.ChangeBalanceModel
+            bool isSuccess = await _balanceRepository.UpdateBalanceAsync(new Models.ChangeBalanceModel
             {
                 Amount = @event.Amount,
                 BalanceHistoryType = @event.BalanceHistoryType,
                 BalanceType = @event.BalanceType,
                 UserId = @event.UserId
             });
+            if (!isSuccess)
+            {
+                _logger.LogError("Bakiye değiştirme işlemi başarısız oldu...",
+                                       @event.UserId,
+                                       @event.Amount,
+                                       @event.BalanceType,
+                                       @event.BalanceHistoryType);
+                return;
+            }
 
-            return Task.CompletedTask;
+            _logger.LogInformation("Bakiye değiştirme işlemi başarılı oldu...",
+                                   @event.UserId,
+                                   @event.Amount,
+                                   @event.BalanceType,
+                                   @event.BalanceHistoryType);
         }
     }
 }

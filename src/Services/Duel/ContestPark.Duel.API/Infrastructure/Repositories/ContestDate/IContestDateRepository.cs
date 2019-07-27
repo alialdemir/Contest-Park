@@ -1,7 +1,9 @@
-﻿namespace ContestPark.Duel.API.Infrastructure.Repositories.ContestDate
+﻿using ContestPark.Duel.API.Models;
+
+namespace ContestPark.Duel.API.Infrastructure.Repositories.ContestDate
 {
     public interface IContestDateRepository
     {
-        Models.ContestDateModel ActiveContestDate();
+        ContestDateModel ActiveContestDate();
     }
 }

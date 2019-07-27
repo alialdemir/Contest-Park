@@ -14,7 +14,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
 
         void RemoveCode(string userId);
 
-        IEnumerable<UserModel> GetUserInfos(List<string> userInfos);
+        IEnumerable<UserModel> GetUserInfos(List<string> userInfos, bool includeCoverPicturePath = false);
 
         UserProfileModel GetUserInfoByUserName(string userName);
 

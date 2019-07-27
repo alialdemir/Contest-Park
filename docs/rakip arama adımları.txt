@@ -1,18 +1,37 @@
 ﻿### Duello rakip arama
+
 - Bahis ekranına gel
+
 - Bahisi seç
+
 - duel starting ekranına yönlendir
+
 - random profil resimlerini çek
+
 - Duel servisine istekte at beklemedeğim diye
+
 - Duel servisi onu WaitingOpponentIntegrationEvent publish et
-- Duel redis servisi WaitingOpponentIntegrationEvent subscription olduğu event gelince redisteki aynı kategori ve aynı bahis tutarında bekleyen kullanıcı var ise publish StartDuelIntegration
-- Duel serivsi DuelStartIntegrationEventHandler methodunda duel tablosuna insert eder ve DuelCreatedIntegrationEvent publish yapar
+
+- Duel redis servisi WaitingOpponentIntegrationEvent subscription olduğu event gelince redisteki aynı kategori ve aynı bahis tutarında bekleyen kullanıcı var ise publish DuelStartIntegrationEvent
+
+- Duel serivsi DuelStartIntegrationEventHandler methodunda duel tablosuna insert eder 
+
+  7 tane soru ve cevaplarını alır ve DuelCreatedIntegrationEvent publish yapar
   ve o düellodaki kullanıcı bilgilerini DuelStartingModeli ile DuelStartingIntegrationEvent publish eder
 
-- Signalr servisi DuelStartingntegrationEventHander methodunda  DuelStartingModel signalr ile clients gönderir
+- Signalr servisi  DuelStartingIntegrationEventHandler methodunda  DuelStartingModel signalr ile clients gönderir
 
-- Question servisi DuelCreatedIntegrationEventHandler ile duel id alır ve o düello için random 1 soru getirir QuestionCreatedIntegrationEvent publish eder
-- Signalr serivis cliente QuestionCreatedIntegrationEventHander eder QuestionModel(hander ettiği eventin propertileri) şeklinde gönderir
+------ Düello başladıktan sonra düellodan çıkma durumu
+
+- Buradan sonra düellodan çıkarsa kaybetmiş olur düellodan çıkma işlemi olursa DuelEscapeIntegrationEvent publish ediplip
+ Duel servisindan handler edilir kaçan kullanıcıyı yenildi olarak kabul edip DuelFinishIntegration event publish eder
+
+- Signalr servisi DuelFinishIntegrationHandler ile gelen dataları cliente gönderir
+------ Düello başladıktan sonra düellodan çıkma durumu	
+
+- Kullanıcı soraya cevap verince duel servisine istek atar ve  Duel servisi  AnsweredIntegrationEvent publish edip 
+daha sonra AnsweredIntegrationEventHandler ile redisden iki kullanıcıda cevaplamış mı kontrol eder
+ikiside cevaplamış ise Signalr servisine NextQuestionIntegrationEvent(şuanki soru, kaçıncı soruda ve oyuncu bilgileri) yollar
 
 ??????????? iptal - Duel servisi QuestionCreatedIntegrationEventHander eder ve DuelInfo tablosuna kaydı ekler
 - AskedQuestion için QuestionCreatedIntegrationEventHander eder ve tabloya ekler

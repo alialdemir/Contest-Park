@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Enums;
+﻿using ContestPark.Core.Enums;
+using ContestPark.Duel.API.Enums;
 using ContestPark.EventBus.Events;
 
 namespace ContestPark.Duel.API.IntegrationEvents.Events
@@ -16,7 +17,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public string FounderConnectionId { get; set; }
 
         public BalanceTypes BalanceType { get; }
-
+        public Languages FounderLanguage { get; }
+        public Languages OpponentLanguage { get; }
         public string OpponentConnectionId { get; set; }
 
         public DuelStartIntegrationEvent(short subCategoryId,
@@ -25,7 +27,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
                                          string opponentUserId,
                                          string founderConnectionId,
                                          string opponentConnectionId,
-                                         BalanceTypes balanceType)
+                                         BalanceTypes balanceType,
+                                         Languages founderLanguage,
+                                         Languages opponentLanguage)
         {
             SubCategoryId = subCategoryId;
             Bet = bet;
@@ -34,6 +38,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             FounderConnectionId = founderConnectionId;
             OpponentConnectionId = opponentConnectionId;
             BalanceType = balanceType;
+            FounderLanguage = founderLanguage;
+            OpponentLanguage = opponentLanguage;
             OpponentUserId = opponentUserId;
         }
     }
