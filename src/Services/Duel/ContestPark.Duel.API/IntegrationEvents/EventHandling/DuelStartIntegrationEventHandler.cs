@@ -1,11 +1,17 @@
-﻿using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
+﻿using ContestPark.Core.Models;
+using ContestPark.Core.Services.Identity;
+using ContestPark.Duel.API.Enums;
+using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.Question;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
+using ContestPark.Duel.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
@@ -17,6 +23,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IEventBus _eventBus;
         private readonly IDuelRepository _duelRepository;
         private readonly IQuestionRepository _questionRepository;
+        private readonly IIdentityService _identityService;
         private readonly IContestDateRepository _contestDateRepository;
         private readonly ILogger<DuelStartIntegrationEventHandler> _logger;
 
@@ -27,19 +34,21 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         public DuelStartIntegrationEventHandler(IEventBus eventBus,
                                                 IDuelRepository duelRepository,
                                                 IQuestionRepository questionRepository,
+                                                IIdentityService identityService,
                                                 IContestDateRepository contestDateRepository,
                                                 ILogger<DuelStartIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
-            this._duelRepository = duelRepository;
+            _duelRepository = duelRepository;
             _questionRepository = questionRepository;
+            _identityService = identityService;
             _contestDateRepository = contestDateRepository;
         }
 
         #endregion Constructor
 
-        #region Methos
+        #region Methods
 
         /// <summary>
         /// Kullanıcılar arasında düello başlat 7 soru çek kullanıcılara gönder
@@ -50,13 +59,15 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
             if (contestDate == null)
             {
-                SendErrorMessage(@event.FounderUserId, "düello hatası düello iptal");
-                SendErrorMessage(@event.OpponentUserId, "düello hatası düello iptal");
+                _logger.LogCritical("CRITICAL: Yarışma tarihi alınırken null kayıt geldi. Lütfen acil aktif yarışma tarihi(ContestDates tablosu) var mı kontrol edelim!");
+
+                SendErrorMessage(@event.FounderUserId, DuelResource.ErrorStartingDuelPleaseTryAgain);
+                SendErrorMessage(@event.OpponentUserId, DuelResource.ErrorStartingDuelPleaseTryAgain);
 
                 return;
             }
 
-            int? duelId = await _duelRepository.Insert(new Infrastructure.Tables.Duel
+            int duelId = await _duelRepository.Insert(new Infrastructure.Tables.Duel
             {
                 BalanceType = @event.BalanceType,
                 Bet = @event.Bet,
@@ -64,8 +75,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 OpponentUserId = @event.OpponentUserId,
                 FounderUserId = @event.FounderUserId,
                 ContestDateId = contestDate.ContestDateId
-            });
-            if (!duelId.HasValue)
+            }) ?? 0;
+            if (duelId <= 0)
             {
                 _logger.LogCritical($@"CRITICAL: Düello başlatılamadı.
                                                  founder user id: {@event.FounderUserId}
@@ -74,11 +85,17 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                  subCategory id: {@event.SubCategoryId}
                                                  bet: {@event.Bet}");
 
-                SendErrorMessage(@event.FounderUserId, "düello hatası düello iptal");
-                SendErrorMessage(@event.OpponentUserId, "düello hatası düello iptal");
+                SendErrorMessage(@event.FounderUserId, DuelResource.ErrorStartingDuelPleaseTryAgain);
+                SendErrorMessage(@event.OpponentUserId, DuelResource.ErrorStartingDuelPleaseTryAgain);
 
                 return;
             }
+
+            PublishDuelStartingEvent(duelId,
+                                     @event.FounderUserId,
+                                     @event.FounderConnectionId,
+                                     @event.OpponentUserId,
+                                     @event.OpponentConnectionId);
 
             var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
@@ -86,16 +103,130 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                     @event.FounderLanguage,
                                                                     @event.OpponentLanguage);
 
-            var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
-                                                             questions);
+            // Bakiyeler düşüldü
+            ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType);
+            ChangeBalance(@event.OpponentUserId, @event.Bet, @event.BalanceType);
+
+            PublishDuelCreatedEvent(duelId,
+                                    @event.FounderUserId,
+                                    @event.FounderConnectionId,
+                                    @event.OpponentUserId,
+                                    @event.OpponentConnectionId,
+                                    questions);
+
+            _logger.LogInformation($@"Düello başlatıldı. DuelId: {duelId}
+                                                         founder user id: {@event.FounderUserId}
+                                                         founder user id: {@event.OpponentUserId}
+                                                         balance type: {@event.BalanceType}
+                                                         subCategory id: {@event.SubCategoryId}
+                                                         bet: {@event.Bet}");
         }
 
+        /// <summary>
+        /// DuelCreatedIntegrationEvent publish eder
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <param name="founderUserId">Kurucu kullanıcı id</param>
+        /// <param name="founderConnectionId">Kurucu connection id</param>
+        /// <param name="opponentUserId">Rakip kullanıcı id</param>
+        /// <param name="opponentConnectionId">Rakip connection id</param>
+        /// <param name="questions">Düelloda sorulacak sorular</param>
+        private void PublishDuelCreatedEvent(int duelId,
+                                             string founderUserId,
+                                             string founderConnectionId,
+                                             string opponentUserId,
+                                             string opponentConnectionId,
+                                             IEnumerable<QuestionModel> questions)
+        {
+            var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
+                                                            founderUserId,
+                                                            founderConnectionId,
+                                                            opponentUserId,
+                                                            opponentConnectionId,
+                                                            questions);
+
+            _eventBus.Publish(duelEvent);
+        }
+
+        /// <summary>
+        /// DuelStarting ekranı için gerekli bilgileri singlar gönderir
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <param name="founderUserId">Kurucu kullanıcı id</param>
+        /// <param name="founderConnectionId">Kurucu connection id</param>
+        /// <param name="opponentUserId">Rakip kullanıcı id</param>
+        /// <param name="opponentConnectionId">Rakip connection id</param>
+        private void PublishDuelStartingEvent(int duelId,
+                                              string founderUserId,
+                                              string founderConnectionId,
+                                              string opponentUserId,
+                                              string opponentConnectionId)
+        {
+            Task.Factory.StartNew(async () =>// Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
+            {
+                List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
+            {
+                founderUserId,
+                opponentUserId
+            }, includeCoverPicturePath: true)).ToList();
+
+                UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
+                UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
+
+                if (founderUserModel == null || opponentUserModel == null)
+                {
+                    _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
+
+                    return;
+                }
+
+                // TODO: #issue 213
+
+                var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
+                    founderUserModel.CoverPicturePath,
+                    founderUserModel.ProfilePicturePath,
+                    founderUserModel.UserId,
+                    founderConnectionId,
+                    opponentUserModel.CoverPicturePath,
+                    opponentUserModel.FullName,
+                    opponentUserModel.ProfilePicturePath,
+                    opponentUserModel.UserId,
+                    opponentConnectionId);
+
+                _eventBus.Publish(@duelScreenEvent);
+            });
+        }
+
+        /// <summary>
+        /// Signalr ile clients hata mesajı gönderir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="message">Gönderilecek mesaj</param>
         private void SendErrorMessage(string userId, string message)
         {
             var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
+
             _eventBus.Publish(@event);
         }
 
-        #endregion Methos
+        /// <summary>
+        /// Kullanıcının bakiyesini değiştirme eventi publish eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="bet">Bakiye</param>
+        /// <param name="balanceType">Bakiye tipi</param>
+        private void ChangeBalance(string userId, decimal bet, BalanceTypes balanceType)
+        {
+            if (bet <= 0)
+                return;
+
+            bet = -bet;
+
+            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
+
+            _eventBus.Publish(@event);
+        }
+
+        #endregion Methods
     }
 }

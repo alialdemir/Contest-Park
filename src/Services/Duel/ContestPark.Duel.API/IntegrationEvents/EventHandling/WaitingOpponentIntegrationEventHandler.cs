@@ -57,14 +57,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                     { nameof(@event.Bet)}: { @event.Bet}
                                     { nameof(@event.BalanceType)}: { @event.BalanceType}");
 
-            /* new DuelUserModel
-            {
-                Bet = @event.Bet,
-                SubCategoryId = @event.SubCategoryId,
-                ConnectionId = Guid.NewGuid(),
-                UserId = "3333-3333-3333-3333"
-            };
-            */
             DuelUserModel waitingDuelUser = _duelUserRepository.GetDuelUser(new DuelUserModel
             {
                 BalanceType = @event.BalanceType,

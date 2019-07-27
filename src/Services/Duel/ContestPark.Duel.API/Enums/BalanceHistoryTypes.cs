@@ -1,4 +1,4 @@
-﻿namespace ContestPark.Balance.API.Enums
+﻿namespace ContestPark.Duel.API.Enums
 {
     public enum BalanceHistoryTypes : byte
     {

@@ -5,6 +5,7 @@ using ContestPark.Core.Services.RequestProvider;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
+using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Infrastructure.Repositories.Question;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
@@ -12,6 +13,7 @@ using ContestPark.Duel.API.IntegrationEvents.EventHandling;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Follow;
+using ContestPark.Duel.API.Services.NumberFormat;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -74,9 +76,15 @@ namespace ContestPark.Duel.API
 
             services.AddTransient<IDuelRepository, DuelRepository>();
 
+            services.AddTransient<IDuelDetailRepository, DuelDetailRepository>();
+
+            services.AddTransient<INumberFormatService, NumberFormatService>();
+
             services.AddTransient<WaitingOpponentIntegrationEventHandler>();
 
             services.AddTransient<RemoveWaitingOpponentIntegrationEventHandler>();
+
+            services.AddTransient<DuelFinishIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -130,6 +138,8 @@ namespace ContestPark.Duel.API
             eventBus.Subscribe<WaitingOpponentIntegrationEvent, WaitingOpponentIntegrationEventHandler>();
 
             eventBus.Subscribe<RemoveWaitingOpponentIntegrationEvent, RemoveWaitingOpponentIntegrationEventHandler>();
+
+            eventBus.Subscribe<DuelFinishIntegrationEvent, DuelFinishIntegrationEventHandler>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ContestPark.Identity.API.Services.NumberFormat
+﻿namespace ContestPark.Duel.API.Services.NumberFormat
 {
     public class NumberFormatService : INumberFormatService
     {
@@ -27,7 +27,7 @@
                     return number1.Substring(0, 3) + "M";
             }
 
-            return number.ToString();
+            return "-1";
         }
     }
 }

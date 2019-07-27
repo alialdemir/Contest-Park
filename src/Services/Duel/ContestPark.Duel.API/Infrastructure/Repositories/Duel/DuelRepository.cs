@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Duel.API.Enums;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
@@ -7,15 +8,15 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
     {
         #region Private Variables
 
-        private readonly IRepository<Tables.Duel> _askedQuestionRepository;
+        private readonly IRepository<Tables.Duel> _duelRepository;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public DuelRepository(IRepository<Tables.Duel> askedQuestionRepository)
+        public DuelRepository(IRepository<Tables.Duel> duelRepository)
         {
-            _askedQuestionRepository = askedQuestionRepository;
+            _duelRepository = duelRepository;
         }
 
         #endregion Constructor
@@ -29,7 +30,33 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         /// <returns>Başarılı ise true değilse false</returns>
         public Task<int?> Insert(Tables.Duel duel)
         {
-            return _askedQuestionRepository.AddAndGetIdAsync(duel);
+            return _duelRepository.AddAndGetIdAsync(duel);
+        }
+
+        /// <summary>
+        /// Duello id'ye ait düelloyu verir
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <returns>Düello model</returns>
+        public Tables.Duel GetDuelByDuelId(int duelId)
+        {
+            string sql = "SELECT * FROM Duels d WHERE d.DuelId = @duelId AND d.DuelType = @duelType";
+
+            return _duelRepository.QuerySingleOrDefault<Tables.Duel>(sql, new
+            {
+                duelId,
+                duelType = (byte)DuelTypes.Created
+            });
+        }
+
+        /// <summary>
+        /// Düello güncelle
+        /// </summary>
+        /// <param name="duel">Düello bilgileri</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public Task<bool> UpdateAsync(Tables.Duel duel)
+        {
+            return _duelRepository.UpdateAsync(duel);
         }
 
         #endregion Methods

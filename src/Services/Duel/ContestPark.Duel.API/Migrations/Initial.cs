@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Duel.API.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -154,6 +155,11 @@ namespace ContestPark.Duel.API.Migrations
                .WithColumn("BalanceType")
                .AsByte()
                .NotNullable()
+
+               .WithColumn("DuelTypes")
+               .AsByte()
+               .NotNullable()
+               .WithDefaultValue((byte)DuelTypes.Created)
 
                .WithColumn("FounderTotalScore")
                .AsByte()

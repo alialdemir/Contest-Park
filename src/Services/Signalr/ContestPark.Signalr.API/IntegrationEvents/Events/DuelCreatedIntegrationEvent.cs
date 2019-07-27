@@ -1,8 +1,8 @@
-﻿using ContestPark.Duel.API.Models;
-using ContestPark.EventBus.Events;
+﻿using ContestPark.EventBus.Events;
+using ContestPark.Signalr.API.Models;
 using System.Collections.Generic;
 
-namespace ContestPark.Duel.API.IntegrationEvents.Events
+namespace ContestPark.Signalr.API.IntegrationEvents.Events
 {
     public class DuelCreatedIntegrationEvent : IntegrationEvent
     {

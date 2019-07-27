@@ -46,15 +46,19 @@ namespace ContestPark.Core.Services.Identity
         /// Kullanıcı idlerine ait adsoyad, kullanıcı adı, profil resmi, user id bilgilerini döner
         /// </summary>
         /// <param name="userIds">Kullanıcı idleri</param>
+        /// <param name="includeCoverPicturePath">
+        /// Eğer true olursa kapak resminide döndürür false ise kapak resmini döndürmez
+        /// Düello başlama ekranında kapat resmi lazım oldu o yüzden kullandık
+        /// </param>
         /// <returns>Kullanıcı bilgilei</returns>
-        public async Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        public async Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false)
         {
             List<UserModel> users = await GetUsersAsync();
 
             var notFoundUserIds = userIds.Where(u => !users.Any(x => x.UserId == u)).AsEnumerable();
             if (notFoundUserIds.Count() > 0) // users listesinde yani redisde olmayan kullanıcıları gidip identity serviceden alıp redise ekleyip return ediyoruz
             {
-                IEnumerable<UserModel> serviceUsers = await _requestProvider.PostAsync<IEnumerable<UserModel>>($"{baseUrl}/UserInfos", userIds);
+                IEnumerable<UserModel> serviceUsers = await _requestProvider.PostAsync<IEnumerable<UserModel>>($"{baseUrl}/UserInfos?includeCoverPicturePath={includeCoverPicturePath}", userIds);
 
                 if (serviceUsers != null || serviceUsers.Count() > 0)// Eğer identity servisten yeni kullanıcılar gelirse onlarıda result listesine ve redis'e ekledik
                 {

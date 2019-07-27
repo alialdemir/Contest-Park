@@ -22,6 +22,8 @@ namespace ContestPark.Duel.API.Infrastructure.Tables
 
         public BalanceTypes BalanceType { get; set; }
 
+        public DuelTypes DuelType { get; set; }
+
         public byte FounderTotalScore { get; set; }
 
         public byte OpponentTotalScore { get; set; }

@@ -1,5 +1,4 @@
-﻿using ContestPark.Balance.API.Infrastructure.Tables;
-using ContestPark.Balance.API.Models;
+﻿using ContestPark.Balance.API.Models;
 using ContestPark.Core.Database.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         #region Private Variables
 
         private readonly IRepository<Tables.Balance> _balanceRepository;
-        private readonly IRepository<BalanceHistory> _balanceHistoryRepository;
+        private readonly IRepository<Tables.BalanceHistory> _balanceHistoryRepository;
         private readonly ILogger<BalanceRepository> _logger;
 
         #endregion Private Variables
@@ -19,7 +18,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         #region Constructor
 
         public BalanceRepository(IRepository<Tables.Balance> balanceRepository,
-                                 IRepository<BalanceHistory> balanceHistoryRepository,
+                                 IRepository<Tables.BalanceHistory> balanceHistoryRepository,
                                  ILogger<BalanceRepository> logger)
         {
             _balanceRepository = balanceRepository;
@@ -52,7 +51,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         /// <param name="amount">Bakiye tutarı</param>
         public Task<bool> UpdateBalanceAsync(ChangeBalanceModel changeBalance)
         {
-            _logger.LogInformation("Bakiye yükleme işlemi başlatılıyor...",
+            _logger.LogInformation("Bakiye değiştirme işlemi başlatılıyor...",
                                    changeBalance.UserId,
                                    changeBalance.Amount,
                                    changeBalance.BalanceType,

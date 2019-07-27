@@ -474,12 +474,12 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [Route("UserInfos")]
         [ProducesResponseType(typeof(List<UserModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetUserInfos([FromBody]List<string> userInfos)
+        public IActionResult GetUserInfos([FromBody]List<string> userInfos, [FromQuery]bool includeCoverPicturePath = false)
         {
             if (userInfos == null || userInfos.Count == 0)
                 return BadRequest();
 
-            var users = _userRepository.GetUserInfos(userInfos);
+            var users = _userRepository.GetUserInfos(userInfos, includeCoverPicturePath);
             if (users == null || users.Count() == 0)
                 return NotFound();
 
