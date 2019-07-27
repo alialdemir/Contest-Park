@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 {
+    /// <summary>
+    /// Düello bittiğinde en son bu event tetiklenir
+    /// </summary>
     public class DuelFinishIntegrationEventHandler : IIntegrationEventHandler<DuelFinishIntegrationEvent>
     {
         #region Private variables
