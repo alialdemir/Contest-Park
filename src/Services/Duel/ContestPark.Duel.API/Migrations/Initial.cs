@@ -156,7 +156,7 @@ namespace ContestPark.Duel.API.Migrations
                .AsByte()
                .NotNullable()
 
-               .WithColumn("DuelTypes")
+               .WithColumn("DuelType")
                .AsByte()
                .NotNullable()
                .WithDefaultValue((byte)DuelTypes.Created)
@@ -166,6 +166,22 @@ namespace ContestPark.Duel.API.Migrations
                .Nullable()
 
                .WithColumn("OpponentTotalScore")
+               .AsByte()
+               .Nullable()
+
+               .WithColumn("FounderFinshScore")
+               .AsByte()
+               .Nullable()
+
+               .WithColumn("OpponentFinshScore")
+               .AsByte()
+               .Nullable()
+
+               .WithColumn("OpponentVictoryScore")
+               .AsByte()
+               .Nullable()
+
+               .WithColumn("FounderVictoryScore")
                .AsByte()
                .Nullable()
 

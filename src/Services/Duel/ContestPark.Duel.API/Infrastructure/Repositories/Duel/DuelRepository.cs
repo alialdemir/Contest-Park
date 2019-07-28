@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Duel.API.Enums;
+using ContestPark.Duel.API.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
@@ -57,6 +58,58 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         public Task<bool> UpdateAsync(Tables.Duel duel)
         {
             return _duelRepository.UpdateAsync(duel);
+        }
+
+        /// <summary>
+        /// Düello sonuç ekranı verir
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <returns>Düello sonuç ekranı</returns>
+        public DuelResultModel DuelResultByDuelId(int duelId, string userId)
+        {
+            string sql = @"SELECT
+                           d.FounderUserId,
+                           d.OpponentUserId,
+                           d.Bet AS Gold,
+                           d.SubCategoryId,
+                           d.FounderTotalScore AS FounderScore,
+                           d.OpponentTotalScore AS OpponentScore,
+                            CASE WHEN d.FounderUserId = @userId THEN d.FounderVictoryScore WHEN d.OpponentUserId = @userId THEN d.OpponentVictoryScore END AS VictoryBonus,
+                            CASE WHEN d.FounderUserId = @userId THEN d.FounderFinshScore WHEN d.OpponentUserId = @userId THEN d.OpponentFinshScore END AS FinishBonus
+                           FROM Duels d
+                           WHERE d.DuelId = @duelId
+                           LIMIT 1";
+
+            return _duelRepository.QuerySingleOrDefault<DuelResultModel>(sql, new
+            {
+                duelId,
+                userId
+            });
+        }
+
+        /// <summary>
+        /// Düello bitmiş mi kotnrol eder
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <returns>Deüllo devam ediyor ise true bitmiş ise false</returns>
+        public bool IsDuelFinish(int duelId)
+        {
+            if (duelId <= 0)
+                return false;
+
+            string sql = @"SELECT (CASE
+                           WHEN EXISTS(
+                           SELECT NULL
+                           FROM Duels d WHERE d.DuelType = @duelType AND d.DuelId = @duelId)
+                           THEN 1
+                           ELSE 0
+                           END)";
+
+            return _duelRepository.QuerySingleOrDefault<bool>(sql, new
+            {
+                duelId,
+                duelType = (byte)DuelTypes.Created
+            });
         }
 
         #endregion Methods

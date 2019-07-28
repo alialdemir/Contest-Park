@@ -123,4 +123,7 @@
   <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
     <value>Error starting duel. Please try again.</value>
   </data>
+  <data name="YouCantLeaveTheFinishedDuel" xml:space="preserve">
+    <value>You can't leave the finished duel.</value>
+  </data>
 </root>

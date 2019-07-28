@@ -14,6 +14,7 @@ using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Follow;
 using ContestPark.Duel.API.Services.NumberFormat;
+using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -124,6 +125,8 @@ namespace ContestPark.Duel.API
             services.AddSingleton<IIdentityService, IdentityService>();
 
             services.AddSingleton<IFollowService, FollowService>();
+
+            services.AddSingleton<ISubCategoryService, SubCategoryService>();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

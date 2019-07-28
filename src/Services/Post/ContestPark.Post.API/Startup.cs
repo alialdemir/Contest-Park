@@ -17,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using StackExchange.Redis;
+using ServiceStack.Redis;
 using System;
 
 namespace ContestPark.Post.API
@@ -45,20 +45,11 @@ namespace ContestPark.Post.API
 
             services.AddLocalizationCustom();
 
-            //By connecting here we are making sure that our service
-            //cannot start until redis is ready. This might slow down startup,
-            //but given that there is a delay on resolving the ip address
-            //and then creating the connection it seems reasonable to move
-            //that cost to startup instead of having the first request pay the
-            //penalty.
-            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            services.AddSingleton<IRedisClient>(sp =>
             {
                 var settings = sp.GetRequiredService<IOptions<PostSettings>>().Value;
-                var configuration = ConfigurationOptions.Parse(settings.Redis, true);
 
-                configuration.ResolveDns = true;
-
-                return ConnectionMultiplexer.Connect(configuration);
+                return new RedisClient(settings.Redis);
             });
 
             services

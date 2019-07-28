@@ -77,5 +77,14 @@ namespace ContestPark.Duel.API.Resources {
                 return ResourceManager.GetString("ErrorStartingDuelPleaseTryAgain", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t leave the finished duel..
+        /// </summary>
+        public static string YouCantLeaveTheFinishedDuel {
+            get {
+                return ResourceManager.GetString("YouCantLeaveTheFinishedDuel", resourceCulture);
+            }
+        }
     }
 }

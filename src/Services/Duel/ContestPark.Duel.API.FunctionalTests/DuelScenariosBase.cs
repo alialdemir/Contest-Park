@@ -53,6 +53,16 @@ namespace ContestPark.Duel.API.FunctionalTests
                 return "api/v1/Duel";
             }
 
+            public static string PostDuelEscape()
+            {
+                return "api/v1/Duel/DuelEscape";
+            }
+
+            public static string GetDuelResult(int duelId)
+            {
+                return $"api/v1/Duel/{duelId}";
+            }
+
             public static string PostDeleteStandbyMode()
             {
                 return "api/v1/Duel/DeleteStandbyMode";

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Duel.API.Enums;
+using Newtonsoft.Json;
 
 namespace ContestPark.Duel.API.Models
 {
@@ -16,8 +17,10 @@ namespace ContestPark.Duel.API.Models
 
         public byte OpponentTime { get; set; }//Rakibin cevap verdiği süre
 
+        [JsonIgnore]
         public byte FounderScore { get; set; }
 
+        [JsonIgnore]
         public byte OpponentScore { get; set; }
     }
 }

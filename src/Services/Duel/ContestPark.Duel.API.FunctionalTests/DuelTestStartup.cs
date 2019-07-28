@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.FunctionalTests;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Duel.API.Services.Follow;
+using ContestPark.Duel.API.Services.SubCategory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace ContestPark.Duel.API.FunctionalTests
         protected override void ConfigureOtherService(IServiceCollection services)
         {
             services.AddSingleton<IFollowService, FollowMockService>();
+            services.AddSingleton<ISubCategoryService, SubCategoryMockService>();
             services.AddSingleton<IIdentityService, IdentityMockService>();
         }
 

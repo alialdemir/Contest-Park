@@ -6,5 +6,6 @@
         public string ConnectionString { get; set; }
         public string Redis { get; set; }
         public string FollowUrl { get; set; }
+        public string SubCategoryUrl { get; set; }
     }
 }

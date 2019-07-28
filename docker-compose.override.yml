@@ -148,6 +148,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - identityUrl=http://contestpark.identity.api
       - FollowUrl=http://contestpark.follow.api
+      - SubCategoryUrl=http://contestpark.category.api
       - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkDuel;pwd=root;}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
       - Audience=duel

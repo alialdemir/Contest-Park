@@ -123,4 +123,7 @@
   <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
     <value>Düello başlarken hata oluştu. Lütfen tekrar  deneyiniz.</value>
   </data>
+  <data name="YouCantLeaveTheFinishedDuel" xml:space="preserve">
+    <value>Bitmiş düellodan çıkamazsınız.</value>
+  </data>
 </root>

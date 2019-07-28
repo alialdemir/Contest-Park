@@ -11,7 +11,37 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
     public class DuelResultModel : ExtendedBindableObject
     {
         private ISettingsService settingsService;
+
         public byte FinishBonus { get; set; }
+
+        public byte MatchScore
+        {
+            get
+            {
+                if (SettingsService.CurrentUser.UserId == FounderUserId)
+                {
+                    return FounderScore;
+                }
+                else if (SettingsService.CurrentUser.UserId == OpponentUserId)
+                {
+                    return OpponentScore;
+                }
+
+                return 0;// eğer kurucu veya rakip dışında biri bakıyorsa 0 gözüksün
+            }
+        }
+
+        public byte FounderScore { get; set; }
+
+        public byte OpponentScore { get; set; }
+
+        public byte? VictoryBonus { get; set; }
+
+        [JsonIgnore]
+        public int TotalXp
+        {
+            get { return FinishBonus + (VictoryBonus ?? 0) + MatchScore; }
+        }
 
         [JsonIgnore]
         public string FounderColor
@@ -36,12 +66,12 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public string FounderFullName { get; set; }
         public short FounderLevel { get; set; }
         public string FounderProfilePicturePath { get; set; }
-        public byte FounderScore { get; set; }
         public string FounderUserId { get; set; }
         public string FounderUserName { get; set; }
-        public int Gold { get; set; }
+        public decimal Gold { get; set; }
         public bool IsFounder { get; set; }
 
+        [JsonIgnore]
         public bool IsShowFireworks
         {
             get
@@ -60,8 +90,6 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
                 }
             }
         }
-
-        public byte MatchScore { get; set; }
 
         [JsonIgnore]
         public string OpponentColor
@@ -86,22 +114,16 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public string OpponentFullName { get; set; }
         public short OpponentLevel { get; set; }
         public string OpponentProfilePicturePath { get; set; }
-        public byte OpponentScore { get; set; }
+
         public string OpponentUserId { get; set; }
+
         public string OpponentUserName { get; set; }
 
         public short SubCategoryId { get; set; }
+
         public string SubCategoryName { get; set; }
 
         public string SubCategoryPicturePath { get; set; }
-
-        [JsonIgnore]
-        public int TotalXp
-        {
-            get { return FinishBonus + VictoryBonus + MatchScore; }
-        }
-
-        public byte VictoryBonus { get; set; }
 
         public string WinnerOrLoseText
         {

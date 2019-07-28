@@ -1,8 +1,7 @@
 ﻿using ContestPark.Core.Models;
 using ContestPark.Core.Services.RequestProvider;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using StackExchange.Redis;
+using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +14,10 @@ namespace ContestPark.Core.Services.Identity
         #region Private Variables
 
         private readonly IRequestProvider _requestProvider;
-        private readonly ConnectionMultiplexer _redis;
-        private readonly IDatabase _database;
 
         private readonly string baseUrl = "";
         private const string redisKey = "UserInfos";
+        private readonly IRedisClient _redisClient;
 
         #endregion Private Variables
 
@@ -27,13 +25,10 @@ namespace ContestPark.Core.Services.Identity
 
         public IdentityService(IRequestProvider requestProvider,
                                IConfiguration configuration,
-                               ConnectionMultiplexer redis)
+                               IRedisClient redisClient)
         {
             _requestProvider = requestProvider ?? throw new ArgumentNullException(nameof(requestProvider));
-
-            _redis = redis ?? throw new ArgumentNullException(nameof(redis));
-            _database = redis.GetDatabase();
-
+            _redisClient = redisClient;
             string identityUrl = configuration["identityUrl"] ?? throw new ArgumentNullException(nameof(baseUrl));
             baseUrl = identityUrl + "/api/v1/account";
         }
@@ -53,7 +48,18 @@ namespace ContestPark.Core.Services.Identity
         /// <returns>Kullanıcı bilgilei</returns>
         public async Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false)
         {
-            List<UserModel> users = await GetUsersAsync();
+            List<UserModel> users = new List<UserModel>();
+            foreach (string userId in userIds)
+            {
+                // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
+                string key = $"{redisKey}:{userId}*";
+
+                var items = _redisClient.ScanAllKeys(key).ToList();
+                if (items != null || items.Count != 0)
+                {
+                    users.AddRange(_redisClient.GetValues<UserModel>(items));
+                }
+            }
 
             var notFoundUserIds = userIds.Where(u => !users.Any(x => x.UserId == u)).AsEnumerable();
             if (notFoundUserIds.Count() > 0) // users listesinde yani redisde olmayan kullanıcıları gidip identity serviceden alıp redise ekleyip return ediyoruz
@@ -90,24 +96,15 @@ namespace ContestPark.Core.Services.Identity
             if (users == null || users.ToList().Count == 0)
                 return;
 
-            string userJson = JsonConvert.SerializeObject(users);
-
-            _database.StringSetAsync(redisKey, userJson, expiry: TimeSpan.FromMinutes(30), when: When.NotExists);
+            foreach (UserModel user in users)
+            {
+                _redisClient.Set<UserModel>(GetKey(user.UserId, user.UserName), user, expiresAt: DateTime.Now.AddMinutes(30));// 30 dakkika sonra redis üzerinden otomatik siler
+            }
         }
 
-        /// <summary>
-        /// Redisdeki tüm kullanıcı listesini getirir
-        /// </summary>
-        /// <returns>Kullanıcı listesi</returns>
-        private async Task<List<UserModel>> GetUsersAsync()
+        private string GetKey(string userId, string userName)
         {
-            string users = await _database.StringGetAsync(redisKey);
-            if (string.IsNullOrEmpty(users))
-                return new List<UserModel>();
-
-            List<UserModel> userModels = JsonConvert.DeserializeObject<List<UserModel>>(users);
-
-            return userModels;
+            return $"{redisKey}:{userId}:{userName}";
         }
 
         /// <summary>
@@ -117,7 +114,15 @@ namespace ContestPark.Core.Services.Identity
         /// <returns>Kullanıcı id</returns>
         public async Task<UserIdModel> GetUserIdByUserName(string userName)
         {
-            List<UserModel> users = await GetUsersAsync();
+            // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
+            string key = $"*:{userName}";
+
+            var items = _redisClient.ScanAllKeys(key).ToList();
+            if (items == null || items.Count == 0)
+                return null;
+
+            // Redis keyleri DuelUserModele çevirdik
+            List<UserModel> users = _redisClient.GetValues<UserModel>(items);
             if (users != null && users.Count != 0)
             {
                 string userId = users.FirstOrDefault(x => x.UserName.ToLower() == userName.ToLower()).UserId;

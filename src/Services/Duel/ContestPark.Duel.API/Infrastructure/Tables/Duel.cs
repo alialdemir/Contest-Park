@@ -24,8 +24,16 @@ namespace ContestPark.Duel.API.Infrastructure.Tables
 
         public DuelTypes DuelType { get; set; }
 
-        public byte FounderTotalScore { get; set; }
+        public byte? FounderTotalScore { get; set; }
 
-        public byte OpponentTotalScore { get; set; }
+        public byte? OpponentTotalScore { get; set; }
+
+        public byte? FounderFinshScore { get; set; }
+
+        public byte? OpponentFinshScore { get; set; }
+
+        public byte? OpponentVictoryScore { get; set; }
+
+        public byte? FounderVictoryScore { get; set; }
     }
 }
