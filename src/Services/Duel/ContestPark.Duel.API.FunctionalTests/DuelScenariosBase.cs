@@ -58,6 +58,11 @@ namespace ContestPark.Duel.API.FunctionalTests
                 return "api/v1/Duel/DuelEscape";
             }
 
+            public static string PostAddOpponent()
+            {
+                return "api/v1/Duel/AddOpponent";
+            }
+
             public static string GetDuelResult(int duelId)
             {
                 return $"api/v1/Duel/{duelId}";

@@ -12,6 +12,7 @@ using Plugin.Iconize;
 using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
+using System;
 
 namespace ContestPark.Mobile.Droid
 {
@@ -65,6 +66,8 @@ namespace ContestPark.Mobile.Droid
 
             base.OnCreate(bundle);
 
+            CheckForRoot();
+
             CrossCurrentActivity.Current.Init(this, bundle);
 
             CrossCurrentActivity.Current.Activity = this;
@@ -91,5 +94,44 @@ namespace ContestPark.Mobile.Droid
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
         }
+
+        #region Security
+
+        private bool CanExecuteSuCommand()
+        {
+            try
+            {
+                Java.Lang.Runtime.GetRuntime().Exec("su");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private bool HasSuperApk()
+        {
+            return new Java.IO.File("/system/app/Superuser.apk").Exists();
+        }
+
+        private bool IsTestKeyBuild()
+        {
+            string str = Build.Tags;
+            if ((str != null) && (str.Contains("test-keys")))
+                return true;
+            return false;
+        }
+
+        private void CheckForRoot()
+        {
+            if (CanExecuteSuCommand() || HasSuperApk() || IsTestKeyBuild())
+            {
+                //Eğer rootlu bir cihaz uygulamanızı yüklediyse, uygulamanızı kapatabilirsiniz.
+                Process.KillProcess(Process.MyPid());
+            }
+        }
+
+        #endregion Security
     }
 }

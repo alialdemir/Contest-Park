@@ -174,6 +174,24 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                 }).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Rastgele kullanıcı id verir
+        /// </summary>
+        /// <returns>Rastgele bir kullanıcı id</returns>
+        public string GetRandomBotUserId()
+        {
+            string sql = @"SELECT a.Id FROM AspNetUsers a
+                           WHERE a.IsBot = true
+                           ORDER BY RAND()
+                           LIMIT 1";
+
+            return _applicationDbContext
+                                .Users
+                                .FromSql(sql)
+                                .Select(u => u.Id)
+                                .FirstOrDefault();
+        }
+
         #endregion Methods
     }
 }

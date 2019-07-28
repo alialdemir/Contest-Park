@@ -45,6 +45,31 @@ namespace ContestPark.Duel.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Rakip ekler
+        /// </summary>
+        /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
+        [HttpPost("AddOpponent")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AddOpponent([FromBody]StandbyModeModel standbyModeModel)// Oyunucunun karşısına rakip ekler
+        {
+            if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
+            {
+                return BadRequest();
+            }
+
+            string userId = await _identityService.GetRandomUserId();
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest();
+
+            // TODO: burada bot eklerken karşısına farklı bir kullanıcı denk gelebilir mi? yani bot ekle dedik o sırada gerçek kullanıcı denk geldi bot sırada bekler mi?
+
+            AddWaitingOpponentEvent(userId, standbyModeModel);// Rakip eklendi
+
+            return Ok();
+        }
+
+        /// <summary>
         /// Duello rakip bekleme moduna al
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
@@ -58,7 +83,19 @@ namespace ContestPark.Duel.API.Controllers
                 return BadRequest();
             }
 
-            var @event = new WaitingOpponentIntegrationEvent(UserId,
+            AddWaitingOpponentEvent(UserId, standbyModeModel);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Bekleme moduna al
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="standbyModeModel">Düello bilgileri</param>
+        private void AddWaitingOpponentEvent(string userId, StandbyModeModel standbyModeModel)
+        {
+            var @event = new WaitingOpponentIntegrationEvent(userId,
                                                              standbyModeModel.ConnectionId,
                                                              standbyModeModel.SubCategoryId,
                                                              standbyModeModel.Bet,
@@ -66,8 +103,6 @@ namespace ContestPark.Duel.API.Controllers
                                                              CurrentUserLanguage);
 
             _eventBus.Publish(@event);
-
-            return Ok();
         }
 
         /// <summary>
@@ -105,7 +140,7 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult DuelEscape([FromBody]DuelEscapeModel duelEscapeModel)
         {
-            if (_duelRepository.IsDuelFinish(duelEscapeModel.DuelId))
+            if (!_duelRepository.IsDuelFinish(duelEscapeModel.DuelId))
             {
                 return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
             }

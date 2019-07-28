@@ -16,6 +16,6 @@ AND q.SubCategoryId = subCategoryId
 AND q.QuestionId NOT IN (SELECT aq.QuestionId
 FROM AskedQuestions aq
 WHERE aq.QuestionId = q.QuestionId AND aq.UserId IN (founderUserId, opponentUserId))
-ORDER BY q.QuestionId DESC
+ORDER BY RAND()
 LIMIT 14;
 END;
