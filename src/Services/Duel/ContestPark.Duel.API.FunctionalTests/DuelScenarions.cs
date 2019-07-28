@@ -51,6 +51,31 @@ namespace ContestPark.Duel.API.FunctionalTests
             }
         }
 
+        [Theory]
+        [InlineData(BalanceTypes.Gold)]
+        [InlineData(BalanceTypes.Money)]
+        public async Task Get_add_opponent_and_response_ok_status_code(BalanceTypes balanceType)
+        {
+            using (var server = CreateServer())
+            {
+                StandbyModeModel standbyMode = new StandbyModeModel
+                {
+                    BalanceType = balanceType,
+                    Bet = 1234,
+                    ConnectionId = Guid.NewGuid().ToString(),
+                    SubCategoryId = 1,
+                };
+
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(standbyMode));
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await server.CreateClient()
+                    .PostAsync(Entpoints.PostAddOpponent(), content);
+
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
+        }
+
         [Fact]
         public async Task Get_duel_result_and_check_data()
         {
@@ -109,7 +134,7 @@ namespace ContestPark.Duel.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
-                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(GetDuelEscape(2)));
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(GetDuelEscape(1)));
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 var response = await server.CreateClient()
@@ -131,7 +156,7 @@ namespace ContestPark.Duel.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
-                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(GetDuelEscape(1)));
+                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(GetDuelEscape(2)));
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 var response = await server.CreateClient()

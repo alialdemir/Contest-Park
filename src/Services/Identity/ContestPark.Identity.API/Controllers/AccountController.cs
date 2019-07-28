@@ -509,6 +509,21 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Rastgele kullanıcı id verir
+        /// </summary>
+        /// <returns>Kullanıcı id</returns>
+        [HttpGet("RandomUserId")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public IActionResult GetRandomUserId()
+        {
+            return Ok(new
+            {
+                userId = _userRepository.GetRandomBotUserId()
+            });
+        }
+
+        /// <summary>
         /// Şifremi unuttum email içeriği
         /// </summary>
         /// <param name="fullname"></param>

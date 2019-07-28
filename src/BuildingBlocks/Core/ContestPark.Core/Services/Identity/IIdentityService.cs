@@ -9,5 +9,6 @@ namespace ContestPark.Core.Services.Identity
         Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false);
 
         Task<UserIdModel> GetUserIdByUserName(string userName);
+        Task<string> GetRandomUserId();
     }
 }
