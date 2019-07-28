@@ -528,6 +528,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Duel",
       "UpstreamHttpMethod": [ "Post", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Duel/{duelId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.duel.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Duel/{duelId}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {

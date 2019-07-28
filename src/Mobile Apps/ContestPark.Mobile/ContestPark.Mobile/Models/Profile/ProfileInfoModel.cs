@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Models.Profile
         private string coverPicture = DefaultImages.DefaultCoverPicture;
         private int followersCount;
         private int followUpCount;
-        private int gameCount;
+        private long gameCount;
 
         private bool isFollowing;
         private string profilePicturePath = DefaultImages.DefaultCoverPicture;

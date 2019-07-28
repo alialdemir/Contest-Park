@@ -7,7 +7,9 @@ using ContestPark.Category.API.Model;
 using ContestPark.Category.API.Resources;
 using ContestPark.Category.API.Services.Balance;
 using ContestPark.Core.Database.Models;
+using ContestPark.Core.Enums;
 using ContestPark.EventBus.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -200,7 +202,7 @@ namespace ContestPark.Category.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetDetail([FromRoute]short subCategoryId)
         {
-            if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
+            if (subCategoryId < 0)
                 return BadRequest();
 
             SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, CurrentUserLanguage);
@@ -208,6 +210,27 @@ namespace ContestPark.Category.API.Controllers
                 return NotFound();
 
             return Ok(subCategoryDetail);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{subCategoryId}/Info")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetSubCategoryInfo([FromRoute]short subCategoryId, [FromQuery]Languages language)
+        {
+            if (subCategoryId < 0)
+                return BadRequest();
+
+            SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, language);
+            if (subCategoryDetail == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                subCategoryDetail.SubCategoryName,
+                SubCategoryPicturePath = subCategoryDetail.PicturePath
+            });
         }
 
         /// <summary>

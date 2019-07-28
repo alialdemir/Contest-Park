@@ -48,7 +48,7 @@ namespace ContestPark.Duel.API.FunctionalTests
             return Task.FromResult(user);
         }
 
-        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false)
         {
             return Task.FromResult(users.AsEnumerable());
         }

@@ -20,6 +20,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IDuelRepository _duelRepository;
         private readonly IDuelDetailRepository _duelDetailRepository;
         private readonly ILogger<DuelEscapeIntegrationEventHandler> _logger;
+        private const byte MAX_QUESTION_COUNT = 7;
 
         #endregion Private variables
 
@@ -83,6 +84,34 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             duel.OpponentTotalScore = !isEscaperUserFounder ? (byte)0 : (byte)@event.Questions.Sum(x => x.OpponentScore);
 
+            #region Kazanma bonusları ver
+
+            if (@event.EscaperUserId != duel.FounderUserId && duel.FounderTotalScore > duel.OpponentTotalScore)
+            {
+                duel.FounderVictoryScore += 70;// kurucu kazandıysa kurucuya +70 puan
+            }
+            else if (@event.EscaperUserId != duel.OpponentUserId && duel.OpponentTotalScore > duel.FounderTotalScore)
+            {
+                duel.OpponentVictoryScore += 70; // Rakip kazandıysa rakibe +70 puan
+            }
+            //else if (duel.FounderTotalScore == duel.OpponentTotalScore)
+            //{
+            //    duel.OpponentVictoryScore += 35;
+            //    duel.OpponentVictoryScore += 35;
+            //}
+
+            #endregion Kazanma bonusları ver
+
+            //#region Düello bitirme bonusları ver
+
+            //if (duelDetails.Count == MAX_QUESTION_COUNT)
+            //{
+            //    duel.FounderFinshScore += 40;
+            //    duel.OpponentFinshScore += 40;
+            //}
+
+            //#endregion Düello bitirme bonusları ver
+
             isSuccess = await _duelRepository.UpdateAsync(duel);
             if (!isSuccess)
             {
@@ -100,8 +129,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                   duel.SubCategoryId,
                                                                   duel.FounderUserId,
                                                                   duel.OpponentUserId,
-                                                                  duel.FounderTotalScore,
-                                                                  duel.OpponentTotalScore);
+                                                                  duel.FounderTotalScore ?? 0,
+                                                                  duel.OpponentTotalScore ?? 0);
 
             _eventBus.Publish(duelFinishEvent);
         }
@@ -115,26 +144,48 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private List<Infrastructure.Tables.DuelDetail> ConvertToDuelDetail(List<DuelFinishQuestionModel> duelQuestions, int duelId)
         {
             List<Infrastructure.Tables.DuelDetail> duelDetails = new List<Infrastructure.Tables.DuelDetail>();
-
-            foreach (var duelQueestion in duelQuestions)
+            for (int i = 0; i < duelQuestions.Count - 1; i++)
             {
+                DuelFinishQuestionModel duelQuestion = duelQuestions[i];
+
+                byte round = (byte)(i + 1);
+
                 duelDetails.Add(new Infrastructure.Tables.DuelDetail
                 {
                     DuelId = duelId,
-                    QuestionId = duelQueestion.QuestionId,
-                    CorrectAnswer = duelQueestion.CorrectAnswer,
+                    QuestionId = duelQuestion.QuestionId,
+                    CorrectAnswer = duelQuestion.CorrectAnswer,
 
-                    FounderAnswer = duelQueestion.FounderAnswer,
-                    FounderScore = duelQueestion.FounderScore,
-                    FounderTime = duelQueestion.FounderTime,
+                    FounderAnswer = duelQuestion.FounderAnswer,
+                    FounderTime = duelQuestion.FounderTime,
+                    FounderScore = duelQuestion.CorrectAnswer == duelQuestion.FounderAnswer ? CalculatorScore(round, duelQuestion.FounderTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
 
-                    OpponentAnswer = duelQueestion.OpponentAnswer,
-                    OpponentScore = duelQueestion.OpponentScore,
-                    OpponentTime = duelQueestion.OpponentTime,
+                    OpponentScore = duelQuestion.CorrectAnswer == duelQuestion.OpponentAnswer ? CalculatorScore(round, duelQuestion.OpponentTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
+                    OpponentAnswer = duelQuestion.OpponentAnswer,
+                    OpponentTime = duelQuestion.OpponentTime,
                 });
             }
 
             return duelDetails;
+        }
+
+        /// <summary>
+        /// Skor hesaplama makismum
+        /// r = kaçıncı soruda olduğu
+        /// t = kaçıncı saniyede soruya cevap verdiği
+        /// formül:  (r * t) / 2
+        /// </summary>
+        /// <param name="round">Kaçıncı soruda(raund) da olduğu</param>
+        /// <param name="time">kaçıncı saniyede soruya cevap verdiği</param>
+        /// <returns>Skor</returns>
+        private byte CalculatorScore(int round, byte time)
+        {
+            if (time <= 0 || time > 10)
+                time = 1;
+
+            double score = Math.Round((double)(round * time / 2));// maksimum 140 gelir
+
+            return Convert.ToByte(score);
         }
 
         /// <summary>

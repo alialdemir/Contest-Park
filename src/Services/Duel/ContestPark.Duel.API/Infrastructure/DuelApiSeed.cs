@@ -372,6 +372,38 @@ namespace ContestPark.Duel.API.Infrastructure
                        Stylish3 = "Japan",
                     },
                 });
+
+                await InsertDataAsync(new List<Tables.Duel>
+                {
+                     new Tables.Duel
+                     {
+                          BalanceType = Enums.BalanceTypes.Gold,
+                          Bet= 10.00m,
+                          ContestDateId = 1,
+                          DuelType = Enums.DuelTypes.WinnerFounder,
+                          FounderTotalScore = 255,
+                          FounderUserId = "1111-1111-1111-1111",
+                          OpponentTotalScore = 200,
+                          OpponentUserId = "2222-2222-2222-2222",
+                          SubCategoryId = 1,
+                          OpponentVictoryScore = 0,
+                          FounderVictoryScore = 70,
+                          OpponentFinshScore = 40,
+                          FounderFinshScore = 40,
+                     },
+                     new Tables.Duel
+                     {
+                          BalanceType = Enums.BalanceTypes.Gold,
+                          Bet= 10.00m,
+                          ContestDateId = 1,
+                          DuelType = Enums.DuelTypes.Created,
+                          FounderTotalScore = 255,
+                          FounderUserId = "1111-1111-1111-1111",
+                          OpponentTotalScore = 200,
+                          OpponentUserId = "2222-2222-2222-2222",
+                          SubCategoryId = 1,
+                     }
+                });
             });
         }
     }
