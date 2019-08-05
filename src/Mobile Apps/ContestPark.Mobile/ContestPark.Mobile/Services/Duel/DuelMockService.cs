@@ -32,7 +32,6 @@ namespace ContestPark.Mobile.Services.Duel
                 OpponentScore = 12,
                 FinishBonus = 40,
                 VictoryBonus = 30,
-                MatchScore = 234,
                 OpponentLevel = 1,
                 FounderLevel = 7,
                 SubCategoryPicturePath = DefaultImages.DefaultLock,

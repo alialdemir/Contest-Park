@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
@@ -126,10 +125,14 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterPopupNavigationService();
 
+            #region Yeni
+
+            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+
+            #endregion Yeni
+
             if (!GlobalSetting.Instance.IsMockData)
             {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
-
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
 
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
@@ -162,7 +165,7 @@ namespace ContestPark.Mobile.Configs
             }
             else
             {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+                // containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
@@ -194,7 +197,6 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
             }
-
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 
             containerRegistry.RegisterSingleton<IGameService, GameService>();

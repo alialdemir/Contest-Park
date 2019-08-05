@@ -75,7 +75,6 @@ namespace ContestPark.Mobile.Services.Identity
             {
                 AccessToken = "fake_token",
                 ExpiresIn = 365,
-                IdToken = "123",
                 RefreshToken = "fake_refresh_token",
                 TokenType = "bearer"
             };

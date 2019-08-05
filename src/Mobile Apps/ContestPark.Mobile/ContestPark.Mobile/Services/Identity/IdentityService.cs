@@ -213,7 +213,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             // TODO: uygulama dili değişince nuradaki dil değişecek mi test edilmesi lazım
             CultureInfo cultureInfo = Xamarin.Forms.DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-            signUpModel.LanguageCode = cultureInfo.TwoLetterISOLanguageName;
+            signUpModel.LanguageCode = cultureInfo.IetfLanguageTag;
 
             ValidationResultModel validationResult = await _requestProvider.PostAsync<ValidationResultModel>(uri, signUpModel);
 
@@ -261,20 +261,19 @@ namespace ContestPark.Mobile.Services.Identity
 
         private async Task ShowErrorMessage(string message)
         {
-            if (!string.IsNullOrEmpty(message))
-            {
+            if (string.IsNullOrEmpty(message))
+                return;
 #if DEBUG
-                await _dialogService.DisplayAlertAsync(
-                              ContestParkResources.Error,
-                         message,
-                               ContestParkResources.Okay);
+            await _dialogService.DisplayAlertAsync(
+                          ContestParkResources.Error,
+                     message,
+                           ContestParkResources.Okay);
 #else
                 await _dialogService.DisplayAlertAsync(
                               ContestParkResources.Error,
                          ContestParkResources.GlobalErrorMessage,
                                ContestParkResources.Okay);
 #endif
-            }
         }
 
         private async Task ShowHttpErrorMessage(Exception ex)

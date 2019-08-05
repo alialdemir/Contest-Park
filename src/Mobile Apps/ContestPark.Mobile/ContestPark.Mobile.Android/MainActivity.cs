@@ -66,7 +66,9 @@ namespace ContestPark.Mobile.Droid
 
             base.OnCreate(bundle);
 
+#if !DEBUG
             CheckForRoot();
+#endif
 
             CrossCurrentActivity.Current.Init(this, bundle);
 

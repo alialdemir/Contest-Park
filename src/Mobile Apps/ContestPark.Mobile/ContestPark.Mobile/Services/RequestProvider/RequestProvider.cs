@@ -3,6 +3,7 @@ using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Exceptions;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Services.Settings;
+using ModernHttpClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -115,9 +116,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 new FormUrlEncodedContent(dictionary));
 
             await HandleResponse(response);
+
             string serialized = await response.Content.ReadAsStringAsync();
 
-            TResult result = await Task.Run(() =>
+            TResult result = await Task.Factory.StartNew(() =>
                 JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
 
             return result;
@@ -159,7 +161,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private HttpClient CreateHttpClient()
         {
-            HttpClient httpClient = new HttpClient(/*new NativeMessageHandler()*/);
+            HttpClient httpClient = new HttpClient(new NativeMessageHandler());
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
@@ -208,60 +210,60 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return await policyWrap.ExecuteAsync(action, new Context(normalizedOrigin));
         }
 
-        private Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
+        private async Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
         {
             // a new StringContent must be created for each retry as it is disposed after each call
             var origin = GetOriginFromUri(url);
 
-            return HttpInvoker(origin, async (context) =>
+            //return HttpInvoker(origin, async (context) =>
+            //{
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                IPageDialogService pageDialogService = RegisterTypesConfig.Container.Resolve<IPageDialogService>();
+
+                await pageDialogService?.DisplayAlertAsync(ContestParkResources.NoInternet, "", ContestParkResources.Okay);
+
+                return default(TResult);
+            }
+
+            try
+            {
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
+
+                if (data.GetType() == typeof(FileStream))
                 {
-                    IPageDialogService pageDialogService = RegisterTypesConfig.Container.Resolve<IPageDialogService>();
+                    if (data == null)
+                        return default(TResult);
 
-                    await pageDialogService?.DisplayAlertAsync(ContestParkResources.NoInternet, "", ContestParkResources.Okay);
-
-                    return default(TResult);
-                }
-
-                try
-                {
-                    HttpClient httpClient = CreateHttpClient();
-                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
-
-                    if (data.GetType() == typeof(FileStream))
-                    {
-                        if (data == null)
-                            return default(TResult);
-
-                        httpRequestMessage.Content = new MultipartFormDataContent
+                    httpRequestMessage.Content = new MultipartFormDataContent
                         {
                             { new StreamContent((Stream)data), "file", "filename" }// TODO: filename kısmında uzantı isteyebilir
                         };
-                    }
-                    else if (data != null)
-                    {
-                        string content = await Task.Run(() => JsonConvert.SerializeObject(data));
-                        httpRequestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
-                    }
-
-                    HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
-                    await HandleResponse(response);
-
-                    string serialized = await response.Content.ReadAsStringAsync();
-
-                    TResult result = await Task.Run(() =>
-                        JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
-
-                    return result;
                 }
-                catch (Exception ex)
+                else if (data != null)
                 {
-                    Debug.WriteLine(ex);
+                    string content = JsonConvert.SerializeObject(data);//  await Task.Factory.StartNew(() => ();
+                    httpRequestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
                 }
+                HttpClient httpClient = CreateHttpClient();
 
-                return default(TResult);
-            });
+                HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
+                await HandleResponse(response);
+
+                string serialized = await response.Content.ReadAsStringAsync();
+
+                TResult result = await Task.Run(() =>
+                    JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            return default(TResult);
+            //        });
         }
 
         #endregion Private methods
