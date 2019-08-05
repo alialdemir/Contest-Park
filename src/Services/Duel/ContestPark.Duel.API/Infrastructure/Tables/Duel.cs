@@ -35,5 +35,6 @@ namespace ContestPark.Duel.API.Infrastructure.Tables
         public byte? OpponentVictoryScore { get; set; }
 
         public byte? FounderVictoryScore { get; set; }
+        public byte BetCommission { get; set; }
     }
 }

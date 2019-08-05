@@ -4,6 +4,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
@@ -20,6 +21,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IDuelRepository _duelRepository;
         private readonly IScoreRankingRepository _scoreRankingRepository;
         private readonly ILogger<DuelFinishIntegrationEventHandler> _logger;
+        private readonly DuelSettings _duelSettings;
 
         #endregion Private variables
 
@@ -28,12 +30,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         public DuelFinishIntegrationEventHandler(IEventBus eventBus,
                                                  IDuelRepository duelRepository,
                                                  IScoreRankingRepository scoreRankingRepository,
+                                                 IOptions<DuelSettings> settings,
                                                  ILogger<DuelFinishIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _duelRepository = duelRepository;
             _scoreRankingRepository = scoreRankingRepository;
+            _duelSettings = settings.Value;
         }
 
         #endregion Constructor
@@ -84,22 +88,36 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             else if (@event.FounderScore > @event.OpponentScore)// Kurucu düelloyu kazanmış
             {
-                decimal founderBet = @event.Bet * 2; // Düellolar iki kişi oynandığı için  çarpı 2 yaptık yani bahisin iki katı kazandıdı
+                decimal founderBet = CaltulatorBetComission(@event.Bet);
 
                 ChangeBalance(@event.FounderUserId, founderBet, @event.BalanceType, BalanceHistoryTypes.Win);
 
-                ChangeBalance(@event.OpponentUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
+                //  ChangeBalance(@event.OpponentUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
             }
             else if (@event.OpponentScore > @event.FounderScore)// Rakip düelloyu kazanmış
             {
-                decimal opponentBet = @event.Bet * 2; // Düellolar iki kişi oynandığı için  çarpı 2 yaptık yani bahisin iki katı kazandıdı
+                decimal opponentBet = CaltulatorBetComission(@event.Bet);
 
-                ChangeBalance(@event.FounderUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
+                // ChangeBalance(@event.FounderUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
 
                 ChangeBalance(@event.OpponentUserId, opponentBet, @event.BalanceType, BalanceHistoryTypes.Win);
             }
 
             #endregion Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
+        }
+
+        /// <summary>
+        /// Bahisten komisyom düşer
+        /// </summary>
+        /// <param name="bet">Bahis miktarı</param>
+        /// <returns>Komisyon düşülmüş bahis tutarı</returns>
+        private decimal CaltulatorBetComission(decimal bet)
+        {
+            bet = bet * 2; // Düellolar iki kişi oynandığı için  çarpı 2 yaptık yani bahisin iki katı kazandıdı
+
+            decimal betCommission = bet - (bet * _duelSettings.BetCommission) / 100;// Bizim komisyon oranımız kadar kesinti yaptık
+
+            return betCommission;
         }
 
         /// <summary>

@@ -87,6 +87,8 @@ namespace ContestPark.Duel.API
 
             services.AddTransient<DuelFinishIntegrationEventHandler>();
 
+            services.AddTransient<DuelStartIntegrationEventHandler>();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -143,6 +145,8 @@ namespace ContestPark.Duel.API
             eventBus.Subscribe<RemoveWaitingOpponentIntegrationEvent, RemoveWaitingOpponentIntegrationEventHandler>();
 
             eventBus.Subscribe<DuelFinishIntegrationEvent, DuelFinishIntegrationEventHandler>();
+
+            eventBus.Subscribe<DuelStartIntegrationEvent, DuelStartIntegrationEventHandler>();
         }
     }
 }

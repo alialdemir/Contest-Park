@@ -40,7 +40,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         public Task Handle(WaitingOpponentIntegrationEvent @event)
         {
-            if (String.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
+            if (string.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
             {
                 _logger.LogWarning($@"Duello oluşturulken değerler boş geldi.
                                     {nameof(@event.UserId)}: {@event.UserId}
