@@ -69,6 +69,7 @@ namespace ContestPark.Mobile.Droid
 #if !DEBUG
             CheckForRoot();
 #endif
+            // Check if running in sim
 
             CrossCurrentActivity.Current.Init(this, bundle);
 
