@@ -590,4 +590,7 @@
   <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
     <value>Düello başlatılırken hata oluştu. Lütfen tekrar deneyiniz.</value>
   </data>
+  <data name="YouHaveEnteredAnInvalidCode" xml:space="preserve">
+    <value>Geçersiz kod girdiniz.</value>
+  </data>
 </root>

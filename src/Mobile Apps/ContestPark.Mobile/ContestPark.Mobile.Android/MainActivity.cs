@@ -64,6 +64,8 @@ namespace ContestPark.Mobile.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            //   ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
             base.OnCreate(bundle);
 
 #if !DEBUG
@@ -109,6 +111,8 @@ namespace ContestPark.Mobile.Droid
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
                 return false;
             }
         }

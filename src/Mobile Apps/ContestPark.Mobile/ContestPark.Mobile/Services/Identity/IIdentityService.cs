@@ -13,7 +13,7 @@ namespace ContestPark.Mobile.Services.Identity
         Task ChangeCoverPictureAsync(Stream picture);
 
         Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel);
-
+        Task<bool> ChangePasswordAsync(int code);
         Task ChangeProfilePictureAsync(Stream picture);
 
         Task ForgetYourPasswordAsync(string userNameOrEmailAddress);

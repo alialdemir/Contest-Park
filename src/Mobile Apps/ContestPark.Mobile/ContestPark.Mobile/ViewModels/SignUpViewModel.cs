@@ -110,11 +110,6 @@ namespace ContestPark.Mobile.ViewModels
 
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            SignUpModel.FullName = " ali aldemir";
-            SignUpModel.Email = "aldemrali@asd.com";
-            SignUpModel.Password = "19931993";
-            SignUpModel.UserName = "test124";
-
             if (await CheckValidationAsync())
                 return;
 

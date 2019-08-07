@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ContestPark.Mobile.Models.ErrorModel
+﻿namespace ContestPark.Mobile.Models.ErrorModel
 {
     public class ValidationResultModel
     {
         public string ErrorMessage { get; set; }
-        public IEnumerable<string> MemberNames { get; }
+
+        public string[] MemberNames { get; set; }
     }
 }
