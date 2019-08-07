@@ -1,10 +1,10 @@
 ﻿using ContestPark.Core.Enums;
+using ContestPark.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace ContestPark.Core.Controllers
 {
@@ -86,18 +86,23 @@ namespace ContestPark.Core.Controllers
 
         #region Methods
 
-        public override BadRequestObjectResult BadRequest(object error)
+        public BadRequestObjectResult BadRequest(object error, ErrorStatuCodes errorStatuCode = ErrorStatuCodes.None)
         {
             if (error is string)
             {
-                return base.BadRequest(new ValidationResult(error.ToString()));
+                return base.BadRequest(new ValidationResultModel(error.ToString(), errorStatuCode));
             }
             else if (error is IEnumerable<string>)
             {
-                return base.BadRequest(new ValidationResult("", (IEnumerable<string>)error));
+                return base.BadRequest(new ValidationResultModel("", (IEnumerable<string>)error, errorStatuCode));
             }
 
             return base.BadRequest(error);
+        }
+
+        public override BadRequestObjectResult BadRequest(object error)
+        {
+            return this.BadRequest(error);
         }
 
         #endregion Methods

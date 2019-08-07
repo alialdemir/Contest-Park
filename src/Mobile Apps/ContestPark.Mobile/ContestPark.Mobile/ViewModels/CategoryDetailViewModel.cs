@@ -100,7 +100,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 SubcategoryId = _subCategoryId,
                 SubcategoryName = Title,
-                SubCategoryPicturePath = CategoryDetail.SubCategoryPicturePath,
+                SubCategoryPicturePath = CategoryDetail.PicturePath,
             });
 
             IsBusy = false;
@@ -206,7 +206,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () => CategoryDetail = await _categoryService.GetSubCategoryDetail(CategoryDetail.SubCategoryId));
+                return new Command(async () => CategoryDetail = await _categoryService.GetSubCategoryDetail(_subCategoryId));
             }
         }
 

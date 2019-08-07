@@ -259,7 +259,7 @@ namespace ContestPark.Category.API.Controllers
                 return BadRequest(CategoryResource.AnErrorHasOccurredFromTheSystemPleaseTryAgain);
 
             if (balance.Amount < subCategoryPrice)
-                return BadRequest(CategoryResource.YourBalanceIsInsufficient);
+                return BadRequest(CategoryResource.YourBalanceIsInsufficient, ErrorStatuCodes.YouCanNotUnlockTheFreeCategory);
 
             bool isSuccess = await _openCategoryRepository.UnLockSubCategory(new OpenSubCategory
             {

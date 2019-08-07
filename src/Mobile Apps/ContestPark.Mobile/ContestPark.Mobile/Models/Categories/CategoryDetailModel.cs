@@ -4,7 +4,7 @@
     {
         private bool _isSubCategoryFollowUpStatus;
         private byte _level = 1;
-        private string _subCategoryPicturePath;
+        private string _picturePath;
 
         private int categoryFollowersCount;
 
@@ -87,18 +87,20 @@
         /// <summary>
         /// Kategori resmi
         /// </summary>
-        public string SubCategoryPicturePath
+        public string PicturePath
         {
             get
             {
-                return _subCategoryPicturePath;
+                return _picturePath;
             }
             set
             {
-                _subCategoryPicturePath = value;
+                _picturePath = value;
 
-                RaisePropertyChanged(() => SubCategoryPicturePath);
+                RaisePropertyChanged(() => PicturePath);
             }
         }
+
+        public long FollowerCount { get; set; }
     }
 }

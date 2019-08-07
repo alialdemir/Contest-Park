@@ -60,6 +60,7 @@ namespace ContestPark.Category.API.Infrastructure
                                 DisplayPrice = "10k",
                                 PicturePath="https://d2n3notmdf08g1.cloudfront.net/common/Login/gotr_icon_whistle.png",
                                 Price = 10.00m,
+                                FollowerCount =1
                             },
                 };
 

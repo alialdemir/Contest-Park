@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Exceptions;
 using ContestPark.Mobile.Extensions;
+using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
 using Newtonsoft.Json;
@@ -232,7 +233,15 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                 string serialized = await response.Content.ReadAsStringAsync();
 
-                result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
+                if (!response.IsSuccessStatusCode)
+                {
+                    result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
+                }
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
+                }
 
                 result.IsSuccess = response.IsSuccessStatusCode;
 

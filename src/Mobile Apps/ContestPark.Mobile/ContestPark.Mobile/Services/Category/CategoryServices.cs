@@ -1,11 +1,14 @@
 ﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.PagingModel;
+using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
+using Prism.Services;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Category
@@ -17,17 +20,20 @@ namespace ContestPark.Mobile.Services.Category
         private const string ApiUrlBase = "api/v1/SubCategory";
         private readonly ICacheService _cacheService;
         private readonly INewRequestProvider _requestProvider;
+        private readonly IPageDialogService _dialogService;
 
         #endregion Private variables
 
         #region Constructor
 
         public CategoryServices(INewRequestProvider requestProvider,
+                                IPageDialogService dialogService,
                                 ICacheService cacheService
             )
         {
             _cacheService = cacheService;
             _requestProvider = requestProvider;
+            _dialogService = dialogService;
         }
 
         #endregion Constructor
@@ -64,9 +70,9 @@ namespace ContestPark.Mobile.Services.Category
         /// Kategori Id'ye göre kategori listesi getirir 0 ise tüm kategorileri getirir
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
-        public async Task<ServiceModel<SearchModel>> CategorySearchAsync(short subCategoryId, PagingModel pagingModel)
+        public async Task<ServiceModel<SearchModel>> CategorySearchAsync(short categoryId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q=");
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
 
@@ -82,7 +88,7 @@ namespace ContestPark.Mobile.Services.Category
         {
             // TODO: kullanıcı kategoriyi takip ederse veya level atlarsa cache deki kategori detay bilgilerinin yenilenmesi lazım
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/detail"); ;
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}"); ;
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -101,13 +107,11 @@ namespace ContestPark.Mobile.Services.Category
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <returns></returns>
-        public async Task<bool> OpenCategoryAsync(short subCategoryId)
+        public Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/open");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/unlock?balanceType={balanceType}");
 
-            var isOpenSubCategory = await _requestProvider.PostAsync<bool>(uri);
-
-            return isOpenSubCategory.Data;
+            return _requestProvider.PostAsync<string>(uri);
         }
 
         /// <summary>
@@ -115,11 +119,11 @@ namespace ContestPark.Mobile.Services.Category
         /// </summary>
         /// <param name="searchText">Aranan kategori adı, kullanıcı adı veya kullanıcı ad soyad</param>
         /// <param name="pagingModel">Sayfalama</param>
-        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <param name="categoryId">Alt kategori id</param>
         /// <returns>Alt kategori listesi</returns>
-        public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)
+        public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short categoryId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel}&q={searchText}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q=");
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
 
