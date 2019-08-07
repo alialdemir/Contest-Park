@@ -20,11 +20,11 @@ namespace ContestPark.Mobile.Services.Category
                 Items = new List<CategoryModel>
                  {
                     GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
                  }
             });
         }

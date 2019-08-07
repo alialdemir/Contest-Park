@@ -11,6 +11,8 @@ namespace ContestPark.Mobile.Models.ServiceModel
         [JsonProperty(Order = 2)]
         public IEnumerable<T> Items { get; set; }
 
+        public bool HasNextPage { get; set; }
+
         [JsonIgnore]
         public bool IsLastPage
         {

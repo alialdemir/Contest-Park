@@ -51,6 +51,9 @@ namespace ContestPark.Mobile.Services.Category
 
             if (response.IsSuccess)
             {
+                if (_cacheService.IsExpired(uri))
+                    _cacheService.Empty(uri);
+
                 _cacheService.Add(uri, response.Data);
             }
 

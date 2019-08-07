@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Components
 {
-    public class CategoryCard : StackLayout
+    public class CategoryCard : ContentView
     {
         #region Properties
 
@@ -47,16 +47,20 @@ namespace ContestPark.Mobile.Components
                 return;
             }
 
-            Children.Add(new CategoryHeader
+            StackLayout stackLayout = new StackLayout();
+
+            stackLayout.Children.Add(new CategoryHeader
             {
                 CategoryName = categoryModel.CategoryName,
                 SeeAllCommandParameter = categoryModel.CategoryId,
                 SeeAllPressed = SeeAllPressed,
             });
 
-            Children.Add(new SubCategoryHorizontalScrollView());
+            stackLayout.Children.Add(new SubCategoryHorizontalScrollView());
 
-            Children.Add(new Line());
+            stackLayout.Children.Add(new Line());
+
+            Content = stackLayout;
         }
 
         #endregion Override

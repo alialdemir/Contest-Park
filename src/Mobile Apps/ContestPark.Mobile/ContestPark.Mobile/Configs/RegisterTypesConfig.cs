@@ -24,6 +24,7 @@ using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels;
 using ContestPark.Mobile.Views;
 using Prism.Ioc;
+using Prism.Plugin.Popups;
 
 namespace ContestPark.Mobile.Configs
 {
@@ -122,15 +123,17 @@ namespace ContestPark.Mobile.Configs
 
         private void RegisterTypeInstance(IContainerRegistry containerRegistry)
         {
-            //      containerRegistry.RegisterPopupNavigationService();
+            containerRegistry.RegisterPopupNavigationService();
 
             #region Yeni
 
-            containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
             containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
 
-            containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+            containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
+
+            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
 
             #endregion Yeni
 
@@ -196,7 +199,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
-                containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
+                // containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
             }
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 

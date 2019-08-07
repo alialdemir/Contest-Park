@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -30,14 +31,14 @@ namespace ContestPark.Mobile.ViewModels
               ISignalRServiceBase baseSignalRService,// signalr bağlantısı başlatılması için ekledim
             INavigationService navigationService,
             IPageDialogService pageDialogService,
-            // IGameService gameService,
+             IGameService gameService,
             IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService)
         {
             Title = ContestParkResources.Categories;
             _categoryServices = categoryServices;
 
-            // gameService.NavigationService = navigationService;
+            gameService.NavigationService = navigationService;
 
             EventSubscribe(eventAggregator);
             ServiceModel.PageSize = 9999;// Şimdilik 9999 verdim kategorilerde safyalama yok

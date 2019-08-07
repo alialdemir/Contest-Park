@@ -221,15 +221,20 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 if (await CheckNetworkAsync())
                     return result;
 
-                HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(httpMethod, url)
+                HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(httpMethod, url));
+
+                if (data != null)
                 {
-                    Content = GetContent(data)
-                });
+                    response.Content = GetContent(data);
+                }
+
                 await HandleResponse(response);
 
                 string serialized = await response.Content.ReadAsStringAsync();
 
                 result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
+
+                result.IsSuccess = response.IsSuccessStatusCode;
 
                 return result;
             }
@@ -257,6 +262,9 @@ namespace ContestPark.Mobile.Services.RequestProvider
         /// <returns>Http content</returns>
         private HttpContent GetContent(object data)
         {
+            if (data == null)
+                return null;
+
             if (data.GetType() == typeof(FileStream))
             {
                 if (data == null)
