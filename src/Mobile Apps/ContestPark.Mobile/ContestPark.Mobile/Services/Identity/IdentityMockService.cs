@@ -38,6 +38,11 @@ namespace ContestPark.Mobile.Services.Identity
             return Task.FromResult(true);
         }
 
+        public Task<bool> ChangePasswordAsync(int code)
+        {
+            return Task.FromResult(true);
+        }
+
         public Task ChangeProfilePictureAsync(Stream picture)
         {
             return Task.CompletedTask;

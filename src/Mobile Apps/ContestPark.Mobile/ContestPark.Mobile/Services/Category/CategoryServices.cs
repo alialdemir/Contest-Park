@@ -16,13 +16,13 @@ namespace ContestPark.Mobile.Services.Category
 
         private const string ApiUrlBase = "api/v1/SubCategory";
         private readonly ICacheService _cacheService;
-        private readonly IRequestProvider _requestProvider;
+        private readonly INewRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public CategoryServices(IRequestProvider requestProvider,
+        public CategoryServices(INewRequestProvider requestProvider,
                                 ICacheService cacheService
             )
         {
@@ -47,11 +47,14 @@ namespace ContestPark.Mobile.Services.Category
                 return await _cacheService.Get<ServiceModel<CategoryModel>>(uri);
             }
 
-            var categories = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
+            var response = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
 
-            _cacheService.Add(uri, categories);
+            if (response.IsSuccess)
+            {
+                _cacheService.Add(uri, response.Data);
+            }
 
-            return categories;
+            return response.Data;
         }
 
         /// <summary>
@@ -62,9 +65,9 @@ namespace ContestPark.Mobile.Services.Category
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel.ToString()}");
 
-            var searchs = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+            var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
 
-            return searchs;
+            return response.Data;
         }
 
         /// <summary>
@@ -83,11 +86,11 @@ namespace ContestPark.Mobile.Services.Category
                 return await _cacheService.Get<CategoryDetailModel>(uri);
             }
 
-            CategoryDetailModel subCategoryDetail = await _requestProvider.GetAsync<CategoryDetailModel>(uri);
+            var response = await _requestProvider.GetAsync<CategoryDetailModel>(uri);
 
-            _cacheService.Add(uri, subCategoryDetail);
+            _cacheService.Add(uri, response.Data);
 
-            return subCategoryDetail;
+            return response.Data;
         }
 
         /// <summary>
@@ -101,7 +104,7 @@ namespace ContestPark.Mobile.Services.Category
 
             var isOpenSubCategory = await _requestProvider.PostAsync<bool>(uri);
 
-            return isOpenSubCategory;
+            return isOpenSubCategory.Data;
         }
 
         /// <summary>
@@ -115,7 +118,9 @@ namespace ContestPark.Mobile.Services.Category
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel}&q={searchText}");
 
-            return await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+            var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+
+            return response.Data;
         }
 
         #endregion Methods

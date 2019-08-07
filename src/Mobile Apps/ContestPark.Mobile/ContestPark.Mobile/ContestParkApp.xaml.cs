@@ -51,8 +51,9 @@ namespace ContestPark.Mobile
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+#if DEBUG
             GlobalSetting.Instance.IsMockData = true;
-
+#endif
             RegisterTypesConfig.Init(Container, containerRegistry);
         }
 

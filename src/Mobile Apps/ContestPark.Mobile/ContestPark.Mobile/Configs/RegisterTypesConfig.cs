@@ -126,9 +126,11 @@ namespace ContestPark.Mobile.Configs
 
             #region Yeni
 
-            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+            containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
             containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+
+            containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
             #endregion Yeni
 
@@ -139,8 +141,6 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
-
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
                 containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
@@ -166,7 +166,7 @@ namespace ContestPark.Mobile.Configs
             }
             else
             {
-                //     containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+                //    containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
@@ -174,7 +174,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+                //   containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
                 containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
