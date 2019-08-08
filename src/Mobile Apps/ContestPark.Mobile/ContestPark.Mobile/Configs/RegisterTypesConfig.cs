@@ -131,6 +131,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
 
+            containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
+
             containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
@@ -179,7 +181,7 @@ namespace ContestPark.Mobile.Configs
 
                 //   containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
-                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
+                // containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
                 containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 

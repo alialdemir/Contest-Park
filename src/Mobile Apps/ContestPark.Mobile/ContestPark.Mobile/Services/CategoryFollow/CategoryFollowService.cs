@@ -4,6 +4,7 @@ using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -15,15 +16,18 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         #region Private variables
 
         private const string ApiUrlBase = "api/v1/SubCategory";
-        private readonly IRequestProvider _requestProvider;
+        private readonly INewRequestProvider _requestProvider;
+        private readonly ICacheService _cacheService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public CategoryFollowService(IRequestProvider requestProvider)
+        public CategoryFollowService(INewRequestProvider requestProvider,
+                                     ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _cacheService = cacheService;
         }
 
         #endregion Constructor
@@ -37,10 +41,11 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         /// <returns>Alt kategori listesi</returns>
         public async Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel)
         {
-            //{{url}}/Subcategory/Followed/search?q=h
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Followed/search{pagingModel.ToString()}&q={searchText}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search/Followed{pagingModel.ToString()}&q={searchText}");
 
-            return await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+            var result = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+
+            return result.Data;
         }
 
         /// <summary>
@@ -49,11 +54,15 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         /// <param name="subCategoryId">Alt kategori Id</param>
         public async Task<bool> FollowSubCategoryAsync(short subCategoryId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/follow");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/Follow");
 
             try
             {
-                await _requestProvider.PostAsync<string>(uri);
+                var response = await _requestProvider.PostAsync<string>(uri);
+                if (response.IsSuccess)
+                {
+                    DeleteCategoryCache();
+                }
             }
             catch (System.Exception ex)
             {
@@ -73,9 +82,9 @@ namespace ContestPark.Mobile.Services.CategoryFollow
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/FollowStatus");
 
-            var subCategoryFollowStatus = await _requestProvider.GetAsync<SubCategoryFollowModel>(uri);
+            var result = await _requestProvider.GetAsync<SubCategoryFollowModel>(uri);
 
-            return subCategoryFollowStatus.IsSubCategoryFollowed;
+            return result.Data.IsSubCategoryFollowed;
         }
 
         /// <summary>
@@ -102,7 +111,11 @@ namespace ContestPark.Mobile.Services.CategoryFollow
 
             try
             {
-                await _requestProvider.DeleteAsync<string>(uri);
+                var response = await _requestProvider.DeleteAsync<string>(uri);
+                if (response.IsSuccess)
+                {
+                    DeleteCategoryCache();
+                }
             }
             catch (System.Exception ex)
             {
@@ -111,6 +124,18 @@ namespace ContestPark.Mobile.Services.CategoryFollow
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Kategori takip ederse veya takipten çıkarırsa kategori listeleme cache siler
+        /// </summary>
+        private void DeleteCategoryCache()
+        {
+            string key = $"{GlobalSetting.Instance.GatewaEndpoint}/api/v1/SubCategory?PageSize=9999&PageNumber=1";
+            if (!_cacheService.IsExpired(key))
+            {
+                _cacheService.Empty(key);
+            }
         }
 
         #endregion Methods

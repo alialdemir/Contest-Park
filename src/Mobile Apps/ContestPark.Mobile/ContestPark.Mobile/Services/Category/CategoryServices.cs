@@ -107,11 +107,18 @@ namespace ContestPark.Mobile.Services.Category
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <returns></returns>
-        public Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold)
+        public async Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/unlock?balanceType={balanceType}");
 
-            return _requestProvider.PostAsync<string>(uri);
+            var result = await _requestProvider.PostAsync<string>(uri);
+
+            if (result.IsSuccess)
+            {
+                DeleteCategoryCache();
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -123,11 +130,23 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Alt kategori listesi</returns>
         public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short categoryId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q=");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q={searchText}");
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
 
             return response.Data;
+        }
+
+        /// <summary>
+        /// Kategori takip ederse veya takipten çıkarırsa kategori listeleme cache siler
+        /// </summary>
+        private void DeleteCategoryCache()
+        {
+            string key = $"{GlobalSetting.Instance.GatewaEndpoint}/api/v1/SubCategory?PageSize=9999&PageNumber=1";
+            if (!_cacheService.IsExpired(key))
+            {
+                _cacheService.Empty(key);
+            }
         }
 
         #endregion Methods

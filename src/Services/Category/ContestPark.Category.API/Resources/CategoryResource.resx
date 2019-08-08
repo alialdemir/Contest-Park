@@ -123,6 +123,9 @@
   <data name="CouldNotPpenSubcategoryLock" xml:space="preserve">
     <value>Could not open subcategory lock.</value>
   </data>
+  <data name="FollowedCategories" xml:space="preserve">
+    <value>Followed Categories</value>
+  </data>
   <data name="ThisCategoryIsAlreadyUnlocked" xml:space="preserve">
     <value>This category is already unlocked.</value>
   </data>

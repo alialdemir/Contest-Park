@@ -38,10 +38,10 @@ namespace ContestPark.Category.API.Controllers
         [HttpGet("Followed")]
         [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SearchFollowedSubCategories([FromQuery(Name = "q")]string searchText, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> SearchFollowedSubCategories([FromQuery]PagingModel pagingModel, [FromQuery(Name = "q")]string searchText = "")
         {
-            if (string.IsNullOrEmpty(searchText))
-                return NotFound();
+            if (searchText == "'")
+                searchText = string.Empty;
 
             ServiceModel<SearchModel> followedSearchSubCategories = await _searchRepository.SearchFollowedSubCategoriesAsync(searchText,
                                                                                                                              UserId,
@@ -66,10 +66,14 @@ namespace ContestPark.Category.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> SearchAsync([FromQuery]short categoryId, [FromQuery]PagingModel pagingModel, [FromQuery(Name = "q")]string searchText = "")
+        public async Task<IActionResult> SearchAsync([FromQuery]PagingModel pagingModel, [FromQuery]short categoryId, [FromQuery(Name = "q")]string searchText = "")
         {
+            if (searchText == "'")
+                searchText = string.Empty;
+
             ServiceModel<SearchModel> searchCategories = await _searchRepository.DynamicSearchAsync(searchText,
                                                                                                     CurrentUserLanguage,
+                                                                                                    UserId,
                                                                                                     pagingModel,
                                                                                                     SearchFilters.CategoryId,
                                                                                                     categoryId);

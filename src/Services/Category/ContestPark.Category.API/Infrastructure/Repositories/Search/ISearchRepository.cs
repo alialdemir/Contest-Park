@@ -19,6 +19,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
         Task<ServiceModel<SearchModel>> SearchFollowedSubCategoriesAsync(string searchText, string userId, Languages language, PagingModel pagingModel);
 
-        Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds);
+        Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, string userId, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds);
     }
 }

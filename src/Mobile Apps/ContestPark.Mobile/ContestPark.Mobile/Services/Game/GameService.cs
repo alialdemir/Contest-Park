@@ -227,7 +227,7 @@ namespace ContestPark.Mobile.Services.Game
                 return isUnLock;
 
             var response = await _categoryServices?.OpenCategoryAsync(subCategoryId);
-            if (response.Error.ErrorStatuCode == ErrorStatuCodes.YouCanNotUnlockTheFreeCategory)
+            if (response?.Error?.ErrorStatuCode == ErrorStatuCodes.YouCanNotUnlockTheFreeCategory)
                 await BuyDisplayAlertAsync();
             else if (!response.IsSuccess)
             {

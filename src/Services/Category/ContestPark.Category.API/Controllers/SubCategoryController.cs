@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -61,42 +62,74 @@ namespace ContestPark.Category.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult Get([FromQuery]PagingModel pagingModel)
         {
-            ServiceModel<CategoryModel> catgories = _categoryRepository.GetCategories(UserId,
+            ServiceModel<CategoryModel> result = new ServiceModel<CategoryModel>()
+            {
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+                Items = new List<CategoryModel>()
+            };
+            List<CategoryModel> categoryList = new List<CategoryModel>();
+
+            ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
+                                                                                                               CurrentUserLanguage,
+                                                                                                               pagingModel);
+            if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Count() > 0)
+            {
+                CategoryModel categoryModel = new CategoryModel()
+                {
+                    CategoryId = -1,
+                    CategoryName = CategoryResource.FollowedCategories
+                };
+
+                categoryModel.SubCategories.AddRange(followedSubCategories.Items);
+
+                categoryList.Add(categoryModel);
+
+                result.HasNextPage = followedSubCategories.HasNextPage;
+            }
+
+            ServiceModel<CategoryModel> categories = _categoryRepository.GetCategories(UserId,
                                                                                       CurrentUserLanguage,
                                                                                       pagingModel);
 
-            if (catgories == null || catgories.Items == null || catgories.Items.Count() == 0)
+            categoryList.AddRange(categories.Items);
+
+            result.HasNextPage = categories.HasNextPage;
+
+            result.Items = categoryList;
+
+            if (result == null || result.Items == null || result.Items.Count() == 0)
             {
-                Logger.LogCritical($"{nameof(catgories)} list returned empty.");
+                Logger.LogCritical($"{nameof(categories)} list returned empty.");
 
                 return NotFound();
             }
 
-            return Ok(catgories);
+            return Ok(result);
         }
 
         /// <summary>
         /// Takip ettiğin alt kategoriler
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
-        [HttpGet("Followed")]
-        [ProducesResponseType(typeof(ServiceModel<SubCategoryModel>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult FollowedSubCategories([FromQuery]PagingModel pagingModel)
-        {
-            ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
-                                                                                                                CurrentUserLanguage,
-                                                                                                                pagingModel);
+        ////////[HttpGet("Followed")]
+        ////////[ProducesResponseType(typeof(ServiceModel<SubCategoryModel>), (int)HttpStatusCode.OK)]
+        ////////[ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        ////////public IActionResult FollowedSubCategories([FromQuery]PagingModel pagingModel) kategoriler içerisinde takip ettiği kategorilerde döndürürdü
+        ////////{
+        ////////    ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
+        ////////                                                                                                        CurrentUserLanguage,
+        ////////                                                                                                        pagingModel);
 
-            if (followedSubCategories == null || followedSubCategories.Items == null || followedSubCategories.Items.Count() == 0)
-            {
-                Logger.LogInformation($"{nameof(followedSubCategories)} list returned empty.");
+        ////////    if (followedSubCategories == null || followedSubCategories.Items == null || followedSubCategories.Items.Count() == 0)
+        ////////    {
+        ////////        Logger.LogInformation($"{nameof(followedSubCategories)} list returned empty.");
 
-                return NotFound();
-            }
+        ////////        return NotFound();
+        ////////    }
 
-            return Ok(followedSubCategories);
-        }
+        ////////    return Ok(followedSubCategories);
+        ////////}
 
         /// <summary>
         /// Alt kategori takip et

@@ -79,6 +79,15 @@ namespace ContestPark.Category.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Followed Categories.
+        /// </summary>
+        public static string FollowedCategories {
+            get {
+                return ResourceManager.GetString("FollowedCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This category is already unlocked..
         /// </summary>
         public static string ThisCategoryIsAlreadyUnlocked {

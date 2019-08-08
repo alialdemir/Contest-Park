@@ -5,6 +5,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Remove="AppResources\ContestParkResources.tr-TR.resx" />
     <EmbeddedResource Remove="AppResources\ContestParkResources.tr.resx" />
   </ItemGroup>
   <ItemGroup>
