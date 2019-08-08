@@ -1,21 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.MasterView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="page"
-             Title="ContestPark"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             BackgroundColor="{StaticResource GlobalBackgroundColor}">
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.MasterView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="page"
+    Title="ContestPark"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{StaticResource GlobalBackgroundColor}">
 
     <ContentPage.Content>
-        <ListView HasUnevenRows="true"
-                  IsGroupingEnabled="true"
-                  ItemsSource="{Binding Items}"
-                  SelectionMode="None"
-                  SeparatorColor="#333333">
+        <ListView
+            HasUnevenRows="true"
+            IsGroupingEnabled="true"
+            ItemsSource="{Binding Items}"
+            SelectionMode="None"
+            SeparatorColor="#333333">
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -36,52 +38,106 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.RowSpan="2"
-                           Grid.ColumnSpan="3"
-                           Margin="0"
-                           Aspect="AspectFill"
-                           Source="{Binding CoverPicture}" />
+                    <Image
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="3"
+                        Margin="0"
+                        Aspect="AspectFill"
+                        Source="{Binding CoverPicture}" />
 
-                    <components:CircleImage Grid.Row="1"
-                                            Grid.Column="0"
-                                            Margin="0,-60,0,0"
-                                            Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference page}}"
-                                            Source="{Binding ProfilePicture}" />
-                    <Grid Grid.Row="1"
-                          Grid.Column="1"
-                          Margin="-10,10,0,0"
-                          ColumnSpacing="0"
-                          RowSpacing="0">
+                    <components:CircleImage
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,-60,0,0"
+                        Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference page}}"
+                        Source="{Binding ProfilePicture}" />
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="-10,10,0,0"
+                        ColumnSpacing="0"
+                        RowSpacing="0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0"
-                               Grid.ColumnSpan="2"
-                               FontAttributes="Bold"
-                               FontSize="16"
-                               Text="{Binding FullName}"
-                               TextColor="{StaticResource White}" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding FullName}"
+                            TextColor="{StaticResource White}" />
 
-                        <icon:IconLabel Grid.Row="1"
-                                        Grid.Column="0"
-                                        FontSize="14"
-                                        HorizontalOptions="Start"
-                                        Text="far-gem"
-                                        TextColor="{StaticResource Primary}" />
+                        <Grid
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="-10,10,0,0"
+                            ColumnSpacing="3"
+                            RowSpacing="0">
 
-                        <Label Grid.Row="1"
-                               Grid.Column="1"
-                               FontSize="14"
-                               Text="{Binding UserCoins}"
-                               TextColor="{StaticResource Primary}" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Balance.Gold, StringFormat='{0:##}'}"
+                                TextColor="{StaticResource Primary}" />
+
+                            <icon:IconLabel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                Text="far-gem"
+                                TextColor="{StaticResource Primary}" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="-10,10,0,0"
+                            ColumnSpacing="3"
+                            RowSpacing="0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontSize="14"
+                                Text="{Binding Balance.Money, StringFormat='{0:##.##}'}"
+                                TextColor="{StaticResource Primary}" />
+
+                            <icon:IconLabel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontSize="14"
+                                Text="fas-lira-sign"
+                                TextColor="{StaticResource Primary}" />
+                        </Grid>
                     </Grid>
                 </Grid>
             </ListView.Header>

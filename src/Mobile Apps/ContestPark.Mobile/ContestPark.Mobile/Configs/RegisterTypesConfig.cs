@@ -137,6 +137,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
 
+            containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
+
             #endregion Yeni
 
             if (!GlobalSetting.Instance.IsMockData)
@@ -151,7 +153,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
-                containerRegistry.RegisterSingleton<ICpService, CpService>();
+                containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
@@ -185,7 +187,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
-                containerRegistry.RegisterSingleton<ICpService, CpMockService>();
+                //     containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 

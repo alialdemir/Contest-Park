@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Services.Cp;
@@ -18,14 +19,14 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly ICpService _cpService;
+        private readonly IBalanceService _cpService;
 
         #endregion Private variables
 
         #region Constructor
 
         public DuelBettingPopupViewModel(INavigationService navigationService,
-                                         ICpService cpService,
+                                         IBalanceService cpService,
                                          IPageDialogService pageDialogService,
                                          IPopupNavigation popupNavigation
             ) : base(navigationService, pageDialogService, popupNavigation)
@@ -42,7 +43,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Kullanıcının altın miktarını tutar
         /// </summary>
-        private int _userCp = 0;
+        private BalanceModel _balance = new BalanceModel();
 
         public ObservableRangeCollection<BetModel> Bets { get; set; } = new ObservableRangeCollection<BetModel>
                             {
@@ -68,13 +69,13 @@ namespace ContestPark.Mobile.ViewModels
 
         public SelectedSubCategoryModel SelectedSubCategory { get; } = new SelectedSubCategoryModel();
 
-        public int UserCp
+        public BalanceModel Balance
         {
-            get { return _userCp; }
+            get { return _balance; }
             set
             {
-                _userCp = value;
-                RaisePropertyChanged(() => UserCp);
+                _balance = value;
+                RaisePropertyChanged(() => Balance);
             }
         }
 
@@ -89,7 +90,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            UserCp = await _cpService.GetTotalCpByUserIdAsync();
+            Balance = await _cpService.GetTotalCpByUserIdAsync();
 
             AddFreeLoader();
 
@@ -102,7 +103,7 @@ namespace ContestPark.Mobile.ViewModels
         private void AddFreeLoader()
         {
             // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
-            if (UserCp == 0)// Altını hiç yoksa 0 altınla oynayabilir
+            if (Balance.Gold == 0)// Altını hiç yoksa 0 altınla oynayabilir
             {
                 Bets.Insert(0, new BetModel
                 {
@@ -119,14 +120,14 @@ namespace ContestPark.Mobile.ViewModels
         /// Seçilen altın miktarı kadar altını varsa düello başlatır yoksa mesaj verir
         /// </summary>
         /// <param name="bet">Seçilen bahis miktarı</param>
-        private async Task ExecuteDuelStartCommandAsync(int bet)
+        private async Task ExecuteDuelStartCommandAsync(decimal bet)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            if (bet <= UserCp)
+            if (bet <= Balance.Gold)
             {
                 await PushPopupPageAsync(new DuelStartingPopupView()
                 {

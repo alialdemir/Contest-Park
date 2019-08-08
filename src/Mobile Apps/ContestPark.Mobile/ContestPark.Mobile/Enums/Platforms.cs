@@ -1,4 +1,4 @@
-﻿namespace ContestPark.Balance.API.Enums
+﻿namespace ContestPark.Mobile.Enums
 {
     public enum Platforms
     {

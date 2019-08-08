@@ -1,5 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.InAppBillingProduct;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Cp;
@@ -19,7 +21,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly ICpService _cpService;
+        private readonly IBalanceService _balanceService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IInAppBillingService _inAppBillingService;
         private readonly ISettingsService _settingsService;
@@ -31,14 +33,14 @@ namespace ContestPark.Mobile.ViewModels
         public ContestStoreViewModel(
             IPageDialogService pageDialogService,
             IInAppBillingService inAppBillingService,
-            ICpService cpService,
+            IBalanceService cpService,
             ISettingsService settingsService,
             IEventAggregator eventAggregator
             ) : base(dialogService: pageDialogService)
         {
             Title = ContestParkResources.ContestStore;
             _inAppBillingService = inAppBillingService;
-            _cpService = cpService;
+            _balanceService = cpService;
             _settingsService = settingsService;
             _eventAggregator = eventAggregator;
         }
@@ -63,6 +65,17 @@ namespace ContestPark.Mobile.ViewModels
             await base.InitializeAsync();
         }
 
+        private Platforms GetCurrentPlatform()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android: return Platforms.Android;
+                case Device.iOS: return Platforms.Ios;
+            }
+
+            return Platforms.Android;
+        }
+
         /// <summary>
         /// Uygulama içi ürün satın al
         /// </summary>
@@ -73,7 +86,13 @@ namespace ContestPark.Mobile.ViewModels
             if (purchaseInfo == null)
                 return;
 
-            bool isSuccessGoldPurchase = await _cpService.PurchaseAsync(productId);
+            bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
+            {
+                ProductId = purchaseInfo.ProductId,
+                PackageName = purchaseInfo.ProductId,
+                Token = purchaseInfo.PurchaseToken,
+                Platform = GetCurrentPlatform()
+            });
             if (isSuccessGoldPurchase)
             {
                 await DisplayAlertAsync(
