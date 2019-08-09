@@ -1,4 +1,6 @@
-﻿namespace ContestPark.Duel.API.Models
+﻿using Newtonsoft.Json;
+
+namespace ContestPark.Duel.API.Models
 {
     public class RankModel
     {
@@ -10,6 +12,7 @@
 
         public string UserName { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
     }
 }

@@ -123,6 +123,7 @@ namespace ContestPark.Duel.API.Controllers
                 result.Ranks.Items.ToList().ForEach(r =>
                 {
                     UserModel user = users.FirstOrDefault(u => u.UserId == r.UserId);
+                    r.UserId = null;
                     r.UserFullName = user.FullName;
                     r.UserName = user.UserName;
                     r.UserProfilePicturePath = user.ProfilePicturePath;

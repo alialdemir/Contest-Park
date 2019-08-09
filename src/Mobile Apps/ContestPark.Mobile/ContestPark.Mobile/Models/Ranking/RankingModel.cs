@@ -4,9 +4,9 @@ namespace ContestPark.Mobile.Models.Ranking
 {
     public class RankingModel : BaseModel
     {
-        private int _totalScore;
+        private string _totalScore;
 
-        public int TotalScore
+        public string TotalScore
         {
             get { return _totalScore; }
             set
