@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Services.Chat
 {
     public class ChatMockService : IChatService
     {
-        public Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel)
+        public Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(long conversationId, PagingModel pagingModel)
         {
             return Task.FromResult(new ServiceModel<ChatDetailModel>
             {
@@ -46,7 +46,7 @@ namespace ContestPark.Mobile.Services.Chat
             return Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteAsync(string receiverUserId)
+        public async Task<bool> DeleteAsync(long conversationId)
         {
             return await Task.FromResult(true);
         }

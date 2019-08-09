@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:pages="clr-namespace:ContestPark.Mobile.Views"
+    xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True">
     <icon:IconTabbedPage.Children>
@@ -12,8 +13,8 @@
         <!--  CategoriesPage  -->
         <pages:CategoriesView />
 
-        <!--  ChatAllPage  plugin:TabBadge.BadgeText="{Binding BadgeCount}"  -->
-        <pages:ChatView />
+        <!--  ChatAllPage  -->
+        <pages:ChatView x:Name="tabChatAllPage" plugin:TabBadge.BadgeText="{Binding MessageBadgeCount}" />
 
         <!--  NotificationsPage plugin:TabBadge.BadgeText="{Binding BadgeCount}"  -->
         <!--<pages:NotificationsView />-->

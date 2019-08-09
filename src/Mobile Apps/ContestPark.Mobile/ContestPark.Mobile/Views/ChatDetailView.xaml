@@ -1,43 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.ChatDetailView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:chatDetail="clr-namespace:ContestPark.Mobile.Components.ChatDetail"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="chatDetailPage"
-             prism:ViewModelLocator.AutowireViewModel="True">
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.ChatDetailView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chatDetail="clr-namespace:ContestPark.Mobile.Components.ChatDetail"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="chatDetailPage"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.ToolbarItems>
-        <iconize:IconToolbarItem Command="{Binding ChatSettingsCommand}"
-                                 Icon="fas-ellipsis-v"
-                                 IconColor="Black" />
+        <iconize:IconToolbarItem
+            Command="{Binding ChatSettingsCommand}"
+            Icon="fas-cog"
+            IconColor="{StaticResource Primary}" />
     </ContentPage.ToolbarItems>
     <NavigationPage.TitleView>
-        <StackLayout Margin="0"
-                     Padding="0"
-                     HorizontalOptions="StartAndExpand"
-                     Orientation="Horizontal"
-                     VerticalOptions="Center">
-            <components:CircleImage Command="{Binding GotoProfileCommand}"
-                                    HeightRequest="32"
-                                    Source="{Binding SenderProfilePicturePath}"
-                                    WidthRequest="32" />
-            <Label FontAttributes="Bold"
-                   FontSize="16"
-                   Text="{Binding Title}"
-                   TextColor="{StaticResource Primary}"
-                   VerticalOptions="Center"
-                   VerticalTextAlignment="Start" />
+        <StackLayout
+            Margin="0"
+            Padding="0"
+            HorizontalOptions="StartAndExpand"
+            Orientation="Horizontal"
+            VerticalOptions="Center">
+            <components:CircleImage
+                Command="{Binding GotoProfileCommand}"
+                HeightRequest="32"
+                Source="{Binding SenderProfilePicturePath}"
+                WidthRequest="32" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="{Binding Title}"
+                TextColor="{StaticResource Primary}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Start" />
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <components:NonPersistentSelectedItemListView x:Name="lstMessages"
-                                                              IsRefreshing="False"
-                                                              ItemAppearing="OnItemAppearing"
-                                                              Style="{StaticResource ListView}">
+                <components:NonPersistentSelectedItemListView
+                    x:Name="lstMessages"
+                    IsRefreshing="False"
+                    ItemAppearing="OnItemAppearing"
+                    Style="{StaticResource ListView}">
                     <components:NonPersistentSelectedItemListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -50,9 +56,10 @@
                     </components:NonPersistentSelectedItemListView.Footer>
                 </components:NonPersistentSelectedItemListView>
             </StackLayout>
-            <Grid BackgroundColor="#fff"
-                  HorizontalOptions="FillAndExpand"
-                  VerticalOptions="End">
+            <Grid
+                BackgroundColor="#fff"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -61,31 +68,33 @@
                     <ColumnDefinition Width="60" />
                 </Grid.ColumnDefinitions>
 
-                <Editor x:Name="txtChatbox"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        AutoSize="TextChanges"
-                        AutomationId="txtChatbox"
-                        Completed="txtChatbox_Completed"
-                        Focused="TxtChatbox_Focused"
-                        HorizontalOptions="FillAndExpand"
-                        Keyboard="Chat"
-                        MaxLength="140"
-                        Text="{Binding Message}"
-                        TextColor="#7b7b7b"
-                        VerticalOptions="FillAndExpand" />
+                <Editor
+                    x:Name="txtChatbox"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    AutoSize="TextChanges"
+                    AutomationId="txtChatbox"
+                    Completed="txtChatbox_Completed"
+                    Focused="TxtChatbox_Focused"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Chat"
+                    MaxLength="140"
+                    Text="{Binding Message}"
+                    TextColor="#7b7b7b"
+                    VerticalOptions="FillAndExpand" />
 
-                <iconize:IconButton x:Name="btnBtnSendMessage"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Margin="0,0,10,0"
-                                    AutomationId="btnBtnSendMessage"
-                                    BackgroundColor="Transparent"
-                                    Command="{Binding SendMessageCommand}"
-                                    FontSize="32"
-                                    HorizontalOptions="End"
-                                    Opacity="0.20"
-                                    Text="fas-paper-plane" />
+                <iconize:IconButton
+                    x:Name="btnBtnSendMessage"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,0,10,0"
+                    AutomationId="btnBtnSendMessage"
+                    BackgroundColor="Transparent"
+                    Command="{Binding SendMessageCommand}"
+                    FontSize="32"
+                    HorizontalOptions="End"
+                    Opacity="0.20"
+                    Text="fas-paper-plane" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

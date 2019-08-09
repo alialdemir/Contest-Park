@@ -91,11 +91,11 @@ namespace ContestPark.Mobile.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+
             Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
             AnimationViewRenderer.Init();
-
-            Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
         }

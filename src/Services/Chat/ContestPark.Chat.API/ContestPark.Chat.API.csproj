@@ -9,10 +9,14 @@
     <None Remove="Migrations\Scripts\AddMessage.sql" />
     <None Remove="Migrations\Scripts\AllMessagesRead.sql" />
     <None Remove="Migrations\Scripts\RemoveMessages.sql" />
+    <None Remove="Migrations\Scripts\SeenAllChat.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\AddMessage.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Scripts\SeenAllChat.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\RemoveMessages.sql" />

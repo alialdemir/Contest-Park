@@ -11,9 +11,10 @@ namespace ContestPark.Mobile.Services.Chat
 
         Task<bool> ChatSeenAsync();
 
-        Task<bool> DeleteAsync(string receiverUserId);
+        Task<bool> DeleteAsync(long conversationId);
 
         Task<int> UserChatVisibilityCountAsync();
-        Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel);
+
+        Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(long conversationId, PagingModel pagingModel);
     }
 }

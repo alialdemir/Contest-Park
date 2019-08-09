@@ -23,8 +23,10 @@ using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels;
 using ContestPark.Mobile.Views;
+using Plugin.Iconize;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Configs
 {
@@ -58,9 +60,11 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 
-            containerRegistry.RegisterForNavigation<BaseNavigationPage>();
-
             containerRegistry.RegisterForNavigation<CategoriesView, CategoriesViewModel>();
+
+            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
+
+            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(NavigationPage));
 
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
 
@@ -135,6 +139,10 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
+            containerRegistry.RegisterSingleton<IChatService, ChatService>();
+
+            containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
+
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
 
             containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
@@ -177,7 +185,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
-                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
+                //   containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
                 containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
@@ -185,13 +193,13 @@ namespace ContestPark.Mobile.Configs
 
                 // containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
-                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
+                //   containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
                 //     containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
-                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+                //////////////containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
-                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
+                //////////////containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 

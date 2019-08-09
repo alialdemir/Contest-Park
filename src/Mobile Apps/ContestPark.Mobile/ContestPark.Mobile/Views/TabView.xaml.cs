@@ -38,9 +38,30 @@ namespace ContestPark.Mobile.Views
                                 CurrentPage = Children[index];
                             }
                         });
+
+            TabsBindingContext();
         }
 
         #endregion Constructor
+
+        #region Methods
+
+        /// <summary>
+        /// Mesajlar ve bildirimler de görünmeyen bildirimleri kontrol eder ve kendi profili için parametre verir
+        /// </summary>
+        private void TabsBindingContext()
+        {
+            //tabCategoriesPage.BindingContext = new CategoriesPageViewModel();
+            //tabProfilePage.BindingContext = new ProfilePageViewModel(UserDataModule.UserModel.UserName) { IsVisibleBackArrow = false };
+
+            //NotificationsPageViewModel notificationViewModel = new NotificationsPageViewModel();
+            //tabNotificationsPage.BindingContext = notificationViewModel;
+            //((NotificationsPageViewModel)tabNotificationsPage.BindingContext).UserNotificationVisibilityCountCommand.Execute(null);
+
+            /// çalışıyor ama badge yazdıramadım   ((ChatViewModel)tabChatAllPage.BindingContext).UserChatVisibilityCountCommand.Execute(null);
+        }
+
+        #endregion Methods
 
         #region Override
 

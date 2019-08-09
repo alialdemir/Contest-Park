@@ -1,6 +1,6 @@
 CREATE PROCEDURE SP_RemoveMessages(
     UserId VARCHAR(256),
-    ChatId BIGINT
+    ConversationId BIGINT
 )
 BEGIN
 DECLARE IsSender TINYINT;
@@ -11,6 +11,6 @@ FROM Conversations c WHERE c.ConversationId  = ConversationId);
 UPDATE Messages SET
 ReceiverIsDeleted = CASE WHEN IsSender = FALSE THEN TRUE ELSE ReceiverIsDeleted END,
 SenderIsDeleted = CASE WHEN IsSender = TRUE THEN TRUE ELSE SenderIsDeleted END
-WHERE Messages.ConversationId = ChatId;
+WHERE Messages.ConversationId = ConversationId;
  
 END;

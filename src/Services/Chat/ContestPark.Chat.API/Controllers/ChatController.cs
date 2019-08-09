@@ -122,7 +122,7 @@ namespace ContestPark.Chat.API.Controllers
         /// </summary>
         [HttpPost("{conversationId}/ReadMessages")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromRoute]long conversationId)// TODO: dönen type ProducesResponseType typeof olarak gösterilmeli
+        public async Task<IActionResult> Post([FromRoute]long conversationId)
         {
             bool isSuccess = await _conversationRepository.AllMessagesRead(UserId, conversationId);
 
@@ -138,6 +138,18 @@ namespace ContestPark.Chat.API.Controllers
                     Logger.LogCritical("CRITICAL: Mesajlar okundu yap kısmı başarısız oldu", conversationId);
                 }
             }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Okunmamış tüm mesajları okundu yapar
+        /// </summary>
+        [HttpPost("ReadMessages")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public IActionResult Post()
+        {
+            _messageRepository.ChatSeen(UserId);
 
             return Ok();
         }

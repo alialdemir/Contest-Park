@@ -398,6 +398,18 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
+      "DownstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.chat.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

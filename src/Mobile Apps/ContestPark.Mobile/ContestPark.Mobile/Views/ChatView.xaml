@@ -28,7 +28,7 @@
                     <ViewCell>
                         <Components:ListItemView
                             AutomationId="lstViewChat"
-                            CommandParameter="{Binding SenderUserId}"
+                            CommandParameter="{Binding ConversationId}"
                             Date="{Binding Date, Converter={StaticResource moment}}"
                             Detail="{Binding Message}"
                             GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference chatPage}}"

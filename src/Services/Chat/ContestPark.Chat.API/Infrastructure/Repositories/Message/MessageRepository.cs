@@ -2,6 +2,7 @@
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using Microsoft.Extensions.Logging;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
@@ -67,7 +68,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
             {
                 userId,
                 conversationId
-            });
+            }, commandType: CommandType.StoredProcedure);
 
             if (!isSuccess)
             {
@@ -91,14 +92,27 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
                            m.AuthorUserId as SenderId
                            FROM Messages m
                            INNER JOIN Conversations c ON c.ConversationId = m.ConversationId
-                           WHERE m.MessageId = @conversationId
-                           AND ((c.ReceiverUserId = @userId AND m.ReceiverIsDeleted=FALSE) OR (c.SenderUserId=@userId AND m.SenderIsDeleted=FALSE))";
+                           WHERE m.ConversationId = @conversationId
+                           AND ((c.ReceiverUserId = @userId AND m.ReceiverIsDeleted=FALSE) OR (c.SenderUserId=@userId AND m.SenderIsDeleted=FALSE))
+                           ORDER BY m.CreatedDate ASC";
 
             return _messageRepository.ToServiceModel<ConversationDetailModel>(sql, new
             {
                 userId,
                 conversationId
             }, pagingModel: paging);
+        }
+
+        /// <summary>
+        /// Görülmemiş mesajları görüldü yapar
+        /// </summary>
+        /// <param name="userId"></param>
+        public async void ChatSeen(string userId)
+        {
+            bool isSuccess = await _messageRepository.ExecuteAsync("SP_SeenAllChat", new
+            {
+                userId,
+            }, commandType: CommandType.StoredProcedure);
         }
 
         #endregion Methods

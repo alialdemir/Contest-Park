@@ -29,24 +29,5 @@ namespace ContestPark.Mobile.ViewModels
         public UserInfoModel CurrentUser { get; private set; }
 
         #endregion Property
-
-        #region Methods
-
-        /// <summary>
-        /// Mesajlar ve bildirimler de görünmeyen bildirimleri kontrol eder ve kendi profili için parametre verir
-        /// </summary>
-        private void TabsBindingContext()
-        {
-            //tabCategoriesPage.BindingContext = new CategoriesPageViewModel();
-            //tabProfilePage.BindingContext = new ProfilePageViewModel(UserDataModule.UserModel.UserName) { IsVisibleBackArrow = false };
-
-            //NotificationsPageViewModel notificationViewModel = new NotificationsPageViewModel();
-            //tabNotificationsPage.BindingContext = notificationViewModel;
-            //((NotificationsPageViewModel)tabNotificationsPage.BindingContext).UserNotificationVisibilityCountCommand.Execute(null);
-
-            //((ChatAllPageViewModel)tabChatAllPage.BindingContext).UserChatVisibilityCountCommand.Execute(null);
-        }
-
-        #endregion Methods
     }
 }
