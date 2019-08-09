@@ -156,6 +156,7 @@ services:
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - IsMigrateDatabase=true
+      - BetCommission=10
     ports:
       - "5109:80"
     volumes:

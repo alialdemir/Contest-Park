@@ -27,9 +27,9 @@ namespace ContestPark.Mobile.Services.Identity
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/account";
+        private const string ApiUrlBase = "api/v1/Account";
         private readonly IPageDialogService _dialogService;
-        private readonly IRequestProvider _requestProvider;
+        private readonly INewRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
 
         private readonly ISignalRServiceBase _signalRServiceBase;
@@ -39,7 +39,7 @@ namespace ContestPark.Mobile.Services.Identity
         #region Constructor
 
         public IdentityService(
-            IRequestProvider requestProvider,
+            INewRequestProvider requestProvider,
             IPageDialogService dialogService,
             ISettingsService settingsService,
             ISignalRServiceBase signalRServiceBase)
@@ -58,14 +58,13 @@ namespace ContestPark.Mobile.Services.Identity
         /// Kapak resmi değiştir
         /// </summary>
         /// <param name="picture">Resim stream</param>
-        public Task ChangeCoverPictureAsync(Stream picture)// TODO: URL düzeltilecek
+        public async Task ChangeCoverPictureAsync(Stream picture)
         {
-            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangeCoverPicture");
 
-            //string message = await _requestProvider.PostAsync<string>(uri,picture);
-            //await ShowErrorMessage(message);
+            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, picture);
 
-            return Task.CompletedTask;
+            await ShowValidationMessages(response.Data);
         }
 
         /// <summary>
@@ -76,39 +75,61 @@ namespace ContestPark.Mobile.Services.Identity
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangePassword");
 
-            string message = await _requestProvider.PostAsync<string>(uri, changePasswordModel);
+            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, changePasswordModel);
+            if (!response.IsSuccess)
+            {
+                await ShowErrorMessage(response.Data.ErrorMessage);
+            }
 
-            return string.IsNullOrEmpty(message);
+            return response.IsSuccess;
+        }
+
+        /// <summary>
+        /// Şifremi unuttum kodu kontrol eder
+        /// </summary>
+        /// <param name="code">Kod</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> ChangePasswordAsync(int code)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangePassword/Codecheck?code={code}");
+
+            var response = await _requestProvider.GetAsync<string>(uri);
+            if (!response.IsSuccess)
+            {
+                await ShowErrorMessage(ContestParkResources.YouHaveEnteredAnInvalidCode);
+            }
+
+            return response.IsSuccess;
         }
 
         /// <summary>
         /// Profil resmi değiştir
         /// </summary>
         /// <param name="picture">Resim stream</param>
-        public async Task ChangeProfilePictureAsync(Stream picture)// TODO: URL düzeltilecek
+        public async Task ChangeProfilePictureAsync(Stream picture)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangeProfilePicture");
 
-            string message = await _requestProvider.PostAsync<string>(uri, picture);
+            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, picture);
 
-            await ShowErrorMessage(message);
+            await ShowValidationMessages(response.Data);
         }
 
         /// <summary>
         /// Şifremi unuttum
         /// </summary>
-        /// <param name="userNameOrEmailAddress">Kullanıcı adı veya eposta adresi</param>
-        public async Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
+        /// <param name="UserNameOrEmail">Kullanıcı adı veya eposta adresi</param>
+        public async Task ForgetYourPasswordAsync(string UserNameOrEmail)
         {
-            if (string.IsNullOrEmpty(userNameOrEmailAddress))
+            if (string.IsNullOrEmpty(UserNameOrEmail))
             {
                 await ShowErrorMessage(ContestParkResources.WriteYourUserNameOrEmailAddress);
             }
-            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ForgotYourPassword");
 
-            //string message = await _requestProvider.PostAsync<string>(uri, new { userNameOrEmailAddress });
+            var result = await _requestProvider.PostAsync<ValidationResultModel>(uri, new { UserNameOrEmail });
 
-            //await ShowErrorMessage(message);
+            await ShowErrorMessage(result.Data.ErrorMessage);
         }
 
         /// <summary>
@@ -121,9 +142,11 @@ namespace ContestPark.Mobile.Services.Identity
             if (string.IsNullOrEmpty(userName))
                 return null;
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userName}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Profile/{userName}");
 
-            return await _requestProvider.GetAsync<ProfileInfoModel>(uri);
+            var result = await _requestProvider.GetAsync<ProfileInfoModel>(uri);
+
+            return result.Data;
         }
 
         /// <summary>
@@ -144,7 +167,9 @@ namespace ContestPark.Mobile.Services.Identity
                     {"scope", GlobalSetting.Instance.Scope },
                 };
 
-                return await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
+                var result = await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
+
+                return result.Data;
             }
             catch (HttpRequestExceptionEx ex)
             {
@@ -177,7 +202,9 @@ namespace ContestPark.Mobile.Services.Identity
                     {"client_id", GlobalSetting.Instance.ClientId },
                 };
 
-                RefreshTokenModel refreshTokenModel = await _requestProvider.PostAsync<RefreshTokenModel>(GlobalSetting.Instance.TokenEndpoint, from);
+                var response = await _requestProvider.PostAsync<RefreshTokenModel>(GlobalSetting.Instance.TokenEndpoint, from);
+
+                RefreshTokenModel refreshTokenModel = response.Data;
                 if (refreshTokenModel != null)
                 {
                     // Token bilgisi yenilendi
@@ -213,19 +240,29 @@ namespace ContestPark.Mobile.Services.Identity
 
             // TODO: uygulama dili değişince nuradaki dil değişecek mi test edilmesi lazım
             CultureInfo cultureInfo = Xamarin.Forms.DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-            signUpModel.LanguageCode = cultureInfo.TwoLetterISOLanguageName;
+            signUpModel.LanguageCode = cultureInfo.IetfLanguageTag;
 
-            ValidationResultModel validationResult = await _requestProvider.PostAsync<ValidationResultModel>(uri, signUpModel);
+            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, signUpModel);
 
-            if (validationResult != null)
+            await ShowValidationMessages(response.Data);
+
+            return response.Data.MemberNames?.Count() == 0;
+        }
+
+        /// <summary>
+        /// Validation mesajlarını tek tek gösterir
+        /// </summary>
+        /// <param name="validationResult"></param>
+        /// <returns></returns>
+        private async Task ShowValidationMessages(ValidationResultModel validationResult)
+        {
+            if (validationResult == null || validationResult.MemberNames == null)
+                return;
+
+            foreach (var item in validationResult.MemberNames)
             {
-                foreach (var item in validationResult.MemberNames)
-                {
-                    await _dialogService.DisplayAlertAsync("", item, ContestParkResources.Okay);
-                }
+                await _dialogService.DisplayAlertAsync("", item, ContestParkResources.Okay);
             }
-
-            return validationResult.MemberNames.Count() == 0;
         }
 
         /// <summary>
@@ -261,20 +298,19 @@ namespace ContestPark.Mobile.Services.Identity
 
         private async Task ShowErrorMessage(string message)
         {
-            if (!string.IsNullOrEmpty(message))
-            {
+            if (string.IsNullOrEmpty(message))
+                return;
 #if DEBUG
-                await _dialogService.DisplayAlertAsync(
-                              ContestParkResources.Error,
-                         message,
-                               ContestParkResources.Okay);
+            await _dialogService.DisplayAlertAsync(
+                          ContestParkResources.Error,
+                     message,
+                           ContestParkResources.Okay);
 #else
                 await _dialogService.DisplayAlertAsync(
                               ContestParkResources.Error,
                          ContestParkResources.GlobalErrorMessage,
                                ContestParkResources.Okay);
 #endif
-            }
         }
 
         private async Task ShowHttpErrorMessage(Exception ex)

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.CategoryFollow;
@@ -225,9 +226,15 @@ namespace ContestPark.Mobile.Services.Game
             if (!isUnLock)
                 return isUnLock;
 
-            isUnLock = await _categoryServices?.OpenCategoryAsync(subCategoryId);
-            if (!isUnLock)
+            var response = await _categoryServices?.OpenCategoryAsync(subCategoryId);
+            if (response?.Error?.ErrorStatuCode == ErrorStatuCodes.YouCanNotUnlockTheFreeCategory)
                 await BuyDisplayAlertAsync();
+            else if (!response.IsSuccess)
+            {
+                await _pageDialogService.DisplayAlertAsync(ContestParkResources.Error,
+                                                           response.Error.ErrorMessage,
+                                                           ContestParkResources.Okay);
+            }
 
             return isUnLock;
         }

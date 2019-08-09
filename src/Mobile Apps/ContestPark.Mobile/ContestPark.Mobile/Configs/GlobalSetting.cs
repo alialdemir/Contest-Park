@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Defines the DefaultEndpoint
         /// </summary>
-        public const string DefaultEndpoint = "http://169.254.80.80:5106";
+        public const string DefaultEndpoint = "http://192.168.1.177:5105";
 
         #endregion Constants
 
@@ -119,7 +119,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Gets or sets the Scope
         /// </summary>
-        public string Scope { get; set; } = "category identity balance duel follow signalr post question offline_access";
+        public string Scope { get; set; } = "category identity balance chat duel follow signalr post question offline_access";
 
         /// <summary>
         /// Gets or sets the SignalREndpoint

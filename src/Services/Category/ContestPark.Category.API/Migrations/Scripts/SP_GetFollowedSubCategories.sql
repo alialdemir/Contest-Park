@@ -9,10 +9,10 @@ SELECT
 sc.SubCategoryId,
 scl.SubCategoryName,
 sc.PicturePath
-FROM OpenSubCategories osc
-INNER JOIN SubCategories sc ON sc.SubCategoryId=osc.SubCategoryId		
+FROM FollowSubCategories fsc
+INNER JOIN SubCategories sc ON sc.SubCategoryId=fsc.SubCategoryId		
 INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
-WHERE osc.UserId = UserId
+WHERE fsc.UserId = UserId
 ORDER BY sc.DisplayOrder
 LIMIT Offset, PageSize;
 END;

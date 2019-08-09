@@ -185,6 +185,10 @@ namespace ContestPark.Duel.API.Migrations
                .AsByte()
                .Nullable()
 
+               .WithColumn("BetCommission")
+               .AsByte()
+               .NotNullable()
+
                .WithColumn("ModifiedDate")
                .AsDateTime()
                .Nullable()

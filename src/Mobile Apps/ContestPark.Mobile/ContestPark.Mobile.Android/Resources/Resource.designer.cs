@@ -168,7 +168,8 @@ namespace ContestPark.Mobile.Droid
 			global::com.refractored.monodroidtoolkit.Resource.Styleable.ProgressButton_unpinnedDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.ProgressButton_unpinnedDrawable;
 			global::com.refractored.monodroidtoolkit.Resource.Styleable.Theme = global::ContestPark.Mobile.Droid.Resource.Styleable.Theme;
 			global::com.refractored.monodroidtoolkit.Resource.Styleable.Theme_circularProgressBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.Theme_circularProgressBarStyle;
-			global::ModernHttpClient.Resource.String.library_name = global::ContestPark.Mobile.Droid.Resource.String.library_name;
+			global::ModernHttpClient.Resource.String.app_name = global::ContestPark.Mobile.Droid.Resource.String.app_name;
+			global::ModernHttpClient.Resource.String.hello = global::ContestPark.Mobile.Droid.Resource.String.hello;
 			global::PanCardView.Droid.Resource.Animation.abc_fade_in = global::ContestPark.Mobile.Droid.Resource.Animation.abc_fade_in;
 			global::PanCardView.Droid.Resource.Animation.abc_fade_out = global::ContestPark.Mobile.Droid.Resource.Animation.abc_fade_out;
 			global::PanCardView.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -2413,6 +2414,2912 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::PCLCrypto.Resource.String.ApplicationName = global::ContestPark.Mobile.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::ContestPark.Mobile.Droid.Resource.String.Hello;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_fade_in = global::ContestPark.Mobile.Droid.Resource.Animation.abc_fade_in;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_fade_out = global::ContestPark.Mobile.Droid.Resource.Animation.abc_fade_out;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_popup_enter = global::ContestPark.Mobile.Droid.Resource.Animation.abc_popup_enter;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_popup_exit = global::ContestPark.Mobile.Droid.Resource.Animation.abc_popup_exit;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_slide_in_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_slide_in_top = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_in_top;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_slide_out_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_slide_out_top = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_out_top;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_tooltip_enter = global::ContestPark.Mobile.Droid.Resource.Animation.abc_tooltip_enter;
+			global::Plugin.Badge.Droid.Resource.Animation.abc_tooltip_exit = global::ContestPark.Mobile.Droid.Resource.Animation.abc_tooltip_exit;
+			global::Plugin.Badge.Droid.Resource.Animation.design_bottom_sheet_slide_in = global::ContestPark.Mobile.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Plugin.Badge.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::ContestPark.Mobile.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Plugin.Badge.Droid.Resource.Animation.design_snackbar_in = global::ContestPark.Mobile.Droid.Resource.Animation.design_snackbar_in;
+			global::Plugin.Badge.Droid.Resource.Animation.design_snackbar_out = global::ContestPark.Mobile.Droid.Resource.Animation.design_snackbar_out;
+			global::Plugin.Badge.Droid.Resource.Animation.EnterFromLeft = global::ContestPark.Mobile.Droid.Resource.Animation.EnterFromLeft;
+			global::Plugin.Badge.Droid.Resource.Animation.EnterFromRight = global::ContestPark.Mobile.Droid.Resource.Animation.EnterFromRight;
+			global::Plugin.Badge.Droid.Resource.Animation.ExitToLeft = global::ContestPark.Mobile.Droid.Resource.Animation.ExitToLeft;
+			global::Plugin.Badge.Droid.Resource.Animation.ExitToRight = global::ContestPark.Mobile.Droid.Resource.Animation.ExitToRight;
+			global::Plugin.Badge.Droid.Resource.Animator.design_appbar_state_list_animator = global::ContestPark.Mobile.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::Plugin.Badge.Droid.Resource.Animator.design_fab_hide_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.design_fab_hide_motion_spec;
+			global::Plugin.Badge.Droid.Resource.Animator.design_fab_show_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.design_fab_show_motion_spec;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_btn_state_list_anim = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_btn_state_list_anim;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_chip_state_list_anim = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_chip_state_list_anim;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_fab_hide_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_hide_motion_spec;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_fab_show_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_show_motion_spec;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec;
+			global::Plugin.Badge.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarDivider = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarDivider;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarItemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarPopupTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarSize = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarSplitStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarTabBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarTabStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarTabTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionBarWidgetTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionDropDownStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.actionLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionMenuTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionMenuTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeCloseDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeCopyDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeCutDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeFindDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModePasteDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModePopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeShareDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeSplitBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionOverflowButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionOverflowMenuStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionProviderClass = global::ContestPark.Mobile.Droid.Resource.Attribute.actionProviderClass;
+			global::Plugin.Badge.Droid.Resource.Attribute.actionViewClass = global::ContestPark.Mobile.Droid.Resource.Attribute.actionViewClass;
+			global::Plugin.Badge.Droid.Resource.Attribute.activityChooserViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.alertDialogCenterButtons = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Plugin.Badge.Droid.Resource.Attribute.alertDialogStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.alertDialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.allowStacking = global::ContestPark.Mobile.Droid.Resource.Attribute.allowStacking;
+			global::Plugin.Badge.Droid.Resource.Attribute.alpha = global::ContestPark.Mobile.Droid.Resource.Attribute.alpha;
+			global::Plugin.Badge.Droid.Resource.Attribute.alphabeticModifiers = global::ContestPark.Mobile.Droid.Resource.Attribute.alphabeticModifiers;
+			global::Plugin.Badge.Droid.Resource.Attribute.arrowHeadLength = global::ContestPark.Mobile.Droid.Resource.Attribute.arrowHeadLength;
+			global::Plugin.Badge.Droid.Resource.Attribute.arrowShaftLength = global::ContestPark.Mobile.Droid.Resource.Attribute.arrowShaftLength;
+			global::Plugin.Badge.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.autoSizeMaxTextSize = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeMaxTextSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.autoSizeMinTextSize = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeMinTextSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.autoSizePresetSizes = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizePresetSizes;
+			global::Plugin.Badge.Droid.Resource.Attribute.autoSizeStepGranularity = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeStepGranularity;
+			global::Plugin.Badge.Droid.Resource.Attribute.autoSizeTextType = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeTextType;
+			global::Plugin.Badge.Droid.Resource.Attribute.background = global::ContestPark.Mobile.Droid.Resource.Attribute.background;
+			global::Plugin.Badge.Droid.Resource.Attribute.backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundSplit;
+			global::Plugin.Badge.Droid.Resource.Attribute.backgroundStacked = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundStacked;
+			global::Plugin.Badge.Droid.Resource.Attribute.backgroundTint = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.barLength = global::ContestPark.Mobile.Droid.Resource.Attribute.barLength;
+			global::Plugin.Badge.Droid.Resource.Attribute.behavior_autoHide = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_autoHide;
+			global::Plugin.Badge.Droid.Resource.Attribute.behavior_fitToContents = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_fitToContents;
+			global::Plugin.Badge.Droid.Resource.Attribute.behavior_hideable = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_hideable;
+			global::Plugin.Badge.Droid.Resource.Attribute.behavior_overlapTop = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Plugin.Badge.Droid.Resource.Attribute.behavior_peekHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.behavior_skipCollapsed = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::Plugin.Badge.Droid.Resource.Attribute.borderWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.borderWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.borderlessButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.bottomAppBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomAppBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.bottomNavigationStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomNavigationStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.boxBackgroundColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxBackgroundMode = global::ContestPark.Mobile.Droid.Resource.Attribute.boxBackgroundMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxCollapsedPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCollapsedPaddingTop;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxCornerRadiusBottomEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusBottomEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxCornerRadiusBottomStart = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusBottomStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxCornerRadiusTopEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusTopEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxCornerRadiusTopStart = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusTopStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxStrokeColor = global::ContestPark.Mobile.Droid.Resource.Attribute.boxStrokeColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.boxStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.boxStrokeWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonBarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonIconDimen = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonIconDimen;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonPanelSideLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonStyleSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonTint = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.buttonTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.cardCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardElevation = global::ContestPark.Mobile.Droid.Resource.Attribute.cardElevation;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardMaxElevation = global::ContestPark.Mobile.Droid.Resource.Attribute.cardMaxElevation;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardPreventCornerOverlap = global::ContestPark.Mobile.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardUseCompatPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.cardViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.cardViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.checkboxStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.checkboxStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.checkedChip = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedChip;
+			global::Plugin.Badge.Droid.Resource.Attribute.checkedIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.checkedIconEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedIconEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.checkedIconVisible = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedIconVisible;
+			global::Plugin.Badge.Droid.Resource.Attribute.checkedTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.chipBackgroundColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.chipCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.chipEndPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipGroupStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.chipGroupStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipIconEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipIconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipIconVisible = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconVisible;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipMinHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.chipMinHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.chipSpacing;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipSpacingHorizontal = global::ContestPark.Mobile.Droid.Resource.Attribute.chipSpacingHorizontal;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipSpacingVertical = global::ContestPark.Mobile.Droid.Resource.Attribute.chipSpacingVertical;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipStandaloneStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStandaloneStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStartPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipStrokeColor = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStrokeColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStrokeWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.chipStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIconEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIconEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconEndPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIconStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconStartPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeIconVisible = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconVisible;
+			global::Plugin.Badge.Droid.Resource.Attribute.closeItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.closeItemLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.collapseContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.collapseContentDescription;
+			global::Plugin.Badge.Droid.Resource.Attribute.collapseIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.collapseIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.collapsedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.collapsedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.color = global::ContestPark.Mobile.Droid.Resource.Attribute.color;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorAccent = global::ContestPark.Mobile.Droid.Resource.Attribute.colorAccent;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorBackgroundFloating = global::ContestPark.Mobile.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorButtonNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorButtonNormal;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorControlActivated = global::ContestPark.Mobile.Droid.Resource.Attribute.colorControlActivated;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorControlHighlight = global::ContestPark.Mobile.Droid.Resource.Attribute.colorControlHighlight;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorControlNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorControlNormal;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorError = global::ContestPark.Mobile.Droid.Resource.Attribute.colorError;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorPrimary = global::ContestPark.Mobile.Droid.Resource.Attribute.colorPrimary;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorSecondary = global::ContestPark.Mobile.Droid.Resource.Attribute.colorSecondary;
+			global::Plugin.Badge.Droid.Resource.Attribute.colorSwitchThumbNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Plugin.Badge.Droid.Resource.Attribute.commitIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.commitIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.contentDescription;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentInsetEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentInsetEndWithActions = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentInsetLeft = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetLeft;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentInsetRight = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetRight;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentInsetStart = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentInsetStartWithNavigation = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentPaddingRight = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingRight;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingTop;
+			global::Plugin.Badge.Droid.Resource.Attribute.contentScrim = global::ContestPark.Mobile.Droid.Resource.Attribute.contentScrim;
+			global::Plugin.Badge.Droid.Resource.Attribute.controlBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.controlBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.coordinatorLayoutStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.coordinatorLayoutStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.cornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.cornerRadius;
+			global::Plugin.Badge.Droid.Resource.Attribute.counterEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.counterEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.counterMaxLength = global::ContestPark.Mobile.Droid.Resource.Attribute.counterMaxLength;
+			global::Plugin.Badge.Droid.Resource.Attribute.counterOverflowTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.counterTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.counterTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.customNavigationLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.customNavigationLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.defaultQueryHint = global::ContestPark.Mobile.Droid.Resource.Attribute.defaultQueryHint;
+			global::Plugin.Badge.Droid.Resource.Attribute.dialogCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Attribute.dialogPreferredPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.dialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.displayOptions = global::ContestPark.Mobile.Droid.Resource.Attribute.displayOptions;
+			global::Plugin.Badge.Droid.Resource.Attribute.divider = global::ContestPark.Mobile.Droid.Resource.Attribute.divider;
+			global::Plugin.Badge.Droid.Resource.Attribute.dividerHorizontal = global::ContestPark.Mobile.Droid.Resource.Attribute.dividerHorizontal;
+			global::Plugin.Badge.Droid.Resource.Attribute.dividerPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.dividerPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.dividerVertical = global::ContestPark.Mobile.Droid.Resource.Attribute.dividerVertical;
+			global::Plugin.Badge.Droid.Resource.Attribute.drawableSize = global::ContestPark.Mobile.Droid.Resource.Attribute.drawableSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.drawerArrowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.dropDownListViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.editTextBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.editTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.editTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.elevation = global::ContestPark.Mobile.Droid.Resource.Attribute.elevation;
+			global::Plugin.Badge.Droid.Resource.Attribute.enforceMaterialTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.enforceMaterialTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.enforceTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.enforceTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.errorEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.errorEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.errorTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.errorTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.expanded = global::ContestPark.Mobile.Droid.Resource.Attribute.expanded;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleMargin = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleMarginStart = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleMarginTop = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Plugin.Badge.Droid.Resource.Attribute.expandedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.externalRouteEnabledDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.fabAlignmentMode = global::ContestPark.Mobile.Droid.Resource.Attribute.fabAlignmentMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.fabCradleMargin = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCradleMargin;
+			global::Plugin.Badge.Droid.Resource.Attribute.fabCradleRoundedCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCradleRoundedCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Attribute.fabCradleVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCradleVerticalOffset;
+			global::Plugin.Badge.Droid.Resource.Attribute.fabCustomSize = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCustomSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.fabSize = global::ContestPark.Mobile.Droid.Resource.Attribute.fabSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.fastScrollEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.firstBaselineToTopHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.firstBaselineToTopHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.floatingActionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.floatingActionButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.font = global::ContestPark.Mobile.Droid.Resource.Attribute.font;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontFamily = global::ContestPark.Mobile.Droid.Resource.Attribute.fontFamily;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontProviderAuthority = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontProviderCerts = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderCerts;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontProviderFetchStrategy = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontProviderFetchTimeout = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontProviderPackage = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderPackage;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontProviderQuery = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderQuery;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.fontStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontVariationSettings = global::ContestPark.Mobile.Droid.Resource.Attribute.fontVariationSettings;
+			global::Plugin.Badge.Droid.Resource.Attribute.fontWeight = global::ContestPark.Mobile.Droid.Resource.Attribute.fontWeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.foregroundInsidePadding = global::ContestPark.Mobile.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.gapBetweenBars = global::ContestPark.Mobile.Droid.Resource.Attribute.gapBetweenBars;
+			global::Plugin.Badge.Droid.Resource.Attribute.goIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.goIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.headerLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.headerLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.height = global::ContestPark.Mobile.Droid.Resource.Attribute.height;
+			global::Plugin.Badge.Droid.Resource.Attribute.helperText = global::ContestPark.Mobile.Droid.Resource.Attribute.helperText;
+			global::Plugin.Badge.Droid.Resource.Attribute.helperTextEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.helperTextEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.helperTextTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.helperTextTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.hideMotionSpec = global::ContestPark.Mobile.Droid.Resource.Attribute.hideMotionSpec;
+			global::Plugin.Badge.Droid.Resource.Attribute.hideOnContentScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Plugin.Badge.Droid.Resource.Attribute.hideOnScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.hideOnScroll;
+			global::Plugin.Badge.Droid.Resource.Attribute.hintAnimationEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.hintEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.hintEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.hintTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.hintTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Plugin.Badge.Droid.Resource.Attribute.homeLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.homeLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.hoveredFocusedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Attribute.hoveredFocusedTranslationZ;
+			global::Plugin.Badge.Droid.Resource.Attribute.icon = global::ContestPark.Mobile.Droid.Resource.Attribute.icon;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.iconEndPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.iconGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.iconPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.iconSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.iconStartPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.iconTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.iconTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.iconifiedByDefault = global::ContestPark.Mobile.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Plugin.Badge.Droid.Resource.Attribute.imageButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.imageButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.indeterminateProgressStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.initialActivityCount = global::ContestPark.Mobile.Droid.Resource.Attribute.initialActivityCount;
+			global::Plugin.Badge.Droid.Resource.Attribute.insetForeground = global::ContestPark.Mobile.Droid.Resource.Attribute.insetForeground;
+			global::Plugin.Badge.Droid.Resource.Attribute.isLightTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.isLightTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.itemBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemHorizontalPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemHorizontalPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemHorizontalTranslationEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.itemHorizontalTranslationEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemIconPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemIconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.itemSpacing;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemTextAppearanceActive = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearanceActive;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemTextAppearanceInactive = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearanceInactive;
+			global::Plugin.Badge.Droid.Resource.Attribute.itemTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.keylines = global::ContestPark.Mobile.Droid.Resource.Attribute.keylines;
+			global::Plugin.Badge.Droid.Resource.Attribute.labelVisibilityMode = global::ContestPark.Mobile.Droid.Resource.Attribute.labelVisibilityMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.lastBaselineToBottomHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.lastBaselineToBottomHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout = global::ContestPark.Mobile.Droid.Resource.Attribute.layout;
+			global::Plugin.Badge.Droid.Resource.Attribute.layoutManager = global::ContestPark.Mobile.Droid.Resource.Attribute.layoutManager;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_anchor = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_anchor;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_anchorGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_behavior = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_behavior;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_collapseMode = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_collapseMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_collapseParallaxMultiplier = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_dodgeInsetEdges = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_insetEdge = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_insetEdge;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_keyline = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_keyline;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_scrollFlags = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Plugin.Badge.Droid.Resource.Attribute.layout_scrollInterpolator = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Plugin.Badge.Droid.Resource.Attribute.liftOnScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.liftOnScroll;
+			global::Plugin.Badge.Droid.Resource.Attribute.lineHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.lineHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.lineSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.lineSpacing;
+			global::Plugin.Badge.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Plugin.Badge.Droid.Resource.Attribute.listDividerAlertDialog = global::ContestPark.Mobile.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Plugin.Badge.Droid.Resource.Attribute.listItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.listItemLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.listLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.listLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.listMenuViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.listMenuViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.listPopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.listPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Plugin.Badge.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Plugin.Badge.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Plugin.Badge.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Plugin.Badge.Droid.Resource.Attribute.logo = global::ContestPark.Mobile.Droid.Resource.Attribute.logo;
+			global::Plugin.Badge.Droid.Resource.Attribute.logoDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.logoDescription;
+			global::Plugin.Badge.Droid.Resource.Attribute.materialButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.materialCardViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialCardViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.maxActionInlineWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.maxButtonHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.maxButtonHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.maxImageSize = global::ContestPark.Mobile.Droid.Resource.Attribute.maxImageSize;
+			global::Plugin.Badge.Droid.Resource.Attribute.measureWithLargestChild = global::ContestPark.Mobile.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteButtonTint = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteButtonTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteCloseDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRoutePauseDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRoutePauseDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRoutePlayDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRoutePlayDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteStopDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteStopDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.mediaRouteTvIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.menu = global::ContestPark.Mobile.Droid.Resource.Attribute.menu;
+			global::Plugin.Badge.Droid.Resource.Attribute.multiChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.navigationContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationContentDescription;
+			global::Plugin.Badge.Droid.Resource.Attribute.navigationIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.navigationMode = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.navigationViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.numericModifiers = global::ContestPark.Mobile.Droid.Resource.Attribute.numericModifiers;
+			global::Plugin.Badge.Droid.Resource.Attribute.overlapAnchor = global::ContestPark.Mobile.Droid.Resource.Attribute.overlapAnchor;
+			global::Plugin.Badge.Droid.Resource.Attribute.paddingBottomNoButtons = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Plugin.Badge.Droid.Resource.Attribute.paddingEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.paddingStart = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.paddingTopNoTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::Plugin.Badge.Droid.Resource.Attribute.panelBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.panelBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.panelMenuListTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.panelMenuListWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.passwordToggleContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::Plugin.Badge.Droid.Resource.Attribute.passwordToggleDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::Plugin.Badge.Droid.Resource.Attribute.passwordToggleEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.passwordToggleTint = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.passwordToggleTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.popupMenuStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.popupMenuStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.popupTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.popupTheme;
+			global::Plugin.Badge.Droid.Resource.Attribute.popupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.popupWindowStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.preserveIconSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Plugin.Badge.Droid.Resource.Attribute.pressedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Plugin.Badge.Droid.Resource.Attribute.progressBarPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.progressBarPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.progressBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.progressBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.queryBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.queryBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.queryHint = global::ContestPark.Mobile.Droid.Resource.Attribute.queryHint;
+			global::Plugin.Badge.Droid.Resource.Attribute.radioButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.radioButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.ratingBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.ratingBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.ratingBarStyleIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Plugin.Badge.Droid.Resource.Attribute.ratingBarStyleSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Plugin.Badge.Droid.Resource.Attribute.reverseLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.reverseLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.rippleColor = global::ContestPark.Mobile.Droid.Resource.Attribute.rippleColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.scrimAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::Plugin.Badge.Droid.Resource.Attribute.scrimBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.scrimVisibleHeightTrigger = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Plugin.Badge.Droid.Resource.Attribute.searchHintIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.searchHintIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.searchIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.searchIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.searchViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.searchViewStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.seekBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.seekBarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.selectableItemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.selectableItemBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::ContestPark.Mobile.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Plugin.Badge.Droid.Resource.Attribute.showAsAction = global::ContestPark.Mobile.Droid.Resource.Attribute.showAsAction;
+			global::Plugin.Badge.Droid.Resource.Attribute.showDividers = global::ContestPark.Mobile.Droid.Resource.Attribute.showDividers;
+			global::Plugin.Badge.Droid.Resource.Attribute.showMotionSpec = global::ContestPark.Mobile.Droid.Resource.Attribute.showMotionSpec;
+			global::Plugin.Badge.Droid.Resource.Attribute.showText = global::ContestPark.Mobile.Droid.Resource.Attribute.showText;
+			global::Plugin.Badge.Droid.Resource.Attribute.showTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.showTitle;
+			global::Plugin.Badge.Droid.Resource.Attribute.singleChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.singleLine = global::ContestPark.Mobile.Droid.Resource.Attribute.singleLine;
+			global::Plugin.Badge.Droid.Resource.Attribute.singleSelection = global::ContestPark.Mobile.Droid.Resource.Attribute.singleSelection;
+			global::Plugin.Badge.Droid.Resource.Attribute.snackbarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.snackbarButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.snackbarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.snackbarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.spanCount = global::ContestPark.Mobile.Droid.Resource.Attribute.spanCount;
+			global::Plugin.Badge.Droid.Resource.Attribute.spinBars = global::ContestPark.Mobile.Droid.Resource.Attribute.spinBars;
+			global::Plugin.Badge.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.spinnerStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.spinnerStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.splitTrack = global::ContestPark.Mobile.Droid.Resource.Attribute.splitTrack;
+			global::Plugin.Badge.Droid.Resource.Attribute.srcCompat = global::ContestPark.Mobile.Droid.Resource.Attribute.srcCompat;
+			global::Plugin.Badge.Droid.Resource.Attribute.stackFromEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.stackFromEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.state_above_anchor = global::ContestPark.Mobile.Droid.Resource.Attribute.state_above_anchor;
+			global::Plugin.Badge.Droid.Resource.Attribute.state_collapsed = global::ContestPark.Mobile.Droid.Resource.Attribute.state_collapsed;
+			global::Plugin.Badge.Droid.Resource.Attribute.state_collapsible = global::ContestPark.Mobile.Droid.Resource.Attribute.state_collapsible;
+			global::Plugin.Badge.Droid.Resource.Attribute.state_liftable = global::ContestPark.Mobile.Droid.Resource.Attribute.state_liftable;
+			global::Plugin.Badge.Droid.Resource.Attribute.state_lifted = global::ContestPark.Mobile.Droid.Resource.Attribute.state_lifted;
+			global::Plugin.Badge.Droid.Resource.Attribute.statusBarBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.statusBarBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.statusBarScrim = global::ContestPark.Mobile.Droid.Resource.Attribute.statusBarScrim;
+			global::Plugin.Badge.Droid.Resource.Attribute.strokeColor = global::ContestPark.Mobile.Droid.Resource.Attribute.strokeColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.strokeWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.strokeWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.subMenuArrow = global::ContestPark.Mobile.Droid.Resource.Attribute.subMenuArrow;
+			global::Plugin.Badge.Droid.Resource.Attribute.submitBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.submitBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.subtitle = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitle;
+			global::Plugin.Badge.Droid.Resource.Attribute.subtitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.subtitleTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitleTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.subtitleTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.suggestionRowLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Plugin.Badge.Droid.Resource.Attribute.switchMinWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.switchMinWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.switchPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.switchPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.switchStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.switchStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.switchTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.switchTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.tabBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabContentStart = global::ContestPark.Mobile.Droid.Resource.Attribute.tabContentStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.tabGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIconTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIconTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIconTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicator;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIndicatorAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorAnimationDuration;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIndicatorColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIndicatorFullWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorFullWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIndicatorGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorGravity;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabIndicatorHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabInlineLabel = global::ContestPark.Mobile.Droid.Resource.Attribute.tabInlineLabel;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabMaxWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMaxWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabMinWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMinWidth;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabPaddingEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabPaddingStart = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingTop;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabRippleColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabRippleColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabSelectedTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.tabStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.tabTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.tabUnboundedRipple = global::ContestPark.Mobile.Droid.Resource.Attribute.tabUnboundedRipple;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAllCaps = global::ContestPark.Mobile.Droid.Resource.Attribute.textAllCaps;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceBody1 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceBody1;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceBody2 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceBody2;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceButton = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceButton;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceCaption = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceCaption;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceHeadline1 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline1;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceHeadline2 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline2;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceHeadline3 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline3;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceHeadline4 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline4;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceHeadline5 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline5;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceHeadline6 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline6;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceListItem = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceListItemSecondary = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceListItemSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceOverline = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceOverline;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceSubtitle1 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSubtitle1;
+			global::Plugin.Badge.Droid.Resource.Attribute.textAppearanceSubtitle2 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSubtitle2;
+			global::Plugin.Badge.Droid.Resource.Attribute.textColorAlertDialogListItem = global::ContestPark.Mobile.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Plugin.Badge.Droid.Resource.Attribute.textColorSearchUrl = global::ContestPark.Mobile.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Plugin.Badge.Droid.Resource.Attribute.textEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.textEndPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.textInputStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.textInputStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.textStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.textStartPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.theme = global::ContestPark.Mobile.Droid.Resource.Attribute.theme;
+			global::Plugin.Badge.Droid.Resource.Attribute.thickness = global::ContestPark.Mobile.Droid.Resource.Attribute.thickness;
+			global::Plugin.Badge.Droid.Resource.Attribute.thumbTextPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTextPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.thumbTint = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.thumbTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.tickMark = global::ContestPark.Mobile.Droid.Resource.Attribute.tickMark;
+			global::Plugin.Badge.Droid.Resource.Attribute.tickMarkTint = global::ContestPark.Mobile.Droid.Resource.Attribute.tickMarkTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.tickMarkTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tickMarkTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.tint = global::ContestPark.Mobile.Droid.Resource.Attribute.tint;
+			global::Plugin.Badge.Droid.Resource.Attribute.tintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.title = global::ContestPark.Mobile.Droid.Resource.Attribute.title;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.titleEnabled;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleMargin = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMargin;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginBottom;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginEnd;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleMarginStart = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginStart;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleMarginTop = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginTop;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleMargins = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMargins;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.titleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.titleTextColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.titleTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.titleTextStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.toolbarId = global::ContestPark.Mobile.Droid.Resource.Attribute.toolbarId;
+			global::Plugin.Badge.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.toolbarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.toolbarStyle;
+			global::Plugin.Badge.Droid.Resource.Attribute.tooltipForegroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tooltipForegroundColor;
+			global::Plugin.Badge.Droid.Resource.Attribute.tooltipFrameBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.tooltipFrameBackground;
+			global::Plugin.Badge.Droid.Resource.Attribute.tooltipText = global::ContestPark.Mobile.Droid.Resource.Attribute.tooltipText;
+			global::Plugin.Badge.Droid.Resource.Attribute.track = global::ContestPark.Mobile.Droid.Resource.Attribute.track;
+			global::Plugin.Badge.Droid.Resource.Attribute.trackTint = global::ContestPark.Mobile.Droid.Resource.Attribute.trackTint;
+			global::Plugin.Badge.Droid.Resource.Attribute.trackTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.trackTintMode;
+			global::Plugin.Badge.Droid.Resource.Attribute.ttcIndex = global::ContestPark.Mobile.Droid.Resource.Attribute.ttcIndex;
+			global::Plugin.Badge.Droid.Resource.Attribute.useCompatPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.useCompatPadding;
+			global::Plugin.Badge.Droid.Resource.Attribute.viewInflaterClass = global::ContestPark.Mobile.Droid.Resource.Attribute.viewInflaterClass;
+			global::Plugin.Badge.Droid.Resource.Attribute.voiceIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.voiceIcon;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowActionBar = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionBar;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowActionBarOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowActionModeOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowFixedHeightMajor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowFixedHeightMinor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowFixedWidthMajor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowFixedWidthMinor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowMinWidthMajor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowMinWidthMinor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Plugin.Badge.Droid.Resource.Attribute.windowNoTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.windowNoTitle;
+			global::Plugin.Badge.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Plugin.Badge.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Plugin.Badge.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Plugin.Badge.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps = global::ContestPark.Mobile.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps;
+			global::Plugin.Badge.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Plugin.Badge.Droid.Resource.Color.abc_btn_colored_text_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::Plugin.Badge.Droid.Resource.Color.abc_color_highlight_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_color_highlight_material;
+			global::Plugin.Badge.Droid.Resource.Color.abc_hint_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.abc_hint_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.abc_input_method_navigation_guard = global::ContestPark.Mobile.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Plugin.Badge.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.abc_primary_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.abc_primary_text_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.abc_search_url_text = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text;
+			global::Plugin.Badge.Droid.Resource.Color.abc_search_url_text_normal = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Plugin.Badge.Droid.Resource.Color.abc_search_url_text_pressed = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Plugin.Badge.Droid.Resource.Color.abc_search_url_text_selected = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Plugin.Badge.Droid.Resource.Color.abc_secondary_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.abc_secondary_text_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.abc_tint_btn_checkable = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::Plugin.Badge.Droid.Resource.Color.abc_tint_default = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_default;
+			global::Plugin.Badge.Droid.Resource.Color.abc_tint_edittext = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_edittext;
+			global::Plugin.Badge.Droid.Resource.Color.abc_tint_seek_thumb = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::Plugin.Badge.Droid.Resource.Color.abc_tint_spinner = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_spinner;
+			global::Plugin.Badge.Droid.Resource.Color.abc_tint_switch_track = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_switch_track;
+			global::Plugin.Badge.Droid.Resource.Color.accent_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.accent_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.accent_material_light = global::ContestPark.Mobile.Droid.Resource.Color.accent_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.background_floating_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.background_floating_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.background_floating_material_light = global::ContestPark.Mobile.Droid.Resource.Color.background_floating_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.background_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.background_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.background_material_light = global::ContestPark.Mobile.Droid.Resource.Color.background_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.bright_foreground_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.bright_foreground_inverse_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.bright_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.bright_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.browser_actions_bg_grey = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_bg_grey;
+			global::Plugin.Badge.Droid.Resource.Color.browser_actions_divider_color = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_divider_color;
+			global::Plugin.Badge.Droid.Resource.Color.browser_actions_text_color = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_text_color;
+			global::Plugin.Badge.Droid.Resource.Color.browser_actions_title_color = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_title_color;
+			global::Plugin.Badge.Droid.Resource.Color.button_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.button_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.button_material_light = global::ContestPark.Mobile.Droid.Resource.Color.button_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.cardview_dark_background = global::ContestPark.Mobile.Droid.Resource.Color.cardview_dark_background;
+			global::Plugin.Badge.Droid.Resource.Color.cardview_light_background = global::ContestPark.Mobile.Droid.Resource.Color.cardview_light_background;
+			global::Plugin.Badge.Droid.Resource.Color.cardview_shadow_end_color = global::ContestPark.Mobile.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Plugin.Badge.Droid.Resource.Color.cardview_shadow_start_color = global::ContestPark.Mobile.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_bottom_navigation_shadow_color = global::ContestPark.Mobile.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_default_color_primary = global::ContestPark.Mobile.Droid.Resource.Color.design_default_color_primary;
+			global::Plugin.Badge.Droid.Resource.Color.design_default_color_primary_dark = global::ContestPark.Mobile.Droid.Resource.Color.design_default_color_primary_dark;
+			global::Plugin.Badge.Droid.Resource.Color.design_error = global::ContestPark.Mobile.Droid.Resource.Color.design_error;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_shadow_end_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_shadow_mid_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_shadow_start_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_stroke_end_inner_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_stroke_end_outer_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_stroke_top_inner_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_fab_stroke_top_outer_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_snackbar_background_color = global::ContestPark.Mobile.Droid.Resource.Color.design_snackbar_background_color;
+			global::Plugin.Badge.Droid.Resource.Color.design_tint_password_toggle = global::ContestPark.Mobile.Droid.Resource.Color.design_tint_password_toggle;
+			global::Plugin.Badge.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.dim_foreground_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.dim_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.dim_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.error_color_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.error_color_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.error_color_material_light = global::ContestPark.Mobile.Droid.Resource.Color.error_color_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.foreground_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.foreground_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.highlighted_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.highlighted_text_material_light = global::ContestPark.Mobile.Droid.Resource.Color.highlighted_text_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.material_blue_grey_800 = global::ContestPark.Mobile.Droid.Resource.Color.material_blue_grey_800;
+			global::Plugin.Badge.Droid.Resource.Color.material_blue_grey_900 = global::ContestPark.Mobile.Droid.Resource.Color.material_blue_grey_900;
+			global::Plugin.Badge.Droid.Resource.Color.material_blue_grey_950 = global::ContestPark.Mobile.Droid.Resource.Color.material_blue_grey_950;
+			global::Plugin.Badge.Droid.Resource.Color.material_deep_teal_200 = global::ContestPark.Mobile.Droid.Resource.Color.material_deep_teal_200;
+			global::Plugin.Badge.Droid.Resource.Color.material_deep_teal_500 = global::ContestPark.Mobile.Droid.Resource.Color.material_deep_teal_500;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_100 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_100;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_300 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_300;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_50 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_50;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_600 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_600;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_800 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_800;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_850 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_850;
+			global::Plugin.Badge.Droid.Resource.Color.material_grey_900 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_900;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_bottom_nav_item_tint = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_bg_color_disabled = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_bg_color_disabled;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_bg_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_bg_color_selector;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_ripple_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_stroke_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_stroke_color_selector;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_text_color_disabled = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_text_color_disabled;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_text_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_text_color_selector;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_btn_transparent_bg_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_transparent_bg_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_chip_background_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_background_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_chip_close_icon_tint = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_close_icon_tint;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_chip_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_ripple_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_chip_text_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_text_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_fab_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_fab_ripple_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_scrim_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_scrim_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_tabs_colored_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_colored_ripple_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_tabs_icon_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_icon_color_selector;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_tabs_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_ripple_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_text_btn_text_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_text_btn_text_color_selector;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_textinput_disabled_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_disabled_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color;
+			global::Plugin.Badge.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color;
+			global::Plugin.Badge.Droid.Resource.Color.notification_action_color_filter = global::ContestPark.Mobile.Droid.Resource.Color.notification_action_color_filter;
+			global::Plugin.Badge.Droid.Resource.Color.notification_icon_bg_color = global::ContestPark.Mobile.Droid.Resource.Color.notification_icon_bg_color;
+			global::Plugin.Badge.Droid.Resource.Color.notification_material_background_media_default_color = global::ContestPark.Mobile.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::Plugin.Badge.Droid.Resource.Color.primary_dark_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_dark_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.primary_dark_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_dark_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.primary_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.primary_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.primary_text_default_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.primary_text_default_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_default_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.primary_text_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.primary_text_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.ripple_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.ripple_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.ripple_material_light = global::ContestPark.Mobile.Droid.Resource.Color.ripple_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.secondary_text_default_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.secondary_text_default_material_light = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.secondary_text_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.secondary_text_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.switch_thumb_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.switch_thumb_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.switch_thumb_material_light = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.switch_thumb_normal_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Plugin.Badge.Droid.Resource.Color.switch_thumb_normal_material_light = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Plugin.Badge.Droid.Resource.Color.tooltip_background_dark = global::ContestPark.Mobile.Droid.Resource.Color.tooltip_background_dark;
+			global::Plugin.Badge.Droid.Resource.Color.tooltip_background_light = global::ContestPark.Mobile.Droid.Resource.Color.tooltip_background_light;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_elevation_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_button_min_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_button_min_width_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_alert_dialog_button_dimen = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_dimen;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_control_corner_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_control_inset_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_control_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_corner_radius_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_corner_radius_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_fixed_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_min_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dialog_title_divider_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_floating_window_z = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_panel_menu_list_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_progress_bar_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_search_view_preferred_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_search_view_preferred_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_seekbar_track_background_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_select_dialog_padding_start_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_switch_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_switch_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_body_1_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_body_2_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_button_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_caption_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_display_1_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_display_2_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_display_3_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_display_4_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_headline_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_large_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_medium_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_menu_header_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_menu_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_small_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_subhead_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_title_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Plugin.Badge.Droid.Resource.Dimension.browser_actions_context_menu_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.browser_actions_context_menu_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.browser_actions_context_menu_min_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.browser_actions_context_menu_min_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Plugin.Badge.Droid.Resource.Dimension.cardview_default_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.cardview_default_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_default_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_button_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_button_inset_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_button_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_button_padding_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_control_corner_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_notification_large_icon_max_height = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.compat_notification_large_icon_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_appbar_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_active_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_height = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_icon_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_item_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_item_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_shadow_height = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_navigation_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_border_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_border_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_image_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_image_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_size_mini = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_size_normal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_item_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_item_horizontal_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_item_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_item_icon_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_padding_bottom = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_action_inline_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_background_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_padding_horizontal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_padding_vertical = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_snackbar_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_tab_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_max_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_tab_scrollable_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_tab_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_tab_text_size_2line = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Plugin.Badge.Droid.Resource.Dimension.design_textinput_caption_translate_y = global::ContestPark.Mobile.Droid.Resource.Dimension.design_textinput_caption_translate_y;
+			global::Plugin.Badge.Droid.Resource.Dimension.disabled_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Plugin.Badge.Droid.Resource.Dimension.disabled_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Plugin.Badge.Droid.Resource.Dimension.fastscroll_default_thickness = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_default_thickness;
+			global::Plugin.Badge.Droid.Resource.Dimension.fastscroll_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.fastscroll_minimum_range = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_minimum_range;
+			global::Plugin.Badge.Droid.Resource.Dimension.highlight_alpha_material_colored = global::ContestPark.Mobile.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Plugin.Badge.Droid.Resource.Dimension.highlight_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Plugin.Badge.Droid.Resource.Dimension.highlight_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Plugin.Badge.Droid.Resource.Dimension.hint_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::Plugin.Badge.Droid.Resource.Dimension.hint_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::Plugin.Badge.Droid.Resource.Dimension.hint_pressed_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Plugin.Badge.Droid.Resource.Dimension.hint_pressed_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Plugin.Badge.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::ContestPark.Mobile.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Plugin.Badge.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::ContestPark.Mobile.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Plugin.Badge.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::ContestPark.Mobile.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Plugin.Badge.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
+			global::Plugin.Badge.Droid.Resource.Dimension.mr_dialog_fixed_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
+			global::Plugin.Badge.Droid.Resource.Dimension.mr_dialog_fixed_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_bottomappbar_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_corner_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_disabled_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_disabled_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_disabled_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_disabled_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_focused_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_focused_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_hovered_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_hovered_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_icon_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_inset = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_inset;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_letter_spacing = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_letter_spacing;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_padding_bottom = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_bottom;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_left;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_padding_right = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_right;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_top;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_pressed_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_pressed_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_stroke_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_stroke_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_btn_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_card_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_card_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_card_spacing = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_card_spacing;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_chip_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_chip_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_fab_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_fab_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_navigation_elevation;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_snackbar_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_snackbar_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_padding_end = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_padding_end;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.mtrl_toolbar_default_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_toolbar_default_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_action_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_action_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_action_text_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_big_circle_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_content_margin_start = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_large_icon_height = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_large_icon_width = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_main_column_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_media_narrow_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_right_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_right_side_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_small_icon_background_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_small_icon_size_as_large = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_subtext_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_subtext_size;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_top_pad = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_top_pad;
+			global::Plugin.Badge.Droid.Resource.Dimension.notification_top_pad_large_text = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Plugin.Badge.Droid.Resource.Dimension.subtitle_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_corner_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.subtitle_outline_width = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_outline_width;
+			global::Plugin.Badge.Droid.Resource.Dimension.subtitle_shadow_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_shadow_offset;
+			global::Plugin.Badge.Droid.Resource.Dimension.subtitle_shadow_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_shadow_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_corner_radius;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_horizontal_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_margin;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_precise_anchor_threshold = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_precise_anchor_threshold;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_vertical_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_vertical_padding;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_y_offset_non_touch = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_y_offset_non_touch;
+			global::Plugin.Badge.Droid.Resource.Dimension.tooltip_y_offset_touch = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_y_offset_touch;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_borderless_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_check_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_colored_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_radio_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_cab_background_top_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_control_background_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_control_background_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_dialog_material_background = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_edit_text_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_ab_back_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_clear_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_go_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_menu_overflow_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_star_black_16dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_star_black_36dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_star_black_48dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_star_half_black_16dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_star_half_black_36dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_star_half_black_48dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_item_background_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_item_background_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_divider_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_divider_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_focused_holo = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_longpressed_holo = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_list_selector_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ratingbar_indicator_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ratingbar_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_ratingbar_small_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_seekbar_thumb_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_seekbar_tick_mark_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_seekbar_track_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_switch_thumb_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_tab_indicator_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_cursor_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_textfield_search_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Plugin.Badge.Droid.Resource.Drawable.abc_vector_test = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_vector_test;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_hide_password = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_hide_password_1 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password_1;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_hide_password_2 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password_2;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_hide_password_3 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password_3;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_show_password = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_show_password_1 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password_1;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_show_password_2 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password_2;
+			global::Plugin.Badge.Droid.Resource.Drawable.avd_show_password_3 = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password_3;
+			global::Plugin.Badge.Droid.Resource.Drawable.design_bottom_navigation_item_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.design_fab_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_fab_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.design_ic_visibility = global::ContestPark.Mobile.Droid.Resource.Drawable.design_ic_visibility;
+			global::Plugin.Badge.Droid.Resource.Drawable.design_ic_visibility_off = global::ContestPark.Mobile.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::Plugin.Badge.Droid.Resource.Drawable.design_password_eye = global::ContestPark.Mobile.Droid.Resource.Drawable.design_password_eye;
+			global::Plugin.Badge.Droid.Resource.Drawable.design_snackbar_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_snackbar_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_audiotrack_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_audiotrack_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_audiotrack_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_dialog_close_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_dialog_close_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_dialog_close_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_dialog_close_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_00 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_00;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_01 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_01;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_02 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_02;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_03 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_03;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_04 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_04;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_05 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_05;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_06 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_06;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_07 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_07;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_08 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_08;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_09 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_09;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_10 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_10;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_11 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_11;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_12 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_12;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_13 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_13;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_14 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_14;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_collapse_15 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_15;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_00 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_00;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_01 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_01;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_02 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_02;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_03 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_03;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_04 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_04;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_05 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_05;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_06 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_06;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_07 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_07;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_08 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_08;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_09 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_09;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_10 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_10;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_11 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_11;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_12 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_12;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_13 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_13;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_14 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_14;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_group_expand_15 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_15;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_media_pause_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_pause_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_media_pause_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_pause_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_media_play_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_play_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_media_play_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_play_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_media_stop_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_stop_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_media_stop_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_stop_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_00_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_00_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_01_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_01_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_02_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_02_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_03_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_03_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_04_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_04_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_05_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_05_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_06_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_06_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_07_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_07_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_08_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_08_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_09_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_09_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_10_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_10_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_11_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_11_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_12_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_12_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_13_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_13_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_14_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_14_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_15_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_15_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_16_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_16_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_17_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_17_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_18_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_18_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_19_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_19_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_20_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_20_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_21_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_21_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_22_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_22_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_23_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_23_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_23_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_23_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_24_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_24_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_24_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_24_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_25_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_25_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_25_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_25_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_26_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_26_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_26_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_26_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_27_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_27_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_27_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_27_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_28_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_28_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_28_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_28_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_29_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_29_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_29_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_29_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_30_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_30_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connected_30_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_30_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_00_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_01_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_02_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_03_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_04_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_05_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_06_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_07_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_08_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_09_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_10_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_11_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_12_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_13_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_14_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_15_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_16_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_17_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_18_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_19_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_20_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_21_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_22_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_23_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_23_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_23_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_23_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_24_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_24_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_24_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_24_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_25_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_25_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_25_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_25_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_26_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_26_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_26_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_26_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_27_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_27_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_27_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_27_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_28_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_28_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_28_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_28_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_29_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_29_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_29_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_29_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_30_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_30_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_connecting_30_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_30_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_disabled_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_disabled_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disabled_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_disconnected_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_disconnected_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mr_button_grey = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mtrl_chip_checked_black = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_mtrl_chip_close_circle = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_vol_type_speaker_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_vol_type_speaker_group_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_vol_type_speaker_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_vol_type_tv_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_tv_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.ic_vol_type_tv_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_tv_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_button_connected_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connected_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_button_connected_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connected_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_button_connecting_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connecting_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_button_connecting_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connecting_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_button_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_button_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_dialog_close_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_close_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_dialog_close_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_close_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_dialog_material_background_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_material_background_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_dialog_material_background_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_group_collapse = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_group_collapse;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_group_expand = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_group_expand;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_media_pause_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_pause_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_media_pause_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_pause_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_media_play_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_play_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_media_play_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_play_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_media_stop_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_stop_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_media_stop_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_stop_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.mr_vol_type_audiotrack_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::Plugin.Badge.Droid.Resource.Drawable.mtrl_snackbar_background = global::ContestPark.Mobile.Droid.Resource.Drawable.mtrl_snackbar_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.mtrl_tabs_default_indicator = global::ContestPark.Mobile.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
+			global::Plugin.Badge.Droid.Resource.Drawable.navigation_empty_icon = global::ContestPark.Mobile.Droid.Resource.Drawable.navigation_empty_icon;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_action_background = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_action_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_bg_low = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_low;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_bg_low_normal = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_bg_low_pressed = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_bg_normal = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_normal;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_bg_normal_pressed = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_icon_background = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_icon_background;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_template_icon_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_template_icon_low_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Plugin.Badge.Droid.Resource.Drawable.notification_tile_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_tile_bg;
+			global::Plugin.Badge.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Plugin.Badge.Droid.Resource.Drawable.tooltip_frame_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.tooltip_frame_dark;
+			global::Plugin.Badge.Droid.Resource.Drawable.tooltip_frame_light = global::ContestPark.Mobile.Droid.Resource.Drawable.tooltip_frame_light;
+			global::Plugin.Badge.Droid.Resource.Id.ALT = global::ContestPark.Mobile.Droid.Resource.Id.ALT;
+			global::Plugin.Badge.Droid.Resource.Id.CTRL = global::ContestPark.Mobile.Droid.Resource.Id.CTRL;
+			global::Plugin.Badge.Droid.Resource.Id.FUNCTION = global::ContestPark.Mobile.Droid.Resource.Id.FUNCTION;
+			global::Plugin.Badge.Droid.Resource.Id.META = global::ContestPark.Mobile.Droid.Resource.Id.META;
+			global::Plugin.Badge.Droid.Resource.Id.SHIFT = global::ContestPark.Mobile.Droid.Resource.Id.SHIFT;
+			global::Plugin.Badge.Droid.Resource.Id.SYM = global::ContestPark.Mobile.Droid.Resource.Id.SYM;
+			global::Plugin.Badge.Droid.Resource.Id.action0 = global::ContestPark.Mobile.Droid.Resource.Id.action0;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar = global::ContestPark.Mobile.Droid.Resource.Id.action_bar;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar_activity_content = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_activity_content;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar_container = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_container;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar_root = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_root;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar_spinner = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_spinner;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar_subtitle = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_subtitle;
+			global::Plugin.Badge.Droid.Resource.Id.action_bar_title = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_title;
+			global::Plugin.Badge.Droid.Resource.Id.action_container = global::ContestPark.Mobile.Droid.Resource.Id.action_container;
+			global::Plugin.Badge.Droid.Resource.Id.action_context_bar = global::ContestPark.Mobile.Droid.Resource.Id.action_context_bar;
+			global::Plugin.Badge.Droid.Resource.Id.action_divider = global::ContestPark.Mobile.Droid.Resource.Id.action_divider;
+			global::Plugin.Badge.Droid.Resource.Id.action_image = global::ContestPark.Mobile.Droid.Resource.Id.action_image;
+			global::Plugin.Badge.Droid.Resource.Id.action_menu_divider = global::ContestPark.Mobile.Droid.Resource.Id.action_menu_divider;
+			global::Plugin.Badge.Droid.Resource.Id.action_menu_presenter = global::ContestPark.Mobile.Droid.Resource.Id.action_menu_presenter;
+			global::Plugin.Badge.Droid.Resource.Id.action_mode_bar = global::ContestPark.Mobile.Droid.Resource.Id.action_mode_bar;
+			global::Plugin.Badge.Droid.Resource.Id.action_mode_bar_stub = global::ContestPark.Mobile.Droid.Resource.Id.action_mode_bar_stub;
+			global::Plugin.Badge.Droid.Resource.Id.action_mode_close_button = global::ContestPark.Mobile.Droid.Resource.Id.action_mode_close_button;
+			global::Plugin.Badge.Droid.Resource.Id.action_text = global::ContestPark.Mobile.Droid.Resource.Id.action_text;
+			global::Plugin.Badge.Droid.Resource.Id.actions = global::ContestPark.Mobile.Droid.Resource.Id.actions;
+			global::Plugin.Badge.Droid.Resource.Id.activity_chooser_view_content = global::ContestPark.Mobile.Droid.Resource.Id.activity_chooser_view_content;
+			global::Plugin.Badge.Droid.Resource.Id.add = global::ContestPark.Mobile.Droid.Resource.Id.add;
+			global::Plugin.Badge.Droid.Resource.Id.alertTitle = global::ContestPark.Mobile.Droid.Resource.Id.alertTitle;
+			global::Plugin.Badge.Droid.Resource.Id.all = global::ContestPark.Mobile.Droid.Resource.Id.all;
+			global::Plugin.Badge.Droid.Resource.Id.always = global::ContestPark.Mobile.Droid.Resource.Id.always;
+			global::Plugin.Badge.Droid.Resource.Id.async = global::ContestPark.Mobile.Droid.Resource.Id.async;
+			global::Plugin.Badge.Droid.Resource.Id.auto = global::ContestPark.Mobile.Droid.Resource.Id.auto;
+			global::Plugin.Badge.Droid.Resource.Id.beginning = global::ContestPark.Mobile.Droid.Resource.Id.beginning;
+			global::Plugin.Badge.Droid.Resource.Id.blocking = global::ContestPark.Mobile.Droid.Resource.Id.blocking;
+			global::Plugin.Badge.Droid.Resource.Id.bottom = global::ContestPark.Mobile.Droid.Resource.Id.bottom;
+			global::Plugin.Badge.Droid.Resource.Id.bottomtab_navarea = global::ContestPark.Mobile.Droid.Resource.Id.bottomtab_navarea;
+			global::Plugin.Badge.Droid.Resource.Id.bottomtab_tabbar = global::ContestPark.Mobile.Droid.Resource.Id.bottomtab_tabbar;
+			global::Plugin.Badge.Droid.Resource.Id.browser_actions_header_text = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_header_text;
+			global::Plugin.Badge.Droid.Resource.Id.browser_actions_menu_item_icon = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_item_icon;
+			global::Plugin.Badge.Droid.Resource.Id.browser_actions_menu_item_text = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_item_text;
+			global::Plugin.Badge.Droid.Resource.Id.browser_actions_menu_items = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_items;
+			global::Plugin.Badge.Droid.Resource.Id.browser_actions_menu_view = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_view;
+			global::Plugin.Badge.Droid.Resource.Id.buttonPanel = global::ContestPark.Mobile.Droid.Resource.Id.buttonPanel;
+			global::Plugin.Badge.Droid.Resource.Id.cancel_action = global::ContestPark.Mobile.Droid.Resource.Id.cancel_action;
+			global::Plugin.Badge.Droid.Resource.Id.center = global::ContestPark.Mobile.Droid.Resource.Id.center;
+			global::Plugin.Badge.Droid.Resource.Id.center_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.center_horizontal;
+			global::Plugin.Badge.Droid.Resource.Id.center_vertical = global::ContestPark.Mobile.Droid.Resource.Id.center_vertical;
+			global::Plugin.Badge.Droid.Resource.Id.checkbox = global::ContestPark.Mobile.Droid.Resource.Id.checkbox;
+			global::Plugin.Badge.Droid.Resource.Id.chronometer = global::ContestPark.Mobile.Droid.Resource.Id.chronometer;
+			global::Plugin.Badge.Droid.Resource.Id.clip_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.clip_horizontal;
+			global::Plugin.Badge.Droid.Resource.Id.clip_vertical = global::ContestPark.Mobile.Droid.Resource.Id.clip_vertical;
+			global::Plugin.Badge.Droid.Resource.Id.collapseActionView = global::ContestPark.Mobile.Droid.Resource.Id.collapseActionView;
+			global::Plugin.Badge.Droid.Resource.Id.container = global::ContestPark.Mobile.Droid.Resource.Id.container;
+			global::Plugin.Badge.Droid.Resource.Id.content = global::ContestPark.Mobile.Droid.Resource.Id.content;
+			global::Plugin.Badge.Droid.Resource.Id.contentPanel = global::ContestPark.Mobile.Droid.Resource.Id.contentPanel;
+			global::Plugin.Badge.Droid.Resource.Id.coordinator = global::ContestPark.Mobile.Droid.Resource.Id.coordinator;
+			global::Plugin.Badge.Droid.Resource.Id.custom = global::ContestPark.Mobile.Droid.Resource.Id.custom;
+			global::Plugin.Badge.Droid.Resource.Id.customPanel = global::ContestPark.Mobile.Droid.Resource.Id.customPanel;
+			global::Plugin.Badge.Droid.Resource.Id.decor_content_parent = global::ContestPark.Mobile.Droid.Resource.Id.decor_content_parent;
+			global::Plugin.Badge.Droid.Resource.Id.default_activity_button = global::ContestPark.Mobile.Droid.Resource.Id.default_activity_button;
+			global::Plugin.Badge.Droid.Resource.Id.design_bottom_sheet = global::ContestPark.Mobile.Droid.Resource.Id.design_bottom_sheet;
+			global::Plugin.Badge.Droid.Resource.Id.design_menu_item_action_area = global::ContestPark.Mobile.Droid.Resource.Id.design_menu_item_action_area;
+			global::Plugin.Badge.Droid.Resource.Id.design_menu_item_action_area_stub = global::ContestPark.Mobile.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Plugin.Badge.Droid.Resource.Id.design_menu_item_text = global::ContestPark.Mobile.Droid.Resource.Id.design_menu_item_text;
+			global::Plugin.Badge.Droid.Resource.Id.design_navigation_view = global::ContestPark.Mobile.Droid.Resource.Id.design_navigation_view;
+			global::Plugin.Badge.Droid.Resource.Id.disableHome = global::ContestPark.Mobile.Droid.Resource.Id.disableHome;
+			global::Plugin.Badge.Droid.Resource.Id.edit_query = global::ContestPark.Mobile.Droid.Resource.Id.edit_query;
+			global::Plugin.Badge.Droid.Resource.Id.end = global::ContestPark.Mobile.Droid.Resource.Id.end;
+			global::Plugin.Badge.Droid.Resource.Id.end_padder = global::ContestPark.Mobile.Droid.Resource.Id.end_padder;
+			global::Plugin.Badge.Droid.Resource.Id.enterAlways = global::ContestPark.Mobile.Droid.Resource.Id.enterAlways;
+			global::Plugin.Badge.Droid.Resource.Id.enterAlwaysCollapsed = global::ContestPark.Mobile.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Plugin.Badge.Droid.Resource.Id.exitUntilCollapsed = global::ContestPark.Mobile.Droid.Resource.Id.exitUntilCollapsed;
+			global::Plugin.Badge.Droid.Resource.Id.expand_activities_button = global::ContestPark.Mobile.Droid.Resource.Id.expand_activities_button;
+			global::Plugin.Badge.Droid.Resource.Id.expanded_menu = global::ContestPark.Mobile.Droid.Resource.Id.expanded_menu;
+			global::Plugin.Badge.Droid.Resource.Id.fill = global::ContestPark.Mobile.Droid.Resource.Id.fill;
+			global::Plugin.Badge.Droid.Resource.Id.fill_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.fill_horizontal;
+			global::Plugin.Badge.Droid.Resource.Id.fill_vertical = global::ContestPark.Mobile.Droid.Resource.Id.fill_vertical;
+			global::Plugin.Badge.Droid.Resource.Id.filled = global::ContestPark.Mobile.Droid.Resource.Id.filled;
+			global::Plugin.Badge.Droid.Resource.Id.@fixed = global::ContestPark.Mobile.Droid.Resource.Id.@fixed;
+			global::Plugin.Badge.Droid.Resource.Id.flyoutcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.flyoutcontent_appbar;
+			global::Plugin.Badge.Droid.Resource.Id.flyoutcontent_recycler = global::ContestPark.Mobile.Droid.Resource.Id.flyoutcontent_recycler;
+			global::Plugin.Badge.Droid.Resource.Id.forever = global::ContestPark.Mobile.Droid.Resource.Id.forever;
+			global::Plugin.Badge.Droid.Resource.Id.ghost_view = global::ContestPark.Mobile.Droid.Resource.Id.ghost_view;
+			global::Plugin.Badge.Droid.Resource.Id.group_divider = global::ContestPark.Mobile.Droid.Resource.Id.group_divider;
+			global::Plugin.Badge.Droid.Resource.Id.home = global::ContestPark.Mobile.Droid.Resource.Id.home;
+			global::Plugin.Badge.Droid.Resource.Id.homeAsUp = global::ContestPark.Mobile.Droid.Resource.Id.homeAsUp;
+			global::Plugin.Badge.Droid.Resource.Id.icon = global::ContestPark.Mobile.Droid.Resource.Id.icon;
+			global::Plugin.Badge.Droid.Resource.Id.icon_group = global::ContestPark.Mobile.Droid.Resource.Id.icon_group;
+			global::Plugin.Badge.Droid.Resource.Id.ifRoom = global::ContestPark.Mobile.Droid.Resource.Id.ifRoom;
+			global::Plugin.Badge.Droid.Resource.Id.image = global::ContestPark.Mobile.Droid.Resource.Id.image;
+			global::Plugin.Badge.Droid.Resource.Id.info = global::ContestPark.Mobile.Droid.Resource.Id.info;
+			global::Plugin.Badge.Droid.Resource.Id.italic = global::ContestPark.Mobile.Droid.Resource.Id.italic;
+			global::Plugin.Badge.Droid.Resource.Id.item_touch_helper_previous_elevation = global::ContestPark.Mobile.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Plugin.Badge.Droid.Resource.Id.labeled = global::ContestPark.Mobile.Droid.Resource.Id.labeled;
+			global::Plugin.Badge.Droid.Resource.Id.largeLabel = global::ContestPark.Mobile.Droid.Resource.Id.largeLabel;
+			global::Plugin.Badge.Droid.Resource.Id.left = global::ContestPark.Mobile.Droid.Resource.Id.left;
+			global::Plugin.Badge.Droid.Resource.Id.line1 = global::ContestPark.Mobile.Droid.Resource.Id.line1;
+			global::Plugin.Badge.Droid.Resource.Id.line3 = global::ContestPark.Mobile.Droid.Resource.Id.line3;
+			global::Plugin.Badge.Droid.Resource.Id.listMode = global::ContestPark.Mobile.Droid.Resource.Id.listMode;
+			global::Plugin.Badge.Droid.Resource.Id.list_item = global::ContestPark.Mobile.Droid.Resource.Id.list_item;
+			global::Plugin.Badge.Droid.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
+			global::Plugin.Badge.Droid.Resource.Id.main_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.main_scrollview;
+			global::Plugin.Badge.Droid.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
+			global::Plugin.Badge.Droid.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
+			global::Plugin.Badge.Droid.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
+			global::Plugin.Badge.Droid.Resource.Id.media_actions = global::ContestPark.Mobile.Droid.Resource.Id.media_actions;
+			global::Plugin.Badge.Droid.Resource.Id.message = global::ContestPark.Mobile.Droid.Resource.Id.message;
+			global::Plugin.Badge.Droid.Resource.Id.middle = global::ContestPark.Mobile.Droid.Resource.Id.middle;
+			global::Plugin.Badge.Droid.Resource.Id.mini = global::ContestPark.Mobile.Droid.Resource.Id.mini;
+			global::Plugin.Badge.Droid.Resource.Id.mr_art = global::ContestPark.Mobile.Droid.Resource.Id.mr_art;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_checkbox = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_checkbox;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_close_button = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_close_button;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_group_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_group_icon;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_group_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_group_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_list;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_meta = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_meta_art = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta_art;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_meta_subtitle = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta_subtitle;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_meta_title = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta_title;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_route_icon;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_route_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_stop_button = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_stop_button;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_volume_layout = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_volume_layout;
+			global::Plugin.Badge.Droid.Resource.Id.mr_cast_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_volume_slider;
+			global::Plugin.Badge.Droid.Resource.Id.mr_chooser_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_list;
+			global::Plugin.Badge.Droid.Resource.Id.mr_chooser_route_desc = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_desc;
+			global::Plugin.Badge.Droid.Resource.Id.mr_chooser_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_icon;
+			global::Plugin.Badge.Droid.Resource.Id.mr_chooser_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_chooser_title = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_title;
+			global::Plugin.Badge.Droid.Resource.Id.mr_close = global::ContestPark.Mobile.Droid.Resource.Id.mr_close;
+			global::Plugin.Badge.Droid.Resource.Id.mr_control_divider = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_divider;
+			global::Plugin.Badge.Droid.Resource.Id.mr_control_playback_ctrl = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_playback_ctrl;
+			global::Plugin.Badge.Droid.Resource.Id.mr_control_subtitle = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_subtitle;
+			global::Plugin.Badge.Droid.Resource.Id.mr_control_title = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_title;
+			global::Plugin.Badge.Droid.Resource.Id.mr_control_title_container = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_title_container;
+			global::Plugin.Badge.Droid.Resource.Id.mr_custom_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_custom_control;
+			global::Plugin.Badge.Droid.Resource.Id.mr_default_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_default_control;
+			global::Plugin.Badge.Droid.Resource.Id.mr_dialog_area = global::ContestPark.Mobile.Droid.Resource.Id.mr_dialog_area;
+			global::Plugin.Badge.Droid.Resource.Id.mr_dialog_header_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_dialog_header_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_expandable_area = global::ContestPark.Mobile.Droid.Resource.Id.mr_expandable_area;
+			global::Plugin.Badge.Droid.Resource.Id.mr_group_expand_collapse = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_expand_collapse;
+			global::Plugin.Badge.Droid.Resource.Id.mr_group_volume_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_volume_route_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_group_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_volume_slider;
+			global::Plugin.Badge.Droid.Resource.Id.mr_media_main_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_media_main_control;
+			global::Plugin.Badge.Droid.Resource.Id.mr_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_picker_close_button = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_close_button;
+			global::Plugin.Badge.Droid.Resource.Id.mr_picker_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_list;
+			global::Plugin.Badge.Droid.Resource.Id.mr_picker_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_route_icon;
+			global::Plugin.Badge.Droid.Resource.Id.mr_picker_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_route_name;
+			global::Plugin.Badge.Droid.Resource.Id.mr_playback_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_playback_control;
+			global::Plugin.Badge.Droid.Resource.Id.mr_title_bar = global::ContestPark.Mobile.Droid.Resource.Id.mr_title_bar;
+			global::Plugin.Badge.Droid.Resource.Id.mr_volume_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_control;
+			global::Plugin.Badge.Droid.Resource.Id.mr_volume_group_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_group_list;
+			global::Plugin.Badge.Droid.Resource.Id.mr_volume_item_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_item_icon;
+			global::Plugin.Badge.Droid.Resource.Id.mr_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_slider;
+			global::Plugin.Badge.Droid.Resource.Id.mtrl_child_content_container = global::ContestPark.Mobile.Droid.Resource.Id.mtrl_child_content_container;
+			global::Plugin.Badge.Droid.Resource.Id.mtrl_internal_children_alpha_tag = global::ContestPark.Mobile.Droid.Resource.Id.mtrl_internal_children_alpha_tag;
+			global::Plugin.Badge.Droid.Resource.Id.multiply = global::ContestPark.Mobile.Droid.Resource.Id.multiply;
+			global::Plugin.Badge.Droid.Resource.Id.navigation_header_container = global::ContestPark.Mobile.Droid.Resource.Id.navigation_header_container;
+			global::Plugin.Badge.Droid.Resource.Id.never = global::ContestPark.Mobile.Droid.Resource.Id.never;
+			global::Plugin.Badge.Droid.Resource.Id.none = global::ContestPark.Mobile.Droid.Resource.Id.none;
+			global::Plugin.Badge.Droid.Resource.Id.normal = global::ContestPark.Mobile.Droid.Resource.Id.normal;
+			global::Plugin.Badge.Droid.Resource.Id.notification_background = global::ContestPark.Mobile.Droid.Resource.Id.notification_background;
+			global::Plugin.Badge.Droid.Resource.Id.notification_main_column = global::ContestPark.Mobile.Droid.Resource.Id.notification_main_column;
+			global::Plugin.Badge.Droid.Resource.Id.notification_main_column_container = global::ContestPark.Mobile.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.Badge.Droid.Resource.Id.outline = global::ContestPark.Mobile.Droid.Resource.Id.outline;
+			global::Plugin.Badge.Droid.Resource.Id.parallax = global::ContestPark.Mobile.Droid.Resource.Id.parallax;
+			global::Plugin.Badge.Droid.Resource.Id.parentPanel = global::ContestPark.Mobile.Droid.Resource.Id.parentPanel;
+			global::Plugin.Badge.Droid.Resource.Id.parent_matrix = global::ContestPark.Mobile.Droid.Resource.Id.parent_matrix;
+			global::Plugin.Badge.Droid.Resource.Id.pin = global::ContestPark.Mobile.Droid.Resource.Id.pin;
+			global::Plugin.Badge.Droid.Resource.Id.progress_circular = global::ContestPark.Mobile.Droid.Resource.Id.progress_circular;
+			global::Plugin.Badge.Droid.Resource.Id.progress_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.progress_horizontal;
+			global::Plugin.Badge.Droid.Resource.Id.radio = global::ContestPark.Mobile.Droid.Resource.Id.radio;
+			global::Plugin.Badge.Droid.Resource.Id.right = global::ContestPark.Mobile.Droid.Resource.Id.right;
+			global::Plugin.Badge.Droid.Resource.Id.right_icon = global::ContestPark.Mobile.Droid.Resource.Id.right_icon;
+			global::Plugin.Badge.Droid.Resource.Id.right_side = global::ContestPark.Mobile.Droid.Resource.Id.right_side;
+			global::Plugin.Badge.Droid.Resource.Id.save_image_matrix = global::ContestPark.Mobile.Droid.Resource.Id.save_image_matrix;
+			global::Plugin.Badge.Droid.Resource.Id.save_non_transition_alpha = global::ContestPark.Mobile.Droid.Resource.Id.save_non_transition_alpha;
+			global::Plugin.Badge.Droid.Resource.Id.save_scale_type = global::ContestPark.Mobile.Droid.Resource.Id.save_scale_type;
+			global::Plugin.Badge.Droid.Resource.Id.screen = global::ContestPark.Mobile.Droid.Resource.Id.screen;
+			global::Plugin.Badge.Droid.Resource.Id.scroll = global::ContestPark.Mobile.Droid.Resource.Id.scroll;
+			global::Plugin.Badge.Droid.Resource.Id.scrollIndicatorDown = global::ContestPark.Mobile.Droid.Resource.Id.scrollIndicatorDown;
+			global::Plugin.Badge.Droid.Resource.Id.scrollIndicatorUp = global::ContestPark.Mobile.Droid.Resource.Id.scrollIndicatorUp;
+			global::Plugin.Badge.Droid.Resource.Id.scrollView = global::ContestPark.Mobile.Droid.Resource.Id.scrollView;
+			global::Plugin.Badge.Droid.Resource.Id.scrollable = global::ContestPark.Mobile.Droid.Resource.Id.scrollable;
+			global::Plugin.Badge.Droid.Resource.Id.search_badge = global::ContestPark.Mobile.Droid.Resource.Id.search_badge;
+			global::Plugin.Badge.Droid.Resource.Id.search_bar = global::ContestPark.Mobile.Droid.Resource.Id.search_bar;
+			global::Plugin.Badge.Droid.Resource.Id.search_button = global::ContestPark.Mobile.Droid.Resource.Id.search_button;
+			global::Plugin.Badge.Droid.Resource.Id.search_close_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_close_btn;
+			global::Plugin.Badge.Droid.Resource.Id.search_edit_frame = global::ContestPark.Mobile.Droid.Resource.Id.search_edit_frame;
+			global::Plugin.Badge.Droid.Resource.Id.search_go_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_go_btn;
+			global::Plugin.Badge.Droid.Resource.Id.search_mag_icon = global::ContestPark.Mobile.Droid.Resource.Id.search_mag_icon;
+			global::Plugin.Badge.Droid.Resource.Id.search_plate = global::ContestPark.Mobile.Droid.Resource.Id.search_plate;
+			global::Plugin.Badge.Droid.Resource.Id.search_src_text = global::ContestPark.Mobile.Droid.Resource.Id.search_src_text;
+			global::Plugin.Badge.Droid.Resource.Id.search_voice_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_voice_btn;
+			global::Plugin.Badge.Droid.Resource.Id.select_dialog_listview = global::ContestPark.Mobile.Droid.Resource.Id.select_dialog_listview;
+			global::Plugin.Badge.Droid.Resource.Id.selected = global::ContestPark.Mobile.Droid.Resource.Id.selected;
+			global::Plugin.Badge.Droid.Resource.Id.shellcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_appbar;
+			global::Plugin.Badge.Droid.Resource.Id.shellcontent_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_scrollview;
+			global::Plugin.Badge.Droid.Resource.Id.shellcontent_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_toolbar;
+			global::Plugin.Badge.Droid.Resource.Id.shortcut = global::ContestPark.Mobile.Droid.Resource.Id.shortcut;
+			global::Plugin.Badge.Droid.Resource.Id.showCustom = global::ContestPark.Mobile.Droid.Resource.Id.showCustom;
+			global::Plugin.Badge.Droid.Resource.Id.showHome = global::ContestPark.Mobile.Droid.Resource.Id.showHome;
+			global::Plugin.Badge.Droid.Resource.Id.showTitle = global::ContestPark.Mobile.Droid.Resource.Id.showTitle;
+			global::Plugin.Badge.Droid.Resource.Id.smallLabel = global::ContestPark.Mobile.Droid.Resource.Id.smallLabel;
+			global::Plugin.Badge.Droid.Resource.Id.snackbar_action = global::ContestPark.Mobile.Droid.Resource.Id.snackbar_action;
+			global::Plugin.Badge.Droid.Resource.Id.snackbar_text = global::ContestPark.Mobile.Droid.Resource.Id.snackbar_text;
+			global::Plugin.Badge.Droid.Resource.Id.snap = global::ContestPark.Mobile.Droid.Resource.Id.snap;
+			global::Plugin.Badge.Droid.Resource.Id.snapMargins = global::ContestPark.Mobile.Droid.Resource.Id.snapMargins;
+			global::Plugin.Badge.Droid.Resource.Id.spacer = global::ContestPark.Mobile.Droid.Resource.Id.spacer;
+			global::Plugin.Badge.Droid.Resource.Id.split_action_bar = global::ContestPark.Mobile.Droid.Resource.Id.split_action_bar;
+			global::Plugin.Badge.Droid.Resource.Id.src_atop = global::ContestPark.Mobile.Droid.Resource.Id.src_atop;
+			global::Plugin.Badge.Droid.Resource.Id.src_in = global::ContestPark.Mobile.Droid.Resource.Id.src_in;
+			global::Plugin.Badge.Droid.Resource.Id.src_over = global::ContestPark.Mobile.Droid.Resource.Id.src_over;
+			global::Plugin.Badge.Droid.Resource.Id.start = global::ContestPark.Mobile.Droid.Resource.Id.start;
+			global::Plugin.Badge.Droid.Resource.Id.status_bar_latest_event_content = global::ContestPark.Mobile.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Plugin.Badge.Droid.Resource.Id.stretch = global::ContestPark.Mobile.Droid.Resource.Id.stretch;
+			global::Plugin.Badge.Droid.Resource.Id.submenuarrow = global::ContestPark.Mobile.Droid.Resource.Id.submenuarrow;
+			global::Plugin.Badge.Droid.Resource.Id.submit_area = global::ContestPark.Mobile.Droid.Resource.Id.submit_area;
+			global::Plugin.Badge.Droid.Resource.Id.tabMode = global::ContestPark.Mobile.Droid.Resource.Id.tabMode;
+			global::Plugin.Badge.Droid.Resource.Id.tag_transition_group = global::ContestPark.Mobile.Droid.Resource.Id.tag_transition_group;
+			global::Plugin.Badge.Droid.Resource.Id.tag_unhandled_key_event_manager = global::ContestPark.Mobile.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::Plugin.Badge.Droid.Resource.Id.tag_unhandled_key_listeners = global::ContestPark.Mobile.Droid.Resource.Id.tag_unhandled_key_listeners;
+			global::Plugin.Badge.Droid.Resource.Id.text = global::ContestPark.Mobile.Droid.Resource.Id.text;
+			global::Plugin.Badge.Droid.Resource.Id.text2 = global::ContestPark.Mobile.Droid.Resource.Id.text2;
+			global::Plugin.Badge.Droid.Resource.Id.textSpacerNoButtons = global::ContestPark.Mobile.Droid.Resource.Id.textSpacerNoButtons;
+			global::Plugin.Badge.Droid.Resource.Id.textSpacerNoTitle = global::ContestPark.Mobile.Droid.Resource.Id.textSpacerNoTitle;
+			global::Plugin.Badge.Droid.Resource.Id.textStart = global::ContestPark.Mobile.Droid.Resource.Id.textStart;
+			global::Plugin.Badge.Droid.Resource.Id.text_input_password_toggle = global::ContestPark.Mobile.Droid.Resource.Id.text_input_password_toggle;
+			global::Plugin.Badge.Droid.Resource.Id.textinput_counter = global::ContestPark.Mobile.Droid.Resource.Id.textinput_counter;
+			global::Plugin.Badge.Droid.Resource.Id.textinput_error = global::ContestPark.Mobile.Droid.Resource.Id.textinput_error;
+			global::Plugin.Badge.Droid.Resource.Id.textinput_helper_text = global::ContestPark.Mobile.Droid.Resource.Id.textinput_helper_text;
+			global::Plugin.Badge.Droid.Resource.Id.time = global::ContestPark.Mobile.Droid.Resource.Id.time;
+			global::Plugin.Badge.Droid.Resource.Id.title = global::ContestPark.Mobile.Droid.Resource.Id.title;
+			global::Plugin.Badge.Droid.Resource.Id.titleDividerNoCustom = global::ContestPark.Mobile.Droid.Resource.Id.titleDividerNoCustom;
+			global::Plugin.Badge.Droid.Resource.Id.title_template = global::ContestPark.Mobile.Droid.Resource.Id.title_template;
+			global::Plugin.Badge.Droid.Resource.Id.top = global::ContestPark.Mobile.Droid.Resource.Id.top;
+			global::Plugin.Badge.Droid.Resource.Id.topPanel = global::ContestPark.Mobile.Droid.Resource.Id.topPanel;
+			global::Plugin.Badge.Droid.Resource.Id.touch_outside = global::ContestPark.Mobile.Droid.Resource.Id.touch_outside;
+			global::Plugin.Badge.Droid.Resource.Id.transition_current_scene = global::ContestPark.Mobile.Droid.Resource.Id.transition_current_scene;
+			global::Plugin.Badge.Droid.Resource.Id.transition_layout_save = global::ContestPark.Mobile.Droid.Resource.Id.transition_layout_save;
+			global::Plugin.Badge.Droid.Resource.Id.transition_position = global::ContestPark.Mobile.Droid.Resource.Id.transition_position;
+			global::Plugin.Badge.Droid.Resource.Id.transition_scene_layoutid_cache = global::ContestPark.Mobile.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Plugin.Badge.Droid.Resource.Id.transition_transform = global::ContestPark.Mobile.Droid.Resource.Id.transition_transform;
+			global::Plugin.Badge.Droid.Resource.Id.uniform = global::ContestPark.Mobile.Droid.Resource.Id.uniform;
+			global::Plugin.Badge.Droid.Resource.Id.unlabeled = global::ContestPark.Mobile.Droid.Resource.Id.unlabeled;
+			global::Plugin.Badge.Droid.Resource.Id.up = global::ContestPark.Mobile.Droid.Resource.Id.up;
+			global::Plugin.Badge.Droid.Resource.Id.useLogo = global::ContestPark.Mobile.Droid.Resource.Id.useLogo;
+			global::Plugin.Badge.Droid.Resource.Id.view_offset_helper = global::ContestPark.Mobile.Droid.Resource.Id.view_offset_helper;
+			global::Plugin.Badge.Droid.Resource.Id.visible = global::ContestPark.Mobile.Droid.Resource.Id.visible;
+			global::Plugin.Badge.Droid.Resource.Id.volume_item_container = global::ContestPark.Mobile.Droid.Resource.Id.volume_item_container;
+			global::Plugin.Badge.Droid.Resource.Id.withText = global::ContestPark.Mobile.Droid.Resource.Id.withText;
+			global::Plugin.Badge.Droid.Resource.Id.wrap_content = global::ContestPark.Mobile.Droid.Resource.Id.wrap_content;
+			global::Plugin.Badge.Droid.Resource.Integer.abc_config_activityDefaultDur = global::ContestPark.Mobile.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Plugin.Badge.Droid.Resource.Integer.abc_config_activityShortDur = global::ContestPark.Mobile.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Plugin.Badge.Droid.Resource.Integer.app_bar_elevation_anim_duration = global::ContestPark.Mobile.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Plugin.Badge.Droid.Resource.Integer.bottom_sheet_slide_duration = global::ContestPark.Mobile.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Plugin.Badge.Droid.Resource.Integer.cancel_button_image_alpha = global::ContestPark.Mobile.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Plugin.Badge.Droid.Resource.Integer.config_tooltipAnimTime = global::ContestPark.Mobile.Droid.Resource.Integer.config_tooltipAnimTime;
+			global::Plugin.Badge.Droid.Resource.Integer.design_snackbar_text_max_lines = global::ContestPark.Mobile.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Plugin.Badge.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.hide_password_duration = global::ContestPark.Mobile.Droid.Resource.Integer.hide_password_duration;
+			global::Plugin.Badge.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.mr_update_routes_delay_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_update_routes_delay_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.mtrl_btn_anim_delay_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_btn_anim_delay_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.mtrl_btn_anim_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_btn_anim_duration_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.mtrl_chip_anim_duration = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_chip_anim_duration;
+			global::Plugin.Badge.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms;
+			global::Plugin.Badge.Droid.Resource.Integer.show_password_duration = global::ContestPark.Mobile.Droid.Resource.Integer.show_password_duration;
+			global::Plugin.Badge.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::ContestPark.Mobile.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.Badge.Droid.Resource.Interpolator.mr_fast_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mr_fast_out_slow_in;
+			global::Plugin.Badge.Droid.Resource.Interpolator.mr_linear_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::Plugin.Badge.Droid.Resource.Interpolator.mtrl_fast_out_linear_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_fast_out_linear_in;
+			global::Plugin.Badge.Droid.Resource.Interpolator.mtrl_fast_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_fast_out_slow_in;
+			global::Plugin.Badge.Droid.Resource.Interpolator.mtrl_linear = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_linear;
+			global::Plugin.Badge.Droid.Resource.Interpolator.mtrl_linear_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_linear_out_slow_in;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_action_bar_title_item = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_action_bar_up_container = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_action_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_action_menu_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_action_mode_bar = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_action_mode_close_item_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_activity_chooser_view = global::ContestPark.Mobile.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::ContestPark.Mobile.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_alert_dialog_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_alert_dialog_title_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_cascading_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_cascading_menu_item_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_dialog_title_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_expanded_menu_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_list_menu_item_icon = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_list_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_list_menu_item_radio = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_popup_menu_header_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_popup_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_screen_content_include = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_content_include;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_screen_simple = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_simple;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_screen_toolbar = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::ContestPark.Mobile.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_search_view = global::ContestPark.Mobile.Droid.Resource.Layout.abc_search_view;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_select_dialog_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Plugin.Badge.Droid.Resource.Layout.abc_tooltip = global::ContestPark.Mobile.Droid.Resource.Layout.abc_tooltip;
+			global::Plugin.Badge.Droid.Resource.Layout.BottomTabLayout = global::ContestPark.Mobile.Droid.Resource.Layout.BottomTabLayout;
+			global::Plugin.Badge.Droid.Resource.Layout.browser_actions_context_menu_page = global::ContestPark.Mobile.Droid.Resource.Layout.browser_actions_context_menu_page;
+			global::Plugin.Badge.Droid.Resource.Layout.browser_actions_context_menu_row = global::ContestPark.Mobile.Droid.Resource.Layout.browser_actions_context_menu_row;
+			global::Plugin.Badge.Droid.Resource.Layout.design_bottom_navigation_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::Plugin.Badge.Droid.Resource.Layout.design_bottom_sheet_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Plugin.Badge.Droid.Resource.Layout.design_layout_snackbar = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_snackbar;
+			global::Plugin.Badge.Droid.Resource.Layout.design_layout_snackbar_include = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Plugin.Badge.Droid.Resource.Layout.design_layout_tab_icon = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Plugin.Badge.Droid.Resource.Layout.design_layout_tab_text = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_tab_text;
+			global::Plugin.Badge.Droid.Resource.Layout.design_menu_item_action_area = global::ContestPark.Mobile.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Plugin.Badge.Droid.Resource.Layout.design_navigation_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item;
+			global::Plugin.Badge.Droid.Resource.Layout.design_navigation_item_header = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item_header;
+			global::Plugin.Badge.Droid.Resource.Layout.design_navigation_item_separator = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Plugin.Badge.Droid.Resource.Layout.design_navigation_item_subheader = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Plugin.Badge.Droid.Resource.Layout.design_navigation_menu = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_menu;
+			global::Plugin.Badge.Droid.Resource.Layout.design_navigation_menu_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Plugin.Badge.Droid.Resource.Layout.design_text_input_password_icon = global::ContestPark.Mobile.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Plugin.Badge.Droid.Resource.Layout.FlyoutContent = global::ContestPark.Mobile.Droid.Resource.Layout.FlyoutContent;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_cast_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_dialog;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_cast_group_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_group_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_cast_group_volume_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_group_volume_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_cast_media_metadata = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_media_metadata;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_cast_route_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_route_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_chooser_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_chooser_dialog;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_chooser_list_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_chooser_list_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_controller_material_dialog_b = global::ContestPark.Mobile.Droid.Resource.Layout.mr_controller_material_dialog_b;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_controller_volume_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_controller_volume_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_dialog_header_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_dialog_header_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_picker_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_picker_dialog;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_picker_route_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_picker_route_item;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_playback_control = global::ContestPark.Mobile.Droid.Resource.Layout.mr_playback_control;
+			global::Plugin.Badge.Droid.Resource.Layout.mr_volume_control = global::ContestPark.Mobile.Droid.Resource.Layout.mr_volume_control;
+			global::Plugin.Badge.Droid.Resource.Layout.mtrl_layout_snackbar = global::ContestPark.Mobile.Droid.Resource.Layout.mtrl_layout_snackbar;
+			global::Plugin.Badge.Droid.Resource.Layout.mtrl_layout_snackbar_include = global::ContestPark.Mobile.Droid.Resource.Layout.mtrl_layout_snackbar_include;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_action;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_action_tombstone = global::ContestPark.Mobile.Droid.Resource.Layout.notification_action_tombstone;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_media_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_media_action;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_media_cancel_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_big_media = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_big_media_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_big_media_narrow = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_big_media_narrow_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_custom_big = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_custom_big;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_icon_group = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_icon_group;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_lines_media = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_lines_media;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_media = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_media;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_media_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_media_custom;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_part_chronometer = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Plugin.Badge.Droid.Resource.Layout.notification_template_part_time = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_part_time;
+			global::Plugin.Badge.Droid.Resource.Layout.RootLayout = global::ContestPark.Mobile.Droid.Resource.Layout.RootLayout;
+			global::Plugin.Badge.Droid.Resource.Layout.select_dialog_item_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_item_material;
+			global::Plugin.Badge.Droid.Resource.Layout.select_dialog_multichoice_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Plugin.Badge.Droid.Resource.Layout.select_dialog_singlechoice_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Plugin.Badge.Droid.Resource.Layout.ShellContent = global::ContestPark.Mobile.Droid.Resource.Layout.ShellContent;
+			global::Plugin.Badge.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::ContestPark.Mobile.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Plugin.Badge.Droid.Resource.String.abc_action_bar_home_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_bar_home_description;
+			global::Plugin.Badge.Droid.Resource.String.abc_action_bar_up_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_bar_up_description;
+			global::Plugin.Badge.Droid.Resource.String.abc_action_menu_overflow_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Plugin.Badge.Droid.Resource.String.abc_action_mode_done = global::ContestPark.Mobile.Droid.Resource.String.abc_action_mode_done;
+			global::Plugin.Badge.Droid.Resource.String.abc_activity_chooser_view_see_all = global::ContestPark.Mobile.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Plugin.Badge.Droid.Resource.String.abc_activitychooserview_choose_application = global::ContestPark.Mobile.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Plugin.Badge.Droid.Resource.String.abc_capital_off = global::ContestPark.Mobile.Droid.Resource.String.abc_capital_off;
+			global::Plugin.Badge.Droid.Resource.String.abc_capital_on = global::ContestPark.Mobile.Droid.Resource.String.abc_capital_on;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_body_1_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_body_1_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_body_2_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_body_2_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_button_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_button_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_caption_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_caption_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_display_1_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_1_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_display_2_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_2_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_display_3_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_3_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_display_4_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_4_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_headline_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_headline_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_menu_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_menu_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_subhead_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_subhead_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_font_family_title_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_title_material;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_alt_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_alt_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_ctrl_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_ctrl_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_delete_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_delete_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_enter_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_enter_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_function_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_function_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_meta_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_meta_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_shift_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_shift_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_space_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_space_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_menu_sym_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_sym_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_prepend_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_prepend_shortcut_label;
+			global::Plugin.Badge.Droid.Resource.String.abc_search_hint = global::ContestPark.Mobile.Droid.Resource.String.abc_search_hint;
+			global::Plugin.Badge.Droid.Resource.String.abc_searchview_description_clear = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_clear;
+			global::Plugin.Badge.Droid.Resource.String.abc_searchview_description_query = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_query;
+			global::Plugin.Badge.Droid.Resource.String.abc_searchview_description_search = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_search;
+			global::Plugin.Badge.Droid.Resource.String.abc_searchview_description_submit = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_submit;
+			global::Plugin.Badge.Droid.Resource.String.abc_searchview_description_voice = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_voice;
+			global::Plugin.Badge.Droid.Resource.String.abc_shareactionprovider_share_with = global::ContestPark.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Plugin.Badge.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::ContestPark.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Plugin.Badge.Droid.Resource.String.abc_toolbar_collapse_description = global::ContestPark.Mobile.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Plugin.Badge.Droid.Resource.String.appbar_scrolling_view_behavior = global::ContestPark.Mobile.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Plugin.Badge.Droid.Resource.String.bottom_sheet_behavior = global::ContestPark.Mobile.Droid.Resource.String.bottom_sheet_behavior;
+			global::Plugin.Badge.Droid.Resource.String.character_counter_content_description = global::ContestPark.Mobile.Droid.Resource.String.character_counter_content_description;
+			global::Plugin.Badge.Droid.Resource.String.character_counter_pattern = global::ContestPark.Mobile.Droid.Resource.String.character_counter_pattern;
+			global::Plugin.Badge.Droid.Resource.String.fab_transformation_scrim_behavior = global::ContestPark.Mobile.Droid.Resource.String.fab_transformation_scrim_behavior;
+			global::Plugin.Badge.Droid.Resource.String.fab_transformation_sheet_behavior = global::ContestPark.Mobile.Droid.Resource.String.fab_transformation_sheet_behavior;
+			global::Plugin.Badge.Droid.Resource.String.hide_bottom_view_on_scroll_behavior = global::ContestPark.Mobile.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
+			global::Plugin.Badge.Droid.Resource.String.library_name = global::ContestPark.Mobile.Droid.Resource.String.library_name;
+			global::Plugin.Badge.Droid.Resource.String.mr_button_content_description = global::ContestPark.Mobile.Droid.Resource.String.mr_button_content_description;
+			global::Plugin.Badge.Droid.Resource.String.mr_cast_button_connected = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_connected;
+			global::Plugin.Badge.Droid.Resource.String.mr_cast_button_connecting = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_connecting;
+			global::Plugin.Badge.Droid.Resource.String.mr_cast_button_disconnected = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_disconnected;
+			global::Plugin.Badge.Droid.Resource.String.mr_cast_dialog_title_view_placeholder = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_dialog_title_view_placeholder;
+			global::Plugin.Badge.Droid.Resource.String.mr_chooser_searching = global::ContestPark.Mobile.Droid.Resource.String.mr_chooser_searching;
+			global::Plugin.Badge.Droid.Resource.String.mr_chooser_title = global::ContestPark.Mobile.Droid.Resource.String.mr_chooser_title;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_album_art = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_album_art;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_casting_screen = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_casting_screen;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_close_description = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_close_description;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_collapse_group = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_collapse_group;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_disconnect = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_disconnect;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_expand_group = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_expand_group;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_no_info_available = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_no_info_available;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_no_media_selected = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_no_media_selected;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_pause = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_pause;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_play = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_play;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_stop = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_stop;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_stop_casting = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_stop_casting;
+			global::Plugin.Badge.Droid.Resource.String.mr_controller_volume_slider = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_volume_slider;
+			global::Plugin.Badge.Droid.Resource.String.mr_dialog_device_header = global::ContestPark.Mobile.Droid.Resource.String.mr_dialog_device_header;
+			global::Plugin.Badge.Droid.Resource.String.mr_dialog_route_header = global::ContestPark.Mobile.Droid.Resource.String.mr_dialog_route_header;
+			global::Plugin.Badge.Droid.Resource.String.mr_system_route_name = global::ContestPark.Mobile.Droid.Resource.String.mr_system_route_name;
+			global::Plugin.Badge.Droid.Resource.String.mr_user_route_category_name = global::ContestPark.Mobile.Droid.Resource.String.mr_user_route_category_name;
+			global::Plugin.Badge.Droid.Resource.String.mtrl_chip_close_icon_content_description = global::ContestPark.Mobile.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Plugin.Badge.Droid.Resource.String.password_toggle_content_description = global::ContestPark.Mobile.Droid.Resource.String.password_toggle_content_description;
+			global::Plugin.Badge.Droid.Resource.String.path_password_eye = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye;
+			global::Plugin.Badge.Droid.Resource.String.path_password_eye_mask_strike_through = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::Plugin.Badge.Droid.Resource.String.path_password_eye_mask_visible = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye_mask_visible;
+			global::Plugin.Badge.Droid.Resource.String.path_password_strike_through = global::ContestPark.Mobile.Droid.Resource.String.path_password_strike_through;
+			global::Plugin.Badge.Droid.Resource.String.search_menu_title = global::ContestPark.Mobile.Droid.Resource.String.search_menu_title;
+			global::Plugin.Badge.Droid.Resource.String.status_bar_notification_info_overflow = global::ContestPark.Mobile.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Plugin.Badge.Droid.Resource.Style.AlertDialog_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Animation_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::ContestPark.Mobile.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Plugin.Badge.Droid.Resource.Style.Animation_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.Animation_AppCompat_Tooltip;
+			global::Plugin.Badge.Droid.Resource.Style.Animation_Design_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::ContestPark.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip;
+			global::Plugin.Badge.Droid.Resource.Style.Base_CardView = global::ContestPark.Mobile.Droid.Resource.Style.Base_CardView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V26_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V28_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V28_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Plugin.Badge.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText;
+			global::Plugin.Badge.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout;
+			global::Plugin.Badge.Droid.Resource.Style.CardView = global::ContestPark.Mobile.Droid.Resource.Style.CardView;
+			global::Plugin.Badge.Droid.Resource.Style.CardView_Dark = global::ContestPark.Mobile.Droid.Resource.Style.CardView_Dark;
+			global::Plugin.Badge.Droid.Resource.Style.CardView_Light = global::ContestPark.Mobile.Droid.Resource.Style.CardView_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_V21_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_V21_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_V25_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_V25_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Plugin.Badge.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Plugin.Badge.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Plugin.Badge.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Info = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Media;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Time = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_Counter = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_Error = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_HelperText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_HelperText;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_Hint = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Design_Tab = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Button = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Button;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_MediaRouter_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.Badge.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_Design = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_Design_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_Design_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_Design_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_Design_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MediaRouter = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MediaRouter_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
+			global::Plugin.Badge.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
+			global::Plugin.Badge.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_EditText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ImageButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ListMenuView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ListView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_SearchView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_SeekBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Compat_NotificationActionContainer = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Compat_NotificationActionText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_AppBarLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_BottomSheet_Modal = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_CollapsingToolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_NavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_Snackbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Design_TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_CardView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_CardView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_NavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_NavigationView;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Snackbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TabLayout;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MaterialComponents_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::Plugin.Badge.Droid.Resource.Style.Widget_Support_CoordinatorLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_background;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_displayOptions = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_divider = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_divider;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_height = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_height;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_homeLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_icon;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_itemPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_logo = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_logo;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_navigationMode = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_subtitle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_title = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_title;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBarLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMenuItemView = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMenuView = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMenuView;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_background;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode_height = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_height;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_buttonIconDimen = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_buttonIconDimen;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_listLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_showTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableItem = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableTransition = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible;
+			global::Plugin.Badge.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_expanded = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_liftOnScroll = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_liftOnScroll;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayoutStates = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatImageView = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatImageView_android_src = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatImageView_srcCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatImageView_tint = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatImageView_tintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatSeekBar = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatSeekBar_tickMark = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_lineHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_lineHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorAccent = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorError = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorError;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorPrimary = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dividerVertical = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_editTextBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_editTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_editTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_panelBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_switchStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Plugin.Badge.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_backgroundTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomAppBar_hideOnScroll = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_hideOnScroll;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemIconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemIconSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_itemTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomNavigationView_menu = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomSheetBehavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Plugin.Badge.Droid.Resource.Styleable.ButtonBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ButtonBarLayout_allowStacking = global::ContestPark.Mobile.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_cardCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_cardElevation = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_cardMaxElevation = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_contentPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_contentPaddingRight = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Plugin.Badge.Droid.Resource.Styleable.CardView_contentPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_android_checkable = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_checkable;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_android_ellipsize = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_ellipsize;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_maxWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_android_text = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_text;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_textAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_checkedIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_checkedIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_checkedIconEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_checkedIconEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_checkedIconVisible = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_checkedIconVisible;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipBackgroundColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipCornerRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipEndPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipIconEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipIconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipIconVisible = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconVisible;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipMinHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipMinHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipStartPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipStrokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipStrokeColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_chipStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipStrokeWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIconEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIconEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconEndPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIconStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconStartPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_closeIconVisible = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconVisible;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_hideMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_hideMotionSpec;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_iconEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_iconEndPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_iconStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_iconStartPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_rippleColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_showMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_showMotionSpec;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_textEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_textEndPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.Chip_textStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_textStartPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup_checkedChip = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_checkedChip;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup_chipSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_chipSpacing;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup_singleLine = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_singleLine;
+			global::Plugin.Badge.Droid.Resource.Styleable.ChipGroup_singleSelection = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_singleSelection;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_title = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Plugin.Badge.Droid.Resource.Styleable.ColorStateListItem = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.ColorStateListItem_alpha = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Plugin.Badge.Droid.Resource.Styleable.ColorStateListItem_android_alpha = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Plugin.Badge.Droid.Resource.Styleable.ColorStateListItem_android_color = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Plugin.Badge.Droid.Resource.Styleable.CompoundButton = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton;
+			global::Plugin.Badge.Droid.Resource.Styleable.CompoundButton_android_button = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Plugin.Badge.Droid.Resource.Styleable.CompoundButton_buttonTint = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_keylines = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Plugin.Badge.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Plugin.Badge.Droid.Resource.Styleable.DesignTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.DesignTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_color = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Plugin.Badge.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_maxImageSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_maxImageSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Plugin.Badge.Droid.Resource.Styleable.FlowLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.FlowLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.FlowLayout_itemSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.FlowLayout_itemSpacing;
+			global::Plugin.Badge.Droid.Resource.Styleable.FlowLayout_lineSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.FlowLayout_lineSpacing;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily_fontProviderAuthority = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily_fontProviderCerts = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily_fontProviderPackage = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamily_fontProviderQuery = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_android_font = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_font = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_fontStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_fontWeight = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.FontFamilyFont_ttcIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Plugin.Badge.Droid.Resource.Styleable.ForegroundLinearLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Plugin.Badge.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_centerColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_centerX = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_centerY = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_endColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_endX = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_endY = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_gradientRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_startColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_startX = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_startY = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_tileMode = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColor_android_type = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColorItem = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColorItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColorItem_android_color = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Plugin.Badge.Droid.Resource.Styleable.GradientColorItem_android_offset = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColorItem_android_offset;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Plugin.Badge.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Plugin.Badge.Droid.Resource.Styleable.ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow;
+			global::Plugin.Badge.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Plugin.Badge.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_android_insetBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetBottom;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_android_insetLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetLeft;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_android_insetRight = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetRight;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_android_insetTop = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_backgroundTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_backgroundTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_cornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_cornerRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_icon;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_iconGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_iconPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_iconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_iconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_iconTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_rippleColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_strokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_strokeColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialButton_strokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_strokeWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialCardView = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialCardView;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialCardView_strokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialCardView_strokeColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialCardView_strokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialCardView_strokeWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2;
+			global::Plugin.Badge.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton;
+			global::Plugin.Badge.Droid.Resource.Styleable.MediaRouteButton_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.MediaRouteButton_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.MediaRouteButton_mediaRouteButtonTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_mediaRouteButtonTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup_android_enabled = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuGroup_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_actionLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_actionViewClass = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_alphabeticModifiers = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_alphabeticModifiers;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_checkable = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_checked = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_enabled = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_onClick = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_title = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_contentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_contentDescription;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_iconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_iconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_iconTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_iconTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_numericModifiers = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_numericModifiers;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_showAsAction = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuItem_tooltipText = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_tooltipText;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_headerBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Plugin.Badge.Droid.Resource.Styleable.MenuView_subMenuArrow = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_headerLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_itemIconPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemIconPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_itemIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_itemTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.NavigationView_menu = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_menu;
+			global::Plugin.Badge.Droid.Resource.Styleable.PopupWindow = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow;
+			global::Plugin.Badge.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Plugin.Badge.Droid.Resource.Styleable.PopupWindowBackgroundState = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Plugin.Badge.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecycleListView = global::ContestPark.Mobile.Droid.Resource.Styleable.RecycleListView;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::ContestPark.Mobile.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_android_orientation = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_layoutManager = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_reverseLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_spanCount = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Plugin.Badge.Droid.Resource.Styleable.RecyclerView_stackFromEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.ScrimInsetsFrameLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Plugin.Badge.Droid.Resource.Styleable.ScrollingViewBehavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_android_focusable = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_android_imeOptions = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_android_inputType = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_closeIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_commitIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_goIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_queryBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_queryHint = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_searchHintIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_searchIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_submitBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.SearchView_voiceIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.Snackbar = global::ContestPark.Mobile.Droid.Resource.Styleable.Snackbar;
+			global::Plugin.Badge.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.Snackbar_snackbarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.Snackbar_snackbarStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.SnackbarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.SnackbarLayout_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Plugin.Badge.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.Spinner = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner;
+			global::Plugin.Badge.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.Spinner_android_entries = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Plugin.Badge.Droid.Resource.Styleable.Spinner_android_popupBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.Spinner_android_prompt = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Plugin.Badge.Droid.Resource.Styleable.Spinner_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable_android_constantSize = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_constantSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable_android_dither = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_dither;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable_android_variablePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_variablePadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawable_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_visible;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawableItem = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawableItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.StateListDrawableItem_android_drawable = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawableItem_android_drawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_showText = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_thumbTint = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_thumbTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_track = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_trackTint = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.SwitchCompat_trackTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabItem = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabItem_android_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabItem_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabItem_android_text = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem_android_text;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabContentStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIconTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIconTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIconTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicator;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabInlineLabel = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabInlineLabel;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabRippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabRippleColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_fontFamily;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_shadowDx = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_shadowDy = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_shadowRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_textColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_textColorHint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_textColorLink = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_textSize = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_android_typeface = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_android_hint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_counterEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_counterMaxLength = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_helperText = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_helperText;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_hintEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.ThemeEnforcement = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement;
+			global::Plugin.Badge.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_android_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_buttonGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_collapseIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_logo = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_logo;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_logoDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_navigationIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_subtitle = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_title = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_title;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleMargin = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleMargins = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Plugin.Badge.Droid.Resource.Styleable.Toolbar_titleTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Plugin.Badge.Droid.Resource.Styleable.View = global::ContestPark.Mobile.Droid.Resource.Styleable.View;
+			global::Plugin.Badge.Droid.Resource.Styleable.View_android_focusable = global::ContestPark.Mobile.Droid.Resource.Styleable.View_android_focusable;
+			global::Plugin.Badge.Droid.Resource.Styleable.View_android_theme = global::ContestPark.Mobile.Droid.Resource.Styleable.View_android_theme;
+			global::Plugin.Badge.Droid.Resource.Styleable.View_paddingEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.View_paddingEnd;
+			global::Plugin.Badge.Droid.Resource.Styleable.View_paddingStart = global::ContestPark.Mobile.Droid.Resource.Styleable.View_paddingStart;
+			global::Plugin.Badge.Droid.Resource.Styleable.View_theme = global::ContestPark.Mobile.Droid.Resource.Styleable.View_theme;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewBackgroundHelper = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::ContestPark.Mobile.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::ContestPark.Mobile.Droid.Resource.Attribute.font;
@@ -2920,6 +5827,7 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Attribute.logoDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.logoDescription;
 			global::Xamarin.Forms.Material.Android.Resource.Attribute.materialButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialButtonStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Attribute.materialCardViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialCardViewStyle;
+			global::Xamarin.Forms.Material.Android.Resource.Attribute.materialCheckBoxStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialCheckBoxStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Attribute.materialOutlinedButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialOutlinedButtonStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Attribute.materialProgressBarCircularStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialProgressBarCircularStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Attribute.materialProgressBarHorizontalStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialProgressBarHorizontalStyle;
@@ -4406,6 +7314,7 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_Chip_Entry = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry;
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_Chip_Filter = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter;
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_ChipGroup = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
+			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_CompoundButton_CheckBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_CompoundButton_CheckBox;
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton;
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_NavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_NavigationView;
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_MaterialComponents_Snackbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
@@ -4424,11 +7333,13 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Style.Widget_Support_CoordinatorLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialButton = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialButton;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialButtonOutlined = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialButtonOutlined;
+			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialCheckBox = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialCheckBox;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialEntryFilled = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialEntryFilled;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialProgressBarCircular = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialProgressBarCircular;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialProgressBarHorizontal = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialProgressBarHorizontal;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialSlider = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialSlider;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialTheme = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialTheme;
+			global::Xamarin.Forms.Material.Android.Resource.Style.collectionViewStyle = global::ContestPark.Mobile.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -6997,6 +9908,7 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_MaterialComponents_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_Support_CoordinatorLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewStyle = global::ContestPark.Mobile.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -7869,1004 +10781,1013 @@ namespace ContestPark.Mobile.Droid
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010074
-			public const int actionBarDivider = 2130772084;
-			
 			// aapt resource value: 0x7f010075
-			public const int actionBarItemBackground = 2130772085;
-			
-			// aapt resource value: 0x7f01006e
-			public const int actionBarPopupTheme = 2130772078;
-			
-			// aapt resource value: 0x7f010073
-			public const int actionBarSize = 2130772083;
-			
-			// aapt resource value: 0x7f010070
-			public const int actionBarSplitStyle = 2130772080;
-			
-			// aapt resource value: 0x7f01006f
-			public const int actionBarStyle = 2130772079;
-			
-			// aapt resource value: 0x7f01006a
-			public const int actionBarTabBarStyle = 2130772074;
-			
-			// aapt resource value: 0x7f010069
-			public const int actionBarTabStyle = 2130772073;
-			
-			// aapt resource value: 0x7f01006b
-			public const int actionBarTabTextStyle = 2130772075;
-			
-			// aapt resource value: 0x7f010071
-			public const int actionBarTheme = 2130772081;
-			
-			// aapt resource value: 0x7f010072
-			public const int actionBarWidgetTheme = 2130772082;
-			
-			// aapt resource value: 0x7f010090
-			public const int actionButtonStyle = 2130772112;
-			
-			// aapt resource value: 0x7f01008c
-			public const int actionDropDownStyle = 2130772108;
-			
-			// aapt resource value: 0x7f0100e7
-			public const int actionLayout = 2130772199;
+			public const int actionBarDivider = 2130772085;
 			
 			// aapt resource value: 0x7f010076
-			public const int actionMenuTextAppearance = 2130772086;
+			public const int actionBarItemBackground = 2130772086;
 			
-			// aapt resource value: 0x7f010077
-			public const int actionMenuTextColor = 2130772087;
+			// aapt resource value: 0x7f01006f
+			public const int actionBarPopupTheme = 2130772079;
 			
-			// aapt resource value: 0x7f01007a
-			public const int actionModeBackground = 2130772090;
+			// aapt resource value: 0x7f010074
+			public const int actionBarSize = 2130772084;
 			
-			// aapt resource value: 0x7f010079
-			public const int actionModeCloseButtonStyle = 2130772089;
+			// aapt resource value: 0x7f010071
+			public const int actionBarSplitStyle = 2130772081;
 			
-			// aapt resource value: 0x7f01007c
-			public const int actionModeCloseDrawable = 2130772092;
+			// aapt resource value: 0x7f010070
+			public const int actionBarStyle = 2130772080;
 			
-			// aapt resource value: 0x7f01007e
-			public const int actionModeCopyDrawable = 2130772094;
+			// aapt resource value: 0x7f01006b
+			public const int actionBarTabBarStyle = 2130772075;
 			
-			// aapt resource value: 0x7f01007d
-			public const int actionModeCutDrawable = 2130772093;
-			
-			// aapt resource value: 0x7f010082
-			public const int actionModeFindDrawable = 2130772098;
-			
-			// aapt resource value: 0x7f01007f
-			public const int actionModePasteDrawable = 2130772095;
-			
-			// aapt resource value: 0x7f010084
-			public const int actionModePopupWindowStyle = 2130772100;
-			
-			// aapt resource value: 0x7f010080
-			public const int actionModeSelectAllDrawable = 2130772096;
-			
-			// aapt resource value: 0x7f010081
-			public const int actionModeShareDrawable = 2130772097;
-			
-			// aapt resource value: 0x7f01007b
-			public const int actionModeSplitBackground = 2130772091;
-			
-			// aapt resource value: 0x7f010078
-			public const int actionModeStyle = 2130772088;
-			
-			// aapt resource value: 0x7f010083
-			public const int actionModeWebSearchDrawable = 2130772099;
+			// aapt resource value: 0x7f01006a
+			public const int actionBarTabStyle = 2130772074;
 			
 			// aapt resource value: 0x7f01006c
-			public const int actionOverflowButtonStyle = 2130772076;
+			public const int actionBarTabTextStyle = 2130772076;
 			
-			// aapt resource value: 0x7f01006d
-			public const int actionOverflowMenuStyle = 2130772077;
+			// aapt resource value: 0x7f010072
+			public const int actionBarTheme = 2130772082;
 			
-			// aapt resource value: 0x7f0100e9
-			public const int actionProviderClass = 2130772201;
-			
-			// aapt resource value: 0x7f0100e8
-			public const int actionViewClass = 2130772200;
-			
-			// aapt resource value: 0x7f010098
-			public const int activityChooserViewStyle = 2130772120;
-			
-			// aapt resource value: 0x7f010213
-			public const int ahBarColor = 2130772499;
-			
-			// aapt resource value: 0x7f01021b
-			public const int ahBarLength = 2130772507;
-			
-			// aapt resource value: 0x7f01021a
-			public const int ahBarWidth = 2130772506;
-			
-			// aapt resource value: 0x7f010218
-			public const int ahCircleColor = 2130772504;
-			
-			// aapt resource value: 0x7f010217
-			public const int ahDelayMillis = 2130772503;
-			
-			// aapt resource value: 0x7f010219
-			public const int ahRadius = 2130772505;
-			
-			// aapt resource value: 0x7f010214
-			public const int ahRimColor = 2130772500;
-			
-			// aapt resource value: 0x7f010215
-			public const int ahRimWidth = 2130772501;
-			
-			// aapt resource value: 0x7f010216
-			public const int ahSpinSpeed = 2130772502;
-			
-			// aapt resource value: 0x7f010210
-			public const int ahText = 2130772496;
-			
-			// aapt resource value: 0x7f010211
-			public const int ahTextColor = 2130772497;
-			
-			// aapt resource value: 0x7f010212
-			public const int ahTextSize = 2130772498;
-			
-			// aapt resource value: 0x7f0100bd
-			public const int alertDialogButtonGroupStyle = 2130772157;
-			
-			// aapt resource value: 0x7f0100be
-			public const int alertDialogCenterButtons = 2130772158;
-			
-			// aapt resource value: 0x7f0100bc
-			public const int alertDialogStyle = 2130772156;
-			
-			// aapt resource value: 0x7f0100bf
-			public const int alertDialogTheme = 2130772159;
-			
-			// aapt resource value: 0x7f0100d6
-			public const int allowStacking = 2130772182;
-			
-			// aapt resource value: 0x7f0101e3
-			public const int alpha = 2130772451;
-			
-			// aapt resource value: 0x7f0100e4
-			public const int alphabeticModifiers = 2130772196;
-			
-			// aapt resource value: 0x7f0100dd
-			public const int arrowHeadLength = 2130772189;
-			
-			// aapt resource value: 0x7f0100de
-			public const int arrowShaftLength = 2130772190;
-			
-			// aapt resource value: 0x7f0100c4
-			public const int autoCompleteTextViewStyle = 2130772164;
-			
-			// aapt resource value: 0x7f01005a
-			public const int autoSizeMaxTextSize = 2130772058;
-			
-			// aapt resource value: 0x7f010059
-			public const int autoSizeMinTextSize = 2130772057;
-			
-			// aapt resource value: 0x7f010058
-			public const int autoSizePresetSizes = 2130772056;
-			
-			// aapt resource value: 0x7f010057
-			public const int autoSizeStepGranularity = 2130772055;
-			
-			// aapt resource value: 0x7f010056
-			public const int autoSizeTextType = 2130772054;
-			
-			// aapt resource value: 0x7f010033
-			public const int background = 2130772019;
-			
-			// aapt resource value: 0x7f010035
-			public const int backgroundSplit = 2130772021;
-			
-			// aapt resource value: 0x7f010034
-			public const int backgroundStacked = 2130772020;
-			
-			// aapt resource value: 0x7f010120
-			public const int backgroundTint = 2130772256;
-			
-			// aapt resource value: 0x7f010121
-			public const int backgroundTintMode = 2130772257;
-			
-			// aapt resource value: 0x7f0100df
-			public const int barLength = 2130772191;
-			
-			// aapt resource value: 0x7f010190
-			public const int behavior_autoHide = 2130772368;
-			
-			// aapt resource value: 0x7f010158
-			public const int behavior_fitToContents = 2130772312;
-			
-			// aapt resource value: 0x7f010156
-			public const int behavior_hideable = 2130772310;
-			
-			// aapt resource value: 0x7f0101a1
-			public const int behavior_overlapTop = 2130772385;
-			
-			// aapt resource value: 0x7f010155
-			public const int behavior_peekHeight = 2130772309;
-			
-			// aapt resource value: 0x7f010157
-			public const int behavior_skipCollapsed = 2130772311;
-			
-			// aapt resource value: 0x7f01018d
-			public const int borderWidth = 2130772365;
-			
-			// aapt resource value: 0x7f010095
-			public const int borderlessButtonStyle = 2130772117;
-			
-			// aapt resource value: 0x7f010122
-			public const int bottomAppBarStyle = 2130772258;
-			
-			// aapt resource value: 0x7f010123
-			public const int bottomNavigationStyle = 2130772259;
-			
-			// aapt resource value: 0x7f010124
-			public const int bottomSheetDialogTheme = 2130772260;
-			
-			// aapt resource value: 0x7f010125
-			public const int bottomSheetStyle = 2130772261;
-			
-			// aapt resource value: 0x7f0101d6
-			public const int boxBackgroundColor = 2130772438;
-			
-			// aapt resource value: 0x7f0101cf
-			public const int boxBackgroundMode = 2130772431;
-			
-			// aapt resource value: 0x7f0101d0
-			public const int boxCollapsedPaddingTop = 2130772432;
-			
-			// aapt resource value: 0x7f0101d4
-			public const int boxCornerRadiusBottomEnd = 2130772436;
-			
-			// aapt resource value: 0x7f0101d3
-			public const int boxCornerRadiusBottomStart = 2130772435;
-			
-			// aapt resource value: 0x7f0101d2
-			public const int boxCornerRadiusTopEnd = 2130772434;
-			
-			// aapt resource value: 0x7f0101d1
-			public const int boxCornerRadiusTopStart = 2130772433;
-			
-			// aapt resource value: 0x7f0101d5
-			public const int boxStrokeColor = 2130772437;
-			
-			// aapt resource value: 0x7f0101d7
-			public const int boxStrokeWidth = 2130772439;
-			
-			// aapt resource value: 0x7f010092
-			public const int buttonBarButtonStyle = 2130772114;
-			
-			// aapt resource value: 0x7f0100c2
-			public const int buttonBarNegativeButtonStyle = 2130772162;
-			
-			// aapt resource value: 0x7f0100c3
-			public const int buttonBarNeutralButtonStyle = 2130772163;
-			
-			// aapt resource value: 0x7f0100c1
-			public const int buttonBarPositiveButtonStyle = 2130772161;
+			// aapt resource value: 0x7f010073
+			public const int actionBarWidgetTheme = 2130772083;
 			
 			// aapt resource value: 0x7f010091
-			public const int buttonBarStyle = 2130772113;
-			
-			// aapt resource value: 0x7f010115
-			public const int buttonGravity = 2130772245;
-			
-			// aapt resource value: 0x7f01004e
-			public const int buttonIconDimen = 2130772046;
-			
-			// aapt resource value: 0x7f010048
-			public const int buttonPanelSideLayout = 2130772040;
-			
-			// aapt resource value: 0x7f0100c5
-			public const int buttonStyle = 2130772165;
-			
-			// aapt resource value: 0x7f0100c6
-			public const int buttonStyleSmall = 2130772166;
-			
-			// aapt resource value: 0x7f0100d7
-			public const int buttonTint = 2130772183;
-			
-			// aapt resource value: 0x7f0100d8
-			public const int buttonTintMode = 2130772184;
-			
-			// aapt resource value: 0x7f01001c
-			public const int cardBackgroundColor = 2130771996;
-			
-			// aapt resource value: 0x7f01001d
-			public const int cardCornerRadius = 2130771997;
-			
-			// aapt resource value: 0x7f01001e
-			public const int cardElevation = 2130771998;
-			
-			// aapt resource value: 0x7f01001f
-			public const int cardMaxElevation = 2130771999;
-			
-			// aapt resource value: 0x7f010021
-			public const int cardPreventCornerOverlap = 2130772001;
-			
-			// aapt resource value: 0x7f010020
-			public const int cardUseCompatPadding = 2130772000;
-			
-			// aapt resource value: 0x7f01001b
-			public const int cardViewStyle = 2130771995;
-			
-			// aapt resource value: 0x7f0100c7
-			public const int checkboxStyle = 2130772167;
-			
-			// aapt resource value: 0x7f010177
-			public const int checkedChip = 2130772343;
-			
-			// aapt resource value: 0x7f010169
-			public const int checkedIcon = 2130772329;
-			
-			// aapt resource value: 0x7f010168
-			public const int checkedIconEnabled = 2130772328;
-			
-			// aapt resource value: 0x7f010167
-			public const int checkedIconVisible = 2130772327;
-			
-			// aapt resource value: 0x7f0100c8
-			public const int checkedTextViewStyle = 2130772168;
-			
-			// aapt resource value: 0x7f010159
-			public const int chipBackgroundColor = 2130772313;
-			
-			// aapt resource value: 0x7f01015b
-			public const int chipCornerRadius = 2130772315;
-			
-			// aapt resource value: 0x7f010171
-			public const int chipEndPadding = 2130772337;
-			
-			// aapt resource value: 0x7f010126
-			public const int chipGroupStyle = 2130772262;
-			
-			// aapt resource value: 0x7f010160
-			public const int chipIcon = 2130772320;
-			
-			// aapt resource value: 0x7f01015f
-			public const int chipIconEnabled = 2130772319;
-			
-			// aapt resource value: 0x7f010162
-			public const int chipIconSize = 2130772322;
-			
-			// aapt resource value: 0x7f010161
-			public const int chipIconTint = 2130772321;
-			
-			// aapt resource value: 0x7f01015e
-			public const int chipIconVisible = 2130772318;
-			
-			// aapt resource value: 0x7f01015a
-			public const int chipMinHeight = 2130772314;
-			
-			// aapt resource value: 0x7f010172
-			public const int chipSpacing = 2130772338;
-			
-			// aapt resource value: 0x7f010173
-			public const int chipSpacingHorizontal = 2130772339;
-			
-			// aapt resource value: 0x7f010174
-			public const int chipSpacingVertical = 2130772340;
-			
-			// aapt resource value: 0x7f010127
-			public const int chipStandaloneStyle = 2130772263;
-			
-			// aapt resource value: 0x7f01016a
-			public const int chipStartPadding = 2130772330;
-			
-			// aapt resource value: 0x7f01015c
-			public const int chipStrokeColor = 2130772316;
-			
-			// aapt resource value: 0x7f01015d
-			public const int chipStrokeWidth = 2130772317;
-			
-			// aapt resource value: 0x7f010128
-			public const int chipStyle = 2130772264;
-			
-			// aapt resource value: 0x7f0101fe
-			public const int circleColor = 2130772478;
-			
-			// aapt resource value: 0x7f01020f
-			public const int circularProgressBarStyle = 2130772495;
-			
-			// aapt resource value: 0x7f010207
-			public const int circular_gravity = 2130772487;
-			
-			// aapt resource value: 0x7f01020d
-			public const int circular_indeterminate = 2130772493;
-			
-			// aapt resource value: 0x7f01020e
-			public const int circular_indeterminate_interval = 2130772494;
-			
-			// aapt resource value: 0x7f01020a
-			public const int circular_marker_progress = 2130772490;
-			
-			// aapt resource value: 0x7f010209
-			public const int circular_progress = 2130772489;
-			
-			// aapt resource value: 0x7f01020c
-			public const int circular_progress_background_color = 2130772492;
-			
-			// aapt resource value: 0x7f01020b
-			public const int circular_progress_color = 2130772491;
-			
-			// aapt resource value: 0x7f010208
-			public const int circular_stroke_width = 2130772488;
-			
-			// aapt resource value: 0x7f0100f8
-			public const int closeIcon = 2130772216;
-			
-			// aapt resource value: 0x7f010164
-			public const int closeIconEnabled = 2130772324;
-			
-			// aapt resource value: 0x7f010170
-			public const int closeIconEndPadding = 2130772336;
-			
-			// aapt resource value: 0x7f010166
-			public const int closeIconSize = 2130772326;
-			
-			// aapt resource value: 0x7f01016f
-			public const int closeIconStartPadding = 2130772335;
-			
-			// aapt resource value: 0x7f010165
-			public const int closeIconTint = 2130772325;
-			
-			// aapt resource value: 0x7f010163
-			public const int closeIconVisible = 2130772323;
-			
-			// aapt resource value: 0x7f010045
-			public const int closeItemLayout = 2130772037;
-			
-			// aapt resource value: 0x7f010117
-			public const int collapseContentDescription = 2130772247;
-			
-			// aapt resource value: 0x7f010116
-			public const int collapseIcon = 2130772246;
-			
-			// aapt resource value: 0x7f010184
-			public const int collapsedTitleGravity = 2130772356;
-			
-			// aapt resource value: 0x7f01017e
-			public const int collapsedTitleTextAppearance = 2130772350;
-			
-			// aapt resource value: 0x7f0100d9
-			public const int color = 2130772185;
-			
-			// aapt resource value: 0x7f0100b4
-			public const int colorAccent = 2130772148;
-			
-			// aapt resource value: 0x7f0100bb
-			public const int colorBackgroundFloating = 2130772155;
-			
-			// aapt resource value: 0x7f0100b8
-			public const int colorButtonNormal = 2130772152;
-			
-			// aapt resource value: 0x7f0100b6
-			public const int colorControlActivated = 2130772150;
-			
-			// aapt resource value: 0x7f0100b7
-			public const int colorControlHighlight = 2130772151;
-			
-			// aapt resource value: 0x7f0100b5
-			public const int colorControlNormal = 2130772149;
-			
-			// aapt resource value: 0x7f0100d4
-			public const int colorError = 2130772180;
-			
-			// aapt resource value: 0x7f0100b2
-			public const int colorPrimary = 2130772146;
-			
-			// aapt resource value: 0x7f0100b3
-			public const int colorPrimaryDark = 2130772147;
-			
-			// aapt resource value: 0x7f010129
-			public const int colorSecondary = 2130772265;
-			
-			// aapt resource value: 0x7f0100b9
-			public const int colorSwitchThumbNormal = 2130772153;
-			
-			// aapt resource value: 0x7f0100fd
-			public const int commitIcon = 2130772221;
-			
-			// aapt resource value: 0x7f0100ea
-			public const int contentDescription = 2130772202;
-			
-			// aapt resource value: 0x7f01003e
-			public const int contentInsetEnd = 2130772030;
-			
-			// aapt resource value: 0x7f010042
-			public const int contentInsetEndWithActions = 2130772034;
-			
-			// aapt resource value: 0x7f01003f
-			public const int contentInsetLeft = 2130772031;
-			
-			// aapt resource value: 0x7f010040
-			public const int contentInsetRight = 2130772032;
-			
-			// aapt resource value: 0x7f01003d
-			public const int contentInsetStart = 2130772029;
-			
-			// aapt resource value: 0x7f010041
-			public const int contentInsetStartWithNavigation = 2130772033;
-			
-			// aapt resource value: 0x7f010022
-			public const int contentPadding = 2130772002;
-			
-			// aapt resource value: 0x7f010026
-			public const int contentPaddingBottom = 2130772006;
-			
-			// aapt resource value: 0x7f010023
-			public const int contentPaddingLeft = 2130772003;
-			
-			// aapt resource value: 0x7f010024
-			public const int contentPaddingRight = 2130772004;
-			
-			// aapt resource value: 0x7f010025
-			public const int contentPaddingTop = 2130772005;
-			
-			// aapt resource value: 0x7f01017f
-			public const int contentScrim = 2130772351;
-			
-			// aapt resource value: 0x7f0100ba
-			public const int controlBackground = 2130772154;
-			
-			// aapt resource value: 0x7f0101da
-			public const int coordinatorLayoutStyle = 2130772442;
-			
-			// aapt resource value: 0x7f010197
-			public const int cornerRadius = 2130772375;
-			
-			// aapt resource value: 0x7f0101c6
-			public const int counterEnabled = 2130772422;
-			
-			// aapt resource value: 0x7f0101c7
-			public const int counterMaxLength = 2130772423;
-			
-			// aapt resource value: 0x7f0101c9
-			public const int counterOverflowTextAppearance = 2130772425;
-			
-			// aapt resource value: 0x7f0101c8
-			public const int counterTextAppearance = 2130772424;
-			
-			// aapt resource value: 0x7f010036
-			public const int customNavigationLayout = 2130772022;
-			
-			// aapt resource value: 0x7f0100f7
-			public const int defaultQueryHint = 2130772215;
-			
-			// aapt resource value: 0x7f01008b
-			public const int dialogCornerRadius = 2130772107;
-			
-			// aapt resource value: 0x7f010089
-			public const int dialogPreferredPadding = 2130772105;
-			
-			// aapt resource value: 0x7f010088
-			public const int dialogTheme = 2130772104;
-			
-			// aapt resource value: 0x7f01002c
-			public const int displayOptions = 2130772012;
-			
-			// aapt resource value: 0x7f010032
-			public const int divider = 2130772018;
-			
-			// aapt resource value: 0x7f010097
-			public const int dividerHorizontal = 2130772119;
-			
-			// aapt resource value: 0x7f0100e3
-			public const int dividerPadding = 2130772195;
-			
-			// aapt resource value: 0x7f010096
-			public const int dividerVertical = 2130772118;
-			
-			// aapt resource value: 0x7f0100db
-			public const int drawableSize = 2130772187;
-			
-			// aapt resource value: 0x7f010027
-			public const int drawerArrowStyle = 2130772007;
-			
-			// aapt resource value: 0x7f0100a9
-			public const int dropDownListViewStyle = 2130772137;
+			public const int actionButtonStyle = 2130772113;
 			
 			// aapt resource value: 0x7f01008d
-			public const int dropdownListPreferredItemHeight = 2130772109;
+			public const int actionDropDownStyle = 2130772109;
 			
-			// aapt resource value: 0x7f01009e
-			public const int editTextBackground = 2130772126;
+			// aapt resource value: 0x7f0100e8
+			public const int actionLayout = 2130772200;
 			
-			// aapt resource value: 0x7f01009d
-			public const int editTextColor = 2130772125;
+			// aapt resource value: 0x7f010077
+			public const int actionMenuTextAppearance = 2130772087;
 			
-			// aapt resource value: 0x7f0100c9
-			public const int editTextStyle = 2130772169;
+			// aapt resource value: 0x7f010078
+			public const int actionMenuTextColor = 2130772088;
 			
-			// aapt resource value: 0x7f010043
-			public const int elevation = 2130772035;
+			// aapt resource value: 0x7f01007b
+			public const int actionModeBackground = 2130772091;
 			
-			// aapt resource value: 0x7f0101d8
-			public const int enforceMaterialTheme = 2130772440;
+			// aapt resource value: 0x7f01007a
+			public const int actionModeCloseButtonStyle = 2130772090;
 			
-			// aapt resource value: 0x7f0101d9
-			public const int enforceTextAppearance = 2130772441;
+			// aapt resource value: 0x7f01007d
+			public const int actionModeCloseDrawable = 2130772093;
 			
-			// aapt resource value: 0x7f0101c4
-			public const int errorEnabled = 2130772420;
+			// aapt resource value: 0x7f01007f
+			public const int actionModeCopyDrawable = 2130772095;
 			
-			// aapt resource value: 0x7f0101c5
-			public const int errorTextAppearance = 2130772421;
+			// aapt resource value: 0x7f01007e
+			public const int actionModeCutDrawable = 2130772094;
 			
-			// aapt resource value: 0x7f010047
-			public const int expandActivityOverflowButtonDrawable = 2130772039;
+			// aapt resource value: 0x7f010083
+			public const int actionModeFindDrawable = 2130772099;
 			
-			// aapt resource value: 0x7f010143
-			public const int expanded = 2130772291;
+			// aapt resource value: 0x7f010080
+			public const int actionModePasteDrawable = 2130772096;
 			
-			// aapt resource value: 0x7f010185
-			public const int expandedTitleGravity = 2130772357;
+			// aapt resource value: 0x7f010085
+			public const int actionModePopupWindowStyle = 2130772101;
 			
-			// aapt resource value: 0x7f010178
-			public const int expandedTitleMargin = 2130772344;
+			// aapt resource value: 0x7f010081
+			public const int actionModeSelectAllDrawable = 2130772097;
 			
-			// aapt resource value: 0x7f01017c
-			public const int expandedTitleMarginBottom = 2130772348;
+			// aapt resource value: 0x7f010082
+			public const int actionModeShareDrawable = 2130772098;
 			
-			// aapt resource value: 0x7f01017b
-			public const int expandedTitleMarginEnd = 2130772347;
+			// aapt resource value: 0x7f01007c
+			public const int actionModeSplitBackground = 2130772092;
 			
-			// aapt resource value: 0x7f010179
-			public const int expandedTitleMarginStart = 2130772345;
+			// aapt resource value: 0x7f010079
+			public const int actionModeStyle = 2130772089;
 			
-			// aapt resource value: 0x7f01017a
-			public const int expandedTitleMarginTop = 2130772346;
+			// aapt resource value: 0x7f010084
+			public const int actionModeWebSearchDrawable = 2130772100;
 			
-			// aapt resource value: 0x7f01017d
-			public const int expandedTitleTextAppearance = 2130772349;
+			// aapt resource value: 0x7f01006d
+			public const int actionOverflowButtonStyle = 2130772077;
 			
-			// aapt resource value: 0x7f010019
-			public const int externalRouteEnabledDrawable = 2130771993;
+			// aapt resource value: 0x7f01006e
+			public const int actionOverflowMenuStyle = 2130772078;
 			
-			// aapt resource value: 0x7f01014b
-			public const int fabAlignmentMode = 2130772299;
+			// aapt resource value: 0x7f0100ea
+			public const int actionProviderClass = 2130772202;
 			
-			// aapt resource value: 0x7f01014c
-			public const int fabCradleMargin = 2130772300;
+			// aapt resource value: 0x7f0100e9
+			public const int actionViewClass = 2130772201;
 			
-			// aapt resource value: 0x7f01014d
-			public const int fabCradleRoundedCornerRadius = 2130772301;
+			// aapt resource value: 0x7f010099
+			public const int activityChooserViewStyle = 2130772121;
 			
-			// aapt resource value: 0x7f01014e
-			public const int fabCradleVerticalOffset = 2130772302;
+			// aapt resource value: 0x7f010216
+			public const int ahBarColor = 2130772502;
 			
-			// aapt resource value: 0x7f01018a
-			public const int fabCustomSize = 2130772362;
+			// aapt resource value: 0x7f01021e
+			public const int ahBarLength = 2130772510;
 			
-			// aapt resource value: 0x7f010189
-			public const int fabSize = 2130772361;
+			// aapt resource value: 0x7f01021d
+			public const int ahBarWidth = 2130772509;
 			
-			// aapt resource value: 0x7f010008
-			public const int fastScrollEnabled = 2130771976;
+			// aapt resource value: 0x7f01021b
+			public const int ahCircleColor = 2130772507;
 			
-			// aapt resource value: 0x7f01000b
-			public const int fastScrollHorizontalThumbDrawable = 2130771979;
+			// aapt resource value: 0x7f01021a
+			public const int ahDelayMillis = 2130772506;
 			
-			// aapt resource value: 0x7f01000c
-			public const int fastScrollHorizontalTrackDrawable = 2130771980;
+			// aapt resource value: 0x7f01021c
+			public const int ahRadius = 2130772508;
 			
-			// aapt resource value: 0x7f010009
-			public const int fastScrollVerticalThumbDrawable = 2130771977;
+			// aapt resource value: 0x7f010217
+			public const int ahRimColor = 2130772503;
 			
-			// aapt resource value: 0x7f01000a
-			public const int fastScrollVerticalTrackDrawable = 2130771978;
+			// aapt resource value: 0x7f010218
+			public const int ahRimWidth = 2130772504;
 			
-			// aapt resource value: 0x7f01005d
-			public const int firstBaselineToTopHeight = 2130772061;
+			// aapt resource value: 0x7f010219
+			public const int ahSpinSpeed = 2130772505;
 			
-			// aapt resource value: 0x7f01012a
-			public const int floatingActionButtonStyle = 2130772266;
+			// aapt resource value: 0x7f010213
+			public const int ahText = 2130772499;
 			
-			// aapt resource value: 0x7f0101eb
-			public const int font = 2130772459;
+			// aapt resource value: 0x7f010214
+			public const int ahTextColor = 2130772500;
 			
-			// aapt resource value: 0x7f01005b
-			public const int fontFamily = 2130772059;
+			// aapt resource value: 0x7f010215
+			public const int ahTextSize = 2130772501;
+			
+			// aapt resource value: 0x7f0100be
+			public const int alertDialogButtonGroupStyle = 2130772158;
+			
+			// aapt resource value: 0x7f0100bf
+			public const int alertDialogCenterButtons = 2130772159;
+			
+			// aapt resource value: 0x7f0100bd
+			public const int alertDialogStyle = 2130772157;
+			
+			// aapt resource value: 0x7f0100c0
+			public const int alertDialogTheme = 2130772160;
+			
+			// aapt resource value: 0x7f0100d7
+			public const int allowStacking = 2130772183;
 			
 			// aapt resource value: 0x7f0101e4
-			public const int fontProviderAuthority = 2130772452;
+			public const int alpha = 2130772452;
 			
-			// aapt resource value: 0x7f0101e7
-			public const int fontProviderCerts = 2130772455;
+			// aapt resource value: 0x7f0100e5
+			public const int alphabeticModifiers = 2130772197;
 			
-			// aapt resource value: 0x7f0101e8
-			public const int fontProviderFetchStrategy = 2130772456;
+			// aapt resource value: 0x7f0100de
+			public const int arrowHeadLength = 2130772190;
 			
-			// aapt resource value: 0x7f0101e9
-			public const int fontProviderFetchTimeout = 2130772457;
+			// aapt resource value: 0x7f0100df
+			public const int arrowShaftLength = 2130772191;
 			
-			// aapt resource value: 0x7f0101e5
-			public const int fontProviderPackage = 2130772453;
+			// aapt resource value: 0x7f0100c5
+			public const int autoCompleteTextViewStyle = 2130772165;
 			
-			// aapt resource value: 0x7f0101e6
-			public const int fontProviderQuery = 2130772454;
+			// aapt resource value: 0x7f01005b
+			public const int autoSizeMaxTextSize = 2130772059;
 			
-			// aapt resource value: 0x7f0101ea
-			public const int fontStyle = 2130772458;
+			// aapt resource value: 0x7f01005a
+			public const int autoSizeMinTextSize = 2130772058;
 			
-			// aapt resource value: 0x7f0101ed
-			public const int fontVariationSettings = 2130772461;
+			// aapt resource value: 0x7f010059
+			public const int autoSizePresetSizes = 2130772057;
 			
-			// aapt resource value: 0x7f0101ec
-			public const int fontWeight = 2130772460;
+			// aapt resource value: 0x7f010058
+			public const int autoSizeStepGranularity = 2130772056;
 			
-			// aapt resource value: 0x7f010193
-			public const int foregroundInsidePadding = 2130772371;
+			// aapt resource value: 0x7f010057
+			public const int autoSizeTextType = 2130772055;
 			
-			// aapt resource value: 0x7f0100dc
-			public const int gapBetweenBars = 2130772188;
+			// aapt resource value: 0x7f010034
+			public const int background = 2130772020;
 			
-			// aapt resource value: 0x7f0100f9
-			public const int goIcon = 2130772217;
+			// aapt resource value: 0x7f010036
+			public const int backgroundSplit = 2130772022;
 			
-			// aapt resource value: 0x7f01019d
-			public const int headerLayout = 2130772381;
+			// aapt resource value: 0x7f010035
+			public const int backgroundStacked = 2130772021;
 			
-			// aapt resource value: 0x7f010028
-			public const int height = 2130772008;
+			// aapt resource value: 0x7f010121
+			public const int backgroundTint = 2130772257;
 			
-			// aapt resource value: 0x7f0101c1
-			public const int helperText = 2130772417;
+			// aapt resource value: 0x7f010122
+			public const int backgroundTintMode = 2130772258;
 			
-			// aapt resource value: 0x7f0101c2
-			public const int helperTextEnabled = 2130772418;
-			
-			// aapt resource value: 0x7f0101c3
-			public const int helperTextTextAppearance = 2130772419;
-			
-			// aapt resource value: 0x7f01012b
-			public const int hideMotionSpec = 2130772267;
-			
-			// aapt resource value: 0x7f01003c
-			public const int hideOnContentScroll = 2130772028;
-			
-			// aapt resource value: 0x7f01014f
-			public const int hideOnScroll = 2130772303;
-			
-			// aapt resource value: 0x7f0101bf
-			public const int hintAnimationEnabled = 2130772415;
-			
-			// aapt resource value: 0x7f0101be
-			public const int hintEnabled = 2130772414;
-			
-			// aapt resource value: 0x7f0101c0
-			public const int hintTextAppearance = 2130772416;
-			
-			// aapt resource value: 0x7f01008f
-			public const int homeAsUpIndicator = 2130772111;
-			
-			// aapt resource value: 0x7f010037
-			public const int homeLayout = 2130772023;
-			
-			// aapt resource value: 0x7f01018b
-			public const int hoveredFocusedTranslationZ = 2130772363;
-			
-			// aapt resource value: 0x7f010030
-			public const int icon = 2130772016;
-			
-			// aapt resource value: 0x7f01016c
-			public const int iconEndPadding = 2130772332;
-			
-			// aapt resource value: 0x7f010196
-			public const int iconGravity = 2130772374;
-			
-			// aapt resource value: 0x7f010195
-			public const int iconPadding = 2130772373;
-			
-			// aapt resource value: 0x7f010194
-			public const int iconSize = 2130772372;
-			
-			// aapt resource value: 0x7f01016b
-			public const int iconStartPadding = 2130772331;
-			
-			// aapt resource value: 0x7f0100ec
-			public const int iconTint = 2130772204;
-			
-			// aapt resource value: 0x7f0100ed
-			public const int iconTintMode = 2130772205;
-			
-			// aapt resource value: 0x7f0100f5
-			public const int iconifiedByDefault = 2130772213;
-			
-			// aapt resource value: 0x7f01009f
-			public const int imageButtonStyle = 2130772127;
-			
-			// aapt resource value: 0x7f010205
-			public const int indeterminate = 2130772485;
-			
-			// aapt resource value: 0x7f010039
-			public const int indeterminateProgressStyle = 2130772025;
-			
-			// aapt resource value: 0x7f010206
-			public const int indeterminate_interval = 2130772486;
-			
-			// aapt resource value: 0x7f010046
-			public const int initialActivityCount = 2130772038;
-			
-			// aapt resource value: 0x7f010203
-			public const int innerSize = 2130772483;
-			
-			// aapt resource value: 0x7f0101a0
-			public const int insetForeground = 2130772384;
-			
-			// aapt resource value: 0x7f010029
-			public const int isLightTheme = 2130772009;
-			
-			// aapt resource value: 0x7f01019b
-			public const int itemBackground = 2130772379;
-			
-			// aapt resource value: 0x7f01019e
-			public const int itemHorizontalPadding = 2130772382;
-			
-			// aapt resource value: 0x7f010154
-			public const int itemHorizontalTranslationEnabled = 2130772308;
-			
-			// aapt resource value: 0x7f01019f
-			public const int itemIconPadding = 2130772383;
-			
-			// aapt resource value: 0x7f010151
-			public const int itemIconSize = 2130772305;
-			
-			// aapt resource value: 0x7f010199
-			public const int itemIconTint = 2130772377;
-			
-			// aapt resource value: 0x7f01003b
-			public const int itemPadding = 2130772027;
+			// aapt resource value: 0x7f0100e0
+			public const int barLength = 2130772192;
 			
 			// aapt resource value: 0x7f010191
-			public const int itemSpacing = 2130772369;
+			public const int behavior_autoHide = 2130772369;
 			
-			// aapt resource value: 0x7f01019c
-			public const int itemTextAppearance = 2130772380;
+			// aapt resource value: 0x7f010159
+			public const int behavior_fitToContents = 2130772313;
 			
-			// aapt resource value: 0x7f010153
-			public const int itemTextAppearanceActive = 2130772307;
+			// aapt resource value: 0x7f010157
+			public const int behavior_hideable = 2130772311;
 			
-			// aapt resource value: 0x7f010152
-			public const int itemTextAppearanceInactive = 2130772306;
+			// aapt resource value: 0x7f0101a2
+			public const int behavior_overlapTop = 2130772386;
 			
-			// aapt resource value: 0x7f01019a
-			public const int itemTextColor = 2130772378;
+			// aapt resource value: 0x7f010156
+			public const int behavior_peekHeight = 2130772310;
 			
-			// aapt resource value: 0x7f0101db
-			public const int keylines = 2130772443;
+			// aapt resource value: 0x7f010158
+			public const int behavior_skipCollapsed = 2130772312;
 			
-			// aapt resource value: 0x7f010150
-			public const int labelVisibilityMode = 2130772304;
+			// aapt resource value: 0x7f01018e
+			public const int borderWidth = 2130772366;
 			
-			// aapt resource value: 0x7f01005e
-			public const int lastBaselineToBottomHeight = 2130772062;
+			// aapt resource value: 0x7f010096
+			public const int borderlessButtonStyle = 2130772118;
 			
-			// aapt resource value: 0x7f0100f4
-			public const int layout = 2130772212;
+			// aapt resource value: 0x7f010123
+			public const int bottomAppBarStyle = 2130772259;
 			
-			// aapt resource value: 0x7f010004
-			public const int layoutManager = 2130771972;
+			// aapt resource value: 0x7f010124
+			public const int bottomNavigationStyle = 2130772260;
 			
-			// aapt resource value: 0x7f0101de
-			public const int layout_anchor = 2130772446;
+			// aapt resource value: 0x7f010125
+			public const int bottomSheetDialogTheme = 2130772261;
 			
-			// aapt resource value: 0x7f0101e0
-			public const int layout_anchorGravity = 2130772448;
+			// aapt resource value: 0x7f010126
+			public const int bottomSheetStyle = 2130772262;
 			
-			// aapt resource value: 0x7f0101dd
-			public const int layout_behavior = 2130772445;
+			// aapt resource value: 0x7f0101d7
+			public const int boxBackgroundColor = 2130772439;
 			
-			// aapt resource value: 0x7f010187
-			public const int layout_collapseMode = 2130772359;
+			// aapt resource value: 0x7f0101d0
+			public const int boxBackgroundMode = 2130772432;
 			
-			// aapt resource value: 0x7f010188
-			public const int layout_collapseParallaxMultiplier = 2130772360;
+			// aapt resource value: 0x7f0101d1
+			public const int boxCollapsedPaddingTop = 2130772433;
 			
-			// aapt resource value: 0x7f0101e2
-			public const int layout_dodgeInsetEdges = 2130772450;
+			// aapt resource value: 0x7f0101d5
+			public const int boxCornerRadiusBottomEnd = 2130772437;
 			
-			// aapt resource value: 0x7f0101e1
-			public const int layout_insetEdge = 2130772449;
+			// aapt resource value: 0x7f0101d4
+			public const int boxCornerRadiusBottomStart = 2130772436;
 			
-			// aapt resource value: 0x7f0101df
-			public const int layout_keyline = 2130772447;
+			// aapt resource value: 0x7f0101d3
+			public const int boxCornerRadiusTopEnd = 2130772435;
 			
-			// aapt resource value: 0x7f010149
-			public const int layout_scrollFlags = 2130772297;
+			// aapt resource value: 0x7f0101d2
+			public const int boxCornerRadiusTopStart = 2130772434;
 			
-			// aapt resource value: 0x7f01014a
-			public const int layout_scrollInterpolator = 2130772298;
+			// aapt resource value: 0x7f0101d6
+			public const int boxStrokeColor = 2130772438;
 			
-			// aapt resource value: 0x7f010144
-			public const int liftOnScroll = 2130772292;
+			// aapt resource value: 0x7f0101d8
+			public const int boxStrokeWidth = 2130772440;
 			
-			// aapt resource value: 0x7f01005c
-			public const int lineHeight = 2130772060;
+			// aapt resource value: 0x7f010093
+			public const int buttonBarButtonStyle = 2130772115;
 			
-			// aapt resource value: 0x7f010192
-			public const int lineSpacing = 2130772370;
+			// aapt resource value: 0x7f0100c3
+			public const int buttonBarNegativeButtonStyle = 2130772163;
 			
-			// aapt resource value: 0x7f0100b1
-			public const int listChoiceBackgroundIndicator = 2130772145;
+			// aapt resource value: 0x7f0100c4
+			public const int buttonBarNeutralButtonStyle = 2130772164;
 			
-			// aapt resource value: 0x7f01008a
-			public const int listDividerAlertDialog = 2130772106;
+			// aapt resource value: 0x7f0100c2
+			public const int buttonBarPositiveButtonStyle = 2130772162;
 			
-			// aapt resource value: 0x7f01004c
-			public const int listItemLayout = 2130772044;
+			// aapt resource value: 0x7f010092
+			public const int buttonBarStyle = 2130772114;
+			
+			// aapt resource value: 0x7f010116
+			public const int buttonGravity = 2130772246;
+			
+			// aapt resource value: 0x7f01004f
+			public const int buttonIconDimen = 2130772047;
 			
 			// aapt resource value: 0x7f010049
-			public const int listLayout = 2130772041;
+			public const int buttonPanelSideLayout = 2130772041;
 			
-			// aapt resource value: 0x7f0100d1
-			public const int listMenuViewStyle = 2130772177;
+			// aapt resource value: 0x7f0100c6
+			public const int buttonStyle = 2130772166;
+			
+			// aapt resource value: 0x7f0100c7
+			public const int buttonStyleSmall = 2130772167;
+			
+			// aapt resource value: 0x7f0100d8
+			public const int buttonTint = 2130772184;
+			
+			// aapt resource value: 0x7f0100d9
+			public const int buttonTintMode = 2130772185;
+			
+			// aapt resource value: 0x7f01001d
+			public const int cardBackgroundColor = 2130771997;
+			
+			// aapt resource value: 0x7f01001e
+			public const int cardCornerRadius = 2130771998;
+			
+			// aapt resource value: 0x7f01001f
+			public const int cardElevation = 2130771999;
+			
+			// aapt resource value: 0x7f010020
+			public const int cardMaxElevation = 2130772000;
+			
+			// aapt resource value: 0x7f010022
+			public const int cardPreventCornerOverlap = 2130772002;
+			
+			// aapt resource value: 0x7f010021
+			public const int cardUseCompatPadding = 2130772001;
+			
+			// aapt resource value: 0x7f01001c
+			public const int cardViewStyle = 2130771996;
+			
+			// aapt resource value: 0x7f0100c8
+			public const int checkboxStyle = 2130772168;
+			
+			// aapt resource value: 0x7f010178
+			public const int checkedChip = 2130772344;
+			
+			// aapt resource value: 0x7f01016a
+			public const int checkedIcon = 2130772330;
+			
+			// aapt resource value: 0x7f010169
+			public const int checkedIconEnabled = 2130772329;
+			
+			// aapt resource value: 0x7f010168
+			public const int checkedIconVisible = 2130772328;
+			
+			// aapt resource value: 0x7f0100c9
+			public const int checkedTextViewStyle = 2130772169;
+			
+			// aapt resource value: 0x7f01015a
+			public const int chipBackgroundColor = 2130772314;
+			
+			// aapt resource value: 0x7f01015c
+			public const int chipCornerRadius = 2130772316;
+			
+			// aapt resource value: 0x7f010172
+			public const int chipEndPadding = 2130772338;
+			
+			// aapt resource value: 0x7f010127
+			public const int chipGroupStyle = 2130772263;
+			
+			// aapt resource value: 0x7f010161
+			public const int chipIcon = 2130772321;
+			
+			// aapt resource value: 0x7f010160
+			public const int chipIconEnabled = 2130772320;
+			
+			// aapt resource value: 0x7f010163
+			public const int chipIconSize = 2130772323;
+			
+			// aapt resource value: 0x7f010162
+			public const int chipIconTint = 2130772322;
+			
+			// aapt resource value: 0x7f01015f
+			public const int chipIconVisible = 2130772319;
+			
+			// aapt resource value: 0x7f01015b
+			public const int chipMinHeight = 2130772315;
+			
+			// aapt resource value: 0x7f010173
+			public const int chipSpacing = 2130772339;
+			
+			// aapt resource value: 0x7f010174
+			public const int chipSpacingHorizontal = 2130772340;
+			
+			// aapt resource value: 0x7f010175
+			public const int chipSpacingVertical = 2130772341;
+			
+			// aapt resource value: 0x7f010128
+			public const int chipStandaloneStyle = 2130772264;
+			
+			// aapt resource value: 0x7f01016b
+			public const int chipStartPadding = 2130772331;
+			
+			// aapt resource value: 0x7f01015d
+			public const int chipStrokeColor = 2130772317;
+			
+			// aapt resource value: 0x7f01015e
+			public const int chipStrokeWidth = 2130772318;
+			
+			// aapt resource value: 0x7f010129
+			public const int chipStyle = 2130772265;
+			
+			// aapt resource value: 0x7f010201
+			public const int circleColor = 2130772481;
+			
+			// aapt resource value: 0x7f010212
+			public const int circularProgressBarStyle = 2130772498;
+			
+			// aapt resource value: 0x7f01020a
+			public const int circular_gravity = 2130772490;
+			
+			// aapt resource value: 0x7f010210
+			public const int circular_indeterminate = 2130772496;
+			
+			// aapt resource value: 0x7f010211
+			public const int circular_indeterminate_interval = 2130772497;
+			
+			// aapt resource value: 0x7f01020d
+			public const int circular_marker_progress = 2130772493;
+			
+			// aapt resource value: 0x7f01020c
+			public const int circular_progress = 2130772492;
+			
+			// aapt resource value: 0x7f01020f
+			public const int circular_progress_background_color = 2130772495;
+			
+			// aapt resource value: 0x7f01020e
+			public const int circular_progress_color = 2130772494;
+			
+			// aapt resource value: 0x7f01020b
+			public const int circular_stroke_width = 2130772491;
+			
+			// aapt resource value: 0x7f0100f9
+			public const int closeIcon = 2130772217;
+			
+			// aapt resource value: 0x7f010165
+			public const int closeIconEnabled = 2130772325;
+			
+			// aapt resource value: 0x7f010171
+			public const int closeIconEndPadding = 2130772337;
+			
+			// aapt resource value: 0x7f010167
+			public const int closeIconSize = 2130772327;
+			
+			// aapt resource value: 0x7f010170
+			public const int closeIconStartPadding = 2130772336;
+			
+			// aapt resource value: 0x7f010166
+			public const int closeIconTint = 2130772326;
+			
+			// aapt resource value: 0x7f010164
+			public const int closeIconVisible = 2130772324;
+			
+			// aapt resource value: 0x7f010046
+			public const int closeItemLayout = 2130772038;
+			
+			// aapt resource value: 0x7f010118
+			public const int collapseContentDescription = 2130772248;
+			
+			// aapt resource value: 0x7f010117
+			public const int collapseIcon = 2130772247;
+			
+			// aapt resource value: 0x7f010185
+			public const int collapsedTitleGravity = 2130772357;
+			
+			// aapt resource value: 0x7f01017f
+			public const int collapsedTitleTextAppearance = 2130772351;
+			
+			// aapt resource value: 0x7f0100da
+			public const int color = 2130772186;
+			
+			// aapt resource value: 0x7f0100b5
+			public const int colorAccent = 2130772149;
+			
+			// aapt resource value: 0x7f0100bc
+			public const int colorBackgroundFloating = 2130772156;
+			
+			// aapt resource value: 0x7f0100b9
+			public const int colorButtonNormal = 2130772153;
+			
+			// aapt resource value: 0x7f0100b7
+			public const int colorControlActivated = 2130772151;
+			
+			// aapt resource value: 0x7f0100b8
+			public const int colorControlHighlight = 2130772152;
+			
+			// aapt resource value: 0x7f0100b6
+			public const int colorControlNormal = 2130772150;
+			
+			// aapt resource value: 0x7f0100d5
+			public const int colorError = 2130772181;
+			
+			// aapt resource value: 0x7f0100b3
+			public const int colorPrimary = 2130772147;
+			
+			// aapt resource value: 0x7f0100b4
+			public const int colorPrimaryDark = 2130772148;
+			
+			// aapt resource value: 0x7f01012a
+			public const int colorSecondary = 2130772266;
+			
+			// aapt resource value: 0x7f0100ba
+			public const int colorSwitchThumbNormal = 2130772154;
+			
+			// aapt resource value: 0x7f0100fe
+			public const int commitIcon = 2130772222;
+			
+			// aapt resource value: 0x7f0100eb
+			public const int contentDescription = 2130772203;
+			
+			// aapt resource value: 0x7f01003f
+			public const int contentInsetEnd = 2130772031;
+			
+			// aapt resource value: 0x7f010043
+			public const int contentInsetEndWithActions = 2130772035;
+			
+			// aapt resource value: 0x7f010040
+			public const int contentInsetLeft = 2130772032;
+			
+			// aapt resource value: 0x7f010041
+			public const int contentInsetRight = 2130772033;
+			
+			// aapt resource value: 0x7f01003e
+			public const int contentInsetStart = 2130772030;
+			
+			// aapt resource value: 0x7f010042
+			public const int contentInsetStartWithNavigation = 2130772034;
+			
+			// aapt resource value: 0x7f010023
+			public const int contentPadding = 2130772003;
+			
+			// aapt resource value: 0x7f010027
+			public const int contentPaddingBottom = 2130772007;
+			
+			// aapt resource value: 0x7f010024
+			public const int contentPaddingLeft = 2130772004;
+			
+			// aapt resource value: 0x7f010025
+			public const int contentPaddingRight = 2130772005;
+			
+			// aapt resource value: 0x7f010026
+			public const int contentPaddingTop = 2130772006;
+			
+			// aapt resource value: 0x7f010180
+			public const int contentScrim = 2130772352;
+			
+			// aapt resource value: 0x7f0100bb
+			public const int controlBackground = 2130772155;
+			
+			// aapt resource value: 0x7f0101db
+			public const int coordinatorLayoutStyle = 2130772443;
+			
+			// aapt resource value: 0x7f010198
+			public const int cornerRadius = 2130772376;
+			
+			// aapt resource value: 0x7f0101c7
+			public const int counterEnabled = 2130772423;
+			
+			// aapt resource value: 0x7f0101c8
+			public const int counterMaxLength = 2130772424;
+			
+			// aapt resource value: 0x7f0101ca
+			public const int counterOverflowTextAppearance = 2130772426;
+			
+			// aapt resource value: 0x7f0101c9
+			public const int counterTextAppearance = 2130772425;
+			
+			// aapt resource value: 0x7f010037
+			public const int customNavigationLayout = 2130772023;
+			
+			// aapt resource value: 0x7f0100f8
+			public const int defaultQueryHint = 2130772216;
+			
+			// aapt resource value: 0x7f01008c
+			public const int dialogCornerRadius = 2130772108;
+			
+			// aapt resource value: 0x7f01008a
+			public const int dialogPreferredPadding = 2130772106;
+			
+			// aapt resource value: 0x7f010089
+			public const int dialogTheme = 2130772105;
+			
+			// aapt resource value: 0x7f01002d
+			public const int displayOptions = 2130772013;
+			
+			// aapt resource value: 0x7f010033
+			public const int divider = 2130772019;
+			
+			// aapt resource value: 0x7f010098
+			public const int dividerHorizontal = 2130772120;
+			
+			// aapt resource value: 0x7f0100e4
+			public const int dividerPadding = 2130772196;
+			
+			// aapt resource value: 0x7f010097
+			public const int dividerVertical = 2130772119;
+			
+			// aapt resource value: 0x7f0100dc
+			public const int drawableSize = 2130772188;
+			
+			// aapt resource value: 0x7f010028
+			public const int drawerArrowStyle = 2130772008;
 			
 			// aapt resource value: 0x7f0100aa
-			public const int listPopupWindowStyle = 2130772138;
+			public const int dropDownListViewStyle = 2130772138;
 			
-			// aapt resource value: 0x7f0100a4
-			public const int listPreferredItemHeight = 2130772132;
+			// aapt resource value: 0x7f01008e
+			public const int dropdownListPreferredItemHeight = 2130772110;
 			
-			// aapt resource value: 0x7f0100a6
-			public const int listPreferredItemHeightLarge = 2130772134;
+			// aapt resource value: 0x7f01009f
+			public const int editTextBackground = 2130772127;
 			
-			// aapt resource value: 0x7f0100a5
-			public const int listPreferredItemHeightSmall = 2130772133;
+			// aapt resource value: 0x7f01009e
+			public const int editTextColor = 2130772126;
 			
-			// aapt resource value: 0x7f0100a7
-			public const int listPreferredItemPaddingLeft = 2130772135;
+			// aapt resource value: 0x7f0100ca
+			public const int editTextStyle = 2130772170;
 			
-			// aapt resource value: 0x7f0100a8
-			public const int listPreferredItemPaddingRight = 2130772136;
+			// aapt resource value: 0x7f010044
+			public const int elevation = 2130772036;
 			
-			// aapt resource value: 0x7f010031
-			public const int logo = 2130772017;
+			// aapt resource value: 0x7f0101d9
+			public const int enforceMaterialTheme = 2130772441;
 			
-			// aapt resource value: 0x7f01011a
-			public const int logoDescription = 2130772250;
+			// aapt resource value: 0x7f0101da
+			public const int enforceTextAppearance = 2130772442;
 			
-			// aapt resource value: 0x7f0101f2
-			public const int lottie_autoPlay = 2130772466;
+			// aapt resource value: 0x7f0101c5
+			public const int errorEnabled = 2130772421;
 			
-			// aapt resource value: 0x7f0101f9
-			public const int lottie_colorFilter = 2130772473;
+			// aapt resource value: 0x7f0101c6
+			public const int errorTextAppearance = 2130772422;
 			
-			// aapt resource value: 0x7f0101f8
-			public const int lottie_enableMergePathsForKitKatAndAbove = 2130772472;
+			// aapt resource value: 0x7f010048
+			public const int expandActivityOverflowButtonDrawable = 2130772040;
 			
-			// aapt resource value: 0x7f0101ef
-			public const int lottie_fileName = 2130772463;
+			// aapt resource value: 0x7f010144
+			public const int expanded = 2130772292;
 			
-			// aapt resource value: 0x7f0101f6
-			public const int lottie_imageAssetsFolder = 2130772470;
+			// aapt resource value: 0x7f010186
+			public const int expandedTitleGravity = 2130772358;
 			
-			// aapt resource value: 0x7f0101f3
-			public const int lottie_loop = 2130772467;
+			// aapt resource value: 0x7f010179
+			public const int expandedTitleMargin = 2130772345;
 			
-			// aapt resource value: 0x7f0101f7
-			public const int lottie_progress = 2130772471;
+			// aapt resource value: 0x7f01017d
+			public const int expandedTitleMarginBottom = 2130772349;
 			
-			// aapt resource value: 0x7f0101f0
-			public const int lottie_rawRes = 2130772464;
+			// aapt resource value: 0x7f01017c
+			public const int expandedTitleMarginEnd = 2130772348;
 			
-			// aapt resource value: 0x7f0101f5
-			public const int lottie_repeatCount = 2130772469;
+			// aapt resource value: 0x7f01017a
+			public const int expandedTitleMarginStart = 2130772346;
 			
-			// aapt resource value: 0x7f0101f4
-			public const int lottie_repeatMode = 2130772468;
+			// aapt resource value: 0x7f01017b
+			public const int expandedTitleMarginTop = 2130772347;
 			
-			// aapt resource value: 0x7f0101fa
-			public const int lottie_scale = 2130772474;
+			// aapt resource value: 0x7f01017e
+			public const int expandedTitleTextAppearance = 2130772350;
 			
-			// aapt resource value: 0x7f0101f1
-			public const int lottie_url = 2130772465;
+			// aapt resource value: 0x7f01001a
+			public const int externalRouteEnabledDrawable = 2130771994;
+			
+			// aapt resource value: 0x7f01014c
+			public const int fabAlignmentMode = 2130772300;
+			
+			// aapt resource value: 0x7f01014d
+			public const int fabCradleMargin = 2130772301;
+			
+			// aapt resource value: 0x7f01014e
+			public const int fabCradleRoundedCornerRadius = 2130772302;
+			
+			// aapt resource value: 0x7f01014f
+			public const int fabCradleVerticalOffset = 2130772303;
+			
+			// aapt resource value: 0x7f01018b
+			public const int fabCustomSize = 2130772363;
+			
+			// aapt resource value: 0x7f01018a
+			public const int fabSize = 2130772362;
+			
+			// aapt resource value: 0x7f010009
+			public const int fastScrollEnabled = 2130771977;
+			
+			// aapt resource value: 0x7f01000c
+			public const int fastScrollHorizontalThumbDrawable = 2130771980;
+			
+			// aapt resource value: 0x7f01000d
+			public const int fastScrollHorizontalTrackDrawable = 2130771981;
+			
+			// aapt resource value: 0x7f01000a
+			public const int fastScrollVerticalThumbDrawable = 2130771978;
+			
+			// aapt resource value: 0x7f01000b
+			public const int fastScrollVerticalTrackDrawable = 2130771979;
+			
+			// aapt resource value: 0x7f01005e
+			public const int firstBaselineToTopHeight = 2130772062;
+			
+			// aapt resource value: 0x7f01012b
+			public const int floatingActionButtonStyle = 2130772267;
+			
+			// aapt resource value: 0x7f0101ec
+			public const int font = 2130772460;
+			
+			// aapt resource value: 0x7f01005c
+			public const int fontFamily = 2130772060;
+			
+			// aapt resource value: 0x7f0101e5
+			public const int fontProviderAuthority = 2130772453;
+			
+			// aapt resource value: 0x7f0101e8
+			public const int fontProviderCerts = 2130772456;
+			
+			// aapt resource value: 0x7f0101e9
+			public const int fontProviderFetchStrategy = 2130772457;
+			
+			// aapt resource value: 0x7f0101ea
+			public const int fontProviderFetchTimeout = 2130772458;
+			
+			// aapt resource value: 0x7f0101e6
+			public const int fontProviderPackage = 2130772454;
+			
+			// aapt resource value: 0x7f0101e7
+			public const int fontProviderQuery = 2130772455;
+			
+			// aapt resource value: 0x7f0101eb
+			public const int fontStyle = 2130772459;
+			
+			// aapt resource value: 0x7f0101ee
+			public const int fontVariationSettings = 2130772462;
+			
+			// aapt resource value: 0x7f0101ed
+			public const int fontWeight = 2130772461;
+			
+			// aapt resource value: 0x7f010194
+			public const int foregroundInsidePadding = 2130772372;
+			
+			// aapt resource value: 0x7f0100dd
+			public const int gapBetweenBars = 2130772189;
+			
+			// aapt resource value: 0x7f0100fa
+			public const int goIcon = 2130772218;
+			
+			// aapt resource value: 0x7f01019e
+			public const int headerLayout = 2130772382;
+			
+			// aapt resource value: 0x7f010029
+			public const int height = 2130772009;
+			
+			// aapt resource value: 0x7f0101c2
+			public const int helperText = 2130772418;
+			
+			// aapt resource value: 0x7f0101c3
+			public const int helperTextEnabled = 2130772419;
+			
+			// aapt resource value: 0x7f0101c4
+			public const int helperTextTextAppearance = 2130772420;
 			
 			// aapt resource value: 0x7f01012c
-			public const int materialButtonStyle = 2130772268;
+			public const int hideMotionSpec = 2130772268;
+			
+			// aapt resource value: 0x7f01003d
+			public const int hideOnContentScroll = 2130772029;
+			
+			// aapt resource value: 0x7f010150
+			public const int hideOnScroll = 2130772304;
+			
+			// aapt resource value: 0x7f0101c0
+			public const int hintAnimationEnabled = 2130772416;
+			
+			// aapt resource value: 0x7f0101bf
+			public const int hintEnabled = 2130772415;
+			
+			// aapt resource value: 0x7f0101c1
+			public const int hintTextAppearance = 2130772417;
+			
+			// aapt resource value: 0x7f010090
+			public const int homeAsUpIndicator = 2130772112;
+			
+			// aapt resource value: 0x7f010038
+			public const int homeLayout = 2130772024;
+			
+			// aapt resource value: 0x7f01018c
+			public const int hoveredFocusedTranslationZ = 2130772364;
+			
+			// aapt resource value: 0x7f010031
+			public const int icon = 2130772017;
+			
+			// aapt resource value: 0x7f01016d
+			public const int iconEndPadding = 2130772333;
+			
+			// aapt resource value: 0x7f010197
+			public const int iconGravity = 2130772375;
+			
+			// aapt resource value: 0x7f010196
+			public const int iconPadding = 2130772374;
+			
+			// aapt resource value: 0x7f010195
+			public const int iconSize = 2130772373;
+			
+			// aapt resource value: 0x7f01016c
+			public const int iconStartPadding = 2130772332;
+			
+			// aapt resource value: 0x7f0100ed
+			public const int iconTint = 2130772205;
+			
+			// aapt resource value: 0x7f0100ee
+			public const int iconTintMode = 2130772206;
+			
+			// aapt resource value: 0x7f0100f6
+			public const int iconifiedByDefault = 2130772214;
+			
+			// aapt resource value: 0x7f0100a0
+			public const int imageButtonStyle = 2130772128;
+			
+			// aapt resource value: 0x7f010208
+			public const int indeterminate = 2130772488;
+			
+			// aapt resource value: 0x7f01003a
+			public const int indeterminateProgressStyle = 2130772026;
+			
+			// aapt resource value: 0x7f010209
+			public const int indeterminate_interval = 2130772489;
+			
+			// aapt resource value: 0x7f010047
+			public const int initialActivityCount = 2130772039;
+			
+			// aapt resource value: 0x7f010206
+			public const int innerSize = 2130772486;
+			
+			// aapt resource value: 0x7f0101a1
+			public const int insetForeground = 2130772385;
+			
+			// aapt resource value: 0x7f01002a
+			public const int isLightTheme = 2130772010;
+			
+			// aapt resource value: 0x7f01019c
+			public const int itemBackground = 2130772380;
+			
+			// aapt resource value: 0x7f01019f
+			public const int itemHorizontalPadding = 2130772383;
+			
+			// aapt resource value: 0x7f010155
+			public const int itemHorizontalTranslationEnabled = 2130772309;
+			
+			// aapt resource value: 0x7f0101a0
+			public const int itemIconPadding = 2130772384;
+			
+			// aapt resource value: 0x7f010152
+			public const int itemIconSize = 2130772306;
+			
+			// aapt resource value: 0x7f01019a
+			public const int itemIconTint = 2130772378;
+			
+			// aapt resource value: 0x7f01003c
+			public const int itemPadding = 2130772028;
+			
+			// aapt resource value: 0x7f010192
+			public const int itemSpacing = 2130772370;
+			
+			// aapt resource value: 0x7f01019d
+			public const int itemTextAppearance = 2130772381;
+			
+			// aapt resource value: 0x7f010154
+			public const int itemTextAppearanceActive = 2130772308;
+			
+			// aapt resource value: 0x7f010153
+			public const int itemTextAppearanceInactive = 2130772307;
+			
+			// aapt resource value: 0x7f01019b
+			public const int itemTextColor = 2130772379;
+			
+			// aapt resource value: 0x7f0101dc
+			public const int keylines = 2130772444;
+			
+			// aapt resource value: 0x7f010151
+			public const int labelVisibilityMode = 2130772305;
+			
+			// aapt resource value: 0x7f01005f
+			public const int lastBaselineToBottomHeight = 2130772063;
+			
+			// aapt resource value: 0x7f0100f5
+			public const int layout = 2130772213;
+			
+			// aapt resource value: 0x7f010005
+			public const int layoutManager = 2130771973;
+			
+			// aapt resource value: 0x7f0101df
+			public const int layout_anchor = 2130772447;
+			
+			// aapt resource value: 0x7f0101e1
+			public const int layout_anchorGravity = 2130772449;
+			
+			// aapt resource value: 0x7f0101de
+			public const int layout_behavior = 2130772446;
+			
+			// aapt resource value: 0x7f010188
+			public const int layout_collapseMode = 2130772360;
+			
+			// aapt resource value: 0x7f010189
+			public const int layout_collapseParallaxMultiplier = 2130772361;
+			
+			// aapt resource value: 0x7f0101e3
+			public const int layout_dodgeInsetEdges = 2130772451;
+			
+			// aapt resource value: 0x7f0101e2
+			public const int layout_insetEdge = 2130772450;
+			
+			// aapt resource value: 0x7f0101e0
+			public const int layout_keyline = 2130772448;
+			
+			// aapt resource value: 0x7f01014a
+			public const int layout_scrollFlags = 2130772298;
+			
+			// aapt resource value: 0x7f01014b
+			public const int layout_scrollInterpolator = 2130772299;
+			
+			// aapt resource value: 0x7f010145
+			public const int liftOnScroll = 2130772293;
+			
+			// aapt resource value: 0x7f01005d
+			public const int lineHeight = 2130772061;
+			
+			// aapt resource value: 0x7f010193
+			public const int lineSpacing = 2130772371;
+			
+			// aapt resource value: 0x7f0100b2
+			public const int listChoiceBackgroundIndicator = 2130772146;
+			
+			// aapt resource value: 0x7f01008b
+			public const int listDividerAlertDialog = 2130772107;
+			
+			// aapt resource value: 0x7f01004d
+			public const int listItemLayout = 2130772045;
+			
+			// aapt resource value: 0x7f01004a
+			public const int listLayout = 2130772042;
+			
+			// aapt resource value: 0x7f0100d2
+			public const int listMenuViewStyle = 2130772178;
+			
+			// aapt resource value: 0x7f0100ab
+			public const int listPopupWindowStyle = 2130772139;
+			
+			// aapt resource value: 0x7f0100a5
+			public const int listPreferredItemHeight = 2130772133;
+			
+			// aapt resource value: 0x7f0100a7
+			public const int listPreferredItemHeightLarge = 2130772135;
+			
+			// aapt resource value: 0x7f0100a6
+			public const int listPreferredItemHeightSmall = 2130772134;
+			
+			// aapt resource value: 0x7f0100a8
+			public const int listPreferredItemPaddingLeft = 2130772136;
+			
+			// aapt resource value: 0x7f0100a9
+			public const int listPreferredItemPaddingRight = 2130772137;
+			
+			// aapt resource value: 0x7f010032
+			public const int logo = 2130772018;
+			
+			// aapt resource value: 0x7f01011b
+			public const int logoDescription = 2130772251;
+			
+			// aapt resource value: 0x7f0101f3
+			public const int lottie_autoPlay = 2130772467;
+			
+			// aapt resource value: 0x7f0101fa
+			public const int lottie_colorFilter = 2130772474;
+			
+			// aapt resource value: 0x7f0101f9
+			public const int lottie_enableMergePathsForKitKatAndAbove = 2130772473;
+			
+			// aapt resource value: 0x7f0101f0
+			public const int lottie_fileName = 2130772464;
+			
+			// aapt resource value: 0x7f0101f7
+			public const int lottie_imageAssetsFolder = 2130772471;
+			
+			// aapt resource value: 0x7f0101f4
+			public const int lottie_loop = 2130772468;
+			
+			// aapt resource value: 0x7f0101f8
+			public const int lottie_progress = 2130772472;
+			
+			// aapt resource value: 0x7f0101f1
+			public const int lottie_rawRes = 2130772465;
+			
+			// aapt resource value: 0x7f0101fd
+			public const int lottie_renderMode = 2130772477;
+			
+			// aapt resource value: 0x7f0101f6
+			public const int lottie_repeatCount = 2130772470;
+			
+			// aapt resource value: 0x7f0101f5
+			public const int lottie_repeatMode = 2130772469;
+			
+			// aapt resource value: 0x7f0101fb
+			public const int lottie_scale = 2130772475;
+			
+			// aapt resource value: 0x7f0101fc
+			public const int lottie_speed = 2130772476;
+			
+			// aapt resource value: 0x7f0101f2
+			public const int lottie_url = 2130772466;
 			
 			// aapt resource value: 0x7f01012d
-			public const int materialCardViewStyle = 2130772269;
+			public const int materialButtonStyle = 2130772269;
+			
+			// aapt resource value: 0x7f01012e
+			public const int materialCardViewStyle = 2130772270;
+			
+			// aapt resource value: 0x7f010004
+			public const int materialCheckBoxStyle = 2130771972;
 			
 			// aapt resource value: 0x7f010000
 			public const int materialOutlinedButtonStyle = 2130771968;
@@ -8880,614 +11801,614 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f010001
 			public const int materialSliderStyle = 2130771969;
 			
-			// aapt resource value: 0x7f0101fd
-			public const int max = 2130772477;
-			
-			// aapt resource value: 0x7f0101a4
-			public const int maxActionInlineWidth = 2130772388;
-			
-			// aapt resource value: 0x7f010114
-			public const int maxButtonHeight = 2130772244;
-			
-			// aapt resource value: 0x7f01018f
-			public const int maxImageSize = 2130772367;
-			
-			// aapt resource value: 0x7f0100e1
-			public const int measureWithLargestChild = 2130772193;
-			
-			// aapt resource value: 0x7f01000d
-			public const int mediaRouteAudioTrackDrawable = 2130771981;
-			
-			// aapt resource value: 0x7f01000e
-			public const int mediaRouteButtonStyle = 2130771982;
-			
-			// aapt resource value: 0x7f01001a
-			public const int mediaRouteButtonTint = 2130771994;
-			
-			// aapt resource value: 0x7f01000f
-			public const int mediaRouteCloseDrawable = 2130771983;
-			
-			// aapt resource value: 0x7f010010
-			public const int mediaRouteControlPanelThemeOverlay = 2130771984;
-			
-			// aapt resource value: 0x7f010011
-			public const int mediaRouteDefaultIconDrawable = 2130771985;
-			
-			// aapt resource value: 0x7f010012
-			public const int mediaRoutePauseDrawable = 2130771986;
-			
-			// aapt resource value: 0x7f010013
-			public const int mediaRoutePlayDrawable = 2130771987;
-			
-			// aapt resource value: 0x7f010014
-			public const int mediaRouteSpeakerGroupIconDrawable = 2130771988;
-			
-			// aapt resource value: 0x7f010015
-			public const int mediaRouteSpeakerIconDrawable = 2130771989;
-			
-			// aapt resource value: 0x7f010016
-			public const int mediaRouteStopDrawable = 2130771990;
-			
-			// aapt resource value: 0x7f010017
-			public const int mediaRouteTheme = 2130771991;
-			
-			// aapt resource value: 0x7f010018
-			public const int mediaRouteTvIconDrawable = 2130771992;
-			
-			// aapt resource value: 0x7f010198
-			public const int menu = 2130772376;
-			
-			// aapt resource value: 0x7f01004a
-			public const int multiChoiceItemLayout = 2130772042;
-			
-			// aapt resource value: 0x7f010119
-			public const int navigationContentDescription = 2130772249;
-			
-			// aapt resource value: 0x7f010118
-			public const int navigationIcon = 2130772248;
-			
-			// aapt resource value: 0x7f01002b
-			public const int navigationMode = 2130772011;
-			
-			// aapt resource value: 0x7f01012e
-			public const int navigationViewStyle = 2130772270;
-			
-			// aapt resource value: 0x7f0100e5
-			public const int numericModifiers = 2130772197;
-			
-			// aapt resource value: 0x7f0100f0
-			public const int overlapAnchor = 2130772208;
-			
-			// aapt resource value: 0x7f0100f2
-			public const int paddingBottomNoButtons = 2130772210;
-			
-			// aapt resource value: 0x7f01011e
-			public const int paddingEnd = 2130772254;
-			
-			// aapt resource value: 0x7f01011d
-			public const int paddingStart = 2130772253;
-			
-			// aapt resource value: 0x7f0100f3
-			public const int paddingTopNoTitle = 2130772211;
-			
-			// aapt resource value: 0x7f0100ae
-			public const int panelBackground = 2130772142;
-			
-			// aapt resource value: 0x7f0100b0
-			public const int panelMenuListTheme = 2130772144;
-			
-			// aapt resource value: 0x7f0100af
-			public const int panelMenuListWidth = 2130772143;
-			
-			// aapt resource value: 0x7f0101cc
-			public const int passwordToggleContentDescription = 2130772428;
-			
-			// aapt resource value: 0x7f0101cb
-			public const int passwordToggleDrawable = 2130772427;
-			
-			// aapt resource value: 0x7f0101ca
-			public const int passwordToggleEnabled = 2130772426;
-			
-			// aapt resource value: 0x7f0101cd
-			public const int passwordToggleTint = 2130772429;
-			
-			// aapt resource value: 0x7f0101ce
-			public const int passwordToggleTintMode = 2130772430;
-			
-			// aapt resource value: 0x7f010204
-			public const int pinned = 2130772484;
-			
 			// aapt resource value: 0x7f010200
-			public const int pinnedDrawable = 2130772480;
-			
-			// aapt resource value: 0x7f01009b
-			public const int popupMenuStyle = 2130772123;
-			
-			// aapt resource value: 0x7f010044
-			public const int popupTheme = 2130772036;
-			
-			// aapt resource value: 0x7f01009c
-			public const int popupWindowStyle = 2130772124;
-			
-			// aapt resource value: 0x7f0100ee
-			public const int preserveIconSpacing = 2130772206;
-			
-			// aapt resource value: 0x7f01018c
-			public const int pressedTranslationZ = 2130772364;
-			
-			// aapt resource value: 0x7f0101fc
-			public const int progress = 2130772476;
-			
-			// aapt resource value: 0x7f01003a
-			public const int progressBarPadding = 2130772026;
-			
-			// aapt resource value: 0x7f010038
-			public const int progressBarStyle = 2130772024;
-			
-			// aapt resource value: 0x7f0101fb
-			public const int progressButtonStyle = 2130772475;
-			
-			// aapt resource value: 0x7f0101ff
-			public const int progressColor = 2130772479;
-			
-			// aapt resource value: 0x7f0100ff
-			public const int queryBackground = 2130772223;
-			
-			// aapt resource value: 0x7f0100f6
-			public const int queryHint = 2130772214;
-			
-			// aapt resource value: 0x7f0100ca
-			public const int radioButtonStyle = 2130772170;
-			
-			// aapt resource value: 0x7f0100cb
-			public const int ratingBarStyle = 2130772171;
-			
-			// aapt resource value: 0x7f0100cc
-			public const int ratingBarStyleIndicator = 2130772172;
-			
-			// aapt resource value: 0x7f0100cd
-			public const int ratingBarStyleSmall = 2130772173;
-			
-			// aapt resource value: 0x7f010006
-			public const int reverseLayout = 2130771974;
-			
-			// aapt resource value: 0x7f01012f
-			public const int rippleColor = 2130772271;
-			
-			// aapt resource value: 0x7f010183
-			public const int scrimAnimationDuration = 2130772355;
-			
-			// aapt resource value: 0x7f010130
-			public const int scrimBackground = 2130772272;
-			
-			// aapt resource value: 0x7f010182
-			public const int scrimVisibleHeightTrigger = 2130772354;
-			
-			// aapt resource value: 0x7f0100fb
-			public const int searchHintIcon = 2130772219;
-			
-			// aapt resource value: 0x7f0100fa
-			public const int searchIcon = 2130772218;
-			
-			// aapt resource value: 0x7f0100a3
-			public const int searchViewStyle = 2130772131;
-			
-			// aapt resource value: 0x7f0100ce
-			public const int seekBarStyle = 2130772174;
-			
-			// aapt resource value: 0x7f010093
-			public const int selectableItemBackground = 2130772115;
-			
-			// aapt resource value: 0x7f010094
-			public const int selectableItemBackgroundBorderless = 2130772116;
-			
-			// aapt resource value: 0x7f010202
-			public const int shadowDrawable = 2130772482;
-			
-			// aapt resource value: 0x7f0100e6
-			public const int showAsAction = 2130772198;
-			
-			// aapt resource value: 0x7f0100e2
-			public const int showDividers = 2130772194;
-			
-			// aapt resource value: 0x7f010131
-			public const int showMotionSpec = 2130772273;
-			
-			// aapt resource value: 0x7f01010b
-			public const int showText = 2130772235;
-			
-			// aapt resource value: 0x7f01004d
-			public const int showTitle = 2130772045;
-			
-			// aapt resource value: 0x7f01004b
-			public const int singleChoiceItemLayout = 2130772043;
-			
-			// aapt resource value: 0x7f010175
-			public const int singleLine = 2130772341;
-			
-			// aapt resource value: 0x7f010176
-			public const int singleSelection = 2130772342;
-			
-			// aapt resource value: 0x7f0101a3
-			public const int snackbarButtonStyle = 2130772387;
-			
-			// aapt resource value: 0x7f0101a2
-			public const int snackbarStyle = 2130772386;
-			
-			// aapt resource value: 0x7f010005
-			public const int spanCount = 2130771973;
-			
-			// aapt resource value: 0x7f0100da
-			public const int spinBars = 2130772186;
-			
-			// aapt resource value: 0x7f01008e
-			public const int spinnerDropDownItemStyle = 2130772110;
-			
-			// aapt resource value: 0x7f0100cf
-			public const int spinnerStyle = 2130772175;
-			
-			// aapt resource value: 0x7f01010a
-			public const int splitTrack = 2130772234;
-			
-			// aapt resource value: 0x7f01004f
-			public const int srcCompat = 2130772047;
-			
-			// aapt resource value: 0x7f010007
-			public const int stackFromEnd = 2130771975;
-			
-			// aapt resource value: 0x7f0100f1
-			public const int state_above_anchor = 2130772209;
-			
-			// aapt resource value: 0x7f010145
-			public const int state_collapsed = 2130772293;
-			
-			// aapt resource value: 0x7f010146
-			public const int state_collapsible = 2130772294;
-			
-			// aapt resource value: 0x7f010148
-			public const int state_liftable = 2130772296;
-			
-			// aapt resource value: 0x7f010147
-			public const int state_lifted = 2130772295;
-			
-			// aapt resource value: 0x7f0101dc
-			public const int statusBarBackground = 2130772444;
-			
-			// aapt resource value: 0x7f010180
-			public const int statusBarScrim = 2130772352;
-			
-			// aapt resource value: 0x7f010132
-			public const int strokeColor = 2130772274;
-			
-			// aapt resource value: 0x7f010133
-			public const int strokeWidth = 2130772275;
-			
-			// aapt resource value: 0x7f0100ef
-			public const int subMenuArrow = 2130772207;
-			
-			// aapt resource value: 0x7f010100
-			public const int submitBackground = 2130772224;
-			
-			// aapt resource value: 0x7f01002d
-			public const int subtitle = 2130772013;
-			
-			// aapt resource value: 0x7f01010d
-			public const int subtitleTextAppearance = 2130772237;
-			
-			// aapt resource value: 0x7f01011c
-			public const int subtitleTextColor = 2130772252;
-			
-			// aapt resource value: 0x7f01002f
-			public const int subtitleTextStyle = 2130772015;
-			
-			// aapt resource value: 0x7f0100fe
-			public const int suggestionRowLayout = 2130772222;
-			
-			// aapt resource value: 0x7f010108
-			public const int switchMinWidth = 2130772232;
-			
-			// aapt resource value: 0x7f010109
-			public const int switchPadding = 2130772233;
-			
-			// aapt resource value: 0x7f0100d0
-			public const int switchStyle = 2130772176;
-			
-			// aapt resource value: 0x7f010107
-			public const int switchTextAppearance = 2130772231;
-			
-			// aapt resource value: 0x7f0101a8
-			public const int tabBackground = 2130772392;
-			
-			// aapt resource value: 0x7f0101a7
-			public const int tabContentStart = 2130772391;
-			
-			// aapt resource value: 0x7f0101ae
-			public const int tabGravity = 2130772398;
-			
-			// aapt resource value: 0x7f0101ba
-			public const int tabIconTint = 2130772410;
-			
-			// aapt resource value: 0x7f0101bb
-			public const int tabIconTintMode = 2130772411;
-			
-			// aapt resource value: 0x7f0101a9
-			public const int tabIndicator = 2130772393;
-			
-			// aapt resource value: 0x7f0101ab
-			public const int tabIndicatorAnimationDuration = 2130772395;
+			public const int max = 2130772480;
 			
 			// aapt resource value: 0x7f0101a5
-			public const int tabIndicatorColor = 2130772389;
+			public const int maxActionInlineWidth = 2130772389;
 			
-			// aapt resource value: 0x7f0101ac
-			public const int tabIndicatorFullWidth = 2130772396;
+			// aapt resource value: 0x7f010115
+			public const int maxButtonHeight = 2130772245;
 			
-			// aapt resource value: 0x7f0101aa
-			public const int tabIndicatorGravity = 2130772394;
+			// aapt resource value: 0x7f010190
+			public const int maxImageSize = 2130772368;
 			
-			// aapt resource value: 0x7f0101a6
-			public const int tabIndicatorHeight = 2130772390;
+			// aapt resource value: 0x7f0100e2
+			public const int measureWithLargestChild = 2130772194;
 			
-			// aapt resource value: 0x7f0101af
-			public const int tabInlineLabel = 2130772399;
+			// aapt resource value: 0x7f01000e
+			public const int mediaRouteAudioTrackDrawable = 2130771982;
 			
-			// aapt resource value: 0x7f0101b1
-			public const int tabMaxWidth = 2130772401;
+			// aapt resource value: 0x7f01000f
+			public const int mediaRouteButtonStyle = 2130771983;
 			
-			// aapt resource value: 0x7f0101b0
-			public const int tabMinWidth = 2130772400;
+			// aapt resource value: 0x7f01001b
+			public const int mediaRouteButtonTint = 2130771995;
 			
-			// aapt resource value: 0x7f0101ad
-			public const int tabMode = 2130772397;
+			// aapt resource value: 0x7f010010
+			public const int mediaRouteCloseDrawable = 2130771984;
 			
-			// aapt resource value: 0x7f0101b9
-			public const int tabPadding = 2130772409;
+			// aapt resource value: 0x7f010011
+			public const int mediaRouteControlPanelThemeOverlay = 2130771985;
 			
-			// aapt resource value: 0x7f0101b8
-			public const int tabPaddingBottom = 2130772408;
+			// aapt resource value: 0x7f010012
+			public const int mediaRouteDefaultIconDrawable = 2130771986;
 			
-			// aapt resource value: 0x7f0101b7
-			public const int tabPaddingEnd = 2130772407;
+			// aapt resource value: 0x7f010013
+			public const int mediaRoutePauseDrawable = 2130771987;
 			
-			// aapt resource value: 0x7f0101b5
-			public const int tabPaddingStart = 2130772405;
+			// aapt resource value: 0x7f010014
+			public const int mediaRoutePlayDrawable = 2130771988;
 			
-			// aapt resource value: 0x7f0101b6
-			public const int tabPaddingTop = 2130772406;
+			// aapt resource value: 0x7f010015
+			public const int mediaRouteSpeakerGroupIconDrawable = 2130771989;
 			
-			// aapt resource value: 0x7f0101bc
-			public const int tabRippleColor = 2130772412;
+			// aapt resource value: 0x7f010016
+			public const int mediaRouteSpeakerIconDrawable = 2130771990;
 			
-			// aapt resource value: 0x7f0101b4
-			public const int tabSelectedTextColor = 2130772404;
+			// aapt resource value: 0x7f010017
+			public const int mediaRouteStopDrawable = 2130771991;
 			
-			// aapt resource value: 0x7f010134
-			public const int tabStyle = 2130772276;
+			// aapt resource value: 0x7f010018
+			public const int mediaRouteTheme = 2130771992;
 			
-			// aapt resource value: 0x7f0101b2
-			public const int tabTextAppearance = 2130772402;
+			// aapt resource value: 0x7f010019
+			public const int mediaRouteTvIconDrawable = 2130771993;
 			
-			// aapt resource value: 0x7f0101b3
-			public const int tabTextColor = 2130772403;
+			// aapt resource value: 0x7f010199
+			public const int menu = 2130772377;
 			
-			// aapt resource value: 0x7f0101bd
-			public const int tabUnboundedRipple = 2130772413;
+			// aapt resource value: 0x7f01004b
+			public const int multiChoiceItemLayout = 2130772043;
 			
-			// aapt resource value: 0x7f010055
-			public const int textAllCaps = 2130772053;
+			// aapt resource value: 0x7f01011a
+			public const int navigationContentDescription = 2130772250;
 			
-			// aapt resource value: 0x7f010135
-			public const int textAppearanceBody1 = 2130772277;
+			// aapt resource value: 0x7f010119
+			public const int navigationIcon = 2130772249;
 			
-			// aapt resource value: 0x7f010136
-			public const int textAppearanceBody2 = 2130772278;
+			// aapt resource value: 0x7f01002c
+			public const int navigationMode = 2130772012;
 			
-			// aapt resource value: 0x7f010137
-			public const int textAppearanceButton = 2130772279;
+			// aapt resource value: 0x7f01012f
+			public const int navigationViewStyle = 2130772271;
 			
-			// aapt resource value: 0x7f010138
-			public const int textAppearanceCaption = 2130772280;
+			// aapt resource value: 0x7f0100e6
+			public const int numericModifiers = 2130772198;
 			
-			// aapt resource value: 0x7f010139
-			public const int textAppearanceHeadline1 = 2130772281;
+			// aapt resource value: 0x7f0100f1
+			public const int overlapAnchor = 2130772209;
 			
-			// aapt resource value: 0x7f01013a
-			public const int textAppearanceHeadline2 = 2130772282;
-			
-			// aapt resource value: 0x7f01013b
-			public const int textAppearanceHeadline3 = 2130772283;
-			
-			// aapt resource value: 0x7f01013c
-			public const int textAppearanceHeadline4 = 2130772284;
-			
-			// aapt resource value: 0x7f01013d
-			public const int textAppearanceHeadline5 = 2130772285;
-			
-			// aapt resource value: 0x7f01013e
-			public const int textAppearanceHeadline6 = 2130772286;
-			
-			// aapt resource value: 0x7f010085
-			public const int textAppearanceLargePopupMenu = 2130772101;
-			
-			// aapt resource value: 0x7f0100ab
-			public const int textAppearanceListItem = 2130772139;
-			
-			// aapt resource value: 0x7f0100ac
-			public const int textAppearanceListItemSecondary = 2130772140;
-			
-			// aapt resource value: 0x7f0100ad
-			public const int textAppearanceListItemSmall = 2130772141;
-			
-			// aapt resource value: 0x7f01013f
-			public const int textAppearanceOverline = 2130772287;
-			
-			// aapt resource value: 0x7f010087
-			public const int textAppearancePopupMenuHeader = 2130772103;
-			
-			// aapt resource value: 0x7f0100a1
-			public const int textAppearanceSearchResultSubtitle = 2130772129;
-			
-			// aapt resource value: 0x7f0100a0
-			public const int textAppearanceSearchResultTitle = 2130772128;
-			
-			// aapt resource value: 0x7f010086
-			public const int textAppearanceSmallPopupMenu = 2130772102;
-			
-			// aapt resource value: 0x7f010140
-			public const int textAppearanceSubtitle1 = 2130772288;
-			
-			// aapt resource value: 0x7f010141
-			public const int textAppearanceSubtitle2 = 2130772289;
-			
-			// aapt resource value: 0x7f0100c0
-			public const int textColorAlertDialogListItem = 2130772160;
-			
-			// aapt resource value: 0x7f0100a2
-			public const int textColorSearchUrl = 2130772130;
-			
-			// aapt resource value: 0x7f01016e
-			public const int textEndPadding = 2130772334;
-			
-			// aapt resource value: 0x7f010142
-			public const int textInputStyle = 2130772290;
-			
-			// aapt resource value: 0x7f01016d
-			public const int textStartPadding = 2130772333;
+			// aapt resource value: 0x7f0100f3
+			public const int paddingBottomNoButtons = 2130772211;
 			
 			// aapt resource value: 0x7f01011f
-			public const int theme = 2130772255;
+			public const int paddingEnd = 2130772255;
 			
-			// aapt resource value: 0x7f0100e0
-			public const int thickness = 2130772192;
+			// aapt resource value: 0x7f01011e
+			public const int paddingStart = 2130772254;
 			
-			// aapt resource value: 0x7f010106
-			public const int thumbTextPadding = 2130772230;
+			// aapt resource value: 0x7f0100f4
+			public const int paddingTopNoTitle = 2130772212;
 			
-			// aapt resource value: 0x7f010101
-			public const int thumbTint = 2130772225;
+			// aapt resource value: 0x7f0100af
+			public const int panelBackground = 2130772143;
 			
-			// aapt resource value: 0x7f010102
-			public const int thumbTintMode = 2130772226;
+			// aapt resource value: 0x7f0100b1
+			public const int panelMenuListTheme = 2130772145;
 			
-			// aapt resource value: 0x7f010052
-			public const int tickMark = 2130772050;
+			// aapt resource value: 0x7f0100b0
+			public const int panelMenuListWidth = 2130772144;
 			
-			// aapt resource value: 0x7f010053
-			public const int tickMarkTint = 2130772051;
+			// aapt resource value: 0x7f0101cd
+			public const int passwordToggleContentDescription = 2130772429;
 			
-			// aapt resource value: 0x7f010054
-			public const int tickMarkTintMode = 2130772052;
+			// aapt resource value: 0x7f0101cc
+			public const int passwordToggleDrawable = 2130772428;
 			
-			// aapt resource value: 0x7f010050
-			public const int tint = 2130772048;
+			// aapt resource value: 0x7f0101cb
+			public const int passwordToggleEnabled = 2130772427;
 			
-			// aapt resource value: 0x7f010051
-			public const int tintMode = 2130772049;
+			// aapt resource value: 0x7f0101ce
+			public const int passwordToggleTint = 2130772430;
 			
-			// aapt resource value: 0x7f01002a
-			public const int title = 2130772010;
+			// aapt resource value: 0x7f0101cf
+			public const int passwordToggleTintMode = 2130772431;
 			
-			// aapt resource value: 0x7f010186
-			public const int titleEnabled = 2130772358;
+			// aapt resource value: 0x7f010207
+			public const int pinned = 2130772487;
 			
-			// aapt resource value: 0x7f01010e
-			public const int titleMargin = 2130772238;
+			// aapt resource value: 0x7f010203
+			public const int pinnedDrawable = 2130772483;
 			
-			// aapt resource value: 0x7f010112
-			public const int titleMarginBottom = 2130772242;
+			// aapt resource value: 0x7f01009c
+			public const int popupMenuStyle = 2130772124;
 			
-			// aapt resource value: 0x7f010110
-			public const int titleMarginEnd = 2130772240;
+			// aapt resource value: 0x7f010045
+			public const int popupTheme = 2130772037;
 			
-			// aapt resource value: 0x7f01010f
-			public const int titleMarginStart = 2130772239;
+			// aapt resource value: 0x7f01009d
+			public const int popupWindowStyle = 2130772125;
 			
-			// aapt resource value: 0x7f010111
-			public const int titleMarginTop = 2130772241;
+			// aapt resource value: 0x7f0100ef
+			public const int preserveIconSpacing = 2130772207;
 			
-			// aapt resource value: 0x7f010113
-			public const int titleMargins = 2130772243;
+			// aapt resource value: 0x7f01018d
+			public const int pressedTranslationZ = 2130772365;
 			
-			// aapt resource value: 0x7f01010c
-			public const int titleTextAppearance = 2130772236;
+			// aapt resource value: 0x7f0101ff
+			public const int progress = 2130772479;
 			
-			// aapt resource value: 0x7f01011b
-			public const int titleTextColor = 2130772251;
+			// aapt resource value: 0x7f01003b
+			public const int progressBarPadding = 2130772027;
 			
-			// aapt resource value: 0x7f01002e
-			public const int titleTextStyle = 2130772014;
+			// aapt resource value: 0x7f010039
+			public const int progressBarStyle = 2130772025;
 			
-			// aapt resource value: 0x7f010181
-			public const int toolbarId = 2130772353;
+			// aapt resource value: 0x7f0101fe
+			public const int progressButtonStyle = 2130772478;
 			
-			// aapt resource value: 0x7f01009a
-			public const int toolbarNavigationButtonStyle = 2130772122;
+			// aapt resource value: 0x7f010202
+			public const int progressColor = 2130772482;
 			
-			// aapt resource value: 0x7f010099
-			public const int toolbarStyle = 2130772121;
+			// aapt resource value: 0x7f010100
+			public const int queryBackground = 2130772224;
 			
-			// aapt resource value: 0x7f0100d3
-			public const int tooltipForegroundColor = 2130772179;
+			// aapt resource value: 0x7f0100f7
+			public const int queryHint = 2130772215;
 			
-			// aapt resource value: 0x7f0100d2
-			public const int tooltipFrameBackground = 2130772178;
+			// aapt resource value: 0x7f0100cb
+			public const int radioButtonStyle = 2130772171;
 			
-			// aapt resource value: 0x7f0100eb
-			public const int tooltipText = 2130772203;
+			// aapt resource value: 0x7f0100cc
+			public const int ratingBarStyle = 2130772172;
 			
-			// aapt resource value: 0x7f010103
-			public const int track = 2130772227;
+			// aapt resource value: 0x7f0100cd
+			public const int ratingBarStyleIndicator = 2130772173;
 			
-			// aapt resource value: 0x7f010104
-			public const int trackTint = 2130772228;
+			// aapt resource value: 0x7f0100ce
+			public const int ratingBarStyleSmall = 2130772174;
 			
-			// aapt resource value: 0x7f010105
-			public const int trackTintMode = 2130772229;
+			// aapt resource value: 0x7f010007
+			public const int reverseLayout = 2130771975;
 			
-			// aapt resource value: 0x7f0101ee
-			public const int ttcIndex = 2130772462;
+			// aapt resource value: 0x7f010130
+			public const int rippleColor = 2130772272;
 			
-			// aapt resource value: 0x7f010201
-			public const int unpinnedDrawable = 2130772481;
+			// aapt resource value: 0x7f010184
+			public const int scrimAnimationDuration = 2130772356;
 			
-			// aapt resource value: 0x7f01018e
-			public const int useCompatPadding = 2130772366;
+			// aapt resource value: 0x7f010131
+			public const int scrimBackground = 2130772273;
 			
-			// aapt resource value: 0x7f0100d5
-			public const int viewInflaterClass = 2130772181;
+			// aapt resource value: 0x7f010183
+			public const int scrimVisibleHeightTrigger = 2130772355;
 			
 			// aapt resource value: 0x7f0100fc
-			public const int voiceIcon = 2130772220;
+			public const int searchHintIcon = 2130772220;
 			
-			// aapt resource value: 0x7f01005f
-			public const int windowActionBar = 2130772063;
+			// aapt resource value: 0x7f0100fb
+			public const int searchIcon = 2130772219;
 			
-			// aapt resource value: 0x7f010061
-			public const int windowActionBarOverlay = 2130772065;
+			// aapt resource value: 0x7f0100a4
+			public const int searchViewStyle = 2130772132;
 			
-			// aapt resource value: 0x7f010062
-			public const int windowActionModeOverlay = 2130772066;
+			// aapt resource value: 0x7f0100cf
+			public const int seekBarStyle = 2130772175;
 			
-			// aapt resource value: 0x7f010066
-			public const int windowFixedHeightMajor = 2130772070;
+			// aapt resource value: 0x7f010094
+			public const int selectableItemBackground = 2130772116;
 			
-			// aapt resource value: 0x7f010064
-			public const int windowFixedHeightMinor = 2130772068;
+			// aapt resource value: 0x7f010095
+			public const int selectableItemBackgroundBorderless = 2130772117;
 			
-			// aapt resource value: 0x7f010063
-			public const int windowFixedWidthMajor = 2130772067;
+			// aapt resource value: 0x7f010205
+			public const int shadowDrawable = 2130772485;
 			
-			// aapt resource value: 0x7f010065
-			public const int windowFixedWidthMinor = 2130772069;
+			// aapt resource value: 0x7f0100e7
+			public const int showAsAction = 2130772199;
 			
-			// aapt resource value: 0x7f010067
-			public const int windowMinWidthMajor = 2130772071;
+			// aapt resource value: 0x7f0100e3
+			public const int showDividers = 2130772195;
 			
-			// aapt resource value: 0x7f010068
-			public const int windowMinWidthMinor = 2130772072;
+			// aapt resource value: 0x7f010132
+			public const int showMotionSpec = 2130772274;
+			
+			// aapt resource value: 0x7f01010c
+			public const int showText = 2130772236;
+			
+			// aapt resource value: 0x7f01004e
+			public const int showTitle = 2130772046;
+			
+			// aapt resource value: 0x7f01004c
+			public const int singleChoiceItemLayout = 2130772044;
+			
+			// aapt resource value: 0x7f010176
+			public const int singleLine = 2130772342;
+			
+			// aapt resource value: 0x7f010177
+			public const int singleSelection = 2130772343;
+			
+			// aapt resource value: 0x7f0101a4
+			public const int snackbarButtonStyle = 2130772388;
+			
+			// aapt resource value: 0x7f0101a3
+			public const int snackbarStyle = 2130772387;
+			
+			// aapt resource value: 0x7f010006
+			public const int spanCount = 2130771974;
+			
+			// aapt resource value: 0x7f0100db
+			public const int spinBars = 2130772187;
+			
+			// aapt resource value: 0x7f01008f
+			public const int spinnerDropDownItemStyle = 2130772111;
+			
+			// aapt resource value: 0x7f0100d0
+			public const int spinnerStyle = 2130772176;
+			
+			// aapt resource value: 0x7f01010b
+			public const int splitTrack = 2130772235;
+			
+			// aapt resource value: 0x7f010050
+			public const int srcCompat = 2130772048;
+			
+			// aapt resource value: 0x7f010008
+			public const int stackFromEnd = 2130771976;
+			
+			// aapt resource value: 0x7f0100f2
+			public const int state_above_anchor = 2130772210;
+			
+			// aapt resource value: 0x7f010146
+			public const int state_collapsed = 2130772294;
+			
+			// aapt resource value: 0x7f010147
+			public const int state_collapsible = 2130772295;
+			
+			// aapt resource value: 0x7f010149
+			public const int state_liftable = 2130772297;
+			
+			// aapt resource value: 0x7f010148
+			public const int state_lifted = 2130772296;
+			
+			// aapt resource value: 0x7f0101dd
+			public const int statusBarBackground = 2130772445;
+			
+			// aapt resource value: 0x7f010181
+			public const int statusBarScrim = 2130772353;
+			
+			// aapt resource value: 0x7f010133
+			public const int strokeColor = 2130772275;
+			
+			// aapt resource value: 0x7f010134
+			public const int strokeWidth = 2130772276;
+			
+			// aapt resource value: 0x7f0100f0
+			public const int subMenuArrow = 2130772208;
+			
+			// aapt resource value: 0x7f010101
+			public const int submitBackground = 2130772225;
+			
+			// aapt resource value: 0x7f01002e
+			public const int subtitle = 2130772014;
+			
+			// aapt resource value: 0x7f01010e
+			public const int subtitleTextAppearance = 2130772238;
+			
+			// aapt resource value: 0x7f01011d
+			public const int subtitleTextColor = 2130772253;
+			
+			// aapt resource value: 0x7f010030
+			public const int subtitleTextStyle = 2130772016;
+			
+			// aapt resource value: 0x7f0100ff
+			public const int suggestionRowLayout = 2130772223;
+			
+			// aapt resource value: 0x7f010109
+			public const int switchMinWidth = 2130772233;
+			
+			// aapt resource value: 0x7f01010a
+			public const int switchPadding = 2130772234;
+			
+			// aapt resource value: 0x7f0100d1
+			public const int switchStyle = 2130772177;
+			
+			// aapt resource value: 0x7f010108
+			public const int switchTextAppearance = 2130772232;
+			
+			// aapt resource value: 0x7f0101a9
+			public const int tabBackground = 2130772393;
+			
+			// aapt resource value: 0x7f0101a8
+			public const int tabContentStart = 2130772392;
+			
+			// aapt resource value: 0x7f0101af
+			public const int tabGravity = 2130772399;
+			
+			// aapt resource value: 0x7f0101bb
+			public const int tabIconTint = 2130772411;
+			
+			// aapt resource value: 0x7f0101bc
+			public const int tabIconTintMode = 2130772412;
+			
+			// aapt resource value: 0x7f0101aa
+			public const int tabIndicator = 2130772394;
+			
+			// aapt resource value: 0x7f0101ac
+			public const int tabIndicatorAnimationDuration = 2130772396;
+			
+			// aapt resource value: 0x7f0101a6
+			public const int tabIndicatorColor = 2130772390;
+			
+			// aapt resource value: 0x7f0101ad
+			public const int tabIndicatorFullWidth = 2130772397;
+			
+			// aapt resource value: 0x7f0101ab
+			public const int tabIndicatorGravity = 2130772395;
+			
+			// aapt resource value: 0x7f0101a7
+			public const int tabIndicatorHeight = 2130772391;
+			
+			// aapt resource value: 0x7f0101b0
+			public const int tabInlineLabel = 2130772400;
+			
+			// aapt resource value: 0x7f0101b2
+			public const int tabMaxWidth = 2130772402;
+			
+			// aapt resource value: 0x7f0101b1
+			public const int tabMinWidth = 2130772401;
+			
+			// aapt resource value: 0x7f0101ae
+			public const int tabMode = 2130772398;
+			
+			// aapt resource value: 0x7f0101ba
+			public const int tabPadding = 2130772410;
+			
+			// aapt resource value: 0x7f0101b9
+			public const int tabPaddingBottom = 2130772409;
+			
+			// aapt resource value: 0x7f0101b8
+			public const int tabPaddingEnd = 2130772408;
+			
+			// aapt resource value: 0x7f0101b6
+			public const int tabPaddingStart = 2130772406;
+			
+			// aapt resource value: 0x7f0101b7
+			public const int tabPaddingTop = 2130772407;
+			
+			// aapt resource value: 0x7f0101bd
+			public const int tabRippleColor = 2130772413;
+			
+			// aapt resource value: 0x7f0101b5
+			public const int tabSelectedTextColor = 2130772405;
+			
+			// aapt resource value: 0x7f010135
+			public const int tabStyle = 2130772277;
+			
+			// aapt resource value: 0x7f0101b3
+			public const int tabTextAppearance = 2130772403;
+			
+			// aapt resource value: 0x7f0101b4
+			public const int tabTextColor = 2130772404;
+			
+			// aapt resource value: 0x7f0101be
+			public const int tabUnboundedRipple = 2130772414;
+			
+			// aapt resource value: 0x7f010056
+			public const int textAllCaps = 2130772054;
+			
+			// aapt resource value: 0x7f010136
+			public const int textAppearanceBody1 = 2130772278;
+			
+			// aapt resource value: 0x7f010137
+			public const int textAppearanceBody2 = 2130772279;
+			
+			// aapt resource value: 0x7f010138
+			public const int textAppearanceButton = 2130772280;
+			
+			// aapt resource value: 0x7f010139
+			public const int textAppearanceCaption = 2130772281;
+			
+			// aapt resource value: 0x7f01013a
+			public const int textAppearanceHeadline1 = 2130772282;
+			
+			// aapt resource value: 0x7f01013b
+			public const int textAppearanceHeadline2 = 2130772283;
+			
+			// aapt resource value: 0x7f01013c
+			public const int textAppearanceHeadline3 = 2130772284;
+			
+			// aapt resource value: 0x7f01013d
+			public const int textAppearanceHeadline4 = 2130772285;
+			
+			// aapt resource value: 0x7f01013e
+			public const int textAppearanceHeadline5 = 2130772286;
+			
+			// aapt resource value: 0x7f01013f
+			public const int textAppearanceHeadline6 = 2130772287;
+			
+			// aapt resource value: 0x7f010086
+			public const int textAppearanceLargePopupMenu = 2130772102;
+			
+			// aapt resource value: 0x7f0100ac
+			public const int textAppearanceListItem = 2130772140;
+			
+			// aapt resource value: 0x7f0100ad
+			public const int textAppearanceListItemSecondary = 2130772141;
+			
+			// aapt resource value: 0x7f0100ae
+			public const int textAppearanceListItemSmall = 2130772142;
+			
+			// aapt resource value: 0x7f010140
+			public const int textAppearanceOverline = 2130772288;
+			
+			// aapt resource value: 0x7f010088
+			public const int textAppearancePopupMenuHeader = 2130772104;
+			
+			// aapt resource value: 0x7f0100a2
+			public const int textAppearanceSearchResultSubtitle = 2130772130;
+			
+			// aapt resource value: 0x7f0100a1
+			public const int textAppearanceSearchResultTitle = 2130772129;
+			
+			// aapt resource value: 0x7f010087
+			public const int textAppearanceSmallPopupMenu = 2130772103;
+			
+			// aapt resource value: 0x7f010141
+			public const int textAppearanceSubtitle1 = 2130772289;
+			
+			// aapt resource value: 0x7f010142
+			public const int textAppearanceSubtitle2 = 2130772290;
+			
+			// aapt resource value: 0x7f0100c1
+			public const int textColorAlertDialogListItem = 2130772161;
+			
+			// aapt resource value: 0x7f0100a3
+			public const int textColorSearchUrl = 2130772131;
+			
+			// aapt resource value: 0x7f01016f
+			public const int textEndPadding = 2130772335;
+			
+			// aapt resource value: 0x7f010143
+			public const int textInputStyle = 2130772291;
+			
+			// aapt resource value: 0x7f01016e
+			public const int textStartPadding = 2130772334;
+			
+			// aapt resource value: 0x7f010120
+			public const int theme = 2130772256;
+			
+			// aapt resource value: 0x7f0100e1
+			public const int thickness = 2130772193;
+			
+			// aapt resource value: 0x7f010107
+			public const int thumbTextPadding = 2130772231;
+			
+			// aapt resource value: 0x7f010102
+			public const int thumbTint = 2130772226;
+			
+			// aapt resource value: 0x7f010103
+			public const int thumbTintMode = 2130772227;
+			
+			// aapt resource value: 0x7f010053
+			public const int tickMark = 2130772051;
+			
+			// aapt resource value: 0x7f010054
+			public const int tickMarkTint = 2130772052;
+			
+			// aapt resource value: 0x7f010055
+			public const int tickMarkTintMode = 2130772053;
+			
+			// aapt resource value: 0x7f010051
+			public const int tint = 2130772049;
+			
+			// aapt resource value: 0x7f010052
+			public const int tintMode = 2130772050;
+			
+			// aapt resource value: 0x7f01002b
+			public const int title = 2130772011;
+			
+			// aapt resource value: 0x7f010187
+			public const int titleEnabled = 2130772359;
+			
+			// aapt resource value: 0x7f01010f
+			public const int titleMargin = 2130772239;
+			
+			// aapt resource value: 0x7f010113
+			public const int titleMarginBottom = 2130772243;
+			
+			// aapt resource value: 0x7f010111
+			public const int titleMarginEnd = 2130772241;
+			
+			// aapt resource value: 0x7f010110
+			public const int titleMarginStart = 2130772240;
+			
+			// aapt resource value: 0x7f010112
+			public const int titleMarginTop = 2130772242;
+			
+			// aapt resource value: 0x7f010114
+			public const int titleMargins = 2130772244;
+			
+			// aapt resource value: 0x7f01010d
+			public const int titleTextAppearance = 2130772237;
+			
+			// aapt resource value: 0x7f01011c
+			public const int titleTextColor = 2130772252;
+			
+			// aapt resource value: 0x7f01002f
+			public const int titleTextStyle = 2130772015;
+			
+			// aapt resource value: 0x7f010182
+			public const int toolbarId = 2130772354;
+			
+			// aapt resource value: 0x7f01009b
+			public const int toolbarNavigationButtonStyle = 2130772123;
+			
+			// aapt resource value: 0x7f01009a
+			public const int toolbarStyle = 2130772122;
+			
+			// aapt resource value: 0x7f0100d4
+			public const int tooltipForegroundColor = 2130772180;
+			
+			// aapt resource value: 0x7f0100d3
+			public const int tooltipFrameBackground = 2130772179;
+			
+			// aapt resource value: 0x7f0100ec
+			public const int tooltipText = 2130772204;
+			
+			// aapt resource value: 0x7f010104
+			public const int track = 2130772228;
+			
+			// aapt resource value: 0x7f010105
+			public const int trackTint = 2130772229;
+			
+			// aapt resource value: 0x7f010106
+			public const int trackTintMode = 2130772230;
+			
+			// aapt resource value: 0x7f0101ef
+			public const int ttcIndex = 2130772463;
+			
+			// aapt resource value: 0x7f010204
+			public const int unpinnedDrawable = 2130772484;
+			
+			// aapt resource value: 0x7f01018f
+			public const int useCompatPadding = 2130772367;
+			
+			// aapt resource value: 0x7f0100d6
+			public const int viewInflaterClass = 2130772182;
+			
+			// aapt resource value: 0x7f0100fd
+			public const int voiceIcon = 2130772221;
 			
 			// aapt resource value: 0x7f010060
-			public const int windowNoTitle = 2130772064;
+			public const int windowActionBar = 2130772064;
+			
+			// aapt resource value: 0x7f010062
+			public const int windowActionBarOverlay = 2130772066;
+			
+			// aapt resource value: 0x7f010063
+			public const int windowActionModeOverlay = 2130772067;
+			
+			// aapt resource value: 0x7f010067
+			public const int windowFixedHeightMajor = 2130772071;
+			
+			// aapt resource value: 0x7f010065
+			public const int windowFixedHeightMinor = 2130772069;
+			
+			// aapt resource value: 0x7f010064
+			public const int windowFixedWidthMajor = 2130772068;
+			
+			// aapt resource value: 0x7f010066
+			public const int windowFixedWidthMinor = 2130772070;
+			
+			// aapt resource value: 0x7f010068
+			public const int windowMinWidthMajor = 2130772072;
+			
+			// aapt resource value: 0x7f010069
+			public const int windowMinWidthMinor = 2130772073;
+			
+			// aapt resource value: 0x7f010061
+			public const int windowNoTitle = 2130772065;
 			
 			static Attribute()
 			{
@@ -11831,44 +14752,44 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b003f
 			public const int SYM = 2131427391;
 			
-			// aapt resource value: 0x7f0b00fd
-			public const int SegControl = 2131427581;
+			// aapt resource value: 0x7f0b0100
+			public const int SegControl = 2131427584;
 			
-			// aapt resource value: 0x7f0b00ed
-			public const int action0 = 2131427565;
+			// aapt resource value: 0x7f0b00f0
+			public const int action0 = 2131427568;
 			
-			// aapt resource value: 0x7f0b0091
-			public const int action_bar = 2131427473;
+			// aapt resource value: 0x7f0b0094
+			public const int action_bar = 2131427476;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int action_bar_activity_content = 2131427329;
 			
-			// aapt resource value: 0x7f0b0090
-			public const int action_bar_container = 2131427472;
+			// aapt resource value: 0x7f0b0093
+			public const int action_bar_container = 2131427475;
 			
-			// aapt resource value: 0x7f0b008c
-			public const int action_bar_root = 2131427468;
+			// aapt resource value: 0x7f0b008f
+			public const int action_bar_root = 2131427471;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_bar_spinner = 2131427330;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int action_bar_subtitle = 2131427438;
+			// aapt resource value: 0x7f0b0071
+			public const int action_bar_subtitle = 2131427441;
 			
-			// aapt resource value: 0x7f0b006d
-			public const int action_bar_title = 2131427437;
+			// aapt resource value: 0x7f0b0070
+			public const int action_bar_title = 2131427440;
 			
-			// aapt resource value: 0x7f0b00ea
-			public const int action_container = 2131427562;
+			// aapt resource value: 0x7f0b00ed
+			public const int action_container = 2131427565;
 			
-			// aapt resource value: 0x7f0b0092
-			public const int action_context_bar = 2131427474;
+			// aapt resource value: 0x7f0b0095
+			public const int action_context_bar = 2131427477;
 			
-			// aapt resource value: 0x7f0b00f1
-			public const int action_divider = 2131427569;
+			// aapt resource value: 0x7f0b00f4
+			public const int action_divider = 2131427572;
 			
-			// aapt resource value: 0x7f0b00eb
-			public const int action_image = 2131427563;
+			// aapt resource value: 0x7f0b00ee
+			public const int action_image = 2131427566;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -11876,32 +14797,32 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0004
 			public const int action_menu_presenter = 2131427332;
 			
-			// aapt resource value: 0x7f0b008e
-			public const int action_mode_bar = 2131427470;
+			// aapt resource value: 0x7f0b0091
+			public const int action_mode_bar = 2131427473;
 			
-			// aapt resource value: 0x7f0b008d
-			public const int action_mode_bar_stub = 2131427469;
+			// aapt resource value: 0x7f0b0090
+			public const int action_mode_bar_stub = 2131427472;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int action_mode_close_button = 2131427439;
+			// aapt resource value: 0x7f0b0072
+			public const int action_mode_close_button = 2131427442;
 			
-			// aapt resource value: 0x7f0b0102
-			public const int action_search = 2131427586;
+			// aapt resource value: 0x7f0b0105
+			public const int action_search = 2131427589;
 			
-			// aapt resource value: 0x7f0b00ec
-			public const int action_text = 2131427564;
+			// aapt resource value: 0x7f0b00ef
+			public const int action_text = 2131427567;
 			
-			// aapt resource value: 0x7f0b00fa
-			public const int actions = 2131427578;
+			// aapt resource value: 0x7f0b00fd
+			public const int actions = 2131427581;
 			
-			// aapt resource value: 0x7f0b0070
-			public const int activity_chooser_view_content = 2131427440;
+			// aapt resource value: 0x7f0b0073
+			public const int activity_chooser_view_content = 2131427443;
 			
 			// aapt resource value: 0x7f0b002f
 			public const int add = 2131427375;
 			
-			// aapt resource value: 0x7f0b0083
-			public const int alertTitle = 2131427459;
+			// aapt resource value: 0x7f0b0086
+			public const int alertTitle = 2131427462;
 			
 			// aapt resource value: 0x7f0b0065
 			public const int all = 2131427429;
@@ -11915,6 +14836,9 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b004e
 			public const int auto = 2131427406;
 			
+			// aapt resource value: 0x7f0b006c
+			public const int automatic = 2131427436;
+			
 			// aapt resource value: 0x7f0b0037
 			public const int beginning = 2131427383;
 			
@@ -11924,32 +14848,32 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0045
 			public const int bottom = 2131427397;
 			
-			// aapt resource value: 0x7f0b00a1
-			public const int bottomtab_navarea = 2131427489;
-			
-			// aapt resource value: 0x7f0b00a2
-			public const int bottomtab_tabbar = 2131427490;
-			
 			// aapt resource value: 0x7f0b00a4
-			public const int browser_actions_header_text = 2131427492;
-			
-			// aapt resource value: 0x7f0b00a6
-			public const int browser_actions_menu_item_icon = 2131427494;
-			
-			// aapt resource value: 0x7f0b00a7
-			public const int browser_actions_menu_item_text = 2131427495;
+			public const int bottomtab_navarea = 2131427492;
 			
 			// aapt resource value: 0x7f0b00a5
-			public const int browser_actions_menu_items = 2131427493;
+			public const int bottomtab_tabbar = 2131427493;
 			
-			// aapt resource value: 0x7f0b00a3
-			public const int browser_actions_menu_view = 2131427491;
+			// aapt resource value: 0x7f0b00a7
+			public const int browser_actions_header_text = 2131427495;
 			
-			// aapt resource value: 0x7f0b0076
-			public const int buttonPanel = 2131427446;
+			// aapt resource value: 0x7f0b00a9
+			public const int browser_actions_menu_item_icon = 2131427497;
 			
-			// aapt resource value: 0x7f0b00ee
-			public const int cancel_action = 2131427566;
+			// aapt resource value: 0x7f0b00aa
+			public const int browser_actions_menu_item_text = 2131427498;
+			
+			// aapt resource value: 0x7f0b00a8
+			public const int browser_actions_menu_items = 2131427496;
+			
+			// aapt resource value: 0x7f0b00a6
+			public const int browser_actions_menu_view = 2131427494;
+			
+			// aapt resource value: 0x7f0b0079
+			public const int buttonPanel = 2131427449;
+			
+			// aapt resource value: 0x7f0b00f1
+			public const int cancel_action = 2131427569;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int center = 2131427405;
@@ -11960,14 +14884,14 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0053
 			public const int center_vertical = 2131427411;
 			
-			// aapt resource value: 0x7f0b008a
-			public const int checkbox = 2131427466;
+			// aapt resource value: 0x7f0b008d
+			public const int checkbox = 2131427469;
 			
-			// aapt resource value: 0x7f0b00f6
-			public const int chronometer = 2131427574;
+			// aapt resource value: 0x7f0b00f9
+			public const int chronometer = 2131427577;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int clip = 2131427436;
+			// aapt resource value: 0x7f0b006f
+			public const int clip = 2131427439;
 			
 			// aapt resource value: 0x7f0b0062
 			public const int clip_horizontal = 2131427426;
@@ -11978,56 +14902,56 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0041
 			public const int collapseActionView = 2131427393;
 			
-			// aapt resource value: 0x7f0b00aa
-			public const int container = 2131427498;
-			
-			// aapt resource value: 0x7f0b0086
-			public const int content = 2131427462;
-			
-			// aapt resource value: 0x7f0b0079
-			public const int contentPanel = 2131427449;
-			
-			// aapt resource value: 0x7f0b00ab
-			public const int coordinator = 2131427499;
-			
-			// aapt resource value: 0x7f0b0080
-			public const int custom = 2131427456;
-			
-			// aapt resource value: 0x7f0b007f
-			public const int customPanel = 2131427455;
-			
-			// aapt resource value: 0x7f0b008f
-			public const int decor_content_parent = 2131427471;
-			
-			// aapt resource value: 0x7f0b0073
-			public const int default_activity_button = 2131427443;
-			
 			// aapt resource value: 0x7f0b00ad
-			public const int design_bottom_sheet = 2131427501;
+			public const int container = 2131427501;
 			
-			// aapt resource value: 0x7f0b00b2
-			public const int design_menu_item_action_area = 2131427506;
+			// aapt resource value: 0x7f0b0089
+			public const int content = 2131427465;
 			
-			// aapt resource value: 0x7f0b00b1
-			public const int design_menu_item_action_area_stub = 2131427505;
+			// aapt resource value: 0x7f0b007c
+			public const int contentPanel = 2131427452;
+			
+			// aapt resource value: 0x7f0b00ae
+			public const int coordinator = 2131427502;
+			
+			// aapt resource value: 0x7f0b0083
+			public const int custom = 2131427459;
+			
+			// aapt resource value: 0x7f0b0082
+			public const int customPanel = 2131427458;
+			
+			// aapt resource value: 0x7f0b0092
+			public const int decor_content_parent = 2131427474;
+			
+			// aapt resource value: 0x7f0b0076
+			public const int default_activity_button = 2131427446;
 			
 			// aapt resource value: 0x7f0b00b0
-			public const int design_menu_item_text = 2131427504;
+			public const int design_bottom_sheet = 2131427504;
 			
-			// aapt resource value: 0x7f0b00af
-			public const int design_navigation_view = 2131427503;
+			// aapt resource value: 0x7f0b00b5
+			public const int design_menu_item_action_area = 2131427509;
+			
+			// aapt resource value: 0x7f0b00b4
+			public const int design_menu_item_action_area_stub = 2131427508;
+			
+			// aapt resource value: 0x7f0b00b3
+			public const int design_menu_item_text = 2131427507;
+			
+			// aapt resource value: 0x7f0b00b2
+			public const int design_navigation_view = 2131427506;
 			
 			// aapt resource value: 0x7f0b0028
 			public const int disableHome = 2131427368;
 			
-			// aapt resource value: 0x7f0b0093
-			public const int edit_query = 2131427475;
+			// aapt resource value: 0x7f0b0096
+			public const int edit_query = 2131427478;
 			
 			// aapt resource value: 0x7f0b0038
 			public const int end = 2131427384;
 			
-			// aapt resource value: 0x7f0b00fc
-			public const int end_padder = 2131427580;
+			// aapt resource value: 0x7f0b00ff
+			public const int end_padder = 2131427583;
 			
 			// aapt resource value: 0x7f0b0047
 			public const int enterAlways = 2131427399;
@@ -12038,11 +14962,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0049
 			public const int exitUntilCollapsed = 2131427401;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int expand_activities_button = 2131427441;
+			// aapt resource value: 0x7f0b0074
+			public const int expand_activities_button = 2131427444;
 			
-			// aapt resource value: 0x7f0b0089
-			public const int expanded_menu = 2131427465;
+			// aapt resource value: 0x7f0b008c
+			public const int expanded_menu = 2131427468;
 			
 			// aapt resource value: 0x7f0b005f
 			public const int fill = 2131427423;
@@ -12059,11 +14983,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b005d
 			public const int @fixed = 2131427421;
 			
-			// aapt resource value: 0x7f0b00b4
-			public const int flyoutcontent_appbar = 2131427508;
+			// aapt resource value: 0x7f0b00b7
+			public const int flyoutcontent_appbar = 2131427511;
 			
-			// aapt resource value: 0x7f0b00b5
-			public const int flyoutcontent_recycler = 2131427509;
+			// aapt resource value: 0x7f0b00b8
+			public const int flyoutcontent_recycler = 2131427512;
 			
 			// aapt resource value: 0x7f0b0068
 			public const int forever = 2131427432;
@@ -12071,8 +14995,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b000a
 			public const int ghost_view = 2131427338;
 			
-			// aapt resource value: 0x7f0b0085
-			public const int group_divider = 2131427461;
+			// aapt resource value: 0x7f0b0088
+			public const int group_divider = 2131427464;
+			
+			// aapt resource value: 0x7f0b006d
+			public const int hardware = 2131427437;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int home = 2131427333;
@@ -12080,20 +15007,20 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0029
 			public const int homeAsUp = 2131427369;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int icon = 2131427445;
+			// aapt resource value: 0x7f0b0078
+			public const int icon = 2131427448;
 			
-			// aapt resource value: 0x7f0b00fb
-			public const int icon_group = 2131427579;
+			// aapt resource value: 0x7f0b00fe
+			public const int icon_group = 2131427582;
 			
 			// aapt resource value: 0x7f0b0042
 			public const int ifRoom = 2131427394;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int image = 2131427442;
+			// aapt resource value: 0x7f0b0075
+			public const int image = 2131427445;
 			
-			// aapt resource value: 0x7f0b00f7
-			public const int info = 2131427575;
+			// aapt resource value: 0x7f0b00fa
+			public const int info = 2131427578;
 			
 			// aapt resource value: 0x7f0b0069
 			public const int italic = 2131427433;
@@ -12104,8 +15031,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b004f
 			public const int labeled = 2131427407;
 			
-			// aapt resource value: 0x7f0b00a9
-			public const int largeLabel = 2131427497;
+			// aapt resource value: 0x7f0b00ac
+			public const int largeLabel = 2131427500;
 			
 			// aapt resource value: 0x7f0b0055
 			public const int left = 2131427413;
@@ -12119,44 +15046,44 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0025
 			public const int listMode = 2131427365;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int list_item = 2131427444;
+			// aapt resource value: 0x7f0b0077
+			public const int list_item = 2131427447;
 			
-			// aapt resource value: 0x7f0b00b8
-			public const int loadingImage = 2131427512;
-			
-			// aapt resource value: 0x7f0b00b6
-			public const int loadingProgressBar = 2131427510;
+			// aapt resource value: 0x7f0b00bb
+			public const int loadingImage = 2131427515;
 			
 			// aapt resource value: 0x7f0b00b9
-			public const int loadingProgressWheel = 2131427513;
+			public const int loadingProgressBar = 2131427513;
+			
+			// aapt resource value: 0x7f0b00bc
+			public const int loadingProgressWheel = 2131427516;
 			
 			// aapt resource value: 0x7f0b0024
 			public const int lottie_layer_name = 2131427364;
 			
-			// aapt resource value: 0x7f0b00fe
-			public const int main_appbar = 2131427582;
-			
 			// aapt resource value: 0x7f0b0101
-			public const int main_scrollview = 2131427585;
+			public const int main_appbar = 2131427585;
 			
-			// aapt resource value: 0x7f0b0100
-			public const int main_tablayout = 2131427584;
+			// aapt resource value: 0x7f0b0104
+			public const int main_scrollview = 2131427588;
 			
-			// aapt resource value: 0x7f0b00ff
-			public const int main_toolbar = 2131427583;
+			// aapt resource value: 0x7f0b0103
+			public const int main_tablayout = 2131427587;
 			
-			// aapt resource value: 0x7f0b0109
-			public const int masked = 2131427593;
+			// aapt resource value: 0x7f0b0102
+			public const int main_toolbar = 2131427586;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int materialformsedittext = 2131427514;
+			// aapt resource value: 0x7f0b010c
+			public const int masked = 2131427596;
 			
-			// aapt resource value: 0x7f0b00f0
-			public const int media_actions = 2131427568;
+			// aapt resource value: 0x7f0b00bd
+			public const int materialformsedittext = 2131427517;
 			
-			// aapt resource value: 0x7f0b00a0
-			public const int message = 2131427488;
+			// aapt resource value: 0x7f0b00f3
+			public const int media_actions = 2131427571;
+			
+			// aapt resource value: 0x7f0b00a3
+			public const int message = 2131427491;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int middle = 2131427385;
@@ -12164,143 +15091,143 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b005a
 			public const int mini = 2131427418;
 			
-			// aapt resource value: 0x7f0b00d7
-			public const int mr_art = 2131427543;
-			
-			// aapt resource value: 0x7f0b00c8
-			public const int mr_cast_checkbox = 2131427528;
-			
-			// aapt resource value: 0x7f0b00c1
-			public const int mr_cast_close_button = 2131427521;
-			
-			// aapt resource value: 0x7f0b00bc
-			public const int mr_cast_group_icon = 2131427516;
-			
-			// aapt resource value: 0x7f0b00bd
-			public const int mr_cast_group_name = 2131427517;
-			
-			// aapt resource value: 0x7f0b00bb
-			public const int mr_cast_list = 2131427515;
-			
-			// aapt resource value: 0x7f0b00c0
-			public const int mr_cast_meta = 2131427520;
-			
-			// aapt resource value: 0x7f0b00c2
-			public const int mr_cast_meta_art = 2131427522;
-			
-			// aapt resource value: 0x7f0b00c4
-			public const int mr_cast_meta_subtitle = 2131427524;
-			
-			// aapt resource value: 0x7f0b00c3
-			public const int mr_cast_meta_title = 2131427523;
-			
-			// aapt resource value: 0x7f0b00c6
-			public const int mr_cast_route_icon = 2131427526;
-			
-			// aapt resource value: 0x7f0b00c7
-			public const int mr_cast_route_name = 2131427527;
-			
-			// aapt resource value: 0x7f0b00c5
-			public const int mr_cast_stop_button = 2131427525;
-			
-			// aapt resource value: 0x7f0b00c9
-			public const int mr_cast_volume_layout = 2131427529;
-			
-			// aapt resource value: 0x7f0b00ca
-			public const int mr_cast_volume_slider = 2131427530;
-			
-			// aapt resource value: 0x7f0b00cc
-			public const int mr_chooser_list = 2131427532;
-			
-			// aapt resource value: 0x7f0b00cf
-			public const int mr_chooser_route_desc = 2131427535;
-			
-			// aapt resource value: 0x7f0b00cd
-			public const int mr_chooser_route_icon = 2131427533;
-			
-			// aapt resource value: 0x7f0b00ce
-			public const int mr_chooser_route_name = 2131427534;
+			// aapt resource value: 0x7f0b00da
+			public const int mr_art = 2131427546;
 			
 			// aapt resource value: 0x7f0b00cb
-			public const int mr_chooser_title = 2131427531;
+			public const int mr_cast_checkbox = 2131427531;
 			
-			// aapt resource value: 0x7f0b00d4
-			public const int mr_close = 2131427540;
-			
-			// aapt resource value: 0x7f0b00da
-			public const int mr_control_divider = 2131427546;
-			
-			// aapt resource value: 0x7f0b00e5
-			public const int mr_control_playback_ctrl = 2131427557;
-			
-			// aapt resource value: 0x7f0b00e8
-			public const int mr_control_subtitle = 2131427560;
-			
-			// aapt resource value: 0x7f0b00e7
-			public const int mr_control_title = 2131427559;
-			
-			// aapt resource value: 0x7f0b00e6
-			public const int mr_control_title_container = 2131427558;
-			
-			// aapt resource value: 0x7f0b00d5
-			public const int mr_custom_control = 2131427541;
-			
-			// aapt resource value: 0x7f0b00d6
-			public const int mr_default_control = 2131427542;
-			
-			// aapt resource value: 0x7f0b00d1
-			public const int mr_dialog_area = 2131427537;
-			
-			// aapt resource value: 0x7f0b00e0
-			public const int mr_dialog_header_name = 2131427552;
-			
-			// aapt resource value: 0x7f0b00d0
-			public const int mr_expandable_area = 2131427536;
-			
-			// aapt resource value: 0x7f0b00e9
-			public const int mr_group_expand_collapse = 2131427561;
-			
-			// aapt resource value: 0x7f0b00be
-			public const int mr_group_volume_route_name = 2131427518;
+			// aapt resource value: 0x7f0b00c4
+			public const int mr_cast_close_button = 2131427524;
 			
 			// aapt resource value: 0x7f0b00bf
-			public const int mr_group_volume_slider = 2131427519;
+			public const int mr_cast_group_icon = 2131427519;
 			
-			// aapt resource value: 0x7f0b00d8
-			public const int mr_media_main_control = 2131427544;
+			// aapt resource value: 0x7f0b00c0
+			public const int mr_cast_group_name = 2131427520;
 			
-			// aapt resource value: 0x7f0b00d3
-			public const int mr_name = 2131427539;
+			// aapt resource value: 0x7f0b00be
+			public const int mr_cast_list = 2131427518;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int mr_picker_close_button = 2131427553;
+			// aapt resource value: 0x7f0b00c3
+			public const int mr_cast_meta = 2131427523;
 			
-			// aapt resource value: 0x7f0b00e2
-			public const int mr_picker_list = 2131427554;
+			// aapt resource value: 0x7f0b00c5
+			public const int mr_cast_meta_art = 2131427525;
 			
-			// aapt resource value: 0x7f0b00e3
-			public const int mr_picker_route_icon = 2131427555;
+			// aapt resource value: 0x7f0b00c7
+			public const int mr_cast_meta_subtitle = 2131427527;
 			
-			// aapt resource value: 0x7f0b00e4
-			public const int mr_picker_route_name = 2131427556;
+			// aapt resource value: 0x7f0b00c6
+			public const int mr_cast_meta_title = 2131427526;
 			
-			// aapt resource value: 0x7f0b00d9
-			public const int mr_playback_control = 2131427545;
+			// aapt resource value: 0x7f0b00c9
+			public const int mr_cast_route_icon = 2131427529;
+			
+			// aapt resource value: 0x7f0b00ca
+			public const int mr_cast_route_name = 2131427530;
+			
+			// aapt resource value: 0x7f0b00c8
+			public const int mr_cast_stop_button = 2131427528;
+			
+			// aapt resource value: 0x7f0b00cc
+			public const int mr_cast_volume_layout = 2131427532;
+			
+			// aapt resource value: 0x7f0b00cd
+			public const int mr_cast_volume_slider = 2131427533;
+			
+			// aapt resource value: 0x7f0b00cf
+			public const int mr_chooser_list = 2131427535;
 			
 			// aapt resource value: 0x7f0b00d2
-			public const int mr_title_bar = 2131427538;
+			public const int mr_chooser_route_desc = 2131427538;
+			
+			// aapt resource value: 0x7f0b00d0
+			public const int mr_chooser_route_icon = 2131427536;
+			
+			// aapt resource value: 0x7f0b00d1
+			public const int mr_chooser_route_name = 2131427537;
+			
+			// aapt resource value: 0x7f0b00ce
+			public const int mr_chooser_title = 2131427534;
+			
+			// aapt resource value: 0x7f0b00d7
+			public const int mr_close = 2131427543;
+			
+			// aapt resource value: 0x7f0b00dd
+			public const int mr_control_divider = 2131427549;
+			
+			// aapt resource value: 0x7f0b00e8
+			public const int mr_control_playback_ctrl = 2131427560;
+			
+			// aapt resource value: 0x7f0b00eb
+			public const int mr_control_subtitle = 2131427563;
+			
+			// aapt resource value: 0x7f0b00ea
+			public const int mr_control_title = 2131427562;
+			
+			// aapt resource value: 0x7f0b00e9
+			public const int mr_control_title_container = 2131427561;
+			
+			// aapt resource value: 0x7f0b00d8
+			public const int mr_custom_control = 2131427544;
+			
+			// aapt resource value: 0x7f0b00d9
+			public const int mr_default_control = 2131427545;
+			
+			// aapt resource value: 0x7f0b00d4
+			public const int mr_dialog_area = 2131427540;
+			
+			// aapt resource value: 0x7f0b00e3
+			public const int mr_dialog_header_name = 2131427555;
+			
+			// aapt resource value: 0x7f0b00d3
+			public const int mr_expandable_area = 2131427539;
+			
+			// aapt resource value: 0x7f0b00ec
+			public const int mr_group_expand_collapse = 2131427564;
+			
+			// aapt resource value: 0x7f0b00c1
+			public const int mr_group_volume_route_name = 2131427521;
+			
+			// aapt resource value: 0x7f0b00c2
+			public const int mr_group_volume_slider = 2131427522;
 			
 			// aapt resource value: 0x7f0b00db
-			public const int mr_volume_control = 2131427547;
+			public const int mr_media_main_control = 2131427547;
+			
+			// aapt resource value: 0x7f0b00d6
+			public const int mr_name = 2131427542;
+			
+			// aapt resource value: 0x7f0b00e4
+			public const int mr_picker_close_button = 2131427556;
+			
+			// aapt resource value: 0x7f0b00e5
+			public const int mr_picker_list = 2131427557;
+			
+			// aapt resource value: 0x7f0b00e6
+			public const int mr_picker_route_icon = 2131427558;
+			
+			// aapt resource value: 0x7f0b00e7
+			public const int mr_picker_route_name = 2131427559;
 			
 			// aapt resource value: 0x7f0b00dc
-			public const int mr_volume_group_list = 2131427548;
+			public const int mr_playback_control = 2131427548;
+			
+			// aapt resource value: 0x7f0b00d5
+			public const int mr_title_bar = 2131427541;
 			
 			// aapt resource value: 0x7f0b00de
-			public const int mr_volume_item_icon = 2131427550;
+			public const int mr_volume_control = 2131427550;
 			
 			// aapt resource value: 0x7f0b00df
-			public const int mr_volume_slider = 2131427551;
+			public const int mr_volume_group_list = 2131427551;
+			
+			// aapt resource value: 0x7f0b00e1
+			public const int mr_volume_item_icon = 2131427553;
+			
+			// aapt resource value: 0x7f0b00e2
+			public const int mr_volume_slider = 2131427554;
 			
 			// aapt resource value: 0x7f0b0014
 			public const int mtrl_child_content_container = 2131427348;
@@ -12311,8 +15238,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0030
 			public const int multiply = 2131427376;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int navigation_header_container = 2131427502;
+			// aapt resource value: 0x7f0b00b1
+			public const int navigation_header_container = 2131427505;
 			
 			// aapt resource value: 0x7f0b0043
 			public const int never = 2131427395;
@@ -12323,14 +15250,14 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0026
 			public const int normal = 2131427366;
 			
-			// aapt resource value: 0x7f0b00f9
-			public const int notification_background = 2131427577;
+			// aapt resource value: 0x7f0b00fc
+			public const int notification_background = 2131427580;
 			
-			// aapt resource value: 0x7f0b00f3
-			public const int notification_main_column = 2131427571;
+			// aapt resource value: 0x7f0b00f6
+			public const int notification_main_column = 2131427574;
 			
-			// aapt resource value: 0x7f0b00f2
-			public const int notification_main_column_container = 2131427570;
+			// aapt resource value: 0x7f0b00f5
+			public const int notification_main_column_container = 2131427573;
 			
 			// aapt resource value: 0x7f0b0061
 			public const int outline = 2131427425;
@@ -12338,8 +15265,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0058
 			public const int parallax = 2131427416;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int parentPanel = 2131427448;
+			// aapt resource value: 0x7f0b007b
+			public const int parentPanel = 2131427451;
 			
 			// aapt resource value: 0x7f0b000b
 			public const int parent_matrix = 2131427339;
@@ -12353,8 +15280,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0007
 			public const int progress_horizontal = 2131427335;
 			
-			// aapt resource value: 0x7f0b008b
-			public const int radio = 2131427467;
+			// aapt resource value: 0x7f0b008e
+			public const int radio = 2131427470;
 			
 			// aapt resource value: 0x7f0b006a
 			public const int restart = 2131427434;
@@ -12365,11 +15292,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0056
 			public const int right = 2131427414;
 			
-			// aapt resource value: 0x7f0b00f8
-			public const int right_icon = 2131427576;
+			// aapt resource value: 0x7f0b00fb
+			public const int right_icon = 2131427579;
 			
-			// aapt resource value: 0x7f0b00f4
-			public const int right_side = 2131427572;
+			// aapt resource value: 0x7f0b00f7
+			public const int right_side = 2131427575;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int save_image_matrix = 2131427340;
@@ -12386,68 +15313,68 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b004a
 			public const int scroll = 2131427402;
 			
+			// aapt resource value: 0x7f0b0081
+			public const int scrollIndicatorDown = 2131427457;
+			
+			// aapt resource value: 0x7f0b007d
+			public const int scrollIndicatorUp = 2131427453;
+			
 			// aapt resource value: 0x7f0b007e
-			public const int scrollIndicatorDown = 2131427454;
-			
-			// aapt resource value: 0x7f0b007a
-			public const int scrollIndicatorUp = 2131427450;
-			
-			// aapt resource value: 0x7f0b007b
-			public const int scrollView = 2131427451;
+			public const int scrollView = 2131427454;
 			
 			// aapt resource value: 0x7f0b005e
 			public const int scrollable = 2131427422;
 			
-			// aapt resource value: 0x7f0b0095
-			public const int search_badge = 2131427477;
-			
-			// aapt resource value: 0x7f0b0094
-			public const int search_bar = 2131427476;
-			
-			// aapt resource value: 0x7f0b0096
-			public const int search_button = 2131427478;
-			
-			// aapt resource value: 0x7f0b009b
-			public const int search_close_btn = 2131427483;
+			// aapt resource value: 0x7f0b0098
+			public const int search_badge = 2131427480;
 			
 			// aapt resource value: 0x7f0b0097
-			public const int search_edit_frame = 2131427479;
-			
-			// aapt resource value: 0x7f0b009d
-			public const int search_go_btn = 2131427485;
-			
-			// aapt resource value: 0x7f0b0098
-			public const int search_mag_icon = 2131427480;
+			public const int search_bar = 2131427479;
 			
 			// aapt resource value: 0x7f0b0099
-			public const int search_plate = 2131427481;
-			
-			// aapt resource value: 0x7f0b009a
-			public const int search_src_text = 2131427482;
+			public const int search_button = 2131427481;
 			
 			// aapt resource value: 0x7f0b009e
-			public const int search_voice_btn = 2131427486;
+			public const int search_close_btn = 2131427486;
 			
-			// aapt resource value: 0x7f0b009f
-			public const int select_dialog_listview = 2131427487;
+			// aapt resource value: 0x7f0b009a
+			public const int search_edit_frame = 2131427482;
+			
+			// aapt resource value: 0x7f0b00a0
+			public const int search_go_btn = 2131427488;
+			
+			// aapt resource value: 0x7f0b009b
+			public const int search_mag_icon = 2131427483;
+			
+			// aapt resource value: 0x7f0b009c
+			public const int search_plate = 2131427484;
+			
+			// aapt resource value: 0x7f0b009d
+			public const int search_src_text = 2131427485;
+			
+			// aapt resource value: 0x7f0b00a1
+			public const int search_voice_btn = 2131427489;
+			
+			// aapt resource value: 0x7f0b00a2
+			public const int select_dialog_listview = 2131427490;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int selected = 2131427408;
 			
-			// aapt resource value: 0x7f0b010a
-			public const int shape_id = 2131427594;
+			// aapt resource value: 0x7f0b010d
+			public const int shape_id = 2131427597;
 			
-			// aapt resource value: 0x7f0b0103
-			public const int shellcontent_appbar = 2131427587;
+			// aapt resource value: 0x7f0b0106
+			public const int shellcontent_appbar = 2131427590;
 			
-			// aapt resource value: 0x7f0b0105
-			public const int shellcontent_scrollview = 2131427589;
+			// aapt resource value: 0x7f0b0108
+			public const int shellcontent_scrollview = 2131427592;
 			
-			// aapt resource value: 0x7f0b0104
-			public const int shellcontent_toolbar = 2131427588;
+			// aapt resource value: 0x7f0b0107
+			public const int shellcontent_toolbar = 2131427591;
 			
-			// aapt resource value: 0x7f0b0087
-			public const int shortcut = 2131427463;
+			// aapt resource value: 0x7f0b008a
+			public const int shortcut = 2131427466;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int showCustom = 2131427371;
@@ -12458,11 +15385,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b002d
 			public const int showTitle = 2131427373;
 			
-			// aapt resource value: 0x7f0b0106
-			public const int sliding_tabs = 2131427590;
+			// aapt resource value: 0x7f0b0109
+			public const int sliding_tabs = 2131427593;
 			
-			// aapt resource value: 0x7f0b00a8
-			public const int smallLabel = 2131427496;
+			// aapt resource value: 0x7f0b00ab
+			public const int smallLabel = 2131427499;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int snackbar_action = 2131427350;
@@ -12476,8 +15403,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b004c
 			public const int snapMargins = 2131427404;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int spacer = 2131427447;
+			// aapt resource value: 0x7f0b006e
+			public const int software = 2131427438;
+			
+			// aapt resource value: 0x7f0b007a
+			public const int spacer = 2131427450;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int split_action_bar = 2131427336;
@@ -12494,17 +15424,17 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0057
 			public const int start = 2131427415;
 			
-			// aapt resource value: 0x7f0b00ef
-			public const int status_bar_latest_event_content = 2131427567;
+			// aapt resource value: 0x7f0b00f2
+			public const int status_bar_latest_event_content = 2131427570;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int stretch = 2131427420;
 			
-			// aapt resource value: 0x7f0b0088
-			public const int submenuarrow = 2131427464;
+			// aapt resource value: 0x7f0b008b
+			public const int submenuarrow = 2131427467;
 			
-			// aapt resource value: 0x7f0b009c
-			public const int submit_area = 2131427484;
+			// aapt resource value: 0x7f0b009f
+			public const int submit_area = 2131427487;
 			
 			// aapt resource value: 0x7f0b0027
 			public const int tabMode = 2131427367;
@@ -12524,20 +15454,20 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0022
 			public const int text2 = 2131427362;
 			
-			// aapt resource value: 0x7f0b007d
-			public const int textSpacerNoButtons = 2131427453;
+			// aapt resource value: 0x7f0b0080
+			public const int textSpacerNoButtons = 2131427456;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int textSpacerNoTitle = 2131427452;
+			// aapt resource value: 0x7f0b007f
+			public const int textSpacerNoTitle = 2131427455;
 			
 			// aapt resource value: 0x7f0b005b
 			public const int textStart = 2131427419;
 			
-			// aapt resource value: 0x7f0b00b7
-			public const int textViewStatus = 2131427511;
+			// aapt resource value: 0x7f0b00ba
+			public const int textViewStatus = 2131427514;
 			
-			// aapt resource value: 0x7f0b00b3
-			public const int text_input_password_toggle = 2131427507;
+			// aapt resource value: 0x7f0b00b6
+			public const int text_input_password_toggle = 2131427510;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int textinput_counter = 2131427352;
@@ -12548,29 +15478,29 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b001a
 			public const int textinput_helper_text = 2131427354;
 			
-			// aapt resource value: 0x7f0b00f5
-			public const int time = 2131427573;
+			// aapt resource value: 0x7f0b00f8
+			public const int time = 2131427576;
 			
 			// aapt resource value: 0x7f0b0023
 			public const int title = 2131427363;
 			
-			// aapt resource value: 0x7f0b0084
-			public const int titleDividerNoCustom = 2131427460;
+			// aapt resource value: 0x7f0b0087
+			public const int titleDividerNoCustom = 2131427463;
 			
-			// aapt resource value: 0x7f0b0082
-			public const int title_template = 2131427458;
+			// aapt resource value: 0x7f0b0085
+			public const int title_template = 2131427461;
 			
-			// aapt resource value: 0x7f0b0107
-			public const int toolbar = 2131427591;
+			// aapt resource value: 0x7f0b010a
+			public const int toolbar = 2131427594;
 			
 			// aapt resource value: 0x7f0b0046
 			public const int top = 2131427398;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int topPanel = 2131427457;
+			// aapt resource value: 0x7f0b0084
+			public const int topPanel = 2131427460;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int touch_outside = 2131427500;
+			// aapt resource value: 0x7f0b00af
+			public const int touch_outside = 2131427503;
 			
 			// aapt resource value: 0x7f0b000f
 			public const int transition_current_scene = 2131427343;
@@ -12602,11 +15532,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b001b
 			public const int view_offset_helper = 2131427355;
 			
-			// aapt resource value: 0x7f0b0108
-			public const int visible = 2131427592;
+			// aapt resource value: 0x7f0b010b
+			public const int visible = 2131427595;
 			
-			// aapt resource value: 0x7f0b00dd
-			public const int volume_item_container = 2131427549;
+			// aapt resource value: 0x7f0b00e0
+			public const int volume_item_container = 2131427552;
 			
 			// aapt resource value: 0x7f0b0044
 			public const int withText = 2131427396;
@@ -13042,11 +15972,11 @@ namespace ContestPark.Mobile.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0c004f
-			public const int ApplicationName = 2131492943;
+			// aapt resource value: 0x7f0c0050
+			public const int ApplicationName = 2131492944;
 			
-			// aapt resource value: 0x7f0c004e
-			public const int Hello = 2131492942;
+			// aapt resource value: 0x7f0c004f
+			public const int Hello = 2131492943;
 			
 			// aapt resource value: 0x7f0c0018
 			public const int abc_action_bar_home_description = 2131492888;
@@ -13165,8 +16095,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0c0032
 			public const int abc_toolbar_collapse_description = 2131492914;
 			
-			// aapt resource value: 0x7f0c0051
-			public const int app_name = 2131492945;
+			// aapt resource value: 0x7f0c0052
+			public const int app_name = 2131492946;
 			
 			// aapt resource value: 0x7f0c0040
 			public const int appbar_scrolling_view_behavior = 2131492928;
@@ -13186,11 +16116,14 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0c0045
 			public const int fab_transformation_sheet_behavior = 2131492933;
 			
+			// aapt resource value: 0x7f0c0051
+			public const int hello = 2131492945;
+			
 			// aapt resource value: 0x7f0c0046
 			public const int hide_bottom_view_on_scroll_behavior = 2131492934;
 			
-			// aapt resource value: 0x7f0c0050
-			public const int library_name = 2131492944;
+			// aapt resource value: 0x7f0c004e
+			public const int library_name = 2131492942;
 			
 			// aapt resource value: 0x7f0c0000
 			public const int mr_button_content_description = 2131492864;
@@ -13301,1592 +16234,1601 @@ namespace ContestPark.Mobile.Droid
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f09009f
-			public const int AlertDialog_AppCompat = 2131296415;
-			
-			// aapt resource value: 0x7f0900a0
-			public const int AlertDialog_AppCompat_Light = 2131296416;
-			
-			// aapt resource value: 0x7f0900a1
-			public const int Animation_AppCompat_Dialog = 2131296417;
-			
 			// aapt resource value: 0x7f0900a2
-			public const int Animation_AppCompat_DropDownUp = 2131296418;
+			public const int AlertDialog_AppCompat = 2131296418;
 			
 			// aapt resource value: 0x7f0900a3
-			public const int Animation_AppCompat_Tooltip = 2131296419;
-			
-			// aapt resource value: 0x7f090174
-			public const int Animation_Design_BottomSheetDialog = 2131296628;
-			
-			// aapt resource value: 0x7f09020d
-			public const int AppCompatDialogStyle = 2131296781;
+			public const int AlertDialog_AppCompat_Light = 2131296419;
 			
 			// aapt resource value: 0x7f0900a4
-			public const int Base_AlertDialog_AppCompat = 2131296420;
+			public const int Animation_AppCompat_Dialog = 2131296420;
 			
 			// aapt resource value: 0x7f0900a5
-			public const int Base_AlertDialog_AppCompat_Light = 2131296421;
+			public const int Animation_AppCompat_DropDownUp = 2131296421;
 			
 			// aapt resource value: 0x7f0900a6
-			public const int Base_Animation_AppCompat_Dialog = 2131296422;
-			
-			// aapt resource value: 0x7f0900a7
-			public const int Base_Animation_AppCompat_DropDownUp = 2131296423;
-			
-			// aapt resource value: 0x7f0900a8
-			public const int Base_Animation_AppCompat_Tooltip = 2131296424;
-			
-			// aapt resource value: 0x7f090013
-			public const int Base_CardView = 2131296275;
-			
-			// aapt resource value: 0x7f0900a9
-			public const int Base_DialogWindowTitle_AppCompat = 2131296425;
-			
-			// aapt resource value: 0x7f0900aa
-			public const int Base_DialogWindowTitleBackground_AppCompat = 2131296426;
-			
-			// aapt resource value: 0x7f090033
-			public const int Base_TextAppearance_AppCompat = 2131296307;
-			
-			// aapt resource value: 0x7f090034
-			public const int Base_TextAppearance_AppCompat_Body1 = 2131296308;
-			
-			// aapt resource value: 0x7f090035
-			public const int Base_TextAppearance_AppCompat_Body2 = 2131296309;
-			
-			// aapt resource value: 0x7f090036
-			public const int Base_TextAppearance_AppCompat_Button = 2131296310;
-			
-			// aapt resource value: 0x7f090037
-			public const int Base_TextAppearance_AppCompat_Caption = 2131296311;
-			
-			// aapt resource value: 0x7f090038
-			public const int Base_TextAppearance_AppCompat_Display1 = 2131296312;
-			
-			// aapt resource value: 0x7f090039
-			public const int Base_TextAppearance_AppCompat_Display2 = 2131296313;
-			
-			// aapt resource value: 0x7f09003a
-			public const int Base_TextAppearance_AppCompat_Display3 = 2131296314;
-			
-			// aapt resource value: 0x7f09003b
-			public const int Base_TextAppearance_AppCompat_Display4 = 2131296315;
-			
-			// aapt resource value: 0x7f09003c
-			public const int Base_TextAppearance_AppCompat_Headline = 2131296316;
-			
-			// aapt resource value: 0x7f09003d
-			public const int Base_TextAppearance_AppCompat_Inverse = 2131296317;
-			
-			// aapt resource value: 0x7f09003e
-			public const int Base_TextAppearance_AppCompat_Large = 2131296318;
-			
-			// aapt resource value: 0x7f09003f
-			public const int Base_TextAppearance_AppCompat_Large_Inverse = 2131296319;
-			
-			// aapt resource value: 0x7f090040
-			public const int Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131296320;
-			
-			// aapt resource value: 0x7f090041
-			public const int Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131296321;
-			
-			// aapt resource value: 0x7f090042
-			public const int Base_TextAppearance_AppCompat_Medium = 2131296322;
-			
-			// aapt resource value: 0x7f090043
-			public const int Base_TextAppearance_AppCompat_Medium_Inverse = 2131296323;
-			
-			// aapt resource value: 0x7f090044
-			public const int Base_TextAppearance_AppCompat_Menu = 2131296324;
-			
-			// aapt resource value: 0x7f0900ab
-			public const int Base_TextAppearance_AppCompat_SearchResult = 2131296427;
-			
-			// aapt resource value: 0x7f090045
-			public const int Base_TextAppearance_AppCompat_SearchResult_Subtitle = 2131296325;
-			
-			// aapt resource value: 0x7f090046
-			public const int Base_TextAppearance_AppCompat_SearchResult_Title = 2131296326;
-			
-			// aapt resource value: 0x7f090047
-			public const int Base_TextAppearance_AppCompat_Small = 2131296327;
-			
-			// aapt resource value: 0x7f090048
-			public const int Base_TextAppearance_AppCompat_Small_Inverse = 2131296328;
-			
-			// aapt resource value: 0x7f090049
-			public const int Base_TextAppearance_AppCompat_Subhead = 2131296329;
-			
-			// aapt resource value: 0x7f0900ac
-			public const int Base_TextAppearance_AppCompat_Subhead_Inverse = 2131296428;
-			
-			// aapt resource value: 0x7f09004a
-			public const int Base_TextAppearance_AppCompat_Title = 2131296330;
-			
-			// aapt resource value: 0x7f0900ad
-			public const int Base_TextAppearance_AppCompat_Title_Inverse = 2131296429;
-			
-			// aapt resource value: 0x7f0900ae
-			public const int Base_TextAppearance_AppCompat_Tooltip = 2131296430;
-			
-			// aapt resource value: 0x7f09008e
-			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131296398;
-			
-			// aapt resource value: 0x7f09004b
-			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131296331;
-			
-			// aapt resource value: 0x7f09004c
-			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131296332;
-			
-			// aapt resource value: 0x7f09004d
-			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Title = 2131296333;
-			
-			// aapt resource value: 0x7f09004e
-			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131296334;
-			
-			// aapt resource value: 0x7f09004f
-			public const int Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131296335;
-			
-			// aapt resource value: 0x7f090050
-			public const int Base_TextAppearance_AppCompat_Widget_ActionMode_Title = 2131296336;
-			
-			// aapt resource value: 0x7f090051
-			public const int Base_TextAppearance_AppCompat_Widget_Button = 2131296337;
-			
-			// aapt resource value: 0x7f090095
-			public const int Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131296405;
-			
-			// aapt resource value: 0x7f090096
-			public const int Base_TextAppearance_AppCompat_Widget_Button_Colored = 2131296406;
-			
-			// aapt resource value: 0x7f09008f
-			public const int Base_TextAppearance_AppCompat_Widget_Button_Inverse = 2131296399;
-			
-			// aapt resource value: 0x7f0900af
-			public const int Base_TextAppearance_AppCompat_Widget_DropDownItem = 2131296431;
-			
-			// aapt resource value: 0x7f090052
-			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131296338;
-			
-			// aapt resource value: 0x7f090053
-			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131296339;
-			
-			// aapt resource value: 0x7f090054
-			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131296340;
-			
-			// aapt resource value: 0x7f090055
-			public const int Base_TextAppearance_AppCompat_Widget_Switch = 2131296341;
-			
-			// aapt resource value: 0x7f090056
-			public const int Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131296342;
-			
-			// aapt resource value: 0x7f0900b0
-			public const int Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131296432;
-			
-			// aapt resource value: 0x7f090057
-			public const int Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131296343;
-			
-			// aapt resource value: 0x7f090058
-			public const int Base_TextAppearance_Widget_AppCompat_Toolbar_Title = 2131296344;
-			
-			// aapt resource value: 0x7f090059
-			public const int Base_Theme_AppCompat = 2131296345;
-			
-			// aapt resource value: 0x7f0900b1
-			public const int Base_Theme_AppCompat_CompactMenu = 2131296433;
-			
-			// aapt resource value: 0x7f09005a
-			public const int Base_Theme_AppCompat_Dialog = 2131296346;
-			
-			// aapt resource value: 0x7f0900b2
-			public const int Base_Theme_AppCompat_Dialog_Alert = 2131296434;
-			
-			// aapt resource value: 0x7f0900b3
-			public const int Base_Theme_AppCompat_Dialog_FixedSize = 2131296435;
-			
-			// aapt resource value: 0x7f0900b4
-			public const int Base_Theme_AppCompat_Dialog_MinWidth = 2131296436;
-			
-			// aapt resource value: 0x7f090017
-			public const int Base_Theme_AppCompat_DialogWhenLarge = 2131296279;
-			
-			// aapt resource value: 0x7f09005b
-			public const int Base_Theme_AppCompat_Light = 2131296347;
-			
-			// aapt resource value: 0x7f0900b5
-			public const int Base_Theme_AppCompat_Light_DarkActionBar = 2131296437;
-			
-			// aapt resource value: 0x7f09005c
-			public const int Base_Theme_AppCompat_Light_Dialog = 2131296348;
-			
-			// aapt resource value: 0x7f0900b6
-			public const int Base_Theme_AppCompat_Light_Dialog_Alert = 2131296438;
-			
-			// aapt resource value: 0x7f0900b7
-			public const int Base_Theme_AppCompat_Light_Dialog_FixedSize = 2131296439;
-			
-			// aapt resource value: 0x7f0900b8
-			public const int Base_Theme_AppCompat_Light_Dialog_MinWidth = 2131296440;
-			
-			// aapt resource value: 0x7f090018
-			public const int Base_Theme_AppCompat_Light_DialogWhenLarge = 2131296280;
-			
-			// aapt resource value: 0x7f090175
-			public const int Base_Theme_MaterialComponents = 2131296629;
-			
-			// aapt resource value: 0x7f090176
-			public const int Base_Theme_MaterialComponents_Bridge = 2131296630;
+			public const int Animation_AppCompat_Tooltip = 2131296422;
 			
 			// aapt resource value: 0x7f090177
-			public const int Base_Theme_MaterialComponents_CompactMenu = 2131296631;
-			
-			// aapt resource value: 0x7f090178
-			public const int Base_Theme_MaterialComponents_Dialog = 2131296632;
-			
-			// aapt resource value: 0x7f090179
-			public const int Base_Theme_MaterialComponents_Dialog_Alert = 2131296633;
-			
-			// aapt resource value: 0x7f09017a
-			public const int Base_Theme_MaterialComponents_Dialog_FixedSize = 2131296634;
-			
-			// aapt resource value: 0x7f09017b
-			public const int Base_Theme_MaterialComponents_Dialog_MinWidth = 2131296635;
-			
-			// aapt resource value: 0x7f09016e
-			public const int Base_Theme_MaterialComponents_DialogWhenLarge = 2131296622;
-			
-			// aapt resource value: 0x7f09017c
-			public const int Base_Theme_MaterialComponents_Light = 2131296636;
-			
-			// aapt resource value: 0x7f09017d
-			public const int Base_Theme_MaterialComponents_Light_Bridge = 2131296637;
-			
-			// aapt resource value: 0x7f09017e
-			public const int Base_Theme_MaterialComponents_Light_DarkActionBar = 2131296638;
-			
-			// aapt resource value: 0x7f09017f
-			public const int Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131296639;
-			
-			// aapt resource value: 0x7f090180
-			public const int Base_Theme_MaterialComponents_Light_Dialog = 2131296640;
-			
-			// aapt resource value: 0x7f090181
-			public const int Base_Theme_MaterialComponents_Light_Dialog_Alert = 2131296641;
-			
-			// aapt resource value: 0x7f090182
-			public const int Base_Theme_MaterialComponents_Light_Dialog_FixedSize = 2131296642;
-			
-			// aapt resource value: 0x7f090183
-			public const int Base_Theme_MaterialComponents_Light_Dialog_MinWidth = 2131296643;
-			
-			// aapt resource value: 0x7f09016f
-			public const int Base_Theme_MaterialComponents_Light_DialogWhenLarge = 2131296623;
-			
-			// aapt resource value: 0x7f0900b9
-			public const int Base_ThemeOverlay_AppCompat = 2131296441;
-			
-			// aapt resource value: 0x7f0900ba
-			public const int Base_ThemeOverlay_AppCompat_ActionBar = 2131296442;
-			
-			// aapt resource value: 0x7f0900bb
-			public const int Base_ThemeOverlay_AppCompat_Dark = 2131296443;
-			
-			// aapt resource value: 0x7f0900bc
-			public const int Base_ThemeOverlay_AppCompat_Dark_ActionBar = 2131296444;
-			
-			// aapt resource value: 0x7f09005d
-			public const int Base_ThemeOverlay_AppCompat_Dialog = 2131296349;
-			
-			// aapt resource value: 0x7f0900bd
-			public const int Base_ThemeOverlay_AppCompat_Dialog_Alert = 2131296445;
-			
-			// aapt resource value: 0x7f0900be
-			public const int Base_ThemeOverlay_AppCompat_Light = 2131296446;
-			
-			// aapt resource value: 0x7f090184
-			public const int Base_ThemeOverlay_MaterialComponents_Dialog = 2131296644;
-			
-			// aapt resource value: 0x7f090185
-			public const int Base_ThemeOverlay_MaterialComponents_Dialog_Alert = 2131296645;
-			
-			// aapt resource value: 0x7f090186
-			public const int Base_V14_Theme_MaterialComponents = 2131296646;
-			
-			// aapt resource value: 0x7f090187
-			public const int Base_V14_Theme_MaterialComponents_Bridge = 2131296647;
-			
-			// aapt resource value: 0x7f090188
-			public const int Base_V14_Theme_MaterialComponents_Dialog = 2131296648;
-			
-			// aapt resource value: 0x7f090189
-			public const int Base_V14_Theme_MaterialComponents_Light = 2131296649;
-			
-			// aapt resource value: 0x7f09018a
-			public const int Base_V14_Theme_MaterialComponents_Light_Bridge = 2131296650;
-			
-			// aapt resource value: 0x7f09018b
-			public const int Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131296651;
-			
-			// aapt resource value: 0x7f09018c
-			public const int Base_V14_Theme_MaterialComponents_Light_Dialog = 2131296652;
-			
-			// aapt resource value: 0x7f09018d
-			public const int Base_V14_ThemeOverlay_MaterialComponents_Dialog = 2131296653;
-			
-			// aapt resource value: 0x7f09018e
-			public const int Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = 2131296654;
-			
-			// aapt resource value: 0x7f09005e
-			public const int Base_V21_Theme_AppCompat = 2131296350;
-			
-			// aapt resource value: 0x7f09005f
-			public const int Base_V21_Theme_AppCompat_Dialog = 2131296351;
-			
-			// aapt resource value: 0x7f090060
-			public const int Base_V21_Theme_AppCompat_Light = 2131296352;
-			
-			// aapt resource value: 0x7f090061
-			public const int Base_V21_Theme_AppCompat_Light_Dialog = 2131296353;
-			
-			// aapt resource value: 0x7f090062
-			public const int Base_V21_ThemeOverlay_AppCompat_Dialog = 2131296354;
-			
-			// aapt resource value: 0x7f09008c
-			public const int Base_V22_Theme_AppCompat = 2131296396;
-			
-			// aapt resource value: 0x7f09008d
-			public const int Base_V22_Theme_AppCompat_Light = 2131296397;
-			
-			// aapt resource value: 0x7f090090
-			public const int Base_V23_Theme_AppCompat = 2131296400;
-			
-			// aapt resource value: 0x7f090091
-			public const int Base_V23_Theme_AppCompat_Light = 2131296401;
-			
-			// aapt resource value: 0x7f090099
-			public const int Base_V26_Theme_AppCompat = 2131296409;
-			
-			// aapt resource value: 0x7f09009a
-			public const int Base_V26_Theme_AppCompat_Light = 2131296410;
-			
-			// aapt resource value: 0x7f09009b
-			public const int Base_V26_Widget_AppCompat_Toolbar = 2131296411;
-			
-			// aapt resource value: 0x7f09009d
-			public const int Base_V28_Theme_AppCompat = 2131296413;
-			
-			// aapt resource value: 0x7f09009e
-			public const int Base_V28_Theme_AppCompat_Light = 2131296414;
-			
-			// aapt resource value: 0x7f0900bf
-			public const int Base_V7_Theme_AppCompat = 2131296447;
-			
-			// aapt resource value: 0x7f0900c0
-			public const int Base_V7_Theme_AppCompat_Dialog = 2131296448;
-			
-			// aapt resource value: 0x7f0900c1
-			public const int Base_V7_Theme_AppCompat_Light = 2131296449;
-			
-			// aapt resource value: 0x7f0900c2
-			public const int Base_V7_Theme_AppCompat_Light_Dialog = 2131296450;
-			
-			// aapt resource value: 0x7f0900c3
-			public const int Base_V7_ThemeOverlay_AppCompat_Dialog = 2131296451;
-			
-			// aapt resource value: 0x7f0900c4
-			public const int Base_V7_Widget_AppCompat_AutoCompleteTextView = 2131296452;
-			
-			// aapt resource value: 0x7f0900c5
-			public const int Base_V7_Widget_AppCompat_EditText = 2131296453;
-			
-			// aapt resource value: 0x7f0900c6
-			public const int Base_V7_Widget_AppCompat_Toolbar = 2131296454;
-			
-			// aapt resource value: 0x7f0900c7
-			public const int Base_Widget_AppCompat_ActionBar = 2131296455;
-			
-			// aapt resource value: 0x7f0900c8
-			public const int Base_Widget_AppCompat_ActionBar_Solid = 2131296456;
-			
-			// aapt resource value: 0x7f0900c9
-			public const int Base_Widget_AppCompat_ActionBar_TabBar = 2131296457;
-			
-			// aapt resource value: 0x7f090063
-			public const int Base_Widget_AppCompat_ActionBar_TabText = 2131296355;
-			
-			// aapt resource value: 0x7f090064
-			public const int Base_Widget_AppCompat_ActionBar_TabView = 2131296356;
-			
-			// aapt resource value: 0x7f090065
-			public const int Base_Widget_AppCompat_ActionButton = 2131296357;
-			
-			// aapt resource value: 0x7f090066
-			public const int Base_Widget_AppCompat_ActionButton_CloseMode = 2131296358;
-			
-			// aapt resource value: 0x7f090067
-			public const int Base_Widget_AppCompat_ActionButton_Overflow = 2131296359;
-			
-			// aapt resource value: 0x7f0900ca
-			public const int Base_Widget_AppCompat_ActionMode = 2131296458;
-			
-			// aapt resource value: 0x7f0900cb
-			public const int Base_Widget_AppCompat_ActivityChooserView = 2131296459;
-			
-			// aapt resource value: 0x7f090068
-			public const int Base_Widget_AppCompat_AutoCompleteTextView = 2131296360;
-			
-			// aapt resource value: 0x7f090069
-			public const int Base_Widget_AppCompat_Button = 2131296361;
-			
-			// aapt resource value: 0x7f09006a
-			public const int Base_Widget_AppCompat_Button_Borderless = 2131296362;
-			
-			// aapt resource value: 0x7f09006b
-			public const int Base_Widget_AppCompat_Button_Borderless_Colored = 2131296363;
-			
-			// aapt resource value: 0x7f0900cc
-			public const int Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131296460;
-			
-			// aapt resource value: 0x7f090092
-			public const int Base_Widget_AppCompat_Button_Colored = 2131296402;
-			
-			// aapt resource value: 0x7f09006c
-			public const int Base_Widget_AppCompat_Button_Small = 2131296364;
-			
-			// aapt resource value: 0x7f09006d
-			public const int Base_Widget_AppCompat_ButtonBar = 2131296365;
-			
-			// aapt resource value: 0x7f0900cd
-			public const int Base_Widget_AppCompat_ButtonBar_AlertDialog = 2131296461;
-			
-			// aapt resource value: 0x7f09006e
-			public const int Base_Widget_AppCompat_CompoundButton_CheckBox = 2131296366;
-			
-			// aapt resource value: 0x7f09006f
-			public const int Base_Widget_AppCompat_CompoundButton_RadioButton = 2131296367;
-			
-			// aapt resource value: 0x7f0900ce
-			public const int Base_Widget_AppCompat_CompoundButton_Switch = 2131296462;
-			
-			// aapt resource value: 0x7f090016
-			public const int Base_Widget_AppCompat_DrawerArrowToggle = 2131296278;
-			
-			// aapt resource value: 0x7f0900cf
-			public const int Base_Widget_AppCompat_DrawerArrowToggle_Common = 2131296463;
-			
-			// aapt resource value: 0x7f090070
-			public const int Base_Widget_AppCompat_DropDownItem_Spinner = 2131296368;
-			
-			// aapt resource value: 0x7f090071
-			public const int Base_Widget_AppCompat_EditText = 2131296369;
-			
-			// aapt resource value: 0x7f090072
-			public const int Base_Widget_AppCompat_ImageButton = 2131296370;
-			
-			// aapt resource value: 0x7f0900d0
-			public const int Base_Widget_AppCompat_Light_ActionBar = 2131296464;
-			
-			// aapt resource value: 0x7f0900d1
-			public const int Base_Widget_AppCompat_Light_ActionBar_Solid = 2131296465;
-			
-			// aapt resource value: 0x7f0900d2
-			public const int Base_Widget_AppCompat_Light_ActionBar_TabBar = 2131296466;
-			
-			// aapt resource value: 0x7f090073
-			public const int Base_Widget_AppCompat_Light_ActionBar_TabText = 2131296371;
-			
-			// aapt resource value: 0x7f090074
-			public const int Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131296372;
-			
-			// aapt resource value: 0x7f090075
-			public const int Base_Widget_AppCompat_Light_ActionBar_TabView = 2131296373;
-			
-			// aapt resource value: 0x7f090076
-			public const int Base_Widget_AppCompat_Light_PopupMenu = 2131296374;
-			
-			// aapt resource value: 0x7f090077
-			public const int Base_Widget_AppCompat_Light_PopupMenu_Overflow = 2131296375;
-			
-			// aapt resource value: 0x7f0900d3
-			public const int Base_Widget_AppCompat_ListMenuView = 2131296467;
-			
-			// aapt resource value: 0x7f090078
-			public const int Base_Widget_AppCompat_ListPopupWindow = 2131296376;
-			
-			// aapt resource value: 0x7f090079
-			public const int Base_Widget_AppCompat_ListView = 2131296377;
-			
-			// aapt resource value: 0x7f09007a
-			public const int Base_Widget_AppCompat_ListView_DropDown = 2131296378;
-			
-			// aapt resource value: 0x7f09007b
-			public const int Base_Widget_AppCompat_ListView_Menu = 2131296379;
-			
-			// aapt resource value: 0x7f09007c
-			public const int Base_Widget_AppCompat_PopupMenu = 2131296380;
-			
-			// aapt resource value: 0x7f09007d
-			public const int Base_Widget_AppCompat_PopupMenu_Overflow = 2131296381;
-			
-			// aapt resource value: 0x7f0900d4
-			public const int Base_Widget_AppCompat_PopupWindow = 2131296468;
-			
-			// aapt resource value: 0x7f09007e
-			public const int Base_Widget_AppCompat_ProgressBar = 2131296382;
-			
-			// aapt resource value: 0x7f09007f
-			public const int Base_Widget_AppCompat_ProgressBar_Horizontal = 2131296383;
-			
-			// aapt resource value: 0x7f090080
-			public const int Base_Widget_AppCompat_RatingBar = 2131296384;
-			
-			// aapt resource value: 0x7f090093
-			public const int Base_Widget_AppCompat_RatingBar_Indicator = 2131296403;
-			
-			// aapt resource value: 0x7f090094
-			public const int Base_Widget_AppCompat_RatingBar_Small = 2131296404;
-			
-			// aapt resource value: 0x7f0900d5
-			public const int Base_Widget_AppCompat_SearchView = 2131296469;
-			
-			// aapt resource value: 0x7f0900d6
-			public const int Base_Widget_AppCompat_SearchView_ActionBar = 2131296470;
-			
-			// aapt resource value: 0x7f090081
-			public const int Base_Widget_AppCompat_SeekBar = 2131296385;
-			
-			// aapt resource value: 0x7f0900d7
-			public const int Base_Widget_AppCompat_SeekBar_Discrete = 2131296471;
-			
-			// aapt resource value: 0x7f090082
-			public const int Base_Widget_AppCompat_Spinner = 2131296386;
-			
-			// aapt resource value: 0x7f090019
-			public const int Base_Widget_AppCompat_Spinner_Underlined = 2131296281;
-			
-			// aapt resource value: 0x7f090083
-			public const int Base_Widget_AppCompat_TextView_SpinnerItem = 2131296387;
-			
-			// aapt resource value: 0x7f09009c
-			public const int Base_Widget_AppCompat_Toolbar = 2131296412;
-			
-			// aapt resource value: 0x7f090084
-			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131296388;
-			
-			// aapt resource value: 0x7f09018f
-			public const int Base_Widget_Design_TabLayout = 2131296655;
-			
-			// aapt resource value: 0x7f090190
-			public const int Base_Widget_MaterialComponents_Chip = 2131296656;
-			
-			// aapt resource value: 0x7f090191
-			public const int Base_Widget_MaterialComponents_TextInputEditText = 2131296657;
-			
-			// aapt resource value: 0x7f090192
-			public const int Base_Widget_MaterialComponents_TextInputLayout = 2131296658;
-			
-			// aapt resource value: 0x7f090012
-			public const int CardView = 2131296274;
-			
-			// aapt resource value: 0x7f090014
-			public const int CardView_Dark = 2131296276;
-			
-			// aapt resource value: 0x7f090015
-			public const int CardView_Light = 2131296277;
-			
-			// aapt resource value: 0x7f090208
-			public const int CircularProgressBar = 2131296776;
-			
-			// aapt resource value: 0x7f090209
-			public const int CircularProgressBarLight = 2131296777;
+			public const int Animation_Design_BottomSheetDialog = 2131296631;
 			
 			// aapt resource value: 0x7f090210
-			public const int DrawerIcon = 2131296784;
+			public const int AppCompatDialogStyle = 2131296784;
 			
-			// aapt resource value: 0x7f09020a
-			public const int MainTheme = 2131296778;
+			// aapt resource value: 0x7f0900a7
+			public const int Base_AlertDialog_AppCompat = 2131296423;
 			
-			// aapt resource value: 0x7f09020b
-			public const int MainTheme_Base = 2131296779;
+			// aapt resource value: 0x7f0900a8
+			public const int Base_AlertDialog_AppCompat_Light = 2131296424;
 			
-			// aapt resource value: 0x7f09020e
-			public const int MineCustomTabText = 2131296782;
+			// aapt resource value: 0x7f0900a9
+			public const int Base_Animation_AppCompat_Dialog = 2131296425;
 			
-			// aapt resource value: 0x7f09020f
-			public const int NoShadowButton = 2131296783;
+			// aapt resource value: 0x7f0900aa
+			public const int Base_Animation_AppCompat_DropDownUp = 2131296426;
 			
-			// aapt resource value: 0x7f090085
-			public const int Platform_AppCompat = 2131296389;
+			// aapt resource value: 0x7f0900ab
+			public const int Base_Animation_AppCompat_Tooltip = 2131296427;
 			
-			// aapt resource value: 0x7f090086
-			public const int Platform_AppCompat_Light = 2131296390;
+			// aapt resource value: 0x7f090016
+			public const int Base_CardView = 2131296278;
 			
-			// aapt resource value: 0x7f090193
-			public const int Platform_MaterialComponents = 2131296659;
+			// aapt resource value: 0x7f0900ac
+			public const int Base_DialogWindowTitle_AppCompat = 2131296428;
 			
-			// aapt resource value: 0x7f090194
-			public const int Platform_MaterialComponents_Dialog = 2131296660;
+			// aapt resource value: 0x7f0900ad
+			public const int Base_DialogWindowTitleBackground_AppCompat = 2131296429;
 			
-			// aapt resource value: 0x7f090195
-			public const int Platform_MaterialComponents_Light = 2131296661;
+			// aapt resource value: 0x7f090036
+			public const int Base_TextAppearance_AppCompat = 2131296310;
 			
-			// aapt resource value: 0x7f090196
-			public const int Platform_MaterialComponents_Light_Dialog = 2131296662;
+			// aapt resource value: 0x7f090037
+			public const int Base_TextAppearance_AppCompat_Body1 = 2131296311;
 			
-			// aapt resource value: 0x7f090087
-			public const int Platform_ThemeOverlay_AppCompat = 2131296391;
+			// aapt resource value: 0x7f090038
+			public const int Base_TextAppearance_AppCompat_Body2 = 2131296312;
 			
-			// aapt resource value: 0x7f090088
-			public const int Platform_ThemeOverlay_AppCompat_Dark = 2131296392;
+			// aapt resource value: 0x7f090039
+			public const int Base_TextAppearance_AppCompat_Button = 2131296313;
 			
-			// aapt resource value: 0x7f090089
-			public const int Platform_ThemeOverlay_AppCompat_Light = 2131296393;
+			// aapt resource value: 0x7f09003a
+			public const int Base_TextAppearance_AppCompat_Caption = 2131296314;
 			
-			// aapt resource value: 0x7f09008a
-			public const int Platform_V21_AppCompat = 2131296394;
+			// aapt resource value: 0x7f09003b
+			public const int Base_TextAppearance_AppCompat_Display1 = 2131296315;
 			
-			// aapt resource value: 0x7f09008b
-			public const int Platform_V21_AppCompat_Light = 2131296395;
+			// aapt resource value: 0x7f09003c
+			public const int Base_TextAppearance_AppCompat_Display2 = 2131296316;
 			
-			// aapt resource value: 0x7f090097
-			public const int Platform_V25_AppCompat = 2131296407;
+			// aapt resource value: 0x7f09003d
+			public const int Base_TextAppearance_AppCompat_Display3 = 2131296317;
+			
+			// aapt resource value: 0x7f09003e
+			public const int Base_TextAppearance_AppCompat_Display4 = 2131296318;
+			
+			// aapt resource value: 0x7f09003f
+			public const int Base_TextAppearance_AppCompat_Headline = 2131296319;
+			
+			// aapt resource value: 0x7f090040
+			public const int Base_TextAppearance_AppCompat_Inverse = 2131296320;
+			
+			// aapt resource value: 0x7f090041
+			public const int Base_TextAppearance_AppCompat_Large = 2131296321;
+			
+			// aapt resource value: 0x7f090042
+			public const int Base_TextAppearance_AppCompat_Large_Inverse = 2131296322;
+			
+			// aapt resource value: 0x7f090043
+			public const int Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131296323;
+			
+			// aapt resource value: 0x7f090044
+			public const int Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131296324;
+			
+			// aapt resource value: 0x7f090045
+			public const int Base_TextAppearance_AppCompat_Medium = 2131296325;
+			
+			// aapt resource value: 0x7f090046
+			public const int Base_TextAppearance_AppCompat_Medium_Inverse = 2131296326;
+			
+			// aapt resource value: 0x7f090047
+			public const int Base_TextAppearance_AppCompat_Menu = 2131296327;
+			
+			// aapt resource value: 0x7f0900ae
+			public const int Base_TextAppearance_AppCompat_SearchResult = 2131296430;
+			
+			// aapt resource value: 0x7f090048
+			public const int Base_TextAppearance_AppCompat_SearchResult_Subtitle = 2131296328;
+			
+			// aapt resource value: 0x7f090049
+			public const int Base_TextAppearance_AppCompat_SearchResult_Title = 2131296329;
+			
+			// aapt resource value: 0x7f09004a
+			public const int Base_TextAppearance_AppCompat_Small = 2131296330;
+			
+			// aapt resource value: 0x7f09004b
+			public const int Base_TextAppearance_AppCompat_Small_Inverse = 2131296331;
+			
+			// aapt resource value: 0x7f09004c
+			public const int Base_TextAppearance_AppCompat_Subhead = 2131296332;
+			
+			// aapt resource value: 0x7f0900af
+			public const int Base_TextAppearance_AppCompat_Subhead_Inverse = 2131296431;
+			
+			// aapt resource value: 0x7f09004d
+			public const int Base_TextAppearance_AppCompat_Title = 2131296333;
+			
+			// aapt resource value: 0x7f0900b0
+			public const int Base_TextAppearance_AppCompat_Title_Inverse = 2131296432;
+			
+			// aapt resource value: 0x7f0900b1
+			public const int Base_TextAppearance_AppCompat_Tooltip = 2131296433;
+			
+			// aapt resource value: 0x7f090091
+			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131296401;
+			
+			// aapt resource value: 0x7f09004e
+			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131296334;
+			
+			// aapt resource value: 0x7f09004f
+			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131296335;
+			
+			// aapt resource value: 0x7f090050
+			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Title = 2131296336;
+			
+			// aapt resource value: 0x7f090051
+			public const int Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131296337;
+			
+			// aapt resource value: 0x7f090052
+			public const int Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131296338;
+			
+			// aapt resource value: 0x7f090053
+			public const int Base_TextAppearance_AppCompat_Widget_ActionMode_Title = 2131296339;
+			
+			// aapt resource value: 0x7f090054
+			public const int Base_TextAppearance_AppCompat_Widget_Button = 2131296340;
 			
 			// aapt resource value: 0x7f090098
-			public const int Platform_V25_AppCompat_Light = 2131296408;
+			public const int Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131296408;
 			
-			// aapt resource value: 0x7f0900d8
-			public const int Platform_Widget_AppCompat_Spinner = 2131296472;
+			// aapt resource value: 0x7f090099
+			public const int Base_TextAppearance_AppCompat_Widget_Button_Colored = 2131296409;
 			
-			// aapt resource value: 0x7f090206
-			public const int ProgressButton = 2131296774;
+			// aapt resource value: 0x7f090092
+			public const int Base_TextAppearance_AppCompat_Widget_Button_Inverse = 2131296402;
 			
-			// aapt resource value: 0x7f090207
-			public const int ProgressButton_Pin = 2131296775;
+			// aapt resource value: 0x7f0900b2
+			public const int Base_TextAppearance_AppCompat_Widget_DropDownItem = 2131296434;
 			
-			// aapt resource value: 0x7f090022
-			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131296290;
+			// aapt resource value: 0x7f090055
+			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131296341;
 			
-			// aapt resource value: 0x7f090023
-			public const int RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = 2131296291;
+			// aapt resource value: 0x7f090056
+			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131296342;
 			
-			// aapt resource value: 0x7f090024
-			public const int RtlOverlay_Widget_AppCompat_DialogTitle_Icon = 2131296292;
+			// aapt resource value: 0x7f090057
+			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131296343;
 			
-			// aapt resource value: 0x7f090025
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem = 2131296293;
+			// aapt resource value: 0x7f090058
+			public const int Base_TextAppearance_AppCompat_Widget_Switch = 2131296344;
 			
-			// aapt resource value: 0x7f090026
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = 2131296294;
+			// aapt resource value: 0x7f090059
+			public const int Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131296345;
 			
-			// aapt resource value: 0x7f090027
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = 2131296295;
+			// aapt resource value: 0x7f0900b3
+			public const int Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131296435;
 			
-			// aapt resource value: 0x7f090028
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = 2131296296;
+			// aapt resource value: 0x7f09005a
+			public const int Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131296346;
 			
-			// aapt resource value: 0x7f090029
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = 2131296297;
+			// aapt resource value: 0x7f09005b
+			public const int Base_TextAppearance_Widget_AppCompat_Toolbar_Title = 2131296347;
 			
-			// aapt resource value: 0x7f09002a
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = 2131296298;
+			// aapt resource value: 0x7f09005c
+			public const int Base_Theme_AppCompat = 2131296348;
 			
-			// aapt resource value: 0x7f09002b
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown = 2131296299;
+			// aapt resource value: 0x7f0900b4
+			public const int Base_Theme_AppCompat_CompactMenu = 2131296436;
 			
-			// aapt resource value: 0x7f09002c
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = 2131296300;
+			// aapt resource value: 0x7f09005d
+			public const int Base_Theme_AppCompat_Dialog = 2131296349;
 			
-			// aapt resource value: 0x7f09002d
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = 2131296301;
+			// aapt resource value: 0x7f0900b5
+			public const int Base_Theme_AppCompat_Dialog_Alert = 2131296437;
 			
-			// aapt resource value: 0x7f09002e
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Query = 2131296302;
+			// aapt resource value: 0x7f0900b6
+			public const int Base_Theme_AppCompat_Dialog_FixedSize = 2131296438;
 			
-			// aapt resource value: 0x7f09002f
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Text = 2131296303;
-			
-			// aapt resource value: 0x7f090030
-			public const int RtlOverlay_Widget_AppCompat_SearchView_MagIcon = 2131296304;
-			
-			// aapt resource value: 0x7f090031
-			public const int RtlUnderlay_Widget_AppCompat_ActionButton = 2131296305;
-			
-			// aapt resource value: 0x7f090032
-			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131296306;
-			
-			// aapt resource value: 0x7f0900d9
-			public const int TextAppearance_AppCompat = 2131296473;
-			
-			// aapt resource value: 0x7f0900da
-			public const int TextAppearance_AppCompat_Body1 = 2131296474;
-			
-			// aapt resource value: 0x7f0900db
-			public const int TextAppearance_AppCompat_Body2 = 2131296475;
-			
-			// aapt resource value: 0x7f0900dc
-			public const int TextAppearance_AppCompat_Button = 2131296476;
-			
-			// aapt resource value: 0x7f0900dd
-			public const int TextAppearance_AppCompat_Caption = 2131296477;
-			
-			// aapt resource value: 0x7f0900de
-			public const int TextAppearance_AppCompat_Display1 = 2131296478;
-			
-			// aapt resource value: 0x7f0900df
-			public const int TextAppearance_AppCompat_Display2 = 2131296479;
-			
-			// aapt resource value: 0x7f0900e0
-			public const int TextAppearance_AppCompat_Display3 = 2131296480;
-			
-			// aapt resource value: 0x7f0900e1
-			public const int TextAppearance_AppCompat_Display4 = 2131296481;
-			
-			// aapt resource value: 0x7f0900e2
-			public const int TextAppearance_AppCompat_Headline = 2131296482;
-			
-			// aapt resource value: 0x7f0900e3
-			public const int TextAppearance_AppCompat_Inverse = 2131296483;
-			
-			// aapt resource value: 0x7f0900e4
-			public const int TextAppearance_AppCompat_Large = 2131296484;
-			
-			// aapt resource value: 0x7f0900e5
-			public const int TextAppearance_AppCompat_Large_Inverse = 2131296485;
-			
-			// aapt resource value: 0x7f0900e6
-			public const int TextAppearance_AppCompat_Light_SearchResult_Subtitle = 2131296486;
-			
-			// aapt resource value: 0x7f0900e7
-			public const int TextAppearance_AppCompat_Light_SearchResult_Title = 2131296487;
-			
-			// aapt resource value: 0x7f0900e8
-			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131296488;
-			
-			// aapt resource value: 0x7f0900e9
-			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131296489;
-			
-			// aapt resource value: 0x7f0900ea
-			public const int TextAppearance_AppCompat_Medium = 2131296490;
-			
-			// aapt resource value: 0x7f0900eb
-			public const int TextAppearance_AppCompat_Medium_Inverse = 2131296491;
-			
-			// aapt resource value: 0x7f0900ec
-			public const int TextAppearance_AppCompat_Menu = 2131296492;
-			
-			// aapt resource value: 0x7f0900ed
-			public const int TextAppearance_AppCompat_SearchResult_Subtitle = 2131296493;
-			
-			// aapt resource value: 0x7f0900ee
-			public const int TextAppearance_AppCompat_SearchResult_Title = 2131296494;
-			
-			// aapt resource value: 0x7f0900ef
-			public const int TextAppearance_AppCompat_Small = 2131296495;
-			
-			// aapt resource value: 0x7f0900f0
-			public const int TextAppearance_AppCompat_Small_Inverse = 2131296496;
-			
-			// aapt resource value: 0x7f0900f1
-			public const int TextAppearance_AppCompat_Subhead = 2131296497;
-			
-			// aapt resource value: 0x7f0900f2
-			public const int TextAppearance_AppCompat_Subhead_Inverse = 2131296498;
-			
-			// aapt resource value: 0x7f0900f3
-			public const int TextAppearance_AppCompat_Title = 2131296499;
-			
-			// aapt resource value: 0x7f0900f4
-			public const int TextAppearance_AppCompat_Title_Inverse = 2131296500;
-			
-			// aapt resource value: 0x7f090021
-			public const int TextAppearance_AppCompat_Tooltip = 2131296289;
-			
-			// aapt resource value: 0x7f0900f5
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131296501;
-			
-			// aapt resource value: 0x7f0900f6
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131296502;
-			
-			// aapt resource value: 0x7f0900f7
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131296503;
-			
-			// aapt resource value: 0x7f0900f8
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Title = 2131296504;
-			
-			// aapt resource value: 0x7f0900f9
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131296505;
-			
-			// aapt resource value: 0x7f0900fa
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131296506;
-			
-			// aapt resource value: 0x7f0900fb
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = 2131296507;
-			
-			// aapt resource value: 0x7f0900fc
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Title = 2131296508;
-			
-			// aapt resource value: 0x7f0900fd
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = 2131296509;
-			
-			// aapt resource value: 0x7f0900fe
-			public const int TextAppearance_AppCompat_Widget_Button = 2131296510;
-			
-			// aapt resource value: 0x7f0900ff
-			public const int TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131296511;
-			
-			// aapt resource value: 0x7f090100
-			public const int TextAppearance_AppCompat_Widget_Button_Colored = 2131296512;
-			
-			// aapt resource value: 0x7f090101
-			public const int TextAppearance_AppCompat_Widget_Button_Inverse = 2131296513;
-			
-			// aapt resource value: 0x7f090102
-			public const int TextAppearance_AppCompat_Widget_DropDownItem = 2131296514;
-			
-			// aapt resource value: 0x7f090103
-			public const int TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131296515;
-			
-			// aapt resource value: 0x7f090104
-			public const int TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131296516;
-			
-			// aapt resource value: 0x7f090105
-			public const int TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131296517;
-			
-			// aapt resource value: 0x7f090106
-			public const int TextAppearance_AppCompat_Widget_Switch = 2131296518;
-			
-			// aapt resource value: 0x7f090107
-			public const int TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131296519;
-			
-			// aapt resource value: 0x7f0901ff
-			public const int TextAppearance_Compat_Notification = 2131296767;
-			
-			// aapt resource value: 0x7f090200
-			public const int TextAppearance_Compat_Notification_Info = 2131296768;
-			
-			// aapt resource value: 0x7f090168
-			public const int TextAppearance_Compat_Notification_Info_Media = 2131296616;
-			
-			// aapt resource value: 0x7f090205
-			public const int TextAppearance_Compat_Notification_Line2 = 2131296773;
-			
-			// aapt resource value: 0x7f09016c
-			public const int TextAppearance_Compat_Notification_Line2_Media = 2131296620;
-			
-			// aapt resource value: 0x7f090169
-			public const int TextAppearance_Compat_Notification_Media = 2131296617;
-			
-			// aapt resource value: 0x7f090201
-			public const int TextAppearance_Compat_Notification_Time = 2131296769;
-			
-			// aapt resource value: 0x7f09016a
-			public const int TextAppearance_Compat_Notification_Time_Media = 2131296618;
-			
-			// aapt resource value: 0x7f090202
-			public const int TextAppearance_Compat_Notification_Title = 2131296770;
-			
-			// aapt resource value: 0x7f09016b
-			public const int TextAppearance_Compat_Notification_Title_Media = 2131296619;
-			
-			// aapt resource value: 0x7f090197
-			public const int TextAppearance_Design_CollapsingToolbar_Expanded = 2131296663;
-			
-			// aapt resource value: 0x7f090198
-			public const int TextAppearance_Design_Counter = 2131296664;
-			
-			// aapt resource value: 0x7f090199
-			public const int TextAppearance_Design_Counter_Overflow = 2131296665;
-			
-			// aapt resource value: 0x7f09019a
-			public const int TextAppearance_Design_Error = 2131296666;
-			
-			// aapt resource value: 0x7f09019b
-			public const int TextAppearance_Design_HelperText = 2131296667;
-			
-			// aapt resource value: 0x7f09019c
-			public const int TextAppearance_Design_Hint = 2131296668;
-			
-			// aapt resource value: 0x7f09019d
-			public const int TextAppearance_Design_Snackbar_Message = 2131296669;
-			
-			// aapt resource value: 0x7f09019e
-			public const int TextAppearance_Design_Tab = 2131296670;
-			
-			// aapt resource value: 0x7f09019f
-			public const int TextAppearance_MaterialComponents_Body1 = 2131296671;
-			
-			// aapt resource value: 0x7f0901a0
-			public const int TextAppearance_MaterialComponents_Body2 = 2131296672;
-			
-			// aapt resource value: 0x7f090170
-			public const int TextAppearance_MaterialComponents_Button = 2131296624;
-			
-			// aapt resource value: 0x7f0901a1
-			public const int TextAppearance_MaterialComponents_Caption = 2131296673;
-			
-			// aapt resource value: 0x7f0901a2
-			public const int TextAppearance_MaterialComponents_Chip = 2131296674;
-			
-			// aapt resource value: 0x7f0901a3
-			public const int TextAppearance_MaterialComponents_Headline1 = 2131296675;
-			
-			// aapt resource value: 0x7f0901a4
-			public const int TextAppearance_MaterialComponents_Headline2 = 2131296676;
-			
-			// aapt resource value: 0x7f0901a5
-			public const int TextAppearance_MaterialComponents_Headline3 = 2131296677;
-			
-			// aapt resource value: 0x7f0901a6
-			public const int TextAppearance_MaterialComponents_Headline4 = 2131296678;
-			
-			// aapt resource value: 0x7f0901a7
-			public const int TextAppearance_MaterialComponents_Headline5 = 2131296679;
-			
-			// aapt resource value: 0x7f090171
-			public const int TextAppearance_MaterialComponents_Headline6 = 2131296625;
-			
-			// aapt resource value: 0x7f090172
-			public const int TextAppearance_MaterialComponents_Overline = 2131296626;
-			
-			// aapt resource value: 0x7f0901a8
-			public const int TextAppearance_MaterialComponents_Subtitle1 = 2131296680;
-			
-			// aapt resource value: 0x7f090173
-			public const int TextAppearance_MaterialComponents_Subtitle2 = 2131296627;
-			
-			// aapt resource value: 0x7f0901a9
-			public const int TextAppearance_MaterialComponents_Tab = 2131296681;
-			
-			// aapt resource value: 0x7f090007
-			public const int TextAppearance_MediaRouter_PrimaryText = 2131296263;
-			
-			// aapt resource value: 0x7f090008
-			public const int TextAppearance_MediaRouter_SecondaryText = 2131296264;
-			
-			// aapt resource value: 0x7f090009
-			public const int TextAppearance_MediaRouter_Title = 2131296265;
-			
-			// aapt resource value: 0x7f090108
-			public const int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131296520;
-			
-			// aapt resource value: 0x7f090109
-			public const int TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131296521;
-			
-			// aapt resource value: 0x7f09010a
-			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131296522;
-			
-			// aapt resource value: 0x7f09010b
-			public const int Theme_AppCompat = 2131296523;
-			
-			// aapt resource value: 0x7f09010c
-			public const int Theme_AppCompat_CompactMenu = 2131296524;
+			// aapt resource value: 0x7f0900b7
+			public const int Base_Theme_AppCompat_Dialog_MinWidth = 2131296439;
 			
 			// aapt resource value: 0x7f09001a
-			public const int Theme_AppCompat_DayNight = 2131296282;
+			public const int Base_Theme_AppCompat_DialogWhenLarge = 2131296282;
+			
+			// aapt resource value: 0x7f09005e
+			public const int Base_Theme_AppCompat_Light = 2131296350;
+			
+			// aapt resource value: 0x7f0900b8
+			public const int Base_Theme_AppCompat_Light_DarkActionBar = 2131296440;
+			
+			// aapt resource value: 0x7f09005f
+			public const int Base_Theme_AppCompat_Light_Dialog = 2131296351;
+			
+			// aapt resource value: 0x7f0900b9
+			public const int Base_Theme_AppCompat_Light_Dialog_Alert = 2131296441;
+			
+			// aapt resource value: 0x7f0900ba
+			public const int Base_Theme_AppCompat_Light_Dialog_FixedSize = 2131296442;
+			
+			// aapt resource value: 0x7f0900bb
+			public const int Base_Theme_AppCompat_Light_Dialog_MinWidth = 2131296443;
 			
 			// aapt resource value: 0x7f09001b
-			public const int Theme_AppCompat_DayNight_DarkActionBar = 2131296283;
+			public const int Base_Theme_AppCompat_Light_DialogWhenLarge = 2131296283;
+			
+			// aapt resource value: 0x7f090178
+			public const int Base_Theme_MaterialComponents = 2131296632;
+			
+			// aapt resource value: 0x7f090179
+			public const int Base_Theme_MaterialComponents_Bridge = 2131296633;
+			
+			// aapt resource value: 0x7f09017a
+			public const int Base_Theme_MaterialComponents_CompactMenu = 2131296634;
+			
+			// aapt resource value: 0x7f09017b
+			public const int Base_Theme_MaterialComponents_Dialog = 2131296635;
+			
+			// aapt resource value: 0x7f09017c
+			public const int Base_Theme_MaterialComponents_Dialog_Alert = 2131296636;
+			
+			// aapt resource value: 0x7f09017d
+			public const int Base_Theme_MaterialComponents_Dialog_FixedSize = 2131296637;
+			
+			// aapt resource value: 0x7f09017e
+			public const int Base_Theme_MaterialComponents_Dialog_MinWidth = 2131296638;
+			
+			// aapt resource value: 0x7f090171
+			public const int Base_Theme_MaterialComponents_DialogWhenLarge = 2131296625;
+			
+			// aapt resource value: 0x7f09017f
+			public const int Base_Theme_MaterialComponents_Light = 2131296639;
+			
+			// aapt resource value: 0x7f090180
+			public const int Base_Theme_MaterialComponents_Light_Bridge = 2131296640;
+			
+			// aapt resource value: 0x7f090181
+			public const int Base_Theme_MaterialComponents_Light_DarkActionBar = 2131296641;
+			
+			// aapt resource value: 0x7f090182
+			public const int Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131296642;
+			
+			// aapt resource value: 0x7f090183
+			public const int Base_Theme_MaterialComponents_Light_Dialog = 2131296643;
+			
+			// aapt resource value: 0x7f090184
+			public const int Base_Theme_MaterialComponents_Light_Dialog_Alert = 2131296644;
+			
+			// aapt resource value: 0x7f090185
+			public const int Base_Theme_MaterialComponents_Light_Dialog_FixedSize = 2131296645;
+			
+			// aapt resource value: 0x7f090186
+			public const int Base_Theme_MaterialComponents_Light_Dialog_MinWidth = 2131296646;
+			
+			// aapt resource value: 0x7f090172
+			public const int Base_Theme_MaterialComponents_Light_DialogWhenLarge = 2131296626;
+			
+			// aapt resource value: 0x7f0900bc
+			public const int Base_ThemeOverlay_AppCompat = 2131296444;
+			
+			// aapt resource value: 0x7f0900bd
+			public const int Base_ThemeOverlay_AppCompat_ActionBar = 2131296445;
+			
+			// aapt resource value: 0x7f0900be
+			public const int Base_ThemeOverlay_AppCompat_Dark = 2131296446;
+			
+			// aapt resource value: 0x7f0900bf
+			public const int Base_ThemeOverlay_AppCompat_Dark_ActionBar = 2131296447;
+			
+			// aapt resource value: 0x7f090060
+			public const int Base_ThemeOverlay_AppCompat_Dialog = 2131296352;
+			
+			// aapt resource value: 0x7f0900c0
+			public const int Base_ThemeOverlay_AppCompat_Dialog_Alert = 2131296448;
+			
+			// aapt resource value: 0x7f0900c1
+			public const int Base_ThemeOverlay_AppCompat_Light = 2131296449;
+			
+			// aapt resource value: 0x7f090187
+			public const int Base_ThemeOverlay_MaterialComponents_Dialog = 2131296647;
+			
+			// aapt resource value: 0x7f090188
+			public const int Base_ThemeOverlay_MaterialComponents_Dialog_Alert = 2131296648;
+			
+			// aapt resource value: 0x7f090189
+			public const int Base_V14_Theme_MaterialComponents = 2131296649;
+			
+			// aapt resource value: 0x7f09018a
+			public const int Base_V14_Theme_MaterialComponents_Bridge = 2131296650;
+			
+			// aapt resource value: 0x7f09018b
+			public const int Base_V14_Theme_MaterialComponents_Dialog = 2131296651;
+			
+			// aapt resource value: 0x7f09018c
+			public const int Base_V14_Theme_MaterialComponents_Light = 2131296652;
+			
+			// aapt resource value: 0x7f09018d
+			public const int Base_V14_Theme_MaterialComponents_Light_Bridge = 2131296653;
+			
+			// aapt resource value: 0x7f09018e
+			public const int Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131296654;
+			
+			// aapt resource value: 0x7f09018f
+			public const int Base_V14_Theme_MaterialComponents_Light_Dialog = 2131296655;
+			
+			// aapt resource value: 0x7f090190
+			public const int Base_V14_ThemeOverlay_MaterialComponents_Dialog = 2131296656;
+			
+			// aapt resource value: 0x7f090191
+			public const int Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = 2131296657;
+			
+			// aapt resource value: 0x7f090061
+			public const int Base_V21_Theme_AppCompat = 2131296353;
+			
+			// aapt resource value: 0x7f090062
+			public const int Base_V21_Theme_AppCompat_Dialog = 2131296354;
+			
+			// aapt resource value: 0x7f090063
+			public const int Base_V21_Theme_AppCompat_Light = 2131296355;
+			
+			// aapt resource value: 0x7f090064
+			public const int Base_V21_Theme_AppCompat_Light_Dialog = 2131296356;
+			
+			// aapt resource value: 0x7f090065
+			public const int Base_V21_ThemeOverlay_AppCompat_Dialog = 2131296357;
+			
+			// aapt resource value: 0x7f09008f
+			public const int Base_V22_Theme_AppCompat = 2131296399;
+			
+			// aapt resource value: 0x7f090090
+			public const int Base_V22_Theme_AppCompat_Light = 2131296400;
+			
+			// aapt resource value: 0x7f090093
+			public const int Base_V23_Theme_AppCompat = 2131296403;
+			
+			// aapt resource value: 0x7f090094
+			public const int Base_V23_Theme_AppCompat_Light = 2131296404;
+			
+			// aapt resource value: 0x7f09009c
+			public const int Base_V26_Theme_AppCompat = 2131296412;
+			
+			// aapt resource value: 0x7f09009d
+			public const int Base_V26_Theme_AppCompat_Light = 2131296413;
+			
+			// aapt resource value: 0x7f09009e
+			public const int Base_V26_Widget_AppCompat_Toolbar = 2131296414;
+			
+			// aapt resource value: 0x7f0900a0
+			public const int Base_V28_Theme_AppCompat = 2131296416;
+			
+			// aapt resource value: 0x7f0900a1
+			public const int Base_V28_Theme_AppCompat_Light = 2131296417;
+			
+			// aapt resource value: 0x7f0900c2
+			public const int Base_V7_Theme_AppCompat = 2131296450;
+			
+			// aapt resource value: 0x7f0900c3
+			public const int Base_V7_Theme_AppCompat_Dialog = 2131296451;
+			
+			// aapt resource value: 0x7f0900c4
+			public const int Base_V7_Theme_AppCompat_Light = 2131296452;
+			
+			// aapt resource value: 0x7f0900c5
+			public const int Base_V7_Theme_AppCompat_Light_Dialog = 2131296453;
+			
+			// aapt resource value: 0x7f0900c6
+			public const int Base_V7_ThemeOverlay_AppCompat_Dialog = 2131296454;
+			
+			// aapt resource value: 0x7f0900c7
+			public const int Base_V7_Widget_AppCompat_AutoCompleteTextView = 2131296455;
+			
+			// aapt resource value: 0x7f0900c8
+			public const int Base_V7_Widget_AppCompat_EditText = 2131296456;
+			
+			// aapt resource value: 0x7f0900c9
+			public const int Base_V7_Widget_AppCompat_Toolbar = 2131296457;
+			
+			// aapt resource value: 0x7f0900ca
+			public const int Base_Widget_AppCompat_ActionBar = 2131296458;
+			
+			// aapt resource value: 0x7f0900cb
+			public const int Base_Widget_AppCompat_ActionBar_Solid = 2131296459;
+			
+			// aapt resource value: 0x7f0900cc
+			public const int Base_Widget_AppCompat_ActionBar_TabBar = 2131296460;
+			
+			// aapt resource value: 0x7f090066
+			public const int Base_Widget_AppCompat_ActionBar_TabText = 2131296358;
+			
+			// aapt resource value: 0x7f090067
+			public const int Base_Widget_AppCompat_ActionBar_TabView = 2131296359;
+			
+			// aapt resource value: 0x7f090068
+			public const int Base_Widget_AppCompat_ActionButton = 2131296360;
+			
+			// aapt resource value: 0x7f090069
+			public const int Base_Widget_AppCompat_ActionButton_CloseMode = 2131296361;
+			
+			// aapt resource value: 0x7f09006a
+			public const int Base_Widget_AppCompat_ActionButton_Overflow = 2131296362;
+			
+			// aapt resource value: 0x7f0900cd
+			public const int Base_Widget_AppCompat_ActionMode = 2131296461;
+			
+			// aapt resource value: 0x7f0900ce
+			public const int Base_Widget_AppCompat_ActivityChooserView = 2131296462;
+			
+			// aapt resource value: 0x7f09006b
+			public const int Base_Widget_AppCompat_AutoCompleteTextView = 2131296363;
+			
+			// aapt resource value: 0x7f09006c
+			public const int Base_Widget_AppCompat_Button = 2131296364;
+			
+			// aapt resource value: 0x7f09006d
+			public const int Base_Widget_AppCompat_Button_Borderless = 2131296365;
+			
+			// aapt resource value: 0x7f09006e
+			public const int Base_Widget_AppCompat_Button_Borderless_Colored = 2131296366;
+			
+			// aapt resource value: 0x7f0900cf
+			public const int Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131296463;
+			
+			// aapt resource value: 0x7f090095
+			public const int Base_Widget_AppCompat_Button_Colored = 2131296405;
+			
+			// aapt resource value: 0x7f09006f
+			public const int Base_Widget_AppCompat_Button_Small = 2131296367;
+			
+			// aapt resource value: 0x7f090070
+			public const int Base_Widget_AppCompat_ButtonBar = 2131296368;
+			
+			// aapt resource value: 0x7f0900d0
+			public const int Base_Widget_AppCompat_ButtonBar_AlertDialog = 2131296464;
+			
+			// aapt resource value: 0x7f090071
+			public const int Base_Widget_AppCompat_CompoundButton_CheckBox = 2131296369;
+			
+			// aapt resource value: 0x7f090072
+			public const int Base_Widget_AppCompat_CompoundButton_RadioButton = 2131296370;
+			
+			// aapt resource value: 0x7f0900d1
+			public const int Base_Widget_AppCompat_CompoundButton_Switch = 2131296465;
+			
+			// aapt resource value: 0x7f090019
+			public const int Base_Widget_AppCompat_DrawerArrowToggle = 2131296281;
+			
+			// aapt resource value: 0x7f0900d2
+			public const int Base_Widget_AppCompat_DrawerArrowToggle_Common = 2131296466;
+			
+			// aapt resource value: 0x7f090073
+			public const int Base_Widget_AppCompat_DropDownItem_Spinner = 2131296371;
+			
+			// aapt resource value: 0x7f090074
+			public const int Base_Widget_AppCompat_EditText = 2131296372;
+			
+			// aapt resource value: 0x7f090075
+			public const int Base_Widget_AppCompat_ImageButton = 2131296373;
+			
+			// aapt resource value: 0x7f0900d3
+			public const int Base_Widget_AppCompat_Light_ActionBar = 2131296467;
+			
+			// aapt resource value: 0x7f0900d4
+			public const int Base_Widget_AppCompat_Light_ActionBar_Solid = 2131296468;
+			
+			// aapt resource value: 0x7f0900d5
+			public const int Base_Widget_AppCompat_Light_ActionBar_TabBar = 2131296469;
+			
+			// aapt resource value: 0x7f090076
+			public const int Base_Widget_AppCompat_Light_ActionBar_TabText = 2131296374;
+			
+			// aapt resource value: 0x7f090077
+			public const int Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131296375;
+			
+			// aapt resource value: 0x7f090078
+			public const int Base_Widget_AppCompat_Light_ActionBar_TabView = 2131296376;
+			
+			// aapt resource value: 0x7f090079
+			public const int Base_Widget_AppCompat_Light_PopupMenu = 2131296377;
+			
+			// aapt resource value: 0x7f09007a
+			public const int Base_Widget_AppCompat_Light_PopupMenu_Overflow = 2131296378;
+			
+			// aapt resource value: 0x7f0900d6
+			public const int Base_Widget_AppCompat_ListMenuView = 2131296470;
+			
+			// aapt resource value: 0x7f09007b
+			public const int Base_Widget_AppCompat_ListPopupWindow = 2131296379;
+			
+			// aapt resource value: 0x7f09007c
+			public const int Base_Widget_AppCompat_ListView = 2131296380;
+			
+			// aapt resource value: 0x7f09007d
+			public const int Base_Widget_AppCompat_ListView_DropDown = 2131296381;
+			
+			// aapt resource value: 0x7f09007e
+			public const int Base_Widget_AppCompat_ListView_Menu = 2131296382;
+			
+			// aapt resource value: 0x7f09007f
+			public const int Base_Widget_AppCompat_PopupMenu = 2131296383;
+			
+			// aapt resource value: 0x7f090080
+			public const int Base_Widget_AppCompat_PopupMenu_Overflow = 2131296384;
+			
+			// aapt resource value: 0x7f0900d7
+			public const int Base_Widget_AppCompat_PopupWindow = 2131296471;
+			
+			// aapt resource value: 0x7f090081
+			public const int Base_Widget_AppCompat_ProgressBar = 2131296385;
+			
+			// aapt resource value: 0x7f090082
+			public const int Base_Widget_AppCompat_ProgressBar_Horizontal = 2131296386;
+			
+			// aapt resource value: 0x7f090083
+			public const int Base_Widget_AppCompat_RatingBar = 2131296387;
+			
+			// aapt resource value: 0x7f090096
+			public const int Base_Widget_AppCompat_RatingBar_Indicator = 2131296406;
+			
+			// aapt resource value: 0x7f090097
+			public const int Base_Widget_AppCompat_RatingBar_Small = 2131296407;
+			
+			// aapt resource value: 0x7f0900d8
+			public const int Base_Widget_AppCompat_SearchView = 2131296472;
+			
+			// aapt resource value: 0x7f0900d9
+			public const int Base_Widget_AppCompat_SearchView_ActionBar = 2131296473;
+			
+			// aapt resource value: 0x7f090084
+			public const int Base_Widget_AppCompat_SeekBar = 2131296388;
+			
+			// aapt resource value: 0x7f0900da
+			public const int Base_Widget_AppCompat_SeekBar_Discrete = 2131296474;
+			
+			// aapt resource value: 0x7f090085
+			public const int Base_Widget_AppCompat_Spinner = 2131296389;
 			
 			// aapt resource value: 0x7f09001c
-			public const int Theme_AppCompat_DayNight_Dialog = 2131296284;
+			public const int Base_Widget_AppCompat_Spinner_Underlined = 2131296284;
 			
-			// aapt resource value: 0x7f09001d
-			public const int Theme_AppCompat_DayNight_Dialog_Alert = 2131296285;
+			// aapt resource value: 0x7f090086
+			public const int Base_Widget_AppCompat_TextView_SpinnerItem = 2131296390;
 			
-			// aapt resource value: 0x7f09001e
-			public const int Theme_AppCompat_DayNight_Dialog_MinWidth = 2131296286;
+			// aapt resource value: 0x7f09009f
+			public const int Base_Widget_AppCompat_Toolbar = 2131296415;
 			
-			// aapt resource value: 0x7f09001f
-			public const int Theme_AppCompat_DayNight_DialogWhenLarge = 2131296287;
+			// aapt resource value: 0x7f090087
+			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131296391;
 			
-			// aapt resource value: 0x7f090020
-			public const int Theme_AppCompat_DayNight_NoActionBar = 2131296288;
+			// aapt resource value: 0x7f090192
+			public const int Base_Widget_Design_TabLayout = 2131296658;
 			
-			// aapt resource value: 0x7f09010d
-			public const int Theme_AppCompat_Dialog = 2131296525;
+			// aapt resource value: 0x7f090193
+			public const int Base_Widget_MaterialComponents_Chip = 2131296659;
 			
-			// aapt resource value: 0x7f09010e
-			public const int Theme_AppCompat_Dialog_Alert = 2131296526;
+			// aapt resource value: 0x7f090194
+			public const int Base_Widget_MaterialComponents_TextInputEditText = 2131296660;
 			
-			// aapt resource value: 0x7f09010f
-			public const int Theme_AppCompat_Dialog_MinWidth = 2131296527;
+			// aapt resource value: 0x7f090195
+			public const int Base_Widget_MaterialComponents_TextInputLayout = 2131296661;
 			
-			// aapt resource value: 0x7f090110
-			public const int Theme_AppCompat_DialogWhenLarge = 2131296528;
+			// aapt resource value: 0x7f090015
+			public const int CardView = 2131296277;
 			
-			// aapt resource value: 0x7f090111
-			public const int Theme_AppCompat_Light = 2131296529;
+			// aapt resource value: 0x7f090017
+			public const int CardView_Dark = 2131296279;
 			
-			// aapt resource value: 0x7f090112
-			public const int Theme_AppCompat_Light_DarkActionBar = 2131296530;
+			// aapt resource value: 0x7f090018
+			public const int CardView_Light = 2131296280;
 			
-			// aapt resource value: 0x7f090113
-			public const int Theme_AppCompat_Light_Dialog = 2131296531;
-			
-			// aapt resource value: 0x7f090114
-			public const int Theme_AppCompat_Light_Dialog_Alert = 2131296532;
-			
-			// aapt resource value: 0x7f090115
-			public const int Theme_AppCompat_Light_Dialog_MinWidth = 2131296533;
-			
-			// aapt resource value: 0x7f090116
-			public const int Theme_AppCompat_Light_DialogWhenLarge = 2131296534;
-			
-			// aapt resource value: 0x7f090117
-			public const int Theme_AppCompat_Light_NoActionBar = 2131296535;
-			
-			// aapt resource value: 0x7f090118
-			public const int Theme_AppCompat_NoActionBar = 2131296536;
-			
-			// aapt resource value: 0x7f0901aa
-			public const int Theme_Design = 2131296682;
-			
-			// aapt resource value: 0x7f0901ab
-			public const int Theme_Design_BottomSheetDialog = 2131296683;
-			
-			// aapt resource value: 0x7f0901ac
-			public const int Theme_Design_Light = 2131296684;
-			
-			// aapt resource value: 0x7f0901ad
-			public const int Theme_Design_Light_BottomSheetDialog = 2131296685;
-			
-			// aapt resource value: 0x7f0901ae
-			public const int Theme_Design_Light_NoActionBar = 2131296686;
-			
-			// aapt resource value: 0x7f0901af
-			public const int Theme_Design_NoActionBar = 2131296687;
-			
-			// aapt resource value: 0x7f0901b0
-			public const int Theme_MaterialComponents = 2131296688;
-			
-			// aapt resource value: 0x7f0901b1
-			public const int Theme_MaterialComponents_BottomSheetDialog = 2131296689;
-			
-			// aapt resource value: 0x7f0901b2
-			public const int Theme_MaterialComponents_Bridge = 2131296690;
-			
-			// aapt resource value: 0x7f0901b3
-			public const int Theme_MaterialComponents_CompactMenu = 2131296691;
-			
-			// aapt resource value: 0x7f0901b4
-			public const int Theme_MaterialComponents_Dialog = 2131296692;
-			
-			// aapt resource value: 0x7f0901b5
-			public const int Theme_MaterialComponents_Dialog_Alert = 2131296693;
-			
-			// aapt resource value: 0x7f0901b6
-			public const int Theme_MaterialComponents_Dialog_MinWidth = 2131296694;
-			
-			// aapt resource value: 0x7f0901b7
-			public const int Theme_MaterialComponents_DialogWhenLarge = 2131296695;
-			
-			// aapt resource value: 0x7f0901b8
-			public const int Theme_MaterialComponents_Light = 2131296696;
-			
-			// aapt resource value: 0x7f0901b9
-			public const int Theme_MaterialComponents_Light_BottomSheetDialog = 2131296697;
-			
-			// aapt resource value: 0x7f0901ba
-			public const int Theme_MaterialComponents_Light_Bridge = 2131296698;
-			
-			// aapt resource value: 0x7f0901bb
-			public const int Theme_MaterialComponents_Light_DarkActionBar = 2131296699;
-			
-			// aapt resource value: 0x7f0901bc
-			public const int Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131296700;
-			
-			// aapt resource value: 0x7f0901bd
-			public const int Theme_MaterialComponents_Light_Dialog = 2131296701;
-			
-			// aapt resource value: 0x7f0901be
-			public const int Theme_MaterialComponents_Light_Dialog_Alert = 2131296702;
-			
-			// aapt resource value: 0x7f0901bf
-			public const int Theme_MaterialComponents_Light_Dialog_MinWidth = 2131296703;
-			
-			// aapt resource value: 0x7f0901c0
-			public const int Theme_MaterialComponents_Light_DialogWhenLarge = 2131296704;
-			
-			// aapt resource value: 0x7f0901c1
-			public const int Theme_MaterialComponents_Light_NoActionBar = 2131296705;
-			
-			// aapt resource value: 0x7f0901c2
-			public const int Theme_MaterialComponents_Light_NoActionBar_Bridge = 2131296706;
-			
-			// aapt resource value: 0x7f0901c3
-			public const int Theme_MaterialComponents_NoActionBar = 2131296707;
-			
-			// aapt resource value: 0x7f0901c4
-			public const int Theme_MaterialComponents_NoActionBar_Bridge = 2131296708;
-			
-			// aapt resource value: 0x7f09000a
-			public const int Theme_MediaRouter = 2131296266;
-			
-			// aapt resource value: 0x7f09000b
-			public const int Theme_MediaRouter_Light = 2131296267;
-			
-			// aapt resource value: 0x7f09000c
-			public const int Theme_MediaRouter_Light_DarkControlPanel = 2131296268;
-			
-			// aapt resource value: 0x7f09000d
-			public const int Theme_MediaRouter_LightControlPanel = 2131296269;
+			// aapt resource value: 0x7f09020b
+			public const int CircularProgressBar = 2131296779;
 			
 			// aapt resource value: 0x7f09020c
-			public const int Theme_Splash = 2131296780;
+			public const int CircularProgressBarLight = 2131296780;
 			
-			// aapt resource value: 0x7f090119
-			public const int ThemeOverlay_AppCompat = 2131296537;
+			// aapt resource value: 0x7f090213
+			public const int DrawerIcon = 2131296787;
 			
-			// aapt resource value: 0x7f09011a
-			public const int ThemeOverlay_AppCompat_ActionBar = 2131296538;
+			// aapt resource value: 0x7f09020d
+			public const int MainTheme = 2131296781;
 			
-			// aapt resource value: 0x7f09011b
-			public const int ThemeOverlay_AppCompat_Dark = 2131296539;
+			// aapt resource value: 0x7f09020e
+			public const int MainTheme_Base = 2131296782;
 			
-			// aapt resource value: 0x7f09011c
-			public const int ThemeOverlay_AppCompat_Dark_ActionBar = 2131296540;
+			// aapt resource value: 0x7f090211
+			public const int MineCustomTabText = 2131296785;
 			
-			// aapt resource value: 0x7f09011d
-			public const int ThemeOverlay_AppCompat_Dialog = 2131296541;
+			// aapt resource value: 0x7f090212
+			public const int NoShadowButton = 2131296786;
 			
-			// aapt resource value: 0x7f09011e
-			public const int ThemeOverlay_AppCompat_Dialog_Alert = 2131296542;
+			// aapt resource value: 0x7f090088
+			public const int Platform_AppCompat = 2131296392;
 			
-			// aapt resource value: 0x7f09011f
-			public const int ThemeOverlay_AppCompat_Light = 2131296543;
+			// aapt resource value: 0x7f090089
+			public const int Platform_AppCompat_Light = 2131296393;
 			
-			// aapt resource value: 0x7f0901c5
-			public const int ThemeOverlay_MaterialComponents = 2131296709;
+			// aapt resource value: 0x7f090196
+			public const int Platform_MaterialComponents = 2131296662;
 			
-			// aapt resource value: 0x7f0901c6
-			public const int ThemeOverlay_MaterialComponents_ActionBar = 2131296710;
+			// aapt resource value: 0x7f090197
+			public const int Platform_MaterialComponents_Dialog = 2131296663;
 			
-			// aapt resource value: 0x7f0901c7
-			public const int ThemeOverlay_MaterialComponents_Dark = 2131296711;
+			// aapt resource value: 0x7f090198
+			public const int Platform_MaterialComponents_Light = 2131296664;
 			
-			// aapt resource value: 0x7f0901c8
-			public const int ThemeOverlay_MaterialComponents_Dark_ActionBar = 2131296712;
+			// aapt resource value: 0x7f090199
+			public const int Platform_MaterialComponents_Light_Dialog = 2131296665;
 			
-			// aapt resource value: 0x7f0901c9
-			public const int ThemeOverlay_MaterialComponents_Dialog = 2131296713;
+			// aapt resource value: 0x7f09008a
+			public const int Platform_ThemeOverlay_AppCompat = 2131296394;
 			
-			// aapt resource value: 0x7f0901ca
-			public const int ThemeOverlay_MaterialComponents_Dialog_Alert = 2131296714;
+			// aapt resource value: 0x7f09008b
+			public const int Platform_ThemeOverlay_AppCompat_Dark = 2131296395;
 			
-			// aapt resource value: 0x7f0901cb
-			public const int ThemeOverlay_MaterialComponents_Light = 2131296715;
+			// aapt resource value: 0x7f09008c
+			public const int Platform_ThemeOverlay_AppCompat_Light = 2131296396;
 			
-			// aapt resource value: 0x7f0901cc
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText = 2131296716;
+			// aapt resource value: 0x7f09008d
+			public const int Platform_V21_AppCompat = 2131296397;
 			
-			// aapt resource value: 0x7f0901cd
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = 2131296717;
+			// aapt resource value: 0x7f09008e
+			public const int Platform_V21_AppCompat_Light = 2131296398;
 			
-			// aapt resource value: 0x7f0901ce
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131296718;
+			// aapt resource value: 0x7f09009a
+			public const int Platform_V25_AppCompat = 2131296410;
 			
-			// aapt resource value: 0x7f0901cf
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = 2131296719;
+			// aapt resource value: 0x7f09009b
+			public const int Platform_V25_AppCompat_Light = 2131296411;
 			
-			// aapt resource value: 0x7f0901d0
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131296720;
+			// aapt resource value: 0x7f0900db
+			public const int Platform_Widget_AppCompat_Spinner = 2131296475;
 			
-			// aapt resource value: 0x7f09000e
-			public const int ThemeOverlay_MediaRouter_Dark = 2131296270;
+			// aapt resource value: 0x7f090209
+			public const int ProgressButton = 2131296777;
 			
-			// aapt resource value: 0x7f09000f
-			public const int ThemeOverlay_MediaRouter_Light = 2131296271;
+			// aapt resource value: 0x7f09020a
+			public const int ProgressButton_Pin = 2131296778;
 			
-			// aapt resource value: 0x7f090120
-			public const int Widget_AppCompat_ActionBar = 2131296544;
+			// aapt resource value: 0x7f090025
+			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131296293;
 			
-			// aapt resource value: 0x7f090121
-			public const int Widget_AppCompat_ActionBar_Solid = 2131296545;
+			// aapt resource value: 0x7f090026
+			public const int RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = 2131296294;
 			
-			// aapt resource value: 0x7f090122
-			public const int Widget_AppCompat_ActionBar_TabBar = 2131296546;
+			// aapt resource value: 0x7f090027
+			public const int RtlOverlay_Widget_AppCompat_DialogTitle_Icon = 2131296295;
 			
-			// aapt resource value: 0x7f090123
-			public const int Widget_AppCompat_ActionBar_TabText = 2131296547;
+			// aapt resource value: 0x7f090028
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem = 2131296296;
 			
-			// aapt resource value: 0x7f090124
-			public const int Widget_AppCompat_ActionBar_TabView = 2131296548;
+			// aapt resource value: 0x7f090029
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = 2131296297;
 			
-			// aapt resource value: 0x7f090125
-			public const int Widget_AppCompat_ActionButton = 2131296549;
+			// aapt resource value: 0x7f09002a
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = 2131296298;
 			
-			// aapt resource value: 0x7f090126
-			public const int Widget_AppCompat_ActionButton_CloseMode = 2131296550;
+			// aapt resource value: 0x7f09002b
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = 2131296299;
 			
-			// aapt resource value: 0x7f090127
-			public const int Widget_AppCompat_ActionButton_Overflow = 2131296551;
+			// aapt resource value: 0x7f09002c
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = 2131296300;
 			
-			// aapt resource value: 0x7f090128
-			public const int Widget_AppCompat_ActionMode = 2131296552;
+			// aapt resource value: 0x7f09002d
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = 2131296301;
 			
-			// aapt resource value: 0x7f090129
-			public const int Widget_AppCompat_ActivityChooserView = 2131296553;
+			// aapt resource value: 0x7f09002e
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown = 2131296302;
 			
-			// aapt resource value: 0x7f09012a
-			public const int Widget_AppCompat_AutoCompleteTextView = 2131296554;
+			// aapt resource value: 0x7f09002f
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = 2131296303;
 			
-			// aapt resource value: 0x7f09012b
-			public const int Widget_AppCompat_Button = 2131296555;
+			// aapt resource value: 0x7f090030
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = 2131296304;
 			
-			// aapt resource value: 0x7f09012c
-			public const int Widget_AppCompat_Button_Borderless = 2131296556;
+			// aapt resource value: 0x7f090031
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Query = 2131296305;
 			
-			// aapt resource value: 0x7f09012d
-			public const int Widget_AppCompat_Button_Borderless_Colored = 2131296557;
+			// aapt resource value: 0x7f090032
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Text = 2131296306;
 			
-			// aapt resource value: 0x7f09012e
-			public const int Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131296558;
+			// aapt resource value: 0x7f090033
+			public const int RtlOverlay_Widget_AppCompat_SearchView_MagIcon = 2131296307;
 			
-			// aapt resource value: 0x7f09012f
-			public const int Widget_AppCompat_Button_Colored = 2131296559;
+			// aapt resource value: 0x7f090034
+			public const int RtlUnderlay_Widget_AppCompat_ActionButton = 2131296308;
 			
-			// aapt resource value: 0x7f090130
-			public const int Widget_AppCompat_Button_Small = 2131296560;
+			// aapt resource value: 0x7f090035
+			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131296309;
 			
-			// aapt resource value: 0x7f090131
-			public const int Widget_AppCompat_ButtonBar = 2131296561;
+			// aapt resource value: 0x7f0900dc
+			public const int TextAppearance_AppCompat = 2131296476;
 			
-			// aapt resource value: 0x7f090132
-			public const int Widget_AppCompat_ButtonBar_AlertDialog = 2131296562;
+			// aapt resource value: 0x7f0900dd
+			public const int TextAppearance_AppCompat_Body1 = 2131296477;
 			
-			// aapt resource value: 0x7f090133
-			public const int Widget_AppCompat_CompoundButton_CheckBox = 2131296563;
+			// aapt resource value: 0x7f0900de
+			public const int TextAppearance_AppCompat_Body2 = 2131296478;
 			
-			// aapt resource value: 0x7f090134
-			public const int Widget_AppCompat_CompoundButton_RadioButton = 2131296564;
+			// aapt resource value: 0x7f0900df
+			public const int TextAppearance_AppCompat_Button = 2131296479;
 			
-			// aapt resource value: 0x7f090135
-			public const int Widget_AppCompat_CompoundButton_Switch = 2131296565;
+			// aapt resource value: 0x7f0900e0
+			public const int TextAppearance_AppCompat_Caption = 2131296480;
 			
-			// aapt resource value: 0x7f090136
-			public const int Widget_AppCompat_DrawerArrowToggle = 2131296566;
+			// aapt resource value: 0x7f0900e1
+			public const int TextAppearance_AppCompat_Display1 = 2131296481;
 			
-			// aapt resource value: 0x7f090137
-			public const int Widget_AppCompat_DropDownItem_Spinner = 2131296567;
+			// aapt resource value: 0x7f0900e2
+			public const int TextAppearance_AppCompat_Display2 = 2131296482;
 			
-			// aapt resource value: 0x7f090138
-			public const int Widget_AppCompat_EditText = 2131296568;
+			// aapt resource value: 0x7f0900e3
+			public const int TextAppearance_AppCompat_Display3 = 2131296483;
 			
-			// aapt resource value: 0x7f090139
-			public const int Widget_AppCompat_ImageButton = 2131296569;
+			// aapt resource value: 0x7f0900e4
+			public const int TextAppearance_AppCompat_Display4 = 2131296484;
 			
-			// aapt resource value: 0x7f09013a
-			public const int Widget_AppCompat_Light_ActionBar = 2131296570;
+			// aapt resource value: 0x7f0900e5
+			public const int TextAppearance_AppCompat_Headline = 2131296485;
 			
-			// aapt resource value: 0x7f09013b
-			public const int Widget_AppCompat_Light_ActionBar_Solid = 2131296571;
+			// aapt resource value: 0x7f0900e6
+			public const int TextAppearance_AppCompat_Inverse = 2131296486;
 			
-			// aapt resource value: 0x7f09013c
-			public const int Widget_AppCompat_Light_ActionBar_Solid_Inverse = 2131296572;
+			// aapt resource value: 0x7f0900e7
+			public const int TextAppearance_AppCompat_Large = 2131296487;
 			
-			// aapt resource value: 0x7f09013d
-			public const int Widget_AppCompat_Light_ActionBar_TabBar = 2131296573;
+			// aapt resource value: 0x7f0900e8
+			public const int TextAppearance_AppCompat_Large_Inverse = 2131296488;
 			
-			// aapt resource value: 0x7f09013e
-			public const int Widget_AppCompat_Light_ActionBar_TabBar_Inverse = 2131296574;
+			// aapt resource value: 0x7f0900e9
+			public const int TextAppearance_AppCompat_Light_SearchResult_Subtitle = 2131296489;
 			
-			// aapt resource value: 0x7f09013f
-			public const int Widget_AppCompat_Light_ActionBar_TabText = 2131296575;
+			// aapt resource value: 0x7f0900ea
+			public const int TextAppearance_AppCompat_Light_SearchResult_Title = 2131296490;
 			
-			// aapt resource value: 0x7f090140
-			public const int Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131296576;
+			// aapt resource value: 0x7f0900eb
+			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131296491;
 			
-			// aapt resource value: 0x7f090141
-			public const int Widget_AppCompat_Light_ActionBar_TabView = 2131296577;
+			// aapt resource value: 0x7f0900ec
+			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131296492;
 			
-			// aapt resource value: 0x7f090142
-			public const int Widget_AppCompat_Light_ActionBar_TabView_Inverse = 2131296578;
+			// aapt resource value: 0x7f0900ed
+			public const int TextAppearance_AppCompat_Medium = 2131296493;
 			
-			// aapt resource value: 0x7f090143
-			public const int Widget_AppCompat_Light_ActionButton = 2131296579;
+			// aapt resource value: 0x7f0900ee
+			public const int TextAppearance_AppCompat_Medium_Inverse = 2131296494;
 			
-			// aapt resource value: 0x7f090144
-			public const int Widget_AppCompat_Light_ActionButton_CloseMode = 2131296580;
+			// aapt resource value: 0x7f0900ef
+			public const int TextAppearance_AppCompat_Menu = 2131296495;
 			
-			// aapt resource value: 0x7f090145
-			public const int Widget_AppCompat_Light_ActionButton_Overflow = 2131296581;
+			// aapt resource value: 0x7f0900f0
+			public const int TextAppearance_AppCompat_SearchResult_Subtitle = 2131296496;
 			
-			// aapt resource value: 0x7f090146
-			public const int Widget_AppCompat_Light_ActionMode_Inverse = 2131296582;
+			// aapt resource value: 0x7f0900f1
+			public const int TextAppearance_AppCompat_SearchResult_Title = 2131296497;
 			
-			// aapt resource value: 0x7f090147
-			public const int Widget_AppCompat_Light_ActivityChooserView = 2131296583;
+			// aapt resource value: 0x7f0900f2
+			public const int TextAppearance_AppCompat_Small = 2131296498;
 			
-			// aapt resource value: 0x7f090148
-			public const int Widget_AppCompat_Light_AutoCompleteTextView = 2131296584;
+			// aapt resource value: 0x7f0900f3
+			public const int TextAppearance_AppCompat_Small_Inverse = 2131296499;
 			
-			// aapt resource value: 0x7f090149
-			public const int Widget_AppCompat_Light_DropDownItem_Spinner = 2131296585;
+			// aapt resource value: 0x7f0900f4
+			public const int TextAppearance_AppCompat_Subhead = 2131296500;
 			
-			// aapt resource value: 0x7f09014a
-			public const int Widget_AppCompat_Light_ListPopupWindow = 2131296586;
+			// aapt resource value: 0x7f0900f5
+			public const int TextAppearance_AppCompat_Subhead_Inverse = 2131296501;
 			
-			// aapt resource value: 0x7f09014b
-			public const int Widget_AppCompat_Light_ListView_DropDown = 2131296587;
+			// aapt resource value: 0x7f0900f6
+			public const int TextAppearance_AppCompat_Title = 2131296502;
 			
-			// aapt resource value: 0x7f09014c
-			public const int Widget_AppCompat_Light_PopupMenu = 2131296588;
+			// aapt resource value: 0x7f0900f7
+			public const int TextAppearance_AppCompat_Title_Inverse = 2131296503;
 			
-			// aapt resource value: 0x7f09014d
-			public const int Widget_AppCompat_Light_PopupMenu_Overflow = 2131296589;
+			// aapt resource value: 0x7f090024
+			public const int TextAppearance_AppCompat_Tooltip = 2131296292;
 			
-			// aapt resource value: 0x7f09014e
-			public const int Widget_AppCompat_Light_SearchView = 2131296590;
+			// aapt resource value: 0x7f0900f8
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131296504;
 			
-			// aapt resource value: 0x7f09014f
-			public const int Widget_AppCompat_Light_Spinner_DropDown_ActionBar = 2131296591;
+			// aapt resource value: 0x7f0900f9
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131296505;
 			
-			// aapt resource value: 0x7f090150
-			public const int Widget_AppCompat_ListMenuView = 2131296592;
+			// aapt resource value: 0x7f0900fa
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131296506;
 			
-			// aapt resource value: 0x7f090151
-			public const int Widget_AppCompat_ListPopupWindow = 2131296593;
+			// aapt resource value: 0x7f0900fb
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Title = 2131296507;
 			
-			// aapt resource value: 0x7f090152
-			public const int Widget_AppCompat_ListView = 2131296594;
+			// aapt resource value: 0x7f0900fc
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131296508;
 			
-			// aapt resource value: 0x7f090153
-			public const int Widget_AppCompat_ListView_DropDown = 2131296595;
+			// aapt resource value: 0x7f0900fd
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131296509;
 			
-			// aapt resource value: 0x7f090154
-			public const int Widget_AppCompat_ListView_Menu = 2131296596;
+			// aapt resource value: 0x7f0900fe
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = 2131296510;
 			
-			// aapt resource value: 0x7f090155
-			public const int Widget_AppCompat_PopupMenu = 2131296597;
+			// aapt resource value: 0x7f0900ff
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Title = 2131296511;
 			
-			// aapt resource value: 0x7f090156
-			public const int Widget_AppCompat_PopupMenu_Overflow = 2131296598;
+			// aapt resource value: 0x7f090100
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = 2131296512;
 			
-			// aapt resource value: 0x7f090157
-			public const int Widget_AppCompat_PopupWindow = 2131296599;
+			// aapt resource value: 0x7f090101
+			public const int TextAppearance_AppCompat_Widget_Button = 2131296513;
 			
-			// aapt resource value: 0x7f090158
-			public const int Widget_AppCompat_ProgressBar = 2131296600;
+			// aapt resource value: 0x7f090102
+			public const int TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131296514;
 			
-			// aapt resource value: 0x7f090159
-			public const int Widget_AppCompat_ProgressBar_Horizontal = 2131296601;
+			// aapt resource value: 0x7f090103
+			public const int TextAppearance_AppCompat_Widget_Button_Colored = 2131296515;
 			
-			// aapt resource value: 0x7f09015a
-			public const int Widget_AppCompat_RatingBar = 2131296602;
+			// aapt resource value: 0x7f090104
+			public const int TextAppearance_AppCompat_Widget_Button_Inverse = 2131296516;
 			
-			// aapt resource value: 0x7f09015b
-			public const int Widget_AppCompat_RatingBar_Indicator = 2131296603;
+			// aapt resource value: 0x7f090105
+			public const int TextAppearance_AppCompat_Widget_DropDownItem = 2131296517;
 			
-			// aapt resource value: 0x7f09015c
-			public const int Widget_AppCompat_RatingBar_Small = 2131296604;
+			// aapt resource value: 0x7f090106
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131296518;
 			
-			// aapt resource value: 0x7f09015d
-			public const int Widget_AppCompat_SearchView = 2131296605;
+			// aapt resource value: 0x7f090107
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131296519;
 			
-			// aapt resource value: 0x7f09015e
-			public const int Widget_AppCompat_SearchView_ActionBar = 2131296606;
+			// aapt resource value: 0x7f090108
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131296520;
 			
-			// aapt resource value: 0x7f09015f
-			public const int Widget_AppCompat_SeekBar = 2131296607;
+			// aapt resource value: 0x7f090109
+			public const int TextAppearance_AppCompat_Widget_Switch = 2131296521;
 			
-			// aapt resource value: 0x7f090160
-			public const int Widget_AppCompat_SeekBar_Discrete = 2131296608;
+			// aapt resource value: 0x7f09010a
+			public const int TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131296522;
 			
-			// aapt resource value: 0x7f090161
-			public const int Widget_AppCompat_Spinner = 2131296609;
-			
-			// aapt resource value: 0x7f090162
-			public const int Widget_AppCompat_Spinner_DropDown = 2131296610;
-			
-			// aapt resource value: 0x7f090163
-			public const int Widget_AppCompat_Spinner_DropDown_ActionBar = 2131296611;
-			
-			// aapt resource value: 0x7f090164
-			public const int Widget_AppCompat_Spinner_Underlined = 2131296612;
-			
-			// aapt resource value: 0x7f090165
-			public const int Widget_AppCompat_TextView_SpinnerItem = 2131296613;
-			
-			// aapt resource value: 0x7f090166
-			public const int Widget_AppCompat_Toolbar = 2131296614;
-			
-			// aapt resource value: 0x7f090167
-			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131296615;
+			// aapt resource value: 0x7f090202
+			public const int TextAppearance_Compat_Notification = 2131296770;
 			
 			// aapt resource value: 0x7f090203
-			public const int Widget_Compat_NotificationActionContainer = 2131296771;
+			public const int TextAppearance_Compat_Notification_Info = 2131296771;
+			
+			// aapt resource value: 0x7f09016b
+			public const int TextAppearance_Compat_Notification_Info_Media = 2131296619;
+			
+			// aapt resource value: 0x7f090208
+			public const int TextAppearance_Compat_Notification_Line2 = 2131296776;
+			
+			// aapt resource value: 0x7f09016f
+			public const int TextAppearance_Compat_Notification_Line2_Media = 2131296623;
+			
+			// aapt resource value: 0x7f09016c
+			public const int TextAppearance_Compat_Notification_Media = 2131296620;
 			
 			// aapt resource value: 0x7f090204
-			public const int Widget_Compat_NotificationActionText = 2131296772;
-			
-			// aapt resource value: 0x7f0901d1
-			public const int Widget_Design_AppBarLayout = 2131296721;
-			
-			// aapt resource value: 0x7f0901d2
-			public const int Widget_Design_BottomNavigationView = 2131296722;
-			
-			// aapt resource value: 0x7f0901d3
-			public const int Widget_Design_BottomSheet_Modal = 2131296723;
-			
-			// aapt resource value: 0x7f0901d4
-			public const int Widget_Design_CollapsingToolbar = 2131296724;
-			
-			// aapt resource value: 0x7f0901d5
-			public const int Widget_Design_FloatingActionButton = 2131296725;
-			
-			// aapt resource value: 0x7f0901d6
-			public const int Widget_Design_NavigationView = 2131296726;
-			
-			// aapt resource value: 0x7f0901d7
-			public const int Widget_Design_ScrimInsetsFrameLayout = 2131296727;
-			
-			// aapt resource value: 0x7f0901d8
-			public const int Widget_Design_Snackbar = 2131296728;
+			public const int TextAppearance_Compat_Notification_Time = 2131296772;
 			
 			// aapt resource value: 0x7f09016d
-			public const int Widget_Design_TabLayout = 2131296621;
+			public const int TextAppearance_Compat_Notification_Time_Media = 2131296621;
 			
-			// aapt resource value: 0x7f0901d9
-			public const int Widget_Design_TextInputLayout = 2131296729;
+			// aapt resource value: 0x7f090205
+			public const int TextAppearance_Compat_Notification_Title = 2131296773;
 			
-			// aapt resource value: 0x7f0901da
-			public const int Widget_MaterialComponents_BottomAppBar = 2131296730;
+			// aapt resource value: 0x7f09016e
+			public const int TextAppearance_Compat_Notification_Title_Media = 2131296622;
 			
-			// aapt resource value: 0x7f0901db
-			public const int Widget_MaterialComponents_BottomAppBar_Colored = 2131296731;
+			// aapt resource value: 0x7f09019a
+			public const int TextAppearance_Design_CollapsingToolbar_Expanded = 2131296666;
 			
-			// aapt resource value: 0x7f0901dc
-			public const int Widget_MaterialComponents_BottomNavigationView = 2131296732;
+			// aapt resource value: 0x7f09019b
+			public const int TextAppearance_Design_Counter = 2131296667;
 			
-			// aapt resource value: 0x7f0901dd
-			public const int Widget_MaterialComponents_BottomNavigationView_Colored = 2131296733;
+			// aapt resource value: 0x7f09019c
+			public const int TextAppearance_Design_Counter_Overflow = 2131296668;
 			
-			// aapt resource value: 0x7f0901de
-			public const int Widget_MaterialComponents_BottomSheet_Modal = 2131296734;
+			// aapt resource value: 0x7f09019d
+			public const int TextAppearance_Design_Error = 2131296669;
 			
-			// aapt resource value: 0x7f0901df
-			public const int Widget_MaterialComponents_Button = 2131296735;
+			// aapt resource value: 0x7f09019e
+			public const int TextAppearance_Design_HelperText = 2131296670;
 			
-			// aapt resource value: 0x7f0901e0
-			public const int Widget_MaterialComponents_Button_Icon = 2131296736;
+			// aapt resource value: 0x7f09019f
+			public const int TextAppearance_Design_Hint = 2131296671;
 			
-			// aapt resource value: 0x7f0901e1
-			public const int Widget_MaterialComponents_Button_OutlinedButton = 2131296737;
+			// aapt resource value: 0x7f0901a0
+			public const int TextAppearance_Design_Snackbar_Message = 2131296672;
 			
-			// aapt resource value: 0x7f0901e2
-			public const int Widget_MaterialComponents_Button_OutlinedButton_Icon = 2131296738;
+			// aapt resource value: 0x7f0901a1
+			public const int TextAppearance_Design_Tab = 2131296673;
 			
-			// aapt resource value: 0x7f0901e3
-			public const int Widget_MaterialComponents_Button_TextButton = 2131296739;
+			// aapt resource value: 0x7f0901a2
+			public const int TextAppearance_MaterialComponents_Body1 = 2131296674;
 			
-			// aapt resource value: 0x7f0901e4
-			public const int Widget_MaterialComponents_Button_TextButton_Dialog = 2131296740;
+			// aapt resource value: 0x7f0901a3
+			public const int TextAppearance_MaterialComponents_Body2 = 2131296675;
 			
-			// aapt resource value: 0x7f0901e5
-			public const int Widget_MaterialComponents_Button_TextButton_Dialog_Icon = 2131296741;
+			// aapt resource value: 0x7f090173
+			public const int TextAppearance_MaterialComponents_Button = 2131296627;
 			
-			// aapt resource value: 0x7f0901e6
-			public const int Widget_MaterialComponents_Button_TextButton_Icon = 2131296742;
+			// aapt resource value: 0x7f0901a4
+			public const int TextAppearance_MaterialComponents_Caption = 2131296676;
 			
-			// aapt resource value: 0x7f0901e7
-			public const int Widget_MaterialComponents_Button_UnelevatedButton = 2131296743;
+			// aapt resource value: 0x7f0901a5
+			public const int TextAppearance_MaterialComponents_Chip = 2131296677;
 			
-			// aapt resource value: 0x7f0901e8
-			public const int Widget_MaterialComponents_Button_UnelevatedButton_Icon = 2131296744;
+			// aapt resource value: 0x7f0901a6
+			public const int TextAppearance_MaterialComponents_Headline1 = 2131296678;
 			
-			// aapt resource value: 0x7f0901e9
-			public const int Widget_MaterialComponents_CardView = 2131296745;
+			// aapt resource value: 0x7f0901a7
+			public const int TextAppearance_MaterialComponents_Headline2 = 2131296679;
 			
-			// aapt resource value: 0x7f0901ea
-			public const int Widget_MaterialComponents_Chip_Action = 2131296746;
+			// aapt resource value: 0x7f0901a8
+			public const int TextAppearance_MaterialComponents_Headline3 = 2131296680;
 			
-			// aapt resource value: 0x7f0901eb
-			public const int Widget_MaterialComponents_Chip_Choice = 2131296747;
+			// aapt resource value: 0x7f0901a9
+			public const int TextAppearance_MaterialComponents_Headline4 = 2131296681;
 			
-			// aapt resource value: 0x7f0901ec
-			public const int Widget_MaterialComponents_Chip_Entry = 2131296748;
+			// aapt resource value: 0x7f0901aa
+			public const int TextAppearance_MaterialComponents_Headline5 = 2131296682;
 			
-			// aapt resource value: 0x7f0901ed
-			public const int Widget_MaterialComponents_Chip_Filter = 2131296749;
+			// aapt resource value: 0x7f090174
+			public const int TextAppearance_MaterialComponents_Headline6 = 2131296628;
 			
-			// aapt resource value: 0x7f0901ee
-			public const int Widget_MaterialComponents_ChipGroup = 2131296750;
+			// aapt resource value: 0x7f090175
+			public const int TextAppearance_MaterialComponents_Overline = 2131296629;
 			
-			// aapt resource value: 0x7f0901ef
-			public const int Widget_MaterialComponents_FloatingActionButton = 2131296751;
+			// aapt resource value: 0x7f0901ab
+			public const int TextAppearance_MaterialComponents_Subtitle1 = 2131296683;
 			
-			// aapt resource value: 0x7f0901f0
-			public const int Widget_MaterialComponents_NavigationView = 2131296752;
+			// aapt resource value: 0x7f090176
+			public const int TextAppearance_MaterialComponents_Subtitle2 = 2131296630;
 			
-			// aapt resource value: 0x7f0901f1
-			public const int Widget_MaterialComponents_Snackbar = 2131296753;
+			// aapt resource value: 0x7f0901ac
+			public const int TextAppearance_MaterialComponents_Tab = 2131296684;
 			
-			// aapt resource value: 0x7f0901f2
-			public const int Widget_MaterialComponents_Snackbar_FullWidth = 2131296754;
+			// aapt resource value: 0x7f09000a
+			public const int TextAppearance_MediaRouter_PrimaryText = 2131296266;
 			
-			// aapt resource value: 0x7f0901f3
-			public const int Widget_MaterialComponents_TabLayout = 2131296755;
+			// aapt resource value: 0x7f09000b
+			public const int TextAppearance_MediaRouter_SecondaryText = 2131296267;
 			
-			// aapt resource value: 0x7f0901f4
-			public const int Widget_MaterialComponents_TabLayout_Colored = 2131296756;
+			// aapt resource value: 0x7f09000c
+			public const int TextAppearance_MediaRouter_Title = 2131296268;
 			
-			// aapt resource value: 0x7f0901f5
-			public const int Widget_MaterialComponents_TextInputEditText_FilledBox = 2131296757;
+			// aapt resource value: 0x7f09010b
+			public const int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131296523;
 			
-			// aapt resource value: 0x7f0901f6
-			public const int Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131296758;
+			// aapt resource value: 0x7f09010c
+			public const int TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131296524;
 			
-			// aapt resource value: 0x7f0901f7
-			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox = 2131296759;
+			// aapt resource value: 0x7f09010d
+			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131296525;
 			
-			// aapt resource value: 0x7f0901f8
-			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131296760;
+			// aapt resource value: 0x7f09010e
+			public const int Theme_AppCompat = 2131296526;
 			
-			// aapt resource value: 0x7f0901f9
-			public const int Widget_MaterialComponents_TextInputLayout_FilledBox = 2131296761;
+			// aapt resource value: 0x7f09010f
+			public const int Theme_AppCompat_CompactMenu = 2131296527;
 			
-			// aapt resource value: 0x7f0901fa
-			public const int Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = 2131296762;
+			// aapt resource value: 0x7f09001d
+			public const int Theme_AppCompat_DayNight = 2131296285;
 			
-			// aapt resource value: 0x7f0901fb
-			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox = 2131296763;
+			// aapt resource value: 0x7f09001e
+			public const int Theme_AppCompat_DayNight_DarkActionBar = 2131296286;
 			
-			// aapt resource value: 0x7f0901fc
-			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = 2131296764;
+			// aapt resource value: 0x7f09001f
+			public const int Theme_AppCompat_DayNight_Dialog = 2131296287;
 			
-			// aapt resource value: 0x7f0901fd
-			public const int Widget_MaterialComponents_Toolbar = 2131296765;
+			// aapt resource value: 0x7f090020
+			public const int Theme_AppCompat_DayNight_Dialog_Alert = 2131296288;
+			
+			// aapt resource value: 0x7f090021
+			public const int Theme_AppCompat_DayNight_Dialog_MinWidth = 2131296289;
+			
+			// aapt resource value: 0x7f090022
+			public const int Theme_AppCompat_DayNight_DialogWhenLarge = 2131296290;
+			
+			// aapt resource value: 0x7f090023
+			public const int Theme_AppCompat_DayNight_NoActionBar = 2131296291;
+			
+			// aapt resource value: 0x7f090110
+			public const int Theme_AppCompat_Dialog = 2131296528;
+			
+			// aapt resource value: 0x7f090111
+			public const int Theme_AppCompat_Dialog_Alert = 2131296529;
+			
+			// aapt resource value: 0x7f090112
+			public const int Theme_AppCompat_Dialog_MinWidth = 2131296530;
+			
+			// aapt resource value: 0x7f090113
+			public const int Theme_AppCompat_DialogWhenLarge = 2131296531;
+			
+			// aapt resource value: 0x7f090114
+			public const int Theme_AppCompat_Light = 2131296532;
+			
+			// aapt resource value: 0x7f090115
+			public const int Theme_AppCompat_Light_DarkActionBar = 2131296533;
+			
+			// aapt resource value: 0x7f090116
+			public const int Theme_AppCompat_Light_Dialog = 2131296534;
+			
+			// aapt resource value: 0x7f090117
+			public const int Theme_AppCompat_Light_Dialog_Alert = 2131296535;
+			
+			// aapt resource value: 0x7f090118
+			public const int Theme_AppCompat_Light_Dialog_MinWidth = 2131296536;
+			
+			// aapt resource value: 0x7f090119
+			public const int Theme_AppCompat_Light_DialogWhenLarge = 2131296537;
+			
+			// aapt resource value: 0x7f09011a
+			public const int Theme_AppCompat_Light_NoActionBar = 2131296538;
+			
+			// aapt resource value: 0x7f09011b
+			public const int Theme_AppCompat_NoActionBar = 2131296539;
+			
+			// aapt resource value: 0x7f0901ad
+			public const int Theme_Design = 2131296685;
+			
+			// aapt resource value: 0x7f0901ae
+			public const int Theme_Design_BottomSheetDialog = 2131296686;
+			
+			// aapt resource value: 0x7f0901af
+			public const int Theme_Design_Light = 2131296687;
+			
+			// aapt resource value: 0x7f0901b0
+			public const int Theme_Design_Light_BottomSheetDialog = 2131296688;
+			
+			// aapt resource value: 0x7f0901b1
+			public const int Theme_Design_Light_NoActionBar = 2131296689;
+			
+			// aapt resource value: 0x7f0901b2
+			public const int Theme_Design_NoActionBar = 2131296690;
+			
+			// aapt resource value: 0x7f0901b3
+			public const int Theme_MaterialComponents = 2131296691;
+			
+			// aapt resource value: 0x7f0901b4
+			public const int Theme_MaterialComponents_BottomSheetDialog = 2131296692;
+			
+			// aapt resource value: 0x7f0901b5
+			public const int Theme_MaterialComponents_Bridge = 2131296693;
+			
+			// aapt resource value: 0x7f0901b6
+			public const int Theme_MaterialComponents_CompactMenu = 2131296694;
+			
+			// aapt resource value: 0x7f0901b7
+			public const int Theme_MaterialComponents_Dialog = 2131296695;
+			
+			// aapt resource value: 0x7f0901b8
+			public const int Theme_MaterialComponents_Dialog_Alert = 2131296696;
+			
+			// aapt resource value: 0x7f0901b9
+			public const int Theme_MaterialComponents_Dialog_MinWidth = 2131296697;
+			
+			// aapt resource value: 0x7f0901ba
+			public const int Theme_MaterialComponents_DialogWhenLarge = 2131296698;
+			
+			// aapt resource value: 0x7f0901bb
+			public const int Theme_MaterialComponents_Light = 2131296699;
+			
+			// aapt resource value: 0x7f0901bc
+			public const int Theme_MaterialComponents_Light_BottomSheetDialog = 2131296700;
+			
+			// aapt resource value: 0x7f0901bd
+			public const int Theme_MaterialComponents_Light_Bridge = 2131296701;
+			
+			// aapt resource value: 0x7f0901be
+			public const int Theme_MaterialComponents_Light_DarkActionBar = 2131296702;
+			
+			// aapt resource value: 0x7f0901bf
+			public const int Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131296703;
+			
+			// aapt resource value: 0x7f0901c0
+			public const int Theme_MaterialComponents_Light_Dialog = 2131296704;
+			
+			// aapt resource value: 0x7f0901c1
+			public const int Theme_MaterialComponents_Light_Dialog_Alert = 2131296705;
+			
+			// aapt resource value: 0x7f0901c2
+			public const int Theme_MaterialComponents_Light_Dialog_MinWidth = 2131296706;
+			
+			// aapt resource value: 0x7f0901c3
+			public const int Theme_MaterialComponents_Light_DialogWhenLarge = 2131296707;
+			
+			// aapt resource value: 0x7f0901c4
+			public const int Theme_MaterialComponents_Light_NoActionBar = 2131296708;
+			
+			// aapt resource value: 0x7f0901c5
+			public const int Theme_MaterialComponents_Light_NoActionBar_Bridge = 2131296709;
+			
+			// aapt resource value: 0x7f0901c6
+			public const int Theme_MaterialComponents_NoActionBar = 2131296710;
+			
+			// aapt resource value: 0x7f0901c7
+			public const int Theme_MaterialComponents_NoActionBar_Bridge = 2131296711;
+			
+			// aapt resource value: 0x7f09000d
+			public const int Theme_MediaRouter = 2131296269;
+			
+			// aapt resource value: 0x7f09000e
+			public const int Theme_MediaRouter_Light = 2131296270;
+			
+			// aapt resource value: 0x7f09000f
+			public const int Theme_MediaRouter_Light_DarkControlPanel = 2131296271;
 			
 			// aapt resource value: 0x7f090010
-			public const int Widget_MediaRouter_Light_MediaRouteButton = 2131296272;
+			public const int Theme_MediaRouter_LightControlPanel = 2131296272;
+			
+			// aapt resource value: 0x7f09020f
+			public const int Theme_Splash = 2131296783;
+			
+			// aapt resource value: 0x7f09011c
+			public const int ThemeOverlay_AppCompat = 2131296540;
+			
+			// aapt resource value: 0x7f09011d
+			public const int ThemeOverlay_AppCompat_ActionBar = 2131296541;
+			
+			// aapt resource value: 0x7f09011e
+			public const int ThemeOverlay_AppCompat_Dark = 2131296542;
+			
+			// aapt resource value: 0x7f09011f
+			public const int ThemeOverlay_AppCompat_Dark_ActionBar = 2131296543;
+			
+			// aapt resource value: 0x7f090120
+			public const int ThemeOverlay_AppCompat_Dialog = 2131296544;
+			
+			// aapt resource value: 0x7f090121
+			public const int ThemeOverlay_AppCompat_Dialog_Alert = 2131296545;
+			
+			// aapt resource value: 0x7f090122
+			public const int ThemeOverlay_AppCompat_Light = 2131296546;
+			
+			// aapt resource value: 0x7f0901c8
+			public const int ThemeOverlay_MaterialComponents = 2131296712;
+			
+			// aapt resource value: 0x7f0901c9
+			public const int ThemeOverlay_MaterialComponents_ActionBar = 2131296713;
+			
+			// aapt resource value: 0x7f0901ca
+			public const int ThemeOverlay_MaterialComponents_Dark = 2131296714;
+			
+			// aapt resource value: 0x7f0901cb
+			public const int ThemeOverlay_MaterialComponents_Dark_ActionBar = 2131296715;
+			
+			// aapt resource value: 0x7f0901cc
+			public const int ThemeOverlay_MaterialComponents_Dialog = 2131296716;
+			
+			// aapt resource value: 0x7f0901cd
+			public const int ThemeOverlay_MaterialComponents_Dialog_Alert = 2131296717;
+			
+			// aapt resource value: 0x7f0901ce
+			public const int ThemeOverlay_MaterialComponents_Light = 2131296718;
+			
+			// aapt resource value: 0x7f0901cf
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText = 2131296719;
+			
+			// aapt resource value: 0x7f0901d0
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = 2131296720;
+			
+			// aapt resource value: 0x7f0901d1
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131296721;
+			
+			// aapt resource value: 0x7f0901d2
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = 2131296722;
+			
+			// aapt resource value: 0x7f0901d3
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131296723;
 			
 			// aapt resource value: 0x7f090011
-			public const int Widget_MediaRouter_MediaRouteButton = 2131296273;
+			public const int ThemeOverlay_MediaRouter_Dark = 2131296273;
+			
+			// aapt resource value: 0x7f090012
+			public const int ThemeOverlay_MediaRouter_Light = 2131296274;
+			
+			// aapt resource value: 0x7f090123
+			public const int Widget_AppCompat_ActionBar = 2131296547;
+			
+			// aapt resource value: 0x7f090124
+			public const int Widget_AppCompat_ActionBar_Solid = 2131296548;
+			
+			// aapt resource value: 0x7f090125
+			public const int Widget_AppCompat_ActionBar_TabBar = 2131296549;
+			
+			// aapt resource value: 0x7f090126
+			public const int Widget_AppCompat_ActionBar_TabText = 2131296550;
+			
+			// aapt resource value: 0x7f090127
+			public const int Widget_AppCompat_ActionBar_TabView = 2131296551;
+			
+			// aapt resource value: 0x7f090128
+			public const int Widget_AppCompat_ActionButton = 2131296552;
+			
+			// aapt resource value: 0x7f090129
+			public const int Widget_AppCompat_ActionButton_CloseMode = 2131296553;
+			
+			// aapt resource value: 0x7f09012a
+			public const int Widget_AppCompat_ActionButton_Overflow = 2131296554;
+			
+			// aapt resource value: 0x7f09012b
+			public const int Widget_AppCompat_ActionMode = 2131296555;
+			
+			// aapt resource value: 0x7f09012c
+			public const int Widget_AppCompat_ActivityChooserView = 2131296556;
+			
+			// aapt resource value: 0x7f09012d
+			public const int Widget_AppCompat_AutoCompleteTextView = 2131296557;
+			
+			// aapt resource value: 0x7f09012e
+			public const int Widget_AppCompat_Button = 2131296558;
+			
+			// aapt resource value: 0x7f09012f
+			public const int Widget_AppCompat_Button_Borderless = 2131296559;
+			
+			// aapt resource value: 0x7f090130
+			public const int Widget_AppCompat_Button_Borderless_Colored = 2131296560;
+			
+			// aapt resource value: 0x7f090131
+			public const int Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131296561;
+			
+			// aapt resource value: 0x7f090132
+			public const int Widget_AppCompat_Button_Colored = 2131296562;
+			
+			// aapt resource value: 0x7f090133
+			public const int Widget_AppCompat_Button_Small = 2131296563;
+			
+			// aapt resource value: 0x7f090134
+			public const int Widget_AppCompat_ButtonBar = 2131296564;
+			
+			// aapt resource value: 0x7f090135
+			public const int Widget_AppCompat_ButtonBar_AlertDialog = 2131296565;
+			
+			// aapt resource value: 0x7f090136
+			public const int Widget_AppCompat_CompoundButton_CheckBox = 2131296566;
+			
+			// aapt resource value: 0x7f090137
+			public const int Widget_AppCompat_CompoundButton_RadioButton = 2131296567;
+			
+			// aapt resource value: 0x7f090138
+			public const int Widget_AppCompat_CompoundButton_Switch = 2131296568;
+			
+			// aapt resource value: 0x7f090139
+			public const int Widget_AppCompat_DrawerArrowToggle = 2131296569;
+			
+			// aapt resource value: 0x7f09013a
+			public const int Widget_AppCompat_DropDownItem_Spinner = 2131296570;
+			
+			// aapt resource value: 0x7f09013b
+			public const int Widget_AppCompat_EditText = 2131296571;
+			
+			// aapt resource value: 0x7f09013c
+			public const int Widget_AppCompat_ImageButton = 2131296572;
+			
+			// aapt resource value: 0x7f09013d
+			public const int Widget_AppCompat_Light_ActionBar = 2131296573;
+			
+			// aapt resource value: 0x7f09013e
+			public const int Widget_AppCompat_Light_ActionBar_Solid = 2131296574;
+			
+			// aapt resource value: 0x7f09013f
+			public const int Widget_AppCompat_Light_ActionBar_Solid_Inverse = 2131296575;
+			
+			// aapt resource value: 0x7f090140
+			public const int Widget_AppCompat_Light_ActionBar_TabBar = 2131296576;
+			
+			// aapt resource value: 0x7f090141
+			public const int Widget_AppCompat_Light_ActionBar_TabBar_Inverse = 2131296577;
+			
+			// aapt resource value: 0x7f090142
+			public const int Widget_AppCompat_Light_ActionBar_TabText = 2131296578;
+			
+			// aapt resource value: 0x7f090143
+			public const int Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131296579;
+			
+			// aapt resource value: 0x7f090144
+			public const int Widget_AppCompat_Light_ActionBar_TabView = 2131296580;
+			
+			// aapt resource value: 0x7f090145
+			public const int Widget_AppCompat_Light_ActionBar_TabView_Inverse = 2131296581;
+			
+			// aapt resource value: 0x7f090146
+			public const int Widget_AppCompat_Light_ActionButton = 2131296582;
+			
+			// aapt resource value: 0x7f090147
+			public const int Widget_AppCompat_Light_ActionButton_CloseMode = 2131296583;
+			
+			// aapt resource value: 0x7f090148
+			public const int Widget_AppCompat_Light_ActionButton_Overflow = 2131296584;
+			
+			// aapt resource value: 0x7f090149
+			public const int Widget_AppCompat_Light_ActionMode_Inverse = 2131296585;
+			
+			// aapt resource value: 0x7f09014a
+			public const int Widget_AppCompat_Light_ActivityChooserView = 2131296586;
+			
+			// aapt resource value: 0x7f09014b
+			public const int Widget_AppCompat_Light_AutoCompleteTextView = 2131296587;
+			
+			// aapt resource value: 0x7f09014c
+			public const int Widget_AppCompat_Light_DropDownItem_Spinner = 2131296588;
+			
+			// aapt resource value: 0x7f09014d
+			public const int Widget_AppCompat_Light_ListPopupWindow = 2131296589;
+			
+			// aapt resource value: 0x7f09014e
+			public const int Widget_AppCompat_Light_ListView_DropDown = 2131296590;
+			
+			// aapt resource value: 0x7f09014f
+			public const int Widget_AppCompat_Light_PopupMenu = 2131296591;
+			
+			// aapt resource value: 0x7f090150
+			public const int Widget_AppCompat_Light_PopupMenu_Overflow = 2131296592;
+			
+			// aapt resource value: 0x7f090151
+			public const int Widget_AppCompat_Light_SearchView = 2131296593;
+			
+			// aapt resource value: 0x7f090152
+			public const int Widget_AppCompat_Light_Spinner_DropDown_ActionBar = 2131296594;
+			
+			// aapt resource value: 0x7f090153
+			public const int Widget_AppCompat_ListMenuView = 2131296595;
+			
+			// aapt resource value: 0x7f090154
+			public const int Widget_AppCompat_ListPopupWindow = 2131296596;
+			
+			// aapt resource value: 0x7f090155
+			public const int Widget_AppCompat_ListView = 2131296597;
+			
+			// aapt resource value: 0x7f090156
+			public const int Widget_AppCompat_ListView_DropDown = 2131296598;
+			
+			// aapt resource value: 0x7f090157
+			public const int Widget_AppCompat_ListView_Menu = 2131296599;
+			
+			// aapt resource value: 0x7f090158
+			public const int Widget_AppCompat_PopupMenu = 2131296600;
+			
+			// aapt resource value: 0x7f090159
+			public const int Widget_AppCompat_PopupMenu_Overflow = 2131296601;
+			
+			// aapt resource value: 0x7f09015a
+			public const int Widget_AppCompat_PopupWindow = 2131296602;
+			
+			// aapt resource value: 0x7f09015b
+			public const int Widget_AppCompat_ProgressBar = 2131296603;
+			
+			// aapt resource value: 0x7f09015c
+			public const int Widget_AppCompat_ProgressBar_Horizontal = 2131296604;
+			
+			// aapt resource value: 0x7f09015d
+			public const int Widget_AppCompat_RatingBar = 2131296605;
+			
+			// aapt resource value: 0x7f09015e
+			public const int Widget_AppCompat_RatingBar_Indicator = 2131296606;
+			
+			// aapt resource value: 0x7f09015f
+			public const int Widget_AppCompat_RatingBar_Small = 2131296607;
+			
+			// aapt resource value: 0x7f090160
+			public const int Widget_AppCompat_SearchView = 2131296608;
+			
+			// aapt resource value: 0x7f090161
+			public const int Widget_AppCompat_SearchView_ActionBar = 2131296609;
+			
+			// aapt resource value: 0x7f090162
+			public const int Widget_AppCompat_SeekBar = 2131296610;
+			
+			// aapt resource value: 0x7f090163
+			public const int Widget_AppCompat_SeekBar_Discrete = 2131296611;
+			
+			// aapt resource value: 0x7f090164
+			public const int Widget_AppCompat_Spinner = 2131296612;
+			
+			// aapt resource value: 0x7f090165
+			public const int Widget_AppCompat_Spinner_DropDown = 2131296613;
+			
+			// aapt resource value: 0x7f090166
+			public const int Widget_AppCompat_Spinner_DropDown_ActionBar = 2131296614;
+			
+			// aapt resource value: 0x7f090167
+			public const int Widget_AppCompat_Spinner_Underlined = 2131296615;
+			
+			// aapt resource value: 0x7f090168
+			public const int Widget_AppCompat_TextView_SpinnerItem = 2131296616;
+			
+			// aapt resource value: 0x7f090169
+			public const int Widget_AppCompat_Toolbar = 2131296617;
+			
+			// aapt resource value: 0x7f09016a
+			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131296618;
+			
+			// aapt resource value: 0x7f090206
+			public const int Widget_Compat_NotificationActionContainer = 2131296774;
+			
+			// aapt resource value: 0x7f090207
+			public const int Widget_Compat_NotificationActionText = 2131296775;
+			
+			// aapt resource value: 0x7f0901d4
+			public const int Widget_Design_AppBarLayout = 2131296724;
+			
+			// aapt resource value: 0x7f0901d5
+			public const int Widget_Design_BottomNavigationView = 2131296725;
+			
+			// aapt resource value: 0x7f0901d6
+			public const int Widget_Design_BottomSheet_Modal = 2131296726;
+			
+			// aapt resource value: 0x7f0901d7
+			public const int Widget_Design_CollapsingToolbar = 2131296727;
+			
+			// aapt resource value: 0x7f0901d8
+			public const int Widget_Design_FloatingActionButton = 2131296728;
+			
+			// aapt resource value: 0x7f0901d9
+			public const int Widget_Design_NavigationView = 2131296729;
+			
+			// aapt resource value: 0x7f0901da
+			public const int Widget_Design_ScrimInsetsFrameLayout = 2131296730;
+			
+			// aapt resource value: 0x7f0901db
+			public const int Widget_Design_Snackbar = 2131296731;
+			
+			// aapt resource value: 0x7f090170
+			public const int Widget_Design_TabLayout = 2131296624;
+			
+			// aapt resource value: 0x7f0901dc
+			public const int Widget_Design_TextInputLayout = 2131296732;
+			
+			// aapt resource value: 0x7f0901dd
+			public const int Widget_MaterialComponents_BottomAppBar = 2131296733;
+			
+			// aapt resource value: 0x7f0901de
+			public const int Widget_MaterialComponents_BottomAppBar_Colored = 2131296734;
+			
+			// aapt resource value: 0x7f0901df
+			public const int Widget_MaterialComponents_BottomNavigationView = 2131296735;
+			
+			// aapt resource value: 0x7f0901e0
+			public const int Widget_MaterialComponents_BottomNavigationView_Colored = 2131296736;
+			
+			// aapt resource value: 0x7f0901e1
+			public const int Widget_MaterialComponents_BottomSheet_Modal = 2131296737;
+			
+			// aapt resource value: 0x7f0901e2
+			public const int Widget_MaterialComponents_Button = 2131296738;
+			
+			// aapt resource value: 0x7f0901e3
+			public const int Widget_MaterialComponents_Button_Icon = 2131296739;
+			
+			// aapt resource value: 0x7f0901e4
+			public const int Widget_MaterialComponents_Button_OutlinedButton = 2131296740;
+			
+			// aapt resource value: 0x7f0901e5
+			public const int Widget_MaterialComponents_Button_OutlinedButton_Icon = 2131296741;
+			
+			// aapt resource value: 0x7f0901e6
+			public const int Widget_MaterialComponents_Button_TextButton = 2131296742;
+			
+			// aapt resource value: 0x7f0901e7
+			public const int Widget_MaterialComponents_Button_TextButton_Dialog = 2131296743;
+			
+			// aapt resource value: 0x7f0901e8
+			public const int Widget_MaterialComponents_Button_TextButton_Dialog_Icon = 2131296744;
+			
+			// aapt resource value: 0x7f0901e9
+			public const int Widget_MaterialComponents_Button_TextButton_Icon = 2131296745;
+			
+			// aapt resource value: 0x7f0901ea
+			public const int Widget_MaterialComponents_Button_UnelevatedButton = 2131296746;
+			
+			// aapt resource value: 0x7f0901eb
+			public const int Widget_MaterialComponents_Button_UnelevatedButton_Icon = 2131296747;
+			
+			// aapt resource value: 0x7f0901ec
+			public const int Widget_MaterialComponents_CardView = 2131296748;
+			
+			// aapt resource value: 0x7f0901ed
+			public const int Widget_MaterialComponents_Chip_Action = 2131296749;
+			
+			// aapt resource value: 0x7f0901ee
+			public const int Widget_MaterialComponents_Chip_Choice = 2131296750;
+			
+			// aapt resource value: 0x7f0901ef
+			public const int Widget_MaterialComponents_Chip_Entry = 2131296751;
+			
+			// aapt resource value: 0x7f0901f0
+			public const int Widget_MaterialComponents_Chip_Filter = 2131296752;
+			
+			// aapt resource value: 0x7f0901f1
+			public const int Widget_MaterialComponents_ChipGroup = 2131296753;
+			
+			// aapt resource value: 0x7f090008
+			public const int Widget_MaterialComponents_CompoundButton_CheckBox = 2131296264;
+			
+			// aapt resource value: 0x7f0901f2
+			public const int Widget_MaterialComponents_FloatingActionButton = 2131296754;
+			
+			// aapt resource value: 0x7f0901f3
+			public const int Widget_MaterialComponents_NavigationView = 2131296755;
+			
+			// aapt resource value: 0x7f0901f4
+			public const int Widget_MaterialComponents_Snackbar = 2131296756;
+			
+			// aapt resource value: 0x7f0901f5
+			public const int Widget_MaterialComponents_Snackbar_FullWidth = 2131296757;
+			
+			// aapt resource value: 0x7f0901f6
+			public const int Widget_MaterialComponents_TabLayout = 2131296758;
+			
+			// aapt resource value: 0x7f0901f7
+			public const int Widget_MaterialComponents_TabLayout_Colored = 2131296759;
+			
+			// aapt resource value: 0x7f0901f8
+			public const int Widget_MaterialComponents_TextInputEditText_FilledBox = 2131296760;
+			
+			// aapt resource value: 0x7f0901f9
+			public const int Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131296761;
+			
+			// aapt resource value: 0x7f0901fa
+			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox = 2131296762;
+			
+			// aapt resource value: 0x7f0901fb
+			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131296763;
+			
+			// aapt resource value: 0x7f0901fc
+			public const int Widget_MaterialComponents_TextInputLayout_FilledBox = 2131296764;
+			
+			// aapt resource value: 0x7f0901fd
+			public const int Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = 2131296765;
 			
 			// aapt resource value: 0x7f0901fe
-			public const int Widget_Support_CoordinatorLayout = 2131296766;
+			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox = 2131296766;
 			
-			// aapt resource value: 0x7f090004
-			public const int XamarinFormsMaterialButton = 2131296260;
+			// aapt resource value: 0x7f0901ff
+			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = 2131296767;
+			
+			// aapt resource value: 0x7f090200
+			public const int Widget_MaterialComponents_Toolbar = 2131296768;
+			
+			// aapt resource value: 0x7f090013
+			public const int Widget_MediaRouter_Light_MediaRouteButton = 2131296275;
+			
+			// aapt resource value: 0x7f090014
+			public const int Widget_MediaRouter_MediaRouteButton = 2131296276;
+			
+			// aapt resource value: 0x7f090201
+			public const int Widget_Support_CoordinatorLayout = 2131296769;
 			
 			// aapt resource value: 0x7f090005
-			public const int XamarinFormsMaterialButtonOutlined = 2131296261;
+			public const int XamarinFormsMaterialButton = 2131296261;
 			
 			// aapt resource value: 0x7f090006
-			public const int XamarinFormsMaterialEntryFilled = 2131296262;
+			public const int XamarinFormsMaterialButtonOutlined = 2131296262;
+			
+			// aapt resource value: 0x7f090009
+			public const int XamarinFormsMaterialCheckBox = 2131296265;
+			
+			// aapt resource value: 0x7f090007
+			public const int XamarinFormsMaterialEntryFilled = 2131296263;
+			
+			// aapt resource value: 0x7f090004
+			public const int XamarinFormsMaterialProgressBarCircular = 2131296260;
 			
 			// aapt resource value: 0x7f090003
-			public const int XamarinFormsMaterialProgressBarCircular = 2131296259;
+			public const int XamarinFormsMaterialProgressBarHorizontal = 2131296259;
 			
 			// aapt resource value: 0x7f090002
-			public const int XamarinFormsMaterialProgressBarHorizontal = 2131296258;
+			public const int XamarinFormsMaterialSlider = 2131296258;
 			
 			// aapt resource value: 0x7f090001
-			public const int XamarinFormsMaterialSlider = 2131296257;
+			public const int XamarinFormsMaterialTheme = 2131296257;
 			
 			// aapt resource value: 0x7f090000
-			public const int XamarinFormsMaterialTheme = 2131296256;
+			public const int collectionViewStyle = 2131296256;
 			
 			static Style()
 			{
@@ -14905,7 +17847,10 @@ namespace ContestPark.Mobile.Droid
 			public const int file_paths = 2131230720;
 			
 			// aapt resource value: 0x7f080001
-			public const int xamarin_essentials_fileprovider_file_paths = 2131230721;
+			public const int network_security_config = 2131230721;
+			
+			// aapt resource value: 0x7f080002
+			public const int xamarin_essentials_fileprovider_file_paths = 2131230722;
 			
 			static Xml()
 			{
@@ -14921,8 +17866,7 @@ namespace ContestPark.Mobile.Droid
 		{
 			
 			public static int[] ActionBar = new int[] {
-					2130772008,
-					2130772010,
+					2130772009,
 					2130772011,
 					2130772012,
 					2130772013,
@@ -14949,7 +17893,8 @@ namespace ContestPark.Mobile.Droid
 					2130772034,
 					2130772035,
 					2130772036,
-					2130772111};
+					2130772037,
+					2130772112};
 			
 			// aapt resource value: 10
 			public const int ActionBar_background = 10;
@@ -15053,12 +17998,12 @@ namespace ContestPark.Mobile.Droid
 			public static int[] ActionMenuView;
 			
 			public static int[] ActionMode = new int[] {
-					2130772008,
-					2130772014,
+					2130772009,
 					2130772015,
-					2130772019,
-					2130772021,
-					2130772037};
+					2130772016,
+					2130772020,
+					2130772022,
+					2130772038};
 			
 			// aapt resource value: 3
 			public const int ActionMode_background = 3;
@@ -15079,8 +18024,8 @@ namespace ContestPark.Mobile.Droid
 			public const int ActionMode_titleTextStyle = 1;
 			
 			public static int[] ActivityChooserView = new int[] {
-					2130772038,
-					2130772039};
+					2130772039,
+					2130772040};
 			
 			// aapt resource value: 1
 			public const int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
@@ -15090,13 +18035,13 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] AlertDialog = new int[] {
 					16842994,
-					2130772040,
 					2130772041,
 					2130772042,
 					2130772043,
 					2130772044,
 					2130772045,
-					2130772046};
+					2130772046,
+					2130772047};
 			
 			// aapt resource value: 0
 			public const int AlertDialog_android_layout = 0;
@@ -15180,9 +18125,9 @@ namespace ContestPark.Mobile.Droid
 					16842964,
 					16843919,
 					16844096,
-					2130772035,
-					2130772291,
-					2130772292};
+					2130772036,
+					2130772292,
+					2130772293};
 			
 			// aapt resource value: 0
 			public const int AppBarLayout_android_background = 0;
@@ -15203,10 +18148,10 @@ namespace ContestPark.Mobile.Droid
 			public const int AppBarLayout_liftOnScroll = 5;
 			
 			public static int[] AppBarLayoutStates = new int[] {
-					2130772293,
 					2130772294,
 					2130772295,
-					2130772296};
+					2130772296,
+					2130772297};
 			
 			// aapt resource value: 0
 			public const int AppBarLayoutStates_state_collapsed = 0;
@@ -15221,8 +18166,8 @@ namespace ContestPark.Mobile.Droid
 			public const int AppBarLayoutStates_state_lifted = 2;
 			
 			public static int[] AppBarLayout_Layout = new int[] {
-					2130772297,
-					2130772298};
+					2130772298,
+					2130772299};
 			
 			// aapt resource value: 0
 			public const int AppBarLayout_Layout_layout_scrollFlags = 0;
@@ -15232,9 +18177,9 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] AppCompatImageView = new int[] {
 					16843033,
-					2130772047,
 					2130772048,
-					2130772049};
+					2130772049,
+					2130772050};
 			
 			// aapt resource value: 0
 			public const int AppCompatImageView_android_src = 0;
@@ -15250,9 +18195,9 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] AppCompatSeekBar = new int[] {
 					16843074,
-					2130772050,
 					2130772051,
-					2130772052};
+					2130772052,
+					2130772053};
 			
 			// aapt resource value: 0
 			public const int AppCompatSeekBar_android_thumb = 0;
@@ -15298,7 +18243,6 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] AppCompatTextView = new int[] {
 					16842804,
-					2130772053,
 					2130772054,
 					2130772055,
 					2130772056,
@@ -15307,7 +18251,8 @@ namespace ContestPark.Mobile.Droid
 					2130772059,
 					2130772060,
 					2130772061,
-					2130772062};
+					2130772062,
+					2130772063};
 			
 			// aapt resource value: 0
 			public const int AppCompatTextView_android_textAppearance = 0;
@@ -15345,7 +18290,6 @@ namespace ContestPark.Mobile.Droid
 			public static int[] AppCompatTheme = new int[] {
 					16842839,
 					16842926,
-					2130772063,
 					2130772064,
 					2130772065,
 					2130772066,
@@ -15463,7 +18407,8 @@ namespace ContestPark.Mobile.Droid
 					2130772178,
 					2130772179,
 					2130772180,
-					2130772181};
+					2130772181,
+					2130772182};
 			
 			// aapt resource value: 23
 			public const int AppCompatTheme_actionBarDivider = 23;
@@ -15829,12 +18774,12 @@ namespace ContestPark.Mobile.Droid
 			public const int AppCompatTheme_windowNoTitle = 3;
 			
 			public static int[] BottomAppBar = new int[] {
-					2130772256,
-					2130772299,
+					2130772257,
 					2130772300,
 					2130772301,
 					2130772302,
-					2130772303};
+					2130772303,
+					2130772304};
 			
 			// aapt resource value: 0
 			public const int BottomAppBar_backgroundTint = 0;
@@ -15855,16 +18800,16 @@ namespace ContestPark.Mobile.Droid
 			public const int BottomAppBar_hideOnScroll = 5;
 			
 			public static int[] BottomNavigationView = new int[] {
-					2130772035,
-					2130772304,
+					2130772036,
 					2130772305,
 					2130772306,
 					2130772307,
 					2130772308,
-					2130772376,
+					2130772309,
 					2130772377,
 					2130772378,
-					2130772379};
+					2130772379,
+					2130772380};
 			
 			// aapt resource value: 0
 			public const int BottomNavigationView_elevation = 0;
@@ -15897,10 +18842,10 @@ namespace ContestPark.Mobile.Droid
 			public const int BottomNavigationView_menu = 6;
 			
 			public static int[] BottomSheetBehavior_Layout = new int[] {
-					2130772309,
 					2130772310,
 					2130772311,
-					2130772312};
+					2130772312,
+					2130772313};
 			
 			// aapt resource value: 3
 			public const int BottomSheetBehavior_Layout_behavior_fitToContents = 3;
@@ -15915,7 +18860,7 @@ namespace ContestPark.Mobile.Droid
 			public const int BottomSheetBehavior_Layout_behavior_skipCollapsed = 2;
 			
 			public static int[] ButtonBarLayout = new int[] {
-					2130772182};
+					2130772183};
 			
 			// aapt resource value: 0
 			public const int ButtonBarLayout_allowStacking = 0;
@@ -15923,7 +18868,6 @@ namespace ContestPark.Mobile.Droid
 			public static int[] CardView = new int[] {
 					16843071,
 					16843072,
-					2130771996,
 					2130771997,
 					2130771998,
 					2130771999,
@@ -15933,7 +18877,8 @@ namespace ContestPark.Mobile.Droid
 					2130772003,
 					2130772004,
 					2130772005,
-					2130772006};
+					2130772006,
+					2130772007};
 			
 			// aapt resource value: 1
 			public const int CardView_android_minHeight = 1;
@@ -15980,11 +18925,10 @@ namespace ContestPark.Mobile.Droid
 					16843039,
 					16843087,
 					16843237,
-					2130772216,
-					2130772267,
-					2130772271,
-					2130772273,
-					2130772313,
+					2130772217,
+					2130772268,
+					2130772272,
+					2130772274,
 					2130772314,
 					2130772315,
 					2130772316,
@@ -16008,7 +18952,8 @@ namespace ContestPark.Mobile.Droid
 					2130772334,
 					2130772335,
 					2130772336,
-					2130772337};
+					2130772337,
+					2130772338};
 			
 			// aapt resource value: 4
 			public const int Chip_android_checkable = 4;
@@ -16113,12 +19058,12 @@ namespace ContestPark.Mobile.Droid
 			public const int Chip_textStartPadding = 29;
 			
 			public static int[] ChipGroup = new int[] {
-					2130772338,
 					2130772339,
 					2130772340,
 					2130772341,
 					2130772342,
-					2130772343};
+					2130772343,
+					2130772344};
 			
 			// aapt resource value: 5
 			public const int ChipGroup_checkedChip = 5;
@@ -16139,8 +19084,7 @@ namespace ContestPark.Mobile.Droid
 			public const int ChipGroup_singleSelection = 4;
 			
 			public static int[] CollapsingToolbarLayout = new int[] {
-					2130772010,
-					2130772344,
+					2130772011,
 					2130772345,
 					2130772346,
 					2130772347,
@@ -16154,7 +19098,8 @@ namespace ContestPark.Mobile.Droid
 					2130772355,
 					2130772356,
 					2130772357,
-					2130772358};
+					2130772358,
+					2130772359};
 			
 			// aapt resource value: 13
 			public const int CollapsingToolbarLayout_collapsedTitleGravity = 13;
@@ -16205,8 +19150,8 @@ namespace ContestPark.Mobile.Droid
 			public const int CollapsingToolbarLayout_toolbarId = 10;
 			
 			public static int[] CollapsingToolbarLayout_Layout = new int[] {
-					2130772359,
-					2130772360};
+					2130772360,
+					2130772361};
 			
 			// aapt resource value: 0
 			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 0;
@@ -16217,7 +19162,7 @@ namespace ContestPark.Mobile.Droid
 			public static int[] ColorStateListItem = new int[] {
 					16843173,
 					16843551,
-					2130772451};
+					2130772452};
 			
 			// aapt resource value: 2
 			public const int ColorStateListItem_alpha = 2;
@@ -16230,8 +19175,8 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] CompoundButton = new int[] {
 					16843015,
-					2130772183,
-					2130772184};
+					2130772184,
+					2130772185};
 			
 			// aapt resource value: 0
 			public const int CompoundButton_android_button = 0;
@@ -16243,8 +19188,8 @@ namespace ContestPark.Mobile.Droid
 			public const int CompoundButton_buttonTintMode = 2;
 			
 			public static int[] CoordinatorLayout = new int[] {
-					2130772443,
-					2130772444};
+					2130772444,
+					2130772445};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_keylines = 0;
@@ -16254,12 +19199,12 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] CoordinatorLayout_Layout = new int[] {
 					16842931,
-					2130772445,
 					2130772446,
 					2130772447,
 					2130772448,
 					2130772449,
-					2130772450};
+					2130772450,
+					2130772451};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_Layout_android_layout_gravity = 0;
@@ -16283,8 +19228,8 @@ namespace ContestPark.Mobile.Droid
 			public const int CoordinatorLayout_Layout_layout_keyline = 3;
 			
 			public static int[] DesignTheme = new int[] {
-					2130772260,
-					2130772261};
+					2130772261,
+					2130772262};
 			
 			// aapt resource value: 0
 			public const int DesignTheme_bottomSheetDialogTheme = 0;
@@ -16293,14 +19238,14 @@ namespace ContestPark.Mobile.Droid
 			public const int DesignTheme_bottomSheetStyle = 1;
 			
 			public static int[] DrawerArrowToggle = new int[] {
-					2130772185,
 					2130772186,
 					2130772187,
 					2130772188,
 					2130772189,
 					2130772190,
 					2130772191,
-					2130772192};
+					2130772192,
+					2130772193};
 			
 			// aapt resource value: 4
 			public const int DrawerArrowToggle_arrowHeadLength = 4;
@@ -16327,19 +19272,19 @@ namespace ContestPark.Mobile.Droid
 			public const int DrawerArrowToggle_thickness = 7;
 			
 			public static int[] FloatingActionButton = new int[] {
-					2130772035,
-					2130772256,
+					2130772036,
 					2130772257,
-					2130772267,
-					2130772271,
-					2130772273,
-					2130772361,
+					2130772258,
+					2130772268,
+					2130772272,
+					2130772274,
 					2130772362,
 					2130772363,
 					2130772364,
 					2130772365,
 					2130772366,
-					2130772367};
+					2130772367,
+					2130772368};
 			
 			// aapt resource value: 1
 			public const int FloatingActionButton_backgroundTint = 1;
@@ -16381,14 +19326,14 @@ namespace ContestPark.Mobile.Droid
 			public const int FloatingActionButton_useCompatPadding = 11;
 			
 			public static int[] FloatingActionButton_Behavior_Layout = new int[] {
-					2130772368};
+					2130772369};
 			
 			// aapt resource value: 0
 			public const int FloatingActionButton_Behavior_Layout_behavior_autoHide = 0;
 			
 			public static int[] FlowLayout = new int[] {
-					2130772369,
-					2130772370};
+					2130772370,
+					2130772371};
 			
 			// aapt resource value: 0
 			public const int FlowLayout_itemSpacing = 0;
@@ -16397,12 +19342,12 @@ namespace ContestPark.Mobile.Droid
 			public const int FlowLayout_lineSpacing = 1;
 			
 			public static int[] FontFamily = new int[] {
-					2130772452,
 					2130772453,
 					2130772454,
 					2130772455,
 					2130772456,
-					2130772457};
+					2130772457,
+					2130772458};
 			
 			// aapt resource value: 0
 			public const int FontFamily_fontProviderAuthority = 0;
@@ -16428,11 +19373,11 @@ namespace ContestPark.Mobile.Droid
 					16844095,
 					16844143,
 					16844144,
-					2130772458,
 					2130772459,
 					2130772460,
 					2130772461,
-					2130772462};
+					2130772462,
+					2130772463};
 			
 			// aapt resource value: 0
 			public const int FontFamilyFont_android_font = 0;
@@ -16467,7 +19412,7 @@ namespace ContestPark.Mobile.Droid
 			public static int[] ForegroundLinearLayout = new int[] {
 					16843017,
 					16843264,
-					2130772371};
+					2130772372};
 			
 			// aapt resource value: 0
 			public const int ForegroundLinearLayout_android_foreground = 0;
@@ -16539,14 +19484,14 @@ namespace ContestPark.Mobile.Droid
 			public const int GradientColorItem_android_offset = 1;
 			
 			public static int[] HoloCircularProgressBar = new int[] {
-					2130772487,
-					2130772488,
-					2130772489,
 					2130772490,
 					2130772491,
 					2130772492,
 					2130772493,
-					2130772494};
+					2130772494,
+					2130772495,
+					2130772496,
+					2130772497};
 			
 			// aapt resource value: 0
 			public const int HoloCircularProgressBar_circular_gravity = 0;
@@ -16578,10 +19523,10 @@ namespace ContestPark.Mobile.Droid
 					16843046,
 					16843047,
 					16843048,
-					2130772018,
-					2130772193,
+					2130772019,
 					2130772194,
-					2130772195};
+					2130772195,
+					2130772196};
 			
 			// aapt resource value: 2
 			public const int LinearLayoutCompat_android_baselineAligned = 2;
@@ -16639,7 +19584,6 @@ namespace ContestPark.Mobile.Droid
 			public const int ListPopupWindow_android_dropDownVerticalOffset = 1;
 			
 			public static int[] LottieAnimationView = new int[] {
-					2130772463,
 					2130772464,
 					2130772465,
 					2130772466,
@@ -16650,7 +19594,10 @@ namespace ContestPark.Mobile.Droid
 					2130772471,
 					2130772472,
 					2130772473,
-					2130772474};
+					2130772474,
+					2130772475,
+					2130772476,
+					2130772477};
 			
 			// aapt resource value: 3
 			public const int LottieAnimationView_lottie_autoPlay = 3;
@@ -16676,6 +19623,9 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 1
 			public const int LottieAnimationView_lottie_rawRes = 1;
 			
+			// aapt resource value: 13
+			public const int LottieAnimationView_lottie_renderMode = 13;
+			
 			// aapt resource value: 6
 			public const int LottieAnimationView_lottie_repeatCount = 6;
 			
@@ -16685,6 +19635,9 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 11
 			public const int LottieAnimationView_lottie_scale = 11;
 			
+			// aapt resource value: 12
+			public const int LottieAnimationView_lottie_speed = 12;
+			
 			// aapt resource value: 2
 			public const int LottieAnimationView_lottie_url = 2;
 			
@@ -16693,18 +19646,18 @@ namespace ContestPark.Mobile.Droid
 					16843192,
 					16843193,
 					16843194,
-					2130772016,
-					2130772204,
+					2130772017,
 					2130772205,
-					2130772256,
+					2130772206,
 					2130772257,
-					2130772271,
-					2130772274,
+					2130772258,
+					2130772272,
 					2130772275,
-					2130772372,
+					2130772276,
 					2130772373,
 					2130772374,
-					2130772375};
+					2130772375,
+					2130772376};
 			
 			// aapt resource value: 3
 			public const int MaterialButton_android_insetBottom = 3;
@@ -16755,8 +19708,8 @@ namespace ContestPark.Mobile.Droid
 			public const int MaterialButton_strokeWidth = 11;
 			
 			public static int[] MaterialCardView = new int[] {
-					2130772274,
-					2130772275};
+					2130772275,
+					2130772276};
 			
 			// aapt resource value: 0
 			public const int MaterialCardView_strokeColor = 0;
@@ -16765,23 +19718,22 @@ namespace ContestPark.Mobile.Droid
 			public const int MaterialCardView_strokeWidth = 1;
 			
 			public static int[] MaterialComponentsTheme = new int[] {
-					2130772146,
 					2130772147,
 					2130772148,
-					2130772155,
-					2130772169,
-					2130772260,
+					2130772149,
+					2130772156,
+					2130772170,
 					2130772261,
 					2130772262,
 					2130772263,
 					2130772264,
 					2130772265,
 					2130772266,
-					2130772268,
+					2130772267,
 					2130772269,
 					2130772270,
-					2130772272,
-					2130772276,
+					2130772271,
+					2130772273,
 					2130772277,
 					2130772278,
 					2130772279,
@@ -16796,7 +19748,8 @@ namespace ContestPark.Mobile.Droid
 					2130772288,
 					2130772289,
 					2130772290,
-					2130772387};
+					2130772291,
+					2130772388};
 			
 			// aapt resource value: 5
 			public const int MaterialComponentsTheme_bottomSheetDialogTheme = 5;
@@ -16897,8 +19850,8 @@ namespace ContestPark.Mobile.Droid
 			public static int[] MediaRouteButton = new int[] {
 					16843071,
 					16843072,
-					2130771993,
-					2130771994};
+					2130771994,
+					2130771995};
 			
 			// aapt resource value: 1
 			public const int MediaRouteButton_android_minHeight = 1;
@@ -16952,7 +19905,6 @@ namespace ContestPark.Mobile.Droid
 					16843236,
 					16843237,
 					16843375,
-					2130772196,
 					2130772197,
 					2130772198,
 					2130772199,
@@ -16961,7 +19913,8 @@ namespace ContestPark.Mobile.Droid
 					2130772202,
 					2130772203,
 					2130772204,
-					2130772205};
+					2130772205,
+					2130772206};
 			
 			// aapt resource value: 16
 			public const int MenuItem_actionLayout = 16;
@@ -17040,8 +19993,8 @@ namespace ContestPark.Mobile.Droid
 					16843055,
 					16843056,
 					16843057,
-					2130772206,
-					2130772207};
+					2130772207,
+					2130772208};
 			
 			// aapt resource value: 4
 			public const int MenuView_android_headerBackground = 4;
@@ -17074,15 +20027,15 @@ namespace ContestPark.Mobile.Droid
 					16842964,
 					16842973,
 					16843039,
-					2130772035,
-					2130772376,
+					2130772036,
 					2130772377,
 					2130772378,
 					2130772379,
 					2130772380,
 					2130772381,
 					2130772382,
-					2130772383};
+					2130772383,
+					2130772384};
 			
 			// aapt resource value: 0
 			public const int NavigationView_android_background = 0;
@@ -17123,7 +20076,7 @@ namespace ContestPark.Mobile.Droid
 			public static int[] PopupWindow = new int[] {
 					16843126,
 					16843465,
-					2130772208};
+					2130772209};
 			
 			// aapt resource value: 1
 			public const int PopupWindow_android_popupAnimationStyle = 1;
@@ -17135,7 +20088,7 @@ namespace ContestPark.Mobile.Droid
 			public const int PopupWindow_overlapAnchor = 2;
 			
 			public static int[] PopupWindowBackgroundState = new int[] {
-					2130772209};
+					2130772210};
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
@@ -17144,9 +20097,6 @@ namespace ContestPark.Mobile.Droid
 					16842970,
 					16842981,
 					16843534,
-					2130772476,
-					2130772477,
-					2130772478,
 					2130772479,
 					2130772480,
 					2130772481,
@@ -17154,7 +20104,10 @@ namespace ContestPark.Mobile.Droid
 					2130772483,
 					2130772484,
 					2130772485,
-					2130772486};
+					2130772486,
+					2130772487,
+					2130772488,
+					2130772489};
 			
 			// aapt resource value: 1
 			public const int ProgressButton_android_clickable = 1;
@@ -17199,9 +20152,6 @@ namespace ContestPark.Mobile.Droid
 			public const int ProgressButton_unpinnedDrawable = 8;
 			
 			public static int[] ProgressWheel = new int[] {
-					2130772496,
-					2130772497,
-					2130772498,
 					2130772499,
 					2130772500,
 					2130772501,
@@ -17210,7 +20160,10 @@ namespace ContestPark.Mobile.Droid
 					2130772504,
 					2130772505,
 					2130772506,
-					2130772507};
+					2130772507,
+					2130772508,
+					2130772509,
+					2130772510};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_ahBarColor = 3;
@@ -17249,8 +20202,8 @@ namespace ContestPark.Mobile.Droid
 			public const int ProgressWheel_ahTextSize = 2;
 			
 			public static int[] RecycleListView = new int[] {
-					2130772210,
-					2130772211};
+					2130772211,
+					2130772212};
 			
 			// aapt resource value: 0
 			public const int RecycleListView_paddingBottomNoButtons = 0;
@@ -17261,7 +20214,6 @@ namespace ContestPark.Mobile.Droid
 			public static int[] RecyclerView = new int[] {
 					16842948,
 					16842993,
-					2130771972,
 					2130771973,
 					2130771974,
 					2130771975,
@@ -17269,7 +20221,8 @@ namespace ContestPark.Mobile.Droid
 					2130771977,
 					2130771978,
 					2130771979,
-					2130771980};
+					2130771980,
+					2130771981};
 			
 			// aapt resource value: 1
 			public const int RecyclerView_android_descendantFocusability = 1;
@@ -17305,13 +20258,13 @@ namespace ContestPark.Mobile.Droid
 			public const int RecyclerView_stackFromEnd = 5;
 			
 			public static int[] ScrimInsetsFrameLayout = new int[] {
-					2130772384};
+					2130772385};
 			
 			// aapt resource value: 0
 			public const int ScrimInsetsFrameLayout_insetForeground = 0;
 			
 			public static int[] ScrollingViewBehavior_Layout = new int[] {
-					2130772385};
+					2130772386};
 			
 			// aapt resource value: 0
 			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
@@ -17321,7 +20274,6 @@ namespace ContestPark.Mobile.Droid
 					16843039,
 					16843296,
 					16843364,
-					2130772212,
 					2130772213,
 					2130772214,
 					2130772215,
@@ -17333,7 +20285,8 @@ namespace ContestPark.Mobile.Droid
 					2130772221,
 					2130772222,
 					2130772223,
-					2130772224};
+					2130772224,
+					2130772225};
 			
 			// aapt resource value: 0
 			public const int SearchView_android_focusable = 0;
@@ -17387,8 +20340,8 @@ namespace ContestPark.Mobile.Droid
 			public const int SearchView_voiceIcon = 12;
 			
 			public static int[] Snackbar = new int[] {
-					2130772386,
-					2130772387};
+					2130772387,
+					2130772388};
 			
 			// aapt resource value: 1
 			public const int Snackbar_snackbarButtonStyle = 1;
@@ -17398,8 +20351,8 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] SnackbarLayout = new int[] {
 					16843039,
-					2130772035,
-					2130772388};
+					2130772036,
+					2130772389};
 			
 			// aapt resource value: 0
 			public const int SnackbarLayout_android_maxWidth = 0;
@@ -17415,7 +20368,7 @@ namespace ContestPark.Mobile.Droid
 					16843126,
 					16843131,
 					16843362,
-					2130772036};
+					2130772037};
 			
 			// aapt resource value: 3
 			public const int Spinner_android_dropDownWidth = 3;
@@ -17468,7 +20421,6 @@ namespace ContestPark.Mobile.Droid
 					16843044,
 					16843045,
 					16843074,
-					2130772225,
 					2130772226,
 					2130772227,
 					2130772228,
@@ -17478,7 +20430,8 @@ namespace ContestPark.Mobile.Droid
 					2130772232,
 					2130772233,
 					2130772234,
-					2130772235};
+					2130772235,
+					2130772236};
 			
 			// aapt resource value: 1
 			public const int SwitchCompat_android_textOff = 1;
@@ -17537,7 +20490,6 @@ namespace ContestPark.Mobile.Droid
 			public const int TabItem_android_text = 2;
 			
 			public static int[] TabLayout = new int[] {
-					2130772389,
 					2130772390,
 					2130772391,
 					2130772392,
@@ -17561,7 +20513,8 @@ namespace ContestPark.Mobile.Droid
 					2130772410,
 					2130772411,
 					2130772412,
-					2130772413};
+					2130772413,
+					2130772414};
 			
 			// aapt resource value: 3
 			public const int TabLayout_tabBackground = 3;
@@ -17650,8 +20603,8 @@ namespace ContestPark.Mobile.Droid
 					16843107,
 					16843108,
 					16843692,
-					2130772053,
-					2130772059};
+					2130772054,
+					2130772060};
 			
 			// aapt resource value: 10
 			public const int TextAppearance_android_fontFamily = 10;
@@ -17695,7 +20648,6 @@ namespace ContestPark.Mobile.Droid
 			public static int[] TextInputLayout = new int[] {
 					16842906,
 					16843088,
-					2130772414,
 					2130772415,
 					2130772416,
 					2130772417,
@@ -17720,7 +20672,8 @@ namespace ContestPark.Mobile.Droid
 					2130772436,
 					2130772437,
 					2130772438,
-					2130772439};
+					2130772439,
+					2130772440};
 			
 			// aapt resource value: 1
 			public const int TextInputLayout_android_hint = 1;
@@ -17807,15 +20760,15 @@ namespace ContestPark.Mobile.Droid
 			public const int TextInputLayout_passwordToggleTintMode = 18;
 			
 			public static int[] Theme = new int[] {
-					2130772495};
+					2130772498};
 			
 			// aapt resource value: 0
 			public const int Theme_circularProgressBarStyle = 0;
 			
 			public static int[] ThemeEnforcement = new int[] {
 					16842804,
-					2130772440,
-					2130772441};
+					2130772441,
+					2130772442};
 			
 			// aapt resource value: 0
 			public const int ThemeEnforcement_android_textAppearance = 0;
@@ -17829,17 +20782,16 @@ namespace ContestPark.Mobile.Droid
 			public static int[] Toolbar = new int[] {
 					16842927,
 					16843072,
-					2130772010,
-					2130772013,
-					2130772017,
-					2130772029,
+					2130772011,
+					2130772014,
+					2130772018,
 					2130772030,
 					2130772031,
 					2130772032,
 					2130772033,
 					2130772034,
-					2130772036,
-					2130772236,
+					2130772035,
+					2130772037,
 					2130772237,
 					2130772238,
 					2130772239,
@@ -17855,7 +20807,8 @@ namespace ContestPark.Mobile.Droid
 					2130772249,
 					2130772250,
 					2130772251,
-					2130772252};
+					2130772252,
+					2130772253};
 			
 			// aapt resource value: 0
 			public const int Toolbar_android_gravity = 0;
@@ -17947,9 +20900,9 @@ namespace ContestPark.Mobile.Droid
 			public static int[] View = new int[] {
 					16842752,
 					16842970,
-					2130772253,
 					2130772254,
-					2130772255};
+					2130772255,
+					2130772256};
 			
 			// aapt resource value: 1
 			public const int View_android_focusable = 1;
@@ -17968,8 +20921,8 @@ namespace ContestPark.Mobile.Droid
 			
 			public static int[] ViewBackgroundHelper = new int[] {
 					16842964,
-					2130772256,
-					2130772257};
+					2130772257,
+					2130772258};
 			
 			// aapt resource value: 0
 			public const int ViewBackgroundHelper_android_background = 0;

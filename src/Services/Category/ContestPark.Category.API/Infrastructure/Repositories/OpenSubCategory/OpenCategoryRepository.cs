@@ -1,4 +1,6 @@
 ﻿using ContestPark.Core.Database.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory
@@ -53,6 +55,25 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory
                 userId,
                 subCategoryId
             });
+        }
+
+        /// <summary>
+        /// Parametreden gelen alt kategorilerin kilidi açık mı kontrol eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="subCategoryIds">Alt kategori idleri</param>
+        /// <returns>Açık olan alt kategori idlerini döndürür</returns>
+        public List<short> IsSubCategoryOpen(string userId, IEnumerable<short> subCategoryIds)
+        {
+            string sql = @"SELECT osc.SubCategoryId FROM OpenSubCategories osc
+                           WHERE osc.SubCategoryId IN @subCategoryIds
+                             AND osc.UserId = @userId";
+
+            return _openSubCategoryreRepository.QueryMultiple<short>(sql, new
+            {
+                userId,
+                subCategoryIds
+            }).ToList();
         }
 
         #endregion Methods

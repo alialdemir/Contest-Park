@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
@@ -24,8 +23,10 @@ using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels;
 using ContestPark.Mobile.Views;
+using Plugin.Iconize;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Configs
 {
@@ -59,9 +60,11 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 
-            containerRegistry.RegisterForNavigation<BaseNavigationPage>();
-
             containerRegistry.RegisterForNavigation<CategoriesView, CategoriesViewModel>();
+
+            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
+
+            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(NavigationPage));
 
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
 
@@ -126,23 +129,39 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterPopupNavigationService();
 
+            #region Yeni
+
+            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+
+            containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+
+            containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
+
+            containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
+
+            containerRegistry.RegisterSingleton<IChatService, ChatService>();
+
+            containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
+
+            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+
+            containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
+
+            #endregion Yeni
+
             if (!GlobalSetting.Instance.IsMockData)
             {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
-
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
 
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
 
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
-
                 containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
                 containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
-                containerRegistry.RegisterSingleton<ICpService, CpService>();
+                containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
@@ -162,25 +181,25 @@ namespace ContestPark.Mobile.Configs
             }
             else
             {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+                //    containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
-                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
+                //   containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
                 containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+                //   containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
-                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
+                // containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
-                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
+                //   containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
-                containerRegistry.RegisterSingleton<ICpService, CpMockService>();
+                //     containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
-                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+                //////////////containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
-                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
+                //////////////containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
@@ -192,9 +211,8 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
-                containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
+                // containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
             }
-
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 
             containerRegistry.RegisterSingleton<IGameService, GameService>();

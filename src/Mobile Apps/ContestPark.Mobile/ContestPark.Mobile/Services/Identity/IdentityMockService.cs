@@ -38,6 +38,11 @@ namespace ContestPark.Mobile.Services.Identity
             return Task.FromResult(true);
         }
 
+        public Task<bool> ChangePasswordAsync(int code)
+        {
+            return Task.FromResult(true);
+        }
+
         public Task ChangeProfilePictureAsync(Stream picture)
         {
             return Task.CompletedTask;
@@ -75,7 +80,6 @@ namespace ContestPark.Mobile.Services.Identity
             {
                 AccessToken = "fake_token",
                 ExpiresIn = 365,
-                IdToken = "123",
                 RefreshToken = "fake_refresh_token",
                 TokenType = "bearer"
             };

@@ -252,7 +252,9 @@ namespace ContestPark.Mobile.ViewModels.Base
             protected set
             {
                 if (value != null)
+                {
                     _serviceModel = value;
+                }
             }
         }
 
@@ -262,7 +264,8 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <returns></returns>
         protected override Task InitializeAsync()
         {
-            if (ServiceModel != null && ServiceModel.Items != null && ((List<TModel>)ServiceModel.Items).Count > 0) Items.AddRange(ServiceModel.Items);
+            if (ServiceModel != null && ServiceModel.Items != null && ((List<TModel>)ServiceModel.Items).Count > 0)
+                Items.AddRange(ServiceModel.Items);
             else IsShowEmptyMessage = true;
 
             if (ServiceModel != null && !ServiceModel.IsLastPage)

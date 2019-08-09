@@ -18,7 +18,7 @@ namespace ContestPark.Chat.API.Model
 
         public string UserName { get; set; }
 
-        public string ConversationId { get; set; }
+        public long ConversationId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string LastWriterUserId { get; set; }

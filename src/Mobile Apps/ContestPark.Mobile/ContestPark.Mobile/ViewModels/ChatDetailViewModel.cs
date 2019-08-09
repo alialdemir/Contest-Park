@@ -1,10 +1,12 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -20,6 +22,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public readonly ISettingsService _settingsService;
         private readonly IBlockingService _blockingService;
+        private readonly IEventAggregator _eventAggregator;
         private readonly IChatService _chatService;
         private string _fullName, _userName;
         // private readonly IChatsSignalRService _chatsSignalRService;
@@ -32,11 +35,13 @@ namespace ContestPark.Mobile.ViewModels
                                    IPageDialogService pageDialogService,
                                    IChatService chatService,
                                    IBlockingService blockingService,
+                                   IEventAggregator eventAggregator,
                                    ISettingsService settingsService) : base(navigationService, pageDialogService)
         {
             _chatService = chatService;
             _settingsService = settingsService;
             _blockingService = blockingService;
+            _eventAggregator = eventAggregator;
             //    _chatsSignalRService = chatsSignalRService;
         }
 
@@ -109,6 +114,8 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        private long ConversationId { get; set; }
+
         /// <summary>
         /// Konuştuğu kullanıcı id
         /// </summary>
@@ -125,7 +132,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _chatService.ChatDetailAsync(SenderUserId, ServiceModel);
+            ServiceModel = await _chatService.ChatDetailAsync(ConversationId, ServiceModel);
 
             await base.InitializeAsync();
 
@@ -207,7 +214,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 Items.Clear();
 
-                bool isRemoveMessages = await _chatService.DeleteAsync(SenderUserId);
+                bool isRemoveMessages = await _chatService.DeleteAsync(ConversationId);
 
                 if (!isRemoveMessages)// eğer hata olursa mesajları geri yüklüyoruz
                 {
@@ -216,6 +223,12 @@ namespace ContestPark.Mobile.ViewModels
                     await DisplayAlertAsync("",
                            ContestParkResources.GlobalErrorMessage,
                            ContestParkResources.Okay);
+                }
+                else
+                {
+                    _eventAggregator
+                                .GetEvent<MessageRefleshEvent>()
+                                .Publish(ConversationId);
                 }
             }
 
@@ -352,20 +365,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigations
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
             if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");
             if (parameters.ContainsKey("SenderUserId")) SenderUserId = parameters.GetValue<string>("SenderUserId");
+            if (parameters.ContainsKey("ConversationId")) ConversationId = parameters.GetValue<long>("ConversationId");
             if (parameters.ContainsKey("SenderProfilePicturePath")) SenderProfilePicturePath = parameters.GetValue<string>("SenderProfilePicturePath");
 
             StartHub();
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        public override void OnNavigatingTo(INavigationParameters parameters)
-        {
             //base.OnNavigatingTo(parameters);
         }
 

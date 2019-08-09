@@ -9,7 +9,7 @@ namespace ContestPark.Chat.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "AllMessagesRead.sql", "RemoveMessages.sql", "AddMessage.sql");
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "AllMessagesRead.sql", "RemoveMessages.sql", "AddMessage.sql", "SeenAllChat.sql");
 
             this.CreateTableIfNotExists("Blocks", table =>
             table

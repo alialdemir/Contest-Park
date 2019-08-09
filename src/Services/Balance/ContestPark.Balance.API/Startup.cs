@@ -2,8 +2,11 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
 using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
+using ContestPark.Balance.API.IntegrationEvents.EventHandling;
+using ContestPark.Balance.API.IntegrationEvents.Events;
 using ContestPark.Balance.API.Resources;
 using ContestPark.Core.Middlewares;
+using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +48,7 @@ namespace ContestPark.Balance.API
             services.AddTransient<IBalanceRepository, BalanceRepository>();
             services.AddTransient<IPurchaseHistoryRepository, PurchaseHistoryRepository>();
 
-            //services.AddTransient<NewUserRegisterIntegrationEventHandler>();
+            services.AddTransient<ChangeBalanceIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -87,7 +90,9 @@ namespace ContestPark.Balance.API
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
-            //var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+
+            eventBus.Subscribe<ChangeBalanceIntegrationEvent, ChangeBalanceIntegrationEventHandler>();
         }
     }
 }

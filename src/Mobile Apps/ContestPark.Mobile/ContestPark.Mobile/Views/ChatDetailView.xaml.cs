@@ -15,6 +15,7 @@ namespace ContestPark.Mobile.Views
         public ChatDetailView()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, true);
         }
 
         #endregion Constructor

@@ -26,13 +26,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public CategoriesViewModel(
-            ICategoryService categoryServices,
-            ISignalRServiceBase baseSignalRService,// signalr bağlantısı başlatılması için ekledim
-            INavigationService navigationService,
-            IPageDialogService pageDialogService,
-            IGameService gameService,
-            IEventAggregator eventAggregator) : base(navigationService, pageDialogService)
+        public CategoriesViewModel(ICategoryService categoryServices,
+                                   ISignalRServiceBase baseSignalRService,// signalr bağlantısı başlatılması için ekledim
+                                   INavigationService navigationService,
+                                   IPageDialogService pageDialogService,
+                                   IGameService gameService,
+                                   IEventAggregator eventAggregator
+            ) : base(navigationService, pageDialogService)
         {
             Title = ContestParkResources.Categories;
             _categoryServices = categoryServices;

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Models;
 using ContestPark.Core.Services.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,11 @@ namespace ContestPark.Chat.API.FunctionalTests
             };
         }
 
+        public Task<string> GetRandomUserId()
+        {
+            return Task.FromResult(users.OrderBy(x => Guid.NewGuid()).FirstOrDefault().UserId);
+        }
+
         public Task<UserIdModel> GetUserIdByUserName(string userName)
         {
             var user = users.Where(u => u.UserName == userName).Select(u => new UserIdModel
@@ -48,7 +54,7 @@ namespace ContestPark.Chat.API.FunctionalTests
             return Task.FromResult(user);
         }
 
-        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds)
+        public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false)
         {
             return Task.FromResult(users.AsEnumerable());
         }

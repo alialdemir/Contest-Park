@@ -154,18 +154,6 @@
       //}
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/Followed?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/Followed?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
       "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/Follow",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -239,7 +227,7 @@
     },
     // Search
     {
-      "DownstreamPathTemplate": "/api/{version}/Search/Followed?q={q}?pageSize={pageSize}?pageNumber={pageNumber}",
+      "DownstreamPathTemplate": "/api/{version}/Search/Followed?pageSize={pageSize}?pageNumber={pageNumber}?q={q}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -247,11 +235,11 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/Search/Followed?q={q}&pageSize={pageSize}&pageNumber={pageNumber}",
+      "UpstreamPathTemplate": "/api/{version}/Search/Followed?pageSize={pageSize}&pageNumber={pageNumber}&q={q}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/Search?q={q}?categoryId={categoryId}?q={q}?pageSize={pageSize}?pageNumber={pageNumber}",
+      "DownstreamPathTemplate": "/api/{version}/Search?pageSize={pageSize}?pageNumber={pageNumber}?categoryId={categoryId}?q={q}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -259,7 +247,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/Search?categoryId={categoryId}&q={q}&pageSize={pageSize}&pageNumber={pageNumber}",
+      "UpstreamPathTemplate": "/api/{version}/Search?pageSize={pageSize}&pageNumber={pageNumber}&categoryId={categoryId}&q={q}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     // Balance
@@ -407,6 +395,18 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.chat.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {

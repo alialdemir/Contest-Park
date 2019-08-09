@@ -2,6 +2,7 @@
 {
     public enum Platforms
     {
-        Android
+        Android,
+        Ios
     }
 }

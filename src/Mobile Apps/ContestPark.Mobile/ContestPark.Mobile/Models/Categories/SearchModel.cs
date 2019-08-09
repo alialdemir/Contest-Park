@@ -53,7 +53,7 @@ namespace ContestPark.Mobile.Models.Categories
             }
         }
 
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         public SearchTypes SearchType { get; set; }
         public short SubCategoryId { get; set; }

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.Cp;
@@ -20,7 +21,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly ICpService _cpService;
+        private readonly IBalanceService _cpService;
         private readonly IEventAggregator _eventAggregator;
 
         #endregion Private variables
@@ -29,7 +30,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public MasterViewModel(INavigationService navigationService,
                                IEventAggregator eventAggregator,
-                               ICpService cpService,
+                               IBalanceService cpService,
                                ISettingsService settingsService) : base(navigationService)
         {
             _eventAggregator = eventAggregator;
@@ -55,7 +56,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Kullanıcı altın miktarı
         /// </summary>
-        private string _userCoins = "0";
+        private BalanceModel _balance = new BalanceModel();
 
         public string CoverPicture
         {
@@ -93,16 +94,16 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Public property to set and get the title of the item
         /// </summary>
-        public string UserCoins
+        public BalanceModel Balance
         {
             get
             {
-                return _userCoins;
+                return _balance;
             }
             set
             {
-                _userCoins = value;
-                RaisePropertyChanged(() => UserCoins);
+                _balance = value;
+                RaisePropertyChanged(() => Balance);
             }
         }
 
@@ -218,10 +219,12 @@ namespace ContestPark.Mobile.ViewModels
         /// <returns></returns>
         private async Task SetUserGoldAsync()
         {
-            int userGold = await _cpService.GetTotalCpByUserIdAsync();
-            UserCoins = userGold > 0 ?
-                userGold.ToString("##,#").Replace(",", ".") :
-                userGold.ToString();
+            Balance = await _cpService.GetTotalCpByUserIdAsync();
+            //BalanceGold = balance.Gold.ToString();
+
+            //BalanceMoney = balance.Money > 0 ?
+            //    balance.Money.ToString("##,#").Replace(",", ".") :
+            //    balance.Money.ToString();
         }
 
         #endregion Methods

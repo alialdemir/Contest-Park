@@ -21,7 +21,7 @@ namespace ContestPark.Mobile.Views
 
         #region Properties
 
-        public int Bet { get; set; }
+        public decimal Bet { get; set; }
         public string OpponentUserId { get; set; }
         public SelectedSubCategoryModel SelectedSubCategory { get; set; }
         public StandbyModes StandbyMode { get; set; }

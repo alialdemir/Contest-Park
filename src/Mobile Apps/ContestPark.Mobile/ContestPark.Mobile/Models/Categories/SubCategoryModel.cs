@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Models.Categories
     {
         private string displayPrice = "0";
         private string picturePath = "";
-        private int price;
+        private decimal price;
 
         public string DisplayPrice
         {
@@ -36,7 +36,7 @@ namespace ContestPark.Mobile.Models.Categories
             }
         }
 
-        public int Price
+        public decimal Price
         {
             get { return price; }
             set

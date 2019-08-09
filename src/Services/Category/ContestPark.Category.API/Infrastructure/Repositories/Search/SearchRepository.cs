@@ -3,9 +3,11 @@ using ContestPark.Category.API.Extensions;
 using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Model;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
+using ContestPark.Core.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         private readonly IElasticContext _elasticContext;
         private readonly string ElasticSearchIndexName;
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
+        private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly IMapper _mapper;
 
         #endregion Private Variables
@@ -30,11 +33,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         public SearchRepository(IElasticContext elasticContext,
                                 IFollowSubCategoryRepository followSubCategoryRepository,
                                 IConfiguration configuration,
+                                IOpenCategoryRepository openCategoryRepository,
                                 IMapper mapper)
         {
             ElasticSearchIndexName = configuration["ElasticSearchIndexName"];
             _elasticContext = elasticContext;
             _followSubCategoryRepository = followSubCategoryRepository;
+            _openCategoryRepository = openCategoryRepository;
             _mapper = mapper;
         }
 
@@ -137,12 +142,25 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 return serviceModel;
             }
 
-            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, pagingModel, SearchFilters.SubCategoryId, followedSubCategories.ToArray());
-            searchFollowedCategories.Items.ToList().ForEach(sc =>// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
-            {
-                sc.DisplayPrice = string.Empty;
-                sc.Price = 0;
-            });
+            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, userId, pagingModel, SearchFilters.SubCategoryId, followedSubCategories.ToArray());
+
+            searchFollowedCategories.Items = serviceModel// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
+                .Items
+                .Select(sc => new SearchModel
+                {
+                    CategoryName = sc.CategoryName,
+                    Price = 0,
+                    DisplayPrice = "0",
+                    FullName = sc.FullName,
+                    IsFollow = sc.IsFollow,
+                    PicturePath = sc.PicturePath,
+                    SearchType = sc.SearchType,
+                    SubCategoryId = sc.SubCategoryId,
+                    SubCategoryName = sc.SubCategoryName,
+                    UserId = sc.UserId,
+                    UserName = sc.UserName,
+                })
+                .ToList();
 
             return searchFollowedCategories;
         }
@@ -158,7 +176,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// <param name="searchFilters">Dönen data neye göre filtrelenecek kategor id göre mi yoksa alt kategori id göre mi</param>
         /// <param name="filterIds">Filtrelenmek istenen idler</param>
         /// <returns>Aranan veri listesi</returns>
-        public async Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
+        public async Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, string userId, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
         {
             var serviceModel = new ServiceModel<SearchModel>
             {
@@ -208,6 +226,29 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 //    serviceModel.HasNextPage = searchResponse.HasNextPage(searchResponse.Count(), pagingModel);
 
                 serviceModel.Items = _mapper.Map<List<SearchModel>>(searchResponse);
+
+                if (serviceModel.Items.Any(x => x.SearchType == SearchTypes.Category))
+                {
+                    List<short> openSubCategories = _openCategoryRepository.IsSubCategoryOpen(userId, serviceModel.Items.Select(x => x.SubCategoryId).AsEnumerable());
+
+                    serviceModel.Items = serviceModel
+                        .Items
+                        .Select(sc => new SearchModel
+                        {
+                            CategoryName = sc.CategoryName,
+                            DisplayPrice = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? "0" : sc.DisplayPrice,
+                            FullName = sc.FullName,
+                            IsFollow = sc.IsFollow,
+                            PicturePath = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? sc.PicturePath : DefaultImages.DefaultLock,
+                            Price = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? 0 : sc.Price,
+                            SearchType = sc.SearchType,
+                            SubCategoryId = sc.SubCategoryId,
+                            SubCategoryName = sc.SubCategoryName,
+                            UserId = sc.UserId,
+                            UserName = sc.UserName,
+                        })
+                        .ToList();
+                }
             }
 
             return serviceModel;

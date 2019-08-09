@@ -110,7 +110,8 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
                            CASE WHEN c.SenderUserId = @userId THEN c.ReceiverUserId ELSE c.SenderUserId END AS SenderUserId,
                            c.LastWriterUserId
                            FROM Conversations c
-                           WHERE c.SenderUserId = @userId OR c.ReceiverUserId = @userId
+                           INNER JOIN Messages m ON m.ConversationId = c.ConversationId
+                           WHERE (c.SenderUserId = @userId AND m.SenderIsDeleted = 0) OR (c.ReceiverUserId = @userId AND m.ReceiverIsDeleted = 0)
                            ORDER BY c.CreatedDate DESC";
             return _conversationRepository.ToServiceModel<MessageModel>(sql, new
             {

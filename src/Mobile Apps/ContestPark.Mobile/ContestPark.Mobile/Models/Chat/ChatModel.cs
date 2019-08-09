@@ -94,5 +94,7 @@ namespace ContestPark.Mobile.Models.Chat
                 RaisePropertyChanged(() => UserName);
             }
         }
+
+        public long ConversationId { get; set; }
     }
 }

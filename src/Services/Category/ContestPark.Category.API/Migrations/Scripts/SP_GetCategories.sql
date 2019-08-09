@@ -11,7 +11,18 @@ c.CategoryId,
 cl.TEXT AS CategoryName,
 sc.SubCategoryId,
 scl.SubCategoryName,
-sc.DisplayPrice,
+ 
+(case (SELECT
+(CASE
+WHEN EXISTS(
+SELECT NULL
+FROM OpenSubCategories AS osc  where osc.UserId =UserId and osc.SubCategoryId = sc.SubCategoryId)
+THEN 1
+ELSE 0
+END) )
+when 1 then 0
+else sc.DisplayPrice
+end) as DisplayPrice,
  
 (case (SELECT
 (CASE

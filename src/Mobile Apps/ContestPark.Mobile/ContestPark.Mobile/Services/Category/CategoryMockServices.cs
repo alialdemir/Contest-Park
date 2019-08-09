@@ -1,7 +1,9 @@
-﻿using ContestPark.Mobile.Helpers;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.PagingModel;
+using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.ServiceModel;
 using System;
 using System.Collections.Generic;
@@ -20,11 +22,11 @@ namespace ContestPark.Mobile.Services.Category
                 Items = new List<CategoryModel>
                  {
                     GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
-                    GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
+                    //GetCategoryModel(),
                  }
             });
         }
@@ -71,7 +73,7 @@ namespace ContestPark.Mobile.Services.Category
                 Level = 33,
                 SubCategoryId = subCategoryId,
                 SubCategoryName = "Football Players",
-                SubCategoryPicturePath = DefaultImages.DefaultLock,
+                PicturePath = DefaultImages.DefaultLock,
             });
         }
 
@@ -80,9 +82,9 @@ namespace ContestPark.Mobile.Services.Category
             return Task.FromResult(true);
         }
 
-        public Task<bool> OpenCategoryAsync(short subCategoryId)
+        public Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold)
         {
-            return Task.FromResult(false);
+            return Task.FromResult(new ResponseModel<string>() { IsSuccess = true });
         }
 
         public Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short subCategoryId, PagingModel pagingModel)

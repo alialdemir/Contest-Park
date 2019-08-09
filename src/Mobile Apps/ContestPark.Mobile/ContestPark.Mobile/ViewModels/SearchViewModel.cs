@@ -83,11 +83,11 @@ namespace ContestPark.Mobile.ViewModels
 
             if (IsFollowingCategory)
             {
-                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync("", ServiceModel);
+                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync("'", ServiceModel);
             }
             else if (_categoryId > 0)
             {
-                ServiceModel = await _categoryService.SearchAsync("", _categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
+                ServiceModel = await _categoryService.SearchAsync("'", _categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
             }
             else
             {

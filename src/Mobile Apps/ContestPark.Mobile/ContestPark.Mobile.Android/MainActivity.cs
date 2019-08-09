@@ -64,9 +64,14 @@ namespace ContestPark.Mobile.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            //   ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
             base.OnCreate(bundle);
 
+#if !DEBUG
             CheckForRoot();
+#endif
+            // Check if running in sim
 
             CrossCurrentActivity.Current.Init(this, bundle);
 
@@ -86,11 +91,11 @@ namespace ContestPark.Mobile.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+
             Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
             AnimationViewRenderer.Init();
-
-            Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
         }
@@ -106,6 +111,8 @@ namespace ContestPark.Mobile.Droid
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
                 return false;
             }
         }

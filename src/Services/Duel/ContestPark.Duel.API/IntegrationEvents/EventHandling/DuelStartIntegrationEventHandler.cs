@@ -9,6 +9,7 @@ using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IQuestionRepository _questionRepository;
         private readonly IIdentityService _identityService;
         private readonly IContestDateRepository _contestDateRepository;
+        private readonly DuelSettings _duelSettings;
         private readonly ILogger<DuelStartIntegrationEventHandler> _logger;
 
         #endregion Private variables
@@ -36,6 +38,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                 IQuestionRepository questionRepository,
                                                 IIdentityService identityService,
                                                 IContestDateRepository contestDateRepository,
+                                                IOptions<DuelSettings> settings,
                                                 ILogger<DuelStartIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -44,6 +47,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _questionRepository = questionRepository;
             _identityService = identityService;
             _contestDateRepository = contestDateRepository;
+            _duelSettings = settings.Value;
         }
 
         #endregion Constructor
@@ -74,7 +78,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 SubCategoryId = @event.SubCategoryId,
                 OpponentUserId = @event.OpponentUserId,
                 FounderUserId = @event.FounderUserId,
-                ContestDateId = contestDate.ContestDateId
+                ContestDateId = contestDate.ContestDateId,
+                BetCommission = _duelSettings.BetCommission
             }) ?? 0;
             if (duelId <= 0)
             {

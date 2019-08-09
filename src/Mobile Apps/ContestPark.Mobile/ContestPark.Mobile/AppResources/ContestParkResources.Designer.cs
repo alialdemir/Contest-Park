@@ -1402,6 +1402,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geçersiz kod girdiniz..
+        /// </summary>
+        public static string YouHaveEnteredAnInvalidCode {
+            get {
+                return ResourceManager.GetString("YouHaveEnteredAnInvalidCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kaybettin!.
         /// </summary>
         public static string YouLose {

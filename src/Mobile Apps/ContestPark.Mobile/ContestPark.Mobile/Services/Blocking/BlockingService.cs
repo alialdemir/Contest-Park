@@ -13,16 +13,16 @@ namespace ContestPark.Mobile.Services.Blocking
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/blocking";
+        private const string ApiUrlBase = "api/v1/Chat/Block";
         private readonly ICacheService _cacheService;
-        private readonly IRequestProvider _requestProvider;
+        private readonly INewRequestProvider _requestProvider;
         private string _lastUserBlockingListKey = string.Empty;
 
         #endregion Private variables
 
         #region Constructor
 
-        public BlockingService(IRequestProvider requestProvider,
+        public BlockingService(INewRequestProvider requestProvider,
                                 ICacheService cacheService
             )
         {
@@ -42,11 +42,11 @@ namespace ContestPark.Mobile.Services.Blocking
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userId}");
 
-            string result = await _requestProvider.PostAsync<string>(uri);
+            var result = await _requestProvider.PostAsync<string>(uri);
 
             CacheEmpty();
 
-            return string.IsNullOrEmpty(result);
+            return result.IsSuccess;
         }
 
         public async Task<ServiceModel<BlockModel>> BlockingList(PagingModel pagingModel)
@@ -58,12 +58,12 @@ namespace ContestPark.Mobile.Services.Blocking
                 return await _cacheService.Get<ServiceModel<BlockModel>>(uri);
             }
 
-            var blockingList = await _requestProvider.GetAsync<ServiceModel<BlockModel>>(uri);
+            var result = await _requestProvider.GetAsync<ServiceModel<BlockModel>>(uri);
 
-            _cacheService.Add(uri, blockingList);
+            _cacheService.Add(uri, result.Data);
             _lastUserBlockingListKey = uri;
 
-            return blockingList;
+            return result.Data;
         }
 
         /// <summary>
@@ -71,9 +71,11 @@ namespace ContestPark.Mobile.Services.Blocking
         /// </summary>
         public async Task<bool> BlockingStatusAsync(string senderUserId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{senderUserId}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Status/{senderUserId}");
 
-            return await _requestProvider.GetAsync<bool>(uri);
+            var result = await _requestProvider.GetAsync<BlockStatusModel>(uri);
+
+            return result.Data.IsBlocked;
         }
 
         /// <summary>
@@ -82,13 +84,13 @@ namespace ContestPark.Mobile.Services.Blocking
         /// <param name="userId">Kullanicii id</param>
         public async Task<bool> UnBlock(string userId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{userId}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/chat/unblock/{userId}");
 
-            string result = await _requestProvider.DeleteAsync<string>(uri);
+            var result = await _requestProvider.DeleteAsync<string>(uri);
 
             CacheEmpty();
 
-            return string.IsNullOrEmpty(result);
+            return result.IsSuccess;
         }
 
         /// <summary>

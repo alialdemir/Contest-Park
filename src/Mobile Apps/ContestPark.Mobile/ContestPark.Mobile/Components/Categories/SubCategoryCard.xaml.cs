@@ -114,7 +114,7 @@ namespace ContestPark.Mobile.Components
 
         #endregion Methods
 
-        #region Properties
+        #region Override
 
         protected override void OnBindingContextChanged()
         {
@@ -129,6 +129,6 @@ namespace ContestPark.Mobile.Components
             goldBadge.IsVisible = !IsCategoryOpen;
         }
 
-        #endregion Properties
+        #endregion Override
     }
 }

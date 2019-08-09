@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.CategoriesView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="page"
-             Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             Icon="fas-gamepad">
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.CategoriesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="page"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Icon="fas-gamepad">
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem AutomationId="tbiCategorySearch"
-                              Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}"
-                              CommandParameter="{Binding SeeAllSubCateogryId}"
-                              Icon="fas-search"
-                              IconColor="{StaticResource Primary}" />
+        <icon:IconToolbarItem
+            AutomationId="tbiCategorySearch"
+            Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference page}}"
+            CommandParameter="{Binding SeeAllSubCateogryId}"
+            Icon="fas-search"
+            IconColor="{StaticResource Primary}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
