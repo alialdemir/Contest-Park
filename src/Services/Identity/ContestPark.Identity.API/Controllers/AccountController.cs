@@ -269,17 +269,17 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 return NotFound();
 
             string oldUserName = user.UserName;
-            string oldEmail = user.Email;
+            //  string oldEmail = user.Email;
             string oldFullName = user.FullName;
 
             List<string> errors = new List<string>();
 
-            if (oldEmail != updateUserInfo.Email)
-            {
-                IdentityResult result = await _userManager.SetEmailAsync(user, updateUserInfo.Email);
-                if (!result.Succeeded && result.Errors.Count() > 0)
-                    errors.AddRange(IdentityResultErrors(result.Errors));
-            }
+            //if (oldEmail != updateUserInfo.Email)
+            //{
+            //    IdentityResult result = await _userManager.SetEmailAsync(user, updateUserInfo.Email);
+            //    if (!result.Succeeded && result.Errors.Count() > 0)
+            //        errors.AddRange(IdentityResultErrors(result.Errors));
+            //}
 
             if (oldUserName != updateUserInfo.UserName)
             {

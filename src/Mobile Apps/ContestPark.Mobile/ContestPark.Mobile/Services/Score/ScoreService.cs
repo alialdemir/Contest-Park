@@ -1,8 +1,8 @@
 ﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.Ranking;
-using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Threading.Tasks;
@@ -13,15 +13,15 @@ namespace ContestPark.Mobile.Services.Score
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/category";
+        private const string ApiUrlBase = "api/v1/Ranking/SubCategory";
         private readonly ICacheService _cacheService;
-        private readonly IRequestProvider _requestProvider;
+        private readonly INewRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public ScoreService(IRequestProvider requestProvider,
+        public ScoreService(INewRequestProvider requestProvider,
                             ICacheService cacheService
             )
         {
@@ -39,41 +39,20 @@ namespace ContestPark.Mobile.Services.Score
         /// <param name="subCategoryId">Alt kategori Id</param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Takip ettiklerinin sıralama listesi</returns>
-        public async Task<ServiceModel<RankingModel>> FollowingRankingAsync(short subCategoryId, PagingModel pagingModel)
+        public async Task<RankModel> FollowingRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/ranking/following{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/Following{pagingModel.ToString()}&balanceType={balanceType}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<RankingModel>>(uri);
+                return await _cacheService.Get<RankModel>(uri);
             }
 
-            ServiceModel<RankingModel> rankings = await _requestProvider.GetAsync<ServiceModel<RankingModel>>(uri);
+            var result = await _requestProvider.GetAsync<RankModel>(uri);
 
-            _cacheService.Add(uri, rankings);
+            _cacheService.Add(uri, result.Data);
 
-            return rankings;
-        }
-
-        /// <summary>
-        /// x
-        /// </summary>
-        /// <param name="subCategoryId">Alt kategori Id</param>
-        /// <returns>Yarışmanın biteceği tarih</returns>
-        public async Task<TimeLeftModel> GetTimeLeft(short subCategoryId)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/ranking/timeleft");
-
-            if (!_cacheService.IsExpired(key: uri))
-            {
-                return await _cacheService.Get<TimeLeftModel>(uri);
-            }
-
-            TimeLeftModel timeLeft = await _requestProvider.GetAsync<TimeLeftModel>(uri);
-
-            _cacheService.Add(uri, timeLeft);
-
-            return timeLeft;
+            return result.Data;
         }
 
         /// <summary>
@@ -82,20 +61,20 @@ namespace ContestPark.Mobile.Services.Score
         /// <param name="subCategoryId">Alt kategori Id</param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Sıralama listesi</returns>
-        public async Task<ServiceModel<RankingModel>> SubCategoryRankingAsync(short subCategoryId, PagingModel pagingModel)
+        public async Task<RankModel> SubCategoryRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/ranking{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel.ToString()}&balanceType={balanceType}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<RankingModel>>(uri);
+                return await _cacheService.Get<RankModel>(uri);
             }
 
-            ServiceModel<RankingModel> rankings = await _requestProvider.GetAsync<ServiceModel<RankingModel>>(uri);
+            var result = await _requestProvider.GetAsync<RankModel>(uri);
 
-            _cacheService.Add(uri, rankings);
+            _cacheService.Add(uri, result.Data);
 
-            return rankings;
+            return result.Data;
         }
 
         #endregion Methods

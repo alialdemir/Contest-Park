@@ -4,16 +4,7 @@ namespace ContestPark.Mobile.Models.Ranking
 {
     public class RankingModel : BaseModel
     {
-        private int _totalScore;
-
-        public int TotalScore
-        {
-            get { return _totalScore; }
-            set
-            {
-                _totalScore = value;
-            }
-        }
+        public string TotalScore { get; set; }
 
         public string UserFullName { get; set; }
         private string userProfilePicturePath = DefaultImages.DefaultProfilePicture;

@@ -44,8 +44,8 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         public ServiceModel<RankModel> GetRankingBySubCategoryId(short subCategoryId, BalanceTypes balanceType, short contestDateId, PagingModel pagingModel)
         {
             string sql = @"SELECT CASE
-                                  WHEN @balanceType=1 THEN sr.TotalGoldScore
-                                  WHEN @balanceType=2 THEN sr.TotalMoneyScore
+                                  WHEN @balanceType=1 THEN sr.DisplayTotalGoldScore
+                                  WHEN @balanceType=2 THEN sr.DisplayTotalMoneyScore
                                   END AS TotalScore,
                                   sr.UserId
                         FROM ScoreRankings sr
@@ -77,8 +77,8 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         public ServiceModel<RankModel> GetFollowingRanking(short subCategoryId, BalanceTypes balanceType, short contestDateId, IEnumerable<string> followingUsers, PagingModel pagingModel)
         {
             string sql = @"SELECT CASE
-                                  WHEN @balanceType=1 THEN sr.TotalGoldScore
-                                  WHEN @balanceType=2 THEN sr.TotalMoneyScore
+                                  WHEN @balanceType=1 THEN sr.DisplayTotalGoldScore
+                                  WHEN @balanceType=2 THEN sr.DisplayTotalMoneyScore
                                   END AS TotalScore,
                                   sr.UserId
                         FROM ScoreRankings sr

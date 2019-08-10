@@ -147,6 +147,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
+            containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
+
             #endregion Yeni
 
             if (!GlobalSetting.Instance.IsMockData)
@@ -209,7 +211,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
-                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
+                //     containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
                 // containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
             }

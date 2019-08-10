@@ -2,11 +2,11 @@
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Identity
@@ -28,7 +28,7 @@ namespace ContestPark.Mobile.Services.Identity
 
         #endregion Constructor
 
-        public Task ChangeCoverPictureAsync(Stream picture)
+        public Task ChangeCoverPictureAsync(MediaModel picture)
         {
             return Task.CompletedTask;
         }
@@ -43,7 +43,7 @@ namespace ContestPark.Mobile.Services.Identity
             return Task.FromResult(true);
         }
 
-        public Task ChangeProfilePictureAsync(Stream picture)
+        public Task ChangeProfilePictureAsync(MediaModel picture)
         {
             return Task.CompletedTask;
         }

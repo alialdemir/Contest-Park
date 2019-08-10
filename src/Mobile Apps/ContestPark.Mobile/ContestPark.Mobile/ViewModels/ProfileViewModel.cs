@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.Profile;
@@ -14,7 +15,6 @@ using MvvmHelpers;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -218,8 +218,8 @@ namespace ContestPark.Mobile.ViewModels
 
             if (string.Equals(selected, ContestParkResources.ChooseFromLibrary) || string.Equals(selected, ContestParkResources.TakeAPhoto))
             {
-                Stream pictureStream = await _mediaService.GetPictureStream(selected);
-                if (pictureStream == null)
+                MediaModel media = await _mediaService.GetPictureStream(selected);
+                if (media == null)
                 {
                     IsBusy = false;
                     return;
@@ -227,8 +227,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 switch (pictureType)
                 {
-                    case "Profile": await _identityService.ChangeCoverPictureAsync(pictureStream); break;
-                    case "Cover": await _identityService.ChangeProfilePictureAsync(pictureStream); break;
+                    case "Profile": await _identityService.ChangeCoverPictureAsync(media); break;
+                    case "Cover": await _identityService.ChangeProfilePictureAsync(media); break;
                 }
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))

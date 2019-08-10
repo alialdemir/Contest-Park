@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Media;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
@@ -39,7 +40,7 @@ namespace ContestPark.Mobile.Services.Media
 
         #region Methods
 
-        public async Task<Stream> GetPictureStream(string type)
+        public async Task<MediaModel> GetPictureStream(string type)
         {
             if (string.Equals(type, ContestParkResources.ChooseFromLibrary))
             {
@@ -71,7 +72,7 @@ namespace ContestPark.Mobile.Services.Media
         /// The ShowMediaActionSheet
         /// </summary>
         /// <returns>The <see cref="Task"/></returns>
-        public async Task<Stream> ShowMediaActionSheet()
+        public async Task<MediaModel> ShowMediaActionSheet()
         {
             string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
                                                                                     ContestParkResources.Cancel,
@@ -104,7 +105,7 @@ namespace ContestPark.Mobile.Services.Media
         /// Galleryden fotoğraf seçtirir
         /// </summary>
         /// <returns></returns>
-        private async Task<Stream> ChooseFromLibraryAsync()
+        private async Task<MediaModel> ChooseFromLibraryAsync()
         {
             bool isPickPhotoSupported = CrossMedia.Current.IsPickPhotoSupported;
             if (!isPickPhotoSupported)
@@ -123,7 +124,11 @@ namespace ContestPark.Mobile.Services.Media
             if (file == null)
                 return null;
 
-            return file.GetStream();
+            return new MediaModel
+            {
+                File = file.GetStream(),
+                FileName = Path.GetFileName(file.Path)
+            };
         }
 
         /// <summary>
@@ -141,7 +146,7 @@ namespace ContestPark.Mobile.Services.Media
         /// Kameradan fotoğraf çeker
         /// </summary>
         /// <returns>Fotoğraf stream</returns>
-        private async Task<Stream> TakeAPhotoAsync()
+        private async Task<MediaModel> TakeAPhotoAsync()
         {
             bool isCameraAvailable = CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported;
             if (!isCameraAvailable)
@@ -161,7 +166,11 @@ namespace ContestPark.Mobile.Services.Media
             if (file == null)
                 return null;
 
-            return file.GetStream();
+            return new MediaModel
+            {
+                File = file.GetStream(),
+                FileName = Path.GetFileName(file.Path)
+            };
         }
 
         #endregion Methods

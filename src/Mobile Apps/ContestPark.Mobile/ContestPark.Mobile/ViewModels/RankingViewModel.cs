@@ -1,10 +1,12 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Ranking;
 using ContestPark.Mobile.Services.Score;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -42,7 +44,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         private string _rankEmptyMessage;
-        private TimeLeftModel _timeLeftModel;
+        private RankModel _timeLeftModel;
 
         /// <summary>
         /// Sayfadan çıkınca timer durduruldu
@@ -61,13 +63,13 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public TimeLeftModel TimeLeft
+        public RankModel Ranks
         {
             get { return _timeLeftModel; }
             set
             {
                 _timeLeftModel = value;
-                RaisePropertyChanged(() => TimeLeft);
+                RaisePropertyChanged(() => Ranks);
             }
         }
 
@@ -84,22 +86,36 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            BalanceTypes balanceType = BalanceTypes.Gold;
+
+            RankModel rank = null;
+
             switch (ListType)
             {
                 case ListTypes.ScoreRanking:
-                    ServiceModel = await _scoreService.SubCategoryRankingAsync(SubCategoryId, ServiceModel);
+                    rank = await _scoreService.SubCategoryRankingAsync(SubCategoryId, balanceType, ServiceModel);
                     break;
 
                 case ListTypes.ScoreRankingFollowing:
-                    ServiceModel = await _scoreService.FollowingRankingAsync(SubCategoryId, ServiceModel);
+                    rank = await _scoreService.FollowingRankingAsync(SubCategoryId, balanceType, ServiceModel);
                     break;
             }
 
-            await base.InitializeAsync();
-
-            if (TimeLeft == null)
+            if (rank != null)
             {
-                TimeLeftCommand.Execute(null);
+                ServiceModel = rank.Ranks;
+
+                await base.InitializeAsync();
+
+                if (Ranks == null || Ranks.ContestFinishDate == null)
+                {
+                    Ranks = new RankModel
+                    {
+                        ContestFinishDate = rank.ContestFinishDate
+                    };
+
+                    TimeLeftCommand.Execute(null);
+                }
             }
 
             LoadRankEmptyMessage();
@@ -129,23 +145,22 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Yarışmanın biteceği zamanı verir
         /// </summary>
-        private async Task ExecuteTimeLeftCommand()
+        private void ExecuteTimeLeftCommand()
         {
-            TimeLeft = await _scoreService.GetTimeLeft(SubCategoryId);
-
             Device.StartTimer(new TimeSpan(0, 0, 0, 1, 0), () =>
             {
                 if (!IsTimerStop)
                     return IsTimerStop;
 
-                TimeSpan diff = TimeLeft.FinsihDate - DateTime.Now;// Datetime.now telefonun tarihi yanlışsa yanlış tarih gösterir
+                TimeSpan diff = Ranks.ContestFinishDate - DateTime.Now;// Datetime.now telefonun tarihi yanlışsa yanlış tarih gösterir
 
-                TimeLeft.TimeLeft = diff.Days +
+                Ranks.TimeLeft = diff.Days +
                                         ContestParkResources.ShortDay +
                                         diff.Hours + ContestParkResources.ShortHour +
                                         diff.Minutes + ContestParkResources.ShortMinute +
                                         diff.Seconds + ContestParkResources.ShortSeconds;
 
+                Debug.WriteLine(Ranks.TimeLeft);
                 return !(diff.Days == 0 && diff.Hours == 0 && diff.Minutes == 0 && diff.Seconds == 0);
             });
         }
@@ -192,18 +207,11 @@ namespace ContestPark.Mobile.ViewModels
             _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)));
 
         public ICommand SegmentValueChangedCommand => new Command<int>((selectedSegmentIndex) => SegmentValueChanged(selectedSegmentIndex));
-        private ICommand TimeLeftCommand => new Command(async () => await ExecuteTimeLeftCommand());
+        private ICommand TimeLeftCommand => new Command(() => ExecuteTimeLeftCommand());
 
         #endregion Commands
 
         #region Navigation
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            IsTimerStop = false;
-
-            base.OnNavigatedFrom(parameters);
-        }
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {

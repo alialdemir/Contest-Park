@@ -1,16 +1,20 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Mobile.Models.ServiceModel;
+using Newtonsoft.Json;
 using System;
 
 namespace ContestPark.Mobile.Models.Ranking
 {
-    public class TimeLeftModel : BaseModel
+    public class RankModel : BaseModel
     {
+        public ServiceModel<RankingModel> Ranks { get; set; }
+
         private string _months;
 
         private string _timeLeft;
 
-        public DateTime FinsihDate { get; set; }
+        public DateTime ContestFinishDate { get; set; }
 
+        [JsonIgnore]
         public string Months
         {
             get { return _months; }

@@ -1,20 +1,22 @@
 ﻿using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Identity
 {
     public interface IIdentityService
     {
-        Task ChangeCoverPictureAsync(Stream picture);
+        Task ChangeCoverPictureAsync(MediaModel media);
 
         Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel);
+
         Task<bool> ChangePasswordAsync(int code);
-        Task ChangeProfilePictureAsync(Stream picture);
+
+        Task ChangeProfilePictureAsync(MediaModel media);
 
         Task ForgetYourPasswordAsync(string userNameOrEmailAddress);
 
