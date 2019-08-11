@@ -144,9 +144,12 @@ namespace ContestPark.Mobile.ViewModels
             {
                 ProfileInfo = profileInfo;
 
-                IsMeProfile = _settingsService.CurrentUser.UserName == ProfileInfo.UserId;
+                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
 
-                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+                if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
+                {
+                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+                }
             }
             else
             {
@@ -154,6 +157,8 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.UserNotFound,
                     ContestParkResources.Okay);
             }
+
+            IsBusy = false;
 
             await base.InitializeAsync();
         }
@@ -280,7 +285,7 @@ namespace ContestPark.Mobile.ViewModels
 
             PushNavigationPageAsync(nameof(FollowersView), new NavigationParameters
                 {
-                    {"UserId", userName}
+                    {"UserId", ProfileInfo.UserId}
                 });
 
             IsBusy = false;
@@ -298,7 +303,7 @@ namespace ContestPark.Mobile.ViewModels
 
             PushNavigationPageAsync(nameof(FollowingView), new NavigationParameters
                 {
-                    {"UserId", userName}
+                    {"UserId", ProfileInfo.UserId}
                 });
 
             IsBusy = false;

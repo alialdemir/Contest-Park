@@ -39,16 +39,6 @@ namespace ContestPark.Follow.API.FunctionalTests
             };
         }
 
-        public Task<UserIdModel> GetUserIdByUserName(string userName)
-        {
-            var user = users.Where(u => u.UserName == userName).Select(u => new UserIdModel
-            {
-                UserId = u.UserId
-            }).FirstOrDefault();
-
-            return Task.FromResult(user);
-        }
-
         public Task<string> GetRandomUserId()
         {
             return Task.FromResult(users.OrderBy(x => Guid.NewGuid()).FirstOrDefault().UserId);

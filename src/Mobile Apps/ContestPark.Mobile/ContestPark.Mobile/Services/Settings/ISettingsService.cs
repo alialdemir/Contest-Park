@@ -24,11 +24,6 @@ namespace ContestPark.Mobile.Services.Settings
         UserInfoModel CurrentUser { get; }
 
         /// <summary>
-        /// Gets a value indicating whether IsPrivatePrice
-        /// </summary>
-        bool IsPrivatePrice { get; }
-
-        /// <summary>
         /// Gets a value indicating whether IsSoundEffectActive
         /// </summary>
         bool IsSoundEffectActive { get; }
@@ -100,7 +95,7 @@ namespace ContestPark.Mobile.Services.Settings
         /// <returns>The <see cref="string"/></returns>
         string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "");
 
-        void RefreshCurrentUser();
+        void RefreshCurrentUser(UserInfoModel currentUser);
 
         /// <summary>
         /// The RemoveCurrentUser

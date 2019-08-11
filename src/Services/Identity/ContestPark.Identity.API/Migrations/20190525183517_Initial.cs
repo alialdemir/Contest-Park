@@ -69,8 +69,8 @@ namespace ContestPark.Identity.API.Migrations
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     FaceBookId = table.Column<string>(maxLength: 256, nullable: true),
                     FullName = table.Column<string>(maxLength: 256, nullable: false),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsBot = table.Column<bool>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false, defaultValue: true),
+                    IsBot = table.Column<bool>(nullable: false, defaultValue: false),
                     Language = table.Column<byte>(nullable: false),
                     LanguageCode = table.Column<string>(maxLength: 5, nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
@@ -82,6 +82,7 @@ namespace ContestPark.Identity.API.Migrations
                     DisplayFollowingCount = table.Column<string>(maxLength: 10, nullable: true),
                     DisplayFollowersCount = table.Column<string>(maxLength: 10, nullable: true),
                     DisplayGameCount = table.Column<string>(maxLength: 10, nullable: true),
+                    IsPrivateProfile = table.Column<bool>(nullable: false, defaultValue: false),
                 },
                 constraints: table =>
                 {

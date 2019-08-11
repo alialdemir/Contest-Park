@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="ContestPark.Mobile.Components.TextListItem"
+    x:Class="ContestPark.Mobile.Components.ImageListItem"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize">
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <ContentView.Content>
         <components:CustomGrid
             Padding="16,8,16,8"
@@ -19,12 +22,13 @@
                 <ColumnDefinition Width="*" />
             </components:CustomGrid.ColumnDefinitions>
 
-            <icon:IconImage
+            <components:CachedImage
                 Grid.Row="0"
                 Grid.Column="0"
-                Icon="{Binding Icon}"
-                IconColor="{StaticResource Primary}"
-                IconSize="24" />
+                Aspect="AspectFill"
+                HeightRequest="24"
+                Source="{Binding Icon}"
+                WidthRequest="24" />
 
             <Label
                 Grid.Row="0"

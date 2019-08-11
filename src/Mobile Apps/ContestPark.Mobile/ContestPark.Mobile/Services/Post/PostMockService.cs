@@ -11,13 +11,13 @@ namespace ContestPark.Mobile.Services.Post
 {
     public class PostMockService : IPostService
     {
-        public async Task<bool> DisLikeAsync(string postId)
+        public async Task<bool> DisLikeAsync(int postId)
         {
             await Task.Delay(300);
             return true;
         }
 
-        public Task<PostDetailModel> GetPostByPostIdAsync(string postId)
+        public Task<PostDetailModel> GetPostByPostIdAsync(int postId, PagingModel pagingModel)
         {
             return Task.FromResult(new PostDetailModel
             {
@@ -27,7 +27,7 @@ namespace ContestPark.Mobile.Services.Post
                     IsLike = false,
                     Date = DateTime.Now.AddDays(1),
                     LikeCount = 44,
-                    PostId = Guid.NewGuid().ToString(),
+                    PostId = 3,
                     PostType = Enums.PostTypes.Contest,
                     Bet = 123,
 
@@ -141,7 +141,7 @@ namespace ContestPark.Mobile.Services.Post
                     IsLike = false,
                     Date = DateTime.Now.AddDays(-i),
                     LikeCount = i,
-                    PostId = Guid.NewGuid().ToString(),
+                    PostId = 2,
                     PostType = Enums.PostTypes.Contest,
                     Bet = i * 123,
 
@@ -185,7 +185,7 @@ namespace ContestPark.Mobile.Services.Post
                     IsLike = false,
                     Date = DateTime.Now.AddDays(2),
                     LikeCount = 3,
-                    PostId = Guid.NewGuid().ToString(),
+                    PostId = 1,
                     PostType = Enums.PostTypes.Contest,
                     Bet = 2500,
 
@@ -210,7 +210,7 @@ namespace ContestPark.Mobile.Services.Post
                         IsLike = false,
                         Date = DateTime.Now.AddDays(2),
                         LikeCount = 3,
-                        PostId = Guid.NewGuid().ToString(),
+                        PostId = 1,
                         PostType = Enums.PostTypes.Text,
 
                         Description = "Merhaba dünya",
@@ -226,7 +226,7 @@ namespace ContestPark.Mobile.Services.Post
                         IsLike = false,
                         Date = DateTime.Now.AddDays(2),
                         LikeCount = 3,
-                        PostId = Guid.NewGuid().ToString(),
+                        PostId =2,
                         PostType = Enums.PostTypes.Image,
 
                         Description = "textli yazıtextli yazıtextli yazıtextli yazıtextli yazı textli yazıtextli yazı",
@@ -243,7 +243,7 @@ namespace ContestPark.Mobile.Services.Post
                         IsLike = false,
                         Date = DateTime.Now.AddDays(2),
                         LikeCount = 3,
-                        PostId = Guid.NewGuid().ToString(),
+                        PostId =3,
                         PostType = Enums.PostTypes.Image,
 
                         OwnerProfilePicturePath = DefaultImages.DefaultProfilePicture,
@@ -255,13 +255,13 @@ namespace ContestPark.Mobile.Services.Post
             });
         }
 
-        public async Task<bool> LikeAsync(string postId)
+        public async Task<bool> LikeAsync(int postId)
         {
             await Task.Delay(300);
             return true;
         }
 
-        public Task<ServiceModel<PostLikeModel>> PostLikesAsync(string postId, PagingModel pagingModel)
+        public Task<ServiceModel<PostLikeModel>> PostLikesAsync(int postId, PagingModel pagingModel)
         {
             List<PostLikeModel> postLikes = new List<PostLikeModel>();
 
@@ -286,7 +286,7 @@ namespace ContestPark.Mobile.Services.Post
             });
         }
 
-        public Task<bool> SendCommentAsync(string postId, string comment)
+        public Task<bool> SendCommentAsync(int postId, string comment)
         {
             return Task.FromResult(true);
         }

@@ -21,7 +21,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IPostService _postService;
         private readonly ISettingsService _settingsService;
-        private string postId;
+        private int postId;
 
         #endregion Private variable
 
@@ -84,7 +84,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PostModel = await _postService.GetPostByPostIdAsync(postId);
+            PostModel = await _postService.GetPostByPostIdAsync(postId, ServiceModel);
             if (PostModel != null && PostModel.Comments != null)
             {
                 ServiceModel = PostModel.Comments;
@@ -183,16 +183,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigations
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<string>("PostId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
-            //base.OnNavigatingTo(parameters);
+            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
+
+            base.OnNavigatingTo(parameters);
         }
 
         #endregion Navigations

@@ -222,7 +222,10 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () => ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel));
+                return new Command(async () =>
+                {
+                    ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel);
+                });
             }
         }
 

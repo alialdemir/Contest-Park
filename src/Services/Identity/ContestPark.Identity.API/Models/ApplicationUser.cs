@@ -56,5 +56,7 @@ namespace ContestPark.Identity.API.Models
         public string DisplayFollowersCount { get; set; }
 
         public string DisplayGameCount { get; set; }
+
+        public bool IsPrivateProfile { get; set; }
     }
 }

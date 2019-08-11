@@ -1,5 +1,5 @@
 CREATE PROCEDURE SP_PostLike(
-    userId VARCHAR(256),
+    userId VARCHAR(255),
     postId INT
 )
 BEGIN

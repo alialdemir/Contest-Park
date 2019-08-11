@@ -29,7 +29,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
-            x:Name="lstView"
+            x:Name="lstCategoryPosts"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
@@ -181,7 +181,7 @@
                     <StackLayout BackgroundColor="{StaticResource White}">
 
                         <Label
-                            IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
+                            IsVisible="{Binding Source={x:Reference lstCategoryPosts}, Path=IsShowEmptyMessage}"
                             Style="{StaticResource EmptyModel}"
                             Text="{i18n:Translate ContestPostEmptyMessage}" />
                     </StackLayout>

@@ -43,16 +43,6 @@ namespace ContestPark.Duel.API.FunctionalTests
             return Task.FromResult("3333-3333-3333-bot");
         }
 
-        public Task<UserIdModel> GetUserIdByUserName(string userName)
-        {
-            var user = users.Where(u => u.UserName == userName).Select(u => new UserIdModel
-            {
-                UserId = u.UserId
-            }).FirstOrDefault();
-
-            return Task.FromResult(user);
-        }
-
         public Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false)
         {
             return Task.FromResult(users.AsEnumerable());

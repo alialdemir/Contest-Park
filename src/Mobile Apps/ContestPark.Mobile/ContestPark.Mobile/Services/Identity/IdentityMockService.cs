@@ -59,10 +59,10 @@ namespace ContestPark.Mobile.Services.Identity
             {
                 CoverPicture = DefaultImages.DefaultCoverPicture,
                 ProfilePicturePath = DefaultImages.DefaultProfilePicture,
-                FollowersCount = 99,
-                FollowUpCount = 101,
+                FollowersCount = "99",
+                FollowUpCount = "101",
                 FullName = "Ali Aldemir",
-                GameCount = 9876,
+                GameCount = "9876",
                 IsFollowing = false,
                 UserId = userId,
                 IsBlocked = true,

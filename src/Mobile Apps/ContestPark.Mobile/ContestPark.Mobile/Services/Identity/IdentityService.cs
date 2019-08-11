@@ -177,6 +177,11 @@ namespace ContestPark.Mobile.Services.Identity
                 };
 
                 var result = await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
+                if (!result.IsSuccess)
+                {
+                    string translateMessage = TranslateExtension.resmgr.Value.GetString(result.Error.ErrorMessage);
+                    await ShowErrorMessage(translateMessage);
+                }
 
                 return result.Data;
             }
@@ -338,11 +343,6 @@ namespace ContestPark.Mobile.Services.Identity
 #else
                 message = ContestParkResources.GlobalErrorMessage;
 #endif
-
-                if (result.ErrorDescription.Contains("invalid_username_or_password"))
-                {
-                    message = TranslateExtension.resmgr.Value.GetString(result.ErrorDescription);
-                }
 
                 await ShowErrorMessage(message);
             }

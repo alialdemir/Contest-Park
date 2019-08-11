@@ -135,23 +135,6 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         }
 
         /// <summary>
-        /// Kullanıcı adına ait kullanıcı id döner
-        /// </summary>
-        /// <param name="userName">Kullanıcı adı</param>
-        /// <returns>Kullanıcı id</returns>
-        public string GetUserIdByUserName(string userName)
-        {
-            if (string.IsNullOrEmpty(userName))
-                return string.Empty;
-
-            return _applicationDbContext
-                .Users
-                .Where(u => u.NormalizedUserName == userName.ToUpper())
-                .Select(u => u.Id)
-                .FirstOrDefault();
-        }
-
-        /// <summary>
         /// Kullanıcı adına göre profil bilgilerini verir
         /// </summary>
         /// <param name="userName">Kullanıcı adı</param>
@@ -168,9 +151,10 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                     FullName = u.FullName,
                     ProfilePicturePath = u.ProfilePicturePath,
                     CoverPicture = u.CoverPicturePath,
-                    FollowersCount = u.FollowersCount,
-                    FollowUpCount = u.FollowingCount,
-                    GameCount = u.GameCount
+                    FollowersCount = u.DisplayFollowersCount,
+                    FollowUpCount = u.DisplayFollowingCount,
+                    GameCount = u.DisplayGameCount,
+                    IsPrivateProfile = u.IsPrivateProfile
                 }).FirstOrDefault();
         }
 

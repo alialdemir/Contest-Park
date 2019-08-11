@@ -44,6 +44,9 @@ namespace ContestPark.Identity.API.Migrations
 
                     b.Property<bool>("IsBot");
 
+                    b.Property<bool>("IsPrivateProfile");
+
+
                     b.Property<byte>("Language");
 
                     b.Property<string>("LanguageCode")

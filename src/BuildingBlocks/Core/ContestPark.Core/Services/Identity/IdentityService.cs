@@ -108,32 +108,6 @@ namespace ContestPark.Core.Services.Identity
         }
 
         /// <summary>
-        /// Kullannıcı adına ait user name döndürür
-        /// </summary>
-        /// <param name="userName">Kullanıcı adı</param>
-        /// <returns>Kullanıcı id</returns>
-        public async Task<UserIdModel> GetUserIdByUserName(string userName)
-        {
-            // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
-            string key = $"*:{userName}";
-
-            var items = _redisClient.ScanAllKeys(key).ToList();
-            if (items == null || items.Count == 0)
-                return null;
-
-            // Redis keyleri DuelUserModele çevirdik
-            List<UserModel> users = _redisClient.GetValues<UserModel>(items);
-            if (users != null && users.Count != 0)
-            {
-                string userId = users.FirstOrDefault(x => x.UserName.ToLower() == userName.ToLower()).UserId;
-                if (!string.IsNullOrEmpty(userName))
-                    return new UserIdModel { UserId = userId };
-            }
-
-            return await _requestProvider.GetAsync<UserIdModel>($"{baseUrl}/UserId?userName={userName}");
-        }
-
-        /// <summary>
         /// Rastgele kullanıcı id verir
         /// </summary>
         /// <returns>Kullanıcı id</returns>

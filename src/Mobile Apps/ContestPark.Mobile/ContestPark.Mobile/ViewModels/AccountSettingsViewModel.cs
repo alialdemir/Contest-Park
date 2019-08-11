@@ -1,10 +1,12 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Events;
 using Prism.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,18 +29,23 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private readonly ISettingsService _settingsService;
 
+        private readonly IEventAggregator _eventAggregator;
+
         #endregion Private varaibles
 
         #region Constructors
 
         public AccountSettingsViewModel(ISettingsService settingsService,
                                         IPageDialogService dialogService,
+                                        IEventAggregator eventAggregator,
+
                                         IIdentityService identityService,
                                         IMediaService mediaService) : base(dialogService: dialogService)
         {
             Title = ContestParkResources.EditProfile;
 
             _settingsService = settingsService;
+            _eventAggregator = eventAggregator;
             _identityService = identityService;
             _mediaService = mediaService;
         }
@@ -70,13 +77,13 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.PictureSettings)
                                 {
                                     new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Label,
+                                        MenuType = Enums.MenuTypes.Image,
                                         Title = ContestParkResources.ChangeProfilePicture,
                                         Icon = _settingsService.CurrentUser.ProfilePicturePath,
                                         SingleTap = new Command(async () => await ChangeProfilePictureAsync())
         },
                                     new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Label,
+                                        MenuType = Enums.MenuTypes.Image,
                                         Title = ContestParkResources.ChangeCoverPicture,
                                         Icon = _settingsService.CurrentUser.CoverPicturePath,
                                         SingleTap = new Command(async () => await ChangeCoverPicture())
@@ -113,6 +120,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             await _identityService.ChangeCoverPictureAsync(media);
+
+            // TODO: reflesh menü ve profildeki resimler
         }
 
         /// <summary>
@@ -125,6 +134,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             await _identityService.ChangeProfilePictureAsync(media);
+
+            // TODO: reflesh menü ve profildeki resimler
         }
 
         /// <summary>
@@ -189,10 +200,16 @@ namespace ContestPark.Mobile.ViewModels
                 UserName = userName,
                 FullName = fullName,
             });
-
             if (isSuccess)
             {
-                await _identityService.RefreshTokenAsync();
+                _settingsService.CurrentUser.UserName = userName;
+                _settingsService.CurrentUser.FullName = fullName;
+
+                _settingsService.RefreshCurrentUser(_settingsService.CurrentUser);
+
+                _eventAggregator
+                    .GetEvent<ChangeUserInfoEvent>()
+                    .Publish(_settingsService.CurrentUser);
 
                 await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
                                         ContestParkResources.YourInformationHasBeenUpdated,

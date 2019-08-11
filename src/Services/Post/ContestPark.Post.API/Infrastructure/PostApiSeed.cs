@@ -25,8 +25,8 @@ namespace ContestPark.Post.API.Infrastructure
                             PostType = Enums.PostTypes.Image,
                             PostImageType = Enums.PostImageTypes.ProfileImage,
                             OwnerUserId = "1111-1111-1111-1111",
-                            CommentCount = 3,
-                            LikeCount =7,
+                            CommentCount = 2,
+                            LikeCount = 2,
                             PicturePath= "http://i.pravatar.cc/150?u=witcherfearless"
                     },
                         new Tables.Post.Post
@@ -34,6 +34,7 @@ namespace ContestPark.Post.API.Infrastructure
                             PostType = Enums.PostTypes.Image,
                             PostImageType = Enums.PostImageTypes.CoverImage,
                             OwnerUserId = "1111-1111-1111-1111",
+                            CommentCount = 2,
                             PicturePath= "http://i.pravatar.cc/150?u=witcherfearlessCOVER"
                     },
                         new Tables.Post.Post
@@ -41,8 +42,6 @@ namespace ContestPark.Post.API.Infrastructure
                             PostType = Enums.PostTypes.Text,
                             OwnerUserId = "1111-1111-1111-1111",
                             Description = "İlk postumu yazdım oleyyy",
-                            LikeCount = 2,
-                            CommentCount = 1
                     },
                         new Tables.Post.Post
                     {

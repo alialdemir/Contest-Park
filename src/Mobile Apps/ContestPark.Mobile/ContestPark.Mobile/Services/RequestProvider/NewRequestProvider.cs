@@ -98,58 +98,32 @@ namespace ContestPark.Mobile.Services.RequestProvider
         /// name="loginModel"></param> <></returns>
         public async Task<ResponseModel<TResult>> PostAsync<TResult>(string url, Dictionary<string, string> dictionary)
         {
-            // a new StringContent must be created for each retry
-            // as it is disposed after each call
-            //    var origin = GetOriginFromUri(url);
-            //return HttpInvoker(origin, async () =>
-            //{
-            //////ResponseModel<TResult> result = new ResponseModel<TResult>();
+            HttpClient httpClient = CreateHttpClient();
 
-            //////HttpClient httpClient = CreateHttpClient();
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
 
-            //////httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
-
-            //////var response = await httpClient.PostAsync(
-            //////    url,
-            //////    new FormUrlEncodedContent(dictionary));
-
-            //////await HandleResponse(response);
-
-            //////string serialized = await response.Content.ReadAsStringAsync();
-
-            //////result.Data = await Task.Factory.StartNew(() =>
-            //////    JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
-
-            //////return result;
-            ////////});
-
-            using (HttpClient httpClient = CreateHttpClient())
+            try
             {
-                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
+                // a new StringContent must be created for each retry as it is disposed after each call
+                //var origin = GetOriginFromUri(url);
 
-                try
-                {
-                    // a new StringContent must be created for each retry as it is disposed after each call
-                    //var origin = GetOriginFromUri(url);
-
-                    //return HttpInvoker(origin, async (context) =>
-                    //{
-                    if (await CheckNetworkAsync())
-                        return new ResponseModel<TResult>();
-
-                    HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Post, url)
-                    {
-                        Content = new FormUrlEncodedContent(dictionary)
-                    });
-
-                    return await ResultRequest<TResult>(response);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-
+                //return HttpInvoker(origin, async (context) =>
+                //{
+                if (await CheckNetworkAsync())
                     return new ResponseModel<TResult>();
-                }
+
+                HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = new FormUrlEncodedContent(dictionary)
+                });
+
+                return await ResultRequest<TResult>(response);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+
+                return new ResponseModel<TResult>();
             }
         }
 
@@ -161,12 +135,19 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             string serialized = await response.Content.ReadAsStringAsync();
 
-            if (!response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode && serialized.Contains("invalid_username_or_password"))
+            {
+                result.Error = new ValidationResultModel
+                {
+                    ErrorMessage = "invalid_username_or_password"
+                };
+            }
+            else if (!response.IsSuccessStatusCode)
             {
                 result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
             }
 
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
             {
                 result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
             }

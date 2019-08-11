@@ -39,7 +39,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            ServiceModel = await _followService.Followers(userId, ServiceModel);
+            ServiceModel = await _followService.Following(userId, ServiceModel);
 
             await base.InitializeAsync();
         }

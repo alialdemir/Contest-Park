@@ -4,6 +4,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.RequestProvider;
+using Newtonsoft.Json;
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -18,9 +19,9 @@ namespace ContestPark.Mobile.Services.Settings
         private const string signalRConnectionIdDefault = "SignalRConnectionIdDefault";
 
         private readonly string AccessTokenDefault = string.Empty;
+        private readonly string CurrentUserDefault = string.Empty;
 
         private readonly string IdTokenDefault = string.Empty;
-        private readonly bool IsPrivatePriceDefault = false;
         private readonly bool IsSoundEffectActiveDefaultDefault = true;
         private readonly string RefleshTokenDefault = string.Empty;
 
@@ -61,17 +62,16 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 if (_userInfo == null)
                 {
-                    RefreshCurrentUser();
+                    string currentUserJson = GetValueOrDefault(CurrentUserDefault);
+                    if (!string.IsNullOrEmpty(currentUserJson))
+                    {
+                        _userInfo = JsonConvert.DeserializeObject<UserInfoModel>(currentUserJson);
+                    }
+                    else _userInfo = new UserInfoModel();
                 }
 
                 return _userInfo;
             }
-        }
-
-        public bool IsPrivatePrice
-        {
-            get => GetValueOrDefault(IsPrivatePriceDefault);
-            set => AddOrUpdateValue(value);
         }
 
         public bool IsSoundEffectActive
@@ -165,9 +165,13 @@ namespace ContestPark.Mobile.Services.Settings
         /// <summary>
         /// Current user refresh
         /// </summary>
-        public void RefreshCurrentUser()
+        public void RefreshCurrentUser(UserInfoModel currentUser)
         {
-            _userInfo = _userInfo.GetUserInfo(AuthAccessToken);
+            string currentUserJson = JsonConvert.SerializeObject(currentUser);
+
+            _userInfo = currentUser;
+
+            AddOrUpdateValue(currentUserJson, nameof(CurrentUser));
         }
 
         public void RemoveCurrentUser()
@@ -201,8 +205,8 @@ namespace ContestPark.Mobile.Services.Settings
             RefreshToken = userToken.RefreshToken;
             TokenType = userToken.TokenType;
 
-            // Current user yenilendi
-            RefreshCurrentUser();
+            //// Current user yenilendi
+            RefreshCurrentUser(_userInfo.GetUserInfo(AuthAccessToken));
         }
 
         #endregion Setting Service
