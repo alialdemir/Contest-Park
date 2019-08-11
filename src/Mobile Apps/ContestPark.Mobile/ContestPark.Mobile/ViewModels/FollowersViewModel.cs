@@ -62,8 +62,8 @@ namespace ContestPark.Mobile.ViewModels
             Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
 
             bool isSuccesss = await (followModel.IsFollowing == true ?
-                  _followService.UnFollowAsync(userId) :
-                  _followService.FollowUpAsync(userId));
+                  _followService.FollowUpAsync(userId) :
+                  _followService.UnFollowAsync(userId));
 
             if (!isSuccesss)
             {

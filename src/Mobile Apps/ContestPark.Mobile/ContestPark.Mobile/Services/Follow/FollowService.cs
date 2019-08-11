@@ -13,8 +13,9 @@ namespace ContestPark.Mobile.Services.Follow
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/follow";
+        private const string ApiUrlBase = "api/v1/Follow";
         private readonly INewRequestProvider _requestProvider;
+        private readonly ICacheService _cacheService;
 
         #endregion Private variables
 
@@ -24,6 +25,7 @@ namespace ContestPark.Mobile.Services.Follow
             ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _cacheService = cacheService;
         }
 
         #endregion Constructor
@@ -39,7 +41,17 @@ namespace ContestPark.Mobile.Services.Follow
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{followedUserId}/Followers{pagingModel.ToString()}");
 
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<FollowModel>>(uri);
+            }
+
             var result = await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+
+            if (result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
 
             return result.Data;
         }
@@ -53,7 +65,17 @@ namespace ContestPark.Mobile.Services.Follow
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{followedUserId}/Following{pagingModel.ToString()}");
 
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<FollowModel>>(uri);
+            }
+
             var result = await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+
+            if (result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
 
             return result.Data;
         }

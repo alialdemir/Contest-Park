@@ -177,8 +177,8 @@ namespace ContestPark.Mobile.ViewModels
             ProfileInfo.IsBlocked = !ProfileInfo.IsBlocked;
 
             bool isSuccesss = await (ProfileInfo.IsBlocked == true ?
-                  _blockingService.UnBlock(ProfileInfo.UserId) :
-                  _blockingService.Block(ProfileInfo.UserId));
+                  _blockingService.Block(ProfileInfo.UserId) :
+                  _blockingService.UnBlock(ProfileInfo.UserId));
 
             if (!isSuccesss)
             {
