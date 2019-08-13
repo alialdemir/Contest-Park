@@ -53,7 +53,7 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> AddOpponent([FromBody]StandbyModeModel standbyModeModel)// Oyunucunun karşısına rakip ekler
         {
-            if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
+            if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0)
             {
                 return BadRequest();
             }
@@ -91,7 +91,7 @@ namespace ContestPark.Duel.API.Controllers
         }
 
         /// <summary>
-        /// Bekleme moduna al
+        /// Bekleme moduna alma eventi publish eder
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="standbyModeModel">Düello bilgileri</param>
@@ -111,10 +111,10 @@ namespace ContestPark.Duel.API.Controllers
         /// Rakip bekleme modundan çıkar
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
-        [HttpPost("DeleteStandbyMode")]
+        [HttpPost("ExitStandbyMode")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult DeleteStandbyMode([FromBody]StandbyModeModel standbyModeModel)
+        public IActionResult ExitStandbyMode([FromBody]StandbyModeModel standbyModeModel)
         {
             if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
             {

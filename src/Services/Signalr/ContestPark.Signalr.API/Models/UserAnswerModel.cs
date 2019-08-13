@@ -1,8 +1,8 @@
-﻿using ContestPark.Mobile.Enums;
+﻿using ContestPark.Signalr.API.Enums;
 
-namespace ContestPark.Mobile.Models.Duel.Quiz
+namespace ContestPark.Signalr.API.Models
 {
-    public class UserAnswer
+    public class UserAnswerModel
     {
         public Stylish Stylish { get; set; }
 
@@ -12,8 +12,9 @@ namespace ContestPark.Mobile.Models.Duel.Quiz
 
         public byte Time { get; set; }
 
-        public int QuestionId { get; set; }
         public bool IsFounder { get; set; }
+        public int QuestionId { get; set; }
+
         public byte Round { get; set; }
     }
 }

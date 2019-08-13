@@ -6,7 +6,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 {
     public class WaitingOpponentIntegrationEvent : IntegrationEvent
     {
-        public decimal Bet { get; }
+        public decimal Bet { get; set; }
 
         public short SubCategoryId { get; }
 

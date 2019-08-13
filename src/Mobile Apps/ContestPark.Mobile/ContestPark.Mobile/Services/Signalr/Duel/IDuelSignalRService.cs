@@ -1,24 +1,28 @@
 ﻿using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using System;
-using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Signalr.Duel
 {
     public interface IDuelSignalRService
     {
-        void DuelScreenInfo();
+        void DuelStarting();
+
+        void DuelCreated();
 
         void NextQuestion();
 
-        void OffDuelScreenInfo();
+        void OffDuelStarting();
+
+        void OffDuelCreated();
 
         void OffNextQuestion();
+        System.Threading.Tasks.Task SaveAnswer(UserAnswer userAnswer);
 
-        EventHandler<DuelStartingModel> DuelScreenInfoEventHandler { get; set; }
+        EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
+
+        EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
 
         EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
-
-        Task SaveAnswer(UserAnswer userAnswer);
     }
 }

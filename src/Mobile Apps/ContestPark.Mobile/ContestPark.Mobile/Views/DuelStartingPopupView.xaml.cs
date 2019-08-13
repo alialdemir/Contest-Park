@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.Duel;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
@@ -23,6 +24,7 @@ namespace ContestPark.Mobile.Views
 
         public decimal Bet { get; set; }
         public string OpponentUserId { get; set; }
+        public BalanceTypes BalanceType { get; set; }
         public SelectedSubCategoryModel SelectedSubCategory { get; set; }
         public StandbyModes StandbyMode { get; set; }
 
@@ -39,9 +41,11 @@ namespace ContestPark.Mobile.Views
                 return;
 
             viewModel.StandbyModeModel.SubCategoryId = viewModel.SelectedSubCategory.SubcategoryId = SelectedSubCategory.SubcategoryId;
+            viewModel.StandbyModeModel.Bet = Bet;
+            viewModel.StandbyModeModel.BalanceType = BalanceType;
             viewModel.SelectedSubCategory.SubcategoryName = SelectedSubCategory.SubcategoryName;
             viewModel.SelectedSubCategory.SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath;
-            viewModel.StandbyModeModel.Bet = Bet;
+
             viewModel.StandbyMode = StandbyMode;
             viewModel.OpponentUserId = OpponentUserId;
 

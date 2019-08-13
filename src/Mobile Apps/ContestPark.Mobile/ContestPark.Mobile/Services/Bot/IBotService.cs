@@ -6,6 +6,6 @@ namespace ContestPark.Mobile.Services.Bot
 {
     public interface IBotService
     {
-        void Init(Func<Stylish, bool, Task> saveAnswer, bool isFounder);
+        void Init(Func<Stylish, bool, string, Task> saveAnswer, bool isFounder, string botUserId);
     }
 }

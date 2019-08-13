@@ -25,7 +25,9 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         #region Events
 
-        public EventHandler<DuelStartingModel> DuelScreenInfoEventHandler { get; set; }
+        public EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
+
+        public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
 
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
 
@@ -36,38 +38,52 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         /// <summary>
         /// Duello bekleme ekranındaki kullanıcı bilgilerini getirir
         /// </summary>
-        public void DuelScreenInfo()
+        public void DuelStarting()
         {
-            _signalRService?.On<DuelStartingModel>("DuelScreen", (data) => DuelScreenInfoEventHandler?.Invoke(data, null));
+            _signalRService?.On<DuelStartingModel>("DuelStarting", (data) => DuelStartingEventHandler?.Invoke(data, null));
         }
 
         /// <summary>
         /// Sıradaki soruyu almak için
         /// </summary>
+        public void DuelCreated()
+        {
+            _signalRService?.On<DuelCreated>("DuelCreated", (data) => DuelCreatedEventHandler?.Invoke(data, null));
+        }
+
+        /// <summary>
+        /// On DuelStarting kısmını kapatır
+        /// </summary>
+        public void OffDuelStarting()
+        {
+            _signalRService?.Off("DuelStarting");
+        }
+
+        /// <summary>
+        /// On DuelCreated kısmını kapatır
+        /// </summary>
+        public void OffDuelCreated()
+        {
+            _signalRService?.Off("DuelCreated");
+        }
+
         public void NextQuestion()
         {
             _signalRService?.On<NextQuestion>("NextQuestion", (data) => NextQuestionEventHandler?.Invoke(data, null));
         }
 
-        /// <summary>
-        /// On DuelScreen kısmını kapatır
-        /// </summary>
-        public void OffDuelScreenInfo()
-        {
-            _signalRService?.Off("DuelScreen");
-        }
-
-        /// <summary>
-        /// On NextQuestion kısmını kapatır
-        /// </summary>
         public void OffNextQuestion()
         {
             _signalRService?.Off("NextQuestion");
         }
 
-        public async Task SaveAnswer(UserAnswer userAnswer)
+        /// <summary>
+        /// Soruya verdiği cevabı gönderir
+        /// </summary>
+        /// <param name="userAnswer">Cevap</param>
+        public Task SaveAnswer(UserAnswer userAnswer)
         {
-            await _signalRService.SendMessage("SaveAnswer", userAnswer);
+            return _signalRService.SendMessage("saveAnswer", userAnswer);
         }
 
         #endregion Method

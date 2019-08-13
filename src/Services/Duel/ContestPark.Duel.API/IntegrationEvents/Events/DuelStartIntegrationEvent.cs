@@ -14,7 +14,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 
         public string OpponentUserId { get; set; }
 
-        public string FounderConnectionId { get; set; }
+        public string FounderConnectionId { get; }
 
         public BalanceTypes BalanceType { get; }
 
@@ -22,7 +22,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 
         public Languages OpponentLanguage { get; }
 
-        public string OpponentConnectionId { get; set; }
+        public string OpponentConnectionId { get; }
 
         public DuelStartIntegrationEvent(short subCategoryId,
                                          decimal bet,

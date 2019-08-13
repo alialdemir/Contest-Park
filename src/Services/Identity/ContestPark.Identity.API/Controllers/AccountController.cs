@@ -109,7 +109,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [AllowAnonymous]
         [Route("GetRandomProfilePictures")]
         [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetRandomProfilePictures()
         {
             IEnumerable<string> randomProfilePictures = _userRepository.GetRandomProfilePictures();

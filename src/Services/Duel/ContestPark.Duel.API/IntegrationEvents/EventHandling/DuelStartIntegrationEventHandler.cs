@@ -10,8 +10,8 @@ using ContestPark.Duel.API.Resources;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,8 +41,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                 IOptions<DuelSettings> settings,
                                                 ILogger<DuelStartIntegrationEventHandler> logger)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
+            _logger = logger;
+            _eventBus = eventBus;
             _duelRepository = duelRepository;
             _questionRepository = questionRepository;
             _identityService = identityService;
@@ -97,12 +97,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
 
             PublishDuelStartingEvent(duelId,
-                                     @event.FounderUserId,
-                                     @event.FounderConnectionId,
-                                     @event.OpponentUserId,
-                                     @event.OpponentConnectionId);
+                                        @event.FounderUserId,
+                                        @event.FounderConnectionId,
+                                        @event.OpponentUserId,
+                                        @event.OpponentConnectionId);
 
-            var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
+            var questions = await _questionRepository.DuelQuestions(duelId,
+                                                                    @event.SubCategoryId,
                                                                     @event.FounderUserId,
                                                                     @event.OpponentUserId,
                                                                     @event.FounderLanguage,
@@ -143,14 +144,17 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                              string opponentConnectionId,
                                              IEnumerable<QuestionModel> questions)
         {
-            var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
-                                                            founderUserId,
-                                                            founderConnectionId,
-                                                            opponentUserId,
-                                                            opponentConnectionId,
-                                                            questions);
+            Task.Factory.StartNew(() =>
+           {
+               var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
+                                                       founderUserId,
+                                                       founderConnectionId,
+                                                       opponentUserId,
+                                                       opponentConnectionId,
+                                                       questions);
 
-            _eventBus.Publish(duelEvent);
+               _eventBus.Publish(duelEvent);
+           });
         }
 
         /// <summary>
@@ -187,11 +191,15 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 // TODO: #issue 213
 
+                Debug.WriteLine("founderUserModel.ProfilePicturePath : " + founderUserModel.ProfilePicturePath);
+                Debug.WriteLine("opponentUserModel.ProfilePicturePath : " + opponentUserModel.ProfilePicturePath);
+
                 var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
                     founderUserModel.CoverPicturePath,
                     founderUserModel.ProfilePicturePath,
                     founderUserModel.UserId,
                     founderConnectionId,
+                    founderUserModel.FullName,
                     opponentUserModel.CoverPicturePath,
                     opponentUserModel.FullName,
                     opponentUserModel.ProfilePicturePath,
@@ -209,9 +217,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="message">Gönderilecek mesaj</param>
         private void SendErrorMessage(string userId, string message)
         {
-            var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
+            Task.Factory.StartNew(() =>
+            {
+                var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
 
-            _eventBus.Publish(@event);
+                _eventBus.Publish(@event);
+            });
         }
 
         /// <summary>
@@ -225,11 +236,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (bet <= 0)
                 return;
 
-            bet = -bet;
+            Task.Factory.StartNew(() =>
+            {
+                bet = -bet;
 
-            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
+                var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
 
-            _eventBus.Publish(@event);
+                _eventBus.Publish(@event);
+            });
         }
 
         #endregion Methods

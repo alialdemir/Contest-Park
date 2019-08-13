@@ -27,7 +27,13 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         private Dictionary<string, IDisposable> DisposableOns { get; } = new Dictionary<string, IDisposable>();
 
-        public bool IsConnect { get; private set; }
+        public bool IsConnect
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(_settingsService.SignalRConnectionId);
+            }
+        }
 
         #endregion Properties
 
@@ -49,7 +55,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// </summary>
         public async Task Init()
         {
-            if (!String.IsNullOrEmpty(_settingsService.AuthAccessToken))
+            if (!string.IsNullOrEmpty(_settingsService.AuthAccessToken))
             {
                 HubConnection = new HubConnectionBuilder()
                    .AddJsonProtocol(options =>
@@ -70,6 +76,12 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                 }).Build();
 
                 await ConnectAsync();
+
+                GetConnection();
+
+                RemoveConnectionId();
+
+                EventListener();
             }
         }
 
@@ -85,12 +97,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                     if (!task.IsFaulted && ConnectionRetryCount != 0)
                     {
                         ConnectionRetryCount = 0;
-
-                        GetConnection();
-
-                        RemoveConnectionId();
-
-                        EventListener();
                     }
 #if DEBUG
                     else
@@ -166,7 +172,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             HubConnection?.On("GetConnectionId", (string connectionId) =>
                 {
                     _settingsService.SignalRConnectionId = connectionId;
-                    IsConnect = true;
                 });
         }
 
@@ -178,7 +183,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             HubConnection?.On("RemoveConnectionId", (string connectionId) =>
             {
                 _settingsService.SignalRConnectionId = "";
-                IsConnect = false;
             });
         }
 

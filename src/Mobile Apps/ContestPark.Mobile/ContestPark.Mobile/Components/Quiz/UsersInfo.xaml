@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.UsersInfo"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:quiz="clr-namespace:ContestPark.Mobile.Converters.Quiz;assembly=ContestPark.Mobile"
-             x:Name="page">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.UsersInfo"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:quiz="clr-namespace:ContestPark.Mobile.Converters.Quiz;assembly=ContestPark.Mobile"
+    x:Name="page">
     <ContentView.Resources>
         <ResourceDictionary>
             <quiz:TimeCircleConverter x:Key="tcc" />
@@ -25,14 +26,17 @@
 
             <!--  Founder Start  -->
 
-            <components:CircleImage Grid.Row="0"
-                                    Grid.Column="0"
-                                    BorderColor="{Binding FounderImageBorderColor}"
-                                    Source="{Binding Path=FounderSource, Source={x:Reference page}}" />
+            <components:CircleImage
+                Grid.Row="0"
+                Grid.Column="0"
+                BorderColor="{Binding FounderImageBorderColor}"
+                CacheType="None"
+                Source="{Binding Path=FounderSource, Source={x:Reference page}}" />
 
-            <StackLayout Grid.Row="0"
-                         Grid.Column="1"
-                         Orientation="Vertical">
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="1"
+                Orientation="Vertical">
 
                 <Label Text="{Binding Path=FounderFullname, Source={x:Reference page}}" TextColor="{StaticResource White}" />
 
@@ -44,38 +48,45 @@
             <!--  Timer Start  -->
 
             <Grid Grid.Row="0" Grid.Column="2">
-                <components:CircularProgress Indeterminate="False"
-                                             Max="10"
-                                             Progress="{Binding Time, Converter={StaticResource tcc}}"
-                                             ProgressBackgroundColor="{StaticResource White}"
-                                             ProgressColor="{StaticResource Red}" />
-                <Label HorizontalOptions="Center"
-                       Text="{Binding Path=Time, Source={x:Reference page}}"
-                       TextColor="White"
-                       VerticalOptions="Center" />
+                <components:CircularProgress
+                    Indeterminate="False"
+                    Max="10"
+                    Progress="{Binding Time, Converter={StaticResource tcc}}"
+                    ProgressBackgroundColor="{StaticResource White}"
+                    ProgressColor="{StaticResource Red}" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{Binding Path=Time, Source={x:Reference page}}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
             </Grid>
 
             <!--  Timer End  -->
 
             <!--  Opponent Start  -->
 
-            <StackLayout Grid.Row="0"
-                         Grid.Column="3"
-                         Orientation="Vertical">
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="3"
+                Orientation="Vertical">
 
-                <Label HorizontalTextAlignment="End"
-                       Text="{Binding Path=OpponentFullname, Source={x:Reference page}}"
-                       TextColor="{StaticResource White}" />
+                <Label
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Path=OpponentFullname, Source={x:Reference page}}"
+                    TextColor="{StaticResource White}" />
 
-                <Label HorizontalTextAlignment="End"
-                       Text="{Binding Path=OpponentScore, Source={x:Reference page}}"
-                       TextColor="{StaticResource Green}" />
+                <Label
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Path=OpponentScore, Source={x:Reference page}}"
+                    TextColor="{StaticResource Green}" />
             </StackLayout>
 
-            <components:CircleImage Grid.Row="0"
-                                    Grid.Column="4"
-                                    BorderColor="{Binding OpponentImageBorderColor}"
-                                    Source="{Binding Path=OpponentSource, Source={x:Reference page}}" />
+            <components:CircleImage
+                Grid.Row="0"
+                Grid.Column="4"
+                BorderColor="{Binding OpponentImageBorderColor}"
+                CacheType="None"
+                Source="{Binding Path=OpponentSource, Source={x:Reference page}}" />
 
             <!--  Opponent End  -->
         </Grid>

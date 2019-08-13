@@ -21,7 +21,6 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        public bool IsCorrect { get; set; }
         public Languages Language { get; set; }
     }
 }

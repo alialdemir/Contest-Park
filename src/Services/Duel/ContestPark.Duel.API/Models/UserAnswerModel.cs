@@ -1,19 +1,16 @@
-﻿using ContestPark.Mobile.Enums;
+﻿using ContestPark.Duel.API.Enums;
 
-namespace ContestPark.Mobile.Models.Duel.Quiz
+namespace ContestPark.Duel.API.Models
 {
-    public class UserAnswer
+    public class UserAnswerModel
     {
-        public Stylish Stylish { get; set; }
-
         public int DuelId { get; set; }
 
         public string UserId { get; set; }
-
+        public Stylish Stylish { get; set; }
         public byte Time { get; set; }
-
         public int QuestionId { get; set; }
         public bool IsFounder { get; set; }
-        public byte Round { get; set; }
+        public byte Score { get; set; }
     }
 }

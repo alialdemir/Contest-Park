@@ -1,4 +1,4 @@
-﻿namespace ContestPark.Mobile.Enums
+﻿namespace ContestPark.Signalr.API.Enums
 {
     public enum Stylish : byte
     {

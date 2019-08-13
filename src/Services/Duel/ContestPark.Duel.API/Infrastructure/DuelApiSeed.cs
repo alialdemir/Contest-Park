@@ -101,7 +101,7 @@ namespace ContestPark.Duel.API.Infrastructure
                      {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/ca.png",
+                          Link ="https://flagpedia.net/data/flags/h80/ca.png",
                           IsActive = true,
                           SubCategoryId = 1,
                        },
@@ -109,7 +109,7 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/gb.png",
+                          Link ="https://flagpedia.net/data/flags/h80/gb.png",
                           IsActive = true,
                           SubCategoryId = 1,
                     },
@@ -117,7 +117,7 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/jp.png",
+                          Link ="https://flagpedia.net/data/flags/h80/jp.png",
                           IsActive = true,
                           SubCategoryId = 1,
                     },
@@ -125,7 +125,7 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/fr.png",
+                          Link ="https://flagpedia.net/data/flags/h80/fr.png",
                           IsActive = true,
                           SubCategoryId = 1,
                     },
@@ -133,7 +133,7 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/br.png",
+                          Link ="https://flagpedia.net/data/flags/h80/br.png",
                           IsActive = true,
                           SubCategoryId = 1,
                     },
@@ -141,7 +141,7 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/it.png",
+                          Link ="https://flagpedia.net/data/flags/h80/it.png",
                           IsActive = true,
                           SubCategoryId = 1,
                     },
@@ -149,7 +149,7 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                           AnswerType = Enums.AnswerTypes.Text,
                           QuestionType = Enums.QuestionTypes.Image,
-                          Link ="http://flags.fmcdn.net/data/flags/h80/ss.png",
+                          Link ="https://flagpedia.net/data/flags/h80/ss.png",
                           IsActive = true,
                           SubCategoryId = 1,
                     },

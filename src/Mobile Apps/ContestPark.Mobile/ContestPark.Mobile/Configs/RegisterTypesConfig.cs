@@ -153,6 +153,12 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<IPostService, PostService>();
 
+            containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
+
+            containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
+
+            containerRegistry.RegisterSingleton<IDuelService, DuelService>();
+
             #endregion Yeni
 
             if (!GlobalSetting.Instance.IsMockData)
@@ -203,17 +209,17 @@ namespace ContestPark.Mobile.Configs
 
                 //     containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
-                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+                //////////////containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
                 //////////////containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
-                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+                //////containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
                 //containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
-                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
+                //containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 
-                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
+                //containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
                 //     containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 

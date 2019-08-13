@@ -1,9 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
-using ContestPark.Mobile.Models.PagingModel;
-using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
@@ -14,7 +11,6 @@ using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -68,19 +64,19 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private DuelStartingModel _duelScreen = new DuelStartingModel();
-        public string DuelId { get; set; }
+        private DuelStartingModel _duelStarting = new DuelStartingModel();
 
-        public DuelStartingModel DuelScreen
+        public DuelStartingModel DuelStarting
         {
             get
             {
-                return _duelScreen;
+                return _duelStarting;
             }
             set
             {
-                _duelScreen = value;
-                RaisePropertyChanged(() => DuelScreen);
+                _duelStarting = value;
+
+                RaisePropertyChanged(() => DuelStarting);
             }
         }
 
@@ -100,19 +96,28 @@ namespace ContestPark.Mobile.ViewModels
 
         #region SignalR
 
+        /// <summary>
+        /// Eventleri dinler
+        /// </summary>
         private void DuelSignalrListener()
         {
-            _duelSignalRService.DuelScreenInfoEventHandler += SetDuelScreen;
-            _duelSignalRService.DuelScreenInfo();
+            _duelSignalRService.DuelStartingEventHandler += OnDuelStarting;
+            _duelSignalRService.DuelStarting();
 
-            _duelSignalRService.NextQuestionEventHandler += NextQuestion;
-            _duelSignalRService.NextQuestion();
+            _duelSignalRService.DuelCreatedEventHandler += OnDuelCreated;
+            _duelSignalRService.DuelCreated();
         }
 
-        private void OffNextQuestion()
+        /// <summary>
+        /// Eventleri dinlemeyi bırakır
+        /// </summary>
+        private void OffSignalr()
         {
-            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
-            _duelSignalRService.OffNextQuestion();
+            _duelSignalRService.DuelStartingEventHandler -= OnDuelStarting;
+            _duelSignalRService.OffDuelStarting();
+
+            _duelSignalRService.DuelCreatedEventHandler -= OnDuelCreated;
+            _duelSignalRService.OffDuelCreated();
         }
 
         #endregion SignalR
@@ -137,12 +142,12 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (StandbyModes.Off == StandbyMode)
             {
-                if (!string.IsNullOrEmpty(OpponentUserId))
-                {
-                    bool isSuccess = await _duelService.DuelStartWithUserId(OpponentUserId);
-                    if (!isSuccess)
-                        await NotStartingDuel();
-                }
+                //////if (!string.IsNullOrEmpty(OpponentUserId))
+                //////{
+                //////    bool isSuccess = await _duelService.DuelStartWithUserId(OpponentUserId);
+                //////    if (!isSuccess)
+                //////        await NotStartingDuel();
+                //////}
                 //else if (!string.IsNullOrEmpty(DuelId))
                 //{
                 //    bool isSuccess = await _duelService.DuelStartWithDuelId(DuelId);
@@ -168,13 +173,14 @@ namespace ContestPark.Mobile.ViewModels
 
             Device.StartTimer(new TimeSpan(0, 0, 0, randomSecond, 0), () =>
             {
-                if (IsNextQuestionExit || DuelScreen.DuelId > 0)
+                if (IsNextQuestionExit || DuelStarting.DuelId > 0)
                     return false;
 
-                _duelService.BotStandMode(new BotStandbyMode
+                _duelService.AddOpponent(new StandbyModeModel
                 {
                     Bet = StandbyModeModel.Bet,
-                    SubCategoryId = StandbyModeModel.SubCategoryId
+                    SubCategoryId = StandbyModeModel.SubCategoryId,
+                    BalanceType = StandbyModeModel.BalanceType,
                 });
 
                 return false;
@@ -195,7 +201,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteDuelCloseCommandAsync()
         {
-            if (DuelScreen.DuelId != 0 && !IsNextQuestionExit)// Duel id 0 değilse düello başlamıştır
+            if (DuelStarting.DuelId != 0 && !IsNextQuestionExit)// Duel id 0 değilse düello başlamıştır
             {
                 bool isOkay = await DisplayAlertAsync(ContestParkResources.Exit,
                                                       ContestParkResources.AreYouSureYouWantToLeave,
@@ -212,15 +218,15 @@ namespace ContestPark.Mobile.ViewModels
             RandomPicturStatus = false;
 
             // Signalr events remove
-            if (DuelScreen.DuelId == 0)
-                OffNextQuestion();
+            if (DuelStarting.DuelId == 0)
+                OffSignalr();
 
-            _duelSignalRService.DuelScreenInfoEventHandler -= SetDuelScreen;
-            _duelSignalRService.OffDuelScreenInfo();
+            _duelSignalRService.DuelStartingEventHandler -= OnDuelStarting;
+            _duelSignalRService.OffDuelStarting();
 
             await RemoveFirstPopupAsync();
 
-            if (DuelScreen.DuelId == 0)
+            if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
             {
                 await _duelService.ExitStandMode(StandbyModeModel);
             }
@@ -241,45 +247,74 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Düellodaki sıradaki soruyu alır
+        /// Ekrandaki bilgileri yeniler
         /// </summary>
-        private async void NextQuestion(object sender, NextQuestion e)
+        private void OnDuelStarting(object sender, DuelStartingModel e)
         {
-            NextQuestion questionModel = (NextQuestion)sender;
-            if (questionModel == null)
+            DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
+            if (duelEnterScreenModel != null)
+            {
+                RandomPicturStatus = false;
+
+                AnimationCommand?.Execute(null);
+
+                DuelStarting = duelEnterScreenModel;
+            }
+            else
+            {
+                NotStartingDuel().Wait();
+            }
+        }
+
+        /// <summary>
+        /// Düellodaki soruları alır
+        /// </summary>
+        private async void OnDuelCreated(object sender, DuelCreated e)
+        {
+            DuelCreated duelCreated = (DuelCreated)sender;
+            if (duelCreated == null)
             {
                 // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
                 return;
             }
 
-            if (DuelScreen.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
+            if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
             {
-                AudioStop();
-
-                await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
-
-                IsNextQuestionExit = true;
-
-                OffNextQuestion();
-
-                Languages currentLanguage = _settingsService.CurrentUser.Language;
-                questionModel.Question = questionModel.Question.GetQuestionByLanguage(currentLanguage);
-
                 Device.BeginInvokeOnMainThread(async () =>
                 {
+                    AudioStop();
+
+                    await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
+
+                    IsNextQuestionExit = true;
+
                     await PushPopupPageAsync(new QuestionPopupView
                     {
-                        Question = questionModel,
-                        DuelScreen = DuelScreen,
+                        DuelCreated = duelCreated,
+                        DuelStarting = new DuelStartingModel
+                        {
+                            FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
+                            OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
+                            DuelId = DuelStarting.DuelId,
+                            FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
+                            FounderFullName = DuelStarting.FounderFullName,
+                            FounderUserId = DuelStarting.FounderUserId,
+                            OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
+                            OpponentFullName = DuelStarting.OpponentFullName,
+                            OpponentUserId = DuelStarting.OpponentUserId
+                        },
                         SubcategoryName = SelectedSubCategory.SubcategoryName,
                         SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
                     });
 
                     DuelCloseCommand.Execute(null);
                 });
+
+                OffSignalr();
             }
             else
             {
+                // buraya gelmiş ise rakip bilgileriden önce sorular gelmiştir.... o zamaan rakip bilgileri gelince burayı tekrar çağırmalı
                 // TODO: rakip fotoğrafınn gelmesini beklet
             }
         }
@@ -303,12 +338,11 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task RandomPicturesAsync()
         {
-            ServiceModel<string> serviceModel = await _duelService.RandomUserProfilePictures(new PagingModel() { PageSize = 30 });
+            string[] pictures = await _duelService.RandomUserProfilePictures();
 
-            if (serviceModel?.Items == null)
+            if (pictures == null || pictures.Length == 0)
                 return;
 
-            string[] pictures = serviceModel.Items.ToArray();
             int pictureIndex = pictures.Length;
 
             Device.StartTimer(new TimeSpan(0, 0, 0, 0, 700), () =>
@@ -320,7 +354,7 @@ namespace ContestPark.Mobile.ViewModels
                     if (pictureIndex < 0)
                         pictureIndex = pictures.Length - 1;
 
-                    DuelScreen.OpponentProfilePicturePath = pictures[pictureIndex];
+                    DuelStarting.OpponentProfilePicturePath = pictures[pictureIndex];
                 }
 
                 return RandomPicturStatus;
@@ -332,29 +366,9 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task RandomUserProfilePicturesAsync()
         {
-            DuelScreen.OpponentFullName = ContestParkResources.AwaitingOpponent;
+            DuelStarting.OpponentFullName = ContestParkResources.AwaitingOpponent;
 
             await RandomPicturesAsync();
-        }
-
-        /// <summary>
-        /// Ekrandaki bilgileri yeniler
-        /// </summary>
-        private void SetDuelScreen(object sender, DuelStartingModel e)
-        {
-            DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
-            if (duelEnterScreenModel != null)
-            {
-                RandomPicturStatus = false;
-
-                AnimationCommand?.Execute(null);
-
-                DuelScreen = duelEnterScreenModel;
-            }
-            else
-            {
-                NotStartingDuel().Wait();
-            }
         }
 
         /// <summary>
@@ -362,7 +376,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task StandbyModeOff()
         {
-            DuelScreen = new DuelStartingModel()
+            DuelStarting = new DuelStartingModel()
             {
                 FounderFullName = _settingsService.CurrentUser.FullName,
                 FounderCoverPicturePath = _settingsService.CurrentUser.CoverPicturePath,

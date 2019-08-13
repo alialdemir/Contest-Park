@@ -3,7 +3,6 @@ using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
@@ -13,9 +12,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         #region Private variables
 
         private readonly IDuelUserRepository _duelUserRepository;
-
         private readonly IEventBus _eventBus;
-
         private readonly ILogger<WaitingOpponentIntegrationEventHandler> _logger;
 
         #endregion Private variables
@@ -26,9 +23,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                       IEventBus eventBus,
                                                       ILogger<WaitingOpponentIntegrationEventHandler> logger)
         {
-            _duelUserRepository = duelUserRepository ?? throw new ArgumentNullException(nameof(duelUserRepository));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
+            _duelUserRepository = duelUserRepository;
+            _eventBus = eventBus;
+            _logger = logger;
         }
 
         #endregion Constructor
@@ -112,26 +109,39 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void StartDuel(WaitingOpponentIntegrationEvent waitingOpponentIntegration, DuelUserModel duelUserModel)
         {
-            _duelUserRepository.Delete(duelUserModel);
-
-            var @event = new DuelStartIntegrationEvent(subCategoryId: waitingOpponentIntegration.SubCategoryId,
-                                                       bet: waitingOpponentIntegration.Bet,
-
-                                                       founderUserId: waitingOpponentIntegration.UserId,
-                                                       founderConnectionId: waitingOpponentIntegration.ConnectionId,
-                                                       founderLanguage: waitingOpponentIntegration.Language,
-
-                                                       opponentUserId: duelUserModel.UserId,
-                                                       opponentConnectionId: duelUserModel.ConnectionId,
-                                                       opponentLanguage: duelUserModel.Language,
-
-                                                       balanceType: duelUserModel.BalanceType);
-            _eventBus.Publish(@event);
-
-            _logger.LogInformation("Rakipler eşleşti.", new
+            Task.Factory.StartNew(() =>
             {
-                FounderUserId = waitingOpponentIntegration.UserId,
-                OpponentUserId = duelUserModel.UserId
+                try
+                {
+                    _duelUserRepository.Delete(duelUserModel);
+
+                    var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: waitingOpponentIntegration.SubCategoryId,
+                                                               bet: waitingOpponentIntegration.Bet,
+
+                                                               founderUserId: waitingOpponentIntegration.UserId,
+                                                               founderConnectionId: waitingOpponentIntegration.ConnectionId,
+                                                               founderLanguage: waitingOpponentIntegration.Language,
+
+                                                               opponentUserId: duelUserModel.UserId,
+                                                               opponentConnectionId: duelUserModel.ConnectionId,
+                                                               opponentLanguage: duelUserModel.Language,
+
+                                                               balanceType: duelUserModel.BalanceType);
+
+                    _eventBus.Publish(eventDuelStart);
+
+                    _logger.LogInformation("Rakipler eşleşti.", new
+                    {
+                        FounderUserId = waitingOpponentIntegration.UserId,
+                        OpponentUserId = duelUserModel.UserId
+                    });
+                }
+                catch (System.Exception ex)
+                {
+                    _logger.LogCritical("CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu.", waitingOpponentIntegration.UserId, waitingOpponentIntegration.UserId);
+
+                    // TODO: düello başlatılırken hata oluştu
+                }
             });
         }
 
