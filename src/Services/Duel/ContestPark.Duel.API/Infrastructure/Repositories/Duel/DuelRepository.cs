@@ -112,6 +112,23 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
             });
         }
 
+        /// <summary>
+        /// Duello id göre düellodaki bahis miktarını ve bakiye tipini verir
+        /// </summary>
+        /// <param name="duelId">Duello id</param>
+        /// <returns>Düellodaki bahis ve bakiye tipi</returns>
+        public DuelBalanceInfoModel GetDuelBalanceInfoByDuelId(int duelId)
+        {
+            string sql = @"SELECT d.Bet, d.BalanceType, d.SubCategoryId, d.BetCommission
+                           FROM Duels d
+                           WHERE d.DuelId = @duelId";
+
+            return _duelRepository.QuerySingleOrDefault<DuelBalanceInfoModel>(sql, new
+            {
+                duelId
+            });
+        }
+
         #endregion Methods
     }
 }

@@ -40,5 +40,10 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         {
             return Task.CompletedTask;
         }
+
+        public Task LeaveGroup(int duelId)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         void OffNextQuestion();
         System.Threading.Tasks.Task SaveAnswer(UserAnswer userAnswer);
+        System.Threading.Tasks.Task LeaveGroup(int duelId);
 
         EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
 

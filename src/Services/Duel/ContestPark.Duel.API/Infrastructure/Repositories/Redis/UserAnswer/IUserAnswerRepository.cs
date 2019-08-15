@@ -1,8 +1,15 @@
-﻿namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
+﻿using ContestPark.Duel.API.Models;
+using System.Collections.Generic;
+
+namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 {
     public interface IUserAnswerRepository
     {
-        System.Collections.Generic.List<Models.UserAnswerModel> GetAnswers(Models.UserAnswerModel duelUser);
-        void Insert(Models.UserAnswerModel userAnswer);
+        List<UserAnswerModel> GetAnswers(int deuelId);
+
+        void Add(UserAnswerModel userAnswer);
+
+        void AddRangeAsync(List<UserAnswerModel> userAnswers);
+        void Remove(int duelId);
     }
 }

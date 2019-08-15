@@ -4,6 +4,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Resources;
+using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace ContestPark.Duel.API.Controllers
         private readonly IDuelRepository _duelRepository;
         private readonly IIdentityService _identityService;
         private readonly ISubCategoryService _subCategoryService;
+        private readonly IBalanceService _balanceService;
 
         #endregion Private Variables
 
@@ -32,11 +34,13 @@ namespace ContestPark.Duel.API.Controllers
                               IEventBus eventBus,
                               IIdentityService identityService,
                               ISubCategoryService subCategoryService,
+                              IBalanceService balanceService,
                               IDuelRepository duelRepository) : base(logger)
         {
             _eventBus = eventBus;
             _identityService = identityService;
             _subCategoryService = subCategoryService;
+            _balanceService = balanceService;
             _duelRepository = duelRepository;
         }
 
@@ -78,11 +82,17 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult AddStandbyMode([FromBody]StandbyModeModel standbyModeModel)
+        public async Task<IActionResult> AddStandbyMode([FromBody]StandbyModeModel standbyModeModel)
         {
             if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
             {
                 return BadRequest();
+            }
+
+            BalanceModel balance = await _balanceService.GetBalance(UserId, standbyModeModel.BalanceType);
+            if (standbyModeModel.Bet > balance.Amount)
+            {
+                return BadRequest(DuelResource.YourBalanceIsInsufficient);
             }
 
             AddWaitingOpponentEvent(UserId, standbyModeModel);

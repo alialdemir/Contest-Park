@@ -86,5 +86,14 @@ namespace ContestPark.Duel.API.Resources {
                 return ResourceManager.GetString("YouCantLeaveTheFinishedDuel", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your balance is insufficient..
+        /// </summary>
+        public static string YourBalanceIsInsufficient {
+            get {
+                return ResourceManager.GetString("YourBalanceIsInsufficient", resourceCulture);
+            }
+        }
     }
 }

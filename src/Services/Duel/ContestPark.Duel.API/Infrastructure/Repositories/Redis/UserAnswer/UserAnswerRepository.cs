@@ -2,6 +2,7 @@
 using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 {
@@ -24,25 +25,46 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 
         #region Methods
 
-        public List<UserAnswerModel> GetAnswers(UserAnswerModel duelUser)
+        public List<UserAnswerModel> GetAnswers(int deuelId)
         {
-            string key = GetKey(duelUser.DuelId);
+            string key = GetKey(deuelId);
 
             return _redisClient.Get<List<UserAnswerModel>>(key);
         }
 
-        public void Insert(UserAnswerModel userAnswer)
+        public void Add(UserAnswerModel userAnswer)
         {
-            string key = GetKey(userAnswer.DuelId);
+            AddRangeAsync(new List<UserAnswerModel>
+            {
+                userAnswer
+            });
+        }
 
-            var userAnswers = GetAnswers(userAnswer);
+        public void AddRangeAsync(List<UserAnswerModel> userAnswers)
+        {
+            if (userAnswers == null || userAnswers.Count == 0)
+                return;
 
-            if (userAnswers == null)
-                userAnswers = new List<UserAnswerModel>();
+            int duelId = userAnswers.FirstOrDefault().DuelId;
 
-            userAnswers.Add(userAnswer);
+            string key = GetKey(duelId);
 
-            _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresAt: DateTime.Now.AddMinutes(3));// 3 dk sonra redis üzerinden otomatik siler
+            //var userAnswer = GetAnswers(duelId);
+            //if (userAnswer != null)
+            //{
+            //    userAnswers.AddRange(userAnswer);
+            //}
+
+            _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresAt: DateTime.Now.AddMinutes(10));// 10 dk sonra redis üzerinden otomatik siler
+        }
+
+        /// <summary>
+        /// Düello id göre cache item siler
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        public void Remove(int duelId)
+        {
+            _redisClient.Remove(GetKey(duelId));
         }
 
         private string GetKey(int duelId)

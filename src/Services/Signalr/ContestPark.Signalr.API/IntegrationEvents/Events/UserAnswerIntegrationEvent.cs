@@ -9,27 +9,20 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
                                           string userId,
                                           int questionId,
                                           Stylish stylish,
-                                          byte time,
-                                          bool isFounder,
-                                          byte round)
+                                          byte time)
         {
             DuelId = duelId;
             UserId = userId;
             QuestionId = questionId;
             Stylish = stylish;
             Time = time;
-            IsFounder = isFounder;
-            Round = round;
         }
 
         public Stylish Stylish { get; set; }
 
         public int DuelId { get; set; }
 
-        public bool IsFounder { get; set; }
-
         public string UserId { get; set; }
-        public byte Round { get; set; }
 
         public byte Time { get; set; }
 

@@ -11,6 +11,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
                                             Stylish correctStylish,
                                             byte founderScore,
                                             byte opponentScore,
+                                            byte round,
                                             bool isGameEnd)
         {
             DuelId = duelId;
@@ -19,6 +20,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             CorrectStylish = correctStylish;
             FounderScore = founderScore;
             OpponentScore = opponentScore;
+            Round = round;
             IsGameEnd = isGameEnd;
         }
 
@@ -32,7 +34,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public byte FounderScore { get; set; }
 
         public byte OpponentScore { get; set; }
-
+        public byte Round { get; }
         public bool IsGameEnd { get; set; }
     }
 }

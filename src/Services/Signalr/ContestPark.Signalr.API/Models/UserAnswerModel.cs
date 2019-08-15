@@ -12,9 +12,6 @@ namespace ContestPark.Signalr.API.Models
 
         public byte Time { get; set; }
 
-        public bool IsFounder { get; set; }
         public int QuestionId { get; set; }
-
-        public byte Round { get; set; }
     }
 }

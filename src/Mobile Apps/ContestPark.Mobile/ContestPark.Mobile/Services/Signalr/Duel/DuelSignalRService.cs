@@ -86,6 +86,15 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
             return _signalRService.SendMessage("saveAnswer", userAnswer);
         }
 
+        /// <summary>
+        /// Duello için oluşturduğumuz signalr grubundan ayrıldık
+        /// </summary>
+        /// <param name="duelId">Duello id</param>
+        public Task LeaveGroup(int duelId)
+        {
+            return _signalRService.SendMessage("leaveGroup", duelId);
+        }
+
         #endregion Method
     }
 }

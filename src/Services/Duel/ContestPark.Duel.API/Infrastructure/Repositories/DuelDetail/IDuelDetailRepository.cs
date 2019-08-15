@@ -6,9 +6,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail
 {
     public interface IDuelDetailRepository
     {
-        Task<bool> AddRangeAsync(IEnumerable<DuelDetailModel> duelDetails);
-
-        Enums.Stylish GetCorrectAnswer(int duelId, int questionId);
-        Task UpdateDuelDetailAsync(List<UserAnswerModel> userAnswers);
+        Task<bool> AddRangeAsync(IEnumerable<Tables.DuelDetail> duelDetails);
     }
 }

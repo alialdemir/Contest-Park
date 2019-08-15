@@ -1,8 +1,6 @@
 ﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Enums;
-using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
-using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +15,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
         #region Private Variables
 
         private readonly IRepository<Tables.Question> _questionRepository;
-        private readonly IDuelDetailRepository _duelDetailRepository;
         private readonly IAskedQuestionRepository _askedQuestionRepository;
 
         #endregion Private Variables
@@ -25,11 +22,9 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
         #region Constructor
 
         public QuestionRepository(IRepository<Tables.Question> questionRepository,
-                                  IDuelDetailRepository duelDetailRepository,
                                   IAskedQuestionRepository askedQuestionRepository)
         {
             _questionRepository = questionRepository;
-            _duelDetailRepository = duelDetailRepository;
             _askedQuestionRepository = askedQuestionRepository;
         }
 
@@ -48,7 +43,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
         /// <param name="founderLanguge">Kurucu dili</param>
         /// <param name="opponentLanguge">Rakip dili</param>
         /// <returns>Düelloda sorulacak sorular</returns>
-        public async Task<IEnumerable<QuestionModel>> DuelQuestions(int duelId, short subCategoryId, string founderUserId, string opponentUserId, Languages founderLanguge, Languages opponentLanguge)
+        public async Task<IEnumerable<QuestionModel>> DuelQuestions(short subCategoryId, string founderUserId, string opponentUserId, Languages founderLanguge, Languages opponentLanguge)
         {
             if (string.IsNullOrEmpty(founderUserId) || string.IsNullOrEmpty(opponentUserId))
                 return null;
@@ -70,12 +65,10 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
                 if (!isSuccess)
                     return null;
 
-                return await DuelQuestions(duelId, subCategoryId, founderUserId, opponentUserId, founderLanguge, opponentLanguge);
+                return await DuelQuestions(subCategoryId, founderUserId, opponentUserId, founderLanguge, opponentLanguge);
             }
 
             List<QuestionModel> questions = new List<QuestionModel>();
-
-            List<DuelDetailModel> duelDetails = new List<DuelDetailModel>();
 
             foreach (var question in duelQuestions) // TODO: daha basit hale getir
             {
@@ -96,6 +89,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
                 {
                     Answers = question.CorrectStylish,
                     Language = question.Language,
+                    IsCorrectAnswer = true
                 });
 
                 q.Answers.Add(new AnswerModel
@@ -127,25 +121,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
                 if (!questions.Any(x => x.QuestionId == q.QuestionId))
                 {
                     questions.Add(q);
-
-                    duelDetails.Add(new DuelDetailModel// Duel detail tablosu için insert bilgileri hazırlandı
-                    {
-                        CorrectAnswer = (Stylish)(q.Answers.FindIndex(x => x.Answers == question.CorrectStylish) + 1),
-                        DuelId = duelId,
-                        QuestionId = question.QuestionId
-                    });
                 }
             }
 
             // Sorulan sorular eklendi
             _askedQuestionRepository.Insert(subCategoryId, questions.Select(x => x.QuestionId).ToArray(), founderUserId, opponentUserId);
-
-            // Duel detail bilgileri eklendi
-            bool isSuccessDuelDetailInsert = await _duelDetailRepository.AddRangeAsync(duelDetails);
-            if (!isSuccessDuelDetailInsert)
-            {
-                // TODO FAİL
-            }
 
             return questions;
         }

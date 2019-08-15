@@ -63,11 +63,21 @@ namespace ContestPark.Signalr.API
                                                         userAnswer.UserId,
                                                         userAnswer.QuestionId,
                                                         userAnswer.Stylish,
-                                                        userAnswer.Time,
-                                                        userAnswer.IsFounder,
-                                                        userAnswer.Round);
+                                                        userAnswer.Time);
 
             _eventBus.Publish(@event);
+        }
+
+        /// <summary>
+        /// Duello için oluşturduğumuz signalr grubundan ayrıldık
+        /// </summary>
+        /// <param name="duelId">Duello id</param>
+        public void LeaveGroup(int duelId)
+        {
+            if (duelId > 0)
+            {
+                Groups.RemoveFromGroupAsync(Context.ConnectionId, $"Duel{duelId.ToString()}");
+            }
         }
     }
 }

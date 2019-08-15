@@ -4,6 +4,7 @@ using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.Question;
+using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Resources;
@@ -11,7 +12,6 @@ using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +24,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IEventBus _eventBus;
         private readonly IDuelRepository _duelRepository;
         private readonly IQuestionRepository _questionRepository;
+        private readonly IUserAnswerRepository _userAnswerRepository;
         private readonly IIdentityService _identityService;
         private readonly IContestDateRepository _contestDateRepository;
         private readonly DuelSettings _duelSettings;
@@ -36,6 +37,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         public DuelStartIntegrationEventHandler(IEventBus eventBus,
                                                 IDuelRepository duelRepository,
                                                 IQuestionRepository questionRepository,
+                                                IUserAnswerRepository userAnswerRepository,
                                                 IIdentityService identityService,
                                                 IContestDateRepository contestDateRepository,
                                                 IOptions<DuelSettings> settings,
@@ -45,6 +47,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _eventBus = eventBus;
             _duelRepository = duelRepository;
             _questionRepository = questionRepository;
+            _userAnswerRepository = userAnswerRepository;
             _identityService = identityService;
             _contestDateRepository = contestDateRepository;
             _duelSettings = settings.Value;
@@ -102,12 +105,23 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                         @event.OpponentUserId,
                                         @event.OpponentConnectionId);
 
-            var questions = await _questionRepository.DuelQuestions(duelId,
-                                                                    @event.SubCategoryId,
+            var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
                                                                     @event.OpponentUserId,
                                                                     @event.FounderLanguage,
                                                                     @event.OpponentLanguage);
+
+            // Sorulara cevap verildiğinde kontrol edebilmek için redise eklendi
+            _userAnswerRepository.AddRangeAsync(questions.Select(x => new UserAnswerModel
+            {
+                DuelId = duelId,
+                QuestionId = x.QuestionId,
+                FounderUserId = @event.FounderUserId,
+                OpponentUserId = @event.OpponentUserId,
+                CorrectAnswer = (Stylish)(x.Answers.FindIndex(a => a.IsCorrectAnswer) + 1),
+                FounderAnswer = Stylish.NotSeeQuestion,
+                OpponentAnswer = Stylish.NotSeeQuestion
+            }).ToList());
 
             // Bakiyeler düşüldü
             ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType);
@@ -190,9 +204,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
 
                 // TODO: #issue 213
-
-                Debug.WriteLine("founderUserModel.ProfilePicturePath : " + founderUserModel.ProfilePicturePath);
-                Debug.WriteLine("opponentUserModel.ProfilePicturePath : " + opponentUserModel.ProfilePicturePath);
 
                 var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
                     founderUserModel.CoverPicturePath,

@@ -3,7 +3,6 @@ using ContestPark.Signalr.API.IntegrationEvents.Events;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
@@ -36,8 +35,6 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// <param name="event">Mesaj bilgisi</param>
         public async Task Handle(DuelStartingModelIntegrationEvent @event)
         {
-            Debug.WriteLine("@event.FounderProfilePicturePath" + @event.FounderProfilePicturePath);
-            Debug.WriteLine("@@event.OpponentProfilePicturePath" + @event.OpponentProfilePicturePath);
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {
                 string duelGroupName = GetDuelGroupName(@event.DuelId);

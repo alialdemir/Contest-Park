@@ -13,6 +13,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.EventHandling;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Resources;
+using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.Follow;
 using ContestPark.Duel.API.Services.NumberFormat;
 using ContestPark.Duel.API.Services.ScoreCalculator;
@@ -141,6 +142,8 @@ namespace ContestPark.Duel.API
             services.AddSingleton<IIdentityService, IdentityService>();
 
             services.AddSingleton<IFollowService, FollowService>();
+
+            services.AddSingleton<IBalanceService, BalanceService>();
 
             services.AddSingleton<ISubCategoryService, SubCategoryService>();
         }

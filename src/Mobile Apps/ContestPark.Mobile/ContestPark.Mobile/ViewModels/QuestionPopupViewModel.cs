@@ -258,12 +258,12 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelScreen.FounderUserId.Contains("-bot"))
             {
-                _botService.Init(SaveAnswer, IsFounder, DuelScreen.FounderUserId);
+                _botService.Init(SaveAnswerCommand, DuelScreen.FounderUserId);
             }
 
             if (DuelScreen.OpponentUserId.Contains("-bot"))
             {
-                _botService.Init(SaveAnswer, IsFounder, DuelScreen.OpponentUserId);
+                _botService.Init(SaveAnswerCommand, DuelScreen.OpponentUserId);
             }
         }
 
@@ -337,7 +337,7 @@ namespace ContestPark.Mobile.ViewModels
 
             StartGame(popupPage);
 
-            Round += 1;
+            //Round += 1;
 
             IsBusy = false;
         }
@@ -355,7 +355,11 @@ namespace ContestPark.Mobile.ViewModels
 
             Stylish answerStylish = GetAnswerByUserAnswer(answerModel.Answers);
 
-            SaveAnswer(answerStylish, IsFounder, _settingsService.CurrentUser.UserId);
+            SaveAnswerCommand.Execute(new SaveAnswerModel
+            {
+                Stylish = answerStylish,
+                UserId = _settingsService.CurrentUser.UserId,
+            });
         }
 
         /// <summary>
@@ -366,6 +370,11 @@ namespace ContestPark.Mobile.ViewModels
             IsExit = true;
 
             IsStylishClick = false;
+
+            if (DuelScreen.DuelId > 0)
+            {
+                _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
+            }
 
             _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
             _duelSignalRService.OffNextQuestion();
@@ -454,6 +463,8 @@ namespace ContestPark.Mobile.ViewModels
                     if (IsExit)
                         return false;
 
+                    Round = questionModel.Round;
+
                     DisplayQuestionExpectedPopup();
 
                     Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Bekleme ekranı çıkmadan soru ekranda gözükmesin
@@ -531,27 +542,16 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Verilen cevabı sunucuya gönderir
         /// </summary>
-        private Task SaveAnswer(Stylish answer, bool isFounder, string userId)
+        private async Task SaveAnswer(SaveAnswerModel saveAnswer)
         {
-            if (IsBusy)
-                return Task.CompletedTask;
-
-            IsBusy = true;
-
-            _duelSignalRService.SaveAnswer(new UserAnswer
+            await _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
                 QuestionId = CurrentQuestion.QuestionId,
                 DuelId = DuelScreen.DuelId,
-                Stylish = answer,
-                IsFounder = _settingsService.CurrentUser.UserId == userId,
-                UserId = userId,
-                Round = (byte)(Round - 1),// Kullanıcı soruyu cevapladığında round sayısı bir artmış oluyor o yüzden - 1 aldım
+                Stylish = saveAnswer.Stylish,
+                UserId = saveAnswer.UserId,
             });
-
-            IsBusy = false;
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -613,7 +613,11 @@ namespace ContestPark.Mobile.ViewModels
         {
             IsStylishClick = false;
 
-            SaveAnswer(Stylish.UnableToReply, IsFounder, _settingsService.CurrentUser.UserId);
+            SaveAnswerCommand.Execute(new SaveAnswerModel
+            {
+                Stylish = Stylish.UnableToReply,
+                UserId = _settingsService.CurrentUser.UserId
+            });
         }
 
         #endregion Methods
@@ -623,8 +627,10 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand AnimateStylishCommand;
 
         private ICommand _answerCommand;
+        private ICommand _saveAnswerCommand;
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>((answerModel) => ExecuteAnswerCommandCommand(answerModel)));
+        private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(async (answerModel) => await SaveAnswer(answerModel)));
 
         /// <summary>
         /// Soru ekranı kapatır

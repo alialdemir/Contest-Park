@@ -13,7 +13,7 @@ namespace ContestPark.Mobile.Models.Duel.Quiz
         public byte FounderScore { get; set; }
 
         public byte OpponentScore { get; set; }
-
+        public byte Round { get; set; }
         public bool IsGameEnd { get; set; }
     }
 }

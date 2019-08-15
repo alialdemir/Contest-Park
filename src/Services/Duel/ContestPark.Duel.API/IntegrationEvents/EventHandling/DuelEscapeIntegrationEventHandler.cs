@@ -19,7 +19,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         private readonly IEventBus _eventBus;
         private readonly IDuelRepository _duelRepository;
-        private readonly IDuelDetailRepository _duelDetailRepository;
         private readonly IScoreCalculator _scoreCalculator;
         private readonly ILogger<DuelEscapeIntegrationEventHandler> _logger;
 
@@ -29,14 +28,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         public DuelEscapeIntegrationEventHandler(IEventBus eventBus,
                                                  IDuelRepository duelRepository,
-                                                 IDuelDetailRepository duelDetailRepository,
                                                  IScoreCalculator scoreCalculator,
                                                  ILogger<DuelEscapeIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _duelRepository = duelRepository;
-            _duelDetailRepository = duelDetailRepository;
             _scoreCalculator = scoreCalculator;
         }
 
@@ -129,6 +126,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             var @duelFinishEvent = new DuelFinishIntegrationEvent(@event.DuelId,
                                                                   duel.BalanceType,
                                                                   duel.Bet,
+                                                                  duel.BetCommission,
                                                                   duel.SubCategoryId,
                                                                   duel.FounderUserId,
                                                                   duel.OpponentUserId,

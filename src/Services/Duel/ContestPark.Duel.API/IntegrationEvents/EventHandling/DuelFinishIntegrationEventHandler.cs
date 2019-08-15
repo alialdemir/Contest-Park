@@ -76,9 +76,15 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             AddPost(@event);
 
+            // TODO: update duel total score alanları
+
+            // TODO kazanma bonusu vs ekle
+
             #region Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
 
             // TODO: Kurucu ve rakip bakiyelerini ayrı ayrı düşmek yerine tek event de hallolucak şekilde yazılmalı rabbitmq da daha az event oluşur
+
+            // TODO total skor kadar level xp'si eklensin
 
             if (@event.FounderScore == @event.OpponentScore)// Düello beraber bitmiş
             {
@@ -88,7 +94,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             else if (@event.FounderScore > @event.OpponentScore)// Kurucu düelloyu kazanmış
             {
-                decimal founderBet = CaltulatorBetComission(@event.Bet);
+                decimal founderBet = CaltulatorBetComission(@event.Bet, @event.BetCommission);
 
                 ChangeBalance(@event.FounderUserId, founderBet, @event.BalanceType, BalanceHistoryTypes.Win);
 
@@ -96,7 +102,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             else if (@event.OpponentScore > @event.FounderScore)// Rakip düelloyu kazanmış
             {
-                decimal opponentBet = CaltulatorBetComission(@event.Bet);
+                decimal opponentBet = CaltulatorBetComission(@event.Bet, @event.BetCommission);
 
                 // ChangeBalance(@event.FounderUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
 
@@ -111,13 +117,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         /// <param name="bet">Bahis miktarı</param>
         /// <returns>Komisyon düşülmüş bahis tutarı</returns>
-        private decimal CaltulatorBetComission(decimal bet)
+        private decimal CaltulatorBetComission(decimal bet, byte betCommission)
         {
             bet = bet * 2; // Düellolar iki kişi oynandığı için  çarpı 2 yaptık yani bahisin iki katı kazandıdı
 
-            decimal betCommission = bet - (bet * _duelSettings.BetCommission) / 100;// Bizim komisyon oranımız kadar kesinti yaptık
+            decimal newBetCommission = bet - (bet * betCommission) / 100;// Bizim komisyon oranımız kadar kesinti yaptık
 
-            return betCommission;
+            return newBetCommission;
         }
 
         /// <summary>
