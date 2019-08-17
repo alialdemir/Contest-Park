@@ -162,13 +162,16 @@
       <Version>1.2.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
-      <Version>2.4.6.929</Version>
+      <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
-      <Version>2.4.6.929</Version>
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
+      <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
-      <Version>2.4.6.929</Version>
+      <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.618605-pre2" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
@@ -183,8 +186,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomRenderer\CircularProgressRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderer\CustomGridRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSegmentedControlRenderer.cs" />
+    <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
     <Compile Include="CustomRenderer\SearchPageRenderer.cs" />
     <Compile Include="CustomRenderer\SignInSocialNetworkPageRenderer.cs" />
     <Compile Include="CustomRenderer\TabViewRenderer.cs" />
@@ -198,6 +203,50 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\coin.json" />
     <AndroidAsset Include="Assets\fireworks.json" />
+    <AndroidAsset Include="Assets\Helvetica.ttf" />
+    <AndroidAsset Include="Assets\Helvetica-Bold.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Black.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-BlackItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Bold.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-BoldItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-ExtraBold.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-ExtraBoldItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-ExtraLight.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-ExtraLightItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Italic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Light.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-LightItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Medium.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-MediumItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Regular.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-SemiBoldItalic.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Thin.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-ThinItalic.ttf" />
+    <AndroidAsset Include="Assets\Sofia Pro Black Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Black Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Bold Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Bold Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro ExtraLight Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro ExtraLight Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Light Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Light Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Medium Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Medium Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Regular Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Regular Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Semi Bold Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro Semi Bold Italic Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro UltraLight Az.otf" />
+    <AndroidAsset Include="Assets\Sofia Pro UltraLight Italic Az.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-Bold.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-BoldItalic.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-Book.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-BookItalic.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-Light.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-LightItalic.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-Medium.otf" />
+    <AndroidAsset Include="Assets\GothamRounded-MediumItalic.otf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -310,6 +359,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\network_security_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\verify.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

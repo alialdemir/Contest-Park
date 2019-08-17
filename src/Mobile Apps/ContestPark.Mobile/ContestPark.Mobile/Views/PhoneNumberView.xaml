@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.PhoneNumberView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{StaticResource White}">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="154" />
+                    <RowDefinition Height="41" />
+                    <RowDefinition Height="48.9" />
+                    <RowDefinition Height="48.9" />
+                    <RowDefinition Height="38" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="310" />
+                </Grid.ColumnDefinitions>
+
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Source="logo.png" />
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="31"
+                    HorizontalTextAlignment="Center"
+                    Style="{DynamicResource LabelStyle}"
+                    Text="ContestPark"
+                    TextColor="#535353" />
+
+                <AbsoluteLayout Grid.Row="2" Grid.Column="0">
+                    <custom:CustomEntry
+                        BackgroundColor="Transparent"
+                        BorderColor="#666372"
+                        CornerRadius="132"
+                        FontSize="16"
+                        HeightRequest="40"
+                        HorizontalOptions="Fill"
+                        Keyboard="Numeric"
+                        MaxLength="10"
+                        Placeholder="{i18n:Translate PhoneNumber}"
+                        PlaceholderColor="#484848"
+                        Style="{DynamicResource EntryStyle}"
+                        TextColor="#484848"
+                        Visual="Material"
+                        WidthRequest="310" />
+
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="26.52"
+                        MinimumHeightRequest="26.52"
+                        MinimumWidthRequest="26.52"
+                        Source="verify.svg"
+                        TranslationX="270"
+                        TranslationY="7"
+                        VerticalOptions="Center"
+                        WidthRequest="26.52" />
+                </AbsoluteLayout>
+
+                <custom:LinearGradientButton
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    BorderRadius="124"
+                    Command="{Binding SignInCommand}"
+                    EndColor="#A573FF"
+                    StartColor="#645AFF"
+                    Style="{DynamicResource ButtonStyle}"
+                    Text="{i18n:Translate SignIn}"
+                    TextColor="{StaticResource White}"
+                    Visual="Material" />
+
+                <custom:HtmlLabel
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Style="{DynamicResource LabelStyle}"
+                    Text="When you sig up, you approve the Privacy Policy,  Terms of use and Competition Rules" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

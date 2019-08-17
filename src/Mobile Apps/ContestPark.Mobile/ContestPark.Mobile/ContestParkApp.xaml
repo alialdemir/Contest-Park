@@ -1,10 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<prism:PrismApplication x:Class="ContestPark.Mobile.ContestParkApp"
-                        xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
+<prism:PrismApplication
+    x:Class="ContestPark.Mobile.ContestParkApp"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
+
+            <Style x:Name="LabelStyle" TargetType="Label">
+                <Setter Property="Label.FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.Android>Sofia Pro Medium Az.otf#Sofia Pro Medium Az</OnPlatform.Android>
+                            <OnPlatform.iOS>Sofia Pro Medium Az</OnPlatform.iOS>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Name="ButtonStyle" TargetType="Button">
+                <Setter Property="Button.FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.Android>Sofia Pro Medium Az.otf#Sofia Pro Medium Az</OnPlatform.Android>
+                            <OnPlatform.iOS>Sofia Pro Medium Az</OnPlatform.iOS>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Name="EntryStyle" TargetType="Entry">
+                <Setter Property="Entry.FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.Android>Sofia Pro Medium Az.otf#Sofia Pro Medium Az</OnPlatform.Android>
+                            <OnPlatform.iOS>Sofia Pro Medium Az</OnPlatform.iOS>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--  Yeni başlangıç  -->
+
+            <!--  Beyaz  -->
+            <Color x:Key="White">#FFFFFF</Color>
+
+            <!--  Yeni başlangıç  -->
 
             <!--  Colors  -->
 
@@ -19,9 +60,6 @@
             <!--  Amber  -->
             <Color x:Key="Primary">#ffc107</Color>
             <Color x:Key="Primary100">#FFECB3</Color>
-
-            <!--  Beyaz  -->
-            <Color x:Key="White">#FFFFFF</Color>
 
             <!--  Black  -->
             <Color x:Key="Black">#222222</Color>
@@ -68,24 +106,27 @@
                 <Setter Property="HasUnevenRows" Value="True" />
             </Style>
 
-            <Style x:Key="ListViewHeaderAndFooter"
-                   BasedOn="{StaticResource ListView}"
-                   TargetType="ListView">
+            <Style
+                x:Key="ListViewHeaderAndFooter"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="Header" Value=" " />
                 <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
-            <Style x:Key="ListViewOnlyFooter"
-                   BasedOn="{StaticResource ListView}"
-                   TargetType="ListView">
+            <Style
+                x:Key="ListViewOnlyFooter"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
-            <Style x:Key="ListViewSeparator"
-                   BasedOn="{StaticResource ListView}"
-                   TargetType="ListView">
+            <Style
+                x:Key="ListViewSeparator"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="SeparatorColor" Value="#333333" />
             </Style>
@@ -97,27 +138,31 @@
                 <Setter Property="HeightRequest" Value="36" />
             </Style>
 
-            <Style x:Key="DangerButton"
-                   BasedOn="{StaticResource Button}"
-                   TargetType="Button">
+            <Style
+                x:Key="DangerButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#b71c1c" />
             </Style>
 
-            <Style x:Key="FacebookButton"
-                   BasedOn="{StaticResource Button}"
-                   TargetType="Button">
+            <Style
+                x:Key="FacebookButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#3b5998" />
             </Style>
 
-            <Style x:Key="TwitterButton"
-                   BasedOn="{StaticResource Button}"
-                   TargetType="Button">
+            <Style
+                x:Key="TwitterButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#1da1f2" />
             </Style>
 
-            <Style x:Key="GoolgePlusButton"
-                   BasedOn="{StaticResource Button}"
-                   TargetType="Button">
+            <Style
+                x:Key="GoolgePlusButton"
+                BasedOn="{StaticResource Button}"
+                TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#dd4b39" />
             </Style>
 

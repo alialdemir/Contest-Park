@@ -119,6 +119,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
 
             containerRegistry.RegisterForNavigation<TabView, TabViewModel>();
+
+            containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
         }
 
         #endregion Navigation
@@ -131,33 +133,33 @@ namespace ContestPark.Mobile.Configs
 
             #region Yeni
 
-            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+            //containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
-            containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+            //containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
 
-            containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
+            //containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
-            containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
+            //containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
-            containerRegistry.RegisterSingleton<IChatService, ChatService>();
+            //containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
-            containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
+            //containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
-            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+            //containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
 
-            containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
+            //containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
-            containerRegistry.RegisterSingleton<IFollowService, FollowService>();
+            //containerRegistry.RegisterSingleton<IFollowService, FollowService>();
 
-            containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
+            //containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
 
-            containerRegistry.RegisterSingleton<IPostService, PostService>();
+            //containerRegistry.RegisterSingleton<IPostService, PostService>();
 
-            containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
+            //containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
-            containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
+            //containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
-            containerRegistry.RegisterSingleton<IDuelService, DuelService>();
+            //containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
             #endregion Yeni
 
@@ -193,37 +195,37 @@ namespace ContestPark.Mobile.Configs
             }
             else
             {
-                //    containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
-                //   containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
+                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
-                // containerRegistry.RegisterSingleton<IPostService, PostMockService>();
+                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                //   containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
-                // containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
+                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
-                //   containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
+                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
-                //     containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
+                containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
-                //////////////containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
-                //////////////containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
+                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
-                //////containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
-                //containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
+                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
-                //containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
+                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 
-                //containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
+                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
-                //     containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
+                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
-                // containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
+                containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
             }
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 

@@ -844,6 +844,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cep Telefonu.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resim Ayarları.
         /// </summary>
         public static string PictureSettings {
@@ -1114,7 +1123,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Giriş Yap.
+        ///   Looks up a localized string similar to Giriş Yap ➝.
         /// </summary>
         public static string SignIn {
             get {
