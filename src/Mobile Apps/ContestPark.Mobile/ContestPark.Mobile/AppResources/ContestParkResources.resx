@@ -178,7 +178,7 @@
     <value>Rakip Bul</value>
   </data>
   <data name="Followers" xml:space="preserve">
-    <value>Takip edenler</value>
+    <value>Takipçi</value>
   </data>
   <data name="Ranking" xml:space="preserve">
     <value>Sıralama</value>
@@ -265,7 +265,7 @@
     <value>Beğeni</value>
   </data>
   <data name="YourLevel" xml:space="preserve">
-    <value>Seviyen</value>
+    <value>Seviye</value>
   </data>
   <data name="Follow" xml:space="preserve">
     <value>Takip Et</value>

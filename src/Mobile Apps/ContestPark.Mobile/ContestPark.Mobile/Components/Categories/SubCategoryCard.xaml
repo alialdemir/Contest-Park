@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    x:Name="customGrid"
-    Margin="4,8,4,0">
+    x:Name="customGrid">
     <components:CustomGrid.RowDefinitions>
         <RowDefinition Height="90" />
         <RowDefinition Height="20" />
@@ -19,41 +18,40 @@
         x:Name="imgSubCategoryImageSource"
         Grid.Row="0"
         Grid.Column="0"
-        Aspect="AspectFill"
+        Aspect="AspectFit"
         CacheDuration="365"
         DownsampleToViewSize="true"
-        HeightRequest="70"
-        WidthRequest="70" />
+        HeightRequest="73"
+        WidthRequest="73" />
 
     <Label
         x:Name="lblSubCategoryName"
         Grid.Row="1"
         Grid.Column="0"
-        FontAttributes="Bold"
-        FontSize="16"
+        FontFamily="{DynamicResource SofiaProMedium}"
+        FontSize="13"
         HorizontalTextAlignment="Center"
-        TextColor="White" />
+        TextColor="#404040" />
 
-    <Frame
+    <Image
         x:Name="goldBadge"
-        Margin="0"
-        Padding="0"
-        BackgroundColor="{StaticResource Primary}"
-        CornerRadius="30"
-        HeightRequest="33"
+        HeightRequest="42"
         HorizontalOptions="End"
-        TranslationX="-10"
-        TranslationY="-4"
+        Source="singlecoin.png"
+        TranslationX="6"
+        TranslationY="6"
         VerticalOptions="End"
-        WidthRequest="33">
+        WidthRequest="42" />
 
-        <Label
-            x:Name="lblDisplayPrice"
-            Margin="0"
-            FontAttributes="Bold"
-            FontSize="12"
-            HorizontalOptions="Center"
-            TextColor="Black"
-            VerticalOptions="Center" />
-    </Frame>
+    <Label
+        x:Name="lblDisplayPrice"
+        Margin="0"
+        FontSize="14"
+        HorizontalOptions="CenterAndExpand"
+        HorizontalTextAlignment="Center"
+        TextColor="Black"
+        TranslationX="30"
+        TranslationY="28"
+        VerticalOptions="CenterAndExpand"
+        VerticalTextAlignment="Center" />
 </components:CustomGrid>

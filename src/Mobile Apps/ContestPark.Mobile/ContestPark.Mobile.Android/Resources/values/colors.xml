@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  <color name="colorPrimary">#ffc107</color>
-  <color name="primaryDark">#ffa000</color>
+  <color name="colorPrimary">#F0F0F0</color>
+  <color name="primaryDark">#211414</color>
   <color name="accent">#536dfe</color>
   <color name="lightPrimary">#FFECB3</color>
   <color name="textIcon">#212121</color>
@@ -12,11 +12,11 @@
   <color name="window_background">@drawable/splash</color>
 
   <!-- Action Bar BackgroundColor -->
-  <color name="ActionBarBackgroundColor">#181818</color>
+  <color name="ActionBarBackgroundColor">#FFFFFF</color>
   <!-- Action Bar BackgroundColor -->
 
   <!-- Hamburger menu color -->
-  <color name="tabHamburgerMenu">@color/colorPrimary</color>
+  <color name="tabHamburgerMenu">#221514</color>
   <!-- Hamburger menu color -->
 
   <!-- Segment -->

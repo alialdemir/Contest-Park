@@ -8,6 +8,7 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
     Title="{Binding CategoryDetail.SubCategoryName}"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -24,7 +25,7 @@
 
         <icon:IconToolbarItem
             Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}"
-            Icon="fas-share-alt"
+            Icon="shareblack.png"
             IconColor="{StaticResource Primary}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -33,140 +34,162 @@
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
-
             <Components:NonPersistentSelectedItemListView.Header>
-                <Grid ColumnSpacing="0" RowSpacing="0">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="145" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
 
-                    <BoxView
-                        Grid.RowSpan="2"
-                        Grid.Column="0"
-                        Color="{StaticResource Primary}" />
-
-                    <Components:CachedImage
+                    <yummy:PancakeView
                         Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="0,10,0,0"
-                        HeightRequest="128"
-                        HorizontalOptions="Center"
-                        Source="{Binding CategoryDetail.PicturePath}"
-                        VerticalOptions="Start"
-                        WidthRequest="128" />
+                        Margin="10,12,10,0"
+                        Padding="0"
+                        BackgroundGradientEndColor="#14D2B8"
+                        BackgroundGradientStartColor="#27DB94"
+                        CornerRadius="10"
+                        Elevation="6"
+                        HasShadow="True"
+                        HeightRequest="280"
+                        HorizontalOptions="FillAndExpand"
+                        IsClippedToBounds="True"
+                        VerticalOptions="FillAndExpand">
+                        <Grid ColumnSpacing="0" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                    <Label
+                            <Components:CachedImage
+                                Grid.Row="0"
+                                Margin="0,21,0,0"
+                                HeightRequest="130"
+                                Source="{Binding CategoryDetail.PicturePath}"
+                                WidthRequest="130" />
+
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,10.7,0,0"
+                                FontFamily="{DynamicResource SofiaProSemiBold}"
+                                FontSize="23"
+                                HorizontalOptions="Center"
+                                Text="{Binding CategoryDetail.SubCategoryName}"
+                                TextColor="{StaticResource White}" />
+
+                            <Label
+                                Grid.Row="2"
+                                Margin="0,2,0,0"
+                                FontFamily="{DynamicResource SofiaProRegular}"
+                                FontSize="15"
+                                HorizontalOptions="Center"
+                                Text="{Binding CategoryDetail.Description}"
+                                TextColor="{StaticResource White}" />
+                        </Grid>
+                    </yummy:PancakeView>
+
+
+                    <yummy:PancakeView
                         Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="0,16,0,64"
-                        FontAttributes="Bold"
-                        FontSize="Large"
-                        HorizontalOptions="Center"
-                        Text="{Binding CategoryDetail.SubCategoryName}"
-                        TextColor="{StaticResource Black}" />
-
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Margin="0,-60,0,64"
-                        FontAttributes="Bold"
-                        FontSize="Small"
-                        HorizontalOptions="Center"
-                        Text="{Binding CategoryDetail.Description}"
-                        TextColor="{StaticResource Black}" />
-
-                    <StackLayout Grid.Row="3" Padding="8">
-
-                        <Frame
-                            Padding="0"
-                            BackgroundColor="{StaticResource White}"
-                            CornerRadius="10"
-                            HasShadow="True"
+                        Margin="24,0,24,0"
+                        BackgroundColor="{StaticResource White}"
+                        CornerRadius="8"
+                        HasShadow="True"
+                        HeightRequest="192"
+                        IsClippedToBounds="True"
+                        TranslationY="-50"
+                        WidthRequest="367">
+                        <Grid
+                            Margin="30,20,30,0"
                             HorizontalOptions="FillAndExpand"
-                            IsClippedToBounds="True"
-                            TranslationY="-60">
+                            VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="21" />
+                                <RowDefinition Height="52" />
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="35" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                            <Grid Margin="16" RowSpacing="3">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="{i18n:Translate YourLevel}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="27"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CategoryDetail.Level}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
 
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    FontAttributes="Bold"
-                                    FontSize="Default"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{i18n:Translate YourLevel}"
-                                    TextColor="#A6A7AA" />
 
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding CategoryDetail.Level}"
-                                    TextColor="{StaticResource Primary}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="{i18n:Translate Followers}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
 
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    FontSize="Default"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{i18n:Translate Followers}"
-                                    TextColor="#A6A7AA" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="27"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CategoryDetail.FollowerCount, Mode=TwoWay}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
 
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding CategoryDetail.FollowerCount, Mode=TwoWay}"
-                                    TextColor="{StaticResource Primary}" />
 
-                                <Button
-                                    Grid.Row="2"
-                                    Grid.ColumnSpan="2"
-                                    BackgroundColor="{StaticResource Green}"
-                                    Command="{Binding DuelOpenPanelCommand}"
-                                    FontAttributes="Bold"
-                                    FontSize="Small"
-                                    HeightRequest="40"
-                                    Text="{i18n:Translate FindOpponent}"
-                                    TextColor="{StaticResource White}"
-                                    VerticalOptions="CenterAndExpand" />
 
-                                <Button
-                                    Grid.Row="3"
-                                    Grid.ColumnSpan="2"
-                                    BackgroundColor="{StaticResource Accent}"
-                                    Command="{Binding GoToRankingPageCommand}"
-                                    FontAttributes="Bold"
-                                    FontSize="Small"
-                                    HeightRequest="40"
-                                    Text="{i18n:Translate Ranking}"
-                                    TextColor="{StaticResource White}"
-                                    VerticalOptions="CenterAndExpand" />
-                            </Grid>
-                        </Frame>
-                    </StackLayout>
+                            <Components:LinearGradientButton
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                BackgroundColor="Transparent"
+                                BorderRadius="48"
+                                Command="{Binding DuelOpenPanelCommand}"
+                                EndColor="#F22E63"
+                                FontFamily="{StaticResource SofiaProRegular}"
+                                FontSize="15"
+                                HorizontalOptions="FillAndExpand"
+                                StartColor="#FF6480"
+                                Text="{i18n:Translate FindOpponent}"
+                                TextColor="{StaticResource White}"
+                                Visual="Material" />
+
+
+
+                            <Components:LinearGradientButton
+                                Grid.Row="3"
+                                Grid.ColumnSpan="2"
+                                BackgroundColor="Transparent"
+                                BorderRadius="48"
+                                Command="{Binding GoToRankingPageCommand}"
+                                EndColor="#5A7BEF"
+                                FontFamily="{StaticResource SofiaProRegular}"
+                                FontSize="15"
+                                HorizontalOptions="FillAndExpand"
+                                StartColor="#4048EF"
+                                Text="{i18n:Translate Ranking}"
+                                TextColor="{StaticResource White}"
+                                Visual="Material" />
+                        </Grid>
+                    </yummy:PancakeView>
+
                 </Grid>
             </Components:NonPersistentSelectedItemListView.Header>
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
@@ -178,13 +201,12 @@
             </Components:NonPersistentSelectedItemListView.ItemTemplate>
             <Components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <StackLayout BackgroundColor="{StaticResource White}">
-
+                    <yummy:PancakeView Style="{StaticResource EmptyModelCard}">
                         <Label
                             IsVisible="{Binding Source={x:Reference lstCategoryPosts}, Path=IsShowEmptyMessage}"
                             Style="{StaticResource EmptyModel}"
                             Text="{i18n:Translate ContestPostEmptyMessage}" />
-                    </StackLayout>
+                    </yummy:PancakeView>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.FooterTemplate>
         </Components:NonPersistentSelectedItemListView>

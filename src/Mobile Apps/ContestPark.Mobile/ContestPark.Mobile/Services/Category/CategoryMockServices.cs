@@ -21,13 +21,135 @@ namespace ContestPark.Mobile.Services.Category
                 Count = 1,
                 Items = new List<CategoryModel>
                  {
-                    GetCategoryModel(),
-                    //GetCategoryModel(),
-                    //GetCategoryModel(),
-                    //GetCategoryModel(),
-                    //GetCategoryModel(),
-                    //GetCategoryModel(),
-                 }
+                     new CategoryModel
+                    {
+                        CategoryId = 1,
+                        CategoryName = "Takip Ettiğin Kategoriler",
+                        SubCategories = new List<SubCategoryModel>
+                                  {
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/referee.png",
+                                           SubCategoryId=1,
+                                           Price=0,
+                                           SubCategoryName="Hakem"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/headhitting.png",
+                                           SubCategoryId=2,
+                                           Price=0,
+                                           SubCategoryName="Futbolcular"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/coach.png",
+                                           SubCategoryId=3,
+                                           Price=0,
+                                           SubCategoryName="Antrenörler"
+                                      }
+                                  }.OrderBy(p => p.Price).ToList()
+                    },
+                     new CategoryModel
+                    {
+                        CategoryId = 1,
+                        CategoryName = "Futbol",
+                        SubCategories = new List<SubCategoryModel>
+                                  {
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/referee.png",
+                                           SubCategoryId=1,
+                                           Price=0,
+                                           SubCategoryName="Hakem"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/headhitting.png",
+                                           SubCategoryId=2,
+                                           Price=0,
+                                           SubCategoryName="Futbolcular"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/coach.png",
+                                           SubCategoryId=3,
+                                           Price=0,
+                                           SubCategoryName="Antrenörler"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="10k",
+                                           PicturePath =  DefaultImages.DefaultLock,
+                                           SubCategoryId=4,
+                                           Price=10000,
+                                           SubCategoryName="abc"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="112k",
+                                           PicturePath =  DefaultImages.DefaultLock,
+                                           SubCategoryId=4,
+                                           Price=112000,
+                                           SubCategoryName="dsadsa"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="15k",
+                                           PicturePath =  DefaultImages.DefaultLock,
+                                           SubCategoryId=4,
+                                           Price=15000,
+                                           SubCategoryName="sfafafs"
+                                      },
+                                  }.OrderBy(p => p.Price).ToList()
+                    },
+                     new CategoryModel
+                    {
+                        CategoryId = 1,
+                        CategoryName = "Uygulama Logoları",
+                        SubCategories = new List<SubCategoryModel>
+                                  {
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/network.png",
+                                           SubCategoryId=1,
+                                           Price=0,
+                                           SubCategoryName="Sosyal"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/stockmarket.png",
+                                           SubCategoryId=2,
+                                           Price=0,
+                                           SubCategoryName="Aksiyon"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/creditcard.png",
+                                           SubCategoryId=3,
+                                           Price=0,
+                                           SubCategoryName="Finans"
+                                      },
+                                      new SubCategoryModel
+                                      {
+                                           DisplayPrice="0",
+                                           PicturePath =  "assets/images/laptop.png",
+                                           SubCategoryId=3,
+                                           Price=0,
+                                           SubCategoryName="Spor"
+                                      },
+                                  }.OrderBy(p => p.Price).ToList()
+                    },
+        }
             });
         }
 
@@ -45,12 +167,12 @@ namespace ContestPark.Mobile.Services.Category
                  {
                      new SearchModel
                      {
-                           SubCategoryName ="Bayraklar",
+                           SubCategoryName ="Takımlar",
                            Price=100000,
                            SubCategoryId=1,
-                           CategoryName="Bayraklar",
+                           CategoryName="Futbol",
                            DisplayPrice="0",
-                           PicturePath = DefaultImages.DefaultLock,
+                           PicturePath =  "assets/images/takimlar.png",
                      },
                  }
             });
@@ -68,12 +190,12 @@ namespace ContestPark.Mobile.Services.Category
             return Task.FromResult(new CategoryDetailModel
             {
                 CategoryFollowersCount = 5,
-                Description = "Hava an happy day!",
+                Description = "Takımı bil ödülü kazan!",
                 IsSubCategoryFollowUpStatus = true,
                 Level = 33,
                 SubCategoryId = subCategoryId,
-                SubCategoryName = "Football Players",
-                PicturePath = DefaultImages.DefaultLock,
+                SubCategoryName = "Takımlar",
+                PicturePath = "assets/images/headhitting.png",
             });
         }
 
@@ -207,10 +329,10 @@ namespace ContestPark.Mobile.Services.Category
                               new SubCategoryModel
                               {
                                    DisplayPrice="0",
-                                   PicturePath = DefaultImages.DefaultLock,
+                                   PicturePath =  "assets/images/takimlar.png",
                                    SubCategoryId=1,
                                    Price=0,
-                                   SubCategoryName="Bayraklar"
+                                   SubCategoryName="Takımlar"
                               },
                               GetSubCategoryModel(),
                               GetSubCategoryModel(),

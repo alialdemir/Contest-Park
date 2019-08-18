@@ -121,6 +121,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<TabView, TabViewModel>();
 
             containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
+
+            containerRegistry.RegisterForNavigation<AppShell, PhoneNumberViewModel>();
         }
 
         #endregion Navigation
@@ -225,7 +227,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
-                containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
+                containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             }
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 

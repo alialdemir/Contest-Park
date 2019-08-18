@@ -3,47 +3,39 @@
     x:Class="ContestPark.Mobile.ContestParkApp"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
+    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
 
-            <Style x:Name="LabelStyle" TargetType="Label">
-                <Setter Property="Label.FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>Sofia Pro Medium Az.otf#Sofia Pro Medium Az</OnPlatform.Android>
-                            <OnPlatform.iOS>Sofia Pro Medium Az</OnPlatform.iOS>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            <OnPlatform x:Key="SofiaProRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sofia Pro Regular Az.otf#Sofia Pro Regular Az" />
+                <On Platform="iOS" Value="Sofia Pro Regular Az" />
+            </OnPlatform>
 
-            <Style x:Name="ButtonStyle" TargetType="Button">
-                <Setter Property="Button.FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>Sofia Pro Medium Az.otf#Sofia Pro Medium Az</OnPlatform.Android>
-                            <OnPlatform.iOS>Sofia Pro Medium Az</OnPlatform.iOS>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
-            <Style x:Name="EntryStyle" TargetType="Entry">
-                <Setter Property="Entry.FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>Sofia Pro Medium Az.otf#Sofia Pro Medium Az</OnPlatform.Android>
-                            <OnPlatform.iOS>Sofia Pro Medium Az</OnPlatform.iOS>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+
+            <OnPlatform x:Key="SofiaProSemiBold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sofia Pro Semi Bold Az.otf#Sofia Pro Semi Bold Az" />
+                <On Platform="iOS" Value="Sofia Pro Semi Bold Az" />
+            </OnPlatform>
+
+
+            <OnPlatform x:Key="SofiaProMedium" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sofia Pro Medium Az.otf#Sofia Pro Medium Az" />
+                <On Platform="iOS" Value="Sofia Pro Medium Az" />
+            </OnPlatform>
 
             <!--  Yeni başlangıç  -->
 
-            <!--  Beyaz  -->
             <Color x:Key="White">#FFFFFF</Color>
+
+            <Color x:Key="BarTextColor">#211414</Color>
+
+            <Color x:Key="GlobalBackgroundColor">#F0F0F0</Color>
+
+            <Color x:Key="CategoryDetailTextColor">#303030</Color>
+
 
             <!--  Yeni başlangıç  -->
 
@@ -53,7 +45,6 @@
             <Color x:Key="ListBackgroundColor">#171717</Color>
 
             <!--  Black  -->
-            <Color x:Key="GlobalBackgroundColor">#0d0d0d</Color>
 
             <Color x:Key="Orange">#ff8800</Color>
 
@@ -89,8 +80,9 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
             </Style>
 
+            <!--  Action bar text color  -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
-                <Setter Property="BarTextColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="{StaticResource BarTextColor}" />
             </Style>
 
             <Style x:Key="ContentParkLabel" TargetType="Label">
@@ -166,18 +158,22 @@
                 <Setter Property="BackgroundColor" Value="#dd4b39" />
             </Style>
 
-            <!--  ZigZag  -->
-            <Style x:Key="ZigZag" TargetType="Image">
-                <Setter Property="Source" Value="zigzag.png" />
-                <Setter Property="Aspect" Value="Fill" />
-            </Style>
-
             <!--  List empty message  -->
             <Style x:Key="EmptyModel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource White}" />
-                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="{StaticResource SofiaProSemiBold}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="EmptyModelCard" TargetType="yummy:PancakeView">
+                <Setter Property="Margin" Value="24,0,24,0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="WidthRequest" Value="367" />
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

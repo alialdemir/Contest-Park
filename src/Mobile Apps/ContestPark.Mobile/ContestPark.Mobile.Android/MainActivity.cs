@@ -13,6 +13,7 @@ using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
 using System;
+using Xamarin.Forms.PancakeView.Droid;
 
 namespace ContestPark.Mobile.Droid
 {
@@ -98,6 +99,9 @@ namespace ContestPark.Mobile.Droid
             AnimationViewRenderer.Init();
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
+
+            PancakeViewRenderer.Init();
+
         }
 
         #region Security

@@ -33,9 +33,9 @@
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
+                    FontFamily="{DynamicResource SofiaProMedium}"
                     FontSize="31"
                     HorizontalTextAlignment="Center"
-                    Style="{DynamicResource LabelStyle}"
                     Text="ContestPark"
                     TextColor="#535353" />
 
@@ -44,6 +44,7 @@
                         BackgroundColor="Transparent"
                         BorderColor="#666372"
                         CornerRadius="132"
+                        FontFamily="{DynamicResource SofiaProMedium}"
                         FontSize="16"
                         HeightRequest="40"
                         HorizontalOptions="Fill"
@@ -51,7 +52,6 @@
                         MaxLength="10"
                         Placeholder="{i18n:Translate PhoneNumber}"
                         PlaceholderColor="#484848"
-                        Style="{DynamicResource EntryStyle}"
                         TextColor="#484848"
                         Visual="Material"
                         WidthRequest="310" />
@@ -83,7 +83,7 @@
                 <custom:HtmlLabel
                     Grid.Row="4"
                     Grid.Column="0"
-                    Style="{DynamicResource LabelStyle}"
+                    FontFamily="{DynamicResource SofiaProMedium}"
                     Text="When you sig up, you approve the Privacy Policy,  Terms of use and Competition Rules" />
             </Grid>
         </ScrollView>

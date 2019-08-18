@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Components
         public SubCategoryHorizontalScrollView()
         {
             Orientation = ScrollOrientation.Horizontal;
-            HeightRequest = 140;
+            HeightRequest = 120;
         }
 
         #endregion Constructor
@@ -28,7 +28,7 @@ namespace ContestPark.Mobile.Components
                 return;
             }
 
-            StackLayout stackLayout = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 0 };
+            StackLayout stackLayout = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 20 };
 
             foreach (SubCategoryModel subCategory in categoryModel.SubCategories)
             {
