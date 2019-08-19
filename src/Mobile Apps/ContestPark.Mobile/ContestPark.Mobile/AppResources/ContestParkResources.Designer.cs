@@ -583,6 +583,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Altın.
+        /// </summary>
+        public static string Gold {
+            get {
+                return ResourceManager.GetString("Gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz..
         /// </summary>
         public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {
@@ -1213,11 +1222,29 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Türkiye.
+        /// </summary>
+        public static string Turkey {
+            get {
+                return ResourceManager.GetString("Turkey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Turkish.
         /// </summary>
         public static string Turkish {
             get {
                 return ResourceManager.GetString("Turkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Türk Lirası.
+        /// </summary>
+        public static string TurkishLira {
+            get {
+                return ResourceManager.GetString("TurkishLira", resourceCulture);
             }
         }
         

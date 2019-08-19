@@ -92,6 +92,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomSwitchRendererd.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -301,6 +303,12 @@
       <Project>{d4ded53e-69aa-41eb-84a2-46c708698b32}</Project>
       <Name>ContestPark.Mobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\switchactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\switchpassive.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

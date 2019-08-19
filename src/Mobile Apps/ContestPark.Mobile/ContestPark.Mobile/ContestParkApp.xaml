@@ -44,7 +44,12 @@
 
             <OnPlatform x:Key="MontserratMedium" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat-Medium" />
-                <On Platform="iOS" Value="Montserrat-Medium.ttf" />
+                <On Platform="iOS" Value="Montserrat-Medium" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="SofiaProBlack" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sofia Pro Black Az.otf#Sofia Pro Black Az" />
+                <On Platform="iOS" Value="Sofia Pro Black Az" />
             </OnPlatform>
 
             <!--  Yeni başlangıç  -->

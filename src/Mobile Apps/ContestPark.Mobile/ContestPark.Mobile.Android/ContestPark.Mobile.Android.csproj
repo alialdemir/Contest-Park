@@ -192,6 +192,7 @@
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderer\CustomGridRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSegmentedControlRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
     <Compile Include="CustomRenderer\IconNavigationPageRenderer.cs" />
     <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
     <Compile Include="CustomRenderer\SearchPageRenderer.cs" />
@@ -435,6 +436,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\doublecoinstl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\switchactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\switchpassive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\vs.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

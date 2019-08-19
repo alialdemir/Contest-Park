@@ -83,5 +83,6 @@ namespace ContestPark.Mobile.Views
         }
 
         #endregion Methods
+
     }
 }

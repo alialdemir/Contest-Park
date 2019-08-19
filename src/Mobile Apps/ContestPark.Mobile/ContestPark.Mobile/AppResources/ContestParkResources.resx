@@ -596,4 +596,13 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Cep Telefonu</value>
   </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Altın</value>
+  </data>
+  <data name="TurkishLira" xml:space="preserve">
+    <value>Türk Lirası</value>
+  </data>
+  <data name="Turkey" xml:space="preserve">
+    <value>Türkiye</value>
+  </data>
 </root>

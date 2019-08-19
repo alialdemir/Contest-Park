@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Helpers;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using System;
 
 namespace ContestPark.Mobile.Models.Duel
@@ -92,5 +93,54 @@ namespace ContestPark.Mobile.Models.Duel
         }
 
         public string OpponentUserId { get; set; }
+
+        private byte _founderLevel = 1;
+
+        public byte FounderLevel
+        {
+            get { return _founderLevel; }
+            set
+            {
+                _founderLevel = value;
+                RaisePropertyChanged(() => FounderLevel);
+            }
+        }
+
+        private byte _opponentLevel;
+
+        public byte OpponentLevel
+        {
+            get { return _opponentLevel; }
+            set
+            {
+                _opponentLevel = value;
+                RaisePropertyChanged(() => OpponentLevel);
+            }
+        }
+
+        private string _founderCountry = ContestParkResources.Turkey;;
+
+        public string FounderCountry
+        {
+            get { return _founderCountry; }
+            set
+            {
+                _founderCountry = value;
+                RaisePropertyChanged(() => FounderCountry);
+            }
+        }
+
+        private string _opponentCountry = ContestParkResources.Turkey;;
+
+        public string OpponentCountry
+        {
+            get { return _opponentCountry; }
+            set
+            {
+                _opponentCountry = value;
+                RaisePropertyChanged(() => OpponentCountry);
+            }
+        }
+
     }
 }

@@ -1,4 +1,7 @@
 ﻿using Prism.Mvvm;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -11,5 +14,15 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Constructor
+
+        #region Commands
+        public ICommand SignInCommand => new Command(async () => await ExecuteSignInCommandAsync());
+
+        private Task ExecuteSignInCommandAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        #endregion
     }
 }

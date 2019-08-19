@@ -9,7 +9,7 @@ namespace ContestPark.Mobile.Models.Duel.Bet
         public string Title { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
-        public BalanceTypes BalanceType { get; internal set; }
-        public int CurrentIndex { get; internal set; }
+        public BalanceTypes BalanceType { get; set; }
+        public int CurrentIndex { get; set; }
     }
 }
