@@ -862,7 +862,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oyna.
+        ///   Looks up a localized string similar to OYNA.
         /// </summary>
         public static string Play {
             get {

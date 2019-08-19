@@ -26,6 +26,27 @@
                 <On Platform="iOS" Value="Sofia Pro Medium Az" />
             </OnPlatform>
 
+            <OnPlatform x:Key="GothamRoundedBold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="GothamRounded-Bold.otf#GothamRounded-Bold" />
+                <On Platform="iOS" Value="GothamRounded-Bold" />
+            </OnPlatform>
+
+
+            <OnPlatform x:Key="GothamRoundedMedium" x:TypeArguments="x:String">
+                <On Platform="Android" Value="GothamRounded-Medium.otf#GothamRounded-Medium" />
+                <On Platform="iOS" Value="GothamRounded-Medium" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="MontserratRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Montserrat-Regular.ttf#Montserrat-Regular" />
+                <On Platform="iOS" Value="Montserrat-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="MontserratMedium" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat-Medium" />
+                <On Platform="iOS" Value="Montserrat-Medium.ttf" />
+            </OnPlatform>
+
             <!--  Yeni başlangıç  -->
 
             <Color x:Key="White">#FFFFFF</Color>
@@ -35,6 +56,8 @@
             <Color x:Key="GlobalBackgroundColor">#F0F0F0</Color>
 
             <Color x:Key="CategoryDetailTextColor">#303030</Color>
+
+            <Color x:Key="Black">#000000</Color>
 
 
             <!--  Yeni başlangıç  -->
@@ -53,7 +76,6 @@
             <Color x:Key="Primary100">#FFECB3</Color>
 
             <!--  Black  -->
-            <Color x:Key="Black">#222222</Color>
 
             <!--  Green  -->
             <Color x:Key="Green">#017d46</Color>

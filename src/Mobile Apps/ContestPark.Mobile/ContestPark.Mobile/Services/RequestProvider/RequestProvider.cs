@@ -208,36 +208,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return await policyWrap.ExecuteAsync(action, new Context(normalizedOrigin));
         }
 
-        private async Task test()
-        {
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            string content = JsonConvert.SerializeObject(new
-            {
-                Email = "test12@test.com",
-                FullName = "sadss",
-                LanguageCode = "tr-TR",
-                Password = "19931993",
-                UserName = "UserName"
-            });
-
-            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, "http://192.168.1.177:5105/api/v1/account");
-
-            httpRequestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
-            try
-            {
-                HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
-
-                string serialized = await response.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
         private async Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
         {
-            await test();
             // a new StringContent must be created for each retry as it is disposed after each call
             var origin = GetOriginFromUri(url);
 

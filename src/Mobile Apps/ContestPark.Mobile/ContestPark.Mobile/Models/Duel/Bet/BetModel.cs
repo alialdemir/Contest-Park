@@ -1,9 +1,15 @@
-﻿namespace ContestPark.Mobile.Models.Duel.Bet
+﻿using ContestPark.Mobile.Enums;
+
+namespace ContestPark.Mobile.Models.Duel.Bet
 {
     public class BetModel
     {
-        public int EntryFee { get; set; }
-        public int Prize { get; set; }
+        public decimal EntryFee { get; set; }
+        public decimal Prize { get; set; }
         public string Title { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public BalanceTypes BalanceType { get; internal set; }
+        public int CurrentIndex { get; internal set; }
     }
 }
