@@ -1,78 +1,100 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.ThumListItem"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Name="thumListItemPage">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.ThumListItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="thumListItemPage">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Components:CustomGrid x:Name="cstmGrid"
-                               Padding="8,4,8,4"
-                               BackgroundColor="{Binding Path=GridBackgroundColor, Source={x:Reference thumListItemPage}}"
-                               RowSpacing="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="1" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="24" />
-            </Grid.ColumnDefinitions>
+        <yummy:PancakeView
+            Margin="0,3,0,3"
+            Padding="0"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="8"
+            Elevation="6"
+            HasShadow="True"
+            HeightRequest="80"
+            IsClippedToBounds="True"
+            Visual="Material">
+            <Components:CustomGrid
+                x:Name="cstmGrid"
+                Padding="17,17,0,17"
+                ColumnSpacing="7"
+                RowSpacing="0">
 
-            <Image Grid.RowSpan="2"
-                   Grid.Column="0"
-                   Source="{Binding Path=Source, Source={x:Reference thumListItemPage}}" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="24" />
+                </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   FontAttributes="Bold"
-                   FontSize="Small"
-                   LineBreakMode="TailTruncation"
-                   Text="{Binding Path=Text, Source={x:Reference thumListItemPage}}"
-                   TextColor="#808080" />
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    HeightRequest="60"
+                    Source="{Binding Path=Source, Source={x:Reference thumListItemPage}}"
+                    WidthRequest="55" />
 
-            <Components:HtmlLabel Grid.Row="1"
-                                  Grid.Column="1"
-                                  Grid.ColumnSpan="2"
-                                  FontSize="Small"
-                                  LineBreakMode="TailTruncation"
-                                  Text="{Binding Path=Detail, Source={x:Reference thumListItemPage}}"
-                                  TextColor="White" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource SofiaProSemiBold}"
+                    FontSize="18"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding Path=Text, Source={x:Reference thumListItemPage}}"
+                    TextColor="#430856" />
 
-            <Label Grid.RowSpan="3"
-                   Grid.Column="2"
-                   FontAttributes="Bold"
-                   FontSize="Small"
-                   HeightRequest="30"
-                   HorizontalTextAlignment="End"
-                   IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
-                   Text="{Binding Path=RightText, Source={x:Reference thumListItemPage}}"
-                   TextColor="{Binding Path=RightIconTextColor, Source={x:Reference thumListItemPage}}"
-                   VerticalTextAlignment="Center" />
+                <Components:HtmlLabel
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    FontFamily="{StaticResource SofiaProLight}"
+                    FontSize="14"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding Path=Detail, Source={x:Reference thumListItemPage}}"
+                    TextColor="#181C2F"
+                    VerticalTextAlignment="Start" />
 
-            <icon:IconImage Grid.RowSpan="3"
-                            Grid.Column="3"
-                            HeightRequest="25"
-                            Icon="{Binding Path=RightIconSource, Source={x:Reference thumListItemPage}}"
-                            IconColor="{StaticResource Primary}"
-                            IconSize="16"
-                            IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="25" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource GothamRoundedBold}"
+                    FontSize="16"
+                    HeightRequest="30"
+                    HorizontalTextAlignment="End"
+                    IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
+                    Text="{Binding Path=RightText, Source={x:Reference thumListItemPage}}"
+                    TextColor="{Binding Path=RightIconTextColor, Source={x:Reference thumListItemPage}}"
+                    VerticalTextAlignment="Center" />
 
-            <Components:Line Grid.Row="2"
-                             Grid.Column="1"
-                             Grid.ColumnSpan="3" />
-        </Components:CustomGrid>
+                <icon:IconImage
+                    Grid.RowSpan="3"
+                    Grid.Column="3"
+                    HeightRequest="25"
+                    Icon="{Binding Path=RightIconSource, Source={x:Reference thumListItemPage}}"
+                    IconColor="{StaticResource Primary}"
+                    IconSize="16"
+                    IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="25" />
+            </Components:CustomGrid>
+        </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

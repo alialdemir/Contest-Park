@@ -34,7 +34,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <BoxView
-                                Margin="0,0,90,41"
+                                Margin="0,0,90,0"
                                 BackgroundColor="#725BDE"
                                 HeightRequest="2"
                                 HorizontalOptions="FillAndExpand" />
@@ -49,8 +49,7 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <components:CircleImage
@@ -73,74 +72,105 @@
                             Text="{Binding FullName}"
                             TextColor="{StaticResource White}" />
 
-                        <yummy:PancakeView
+                        <FlexLayout
                             Grid.Row="1"
                             Grid.Column="1"
-                            Padding="5"
-                            BackgroundGradientEndColor="#D03548"
-                            BackgroundGradientStartColor="#EB3349"
-                            CornerRadius="24"
-                            MinimumWidthRequest="50">
-                            <Grid ColumnSpacing="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Column="0"
-                                    HeightRequest="20"
-                                    Source="TurkishLiraSingleCoin.svg"
-                                    WidthRequest="25" />
+                            JustifyContent="SpaceAround"
+                            Wrap="Wrap">
 
-                                <Label
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    FontFamily="{StaticResource GothamRoundedMedium}"
-                                    FontSize="14"
-                                    HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Balance.Money, StringFormat='+ {0:##.##}'}"
-                                    TextColor="{StaticResource White}"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </yummy:PancakeView>
-                        <yummy:PancakeView
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Padding="5"
-                            BackgroundGradientEndColor="#FFCC33"
-                            BackgroundGradientStartColor="#FFB347"
-                            CornerRadius="24"
-                            MinimumWidthRequest="50">
-                            <Grid ColumnSpacing="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Column="0"
-                                    HeightRequest="20"
-                                    Source="ContestSingleCoin.svg"
-                                    WidthRequest="25" />
+                            <yummy:PancakeView
+                                Padding="5"
+                                BackgroundGradientEndColor="#D03548"
+                                BackgroundGradientStartColor="#EB3349"
+                                CornerRadius="24"
+                                MinimumWidthRequest="50">
+                                <Grid ColumnSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloadingsvg:SvgCachedImage
+                                        Grid.Column="0"
+                                        HeightRequest="20"
+                                        Source="TurkishLiraSingleCoin.svg"
+                                        WidthRequest="25" />
 
-                                <Label
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    FontFamily="{StaticResource GothamRoundedMedium}"
-                                    FontSize="14"
-                                    HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Balance.Gold, StringFormat='+ {0:##}'}"
-                                    TextColor="{StaticResource White}"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </yummy:PancakeView>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource GothamRoundedMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Balance.Money, StringFormat='+ {0:##.##}'}"
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </yummy:PancakeView>
+                            <yummy:PancakeView
+                                Padding="5"
+                                BackgroundGradientEndColor="#FFCC33"
+                                BackgroundGradientStartColor="#FFB347"
+                                CornerRadius="24"
+                                MinimumWidthRequest="50">
+                                <Grid ColumnSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloadingsvg:SvgCachedImage
+                                        Grid.Column="0"
+                                        HeightRequest="20"
+                                        Source="ContestSingleCoin.svg"
+                                        WidthRequest="25" />
+
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource GothamRoundedMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Balance.Gold, StringFormat='+ {0:##}'}"
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </yummy:PancakeView>
+                        </FlexLayout>
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <components:ListItemFactory />
+                            <components:CustomGrid
+                                Margin="36,16.8,0,16.8"
+                                ColumnSpacing="22"
+                                CommandParameter="{Binding CommandParameter}"
+                                SingleTap="{Binding SingleTap}">
+                                <components:CustomGrid.RowDefinitions>
+                                    <RowDefinition Height="32" />
+                                </components:CustomGrid.RowDefinitions>
+                                <components:CustomGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="32" />
+                                    <ColumnDefinition Width="Auto" />
+                                </components:CustomGrid.ColumnDefinitions>
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HeightRequest="32"
+                                    Source="{Binding Icon}"
+                                    WidthRequest="32" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontFamily="{DynamicResource SofiaProMedium}"
+                                    FontSize="15"
+                                    Text="{Binding Title}"
+                                    TextColor="{StaticResource White}"
+                                    VerticalOptions="Center" />
+                            </components:CustomGrid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

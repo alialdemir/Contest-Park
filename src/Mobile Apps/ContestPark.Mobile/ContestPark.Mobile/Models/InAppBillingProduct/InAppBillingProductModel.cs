@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.Base;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Base;
 
 namespace ContestPark.Mobile.Models.InAppBillingProduct
 {
@@ -11,7 +12,7 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
         {
             get
             {
-                return $"{CurrencyCode} {LocalizedPrice}";
+                return $"{LocalizedPrice} {CurrencyCode}";
             }
         }
 
@@ -19,5 +20,6 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
         public string LocalizedPrice { get; set; }
         public string ProductId { get; set; }
         public string ProductName { get; set; }
+        public BalanceTypes BalanceTypes { get; set; }
     }
 }

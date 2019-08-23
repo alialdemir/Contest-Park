@@ -72,6 +72,7 @@ namespace ContestPark.Mobile.Droid
 #if !DEBUG
             CheckForRoot();
 #endif
+
             // Check if running in sim
 
             CrossCurrentActivity.Current.Init(this, bundle);
@@ -101,7 +102,6 @@ namespace ContestPark.Mobile.Droid
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
 
             PancakeViewRenderer.Init();
-
         }
 
         #region Security
