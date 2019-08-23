@@ -1,7 +1,7 @@
 ﻿using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using ContestPark.Mobile.Services.Audio;
@@ -92,9 +92,12 @@ namespace ContestPark.Mobile.ViewModels
 
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
-                SubcategoryId = DuelResult.SubCategoryId,
-                SubcategoryName = DuelResult.SubCategoryName,
-                SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                SelectedSubCategory = new SelectedSubCategoryModel
+                {
+                    SubcategoryId = DuelResult.SubCategoryId,
+                    SubcategoryName = DuelResult.SubCategoryName,
+                    SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                }
             });
 
             IsBusy = false;
@@ -174,9 +177,12 @@ namespace ContestPark.Mobile.ViewModels
             // TODO: burada karşı rakipbe rövanş yapmak ister misiniz diye sorması lazım
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
-                SubcategoryId = DuelResult.SubCategoryId,
-                SubcategoryName = DuelResult.SubCategoryName,
-                SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                SelectedSubCategory = new SelectedSubCategoryModel
+                {
+                    SubcategoryId = DuelResult.SubCategoryId,
+                    SubcategoryName = DuelResult.SubCategoryName,
+                    SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                },
                 OpponentUserId = DuelResult.IsFounder ? DuelResult.OpponentUserId : DuelResult.FounderUserId
             });
 

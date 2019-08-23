@@ -15,6 +15,13 @@
 
 
 
+            <OnPlatform x:Key="SofiaProLight" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sofia Pro Light Az.otf#Sofia Pro Light Az" />
+                <On Platform="iOS" Value="Sofia Pro Light Az" />
+            </OnPlatform>
+
+
+
             <OnPlatform x:Key="SofiaProSemiBold" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Sofia Pro Semi Bold Az.otf#Sofia Pro Semi Bold Az" />
                 <On Platform="iOS" Value="Sofia Pro Semi Bold Az" />

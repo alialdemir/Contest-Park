@@ -9,8 +9,8 @@ namespace ContestPark.Mobile.Services.Cp
         {
             return Task.FromResult(new BalanceModel
             {
-                Gold = 999999.99m,
-                Money = 9999912.99m
+                Gold = 34543,
+                Money = 54.12m
             });
         }
 

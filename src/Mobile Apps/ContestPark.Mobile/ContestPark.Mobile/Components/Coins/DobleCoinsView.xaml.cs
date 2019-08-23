@@ -1,10 +1,11 @@
 ﻿
 using ContestPark.Mobile.Enums;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components.Coins
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DobleCoinsView : ContentView
     {
 
@@ -72,6 +73,7 @@ namespace ContestPark.Mobile.Components.Coins
         #endregion
 
         #region Overrides
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -89,13 +91,13 @@ namespace ContestPark.Mobile.Components.Coins
             switch (CoinSize)
             {
                 case CoinSize.Small:
-                    imgCoins.HeightRequest = 80;
-                    imgCoins.WidthRequest = 80;
+                    imgCoins.WidthRequest = 50;
+                    imgCoins.HeightRequest = 40;
                     lblCoins.FontSize = 16;
                     break;
                 default:
-                    imgCoins.HeightRequest = 100;
-                    imgCoins.WidthRequest = 100;
+                    imgCoins.WidthRequest = 71;
+                    imgCoins.HeightRequest = 54;
                     lblCoins.FontSize = 22;
                     break;
             }
@@ -103,6 +105,7 @@ namespace ContestPark.Mobile.Components.Coins
             lblCoins.Text = (Coins == Enums.Coins.Negative ? "-" : "+") + DisplayCoins;
             lblCoins.TextColor = Color.FromHex(Coins == Enums.Coins.Negative ? "#FB1A1A" : "#8EF0A7");
         }
+
         #endregion
     }
 }

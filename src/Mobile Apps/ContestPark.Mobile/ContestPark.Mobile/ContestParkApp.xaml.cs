@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using MonkeyCache.SQLite;
@@ -33,7 +34,8 @@ namespace ContestPark.Mobile
 
             Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
                    .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
-                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
+                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule())
+                   .With(new ContestParkIconModule());
 
             Barrel.ApplicationId = "ContestPark";
 

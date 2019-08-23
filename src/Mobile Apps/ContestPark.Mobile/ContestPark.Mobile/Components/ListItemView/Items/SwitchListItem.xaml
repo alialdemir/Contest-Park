@@ -1,45 +1,61 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.SwitchListItem"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.SwitchListItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
-        <Grid Padding="16,8,16,8" ColumnSpacing="15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <yummy:PancakeView
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="{Binding CornerRadius}"
+            Elevation="6"
+            HasShadow="True"
+            IsClippedToBounds="True"
+            VerticalOptions="Start">
+            <Grid Margin="14,8,14,8" ColumnSpacing="22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <icon:IconImage Grid.Row="0"
-                            Grid.Column="0"
-                            Icon="{Binding Icon}"
-                            IconColor="{StaticResource Primary}"
-                            IconSize="24" />
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="40"
+                    Source="{Binding Icon}"
+                    WidthRequest="40" />
 
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   FontSize="Default"
-                   Text="{Binding Title}"
-                   TextColor="White"
-                   VerticalOptions="Center" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontFamily="{DynamicResource SofiaProLight}"
+                    FontSize="Medium"
+                    Text="{Binding Title}"
+                    TextColor="#040404"
+                    VerticalOptions="Center" />
 
-            <Switch x:Name="switchIcon"
+                <Switch
+                    x:Name="switchIcon"
                     Grid.Row="0"
                     Grid.Column="2"
                     HorizontalOptions="End"
                     IsToggled="{Binding IsToggled}"
                     OnColor="{StaticResource Primary}"
                     VerticalOptions="CenterAndExpand">
-                <Switch.Behaviors>
-                    <behaviors:EventToCommandBehavior Command="{Binding SingleTap}"
-                                                      CommandParameter="{Binding CommandParameter}"
-                                                      EventName="Toggled" />
-                </Switch.Behaviors>
-            </Switch>
-        </Grid>
+                    <Switch.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding SingleTap}"
+                            CommandParameter="{Binding CommandParameter}"
+                            EventName="Toggled" />
+                    </Switch.Behaviors>
+                </Switch>
+            </Grid>
+        </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

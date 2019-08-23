@@ -58,24 +58,26 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             ICommand pushPageCommand = new Command<string>(async (pageName) => await ExecutePushPageCommand(pageName));
-
             Items.AddRange(new List<MenuItemList>()
             {
                 new MenuItemList(ContestParkResources.AppSettings)
                                 {
                                     new TextMenuItem {
                                         CommandParameter = nameof(LanguageView),
-                                        Icon = "fas-globe",
+                                        Icon = "settings_language.svg",
                                         Title = ContestParkResources.Language,
                                         MenuType = Enums.MenuTypes.Label,
+                                        //IconColor ="#0D0D0D",
                                         SingleTap = pushPageCommand
                                     },
                                     new Models.MenuItem.SwitchMenuItem {
-                                        Icon = "fas-volume-up",
+                                        Icon = "settings_sound.svg",
                                         Title = ContestParkResources.Sounds,
                                         MenuType = Enums.MenuTypes.Switch,
+                                        //IconColor ="#0D0D0D",
                                         IsToggled = _settingsService.IsSoundEffectActive,
-                                        SingleTap =  new Command(()=> ChangeSoundAsync())
+                                        SingleTap =  new Command(()=> ChangeSoundAsync()),
+                                        CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
 
@@ -83,34 +85,40 @@ namespace ContestPark.Mobile.ViewModels
                                     {
                                     new TextMenuItem {
                                         CommandParameter = nameof(AccountSettingsView),
-                                        Icon = "fas-user-circle",
+                                        Icon = "settings_account.svg",
                                         Title = ContestParkResources.EditProfile,
                                         MenuType = Enums.MenuTypes.Label,
+                                        //IconColor ="#0D0D0D",
                                         SingleTap = pushPageCommand
                                     },
                                     new TextMenuItem {
                                         CommandParameter = nameof(BlockingView),
-                                        Icon = "fas-exclamation-circle",
+                                        Icon = "settings_blocked.svg",
                                         Title = ContestParkResources.Blocking,
                                         MenuType = Enums.MenuTypes.Label,
+                                        //IconColor ="#0D0D0D",
                                         SingleTap = pushPageCommand
                                     },
                                     new SwitchMenuItem {
-                                        Icon = "fas-unlock-alt",
+                                        Icon = "settings_private_profile.svg",
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = Enums.MenuTypes.Switch,
+                                        //IconColor ="#0D0D0D",
                                         IsToggled = _settingsService.CurrentUser.IsPrivateProfile,
-                                        SingleTap = new Command( async()=> await  ChangePrivateProfileAsync())
+                                        SingleTap = new Command( async()=> await  ChangePrivateProfileAsync()),
+                                        CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                             },
 
                 new MenuItemList(ContestParkResources.Other)
                                 {
                                     new TextMenuItem {
-                                        Icon = "fas-sign-out-alt",
+                                        Icon = "settings_log_out.svg",
                                         Title = ContestParkResources.LogOut,
                                         MenuType = Enums.MenuTypes.Label,
-                                        SingleTap = new Command(async()=> await ExitAppAsync())
+                                        //IconColor ="#0D0D0D",
+                                        SingleTap = new Command(async()=> await ExitAppAsync()),
+                                        CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
             });

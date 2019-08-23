@@ -106,7 +106,7 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        private byte _opponentLevel;
+        private byte _opponentLevel = 1;
 
         public byte OpponentLevel
         {
@@ -118,7 +118,7 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        private string _founderCountry = ContestParkResources.Turkey;;
+        private string _founderCountry = ContestParkResources.Turkey;
 
         public string FounderCountry
         {
@@ -130,7 +130,7 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        private string _opponentCountry = ContestParkResources.Turkey;;
+        private string _opponentCountry = ContestParkResources.Turkey;
 
         public string OpponentCountry
         {

@@ -74,7 +74,7 @@ namespace ContestPark.Mobile.ViewModels
         }
 
 
-        public SelectedSubCategoryModel SelectedSubCategory { get; } = new SelectedSubCategoryModel();
+        public SelectedSubCategoryModel SelectedSubCategory { get; set; } = new SelectedSubCategoryModel();
 
         public BalanceModel Balance
         {

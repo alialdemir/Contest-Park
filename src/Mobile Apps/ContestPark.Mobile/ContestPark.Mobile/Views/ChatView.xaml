@@ -7,6 +7,7 @@
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="chatPage"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True"
@@ -42,11 +43,9 @@
             </Components:NonPersistentSelectedItemListView.ItemTemplate>
             <Components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <Label
-                        IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
-                        Style="{StaticResource EmptyModel}"
-                        Text="{i18n:Translate MessageYourListIsEmpty}"
-                        TextColor="White" />
+                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                        <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate MessageYourListIsEmpty}" />
+                    </yummy:PancakeView>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.FooterTemplate>
         </Components:NonPersistentSelectedItemListView>

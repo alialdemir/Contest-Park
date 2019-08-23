@@ -133,45 +133,18 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterPopupNavigationService();
 
-            #region Yeni
-
-            //containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
-
-            //containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
-
-            //containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
-
-            //containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
-
-            //containerRegistry.RegisterSingleton<IChatService, ChatService>();
-
-            //containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
-
-            //containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
-
-            //containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
-
-            //containerRegistry.RegisterSingleton<IFollowService, FollowService>();
-
-            //containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
-
-            //containerRegistry.RegisterSingleton<IPostService, PostService>();
-
-            //containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
-
-            //containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
-
-            //containerRegistry.RegisterSingleton<IDuelService, DuelService>();
-
-            #endregion Yeni
-
             if (!GlobalSetting.Instance.IsMockData)
             {
+
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
 
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
+
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
                 containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
@@ -186,6 +159,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowService>();
+
+                containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
@@ -221,11 +196,14 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
+                containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
+
 
                 containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             }

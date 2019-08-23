@@ -199,7 +199,7 @@
     <value>Çıkış</value>
   </data>
   <data name="EntryFee" xml:space="preserve">
-    <value>Giriş Ücreti</value>
+    <value>GİRİŞ ÜCRETİ</value>
   </data>
   <data name="Play" xml:space="preserve">
     <value>OYNA</value>
@@ -223,7 +223,7 @@
     <value>Çaylak</value>
   </data>
   <data name="Prize" xml:space="preserve">
-    <value>Ödül</value>
+    <value>ÖDÜL</value>
   </data>
   <data name="Freeloader" xml:space="preserve">
     <value>Beleşçi</value>
@@ -324,7 +324,7 @@
     <value>Görevler</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ayarlar</value>
   </data>
   <data name="ShortDay" xml:space="preserve">
     <value> g </value>
@@ -349,7 +349,7 @@
     <value>Uygulama Ayarları</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Languages</value>
+    <value>Diller</value>
   </data>
   <data name="Blocking" xml:space="preserve">
     <value>Engellenenler</value>
@@ -373,7 +373,7 @@
     <value>English</value>
   </data>
   <data name="Turkish" xml:space="preserve">
-    <value>Turkish</value>
+    <value>Türkçe</value>
   </data>
   <data name="YouDontSeemToBeBlockingAnyone" xml:space="preserve">
     <value>Kimseyi engellemiş görünmüyorsun!</value>
@@ -603,6 +603,9 @@
     <value>Türk Lirası</value>
   </data>
   <data name="Turkey" xml:space="preserve">
-    <value>Türkiye</value>
+    <value>TÜRKİYE</value>
+  </data>
+  <data name="YouCanRemoveTheBarriers" xml:space="preserve">
+    <value>Engelleri kaldırabilirsin</value>
   </data>
 </root>

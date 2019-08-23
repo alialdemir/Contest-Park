@@ -1,20 +1,49 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<Frame x:Class="ContestPark.Mobile.Components.StylishFrame"
-       xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       x:Name="page"
-       BackgroundColor="{Binding Path=Answer.Color, Source={x:Reference page}}"
-       CornerRadius="8"
-       HasShadow="True"
-       HeightRequest="100"
-       HorizontalOptions="FillAndExpand"
-       IsClippedToBounds="True"
-       VerticalOptions="FillAndExpand">
-    <Frame.Content>
-        <Label FontAttributes="Bold"
-               HorizontalOptions="Center"
-               Text="{Binding Path=Answer.Answers, Source={x:Reference page}}"
-               TextColor="Black"
-               VerticalOptions="Center" />
-    </Frame.Content>
-</Frame>    
+<yummy:PancakeView
+    x:Class="ContestPark.Mobile.Components.StylishFrame"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Quiz.StylishFrameTextColor"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="stylishFrame"
+    BackgroundColor="{Binding Path=Answer.Color, Source={x:Reference stylishFrame}}"
+    CornerRadius="8"
+    Elevation="8"
+    HasShadow="True"
+    HeightRequest="56"
+    WidthRequest="300">
+    <yummy:PancakeView.Resources>
+        <ResourceDictionary>
+            <converter:StylishFrameTextColorConverter x:Key="sftcc" />
+        </ResourceDictionary>
+    </yummy:PancakeView.Resources>
+    <yummy:PancakeView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="56" />
+            </Grid.RowDefinitions>
+
+            <Image
+                HorizontalOptions="Start"
+                IsVisible="{Binding Path=Answer.IsLeftArrowVisible, Source={x:Reference stylishFrame}}"
+                Source="RightArrow.png"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource SofiaProRegular}"
+                FontSize="19"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding Path=Answer.Answers, Source={x:Reference stylishFrame}}"
+                TextColor="{Binding Path=Answer.Color, Source={x:Reference stylishFrame}, Converter={StaticResource sftcc}}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Image
+                HorizontalOptions="End"
+                IsVisible="{Binding Path=Answer.IsRightArrowVisible, Source={x:Reference stylishFrame}}"
+                Source="LeftArrow.png"
+                VerticalOptions="Center" />
+        </Grid>
+    </yummy:PancakeView.Content>
+</yummy:PancakeView>

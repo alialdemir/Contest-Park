@@ -15,7 +15,7 @@
             CommandParameter="{Binding CommandParameter}"
             SingleTap="{Binding SingleTap}">
             <components:CustomGrid.RowDefinitions>
-                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
             </components:CustomGrid.RowDefinitions>
             <components:CustomGrid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
@@ -35,7 +35,7 @@
                 Grid.Column="1"
                 FontSize="Default"
                 Text="{Binding Title}"
-                TextColor="White"
+                TextColor="#040404"
                 VerticalOptions="Center" />
 
             <icon:IconImage

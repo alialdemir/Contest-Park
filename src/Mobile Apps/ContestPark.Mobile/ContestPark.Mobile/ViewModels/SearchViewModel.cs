@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.CategoryFollow;
@@ -142,7 +143,12 @@ namespace ContestPark.Mobile.ViewModels
             SearchModel selectedModel = Items?.FirstOrDefault(P => P.SubCategoryId == subCategoryId);
             if (selectedModel != null)
             {
-                await _gameService?.SubCategoriesDisplayActionSheetAsync(selectedModel.SubCategoryId, selectedModel.CategoryName, selectedModel.IsCategoryOpen);
+                await _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
+                {
+                    SubcategoryId = selectedModel.SubCategoryId,
+                    SubcategoryName = selectedModel.CategoryName,
+                    SubCategoryPicturePath = selectedModel.PicturePath
+                }, selectedModel.IsCategoryOpen);
             }
 
             IsActionSheetBusy = false;

@@ -1,11 +1,12 @@
 ﻿using ContestPark.Mobile.Models.Duel;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StylishFrame : Frame
+    public partial class StylishFrame : PancakeView
     {
         #region Constructor
 

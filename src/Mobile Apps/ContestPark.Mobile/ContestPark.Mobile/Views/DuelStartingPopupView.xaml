@@ -36,8 +36,10 @@
                     Orientation="Vertical"
                     VerticalOptions="Center">
 
-
-                    <AbsoluteLayout>
+                    <AbsoluteLayout
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="97">
                         <Components:CircleImage
                             CacheType="None"
                             HeightRequest="97"
@@ -48,7 +50,7 @@
                             BackgroundColor="#FFC72E"
                             CornerRadius="32"
                             HeightRequest="32"
-                            TranslationX="65"
+                            TranslationX="70"
                             TranslationY="5"
                             WidthRequest="32" />
 
@@ -59,7 +61,7 @@
                             HorizontalTextAlignment="Center"
                             Text="{Binding DuelStarting.FounderLevel}"
                             TextColor="#975E03"
-                            TranslationX="65"
+                            TranslationX="80"
                             TranslationY="5"
                             VerticalTextAlignment="Center" />
                     </AbsoluteLayout>
@@ -111,7 +113,10 @@
                     Orientation="Vertical"
                     VerticalOptions="Center">
 
-                    <AbsoluteLayout>
+                    <AbsoluteLayout
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="97">
                         <Components:CircleImage
                             CacheType="None"
                             HeightRequest="97"
@@ -122,7 +127,7 @@
                             BackgroundColor="#FFC72E"
                             CornerRadius="32"
                             HeightRequest="32"
-                            TranslationX="65"
+                            TranslationX="70"
                             TranslationY="5"
                             WidthRequest="32" />
 
@@ -130,11 +135,13 @@
                             FontAttributes="Bold"
                             FontFamily="SofiaProBlack"
                             FontSize="22"
+                            HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
                             Text="{Binding DuelStarting.OpponentLevel}"
                             TextColor="#975E03"
-                            TranslationX="65"
+                            TranslationX="80"
                             TranslationY="5"
+                            VerticalOptions="CenterAndExpand"
                             VerticalTextAlignment="Center" />
                     </AbsoluteLayout>
 

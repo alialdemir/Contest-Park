@@ -36,6 +36,7 @@ namespace ContestPark.Mobile.iOS
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
+
             return base.FinishedLaunching(app, options);
         }
 

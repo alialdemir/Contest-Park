@@ -385,7 +385,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Giriş Ücreti.
+        ///   Looks up a localized string similar to GİRİŞ ÜCRETİ.
         /// </summary>
         public static string EntryFee {
             get {
@@ -619,7 +619,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Languages.
+        ///   Looks up a localized string similar to Diller.
         /// </summary>
         public static string Language {
             get {
@@ -907,7 +907,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ödül.
+        ///   Looks up a localized string similar to ÖDÜL.
         /// </summary>
         public static string Prize {
             get {
@@ -1069,7 +1069,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Ayarlar.
         /// </summary>
         public static string Settings {
             get {
@@ -1222,7 +1222,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Türkiye.
+        ///   Looks up a localized string similar to TÜRKİYE.
         /// </summary>
         public static string Turkey {
             get {
@@ -1231,7 +1231,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turkish.
+        ///   Looks up a localized string similar to Türkçe.
         /// </summary>
         public static string Turkish {
             get {
@@ -1407,6 +1407,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string WriteYourUserNameOrEmailAddress {
             get {
                 return ResourceManager.GetString("WriteYourUserNameOrEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engelleri kaldırabilirsin.
+        /// </summary>
+        public static string YouCanRemoveTheBarriers {
+            get {
+                return ResourceManager.GetString("YouCanRemoveTheBarriers", resourceCulture);
             }
         }
         

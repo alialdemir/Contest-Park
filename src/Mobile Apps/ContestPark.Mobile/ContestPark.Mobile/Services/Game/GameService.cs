@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Views;
@@ -81,11 +82,11 @@ namespace ContestPark.Mobile.Services.Game
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <param name="subCategoryName">Alt kategori adı</param>
-        public async Task SubCategoriesDisplayActionSheetAsync(short subCategoryId, string subCategoryName, bool isCategoryOpen)
+        public async Task SubCategoriesDisplayActionSheetAsync(SelectedSubCategoryModel selectedSubCategory, bool isCategoryOpen)
         {
             if (isCategoryOpen)
             {
-                bool isSubCategoryFollowUpStatus = await _categoryFollowService?.IsFollowUpStatusAsync(subCategoryId);
+                bool isSubCategoryFollowUpStatus = await _categoryFollowService?.IsFollowUpStatusAsync(selectedSubCategory.SubcategoryId);
 
                 string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.SelectProcess,
                                                                                    ContestParkResources.Cancel,
@@ -97,24 +98,24 @@ namespace ContestPark.Mobile.Services.Game
                                                                                    ContestParkResources.Share);
                 if (string.Equals(selected, ContestParkResources.FindOpponent))
                 {
-                    await OpenBetPopup(subCategoryId, subCategoryName);
+                    await OpenBetPopup(selectedSubCategory);
                 }
                 else if (string.Equals(selected, ContestParkResources.Ranking))
                 {
-                    await GotoRankingPage(subCategoryId, subCategoryName);
+                    await GotoRankingPage(selectedSubCategory.SubcategoryId, selectedSubCategory.SubcategoryName);
                 }
                 else if (string.Equals(selected, ContestParkResources.Follow) || string.Equals(selected, ContestParkResources.UnFollow))
                 {
-                    await SubCategoryFollowProgcess(subCategoryId, isSubCategoryFollowUpStatus);
+                    await SubCategoryFollowProgcess(selectedSubCategory.SubcategoryId, isSubCategoryFollowUpStatus);
                 }
                 else if (string.Equals(selected, ContestParkResources.Share))
                 {
-                    SubCategoryShare(subCategoryName);
+                    SubCategoryShare(selectedSubCategory.SubcategoryName);
                 }
             }
             else
             {
-                bool isUnLock = await OpenSubCategory(subCategoryId);
+                bool isUnLock = await OpenSubCategory(selectedSubCategory.SubcategoryId);
                 if (isUnLock)
                 {
                     SubCategoryRefleshEvent();
@@ -196,7 +197,7 @@ namespace ContestPark.Mobile.Services.Game
         /// <summary>
         /// Düello bahis panelini aç
         /// </summary>
-        private async Task OpenBetPopup(short subCategoryId, string subCategoryName)
+        private async Task OpenBetPopup(SelectedSubCategoryModel selectedSubCategory)
         {
             if (IsBusy)
                 return;
@@ -205,8 +206,7 @@ namespace ContestPark.Mobile.Services.Game
 
             await _popupNavigation.PushAsync(new DuelBettingPopupView()
             {
-                SubcategoryId = subCategoryId,
-                SubcategoryName = subCategoryName,
+                SelectedSubCategory = selectedSubCategory
             });
 
             IsBusy = false;

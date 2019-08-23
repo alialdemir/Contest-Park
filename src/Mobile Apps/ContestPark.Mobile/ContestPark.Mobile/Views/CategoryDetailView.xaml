@@ -160,7 +160,7 @@
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
-                                BorderRadius="48"
+                                BorderRadius="60"
                                 Command="{Binding DuelOpenPanelCommand}"
                                 EndColor="#F22E63"
                                 FontFamily="{StaticResource SofiaProRegular}"
@@ -177,7 +177,7 @@
                                 Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
-                                BorderRadius="48"
+                                BorderRadius="60"
                                 Command="{Binding GoToRankingPageCommand}"
                                 EndColor="#5A7BEF"
                                 FontFamily="{StaticResource SofiaProRegular}"
@@ -201,11 +201,8 @@
             </Components:NonPersistentSelectedItemListView.ItemTemplate>
             <Components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <yummy:PancakeView Style="{StaticResource EmptyModelCard}">
-                        <Label
-                            IsVisible="{Binding Source={x:Reference lstCategoryPosts}, Path=IsShowEmptyMessage}"
-                            Style="{StaticResource EmptyModel}"
-                            Text="{i18n:Translate ContestPostEmptyMessage}" />
+                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstCategoryPosts}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                        <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate ContestPostEmptyMessage}" />
                     </yummy:PancakeView>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.FooterTemplate>

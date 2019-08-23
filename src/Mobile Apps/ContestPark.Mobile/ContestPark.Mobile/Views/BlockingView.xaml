@@ -7,6 +7,7 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="blockingViewPage"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -16,27 +17,55 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView
-            x:Name="lstView"
-            InfiniteScroll="{Binding InfiniteScroll}"
-            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
-            Style="{StaticResource ListViewOnlyFooter}">
-            <components:NonPersistentSelectedItemListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:UserFollowListItem IconStatus="{Binding IsBlocked}}" RightButtonCommand="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
-                    </ViewCell>
-                </DataTemplate>
-            </components:NonPersistentSelectedItemListView.ItemTemplate>
-            <components:NonPersistentSelectedItemListView.FooterTemplate>
-                <DataTemplate>
-                    <Label
-                        IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}"
-                        Style="{StaticResource EmptyModel}"
-                        Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}"
-                        TextColor="White" />
-                </DataTemplate>
-            </components:NonPersistentSelectedItemListView.FooterTemplate>
-        </components:NonPersistentSelectedItemListView>
+        <yummy:PancakeView
+            Margin="10,15,10,15"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="12"
+            Elevation="6"
+            HasShadow="True"
+            IsClippedToBounds="True">
+            <components:NonPersistentSelectedItemListView
+                x:Name="lstBlockedUsers"
+                InfiniteScroll="{Binding InfiniteScroll}"
+                IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+                SeparatorColor="#E9E9E9"
+                SeparatorVisibility="Default"
+                Style="{StaticResource ListViewHeaderAndFooter}">
+                <components:NonPersistentSelectedItemListView.HeaderTemplate>
+                    <DataTemplate>
+                        <yummy:PancakeView
+                            BackgroundColor="{StaticResource White}"
+                            CornerRadius="8,8,0,0"
+                            Elevation="6"
+                            HasShadow="True"
+                            IsClippedToBounds="True"
+                            VerticalOptions="Start">
+                            <Label
+                                Margin="21,16,0,19.4"
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource SofiaProRegular}"
+                                FontSize="14"
+                                Text="{i18n:Translate YouCanRemoveTheBarriers}"
+                                TextColor="#404040"
+                                VerticalOptions="Center" />
+                        </yummy:PancakeView>
+                    </DataTemplate>
+                </components:NonPersistentSelectedItemListView.HeaderTemplate>
+                <components:NonPersistentSelectedItemListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <components:UserFollowListItem IconStatus="{Binding IsBlocked}" RightButtonCommand="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </components:NonPersistentSelectedItemListView.ItemTemplate>
+                <components:NonPersistentSelectedItemListView.FooterTemplate>
+                    <DataTemplate>
+                        <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstBlockedUsers}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                            <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}" />
+                        </yummy:PancakeView>
+                    </DataTemplate>
+                </components:NonPersistentSelectedItemListView.FooterTemplate>
+            </components:NonPersistentSelectedItemListView>
+        </yummy:PancakeView>
     </ContentPage.Content>
 </ContentPage>

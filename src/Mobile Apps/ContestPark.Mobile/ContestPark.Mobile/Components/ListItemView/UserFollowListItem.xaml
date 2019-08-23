@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     x:Name="userFollowListItemPage">
     <ContentView.Resources>
@@ -15,47 +16,46 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid
-            Padding="8,4,8,4"
-            BackgroundColor="{StaticResource ListBackgroundColor}"
+            Margin="21,8,14,8"
+            ColumnSpacing="16"
             RowSpacing="0">
-
             <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="1" />
+                <RowDefinition Height="35" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35" />
                 <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="22" />
             </Grid.ColumnDefinitions>
 
             <components:CircleImage
-                Grid.RowSpan="2"
+                Grid.Row="0"
                 Grid.Column="0"
-                Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}"
-                CommandParameter="{Binding UserName}"
-                Source="{Binding ProfilePicturePath}" />
+                HeightRequest="35"
+                Source="{Binding ProfilePicturePath}"
+                WidthRequest="35" />
 
             <Label
                 Grid.Row="0"
                 Grid.Column="1"
-                FontAttributes="Bold"
-                FontSize="Default"
+                FontSize="13"
                 LineBreakMode="TailTruncation"
                 Text="{Binding FullName}"
-                TextColor="White" />
+                TextColor="#040404"
+                VerticalTextAlignment="Center" />
 
-            <components:HtmlLabel
-                Grid.Row="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                FontSize="Small"
-                LineBreakMode="TailTruncation"
-                Text="{Binding UserName, StringFormat='@{0:N}'}"
-                TextColor="White" />
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Row="0"
+                Grid.Column="2"
+                HeightRequest="22"
+                Source="settings_blocked_cancel.svg"
+                WidthRequest="22">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}" CommandParameter="{Binding UserId}" />
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
 
-            <icon:IconButton
+            <!--<icon:IconButton
                 Grid.RowSpan="2"
                 Grid.Column="2"
                 BackgroundColor="Transparent"
@@ -65,12 +65,7 @@
                 HorizontalOptions="Start"
                 IsVisible="{Binding Path=UserId, Converter={StaticResource fbvc}}"
                 Text="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbc}}"
-                TextColor="{StaticResource Red}" />
-
-            <components:Line
-                Grid.Row="2"
-                Grid.Column="1"
-                Grid.ColumnSpan="2" />
+                TextColor="{StaticResource Red}" />-->
         </Grid>
     </ContentView.Content>
 </ContentView>

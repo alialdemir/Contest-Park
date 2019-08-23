@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Game;
 using Prism.Ioc;
 using System;
@@ -83,7 +84,12 @@ namespace ContestPark.Mobile.Components
 
                 IGameService gameService = RegisterTypesConfig.Container.Resolve<IGameService>();
 
-                await gameService?.SubCategoriesDisplayActionSheetAsync(SubCategoryId, SubCategoryName, IsCategoryOpen);
+                await gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
+                {
+                    SubcategoryId = SubCategoryId,
+                    SubcategoryName = SubCategoryName,
+                    SubCategoryPicturePath = SubCategoryImageSource
+                }, IsCategoryOpen);
 
                 IsBusy = false;
             });

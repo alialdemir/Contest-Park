@@ -91,9 +91,9 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderer\CircularProgressRenderer.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
-    <Compile Include="CustomRenderer\CustomSwitchRendererd.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

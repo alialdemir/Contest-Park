@@ -37,7 +37,6 @@ namespace ContestPark.Mobile.ViewModels
             _cpService = cpService;
 
             FullName = settingsService.CurrentUser.FullName;
-            CoverPicture = settingsService.CurrentUser.CoverPicturePath;
             ProfilePicture = settingsService.CurrentUser.ProfilePicturePath;
 
             InitializeAsync();
@@ -47,8 +46,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Property
 
-        private string _coverPicture;
-
         private string _fullName;
 
         private string _profilePicture;
@@ -57,17 +54,6 @@ namespace ContestPark.Mobile.ViewModels
         /// Kullanıcı altın miktarı
         /// </summary>
         private BalanceModel _balance = new BalanceModel();
-
-        public string CoverPicture
-        {
-            get { return _coverPicture; }
-            set
-            {
-                _coverPicture = value;
-
-                RaisePropertyChanged(() => CoverPicture);
-            }
-        }
 
         public string FullName
         {
@@ -123,21 +109,21 @@ namespace ContestPark.Mobile.ViewModels
                             {
                                 new TextMenuItem {
                                     CommandParameter = nameof(ContestStoreView),
-                                    Icon = "fas-store",
+                                    Icon = "conteststore.svg",
                                     Title = ContestParkResources.ContestStore,
                                     MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
                                 },
-                                ////new TextMenuItem {
-                                ////    CommandParameter = nameof(MissionsView),
-                                ////    Icon = "fas-award",
-                                ////    Title = ContestParkResources.Missions,
-                                ////    MenuType = Enums.MenuTypes.Label,
-                                ////    SingleTap = pushPageCommand
-                                ////},
+                                new TextMenuItem {
+                                    CommandParameter = nameof(MissionsView),
+                                    Icon = "missions.svg",
+                                    Title = ContestParkResources.Missions,
+                                    MenuType = Enums.MenuTypes.Label,
+                                    SingleTap = pushPageCommand
+                                },
                                 new TextMenuItem {
                                     CommandParameter = nameof(SettingsView),
-                                    Icon = "fas-cogs",
+                                    Icon = "settings.svg",
                                     Title = ContestParkResources.Settings,
                                     MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
@@ -147,21 +133,21 @@ namespace ContestPark.Mobile.ViewModels
                             {
                                  new TextMenuItem {
                                      CommandParameter = "facebook",
-                                     Icon = "fab-facebook-square",
+                                     Icon = "facebook.svg",
                                      Title = "Facebook",
                                      MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                  },
                                  new TextMenuItem {
                                      CommandParameter = "twitter",
-                                     Icon = "fab-twitter-square",
+                                     Icon = "twitter.svg",
                                      Title = "Twitter",
                                      MenuType = Enums.MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                  },
                                  new TextMenuItem {
                                      CommandParameter = "instagram",
-                                     Icon = "fab-instagram",
+                                     Icon = "instagram.svg",
                                      Title = "Instagram",
                                      MenuType = Enums.MenuTypes.Label,
                                      SingleTap = pushPageCommand
@@ -177,7 +163,6 @@ namespace ContestPark.Mobile.ViewModels
                     {
                         FullName = userInfo.FullName;
                         ProfilePicture = userInfo.ProfilePicturePath;
-                        CoverPicture = userInfo.CoverPicturePath;
                     }
                 });
 

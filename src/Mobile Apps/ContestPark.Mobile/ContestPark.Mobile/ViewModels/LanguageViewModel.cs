@@ -63,7 +63,8 @@ namespace ContestPark.Mobile.ViewModels
                                         Title = ContestParkResources.English,
                                         MenuType = MenuTypes.Switch,
                                         SingleTap = ChangeLanguageCommand,
-                                        IsToggled = !isTurkish
+                                        IsToggled = !isTurkish,
+                                        CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
             });

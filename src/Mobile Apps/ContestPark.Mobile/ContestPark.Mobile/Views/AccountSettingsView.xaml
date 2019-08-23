@@ -1,25 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.AccountSettingsView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="page"
-             Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True">
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.AccountSettingsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="accountSettingsView"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem Command="{Binding Path=BindingContext.SaveCommand, Source={x:Reference page}}"
-                              IconColor="{StaticResource Black}"
-                              Text="{i18n:Translate Save}" />
+        <ToolbarItem Command="{Binding Path=BindingContext.SaveCommand, Source={x:Reference accountSettingsView}}" IconImageSource="save.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView HasUnevenRows="true"
-                  IsGroupingEnabled="true"
-                  ItemsSource="{Binding Items}"
-                  SelectionMode="None"
-                  SeparatorColor="#333333">
+        <ListView
+            Margin="10,3,10,15"
+            HasUnevenRows="true"
+            IsGroupingEnabled="true"
+            ItemsSource="{Binding Items}"
+            SelectionMode="None"
+            SeparatorVisibility="None">
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>

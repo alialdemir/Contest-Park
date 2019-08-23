@@ -31,7 +31,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
                 ProgressBackgroundColor = Element.ProgressBackgroundColor.ToAndroid(),
                 IndeterminateInterval = Element.IndeterminateSpeed,
                 IsMarkerEnabled = false,
-                CircleStrokeWidth = 5
+                CircleStrokeWidth = 10
             };
 
             SetNativeControl(progress);
