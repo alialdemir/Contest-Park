@@ -277,6 +277,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Gün .
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sil.
         /// </summary>
         public static string Delete {
@@ -592,6 +601,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Saat .
+        /// </summary>
+        public static string Hour {
+            get {
+                return ResourceManager.GetString("Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz..
         /// </summary>
         public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {
@@ -696,6 +714,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string MessageYourListIsEmpty {
             get {
                 return ResourceManager.GetString("MessageYourListIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Dakika .
+        /// </summary>
+        public static string Minute {
+            get {
+                return ResourceManager.GetString("Minute", resourceCulture);
             }
         }
         
@@ -1024,6 +1051,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Saniye .
+        /// </summary>
+        public static string Seconds {
+            get {
+                return ResourceManager.GetString("Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tümü.
         /// </summary>
         public static string SeeAll {
@@ -1083,42 +1119,6 @@ namespace ContestPark.Mobile.AppResources {
         public static string Share {
             get {
                 return ResourceManager.GetString("Share", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  g .
-        /// </summary>
-        public static string ShortDay {
-            get {
-                return ResourceManager.GetString("ShortDay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  s .
-        /// </summary>
-        public static string ShortHour {
-            get {
-                return ResourceManager.GetString("ShortHour", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  d .
-        /// </summary>
-        public static string ShortMinute {
-            get {
-                return ResourceManager.GetString("ShortMinute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  s .
-        /// </summary>
-        public static string ShortSeconds {
-            get {
-                return ResourceManager.GetString("ShortSeconds", resourceCulture);
             }
         }
         

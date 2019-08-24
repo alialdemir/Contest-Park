@@ -7,6 +7,7 @@ using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -37,6 +38,7 @@ namespace ContestPark.Mobile.ViewModels
                                 IScoreService scoreService) : base(navigationService)
         {
             _scoreService = scoreService;
+            Title = ContestParkResources.Ranking;
         }
 
         #endregion Constructors
@@ -103,6 +105,9 @@ namespace ContestPark.Mobile.ViewModels
 
             if (rank != null)
             {
+                rank.Ranks.Items.ToList().FirstOrDefault().CornerRadius = new CornerRadius(8, 8, 0, 0);
+                rank.Ranks.Items.ToList().LastOrDefault().CornerRadius = new CornerRadius(0, 0, 8, 8);
+
                 ServiceModel = rank.Ranks;
 
                 await base.InitializeAsync();
@@ -155,10 +160,10 @@ namespace ContestPark.Mobile.ViewModels
                 TimeSpan diff = Ranks.ContestFinishDate - DateTime.Now;// Datetime.now telefonun tarihi yanlışsa yanlış tarih gösterir
 
                 Ranks.TimeLeft = diff.Days +
-                                        ContestParkResources.ShortDay +
-                                        diff.Hours + ContestParkResources.ShortHour +
-                                        diff.Minutes + ContestParkResources.ShortMinute +
-                                        diff.Seconds + ContestParkResources.ShortSeconds;
+                                        ContestParkResources.Day +
+                                        diff.Hours + ContestParkResources.Hour +
+                                        diff.Minutes + ContestParkResources.Minute +
+                                        diff.Seconds + ContestParkResources.Seconds;
 
                 Debug.WriteLine(Ranks.TimeLeft);
                 return !(diff.Days == 0 && diff.Hours == 0 && diff.Minutes == 0 && diff.Seconds == 0);
@@ -216,7 +221,6 @@ namespace ContestPark.Mobile.ViewModels
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("SubCategoryId")) SubCategoryId = parameters.GetValue<short>("SubCategoryId");
-            if (parameters.ContainsKey("SubCategoryName")) Title = parameters.GetValue<string>("SubCategoryName");
             if (parameters.ContainsKey("ListType")) ListType = parameters.GetValue<ListTypes>("ListType");
 
             base.OnNavigatingTo(parameters);

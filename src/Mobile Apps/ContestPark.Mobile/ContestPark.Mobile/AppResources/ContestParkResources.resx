@@ -326,20 +326,20 @@
   <data name="Settings" xml:space="preserve">
     <value>Ayarlar</value>
   </data>
-  <data name="ShortDay" xml:space="preserve">
-    <value> g </value>
+  <data name="Day" xml:space="preserve">
+    <value> Gün </value>
     <comment>Sıralama için gün baş harfi</comment>
   </data>
-  <data name="ShortHour" xml:space="preserve">
-    <value> s </value>
+  <data name="Hour" xml:space="preserve">
+    <value> Saat </value>
     <comment>Sıralama için saat baş harfi</comment>
   </data>
-  <data name="ShortMinute" xml:space="preserve">
-    <value> d </value>
+  <data name="Minute" xml:space="preserve">
+    <value> Dakika </value>
     <comment>Sıralama için dakkika baş harfi</comment>
   </data>
-  <data name="ShortSeconds" xml:space="preserve">
-    <value> s </value>
+  <data name="Seconds" xml:space="preserve">
+    <value> Saniye </value>
     <comment>Sıralama için saniye baş harfi</comment>
   </data>
   <data name="AccountSettings" xml:space="preserve">

@@ -1,4 +1,6 @@
 ﻿using ContestPark.Mobile.Helpers;
+using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Ranking
 {
@@ -20,6 +22,9 @@ namespace ContestPark.Mobile.Models.Ranking
                 }
             }
         }
+
+        [JsonIgnore]
+        public CornerRadius CornerRadius { get; set; } = new CornerRadius(0, 0, 0, 0);
 
         public string UserName { get; set; }
     }

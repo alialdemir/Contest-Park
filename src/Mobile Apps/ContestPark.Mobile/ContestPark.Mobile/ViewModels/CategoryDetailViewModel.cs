@@ -122,7 +122,6 @@ namespace ContestPark.Mobile.ViewModels
             await PushNavigationPageAsync(nameof(RankingView), new NavigationParameters
             {
                 {"SubCategoryId", _subCategoryId },
-                {"SubCategoryName", CategoryDetail.SubCategoryName },
                 {"ListType", RankingViewModel.ListTypes.ScoreRanking },
             });
 

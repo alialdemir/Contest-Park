@@ -102,7 +102,7 @@ namespace ContestPark.Mobile.Services.Game
                 }
                 else if (string.Equals(selected, ContestParkResources.Ranking))
                 {
-                    await GotoRankingPage(selectedSubCategory.SubcategoryId, selectedSubCategory.SubcategoryName);
+                    await GotoRankingPage(selectedSubCategory.SubcategoryId);
                 }
                 else if (string.Equals(selected, ContestParkResources.Follow) || string.Equals(selected, ContestParkResources.UnFollow))
                 {
@@ -178,7 +178,7 @@ namespace ContestPark.Mobile.Services.Game
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <param name="subCategoryName">Alt kategori adı</param>
-        private async Task GotoRankingPage(short subCategoryId, string subCategoryName)
+        private async Task GotoRankingPage(short subCategoryId)
         {
             if (IsBusy)
                 return;
@@ -187,7 +187,6 @@ namespace ContestPark.Mobile.Services.Game
 
             await NavigationService?.NavigateAsync(nameof(RankingView), new NavigationParameters
                                                 {
-                                                    { "SubCategoryName", subCategoryName },
                                                     { "SubCategoryId", subCategoryId }
                                                 }, useModalNavigation: false);
 
