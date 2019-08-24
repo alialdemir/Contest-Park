@@ -53,10 +53,10 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.618605-pre2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.431" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.1.5" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.2.0.618605-pre2" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.2.0.709249" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppResources\ContestParkResources.Designer.cs">
@@ -107,6 +107,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\Categories\SubCategoryCard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\ChatDetail\IncomingViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\ChatDetail\OutgoingViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\Coins\DobleCoinsView.xaml">

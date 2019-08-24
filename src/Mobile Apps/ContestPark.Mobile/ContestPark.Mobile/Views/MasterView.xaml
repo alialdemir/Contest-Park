@@ -19,8 +19,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <yummy:PancakeView
-                BackgroundGradientEndColor="#A573FF"
-                BackgroundGradientStartColor="#645AFF"
+                BackgroundGradientEndColor="#645AFF"
+                BackgroundGradientStartColor="#A573FF"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand" />
             <ListView

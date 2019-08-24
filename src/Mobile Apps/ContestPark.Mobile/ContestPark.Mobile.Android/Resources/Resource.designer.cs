@@ -3714,7 +3714,6 @@ namespace ContestPark.Mobile.Droid
 			global::Plugin.Badge.Droid.Resource.Id.listMode = global::ContestPark.Mobile.Droid.Resource.Id.listMode;
 			global::Plugin.Badge.Droid.Resource.Id.list_item = global::ContestPark.Mobile.Droid.Resource.Id.list_item;
 			global::Plugin.Badge.Droid.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
-			global::Plugin.Badge.Droid.Resource.Id.main_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.main_scrollview;
 			global::Plugin.Badge.Droid.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
 			global::Plugin.Badge.Droid.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
 			global::Plugin.Badge.Droid.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
@@ -3811,7 +3810,6 @@ namespace ContestPark.Mobile.Droid
 			global::Plugin.Badge.Droid.Resource.Id.select_dialog_listview = global::ContestPark.Mobile.Droid.Resource.Id.select_dialog_listview;
 			global::Plugin.Badge.Droid.Resource.Id.selected = global::ContestPark.Mobile.Droid.Resource.Id.selected;
 			global::Plugin.Badge.Droid.Resource.Id.shellcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_appbar;
-			global::Plugin.Badge.Droid.Resource.Id.shellcontent_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_scrollview;
 			global::Plugin.Badge.Droid.Resource.Id.shellcontent_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_toolbar;
 			global::Plugin.Badge.Droid.Resource.Id.shortcut = global::ContestPark.Mobile.Droid.Resource.Id.shortcut;
 			global::Plugin.Badge.Droid.Resource.Id.showCustom = global::ContestPark.Mobile.Droid.Resource.Id.showCustom;
@@ -6582,9 +6580,9 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Id.listMode = global::ContestPark.Mobile.Droid.Resource.Id.listMode;
 			global::Xamarin.Forms.Material.Android.Resource.Id.list_item = global::ContestPark.Mobile.Droid.Resource.Id.list_item;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
-			global::Xamarin.Forms.Material.Android.Resource.Id.main_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.main_scrollview;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
+			global::Xamarin.Forms.Material.Android.Resource.Id.main_viewpager = global::ContestPark.Mobile.Droid.Resource.Id.main_viewpager;
 			global::Xamarin.Forms.Material.Android.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
 			global::Xamarin.Forms.Material.Android.Resource.Id.materialformsedittext = global::ContestPark.Mobile.Droid.Resource.Id.materialformsedittext;
 			global::Xamarin.Forms.Material.Android.Resource.Id.media_actions = global::ContestPark.Mobile.Droid.Resource.Id.media_actions;
@@ -6634,7 +6632,6 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Id.select_dialog_listview = global::ContestPark.Mobile.Droid.Resource.Id.select_dialog_listview;
 			global::Xamarin.Forms.Material.Android.Resource.Id.selected = global::ContestPark.Mobile.Droid.Resource.Id.selected;
 			global::Xamarin.Forms.Material.Android.Resource.Id.shellcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_appbar;
-			global::Xamarin.Forms.Material.Android.Resource.Id.shellcontent_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_scrollview;
 			global::Xamarin.Forms.Material.Android.Resource.Id.shellcontent_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_toolbar;
 			global::Xamarin.Forms.Material.Android.Resource.Id.shortcut = global::ContestPark.Mobile.Droid.Resource.Id.shortcut;
 			global::Xamarin.Forms.Material.Android.Resource.Id.showCustom = global::ContestPark.Mobile.Droid.Resource.Id.showCustom;
@@ -9163,9 +9160,9 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.listMode = global::ContestPark.Mobile.Droid.Resource.Id.listMode;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.list_item = global::ContestPark.Mobile.Droid.Resource.Id.list_item;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
-			global::Xamarin.Forms.Platform.Android.Resource.Id.main_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.main_scrollview;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
+			global::Xamarin.Forms.Platform.Android.Resource.Id.main_viewpager = global::ContestPark.Mobile.Droid.Resource.Id.main_viewpager;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.media_actions = global::ContestPark.Mobile.Droid.Resource.Id.media_actions;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.message = global::ContestPark.Mobile.Droid.Resource.Id.message;
@@ -9214,7 +9211,6 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.select_dialog_listview = global::ContestPark.Mobile.Droid.Resource.Id.select_dialog_listview;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.selected = global::ContestPark.Mobile.Droid.Resource.Id.selected;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.shellcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_appbar;
-			global::Xamarin.Forms.Platform.Android.Resource.Id.shellcontent_scrollview = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_scrollview;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.shellcontent_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_toolbar;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.shortcut = global::ContestPark.Mobile.Droid.Resource.Id.shortcut;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.showCustom = global::ContestPark.Mobile.Droid.Resource.Id.showCustom;
@@ -13947,26 +13943,26 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
-			// aapt resource value: 0x7f020189
-			public const int avd_hide_password_1 = 2130837897;
+			// aapt resource value: 0x7f02018c
+			public const int avd_hide_password_1 = 2130837900;
 			
-			// aapt resource value: 0x7f02018a
-			public const int avd_hide_password_2 = 2130837898;
+			// aapt resource value: 0x7f02018d
+			public const int avd_hide_password_2 = 2130837901;
 			
-			// aapt resource value: 0x7f02018b
-			public const int avd_hide_password_3 = 2130837899;
+			// aapt resource value: 0x7f02018e
+			public const int avd_hide_password_3 = 2130837902;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
-			// aapt resource value: 0x7f02018c
-			public const int avd_show_password_1 = 2130837900;
+			// aapt resource value: 0x7f02018f
+			public const int avd_show_password_1 = 2130837903;
 			
-			// aapt resource value: 0x7f02018d
-			public const int avd_show_password_2 = 2130837901;
+			// aapt resource value: 0x7f020190
+			public const int avd_show_password_2 = 2130837904;
 			
-			// aapt resource value: 0x7f02018e
-			public const int avd_show_password_3 = 2130837902;
+			// aapt resource value: 0x7f020191
+			public const int avd_show_password_3 = 2130837905;
 			
 			// aapt resource value: 0x7f020057
 			public const int Category = 2130837591;
@@ -14608,283 +14604,292 @@ namespace ContestPark.Mobile.Droid
 			public const int left_arrow = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int LeftArrow = 2130837804;
+			public const int left_menu_background = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int @lock = 2130837805;
+			public const int LeftArrow = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int logo = 2130837806;
+			public const int @lock = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int MaterialActivityIndicatorBackground = 2130837807;
+			public const int logo = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int MaterialProgressBar = 2130837808;
+			public const int MaterialActivityIndicatorBackground = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int menuicon = 2130837809;
+			public const int MaterialProgressBar = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int missions = 2130837810;
+			public const int menuicon = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int mr_button_connected_dark = 2130837811;
+			public const int missions = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int mr_button_connected_light = 2130837812;
+			public const int mr_button_connected_dark = 2130837812;
 			
 			// aapt resource value: 0x7f020135
-			public const int mr_button_connecting_dark = 2130837813;
+			public const int mr_button_connected_light = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int mr_button_connecting_light = 2130837814;
+			public const int mr_button_connecting_dark = 2130837814;
 			
 			// aapt resource value: 0x7f020137
-			public const int mr_button_dark = 2130837815;
+			public const int mr_button_connecting_light = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int mr_button_light = 2130837816;
+			public const int mr_button_dark = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int mr_dialog_close_dark = 2130837817;
+			public const int mr_button_light = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int mr_dialog_close_light = 2130837818;
+			public const int mr_dialog_close_dark = 2130837818;
 			
 			// aapt resource value: 0x7f02013b
-			public const int mr_dialog_material_background_dark = 2130837819;
+			public const int mr_dialog_close_light = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int mr_dialog_material_background_light = 2130837820;
+			public const int mr_dialog_material_background_dark = 2130837820;
 			
 			// aapt resource value: 0x7f02013d
-			public const int mr_group_collapse = 2130837821;
+			public const int mr_dialog_material_background_light = 2130837821;
 			
 			// aapt resource value: 0x7f02013e
-			public const int mr_group_expand = 2130837822;
+			public const int mr_group_collapse = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int mr_media_pause_dark = 2130837823;
+			public const int mr_group_expand = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int mr_media_pause_light = 2130837824;
+			public const int mr_media_pause_dark = 2130837824;
 			
 			// aapt resource value: 0x7f020141
-			public const int mr_media_play_dark = 2130837825;
+			public const int mr_media_pause_light = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int mr_media_play_light = 2130837826;
+			public const int mr_media_play_dark = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int mr_media_stop_dark = 2130837827;
+			public const int mr_media_play_light = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int mr_media_stop_light = 2130837828;
+			public const int mr_media_stop_dark = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int mr_vol_type_audiotrack_dark = 2130837829;
+			public const int mr_media_stop_light = 2130837829;
 			
 			// aapt resource value: 0x7f020146
-			public const int mr_vol_type_audiotrack_light = 2130837830;
+			public const int mr_vol_type_audiotrack_dark = 2130837830;
 			
 			// aapt resource value: 0x7f020147
-			public const int mtrl_snackbar_background = 2130837831;
+			public const int mr_vol_type_audiotrack_light = 2130837831;
 			
 			// aapt resource value: 0x7f020148
-			public const int mtrl_tabs_default_indicator = 2130837832;
+			public const int mtrl_snackbar_background = 2130837832;
 			
 			// aapt resource value: 0x7f020149
-			public const int navigation_empty_icon = 2130837833;
+			public const int mtrl_tabs_default_indicator = 2130837833;
 			
 			// aapt resource value: 0x7f02014a
-			public const int network = 2130837834;
+			public const int navigation_empty_icon = 2130837834;
 			
 			// aapt resource value: 0x7f02014b
-			public const int notification_action_background = 2130837835;
+			public const int network = 2130837835;
 			
 			// aapt resource value: 0x7f02014c
-			public const int notification_bg = 2130837836;
+			public const int notification_action_background = 2130837836;
 			
 			// aapt resource value: 0x7f02014d
-			public const int notification_bg_low = 2130837837;
+			public const int notification_bg = 2130837837;
 			
 			// aapt resource value: 0x7f02014e
-			public const int notification_bg_low_normal = 2130837838;
+			public const int notification_bg_low = 2130837838;
 			
 			// aapt resource value: 0x7f02014f
-			public const int notification_bg_low_pressed = 2130837839;
+			public const int notification_bg_low_normal = 2130837839;
 			
 			// aapt resource value: 0x7f020150
-			public const int notification_bg_normal = 2130837840;
+			public const int notification_bg_low_pressed = 2130837840;
 			
 			// aapt resource value: 0x7f020151
-			public const int notification_bg_normal_pressed = 2130837841;
+			public const int notification_bg_normal = 2130837841;
 			
 			// aapt resource value: 0x7f020152
-			public const int notification_icon_background = 2130837842;
-			
-			// aapt resource value: 0x7f020187
-			public const int notification_template_icon_bg = 2130837895;
-			
-			// aapt resource value: 0x7f020188
-			public const int notification_template_icon_low_bg = 2130837896;
+			public const int notification_bg_normal_pressed = 2130837842;
 			
 			// aapt resource value: 0x7f020153
-			public const int notification_tile_bg = 2130837843;
+			public const int notification_icon_background = 2130837843;
+			
+			// aapt resource value: 0x7f02018a
+			public const int notification_template_icon_bg = 2130837898;
+			
+			// aapt resource value: 0x7f02018b
+			public const int notification_template_icon_low_bg = 2130837899;
 			
 			// aapt resource value: 0x7f020154
-			public const int notify_panel_notification_icon_bg = 2130837844;
+			public const int notification_tile_bg = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int pin_progress_pinned = 2130837845;
+			public const int notify_panel_notification_icon_bg = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int pin_progress_shadow = 2130837846;
+			public const int options = 2130837846;
 			
 			// aapt resource value: 0x7f020157
-			public const int pin_progress_unpinned = 2130837847;
+			public const int pin_progress_pinned = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int prizeicon1 = 2130837848;
+			public const int pin_progress_shadow = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int prizeicon2 = 2130837849;
+			public const int pin_progress_unpinned = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int prizeicon3 = 2130837850;
+			public const int prizeicon1 = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int prizeicon4 = 2130837851;
+			public const int prizeicon2 = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int prizeicon5 = 2130837852;
+			public const int prizeicon3 = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int prizeicon6 = 2130837853;
+			public const int prizeicon4 = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int questioncenter = 2130837854;
+			public const int prizeicon5 = 2130837854;
 			
 			// aapt resource value: 0x7f02015f
-			public const int referee = 2130837855;
+			public const int prizeicon6 = 2130837855;
 			
 			// aapt resource value: 0x7f020160
-			public const int RightArrow = 2130837856;
+			public const int questioncenter = 2130837856;
 			
 			// aapt resource value: 0x7f020161
-			public const int roundedbg = 2130837857;
+			public const int referee = 2130837857;
 			
 			// aapt resource value: 0x7f020162
-			public const int roundedbgdark = 2130837858;
+			public const int RightArrow = 2130837858;
 			
 			// aapt resource value: 0x7f020163
-			public const int save = 2130837859;
+			public const int roundedbg = 2130837859;
 			
 			// aapt resource value: 0x7f020164
-			public const int scrubber_control_normal_holo = 2130837860;
+			public const int roundedbgdark = 2130837860;
 			
 			// aapt resource value: 0x7f020165
-			public const int scrubber_control_pressed_holo = 2130837861;
+			public const int save = 2130837861;
 			
 			// aapt resource value: 0x7f020166
-			public const int searchicon = 2130837862;
+			public const int scrubber_control_normal_holo = 2130837862;
 			
 			// aapt resource value: 0x7f020167
-			public const int segmented_control_background = 2130837863;
+			public const int scrubber_control_pressed_holo = 2130837863;
 			
 			// aapt resource value: 0x7f020168
-			public const int segmented_control_first_background = 2130837864;
+			public const int searchicon = 2130837864;
 			
 			// aapt resource value: 0x7f020169
-			public const int segmented_control_last_background = 2130837865;
+			public const int segmented_control_background = 2130837865;
 			
 			// aapt resource value: 0x7f02016a
-			public const int settings = 2130837866;
+			public const int segmented_control_first_background = 2130837866;
 			
 			// aapt resource value: 0x7f02016b
-			public const int settings_account = 2130837867;
+			public const int segmented_control_last_background = 2130837867;
 			
 			// aapt resource value: 0x7f02016c
-			public const int settings_blocked = 2130837868;
+			public const int send_message = 2130837868;
 			
 			// aapt resource value: 0x7f02016d
-			public const int settings_blocked_cancel = 2130837869;
+			public const int settings = 2130837869;
 			
 			// aapt resource value: 0x7f02016e
-			public const int settings_edit_profile_cover_photo = 2130837870;
+			public const int settings_account = 2130837870;
 			
 			// aapt resource value: 0x7f02016f
-			public const int settings_edit_profile_email = 2130837871;
+			public const int settings_blocked = 2130837871;
 			
 			// aapt resource value: 0x7f020170
-			public const int settings_edit_profile_name = 2130837872;
+			public const int settings_blocked_cancel = 2130837872;
 			
 			// aapt resource value: 0x7f020171
-			public const int settings_edit_profile_profile_photo = 2130837873;
+			public const int settings_edit_profile_cover_photo = 2130837873;
 			
 			// aapt resource value: 0x7f020172
-			public const int settings_edit_profile_username = 2130837874;
+			public const int settings_edit_profile_email = 2130837874;
 			
 			// aapt resource value: 0x7f020173
-			public const int settings_language = 2130837875;
+			public const int settings_edit_profile_name = 2130837875;
 			
 			// aapt resource value: 0x7f020174
-			public const int settings_log_out = 2130837876;
+			public const int settings_edit_profile_profile_photo = 2130837876;
 			
 			// aapt resource value: 0x7f020175
-			public const int settings_private_profile = 2130837877;
+			public const int settings_edit_profile_username = 2130837877;
 			
 			// aapt resource value: 0x7f020176
-			public const int settings_sound = 2130837878;
+			public const int settings_language = 2130837878;
 			
 			// aapt resource value: 0x7f020177
-			public const int shareblack = 2130837879;
+			public const int settings_log_out = 2130837879;
 			
 			// aapt resource value: 0x7f020178
-			public const int singlecoin = 2130837880;
+			public const int settings_private_profile = 2130837880;
 			
 			// aapt resource value: 0x7f020179
-			public const int splash = 2130837881;
+			public const int settings_sound = 2130837881;
 			
 			// aapt resource value: 0x7f02017a
-			public const int stockmarket = 2130837882;
+			public const int shareblack = 2130837882;
 			
 			// aapt resource value: 0x7f02017b
-			public const int stylishbackground = 2130837883;
+			public const int singlecoin = 2130837883;
 			
 			// aapt resource value: 0x7f02017c
-			public const int switchactive = 2130837884;
+			public const int splash = 2130837884;
 			
 			// aapt resource value: 0x7f02017d
-			public const int switchpassive = 2130837885;
+			public const int stockmarket = 2130837885;
 			
 			// aapt resource value: 0x7f02017e
-			public const int takimlar = 2130837886;
+			public const int stylishbackground = 2130837886;
 			
 			// aapt resource value: 0x7f02017f
-			public const int tooltip_frame_dark = 2130837887;
+			public const int switchactive = 2130837887;
 			
 			// aapt resource value: 0x7f020180
-			public const int tooltip_frame_light = 2130837888;
+			public const int switchpassive = 2130837888;
 			
 			// aapt resource value: 0x7f020181
-			public const int TurkishLiraSingleCoin = 2130837889;
+			public const int takimlar = 2130837889;
 			
 			// aapt resource value: 0x7f020182
-			public const int twitter = 2130837890;
+			public const int tooltip_frame_dark = 2130837890;
 			
 			// aapt resource value: 0x7f020183
-			public const int user = 2130837891;
+			public const int tooltip_frame_light = 2130837891;
 			
 			// aapt resource value: 0x7f020184
-			public const int UserProfile = 2130837892;
+			public const int TurkishLiraSingleCoin = 2130837892;
 			
 			// aapt resource value: 0x7f020185
-			public const int verify = 2130837893;
+			public const int twitter = 2130837893;
 			
 			// aapt resource value: 0x7f020186
-			public const int vs = 2130837894;
+			public const int user = 2130837894;
+			
+			// aapt resource value: 0x7f020187
+			public const int UserProfile = 2130837895;
+			
+			// aapt resource value: 0x7f020188
+			public const int verify = 2130837896;
+			
+			// aapt resource value: 0x7f020189
+			public const int vs = 2130837897;
 			
 			static Drawable()
 			{
@@ -15229,17 +15234,17 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0101
 			public const int main_appbar = 2131427585;
 			
-			// aapt resource value: 0x7f0b0104
-			public const int main_scrollview = 2131427588;
-			
 			// aapt resource value: 0x7f0b0103
 			public const int main_tablayout = 2131427587;
 			
 			// aapt resource value: 0x7f0b0102
 			public const int main_toolbar = 2131427586;
 			
-			// aapt resource value: 0x7f0b010c
-			public const int masked = 2131427596;
+			// aapt resource value: 0x7f0b0104
+			public const int main_viewpager = 2131427588;
+			
+			// aapt resource value: 0x7f0b010b
+			public const int masked = 2131427595;
 			
 			// aapt resource value: 0x7f0b00bd
 			public const int materialformsedittext = 2131427517;
@@ -15526,14 +15531,11 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0050
 			public const int selected = 2131427408;
 			
-			// aapt resource value: 0x7f0b010d
-			public const int shape_id = 2131427597;
+			// aapt resource value: 0x7f0b010c
+			public const int shape_id = 2131427596;
 			
 			// aapt resource value: 0x7f0b0106
 			public const int shellcontent_appbar = 2131427590;
-			
-			// aapt resource value: 0x7f0b0108
-			public const int shellcontent_scrollview = 2131427592;
 			
 			// aapt resource value: 0x7f0b0107
 			public const int shellcontent_toolbar = 2131427591;
@@ -15550,8 +15552,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b002d
 			public const int showTitle = 2131427373;
 			
-			// aapt resource value: 0x7f0b0109
-			public const int sliding_tabs = 2131427593;
+			// aapt resource value: 0x7f0b0108
+			public const int sliding_tabs = 2131427592;
 			
 			// aapt resource value: 0x7f0b00ab
 			public const int smallLabel = 2131427499;
@@ -15655,8 +15657,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b0085
 			public const int title_template = 2131427461;
 			
-			// aapt resource value: 0x7f0b010a
-			public const int toolbar = 2131427594;
+			// aapt resource value: 0x7f0b0109
+			public const int toolbar = 2131427593;
 			
 			// aapt resource value: 0x7f0b0046
 			public const int top = 2131427398;
@@ -15697,8 +15699,8 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7f0b001b
 			public const int view_offset_helper = 2131427355;
 			
-			// aapt resource value: 0x7f0b010b
-			public const int visible = 2131427595;
+			// aapt resource value: 0x7f0b010a
+			public const int visible = 2131427594;
 			
 			// aapt resource value: 0x7f0b00e0
 			public const int volume_item_container = 2131427552;

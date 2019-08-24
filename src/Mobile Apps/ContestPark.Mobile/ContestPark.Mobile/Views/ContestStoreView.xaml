@@ -41,7 +41,6 @@
             </components:NonPersistentSelectedItemListView.ItemTemplate>
             <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-
                     <components:ThumListItem
                         AutomationId="WatchAdGetCoins"
                         Detail="{i18n:Translate WatchAdGetCoins}"

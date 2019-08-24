@@ -20,6 +20,8 @@ namespace ContestPark.Mobile.Models.Chat
             }
         }
 
+        public bool IsIncoming { get; set; }
+
         public string Message
         {
             get { return message; }
