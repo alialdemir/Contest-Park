@@ -1,14 +1,11 @@
-﻿
-using ContestPark.Mobile.Enums;
+﻿using ContestPark.Mobile.Enums;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace ContestPark.Mobile.Components.Coins
+namespace ContestPark.Mobile.Components
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DobleCoinsView : ContentView
     {
-
         #region Constructor
 
         public DobleCoinsView()
@@ -16,10 +13,9 @@ namespace ContestPark.Mobile.Components.Coins
             InitializeComponent();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
-
 
         public static readonly BindableProperty DisplayCoinsProperty = BindableProperty.Create(propertyName: nameof(DisplayCoins),
                                                                                                 returnType: typeof(string),
@@ -32,12 +28,10 @@ namespace ContestPark.Mobile.Components.Coins
             set { SetValue(DisplayCoinsProperty, value); }
         }
 
-
         public static readonly BindableProperty BalanceTypeProperty = BindableProperty.Create(propertyName: nameof(BalanceType),
-                                                                                                  returnType: typeof(BalanceTypes),
-                                                                                          declaringType: typeof(DobleCoinsView),
-                                                                                          defaultValue: BalanceTypes.Gold);
-
+                                                                                              returnType: typeof(BalanceTypes),
+                                                                                              declaringType: typeof(DobleCoinsView),
+                                                                                              defaultValue: BalanceTypes.Gold);
 
         public BalanceTypes BalanceType
         {
@@ -45,12 +39,10 @@ namespace ContestPark.Mobile.Components.Coins
             set { SetValue(BalanceTypeProperty, value); }
         }
 
-
         public static readonly BindableProperty CoinsProperty = BindableProperty.Create(propertyName: nameof(Coins),
-                                                                                                  returnType: typeof(Enums.Coins),
-                                                                                          declaringType: typeof(DobleCoinsView),
-                                                                                          defaultValue: Enums.Coins.Positive);
-
+                                                                                        returnType: typeof(Enums.Coins),
+                                                                                        declaringType: typeof(DobleCoinsView),
+                                                                                        defaultValue: Enums.Coins.Positive);
 
         public Enums.Coins Coins
         {
@@ -58,19 +50,29 @@ namespace ContestPark.Mobile.Components.Coins
             set { SetValue(CoinsProperty, value); }
         }
 
-
         public static readonly BindableProperty CoinSizeProperty = BindableProperty.Create(propertyName: nameof(CoinSize),
-                                                                                                  returnType: typeof(Enums.CoinSize),
-                                                                                          declaringType: typeof(DobleCoinsView),
-                                                                                          defaultValue: Enums.CoinSize.Large);
-
+                                                                                           returnType: typeof(Enums.CoinSize),
+                                                                                           declaringType: typeof(DobleCoinsView),
+                                                                                           defaultValue: Enums.CoinSize.Large);
 
         public Enums.CoinSize CoinSize
         {
             get { return (Enums.CoinSize)GetValue(CoinSizeProperty); }
             set { SetValue(CoinSizeProperty, value); }
         }
-        #endregion
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(propertyName: nameof(TextColor),
+                                                                                            returnType: typeof(Color),
+                                                                                            declaringType: typeof(DobleCoinsView),
+                                                                                            defaultValue: Color.FromHex("#8EF0A7"));
+
+        public Color TextColor
+        {
+            get { return (Color)GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
+        }
+
+        #endregion Properties
 
         #region Overrides
 
@@ -83,6 +85,7 @@ namespace ContestPark.Mobile.Components.Coins
                 case BalanceTypes.Money:
                     imgCoins.Source = ImageSource.FromFile("doublecoinstl.png");
                     break;
+
                 default:
                     imgCoins.Source = ImageSource.FromFile("doublecoins.png");
                     break;
@@ -95,6 +98,7 @@ namespace ContestPark.Mobile.Components.Coins
                     imgCoins.HeightRequest = 40;
                     lblCoins.FontSize = 16;
                     break;
+
                 default:
                     imgCoins.WidthRequest = 71;
                     imgCoins.HeightRequest = 54;
@@ -103,9 +107,9 @@ namespace ContestPark.Mobile.Components.Coins
             }
 
             lblCoins.Text = (Coins == Enums.Coins.Negative ? "-" : "+") + DisplayCoins;
-            lblCoins.TextColor = Color.FromHex(Coins == Enums.Coins.Negative ? "#FB1A1A" : "#8EF0A7");
+            lblCoins.TextColor = Color.FromHex(Coins == Enums.Coins.Negative ? "#FB1A1A" : TextColor.ToHex());
         }
 
-        #endregion
+        #endregion Overrides
     }
 }

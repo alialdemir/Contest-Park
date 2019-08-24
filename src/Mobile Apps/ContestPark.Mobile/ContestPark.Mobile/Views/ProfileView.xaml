@@ -77,7 +77,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
+        <components:NonPersistentSelectedItemListView
+            InfiniteScroll="{Binding InfiniteScroll}"
+            SeparatorVisibility="None"
+            Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.Header>
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>

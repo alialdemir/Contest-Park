@@ -8,7 +8,7 @@ namespace ContestPark.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? "ic_favorite_black_24dp.png" : "ic_favorite_border_black_24dp.png";
+            return (bool)value ? "liked.svg" : "likes.svg";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

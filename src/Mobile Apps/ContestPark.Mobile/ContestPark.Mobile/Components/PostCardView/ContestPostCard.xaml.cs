@@ -18,10 +18,15 @@ namespace ContestPark.Mobile.Components.PostCardView
 
         #region Constructors
 
+        public ContestPostCard()
+        {
+            InitializeComponent();
+        }
+
         public ContestPostCard(INavigationService navigationService)
         {
-            _navigationService = navigationService;
             InitializeComponent();
+            _navigationService = navigationService;
         }
 
         #endregion Constructors

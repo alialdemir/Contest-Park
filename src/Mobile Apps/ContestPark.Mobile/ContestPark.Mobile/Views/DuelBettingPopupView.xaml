@@ -8,7 +8,6 @@
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-    xmlns:components="clr-namespace:ContestPark.Mobile.Components.Coins"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -160,7 +159,7 @@
                                     Source="{Binding Image}"
                                     WidthRequest="110" />
 
-                                <components:DobleCoinsView
+                                <Components:DobleCoinsView
                                     Grid.Row="4"
                                     BalanceType="{Binding BalanceType}"
                                     CoinSize="Large"
@@ -184,7 +183,7 @@
                                     WidthRequest="50"
                                     Color="#DEDEDE" />
 
-                                <components:DobleCoinsView
+                                <Components:DobleCoinsView
                                     Grid.Row="7"
                                     Margin="0,18.5,0,0"
                                     BalanceType="{Binding BalanceType}"

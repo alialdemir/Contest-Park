@@ -13,20 +13,20 @@
                 <On Platform="iOS" Value="Sofia Pro Regular Az" />
             </OnPlatform>
 
-
-
             <OnPlatform x:Key="SofiaProLight" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Sofia Pro Light Az.otf#Sofia Pro Light Az" />
                 <On Platform="iOS" Value="Sofia Pro Light Az" />
             </OnPlatform>
-
-
 
             <OnPlatform x:Key="SofiaProSemiBold" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Sofia Pro Semi Bold Az.otf#Sofia Pro Semi Bold Az" />
                 <On Platform="iOS" Value="Sofia Pro Semi Bold Az" />
             </OnPlatform>
 
+            <OnPlatform x:Key="SofiaProBold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sofia Pro Bold Az.otf#Sofia Pro Bold Az" />
+                <On Platform="iOS" Value="Sofia Pro Bold Az" />
+            </OnPlatform>
 
             <OnPlatform x:Key="SofiaProMedium" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Sofia Pro Medium Az.otf#Sofia Pro Medium Az" />
@@ -37,7 +37,6 @@
                 <On Platform="Android" Value="GothamRounded-Bold.otf#GothamRounded-Bold" />
                 <On Platform="iOS" Value="GothamRounded-Bold" />
             </OnPlatform>
-
 
             <OnPlatform x:Key="GothamRoundedMedium" x:TypeArguments="x:String">
                 <On Platform="Android" Value="GothamRounded-Medium.otf#GothamRounded-Medium" />
@@ -70,7 +69,6 @@
             <Color x:Key="CategoryDetailTextColor">#303030</Color>
 
             <Color x:Key="Black">#000000</Color>
-
 
             <!--  Yeni başlangıç  -->
 
