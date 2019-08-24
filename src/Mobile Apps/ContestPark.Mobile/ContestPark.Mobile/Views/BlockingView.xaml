@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -54,7 +55,46 @@
                 <components:NonPersistentSelectedItemListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <components:UserFollowListItem IconStatus="{Binding IsBlocked}" RightButtonCommand="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
+                            <Grid
+                                Margin="21,8,14,8"
+                                ColumnSpacing="16"
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="35" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="22" />
+                                </Grid.ColumnDefinitions>
+
+                                <components:CircleImage
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HeightRequest="35"
+                                    Source="{Binding ProfilePicturePath}"
+                                    WidthRequest="35" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding FullName}"
+                                    TextColor="#040404"
+                                    VerticalTextAlignment="Center" />
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HeightRequest="22"
+                                    Source="settings_blocked_cancel.svg"
+                                    WidthRequest="22">
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </components:NonPersistentSelectedItemListView.ItemTemplate>

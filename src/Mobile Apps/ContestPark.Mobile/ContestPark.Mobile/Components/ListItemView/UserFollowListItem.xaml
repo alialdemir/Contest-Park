@@ -5,67 +5,99 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="userFollowListItemPage">
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:IconConverter x:Key="fbc" />
             <converter:FollowButtonVisibleConverter x:Key="fbvc" />
+            <converter:FollowButtonTextConverter x:Key="fbtc" />
+            <converter:FollowButtonBackgroundGradientEndColor x:Key="fbbgec" />
+            <converter:FollowButtonBackgroundGradientStartColor x:Key="fbbgsc" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid
-            Margin="21,8,14,8"
-            ColumnSpacing="16"
-            RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="22" />
-            </Grid.ColumnDefinitions>
+        <yummy:PancakeView
+            Margin="10,6,10,0"
+            Padding="0"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="8"
+            Elevation="6"
+            HasShadow="True"
+            HeightRequest="80"
+            IsClippedToBounds="True">
+            <Grid
+                x:Name="cstmGrid"
+                Margin="14,15,14,15"
+                ColumnSpacing="0"
+                RowSpacing="0">
 
-            <components:CircleImage
-                Grid.Row="0"
-                Grid.Column="0"
-                HeightRequest="35"
-                Source="{Binding ProfilePicturePath}"
-                WidthRequest="35" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
 
-            <Label
-                Grid.Row="0"
-                Grid.Column="1"
-                FontSize="13"
-                LineBreakMode="TailTruncation"
-                Text="{Binding FullName}"
-                TextColor="#040404"
-                VerticalTextAlignment="Center" />
+                <components:CircleImage
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}"
+                    CommandParameter="{Binding UserName}"
+                    HeightRequest="50"
+                    Source="{Binding ProfilePicturePath}"
+                    VerticalOptions="Center"
+                    WidthRequest="50" />
 
-            <ffimageloadingsvg:SvgCachedImage
-                Grid.Row="0"
-                Grid.Column="2"
-                HeightRequest="22"
-                Source="settings_blocked_cancel.svg"
-                WidthRequest="22">
-                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}" CommandParameter="{Binding UserId}" />
-                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-            </ffimageloadingsvg:SvgCachedImage>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="14,0,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                    FontSize="18"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding FullName}"
+                    TextColor="#181C2F" />
 
-            <!--<icon:IconButton
-                Grid.RowSpan="2"
-                Grid.Column="2"
-                BackgroundColor="Transparent"
-                Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}"
-                CommandParameter="{Binding UserId}"
-                FontSize="20"
-                HorizontalOptions="Start"
-                IsVisible="{Binding Path=UserId, Converter={StaticResource fbvc}}"
-                Text="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbc}}"
-                TextColor="{StaticResource Red}" />-->
-        </Grid>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="14,0,0,0"
+                    FontFamily="{DynamicResource SofiaProLight}"
+                    FontSize="14"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding UserName, StringFormat='@{0}'}"
+                    TextColor="#181C2F" />
+
+                <yummy:PancakeView
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Padding="8"
+                    BackgroundGradientEndColor="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbbgec}}"
+                    BackgroundGradientStartColor="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbbgsc}}"
+                    CornerRadius="13"
+                    HeightRequest="20"
+                    IsVisible="{Binding Path=UserId, Converter={StaticResource fbvc}}"
+                    VerticalOptions="Center"
+                    WidthRequest="70">
+                    <yummy:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}" CommandParameter="{Binding UserId}" />
+                    </yummy:PancakeView.GestureRecognizers>
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource SofiaProRegular}"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbtc}}"
+                        TextColor="{StaticResource White}"
+                        VerticalTextAlignment="Center" />
+                </yummy:PancakeView>
+            </Grid>
+        </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>
