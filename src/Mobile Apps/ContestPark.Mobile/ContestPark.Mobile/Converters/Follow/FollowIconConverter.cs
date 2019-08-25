@@ -8,7 +8,7 @@ namespace ContestPark.Mobile.Converters.Follow
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? "fas-user-check" : "fas-user-plus";
+            return (bool)value ? "profile_unfollow.svg" : "profile_follow.svg";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

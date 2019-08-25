@@ -475,7 +475,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takip edilenler.
+        ///   Looks up a localized string similar to Takip.
         /// </summary>
         public static string Following {
             get {

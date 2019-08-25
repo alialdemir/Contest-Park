@@ -88,7 +88,6 @@
                         </Grid>
                     </yummy:PancakeView>
 
-
                     <yummy:PancakeView
                         Grid.Row="1"
                         Margin="24,0,24,0"
@@ -102,10 +101,11 @@
                         <Grid
                             Margin="30,20,30,0"
                             HorizontalOptions="FillAndExpand"
+                            RowSpacing="0"
                             VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="21" />
-                                <RowDefinition Height="52" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="30" />
                                 <RowDefinition Height="35" />
                                 <RowDefinition Height="35" />
                             </Grid.RowDefinitions>
@@ -119,24 +119,33 @@
                                 Grid.Column="0"
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource SofiaProSemiBold}"
-                                FontSize="16"
+                                FontSize="27"
                                 HorizontalTextAlignment="Center"
-                                Text="{i18n:Translate YourLevel}"
-                                TextColor="{StaticResource CategoryDetailTextColor}" />
+                                Text="{Binding CategoryDetail.Level}"
+                                TextColor="#FFC72E" />
 
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource SofiaProSemiBold}"
-                                FontSize="27"
+                                FontSize="16"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding CategoryDetail.Level}"
+                                Text="{i18n:Translate YourLevel}"
                                 TextColor="{StaticResource CategoryDetailTextColor}" />
-
 
                             <Label
                                 Grid.Row="0"
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="27"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CategoryDetail.FollowerCount, Mode=TwoWay}"
+                                TextColor="#FFC72E" />
+
+                            <Label
+                                Grid.Row="1"
                                 Grid.Column="1"
                                 FontFamily="{StaticResource SofiaProSemiBold}"
                                 FontSize="16"
@@ -144,21 +153,10 @@
                                 Text="{i18n:Translate Followers}"
                                 TextColor="{StaticResource CategoryDetailTextColor}" />
 
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource SofiaProSemiBold}"
-                                FontSize="27"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding CategoryDetail.FollowerCount, Mode=TwoWay}"
-                                TextColor="{StaticResource CategoryDetailTextColor}" />
-
-
-
                             <Components:LinearGradientButton
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
+                                Margin="0,0,0,7"
                                 BackgroundColor="Transparent"
                                 BorderRadius="60"
                                 Command="{Binding DuelOpenPanelCommand}"
@@ -170,8 +168,6 @@
                                 Text="{i18n:Translate FindOpponent}"
                                 TextColor="{StaticResource White}"
                                 Visual="Material" />
-
-
 
                             <Components:LinearGradientButton
                                 Grid.Row="3"
@@ -189,7 +185,6 @@
                                 Visual="Material" />
                         </Grid>
                     </yummy:PancakeView>
-
                 </Grid>
             </Components:NonPersistentSelectedItemListView.Header>
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
