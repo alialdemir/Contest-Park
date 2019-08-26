@@ -218,6 +218,15 @@ namespace ContestPark.Mobile.Services.Category
                  {
                      new SearchModel
                      {
+                         SearchType = SearchTypes.Player,
+                         FullName ="Ali Aldemir",
+                         PicturePath = DefaultImages.DefaultProfilePicture,
+                         UserId ="2222-2222-2222-2222",
+                         UserName = "witcherfearless",
+                         IsFollowing = true,
+                     },
+                     new SearchModel
+                     {
                            SubCategoryName ="Bayraklar",
                            Price=100000,
                            SubCategoryId=1,

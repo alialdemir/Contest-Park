@@ -78,8 +78,8 @@
                     Grid.RowSpan="2"
                     Grid.Column="2"
                     Padding="8"
-                    BackgroundGradientEndColor="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbbgec}}"
-                    BackgroundGradientStartColor="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbbgsc}}"
+                    BackgroundGradientEndColor="{Binding Path=IsFollowing, Converter={StaticResource fbbgec}}"
+                    BackgroundGradientStartColor="{Binding Path=IsFollowing, Converter={StaticResource fbbgsc}}"
                     CornerRadius="13"
                     HeightRequest="20"
                     IsVisible="{Binding Path=UserId, Converter={StaticResource fbvc}}"
@@ -93,7 +93,7 @@
                         FontFamily="{StaticResource SofiaProRegular}"
                         FontSize="15"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding Path=IconStatus, Source={x:Reference userFollowListItemPage}, Converter={StaticResource fbtc}}"
+                        Text="{Binding Path=IsFollowing, Converter={StaticResource fbtc}}"
                         TextColor="{StaticResource White}"
                         VerticalTextAlignment="Center" />
                 </yummy:PancakeView>

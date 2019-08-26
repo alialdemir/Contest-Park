@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.CategoryFollow;
+using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -24,6 +25,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly ICategoryFollowService _categoryFollowService;
         private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IFollowService _followService;
         private readonly IGameService _gameService;
         private short _categoryId = 0;
 
@@ -32,14 +34,16 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public SearchViewModel(ICategoryFollowService categoryFollowService,
-                                       ICategoryService categoryServices,
-                                       IEventAggregator eventAggregator,
-                                       IGameService gameService)
+                               ICategoryService categoryServices,
+                               IEventAggregator eventAggregator,
+                               IFollowService followService,
+                               IGameService gameService)
         {
             Title = ContestParkResources.SearchPlayersOrCategories;
             _categoryFollowService = categoryFollowService;
             _categoryService = categoryServices;
             _eventAggregator = eventAggregator;
+            _followService = followService;
             _gameService = gameService;
 
             EventSubscribe();
@@ -48,6 +52,18 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Constructors
 
         #region Properties
+
+        private string _search;
+
+        public string Search
+        {
+            get { return _search; }
+            set
+            {
+                _search = value;
+                RaisePropertyChanged(() => Search);
+            }
+        }
 
         private bool _isSearchFocus;
 
@@ -199,26 +215,59 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="e">Input value</param>
         private async Task ExecutSearchTextCommandAsync(TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(e.NewTextValue))
+            if (string.IsNullOrEmpty(Search))
                 RefreshCommand.Execute(null);
 
-            if (IsBusy || e.NewTextValue.Length < 3)
+            if (IsBusy || Search.Length < 3)
                 return;
 
             IsBusy = true;
 
             if (IsFollowingCategory)
             {
-                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync(e.NewTextValue, new PagingModel { });
+                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync(Search, new PagingModel { });
             }
             else
             {
-                ServiceModel = await _categoryService.SearchAsync(e.NewTextValue, _categoryId, new PagingModel { });
+                ServiceModel = await _categoryService.SearchAsync(Search, _categoryId, new PagingModel { });
             }
 
             Items.Clear();
 
             await base.InitializeAsync();
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Takip et takipten çıkar işlemlerini yapar
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        private async Task ExecuteFollowCommandAsync(string userId)
+        {
+            if (IsBusy || string.IsNullOrEmpty(userId))
+                return;
+
+            IsBusy = true;
+
+            SearchModel followModel = Items.Where(x => x.UserId == userId).First();
+            if (followModel == null)
+                return;
+
+            Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
+
+            bool isSuccesss = await (followModel.IsFollowing == true ?
+                  _followService.FollowUpAsync(userId) :
+                  _followService.UnFollowAsync(userId));
+
+            if (!isSuccesss)
+            {
+                Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
+
+                await DisplayAlertAsync("",
+                    ContestParkResources.GlobalErrorMessage,
+                    ContestParkResources.Okay);
+            }
 
             IsBusy = false;
         }
@@ -239,6 +288,16 @@ namespace ContestPark.Mobile.ViewModels
             get
             {
                 return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommandAsync(userName)));
+            }
+        }
+
+        private ICommand _followCommand;
+
+        public ICommand FollowCommand
+        {
+            get
+            {
+                return _followCommand ?? (_followCommand = new Command<string>(async (userId) => await ExecuteFollowCommandAsync(userId)));
             }
         }
 
@@ -264,6 +323,11 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand SearchTextCommand
         {
             get { return searchTextCommand ?? (searchTextCommand = new Command<TextChangedEventArgs>(async (e) => await ExecutSearchTextCommandAsync(e))); }
+        }
+
+        public ICommand ClearSearchCommand
+        {
+            get => new Command(() => Search = string.Empty);
         }
 
         public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(async (CategoryId) =>

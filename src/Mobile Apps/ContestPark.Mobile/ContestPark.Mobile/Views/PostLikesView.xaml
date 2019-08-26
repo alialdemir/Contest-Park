@@ -16,10 +16,7 @@
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:UserFollowListItem
-                            GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference postLikesViewPage}}"
-                            IconStatus="{Binding IsFollowing}"
-                            RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference postLikesViewPage}}" />
+                        <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference postLikesViewPage}}" RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference postLikesViewPage}}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

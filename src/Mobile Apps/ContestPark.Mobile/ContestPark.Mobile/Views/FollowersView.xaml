@@ -1,23 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Views.FollowersView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             x:Name="followersViewPage"
-             Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
-            <components:NonPersistentSelectedItemListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference followersViewPage}}"
-                                                       IconStatus="{Binding IsFollowing}"
-                                                       RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference followersViewPage}}" />
-                    </ViewCell>
-                </DataTemplate>
-            </components:NonPersistentSelectedItemListView.ItemTemplate>
-        </components:NonPersistentSelectedItemListView>
-    </ContentPage.Content>
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.FollowersView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="followersViewPage"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+  <ContentPage.Content>
+    <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
+      <components:NonPersistentSelectedItemListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference followersViewPage}}" RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference followersViewPage}}" />
+          </ViewCell>
+        </DataTemplate>
+      </components:NonPersistentSelectedItemListView.ItemTemplate>
+    </components:NonPersistentSelectedItemListView>
+  </ContentPage.Content>
 </ContentPage>

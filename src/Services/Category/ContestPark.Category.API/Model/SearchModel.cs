@@ -11,7 +11,7 @@ namespace ContestPark.Category.API.Model
         public string FullName { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? IsFollow { get; set; }
+        public bool? IsFollowing { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string PicturePath { get; set; }

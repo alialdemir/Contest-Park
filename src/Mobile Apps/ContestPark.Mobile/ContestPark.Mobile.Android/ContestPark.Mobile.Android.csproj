@@ -47,6 +47,7 @@
     <AndroidTlsProvider>
     </AndroidTlsProvider>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -195,7 +196,6 @@
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
     <Compile Include="CustomRenderer\IconNavigationPageRenderer.cs" />
     <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
-    <Compile Include="CustomRenderer\SearchPageRenderer.cs" />
     <Compile Include="CustomRenderer\SignInSocialNetworkPageRenderer.cs" />
     <Compile Include="CustomRenderer\TabViewRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
@@ -565,6 +565,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\profile_unfollow.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\search_cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\search_result.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

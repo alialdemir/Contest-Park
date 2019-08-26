@@ -13,7 +13,7 @@ namespace ContestPark.Mobile.Converters
         {
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
-            return value.ToString() != settingsService.CurrentUser.UserId;
+            return value != null && value.ToString() != settingsService.CurrentUser.UserId;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
