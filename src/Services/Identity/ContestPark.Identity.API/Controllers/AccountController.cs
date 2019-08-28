@@ -1,5 +1,7 @@
 ﻿using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
+using ContestPark.Identity.API.Data.Repositories.Reference;
+using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
@@ -14,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
@@ -31,6 +34,9 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IBlockService _blockService;
+        private readonly IReferenceCodeRepostory _referenceCodeRepostory;
+        private readonly IReferenceRepository _referenceRepository;
+        private readonly IdentitySettings _identitySettings;
         private readonly IFollowService _followService;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
@@ -44,6 +50,9 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                  ILogger<AccountController> logger,
                                  UserManager<ApplicationUser> userManager,
                                  IBlockService blockService,
+                                 IReferenceCodeRepostory referenceCodeRepostory,
+                                 IReferenceRepository referenceRepository,
+                                 IOptions<IdentitySettings> settings,
                                  IFollowService followService,
                                  IUserRepository userRepository,
                                  IIdentityIntegrationEventService identityIntegrationEventService,
@@ -53,6 +62,9 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             _logger = logger;
             _userManager = userManager;
             _blockService = blockService;
+            _referenceCodeRepostory = referenceCodeRepostory;
+            _referenceRepository = referenceRepository;
+            _identitySettings = settings.Value;
             _followService = followService;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
@@ -178,7 +190,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                                           NewPostAddedIntegrationEvent.PostImageTypes.CoverImage,
                                                           UserId,
                                                           fileName);
-            _identityIntegrationEventService.NewPostAdd(@event);
+            _identityIntegrationEventService.PublishEvent(@event);
 
             return Ok(new ChangePictureModel
             {
@@ -246,7 +258,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                                           NewPostAddedIntegrationEvent.PostImageTypes.ProfileImage,
                                                           UserId,
                                                           fileName);
-            _identityIntegrationEventService.NewPostAdd(@event);
+            _identityIntegrationEventService.PublishEvent(@event);
 
             return Ok(new ChangePictureModel
             {
@@ -469,9 +481,53 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (!result.Succeeded && result.Errors.Count() > 0)
                 return BadRequest(IdentityResultErrors(result.Errors));
 
+            // Kullanıcı yeni login olduğu için  belirli bir miktar altın ekledim
+            PublishChangeBalanceIntegrationEvent(10.00m, BalanceTypes.Gold, user.Id);
+
+            if (!string.IsNullOrEmpty(signUpModel.ReferenceCode))
+            {
+                _logger.LogInformation($@"Referans kodu ile üye olma işlemi gerçekleşti. Reference Code:{signUpModel.ReferenceCode}
+                                                                                         New User Id: {user.Id}
+                                                                                         GiftMoneyAmount: {_identitySettings.GiftMoneyAmount}");
+
+                ReferenceModel referenceModel = _referenceRepository.IsCodeActive(signUpModel.ReferenceCode);
+                if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
+                {
+                    PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, user.Id);
+
+                    _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, null, user.Id);
+                }
+                else// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
+                {
+                    string referenceUserId = _userRepository.GetUserIdByUserName(signUpModel.ReferenceCode);
+
+                    if (!string.IsNullOrEmpty(referenceUserId))
+                    {
+                        PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, user.Id);
+
+                        PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
+
+                        _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, referenceUserId, user.Id);
+                    }
+                }
+            }
+
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Eğer referans kodu ile üye oluyorsa belirli birr miktar para verdik
+        /// </summary>
+        private void PublishChangeBalanceIntegrationEvent(decimal amount, BalanceTypes balanceType, string userId)
+        {
+            Task.Factory.StartNew(() =>
+          {
+              var @eventBalanceMoney = new ChangeBalanceIntegrationEvent(amount, userId, balanceType, BalanceHistoryTypes.DailyChip);
+
+              _identityIntegrationEventService.PublishEvent(@eventBalanceMoney);
+          });
         }
 
         /// <summary>

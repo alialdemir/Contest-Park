@@ -608,4 +608,14 @@
   <data name="YouCanRemoveTheBarriers" xml:space="preserve">
     <value>Engelleri kaldırabilirsin</value>
   </data>
+  <data name="InviteSaveMoney" xml:space="preserve">
+    <value>Davet Et, Para Kazan!</value>
+  </data>
+  <data name="ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp" xml:space="preserve">
+    <value>ContestPark, Bilgi Yarışması çok eğlenceli, siz de oynamalısınız. Lütfen kayıt olurken kullanıcı adımı "{0}" referans kodu olarak yazınız. Hem siz hemde ben para ödülü kazanmış olurum.</value>
+    <comment>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.</comment>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Davet Et</value>
+  </data>
 </root>

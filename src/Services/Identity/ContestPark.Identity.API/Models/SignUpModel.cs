@@ -30,5 +30,7 @@ namespace ContestPark.Identity.API.Models
         [Required(ErrorMessage = "UserNameReqired")]
         [NotTurkishCharacter(ErrorMessageResourceType = typeof(IdentityResource), ErrorMessageResourceName = "NotTurkishCharacter")]
         public string UserName { get; set; }
+
+        public string ReferenceCode { get; set; }
     }
 }

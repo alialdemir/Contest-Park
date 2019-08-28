@@ -129,15 +129,11 @@ namespace ContestPark.Mobile.Services.Game
         /// <param name="Title">Alt kategori adı</param>
         public void SubCategoryShare(string Title)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            string appStoreLink = Device.OnPlatform("", "https://play.google.com/store/apps/details?id=com.contestparkapp.app", "");
-#pragma warning restore CS0618 // Type or member is obsolete
-
             Share.RequestAsync(new ShareTextRequest
             {
                 Text = "Social competition platform.",
                 Title = "ContestPark",
-                Uri = appStoreLink,
+                Uri = "https://indir.contestpark.com",
             });
         }
 

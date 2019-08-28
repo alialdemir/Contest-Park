@@ -16,7 +16,8 @@ END CASE;
 
 UPDATE Balances
 SET Gold = CASE WHEN BalanceType = 1 THEN Gold + Amount ELSE Gold END,
-Money = CASE WHEN BalanceType = 2 THEN Money + Amount ELSE Money END
+Money = CASE WHEN BalanceType = 2 THEN Money + Amount ELSE Money END,
+ModifiedDate = CURRENT_TIMESTAMP()
 WHERE Balances.UserId=UserId;
 
 INSERT INTO BalanceHistories (UserId, OldAmount, NewAmount, BalanceHistoryType, BalanceType)

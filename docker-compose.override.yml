@@ -30,6 +30,7 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
       - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
+      - GiftMoneyAmount=0.25
     ports:
       - "5101:80"
     volumes:

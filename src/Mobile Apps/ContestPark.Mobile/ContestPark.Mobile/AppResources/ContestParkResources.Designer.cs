@@ -259,6 +259,16 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ContestPark, Bilgi Yarışması çok eğlenceli, siz de oynamalısınız. Lütfen kayıt olurken kullanıcı adımı &quot;{0}&quot; referans kodu olarak yazınız. Hem siz hemde ben para ödülü kazanmış olurum..
+        /// </summary>
+        public static string ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp {
+            get {
+                return ResourceManager.GetString("ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhe" +
+                        "nSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bu kategoriye ait geçmiş bulunmamakta..
         /// </summary>
         public static string ContestPostEmptyMessage {
@@ -633,6 +643,24 @@ namespace ContestPark.Mobile.AppResources {
         public static string InvalidProductId {
             get {
                 return ResourceManager.GetString("InvalidProductId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Davet Et.
+        /// </summary>
+        public static string Invite {
+            get {
+                return ResourceManager.GetString("Invite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Davet Et, Para Kazan!.
+        /// </summary>
+        public static string InviteSaveMoney {
+            get {
+                return ResourceManager.GetString("InviteSaveMoney", resourceCulture);
             }
         }
         

@@ -176,6 +176,16 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                                 .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Kullanıcı adına ait user id verir
+        /// </summary>
+        /// <param name="userName">Kullanıcı id</param>
+        /// <returns>User id</returns>
+        public string GetUserIdByUserName(string userName)
+        {
+            return _applicationDbContext.Users.FirstOrDefault(x => x.NormalizedUserName == userName)?.Id;
+        }
+
         #endregion Methods
     }
 }

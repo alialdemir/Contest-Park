@@ -88,6 +88,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
 
+            containerRegistry.RegisterForNavigation<InviteView, InviteViewViewModel>();
+
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
 
             containerRegistry.RegisterForNavigation<MainView, MainPageViewModel>();
@@ -135,7 +137,6 @@ namespace ContestPark.Mobile.Configs
 
             if (!GlobalSetting.Instance.IsMockData)
             {
-
                 containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
@@ -203,7 +204,6 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
-
 
                 containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             }

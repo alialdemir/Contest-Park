@@ -21,5 +21,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         IEnumerable<string> GetRandomProfilePictures();
 
         string GetRandomBotUserId();
+
+        string GetUserIdByUserName(string userName);
     }
 }

@@ -195,6 +195,56 @@ namespace ContestPark.Identity.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "References",
+                columns: table => new
+                {
+                    ReferenceId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(maxLength: 450, nullable: false),
+                    Menstruation = table.Column<int>(nullable: false, defaultValue: 0),
+                    FinishDate = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(nullable: false),
+                    BalanceType = table.Column<byte>(nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.ReferenceId);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReferenceCodes",
+                columns: table => new
+                {
+                    ReferencesId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ReferenceUserId = table.Column<string>(maxLength: 450, nullable: false),
+                    NewUserId = table.Column<string>(maxLength: 450, nullable: false),
+                    Code = table.Column<string>(maxLength: 256, nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.ReferencesId);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_ReferenceUserId",
+                        column: x => x.ReferenceUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_NewUserId",
+                        column: x => x.NewUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
