@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class InviteViewViewModel : ViewModelBase
+    public class InviteViewModel : ViewModelBase
     {
         #region Private variables
 
@@ -17,7 +17,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public InviteViewViewModel(ISettingsService settingsService)
+        public InviteViewModel(ISettingsService settingsService)
         {
             Title = ContestParkResources.Invite;// ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.
             _settingsService = settingsService;

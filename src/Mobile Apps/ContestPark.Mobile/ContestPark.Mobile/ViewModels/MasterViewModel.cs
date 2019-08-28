@@ -115,12 +115,19 @@ namespace ContestPark.Mobile.ViewModels
                                     SingleTap = pushPageCommand
                                 },
                                 new TextMenuItem {
-                                    CommandParameter = nameof(MissionsView),
-                                    Icon = "missions.svg",
-                                    Title = ContestParkResources.Missions,
+                                    CommandParameter = nameof(WinningsView),
+                                    Icon = "money_bag.svg",
+                                    Title = ContestParkResources.ConvertToCash,
                                     MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
                                 },
+                                //new TextMenuItem {
+                                //    CommandParameter = nameof(MissionsView),
+                                //    Icon = "missions.svg",
+                                //    Title = ContestParkResources.Missions,
+                                //    MenuType = Enums.MenuTypes.Label,
+                                //    SingleTap = pushPageCommand
+                                //},
                                 new TextMenuItem {
                                     CommandParameter = nameof(SettingsView),
                                     Icon = "settings.svg",
@@ -216,7 +223,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <returns></returns>
         private async Task SetUserGoldAsync()
         {
-            Balance = await _cpService.GetTotalCpByUserIdAsync();
+            Balance = await _cpService.GetBalanceAsync();
             //BalanceGold = balance.Gold.ToString();
 
             //BalanceMoney = balance.Money > 0 ?

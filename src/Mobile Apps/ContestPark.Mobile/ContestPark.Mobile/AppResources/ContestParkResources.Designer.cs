@@ -88,6 +88,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kazancınız hesabınıza aktarma isteği oluşturuldu..
+        /// </summary>
+        public static string ARequestToTransferYourEarningsToYourAccountHasBeenCreated {
+            get {
+                return ResourceManager.GetString("ARequestToTransferYourEarningsToYourAccountHasBeenCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Çıkmak istediğinize emin misiniz?.
         /// </summary>
         public static string AreYouSureYouWantToLeave {
@@ -283,6 +292,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string ContestStore {
             get {
                 return ResourceManager.GetString("ContestStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paranı Nakite Çevir.
+        /// </summary>
+        public static string ConvertToCash {
+            get {
+                return ResourceManager.GetString("ConvertToCash", resourceCulture);
             }
         }
         
@@ -1115,6 +1133,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kazancı Hesabına Aktar.
+        /// </summary>
+        public static string SendMoney {
+            get {
+                return ResourceManager.GetString("SendMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Şifreyi gönder.
         /// </summary>
         public static string SendPassword {
@@ -1246,6 +1273,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string TotalXp {
             get {
                 return ResourceManager.GetString("TotalXp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BANKA HESABIMA AKTAR.
+        /// </summary>
+        public static string TransferToBankAccount {
+            get {
+                return ResourceManager.GetString("TransferToBankAccount", resourceCulture);
             }
         }
         
@@ -1489,6 +1525,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YouLose {
             get {
                 return ResourceManager.GetString("YouLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir..
+        /// </summary>
+        public static string YouMustearnAminimumOfToWithdrawYourwinnings {
+            get {
+                return ResourceManager.GetString("YouMustearnAminimumOfToWithdrawYourwinnings", resourceCulture);
             }
         }
         

@@ -5,12 +5,17 @@ namespace ContestPark.Mobile.Services.Cp
 {
     public class BalanceMockService : IBalanceService
     {
-        public Task<BalanceModel> GetTotalCpByUserIdAsync()
+        public Task<bool> GetBalanceRequest(IbanNoModel ibanNo)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task<BalanceModel> GetBalanceAsync()
         {
             return Task.FromResult(new BalanceModel
             {
                 Gold = 34543,
-                Money = 54.12m
+                Money = 514.12m
             });
         }
 

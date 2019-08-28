@@ -88,7 +88,9 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
 
-            containerRegistry.RegisterForNavigation<InviteView, InviteViewViewModel>();
+            containerRegistry.RegisterForNavigation<IbanNoView, IbanNoViewModel>();
+
+            containerRegistry.RegisterForNavigation<InviteView, InviteViewModel>();
 
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
 
@@ -125,6 +127,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
 
             containerRegistry.RegisterForNavigation<AppShell, PhoneNumberViewModel>();
+
+            containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
         }
 
         #endregion Navigation

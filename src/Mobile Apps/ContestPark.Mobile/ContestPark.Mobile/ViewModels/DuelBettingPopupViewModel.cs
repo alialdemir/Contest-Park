@@ -99,7 +99,7 @@ namespace ContestPark.Mobile.ViewModels
 
             InitBets();
 
-            Balance = await _cpService.GetTotalCpByUserIdAsync();
+            Balance = await _cpService.GetBalanceAsync();
 
             AddFreeLoader();
 

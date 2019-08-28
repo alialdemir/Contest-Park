@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.IbanNoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Content>
+        <ScrollView>
+            <yummy:PancakeView
+                Margin="10,15,10,0"
+                Padding="10"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="8"
+                Elevation="6"
+                HasShadow="True"
+                HorizontalOptions="FillAndExpand"
+                IsClippedToBounds="True"
+                VerticalOptions="Start">
+                <Grid HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="154" />
+                        <RowDefinition Height="48.9" />
+                        <RowDefinition Height="48.9" />
+                        <RowDefinition Height="48.9" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="310" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Source="money.png" />
+
+                    <custom:CustomEntry
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#666372"
+                        CornerRadius="132"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="16"
+                        HeightRequest="40"
+                        HorizontalOptions="Fill"
+                        Placeholder="IBAN NO"
+                        PlaceholderColor="#484848"
+                        Text="{Binding IbanNo.IbanNo}"
+                        TextColor="#484848"
+                        Visual="Material"
+                        WidthRequest="310" />
+
+                    <custom:CustomEntry
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#666372"
+                        CornerRadius="132"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="16"
+                        HeightRequest="40"
+                        HorizontalOptions="Fill"
+                        Placeholder="{i18n:Translate Fullname}"
+                        PlaceholderColor="#484848"
+                        Text="{Binding IbanNo.FullName}"
+                        TextColor="#484848"
+                        Visual="Material"
+                        WidthRequest="310" />
+
+                    <custom:LinearGradientButton
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        BorderRadius="124"
+                        Command="{Binding BalanceCommand}"
+                        EndColor="#A573FF"
+                        StartColor="#645AFF"
+                        Style="{DynamicResource ButtonStyle}"
+                        Text="{i18n:Translate SendMoney}"
+                        TextColor="{StaticResource White}"
+                        Visual="Material" />
+                </Grid>
+            </yummy:PancakeView>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

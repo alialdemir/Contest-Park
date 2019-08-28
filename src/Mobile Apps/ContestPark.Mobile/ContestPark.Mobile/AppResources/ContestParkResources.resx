@@ -618,4 +618,19 @@
   <data name="Invite" xml:space="preserve">
     <value>Davet Et</value>
   </data>
+  <data name="ConvertToCash" xml:space="preserve">
+    <value>Paranı Nakite Çevir</value>
+  </data>
+  <data name="TransferToBankAccount" xml:space="preserve">
+    <value>BANKA HESABIMA AKTAR</value>
+  </data>
+  <data name="ARequestToTransferYourEarningsToYourAccountHasBeenCreated" xml:space="preserve">
+    <value>Kazancınız hesabınıza aktarma isteği oluşturuldu.</value>
+  </data>
+  <data name="SendMoney" xml:space="preserve">
+    <value>Kazancı Hesabına Aktar</value>
+  </data>
+  <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
+    <value>Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir.</value>
+  </data>
 </root>
