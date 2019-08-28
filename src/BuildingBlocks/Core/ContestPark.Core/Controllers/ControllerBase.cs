@@ -56,7 +56,7 @@ namespace ContestPark.Core.Controllers
         {
             get
             {
-                if (String.IsNullOrEmpty(userFullName)) userFullName = User.FindFirst("fullName")?.Value;
+                if (String.IsNullOrEmpty(userFullName)) userFullName = User.FindFirst("full_name")?.Value;
                 return userFullName;
             }
         }

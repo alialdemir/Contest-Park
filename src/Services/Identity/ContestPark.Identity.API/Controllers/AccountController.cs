@@ -473,7 +473,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             {
                 UserName = signUpModel.UserName.ToLower(),
                 FullName = signUpModel.FullName.ToLowerInvariant(),
-                Email = signUpModel.Email.ToLower(),
                 LanguageCode = signUpModel.LanguageCode.ToLower(),
             };
 
