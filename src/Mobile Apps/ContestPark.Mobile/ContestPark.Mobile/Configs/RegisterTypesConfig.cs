@@ -147,6 +147,18 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
+            containerRegistry.RegisterSingleton<IFollowService, FollowService>();
+
+            containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
+
+            containerRegistry.RegisterSingleton<IPostService, PostService>();
+
+            containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
+
+            containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
+
+            containerRegistry.RegisterSingleton<IDuelService, DuelService>();
+
             #endregion Yeni
 
             if (!GlobalSetting.Instance.IsMockData)
@@ -187,7 +199,7 @@ namespace ContestPark.Mobile.Configs
 
                 //   containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
-                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
+                // containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
                 //   containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
@@ -201,15 +213,15 @@ namespace ContestPark.Mobile.Configs
 
                 //////////////containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
-                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+                //////containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
-                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
+                //containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
-                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
+                //containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 
-                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
+                //containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
-                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
+                //     containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
 
                 // containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
             }

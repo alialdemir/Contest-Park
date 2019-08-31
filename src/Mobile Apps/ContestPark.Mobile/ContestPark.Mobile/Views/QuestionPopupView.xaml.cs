@@ -21,9 +21,9 @@ namespace ContestPark.Mobile.Views
 
         #region Properties
 
-        public NextQuestion Question { get; set; }
+        public DuelCreated DuelCreated { get; set; }
 
-        public DuelStartingModel DuelScreen { get; set; }
+        public DuelStartingModel DuelStarting { get; set; }
 
         public string SubcategoryName { get; set; }
 
@@ -41,8 +41,8 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
-            viewModel.Question = Question;
-            viewModel.DuelScreen = DuelScreen;
+            viewModel.DuelCreated = DuelCreated;
+            viewModel.DuelScreen = DuelStarting;
             viewModel.SubcategoryName = SubcategoryName;
             viewModel.SubCategoryPicturePath = SubCategoryPicturePath;
             viewModel.AnimateStylishCommand = new Command(Stylishs.AnimateStylish);

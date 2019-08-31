@@ -55,7 +55,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
 
                 await _hubContext.Clients
                                     .Group(duelGroupName)
-                                    .SendAsync("DuelScreen", @event);
+                                    .SendAsync("DuelStarting", @event);
             }
         }
 

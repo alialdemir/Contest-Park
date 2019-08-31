@@ -108,22 +108,19 @@ namespace ContestPark.Post.API.Controllers
         /// <summary>
         /// Kullanıcı adına ait post listesi döndürür
         /// </summary>
-        /// <param name="userName">Kullanıcı adı</param>
+        /// <param name="userId">Kullanıcı id
+        /// </param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Post listesi</returns>
-        [HttpGet("subcategory/user/{userName}")]
+        [HttpGet("user/{userId}")]
         [ProducesResponseType(typeof(ServiceModel<PostModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetPostsByUserIdAsync([FromRoute]string userName, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetPostsByUserIdAsync([FromRoute]string userId, [FromQuery]PagingModel pagingModel)
         {
-            if (string.IsNullOrEmpty(userName))
+            if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
-            UserIdModel profileUserId = await _identityService.GetUserIdByUserName(userName);
-            if (profileUserId == null || string.IsNullOrEmpty(profileUserId.UserId))
-                return NotFound();
-
-            ServiceModel<PostModel> posts = _postRepository.GetPostByUserName(profileUserId.UserId, UserId, CurrentUserLanguage, pagingModel);
+            ServiceModel<PostModel> posts = _postRepository.GetPostByUserId(userId, UserId, CurrentUserLanguage, pagingModel);
             if (posts.Items.Count() == 0)
                 return NotFound();
 

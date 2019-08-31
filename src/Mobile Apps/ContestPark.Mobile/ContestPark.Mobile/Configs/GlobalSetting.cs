@@ -155,7 +155,7 @@ namespace ContestPark.Mobile.Configs
             TokenEndpoint = $"{connectBaseEndpoint}/token";
             LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
 
-            SignalREndpoint = $"{endpoint.Replace(":5106", "")}:5105/contestpark";
+            SignalREndpoint = $"{endpoint}/contestparkhub";
         }
 
         /// <summary>

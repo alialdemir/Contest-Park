@@ -88,8 +88,8 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             return Ok(new ProfileInfoModel
             {
-                CoverPicture = isBlocked == false ? userProfile.CoverPicture : DefaultImages.DefaultCoverPicture,
-                ProfilePicturePath = isBlocked == false ? userProfile.ProfilePicturePath : DefaultImages.DefaultProfilePicture,
+                CoverPicture = isBlocked == false || UserId == userProfile.UserId ? userProfile.CoverPicture : DefaultImages.DefaultCoverPicture,
+                ProfilePicturePath = isBlocked == false || UserId == userProfile.UserId ? userProfile.ProfilePicturePath : DefaultImages.DefaultProfilePicture,
                 FullName = userProfile.FullName,
                 UserId = userProfile.UserId,
                 FollowersCount = userProfile.FollowersCount,
@@ -97,6 +97,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 GameCount = userProfile.GameCount,
                 IsBlocked = isBlocked,
                 IsFollowing = isFollowing,
+                IsPrivateProfile = userProfile.IsPrivateProfile
             });
         }
 
@@ -108,7 +109,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [AllowAnonymous]
         [Route("GetRandomProfilePictures")]
         [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetRandomProfilePictures()
         {
             IEnumerable<string> randomProfilePictures = _userRepository.GetRandomProfilePictures();
@@ -269,26 +270,36 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 return NotFound();
 
             string oldUserName = user.UserName;
-            string oldEmail = user.Email;
+            //  string oldEmail = user.Email;
             string oldFullName = user.FullName;
+
+            bool oldIsPrivateProfile = user.IsPrivateProfile;
 
             List<string> errors = new List<string>();
 
-            if (oldEmail != updateUserInfo.Email)
+            //if (oldEmail != updateUserInfo.Email)
+            //{
+            //    IdentityResult result = await _userManager.SetEmailAsync(user, updateUserInfo.Email);
+            //    if (!result.Succeeded && result.Errors.Count() > 0)
+            //        errors.AddRange(IdentityResultErrors(result.Errors));
+            //}
+
+            if (updateUserInfo.IsPrivateProfile.HasValue && oldIsPrivateProfile != updateUserInfo.IsPrivateProfile)
             {
-                IdentityResult result = await _userManager.SetEmailAsync(user, updateUserInfo.Email);
+                user.IsPrivateProfile = updateUserInfo.IsPrivateProfile.Value;
+                IdentityResult result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded && result.Errors.Count() > 0)
                     errors.AddRange(IdentityResultErrors(result.Errors));
             }
 
-            if (oldUserName != updateUserInfo.UserName)
+            if (!string.IsNullOrEmpty(updateUserInfo.UserName) && oldUserName != updateUserInfo.UserName)
             {
                 IdentityResult result = await _userManager.SetUserNameAsync(user, updateUserInfo.UserName);
                 if (!result.Succeeded && result.Errors.Count() > 0)
                     errors.AddRange(IdentityResultErrors(result.Errors));
             }
 
-            if (oldFullName != updateUserInfo.FullName)
+            if (!string.IsNullOrEmpty(updateUserInfo.FullName) && oldFullName != updateUserInfo.FullName)
             {
                 user.FullName = updateUserInfo.FullName;
                 IdentityResult result = await _userManager.UpdateAsync(user);
@@ -484,28 +495,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 return NotFound();
 
             return Ok(users);
-        }
-
-        /// <summary>
-        /// Kullanıcı adına ait kullanıcı id döndürür
-        /// </summary>
-        /// <param name="userName">Kullanıcı adı</param>
-        /// <returns>Kullanıcı id</returns>
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("UserId")]
-        [ProducesResponseType(typeof(List<UserModel>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetUserId([FromQuery]string userName)
-        {
-            if (string.IsNullOrEmpty(userName))
-                return BadRequest();
-
-            string userId = _userRepository.GetUserIdByUserName(userName);
-            if (string.IsNullOrEmpty(userId))
-                return NotFound();
-
-            return Ok(new { userId });
         }
 
         /// <summary>

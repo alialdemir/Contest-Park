@@ -1,16 +1,13 @@
 ﻿using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
-using ContestPark.Mobile.Models.PagingModel;
-using ContestPark.Mobile.Models.ServiceModel;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Duel
 {
     public class DuelMockService : IDuelService
     {
-        public Task BotStandMode(BotStandbyMode botStandbyMode)
+        public Task AddOpponent(StandbyModeModel standbyModeModel)
         {
             return Task.CompletedTask;
         }
@@ -50,15 +47,11 @@ namespace ContestPark.Mobile.Services.Duel
             return Task.CompletedTask;
         }
 
-        public Task<ServiceModel<string>> RandomUserProfilePictures(PagingModel pagingModel)
+        public Task<string[]> RandomUserProfilePictures()
         {
-            return Task.FromResult(new ServiceModel<string>
-            {
-                Items = new List<string>
-                 {
+            return Task.FromResult(new string[] {
                       DefaultImages.DefaultProfilePicture,
                       DefaultImages.DefaultProfilePicture
-                 }
             });
         }
 

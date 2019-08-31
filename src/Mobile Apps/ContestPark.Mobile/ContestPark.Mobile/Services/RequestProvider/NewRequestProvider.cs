@@ -1,8 +1,8 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Exceptions;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Models.ErrorModel;
+using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
 using Newtonsoft.Json;
@@ -15,9 +15,9 @@ using Prism.Services;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -98,30 +98,63 @@ namespace ContestPark.Mobile.Services.RequestProvider
         /// name="loginModel"></param> <></returns>
         public async Task<ResponseModel<TResult>> PostAsync<TResult>(string url, Dictionary<string, string> dictionary)
         {
-            // a new StringContent must be created for each retry
-            // as it is disposed after each call
-            //    var origin = GetOriginFromUri(url);
-            //return HttpInvoker(origin, async () =>
-            //{
-            ResponseModel<TResult> result = new ResponseModel<TResult>();
-
             HttpClient httpClient = CreateHttpClient();
 
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
 
-            var response = await httpClient.PostAsync(
-                url,
-                new FormUrlEncodedContent(dictionary));
+            try
+            {
+                // a new StringContent must be created for each retry as it is disposed after each call
+                //var origin = GetOriginFromUri(url);
 
-            await HandleResponse(response);
+                //return HttpInvoker(origin, async (context) =>
+                //{
+                if (await CheckNetworkAsync())
+                    return new ResponseModel<TResult>();
+
+                HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = new FormUrlEncodedContent(dictionary)
+                });
+
+                return await ResultRequest<TResult>(response);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+
+                return new ResponseModel<TResult>();
+            }
+        }
+
+        private async Task<ResponseModel<TResult>> ResultRequest<TResult>(HttpResponseMessage response)
+        {
+            //await HandleResponse(response);
+
+            ResponseModel<TResult> result = new ResponseModel<TResult>();
 
             string serialized = await response.Content.ReadAsStringAsync();
 
-            result.Data = await Task.Factory.StartNew(() =>
-                JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings));
+            if (!response.IsSuccessStatusCode && serialized.Contains("invalid_username_or_password"))
+            {
+                result.Error = new ValidationResultModel
+                {
+                    ErrorMessage = "invalid_username_or_password"
+                };
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
+            }
+
+            if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
+            {
+                result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
+            }
+
+            result.IsSuccess = response.IsSuccessStatusCode;
 
             return result;
-            //});
         }
 
         /// <summary>
@@ -180,18 +213,19 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private async Task HandleResponse(HttpResponseMessage response)
         {
-            if (!response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    string content = await response.Content.ReadAsStringAsync();
 
-                if (response.StatusCode == HttpStatusCode.Forbidden ||
-                    response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new ServiceAuthenticationException(content);
-                }
+            //    if (response.StatusCode == HttpStatusCode.Forbidden ||
+            //        response.StatusCode == HttpStatusCode.Unauthorized)
+            //    {
+            //        // TODO: burda farklı bir çözüm bulunmalı exception fırlatınca uygulama patlıyor
+            //        // athrow new ServiceAuthenticationException(content);
+            //    }
 
-                // throw new HttpRequestExceptionEx(response.StatusCode, content);
-            }
+            //    // throw new HttpRequestExceptionEx(response.StatusCode, content);
+            //}
         }
 
         private async Task<T> HttpInvoker<T>(string origin, Func<Context, Task<T>> action)
@@ -212,40 +246,40 @@ namespace ContestPark.Mobile.Services.RequestProvider
         {
             using (HttpClient httpClient = CreateHttpClient())
             {
-                // a new StringContent must be created for each retry as it is disposed after each call
-                //var origin = GetOriginFromUri(url);
-
-                //return HttpInvoker(origin, async (context) =>
-                //{
                 ResponseModel<TResult> result = new ResponseModel<TResult>();
 
-                if (await CheckNetworkAsync())
-                    return result;
-
-                HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(httpMethod, url));
-
-                if (data != null)
+                try
                 {
-                    response.Content = GetContent(data);
+                    // a new StringContent must be created for each retry as it is disposed after each call
+                    //var origin = GetOriginFromUri(url);
+
+                    //return HttpInvoker(origin, async (context) =>
+                    //{
+                    if (await CheckNetworkAsync())
+
+                        return new ResponseModel<TResult>();
+
+                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
+                    if (data != null)
+                    {
+                        if (data.GetType() == typeof(MediaModel))
+                        {
+                            httpClient.Timeout = TimeSpan.FromMinutes(1);
+                        }
+
+                        httpRequestMessage.Content = GetContent(data);
+                    }
+
+                    HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
+
+                    return await ResultRequest<TResult>(response);
                 }
-
-                await HandleResponse(response);
-
-                string serialized = await response.Content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
+                catch (Exception ex)
                 {
-                    result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
+                    Debug.WriteLine(ex.Message);
+
+                    return new ResponseModel<TResult>();
                 }
-
-                if (response.IsSuccessStatusCode)
-                {
-                    result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
-                }
-
-                result.IsSuccess = response.IsSuccessStatusCode;
-
-                return result;
             }
             //     });
         }
@@ -274,14 +308,15 @@ namespace ContestPark.Mobile.Services.RequestProvider
             if (data == null)
                 return null;
 
-            if (data.GetType() == typeof(FileStream))
+            if (data.GetType() == typeof(MediaModel))
             {
-                if (data == null)
+                MediaModel media = (MediaModel)data;
+                if (media == null || media.File == null || string.IsNullOrEmpty(media.FileName))
                     return null;
 
                 return new MultipartFormDataContent
                         {
-                            { new StreamContent((Stream)data), "file", "filename" }// TODO: filename kısmında uzantı isteyebilir
+                            { new StreamContent(media.File), "files", media.FileName }// TODO: filename kısmında uzantı isteyebilir
                         };
             }
             else if (data != null)

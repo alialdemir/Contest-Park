@@ -48,10 +48,19 @@ namespace ContestPark.Signalr.API
                             .AllowCredentials());
                     });
 
-            services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
-            services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
+            #region Event handler
+
             services.AddTransient<DuelCreatedIntegrationEventHandler>();
+
             services.AddTransient<DuelStartingModelIntegrationEventHandler>();
+
+            services.AddTransient<NextQuestionIntegrationEventHandler>();
+
+            services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
+
+            services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
+
+            #endregion Event handler
 
             var container = new ContainerBuilder();
             container.RegisterModule(new ApplicationModule());
@@ -91,10 +100,15 @@ namespace ContestPark.Signalr.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
-            eventBus.Subscribe<SendErrorMessageWithSignalrIntegrationEvent, SendErrorMessageWithSignalrIntegrationEventHandler>();
-            eventBus.Subscribe<SendMessageWithSignalrIntegrationEvent, SendMessageWithSignalrIntegrationEventHandler>();
             eventBus.Subscribe<DuelCreatedIntegrationEvent, DuelCreatedIntegrationEventHandler>();
+
             eventBus.Subscribe<DuelStartingModelIntegrationEvent, DuelStartingModelIntegrationEventHandler>();
+
+            eventBus.Subscribe<NextQuestionIntegrationEvent, NextQuestionIntegrationEventHandler>();
+
+            eventBus.Subscribe<SendErrorMessageWithSignalrIntegrationEvent, SendErrorMessageWithSignalrIntegrationEventHandler>();
+
+            eventBus.Subscribe<SendMessageWithSignalrIntegrationEvent, SendMessageWithSignalrIntegrationEventHandler>();
         }
     }
 

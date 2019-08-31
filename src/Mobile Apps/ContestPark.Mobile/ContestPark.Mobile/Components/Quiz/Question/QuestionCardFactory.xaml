@@ -1,22 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.QuestionCardFactory"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Name="page">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.QuestionCardFactory"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="questionCardFactoryPage">
     <ContentView.Content>
-        <StackLayout Margin="0,10,0,0"
-                     HorizontalOptions="Center"
-                     Orientation="Vertical">
+        <StackLayout
+            Margin="0,10,0,0"
+            HorizontalOptions="Center"
+            Orientation="Vertical">
 
-            <Label FontSize="18"
-                   Text="{Binding Path=Question, Source={x:Reference page}}"
-                   TextColor="{StaticResource White}" />
+            <Label
+                FontSize="18"
+                Text="{Binding Path=Question, Source={x:Reference questionCardFactoryPage}}"
+                TextColor="{StaticResource White}" />
 
-            <Image x:Name="img"
-                   Aspect="AspectFill"
-                   HeightRequest="180"
-                   Source="{Binding Path=Link, Source={x:Reference page}}"
-                   WidthRequest="180" />
+            <Image
+                x:Name="img"
+                Aspect="AspectFill"
+                HeightRequest="180"
+                Source="{Binding Path=Link, Source={x:Reference questionCardFactoryPage}}"
+                WidthRequest="180" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

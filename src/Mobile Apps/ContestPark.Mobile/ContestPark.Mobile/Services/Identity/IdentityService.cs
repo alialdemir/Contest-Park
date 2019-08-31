@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.AppResources;
+﻿using Acr.UserDialogs;
+using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Helpers;
@@ -6,6 +7,7 @@ using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -16,7 +18,6 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -58,13 +59,17 @@ namespace ContestPark.Mobile.Services.Identity
         /// Kapak resmi değiştir
         /// </summary>
         /// <param name="picture">Resim stream</param>
-        public async Task ChangeCoverPictureAsync(Stream picture)
+        public async Task ChangeCoverPictureAsync(MediaModel media)
         {
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
+
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangeCoverPicture");
 
-            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, picture);
+            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
 
             await ShowValidationMessages(response.Data);
+
+            UserDialogs.Instance.HideLoading();
         }
 
         /// <summary>
@@ -106,13 +111,17 @@ namespace ContestPark.Mobile.Services.Identity
         /// Profil resmi değiştir
         /// </summary>
         /// <param name="picture">Resim stream</param>
-        public async Task ChangeProfilePictureAsync(Stream picture)
+        public async Task ChangeProfilePictureAsync(MediaModel media)
         {
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
+
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangeProfilePicture");
 
-            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, picture);
+            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
 
             await ShowValidationMessages(response.Data);
+
+            UserDialogs.Instance.HideLoading();
         }
 
         /// <summary>
@@ -168,6 +177,11 @@ namespace ContestPark.Mobile.Services.Identity
                 };
 
                 var result = await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
+                if (!result.IsSuccess)
+                {
+                    string translateMessage = TranslateExtension.resmgr.Value.GetString(result.Error.ErrorMessage);
+                    await ShowErrorMessage(translateMessage);
+                }
 
                 return result.Data;
             }
@@ -286,14 +300,15 @@ namespace ContestPark.Mobile.Services.Identity
         /// Kullanıcının kullanıcı adı ve ad soyad bilgisini günceller
         /// </summary>
         /// <param name="userInfo">Ad soyad ve kullanıcı adı modeli</param>
-        public Task<bool> UpdateUserInfoAsync(UpdateUserInfoModel userInfo)
+        public async Task<bool> UpdateUserInfoAsync(UpdateUserInfoModel userInfo)
         {
-            //string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Update");
 
-            //string message = await _requestProvider.PostAsync<string>(uri, userInfo);
+            var result = await _requestProvider.PostAsync<string>(uri, userInfo);
 
-            //await ShowErrorMessage(message);
-            return Task.FromResult(true);
+            await ShowValidationMessages(result.Error);
+
+            return result.IsSuccess;
         }
 
         private async Task ShowErrorMessage(string message)
@@ -328,11 +343,6 @@ namespace ContestPark.Mobile.Services.Identity
 #else
                 message = ContestParkResources.GlobalErrorMessage;
 #endif
-
-                if (result.ErrorDescription.Contains("invalid_username_or_password"))
-                {
-                    message = TranslateExtension.resmgr.Value.GetString(result.ErrorDescription);
-                }
 
                 await ShowErrorMessage(message);
             }

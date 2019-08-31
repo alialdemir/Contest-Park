@@ -43,6 +43,10 @@ namespace ContestPark.Mobile.Components
                     Content = new InputListItem { BindingContext = this.BindingContext };
                     break;
 
+                case Enums.MenuTypes.Image:
+                    Content = new ImageListItem { BindingContext = this.BindingContext };
+                    break;
+
                 default:
                     Content = new TextListItem { BindingContext = this.BindingContext };
                     break;

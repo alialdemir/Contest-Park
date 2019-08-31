@@ -19,7 +19,6 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly string AccessTokenDefault = string.Empty;
 
         private readonly string IdTokenDefault = string.Empty;
-        private readonly bool IsPrivatePriceDefault = false;
         private readonly bool IsSoundEffectActiveDefaultDefault = true;
         private readonly string RefleshTokenDefault = string.Empty;
 
@@ -44,17 +43,11 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 if (_userInfo == null)
                 {
-                    RefreshCurrentUser();
+                    //RefreshCurrentUser();
                 }
 
                 return _userInfo;
             }
-        }
-
-        public bool IsPrivatePrice
-        {
-            get => GetValueOrDefault(IsPrivatePriceDefault);
-            set => AddOrUpdateValue(value);
         }
 
         public bool IsSoundEffectActive
@@ -153,7 +146,7 @@ namespace ContestPark.Mobile.Services.Settings
         /// <summary>
         /// Current user refresh
         /// </summary>
-        public void RefreshCurrentUser()
+        public void RefreshCurrentUser(UserInfoModel currentUser)
         {
             _userInfo = _userInfo.GetUserInfo(AuthAccessToken);
         }
@@ -174,7 +167,7 @@ namespace ContestPark.Mobile.Services.Settings
             TokenType = userToken.TokenType;
 
             // Current user yenilendi
-            RefreshCurrentUser();
+            //RefreshCurrentUser();
         }
 
         #endregion CurrentUser methods

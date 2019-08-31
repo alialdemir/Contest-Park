@@ -3,6 +3,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Threading.Tasks;
 
@@ -12,16 +13,19 @@ namespace ContestPark.Mobile.Services.Follow
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/follow";
-        private readonly IRequestProvider _requestProvider;
+        private const string ApiUrlBase = "api/v1/Follow";
+        private readonly INewRequestProvider _requestProvider;
+        private readonly ICacheService _cacheService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public FollowService(IRequestProvider requestProvider)
+        public FollowService(INewRequestProvider requestProvider,
+            ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _cacheService = cacheService;
         }
 
         #endregion Constructor
@@ -35,9 +39,21 @@ namespace ContestPark.Mobile.Services.Follow
         /// <returns>Takip edilen kullanıcı listesi</returns>
         public async Task<ServiceModel<FollowModel>> Followers(string followedUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Followers/{followedUserId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{followedUserId}/Followers{pagingModel.ToString()}");
 
-            return await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<FollowModel>>(uri);
+            }
+
+            var result = await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+
+            if (result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
+
+            return result.Data;
         }
 
         /// <summary>
@@ -47,9 +63,21 @@ namespace ContestPark.Mobile.Services.Follow
         /// <returns>Takip eden kullanıcı listesi</returns>
         public async Task<ServiceModel<FollowModel>> Following(string followedUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Following/{followedUserId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{followedUserId}/Following{pagingModel.ToString()}");
 
-            return await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<FollowModel>>(uri);
+            }
+
+            var result = await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
+
+            if (result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
+
+            return result.Data;
         }
 
         /// <summary>
@@ -60,9 +88,9 @@ namespace ContestPark.Mobile.Services.Follow
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{followedUserId}");
 
-            string result = await _requestProvider.PostAsync<string>(uri);
+            var result = await _requestProvider.PostAsync<string>(uri);
 
-            return string.IsNullOrEmpty(result);
+            return result.IsSuccess;
         }
 
         /// <summary>
@@ -73,9 +101,9 @@ namespace ContestPark.Mobile.Services.Follow
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{followedUserId}");
 
-            string result = await _requestProvider.DeleteAsync<string>(uri);
+            var result = await _requestProvider.DeleteAsync<string>(uri);
 
-            return string.IsNullOrEmpty(result);
+            return result.IsSuccess;
         }
 
         #endregion Methods

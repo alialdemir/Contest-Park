@@ -9,7 +9,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql.Post
     {
         Task<bool> AddPost(Tables.Post.Post post);
 
-        ServiceModel<PostModel> GetPostByUserName(string profileUserId, string userId, Languages language, PagingModel paging);
+        ServiceModel<PostModel> GetPostByUserId(string profileUserId, string userId, Languages language, PagingModel paging);
 
         PostModel GetPostDetailByPostId(string userId, int postId, Languages language);
 

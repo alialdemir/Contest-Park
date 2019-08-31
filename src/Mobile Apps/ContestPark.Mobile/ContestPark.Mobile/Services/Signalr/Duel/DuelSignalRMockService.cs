@@ -7,19 +7,28 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 {
     public class DuelSignalRMockService : IDuelSignalRService
     {
-        public EventHandler<DuelStartingModel> DuelScreenInfoEventHandler { get; set; }
+        public EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
 
+        public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
 
-        public void DuelScreenInfo()
+        public void DuelStarting()
+        {
+        }
+
+        public void DuelCreated()
+        {
+        }
+
+        public void OffDuelStarting()
+        {
+        }
+
+        public void OffDuelCreated()
         {
         }
 
         public void NextQuestion()
-        {
-        }
-
-        public void OffDuelScreenInfo()
         {
         }
 
@@ -28,6 +37,11 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         }
 
         public Task SaveAnswer(UserAnswer userAnswer)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task LeaveGroup(int duelId)
         {
             return Task.CompletedTask;
         }

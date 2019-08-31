@@ -214,33 +214,33 @@ namespace ContestPark.Duel.API.Migrations
                .AsInt32()
                .NotNullable()
 
-               .WithColumn("FounderAnswer")
-               .AsByte()
-               .NotNullable()
-
-               .WithColumn("OpponentAnswer")
-               .AsByte()
-               .NotNullable()
-
                .WithColumn("CorrectAnswer")
                .AsByte()
                .NotNullable()
 
+               .WithColumn("FounderAnswer")
+               .AsByte()
+               .Nullable()
+
+               .WithColumn("OpponentAnswer")
+               .AsByte()
+               .Nullable()
+
                .WithColumn("FounderTime")
                .AsByte()
-               .NotNullable()
+               .Nullable()
 
                .WithColumn("OpponentTime")
                .AsByte()
-               .NotNullable()
+               .Nullable()
 
                .WithColumn("FounderScore")
                .AsByte()
-               .NotNullable()
+               .Nullable()
 
                .WithColumn("OpponentScore")
                .AsByte()
-               .NotNullable()
+               .Nullable()
 
                .WithColumn("ModifiedDate")
                .AsDateTime()

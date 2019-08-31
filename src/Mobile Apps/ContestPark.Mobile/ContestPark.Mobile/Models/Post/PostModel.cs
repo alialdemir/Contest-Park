@@ -50,7 +50,7 @@ namespace ContestPark.Mobile.Models.Post
         public string OwnerFullName { get; set; }
         public string OwnerProfilePicturePath { get; set; }
         public string OwnerUserName { get; set; }
-        public string PostId { get; set; }
+        public int PostId { get; set; }
 
         public PostTypes PostType { get; set; }
     }

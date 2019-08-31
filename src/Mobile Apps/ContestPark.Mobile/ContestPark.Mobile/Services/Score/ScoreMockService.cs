@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Helpers;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.Ranking;
 using ContestPark.Mobile.Models.ServiceModel;
@@ -10,152 +11,133 @@ namespace ContestPark.Mobile.Services.Score
 {
     public class ScoreMockService : IScoreService
     {
-        public Task<ServiceModel<RankingModel>> FollowingRankingAsync(short subCategoryId, PagingModel pagingModel)
+        public Task<RankModel> FollowingRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            return Task.FromResult(new ServiceModel<RankingModel>
-            {
-                Items = new List<RankingModel>
+            return Task.FromResult(
+                new RankModel
+                {
+                    ContestFinishDate = DateTime.Now.AddDays(35),
+                    Ranks = new ServiceModel<RankingModel>
+                    {
+                        Items = new List<RankingModel>
                 {
                          new RankingModel
                     {
-                        TotalScore = 1000000,
+                        TotalScore = "1000k",
                         UserFullName = "Ali Aldemir",
                         UserName = "witcherfearless",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 80000,
+                        TotalScore = "1k",
                         UserFullName = "Melike Sal",
                         UserName = "melike",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 76345,
+                        TotalScore = "65",
                         UserFullName = "Zehra Paltik",
                         UserName = "zehra",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     }
                 }
-            });
+                    }
+                });
         }
 
-        public Task<TimeLeftModel> GetTimeLeft(short subCategoryId)
+        public Task<RankModel> SubCategoryRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            DateTime endDate = DateTime.Now.AddMonths(1);
+            return Task.FromResult(
 
-            TimeSpan diff = endDate - DateTime.Now;
-
-            System.Collections.Generic.Dictionary<int, string> months = new Dictionary<int, string>
-            {
-                {1, "Jan" },
-                {2, "Feb" },
-                {3, "Mar" },
-                {4, "Apr" },
-                {5, "May" },
-                {6, "Jun" },
-                {7, "Jul" },
-                {8, "Aug" },
-                {9, "Sep" },
-                {10, "Oct" },
-                {11, "Now" },
-                {12, "Dec" },
-            };
-
-            return Task.FromResult(new TimeLeftModel
-            {
-                Months = months[DateTime.Now.Month],
-                FinsihDate = DateTime.Now.AddMonths(1),
-                TimeLeft = diff.Days + " d " + diff.Hours + " h " + diff.Minutes + " m  " + diff.Seconds + " s"
-            });
-        }
-
-        public Task<ServiceModel<RankingModel>> SubCategoryRankingAsync(short subCategoryId, PagingModel pagingModel)
-        {
-            return Task.FromResult(new ServiceModel<RankingModel>
-            {
-                Items = new List<RankingModel>
+                new RankModel
+                {
+                    ContestFinishDate = DateTime.Now.AddDays(35),
+                    Ranks = new ServiceModel<RankingModel>
+                    {
+                        Items = new List<RankingModel>
                 {
                          new RankingModel
                     {
-                        TotalScore = 1000000,
+                        TotalScore = "10k",
                         UserFullName = "Ali Aldemir",
                         UserName = "witcherfearless",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 80000,
+                        TotalScore = "8k",
                         UserFullName = "Melike Sal",
                         UserName = "melike",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 76345,
+                        TotalScore = "7.6k",
                         UserFullName = "Zehra Paltik",
                         UserName = "zehra",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 80000,
+                        TotalScore = "3k",
                         UserFullName = "Melike Sal",
                         UserName = "melike",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 76345,
+                        TotalScore = "900",
                         UserFullName = "Zehra Paltik",
                         UserName = "zehra",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 80000,
+                        TotalScore = "760",
                         UserFullName = "Melike Sal",
                         UserName = "melike",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 76345,
+                        TotalScore = "350",
                         UserFullName = "Zehra Paltik",
                         UserName = "zehra",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 80000,
+                        TotalScore = "200",
                         UserFullName = "Melike Sal",
                         UserName = "melike",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 76345,
+                        TotalScore = "150",
                         UserFullName = "Zehra Paltik",
                         UserName = "zehra",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 80000,
+                        TotalScore = "120",
                         UserFullName = "Melike Sal",
                         UserName = "melike",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     },
                           new RankingModel
                     {
-                        TotalScore = 76345,
+                        TotalScore = "70",
                         UserFullName = "Zehra Paltik",
                         UserName = "zehra",
                         UserProfilePicturePath = DefaultImages.DefaultProfilePicture
                     }
                 }
-            });
+                    }
+                });
         }
     }
 }

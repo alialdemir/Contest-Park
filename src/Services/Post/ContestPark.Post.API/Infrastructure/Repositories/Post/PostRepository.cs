@@ -81,7 +81,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <param name="language">Hangi dilde dönecek</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Post listesi</returns>
-        public ServiceModel<PostModel> GetPostByUserName(string profileUserId, string userId, Languages language, PagingModel paging)
+        public ServiceModel<PostModel> GetPostByUserId(string profileUserId, string userId, Languages language, PagingModel paging)
         {
             string sql = GetSql("WHERE p.OwnerUserId = @profileUserId OR p.FounderUserId = @profileUserId OR p.CompetitorUserId = @profileUserId");
 

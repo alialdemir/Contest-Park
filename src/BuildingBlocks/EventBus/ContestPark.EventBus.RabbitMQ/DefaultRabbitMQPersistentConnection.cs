@@ -80,7 +80,7 @@ namespace ContestPark.EventBus.RabbitMQ
                 policy.Execute(() =>
                 {
                     _connection = _connectionFactory
-                          .CreateConnection();
+                      .CreateConnection();
                 });
 
                 if (IsConnected)

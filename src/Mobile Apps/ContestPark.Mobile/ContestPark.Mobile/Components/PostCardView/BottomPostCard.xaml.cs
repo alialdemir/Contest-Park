@@ -101,8 +101,8 @@ namespace ContestPark.Mobile.Components.PostCardView
             postModel.IsLike = !postModel.IsLike;
 
             bool isSuccess = await (postModel.IsLike ?
-                postService.DisLikeAsync(postModel.PostId) :
-                postService.LikeAsync(postModel.PostId));
+                postService.LikeAsync(postModel.PostId) :
+                postService.DisLikeAsync(postModel.PostId));
 
             if (!isSuccess)
             {

@@ -1,11 +1,9 @@
-﻿using ContestPark.Mobile.Enums;
-using System;
-using System.Threading.Tasks;
+﻿using System.Windows.Input;
 
 namespace ContestPark.Mobile.Services.Bot
 {
     public interface IBotService
     {
-        void Init(Func<Stylish, bool, Task> saveAnswer, bool isFounder);
+        void Init(ICommand saveAnswerCommand, string botUserId);
     }
 }

@@ -47,12 +47,12 @@ namespace ContestPark.Mobile.ViewModels
 
         public ObservableRangeCollection<BetModel> Bets { get; set; } = new ObservableRangeCollection<BetModel>
                             {
-                                new BetModel { Title =ContestParkResources.Beginner, Prize = 40  * 2, EntryFee = 20},
-                                new BetModel { Title = ContestParkResources.Novice, Prize = 300  * 2, EntryFee = 150},
-                                new BetModel { Title = ContestParkResources.Advanced, Prize = 1000  * 2, EntryFee = 500},
-                                new BetModel { Title = ContestParkResources.Expert, Prize = 3000  * 2, EntryFee = 1500},
-                                new BetModel { Title = ContestParkResources.Master, Prize = 4600  * 2, EntryFee = 2300},
-                                new BetModel { Title = ContestParkResources.Genius, Prize = 10000  * 2, EntryFee = 5000},
+                                new BetModel { Title =ContestParkResources.Beginner, Prize = 40  * 2, EntryFee = 40},
+                                new BetModel { Title = ContestParkResources.Novice, Prize = 300  * 2, EntryFee = 300},
+                                new BetModel { Title = ContestParkResources.Advanced, Prize = 1000  * 2, EntryFee = 1000},
+                                new BetModel { Title = ContestParkResources.Expert, Prize = 3000  * 2, EntryFee = 3000},
+                                new BetModel { Title = ContestParkResources.Master, Prize = 4600  * 2, EntryFee = 4600},
+                                new BetModel { Title = ContestParkResources.Genius, Prize = 10000  * 2, EntryFee = 10000 },
                             };
 
         public string OpponentUserId { get; set; }
@@ -134,6 +134,7 @@ namespace ContestPark.Mobile.ViewModels
                     SelectedSubCategory = SelectedSubCategory,
                     Bet = bet,
                     OpponentUserId = OpponentUserId,
+                    BalanceType = Enums.BalanceTypes.Gold,// şimdilik gold verdim
                     StandbyMode = string.IsNullOrEmpty(OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
                 });
 

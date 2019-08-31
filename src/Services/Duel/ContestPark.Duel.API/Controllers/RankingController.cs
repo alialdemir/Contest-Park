@@ -73,7 +73,7 @@ namespace ContestPark.Duel.API.Controllers
                 Ranks = _scoreRankingRepository.GetRankingBySubCategoryId(subCategoryId, balanceType, contestDate.ContestDateId, pagingModel)
             };
             if (result.Ranks == null || result.Ranks.Items.Count() == 0)
-                return NotFound();
+                return Ok(result);
 
             return Ok(await GetRankingModel(result));
         }
@@ -103,7 +103,7 @@ namespace ContestPark.Duel.API.Controllers
                 Ranks = _scoreRankingRepository.GetFollowingRanking(subCategoryId, balanceType, contestDate.ContestDateId, followingUsers, pagingModel)
             };
             if (result.Ranks == null || result.Ranks.Items.Count() == 0)
-                return NotFound();
+                return Ok(result);
 
             return Ok(await GetRankingModel(result));
         }

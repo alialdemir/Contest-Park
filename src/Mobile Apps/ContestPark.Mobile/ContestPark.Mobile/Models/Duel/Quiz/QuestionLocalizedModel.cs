@@ -1,8 +1,8 @@
 ﻿using ContestPark.Mobile.Enums;
 
-namespace ContestPark.Mobile.Models.Duel
+namespace ContestPark.Mobile.Models.Duel.Quiz
 {
-    public class QuestionLang
+    public class QuestionLocalizedModel
     {
         public Languages Language { get; set; }
 

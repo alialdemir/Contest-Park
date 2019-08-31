@@ -8,6 +8,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public DuelFinishIntegrationEvent(int duelId,
                                           BalanceTypes balanceType,
                                           decimal bet,
+                                          byte betCommission,
                                           short subCategoryId,
                                           string founderUserId,
                                           string opponentUserId,
@@ -17,6 +18,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             DuelId = duelId;
             BalanceType = balanceType;
             Bet = bet;
+            BetCommission = betCommission;
             FounderUserId = founderUserId;
             SubCategoryId = subCategoryId;
             OpponentUserId = opponentUserId;
@@ -28,6 +30,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 
         public BalanceTypes BalanceType { get; }
         public decimal Bet { get; }
+        public byte BetCommission { get; }
         public string FounderUserId { get; }
 
         public short SubCategoryId { get; }

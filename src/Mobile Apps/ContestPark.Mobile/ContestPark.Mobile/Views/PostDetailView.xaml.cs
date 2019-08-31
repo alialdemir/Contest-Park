@@ -62,7 +62,7 @@ namespace ContestPark.Mobile.Views
                 return;
 
             if (ViewModel.Items.FirstOrDefault().Equals(currentItem))
-                ViewModel.InitializeCommand.Execute(null);
+                ViewModel.InitializeCommand?.Execute(null);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace ContestPark.Mobile.Views
         {
             txtChatbox.Focus();
 
-            ViewModel.SendCommentCommand.Execute(null);
+            ViewModel.SendCommentCommand?.Execute(null);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace ContestPark.Mobile.Views
         /// <param name="e"></param>
         private void TxtChatbox_Focused(object sender, FocusEventArgs e)
         {
-            ViewModel.ListViewScrollToBottomCommand.Execute(0);
+            ViewModel.ListViewScrollToBottomCommand?.Execute(0);
         }
 
         /// <summary>

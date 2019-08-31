@@ -1,13 +1,14 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Events;
 using Prism.Services;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -28,18 +29,23 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private readonly ISettingsService _settingsService;
 
+        private readonly IEventAggregator _eventAggregator;
+
         #endregion Private varaibles
 
         #region Constructors
 
         public AccountSettingsViewModel(ISettingsService settingsService,
                                         IPageDialogService dialogService,
+                                        IEventAggregator eventAggregator,
+
                                         IIdentityService identityService,
                                         IMediaService mediaService) : base(dialogService: dialogService)
         {
             Title = ContestParkResources.EditProfile;
 
             _settingsService = settingsService;
+            _eventAggregator = eventAggregator;
             _identityService = identityService;
             _mediaService = mediaService;
         }
@@ -71,34 +77,34 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.PictureSettings)
                                 {
                                     new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Label,
+                                        MenuType = Enums.MenuTypes.Image,
                                         Title = ContestParkResources.ChangeProfilePicture,
                                         Icon = _settingsService.CurrentUser.ProfilePicturePath,
                                         SingleTap = new Command(async () => await ChangeProfilePictureAsync())
         },
                                     new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Label,
+                                        MenuType = Enums.MenuTypes.Image,
                                         Title = ContestParkResources.ChangeCoverPicture,
                                         Icon = _settingsService.CurrentUser.CoverPicturePath,
                                         SingleTap = new Command(async () => await ChangeCoverPicture())
                                     },
                                 },
 
-                new MenuItemList(ContestParkResources.PasswordChange)
-                                {
-                                    new InputMenuItem {
-                                        Icon = "fas-lock",
-                                        IsPassword = true,
-                                        MenuType = Enums.MenuTypes.Input,
-                                        Placeholder = ContestParkResources.OldPassword,
-                                    },
-                                    new InputMenuItem {
-                                        IsPassword = true,
-                                        Icon = "fas-unlock",
-                                        MenuType = Enums.MenuTypes.Input,
-                                        Placeholder = ContestParkResources.NewPassword,
-                                    },
-                                },
+                //////new MenuItemList(ContestParkResources.PasswordChange)
+                //////                {
+                //////                    new InputMenuItem {
+                //////                        Icon = "fas-lock",
+                //////                        IsPassword = true,
+                //////                        MenuType = Enums.MenuTypes.Input,
+                //////                        Placeholder = ContestParkResources.OldPassword,
+                //////                    },
+                //////                    new InputMenuItem {
+                //////                        IsPassword = true,
+                //////                        Icon = "fas-unlock",
+                //////                        MenuType = Enums.MenuTypes.Input,
+                //////                        Placeholder = ContestParkResources.NewPassword,
+                //////                    },
+                //////                },
             });
 
             return base.InitializeAsync();
@@ -109,11 +115,13 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ChangeCoverPicture()
         {
-            Stream pictureStream = await _mediaService.ShowMediaActionSheet();
-            if (pictureStream == null)
+            var media = await _mediaService.ShowMediaActionSheet();
+            if (media == null)
                 return;
 
-            await _identityService.ChangeCoverPictureAsync(pictureStream);
+            await _identityService.ChangeCoverPictureAsync(media);
+
+            // TODO: reflesh menü ve profildeki resimler
         }
 
         /// <summary>
@@ -121,11 +129,13 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ChangeProfilePictureAsync()
         {
-            Stream pictureStream = await _mediaService.ShowMediaActionSheet();
-            if (pictureStream == null)
+            var media = await _mediaService.ShowMediaActionSheet();
+            if (media == null)
                 return;
 
-            await _identityService.ChangeProfilePictureAsync(pictureStream);
+            await _identityService.ChangeProfilePictureAsync(media);
+
+            // TODO: reflesh menü ve profildeki resimler
         }
 
         /// <summary>
@@ -137,38 +147,38 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             await UpdateUserInfoAsync();
-            await UpdatePasswordAsync();
+            ////await UpdatePasswordAsync();
         }
 
         /// <summary>
         /// Şifre değiştir
         /// </summary>
-        private async Task UpdatePasswordAsync()
-        {
-            var menuItems = Items.Select(p => p.MenuItems).ToList().LastOrDefault();
+        //////private async Task UpdatePasswordAsync()
+        //////{
+        //////    var menuItems = Items.Select(p => p.MenuItems).ToList().LastOrDefault();
 
-            string oldPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text;
-            string newPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text;
+        //////    string oldPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text;
+        //////    string newPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text;
 
-            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
-                return;
+        //////    if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
+        //////        return;
 
-            bool isSuccess = await _identityService.ChangePasswordAsync(new ChangePasswordModel
-            {
-                OldPassword = oldPassword,
-                NewPassword = newPassword,
-            });
+        //////    bool isSuccess = await _identityService.ChangePasswordAsync(new ChangePasswordModel
+        //////    {
+        //////        OldPassword = oldPassword,
+        //////        NewPassword = newPassword,
+        //////    });
 
-            if (isSuccess)
-            {
-                ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text = "";
-                ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text = "";
+        //////    if (isSuccess)
+        //////    {
+        //////        ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text = "";
+        //////        ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text = "";
 
-                await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
-                                        ContestParkResources.YourPasswordHasBeenUpdated,
-                                        ContestParkResources.Okay);
-            }
-        }
+        //////        await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
+        //////                                ContestParkResources.YourPasswordHasBeenUpdated,
+        //////                                ContestParkResources.Okay);
+        //////    }
+        //////}
 
         /// <summary>
         /// Kullanıcı adı ve ad soyad bilgilerini güncelle
@@ -190,10 +200,16 @@ namespace ContestPark.Mobile.ViewModels
                 UserName = userName,
                 FullName = fullName,
             });
-
             if (isSuccess)
             {
-                await _identityService.RefreshTokenAsync();
+                _settingsService.CurrentUser.UserName = userName;
+                _settingsService.CurrentUser.FullName = fullName;
+
+                _settingsService.RefreshCurrentUser(_settingsService.CurrentUser);
+
+                _eventAggregator
+                    .GetEvent<ChangeUserInfoEvent>()
+                    .Publish(_settingsService.CurrentUser);
 
                 await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
                                         ContestParkResources.YourInformationHasBeenUpdated,

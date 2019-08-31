@@ -8,9 +8,9 @@ namespace ContestPark.Mobile.Models.Profile
         private bool _isBlocked;
         private string _userId;
         private string coverPicture = DefaultImages.DefaultCoverPicture;
-        private int followersCount;
-        private int followUpCount;
-        private long gameCount;
+        private string followersCount;
+        private string followUpCount;
+        private string gameCount;
 
         private bool isFollowing;
         private string profilePicturePath = DefaultImages.DefaultCoverPicture;
@@ -29,31 +29,25 @@ namespace ContestPark.Mobile.Models.Profile
             }
         }
 
-        public int FollowersCount
+        public string FollowersCount
         {
             get { return followersCount; }
             set
             {
-                if (value >= 0)
-                {
-                    followersCount = value;
+                followersCount = value;
 
-                    RaisePropertyChanged(() => FollowersCount);
-                }
+                RaisePropertyChanged(() => FollowersCount);
             }
         }
 
-        public int FollowUpCount
+        public string FollowUpCount
         {
             get { return followUpCount; }
             set
             {
-                if (value >= 0)
-                {
-                    followUpCount = value;
+                followUpCount = value;
 
-                    RaisePropertyChanged(() => FollowUpCount);
-                }
+                RaisePropertyChanged(() => FollowUpCount);
             }
         }
 
@@ -68,17 +62,14 @@ namespace ContestPark.Mobile.Models.Profile
             }
         }
 
-        public long GameCount
+        public string GameCount
         {
             get { return gameCount; }
             set
             {
-                if (value >= 0)
-                {
-                    gameCount = value;
+                gameCount = value;
 
-                    RaisePropertyChanged(() => GameCount);
-                }
+                RaisePropertyChanged(() => GameCount);
             }
         }
 
@@ -128,5 +119,7 @@ namespace ContestPark.Mobile.Models.Profile
                 RaisePropertyChanged(() => UserId);
             }
         }
+
+        public bool IsPrivateProfile { get; set; }
     }
 }

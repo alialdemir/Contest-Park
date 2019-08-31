@@ -126,4 +126,7 @@
   <data name="YouCantLeaveTheFinishedDuel" xml:space="preserve">
     <value>Bitmiş düellodan çıkamazsınız.</value>
   </data>
+  <data name="YourBalanceIsInsufficient" xml:space="preserve">
+    <value>Bakiyeniz yetersiz.</value>
+  </data>
 </root>

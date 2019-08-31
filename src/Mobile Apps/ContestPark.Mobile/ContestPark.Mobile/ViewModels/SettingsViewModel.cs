@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
@@ -98,8 +99,8 @@ namespace ContestPark.Mobile.ViewModels
                                         Icon = "fas-unlock-alt",
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = Enums.MenuTypes.Switch,
-                                        IsToggled = _settingsService.IsPrivatePrice,
-                                        SingleTap = new Command(()=>  ChangePrivateProfileAsync())
+                                        IsToggled = _settingsService.CurrentUser.IsPrivateProfile,
+                                        SingleTap = new Command( async()=> await  ChangePrivateProfileAsync())
                                     },
                             },
 
@@ -122,9 +123,26 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Profili private/public olarak değiştirir
         /// </summary>
-        private void ChangePrivateProfileAsync()
+        private async Task ChangePrivateProfileAsync()
         {
-            _settingsService.AddOrUpdateValue(!_settingsService.IsPrivatePrice, nameof(_settingsService.IsPrivatePrice));
+            _settingsService.CurrentUser.IsPrivateProfile = !_settingsService.CurrentUser.IsPrivateProfile;
+
+            bool isSuccess = await _identityService.UpdateUserInfoAsync(new UpdateUserInfoModel
+            {
+                FullName = _settingsService.CurrentUser.FullName,
+                UserName = _settingsService.CurrentUser.UserName,
+                IsPrivateProfile = _settingsService.CurrentUser.IsPrivateProfile
+            });
+            if (isSuccess)
+            {
+                _settingsService.RefreshCurrentUser(_settingsService.CurrentUser);
+            }
+            else
+            {
+                await DisplayAlertAsync("",
+                    ContestParkResources.GlobalErrorMessage,
+                    ContestParkResources.Okay);
+            }
         }
 
         /// <summary>

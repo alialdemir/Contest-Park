@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage x:Class="ContestPark.Mobile.Views.QuestionPopupView"
-                 xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-                 prism:ViewModelLocator.AutowireViewModel="True"
-                 BackgroundColor="{StaticResource Black}">
+<pages:PopupPage
+    x:Class="ContestPark.Mobile.Views.QuestionPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{StaticResource Black}">
     <pages:PopupPage.Content>
         <ScrollView>
             <Grid Margin="10" RowSpacing="20">
@@ -21,36 +22,39 @@
 
                 <!--  Top Start  -->
 
-                <components:UsersInfo Grid.Row="0"
-                                      FounderFullname="{Binding DuelScreen.FounderFullName}"
-                                      FounderImageBorderColor="{Binding FounderImageBorderColor}"
-                                      FounderScore="{Binding FounderScore}"
-                                      FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
-                                      OpponentFullname="{Binding DuelScreen.OpponentFullName}"
-                                      OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
-                                      OpponentScore="{Binding OpponentScore}"
-                                      OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
-                                      Time="{Binding Time}" />
+                <components:UsersInfo
+                    Grid.Row="0"
+                    FounderFullname="{Binding DuelScreen.FounderFullName}"
+                    FounderImageBorderColor="{Binding FounderImageBorderColor}"
+                    FounderScore="{Binding FounderScore}"
+                    FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
+                    OpponentFullname="{Binding DuelScreen.OpponentFullName}"
+                    OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
+                    OpponentScore="{Binding OpponentScore}"
+                    OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
+                    Time="{Binding Time}" />
 
                 <!--  Top End  -->
 
                 <!--  Question Start  -->
 
-                <components:QuestionCardFactory Grid.Row="1"
-                                                Link="{Binding Question.Question.Link}"
-                                                Question="{Binding Question.Question.NextQuestion}"
-                                                QuestionType="{Binding Question.Question.QuestionType}" />
+                <components:QuestionCardFactory
+                    Grid.Row="1"
+                    Link="{Binding CurrentQuestion.Link}"
+                    Question="{Binding CurrentQuestion.NextQuestion}"
+                    QuestionType="{Binding CurrentQuestion.QuestionType}" />
 
                 <!--  Question End  -->
 
                 <!--  Stylish Start  -->
 
-                <components:Stylish x:Name="Stylishs"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"
-                                    AnswerCommand="{Binding AnswerCommand}"
-                                    AnswerType="{Binding Question.Question.AnswerType}"
-                                    Answers="{Binding Answers}" />
+                <components:Stylish
+                    x:Name="Stylishs"
+                    Grid.Row="2"
+                    Margin="0,10,0,0"
+                    AnswerCommand="{Binding AnswerCommand}"
+                    AnswerType="{Binding CurrentQuestion.AnswerType}"
+                    Answers="{Binding Answers}" />
 
                 <!--  Stylish End  -->
             </Grid>

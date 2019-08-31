@@ -2,6 +2,7 @@
 using ContestPark.Core.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
 using ContestPark.Duel.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -87,30 +88,29 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
                 q.Answers.Add(new AnswerModel
                 {
                     Answers = question.CorrectStylish,
-                    IsCorrect = true,
-                    Language = question.Language
+                    Language = question.Language,
+                    IsCorrectAnswer = true
                 });
 
                 q.Answers.Add(new AnswerModel
                 {
                     Answers = question.Stylish1,
-                    IsCorrect = false,
                     Language = question.Language
                 });
 
                 q.Answers.Add(new AnswerModel
                 {
                     Answers = question.Stylish2,
-                    IsCorrect = false,
                     Language = question.Language
                 });
 
                 q.Answers.Add(new AnswerModel
                 {
                     Answers = question.Stylish3,
-                    IsCorrect = false,
                     Language = question.Language
                 });
+
+                q.Answers = q.Answers.OrderBy(x => Guid.NewGuid()).ToList();// Şıkların yerleri karıştırıldı
 
                 q.Questions.Add(new QuestionLocalizedModel
                 {

@@ -1,0 +1,77 @@
+﻿using ContestPark.Duel.API.Models;
+using ServiceStack.Redis;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
+{
+    public class UserAnswerRepository : IUserAnswerRepository
+    {
+        #region Private Variables
+
+        private readonly IRedisClient _redisClient;
+
+        #endregion Private Variables
+
+        #region Constructor
+
+        public UserAnswerRepository(IRedisClient redisClient)
+        {
+            _redisClient = redisClient;
+        }
+
+        #endregion Constructor
+
+        #region Methods
+
+        public List<UserAnswerModel> GetAnswers(int deuelId)
+        {
+            string key = GetKey(deuelId);
+
+            return _redisClient.Get<List<UserAnswerModel>>(key);
+        }
+
+        public void Add(UserAnswerModel userAnswer)
+        {
+            AddRangeAsync(new List<UserAnswerModel>
+            {
+                userAnswer
+            });
+        }
+
+        public void AddRangeAsync(List<UserAnswerModel> userAnswers)
+        {
+            if (userAnswers == null || userAnswers.Count == 0)
+                return;
+
+            int duelId = userAnswers.FirstOrDefault().DuelId;
+
+            string key = GetKey(duelId);
+
+            //var userAnswer = GetAnswers(duelId);
+            //if (userAnswer != null)
+            //{
+            //    userAnswers.AddRange(userAnswer);
+            //}
+
+            _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresAt: DateTime.Now.AddMinutes(10));// 10 dk sonra redis üzerinden otomatik siler
+        }
+
+        /// <summary>
+        /// Düello id göre cache item siler
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        public void Remove(int duelId)
+        {
+            _redisClient.Remove(GetKey(duelId));
+        }
+
+        private string GetKey(int duelId)
+        {
+            return $"DuelUserAnswer:{duelId}";
+        }
+
+        #endregion Methods
+    }
+}

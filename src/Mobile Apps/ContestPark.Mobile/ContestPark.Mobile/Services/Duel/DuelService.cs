@@ -2,8 +2,6 @@
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
-using ContestPark.Mobile.Models.PagingModel;
-using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Threading.Tasks;
 
@@ -13,14 +11,15 @@ namespace ContestPark.Mobile.Services.Duel
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/duel";
-        private readonly IRequestProvider _requestProvider;
+        private const string ApiUrlBase = "api/v1/Duel";
+
+        private readonly INewRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public DuelService(IRequestProvider requestProvider)
+        public DuelService(INewRequestProvider requestProvider)
         {
             _requestProvider = requestProvider;
         }
@@ -32,13 +31,14 @@ namespace ContestPark.Mobile.Services.Duel
         /// <summary>
         /// Rakip beklediği düelloya bot ekler
         /// </summary>
-        /// <param name="botStandbyMode">Bekleme modunda olduğu kategori ve bahis bilgileri</param>
-        public async Task BotStandMode(BotStandbyMode botStandbyMode)
+        /// <param name="standbyModeModel">Bekleme modunda olduğu kategori ve bahis bilgileri</param>
+        public async Task AddOpponent(StandbyModeModel standbyModeModel)
         {
-            if (botStandbyMode != null && botStandbyMode.SubCategoryId > 0)
+            if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
-                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/bot");
-                await _requestProvider.PostAsync<string>(url, botStandbyMode);
+                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/AddOpponent");
+
+                await _requestProvider.PostAsync<string>(url, standbyModeModel);
             }
         }
 
@@ -51,7 +51,10 @@ namespace ContestPark.Mobile.Services.Duel
         {
             // TODO: cache
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{duelId}");
-            return await _requestProvider.GetAsync<DuelResultModel>(uri);
+
+            var result = await _requestProvider.GetAsync<DuelResultModel>(uri);
+
+            return result.Data;
         }
 
         ///// <summary>
@@ -72,13 +75,14 @@ namespace ContestPark.Mobile.Services.Duel
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>İşlem başarılı ise true değilse fale</returns>
-        public async Task<bool> DuelStartWithUserId(string userId)
-        {
-            string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/duelStart");
-            string result = await _requestProvider.PostAsync<string>(url, new { userId });
+        //////////public async Task<bool> DuelStartWithUserId(string userId)// NOTE: bu bildirimden gelen kullanıcı ile düello yapmak için şuan bildirim olmadığı için gerek yok
+        //////////{
+        //////////    string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/duelStart");
 
-            return string.IsNullOrEmpty(result);
-        }
+        //////////    var result = await _requestProvider.PostAsync<string>(url, new { userId });
+
+        //////////    return result.IsSuccess;
+        //////////}
 
         /// <summary>
         /// Bekleme modundan çık
@@ -88,7 +92,8 @@ namespace ContestPark.Mobile.Services.Duel
         {
             if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
-                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/exit");
+                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ExitStandbyMode");
+
                 await _requestProvider.PostAsync<string>(url, standbyModeModel);
             }
         }
@@ -98,10 +103,13 @@ namespace ContestPark.Mobile.Services.Duel
         /// </summary>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Profil resimleri service modeli</returns>
-        public async Task<ServiceModel<string>> RandomUserProfilePictures(PagingModel pagingModel)
+        public async Task<string[]> RandomUserProfilePictures()
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/randomprofilepictures{pagingModel.ToString()}");
-            return await _requestProvider.GetAsync<ServiceModel<string>>(uri);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, "api/v1/Account/GetRandomProfilePictures");
+
+            var result = await _requestProvider.GetAsync<string[]>(uri);
+
+            return result.Data;
         }
 
         /// <summary>
@@ -113,9 +121,10 @@ namespace ContestPark.Mobile.Services.Duel
             if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
                 string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
-                string result = await _requestProvider.PostAsync<string>(url, standbyModeModel);
 
-                return string.IsNullOrEmpty(result);
+                var result = await _requestProvider.PostAsync<string>(url, standbyModeModel);
+
+                return result.IsSuccess;
             }
 
             return false;

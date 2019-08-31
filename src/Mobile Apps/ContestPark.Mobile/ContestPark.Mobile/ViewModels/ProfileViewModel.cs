@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.Profile;
@@ -14,7 +15,6 @@ using MvvmHelpers;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -144,9 +144,12 @@ namespace ContestPark.Mobile.ViewModels
             {
                 ProfileInfo = profileInfo;
 
-                IsMeProfile = _settingsService.CurrentUser.UserName == ProfileInfo.UserId;
+                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
 
-                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+                if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
+                {
+                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+                }
             }
             else
             {
@@ -154,6 +157,8 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.UserNotFound,
                     ContestParkResources.Okay);
             }
+
+            IsBusy = false;
 
             await base.InitializeAsync();
         }
@@ -172,8 +177,8 @@ namespace ContestPark.Mobile.ViewModels
             ProfileInfo.IsBlocked = !ProfileInfo.IsBlocked;
 
             bool isSuccesss = await (ProfileInfo.IsBlocked == true ?
-                  _blockingService.UnBlock(ProfileInfo.UserId) :
-                  _blockingService.Block(ProfileInfo.UserId));
+                  _blockingService.Block(ProfileInfo.UserId) :
+                  _blockingService.UnBlock(ProfileInfo.UserId));
 
             if (!isSuccesss)
             {
@@ -218,8 +223,8 @@ namespace ContestPark.Mobile.ViewModels
 
             if (string.Equals(selected, ContestParkResources.ChooseFromLibrary) || string.Equals(selected, ContestParkResources.TakeAPhoto))
             {
-                Stream pictureStream = await _mediaService.GetPictureStream(selected);
-                if (pictureStream == null)
+                MediaModel media = await _mediaService.GetPictureStream(selected);
+                if (media == null)
                 {
                     IsBusy = false;
                     return;
@@ -227,8 +232,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 switch (pictureType)
                 {
-                    case "Profile": await _identityService.ChangeCoverPictureAsync(pictureStream); break;
-                    case "Cover": await _identityService.ChangeProfilePictureAsync(pictureStream); break;
+                    case "Profile": await _identityService.ChangeCoverPictureAsync(media); break;
+                    case "Cover": await _identityService.ChangeProfilePictureAsync(media); break;
                 }
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))
@@ -280,7 +285,7 @@ namespace ContestPark.Mobile.ViewModels
 
             PushNavigationPageAsync(nameof(FollowersView), new NavigationParameters
                 {
-                    {"UserId", userName}
+                    {"UserId", ProfileInfo.UserId}
                 });
 
             IsBusy = false;
@@ -298,7 +303,7 @@ namespace ContestPark.Mobile.ViewModels
 
             PushNavigationPageAsync(nameof(FollowingView), new NavigationParameters
                 {
-                    {"UserId", userName}
+                    {"UserId", ProfileInfo.UserId}
                 });
 
             IsBusy = false;

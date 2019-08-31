@@ -128,13 +128,13 @@ namespace ContestPark.Mobile.ViewModels
                                     MenuType = Enums.MenuTypes.Label,
                                     SingleTap = pushPageCommand
                                 },
-                                new TextMenuItem {
-                                    CommandParameter = nameof(MissionsView),
-                                    Icon = "fas-award",
-                                    Title = ContestParkResources.Missions,
-                                    MenuType = Enums.MenuTypes.Label,
-                                    SingleTap = pushPageCommand
-                                },
+                                ////new TextMenuItem {
+                                ////    CommandParameter = nameof(MissionsView),
+                                ////    Icon = "fas-award",
+                                ////    Title = ContestParkResources.Missions,
+                                ////    MenuType = Enums.MenuTypes.Label,
+                                ////    SingleTap = pushPageCommand
+                                ////},
                                 new TextMenuItem {
                                     CommandParameter = nameof(SettingsView),
                                     Icon = "fas-cogs",
@@ -168,6 +168,18 @@ namespace ContestPark.Mobile.ViewModels
                                  }
                             }
             });
+
+            _eventAggregator
+                .GetEvent<ChangeUserInfoEvent>()
+                .Subscribe((userInfo) =>
+                {
+                    if (userInfo != null)
+                    {
+                        FullName = userInfo.FullName;
+                        ProfilePicture = userInfo.ProfilePicturePath;
+                        CoverPicture = userInfo.CoverPicturePath;
+                    }
+                });
 
             return base.InitializeAsync();
         }

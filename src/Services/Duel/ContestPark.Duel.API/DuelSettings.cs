@@ -8,5 +8,6 @@
         public string FollowUrl { get; set; }
         public string SubCategoryUrl { get; set; }
         public byte BetCommission { get; set; } = 10;
+        public object BalanceUrl { get; set; }
     }
 }

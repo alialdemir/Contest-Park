@@ -39,7 +39,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            ServiceModel = await _followService.Followers(userId, ServiceModel);
+            ServiceModel = await _followService.Following(userId, ServiceModel);
 
             await base.InitializeAsync();
         }
@@ -62,8 +62,8 @@ namespace ContestPark.Mobile.ViewModels
             Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
 
             bool isSuccesss = await (followModel.IsFollowing == true ?
-                  _followService.UnFollowAsync(userId) :
-                  _followService.FollowUpAsync(userId));
+                  _followService.FollowUpAsync(userId) :
+                  _followService.UnFollowAsync(userId));
 
             if (!isSuccesss)
             {

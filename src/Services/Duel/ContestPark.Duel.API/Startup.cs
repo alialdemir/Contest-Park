@@ -8,12 +8,15 @@ using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Infrastructure.Repositories.Question;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
+using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.EventHandling;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Resources;
+using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.Follow;
 using ContestPark.Duel.API.Services.NumberFormat;
+using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
@@ -81,13 +84,25 @@ namespace ContestPark.Duel.API
 
             services.AddTransient<INumberFormatService, NumberFormatService>();
 
-            services.AddTransient<WaitingOpponentIntegrationEventHandler>();
+            services.AddTransient<IUserAnswerRepository, UserAnswerRepository>();
 
-            services.AddTransient<RemoveWaitingOpponentIntegrationEventHandler>();
+            services.AddSingleton<IScoreCalculator, ScoreCalculator>();
+
+            #region Event handler
+
+            services.AddTransient<DuelEscapeIntegrationEventHandler>();
 
             services.AddTransient<DuelFinishIntegrationEventHandler>();
 
             services.AddTransient<DuelStartIntegrationEventHandler>();
+
+            services.AddTransient<RemoveWaitingOpponentIntegrationEventHandler>();
+
+            services.AddTransient<UserAnswerIntegrationEventHandler>();
+
+            services.AddTransient<WaitingOpponentIntegrationEventHandler>();
+
+            #endregion Event handler
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -128,6 +143,8 @@ namespace ContestPark.Duel.API
 
             services.AddSingleton<IFollowService, FollowService>();
 
+            services.AddSingleton<IBalanceService, BalanceService>();
+
             services.AddSingleton<ISubCategoryService, SubCategoryService>();
         }
 
@@ -140,13 +157,17 @@ namespace ContestPark.Duel.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
-            eventBus.Subscribe<WaitingOpponentIntegrationEvent, WaitingOpponentIntegrationEventHandler>();
-
-            eventBus.Subscribe<RemoveWaitingOpponentIntegrationEvent, RemoveWaitingOpponentIntegrationEventHandler>();
+            eventBus.Subscribe<DuelEscapeIntegrationEvent, DuelEscapeIntegrationEventHandler>();
 
             eventBus.Subscribe<DuelFinishIntegrationEvent, DuelFinishIntegrationEventHandler>();
 
             eventBus.Subscribe<DuelStartIntegrationEvent, DuelStartIntegrationEventHandler>();
+
+            eventBus.Subscribe<RemoveWaitingOpponentIntegrationEvent, RemoveWaitingOpponentIntegrationEventHandler>();
+
+            eventBus.Subscribe<UserAnswerIntegrationEvent, UserAnswerIntegrationEventHandler>();
+
+            eventBus.Subscribe<WaitingOpponentIntegrationEvent, WaitingOpponentIntegrationEventHandler>();
         }
     }
 }

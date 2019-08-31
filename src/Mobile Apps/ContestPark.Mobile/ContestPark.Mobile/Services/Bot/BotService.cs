@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Duel.Quiz;
 using System;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Bot
@@ -14,15 +15,19 @@ namespace ContestPark.Mobile.Services.Bot
         /// </summary>
         /// <param name="saveAnswer">Cevap verince göndereceği method</param>
         /// <param name="isFounder">Kullanıcı oyunda kurucu mu yoksa rakip mi</param>
-        public void Init(Func<Stylish, bool, Task> saveAnswer, bool isFounder)
+        public void Init(ICommand saveAnswerCommand, string botUserId)
         {
             Random rnd = new Random();
-            Stylish ramdomStylish = (Stylish)rnd.Next(0, 3);
+            Stylish ramdomStylish = (Stylish)rnd.Next(1, 4);
             int randomSecound = rnd.Next(1, 5);
 
             Device.StartTimer(new TimeSpan(0, 0, 0, randomSecound, 0), () =>
             {
-                saveAnswer?.Invoke(ramdomStylish, !isFounder);
+                saveAnswerCommand.Execute(new SaveAnswerModel
+                {
+                    UserId = botUserId,
+                    Stylish = ramdomStylish,
+                });
 
                 return false;
             });

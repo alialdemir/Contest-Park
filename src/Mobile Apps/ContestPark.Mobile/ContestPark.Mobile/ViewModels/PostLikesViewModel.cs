@@ -19,7 +19,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IFollowService _followService;
         private readonly IPostService _postService;
-        private string postId;
+        private int postId;
 
         #endregion Private variables
 
@@ -123,7 +123,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<string>("PostId");
+            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
 
             base.OnNavigatingTo(parameters);
         }

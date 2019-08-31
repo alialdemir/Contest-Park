@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Database.Interfaces;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,14 +10,17 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail
         #region Private Variables
 
         private readonly IRepository<Tables.DuelDetail> _duelDetailrepository;
+        private readonly ILogger<DuelDetailRepository> _logger;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public DuelDetailRepository(IRepository<Tables.DuelDetail> duelDetailrepository)
+        public DuelDetailRepository(IRepository<Tables.DuelDetail> duelDetailrepository,
+                                    ILogger<DuelDetailRepository> logger)
         {
             _duelDetailrepository = duelDetailrepository;
+            _logger = logger;
         }
 
         #endregion Constructor

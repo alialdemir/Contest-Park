@@ -1,6 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Duel.Quiz;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ContestPark.Mobile.Models.Duel
 {
@@ -14,26 +14,10 @@ namespace ContestPark.Mobile.Models.Duel
 
         public QuestionTypes QuestionType { get; set; }
 
-        public int QuestionInfoId { get; set; }
-
         public List<AnswerModel> Answers { get; set; } = new List<AnswerModel>();
 
-        public List<QuestionLang> Questions { get; set; } = new List<QuestionLang>();
+        public List<QuestionLocalizedModel> Questions { get; set; } = new List<QuestionLocalizedModel>();
 
         public string NextQuestion { get; set; }
-
-        public Question GetQuestionByLanguage(Languages language)
-        {
-            return new Question
-            {
-                Link = this.Link,
-                QuestionId = this.QuestionId,
-                AnswerType = this.AnswerType,
-                QuestionType = this.QuestionType,
-                QuestionInfoId = this.QuestionInfoId,
-                Answers = this.Answers.Where(p => p.Language == language).ToList(),
-                NextQuestion = this.Questions.Where(p => p.Language == language).Select(x => x.Question).FirstOrDefault(),
-            };
-        }
     }
 }

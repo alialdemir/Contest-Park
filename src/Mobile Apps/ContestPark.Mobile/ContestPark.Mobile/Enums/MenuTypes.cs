@@ -5,5 +5,6 @@
         Label,
         Switch,
         Input,
+        Image,
     }
 }

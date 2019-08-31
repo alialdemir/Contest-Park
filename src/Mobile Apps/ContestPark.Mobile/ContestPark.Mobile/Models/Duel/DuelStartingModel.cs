@@ -91,14 +91,6 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        //  public Int16 SubCategoryId { get; set; }
-        //public string FounderConnectionId { get; set; }
-
-        //public string OpponentConnectionId { get; set; }
         public string OpponentUserId { get; set; }
-
-        //public Languages FounderLanguage { get; set; }
-
-        //public Languages OpponentLanguage { get; set; }
     }
 }

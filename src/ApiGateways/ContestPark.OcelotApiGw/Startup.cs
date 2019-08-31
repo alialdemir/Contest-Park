@@ -16,6 +16,10 @@ namespace ContestPark.OcelotApiGw
         public void ConfigureServices(IServiceCollection services) => services.AddOcelot(Configuration);
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app) => app.UseOcelot().Wait();
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseWebSockets();
+            app.UseOcelot().Wait();
+        }
     }
 }

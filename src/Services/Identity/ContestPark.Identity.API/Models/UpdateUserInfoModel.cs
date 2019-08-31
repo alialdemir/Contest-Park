@@ -6,11 +6,11 @@ namespace ContestPark.Identity.API.Models
 {
     public class UpdateUserInfoModel
     {
-        [DataType(DataType.EmailAddress, ErrorMessage = "EmailFormating")]
-        [MaxLength(255, ErrorMessage = "EmailMaxLength")]
-        [Required(ErrorMessage = "EmailRequired")]
-        [NotTurkishCharacter(ErrorMessageResourceType = typeof(IdentityResource), ErrorMessageResourceName = "NotTurkishCharacter")]
-        public string Email { get; set; }
+        //[DataType(DataType.EmailAddress, ErrorMessage = "EmailFormating")]
+        //[MaxLength(255, ErrorMessage = "EmailMaxLength")]
+        //[Required(ErrorMessage = "EmailRequired")]
+        //[NotTurkishCharacter(ErrorMessageResourceType = typeof(IdentityResource), ErrorMessageResourceName = "NotTurkishCharacter")]
+        //public string Email { get; set; }
 
         [MinLength(3, ErrorMessage = "FullNameMinLength")]
         [MaxLength(255, ErrorMessage = "FullNameMaxLength")]
@@ -22,5 +22,7 @@ namespace ContestPark.Identity.API.Models
         [Required(ErrorMessage = "UserNameReqired")]
         [NotTurkishCharacter(ErrorMessageResourceType = typeof(IdentityResource), ErrorMessageResourceName = "NotTurkishCharacter")]
         public string UserName { get; set; }
+
+        public bool? IsPrivateProfile { get; set; }
     }
 }

@@ -4,9 +4,9 @@ namespace ContestPark.Identity.API.Models
 {
     public class UserProfileModel
     {
-        public long FollowersCount { get; set; }
+        public string FollowersCount { get; set; }
 
-        public long FollowUpCount { get; set; }
+        public string FollowUpCount { get; set; }
         public string FullName { get; set; }
         private string coverPicture;
 
@@ -32,6 +32,7 @@ namespace ContestPark.Identity.API.Models
 
         public string UserId { get; set; }
 
-        public long GameCount { get; set; }
+        public string GameCount { get; set; }
+        public bool IsPrivateProfile { get; set; }
     }
 }

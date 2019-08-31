@@ -9,6 +9,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
                                                   string founderProfilePicturePath,
                                                   string founderUserId,
                                                   string founderConnectionId,
+                                                  string founderFullName,
                                                   string opponentCoverPicturePath,
                                                   string opponentFullName,
                                                   string opponentProfilePicturePath,
@@ -20,6 +21,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
             FounderProfilePicturePath = founderProfilePicturePath;
             FounderUserId = founderUserId;
             FounderConnectionId = founderConnectionId;
+            FounderFullName = founderFullName;
             OpponentCoverPicturePath = opponentCoverPicturePath;
             OpponentFullName = opponentFullName;
             OpponentProfilePicturePath = opponentProfilePicturePath;

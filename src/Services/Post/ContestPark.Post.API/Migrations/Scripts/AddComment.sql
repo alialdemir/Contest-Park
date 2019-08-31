@@ -1,5 +1,5 @@
 CREATE PROCEDURE SP_AddComment(
-    userId VARCHAR(256),
+    userId VARCHAR(255),
     postId INT,
     text VARCHAR(500)
 )

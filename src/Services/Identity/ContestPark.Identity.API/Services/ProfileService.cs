@@ -94,6 +94,8 @@ namespace ContestPark.Identity.API.Services
 
             claims.Add(new Claim("language", ((int)user.Language).ToString()));
 
+            claims.Add(new Claim("is_private_profile", user.IsPrivateProfile.ToString()));
+
             return claims;
         }
 

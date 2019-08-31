@@ -3,6 +3,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
+using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,9 +19,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         private readonly IEventBus _eventBus;
         private readonly IDuelRepository _duelRepository;
-        private readonly IDuelDetailRepository _duelDetailRepository;
+        private readonly IScoreCalculator _scoreCalculator;
         private readonly ILogger<DuelEscapeIntegrationEventHandler> _logger;
-        private const byte MAX_QUESTION_COUNT = 7;
 
         #endregion Private variables
 
@@ -28,13 +28,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         public DuelEscapeIntegrationEventHandler(IEventBus eventBus,
                                                  IDuelRepository duelRepository,
-                                                 IDuelDetailRepository duelDetailRepository,
+                                                 IScoreCalculator scoreCalculator,
                                                  ILogger<DuelEscapeIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _duelRepository = duelRepository;
-            _duelDetailRepository = duelDetailRepository;
+            _scoreCalculator = scoreCalculator;
         }
 
         #endregion Constructor
@@ -65,17 +65,17 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             string winnerUserId = isEscaperUserFounder ? duel.OpponentUserId : duel.FounderUserId;
 
-            List<Infrastructure.Tables.DuelDetail> duelDetails = ConvertToDuelDetail(@event.Questions, @event.DuelId);
+            //////////// List<Infrastructure.Tables.DuelDetail> duelDetails = ConvertToDuelDetail(@event.Questions, @event.DuelId);
 
-            bool isSuccess = await _duelDetailRepository.AddRangeAsync(duelDetails);
-            if (!isSuccess)
-            {
-                _logger.LogError($"Düello detayı ekleme işlemi başarısız oldu. Duel Id: {@event.DuelId}");
+            ////////////bool isSuccess = await _duelDetailRepository.AddRangeAsync(duelDetails);
+            ////////////if (!isSuccess)
+            ////////////{
+            ////////////    _logger.LogError($"Düello detayı ekleme işlemi başarısız oldu. Duel Id: {@event.DuelId}");
 
-                SendErrorMessage(@event.EscaperUserId, "Düellodan çıkma işleminiz başarısız oldu.");
+            ////////////    SendErrorMessage(@event.EscaperUserId, "Düellodan çıkma işleminiz başarısız oldu.");
 
-                return;
-            }
+            ////////////    return;
+            ////////////}
 
             duel.DuelType = isEscaperUserFounder ? DuelTypes.WinnerOpponent : DuelTypes.WinnerFounder;
 
@@ -112,7 +112,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             //#endregion Düello bitirme bonusları ver
 
-            isSuccess = await _duelRepository.UpdateAsync(duel);
+            bool isSuccess = await _duelRepository.UpdateAsync(duel);
             if (!isSuccess)
             {
                 _logger.LogError($"Düello detayı ekleme işlemi başarısız oldu. Duel Id: {@event.DuelId}");
@@ -126,6 +126,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             var @duelFinishEvent = new DuelFinishIntegrationEvent(@event.DuelId,
                                                                   duel.BalanceType,
                                                                   duel.Bet,
+                                                                  duel.BetCommission,
                                                                   duel.SubCategoryId,
                                                                   duel.FounderUserId,
                                                                   duel.OpponentUserId,
@@ -158,34 +159,15 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     FounderAnswer = duelQuestion.FounderAnswer,
                     FounderTime = duelQuestion.FounderTime,
-                    FounderScore = duelQuestion.CorrectAnswer == duelQuestion.FounderAnswer ? CalculatorScore(round, duelQuestion.FounderTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
+                    FounderScore = duelQuestion.CorrectAnswer == duelQuestion.FounderAnswer ? _scoreCalculator.Calculator(round, duelQuestion.FounderTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
 
-                    OpponentScore = duelQuestion.CorrectAnswer == duelQuestion.OpponentAnswer ? CalculatorScore(round, duelQuestion.OpponentTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
+                    OpponentScore = duelQuestion.CorrectAnswer == duelQuestion.OpponentAnswer ? _scoreCalculator.Calculator(round, duelQuestion.OpponentTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
                     OpponentAnswer = duelQuestion.OpponentAnswer,
                     OpponentTime = duelQuestion.OpponentTime,
                 });
             }
 
             return duelDetails;
-        }
-
-        /// <summary>
-        /// Skor hesaplama makismum
-        /// r = kaçıncı soruda olduğu
-        /// t = kaçıncı saniyede soruya cevap verdiği
-        /// formül:  (r * t) / 2
-        /// </summary>
-        /// <param name="round">Kaçıncı soruda(raund) da olduğu</param>
-        /// <param name="time">kaçıncı saniyede soruya cevap verdiği</param>
-        /// <returns>Skor</returns>
-        private byte CalculatorScore(int round, byte time)
-        {
-            if (time <= 0 || time > 10)
-                time = 1;
-
-            double score = Math.Round((double)(round * time / 2));// maksimum 140 gelir
-
-            return Convert.ToByte(score);
         }
 
         /// <summary>
