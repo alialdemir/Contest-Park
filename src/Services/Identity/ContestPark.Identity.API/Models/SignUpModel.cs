@@ -26,5 +26,7 @@ namespace ContestPark.Identity.API.Models
         public string UserName { get; set; }
 
         public string ReferenceCode { get; set; }
+
+        public string DeviceIdentifier { get; set; }
     }
 }

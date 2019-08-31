@@ -1,5 +1,4 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
-using ContestPark.Duel.API.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -159,7 +158,6 @@ namespace ContestPark.Duel.API.Migrations
                .WithColumn("DuelType")
                .AsByte()
                .NotNullable()
-               .WithDefaultValue((byte)DuelTypes.Created)
 
                .WithColumn("FounderTotalScore")
                .AsByte()
@@ -169,11 +167,11 @@ namespace ContestPark.Duel.API.Migrations
                .AsByte()
                .Nullable()
 
-               .WithColumn("FounderFinshScore")
+               .WithColumn("FounderFinishScore")
                .AsByte()
                .Nullable()
 
-               .WithColumn("OpponentFinshScore")
+               .WithColumn("OpponentFinishScore")
                .AsByte()
                .Nullable()
 

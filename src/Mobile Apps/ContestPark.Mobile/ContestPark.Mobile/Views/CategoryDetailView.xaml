@@ -101,7 +101,7 @@
                         <Grid
                             Margin="30,20,30,0"
                             HorizontalOptions="FillAndExpand"
-                            RowSpacing="0"
+                            RowSpacing="7"
                             VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />
@@ -156,7 +156,6 @@
                             <Components:LinearGradientButton
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
-                                Margin="0,0,0,7"
                                 BackgroundColor="Transparent"
                                 BorderRadius="60"
                                 Command="{Binding DuelOpenPanelCommand}"

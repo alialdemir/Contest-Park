@@ -28,9 +28,9 @@ namespace ContestPark.Duel.API.Infrastructure.Tables
 
         public byte? OpponentTotalScore { get; set; }
 
-        public byte? FounderFinshScore { get; set; }
+        public byte? FounderFinishScore { get; set; }
 
-        public byte? OpponentFinshScore { get; set; }
+        public byte? OpponentFinishScore { get; set; }
 
         public byte? OpponentVictoryScore { get; set; }
 

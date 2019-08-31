@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private string _duelId;
+        public int DuelId { get; set; }
         private DuelResultModel _duelResult;
 
         public DuelResultModel DuelResult
@@ -70,7 +70,9 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            DuelResult = await _duelService.DuelResult(_duelId);
+            DuelResult = await _duelService.DuelResult(DuelId);
+
+            ProfilePictureBorderColorCommand?.Execute(null);
 
             if (DuelResult != null && _settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
                 _audioService.Play(Audio.Fireworks, true);
@@ -253,17 +255,8 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand RevengeCommand { get { return new Command(async () => await ExecuteRevengeCommand()); } }
         public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
 
+        public ICommand ProfilePictureBorderColorCommand { get; set; }
+
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatingTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("DuelId")) _duelId = parameters.GetValue<string>("DuelId");
-
-            base.OnNavigatingTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.Services.Duel
         /// </summary>
         /// <param name="duelId">Düello id</param>
         /// <returns>Düello sonucu</returns>
-        public async Task<DuelResultModel> DuelResult(string duelId)
+        public async Task<DuelResultModel> DuelResult(int duelId)
         {
             // TODO: cache
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{duelId}");

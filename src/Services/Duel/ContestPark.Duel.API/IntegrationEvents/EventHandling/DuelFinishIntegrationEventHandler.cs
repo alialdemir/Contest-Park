@@ -22,6 +22,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IScoreRankingRepository _scoreRankingRepository;
         private readonly ILogger<DuelFinishIntegrationEventHandler> _logger;
         private readonly DuelSettings _duelSettings;
+        private readonly byte finshBonus = 40;
+        private readonly byte victoryBonus = 70;// 140
 
         #endregion Private variables
 
@@ -74,11 +76,51 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
             }
 
-            AddPost(@event);
+            #region Kazanma bonusu hesapla
 
-            // TODO: update duel total score alanları
+            byte founderVictoryScore = 0;
+            byte opponentVictoryScore = 0;
 
-            // TODO kazanma bonusu vs ekle
+            DuelTypes duelType;
+            if (@event.FounderScore > @event.OpponentScore) // Kurucu kazandıysa rakibe +70 puan
+            {
+                founderVictoryScore = victoryBonus;
+                duelType = DuelTypes.WinnerFounder;
+            }
+            else if (@event.OpponentScore > @event.FounderScore) // Rakip kazandıysa rakibe +70 puan
+            {
+                opponentVictoryScore = victoryBonus;
+                duelType = DuelTypes.WinnerOpponent;
+            }
+            else
+            {
+                founderVictoryScore = opponentVictoryScore = (byte)(victoryBonus / 2);
+                duelType = DuelTypes.Draw;
+            }
+
+            #endregion Kazanma bonusu hesapla
+
+            byte founderFinishedTheGameScore = @event.IsFounderFinishedTheGame ? finshBonus : (byte)0;
+            byte opponentFinishedTheGameScore = @event.IsOpponentFinishedTheGame ? finshBonus : (byte)0;
+
+            bool isSuccessDuelScoreUpdate = await _duelRepository.UpdateDuelScores(@event.DuelId,
+                                                                                   duelType,
+                                                                                   @event.FounderScore,
+                                                                                   @event.OpponentScore,
+                                                                                   founderFinishedTheGameScore,
+                                                                                   opponentFinishedTheGameScore,
+                                                                                   founderVictoryScore,
+                                                                                   opponentVictoryScore);
+            if (!isSuccessDuelScoreUpdate)
+            {
+                _logger.LogError($@"Duello bitirme skorları tablosya yazılamadı. Duel Id: {@event.DuelId}
+                      FounderScore: {@event.FounderScore}
+                      OpponentScore: {@event.OpponentScore}
+                      founder finshBonus: {finshBonus}
+                      opponent finishScore: {finshBonus}
+                      founder victory score: {founderVictoryScore}
+                      opponent victory score: {opponentVictoryScore}");
+            }
 
             #region Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
 
@@ -110,6 +152,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
 
             #endregion Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
+
+            AddPost(@event);
         }
 
         /// <summary>
@@ -132,17 +176,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="event">Düello bilgileri</param>
         private void AddPost(DuelFinishIntegrationEvent @event)
         {
-            var @postEvent = new NewPostAddedIntegrationEvent(PostTypes.Contest,
-                                                              @event.FounderUserId,
-                                                              @event.Bet,
-                                                              @event.OpponentUserId,
-                                                              @event.OpponentScore,
-                                                              @event.DuelId,
-                                                              @event.FounderUserId,
-                                                              @event.FounderScore,
-                                                              @event.SubCategoryId);
+            Task.Factory.StartNew(() =>
+            {
+                var @postEvent = new NewPostAddedIntegrationEvent(PostTypes.Contest,
+                                                                  @event.FounderUserId,
+                                                                  @event.Bet,
+                                                                  @event.OpponentUserId,
+                                                                  @event.OpponentScore,
+                                                                  @event.DuelId,
+                                                                  @event.FounderUserId,
+                                                                  @event.FounderScore,
+                                                                  @event.SubCategoryId);
 
-            _eventBus.Publish(postEvent);
+                _eventBus.Publish(postEvent);
+            });
         }
 
         /// <summary>
@@ -156,9 +203,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (bet <= 0)
                 return;
 
-            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, balanceHistoryType);
+            Task.Factory.StartNew(() =>
+            {
+                var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, balanceHistoryType);
 
-            _eventBus.Publish(@event);
+                _eventBus.Publish(@event);
+            });
         }
 
         #endregion Methods

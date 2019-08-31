@@ -88,7 +88,7 @@ namespace ContestPark.Identity.API.Data
                 FullName = "Ali Aldemir",
                 UserName = "witcherfearless",
                 Email = "aldemirali93@gmail.com",
-                PhoneNumber = "1234567890",
+                PhoneNumber = "5444261154",
                 NormalizedEmail = "ALDEMIRALI93@GMAIL.COM",
                 NormalizedUserName = "WITCHERFEARLESS",
                 LanguageCode = "tr_TR",
@@ -102,7 +102,7 @@ namespace ContestPark.Identity.API.Data
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
 
-            witcherUser.PasswordHash = _passwordHasher.HashPassword(witcherUser, "19931993");
+            witcherUser.PasswordHash = _passwordHasher.HashPassword(witcherUser, "5444261154");
 
             var demoUser =
             new ApplicationUser()
@@ -111,7 +111,7 @@ namespace ContestPark.Identity.API.Data
                 ProfilePicturePath = "http://i.pravatar.cc/150?u=demo",
                 FullName = "Demo",
                 UserName = "demo",
-                PhoneNumber = "1234567890",
+                PhoneNumber = "0000000000",
                 NormalizedUserName = "DEMO",
                 Email = "demo@demo.com",
                 NormalizedEmail = "DEMO@DEMO.COM",
@@ -126,7 +126,7 @@ namespace ContestPark.Identity.API.Data
                 SecurityStamp = Guid.NewGuid().ToString("D"),
             };
 
-            demoUser.PasswordHash = _passwordHasher.HashPassword(demoUser, "demodemo");
+            demoUser.PasswordHash = _passwordHasher.HashPassword(demoUser, "5444261154");
 
             var botUser =
             new ApplicationUser()

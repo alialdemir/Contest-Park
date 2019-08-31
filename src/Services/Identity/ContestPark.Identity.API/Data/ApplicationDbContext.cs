@@ -15,6 +15,8 @@ namespace ContestPark.Identity.API.Data
         public DbSet<ReferenceCode> ReferenceCodes { get; set; }
         public DbSet<Reference> References { get; set; }
 
+        public DbSet<DeviceInfo> DeviceInfos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Reference>().Property(x => x.Amount).HasColumnType("decimal(13,2)");

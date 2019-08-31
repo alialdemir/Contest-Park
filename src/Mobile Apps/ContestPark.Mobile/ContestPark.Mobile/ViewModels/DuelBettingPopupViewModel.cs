@@ -47,7 +47,6 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private BalanceModel _balance = new BalanceModel();
 
-
         private BalanceTypes balanceType = BalanceTypes.Gold;
 
         public BalanceTypes BalanceType
@@ -60,6 +59,7 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => BalanceType);
             }
         }
+
         public ObservableRangeCollection<BetModel> Bets { get; set; } = new ObservableRangeCollection<BetModel>();
         public string OpponentUserId { get; set; }
 
@@ -72,7 +72,6 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => SelectedIndex);
             }
         }
-
 
         public SelectedSubCategoryModel SelectedSubCategory { get; set; } = new SelectedSubCategoryModel();
 
@@ -108,8 +107,6 @@ namespace ContestPark.Mobile.ViewModels
 
         private void InitBets()
         {
-
-
             Bets.Clear();
 
             Bets.AddRange(
@@ -208,14 +205,14 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if (bet <= Balance.Gold)
+            if ((BalanceType == BalanceTypes.Gold && bet <= Balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= Balance.Money))
             {
                 await PushPopupPageAsync(new DuelStartingPopupView()
                 {
                     SelectedSubCategory = SelectedSubCategory,
                     Bet = bet,
                     OpponentUserId = OpponentUserId,
-                    BalanceType = Enums.BalanceTypes.Gold,// şimdilik gold verdim
+                    BalanceType = BalanceType,
                     StandbyMode = string.IsNullOrEmpty(OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
                 });
 
@@ -223,10 +220,15 @@ namespace ContestPark.Mobile.ViewModels
             }
             else
             {
+                string message =
+              BalanceType == BalanceTypes.Gold ?
+              ContestParkResources.YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore :
+              ContestParkResources.YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore;
+
                 await DisplayAlertAsync("",
-                   ContestParkResources.YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore,
-                   ContestParkResources.Okay,
-                   ContestParkResources.Cancel);
+                                        message,
+                                        ContestParkResources.Okay,
+                                        ContestParkResources.Cancel);
             }
 
             IsBusy = false;
@@ -239,8 +241,6 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
 
         public ICommand DuelStartCommand => new Command<decimal>(async (bet) => await ExecuteDuelStartCommandAsync(bet));
-
-
 
         private ICommand _changeBalanceTypeCommand;
 
@@ -262,7 +262,6 @@ namespace ContestPark.Mobile.ViewModels
                 }));
             }
         }
-
 
         #endregion Commands
     }

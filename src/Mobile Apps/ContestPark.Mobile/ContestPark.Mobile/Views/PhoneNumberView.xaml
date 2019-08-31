@@ -3,6 +3,7 @@
     x:Class="ContestPark.Mobile.Views.PhoneNumberView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
@@ -10,9 +11,12 @@
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource White}">
     <ContentPage.Content>
-
         <ScrollView>
-            <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid
+                Margin="20,0,20,0"
+                HorizontalOptions="Center"
+                RowSpacing="15"
+                VerticalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="154" />
                     <RowDefinition Height="41" />
@@ -22,57 +26,93 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="310" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Image
                     Grid.Row="0"
-                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     Source="logo.png" />
 
                 <Label
                     Grid.Row="1"
-                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     FontFamily="{DynamicResource SofiaProMedium}"
                     FontSize="31"
                     HorizontalTextAlignment="Center"
                     Text="ContestPark"
                     TextColor="#535353" />
 
-                <AbsoluteLayout Grid.Row="2" Grid.Column="0">
-                    <custom:CustomEntry
-                        BackgroundColor="Transparent"
-                        BorderColor="#666372"
-                        CornerRadius="132"
-                        FontFamily="{DynamicResource SofiaProMedium}"
-                        FontSize="16"
-                        HeightRequest="40"
-                        HorizontalOptions="Fill"
-                        Keyboard="Numeric"
-                        MaxLength="10"
-                        Placeholder="{i18n:Translate PhoneNumber}"
-                        PlaceholderColor="#484848"
-                        TextColor="#484848"
-                        Visual="Material"
-                        WidthRequest="310" />
+                <Frame
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Padding="0"
+                    BorderColor="#666372"
+                    CornerRadius="50"
+                    WidthRequest="80">
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Center">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectCountryCommand}" />
+                        </StackLayout.GestureRecognizers>
 
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="26.52"
-                        MinimumHeightRequest="26.52"
-                        MinimumWidthRequest="26.52"
-                        Source="verify.svg"
-                        TranslationX="270"
-                        TranslationY="7"
-                        VerticalOptions="Center"
-                        WidthRequest="26.52" />
-                </AbsoluteLayout>
+                        <Image
+                            Margin="5,0,0,0"
+                            HeightRequest="24"
+                            Source="{Binding Country.Flag}"
+                            WidthRequest="24" />
+
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="Center"
+                            Text="{Binding Country.PhoneCode}"
+                            TextColor="{StaticResource Black}"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <custom:CustomEntry
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    BorderColor="#666372"
+                    CornerRadius="132"
+                    FontFamily="{DynamicResource SofiaProMedium}"
+                    FontSize="16"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Numeric"
+                    Placeholder="{i18n:Translate PhoneNumber}"
+                    PlaceholderColor="#484848"
+                    Text="{Binding PhoneNumber}"
+                    TextColor="#484848"
+                    Visual="Material">
+                    <Entry.Behaviors>
+                        <behavior:MaskedBehavior Mask="(XXX) XXX-XX-XX" />
+                    </Entry.Behaviors>
+                </custom:CustomEntry>
+
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="2"
+                    HeightRequest="26.52"
+                    HorizontalOptions="End"
+                    MinimumHeightRequest="26.52"
+                    MinimumWidthRequest="26.52"
+                    Source="verify.svg"
+                    TranslationX="240"
+                    VerticalOptions="Center"
+                    WidthRequest="26.52" />
 
                 <custom:LinearGradientButton
                     Grid.Row="3"
-                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     BackgroundColor="Transparent"
                     BorderRadius="124"
-                    Command="{Binding SignInCommand}"
+                    Command="{Binding SendSmsCommand}"
                     EndColor="#A573FF"
                     StartColor="#645AFF"
                     Style="{DynamicResource ButtonStyle}"
@@ -82,7 +122,7 @@
 
                 <custom:HtmlLabel
                     Grid.Row="4"
-                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     FontFamily="{DynamicResource SofiaProMedium}"
                     Text="When you sig up, you approve the Privacy Policy,  Terms of use and Competition Rules" />
             </Grid>

@@ -27,6 +27,7 @@ namespace ContestPark.Mobile.Services.Settings
 
         private readonly string SignalRConnectionIdDefault = string.Empty;
         private readonly string TokenTypeDefault = "Bearer";
+        private readonly byte SignUpCountDefault = 0;
 
         #endregion Setting Constants
 
@@ -53,6 +54,15 @@ namespace ContestPark.Mobile.Services.Settings
         public string AuthAccessToken
         {
             get => GetValueOrDefault(AccessTokenDefault);
+            set => AddOrUpdateValue(value);
+        }
+
+        /// <summary>
+        /// Üye olma sayısı
+        /// </summary>
+        public byte SignUpCount
+        {
+            get => GetValueOrDefault(SignUpCountDefault);
             set => AddOrUpdateValue(value);
         }
 
@@ -108,7 +118,7 @@ namespace ContestPark.Mobile.Services.Settings
 
         public string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 
-        public int GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
+        public byte GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 
         #endregion Public Methods
 

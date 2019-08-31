@@ -459,7 +459,10 @@ namespace ContestPark.Mobile.ViewModels
 
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await PushPopupPageAsync(new DuelResultPopupView());
+                await PushPopupPageAsync(new DuelResultPopupView()
+                {
+                    DuelId = DuelScreen.DuelId
+                });
 
                 await RemoveFirstPopupAsync();
             });

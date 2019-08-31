@@ -141,6 +141,9 @@
   <data name="FullNameReqired" xml:space="preserve">
     <value>Full name required field.</value>
   </data>
+  <data name="GlobalErrorMessage" xml:space="preserve">
+    <value>Sorry, an unexpected error occurred. Please try again</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>

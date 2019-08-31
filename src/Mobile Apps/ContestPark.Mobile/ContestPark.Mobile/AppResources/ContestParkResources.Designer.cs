@@ -422,6 +422,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sms ile gelen kodu giriniz.
+        /// </summary>
+        public static string EnterTheCodeFromSms {
+            get {
+                return ResourceManager.GetString("EnterTheCodeFromSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GİRİŞ ÜCRETİ.
         /// </summary>
         public static string EntryFee {
@@ -656,6 +665,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geçersiz telefon numarası..
+        /// </summary>
+        public static string InvalidPhoneNumber {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geçersiz ürün id..
         /// </summary>
         public static string InvalidProductId {
@@ -872,6 +890,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitti.
+        /// </summary>
+        public static string Over {
+            get {
+                return ResourceManager.GetString("Over", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Şifre.
         /// </summary>
         public static string Password {
@@ -926,11 +953,20 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cep Telefonu.
+        ///   Looks up a localized string similar to Telefon numarası.
         /// </summary>
         public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telefon numarası alanını doldurmak zorunludur..
+        /// </summary>
+        public static string PhoneNumberRequiredFields {
+            get {
+                return ResourceManager.GetString("PhoneNumberRequiredFields", resourceCulture);
             }
         }
         
@@ -1070,6 +1106,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Devam Et.
+        /// </summary>
+        public static string RightOn {
+            get {
+                return ResourceManager.GetString("RightOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kaydet.
         /// </summary>
         public static string Save {
@@ -1201,6 +1246,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string SignUp {
             get {
                 return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sms kodunu giriniz.
+        /// </summary>
+        public static string SmsCode {
+            get {
+                return ResourceManager.GetString("SmsCode", resourceCulture);
             }
         }
         
@@ -1457,6 +1511,24 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to İnsanlar sana ne diye hitap etsin?.
+        /// </summary>
+        public static string WhatShouldWeopleCallYou {
+            get {
+                return ResourceManager.GetString("WhatShouldWeopleCallYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı adınızı ne olsun?.
+        /// </summary>
+        public static string WhatYouGetYourUsername {
+            get {
+                return ResourceManager.GetString("WhatYouGetYourUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kazanan.
         /// </summary>
         public static string Winning {
@@ -1489,6 +1561,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory {
             get {
                 return ResourceManager.GetString("YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oynamak için yeterli bakiyeniz yok. Contest store üzerinden bakiye yüklemelisiniz..
+        /// </summary>
+        public static string YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore {
+            get {
+                return ResourceManager.GetString("YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore", resourceCulture);
             }
         }
         

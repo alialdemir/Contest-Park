@@ -38,10 +38,10 @@
             SelectedIndex="{Binding SelectedIndex}">
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
-                    <RelativeLayout>
+                    <Grid>
                         <Components:LinearGradientButton
-                            x:Name="redBox"
                             Margin="35,0,35,0"
+                            Padding="0,20,0,0"
                             BackgroundColor="Transparent"
                             BorderRadius="48"
                             Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
@@ -52,17 +52,11 @@
                             FontSize="23"
                             HeightRequest="93"
                             HorizontalOptions="FillAndExpand"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Width,
-                                                                                  Factor=1,
-                                                                                  Constant=0}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                              Property=Height,
-                                                                              Factor=.80,
-                                                                              Constant=0}"
                             StartColor="#2CCCD8"
                             Text="{i18n:Translate Play}"
                             TextColor="{StaticResource White}"
+                            TranslationY="-30"
+                            VerticalOptions="End"
                             Visual="Material"
                             WidthRequest="345" />
 
@@ -76,16 +70,9 @@
                             HeightRequest="451"
                             HorizontalOptions="CenterAndExpand"
                             IsClippedToBounds="True"
-                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                   Property=Height,
-                                                                                   Factor=1,
-                                                                                   Constant=0}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Width,
-                                                                                  Factor=1,
-                                                                                  Constant=0}"
+                            TranslationY="-30"
                             VerticalOptions="Center"
-                            WidthRequest="350">
+                            WidthRequest="345">
 
                             <Grid
                                 Grid.Row="0"
@@ -221,7 +208,7 @@
                                     VerticalTextAlignment="Start" />
                             </Grid>
                         </yummy:PancakeView>
-                    </RelativeLayout>
+                    </Grid>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>
         </cards:CoverFlowView>

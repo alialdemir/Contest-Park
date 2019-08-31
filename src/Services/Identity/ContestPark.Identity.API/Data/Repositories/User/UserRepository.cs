@@ -27,6 +27,18 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         #region Methods
 
         /// <summary>
+        /// Telefon numarasına ait kullanıcı adı
+        /// </summary>
+        /// <param name="phoneNumber">Telefon numarası</param>
+        /// <returns>Kullanıcı adı</returns>
+        public string GetUserNameByPhoneNumber(string phoneNumber)
+        {
+            return _applicationDbContext
+                .Users
+                .FirstOrDefault(x => x.PhoneNumber == phoneNumber)?.UserName;
+        }
+
+        /// <summary>
         /// Random bot kullanıcı profil resmi  verir
         /// </summary>
         /// <returns>Kullanıcı profil resimleri</returns>

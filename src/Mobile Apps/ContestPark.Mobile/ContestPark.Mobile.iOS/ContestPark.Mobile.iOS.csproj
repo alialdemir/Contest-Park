@@ -95,6 +95,7 @@
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
+    <Compile Include="Dependencies\UniqueIdIos.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

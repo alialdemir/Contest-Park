@@ -5,6 +5,7 @@ using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.Identity.API.Data;
+using ContestPark.Identity.API.Data.Repositories.DeviceInfo;
 using ContestPark.Identity.API.Data.Repositories.Reference;
 using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
@@ -109,9 +110,14 @@ namespace ContestPark.Identity.API
 
             services.AddTransient<IBlobStorageService, BlobStorageService>();
 
+            services.AddTransient<IDeviceInfoRepository, DeviceInfoRepository>();
+
             services.AddSingleton<IRequestProvider, RequestProvider>();
+
             services.AddTransient<IBlockService, BlockService>();
+
             services.AddTransient<IFollowService, FollowService>();
+
             services.AddSingleton<INumberFormatService, NumberFormatService>();
 
             #endregion AddTransient

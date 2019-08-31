@@ -295,6 +295,21 @@ namespace ContestPark.Identity.API.Migrations
                 .IsConcurrencyToken();
 
                 b.Property<string>("Code");
+
+                b.ToTable("ReferenceCode");
+
+            });
+
+
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.DeviceInfo", b =>
+            {
+                b.Property<string>("DeviceInfoId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("DeviceIdentifier");
+
+                b.ToTable("DeviceInfos");
+
             });
 #pragma warning restore 612, 618
         }

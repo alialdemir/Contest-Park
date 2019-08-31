@@ -26,7 +26,6 @@ using ContestPark.Mobile.Views;
 using Plugin.Iconize;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Configs
 {
@@ -58,21 +57,21 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
 
+            containerRegistry.RegisterForNavigation<AppShell, AppShellViewModel>();
+
+            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
+
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 
             containerRegistry.RegisterForNavigation<CategoriesView, CategoriesViewModel>();
 
-            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
-
-            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(NavigationPage));
-
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
-
-            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
 
             containerRegistry.RegisterForNavigation<ChatDetailView, ChatDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<ChatView, ChatViewModel>();
+
+            containerRegistry.RegisterForNavigation<CheckSmsView, CheckSmsViewModel>();
 
             containerRegistry.RegisterForNavigation<ContestStoreView, ContestStoreViewModel>();
 
@@ -96,10 +95,6 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<MainView, MainPageViewModel>();
 
-            containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
-
-            containerRegistry.RegisterForNavigation<PostDetailView, PostDetailViewModel>();
-
             containerRegistry.RegisterForNavigation<MasterDetailView, MasterDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<MasterView, MasterViewModel>();
@@ -107,6 +102,14 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<MissionsView, MissionsViewModel>();
 
             containerRegistry.RegisterForNavigation<NotificationsView, NotificationsViewModel>();
+
+            containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
+
+            containerRegistry.RegisterForNavigation<PhotoModalView, PhotoModalViewModel>();
+
+            containerRegistry.RegisterForNavigation<PostDetailView, PostDetailViewModel>();
+
+            containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
 
             containerRegistry.RegisterForNavigation<ProfileView, ProfileViewModel>();
 
@@ -116,17 +119,21 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<RankingView, RankingViewModel>();
 
+            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
+
+            containerRegistry.RegisterForNavigation<SelectCountryView, SelectCountryViewModel>();
+
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
 
+            containerRegistry.RegisterForNavigation<SignUpFullNameView, SignUpFullNameViewModel>();
+
+            containerRegistry.RegisterForNavigation<SignUpUserNameView, SignUpUserNameViewModel>();
+
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
 
             containerRegistry.RegisterForNavigation<TabView, TabViewModel>();
-
-            containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
-
-            containerRegistry.RegisterForNavigation<AppShell, PhoneNumberViewModel>();
 
             containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
         }
@@ -172,8 +179,6 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
-
-                containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             }
             else
             {
@@ -208,9 +213,10 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
-
-                containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             }
+
+            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 
             containerRegistry.RegisterSingleton<IGameService, GameService>();

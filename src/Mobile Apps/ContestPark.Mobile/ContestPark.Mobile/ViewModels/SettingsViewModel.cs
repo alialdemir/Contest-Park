@@ -185,7 +185,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             await _identityService.Unauthorized();
 
-            await PushNavigationPageAsync($"app:///{nameof(SignInView)}?appModuleRefresh=OnInitialized");
+            await PushNavigationPageAsync($"app:///{nameof(PhoneNumberView)}?appModuleRefresh=OnInitialized");
         }
 
         #endregion Methods

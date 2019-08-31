@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
+using ContestPark.Identity.API.Data.Repositories.DeviceInfo;
 using ContestPark.Identity.API.Data.Repositories.Reference;
 using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
@@ -38,6 +39,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         private readonly IReferenceRepository _referenceRepository;
         private readonly IdentitySettings _identitySettings;
         private readonly IFollowService _followService;
+        private readonly IDeviceInfoRepository _deviceInfoRepository;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
         private readonly IBlobStorageService _blobStorageService;
@@ -54,6 +56,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                  IReferenceRepository referenceRepository,
                                  IOptions<IdentitySettings> settings,
                                  IFollowService followService,
+                                 IDeviceInfoRepository deviceInfoRepository,
                                  IUserRepository userRepository,
                                  IIdentityIntegrationEventService identityIntegrationEventService,
                                  IBlobStorageService blobStorageService) : base(logger)
@@ -66,6 +69,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             _referenceRepository = referenceRepository;
             _identitySettings = settings.Value;
             _followService = followService;
+            _deviceInfoRepository = deviceInfoRepository;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
             _blobStorageService = blobStorageService;
@@ -456,6 +460,25 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Telefon numarasına ait kullanıcı adını verir
+        /// </summary>
+        /// <param name="phoneNumber">Telefon numarası</param>
+        /// <returns>Kullanıcı adı</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetUserName")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetUserNameByPhoneNumber([FromQuery]string phoneNumber)
+        {
+            string userName = _userRepository.GetUserNameByPhoneNumber(phoneNumber);
+            if (!string.IsNullOrEmpty(userName))
+                return Ok(new { userName });
+
+            return NotFound();
+        }
+
+        /// <summary>
         /// Üye ol
         /// </summary>
         /// <param name="signUpModel">Üye olunacak model</param>
@@ -469,11 +492,17 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (signUpModel == null)
                 return BadRequest();
 
+            if (string.IsNullOrEmpty(signUpModel.DeviceIdentifier) || _deviceInfoRepository.CheckDeviceIdentifier(signUpModel.DeviceIdentifier))
+            {
+                return BadRequest(IdentityResource.GlobalErrorMessage);
+            }
+
             ApplicationUser user = new ApplicationUser
             {
                 UserName = signUpModel.UserName.ToLower(),
                 FullName = signUpModel.FullName.ToLowerInvariant(),
                 LanguageCode = signUpModel.LanguageCode.ToLower(),
+                PhoneNumber = signUpModel.Password// Sms ile login olma sisteminde kullanıcıdan şifre almamak için şifresini telefon numarası yaptık
             };
 
             var result = await _userManager.CreateAsync(user, signUpModel.Password);
@@ -489,26 +518,35 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                                                                          New User Id: {user.Id}
                                                                                          GiftMoneyAmount: {_identitySettings.GiftMoneyAmount}");
 
-                ReferenceModel referenceModel = _referenceRepository.IsCodeActive(signUpModel.ReferenceCode);
-                if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
+                string referenceUserId = _userRepository.GetUserIdByUserName(signUpModel.ReferenceCode);
+                if (!string.IsNullOrEmpty(referenceUserId))// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
                 {
-                    PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, user.Id);
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, user.Id);
 
-                    _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, null, user.Id);
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
+
+                    _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, referenceUserId, user.Id);
                 }
-                else// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
+                else
                 {
-                    string referenceUserId = _userRepository.GetUserIdByUserName(signUpModel.ReferenceCode);
-
-                    if (!string.IsNullOrEmpty(referenceUserId))
+                    ReferenceModel referenceModel = _referenceRepository.IsCodeActive(signUpModel.ReferenceCode);
+                    if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
                     {
-                        PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, user.Id);
+                        PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, user.Id);
 
-                        PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
-
-                        _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, referenceUserId, user.Id);
+                        _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, null, user.Id);
                     }
                 }
+            }
+
+            try
+            {
+                // Bu kısım üye olmayı etkilemesin diye try-catch bloklarına aldım
+                _deviceInfoRepository.Insert(signUpModel.DeviceIdentifier);
+            }
+            catch (System.Exception ex)
+            {
+                Logger.LogError($"Device info kayıt edilirken hata oluştu. device info id: {signUpModel.DeviceIdentifier}");
             }
 
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");

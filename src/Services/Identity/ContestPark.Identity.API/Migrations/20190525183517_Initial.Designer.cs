@@ -234,6 +234,17 @@ namespace ContestPark.Identity.API.Migrations
                 b.Property<string>("Code");
             });
 
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.DeviceInfo", b =>
+            {
+                b.Property<int>("DeviceInfoId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("DeviceIdentifier");
+
+                b.ToTable("DeviceInfos");
+
+            });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")

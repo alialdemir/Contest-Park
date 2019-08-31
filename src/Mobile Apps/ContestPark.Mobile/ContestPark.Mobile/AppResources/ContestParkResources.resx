@@ -594,7 +594,7 @@
     <value>Geçersiz kod girdiniz.</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
-    <value>Cep Telefonu</value>
+    <value>Telefon numarası</value>
   </data>
   <data name="Gold" xml:space="preserve">
     <value>Altın</value>
@@ -632,5 +632,32 @@
   </data>
   <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
     <value>Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir.</value>
+  </data>
+  <data name="RightOn" xml:space="preserve">
+    <value>Devam Et</value>
+  </data>
+  <data name="EnterTheCodeFromSms" xml:space="preserve">
+    <value>Sms ile gelen kodu giriniz</value>
+  </data>
+  <data name="SmsCode" xml:space="preserve">
+    <value>Sms kodunu giriniz</value>
+  </data>
+  <data name="WhatShouldWeopleCallYou" xml:space="preserve">
+    <value>İnsanlar sana ne diye hitap etsin?</value>
+  </data>
+  <data name="WhatYouGetYourUsername" xml:space="preserve">
+    <value>Kullanıcı adınızı ne olsun?</value>
+  </data>
+  <data name="PhoneNumberRequiredFields" xml:space="preserve">
+    <value>Telefon numarası alanını doldurmak zorunludur.</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Geçersiz telefon numarası.</value>
+  </data>
+  <data name="Over" xml:space="preserve">
+    <value>Bitti</value>
+  </data>
+  <data name="YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore" xml:space="preserve">
+    <value>Oynamak için yeterli bakiyeniz yok. Contest store üzerinden bakiye yüklemelisiniz.</value>
   </data>
 </root>

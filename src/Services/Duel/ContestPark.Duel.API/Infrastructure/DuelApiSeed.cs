@@ -388,8 +388,8 @@ namespace ContestPark.Duel.API.Infrastructure
                           SubCategoryId = 1,
                           OpponentVictoryScore = 0,
                           FounderVictoryScore = 70,
-                          OpponentFinshScore = 40,
-                          FounderFinshScore = 40,
+                          OpponentFinishScore = 40,
+                          FounderFinishScore = 40,
                      },
                      new Tables.Duel
                      {

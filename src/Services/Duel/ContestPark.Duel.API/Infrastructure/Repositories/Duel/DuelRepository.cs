@@ -51,13 +51,40 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         }
 
         /// <summary>
-        /// Düello güncelle
+        /// Duello sonunda skorları duel tablosuna kayıt eder
         /// </summary>
-        /// <param name="duel">Düello bilgileri</param>
+        /// <param name="duelId">Duello id</param>
+        /// <param name="founderTotalScore">Kurucu total skor</param>
+        /// <param name="opponentTotalScore">Rakip total skor</param>
+        /// <param name="founderFinishScore">Kurucu bitirme bonusu</param>
+        /// <param name="opponentFinishScore">Rakip bitirme bonusu</param>
+        /// <param name="founderVictoryScore">Kurucu kazanma bonusu</param>
+        /// <param name="opponentVictoryScore">Rakip kazanma bonusu</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public Task<bool> UpdateAsync(Tables.Duel duel)
+        public Task<bool> UpdateDuelScores(int duelId, DuelTypes duelType, byte founderTotalScore, byte opponentTotalScore, byte founderFinishScore, byte opponentFinishScore, byte founderVictoryScore, byte opponentVictoryScore)
         {
-            return _duelRepository.UpdateAsync(duel);
+            string sql = @"UPDATE Duels SET
+                                    FounderTotalScore = @founderTotalScore,
+                                    OpponentTotalScore = @opponentTotalScore,
+                                    FounderFinishScore = @founderFinishScore,
+                                    OpponentFinishScore = @opponentFinishScore,
+                                    FounderVictoryScore = @founderVictoryScore,
+                                    OpponentVictoryScore = @opponentVictoryScore,
+                                    DuelType = @duelType,
+                                    ModifiedDate = CURRENT_TIMESTAMP()
+                                    WHERE DuelId = @duelId";
+
+            return _duelRepository.ExecuteAsync(sql, new
+            {
+                founderTotalScore,
+                opponentTotalScore,
+                founderFinishScore,
+                opponentFinishScore,
+                founderVictoryScore,
+                opponentVictoryScore,
+                duelId,
+                duelType
+            }, System.Data.CommandType.Text);
         }
 
         /// <summary>

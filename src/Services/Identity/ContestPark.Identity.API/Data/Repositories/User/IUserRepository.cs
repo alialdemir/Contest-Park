@@ -23,5 +23,6 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         string GetRandomBotUserId();
 
         string GetUserIdByUserName(string userName);
+        string GetUserNameByPhoneNumber(string phoneNumber);
     }
 }

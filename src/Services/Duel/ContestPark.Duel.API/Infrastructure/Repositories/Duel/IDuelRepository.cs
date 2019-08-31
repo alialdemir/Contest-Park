@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Models;
+﻿using ContestPark.Duel.API.Enums;
+using ContestPark.Duel.API.Models;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
@@ -15,6 +16,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
 
         bool IsDuelFinish(int duelId);
 
-        Task<bool> UpdateAsync(Tables.Duel duel);
+        Task<bool> UpdateDuelScores(int duelId, DuelTypes duelType, byte founderTotalScore, byte opponentTotalScore, byte founderFinishScore, byte opponentFinishScore, byte founderVictoryScore, byte opponentVictoryScore);
     }
 }

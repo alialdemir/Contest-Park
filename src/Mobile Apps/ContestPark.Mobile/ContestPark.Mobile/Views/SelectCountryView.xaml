@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="ContestPark.Mobile.Views.SelectCountryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{StaticResource White}">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="700"
+            EasingIn="SpringIn"
+            PositionIn="Right"
+            PositionOut="Left"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <ListView
+            GroupDisplayBinding="{Binding Key}"
+            GroupShortNameBinding="{Binding Key}"
+            IsGroupingEnabled="true"
+            ItemSelected="ListView_ItemSelected"
+            ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="10,0,10,0" VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="80" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                Grid.Column="0"
+                                Aspect="AspectFill"
+                                HeightRequest="24"
+                                Source="{Binding Flag}"
+                                WidthRequest="24" />
+
+                            <Label
+                                Grid.Column="1"
+                                FontSize="Medium"
+                                Text="{Binding Country}"
+                                TextColor="{StaticResource Black}" />
+                            <Label
+                                Grid.Column="2"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding PhoneCode}"
+                                TextColor="{StaticResource Black}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </pages:PopupPage.Content>
+</pages:PopupPage>
