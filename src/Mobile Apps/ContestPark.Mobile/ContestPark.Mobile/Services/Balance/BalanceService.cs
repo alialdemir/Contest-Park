@@ -35,7 +35,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// Giriiş toplam altın miktarını verir
         /// </summary>
         /// <returns>Toplam altın miktarı</returns>
-        public async Task<BalanceModel> GetTotalCpByUserIdAsync()
+        public async Task<BalanceModel> GetBalanceAsync()
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// <returns>Altın miktarı eklendi ise true eklenemedi ise false döner</returns>
         public async Task<bool> PurchaseAsync(PurchaseModel purchase)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Purchase");
 
             var result = await _requestProvider.PostAsync<string>(uri, purchase);
 
@@ -61,6 +61,25 @@ namespace ContestPark.Mobile.Services.Cp
                                                             result.Error.ErrorMessage,
                                                             ContestParkResources.Okay);
             }
+            return result.IsSuccess;
+        }
+
+        /// <summary>
+        /// Bakiye çekme isteği gönderir
+        /// </summary>
+        public async Task<bool> GetBalanceRequest(IbanNoModel ibanNo)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            var result = await _requestProvider.PostAsync<string>(uri, ibanNo);
+
+            if (!result.IsSuccess && result.Error != null)
+            {
+                await _pageDialogService?.DisplayAlertAsync("",
+                                                            result.Error.ErrorMessage,
+                                                            ContestParkResources.Okay);
+            }
+
             return result.IsSuccess;
         }
 

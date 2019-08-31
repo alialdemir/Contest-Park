@@ -7,7 +7,6 @@
         C = 3,
         D = 4,
         NotSeeQuestion = 5,//  henüz soruyu görmedi
-        GetOutTheDuel = 6,// düellodan kaçtı
-        UnableToReply = 7// boş bırakıldı
+        UnableToReply = 6// boş bırakıldı
     }
 }

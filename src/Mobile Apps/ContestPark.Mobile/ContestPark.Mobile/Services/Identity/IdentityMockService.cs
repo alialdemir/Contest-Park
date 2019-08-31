@@ -1,12 +1,13 @@
-﻿using ContestPark.Mobile.Helpers;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
-using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
+using Prism.Services;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Identity
@@ -16,14 +17,18 @@ namespace ContestPark.Mobile.Services.Identity
         #region Private varaibles
 
         private readonly ISettingsService _settingsService;
+        private readonly IPageDialogService _dialogService;
 
         #endregion Private varaibles
 
         #region Constructor
 
-        public IdentityMockService(ISettingsService settingsService)
+        public IdentityMockService(ISettingsService settingsService,
+            IPageDialogService dialogService
+            )
         {
             _settingsService = settingsService;
+            _dialogService = dialogService;
         }
 
         #endregion Constructor
@@ -73,9 +78,6 @@ namespace ContestPark.Mobile.Services.Identity
         {
             await Task.Delay(3590);
 
-            if (!(loginModel.UserName.ToLower() == "witcherfearless" && loginModel.Password == "19931993"))
-                throw new HttpRequestExceptionEx(System.Net.HttpStatusCode.BadRequest, "invalid_username_or_password");
-
             return new UserToken
             {
                 AccessToken = "fake_token",
@@ -85,14 +87,29 @@ namespace ContestPark.Mobile.Services.Identity
             };
         }
 
+        public Task<string> GetUserNameByPhoneNumber(string phoneNumber)
+        {
+            return Task.FromResult("");
+            //return Task.FromResult("witcherfearless");
+        }
+
         public Task RefreshTokenAsync()
         {
             return Task.CompletedTask;
         }
 
-        public Task<bool> SignUpAsync(SignUpModel signUpModel)
+        public async Task<bool> SignUpAsync(SignUpModel signUpModel)
         {
-            return Task.FromResult(true);
+            if (_settingsService.SignUpCount > 3)// Sürekli üye olup davetiye kodu ile para kasmasınlar diye bir cihazdan 3 kere üye olma hakkı verdik :)
+            {
+                await _dialogService.DisplayAlertAsync("", ContestParkResources.GlobalErrorMessage, ContestParkResources.Okay);
+
+                _settingsService.SignUpCount = 0;
+
+                return false;
+            }
+
+            return true;
         }
 
         public Task Unauthorized()

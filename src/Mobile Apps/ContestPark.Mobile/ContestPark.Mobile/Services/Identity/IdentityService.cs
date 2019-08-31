@@ -73,6 +73,24 @@ namespace ContestPark.Mobile.Services.Identity
         }
 
         /// <summary>
+        /// Telefon numarasına ait kullanıcı adını verir
+        /// </summary>
+        /// <param name="phoneNumber">Telefon numarası</param>
+        /// <returns>Eğer telefon numarası kayıtlı ise kullanıcı adı değilse null döner</returns>
+        public async Task<string> GetUserNameByPhoneNumber(string phoneNumber)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/GetUserName?phoneNumber={phoneNumber}");
+
+            var response = await _requestProvider.GetAsync<UserNameModel>(uri);
+            if (response.IsSuccess)
+            {
+                return response.Data.UserName;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Şifre değiştir
         /// </summary>
         /// <param name="changePasswordModel">Kullanıcı şifre bilgileri</param>
@@ -250,11 +268,20 @@ namespace ContestPark.Mobile.Services.Identity
             if (signUpModel == null)
                 return false;
 
+            if (_settingsService.SignUpCount > 3)// Sürekli üye olup davetiye kodu ile para kasmasınlar diye bir cihazdan 3 kere üye olma hakkı verdik :)
+            {
+                await ShowErrorMessage(ContestParkResources.GlobalErrorMessage);
+
+                return false;
+            }
+
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
             // TODO: uygulama dili değişince nuradaki dil değişecek mi test edilmesi lazım
             CultureInfo cultureInfo = Xamarin.Forms.DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             signUpModel.LanguageCode = cultureInfo.IetfLanguageTag;
+
+            signUpModel.DeviceIdentifier = Xamarin.Forms.DependencyService.Get<IDevice>().GetIdentifier();// IMEI numarası alındı ;)
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, signUpModel);
 

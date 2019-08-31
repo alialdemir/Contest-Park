@@ -25,30 +25,8 @@ namespace ContestPark.Mobile.Components
 
         public string Question
         {
-            get
-            {
-                return (string)GetValue(QuestionProperty);
-            }
+            get => (string)GetValue(QuestionProperty);
             set => SetValue(QuestionProperty, value);
-        }
-
-        private void ChangeImageVisible()
-        {
-            if (img == null)
-                return;
-
-            switch (QuestionType)
-            {
-                case QuestionTypes.Image: img.IsVisible = true; break;
-                case QuestionTypes.Text: img.IsVisible = false; break;
-            }
-        }
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            ChangeImageVisible();
         }
 
         public static readonly BindableProperty LinkProperty = BindableProperty.Create(propertyName: nameof(Link),
@@ -70,10 +48,7 @@ namespace ContestPark.Mobile.Components
         public QuestionTypes QuestionType
         {
             get => (QuestionTypes)GetValue(QuestionTypeProperty);
-            set
-            {
-                SetValue(QuestionTypeProperty, value);
-            }
+            set => SetValue(QuestionTypeProperty, value);
         }
 
         #endregion Properties

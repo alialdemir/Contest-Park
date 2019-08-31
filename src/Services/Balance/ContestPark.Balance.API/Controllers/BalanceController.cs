@@ -1,5 +1,6 @@
 ﻿using ContestPark.Balance.API.Enums;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
+using ContestPark.Balance.API.Infrastructure.Repositories.MoneyWithdrawRequest;
 using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
 using ContestPark.Balance.API.Infrastructure.Tables;
 using ContestPark.Balance.API.Models;
@@ -19,6 +20,7 @@ namespace ContestPark.Balance.API.Controllers
         #region Private Variables
 
         private readonly IBalanceRepository _balanceRepository;
+        private readonly IMoneyWithdrawRequestRepository _moneyWithdrawRequestRepository;
         private readonly IPurchaseHistoryRepository _purchaseHistoryRepository;
 
         #endregion Private Variables
@@ -26,10 +28,12 @@ namespace ContestPark.Balance.API.Controllers
         #region Constructor
 
         public BalanceController(IBalanceRepository balanceRepository,
+                                 IMoneyWithdrawRequestRepository moneyWithdrawRequestRepository,
                                  ILogger<BalanceController> logger,
                                  IPurchaseHistoryRepository purchaseHistoryRepository) : base(logger)
         {
             _balanceRepository = balanceRepository ?? throw new ArgumentNullException(nameof(balanceRepository));
+            _moneyWithdrawRequestRepository = moneyWithdrawRequestRepository;
             _purchaseHistoryRepository = purchaseHistoryRepository ?? throw new ArgumentNullException(nameof(purchaseHistoryRepository));
         }
 
@@ -108,6 +112,82 @@ namespace ContestPark.Balance.API.Controllers
         }
 
         /// <summary>
+        /// Iban numarasına para gönderme isteği
+        /// </summary>
+        /// <param name="ibanNoModel">Iban no ve ad soyad</param>
+        /// <returns>Başarılı ise ok değilse hata mesajı</returns>
+        [HttpPost()]
+        [ProducesResponseType(typeof(IbanNoModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> SendMoneyRequest([FromBody]IbanNoModel ibanNoModel)
+        {
+            Logger.LogInformation($"Para çekme isteği geldi. Ad soyad: {ibanNoModel.FullName} user Id: {UserId} Iban No: {ibanNoModel.IbanNo}");
+
+            if (ibanNoModel == null || string.IsNullOrEmpty(ibanNoModel.FullName) || string.IsNullOrEmpty(ibanNoModel.IbanNo))
+            {
+                return BadRequest();
+            }
+
+            BalanceModel result = _balanceRepository.GetUserBalances(UserId);
+            if (result == null || result.Money < 100.00m)
+            {
+                Logger.LogInformation($"Yetersiz bakiye ile para çekme talebi geldi.", UserId);
+
+                return NotFound();
+            }
+
+            Logger.LogInformation($"Para çekme isteği şuanki para miktarı. User Id: {UserId} Money: {result.Money}");
+
+            bool isSuccess = await SendMoneyRequestUpdateBalanceAsync(-result.Money);// Önce hesaptan para düşüldü
+            if (!isSuccess)
+            {
+                return BadRequest(BalanceResource.TheWithdrawalRequestFailed);
+            }
+
+            isSuccess = await _moneyWithdrawRequestRepository.Insert(new MoneyWithdrawRequest// Para çekme isteği geldiğine dair kayıt ekledik
+            {
+                UserId = UserId,
+                FullName = ibanNoModel.FullName,
+                IbanNo = ibanNoModel.IbanNo,
+                Amount = result.Money,
+                Status = Status.Active
+            });
+
+            if (!isSuccess)
+            {
+                Logger.LogCritical($@"CRITICAL: Bakiye çekme isteği sırasında hata oluştu. Ad soyad: {ibanNoModel.FullName}
+                                                                                           User Id: {UserId}
+                                                                                           Iban No: {ibanNoModel.IbanNo}");
+
+                await SendMoneyRequestUpdateBalanceAsync(result.Money);// hata oluşursa bakiye geri hesaba eklendi
+
+                return BadRequest(BalanceResource.TheWithdrawalRequestFailed);
+            }
+
+            // TODO: bizim tarafa mail gönder veya bir alert atılsın
+
+            Logger.LogInformation($"Para çekme isteği oluşturuldu. User Id: {UserId} Money: {-result.Money}");
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Para çekme isteği oluşturan kullanıcının hesabındaki parayı günceller
+        /// </summary>
+        /// <param name="money">Eksiltilecek para birimi</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        private Task<bool> SendMoneyRequestUpdateBalanceAsync(decimal money)
+        {
+            return _balanceRepository.UpdateBalanceAsync(new ChangeBalanceModel
+            {
+                UserId = UserId,
+                BalanceHistoryType = BalanceHistoryTypes.MoneyWithdraw,
+                BalanceType = BalanceTypes.Money,
+                Amount = money
+            });
+        }
+
+        /// <summary>
         /// User id göre bakiye bilgilerinin getirir
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
@@ -149,7 +229,7 @@ namespace ContestPark.Balance.API.Controllers
         /// Bakiye satın aldığında hesaba yükleme işlemi yapar
         /// </summary>
         /// <param name="purchase">Satın alma bilgileri</param>
-        [HttpPost]
+        [HttpPost("Purchase")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Purchase([FromBody]PurchaseModel purchase)

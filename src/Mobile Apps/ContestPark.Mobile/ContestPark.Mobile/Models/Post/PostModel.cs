@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Enums;
+using Newtonsoft.Json;
 using System;
 
 namespace ContestPark.Mobile.Models.Post
@@ -31,6 +32,16 @@ namespace ContestPark.Mobile.Models.Post
             {
                 _isLike = value;
                 RaisePropertyChanged(() => IsLike);
+                RaisePropertyChanged(() => LikeSource);
+            }
+        }
+
+        [JsonIgnore]
+        public string LikeSource
+        {
+            get
+            {
+                return IsLike ? "liked.svg" : "likes.svg";
             }
         }
 

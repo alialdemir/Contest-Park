@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.ViewModels;
 using FFImageLoading.Transformations;
 using Rg.Plugins.Popup.Pages;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -24,6 +25,8 @@ namespace ContestPark.Mobile.Views
             get { return ((DuelResultPopupViewModel)BindingContext); }
         }
 
+        public int DuelId { get; set; }
+
         #endregion Properties
 
         #region Methods
@@ -32,10 +35,21 @@ namespace ContestPark.Mobile.Views
         {
             base.OnAppearing();
 
-            if (ViewModel != null && ViewModel.DuelResult != null)
+            if (ViewModel != null)
             {
-                FounderImage.Transformations.Add(new CircleTransformation(20, ViewModel.DuelResult.FounderColor));
-                OpponentImage.Transformations.Add(new CircleTransformation(20, ViewModel.DuelResult.OpponentColor));
+                ViewModel.DuelId = DuelId;
+
+                ViewModel.ProfilePictureBorderColorCommand = new Command(() =>
+                {
+                    if (ViewModel.DuelResult == null)
+                        return;
+
+                    FounderImage.Transformations.Add(new CircleTransformation(20, ViewModel.DuelResult.FounderColor));
+                    OpponentImage.Transformations.Add(new CircleTransformation(20, ViewModel.DuelResult.OpponentColor));
+                });
+
+                ViewModel.InitializeCommand.Execute(null);
+                ViewModel.IsInitialized = true;
             }
         }
 

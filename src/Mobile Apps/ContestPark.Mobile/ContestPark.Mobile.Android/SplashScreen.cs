@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //  System.Threading.Thread.Sleep(2000);
+
             this.StartActivity(typeof(MainActivity));
         }
     }

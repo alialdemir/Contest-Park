@@ -1,74 +1,94 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.PostCardView.ImagePostCard"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-             x:Name="imagePostCardPage">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.PostCardView.ImagePostCard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    x:Name="imagePostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:DateTimeMomentConverter x:Key="moment" />
-            <Converter:ImageSourceConterter x:Key="sourceConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid Padding="8"
-              ColumnSpacing="0"
-              RowSpacing="0">
+        <StackLayout Orientation="Vertical" Spacing="0">
+            <Grid
+                Padding="8"
+                ColumnSpacing="0"
+                RowSpacing="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Components:CircleImage Grid.Row="0"
-                                    Grid.Column="0"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference imagePostCardPage}}"
-                                    CommandParameter="{Binding OwnerUserName}"
-                                    Source="{Binding OwnerProfilePicturePath}" />
+                <Components:CircleImage
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Margin="0,0,11,0"
+                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference imagePostCardPage}}"
+                    CommandParameter="{Binding OwnerUserName}"
+                    Source="{Binding OwnerProfilePicturePath}"
+                    VerticalOptions="CenterAndExpand" />
 
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   FontAttributes="Bold"
-                   Text="{Binding OwnerFullName}"
-                   TextColor="{StaticResource Black}"
-                   VerticalTextAlignment="Start" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource SofiaProSemiBold}"
+                    FontSize="18"
+                    Text="{Binding OwnerFullName}"
+                    TextColor="#181C2F"
+                    VerticalTextAlignment="Start" />
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    Spacing="1">
 
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   Text="{Binding Date, Converter={StaticResource moment}}"
-                   TextColor="#c5c5c5"
-                   VerticalTextAlignment="Center" />
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="0,0,8,0"
+                        HeightRequest="12"
+                        Source="hour.svg"
+                        VerticalOptions="Start"
+                        WidthRequest="12" />
 
-            <Components:Line Grid.Row="1"
-                             Grid.ColumnSpan="2"
-                             BackgroundColor="#dedede" />
+                    <Label
+                        HorizontalOptions="Start"
+                        Text="{Binding Date, Converter={StaticResource moment}}"
+                        TextColor="#181C2F"
+                        TranslationY="-5" />
+                </StackLayout>
+            </Grid>
 
-            <Components:HtmlLabel x:Name="lblDescription"
-                                  Grid.Row="2"
-                                  Grid.ColumnSpan="2"
-                                  Margin="0,10,10,10"
-                                  FontSize="Default"
-                                  LineBreakMode="WordWrap"
-                                  Text="{Binding Description}"
-                                  TextColor="{StaticResource Black}" />
+            <Components:HtmlLabel
+                x:Name="lblDescription"
+                Margin="0,13,0,0"
+                FontFamily="{StaticResource MontserratMedium}"
+                FontSize="14"
+                LineBreakMode="WordWrap"
+                Text="{Binding Description}"
+                TextColor="#535353"
+                VerticalOptions="CenterAndExpand" />
 
-            <Image Grid.Row="3"
-                   Grid.ColumnSpan="2"
-                   Margin="0,8,0,0"
-                   Aspect="AspectFit"
-                   Source="{Binding PicturePath}">
+            <Image
+                Margin="0,15,0,0"
+                Aspect="AspectFill"
+                HeightRequest="147"
+                HorizontalOptions="FillAndExpand"
+                Source="{Binding PicturePath}">
 
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=GotoPhotoModalCommand, Source={x:Reference imagePostCardPage}}" />
                 </Image.GestureRecognizers>
             </Image>
-        </Grid>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

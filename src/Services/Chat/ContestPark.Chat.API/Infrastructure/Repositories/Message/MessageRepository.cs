@@ -89,7 +89,8 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
             string sql = @"SELECT
                            m.CreatedDate as Date,
                            m.TEXT as Message,
-                           m.AuthorUserId as SenderId
+                           m.AuthorUserId as SenderId,
+                           m.AuthorUserId = @userId, AS IsIncoming
                            FROM Messages m
                            INNER JOIN Conversations c ON c.ConversationId = m.ConversationId
                            WHERE m.ConversationId = @conversationId

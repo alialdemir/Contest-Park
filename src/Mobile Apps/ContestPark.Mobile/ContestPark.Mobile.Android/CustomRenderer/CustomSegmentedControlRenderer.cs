@@ -84,15 +84,23 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
                     var o = e.NewElement.Children[i];
                     var v = (RadioButton)layoutInflater.Inflate(Resource.Layout.RadioButton, null);
 
-                    v.LayoutParameters = new RadioGroup.LayoutParams(0, LayoutParams.WrapContent, 1f);
+                    var layoutParams = new RadioGroup.LayoutParams(0, LayoutParams.WrapContent, 1f);
+
+                    v.SetMinimumHeight(80);
+
                     v.Text = o.Text;
 
                     ConfigureRadioButton(i, v);
 
                     if (i == 0)
+                    {
                         v.SetBackgroundResource(Resource.Drawable.segmented_control_first_background);
+                        layoutParams.RightMargin = 6;
+                    }
                     else if (i == e.NewElement.Children.Count - 1)
                         v.SetBackgroundResource(Resource.Drawable.segmented_control_last_background);
+
+                    v.LayoutParameters = layoutParams;
 
                     nativeControl.AddView(v);
                 }

@@ -39,6 +39,11 @@ namespace ContestPark.Mobile.Services.Settings
         string SignalRConnectionId { get; set; }
 
         /// <summary>
+        /// Üye olma sayısı
+        /// </summary>
+        byte SignUpCount { get; set; }
+
+        /// <summary>
         /// Gets or sets the TokenType
         /// </summary>
         string TokenType { get; set; }
@@ -85,7 +90,7 @@ namespace ContestPark.Mobile.Services.Settings
         /// <param name="defaultValue">The defaultValue <see cref="byte"/></param>
         /// <param name="methodName">The methodName <see cref="string"/></param>
         /// <returns>The <see cref="int"/></returns>
-        int GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "");
+        byte GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "");
 
         /// <summary>
         /// The GetValueOrDefault

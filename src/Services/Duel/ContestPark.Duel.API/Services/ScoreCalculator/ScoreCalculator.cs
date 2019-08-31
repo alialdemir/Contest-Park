@@ -5,7 +5,7 @@ namespace ContestPark.Duel.API.Services.ScoreCalculator
     public class ScoreCalculator : IScoreCalculator
     {
         /// <summary>
-        /// Skor hesaplama makismum
+        /// Skor hesaplama makismum tüm soruları 10. saniyede cevaplasa bile alabileceği maksimum skor 140
         /// r = kaçıncı soruda olduğu
         /// t = kaçıncı saniyede soruya cevap verdiği
         /// formül:  (r * t) / 2

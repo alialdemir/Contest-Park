@@ -53,7 +53,7 @@ namespace ContestPark.Mobile.Components
         {
             return new StackLayout
             {
-                Margin = 8,
+                Margin = new Thickness(10, 0, 10, 10),
                 Children =
                 {
                     new Frame
@@ -61,11 +61,12 @@ namespace ContestPark.Mobile.Components
                         Padding = 0,
                         HasShadow = true,
                         IsClippedToBounds = true,
-                        CornerRadius = 10,
+                        CornerRadius = 8,
                         HorizontalOptions = LayoutOptions.FillAndExpand,
                         BackgroundColor = (Color)Application.Current.Resources["White"],
                         Content = new StackLayout
                         {
+                            Padding = new Thickness(11,7,11,7),
                             Spacing = 0,
                             Children =
                             {

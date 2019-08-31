@@ -22,5 +22,28 @@ namespace ContestPark.Mobile.Models.Duel
         }
 
         public Languages Language { get; set; }
+        private bool _isLeftArrowVisible;
+
+        public bool IsLeftArrowVisible
+        {
+            get { return _isLeftArrowVisible; }
+            set
+            {
+                _isLeftArrowVisible = value;
+                RaisePropertyChanged(() => IsLeftArrowVisible);
+            }
+        }
+
+        private bool _isRightArrowVisible;
+
+        public bool IsRightArrowVisible
+        {
+            get { return _isRightArrowVisible; }
+            set
+            {
+                _isRightArrowVisible = value;
+                RaisePropertyChanged(() => IsRightArrowVisible);
+            }
+        }
     }
 }

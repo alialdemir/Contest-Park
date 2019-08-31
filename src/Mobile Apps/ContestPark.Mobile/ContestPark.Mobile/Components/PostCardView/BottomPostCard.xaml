@@ -1,24 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:converters="clr-namespace:ContestPark.Mobile.Converters.CategoryDetail"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             x:Name="page">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:FollowButtonConverter x:Key="fbc" />
-            <converters:ZeroFalseConventer x:Key="zeroFalse" />
-        </ResourceDictionary>
-    </ContentView.Resources>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    x:Name="bottomPostCard">
     <ContentView.Content>
         <Grid Margin="8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
@@ -26,114 +17,91 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Row="0"
-                         Grid.ColumnSpan="3"
-                         HorizontalOptions="Start"
-                         Orientation="Horizontal"
-                         Spacing="0">
+            <StackLayout
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Start"
+                Orientation="Horizontal"
+                Spacing="0">
                 <!--  Beğeni  -->
-                <iconize:IconImage HeightRequest="13"
-                                   Icon="far-heart"
-                                   IconColor="{StaticResource Black}"
-                                   IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}"
-                                   VerticalOptions="CenterAndExpand"
-                                   WidthRequest="13">
-                    <iconize:IconImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference page}}" />
-                    </iconize:IconImage.GestureRecognizers>
-                </iconize:IconImage>
 
-                <Label Margin="5,0,0,0"
-                       FontSize="13"
-                       HorizontalOptions="EndAndExpand"
-                       IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}"
-                       Text="{Binding LikeCount}"
-                       TextColor="{StaticResource Black}"
-                       VerticalOptions="CenterAndExpand">
+                <ffimageloadingsvg:SvgCachedImage
+                    HeightRequest="16"
+                    HorizontalOptions="Start"
+                    Source="{Binding LikeSource}"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="16">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LikeProcessCommand, Source={x:Reference bottomPostCard}}" />
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+                <Label
+                    Margin="5,0,0,0"
+                    FontFamily="{StaticResource SofiaProRegular}"
+                    FontSize="14"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{Binding LikeCount}"
+                    TextColor="#131315"
+                    VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference page}}" />
+                        <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference bottomPostCard}}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Margin="5,0,0,0"
-                       FontSize="13"
-                       HorizontalOptions="EndAndExpand"
-                       IsVisible="{Binding LikeCount, Converter={StaticResource zeroFalse}}"
-                       Text="{i18n:Translate Likes}"
-                       TextColor="{StaticResource Black}"
-                       VerticalOptions="CenterAndExpand">
+                <Label
+                    Margin="5,0,0,0"
+                    FontFamily="{StaticResource SofiaProLight}"
+                    FontSize="14"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{i18n:Translate Likes}"
+                    TextColor="#6C7B8A"
+                    VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference page}}" />
+                        <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference bottomPostCard}}" />
                     </Label.GestureRecognizers>
                 </Label>
 
                 <!--  Yorum  -->
-                <iconize:IconImage Margin="20,0,0,0"
-                                   HeightRequest="13"
-                                   Icon="far-comment"
-                                   IconColor="{StaticResource Black}"
-                                   IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}"
-                                   VerticalOptions="CenterAndExpand"
-                                   WidthRequest="13">
-                    <iconize:IconImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
-                    </iconize:IconImage.GestureRecognizers>
-                </iconize:IconImage>
 
-                <Label Margin="5,0,0,0"
-                       FontSize="13"
-                       HorizontalOptions="EndAndExpand"
-                       IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}"
-                       Text="{Binding CommentCount}"
-                       TextColor="{StaticResource Black}"
-                       VerticalOptions="CenterAndExpand">
+                <ffimageloadingsvg:SvgCachedImage
+                    Margin="21,0,0,0"
+                    HeightRequest="16"
+                    HorizontalOptions="Start"
+                    Source="comment.svg"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="16">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference bottomPostCard}}" />
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+                <Label
+                    Margin="5,0,0,0"
+                    FontFamily="{StaticResource SofiaProRegular}"
+                    FontSize="14"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{Binding CommentCount}"
+                    TextColor="#131315"
+                    VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
+                        <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference bottomPostCard}}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Margin="5,0,0,0"
-                       FontSize="13"
-                       HorizontalOptions="EndAndExpand"
-                       IsVisible="{Binding CommentCount, Converter={StaticResource zeroFalse}}"
-                       Text="{i18n:Translate Comments}"
-                       TextColor="{StaticResource Black}"
-                       VerticalOptions="CenterAndExpand">
+                <Label
+                    Margin="5,0,0,0"
+                    FontFamily="{StaticResource SofiaProLight}"
+                    FontSize="14"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{i18n:Translate Comments}"
+                    TextColor="#6C7B8A"
+                    VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
+                        <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference bottomPostCard}}" />
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-
-            <components:Line Grid.Row="1"
-                             Grid.ColumnSpan="3"
-                             BackgroundColor="#dedede" />
-
-            <iconize:IconImage Grid.Row="2"
-                               Grid.Column="0"
-                               HeightRequest="22"
-                               HorizontalOptions="Start"
-                               Icon="{Binding IsLike, Converter={StaticResource fbc}}"
-                               IconColor="{StaticResource Black}"
-                               VerticalOptions="CenterAndExpand"
-                               WidthRequest="22">
-                <iconize:IconImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LikeProcessCommand, Source={x:Reference page}}" />
-                </iconize:IconImage.GestureRecognizers>
-            </iconize:IconImage>
-
-            <iconize:IconImage Grid.Row="2"
-                               Grid.Column="1"
-                               HeightRequest="22"
-                               HorizontalOptions="Start"
-                               Icon="far-comment"
-                               IconColor="{StaticResource Black}"
-                               VerticalOptions="CenterAndExpand"
-                               WidthRequest="22">
-                <iconize:IconImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference page}}" />
-                </iconize:IconImage.GestureRecognizers>
-            </iconize:IconImage>
         </Grid>
     </ContentView.Content>
 </ContentView>

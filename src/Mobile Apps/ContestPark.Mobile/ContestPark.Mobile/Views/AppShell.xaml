@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="ContestPark.Mobile.Views.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:ContestPark.Mobile.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#FFFFFF</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="Pink" />
+                <Setter Property="Shell.TitleColor" Value="#211414" />
+                <!--<Setter Property="Shell.DisabledColor" Value="Orange" />-->
+                <Setter Property="Shell.UnselectedColor" Value="#989898" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <!--<Setter Property="Shell.TabBarForegroundColor" Value="PaleTurquoise" />-->
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#989898" />
+                <Setter Property="Shell.TabBarTitleColor" Value="#FFD969" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar Style="{DynamicResource BaseStyle}">
+        <Tab Icon="Category.png">
+            <ShellContent ContentTemplate="{DataTemplate local:CategoriesView}" />
+        </Tab>
+        <Tab Icon="Chat.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ChatView}" />
+        </Tab>
+        <Tab Icon="UserProfile.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfileView}" />
+        </Tab>
+    </TabBar>
+</Shell>

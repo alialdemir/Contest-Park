@@ -68,19 +68,16 @@ namespace ContestPark.Mobile.ViewModels
             string validationMessage = string.Empty;
             if (string.IsNullOrEmpty(SignUpModel.UserName)
                      || string.IsNullOrEmpty(SignUpModel.FullName)
-                     || string.IsNullOrEmpty(SignUpModel.Email)
                      || string.IsNullOrEmpty(SignUpModel.Password)) validationMessage = ContestParkResources.RequiredFields;// Tüm alanlar boş ise
             else if (string.IsNullOrEmpty(SignUpModel.UserName)) validationMessage = ContestParkResources.UserNameRequiredFields;// Kullanıcı adı boş ise
             else if (string.IsNullOrEmpty(SignUpModel.FullName)) validationMessage = ContestParkResources.FullNameRequiredFields;// Ad soyad boş ise
-            else if (string.IsNullOrEmpty(SignUpModel.Email)) validationMessage = ContestParkResources.EmailRequiredFields;// Eposta boş ise
             else if (string.IsNullOrEmpty(SignUpModel.Password)) validationMessage = ContestParkResources.PasswordRequiredFields;// Şifre adı boş ise
             else if (SignUpModel.UserName.Length < 3) validationMessage = ContestParkResources.UserNameMinLength;// Kullanocı adı 3 karakterden küçük olamaz
             else if (SignUpModel.UserName.Length > 255) validationMessage = ContestParkResources.UserNameMaxLength;// Kullanocı adı 255 karakterden büyük olamaz
             else if (SignUpModel.FullName.Length < 3) validationMessage = ContestParkResources.FullNameMinLength;// Ad soyad 3 karakterden küçük olamaz
             else if (SignUpModel.FullName.Length > 255) validationMessage = ContestParkResources.FullNameMaxLength;// Ad soyad 255 karakterden büyük olamaz
-            else if (SignUpModel.Email.Length > 255) validationMessage = ContestParkResources.EmailMaxLength;// Eposta adresi 255 karakterden büyük olamaz
-                                                                                                             //  else if (!new EmailAddressAttribute().IsValid(signUpModel.Email)) return IdentityResource.EmailFormating;// Eposta adresi formatı doğru mu
-                                                                                                             // TODO: Eposta adresi doğru formatta mı kontrol edilcek
+                                                                                                                   //  else if (!new EmailAddressAttribute().IsValid(signUpModel.Email)) return IdentityResource.EmailFormating;// Eposta adresi formatı doğru mu
+                                                                                                                   // TODO: Eposta adresi doğru formatta mı kontrol edilcek
             else if (SignUpModel.Password.Length < 6) validationMessage = ContestParkResources.PasswordMinLength;// Kullanocı adı 8 karakterden küçük olamaz
             else if (SignUpModel.Password.Length > 32) validationMessage = ContestParkResources.PasswordMaxLength; // Kullanocı adı 32 karakterden büyük olamaz
 

@@ -22,7 +22,7 @@ namespace ContestPark.Mobile.Components.Search
         {
             set
             {
-                thumListItem.SingleTap = value;
+                thumListItem.SingleTap = imgCategory.Command = value;
             }
         }
 

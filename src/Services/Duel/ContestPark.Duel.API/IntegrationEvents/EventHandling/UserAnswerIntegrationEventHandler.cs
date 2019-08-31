@@ -132,6 +132,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
 
+                bool isFounderFinishedTheGame = userAnswers.Count(x => x.FounderAnswer != Enums.Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
+                bool isOpponentFinishedTheGame = userAnswers.Count(x => x.OpponentAnswer != Enums.Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
+
                 DuelBalanceInfoModel duelBalanceInfo = _duelRepository.GetDuelBalanceInfoByDuelId(duelId);
 
                 _logger.LogInformation($@"Duello sona erdi. Duel id: {duelId}
@@ -152,7 +155,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                       firstItem.FounderUserId,
                                                                       firstItem.OpponentUserId,
                                                                       founderTotalScore,
-                                                                      opponentTotalScore);
+                                                                      opponentTotalScore,
+                                                                      isFounderFinishedTheGame,
+                                                                      isOpponentFinishedTheGame);
 
                 _eventBus.Publish(@duelFinishEvent);
 

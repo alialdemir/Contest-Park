@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using MonkeyCache.SQLite;
@@ -33,14 +34,15 @@ namespace ContestPark.Mobile
 
             Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
                    .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
-                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
+                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule())
+                   .With(new ContestParkIconModule());
 
             Barrel.ApplicationId = "ContestPark";
 
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
             if (string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(SignInView)}");
+                NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
             else
                 NavigationService.NavigateAsync($"{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}");
         }
@@ -52,7 +54,7 @@ namespace ContestPark.Mobile
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
 #if DEBUG
-            GlobalSetting.Instance.IsMockData = true;
+            GlobalSetting.Instance.IsMockData = false;
 #endif
             RegisterTypesConfig.Init(Container, containerRegistry);
         }

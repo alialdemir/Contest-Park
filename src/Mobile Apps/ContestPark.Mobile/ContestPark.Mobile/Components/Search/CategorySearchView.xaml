@@ -1,23 +1,85 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.Search.CategorySearchView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.Search.CategorySearchView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <components:ThumListItem x:Name="thumListItem"
-                                 CommandParameter="{Binding SubCategoryId}"
-                                 Detail="{Binding SubCategoryName}"
-                                 GridBackgroundColor="{StaticResource ListBackgroundColor}"
-                                 IsShowRightText="{Binding IsCategoryOpen, Converter={StaticResource not}}"
-                                 RightIconTextColor="{StaticResource Primary}"
-                                 RightText="{Binding DisplayPrice}"
-                                 Source="{Binding PicturePath}"
-                                 Text="{Binding CategoryName}" />
+        <yummy:PancakeView
+            Margin="10,0,10,6"
+            Padding="0"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="8"
+            Elevation="6"
+            HasShadow="True"
+            HeightRequest="80"
+            IsClippedToBounds="True">
+            <components:CustomGrid
+                x:Name="thumListItem"
+                Margin="14,15,14,15"
+                ColumnSpacing="0"
+                CommandParameter="{Binding SubCategoryId}"
+                RowSpacing="0">
+
+                <components:CustomGrid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                </components:CustomGrid.RowDefinitions>
+                <components:CustomGrid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
+                </components:CustomGrid.ColumnDefinitions>
+
+                <components:CachedImage
+                    x:Name="imgCategory"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    CommandParameter="{Binding SubCategoryId}"
+                    HeightRequest="50"
+                    Source="{Binding Path=PicturePath}"
+                    VerticalOptions="Center"
+                    WidthRequest="50" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="14,0,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                    FontSize="18"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding SubCategoryName}"
+                    TextColor="#181C2F" />
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="14,0,0,0"
+                    FontFamily="{DynamicResource SofiaProLight}"
+                    FontSize="14"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding CategoryName}"
+                    TextColor="#181C2F" />
+
+                <components:DobleCoinsView
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    BalanceType="Gold"
+                    CoinSize="Small"
+                    Coins="Positive"
+                    DisplayCoins="{Binding DisplayPrice}"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding IsCategoryOpen, Converter={StaticResource not}}" />
+            </components:CustomGrid>
+        </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

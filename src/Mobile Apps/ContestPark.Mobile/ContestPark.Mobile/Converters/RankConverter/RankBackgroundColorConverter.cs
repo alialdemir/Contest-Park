@@ -21,9 +21,9 @@ namespace ContestPark.Mobile.Converters
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
             return settingsService.CurrentUser.UserName == ((RankingModel)value).UserName ?
-                (Color)Application.Current.Resources["Orange"] : rank % 2 == 0 ?
-                (Color)Application.Current.Resources["ListBackgroundColor"] :
-                (Color)Application.Current.Resources["Black"];
+                (Color)Color.FromHex("#F46F48") : rank % 2 == 0 ?
+                Color.FromHex("#F9F9F9") :
+                (Color)Application.Current.Resources["White"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

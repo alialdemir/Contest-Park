@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.ViewModels;
+﻿using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using System;
 using Xamarin.Forms.Xaml;
@@ -20,11 +21,9 @@ namespace ContestPark.Mobile.Views
         #region Properties
 
         public string OpponentUserId { get; set; }
-        public short SubcategoryId { get; set; }
 
-        public string SubcategoryName { get; set; }
+        public SelectedSubCategoryModel SelectedSubCategory { get; set; }
 
-        public string SubCategoryPicturePath { get; set; }
 
         #endregion Properties
 
@@ -39,9 +38,7 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null && !viewModel.IsInitialized)
                 return;
 
-            viewModel.SelectedSubCategory.SubcategoryId = SubcategoryId;
-            viewModel.SelectedSubCategory.SubcategoryName = SubcategoryName;
-            viewModel.SelectedSubCategory.SubCategoryPicturePath = SubCategoryPicturePath;
+            viewModel.SelectedSubCategory = SelectedSubCategory;
             viewModel.OpponentUserId = OpponentUserId;
 
             viewModel.InitializeCommand.Execute(null);
@@ -83,5 +80,6 @@ namespace ContestPark.Mobile.Views
         }
 
         #endregion Methods
+
     }
 }

@@ -6,9 +6,11 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:converter1="clr-namespace:ContestPark.Mobile.Converters.Follow"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="profilePage"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True"
@@ -18,214 +20,205 @@
         <ResourceDictionary>
             <converter:NegativeBooleanConverter x:Key="not" />
             <converter1:FollowIconConverter x:Key="isFollowIconConverter" />
-            <!--  Application resource dictionary  -->
-            <!--  colors  -->
-            <Color x:Key="BodyTextColor">#C3C3C3</Color>
-
-            <!--  font families  -->
-            <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS">HelveticaNeue</On>
-                <On Platform="Android">sans-serif</On>
-            </OnPlatform>
-
-            <OnPlatform x:Key="LightFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS">HelveticaNeue-Light</On>
-                <On Platform="Android">sans-serif-light</On>
-            </OnPlatform>
-
-            <OnPlatform x:Key="MediumFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS">HelveticaNeue-Medium</On>
-                <On Platform="Android">sans-serif-medium</On>
-            </OnPlatform>
-
-            <!--  font sizes  -->
-            <x:Double x:Key="TitleFontSize">20</x:Double>
-            <x:Double x:Key="TagTextFontSize">18</x:Double>
-            <x:Double x:Key="StatsNumberFontSize">20</x:Double>
-            <x:Double x:Key="StatsCaptionFontSize">16</x:Double>
-
-            <!--  styles  -->
-            <Style x:Key="ProfileNameLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource White}" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="ProfileTagLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource TagTextFontSize}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="StatsNumberLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource Primary}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource StatsNumberFontSize}" />
-            </Style>
-
-            <Style x:Key="StatsCaptionLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="Margin" Value="0,-5,0,0" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource StatsCaptionFontSize}" />
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
+        <components:NonPersistentSelectedItemListView
+            InfiniteScroll="{Binding InfiniteScroll}"
+            SeparatorVisibility="None"
+            Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.Header>
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <!--  header background  -->
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="200"
-                        Source="{Binding ProfileInfo.CoverPicture}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" CommandParameter="Cover" />
-                        </Image.GestureRecognizers>
-                    </Image>
-
-                    <!--  Block  -->
-                    <iconize:IconButton
-                        BackgroundColor="Transparent"
-                        Command="{Binding InfoCommand}"
-                        FontSize="22"
-                        HeightRequest="50"
-                        HorizontalOptions="End"
-                        IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
-                        Text="fas-info-circle"
-                        VerticalOptions="Start"
-                        WidthRequest="50" />
-
-                    <!--  Back button  -->
-                    <iconize:IconButton
-                        Margin="16,16,0,0"
-                        BackgroundColor="Transparent"
-                        Command="{Binding GotoBackCommand}"
-                        HorizontalOptions="Start"
-                        IsVisible="{Binding IsVisibleBackArrow}"
-                        Text="fas-arrow-left"
-                        TextColor="{StaticResource Primary}"
-                        VerticalOptions="Start" />
-
-                    <!--  profile name  -->
-                    <StackLayout
-                        Grid.Row="1"
-                        Padding="0,20,0,0"
-                        HorizontalOptions="CenterAndExpand"
-                        Orientation="Horizontal">
-                        <Label Style="{StaticResource ProfileNameLabel}" Text="{Binding ProfileInfo.FullName}" />
-                    </StackLayout>
-
-                    <!--  social stats  -->
-                    <Grid Grid.Row="2" ColumnSpacing="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
+                <StackLayout>
+                    <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition Height="50" />
+                            <RowDefinition Height="130" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <!--  Follow play, chat buttons  -->
+                        <!--  cover picture  -->
+                        <Image
+                            Grid.RowSpan="3"
+                            Aspect="AspectFill"
+                            HeightRequest="259"
+                            Source="{Binding ProfileInfo.CoverPicture}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" CommandParameter="Cover" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <!--  Back button  -->
                         <iconize:IconButton
+                            Margin="16,16,0,0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding GotoBackCommand}"
+                            FontSize="24"
+                            HorizontalOptions="Start"
+                            IsVisible="{Binding IsVisibleBackArrow}"
+                            Text="fas-arrow-left"
+                            TextColor="White"
+                            VerticalOptions="Start" />
+
+                        <!--  profile picture  -->
+                        <components:CircleImage
                             Grid.Row="0"
-                            Grid.Column="0"
-                            BorderColor="{StaticResource Primary}"
-                            BorderWidth="3"
-                            Command="{Binding FollowProcessCommand}"
-                            CornerRadius="50"
-                            FontSize="22"
-                            HeightRequest="50"
+                            Margin="0,24,0,6"
+                            Command="{Binding ChangePhotoCommand}"
+                            CommandParameter="Profile"
+                            HeightRequest="130"
                             HorizontalOptions="Center"
+                            Source="{Binding ProfileInfo.ProfilePicturePath}"
+                            VerticalOptions="Start"
+                            WidthRequest="130" />
+
+                        <!--  fullname  -->
+                        <Label
+                            Grid.Row="1"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource SofiaProSemiBold}"
+                            FontSize="23"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{Binding ProfileInfo.FullName}"
+                            TextColor="{StaticResource White}" />
+
+                        <!--  Buttons  -->
+                        <Grid
+                            Grid.Row="2"
+                            Margin="0,13,0,33"
+                            HeightRequest="65"
+                            HorizontalOptions="FillAndExpand"
                             IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
-                            Text="{Binding Path=ProfileInfo.IsFollowing, Converter={StaticResource isFollowIconConverter}}"
-                            TranslationY="-70"
-                            WidthRequest="50" />
+                            VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                        <iconize:IconButton
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            BorderColor="{StaticResource Primary}"
-                            BorderWidth="3"
-                            Command="{Binding PlayDuelCommand}"
-                            CornerRadius="50"
-                            FontSize="22"
-                            HeightRequest="50"
-                            HorizontalOptions="Center"
-                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
-                            Text="fas-play"
-                            TextColor="{StaticResource Green}"
-                            WidthRequest="50" />
+                            <!--  Follow button  -->
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="0"
+                                HeightRequest="65"
+                                Source="{Binding Path=ProfileInfo.IsFollowing, Converter={StaticResource isFollowIconConverter}}"
+                                WidthRequest="65">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding FollowProcessCommand}" />
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
 
-                        <iconize:IconButton
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            BorderColor="{StaticResource Primary}"
-                            BorderWidth="3"
-                            Command="{Binding GotChatDetailCommand}"
-                            CornerRadius="50"
-                            FontSize="22"
-                            HeightRequest="50"
-                            HorizontalOptions="Center"
-                            IsVisible="{Binding Path=IsMeProfile, Converter={StaticResource not}}"
-                            Text="fas-comments"
-                            TranslationY="-70"
-                            WidthRequest="50" />
+                            <!--  Play button  -->
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="1"
+                                HeightRequest="65"
+                                Source="profile_play.svg"
+                                WidthRequest="65">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PlayDuelCommand}" />
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
 
-                        <StackLayout Grid.Row="1" Grid.Column="0">
-                            <Label Style="{StaticResource StatsNumberLabel}" Text="{Binding ProfileInfo.GameCount}" />
-                            <Label Style="{StaticResource StatsCaptionLabel}" Text="{i18n:Translate Duel}" />
-                        </StackLayout>
-
-                        <StackLayout Grid.Row="1" Grid.Column="1">
-                            <Label Style="{StaticResource StatsNumberLabel}" Text="{Binding ProfileInfo.FollowUpCount}" />
-
-                            <Label Style="{StaticResource StatsCaptionLabel}" Text="{i18n:Translate Following}" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GotoFollowingCommand}" CommandParameter="2" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-
-                        <StackLayout Grid.Row="1" Grid.Column="2">
-                            <Label Style="{StaticResource StatsNumberLabel}" Text="{Binding ProfileInfo.FollowersCount}" />
-
-                            <Label Style="{StaticResource StatsCaptionLabel}" Text="{i18n:Translate Followers}" />
-
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GotoFollowersCommand}" CommandParameter="1" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                            <!--  Chat button  -->
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="2"
+                                HeightRequest="65"
+                                Source="profile_chat.svg"
+                                WidthRequest="65">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GotChatDetailCommand}" />
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                        </Grid>
                     </Grid>
-                    <!--  profile image  -->
-                    <components:CircleImage
-                        Command="{Binding ChangePhotoCommand}"
-                        CommandParameter="Profile"
-                        HeightRequest="100"
-                        HorizontalOptions="Center"
-                        Source="{Binding ProfileInfo.ProfilePicturePath}"
-                        TranslationY="5"
-                        VerticalOptions="End"
-                        WidthRequest="100" />
-                </Grid>
+
+                    <!--  Counts  -->
+                    <yummy:PancakeView
+                        Grid.Row="1"
+                        Margin="24,0,24,0"
+                        BackgroundColor="{StaticResource White}"
+                        CornerRadius="8"
+                        HasShadow="True"
+                        HeightRequest="88"
+                        IsClippedToBounds="True"
+                        TranslationY="-20"
+                        WidthRequest="367">
+                        <Grid
+                            Margin="8"
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="0"
+                            VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Duel  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="27"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding ProfileInfo.GameCount}"
+                                TextColor="#FFC72E" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="{i18n:Translate Duel}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
+
+                            <!--  Followers  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="27"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding ProfileInfo.FollowersCount, Mode=TwoWay}"
+                                TextColor="#FFC72E" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="{i18n:Translate Followers}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
+
+                            <!--  Following  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="27"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding ProfileInfo.FollowUpCount, Mode=TwoWay}"
+                                TextColor="#FFC72E" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource SofiaProSemiBold}"
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="{i18n:Translate Following}"
+                                TextColor="{StaticResource CategoryDetailTextColor}" />
+                        </Grid>
+                    </yummy:PancakeView>
+                </StackLayout>
             </components:NonPersistentSelectedItemListView.Header>
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>

@@ -4,150 +4,177 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="masterViewPage"
     Title="ContestPark"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}">
 
     <ContentPage.Content>
-        <ListView
-            HasUnevenRows="true"
-            IsGroupingEnabled="true"
-            ItemsSource="{Binding Items}"
-            SelectionMode="None"
-            SeparatorColor="#333333">
-            <ListView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:IconGroupHeader />
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.GroupHeaderTemplate>
-            <ListView.Header>
-                <Grid ColumnSpacing="0" RowSpacing="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="120" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Image
-                        Grid.RowSpan="2"
-                        Grid.ColumnSpan="3"
-                        Margin="0"
-                        Aspect="AspectFill"
-                        Source="{Binding CoverPicture}" />
-
-                    <components:CircleImage
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="0,-60,0,0"
-                        Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference masterViewPage}}"
-                        Source="{Binding ProfilePicture}" />
-                    <Grid
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="-10,10,0,0"
-                        ColumnSpacing="0"
-                        RowSpacing="0">
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <yummy:PancakeView
+                BackgroundGradientEndColor="#645AFF"
+                BackgroundGradientStartColor="#A573FF"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" />
+            <ListView
+                Grid.Row="0"
+                HasUnevenRows="true"
+                IsGroupingEnabled="true"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <BoxView
+                                Margin="0,0,90,0"
+                                BackgroundColor="#725BDE"
+                                HeightRequest="2"
+                                HorizontalOptions="FillAndExpand" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.Header>
+                    <Grid Margin="27,21,27,32" ColumnSpacing="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                        <components:CircleImage
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Aspect="AspectFill"
+                            Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference masterViewPage}}"
+                            HeightRequest="65"
+                            Source="{Binding ProfilePicture}"
+                            WidthRequest="65" />
 
                         <Label
                             Grid.Row="0"
-                            Grid.Column="0"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Margin="8,0,0,0"
                             FontAttributes="Bold"
-                            FontSize="16"
+                            FontFamily="{StaticResource SofiaProMedium}"
+                            FontSize="18"
                             Text="{Binding FullName}"
                             TextColor="{StaticResource White}" />
 
-                        <Grid
+                        <FlexLayout
                             Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="-10,10,0,0"
-                            ColumnSpacing="3"
-                            RowSpacing="0">
+                            Grid.Column="1"
+                            JustifyContent="SpaceAround"
+                            Wrap="Wrap">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                            <yummy:PancakeView
+                                Padding="5"
+                                BackgroundGradientEndColor="#D03548"
+                                BackgroundGradientStartColor="#EB3349"
+                                CornerRadius="24"
+                                MinimumWidthRequest="50">
+                                <Grid ColumnSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloadingsvg:SvgCachedImage
+                                        Grid.Column="0"
+                                        HeightRequest="20"
+                                        Source="TurkishLiraSingleCoin.svg"
+                                        WidthRequest="25" />
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                FontSize="14"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Balance.Gold, StringFormat='{0:##}'}"
-                                TextColor="{StaticResource Primary}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource GothamRoundedMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Balance.Money, StringFormat='+ {0:##.##}'}"
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </yummy:PancakeView>
+                            <yummy:PancakeView
+                                Padding="5"
+                                BackgroundGradientEndColor="#FFCC33"
+                                BackgroundGradientStartColor="#FFB347"
+                                CornerRadius="24"
+                                MinimumWidthRequest="50">
+                                <Grid ColumnSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloadingsvg:SvgCachedImage
+                                        Grid.Column="0"
+                                        HeightRequest="20"
+                                        Source="ContestSingleCoin.svg"
+                                        WidthRequest="25" />
 
-                            <icon:IconLabel
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                FontSize="14"
-                                HorizontalTextAlignment="Center"
-                                Text="far-gem"
-                                TextColor="{StaticResource Primary}" />
-                        </Grid>
-
-                        <Grid
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Margin="-10,10,0,0"
-                            ColumnSpacing="3"
-                            RowSpacing="0">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                FontSize="14"
-                                Text="{Binding Balance.Money, StringFormat='{0:##.##}'}"
-                                TextColor="{StaticResource Primary}" />
-
-                            <icon:IconLabel
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                FontSize="14"
-                                Text="fas-lira-sign"
-                                TextColor="{StaticResource Primary}" />
-                        </Grid>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource GothamRoundedMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Balance.Gold, StringFormat='+ {0:##}'}"
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </yummy:PancakeView>
+                        </FlexLayout>
                     </Grid>
-                </Grid>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:ListItemFactory />
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <components:CustomGrid
+                                Margin="36,16.8,0,16.8"
+                                ColumnSpacing="22"
+                                CommandParameter="{Binding CommandParameter}"
+                                SingleTap="{Binding SingleTap}">
+                                <components:CustomGrid.RowDefinitions>
+                                    <RowDefinition Height="32" />
+                                </components:CustomGrid.RowDefinitions>
+                                <components:CustomGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="32" />
+                                    <ColumnDefinition Width="Auto" />
+                                </components:CustomGrid.ColumnDefinitions>
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HeightRequest="32"
+                                    Source="{Binding Icon}"
+                                    WidthRequest="32" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontFamily="{DynamicResource SofiaProMedium}"
+                                    FontSize="15"
+                                    Text="{Binding Title}"
+                                    TextColor="{StaticResource White}"
+                                    VerticalOptions="Center" />
+                            </components:CustomGrid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

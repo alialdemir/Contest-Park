@@ -11,6 +11,7 @@ using ContestPark.Mobile.Views;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -111,7 +112,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public string GreenColor
         {
-            get { return "#017d46"; }
+            get { return "#1BD5AC"; }
         }
 
         public string OpponentImageBorderColor
@@ -136,7 +137,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public string PrimaryColor
         {
-            get { return "#ffc107"; }
+            get { return "#DD3448"; }
         }
 
         public DuelCreated DuelCreated
@@ -224,29 +225,90 @@ namespace ContestPark.Mobile.ViewModels
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Düellodaki sıradaki soruyu alır
+        /// </summary>
+        private void NextQuestion(object sender, NextQuestion e)
+        {
+            NextQuestion questionModel = (NextQuestion)sender;
+            if (questionModel == null)
+            {
+                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+
+                IsExit = true;
+                DuelCloseCommand.Execute(null);
+
+                return;
+            }
+
+            IsTimerEnable = false;
+
+            FounderScore += questionModel.FounderScore;
+            OpponentScore += questionModel.OpponentScore;
+
+            ChangeStylishColor(questionModel.FounderStylish, questionModel.CorrectStylish);
+            ChangeStylishColor(questionModel.OpponentStylish, questionModel.CorrectStylish);
+            ChangeStylishColor(questionModel.CorrectStylish, questionModel.CorrectStylish);
+
+            ShowStylishArrow(questionModel.FounderStylish, true, true);
+            ShowStylishArrow(questionModel.OpponentStylish, false, true);
+
+            PlaySound(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
+
+            ChangeImageBorderColor(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
+
+            if (questionModel.IsGameEnd || Round >= 7)
+            {
+                GameEnd();
+                return;
+            }
+
+            Device.StartTimer(new TimeSpan(0, 0, 0, 4, 0), () => // Hemen sonraki soruya geçmemesi için biraz beklettim
+            {
+                if (IsExit)
+                    return false;
+
+                Round = questionModel.Round;
+
+                DisplayQuestionExpectedPopup();
+
+                ShowStylishArrow(questionModel.FounderStylish, true, false);
+                ShowStylishArrow(questionModel.OpponentStylish, false, false);
+
+                Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Bekleme ekranı çıkmadan soru ekranda gözükmesin
+                {
+                    if (IsExit)
+                        return false;
+
+                    SetCurrentQuestion();// sıradaki soru set edildi
+
+                    return false;
+                });
+
+                return false;
+            });
+        }
+
         private void SetCurrentQuestion()
         {
-            if (Round <= DuelCreated.Questions.Count())
-            {
-                var currentQuestion = DuelCreated.Questions.ToList()[Round - 1];
-                Languages currentLanguage = _settingsService.CurrentUser.Language;
+            if (Round > DuelCreated.Questions.Count())
+                return;
 
-                CurrentQuestion = new Question
-                {
-                    Answers = currentQuestion.Answers.Where(x => x.Language == currentLanguage).ToList(),
-                    AnswerType = currentQuestion.AnswerType,
-                    Link = currentQuestion.Link,
-                    NextQuestion = currentQuestion.Questions.FirstOrDefault(x => x.Language == currentLanguage).Question,
-                    QuestionId = currentQuestion.QuestionId,
-                    QuestionType = currentQuestion.QuestionType,
-                    Questions = currentQuestion.Questions.Where(x => x.Language == currentLanguage).ToList()
-                };
+            var currentQuestion = DuelCreated.Questions.ToList()[Round - 1];
+            Languages currentLanguage = _settingsService.CurrentUser.Language;
 
-                CreateAnswerPair();
-            }
-            else
+            CurrentQuestion = new Question
             {
-            }
+                Answers = currentQuestion.Answers.Where(x => x.Language == currentLanguage).ToList(),
+                AnswerType = currentQuestion.AnswerType,
+                Link = currentQuestion.Link,
+                NextQuestion = currentQuestion.Questions.FirstOrDefault(x => x.Language == currentLanguage).Question,
+                QuestionId = currentQuestion.QuestionId,
+                QuestionType = currentQuestion.QuestionType,
+                Questions = currentQuestion.Questions.Where(x => x.Language == currentLanguage).ToList()
+            };
+
+            CreateAnswerPair();
         }
 
         /// <summary>
@@ -258,32 +320,23 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelScreen.FounderUserId.Contains("-bot"))
             {
-                _botService.Init(SaveAnswerCommand, DuelScreen.FounderUserId);
+                _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId);
             }
 
             if (DuelScreen.OpponentUserId.Contains("-bot"))
             {
-                _botService.Init(SaveAnswerCommand, DuelScreen.OpponentUserId);
+                _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId);
             }
         }
 
         /// <summary>
         /// Verilen cevaplara göre resimlerin border color değiştirir
         /// </summary>
-        /// <param name="founderStylish"></param>
-        /// <param name="opponentStylish"></param>
         private void ChangeImageBorderColor(Stylish founderStylish, Stylish opponentStylish, Stylish correctAnswer)
         {
-            if (IsFounder)
-            {
-                bool isCorrectFounder = correctAnswer == founderStylish;
-                FounderImageBorderColor = isCorrectFounder ? GreenColor : RedColor;
-            }
-            else
-            {
-                bool isCorrectOpponent = correctAnswer == opponentStylish;
-                OpponentImageBorderColor = isCorrectOpponent ? GreenColor : RedColor;
-            }
+            FounderImageBorderColor = correctAnswer == founderStylish ? GreenColor : RedColor;
+
+            OpponentImageBorderColor = correctAnswer == opponentStylish ? GreenColor : RedColor;
         }
 
         /// <summary>
@@ -293,16 +346,43 @@ namespace ContestPark.Mobile.ViewModels
         {
             byte index = (byte)stylish;
 
-            if (index < 0 || index >= CurrentQuestion?.Answers?.Count)
+            if (index < 0 || index > 4)
                 return;
 
             bool isCorrect = correctAnswer == stylish;
 
-            Color color = GetColor(isCorrect ? "Green" : "Red");
+            Color color = Color.FromHex(isCorrect ? GreenColor : RedColor);
 
             CurrentQuestion
                 .Answers[index - 1]
                 .Color = color;
+        }
+
+        /// <summary>
+        /// Sağ ve soldaki şık oklarını gösterip gizler
+        /// </summary>
+        /// <param name="stylish">Hangi şıkkın ok yönü gösterilecek</param>
+        /// <param name="isLeft">True ise sağ ok false ise sol oku gösterir/gizler</param>
+        /// <param name="isVisible">True ise gözükür false ise gizler</param>
+        private void ShowStylishArrow(Stylish stylish, bool isLeft, bool isVisible)
+        {
+            byte index = (byte)stylish;
+
+            if (index < 0 || index > 4)
+                return;
+
+            if (isLeft)
+            {
+                CurrentQuestion
+                    .Answers[index - 1]
+                    .IsLeftArrowVisible = isVisible;
+            }
+            else
+            {
+                CurrentQuestion
+                    .Answers[index - 1]
+                    .IsRightArrowVisible = isVisible;
+            }
         }
 
         /// <summary>
@@ -336,8 +416,6 @@ namespace ContestPark.Mobile.ViewModels
             PopupPage popupPage = QuestionExpectedPopup();
 
             StartGame(popupPage);
-
-            //Round += 1;
 
             IsBusy = false;
         }
@@ -381,7 +459,10 @@ namespace ContestPark.Mobile.ViewModels
 
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await PushPopupPageAsync(new DuelResultPopupView());
+                await PushPopupPageAsync(new DuelResultPopupView()
+                {
+                    DuelId = DuelScreen.DuelId
+                });
 
                 await RemoveFirstPopupAsync();
             });
@@ -421,64 +502,6 @@ namespace ContestPark.Mobile.ViewModels
         private Color GetColor(string colorName)
         {
             return (Color)ContestParkApp.Current.Resources[colorName];
-        }
-
-        /// <summary>
-        /// Düellodaki sıradaki soruyu alır
-        /// </summary>
-        private void NextQuestion(object sender, NextQuestion e)
-        {
-            NextQuestion questionModel = (NextQuestion)sender;
-            if (questionModel == null)
-            {
-                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
-
-                IsExit = true;
-                DuelCloseCommand.Execute(null);
-
-                return;
-            }
-
-            IsTimerEnable = false;
-
-            FounderScore += questionModel.FounderScore;
-            OpponentScore += questionModel.OpponentScore;
-
-            ChangeStylishColor(questionModel.FounderStylish, questionModel.CorrectStylish);
-            ChangeStylishColor(questionModel.OpponentStylish, questionModel.CorrectStylish);
-            ChangeStylishColor(questionModel.CorrectStylish, questionModel.CorrectStylish);
-
-            PlaySound(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
-
-            ChangeImageBorderColor(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
-
-            if (questionModel.IsGameEnd || Round >= 7)
-            {
-                GameEnd();
-                return;
-            }
-
-            Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Hemen sonraki soruya geçmemesi için 2 sn beklettim
-                {
-                    if (IsExit)
-                        return false;
-
-                    Round = questionModel.Round;
-
-                    DisplayQuestionExpectedPopup();
-
-                    Device.StartTimer(new TimeSpan(0, 0, 0, 2, 0), () => // Bekleme ekranı çıkmadan soru ekranda gözükmesin
-                    {
-                        if (IsExit)
-                            return false;
-
-                        SetCurrentQuestion();// sıradaki soru set edildi
-
-                        return false;
-                    });
-
-                    return false;
-                });
         }
 
         /// <summary>
@@ -544,6 +567,33 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task SaveAnswer(SaveAnswerModel saveAnswer)
         {
+            Debug.WriteLine("if öncesi  " + saveAnswer.Stylish);
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            Debug.WriteLine("if sonrası " + saveAnswer.Stylish);
+
+            await _duelSignalRService.SaveAnswer(new UserAnswer
+            {
+                Time = Time,
+                QuestionId = CurrentQuestion.QuestionId,
+                DuelId = DuelScreen.DuelId,
+                Stylish = saveAnswer.Stylish,
+                UserId = saveAnswer.UserId,
+            });
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Botun verdiği cevapları sunucuya gönderir
+        /// </summary>
+        private async Task BotSaveAnswer(SaveAnswerModel saveAnswer)
+        {
+            Debug.WriteLine("bot cevap" + saveAnswer.Stylish);
+
             await _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
@@ -627,10 +677,12 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand AnimateStylishCommand;
 
         private ICommand _answerCommand;
+        private ICommand _botAnswerCommand;
         private ICommand _saveAnswerCommand;
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>((answerModel) => ExecuteAnswerCommandCommand(answerModel)));
         private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(async (answerModel) => await SaveAnswer(answerModel)));
+        private ICommand BotSaveAnswerCommand => _botAnswerCommand ?? (_botAnswerCommand = new Command<SaveAnswerModel>(async (answerModel) => await BotSaveAnswer(answerModel)));
 
         /// <summary>
         /// Soru ekranı kapatır

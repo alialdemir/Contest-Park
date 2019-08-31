@@ -98,9 +98,12 @@ namespace ContestPark.Mobile.ViewModels
 
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
-                SubcategoryId = _subCategoryId,
-                SubcategoryName = Title,
-                SubCategoryPicturePath = CategoryDetail.PicturePath,
+                SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
+                {
+                    SubcategoryId = _subCategoryId,
+                    SubcategoryName = CategoryDetail.SubCategoryName,
+                    SubCategoryPicturePath = CategoryDetail.PicturePath,
+                }
             });
 
             IsBusy = false;
@@ -119,7 +122,6 @@ namespace ContestPark.Mobile.ViewModels
             await PushNavigationPageAsync(nameof(RankingView), new NavigationParameters
             {
                 {"SubCategoryId", _subCategoryId },
-                {"SubCategoryName", CategoryDetail.SubCategoryName },
                 {"ListType", RankingViewModel.ListTypes.ScoreRanking },
             });
 
@@ -235,6 +237,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
+            if (parameters.ContainsKey("SubCategoryId")) _subCategoryId = parameters.GetValue<short>("SubCategoryId");
             if (parameters.ContainsKey("SubCategoryId")) _subCategoryId = parameters.GetValue<short>("SubCategoryId");
 
             base.OnNavigatingTo(parameters);

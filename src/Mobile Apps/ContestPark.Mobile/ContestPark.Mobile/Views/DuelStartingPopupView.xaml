@@ -6,8 +6,7 @@
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="{StaticResource Primary}">
+    prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Content>
         <Grid
             BackgroundColor="{StaticResource Black}"
@@ -17,7 +16,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="49*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="49*" />
             </Grid.RowDefinitions>
 
@@ -33,29 +32,68 @@
 
                 <StackLayout
                     Grid.Row="0"
-                    HeightRequest="55"
-                    Orientation="Horizontal"
-                    VerticalOptions="FillAndExpand"
-                    WidthRequest="55">
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
 
-                    <Components:CircleImage
-                        Margin="20,0,0,0"
-                        CacheType="None"
-                        Source="{Binding DuelStarting.FounderProfilePicturePath}"
-                        VerticalOptions="Center" />
+                    <AbsoluteLayout
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="97">
+                        <Components:CircleImage
+                            CacheType="None"
+                            HeightRequest="97"
+                            Source="{Binding DuelStarting.FounderProfilePicturePath}"
+                            WidthRequest="97" />
+
+                        <BoxView
+                            BackgroundColor="#FFC72E"
+                            CornerRadius="32"
+                            HeightRequest="32"
+                            TranslationX="70"
+                            TranslationY="5"
+                            WidthRequest="32" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="SofiaProBlack"
+                            FontSize="22"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding DuelStarting.FounderLevel}"
+                            TextColor="#975E03"
+                            TranslationX="80"
+                            TranslationY="5"
+                            VerticalTextAlignment="Center" />
+                    </AbsoluteLayout>
 
                     <Label
                         FontAttributes="Bold"
-                        HorizontalOptions="Start"
+                        FontFamily="{StaticResource SofiaProSemiBold}"
+                        FontSize="23"
+                        HorizontalTextAlignment="Center"
                         Text="{Binding DuelStarting.FounderFullName}"
-                        TextColor="{StaticResource White}"
-                        VerticalOptions="Center" />
+                        TextColor="{StaticResource White}" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource SofiaProBlack}"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding DuelStarting.FounderCountry}"
+                        TextColor="#FFD94E" />
                 </StackLayout>
+
+
+
             </Grid>
 
             <!--  Line  -->
-            <BoxView Grid.Row="1" BackgroundColor="{StaticResource Primary}" />
-
+            <BoxView
+                Grid.Row="1"
+                BackgroundColor="{StaticResource White}"
+                HeightRequest="0.1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="CenterAndExpand" />
             <!--  Opponent  -->
             <Grid
                 x:Name="gridOpponent"
@@ -71,25 +109,70 @@
 
                 <StackLayout
                     Grid.Row="0"
-                    HeightRequest="55"
-                    Orientation="Horizontal"
-                    VerticalOptions="FillAndExpand"
-                    WidthRequest="55">
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
 
-                    <Components:CircleImage
-                        Margin="20,0,0,0"
-                        CacheType="None"
-                        Source="{Binding DuelStarting.OpponentProfilePicturePath}"
-                        VerticalOptions="Center" />
+                    <AbsoluteLayout
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="97">
+                        <Components:CircleImage
+                            CacheType="None"
+                            HeightRequest="97"
+                            Source="{Binding DuelStarting.OpponentProfilePicturePath}"
+                            WidthRequest="97" />
+
+                        <BoxView
+                            BackgroundColor="#FFC72E"
+                            CornerRadius="32"
+                            HeightRequest="32"
+                            TranslationX="70"
+                            TranslationY="5"
+                            WidthRequest="32" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="SofiaProBlack"
+                            FontSize="22"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding DuelStarting.OpponentLevel}"
+                            TextColor="#975E03"
+                            TranslationX="80"
+                            TranslationY="5"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center" />
+                    </AbsoluteLayout>
 
                     <Label
                         FontAttributes="Bold"
-                        HorizontalOptions="Start"
+                        FontFamily="{StaticResource SofiaProSemiBold}"
+                        FontSize="23"
+                        HorizontalTextAlignment="Center"
                         Text="{Binding DuelStarting.OpponentFullName}"
-                        TextColor="{StaticResource White}"
-                        VerticalOptions="Center" />
+                        TextColor="{StaticResource White}" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource SofiaProBlack}"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding DuelStarting.OpponentCountry}"
+                        TextColor="#FFD94E" />
                 </StackLayout>
             </Grid>
+
+            <!--  VS circle  -->
+
+            <Image
+                Grid.RowSpan="3"
+                Aspect="AspectFill"
+                HorizontalOptions="Center"
+                Source="vs.png"
+                VerticalOptions="Center" />
+
+            <!--  VS circle  -->
         </Grid>
     </pages:PopupPage.Content>
 </pages:PopupPage>

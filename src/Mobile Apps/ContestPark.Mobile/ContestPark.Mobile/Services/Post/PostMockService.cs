@@ -30,6 +30,7 @@ namespace ContestPark.Mobile.Services.Post
                     PostId = 3,
                     PostType = Enums.PostTypes.Contest,
                     Bet = 123,
+                    BalanceType = Enums.BalanceTypes.Gold,
 
                     SubCategoryId = 1,
                     SubCategoryName = "Football Players",
@@ -144,6 +145,7 @@ namespace ContestPark.Mobile.Services.Post
                     PostId = 2,
                     PostType = Enums.PostTypes.Contest,
                     Bet = i * 123,
+                    BalanceType = i % 2 == 0 ? Enums.BalanceTypes.Gold : Enums.BalanceTypes.Money,
 
                     SubCategoryId = 1,
                     SubCategoryName = "Football Players",
@@ -152,11 +154,11 @@ namespace ContestPark.Mobile.Services.Post
                     CompetitorFullName = "Elif Öz",
                     CompetitorProfilePicturePath = DefaultImages.DefaultProfilePicture,
                     CompetitorUserName = "elfoz",
-                    CompetitorTrueAnswerCount = (byte)(i * 10),
+                    CompetitorTrueAnswerCount = (byte)(i * 20),
 
                     FounderFullName = "Ali Aldemir",
                     FounderProfilePicturePath = DefaultImages.DefaultProfilePicture,
-                    FounderTrueAnswerCount = (byte)(i * 7),
+                    FounderTrueAnswerCount = (byte)(i * 19),
                     FounderUserName = "witcherfearless",
                 });
             }
@@ -179,6 +181,21 @@ namespace ContestPark.Mobile.Services.Post
                 PageSize = 1,
                 Items = new List<PostModel>
                 {
+                    new PostModel
+                    {
+                        CommentCount = 12,
+                        IsLike = false,
+                        Date = DateTime.Now.AddDays(2),
+                        LikeCount = 3,
+                        PostId = 1,
+                        PostType = Enums.PostTypes.Text,
+
+                        Description = "Merhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünyaMerhaba dünya",
+
+                        OwnerProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                        OwnerFullName ="Ali aldemir",
+                        OwnerUserName ="Witcherfearless",
+                    },
                     new PostModel
                 {
                     CommentCount = 12,
@@ -203,22 +220,6 @@ namespace ContestPark.Mobile.Services.Post
                     FounderTrueAnswerCount = 5,
                     FounderUserName = "witcherfearless",
                 },
-
-                    new PostModel
-                    {
-                        CommentCount = 12,
-                        IsLike = false,
-                        Date = DateTime.Now.AddDays(2),
-                        LikeCount = 3,
-                        PostId = 1,
-                        PostType = Enums.PostTypes.Text,
-
-                        Description = "Merhaba dünya",
-
-                        OwnerProfilePicturePath = DefaultImages.DefaultProfilePicture,
-                        OwnerFullName ="Ali aldemir",
-                        OwnerUserName ="Witcherfearless",
-                    },
 
                     new PostModel
                     {

@@ -120,6 +120,45 @@ namespace ContestPark.Balance.API.Migrations
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
+            this.CreateTableIfNotExists("MoneyWithdrawRequests", table =>
+            table
+                .WithColumn("MoneyWithdrawRequestId")
+                .AsInt32()
+                .PrimaryKey()
+                .Identity()
+
+                .WithColumn("Amount")
+                .AsDecimal(13, 2)
+                .NotNullable()
+                .WithDefaultValue(0)
+
+                .WithColumn("UserId")
+                .AsString(255)
+                .Indexed("Indexed_UserId")
+                .NotNullable()
+
+                .WithColumn("IbanNo")
+                .AsString(26)
+                .NotNullable()
+
+                .WithColumn("Status")
+                .AsByte()
+                .NotNullable()
+                .WithDefaultValue(1)
+
+                .WithColumn("FullName")
+                .AsString(255)
+                .NotNullable()
+
+                .WithColumn("ModifiedDate")
+                .AsDateTime()
+                .Nullable()
+
+                .WithColumn("CreatedDate")
+                .AsDateTime()
+                .NotNullable()
+                .WithDefault(SystemMethods.CurrentDateTime));
+
             Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "UpdateBalance.sql", "GetBalance.sql");
         }
 

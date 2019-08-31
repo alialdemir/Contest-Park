@@ -58,6 +58,7 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService = duelSignalRService ?? throw new ArgumentNullException(nameof(duelSignalRService));
 
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+
         }
 
         #endregion Constructor

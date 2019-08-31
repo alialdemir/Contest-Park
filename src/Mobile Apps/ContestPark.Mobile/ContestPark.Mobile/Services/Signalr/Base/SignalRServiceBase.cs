@@ -75,13 +75,14 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                     options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
                 }).Build();
 
-                await ConnectAsync();
+                EventListener();
 
                 GetConnection();
 
                 RemoveConnectionId();
 
-                EventListener();
+                await ConnectAsync();
+
             }
         }
 

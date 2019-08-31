@@ -259,6 +259,58 @@ namespace ContestPark.Identity.API.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
+
+
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.Reference", b =>
+            {
+                b.Property<int>("ReferenceId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("Code");
+
+                b.Property<int>("Menstruation");
+
+                b.Property<DateTime>("FinishDate");
+
+                b.HasKey("ReferenceId");
+
+                b.Property<decimal>("Amount");
+
+                b.Property<byte>("BalanceType");
+
+                b.ToTable("References");
+            });
+
+
+
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.ReferenceCode", b =>
+            {
+                b.Property<int>("ReferenceCodeId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("ReferenceUserId")
+                .IsConcurrencyToken();
+
+                b.Property<string>("NewUserId")
+                .IsConcurrencyToken();
+
+                b.Property<string>("Code");
+
+                b.ToTable("ReferenceCode");
+
+            });
+
+
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.DeviceInfo", b =>
+            {
+                b.Property<string>("DeviceInfoId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("DeviceIdentifier");
+
+                b.ToTable("DeviceInfos");
+
+            });
 #pragma warning restore 612, 618
         }
     }

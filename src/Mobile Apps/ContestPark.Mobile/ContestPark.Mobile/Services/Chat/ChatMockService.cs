@@ -21,12 +21,14 @@ namespace ContestPark.Mobile.Services.Chat
                 {
                        new ChatDetailModel
                         {
+                           IsIncoming = true,
                             Date = DateTime.Now.AddDays(-30),
                             Message = "bu bir deneme mesajınız",
                             SenderId = "1111-1111-1111-1111",
                         },
                        new ChatDetailModel
                         {
+                           IsIncoming = true,
                             Date = DateTime.Now.AddDays(-30),
                             Message = "Sellamm",
                             SenderId = "2222-2222-2222-2222",
@@ -36,7 +38,14 @@ namespace ContestPark.Mobile.Services.Chat
                             Date = DateTime.Now.AddDays(-30),
                             Message = "123456789012345678901234567890123456789...",
                             SenderId = "3333-3333-3333-3333",
-                        }
+                        },
+                       new ChatDetailModel
+                        {
+                           IsIncoming = true,
+                            Date = DateTime.Now.AddDays(-30),
+                            Message = "123456789012345678901234567890123456789...",
+                            SenderId = "3333-3333-3333-3333",
+                        },
                 }
             });
         }

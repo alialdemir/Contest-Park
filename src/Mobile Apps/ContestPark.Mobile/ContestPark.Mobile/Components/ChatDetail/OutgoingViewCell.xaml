@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="ContestPark.Mobile.Components.ChatDetail.OutgoingViewCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+    <ViewCell.View>
+        <Grid Margin="0,22,0,22" HorizontalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <yummy:PancakeView
+                Grid.Row="0"
+                Grid.Column="0"
+                Padding="14,8,14,8"
+                BackgroundGradientEndColor="#FF6480"
+                BackgroundGradientStartColor="#F22E63"
+                CornerRadius="18,18,18,4"
+                Elevation="6"
+                HasShadow="True"
+                HorizontalOptions="End"
+                IsClippedToBounds="True"
+                MinimumHeightRequest="32">
+                <Label
+                    FontFamily="{StaticResource SofiaProLight}"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{Binding Message}"
+                    TextColor="{StaticResource White}"
+                    VerticalOptions="Center" />
+            </yummy:PancakeView>
+
+            <!--<Label
+                Grid.Row="1"
+                Grid.Column="0"
+                FontSize="Micro"
+                Text="{Binding Date, StringFormat='{0:MM/dd/yyyy hh:mm tt}'}"
+                TextColor="Gray" />-->
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

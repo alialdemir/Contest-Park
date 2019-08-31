@@ -86,5 +86,14 @@ namespace ContestPark.Balance.API.Resources {
                 return ResourceManager.GetString("ThePurchaseFailedPleaseEmailWithOurSupportTeam", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The withdrawal request failed..
+        /// </summary>
+        public static string TheWithdrawalRequestFailed {
+            get {
+                return ResourceManager.GetString("TheWithdrawalRequestFailed", resourceCulture);
+            }
+        }
     }
 }

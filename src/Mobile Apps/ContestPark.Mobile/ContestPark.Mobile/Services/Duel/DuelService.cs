@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Threading.Tasks;
 
@@ -14,14 +15,17 @@ namespace ContestPark.Mobile.Services.Duel
         private const string ApiUrlBase = "api/v1/Duel";
 
         private readonly INewRequestProvider _requestProvider;
+        private readonly ICacheService _cacheService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public DuelService(INewRequestProvider requestProvider)
+        public DuelService(INewRequestProvider requestProvider,
+                           ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _cacheService = cacheService;
         }
 
         #endregion Constructor
@@ -47,7 +51,7 @@ namespace ContestPark.Mobile.Services.Duel
         /// </summary>
         /// <param name="duelId">Düello id</param>
         /// <returns>Düello sonucu</returns>
-        public async Task<DuelResultModel> DuelResult(string duelId)
+        public async Task<DuelResultModel> DuelResult(int duelId)
         {
             // TODO: cache
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{duelId}");
@@ -107,9 +111,21 @@ namespace ContestPark.Mobile.Services.Duel
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, "api/v1/Account/GetRandomProfilePictures");
 
-            var result = await _requestProvider.GetAsync<string[]>(uri);
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<string[]>(uri);
+            }
 
-            return result.Data;
+            var response = await _requestProvider.GetAsync<string[]>(uri);
+            if (response.IsSuccess)
+            {
+                if (_cacheService.IsExpired(uri))
+                    _cacheService.Empty(uri);
+
+                _cacheService.Add(uri, response.Data);
+            }
+
+            return response.Data;
         }
 
         /// <summary>

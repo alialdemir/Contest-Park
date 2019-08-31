@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="134.228" height="96.675" viewBox="0 0 134.228 96.675">
+  <g id="arama_sonuc" data-name="arama sonuc" transform="translate(-92.336 -382.5)">
+    <path id="bg" d="M41.619,82.132a7.477,7.477,0,0,1-4.723.487,7.476,7.476,0,0,1,2.648-3.942,7.478,7.478,0,0,1-.488-4.723A7.477,7.477,0,0,1,43,76.6a7.481,7.481,0,0,1,4.723-.488,7.477,7.477,0,0,1-2.649,3.942,7.478,7.478,0,0,1,.488,4.723A7.48,7.48,0,0,1,41.619,82.132ZM5.554,54.908A9.257,9.257,0,0,1,0,52.985a9.254,9.254,0,0,1,5.033-3.037,9.259,9.259,0,0,1,1.923-5.554,9.256,9.256,0,0,1,3.037,5.033,9.259,9.259,0,0,1,5.554,1.924,9.26,9.26,0,0,1-5.033,3.037A9.254,9.254,0,0,1,8.59,59.941,9.255,9.255,0,0,1,5.554,54.908ZM118.926,13.073c-3.032-1.573-5.269-3.69-6.209-5.812,2.008-1.163,5.062-1.561,8.439-1.051C122.729,3.177,124.846.94,126.967,0c1.163,2.008,1.561,5.062,1.051,8.439,3.032,1.573,5.269,3.69,6.209,5.812-2.008,1.163-5.061,1.561-8.439,1.051-1.573,3.032-3.69,5.269-5.811,6.209C118.814,19.5,118.416,16.45,118.926,13.073Z" transform="translate(92.336 394.219)" fill="#d5edf1"/>
+    <g id="magnifier" transform="translate(205.226 477.062) rotate(180)">
+      <g id="handle" transform="translate(0 10.217) rotate(-40)">
+        <rect id="Rectangle_9" data-name="Rectangle 9" width="7.336" height="44.845" rx="3.668" transform="translate(11.615 44.845) rotate(180)" fill="#eefafc" stroke="#a3bfc6" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+        <rect id="Rectangle_9-2" data-name="Rectangle 9" width="15.894" height="26.287" rx="7.947" transform="translate(15.894 26.287) rotate(180)" fill="#fff" stroke="#a3bfc6" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="Line" d="M0,10.219V0" transform="translate(5.141 17.653) rotate(180)" fill="#fff" stroke="#a3bfc6" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+      </g>
+      <path id="lens" d="M33.012,66.023A33.02,33.02,0,0,0,45.861,2.594a33.02,33.02,0,0,0-25.7,60.835A32.8,32.8,0,0,0,33.012,66.023Zm0-58.687A25.676,25.676,0,1,1,7.336,33.012,25.7,25.7,0,0,1,33.012,7.336Z" transform="translate(86.197 93.062) rotate(180)" fill="#eefafc" stroke="#a3bfc6" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+      <path id="glare" d="M0,16.506a16.493,16.493,0,0,0,8.312-2.245L0,16.5ZM13.149,9.973A16.358,16.358,0,0,0,16.5,0L13.148,9.972Z" transform="matrix(0.259, 0.966, -0.966, 0.259, 53.33, 60.624)" fill="#eefafc" stroke="#a3bfc6" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

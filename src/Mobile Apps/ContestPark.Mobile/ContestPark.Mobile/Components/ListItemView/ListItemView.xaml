@@ -1,59 +1,80 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.ListItemView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-             x:Name="page">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.ListItemView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="listItemView">
     <ContentView.Content>
-        <Components:CustomGrid x:Name="cstmGrid"
-                               Padding="8,4,8,4"
-                               BackgroundColor="{StaticResource ListBackgroundColor}"
-                               RowSpacing="0">
+        <yummy:PancakeView
+            Margin="10,6,10,0"
+            Padding="0"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="8"
+            Elevation="6"
+            HasShadow="True"
+            HeightRequest="80"
+            IsClippedToBounds="True">
+            <Components:CustomGrid
+                x:Name="cstmGrid"
+                Margin="14,15,14,15"
+                ColumnSpacing="0"
+                RowSpacing="0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="1" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="80" />
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
 
-            <Components:CircleImage Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference page}}"
-                                    CommandParameter="{Binding UserName}"
-                                    Source="{Binding Path=Source, Source={x:Reference page}}" />
+                <Components:CircleImage
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference listItemView}}"
+                    CommandParameter="{Binding UserName}"
+                    HeightRequest="50"
+                    Source="{Binding Path=Source, Source={x:Reference listItemView}}"
+                    VerticalOptions="Center"
+                    WidthRequest="50" />
 
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   FontAttributes="Bold"
-                   FontSize="Default"
-                   LineBreakMode="TailTruncation"
-                   Text="{Binding Path=Text, Source={x:Reference page}}"
-                   TextColor="White" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="14,0,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                    FontSize="18"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding Path=Text, Source={x:Reference listItemView}}"
+                    TextColor="#181C2F" />
 
-            <Components:HtmlLabel Grid.Row="1"
-                                  Grid.Column="1"
-                                  Grid.ColumnSpan="2"
-                                  FontSize="Small"
-                                  LineBreakMode="TailTruncation"
-                                  Text="{Binding Path=Detail, Source={x:Reference page}}"
-                                  TextColor="White" />
+                <Components:HtmlLabel
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="14,0,0,0"
+                    FontFamily="{DynamicResource SofiaProLight}"
+                    FontSize="14"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding Path=Detail, Source={x:Reference listItemView}}"
+                    TextColor="#181C2F" />
 
-            <Label Grid.RowSpan="1"
-                   Grid.Column="2"
-                   FontSize="Small"
-                   HeightRequest="30"
-                   HorizontalTextAlignment="End"
-                   Text="{Binding Path=Date, Source={x:Reference page}}"
-                   TextColor="#808080" />
+                <Label
+                    Grid.RowSpan="1"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource SofiaProRegular}"
+                    FontSize="13"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Path=Date, Source={x:Reference listItemView}}"
+                    TextColor="#181C2F" />
 
-            <Components:Line Grid.Row="2"
-                             Grid.Column="1"
-                             Grid.ColumnSpan="2" />
-        </Components:CustomGrid>
+            </Components:CustomGrid>
+        </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

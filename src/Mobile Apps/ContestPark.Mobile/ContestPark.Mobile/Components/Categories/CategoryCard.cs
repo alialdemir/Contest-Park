@@ -47,7 +47,7 @@ namespace ContestPark.Mobile.Components
                 return;
             }
 
-            StackLayout stackLayout = new StackLayout();
+            StackLayout stackLayout = new StackLayout() { Spacing = 0, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
 
             stackLayout.Children.Add(new CategoryHeader
             {
@@ -58,9 +58,20 @@ namespace ContestPark.Mobile.Components
 
             stackLayout.Children.Add(new SubCategoryHorizontalScrollView());
 
-            stackLayout.Children.Add(new Line());
+            Margin = new Thickness(8, 0, 8, 8);
+            Padding = new Thickness(0);
 
-            Content = stackLayout;
+            Content = new Frame
+            {
+                Padding = new Thickness(8),
+                HasShadow = true,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                IsClippedToBounds = true,
+                CornerRadius = 8,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.FromHex("#FFFFFF"),
+                Content = stackLayout
+            };
         }
 
         #endregion Override

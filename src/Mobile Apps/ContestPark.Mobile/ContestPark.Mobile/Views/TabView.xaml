@@ -13,11 +13,14 @@
         <!--  CategoriesPage  -->
         <pages:CategoriesView />
 
+        <pages:InviteView />
+
         <!--  ChatAllPage  -->
         <pages:ChatView x:Name="tabChatAllPage" plugin:TabBadge.BadgeText="{Binding MessageBadgeCount}" />
 
         <!--  NotificationsPage plugin:TabBadge.BadgeText="{Binding BadgeCount}"  -->
         <!--<pages:NotificationsView />-->
+
 
         <!--  ProfilePage  -->
         <pages:ProfileView />

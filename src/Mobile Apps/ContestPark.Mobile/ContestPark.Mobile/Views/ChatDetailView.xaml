@@ -5,16 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatDetail="clr-namespace:ContestPark.Mobile.Components.ChatDetail"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="chatDetailPage"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.ToolbarItems>
-        <iconize:IconToolbarItem
-            Command="{Binding ChatSettingsCommand}"
-            Icon="fas-cog"
-            IconColor="{StaticResource Primary}" />
+        <ToolbarItem Command="{Binding ChatSettingsCommand}" IconImageSource="options.png" />
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <chatDetail:ChatDataTemplateSelector x:Key="MessageTemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <NavigationPage.TitleView>
         <StackLayout
             Margin="0"
@@ -24,78 +28,106 @@
             VerticalOptions="Center">
             <components:CircleImage
                 Command="{Binding GotoProfileCommand}"
-                HeightRequest="32"
+                HeightRequest="36"
                 Source="{Binding SenderProfilePicturePath}"
-                WidthRequest="32" />
+                WidthRequest="36" />
             <Label
                 FontAttributes="Bold"
-                FontSize="16"
+                FontFamily="{StaticResource SofiaProRegular}"
+                FontSize="15"
                 Text="{Binding Title}"
-                TextColor="{StaticResource Primary}"
+                TextColor="#040404"
                 VerticalOptions="Center"
                 VerticalTextAlignment="Start" />
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Margin="10,15,10,25" Orientation="Vertical">
+            <yummy:PancakeView
+                Padding="11"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="8"
+                Elevation="6"
+                HasShadow="True"
+                HorizontalOptions="FillAndExpand"
+                IsClippedToBounds="True"
+                VerticalOptions="FillAndExpand">
                 <components:NonPersistentSelectedItemListView
                     x:Name="lstMessages"
                     IsRefreshing="False"
                     ItemAppearing="OnItemAppearing"
+                    ItemTemplate="{StaticResource MessageTemplateSelector}"
+                    SeparatorVisibility="None"
                     Style="{StaticResource ListView}">
-                    <components:NonPersistentSelectedItemListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <chatDetail:ChatDetail />
-                            </ViewCell>
-                        </DataTemplate>
-                    </components:NonPersistentSelectedItemListView.ItemTemplate>
                     <components:NonPersistentSelectedItemListView.Footer>
                         <StackLayout HeightRequest="0" />
                     </components:NonPersistentSelectedItemListView.Footer>
                 </components:NonPersistentSelectedItemListView>
-            </StackLayout>
-            <Grid
-                BackgroundColor="#fff"
+            </yummy:PancakeView>
+            <yummy:PancakeView
+                Padding="11"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="8"
+                Elevation="6"
+                HasShadow="True"
                 HorizontalOptions="FillAndExpand"
+                IsClippedToBounds="True"
                 VerticalOptions="End">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="60" />
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
 
-                <Editor
-                    x:Name="txtChatbox"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    AutoSize="TextChanges"
-                    AutomationId="txtChatbox"
-                    Completed="txtChatbox_Completed"
-                    Focused="TxtChatbox_Focused"
-                    HorizontalOptions="FillAndExpand"
-                    Keyboard="Chat"
-                    MaxLength="140"
-                    Text="{Binding Message}"
-                    TextColor="#7b7b7b"
-                    VerticalOptions="FillAndExpand" />
+                    <Editor
+                        x:Name="txtChatbox"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        AutoSize="TextChanges"
+                        AutomationId="txtChatbox"
+                        Completed="txtChatbox_Completed"
+                        Focused="TxtChatbox_Focused"
+                        FontFamily="{StaticResource SofiaProRegular}"
+                        FontSize="14"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Chat"
+                        MaxLength="140"
+                        Placeholder="Write a new message"
+                        PlaceholderColor="#181C2F"
+                        Text="{Binding Message}"
+                        TextColor="#7b7b7b"
+                        VerticalOptions="FillAndExpand" />
 
-                <iconize:IconButton
-                    x:Name="btnBtnSendMessage"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="0,0,10,0"
-                    AutomationId="btnBtnSendMessage"
-                    BackgroundColor="Transparent"
-                    Command="{Binding SendMessageCommand}"
-                    FontSize="32"
-                    HorizontalOptions="End"
-                    Opacity="0.20"
-                    Text="fas-paper-plane" />
-            </Grid>
+                    <ffimageloadingsvg:SvgCachedImage
+                        x:Name="btnBtnSendMessage"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HeightRequest="40"
+                        HorizontalOptions="End"
+                        Source="send_message.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="40">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SendMessageCommand}" />
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <!--<iconize:IconButton
+                        x:Name="btnBtnSendMessage"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,0,10,0"
+                        AutomationId="btnBtnSendMessage"
+                        BackgroundColor="Transparent"
+                        Command="{Binding SendMessageCommand}"
+                        FontSize="32"
+                        HorizontalOptions="End"
+                        Opacity="0.20"
+                        Text="fas-paper-plane" />-->
+                </Grid>
+            </yummy:PancakeView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

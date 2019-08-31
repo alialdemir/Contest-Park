@@ -8,5 +8,7 @@
         public string ChatUrl { get; set; }
 
         public string FollowUrl { get; set; }
+
+        public decimal GiftMoneyAmount { get; set; }
     }
 }

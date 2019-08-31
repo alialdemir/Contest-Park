@@ -1,10 +1,8 @@
 ﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Game;
-using FFImageLoading.Transformations;
-using FFImageLoading.Work;
 using Prism.Ioc;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -86,7 +84,12 @@ namespace ContestPark.Mobile.Components
 
                 IGameService gameService = RegisterTypesConfig.Container.Resolve<IGameService>();
 
-                await gameService?.SubCategoriesDisplayActionSheetAsync(SubCategoryId, SubCategoryName, IsCategoryOpen);
+                await gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
+                {
+                    SubcategoryId = SubCategoryId,
+                    SubcategoryName = SubCategoryName,
+                    SubCategoryPicturePath = SubCategoryImageSource
+                }, IsCategoryOpen);
 
                 IsBusy = false;
             });
@@ -124,9 +127,7 @@ namespace ContestPark.Mobile.Components
 
             AddSingleTap();
 
-            imgSubCategoryImageSource.Transformations = new List<ITransformation>() { new CircleTransformation() };
-
-            goldBadge.IsVisible = !IsCategoryOpen;
+            lblDisplayPrice.IsVisible = goldBadge.IsVisible = !IsCategoryOpen;
         }
 
         #endregion Override

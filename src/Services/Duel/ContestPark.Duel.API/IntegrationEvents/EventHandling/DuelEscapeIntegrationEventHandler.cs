@@ -1,6 +1,4 @@
-﻿using ContestPark.Duel.API.Enums;
-using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
-using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
+﻿using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Services.ScoreCalculator;
@@ -45,7 +43,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// Düellodan çıkart
         /// </summary>
         /// <param name="event">Düello bilgileri</param>
-        public async Task Handle(DuelEscapeIntegrationEvent @event)
+        public Task Handle(DuelEscapeIntegrationEvent @event)
         {
             Infrastructure.Tables.Duel duel = _duelRepository.GetDuelByDuelId(@event.DuelId);
             if (duel == null)
@@ -54,7 +52,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 SendErrorMessage(@event.EscaperUserId, "Düellodan çıkma işleminiz gerçekleşemedi.");
 
-                return;
+                return Task.CompletedTask;
             }
 
             bool isEscaperUserFounder = @event.EscaperUserId == duel.FounderUserId;
@@ -63,64 +61,26 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 SendErrorMessage(@event.EscaperUserId, "Bu düello size ait değil");
             }
 
-            string winnerUserId = isEscaperUserFounder ? duel.OpponentUserId : duel.FounderUserId;
-
-            //////////// List<Infrastructure.Tables.DuelDetail> duelDetails = ConvertToDuelDetail(@event.Questions, @event.DuelId);
-
-            ////////////bool isSuccess = await _duelDetailRepository.AddRangeAsync(duelDetails);
-            ////////////if (!isSuccess)
-            ////////////{
-            ////////////    _logger.LogError($"Düello detayı ekleme işlemi başarısız oldu. Duel Id: {@event.DuelId}");
-
-            ////////////    SendErrorMessage(@event.EscaperUserId, "Düellodan çıkma işleminiz başarısız oldu.");
-
-            ////////////    return;
-            ////////////}
-
-            duel.DuelType = isEscaperUserFounder ? DuelTypes.WinnerOpponent : DuelTypes.WinnerFounder;
-
             // Oyuncuların düellodan kaçma durumunda yenilmiş olma durumunu buradan ayarladık
             duel.FounderTotalScore = isEscaperUserFounder ? (byte)0 : (byte)@event.Questions.Sum(x => x.FounderScore);
 
             duel.OpponentTotalScore = !isEscaperUserFounder ? (byte)0 : (byte)@event.Questions.Sum(x => x.OpponentScore);
 
-            #region Kazanma bonusları ver
+            bool isFounderFinishedTheGame = false;
+            bool isOpponentFinishedTheGame = false;
+
+            #region Kazanma bonusu verilecek mi belirler
 
             if (@event.EscaperUserId != duel.FounderUserId && duel.FounderTotalScore > duel.OpponentTotalScore)
             {
-                duel.FounderVictoryScore += 70;// kurucu kazandıysa kurucuya +70 puan
+                isFounderFinishedTheGame = true;
             }
             else if (@event.EscaperUserId != duel.OpponentUserId && duel.OpponentTotalScore > duel.FounderTotalScore)
             {
-                duel.OpponentVictoryScore += 70; // Rakip kazandıysa rakibe +70 puan
+                isOpponentFinishedTheGame = true;
             }
-            //else if (duel.FounderTotalScore == duel.OpponentTotalScore)
-            //{
-            //    duel.OpponentVictoryScore += 35;
-            //    duel.OpponentVictoryScore += 35;
-            //}
 
-            #endregion Kazanma bonusları ver
-
-            //#region Düello bitirme bonusları ver
-
-            //if (duelDetails.Count == MAX_QUESTION_COUNT)
-            //{
-            //    duel.FounderFinshScore += 40;
-            //    duel.OpponentFinshScore += 40;
-            //}
-
-            //#endregion Düello bitirme bonusları ver
-
-            bool isSuccess = await _duelRepository.UpdateAsync(duel);
-            if (!isSuccess)
-            {
-                _logger.LogError($"Düello detayı ekleme işlemi başarısız oldu. Duel Id: {@event.DuelId}");
-
-                SendErrorMessage(@event.EscaperUserId, "Düellodan çıkma işleminiz başarısız oldu.");
-
-                return;
-            }
+            #endregion Kazanma bonusu verilecek mi belirler
 
             // Düello bitti eventi yayınladık
             var @duelFinishEvent = new DuelFinishIntegrationEvent(@event.DuelId,
@@ -131,9 +91,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                   duel.FounderUserId,
                                                                   duel.OpponentUserId,
                                                                   duel.FounderTotalScore ?? 0,
-                                                                  duel.OpponentTotalScore ?? 0);
+                                                                  duel.OpponentTotalScore ?? 0,
+                                                                  isFounderFinishedTheGame,
+                                                                  isOpponentFinishedTheGame);
 
             _eventBus.Publish(duelFinishEvent);
+
+            return Task.CompletedTask;
         }
 
         /// <summary>

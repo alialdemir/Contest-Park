@@ -1,5 +1,8 @@
 ﻿using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
+using ContestPark.Identity.API.Data.Repositories.DeviceInfo;
+using ContestPark.Identity.API.Data.Repositories.Reference;
+using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
@@ -14,6 +17,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
@@ -31,7 +35,11 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IBlockService _blockService;
+        private readonly IReferenceCodeRepostory _referenceCodeRepostory;
+        private readonly IReferenceRepository _referenceRepository;
+        private readonly IdentitySettings _identitySettings;
         private readonly IFollowService _followService;
+        private readonly IDeviceInfoRepository _deviceInfoRepository;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
         private readonly IBlobStorageService _blobStorageService;
@@ -44,7 +52,11 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                  ILogger<AccountController> logger,
                                  UserManager<ApplicationUser> userManager,
                                  IBlockService blockService,
+                                 IReferenceCodeRepostory referenceCodeRepostory,
+                                 IReferenceRepository referenceRepository,
+                                 IOptions<IdentitySettings> settings,
                                  IFollowService followService,
+                                 IDeviceInfoRepository deviceInfoRepository,
                                  IUserRepository userRepository,
                                  IIdentityIntegrationEventService identityIntegrationEventService,
                                  IBlobStorageService blobStorageService) : base(logger)
@@ -53,7 +65,11 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             _logger = logger;
             _userManager = userManager;
             _blockService = blockService;
+            _referenceCodeRepostory = referenceCodeRepostory;
+            _referenceRepository = referenceRepository;
+            _identitySettings = settings.Value;
             _followService = followService;
+            _deviceInfoRepository = deviceInfoRepository;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
             _blobStorageService = blobStorageService;
@@ -178,7 +194,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                                           NewPostAddedIntegrationEvent.PostImageTypes.CoverImage,
                                                           UserId,
                                                           fileName);
-            _identityIntegrationEventService.NewPostAdd(@event);
+            _identityIntegrationEventService.PublishEvent(@event);
 
             return Ok(new ChangePictureModel
             {
@@ -246,7 +262,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                                           NewPostAddedIntegrationEvent.PostImageTypes.ProfileImage,
                                                           UserId,
                                                           fileName);
-            _identityIntegrationEventService.NewPostAdd(@event);
+            _identityIntegrationEventService.PublishEvent(@event);
 
             return Ok(new ChangePictureModel
             {
@@ -444,6 +460,25 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Telefon numarasına ait kullanıcı adını verir
+        /// </summary>
+        /// <param name="phoneNumber">Telefon numarası</param>
+        /// <returns>Kullanıcı adı</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetUserName")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetUserNameByPhoneNumber([FromQuery]string phoneNumber)
+        {
+            string userName = _userRepository.GetUserNameByPhoneNumber(phoneNumber);
+            if (!string.IsNullOrEmpty(userName))
+                return Ok(new { userName });
+
+            return NotFound();
+        }
+
+        /// <summary>
         /// Üye ol
         /// </summary>
         /// <param name="signUpModel">Üye olunacak model</param>
@@ -457,21 +492,79 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (signUpModel == null)
                 return BadRequest();
 
+            if (string.IsNullOrEmpty(signUpModel.DeviceIdentifier) || _deviceInfoRepository.CheckDeviceIdentifier(signUpModel.DeviceIdentifier))
+            {
+                return BadRequest(IdentityResource.GlobalErrorMessage);
+            }
+
             ApplicationUser user = new ApplicationUser
             {
                 UserName = signUpModel.UserName.ToLower(),
                 FullName = signUpModel.FullName.ToLowerInvariant(),
-                Email = signUpModel.Email.ToLower(),
                 LanguageCode = signUpModel.LanguageCode.ToLower(),
+                PhoneNumber = signUpModel.Password// Sms ile login olma sisteminde kullanıcıdan şifre almamak için şifresini telefon numarası yaptık
             };
 
             var result = await _userManager.CreateAsync(user, signUpModel.Password);
             if (!result.Succeeded && result.Errors.Count() > 0)
                 return BadRequest(IdentityResultErrors(result.Errors));
 
+            // Kullanıcı yeni login olduğu için  belirli bir miktar altın ekledim
+            PublishChangeBalanceIntegrationEvent(10.00m, BalanceTypes.Gold, user.Id);
+
+            if (!string.IsNullOrEmpty(signUpModel.ReferenceCode))
+            {
+                _logger.LogInformation($@"Referans kodu ile üye olma işlemi gerçekleşti. Reference Code:{signUpModel.ReferenceCode}
+                                                                                         New User Id: {user.Id}
+                                                                                         GiftMoneyAmount: {_identitySettings.GiftMoneyAmount}");
+
+                string referenceUserId = _userRepository.GetUserIdByUserName(signUpModel.ReferenceCode);
+                if (!string.IsNullOrEmpty(referenceUserId))// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
+                {
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, user.Id);
+
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
+
+                    _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, referenceUserId, user.Id);
+                }
+                else
+                {
+                    ReferenceModel referenceModel = _referenceRepository.IsCodeActive(signUpModel.ReferenceCode);
+                    if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
+                    {
+                        PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, user.Id);
+
+                        _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, null, user.Id);
+                    }
+                }
+            }
+
+            try
+            {
+                // Bu kısım üye olmayı etkilemesin diye try-catch bloklarına aldım
+                _deviceInfoRepository.Insert(signUpModel.DeviceIdentifier);
+            }
+            catch (System.Exception ex)
+            {
+                Logger.LogError($"Device info kayıt edilirken hata oluştu. device info id: {signUpModel.DeviceIdentifier}");
+            }
+
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Eğer referans kodu ile üye oluyorsa belirli birr miktar para verdik
+        /// </summary>
+        private void PublishChangeBalanceIntegrationEvent(decimal amount, BalanceTypes balanceType, string userId)
+        {
+            Task.Factory.StartNew(() =>
+          {
+              var @eventBalanceMoney = new ChangeBalanceIntegrationEvent(amount, userId, balanceType, BalanceHistoryTypes.DailyChip);
+
+              _identityIntegrationEventService.PublishEvent(@eventBalanceMoney);
+          });
         }
 
         /// <summary>

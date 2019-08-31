@@ -133,6 +133,15 @@ namespace ContestPark.Identity.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, an unexpected error occurred. Please try again.
+        /// </summary>
+        public static string GlobalErrorMessage {
+            get {
+                return ResourceManager.GetString("GlobalErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {

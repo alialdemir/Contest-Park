@@ -18,6 +18,11 @@ namespace ContestPark.Mobile.Components.Search
                                                                                                             declaringType: typeof(SearchFactory),
                                                                                                             defaultValue: null);
 
+        public static readonly BindableProperty FollowCommandProperty = BindableProperty.Create(propertyName: nameof(FollowCommand),
+                                                                                                returnType: typeof(ICommand),
+                                                                                                declaringType: typeof(SearchFactory),
+                                                                                                defaultValue: null);
+
         public ICommand GotoProfilePageCommand
         {
             get { return (ICommand)GetValue(GotoProfilePageCommandProperty); }
@@ -28,6 +33,12 @@ namespace ContestPark.Mobile.Components.Search
         {
             get { return (ICommand)GetValue(PushCategoryDetailCommandProperty); }
             set { SetValue(PushCategoryDetailCommandProperty, value); }
+        }
+
+        public ICommand FollowCommand
+        {
+            get { return (ICommand)GetValue(FollowCommandProperty); }
+            set { SetValue(FollowCommandProperty, value); }
         }
 
         #endregion Properties
@@ -45,7 +56,11 @@ namespace ContestPark.Mobile.Components.Search
             switch (searchModel.SearchType)
             {
                 case Enums.SearchTypes.Player:
-                    Content = new PlayerSearchView() { GotoProfilePageCommand = GotoProfilePageCommand };
+                    Content = new UserFollowListItem()
+                    {
+                        GotoProfilePageCommand = GotoProfilePageCommand,
+                        RightButtonCommand = FollowCommand,
+                    };
                     break;
 
                 case Enums.SearchTypes.Category:

@@ -6,58 +6,85 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="{StaticResource Black}">
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Content>
         <ScrollView>
-            <Grid Margin="10" RowSpacing="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="200" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <yummy:PancakeView
+                BackgroundGradientEndColor="#A573FF"
+                BackgroundGradientStartColor="#645AFF"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="0"
+                    VerticalOptions="FillAndExpand">
 
-                <!--  Top Start  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="49*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="49*" />
+                    </Grid.RowDefinitions>
 
-                <components:UsersInfo
-                    Grid.Row="0"
-                    FounderFullname="{Binding DuelScreen.FounderFullName}"
-                    FounderImageBorderColor="{Binding FounderImageBorderColor}"
-                    FounderScore="{Binding FounderScore}"
-                    FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
-                    OpponentFullname="{Binding DuelScreen.OpponentFullName}"
-                    OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
-                    OpponentScore="{Binding OpponentScore}"
-                    OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
-                    Time="{Binding Time}" />
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <!--  Top End  -->
+                        <!--  Top Start  -->
 
-                <!--  Question Start  -->
+                        <components:UsersInfo
+                            Grid.Row="0"
+                            FounderFullname="{Binding DuelScreen.FounderFullName}"
+                            FounderImageBorderColor="{Binding FounderImageBorderColor}"
+                            FounderScore="{Binding FounderScore}"
+                            FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
+                            OpponentFullname="{Binding DuelScreen.OpponentFullName}"
+                            OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
+                            OpponentScore="{Binding OpponentScore}"
+                            OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
+                            Time="{Binding Time}" />
 
-                <components:QuestionCardFactory
-                    Grid.Row="1"
-                    Link="{Binding CurrentQuestion.Link}"
-                    Question="{Binding CurrentQuestion.NextQuestion}"
-                    QuestionType="{Binding CurrentQuestion.QuestionType}" />
+                        <!--  Top End  -->
 
-                <!--  Question End  -->
+                        <!--  Question Start  -->
 
-                <!--  Stylish Start  -->
+                        <components:QuestionCardFactory
+                            Grid.Row="1"
+                            Link="{Binding CurrentQuestion.Link}"
+                            Question="{Binding CurrentQuestion.NextQuestion}"
+                            QuestionType="{Binding CurrentQuestion.QuestionType}" />
 
-                <components:Stylish
-                    x:Name="Stylishs"
-                    Grid.Row="2"
-                    Margin="0,10,0,0"
-                    AnswerCommand="{Binding AnswerCommand}"
-                    AnswerType="{Binding CurrentQuestion.AnswerType}"
-                    Answers="{Binding Answers}" />
+                        <!--  Question End  -->
+                    </Grid>
 
-                <!--  Stylish End  -->
-            </Grid>
+                    <BoxView Grid.Row="2" Color="#FAFAFA" />
+
+                    <!--  Center Start  -->
+
+                    <Image
+                        Grid.RowSpan="3"
+                        HeightRequest="20"
+                        HorizontalOptions="FillAndExpand"
+                        Source="questioncenter.png"
+                        TranslationY="-7" />
+
+                    <!--  Center End  -->
+
+                    <!--  Stylish Start  -->
+
+                    <components:Stylish
+                        x:Name="Stylishs"
+                        Grid.Row="2"
+                        AnswerCommand="{Binding AnswerCommand}"
+                        AnswerType="{Binding CurrentQuestion.AnswerType}"
+                        Answers="{Binding Answers}" />
+
+                    <!--  Stylish End  -->
+                </Grid>
+            </yummy:PancakeView>
         </ScrollView>
     </pages:PopupPage.Content>
 </pages:PopupPage>

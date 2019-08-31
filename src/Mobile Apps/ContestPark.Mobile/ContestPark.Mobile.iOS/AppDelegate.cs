@@ -33,7 +33,9 @@ namespace ContestPark.Mobile.iOS
             //   Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+
             LoadApplication(new ContestParkApp(new IOSInitializer()));
+
 
             return base.FinishedLaunching(app, options);
         }

@@ -1,35 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="ContestPark.Mobile.Components.InputListItem"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize">
+<ContentView
+    x:Class="ContestPark.Mobile.Components.InputListItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
-        <Grid Padding="16,8,16,8" ColumnSpacing="15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-            </Grid.RowDefinitions>
+        <yummy:PancakeView
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="{Binding CornerRadius}"
+            Elevation="6"
+            HasShadow="True"
+            IsClippedToBounds="True"
+            VerticalOptions="Start">
+            <Grid Margin="14,8,14,8" ColumnSpacing="22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="40"
+                    Source="{Binding Icon}"
+                    WidthRequest="40" />
 
-            <icon:IconImage Grid.Row="0"
-                            Grid.Column="0"
-                            Icon="{Binding Icon}"
-                            IconColor="{StaticResource Primary}"
-                            IconSize="24" />
-
-            <Entry Grid.Row="0"
-                   Grid.Column="1"
-                   BackgroundColor="Transparent"
-                   IsPassword="{Binding IsPassword}"
-                   Keyboard="Text"
-                   Placeholder="{Binding Placeholder}"
-                   PlaceholderColor="{StaticResource Primary}"
-                   Text="{Binding Text}"
-                   TextColor="{StaticResource White}"
-                   Visual="Material" />
-        </Grid>
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource SofiaProLight}"
+                    FontSize="13"
+                    IsPassword="{Binding IsPassword}"
+                    Keyboard="Text"
+                    Placeholder="{Binding Placeholder}"
+                    PlaceholderColor="#9F9F9F"
+                    Text="{Binding Text}"
+                    TextColor="#040404"
+                    Visual="Material" />
+            </Grid>
+        </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

@@ -21,17 +21,19 @@ namespace ContestPark.Mobile.Models.Post
             }
         }
 
+        public BalanceTypes BalanceType { get; set; }
+
         [JsonIgnore]
         public string CompetitorColor
         {
             get
             {
                 if (FounderTrueAnswerCount == CompetitorTrueAnswerCount)
-                    return "#FFC200";//sarı
+                    return "#FFC72E";//sarı
                 else if (CompetitorTrueAnswerCount > FounderTrueAnswerCount)
-                    return "#017d46";//yeşil
+                    return "#1AD5AB";//yeşil
 
-                return "#993232";//kırmız
+                return "#F05669";//kırmız
             }
         }
 
@@ -80,11 +82,11 @@ namespace ContestPark.Mobile.Models.Post
             get
             {
                 if (FounderTrueAnswerCount == CompetitorTrueAnswerCount)
-                    return "#FFC200";//sarı
+                    return "#FFC72E";//sarı
                 else if (FounderTrueAnswerCount > CompetitorTrueAnswerCount)
-                    return "#017d46";//yeşil
+                    return "#1AD5AB";//yeşil
 
-                return "#993232";//kırmız
+                return "#F05669";//kırmız
             }
         }
 

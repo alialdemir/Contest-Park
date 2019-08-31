@@ -7,7 +7,7 @@ namespace ContestPark.Mobile.Models.Categories
     {
         private string displayPrice = "0";
 
-        private bool isFollow;
+        private bool _isFollowing;
         private string picturePath;
 
         public string CategoryName { get; set; } = "";
@@ -31,14 +31,14 @@ namespace ContestPark.Mobile.Models.Categories
             get { return DisplayPrice.Equals("0"); }
         }
 
-        public bool IsFollow
+        public bool IsFollowing
         {
-            get { return isFollow; }
+            get { return _isFollowing; }
             set
             {
-                isFollow = value;
+                _isFollowing = value;
 
-                RaisePropertyChanged(() => IsFollow);
+                RaisePropertyChanged(() => IsFollowing);
             }
         }
 
@@ -51,6 +51,12 @@ namespace ContestPark.Mobile.Models.Categories
 
                 RaisePropertyChanged(() => PicturePath);
             }
+        }
+
+        [JsonIgnore]
+        public string ProfilePicturePath
+        {
+            get { return PicturePath; }
         }
 
         public decimal Price { get; set; }

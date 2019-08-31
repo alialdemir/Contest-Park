@@ -61,32 +61,34 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.AccountSettings)
                                 {
                                     new InputMenuItem {
-                                        Icon = "fas-user-circle",
+                                        Icon = "settings_edit_profile_name.svg",
                                         MenuType = Enums.MenuTypes.Input,
                                         Placeholder = ContestParkResources.Fullname,
                                         Text = _settingsService.CurrentUser.FullName,
                                     },
                                     new InputMenuItem {
-                                        Icon = "fas-user-edit",
+                                        Icon = "settings_edit_profile_username.svg",
                                         MenuType = Enums.MenuTypes.Input,
                                         Placeholder = ContestParkResources.UserName,
                                         Text = _settingsService.CurrentUser.UserName,
+                                        CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
 
                 new MenuItemList(ContestParkResources.PictureSettings)
                                 {
                                     new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Image,
+                                        MenuType = Enums.MenuTypes.Label,
                                         Title = ContestParkResources.ChangeProfilePicture,
-                                        Icon = _settingsService.CurrentUser.ProfilePicturePath,
+                                        Icon = "settings_edit_profile_username.svg",
                                         SingleTap = new Command(async () => await ChangeProfilePictureAsync())
         },
                                     new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Image,
+                                        MenuType = Enums.MenuTypes.Label,
                                         Title = ContestParkResources.ChangeCoverPicture,
-                                        Icon = _settingsService.CurrentUser.CoverPicturePath,
-                                        SingleTap = new Command(async () => await ChangeCoverPicture())
+                                        Icon = "settings_edit_profile_profile_photo.svg",
+                                        SingleTap = new Command(async () => await ChangeCoverPicture()),
+                                        CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
 

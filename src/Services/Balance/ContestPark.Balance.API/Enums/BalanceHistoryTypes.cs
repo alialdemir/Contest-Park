@@ -46,5 +46,10 @@
         /// Düello başladığı anda bahis miktarı kadar bakiye azaltmak için
         /// </summary>
         Duel = 9,
+
+        /// <summary>
+        /// Parasını banka hesabına çekti
+        /// </summary>
+        MoneyWithdraw = 10,
     }
 }

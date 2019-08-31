@@ -1,7 +1,7 @@
 ﻿using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using ContestPark.Mobile.Services.Audio;
@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private string _duelId;
+        public int DuelId { get; set; }
         private DuelResultModel _duelResult;
 
         public DuelResultModel DuelResult
@@ -70,7 +70,9 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            DuelResult = await _duelService.DuelResult(_duelId);
+            DuelResult = await _duelService.DuelResult(DuelId);
+
+            ProfilePictureBorderColorCommand?.Execute(null);
 
             if (DuelResult != null && _settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
                 _audioService.Play(Audio.Fireworks, true);
@@ -92,9 +94,12 @@ namespace ContestPark.Mobile.ViewModels
 
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
-                SubcategoryId = DuelResult.SubCategoryId,
-                SubcategoryName = DuelResult.SubCategoryName,
-                SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                SelectedSubCategory = new SelectedSubCategoryModel
+                {
+                    SubcategoryId = DuelResult.SubCategoryId,
+                    SubcategoryName = DuelResult.SubCategoryName,
+                    SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                }
             });
 
             IsBusy = false;
@@ -174,9 +179,12 @@ namespace ContestPark.Mobile.ViewModels
             // TODO: burada karşı rakipbe rövanş yapmak ister misiniz diye sorması lazım
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
-                SubcategoryId = DuelResult.SubCategoryId,
-                SubcategoryName = DuelResult.SubCategoryName,
-                SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                SelectedSubCategory = new SelectedSubCategoryModel
+                {
+                    SubcategoryId = DuelResult.SubCategoryId,
+                    SubcategoryName = DuelResult.SubCategoryName,
+                    SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
+                },
                 OpponentUserId = DuelResult.IsFounder ? DuelResult.OpponentUserId : DuelResult.FounderUserId
             });
 
@@ -247,17 +255,8 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand RevengeCommand { get { return new Command(async () => await ExecuteRevengeCommand()); } }
         public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
 
+        public ICommand ProfilePictureBorderColorCommand { get; set; }
+
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatingTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("DuelId")) _duelId = parameters.GetValue<string>("DuelId");
-
-            base.OnNavigatingTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

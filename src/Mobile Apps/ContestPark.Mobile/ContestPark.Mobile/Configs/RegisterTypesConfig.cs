@@ -26,7 +26,6 @@ using ContestPark.Mobile.Views;
 using Plugin.Iconize;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Configs
 {
@@ -58,21 +57,21 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
 
+            containerRegistry.RegisterForNavigation<AppShell, AppShellViewModel>();
+
+            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
+
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 
             containerRegistry.RegisterForNavigation<CategoriesView, CategoriesViewModel>();
 
-            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
-
-            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(NavigationPage));
-
             containerRegistry.RegisterForNavigation<CategoryDetailView, CategoryDetailViewModel>();
-
-            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
 
             containerRegistry.RegisterForNavigation<ChatDetailView, ChatDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<ChatView, ChatViewModel>();
+
+            containerRegistry.RegisterForNavigation<CheckSmsView, CheckSmsViewModel>();
 
             containerRegistry.RegisterForNavigation<ContestStoreView, ContestStoreViewModel>();
 
@@ -88,13 +87,13 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
 
+            containerRegistry.RegisterForNavigation<IbanNoView, IbanNoViewModel>();
+
+            containerRegistry.RegisterForNavigation<InviteView, InviteViewModel>();
+
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
 
             containerRegistry.RegisterForNavigation<MainView, MainPageViewModel>();
-
-            containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
-
-            containerRegistry.RegisterForNavigation<PostDetailView, PostDetailViewModel>();
 
             containerRegistry.RegisterForNavigation<MasterDetailView, MasterDetailViewModel>();
 
@@ -104,6 +103,14 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<NotificationsView, NotificationsViewModel>();
 
+            containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
+
+            containerRegistry.RegisterForNavigation<PhotoModalView, PhotoModalViewModel>();
+
+            containerRegistry.RegisterForNavigation<PostDetailView, PostDetailViewModel>();
+
+            containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
+
             containerRegistry.RegisterForNavigation<ProfileView, ProfileViewModel>();
 
             containerRegistry.RegisterForNavigation<QuestionExpectedPopupView, QuestionExpectedPopupViewModel>();
@@ -112,13 +119,23 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<RankingView, RankingViewModel>();
 
+            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
+
+            containerRegistry.RegisterForNavigation<SelectCountryView, SelectCountryViewModel>();
+
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
 
+            containerRegistry.RegisterForNavigation<SignUpFullNameView, SignUpFullNameViewModel>();
+
+            containerRegistry.RegisterForNavigation<SignUpUserNameView, SignUpUserNameViewModel>();
+
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
 
             containerRegistry.RegisterForNavigation<TabView, TabViewModel>();
+
+            containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
         }
 
         #endregion Navigation
@@ -129,45 +146,17 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterPopupNavigationService();
 
-            #region Yeni
-
-            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
-
-            containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
-
-            containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
-
-            containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
-
-            containerRegistry.RegisterSingleton<IChatService, ChatService>();
-
-            containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
-
-            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
-
-            containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
-
-            containerRegistry.RegisterSingleton<IFollowService, FollowService>();
-
-            containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
-
-            containerRegistry.RegisterSingleton<IPostService, PostService>();
-
-            containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
-
-            containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
-
-            containerRegistry.RegisterSingleton<IDuelService, DuelService>();
-
-            #endregion Yeni
-
             if (!GlobalSetting.Instance.IsMockData)
             {
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
 
                 containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
                 containerRegistry.RegisterSingleton<IPostService, PostService>();
+
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
                 containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowService>();
 
@@ -183,48 +172,51 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowService>();
 
+                containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
-
-                containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             }
             else
             {
-                //    containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
                 containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
-                //   containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
+                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
-                // containerRegistry.RegisterSingleton<IPostService, PostMockService>();
+                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                //   containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
-                // containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
+                containerRegistry.RegisterSingleton<ICategoryFollowService, CategoryFollowMockService>();
 
-                //   containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
+                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
-                //     containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
+                containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
-                //////////////containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
-                //////////////containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
+                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
-                //////containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
+                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
-                //containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
+                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
-                //containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
+                containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
 
-                //containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
+                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 
-                //     containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
+                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
-                // containerRegistry.RegisterSingleton<ISettingsService, SettingsMockService>();
+                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
             }
+
+            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+
             containerRegistry.RegisterSingleton<IBotService, BotService>();
 
             containerRegistry.RegisterSingleton<IGameService, GameService>();

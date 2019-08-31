@@ -127,7 +127,7 @@
     <value>Şifre</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Giriş Yap</value>
+    <value>Giriş Yap ➝</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Üye Ol</value>
@@ -178,7 +178,7 @@
     <value>Rakip Bul</value>
   </data>
   <data name="Followers" xml:space="preserve">
-    <value>Takip edenler</value>
+    <value>Takipçi</value>
   </data>
   <data name="Ranking" xml:space="preserve">
     <value>Sıralama</value>
@@ -199,10 +199,10 @@
     <value>Çıkış</value>
   </data>
   <data name="EntryFee" xml:space="preserve">
-    <value>Giriş Ücreti</value>
+    <value>GİRİŞ ÜCRETİ</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Oyna</value>
+    <value>OYNA</value>
   </data>
   <data name="Advanced" xml:space="preserve">
     <value>İleri Düzeyde</value>
@@ -223,7 +223,7 @@
     <value>Çaylak</value>
   </data>
   <data name="Prize" xml:space="preserve">
-    <value>Ödül</value>
+    <value>ÖDÜL</value>
   </data>
   <data name="Freeloader" xml:space="preserve">
     <value>Beleşçi</value>
@@ -265,13 +265,13 @@
     <value>Beğeni</value>
   </data>
   <data name="YourLevel" xml:space="preserve">
-    <value>Seviyen</value>
+    <value>Seviye</value>
   </data>
   <data name="Follow" xml:space="preserve">
     <value>Takip Et</value>
   </data>
   <data name="Following" xml:space="preserve">
-    <value>Takip edilenler</value>
+    <value>Takip</value>
   </data>
   <data name="Global" xml:space="preserve">
     <value>Genel</value>
@@ -324,22 +324,22 @@
     <value>Görevler</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ayarlar</value>
   </data>
-  <data name="ShortDay" xml:space="preserve">
-    <value> g </value>
+  <data name="Day" xml:space="preserve">
+    <value> Gün </value>
     <comment>Sıralama için gün baş harfi</comment>
   </data>
-  <data name="ShortHour" xml:space="preserve">
-    <value> s </value>
+  <data name="Hour" xml:space="preserve">
+    <value> Saat </value>
     <comment>Sıralama için saat baş harfi</comment>
   </data>
-  <data name="ShortMinute" xml:space="preserve">
-    <value> d </value>
+  <data name="Minute" xml:space="preserve">
+    <value> Dakika </value>
     <comment>Sıralama için dakkika baş harfi</comment>
   </data>
-  <data name="ShortSeconds" xml:space="preserve">
-    <value> s </value>
+  <data name="Seconds" xml:space="preserve">
+    <value> Saniye </value>
     <comment>Sıralama için saniye baş harfi</comment>
   </data>
   <data name="AccountSettings" xml:space="preserve">
@@ -349,7 +349,7 @@
     <value>Uygulama Ayarları</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Languages</value>
+    <value>Diller</value>
   </data>
   <data name="Blocking" xml:space="preserve">
     <value>Engellenenler</value>
@@ -373,7 +373,7 @@
     <value>English</value>
   </data>
   <data name="Turkish" xml:space="preserve">
-    <value>Turkish</value>
+    <value>Türkçe</value>
   </data>
   <data name="YouDontSeemToBeBlockingAnyone" xml:space="preserve">
     <value>Kimseyi engellemiş görünmüyorsun!</value>
@@ -592,5 +592,72 @@
   </data>
   <data name="YouHaveEnteredAnInvalidCode" xml:space="preserve">
     <value>Geçersiz kod girdiniz.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefon numarası</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Altın</value>
+  </data>
+  <data name="TurkishLira" xml:space="preserve">
+    <value>Türk Lirası</value>
+  </data>
+  <data name="Turkey" xml:space="preserve">
+    <value>TÜRKİYE</value>
+  </data>
+  <data name="YouCanRemoveTheBarriers" xml:space="preserve">
+    <value>Engelleri kaldırabilirsin</value>
+  </data>
+  <data name="InviteSaveMoney" xml:space="preserve">
+    <value>Davet Et, Para Kazan!</value>
+  </data>
+  <data name="ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp" xml:space="preserve">
+    <value>ContestPark, Bilgi Yarışması çok eğlenceli, siz de oynamalısınız. Lütfen kayıt olurken kullanıcı adımı "{0}" referans kodu olarak yazınız. Hem siz hemde ben para ödülü kazanmış olurum.</value>
+    <comment>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.</comment>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Davet Et</value>
+  </data>
+  <data name="ConvertToCash" xml:space="preserve">
+    <value>Paranı Nakite Çevir</value>
+  </data>
+  <data name="TransferToBankAccount" xml:space="preserve">
+    <value>BANKA HESABIMA AKTAR</value>
+  </data>
+  <data name="ARequestToTransferYourEarningsToYourAccountHasBeenCreated" xml:space="preserve">
+    <value>Kazancınız hesabınıza aktarma isteği oluşturuldu.</value>
+  </data>
+  <data name="SendMoney" xml:space="preserve">
+    <value>Kazancı Hesabına Aktar</value>
+  </data>
+  <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
+    <value>Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir.</value>
+  </data>
+  <data name="RightOn" xml:space="preserve">
+    <value>Devam Et</value>
+  </data>
+  <data name="EnterTheCodeFromSms" xml:space="preserve">
+    <value>Sms ile gelen kodu giriniz</value>
+  </data>
+  <data name="SmsCode" xml:space="preserve">
+    <value>Sms kodunu giriniz</value>
+  </data>
+  <data name="WhatShouldWeopleCallYou" xml:space="preserve">
+    <value>İnsanlar sana ne diye hitap etsin?</value>
+  </data>
+  <data name="WhatYouGetYourUsername" xml:space="preserve">
+    <value>Kullanıcı adınızı ne olsun?</value>
+  </data>
+  <data name="PhoneNumberRequiredFields" xml:space="preserve">
+    <value>Telefon numarası alanını doldurmak zorunludur.</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Geçersiz telefon numarası.</value>
+  </data>
+  <data name="Over" xml:space="preserve">
+    <value>Bitti</value>
+  </data>
+  <data name="YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore" xml:space="preserve">
+    <value>Oynamak için yeterli bakiyeniz yok. Contest store üzerinden bakiye yüklemelisiniz.</value>
   </data>
 </root>

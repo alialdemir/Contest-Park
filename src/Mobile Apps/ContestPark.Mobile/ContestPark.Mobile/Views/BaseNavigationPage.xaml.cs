@@ -1,6 +1,5 @@
 ﻿using Plugin.Iconize;
 using Prism.Navigation;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -13,7 +12,6 @@ namespace ContestPark.Mobile.Views
         public BaseNavigationPage()
         {
             InitializeComponent();
-            BarTextColor = (Color)ContestParkApp.Current.Resources["Primary"];
         }
 
         #endregion Constructor

@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Services.Duel
             return Task.CompletedTask;
         }
 
-        public Task<DuelResultModel> DuelResult(string duelId)
+        public Task<DuelResultModel> DuelResult(int duelId)
         {
             return Task.FromResult(new DuelResultModel
             {

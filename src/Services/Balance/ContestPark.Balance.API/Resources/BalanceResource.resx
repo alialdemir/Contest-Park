@@ -126,4 +126,7 @@
   <data name="ThePurchaseFailedPleaseEmailWithOurSupportTeam" xml:space="preserve">
     <value>The purchase failed. Please email with our support team. I info@contestpark.com</value>
   </data>
+  <data name="TheWithdrawalRequestFailed" xml:space="preserve">
+    <value>The withdrawal request failed.</value>
+  </data>
 </root>

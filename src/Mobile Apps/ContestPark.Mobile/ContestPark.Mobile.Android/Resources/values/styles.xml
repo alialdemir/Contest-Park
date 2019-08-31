@@ -33,7 +33,9 @@
     <item name="drawerArrowStyle">@style/DrawerIcon</item>
     <!-- Hamburger menu icon color -->
 
-    <item name="android:statusBarColor">@color/black</item>
+    <item name="android:statusBarColor">#F0F0F0</item>
+    <item name="android:windowLightStatusBar">true</item>
+
     <item name="android:windowBackground">@android:color/transparent</item>
     <item name="android:textAllCaps">false</item>
   </style>

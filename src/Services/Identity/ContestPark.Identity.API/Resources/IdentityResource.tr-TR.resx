@@ -156,6 +156,9 @@
   <data name="FullNameReqired" xml:space="preserve">
     <value>Ad soyad zorunlu alan.</value>
   </data>
+  <data name="GlobalErrorMessage" xml:space="preserve">
+    <value>Üzgünüz, beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz</value>
+  </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>E-postası geçersiz.</value>
   </data>

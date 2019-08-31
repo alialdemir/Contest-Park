@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.DobleCoinsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <Grid
+            Margin="0"
+            Padding="0"
+            ColumnSpacing="10"
+            RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                x:Name="lblCoins"
+                Grid.Column="0"
+                FontFamily="{StaticResource GothamRoundedMedium}"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="End"
+                TextColor="#8EF0A7"
+                VerticalTextAlignment="Center" />
+
+            <Image
+                x:Name="imgCoins"
+                Grid.Column="1"
+                Aspect="AspectFit" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -27,6 +27,18 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         #region Methods
 
         /// <summary>
+        /// Telefon numarasına ait kullanıcı adı
+        /// </summary>
+        /// <param name="phoneNumber">Telefon numarası</param>
+        /// <returns>Kullanıcı adı</returns>
+        public string GetUserNameByPhoneNumber(string phoneNumber)
+        {
+            return _applicationDbContext
+                .Users
+                .FirstOrDefault(x => x.PhoneNumber == phoneNumber)?.UserName;
+        }
+
+        /// <summary>
         /// Random bot kullanıcı profil resmi  verir
         /// </summary>
         /// <returns>Kullanıcı profil resimleri</returns>
@@ -174,6 +186,16 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                                 .FromSql(sql)
                                 .Select(u => u.Id)
                                 .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Kullanıcı adına ait user id verir
+        /// </summary>
+        /// <param name="userName">Kullanıcı id</param>
+        /// <returns>User id</returns>
+        public string GetUserIdByUserName(string userName)
+        {
+            return _applicationDbContext.Users.FirstOrDefault(x => x.NormalizedUserName == userName)?.Id;
         }
 
         #endregion Methods

@@ -6,12 +6,6 @@ namespace ContestPark.Identity.API.Models
 {
     public class SignUpModel
     {
-        [DataType(DataType.EmailAddress, ErrorMessage = "EmailFormating")]
-        [MaxLength(255, ErrorMessage = "EmailMaxLength")]
-        [Required(ErrorMessage = "EmailRequired")]
-        [NotTurkishCharacter(ErrorMessageResourceType = typeof(IdentityResource), ErrorMessageResourceName = "NotTurkishCharacter")]
-        public string Email { get; set; }
-
         [MinLength(3, ErrorMessage = "FullNameMinLength")]
         [MaxLength(255, ErrorMessage = "FullNameMaxLength")]
         [Required(ErrorMessage = "FullNameReqired")]
@@ -30,5 +24,9 @@ namespace ContestPark.Identity.API.Models
         [Required(ErrorMessage = "UserNameReqired")]
         [NotTurkishCharacter(ErrorMessageResourceType = typeof(IdentityResource), ErrorMessageResourceName = "NotTurkishCharacter")]
         public string UserName { get; set; }
+
+        public string ReferenceCode { get; set; }
+
+        public string DeviceIdentifier { get; set; }
     }
 }
