@@ -56,10 +56,10 @@ namespace ContestPark.Duel.API.Infrastructure
                     {
                         UserId = "3333-3333-3333-bot",
                         SubCategoryId = 1,
-                        DisplayTotalGoldScore = "134",
-                        DisplayTotalMoneyScore = "7k",
-                        TotalGoldScore = 7004,
-                        TotalMoneyScore = 1,
+                        DisplayTotalGoldScore = "4.5k",
+                        DisplayTotalMoneyScore = "7.6k",
+                        TotalGoldScore = 4500,
+                        TotalMoneyScore = 7600,
                         ContestDateId = 1,
                     },
                 });
