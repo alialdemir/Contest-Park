@@ -1304,7 +1304,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Berabere.
+        ///   Looks up a localized string similar to BERABERE.
         /// </summary>
         public static string Tie {
             get {
@@ -1601,7 +1601,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kaybettin!.
+        ///   Looks up a localized string similar to KAYBETTİN!.
         /// </summary>
         public static string YouLose {
             get {
@@ -1655,7 +1655,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sen Kazandın!.
+        ///   Looks up a localized string similar to SEN KAZANDIN!.
         /// </summary>
         public static string YouWin {
             get {

@@ -99,6 +99,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
                            d.OpponentUserId,
                            d.Bet AS Gold,
                            d.SubCategoryId,
+                           d.BalanceType,
                            d.FounderTotalScore AS FounderScore,
                            d.OpponentTotalScore AS OpponentScore,
                             CASE WHEN d.FounderUserId = @userId THEN d.FounderVictoryScore WHEN d.OpponentUserId = @userId THEN d.OpponentVictoryScore END AS VictoryBonus,

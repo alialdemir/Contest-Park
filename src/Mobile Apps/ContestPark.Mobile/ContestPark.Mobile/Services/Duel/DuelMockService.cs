@@ -30,6 +30,7 @@ namespace ContestPark.Mobile.Services.Duel
                 FinishBonus = 40,
                 VictoryBonus = 30,
                 OpponentLevel = 1,
+                BalanceType = Enums.BalanceTypes.Gold,
                 FounderLevel = 7,
                 SubCategoryPicturePath = DefaultImages.DefaultLock,
                 SubCategoryId = 1,
