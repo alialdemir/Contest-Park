@@ -365,7 +365,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigations
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
             if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");

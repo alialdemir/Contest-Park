@@ -1,5 +1,4 @@
-﻿using Autofac;
-using ContestPark.Mobile.Services.Audio;
+﻿using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
@@ -14,7 +13,6 @@ using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
-using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Score;
@@ -23,7 +21,6 @@ using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels;
 using ContestPark.Mobile.Views;
-using Plugin.Iconize;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
 
@@ -55,11 +52,14 @@ namespace ContestPark.Mobile.Configs
 
         private void RegisterTypeForNavigation(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<BaseNavigationPage>();
+            containerRegistry.RegisterForNavigation<Xamarin.Forms.NavigationPage>();
+
             containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<AppShell, AppShellViewModel>();
 
-            containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
+            //containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
 
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 
@@ -100,8 +100,6 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<MasterView, MasterViewModel>();
 
             containerRegistry.RegisterForNavigation<MissionsView, MissionsViewModel>();
-
-            containerRegistry.RegisterForNavigation<NotificationsView, NotificationsViewModel>();
 
             containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
 
@@ -166,8 +164,6 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
-                containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
-
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowService>();
@@ -199,8 +195,6 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
-
-                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 

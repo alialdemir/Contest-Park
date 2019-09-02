@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.ViewModels;
-using Plugin.Iconize;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Navigation;
@@ -12,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace ContestPark.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabView : IconTabbedPage
+    public partial class TabView : Xamarin.Forms.TabbedPage
     {
         #region Constructor
 

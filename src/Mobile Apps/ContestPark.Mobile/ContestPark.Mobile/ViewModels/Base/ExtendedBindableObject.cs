@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels.Base
 {
-    public abstract class ExtendedBindableObject : BindableObject
+    public abstract class ExtendedBindableObject : MvvmHelpers.BaseViewModel
     {
         public void RaisePropertyChanged<T>(Expression<Func<T>> property)
         {

@@ -1,5 +1,4 @@
-﻿using Autofac;
-using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Services.Settings;
@@ -7,7 +6,7 @@ using ContestPark.Mobile.Views;
 using MonkeyCache.SQLite;
 using Plugin.Iconize;
 using Prism;
-using Prism.Autofac;
+using Prism.DryIoc;
 using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Forms.Xaml;
@@ -54,7 +53,7 @@ namespace ContestPark.Mobile
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
 #if DEBUG
-            GlobalSetting.Instance.IsMockData = false;
+            GlobalSetting.Instance.IsMockData = true;
 #endif
             RegisterTypesConfig.Init(Container, containerRegistry);
         }

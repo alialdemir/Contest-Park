@@ -52,7 +52,7 @@ namespace ContestPark.Identity.API.Data
 
                         await context.SaveChangesAsync();
                     }
-                    if (user.Id == "1111-1111-1111-1111")
+                    if (!context.UserRoles.Any(x => x.UserId == user.Id && x.RoleId == "admin") && user.Id == "1111 -1111-1111-1111")
                     {
                         context.UserRoles.Add(new IdentityUserRole<string>
                         {

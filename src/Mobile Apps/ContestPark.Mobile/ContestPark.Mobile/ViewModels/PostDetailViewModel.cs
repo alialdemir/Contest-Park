@@ -183,11 +183,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigations
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
 
-            base.OnNavigatingTo(parameters);
+            base.OnNavigatedTo(parameters);
         }
 
         #endregion Navigations

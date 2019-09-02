@@ -1,21 +1,20 @@
-﻿using ContestPark.Mobile.Events;
-using Prism.Events;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterDetailView : Xamarin.Forms.MasterDetailPage
+    public partial class MasterDetailView : MasterDetailPage
     {
         #region Constructor
 
-        public MasterDetailView(IEventAggregator eventAggregator)
+        public MasterDetailView()
         {
             InitializeComponent();
 
-            eventAggregator
-                        .GetEvent<MasterDetailPageIsPresentedEvent>()
-                        .Subscribe((isPresented) => IsPresented = isPresented);
+            //RegisterTypesConfig.Container.Resolve<IEventAggregator>()
+            //        ?.GetEvent<MasterDetailPageIsPresentedEvent>()
+            //        .Subscribe((isPresented) => IsPresented = isPresented);
         }
 
         #endregion Constructor

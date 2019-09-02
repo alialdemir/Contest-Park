@@ -117,11 +117,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigation
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("UserId")) userId = parameters.GetValue<string>("UserId");
 
-            base.OnNavigatingTo(parameters);
+            base.OnNavigatedTo(parameters);
         }
 
         #endregion Navigation

@@ -186,7 +186,11 @@
                                 FontSize="27"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding ProfileInfo.FollowersCount, Mode=TwoWay}"
-                                TextColor="#FFC72E" />
+                                TextColor="#FFC72E">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GotoFollowersCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
 
                             <Label
                                 Grid.Row="1"
@@ -195,7 +199,11 @@
                                 FontSize="16"
                                 HorizontalTextAlignment="Center"
                                 Text="{i18n:Translate Followers}"
-                                TextColor="{StaticResource CategoryDetailTextColor}" />
+                                TextColor="{StaticResource CategoryDetailTextColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GotoFollowersCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
 
                             <!--  Following  -->
                             <Label
@@ -206,7 +214,11 @@
                                 FontSize="27"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding ProfileInfo.FollowUpCount, Mode=TwoWay}"
-                                TextColor="#FFC72E" />
+                                TextColor="#FFC72E">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GotoFollowingCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
 
                             <Label
                                 Grid.Row="1"
@@ -215,7 +227,11 @@
                                 FontSize="16"
                                 HorizontalTextAlignment="Center"
                                 Text="{i18n:Translate Following}"
-                                TextColor="{StaticResource CategoryDetailTextColor}" />
+                                TextColor="{StaticResource CategoryDetailTextColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GotoFollowingCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
                     </yummy:PancakeView>
                 </StackLayout>

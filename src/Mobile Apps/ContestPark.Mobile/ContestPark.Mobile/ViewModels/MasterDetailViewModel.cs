@@ -1,8 +1,6 @@
-﻿using Prism.Mvvm;
-
-namespace ContestPark.Mobile.ViewModels
+﻿namespace ContestPark.Mobile.ViewModels
 {
-    public class MasterDetailViewModel : BindableBase
+    public class MasterDetailViewModel
     {
         public MasterDetailViewModel()
         {

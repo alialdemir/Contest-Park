@@ -3,7 +3,7 @@
     x:Class="ContestPark.Mobile.ContestParkApp"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
+    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <prism:PrismApplication.Resources>
         <ResourceDictionary>

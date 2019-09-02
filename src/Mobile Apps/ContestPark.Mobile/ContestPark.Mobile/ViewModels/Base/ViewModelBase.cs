@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels.Base
 {
-    public abstract class ViewModelBase : ExtendedBindableObject /*MvvmHelpers.BaseViewModel*/, INavigationAware
+    public abstract class ViewModelBase : ExtendedBindableObject, INavigationAware
     {
         #region Private variables
 
@@ -155,15 +155,15 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-        }
-
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
-        {
             if (IsInitialized)
                 return;
 
             InitializeCommand.Execute(null);
             IsInitialized = true;
+        }
+
+        public virtual void OnNavigatingTo(INavigationParameters parameters)
+        {
         }
 
         public Task PushModalAsync(string name, INavigationParameters parameters = null)
