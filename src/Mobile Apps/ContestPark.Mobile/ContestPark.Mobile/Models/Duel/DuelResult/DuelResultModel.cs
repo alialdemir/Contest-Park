@@ -1,10 +1,10 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Newtonsoft.Json;
 using Prism.Ioc;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Duel.DuelResult
 {
@@ -50,15 +50,15 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
             {
                 if (FounderScore > OpponentScore)
                 {
-                    return GetHexString("Green");
+                    return Green;
                 }
                 else if (FounderScore < OpponentScore)
                 {
-                    return GetHexString("Red");
+                    return Red;
                 }
                 else
                 {
-                    return GetHexString("Primary");
+                    return Yellow;
                 }
             }
         }
@@ -98,15 +98,15 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
             {
                 if (OpponentScore > FounderScore)
                 {
-                    return GetHexString("Green");
+                    return Green;
                 }
                 else if (OpponentScore < FounderScore)
                 {
-                    return GetHexString("Red");
+                    return Red;
                 }
                 else
                 {
-                    return GetHexString("Primary");
+                    return Yellow;
                 }
             }
         }
@@ -124,6 +124,8 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public string SubCategoryName { get; set; }
 
         public string SubCategoryPicturePath { get; set; }
+
+        public BalanceTypes BalanceType { get; set; }
 
         public string WinnerOrLoseText
         {
@@ -151,16 +153,43 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
             {
                 if (OpponentScore > FounderScore)
                 {
-                    return SettingsService.CurrentUser.UserId == OpponentUserId ? GetHexString("Green") : GetHexString("Red");
+                    return SettingsService.CurrentUser.UserId == OpponentUserId ? Green : Red;
                 }
                 else if (OpponentScore < FounderScore)
                 {
-                    return SettingsService.CurrentUser.UserId == FounderUserId ? GetHexString("Green") : GetHexString("Red");
+                    return SettingsService.CurrentUser.UserId == FounderUserId ? Green : Red;
                 }
                 else
                 {
-                    return GetHexString("Primary");
+                    return Yellow;
                 }
+            }
+        }
+
+        [JsonIgnore]
+        public string Red
+        {
+            get
+            {
+                return "#FE5353";
+            }
+        }
+
+        [JsonIgnore]
+        public string Yellow
+        {
+            get
+            {
+                return "#FFC107";
+            }
+        }
+
+        [JsonIgnore]
+        public string Green
+        {
+            get
+            {
+                return "#02CD72";
             }
         }
 
@@ -175,19 +204,6 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
 
                 return settingsService;
             }
-        }
-
-        public string GetHexString(string colorName)
-        {
-            Color color = (Color)ContestParkApp.Current.Resources[colorName];
-
-            var red = (int)(color.R * 255);
-            var green = (int)(color.G * 255);
-            var blue = (int)(color.B * 255);
-            var alpha = (int)(color.A * 255);
-            var hex = $"#{alpha:X2}{red:X2}{green:X2}{blue:X2}";
-
-            return hex;
         }
     }
 }

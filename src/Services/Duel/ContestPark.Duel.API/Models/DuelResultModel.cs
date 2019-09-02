@@ -1,4 +1,6 @@
-﻿namespace ContestPark.Duel.API.Models
+﻿using ContestPark.Duel.API.Enums;
+
+namespace ContestPark.Duel.API.Models
 {
     public class DuelResultModel
     {
@@ -21,6 +23,8 @@
         public string OpponentUserId { get; set; }
 
         public string OpponentUserName { get; set; }
+
+        public BalanceTypes BalanceType { get; set; }
 
         public short SubCategoryId { get; set; }
 

@@ -18,29 +18,34 @@ namespace ContestPark.Mobile.Components.IconButton
         #endregion Constructor
 
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(propertyName: nameof(Command),
-                                                                                                    returnType: typeof(ICommand),
-                                                                                                    declaringType: typeof(IconButton),
-                                                                                                    defaultValue: null);
+                                                                                          returnType: typeof(ICommand),
+                                                                                          declaringType: typeof(IconButton),
+                                                                                          defaultValue: null);
 
-        public static readonly BindableProperty IconColorProperty = BindableProperty.Create(propertyName: nameof(IconColor),
-                                                                                                            returnType: typeof(Color),
-                                                                                                    declaringType: typeof(IconButton),
-                                                                                                    defaultValue: Color.Default);
+        public static readonly BindableProperty BackgroundGradientStartColorProperty = BindableProperty.Create(propertyName: nameof(BackgroundGradientStartColor),
+                                                                                                               returnType: typeof(Color),
+                                                                                                               declaringType: typeof(IconButton),
+                                                                                                               defaultValue: Color.Default);
+
+        public static readonly BindableProperty BackgroundGradientEndColorProperty = BindableProperty.Create(propertyName: nameof(BackgroundGradientEndColor),
+                                                                                                             returnType: typeof(Color),
+                                                                                                             declaringType: typeof(IconButton),
+                                                                                                             defaultValue: Color.Default);
 
         public static readonly BindableProperty IconProperty = BindableProperty.Create(propertyName: nameof(Icon),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(IconButton),
-                                                                                                    defaultValue: String.Empty);
+                                                                                       returnType: typeof(string),
+                                                                                       declaringType: typeof(IconButton),
+                                                                                       defaultValue: String.Empty);
 
         public static readonly BindableProperty ParameterProperty = BindableProperty.Create(propertyName: nameof(Parameter),
-                                                                                                    returnType: typeof(object),
-                                                                                                    declaringType: typeof(IconButton),
-                                                                                                    defaultValue: null);
+                                                                                            returnType: typeof(object),
+                                                                                            declaringType: typeof(IconButton),
+                                                                                            defaultValue: null);
 
         public static readonly BindableProperty TextProperty = BindableProperty.Create(propertyName: nameof(Text),
-                                                                                                  returnType: typeof(string),
-                                                                                                  declaringType: typeof(IconButton),
-                                                                                                  defaultValue: String.Empty);
+                                                                                       returnType: typeof(string),
+                                                                                       declaringType: typeof(IconButton),
+                                                                                       defaultValue: String.Empty);
 
         public ICommand Command
         {
@@ -54,10 +59,16 @@ namespace ContestPark.Mobile.Components.IconButton
             set { SetValue(IconProperty, value); }
         }
 
-        public Color IconColor
+        public Color BackgroundGradientEndColor
         {
-            get { return (Color)GetValue(IconColorProperty); }
-            set { SetValue(IconColorProperty, value); }
+            get { return (Color)GetValue(BackgroundGradientEndColorProperty); }
+            set { SetValue(BackgroundGradientEndColorProperty, value); }
+        }
+
+        public Color BackgroundGradientStartColor
+        {
+            get { return (Color)GetValue(BackgroundGradientStartColorProperty); }
+            set { SetValue(BackgroundGradientStartColorProperty, value); }
         }
 
         public object Parameter

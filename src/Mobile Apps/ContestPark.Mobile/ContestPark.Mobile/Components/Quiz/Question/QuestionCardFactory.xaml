@@ -25,10 +25,10 @@
             <Image
                 Margin="0,13,0,25"
                 Aspect="AspectFill"
-                HeightRequest="180"
+                HeightRequest="150"
                 IsVisible="{Binding Path=QuestionType, Source={x:Reference questionCardFactoryPage}, Converter={StaticResource qtc}}"
                 Source="{Binding Path=Link, Source={x:Reference questionCardFactoryPage}}"
-                WidthRequest="180" />
+                WidthRequest="150" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

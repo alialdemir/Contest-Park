@@ -481,7 +481,7 @@
     <value>Kaybetti</value>
   </data>
   <data name="Tie" xml:space="preserve">
-    <value>Berabere</value>
+    <value>BERABERE</value>
   </data>
   <data name="Winning" xml:space="preserve">
     <value>Kazanan</value>
@@ -579,10 +579,10 @@
     <comment>Türkçede bu boş olarak kalmalı</comment>
   </data>
   <data name="YouLose" xml:space="preserve">
-    <value>Kaybettin!</value>
+    <value>KAYBETTİN!</value>
   </data>
   <data name="YouWin" xml:space="preserve">
-    <value>Sen Kazandın!</value>
+    <value>SEN KAZANDIN!</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Sohbet</value>
