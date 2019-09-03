@@ -58,7 +58,6 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService = duelSignalRService ?? throw new ArgumentNullException(nameof(duelSignalRService));
 
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
-
         }
 
         #endregion Constructor
@@ -270,7 +269,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Düellodaki soruları alır
         /// </summary>
-        private async void OnDuelCreated(object sender, DuelCreated e)
+        private void OnDuelCreated(object sender, DuelCreated e)
         {
             DuelCreated duelCreated = (DuelCreated)sender;
             if (duelCreated == null)
@@ -281,6 +280,25 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
             {
+                var questionPopupView = new QuestionPopupView
+                {
+                    DuelCreated = duelCreated,
+                    DuelStarting = new DuelStartingModel
+                    {
+                        FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
+                        OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
+                        DuelId = DuelStarting.DuelId,
+                        FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
+                        FounderFullName = DuelStarting.FounderFullName,
+                        FounderUserId = DuelStarting.FounderUserId,
+                        OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
+                        OpponentFullName = DuelStarting.OpponentFullName,
+                        OpponentUserId = DuelStarting.OpponentUserId
+                    },
+                    SubcategoryName = SelectedSubCategory.SubcategoryName,
+                    SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
+                };
+
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     AudioStop();
@@ -289,24 +307,7 @@ namespace ContestPark.Mobile.ViewModels
 
                     IsNextQuestionExit = true;
 
-                    await PushPopupPageAsync(new QuestionPopupView
-                    {
-                        DuelCreated = duelCreated,
-                        DuelStarting = new DuelStartingModel
-                        {
-                            FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
-                            OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
-                            DuelId = DuelStarting.DuelId,
-                            FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
-                            FounderFullName = DuelStarting.FounderFullName,
-                            FounderUserId = DuelStarting.FounderUserId,
-                            OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
-                            OpponentFullName = DuelStarting.OpponentFullName,
-                            OpponentUserId = DuelStarting.OpponentUserId
-                        },
-                        SubcategoryName = SelectedSubCategory.SubcategoryName,
-                        SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
-                    });
+                    await PushPopupPageAsync(questionPopupView);
 
                     DuelCloseCommand.Execute(null);
                 });

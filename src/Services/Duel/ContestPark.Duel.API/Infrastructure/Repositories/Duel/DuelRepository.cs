@@ -103,7 +103,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
                            d.FounderTotalScore AS FounderScore,
                            d.OpponentTotalScore AS OpponentScore,
                             CASE WHEN d.FounderUserId = @userId THEN d.FounderVictoryScore WHEN d.OpponentUserId = @userId THEN d.OpponentVictoryScore END AS VictoryBonus,
-                            CASE WHEN d.FounderUserId = @userId THEN d.FounderFinshScore WHEN d.OpponentUserId = @userId THEN d.OpponentFinshScore END AS FinishBonus
+                            CASE WHEN d.FounderUserId = @userId THEN d.FounderFinishScore WHEN d.OpponentUserId = @userId THEN d.OpponentFinishScore END AS FinishBonus
                            FROM Duels d
                            WHERE d.DuelId = @duelId
                            LIMIT 1";

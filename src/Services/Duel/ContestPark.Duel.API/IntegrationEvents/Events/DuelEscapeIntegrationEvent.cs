@@ -1,6 +1,4 @@
-﻿using ContestPark.Duel.API.Models;
-using ContestPark.EventBus.Events;
-using System.Collections.Generic;
+﻿using ContestPark.EventBus.Events;
 
 namespace ContestPark.Duel.API.IntegrationEvents.Events
 {
@@ -8,22 +6,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
     {
         public int DuelId { get; set; }
         public string EscaperUserId { get; }
-        public string FounderUserId { get; set; }
-
-        public string OpponentUserId { get; set; }
-        public List<DuelFinishQuestionModel> Questions { get; set; }
 
         public DuelEscapeIntegrationEvent(int duelId,
-                                          string escaperUserId,
-                                          string founderUserId,
-                                          string opponentUserId,
-                                          List<DuelFinishQuestionModel> questions)
+                                          string escaperUserId)
         {
             DuelId = duelId;
             EscaperUserId = escaperUserId;
-            FounderUserId = founderUserId;
-            OpponentUserId = opponentUserId;
-            Questions = questions;
         }
     }
 }

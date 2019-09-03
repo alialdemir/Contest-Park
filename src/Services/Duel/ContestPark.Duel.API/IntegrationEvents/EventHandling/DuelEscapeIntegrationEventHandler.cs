@@ -1,11 +1,10 @@
 ﻿using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
+using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.IntegrationEvents.Events;
-using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +15,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         #region Private variables
 
         private readonly IEventBus _eventBus;
+        private readonly IUserAnswerRepository _userAnswerRepository;
         private readonly IDuelRepository _duelRepository;
         private readonly IScoreCalculator _scoreCalculator;
         private readonly ILogger<DuelEscapeIntegrationEventHandler> _logger;
@@ -25,12 +25,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         #region Constructor
 
         public DuelEscapeIntegrationEventHandler(IEventBus eventBus,
+                                                 IUserAnswerRepository userAnswerRepository,
                                                  IDuelRepository duelRepository,
                                                  IScoreCalculator scoreCalculator,
                                                  ILogger<DuelEscapeIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
+            _userAnswerRepository = userAnswerRepository;
             _duelRepository = duelRepository;
             _scoreCalculator = scoreCalculator;
         }
@@ -61,10 +63,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 SendErrorMessage(@event.EscaperUserId, "Bu düello size ait değil");
             }
 
-            // Oyuncuların düellodan kaçma durumunda yenilmiş olma durumunu buradan ayarladık
-            duel.FounderTotalScore = isEscaperUserFounder ? (byte)0 : (byte)@event.Questions.Sum(x => x.FounderScore);
+            var userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
+            if (userAnswers != null && userAnswers.Count > 0)
+            {
+                // Oyuncuların düellodan kaçma durumunda yenilmiş olma durumunu buradan ayarladık
+                duel.FounderTotalScore = isEscaperUserFounder ? (byte)0 : (byte)userAnswers.Sum(x => x.FounderScore);
 
-            duel.OpponentTotalScore = !isEscaperUserFounder ? (byte)0 : (byte)@event.Questions.Sum(x => x.OpponentScore);
+                duel.OpponentTotalScore = !isEscaperUserFounder ? (byte)0 : (byte)userAnswers.Sum(x => x.OpponentScore);
+            }
 
             bool isFounderFinishedTheGame = false;
             bool isOpponentFinishedTheGame = false;
@@ -98,40 +104,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _eventBus.Publish(duelFinishEvent);
 
             return Task.CompletedTask;
-        }
-
-        /// <summary>
-        /// DuelFinishQuestionModel listesini alıp DuelDetail table modeline çevirir
-        /// </summary>
-        /// <param name="duelQuestions">Düelloda sorulan sorular ve verilen cevaplar</param>
-        /// <param name="duelId">Düello id</param>
-        /// <returns>DuelDetail list</returns>
-        private List<Infrastructure.Tables.DuelDetail> ConvertToDuelDetail(List<DuelFinishQuestionModel> duelQuestions, int duelId)
-        {
-            List<Infrastructure.Tables.DuelDetail> duelDetails = new List<Infrastructure.Tables.DuelDetail>();
-            for (int i = 0; i < duelQuestions.Count - 1; i++)
-            {
-                DuelFinishQuestionModel duelQuestion = duelQuestions[i];
-
-                byte round = (byte)(i + 1);
-
-                duelDetails.Add(new Infrastructure.Tables.DuelDetail
-                {
-                    DuelId = duelId,
-                    QuestionId = duelQuestion.QuestionId,
-                    CorrectAnswer = duelQuestion.CorrectAnswer,
-
-                    FounderAnswer = duelQuestion.FounderAnswer,
-                    FounderTime = duelQuestion.FounderTime,
-                    FounderScore = duelQuestion.CorrectAnswer == duelQuestion.FounderAnswer ? _scoreCalculator.Calculator(round, duelQuestion.FounderTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
-
-                    OpponentScore = duelQuestion.CorrectAnswer == duelQuestion.OpponentAnswer ? _scoreCalculator.Calculator(round, duelQuestion.OpponentTime) : (byte)0,// doğru cevap vermiş ise puan alıyor
-                    OpponentAnswer = duelQuestion.OpponentAnswer,
-                    OpponentTime = duelQuestion.OpponentTime,
-                });
-            }
-
-            return duelDetails;
         }
 
         /// <summary>

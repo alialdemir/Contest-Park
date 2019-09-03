@@ -30,9 +30,9 @@ namespace ContestPark.Duel.API.Models
 
         public string SubCategoryName { get; set; }
 
-        public short FounderLevel { get; set; }
+        public short FounderLevel { get; set; } = 1;
 
-        public short OpponentLevel { get; set; }
+        public short OpponentLevel { get; set; } = 1;
 
         public byte FounderScore { get; set; }
 

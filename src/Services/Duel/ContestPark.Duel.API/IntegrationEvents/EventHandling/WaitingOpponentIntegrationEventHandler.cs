@@ -3,6 +3,7 @@ using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
@@ -115,16 +116,18 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 {
                     _duelUserRepository.Delete(duelUserModel);
 
+                    bool random = new Random().Next(1, 6) % 2 == 0;// Random bir sayı alıp tek mi çift mi diye baktık ona göre kurucu veya rakip konumuna getiriyoruz :D
+
                     var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: waitingOpponentIntegration.SubCategoryId,
                                                                bet: waitingOpponentIntegration.Bet,
 
-                                                               founderUserId: waitingOpponentIntegration.UserId,
-                                                               founderConnectionId: waitingOpponentIntegration.ConnectionId,
-                                                               founderLanguage: waitingOpponentIntegration.Language,
+                                                               founderUserId: random ? waitingOpponentIntegration.UserId : duelUserModel.UserId,
+                                                               founderConnectionId: random ? waitingOpponentIntegration.ConnectionId : duelUserModel.ConnectionId,
+                                                               founderLanguage: random ? waitingOpponentIntegration.Language : duelUserModel.Language,
 
-                                                               opponentUserId: duelUserModel.UserId,
-                                                               opponentConnectionId: duelUserModel.ConnectionId,
-                                                               opponentLanguage: duelUserModel.Language,
+                                                               opponentUserId: !random ? waitingOpponentIntegration.UserId : duelUserModel.UserId,
+                                                               opponentConnectionId: !random ? waitingOpponentIntegration.ConnectionId : duelUserModel.ConnectionId,
+                                                               opponentLanguage: !random ? waitingOpponentIntegration.Language : duelUserModel.Language,
 
                                                                balanceType: duelUserModel.BalanceType);
 

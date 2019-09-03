@@ -277,7 +277,7 @@
                             CornerRadius="80"
                             FontAttributes="Bold"
                             FontSize="Medium"
-                            Text="{Binding DuelResult.VictoryBonus}"
+                            Text="{Binding DuelResult.FinishBonus}"
                             TextColor="#02CD72" />
 
                         <Label

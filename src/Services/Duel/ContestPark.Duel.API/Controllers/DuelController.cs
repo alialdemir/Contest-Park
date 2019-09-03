@@ -147,21 +147,18 @@ namespace ContestPark.Duel.API.Controllers
         /// <summary>
         /// Düellodan çık
         /// </summary>
-        [HttpPost("DuelEscape")]
+        [HttpPost("{duelId}/DuelEscape")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult DuelEscape([FromBody]DuelEscapeModel duelEscapeModel)
+        public IActionResult DuelEscape([FromRoute]int duelId)
         {
-            if (!_duelRepository.IsDuelFinish(duelEscapeModel.DuelId))
+            if (!_duelRepository.IsDuelFinish(duelId))
             {
                 return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
             }
 
-            var @event = new DuelEscapeIntegrationEvent(duelEscapeModel.DuelId,
-                                                        UserId,
-                                                        duelEscapeModel.FounderUserId,
-                                                        duelEscapeModel.OpponentUserId,
-                                                        duelEscapeModel.Questions);
+            var @event = new DuelEscapeIntegrationEvent(duelId,
+                                                        UserId);
 
             _eventBus.Publish(@event);
 

@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Enums;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.Audio;
@@ -8,6 +9,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System;
@@ -35,10 +37,11 @@ namespace ContestPark.Mobile.ViewModels
 
         public QuestionPopupViewModel(IPopupNavigation popupNavigation,
                                       IDuelSignalRService duelSignalRService,
+                                      IPageDialogService pageDialogService,
                                       IDuelService duelService,
                                       ISettingsService settingsService,
                                       IAudioService audioService,
-                                      IBotService botService) : base(popupNavigation: popupNavigation)
+                                      IBotService botService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
         {
             _duelSignalRService = duelSignalRService;
             _duelService = duelService;
@@ -443,15 +446,27 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Soru ekranını kapatır düel result ekranı açar
         /// </summary>
-        private void ExecuteDuelCloseCommand()
+        private async void ExecuteDuelCloseCommand(bool showAlert = true)
         {
+            if (showAlert)
+            {
+                bool isOkay = await DisplayAlertAsync(ContestParkResources.Exit,
+                                                  ContestParkResources.AreYouSureYouWantToLeave,
+                                                  ContestParkResources.Okay,
+                                                  ContestParkResources.Cancel);
+
+                if (!isOkay)
+                    return;
+            }
+
             IsExit = true;
 
             IsStylishClick = false;
 
             if (DuelScreen.DuelId > 0)
             {
-                _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
+                await _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
+                await _duelService.DuelEscape(DuelScreen.DuelId);
             }
 
             _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
@@ -478,7 +493,7 @@ namespace ContestPark.Mobile.ViewModels
                 if (IsExit)
                     return false;
 
-                DuelCloseCommand.Execute(null);
+                DuelCloseCommand.Execute(false);
 
                 return false;
             });
@@ -687,7 +702,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Soru ekranı kapatır
         /// </summary>
-        public ICommand DuelCloseCommand => new Command(() => ExecuteDuelCloseCommand());
+        public ICommand DuelCloseCommand => new Command<bool>((showAlert) => ExecuteDuelCloseCommand(showAlert));
 
         #endregion Commands
     }

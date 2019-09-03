@@ -52,7 +52,7 @@ namespace ContestPark.Mobile.Views
 
         protected override bool OnBackButtonPressed()
         {
-            ((QuestionPopupViewModel)BindingContext).DuelCloseCommand.Execute(null);
+            ((QuestionPopupViewModel)BindingContext).DuelCloseCommand.Execute(true);
             return true;
         }
 

@@ -81,7 +81,6 @@ namespace ContestPark.Mobile.ViewModels
             set
             {
                 _balance = value;
-                RaisePropertyChanged(() => Balance);
             }
         }
 
@@ -205,7 +204,9 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if ((BalanceType == BalanceTypes.Gold && bet <= Balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= Balance.Money))
+            var balance = await _cpService.GetBalanceAsync();
+
+            if ((BalanceType == BalanceTypes.Gold && bet <= balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= balance.Money))
             {
                 await PushPopupPageAsync(new DuelStartingPopupView()
                 {

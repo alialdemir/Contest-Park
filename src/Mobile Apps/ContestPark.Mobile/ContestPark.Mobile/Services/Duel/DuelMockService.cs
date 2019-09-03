@@ -12,6 +12,11 @@ namespace ContestPark.Mobile.Services.Duel
             return Task.CompletedTask;
         }
 
+        public Task<bool> DuelEscape(int duelId)
+        {
+            return Task.FromResult(true);
+        }
+
         public Task<DuelResultModel> DuelResult(int duelId)
         {
             return Task.FromResult(new DuelResultModel

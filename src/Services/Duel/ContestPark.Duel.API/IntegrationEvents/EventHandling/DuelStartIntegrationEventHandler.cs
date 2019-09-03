@@ -78,6 +78,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 BalanceType = @event.BalanceType,
                 Bet = @event.Bet,
+                DuelType = DuelTypes.Created,
                 SubCategoryId = @event.SubCategoryId,
                 OpponentUserId = @event.OpponentUserId,
                 FounderUserId = @event.FounderUserId,
