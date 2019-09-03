@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Amazon.S3;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.RequestProvider;
@@ -108,7 +109,7 @@ namespace ContestPark.Identity.API
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IUserRepository, UserRepository>();
 
-            services.AddTransient<IBlobStorageService, BlobStorageService>();
+            services.AddSingleton<IFileUploadService, BlobStorageService>();
 
             services.AddTransient<IDeviceInfoRepository, DeviceInfoRepository>();
 
@@ -121,6 +122,8 @@ namespace ContestPark.Identity.API
             services.AddSingleton<INumberFormatService, NumberFormatService>();
 
             #endregion AddTransient
+
+            //services.AddAWSService<IAmazonS3>();
 
             services.AddLocalizationCustom();
 

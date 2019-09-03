@@ -42,7 +42,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         private readonly IDeviceInfoRepository _deviceInfoRepository;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
-        private readonly IBlobStorageService _blobStorageService;
+        private readonly IFileUploadService _blobStorageService;
 
         #endregion Private variables
 
@@ -59,7 +59,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                  IDeviceInfoRepository deviceInfoRepository,
                                  IUserRepository userRepository,
                                  IIdentityIntegrationEventService identityIntegrationEventService,
-                                 IBlobStorageService blobStorageService) : base(logger)
+                                 IFileUploadService blobStorageService) : base(logger)
         {
             _emailService = emailService;
             _logger = logger;

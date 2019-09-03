@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Identity.API.Services.BlobStorage
 {
-    public interface IBlobStorageService
+    public interface IFileUploadService
     {
         bool CheckPictureExtension(string extension);
 

@@ -12,7 +12,7 @@ using ContestPark.Identity.API.IntegrationEvents.Events;
 
 namespace ContestPark.Identity.API.Services.BlobStorage
 {
-    public class BlobStorageService : IBlobStorageService
+    public class BlobStorageService : IFileUploadService
     {
         private readonly IdentitySettings _identitySettings;
         private readonly IEventBus _eventBus;
