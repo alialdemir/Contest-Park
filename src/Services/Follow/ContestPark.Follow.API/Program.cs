@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Dapper.Extensions;
+﻿using Amazon.CloudWatchLogs;
+using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.Database.Extensions;
 using ContestPark.Follow.API.Infrastructure;
 using ContestPark.Follow.API.Migrations;
@@ -9,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.AwsCloudWatch;
 using System;
 using System.IO;
 
@@ -81,13 +84,34 @@ namespace ContestPark.Follow.API
 
         private static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         {
-            return new LoggerConfiguration()
+            var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.WithProperty("ApplicationContext", AppName)
                 .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
+                .ReadFrom.Configuration(configuration);
+
+            #region ClouldWatch settings
+
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == EnvironmentName.Production)// Sadece prod ortamında clouldwatch'a yazıyoruz
+            {
+                var cloudWatchLogsClient = new AmazonCloudWatchLogsClient(configuration["AwsAccessKeyId"], configuration["AwsSecretAccessKey"], Amazon.RegionEndpoint.EUCentral1);
+                loggerConfiguration.WriteTo.AmazonCloudWatch(new CloudWatchSinkOptions
+                {
+                    LogGroupName = configuration["AwsLogGroupName"],
+                    LogStreamNameProvider = new ConstantLogStreamNameProvider(AppName),
+                    MinimumLogEventLevel = Serilog.Events.LogEventLevel.Information,
+                    TextFormatter = new Serilog.Formatting.Json.JsonFormatter(),
+                }, cloudWatchLogsClient);
+            }
+            else
+            {
+                loggerConfiguration.WriteTo.Console();
+            }
+
+            #endregion ClouldWatch settings
+
+            return loggerConfiguration.CreateLogger();
         }
 
         private static IConfiguration GetConfiguration()
