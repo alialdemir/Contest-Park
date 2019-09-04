@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        private async void OnCountry(object sender, CountryModel e)
+        private void OnCountry(object sender, CountryModel e)
         {
             if (e != null)
             {

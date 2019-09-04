@@ -1,8 +1,10 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MonkeyCache.SQLite;
 using Plugin.Iconize;
 using Prism;
@@ -33,8 +35,7 @@ namespace ContestPark.Mobile
 
             Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
                    .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
-                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule())
-                   .With(new ContestParkIconModule());
+                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
             Barrel.ApplicationId = "ContestPark";
 
@@ -60,7 +61,14 @@ namespace ContestPark.Mobile
 
         #endregion Register Types
 
-        #region OnResume and OnSleep
+        #region OnResume, OnSleep and OnStart
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            AppCenter.Start(GlobalSetting.Instance.AppCenterKey, typeof(Analytics), typeof(Crashes));
+        }
 
         protected override void OnResume()
         {
@@ -82,6 +90,6 @@ namespace ContestPark.Mobile
             base.OnSleep();
         }
 
-        #endregion OnResume and OnSleep
+        #endregion OnResume, OnSleep and OnStart
     }
 }
