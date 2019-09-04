@@ -311,6 +311,22 @@ namespace ContestPark.Identity.API.Migrations
                 b.ToTable("DeviceInfos");
 
             });
+
+
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.Picture", b =>
+            {
+                b.Property<string>("PictureId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("UserId");
+
+                b.Property<string>("PictureUrl");
+
+                b.Property<byte>("PictureType");
+
+                b.ToTable("Pictures");
+
+            });
 #pragma warning restore 612, 618
         }
     }

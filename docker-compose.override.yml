@@ -28,9 +28,10 @@ services:
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - AzureStoreAccountName=${CONTESTPARK_AZURE_STORE_ACCOUNT_NAME}
-      - AzureStoreAccountKey=${CONTESTPARK_AZURE_STORE_ACCOUNT_KEY}
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - GiftMoneyAmount=0.25
+      - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
     ports:
       - "5101:80"
     volumes:

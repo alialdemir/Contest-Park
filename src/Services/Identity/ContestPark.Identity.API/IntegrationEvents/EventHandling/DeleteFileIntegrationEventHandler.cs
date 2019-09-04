@@ -8,9 +8,9 @@ namespace ContestPark.Identity.API.IntegrationEvents.EventHandling
     public class DeleteFileIntegrationEventHandler :
         IIntegrationEventHandler<DeleteFileIntegrationEvent>
     {
-        private readonly IBlobStorageService _blobStorageService;
+        private readonly IFileUploadService _blobStorageService;
 
-        public DeleteFileIntegrationEventHandler(IBlobStorageService blobStorageService)
+        public DeleteFileIntegrationEventHandler(IFileUploadService blobStorageService)
         {
             _blobStorageService = blobStorageService;
         }
@@ -22,7 +22,7 @@ namespace ContestPark.Identity.API.IntegrationEvents.EventHandling
         /// <returns></returns>
         public async Task Handle(DeleteFileIntegrationEvent @event)
         {
-            await _blobStorageService.DeleteFileAsync(@event.Uri);
+            await _blobStorageService.DeleteFileAsync(@event.UserId, @event.Uri, @event.PictureType);
         }
     }
 }

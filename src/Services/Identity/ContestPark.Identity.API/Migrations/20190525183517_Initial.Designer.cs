@@ -244,6 +244,20 @@ namespace ContestPark.Identity.API.Migrations
                 b.ToTable("DeviceInfos");
 
             });
+            modelBuilder.Entity("ContestPark.Identity.API.Data.Tables.Picture", b =>
+            {
+                b.Property<int>("PictureId")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<string>("UserId");
+
+                b.Property<string>("PictureUrl");
+
+                b.Property<byte>("PictureType");
+
+                b.ToTable("Pictures");
+
+            });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {

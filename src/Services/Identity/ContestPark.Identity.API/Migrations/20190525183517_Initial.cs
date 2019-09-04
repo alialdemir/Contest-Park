@@ -254,6 +254,27 @@ namespace ContestPark.Identity.API.Migrations
                     DeviceIdentifier = table.Column<string>(nullable: false),
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Pictures",
+                columns: table => new
+                {
+                    PictureId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(maxLength: 450, nullable: false),
+                    PictureUrl = table.Column<string>(nullable: false),
+                    PictureType = table.Column<byte>(nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.PictureId);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
