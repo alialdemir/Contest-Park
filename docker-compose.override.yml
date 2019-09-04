@@ -30,6 +30,7 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
       - GiftMoneyAmount=0.25
       - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
     ports:
@@ -51,6 +52,9 @@ services:
       - ElasticSearchURI=http://elasticsearch:9200
       - ElasticSearchIndexName=categorysearch
       - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5102:80"
     volumes:
@@ -68,6 +72,9 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkFollow;pwd=root;}
       - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5103:80"
     volumes:
@@ -84,6 +91,9 @@ services:
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5104:80"
     volumes:
@@ -110,6 +120,9 @@ services:
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5106:80"
     volumes:
@@ -123,6 +136,9 @@ services:
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5107:80"
     volumes:
@@ -139,6 +155,9 @@ services:
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5108:80"
     volumes:
@@ -160,6 +179,9 @@ services:
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - IsMigrateDatabase=true
       - BetCommission=10
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5109:80"
     volumes:
