@@ -7,6 +7,7 @@ using ContestPark.EventBus.Abstractions;
 using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.Identity.API.Data;
 using ContestPark.Identity.API.Data.Repositories.DeviceInfo;
+using ContestPark.Identity.API.Data.Repositories.Picture;
 using ContestPark.Identity.API.Data.Repositories.Reference;
 using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
@@ -21,6 +22,7 @@ using ContestPark.Identity.API.Services.Block;
 using ContestPark.Identity.API.Services.Follow;
 using ContestPark.Identity.API.Services.Login;
 using ContestPark.Identity.API.Services.NumberFormat;
+using ContestPark.Identity.API.Services.Picture;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -104,12 +106,16 @@ namespace ContestPark.Identity.API
             services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
 
             services.AddTransient<IReferenceRepository, ReferenceRepository>();
+
             services.AddTransient<IReferenceCodeRepostory, ReferenceCodeRepostory>();
 
             services.AddTransient<IEmailService, EmailService>();
+
             services.AddTransient<IUserRepository, UserRepository>();
 
-            services.AddSingleton<IFileUploadService, BlobStorageService>();
+            services.AddTransient<IPictureRepository, PictureRepository>();
+
+            services.AddSingleton<IFileUploadService, S3FileUploadService>();
 
             services.AddTransient<IDeviceInfoRepository, DeviceInfoRepository>();
 
@@ -122,6 +128,15 @@ namespace ContestPark.Identity.API
             services.AddSingleton<INumberFormatService, NumberFormatService>();
 
             #endregion AddTransient
+
+            #region S3 settings
+
+            string awsAccessKeyId = Configuration["AwsAccessKeyId"];
+            string awsSecretAccessKey = Configuration["AwsSecretAccessKey"];
+
+            services.AddSingleton<IAmazonS3>(new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, Amazon.RegionEndpoint.EUCentral1));
+
+            #endregion S3 settings
 
             //services.AddAWSService<IAmazonS3>();
 

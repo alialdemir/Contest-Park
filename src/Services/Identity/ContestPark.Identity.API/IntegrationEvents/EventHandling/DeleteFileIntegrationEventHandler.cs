@@ -22,7 +22,7 @@ namespace ContestPark.Identity.API.IntegrationEvents.EventHandling
         /// <returns></returns>
         public async Task Handle(DeleteFileIntegrationEvent @event)
         {
-            await _blobStorageService.DeleteFileAsync(@event.Uri);
+            await _blobStorageService.DeleteFileAsync(@event.UserId, @event.Uri, @event.PictureType);
         }
     }
 }
