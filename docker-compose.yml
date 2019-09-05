@@ -9,6 +9,9 @@ services:
 
   redis.data:
     image: redis:alpine
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - /mnt/xvdb/redis:/usr/local/etc/redis
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -23,16 +26,6 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-
-  kibana:
-    build:
-      context: ek/kibana/
-    volumes:
-      - ./ek/kibana/config/:/usr/share/kibana/config:ro
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
 
   contestpark.identity.api:
     image: contestparkidentity.api:${TAG:-latest}

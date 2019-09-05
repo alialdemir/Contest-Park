@@ -6,6 +6,10 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
 COPY ["src/Services/Identity/ContestPark.Identity.API/ContestPark.Identity.API.csproj", "src/Services/Identity/ContestPark.Identity.API/"]
+COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus.IntegrationEventLogEF/ContestPark.EventBus.IntegrationEventLogEF.csproj", "src/BuildingBlocks/EventBus/ContestPark.EventBus.IntegrationEventLogEF/"]
+COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus/ContestPark.EventBus.csproj", "src/BuildingBlocks/EventBus/ContestPark.EventBus/"]
+COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus.RabbitMQ/ContestPark.EventBus.RabbitMQ.csproj", "src/BuildingBlocks/EventBus/ContestPark.EventBus.RabbitMQ/"]
+COPY ["src/BuildingBlocks/Core/ContestPark.Core/ContestPark.Core.csproj", "src/BuildingBlocks/Core/ContestPark.Core/"]
 RUN dotnet restore "src/Services/Identity/ContestPark.Identity.API/ContestPark.Identity.API.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Identity/ContestPark.Identity.API"

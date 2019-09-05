@@ -1,0 +1,189 @@
+version: "3.4"
+
+services:
+  mysql-data:
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306" # Important: In a production environment your should remove the external port
+
+  redis.data:
+    ports:
+      - "6379:6379" # Important: In a production environment your should remove the external port
+
+  rabbitmq:
+    ports:
+      - "15672:15672" # Important: In a production environment your should remove the external port
+      - "5672:5672" # Important: In a production environment your should remove the external port
+
+  contestpark.identity.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkIdentity;pwd=root;}
+      - identityUrl=http://contestpark.identity.api
+      - ChatUrl=http://contestpark.chat.api
+      - FollowUrl=http://contestpark.follow.api
+      - Audience=identity
+      - SendGridApiKey=Test
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+      - GiftMoneyAmount=0.25
+      - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.category.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkCategory;pwd=root;}
+      - identityUrl=http://contestpark.identity.api
+      - balanceUrl=http://contestpark.balance.api
+      - Audience=category
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - ElasticSearchURI=http://elasticsearch:9200
+      - ElasticSearchIndexName=categorysearch
+      - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.follow.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - Audience=follow
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkFollow;pwd=root;}
+      - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.balance.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkBalance;pwd=root;}
+      - identityUrl=http://contestpark.identity.api
+      - Audience=balance
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.ocelotapigw.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.chat.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkChat;pwd=root;}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - Audience=chat
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  contestpark.signalr.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - Audience=signalr
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  contestpark.post.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkPost;pwd=root;}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - Audience=post
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.duel.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - identityUrl=http://contestpark.identity.api
+      - FollowUrl=http://contestpark.follow.api
+      - SubCategoryUrl=http://contestpark.category.api
+      - balanceUrl=http://contestpark.balance.api
+      - ConnectionString=${CONTESTPARK_AZURE_IDENTITY_DB:-server=mysql-data;uid=root;database=ContestParkDuel;pwd=root;}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - Audience=duelcd
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=true
+      - BetCommission=10
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

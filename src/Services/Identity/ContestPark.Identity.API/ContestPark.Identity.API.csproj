@@ -7,6 +7,7 @@
     <DockerComposeProjectPath>..\..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <ApplicationInsightsResourceId>/subscriptions/8616f6ca-423f-4e44-b1f9-568bdbad811c/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/ContestPark.Identity.API</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/8616f6ca-423f-4e44-b1f9-568bdbad811c/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/ContestPark.Identity.API</ApplicationInsightsAnnotationResourceId>
+    <DockerfileContext>..\..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
