@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker-compose up -d
+      - docker-compose build 2>&1 | tee -a log.txt
   post_build:
     commands:
       - echo Build completed on `date`
