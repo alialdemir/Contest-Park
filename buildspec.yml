@@ -19,6 +19,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - echo $REPOSITORY_URI
+      - cd $CODEBUILD_SRC_DIR
       - pwd
   post_build:
     commands:
