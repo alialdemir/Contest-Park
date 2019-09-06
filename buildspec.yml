@@ -19,6 +19,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - pwd
+      - cd $CODEBUILD_SRC_DIR && docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
   post_build:
     commands:
       - echo Build completed on `date`
