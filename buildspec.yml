@@ -14,15 +14,11 @@ phases:
       - REPOSITORY_URI=162939618331.dkr.ecr.eu-central-1.amazonaws.com/contestpark
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
-      - cd /codebuild/output/**/src
-      - echo klasörler
-      - pwd
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - echo $REPOSITORY_URI
-      - pwd
+      -  docker-compose -f /codebuild/output/**/src/docker-compose.yml -f /codebuild/output/**/src/docker-compose.prod.yml up
   post_build:
     commands:
       - echo Build completed on `date`
