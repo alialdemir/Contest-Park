@@ -14,8 +14,8 @@ phases:
       - REPOSITORY_URI=162939618331.dkr.ecr.eu-central-1.amazonaws.com/contestpark
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - docker-compose --version
       - pwd
-      - docker build -t contestpark .
   build:
     commands:
       - echo Build started on `date`
@@ -24,7 +24,3 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-artifacts:
-  files:
-    - '**/*'
-  base-directory: 'dist'
