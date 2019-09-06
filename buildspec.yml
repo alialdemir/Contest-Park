@@ -25,7 +25,7 @@ phases:
       - echo Pushing the Docker images...
       - docker-compose push 2>&1 | tee -a log.txt
       - echo Writing image definitions file....
-      - printf '[{"name":"contestpark","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
-     
+      - printf '[{"name":"project-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+
 artifacts:
     files: imagedefinitions.json
