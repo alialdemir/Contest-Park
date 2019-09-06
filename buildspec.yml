@@ -24,8 +24,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-artifacts:
-    files:
-      - '**/*'
-      - imagedefinitions.json
-    base-directory: 'codebuild/output*'
+files:
+  - source: /codebuild/output/
+    destination: /codebuild/output/
