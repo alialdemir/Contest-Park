@@ -19,11 +19,10 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - echo $REPOSITORY_URI
-      - docker-compose build
+      - pwd
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI
 artifacts:
     files: imagedefinitions.json
