@@ -1,5 +1,9 @@
---- 
+version: 0.2
+
 phases: 
+  install:
+    runtime-versions:
+        docker: 18
   build: 
     commands: 
       - "echo Build started on `date`"
@@ -15,4 +19,3 @@ phases:
     commands: 
       - "echo Logging in to Docker Hub..."
       - "docker login --username=\"dvohra\" --password=\"password\""
-version: 0.2
