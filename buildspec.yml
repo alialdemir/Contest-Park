@@ -19,11 +19,15 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - echo $REPOSITORY_URI
-      - cd /codebuild/output/src823075410/src
+      - pwd
       - docker build -t contestpark .
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
 artifacts:
-    files: imagedefinitions.json
+    files:
+    - imagedefinitions.json
+    - docker-compose.prod.yml
+    - docker-compose.yml
+    - appspec.yml
