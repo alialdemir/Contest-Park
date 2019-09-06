@@ -18,12 +18,14 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker-compose build 2>&1 | tee -a log.txt
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker-compose push 2>&1 | tee -a log.txt
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file....
       - printf '[{"name":"project-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
