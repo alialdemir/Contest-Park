@@ -8,7 +8,7 @@ phases:
     commands: 
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker login --username='contestpark1' --password='123456'
+      - "docker login --username='contestpark1' --password='123456'"
       - "docker build -t dvohra/node-server ."
       - "docker tag dvohra/node-server dvohra/node-server:latest"
   post_build: 
