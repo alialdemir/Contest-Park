@@ -18,11 +18,11 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      -  docker-compose -f /codebuild/output/**/src/docker-compose.yml -f /codebuild/output/**/src/docker-compose.prod.yml up
+      - pwd
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-files:
-  - source: /codebuild/output/
-    destination: /codebuild/output/
+artifacts:
+    files: imagedefinitions.json
+    base-directory: location
