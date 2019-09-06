@@ -20,12 +20,12 @@ phases:
       - echo Building the Docker image...
       - echo $REPOSITORY_URI
       - pwd
-      - docker build -t contestpark .
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
 artifacts:
     files:
-    - '**/*'
-    - imagedefinitions.json
+      - '**/*'
+      - imagedefinitions.json
+    base-directory: 'codebuild/output*'
