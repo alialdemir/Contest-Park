@@ -1,19 +1,14 @@
 version: 0.2
 
-phases: 
-  install:
-    runtime-versions:
-        docker: 18
+phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - docker --version
-      - docker-compose --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=162939618331.dkr.ecr.eu-central-1.amazonaws.com/contestpark
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
       - echo Build started on `date`
@@ -26,8 +21,9 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file....
-      - printf '[{"name":"project-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-
+      - echo Writing image definitions file...
+      - printf '[{"name":"name","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
-    files: imagedefinitions.json
+    files:
+      - appspec.yml
+      - imagedefinitions.json
