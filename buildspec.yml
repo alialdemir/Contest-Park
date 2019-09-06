@@ -23,6 +23,5 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker-images
       - docker-compose push 2>&1 | tee -a log.txt
       - echo Writing image definitions file...
