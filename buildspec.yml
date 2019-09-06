@@ -19,7 +19,8 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - echo $REPOSITORY_URI
-      - docker-compose -f $CODEBUILD_SRC_DIR/docker-compose.yml -f $CODEBUILD_SRC_DIR/docker-compose.prod.yml up
+      - cd /codebuild/output/src823075410/src
+      - docker build -t contestpark .
   post_build:
     commands:
       - echo Build completed on `date`
