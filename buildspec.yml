@@ -4,7 +4,6 @@ phases:
   install:
     runtime-versions:
       docker: 18
-  pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
@@ -13,12 +12,12 @@ phases:
       - REPOSITORY_URI=162939618331.dkr.ecr.eu-central-1.amazonaws.com/$REPOSITORY_NAME
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
-  build:
+  pre_build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -f ".\src\Services\Identity\ContestPark.Identity.API\Dockerfile" -t $REPOSITORY_NAME:latest .
-  post_build:
+  build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
