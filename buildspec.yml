@@ -16,7 +16,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -f -t $REPOSITORY_NAME:latest .
+      - docker build -t contestparkidentityapi .
   build:
     commands:
       - echo Build completed on `date`
