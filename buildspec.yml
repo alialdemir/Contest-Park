@@ -17,7 +17,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -f "src\Services\Identity\ContestPark.Identity.API\Dockerfile" -t $REPOSITORY_NAME:latest .
+      - docker build -f ".\src\Services\Identity\ContestPark.Identity.API\Dockerfile" -t $REPOSITORY_NAME:latest .
   post_build:
     commands:
       - echo Build completed on `date`
