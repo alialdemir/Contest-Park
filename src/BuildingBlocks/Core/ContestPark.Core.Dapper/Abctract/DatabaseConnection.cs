@@ -28,7 +28,7 @@ namespace ContestPark.Core.Dapper.Abctract
 
         #region Properties
 
-        private IDbConnection _connection;
+        private MySqlConnection _connection;
 
         public IDbConnection Connection
         {
@@ -48,14 +48,12 @@ namespace ContestPark.Core.Dapper.Abctract
         /// <summary>
         /// Close the connection if this is open
         /// </summary>
-        protected override void DisposeCore()
+        public override void DisposeCore()
         {
             if (_connection != null && _connection.State != ConnectionState.Closed)
             {
                 _connection.Close();
                 _connection.Dispose();
-                _connection = null;
-                //   SqlConnection.ClearAllPools();
             }
 
             base.DisposeCore();

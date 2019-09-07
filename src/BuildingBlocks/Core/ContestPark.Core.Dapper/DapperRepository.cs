@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Dapper.Interfaces;
+﻿using ContestPark.Core.Dapper.Abctract;
+using ContestPark.Core.Dapper.Interfaces;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using Dapper;
@@ -66,6 +67,10 @@ namespace ContestPark.Core.Dapper
 
                 return false;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         /// <summary>
@@ -84,6 +89,10 @@ namespace ContestPark.Core.Dapper
                 _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex);
 
                 return 0;
+            }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
             }
         }
 
@@ -109,6 +118,10 @@ namespace ContestPark.Core.Dapper
 
                 return false;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         public async Task<bool> AddRangeAsync<Key>(IEnumerable<TEntity> entities)
@@ -128,6 +141,10 @@ namespace ContestPark.Core.Dapper
 
                 return false;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         /// <summary>
@@ -136,7 +153,11 @@ namespace ContestPark.Core.Dapper
         /// <returns>Total docs count</returns>
         public Task<int> CountAsync()
         {
-            return _databaseConnection.Connection.RecordCountAsync<TEntity>();
+            var result = _databaseConnection.Connection.RecordCountAsync<TEntity>();
+
+            ((Disposable)_databaseConnection)?.DisposeCore();
+
+            return result;
         }
 
         /// <summary>
@@ -156,6 +177,10 @@ namespace ContestPark.Core.Dapper
 
                 return null;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         /// <summary>
@@ -174,6 +199,10 @@ namespace ContestPark.Core.Dapper
                 _logger.LogError($"GetById hata oluştu. table Name: {TableName}", ex);
 
                 return null;
+            }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
             }
         }
 
@@ -200,6 +229,10 @@ namespace ContestPark.Core.Dapper
 
                 return false;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         /// <summary>
@@ -221,6 +254,10 @@ namespace ContestPark.Core.Dapper
 
                 return false;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         /// <summary>
@@ -241,6 +278,10 @@ namespace ContestPark.Core.Dapper
                 _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {TableName} ", ex);
 
                 return false;
+            }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
             }
         }
 
@@ -268,21 +309,37 @@ namespace ContestPark.Core.Dapper
 
                 return false;
             }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
         }
 
         public IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null, CommandType? commandType = null)
         {
-            return _databaseConnection.Connection.QueryMultiple(sql, parameters, commandType: commandType).Read<T>();
+            var result = _databaseConnection.Connection.QueryMultiple(sql, parameters, commandType: commandType).Read<T>();
+
+            ((Disposable)_databaseConnection)?.DisposeCore();
+
+            return result;
         }
 
         public T QuerySingleOrDefault<T>(string sql, object parameters = null, CommandType? commandType = null)
         {
-            return _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters, commandType: commandType);
+            var result = _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters, commandType: commandType);
+
+            ((Disposable)_databaseConnection)?.DisposeCore();
+
+            return result;
         }
 
         public IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "", CommandType? commandType = null)
         {
-            return _databaseConnection.Connection.Query<TFirst, TSecond, TThird>(sql, map, parameters, splitOn: splitOn, commandType: commandType);
+            var result = _databaseConnection.Connection.Query<TFirst, TSecond, TThird>(sql, map, parameters, splitOn: splitOn, commandType: commandType);
+
+            ((Disposable)_databaseConnection)?.DisposeCore();
+
+            return result;
         }
 
         /// <summary>
@@ -304,6 +361,10 @@ namespace ContestPark.Core.Dapper
             {
                 _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex);
                 return false;
+            }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
             }
         }
 

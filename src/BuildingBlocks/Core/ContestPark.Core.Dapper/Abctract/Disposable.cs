@@ -28,7 +28,7 @@ namespace ContestPark.Core.Dapper.Abctract
         }
 
         // Ovveride this to dispose custom objects
-        protected virtual void DisposeCore()
+        public virtual void DisposeCore()
         {
         }
     }

@@ -65,15 +65,15 @@ namespace ContestPark.Core.Dapper.Extensions
                     logger.LogInformation($"Migrating database associated with context {nameof(UpdateDatabaseAsync)}");
 
                     // Instantiate the runner
-                    IServiceProvider serviceProvider = CreateServices(connectionString, assemblies);
-                    var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+                    // IServiceProvider serviceProvider = CreateServices(connectionString, assemblies);
+                    //   var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
-                    bool isCreatedDatabase = await runner.CreateDatabaseIfNotExistsAsync(connectionString);
-                    if (isCreatedDatabase)
-                    {
-                        runner.MigrateUp();
-                        databaseSeeder();
-                    }
+                    //bool isCreatedDatabase = await runner.CreateDatabaseIfNotExistsAsync(connectionString);
+                    //if (isCreatedDatabase)
+                    //{
+                    //runner.MigrateUp();
+                    //databaseSeeder();
+                    //}
 
                     logger.LogInformation($"Migrated database associated with context {nameof(UpdateDatabaseAsync)}");
                 });

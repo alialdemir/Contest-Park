@@ -9,7 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddMySql(this IServiceCollection services)
         {
-            services.AddTransient<IDatabaseConnection, DatabaseConnection>();
+            services.AddSingleton<IDatabaseConnection, DatabaseConnection>();
 
             services.AddSingleton(typeof(IRepository<>), typeof(DapperRepository<>));
 
