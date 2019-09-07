@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t contestpark $CODEBUILD_SRC_DIR/src/Services/Identity/ContestPark.Identity.API
+      - docker build -t contestpark $CODEBUILD_SRC_DIR/src/Services/Identity/ContestPark.Identity.API/Dockerfile
   post_build:
     commands:
       - echo Build completed on `date`
