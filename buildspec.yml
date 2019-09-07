@@ -20,6 +20,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - docker-compose build --pull release
   post_build:
     commands:
       - echo Build completed on `date`
