@@ -9,16 +9,19 @@ phases:
       - aws --version
       - docker --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - echo $REPOSITORY_NAME
-      - echo $REPOSITORY_URI
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - $IMAGE_TAG
+      - $COMMIT_HASH
   pre_build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - cd "src/Services/Identity/ContestPark.Identity.API"
+      - echo file changed...
       - docker build -t contestparkidentityapi:latest .
+      - echo docker is building...
+      - docker tag $REPOSITORY_NAME:latest $REPOSITORY_URI:latest
   build:
     commands:
       - echo Build completed on `date`
