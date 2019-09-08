@@ -7,9 +7,10 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
+      - docker --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - REPOSITORY_NAME=contestparkidentityapi
-      - REPOSITORY_URI=162939618331.dkr.ecr.eu-central-1.amazonaws.com/$REPOSITORY_NAME
+      - echo $REPOSITORY_NAME
+      - echo $REPOSITORY_URI
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   pre_build:
@@ -17,8 +18,6 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - cd "src/Services/Identity/ContestPark.Identity.API"
-      - pwd
-      - ls
       - docker build -t contestparkidentityapi:latest .
   build:
     commands:
