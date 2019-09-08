@@ -19,7 +19,7 @@ phases:
       - cd "src/Services/Identity/ContestPark.Identity.API"
       - pwd
       - ls
-      - docker build -f "src\Services\Identity\ContestPark.Identity.API\Dockerfile" -t contestparkidentityapi:latest .
+      - docker build -t contestparkidentityapi:latest .
   build:
     commands:
       - echo Build completed on `date`
