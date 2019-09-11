@@ -10,6 +10,7 @@ phases:
       - $(aws ecr get-login --no-include-email --region eu-central-1)
       - aws eks update-kubeconfig --name ContestPark-EKS
       - kubectl apply -f kubectl/deployment.yaml
+      - kubectl edit -n kube-system kubectl/aws-auth-cm.yaml
   pre_build:
     commands:
       - echo Build started on `date`
