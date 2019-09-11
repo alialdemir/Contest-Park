@@ -14,6 +14,7 @@ phases:
       - cd "src/Services/Identity/ContestPark.Identity.API"
       - echo file changed..
       - docker --version
+      - pwd
       - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
       - echo docker is building...
       - docker tag $REPOSITORY_NAME:latest $REPOSITORY_URI:latest
