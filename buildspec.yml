@@ -12,8 +12,9 @@ phases:
     commands:
       - echo Build started on `date`
       - docker --version
-      - docker-compose --version
-      - docker-compose -f docker-compose.pprod.yml -f docker-compose.prod.yml build
+      - cd "src/Services/Identity/ContestPark.Identity.API"
+      - dir
+      - docker build -t identity-api .
       - echo docker is build finish...
       - docker images
       - echo Started container tag...
