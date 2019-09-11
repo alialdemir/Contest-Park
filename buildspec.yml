@@ -13,7 +13,8 @@ phases:
       - echo Building the Docker image...
       - cd "src/Services/Identity/ContestPark.Identity.API"
       - echo file changed..
-      - docker build contestparkidentityapi:latest .
+      - docker --version
+      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
       - echo docker is building...
       - docker tag $REPOSITORY_NAME:latest $REPOSITORY_URI:latest
   build:
