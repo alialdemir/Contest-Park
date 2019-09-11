@@ -1,0 +1,140 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: identity-api
+spec:
+  selector:
+    matchLabels:
+      run: identity-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: identity-api
+    spec:
+      containers:
+        - name: identity-api
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/identity-api:v2
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ocelot-apigw
+spec:
+  selector:
+    matchLabels:
+      run: ocelot-apigw
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: ocelot-apigw
+    spec:
+      containers:
+        - name: ocelot-apigw
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/ocelot-apigw:v3
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: balance-api
+spec:
+  selector:
+    matchLabels:
+      run: balance-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: balance-api
+    spec:
+      containers:
+        - name: balance-api
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/balance-api:v1
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: category-api
+spec:
+  selector:
+    matchLabels:
+      run: category-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: category-api
+    spec:
+      containers:
+        - name: category-api
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/category-api:v1
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: chat-api
+spec:
+  selector:
+    matchLabels:
+      run: chat-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: chat-api
+    spec:
+      containers:
+        - name: chat-api
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/chat-api:v1
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: duel-api
+spec:
+  selector:
+    matchLabels:
+      run: duel-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: duel-api
+    spec:
+      containers:
+        - name: duel-api
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/duel-api:v1
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: post-api
+spec:
+  selector:
+    matchLabels:
+      run: post-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: post-api
+    spec:
+      containers:
+        - name: post-api
+          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/post-api:v1
+          ports:
+            - containerPort: 80
