@@ -1,37 +1,22 @@
 version: "3.4"
 
 services:
-  mysql-data:
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-    ports:
-      - "3306:3306" # Important: In a production environment your should remove the external port
-
-  redis.data:
-    ports:
-      - "6379:6379" # Important: In a production environment your should remove the external port
-
-  rabbitmq:
-    ports:
-      - "15672:15672" # Important: In a production environment your should remove the external port
-      - "5672:5672" # Important: In a production environment your should remove the external port
-
   contestpark.identity.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkIdentity;pwd=root;}
-      - identityUrl=http://contestpark.identity.api
-      - ChatUrl=http://contestpark.chat.api
-      - FollowUrl=http://contestpark.follow.api
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - identityUrl=http://identity-api
+      - ChatUrl=http://chat-api
+      - FollowUrl=http://follow-api
       - Audience=identity
       - SendGridApiKey=Test
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
-      - GiftMoneyAmount=0.25
+      - GiftMoneyAmount=${CONTESTPARK_GIFT_MONEY_AMOUNT}
       - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
     ports:
       - "80"
@@ -41,17 +26,17 @@ services:
 
   contestpark.category.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkCategory;pwd=root;}
-      - identityUrl=http://contestpark.identity.api
-      - balanceUrl=http://contestpark.balance.api
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - identityUrl=http://identity-api
+      - balanceUrl=http://balance-api
       - Audience=category
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - ElasticSearchURI=http://elasticsearch:9200
+      - ElasticSearchURI=${CONTESTPARK_ELASTIC_SEARCH_URI}
       - ElasticSearchIndexName=categorysearch
-      - IsMigrateDatabase=true
+      - IsMigrateDatabase=false
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
@@ -63,15 +48,15 @@ services:
 
   contestpark.follow.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - identityUrl=http://contestpark.identity.api
-      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - identityUrl=http://identity-api
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=follow
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkFollow;pwd=root;}
-      - IsMigrateDatabase=true
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - IsMigrateDatabase=false
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
@@ -83,14 +68,14 @@ services:
 
   contestpark.balance.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkBalance;pwd=root;}
-      - identityUrl=http://contestpark.identity.api
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - identityUrl=http://identity-api
       - Audience=balance
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - IsMigrateDatabase=true
+      - IsMigrateDatabase=false
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
@@ -102,7 +87,7 @@ services:
 
   contestpark.ocelotapigw.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "80"
     volumes:
@@ -111,15 +96,15 @@ services:
 
   contestpark.chat.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - identityUrl=http://contestpark.identity.api
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkChat;pwd=root;}
-      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - identityUrl=http://identity-api
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=chat
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - IsMigrateDatabase=true
+      - IsMigrateDatabase=false
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
@@ -130,10 +115,10 @@ services:
 
   contestpark.signalr.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - identityUrl=http://contestpark.identity.api
+      - ASPNETCORE_ENVIRONMENT=Production
+      - identityUrl=http://identity-api
       - Audience=signalr
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
@@ -146,15 +131,15 @@ services:
 
   contestpark.post.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - identityUrl=http://contestpark.identity.api
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkPost;pwd=root;}
-      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - identityUrl=http://identity-api
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=post
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - IsMigrateDatabase=true
+      - IsMigrateDatabase=false
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
@@ -166,19 +151,19 @@ services:
 
   contestpark.duel.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - identityUrl=http://contestpark.identity.api
-      - FollowUrl=http://contestpark.follow.api
-      - SubCategoryUrl=http://contestpark.category.api
-      - balanceUrl=http://contestpark.balance.api
-      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkDuel;pwd=root;}
-      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
-      - Audience=duelcd
-      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - identityUrl=http://identity-api
+      - FollowUrl=http://follow-api
+      - SubCategoryUrl=http://category-api
+      - balanceUrl=http://balance-api
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
+      - Audience=duel
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
       - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
-      - IsMigrateDatabase=true
-      - BetCommission=10
+      - IsMigrateDatabase=false
+      - BetCommission=${CONTESTPARK_BET_COMISSION}
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}

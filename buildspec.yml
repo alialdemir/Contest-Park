@@ -7,16 +7,31 @@ phases:
     commands:
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - $(aws ecr get-login --no-include-email --region eu-central-1)
   pre_build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
       - docker --version
-      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
-      - echo docker is building...
-      - docker tag $REPOSITORY_NAME:latest $REPOSITORY_URI:latest
+      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
+      - echo docker is build finish...
+      - docker images
+      - echo Started container tag...
+      - docker tag balance-api:latest $REPOSITORY_URI/balance-api:$IMAGE_TAG
+      - docker tag category-api:latest $REPOSITORY_URI/category-apiZ:$IMAGE_TAG
+      - docker tag chat-api:latest $REPOSITORY_URI/chat-api:$IMAGE_TAG
+      - docker tag duel-api:latest $REPOSITORY_URI/duel-api:$IMAGE_TAG
+      - docker tag identity-api:latest $REPOSITORY_URI/identity-api:$IMAGE_TAG
+      - docker tag ocelot-apigw:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
+      - docker tag post-api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI/balance-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/category-apiZ:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/chat-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/duel-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/identity-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
+      - echo Pushing end...
