@@ -1,5 +1,6 @@
 ﻿using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Polly;
@@ -18,6 +19,10 @@ namespace ContestPark.Core.Dapper.Extensions
                 var services = scope.ServiceProvider;
 
                 var logger = services.GetRequiredService<ILogger<IWebHost>>();
+
+                var configuration = services.GetRequiredService<IConfiguration>();
+                if (configuration["IsMigrateDatabase"] == null || configuration["IsMigrateDatabase"] == "false")
+                    return webHost;
 
                 try
                 {
@@ -65,15 +70,15 @@ namespace ContestPark.Core.Dapper.Extensions
                     logger.LogInformation($"Migrating database associated with context {nameof(UpdateDatabaseAsync)}");
 
                     // Instantiate the runner
-                    // IServiceProvider serviceProvider = CreateServices(connectionString, assemblies);
-                    //   var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+                    IServiceProvider serviceProvider = CreateServices(connectionString, assemblies);
+                    var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
 
-                    //bool isCreatedDatabase = await runner.CreateDatabaseIfNotExistsAsync(connectionString);
-                    //if (isCreatedDatabase)
-                    //{
-                    //runner.MigrateUp();
-                    //databaseSeeder();
-                    //}
+                    bool isCreatedDatabase = await runner.CreateDatabaseIfNotExistsAsync(connectionString);
+                    if (isCreatedDatabase)
+                    {
+                        runner.MigrateUp();
+                        databaseSeeder();
+                    }
 
                     logger.LogInformation($"Migrated database associated with context {nameof(UpdateDatabaseAsync)}");
                 });

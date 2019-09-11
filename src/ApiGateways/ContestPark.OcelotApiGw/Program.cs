@@ -15,7 +15,11 @@ namespace ContestPark.OcelotApiGw
         {
             IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args);
             builder.ConfigureServices(s => s.AddSingleton(builder))
+#if DEBUG
                 .ConfigureAppConfiguration(ic => ic.AddJsonFile("configuration.json"))
+#else
+                .ConfigureAppConfiguration(ic => ic.AddJsonFile("configuration.production.json"))
+#endif
                 .UseStartup<Startup>()
                 .ConfigureLogging((hostingContext, loggingbuilder) =>
                 {

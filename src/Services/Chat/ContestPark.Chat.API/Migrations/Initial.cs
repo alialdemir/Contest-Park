@@ -9,8 +9,6 @@ namespace ContestPark.Chat.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "AllMessagesRead.sql", "RemoveMessages.sql", "AddMessage.sql", "SeenAllChat.sql");
-
             this.CreateTableIfNotExists("Blocks", table =>
             table
 
@@ -120,6 +118,8 @@ namespace ContestPark.Chat.API.Migrations
                 .AsDateTime()
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "AllMessagesRead.sql", "RemoveMessages.sql", "AddMessage.sql", "SeenAllChat.sql");
         }
 
         public override void Down()

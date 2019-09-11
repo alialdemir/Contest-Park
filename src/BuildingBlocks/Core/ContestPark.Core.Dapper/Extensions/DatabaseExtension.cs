@@ -6,7 +6,6 @@ using FluentMigrator.Builders.Execute;
 using FluentMigrator.Infrastructure;
 using FluentMigrator.Runner;
 using System;
-using System.Data;
 using System.Data.Common;
 using System.IO;
 using System.Linq;
@@ -55,7 +54,9 @@ namespace ContestPark.Core.Dapper.Extensions
         {
             DatabaseInfo databaseInfo = GetDatabaseInfo(connectionString);
 
-            IDbConnection dbConnection = GetConnection(databaseInfo).Connection;
+            DatabaseConnection databaseConnection = new DatabaseConnection(connectionString);
+
+            var dbConnection = databaseConnection.Connection;
 
             string dbName = dbConnection.QuerySingleOrDefault<string>($"SHOW DATABASES LIKE '{databaseInfo.DatabaseName}'");
             int result = await dbConnection.ExecuteAsync($"CREATE DATABASE IF NOT EXISTS `{databaseInfo.DatabaseName}`;");
