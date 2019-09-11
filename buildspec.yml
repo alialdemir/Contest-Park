@@ -33,3 +33,7 @@ phases:
       - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
       - echo Pushing end...
+      - echo Kubernetes apply started
+      - kubectl apply -f ./kubectl/deployment.yaml
+      - kubectl apply -f ./kubectl/deployment-services.yaml
+      - echo Finish
