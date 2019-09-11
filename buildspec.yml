@@ -9,6 +9,7 @@ phases:
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - $(aws ecr get-login --no-include-email --region eu-central-1)
       - aws eks update-kubeconfig --name ContestPark-EKS
+      - cat kubectl/deployment.yaml
       - kubectl apply -f kubectl/deployment.yaml
   pre_build:
     commands:
