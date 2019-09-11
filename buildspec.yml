@@ -26,7 +26,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI/balance-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/category-apiZ:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/category-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/chat-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/duel-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/identity-api:$IMAGE_TAG
