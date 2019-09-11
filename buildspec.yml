@@ -11,9 +11,7 @@ phases:
   pre_build:
     commands:
       - echo Build started on `date`
-      - docker --version
-      - sudo service docker stop && sudo service docker start
-      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
+      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
       - echo docker is build finish...
       - docker images
       - echo Started container tag...
