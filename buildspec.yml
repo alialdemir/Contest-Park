@@ -13,7 +13,7 @@ phases:
       - echo Build started on `date`
       - docker --version
       - docker-compose --version
-      - docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml build
+      - docker-compose -f docker-compose.prod.yml build
       - echo docker is build finish...
       - docker images
       - echo Started container tag...
