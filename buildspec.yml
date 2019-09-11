@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Build started on `date`
       - docker --version
-      - docker dead but pid file exists
+      - sudo service docker stop && sudo service docker start
       - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
       - echo docker is build finish...
       - docker images
