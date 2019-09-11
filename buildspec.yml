@@ -10,7 +10,6 @@ phases:
       - $(aws ecr get-login --no-include-email --region eu-central-1)
       - aws eks update-kubeconfig --name ContestPark-EKS
       - kubectl config current-context #make sure it's aws
-      - kubectl config view --minify --flatten > kubeconfigdata
       - kubectl apply -f kubectl/deployment.yaml
   pre_build:
     commands:
