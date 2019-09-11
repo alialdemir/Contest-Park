@@ -13,15 +13,14 @@ phases:
       - echo Build started on `date`
       - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
       - echo docker is build finish...
-      - docker images
       - echo Started container tag...
-      - docker tag balance-api:latest $REPOSITORY_URI/balance-api:$IMAGE_TAG
-      - docker tag category-api:latest $REPOSITORY_URI/category-apiZ:$IMAGE_TAG
-      - docker tag chat-api:latest $REPOSITORY_URI/chat-api:$IMAGE_TAG
-      - docker tag duel-api:latest $REPOSITORY_URI/duel-api:$IMAGE_TAG
-      - docker tag identity-api:latest $REPOSITORY_URI/identity-api:$IMAGE_TAG
-      - docker tag ocelot-apigw:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
-      - docker tag post-api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
+      - docker tag contestparkbalance.api:latest $REPOSITORY_URI/balance-api:$IMAGE_TAG
+      - docker tag contestparkcategory.api:latest $REPOSITORY_URI/category-apiZ:$IMAGE_TAG
+      - docker tag contestparkchat.api:latest $REPOSITORY_URI/chat-api:$IMAGE_TAG
+      - docker tag contestparkduel.api:latest $REPOSITORY_URI/duel-api:$IMAGE_TAG
+      - docker tag contestparkidentity.api:latest $REPOSITORY_URI/identity-api:$IMAGE_TAG
+      - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
+      - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
