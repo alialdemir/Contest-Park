@@ -8,6 +8,13 @@ phases:
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - $(aws ecr get-login --no-include-email --region eu-central-1)
+      - declare -a envs=("CONTESTPARK_GIFT_MONEY_AMOUNT" "CONTESTPARK_AWS_LOG_GROUP_NAME" "CONTESTPARK_AWS_SECRET_ACCESS_KEY" "CONTESTPARK_AWS_ACCESS_KEY_Id" "CONTESTPARK_CLOUDFRONT_URL" "CONTESTPARK_ELASTIC_SEARCH_URI" "CONTESTPARK_ELASTIC_SEARCH_URI" "CONTESTPARK_AZURE_REDIS_SIGNALR_DB" "CONTESTPARK_MYSQL_CONNECTIONSTRING" "CONTESTPARK_AZURE_SERVICE_BUS" "CONTESTPARK_SERVICE_BUS_USERNAME" "CONTESTPARK_SERVICE_BUS_PASSWORD" "CONTESTPARK_BET_COMISSION")
+      - for env in "${envs[@]}"
+      - do
+      - echo "$env"
+      - sed -i 's/$('"$env"')/'\"""$env"\""'/g' kubectl/deployment.yaml
+      - done
+      - echo image path replace
   pre_build:
     commands:
       - echo Build started on `date`
@@ -38,11 +45,11 @@ phases:
       - echo Replace deployment.yaml
       - declare -a envs=("CONTESTPARK_GIFT_MONEY_AMOUNT" "CONTESTPARK_AWS_LOG_GROUP_NAME" "CONTESTPARK_AWS_SECRET_ACCESS_KEY" "CONTESTPARK_AWS_ACCESS_KEY_Id" "CONTESTPARK_CLOUDFRONT_URL" "CONTESTPARK_ELASTIC_SEARCH_URI" "CONTESTPARK_ELASTIC_SEARCH_URI" "CONTESTPARK_AZURE_REDIS_SIGNALR_DB" "CONTESTPARK_MYSQL_CONNECTIONSTRING" "CONTESTPARK_AZURE_SERVICE_BUS" "CONTESTPARK_SERVICE_BUS_USERNAME" "CONTESTPARK_SERVICE_BUS_PASSWORD" "CONTESTPARK_BET_COMISSION")
       - for env in "${envs[@]}"
-        do
-        echo "$env"
-        sed -i 's/$('"$env"')/'\"""$env"\""'/g' kubectl/deployment.yaml
-        done
-        echo image path replace
+      - do
+      - echo "$env"
+      - sed -i 's/$('"$env"')/'\"""$env"\""'/g' kubectl/deployment.yaml
+      - done
+      - echo image path replace
       - sed -i 's/$(IMAGE_TAG)/'""$IMAGE_TAG""'/g' kubectl/deployment.yaml
       - sed -i 's/$(REPOSITORY_URI)/'""$REPOSITORY_URI""'/g' kubectl/deployment.yaml
       - echo update kubectl config
