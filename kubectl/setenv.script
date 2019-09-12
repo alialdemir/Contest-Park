@@ -2,5 +2,5 @@ declare -a envs=("CONTESTPARK_GIFT_MONEY_AMOUNT" "CONTESTPARK_AWS_LOG_GROUP_NAME
 for env in "${envs[@]}"
 do
 echo "$env"
-sed -i 's/$('"$env"')/'\"""$env"\""'/g' kubectl/deployment.yaml
+sed -i 's/$('"$env"')/'\"""$env"\""'/g' deployment.yaml
 done
