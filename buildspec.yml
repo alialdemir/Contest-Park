@@ -5,9 +5,7 @@ phases:
     runtime-versions:
       docker: 18
     commands:
-      - sed -i 's/$(CONTESTPARK_MYSQL_CONNECTIONSTRING)/$CONTESTPARK_MYSQL_CONNECTIONSTRING/g' kubectl/deployment.yaml
-      - cat kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_ELASTIC_SEARCH_URI)/"$CONTESTPARK_ELASTIC_SEARCH_URI"/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_MYSQL_CONNECTIONSTRING)/'"$CONTESTPARK_MYSQL_CONNECTIONSTRING"'/g' kubectl/deployment.yaml
       - cat kubectl/deployment.yaml
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
