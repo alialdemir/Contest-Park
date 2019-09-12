@@ -22,7 +22,7 @@ phases:
       - sed -i 's/$(CONTESTPARK_SERVICE_BUS_USERNAME)/'"\""$CONTESTPARK_SERVICE_BUS_USERNAME"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(IMAGE_TAG)/'""$IMAGE_TAG""'/g' kubectl/deployment.yaml
       - sed -i 's/$(REPOSITORY_URI)/'""$REPOSITORY_URI""'/g' kubectl/deployment.yaml
-      - echo update kubectl config
+      - echo update kubectl configs
   pre_build:
     commands:
       - echo Build started on `date`
