@@ -14,9 +14,44 @@ spec:
     spec:
       containers:
         - name: identity-api
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/identity-api:v2
+          image: $(REPOSITORY_URI)/identity-api:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: balanceUrl
+              value: "http://balance-api"
+            - name: ChatUrl
+              value: "http://chat-api"
+            - name: FollowUrl
+              value: "http://follow-api"
+            - name: Audience
+              value: "identity"
+            - name: SendGridApiKey
+              value: "Test"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: GiftMoneyAmount
+              value: $(CONTESTPARK_GIFT_MONEY_AMOUNT)
+            - name: ClouldFrontUrl
+              value: $(CONTESTPARK_CLOUDFRONT_URL)
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -34,9 +69,12 @@ spec:
     spec:
       containers:
         - name: ocelot-apigw
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/ocelot-apigw:v3
+          image: $(REPOSITORY_URI)/ocelot-apigw:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -54,9 +92,32 @@ spec:
     spec:
       containers:
         - name: balance-api
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/balance-api:v1
+          image: $(REPOSITORY_URI)/balance-api:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: Audience
+              value: "balance"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -74,9 +135,38 @@ spec:
     spec:
       containers:
         - name: category-api
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/category-api:v1
+          image: $(REPOSITORY_URI)/category-api:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: balanceUrl
+              value: "http://balance-api"
+            - name: Audience
+              value: "category"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: ElasticSearchURI
+              value: $(CONTESTPARK_ELASTIC_SEARCH_URI)
+            - name: ElasticSearchIndexName
+              value: "categorysearch"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -94,9 +184,34 @@ spec:
     spec:
       containers:
         - name: chat-api
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/chat-api:v1
+          image: $(REPOSITORY_URI)/chat-api:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: Audience
+              value: "chat"
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -114,9 +229,42 @@ spec:
     spec:
       containers:
         - name: duel-api
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/duel-api:v1
+          image: $(REPOSITORY_URI)/duel-api:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: FollowUrl
+              value: "http://follow-api"
+            - name: SubCategoryUrl
+              value: "http://category-api"
+            - name: balanceUrl
+              value: "http://balance-api"
+            - name: Audience
+              value: "duel"
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: BetCommission
+              value: "10"
 
 ---
 apiVersion: extensions/v1beta1
@@ -135,6 +283,77 @@ spec:
     spec:
       containers:
         - name: post-api
-          image: 162939618331.dkr.ecr.eu-central-1.amazonaws.com/post-api:v1
+          image: $(REPOSITORY_URI)/post-api:$(IMAGE_TAG)
           ports:
             - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: Audience
+              value: "post"
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: signalr-api
+spec:
+  selector:
+    matchLabels:
+      run: signalr-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: signalr-api
+    spec:
+      containers:
+        - name: signalr-api
+          image: $(REPOSITORY_URI)/signalr-api:$(IMAGE_TAG)
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: Audience
+              value: "post"
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
