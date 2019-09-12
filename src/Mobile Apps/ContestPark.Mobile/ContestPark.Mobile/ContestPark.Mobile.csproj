@@ -5,10 +5,6 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Remove="AppResources\ContestParkResources.tr-TR.resx" />
-    <EmbeddedResource Remove="AppResources\ContestParkResources.tr.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Audios\AwaitingOpponent.mp3" />
     <None Remove="Audios\Fail.mp3" />
     <None Remove="Audios\Fireworks.mp3" />
@@ -59,11 +55,6 @@
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.2.0.709249" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AppResources\ContestParkResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ContestParkResources.resx</DependentUpon>
-    </Compile>
     <Compile Update="Components\Categories\CategoryHeader.xaml.cs">
       <DependentUpon>CategoryHeader.xaml</DependentUpon>
     </Compile>
@@ -99,10 +90,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="AppResources\ContestParkResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContestParkResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Components\Categories\CategoryHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

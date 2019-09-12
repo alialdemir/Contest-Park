@@ -118,546 +118,546 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ForgotYourPassword" xml:space="preserve">
-    <value>Şifremi unuttum</value>
+    <value>Forgot your password</value>
   </data>
   <data name="invalid_username_or_password" xml:space="preserve">
-    <value>Kullanıcı adı veya şifre yanlış.</value>
+    <value>The username or password is incorrect.</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Şifre</value>
+    <value>Password</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Giriş Yap ➝</value>
+    <value>Sign in</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>Üye Ol</value>
+    <value>Sign up</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>Kullanıcı adı</value>
+    <value>User name</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Hata</value>
+    <value>Error</value>
   </data>
   <data name="GlobalErrorMessage" xml:space="preserve">
-    <value>Üzgünüz, beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz</value>
+    <value>Sorry, an unexpected error occurred. Please try again</value>
   </data>
   <data name="Okay" xml:space="preserve">
-    <value>Tamam</value>
+    <value>Okay</value>
   </data>
   <data name="SeeAll" xml:space="preserve">
-    <value>Tümü</value>
+    <value>See all</value>
   </data>
   <data name="Categories" xml:space="preserve">
-    <value>Kategoriler</value>
+    <value>Categories</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>İptal</value>
+    <value>Cancel</value>
   </data>
   <data name="CategoryLocked" xml:space="preserve">
-    <value>Bu kategori kilitli. Kilidi açmak ister misiniz?</value>
+    <value>This category is locked. Do you want to unlock?</value>
   </data>
   <data name="UnLock" xml:space="preserve">
-    <value>Kilidi Aç</value>
+    <value>Open the lock</value>
   </data>
   <data name="Buy" xml:space="preserve">
-    <value>Satın Al</value>
+    <value>Buy</value>
   </data>
   <data name="NoGold" xml:space="preserve">
-    <value>Altın yok</value>
+    <value>No Gold</value>
   </data>
   <data name="YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory" xml:space="preserve">
-    <value>Bu kategoriyi açmak için yeterli miktarda altınınız yok. Altın satın almak ister misiniz?</value>
+    <value>You do not have an adequate amount of gold to open this category. Want to buy gold?</value>
   </data>
   <data name="ServerMessage_ThisCategoryOpen" xml:space="preserve">
-    <value>Bu kategorinin kilidini zaten açtınız.</value>
+    <value>This category has already been unlocked.</value>
   </data>
   <data name="ContestPostEmptyMessage" xml:space="preserve">
-    <value>Bu kategoriye ait geçmiş bulunmamakta.</value>
+    <value>There are no history for this category.</value>
   </data>
   <data name="FindOpponent" xml:space="preserve">
-    <value>Rakip Bul</value>
+    <value>Find Opponent</value>
   </data>
   <data name="Followers" xml:space="preserve">
-    <value>Takipçi</value>
+    <value>Followers</value>
   </data>
   <data name="Ranking" xml:space="preserve">
-    <value>Sıralama</value>
+    <value>Ranking</value>
   </data>
   <data name="Bet" xml:space="preserve">
-    <value>Bahis</value>
+    <value>Bet</value>
   </data>
   <data name="AwaitingOpponent" xml:space="preserve">
-    <value>Rakip Bekleniyor...</value>
+    <value>Awaiting opponent</value>
   </data>
   <data name="ConnectionToTheServerForTheDuelWasNotEstablished" xml:space="preserve">
-    <value>Düello için sunucu ile bağlantı kurulamadı.</value>
+    <value>Failed to connect with server for duel.</value>
   </data>
   <data name="AreYouSureYouWantToLeave" xml:space="preserve">
-    <value>Çıkmak istediğinize emin misiniz?</value>
+    <value>Are you sure you want to leave?</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value>Çıkış</value>
+    <value>Exit</value>
   </data>
   <data name="EntryFee" xml:space="preserve">
-    <value>GİRİŞ ÜCRETİ</value>
+    <value>ENTRY FEE</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>OYNA</value>
+    <value>PLAY</value>
   </data>
   <data name="Advanced" xml:space="preserve">
-    <value>İleri Düzeyde</value>
+    <value>Advanced</value>
   </data>
   <data name="Beginner" xml:space="preserve">
-    <value>Acemi</value>
+    <value>Beginner</value>
   </data>
   <data name="Expert" xml:space="preserve">
-    <value>Uzman</value>
+    <value>Expert</value>
   </data>
   <data name="Genius" xml:space="preserve">
-    <value>Dahi</value>
+    <value>Genius</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Usta</value>
+    <value>Master</value>
   </data>
   <data name="Novice" xml:space="preserve">
-    <value>Çaylak</value>
+    <value>Novice</value>
   </data>
   <data name="Prize" xml:space="preserve">
-    <value>ÖDÜL</value>
+    <value>PRIZE</value>
   </data>
   <data name="Freeloader" xml:space="preserve">
-    <value>Beleşçi</value>
+    <value>Freeloader</value>
   </data>
   <data name="ForgetYourPasswordText" xml:space="preserve">
-    <value>Eposta adresi veya kullanıcı adınızı giriniz. Hesap bilgilerinizi içeren bir e-posta alacaksınız.</value>
+    <value>Enter your e-mail address or username. You will receive an email with your account information.</value>
   </data>
   <data name="SendPassword" xml:space="preserve">
-    <value>Şifreyi gönder</value>
+    <value>Send password</value>
   </data>
   <data name="WriteYourUserNameOrEmailAddress" xml:space="preserve">
-    <value>Kullanıcı adı veya eposta adresi yazınız.</value>
+    <value>Please enter your username or e-mail address.</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>E-posta</value>
+    <value>Email</value>
   </data>
   <data name="Fullname" xml:space="preserve">
-    <value>Ad soyad</value>
+    <value>Full name</value>
   </data>
   <data name="MessageYourListIsEmpty" xml:space="preserve">
-    <value>Mesaj listeniz boş.</value>
+    <value>Your message list is empty.</value>
   </data>
   <data name="Chat" xml:space="preserve">
-    <value>Mesajlar</value>
+    <value>Chat</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Sil</value>
+    <value>Delete</value>
   </data>
   <data name="DeleteMessage" xml:space="preserve">
-    <value>{0} ile aranızdaki sohbeti silmek istediğinizden emin misiniz?</value>
+    <value>Are you sure you want to delete the conversation between you and {0}?</value>
   </data>
   <data name="DeleteMessageTitle" xml:space="preserve">
-    <value>Mesaj sil?</value>
+    <value>Delete message?</value>
   </data>
   <data name="Comments" xml:space="preserve">
-    <value>Yorum</value>
+    <value>Comments</value>
   </data>
   <data name="Likes" xml:space="preserve">
-    <value>Beğeni</value>
+    <value>Likes</value>
   </data>
   <data name="YourLevel" xml:space="preserve">
-    <value>Seviye</value>
+    <value>Level</value>
   </data>
   <data name="Follow" xml:space="preserve">
-    <value>Takip Et</value>
+    <value>Follow</value>
   </data>
   <data name="Following" xml:space="preserve">
-    <value>Takip</value>
+    <value>Following</value>
   </data>
   <data name="Global" xml:space="preserve">
-    <value>Genel</value>
+    <value>Global</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>İsim</value>
+    <value>Name</value>
   </data>
   <data name="Rank" xml:space="preserve">
-    <value>Sıra</value>
+    <value>Rank</value>
   </data>
   <data name="Score" xml:space="preserve">
-    <value>Puan</value>
+    <value>Score</value>
   </data>
   <data name="RankFollowingNull" xml:space="preserve">
-    <value>Takip ettiğin kimse yok. Git birilerini takip et!</value>
+    <value>There's no one you follow. Go follow the one!</value>
     <comment>Name kısmı ingilizce olmalı</comment>
   </data>
   <data name="ThisCategoryRankNull" xml:space="preserve">
-    <value>Bu kategoride daha önce yarışan olmamış. İlk sırayı sen kapabilirsin!</value>
+    <value>69/5000
+This category has never been competing before. You can take first place!</value>
     <comment>Name kısmı ingilizce olmalı</comment>
   </data>
   <data name="TimeLeft" xml:space="preserve">
-    <value>Kalan Süre</value>
+    <value>Time left</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>Profil</value>
+    <value>Profile</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>Bildirimler</value>
+    <value>Notifications</value>
   </data>
   <data name="SelectProcess" xml:space="preserve">
-    <value>İşlem Seçiniz</value>
+    <value>Select process</value>
   </data>
   <data name="Share" xml:space="preserve">
-    <value>Paylaş</value>
+    <value>Share</value>
   </data>
   <data name="UnFollow" xml:space="preserve">
-    <value>Takibi Bırak</value>
+    <value>Unfollow</value>
   </data>
   <data name="SearchPlayersOrCategories" xml:space="preserve">
-    <value>Oyuncu veya Kategori ara</value>
+    <value>Search Players or categories</value>
   </data>
   <data name="ContestStore" xml:space="preserve">
     <value>Contest Store</value>
   </data>
   <data name="FollowUsOnSocialNetworks" xml:space="preserve">
-    <value>Sosyal ağlarda bizi takip edin</value>
+    <value>Follow us on social networks</value>
   </data>
   <data name="Missions" xml:space="preserve">
-    <value>Görevler</value>
+    <value>Missions</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Ayarlar</value>
+    <value>Settings</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value> Gün </value>
+    <value> Day</value>
     <comment>Sıralama için gün baş harfi</comment>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value> Saat </value>
+    <value>Hour</value>
     <comment>Sıralama için saat baş harfi</comment>
   </data>
   <data name="Minute" xml:space="preserve">
-    <value> Dakika </value>
+    <value> Minute</value>
     <comment>Sıralama için dakkika baş harfi</comment>
   </data>
   <data name="Seconds" xml:space="preserve">
-    <value> Saniye </value>
+    <value>Second</value>
     <comment>Sıralama için saniye baş harfi</comment>
   </data>
   <data name="AccountSettings" xml:space="preserve">
-    <value>Hesap Ayarları</value>
+    <value>Account Settings</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Uygulama Ayarları</value>
+    <value>App Settings</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Diller</value>
+    <value>Languages</value>
   </data>
   <data name="Blocking" xml:space="preserve">
-    <value>Engellenenler</value>
+    <value>Blocking</value>
   </data>
   <data name="PrivateProfile" xml:space="preserve">
-    <value>Profil Gizle</value>
+    <value>Private PROFİLE</value>
   </data>
   <data name="Sounds" xml:space="preserve">
-    <value>Ses Efeckleri</value>
+    <value>Sound effects</value>
   </data>
   <data name="LogOut" xml:space="preserve">
-    <value>Çıkış Yap</value>
+    <value>LogOut</value>
   </data>
   <data name="Other" xml:space="preserve">
-    <value>Diğer</value>
+    <value>Other</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
-    <value>Dil Seçiniz</value>
+    <value>Select language</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="Turkish" xml:space="preserve">
-    <value>Türkçe</value>
+    <value>Turkish</value>
   </data>
   <data name="YouDontSeemToBeBlockingAnyone" xml:space="preserve">
-    <value>Kimseyi engellemiş görünmüyorsun!</value>
+    <value>You don't seem to have blocked anyone!</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Profil Güncelle</value>
+    <value>Edit Profile</value>
   </data>
   <data name="PictureSettings" xml:space="preserve">
-    <value>Resim Ayarları</value>
+    <value>Picture Settings</value>
   </data>
   <data name="PasswordChange" xml:space="preserve">
-    <value>Şifre Değiştir</value>
+    <value>Change Password</value>
   </data>
   <data name="ChangeCoverPicture" xml:space="preserve">
-    <value>Kapat resmi değiştir</value>
+    <value>Change cover picture</value>
   </data>
   <data name="ChangeProfilePicture" xml:space="preserve">
-    <value>Profile resmi değiştir</value>
+    <value>Change profile picture</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Kaydet</value>
+    <value>Save</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>Yeni Şifre</value>
+    <value>New Password</value>
   </data>
   <data name="OldPassword" xml:space="preserve">
-    <value>Eski Şifre</value>
+    <value>Old password</value>
   </data>
   <data name="UpdateSuccessful" xml:space="preserve">
-    <value>Güncelleme Başarılı!</value>
+    <value>Update Successful!</value>
   </data>
   <data name="YourInformationHasBeenUpdated" xml:space="preserve">
-    <value>Bilgileriniz güncellendi.</value>
+    <value>Your information has been updated.</value>
   </data>
   <data name="YourPasswordHasBeenUpdated" xml:space="preserve">
-    <value>Şifreniz güncellendi.</value>
+    <value>Your password has been updated.</value>
   </data>
   <data name="ChooseAnAction" xml:space="preserve">
-    <value>İşlem seçiniz</value>
+    <value>Choose an action</value>
   </data>
   <data name="ChooseFromLibrary" xml:space="preserve">
-    <value>Gallery'den seç</value>
+    <value>Choose from library</value>
   </data>
   <data name="PermissionsDenied" xml:space="preserve">
-    <value>Erişim izni yok</value>
+    <value>No access allowed</value>
   </data>
   <data name="TakeAPhoto" xml:space="preserve">
-    <value>Fotoğraf çek</value>
+    <value>Take a photo</value>
   </data>
   <data name="UnableToTakePhotos" xml:space="preserve">
-    <value>Fotoğraf seçilemedi.</value>
+    <value>No photos selected.</value>
   </data>
   <data name="NewMissionsComingSoon" xml:space="preserve">
-    <value>Yeni Görevler Yakında!</value>
+    <value>New Missions Coming Soon!</value>
   </data>
   <data name="MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage" xml:space="preserve">
-    <value>Üye olma işlemi başarılı oldu. Fakat giriş yapılamadı. Lütfen giriş yap sayfasından giriş yapınız.</value>
+    <value>Membership was successful. But the login failed. Please login from the login page.</value>
   </data>
   <data name="EmailMaxLength" xml:space="preserve">
-    <value>Eposta maksimum 255 karakter olmalıdır.</value>
+    <value>E-mail must be a maximum of 255 characters.</value>
   </data>
   <data name="EmailRequiredFields" xml:space="preserve">
-    <value>Eposta alanını doldurmak zorunludur.</value>
+    <value>E-mail field is required.</value>
   </data>
   <data name="FullNameMaxLength" xml:space="preserve">
-    <value>Ad Soyad maksimum 255 karakter olmalıdır.</value>
+    <value>The full name must be a maximum of 255 characters.</value>
   </data>
   <data name="FullNameMinLength" xml:space="preserve">
-    <value>Ad Soyad minimum 3 karakter ve üzeri olmalıdır.</value>
+    <value>The full name must be a minimum of 3 characters or more.</value>
   </data>
   <data name="FullNameRequiredFields" xml:space="preserve">
-    <value>Ad Soyad alanını doldurmak zorunludur.</value>
+    <value>Full Name field is required.</value>
   </data>
   <data name="PasswordMaxLength" xml:space="preserve">
-    <value>Şifreniz maksimum 32 karakter olmalıdır.</value>
+    <value>Your password must be 32 characters maximum.</value>
   </data>
   <data name="PasswordMinLength" xml:space="preserve">
-    <value>Şifreniz minimum 8 karakter ve üzeri olmalıdır.</value>
+    <value>Your password must be a minimum of 8 characters and above.</value>
   </data>
   <data name="PasswordRequiredFields" xml:space="preserve">
-    <value>Şifre alanını doldurmak zorunludur.</value>
+    <value>Password field is required.</value>
   </data>
   <data name="RequiredFields" xml:space="preserve">
-    <value>Gerekli alanları doldurunuz.</value>
+    <value>Please fill in the required fields.</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
-    <value>Kullanıcı adınız maksimum 255 karakter olmalıdır.</value>
+    <value>Your username must be a maximum of 255 characters.</value>
   </data>
   <data name="UserNameMinLength" xml:space="preserve">
-    <value>Kullanıcı adınız minimum 3 karakter ve üzeri olmalıdır.</value>
+    <value>Your username must be at least 3 characters or more.</value>
   </data>
   <data name="UserNameRequiredFields" xml:space="preserve">
-    <value>Kullanıcı adı alanını doldurmak zorunludur.</value>
+    <value>User name is required.</value>
   </data>
   <data name="NoInternet" xml:space="preserve">
-    <value>İnternet bağlantınızı kontrol ediniz.</value>
+    <value>Please check your Internet connection.</value>
   </data>
   <data name="YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore" xml:space="preserve">
-    <value>Oynamak için yeterli altınınız yok. Contest store üzerinden altın satın alabilirsiniz.</value>
+    <value>You do not have enough gold to play. You can buy gold through the Contest store.</value>
   </data>
   <data name="WeHadaProblemDeletingTheMessagePleaseTryAgain" xml:space="preserve">
-    <value>Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz.</value>
+    <value>We encountered while deleting your message with problems. Please try again.</value>
   </data>
   <data name="Lose" xml:space="preserve">
-    <value>Kaybetti</value>
+    <value>Lose</value>
   </data>
   <data name="Tie" xml:space="preserve">
-    <value>BERABERE</value>
+    <value>TIE</value>
   </data>
   <data name="Winning" xml:space="preserve">
-    <value>Kazanan</value>
+    <value>Winning</value>
   </data>
   <data name="Block" xml:space="preserve">
-    <value>Engelle</value>
+    <value>Block</value>
   </data>
   <data name="ChatSettings" xml:space="preserve">
-    <value>Sohbet Ayarları</value>
+    <value>Chat Settings</value>
   </data>
   <data name="DeleteConversation" xml:space="preserve">
-    <value>Konuşmayı sil</value>
+    <value>Delete Conversation</value>
   </data>
   <data name="RemoveBlock" xml:space="preserve">
-    <value>Engelli kaldır</value>
+    <value>Remove block</value>
   </data>
   <data name="DeleteThisEntireConversation" xml:space="preserve">
-    <value>Bu Konuşmanın Tamamını Sil?</value>
+    <value>Delete Entire Speech?</value>
   </data>
   <data name="IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone" xml:space="preserve">
-    <value>Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz.</value>
+    <value>If you delete your copy of this conversation, it cannot be undone.</value>
   </data>
   <data name="EarnCoins" xml:space="preserve">
-    <value>Altın Kazan</value>
+    <value>Earn Coins</value>
   </data>
   <data name="FreeCoins" xml:space="preserve">
-    <value>Ücretsiz Altın</value>
+    <value>Free coins</value>
   </data>
   <data name="WatchAdGetCoins" xml:space="preserve">
-    <value>Reklam izle, altın kazan!</value>
-    <comment>Watch ad, get coins!</comment>
+    <value>Watch ad, get coins!</value>
   </data>
   <data name="InvalidProductId" xml:space="preserve">
-    <value>Geçersiz ürün id.</value>
+    <value>Invalid product id.</value>
   </data>
   <data name="UnableToAccessTheProductList" xml:space="preserve">
-    <value>Ürün listesine erişilemedi.</value>
+    <value>Failed to access product list.</value>
   </data>
   <data name="UnableToConnectToTheStore" xml:space="preserve">
-    <value>Mağazaya bağlanılamadı.</value>
+    <value>Failed to connect to store.</value>
   </data>
   <data name="YourPhoneDoesNotSupportInAppPurchases" xml:space="preserve">
-    <value>Telefonunuz uygulama içi satın almayı desteklemiyor.</value>
+    <value>Your phone does not support in-app purchase.</value>
   </data>
   <data name="PurchaseFail" xml:space="preserve">
-    <value>Satın alma işlemi başarısız. Altınlarınız hesabınıza yüklenemedi. Lütfen support@contestpark.com adresine mail atın.</value>
+    <value>Purchase failed. Gold could not be loaded to your account. Please email support@contestpark.com.</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>Başarılı</value>
+    <value>Success</value>
   </data>
   <data name="ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount" xml:space="preserve">
-    <value>Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi.</value>
+    <value>Successful purchase. Your Gold uploaded to your account.</value>
   </data>
   <data name="PostLikes" xml:space="preserve">
-    <value>Beğeniler</value>
+    <value>likes</value>
   </data>
   <data name="Duel" xml:space="preserve">
-    <value>Düello</value>
+    <value>Duel</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
-    <value>Kullanıcı bulunamadı.</value>
+    <value>User not found.</value>
   </data>
   <data name="ShowImage" xml:space="preserve">
-    <value>Resmi görüntüle</value>
+    <value>Show image</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Yorumlar</value>
+    <value>Comment</value>
   </data>
   <data name="Results" xml:space="preserve">
-    <value>SONUÇLAR</value>
+    <value>RESULTS</value>
   </data>
   <data name="FinishBonus" xml:space="preserve">
-    <value>BİTİRME BONUSU</value>
+    <value>FINISH BONUS</value>
   </data>
   <data name="MatchScore" xml:space="preserve">
-    <value>MAÇ SKORU</value>
+    <value>MATCH SCORE</value>
   </data>
   <data name="TotalXp" xml:space="preserve">
-    <value>TOPLAM XP</value>
+    <value>TOTAL XP</value>
   </data>
   <data name="VictoryBonus" xml:space="preserve">
-    <value>KAZANMA BONUSU</value>
+    <value>VICTORY BONUS</value>
   </data>
   <data name="Revenge" xml:space="preserve">
-    <value>Rövanş</value>
+    <value>Revenge</value>
   </data>
   <data name="Playing" xml:space="preserve">
-    <value>OYNADI</value>
+    <value>PLAYING</value>
   </data>
   <data name="Victorious" xml:space="preserve">
-    <value>GALİP GELDİ</value>
+    <value>VICTORIOUS</value>
   </data>
   <data name="Was" xml:space="preserve">
-    <value />
+    <value>Was</value>
     <comment>Türkçede bu boş olarak kalmalı</comment>
   </data>
   <data name="YouLose" xml:space="preserve">
-    <value>KAYBETTİN!</value>
+    <value>YOU LOSE!</value>
   </data>
   <data name="YouWin" xml:space="preserve">
-    <value>SEN KAZANDIN!</value>
+    <value>YOU WIN!</value>
   </data>
   <data name="Message" xml:space="preserve">
-    <value>Sohbet</value>
+    <value>Message</value>
   </data>
   <data name="ErrorStartingDuelPleaseTryAgain" xml:space="preserve">
-    <value>Düello başlatılırken hata oluştu. Lütfen tekrar deneyiniz.</value>
+    <value>Error starting duel. Please try again.</value>
   </data>
   <data name="YouHaveEnteredAnInvalidCode" xml:space="preserve">
-    <value>Geçersiz kod girdiniz.</value>
+    <value>You have entered an invalid code.</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
-    <value>Telefon numarası</value>
+    <value>Phone number</value>
   </data>
   <data name="Gold" xml:space="preserve">
-    <value>Altın</value>
+    <value>Gold</value>
   </data>
   <data name="TurkishLira" xml:space="preserve">
-    <value>Türk Lirası</value>
+    <value>Turkish lira</value>
   </data>
   <data name="Turkey" xml:space="preserve">
-    <value>TÜRKİYE</value>
+    <value>Turkey</value>
   </data>
   <data name="YouCanRemoveTheBarriers" xml:space="preserve">
-    <value>Engelleri kaldırabilirsin</value>
+    <value>You can remove the barriers</value>
   </data>
   <data name="InviteSaveMoney" xml:space="preserve">
-    <value>Davet Et, Para Kazan!</value>
+    <value>Invite a friend, earn money</value>
   </data>
   <data name="ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp" xml:space="preserve">
-    <value>ContestPark, Bilgi Yarışması çok eğlenceli, siz de oynamalısınız. Lütfen kayıt olurken kullanıcı adımı "{0}" referans kodu olarak yazınız. Hem siz hemde ben para ödülü kazanmış olurum.</value>
+    <value>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "{0}" to the reference when sign up.</value>
     <comment>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.</comment>
   </data>
   <data name="Invite" xml:space="preserve">
-    <value>Davet Et</value>
+    <value>Invite</value>
   </data>
   <data name="ConvertToCash" xml:space="preserve">
-    <value>Paranı Nakite Çevir</value>
+    <value>Convert to cash</value>
   </data>
   <data name="TransferToBankAccount" xml:space="preserve">
-    <value>BANKA HESABIMA AKTAR</value>
+    <value>TRANSFER TO MY BANK ACCOUNT</value>
   </data>
   <data name="ARequestToTransferYourEarningsToYourAccountHasBeenCreated" xml:space="preserve">
-    <value>Kazancınız hesabınıza aktarma isteği oluşturuldu.</value>
+    <value>A request to transfer your earnings to your account has been created.</value>
   </data>
   <data name="SendMoney" xml:space="preserve">
-    <value>Kazancı Hesabına Aktar</value>
+    <value>Transfer to Gain Account</value>
   </data>
   <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
-    <value>Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir.</value>
+    <value>You must earn a minimum of $ 100 to withdraw your winnings.</value>
   </data>
   <data name="RightOn" xml:space="preserve">
-    <value>Devam Et</value>
+    <value>Right on</value>
   </data>
   <data name="EnterTheCodeFromSms" xml:space="preserve">
-    <value>Sms ile gelen kodu giriniz</value>
+    <value>Enter the code from sms</value>
   </data>
   <data name="SmsCode" xml:space="preserve">
-    <value>Sms kodunu giriniz</value>
+    <value>Enter the SMS code</value>
   </data>
   <data name="WhatShouldWeopleCallYou" xml:space="preserve">
     <value>İnsanlar sana ne diye hitap etsin?</value>
   </data>
   <data name="WhatYouGetYourUsername" xml:space="preserve">
-    <value>Kullanıcı adınızı ne olsun?</value>
+    <value>What is your username?</value>
   </data>
   <data name="PhoneNumberRequiredFields" xml:space="preserve">
-    <value>Telefon numarası alanını doldurmak zorunludur.</value>
+    <value>Phone number is necessary to fill the field.</value>
   </data>
   <data name="InvalidPhoneNumber" xml:space="preserve">
-    <value>Geçersiz telefon numarası.</value>
+    <value>Invalid phone number.</value>
   </data>
   <data name="Over" xml:space="preserve">
-    <value>Bitti</value>
+    <value>Over</value>
   </data>
   <data name="YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore" xml:space="preserve">
-    <value>Oynamak için yeterli bakiyeniz yok. Contest store üzerinden bakiye yüklemelisiniz.</value>
+    <value>You don't have enough balance to play. You must install balance out store contest.</value>
   </data>
 </root>

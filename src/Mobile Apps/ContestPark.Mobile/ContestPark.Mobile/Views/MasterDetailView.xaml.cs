@@ -1,4 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Events;
+using Prism.Events;
+using Prism.Ioc;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -12,9 +16,9 @@ namespace ContestPark.Mobile.Views
         {
             InitializeComponent();
 
-            //RegisterTypesConfig.Container.Resolve<IEventAggregator>()
-            //        ?.GetEvent<MasterDetailPageIsPresentedEvent>()
-            //        .Subscribe((isPresented) => IsPresented = isPresented);
+            RegisterTypesConfig.Container.Resolve<IEventAggregator>()
+                    ?.GetEvent<MasterDetailPageIsPresentedEvent>()
+                    .Subscribe((isPresented) => IsPresented = isPresented);
         }
 
         #endregion Constructor
