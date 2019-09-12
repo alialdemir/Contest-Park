@@ -105,9 +105,11 @@ namespace ContestPark.Mobile.ViewModels
 
             if (rank != null)
             {
-                rank.Ranks.Items.ToList().FirstOrDefault().CornerRadius = new CornerRadius(8, 8, 0, 0);
-                rank.Ranks.Items.ToList().LastOrDefault().CornerRadius = new CornerRadius(0, 0, 8, 8);
-
+                if (rank.Ranks.Count > 0)
+                {
+                    rank.Ranks.Items.ToList().FirstOrDefault().CornerRadius = new CornerRadius(8, 8, 0, 0);
+                    rank.Ranks.Items.ToList().LastOrDefault().CornerRadius = new CornerRadius(0, 0, 8, 8);
+                }
                 ServiceModel = rank.Ranks;
 
                 await base.InitializeAsync();
@@ -218,12 +220,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navigation
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("SubCategoryId")) SubCategoryId = parameters.GetValue<short>("SubCategoryId");
             if (parameters.ContainsKey("ListType")) ListType = parameters.GetValue<ListTypes>("ListType");
 
-            base.OnNavigatingTo(parameters);
+            base.OnNavigatedTo(parameters);
         }
 
         #endregion Navigation

@@ -49,8 +49,10 @@ namespace ContestPark.Mobile.Services.Score
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);
-
-            _cacheService.Add(uri, result.Data);
+            if (result != null && result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
 
             return result.Data;
         }
@@ -71,8 +73,10 @@ namespace ContestPark.Mobile.Services.Score
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);
-
-            _cacheService.Add(uri, result.Data);
+            if (result != null && result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
 
             return result.Data;
         }

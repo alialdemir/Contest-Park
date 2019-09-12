@@ -1,10 +1,14 @@
-﻿using ContestPark.Mobile.AppResources;
+﻿using Acr.UserDialogs;
+using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models.Country;
+using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -17,8 +21,15 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public PhoneNumberViewModel(IPopupNavigation popupNavigation,
-                                    IPageDialogService dialogService) : base(dialogService: dialogService, popupNavigation: popupNavigation)
+            INavigationService navigationService,
+            ISettingsService settingsService,
+                                    IIdentityService identityService,
+                                    IPageDialogService dialogService) : base(navigationService: navigationService,
+                                                                             dialogService: dialogService,
+                                                                             popupNavigation: popupNavigation)
         {
+            this._settingsService = settingsService;
+            this._identityService = identityService;
         }
 
         #endregion Constructor
@@ -45,6 +56,9 @@ namespace ContestPark.Mobile.ViewModels
             PhoneCode = "+90"
         };
 
+        private readonly ISettingsService _settingsService;
+        private readonly IIdentityService _identityService;
+
         public CountryModel Country
         {
             get { return _country; }
@@ -54,6 +68,8 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => Country);
             }
         }
+
+        public string PhoneNumberNoRegex { get; set; }
 
         #endregion Properties
 
@@ -87,13 +103,13 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            string phoneNumber = PhoneNumber
+            PhoneNumberNoRegex = PhoneNumber
             .Replace("(", "")
             .Replace(")", "")
             .Replace(" ", "")
             .Replace("-", "");
 
-            var match = Regex.Match(phoneNumber, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);
+            var match = Regex.Match(PhoneNumberNoRegex, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);
             if (!match.Success)
             {
                 await DisplayAlertAsync(ContestParkResources.Error,
@@ -106,14 +122,37 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             // TODO: send sms
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            int smsCode = new Random().Next(100000, 999999);
+            // TODO: check sms
 
-            await PushPopupPageAsync(new CheckSmsView
+            string userName = await _identityService.GetUserNameByPhoneNumber(PhoneNumberNoRegex);
+            if (!string.IsNullOrEmpty(userName))
             {
-                PhoneNumber = phoneNumber,
-                SmsCode = smsCode,
+                await SignInAsync(userName);
+
+                UserDialogs.Instance.HideLoading();
+
+                IsBusy = false;
+
+                return;
+            }
+
+            UserDialogs.Instance.HideLoading();
+
+            await RemoveFirstPopupAsync();
+
+            await PushPopupPageAsync(new SignUpFullNameView()
+            {
+                PhoneNumber = PhoneNumberNoRegex
             });
+            //int smsCode = new Random().Next(100000, 999999);
+
+            //await PushPopupPageAsync(new CheckSmsView
+            //{
+            //    PhoneNumber = phoneNumber,
+            //    SmsCode = smsCode,
+            //});
 
             IsBusy = false;
         }
@@ -127,6 +166,26 @@ namespace ContestPark.Mobile.ViewModels
             selectCountryView.CountryEventHandler += OnCountry;
 
             await PushPopupPageAsync(selectCountryView);
+        }
+
+        /// <summary>
+        /// Giriş yap
+        /// </summary>
+        private async Task SignInAsync(string userName)// sms login gelince sil
+        {
+            UserToken token = await _identityService.GetTokenAsync(new Models.LoginModel
+            {
+                Password = PhoneNumberNoRegex,
+                UserName = userName
+            });
+            if (token != null)
+            {
+                _settingsService.SetTokenInfo(token);
+
+                await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
+            }
+
+            UserDialogs.Instance.HideLoading();
         }
 
         #endregion Methods

@@ -24,6 +24,7 @@ phases:
       - docker tag contestparkidentity.api:latest $REPOSITORY_URI/identity-api:$IMAGE_TAG
       - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
+      - docker tag contestparkpost.api:latest $REPOSITORY_URI/signalr-api:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
@@ -35,8 +36,9 @@ phases:
       - docker push $REPOSITORY_URI/identity-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/signalr-api:$IMAGE_TAG
       - echo Pushing end...
       - echo Kubernetes apply started
-      - kubectl apply -f ./kubectl/deployment.yaml
-      - kubectl apply -f ./kubectl/deployment-services.yaml
+      - echo kubectl apply -f ./kubectl/deployment.yaml
+      - echo kubectl apply -f ./kubectl/deployment-services.yaml
       - echo Finish

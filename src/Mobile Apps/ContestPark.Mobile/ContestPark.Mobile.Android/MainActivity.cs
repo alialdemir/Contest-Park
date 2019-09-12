@@ -69,9 +69,9 @@ namespace ContestPark.Mobile.Droid
 
             base.OnCreate(bundle);
 
-#if !DEBUG
-            CheckForRoot();
-#endif
+            //#if !DEBUG
+            //            CheckForRoot();
+            //#endif
 
             // Check if running in sim
 
