@@ -31,7 +31,7 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
-      - GiftMoneyAmount=0.25
+      - GiftMoneyAmount=4
       - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
     ports:
       - "5101:80"

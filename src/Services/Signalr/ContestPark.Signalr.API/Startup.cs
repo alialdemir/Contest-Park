@@ -30,7 +30,11 @@ namespace ContestPark.Signalr.API
             if (!string.IsNullOrEmpty(signalrStoreConnectionString))
             {
                 services.AddSignalR()
-                        .AddRedis(signalrStoreConnectionString);
+                    .AddRedis(signalrStoreConnectionString);
+                //.AddRedis(x =>
+                //{
+                //    x.Configuration.ClientName = "SignalR";
+                //});
             }
             else
             {

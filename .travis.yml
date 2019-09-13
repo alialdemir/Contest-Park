@@ -1,9 +1,0 @@
-language: csharp
-
-services:
-  - docker
-
-before_script: pip install docker-compose
-
-script:
-  - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up

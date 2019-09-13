@@ -4,37 +4,138 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:local="clr-namespace:ContestPark.Mobile.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:ContestPark.Mobile.Views"
+    FlyoutBackgroundImage="logo.png"
+    FlyoutBackgroundImageAspect="AspectFill"
+    FlyoutBehavior="Flyout"
     mc:Ignorable="d">
 
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#FFFFFF</Color>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.ForegroundColor" Value="Pink" />
-                <Setter Property="Shell.TitleColor" Value="#211414" />
-                <!--<Setter Property="Shell.DisabledColor" Value="Orange" />-->
-                <Setter Property="Shell.UnselectedColor" Value="#989898" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <!--<Setter Property="Shell.TabBarForegroundColor" Value="PaleTurquoise" />-->
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#989898" />
-                <Setter Property="Shell.TabBarTitleColor" Value="#FFD969" />
-            </Style>
-            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" />
-        </ResourceDictionary>
-    </Shell.Resources>
+    <!--<Shell.FlyoutHeader>
+        <settings:HeaderTemplate />
+    </Shell.FlyoutHeader>-->
 
-    <TabBar Style="{DynamicResource BaseStyle}">
-        <Tab Icon="Category.png">
-            <ShellContent ContentTemplate="{DataTemplate local:CategoriesView}" />
+    <Shell.FlyoutIcon>
+        <FontImageSource
+            FontFamily="{StaticResource MaterialFont}"
+            Glyph="&#xf047;"
+            Size="24"
+            Color="White" />
+    </Shell.FlyoutIcon>
+
+    <FlyoutItem
+        Title="Menu with tab"
+        FlyoutIcon="&#xf035;"
+        Shell.BackgroundColor="Red"
+        Shell.ForegroundColor="White"
+        Shell.TabBarBackgroundColor="White"
+        Shell.TabBarDisabledColor="Gray"
+        Shell.TabBarForegroundColor="White"
+        Shell.TabBarIsVisible="True"
+        Shell.TabBarTitleColor="Orange"
+        Shell.TabBarUnselectedColor="Gray">
+        <!--<FlyoutItem.Icon>
+            <FontImageSource
+            FontFamily="{StaticResource MaterialFont}"
+            Glyph="&#xf077;"
+             Color="Red"
+            Size="24" />
+        </FlyoutItem.Icon>-->
+        <Tab Title="Page1">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFont}"
+                    Glyph="&#xf611;"
+                    Size="24" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:CategoriesView}" />
         </Tab>
-        <Tab Icon="Chat.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ChatView}" />
+        <Tab Title="Page2">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFont}"
+                    Glyph="&#xf027;"
+                    Size="24" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:InviteView}" />
         </Tab>
-        <Tab Icon="UserProfile.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProfileView}" />
+        <Tab Title="Page2">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFont}"
+                    Glyph="&#xf027;"
+                    Size="24" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:ChatView}" />
         </Tab>
-    </TabBar>
+        <Tab Title="Page2">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFont}"
+                    Glyph="&#xf027;"
+                    Size="24" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:ProfileView}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Menu with out tab"
+        FlyoutIcon="&#xf036;"
+        Shell.BackgroundColor="Red"
+        Shell.ForegroundColor="White"
+        Shell.TabBarBackgroundColor="White"
+        Shell.TabBarDisabledColor="Gray"
+        Shell.TabBarForegroundColor="White"
+        Shell.TabBarIsVisible="True"
+        Shell.TabBarTitleColor="Orange"
+        Shell.TabBarUnselectedColor="Gray">
+        <!--<FlyoutItem.Icon>
+            <FontImageSource
+            FontFamily="{StaticResource MaterialFont}"
+            Glyph="&#xf077;"
+             Color="Red"
+            Size="24" />
+        </FlyoutItem.Icon>-->
+
+        <!--  You can add here another tab to get tabs at bottom  -->
+        <Tab Title="Bat">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFont}"
+                    Glyph="&#xf077;"
+                    Size="24" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:MasterView}" />
+        </Tab>
+    </FlyoutItem>
+
+    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="About"
+            ContentTemplate="{DataTemplate views:MasterView}"
+            FlyoutIcon="&#xf029;" />
+    </FlyoutItem>-->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Margin="5"
+                    FontFamily="{StaticResource MaterialFont}"
+                    FontSize="35"
+                    Text="{Binding FlyoutIcon}"
+                    TextColor="White" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
 </Shell>
