@@ -55,5 +55,5 @@ phases:
       - echo Kubernetes apply started
       - kubectl config current-context #make sure it's aws
       - echo kubectl apply -f kubectl/deployment.yaml
-      - echo kubectl apply -f kubectl/deployment-services.yaml
+      - cat kubectl/deployment.yaml
       - echo Finish
