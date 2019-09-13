@@ -37,7 +37,7 @@ namespace ContestPark.Signalr.API
             services.AddSignalR();
             //}
 
-            services//.AddRabbitMq(Configuration)
+            services.AddRabbitMq(Configuration)
                     .AddCors(options =>
                     {
                         options.AddPolicy("CorsPolicy",
@@ -50,15 +50,15 @@ namespace ContestPark.Signalr.API
 
             #region Event handler
 
-            //services.AddTransient<DuelCreatedIntegrationEventHandler>();
+            services.AddTransient<DuelCreatedIntegrationEventHandler>();
 
-            //services.AddTransient<DuelStartingModelIntegrationEventHandler>();
+            services.AddTransient<DuelStartingModelIntegrationEventHandler>();
 
-            //services.AddTransient<NextQuestionIntegrationEventHandler>();
+            services.AddTransient<NextQuestionIntegrationEventHandler>();
 
-            //services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
+            services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
 
-            //services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
+            services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
 
             #endregion Event handler
 
@@ -88,7 +88,7 @@ namespace ContestPark.Signalr.API
                     options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
             });
 
-            //    ConfigureEventBus(app);
+            ConfigureEventBus(app);
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

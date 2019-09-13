@@ -82,7 +82,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                 RemoveConnectionId();
 
                 await ConnectAsync();
-
             }
         }
 
