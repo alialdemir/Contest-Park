@@ -2,6 +2,7 @@
 <network-security-config>
   <domain-config cleartextTrafficPermitted="true">
     <domain includeSubdomains="true">a6f201f4dd45911e9b243024e5102ee7-271143265.eu-central-1.elb.amazonaws.com</domain>
+    <domain includeSubdomains="true">a938e9cfbd5d411e9b243024e5102ee7-2139398487.eu-central-1.elb.amazonaws.com</domain>
     <domain includeSubdomains="true">192.168.1.177</domain>
     <domain includeSubdomains="true">192.168.1.202</domain>
   </domain-config>
