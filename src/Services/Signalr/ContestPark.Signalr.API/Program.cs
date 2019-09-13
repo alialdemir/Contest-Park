@@ -3,7 +3,6 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using Serilog.Events;
 using Serilog.Sinks.AwsCloudWatch;
 using System;
 using System.IO;
@@ -55,7 +54,7 @@ namespace ContestPark.Signalr.API
         {
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                //     .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.WithProperty("ApplicationContext", AppName)
                 .Enrich.FromLogContext()
                 .ReadFrom.Configuration(configuration);
