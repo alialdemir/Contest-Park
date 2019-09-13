@@ -157,7 +157,7 @@ namespace ContestPark.Mobile.Configs
             TokenEndpoint = $"{connectBaseEndpoint}/token";
             LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
 
-            SignalREndpoint = $"http://a938e9cfbd5d411e9b243024e5102ee7-2139398487.eu-central-1.elb.amazonaws.com/contestparkhub";
+            SignalREndpoint = $"http://192.168.1.177:5000/contestparkhub";
         }
 
         /// <summary>
