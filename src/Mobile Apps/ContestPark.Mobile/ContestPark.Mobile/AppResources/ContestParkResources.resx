@@ -290,8 +290,7 @@
     <comment>Name kısmı ingilizce olmalı</comment>
   </data>
   <data name="ThisCategoryRankNull" xml:space="preserve">
-    <value>69/5000
-This category has never been competing before. You can take first place!</value>
+    <value>This category has never been competing before. You can take first place!</value>
     <comment>Name kısmı ingilizce olmalı</comment>
   </data>
   <data name="TimeLeft" xml:space="preserve">

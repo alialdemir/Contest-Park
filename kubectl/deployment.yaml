@@ -340,7 +340,7 @@ spec:
             - name: identityUrl
               value: "http://identity-api"
             - name: Audience
-              value: "post"
+              value: "signalr"
             - name: Redis
               value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
             - name: EventBusConnection

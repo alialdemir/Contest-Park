@@ -9,6 +9,8 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="AWS.Logger.SeriLog" Version="1.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Redis" Version="1.0.11" />
@@ -18,6 +20,10 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.AwsCloudWatch" Version="4.0.155" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00798" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="web.config" CopyToPublishDirectory="Always" />
   </ItemGroup>
 
   <ItemGroup>
