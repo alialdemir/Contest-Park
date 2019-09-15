@@ -95,22 +95,3 @@ spec:
   selector:
     run: post-api
   type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: signalr-api
-  labels:
-    run: signalr-api
-  annotations:
-    # Enable PROXY protocol
-    service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "TCP"
-    # Increase the ELB idle timeout to avoid issues with WebSockets or Server-Sent Events.
-    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "3600"
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
-  selector:
-    run: signalr-api
-  type: LoadBalancer
