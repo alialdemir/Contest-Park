@@ -30,6 +30,9 @@ namespace ContestPark.Mobile.ViewModels
         {
             this._settingsService = settingsService;
             this._identityService = identityService;
+#if DEBUG
+            PhoneNumber = "5444261153";
+#endif
         }
 
         #endregion Constructor

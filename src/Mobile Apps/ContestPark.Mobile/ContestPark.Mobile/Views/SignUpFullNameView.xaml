@@ -22,11 +22,13 @@
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
         <ScrollView>
-            <Grid>
+            <AbsoluteLayout>
                 <Components:LinearGradientButton
                     x:Name="redBox"
-                    Margin="35,0,35,0"
-                    Padding="0,20,0,0"
+                    Margin="0,0,0,70"
+                    Padding="0,60,0,0"
+                    AbsoluteLayout.LayoutBounds=".5,1,345,200"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
                     BackgroundColor="Transparent"
                     BorderRadius="48"
                     Command="{Binding Path=BindingContext.FullNameCommand, Source={x:Reference signUpFullNameView}}"
@@ -35,29 +37,20 @@
                     FontAttributes="Bold"
                     FontFamily="{StaticResource GothamRoundedBold}"
                     FontSize="23"
-                    HeightRequest="93"
-                    HorizontalOptions="FillAndExpand"
                     StartColor="#5A7BEF"
                     Text="{i18n:Translate RightOn}"
                     TextColor="{StaticResource White}"
-                    TranslationY="-50"
-                    VerticalOptions="End"
-                    Visual="Material"
-                    WidthRequest="345" />
+                    Visual="Material" />
 
                 <yummy:PancakeView
-                    Margin="35,0,35,0"
                     Padding="0"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,350,400"
+                    AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional, HeightProportional"
                     BackgroundColor="{StaticResource White}"
                     CornerRadius="10"
                     Elevation="6"
                     HasShadow="True"
-                    HeightRequest="400"
-                    HorizontalOptions="CenterAndExpand"
-                    IsClippedToBounds="True"
-                    TranslationY="-30"
-                    VerticalOptions="Center"
-                    WidthRequest="350">
+                    IsClippedToBounds="True">
 
                     <Grid
                         Grid.Row="0"
@@ -105,7 +98,7 @@
                             WidthRequest="290" />
                     </Grid>
                 </yummy:PancakeView>
-            </Grid>
+            </AbsoluteLayout>
         </ScrollView>
     </pages:PopupPage.Content>
 </pages:PopupPage>

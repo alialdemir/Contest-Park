@@ -38,11 +38,6 @@ namespace ContestPark.Mobile.Views
             viewModel.SmsCode = SmsCode;
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
-
         #endregion Methods
     }
 }

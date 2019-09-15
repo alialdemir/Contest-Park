@@ -24,11 +24,6 @@ namespace ContestPark.Mobile.Views
 
         #region Methods
 
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

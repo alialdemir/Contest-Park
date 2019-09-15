@@ -38,10 +38,12 @@
             SelectedIndex="{Binding SelectedIndex}">
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <AbsoluteLayout>
                         <Components:LinearGradientButton
-                            Margin="35,0,35,0"
-                            Padding="0,20,0,0"
+                            Margin="0,0,0,40"
+                            Padding="0,90,0,0"
+                            AbsoluteLayout.LayoutBounds=".5,1,345,200"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
                             BackgroundColor="Transparent"
                             BorderRadius="48"
                             Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
@@ -50,29 +52,20 @@
                             FontAttributes="Bold"
                             FontFamily="{StaticResource GothamRoundedBold}"
                             FontSize="23"
-                            HeightRequest="93"
-                            HorizontalOptions="FillAndExpand"
                             StartColor="#2CCCD8"
                             Text="{i18n:Translate Play}"
                             TextColor="{StaticResource White}"
-                            TranslationY="-30"
-                            VerticalOptions="End"
-                            Visual="Material"
-                            WidthRequest="345" />
+                            Visual="Material" />
 
                         <yummy:PancakeView
-                            Margin="35,0,35,0"
                             Padding="0"
+                            AbsoluteLayout.LayoutBounds="0.5,0.5,345,451"
+                            AbsoluteLayout.LayoutFlags="XProportional, YProportional"
                             BackgroundColor="{StaticResource White}"
                             CornerRadius="10"
                             Elevation="6"
                             HasShadow="True"
-                            HeightRequest="451"
-                            HorizontalOptions="CenterAndExpand"
-                            IsClippedToBounds="True"
-                            TranslationY="-30"
-                            VerticalOptions="Center"
-                            WidthRequest="345">
+                            IsClippedToBounds="True">
 
                             <Grid
                                 Grid.Row="0"
@@ -208,7 +201,7 @@
                                     VerticalTextAlignment="Start" />
                             </Grid>
                         </yummy:PancakeView>
-                    </Grid>
+                    </AbsoluteLayout>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>
         </cards:CoverFlowView>
