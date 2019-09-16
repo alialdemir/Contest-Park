@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Views.AppShellListItemView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentView.Content>
+        <Grid Margin="36,16.8,0,16.8" ColumnSpacing="22">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Row="0"
+                Grid.Column="0"
+                HeightRequest="45"
+                HorizontalOptions="Center"
+                Source="{Binding Icon}"
+                WidthRequest="45" />
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontFamily="{DynamicResource SofiaProMedium}"
+                FontSize="15"
+                Text="{Binding Text}"
+                TextColor="{StaticResource White}"
+                VerticalOptions="Center" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

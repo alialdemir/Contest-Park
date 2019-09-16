@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -12,6 +11,7 @@ namespace ContestPark.Mobile.Views
         public BlockingView()
         {
             InitializeComponent();
+            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
         #endregion Consturctor

@@ -1,8 +1,6 @@
-﻿using ContestPark.Mobile.ViewModels.Base;
-
-namespace ContestPark.Mobile.ViewModels
+﻿namespace ContestPark.Mobile.ViewModels
 {
-    public class AppShellViewModel : ViewModelBase
+    public class AppShellViewModel
     {
     }
 }

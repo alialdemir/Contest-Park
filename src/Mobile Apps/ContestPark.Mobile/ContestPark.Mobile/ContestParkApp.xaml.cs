@@ -44,9 +44,7 @@ namespace ContestPark.Mobile
             if (string.IsNullOrEmpty(settingsService?.AuthAccessToken))
                 NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
             else
-                //   NavigationService.NavigateAsync($"{nameof(AppShell)}");
-
-                NavigationService.NavigateAsync($"{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}");
+                NavigationService.NavigateAsync(nameof(AppShell));
         }
 
         #endregion OnInitialized

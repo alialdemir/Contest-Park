@@ -90,7 +90,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _settingsService.SetTokenInfo(token);
 
-                await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
+                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
             }
 
             UserDialogs.Instance.HideLoading();

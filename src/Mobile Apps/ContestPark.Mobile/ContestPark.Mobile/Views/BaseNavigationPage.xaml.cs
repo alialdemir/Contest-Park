@@ -1,5 +1,6 @@
 ﻿using Plugin.Iconize;
 using Prism.Navigation;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -12,6 +13,7 @@ namespace ContestPark.Mobile.Views
         public BaseNavigationPage()
         {
             InitializeComponent();
+            Shell.SetTabBarIsVisible(this, false);
         }
 
         #endregion Constructor

@@ -8,15 +8,18 @@
     x:Name="followingViewPage"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
-  <ContentPage.Content>
-    <components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListView}">
-      <components:NonPersistentSelectedItemListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference followingViewPage}}" RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference followingViewPage}}" />
-          </ViewCell>
-        </DataTemplate>
-      </components:NonPersistentSelectedItemListView.ItemTemplate>
-    </components:NonPersistentSelectedItemListView>
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <components:NonPersistentSelectedItemListView
+            Margin="0,60,0,0"
+            InfiniteScroll="{Binding InfiniteScroll}"
+            Style="{StaticResource ListView}">
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:UserFollowListItem GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference followingViewPage}}" RightButtonCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference followingViewPage}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+        </components:NonPersistentSelectedItemListView>
+    </ContentPage.Content>
 </ContentPage>

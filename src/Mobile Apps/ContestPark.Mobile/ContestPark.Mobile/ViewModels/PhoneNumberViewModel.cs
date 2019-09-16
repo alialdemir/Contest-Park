@@ -31,7 +31,7 @@ namespace ContestPark.Mobile.ViewModels
             this._settingsService = settingsService;
             this._identityService = identityService;
 #if DEBUG
-            PhoneNumber = "5444261153";
+            PhoneNumber = "5444261154";
 #endif
         }
 
@@ -185,7 +185,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _settingsService.SetTokenInfo(token);
 
-                await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
+                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
             }
 
             UserDialogs.Instance.HideLoading();
