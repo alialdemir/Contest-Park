@@ -40,7 +40,7 @@ namespace ContestPark.Mobile.Views
 
             ProfileViewModel viewModel = ((ProfileViewModel)BindingContext);
 
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || viewModel.IsInitialized)
                 return;
 
             NavigationParameters parameters = new NavigationParameters();

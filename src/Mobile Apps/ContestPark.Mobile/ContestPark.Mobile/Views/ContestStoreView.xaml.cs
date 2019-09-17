@@ -23,7 +23,7 @@ namespace ContestPark.Mobile.Views
         {
             ContestStoreViewModel viewModel = ((ContestStoreViewModel)BindingContext);
 
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || viewModel.IsInitialized)
                 return;
 
             viewModel.InitializeCommand.Execute(null);

@@ -211,7 +211,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return httpClient;
         }
 
-        private async Task HandleResponse(HttpResponseMessage response)
+        private void HandleResponse(HttpResponseMessage response)
         {
             //if (!response.IsSuccessStatusCode)
             //{

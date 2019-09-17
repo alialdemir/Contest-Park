@@ -24,7 +24,7 @@ namespace ContestPark.Mobile.Views
 
             CategoriesViewModel viewModel = ((CategoriesViewModel)BindingContext);
 
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || viewModel.IsInitialized)
                 return;
 
             viewModel.InitializeCommand.Execute(null);

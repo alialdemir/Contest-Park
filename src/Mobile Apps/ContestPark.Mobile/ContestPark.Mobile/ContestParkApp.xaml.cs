@@ -11,6 +11,7 @@ using Prism;
 using Prism.DryIoc;
 using Prism.Events;
 using Prism.Ioc;
+using System.Diagnostics;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -31,20 +32,27 @@ namespace ContestPark.Mobile
 
         protected override void OnInitialized()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
-                   .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
-                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
+                Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
+                       .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
+                       .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
-            Barrel.ApplicationId = "ContestPark";
+                Barrel.ApplicationId = "ContestPark";
 
-            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
-            if (string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
-            else
-                NavigationService.NavigateAsync(nameof(AppShell));
+                if (string.IsNullOrEmpty(settingsService?.AuthAccessToken))
+                    NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
+                else
+                    NavigationService.NavigateAsync(nameof(AppShell));
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         #endregion OnInitialized

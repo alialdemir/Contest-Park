@@ -30,7 +30,7 @@ namespace ContestPark.Mobile.Views
 
             var viewModel = ((SignUpFullNameViewModel)BindingContext);
 
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || !viewModel.IsInitialized)
                 return;
 
             viewModel.PhoneNumber = PhoneNumber;

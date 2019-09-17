@@ -24,7 +24,6 @@ namespace ContestPark.Mobile.Views
 
         public SelectedSubCategoryModel SelectedSubCategory { get; set; }
 
-
         #endregion Properties
 
         #region Methods
@@ -35,7 +34,7 @@ namespace ContestPark.Mobile.Views
 
             DuelBettingPopupViewModel viewModel = ((DuelBettingPopupViewModel)BindingContext);
 
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || viewModel.IsInitialized)
                 return;
 
             viewModel.SelectedSubCategory = SelectedSubCategory;
@@ -80,6 +79,5 @@ namespace ContestPark.Mobile.Views
         }
 
         #endregion Methods
-
     }
 }
