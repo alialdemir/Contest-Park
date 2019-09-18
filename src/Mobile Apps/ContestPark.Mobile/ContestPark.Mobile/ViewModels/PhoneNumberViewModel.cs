@@ -9,6 +9,7 @@ using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -143,7 +144,7 @@ namespace ContestPark.Mobile.ViewModels
 
             UserDialogs.Instance.HideLoading();
 
-            await RemoveFirstPopupAsync();
+            //    await RemoveFirstPopupAsync();
 
             await PushPopupPageAsync(new SignUpFullNameView()
             {
@@ -194,6 +195,17 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        public ICommand PrivacyPolicyCommand
+        {
+            get
+            {
+                return new Command(() =>
+          {
+              Device.OpenUri(new Uri("https://d2blqp3orvbj09.cloudfront.net/privacy-policy.html"));
+          });
+            }
+        }
 
         public ICommand SendSmsCommand => new Command(async () => await ExecuteSendSmsCommandAsync());
         public ICommand SelectCountryCommand => new Command(async () => await ExecuteSelectCountryCommandAsync());

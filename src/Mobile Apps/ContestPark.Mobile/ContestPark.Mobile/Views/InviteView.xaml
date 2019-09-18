@@ -63,7 +63,7 @@
                                 <Span
                                     FontAttributes="Bold"
                                     FontSize="18"
-                                    Text="&#x0a;Unutmayın! topladığınız para 100$ üzerine geçince iban numaranızı göndererek paranızı çekebilirsiniz." />
+                                    Text="&#x0a;Unutmayın! topladığınız para 20$ üzerine geçince iban numaranızı göndererek paranızı çekebilirsiniz." />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>

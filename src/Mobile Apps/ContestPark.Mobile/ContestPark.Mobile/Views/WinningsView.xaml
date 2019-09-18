@@ -52,7 +52,7 @@
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="16"
                         HorizontalTextAlignment="Center"
-                        Text="Kazancını çekebilmen için minimum 100$ kazanmış olman gerekmektedir."
+                        Text="Kazancını çekebilmen için minimum 20$ kazanmış olman gerekmektedir."
                         TextColor="{StaticResource Black}" />
 
                     <yummy:PancakeView

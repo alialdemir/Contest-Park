@@ -11,48 +11,43 @@
     FlyoutBackgroundImage="left_menu_background.png"
     FlyoutBackgroundImageAspect="AspectFill"
     FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource White}"
+    Shell.ForegroundColor="#211414"
+    Shell.TabBarBackgroundColor="{StaticResource White}"
+    Shell.TabBarForegroundColor="#FFD969"
+    Shell.TabBarTitleColor="#211414"
+    Shell.TabBarUnselectedColor="#000000"
+    Shell.TitleColor="#211414"
     mc:Ignorable="d">
     <!--  tabbar  -->
-    <FlyoutItem
-        Title="Menu"
-        FlyoutDisplayOptions="AsSingleItem"
-        Shell.BackgroundColor="{StaticResource White}"
-        Shell.ForegroundColor="#211414"
-        Shell.TabBarBackgroundColor="{StaticResource White}"
-        Shell.TabBarForegroundColor="#FFD969"
-        Shell.TabBarTitleColor="#211414"
-        Shell.TabBarUnselectedColor="#000000"
-        Shell.TitleColor="#211414">
+    <TabBar>
+        <Tab Title="{i18n:Translate Categories}" Icon="Category.png">
+            <ShellContent>
+                <views:CategoriesView />
+            </ShellContent>
+        </Tab>
+        <Tab Title="{i18n:Translate Invite}" Icon="invite.png">
+            <ShellContent>
+                <views:InviteView />
+            </ShellContent>
+        </Tab>
+        <Tab Title="{i18n:Translate Chat}" Icon="Chat.png">
+            <ShellContent>
+                <views:ChatView />
+            </ShellContent>
+        </Tab>
+        <Tab Title="{i18n:Translate Profile}" Icon="Category.png">
+            <ShellContent>
+                <views:MyProfileView />
+            </ShellContent>
+        </Tab>
+    </TabBar>
 
-        <ShellContent
-            Title="{i18n:Translate Categories}"
-            Icon="Category.png"
-            Route="CategoriesView">
-            <views:CategoriesView />
-        </ShellContent>
-        <ShellContent
-            Title="{i18n:Translate Invite}"
-            Icon="invite.png"
-            Route="InviteView">
-            <views:InviteView />
-        </ShellContent>
-        <ShellContent
-            Title="{i18n:Translate Chat}"
-            Icon="Chat.png"
-            Route="ChatView">
-            <views:ChatView />
-        </ShellContent>
-        <ShellContent
-            Title="{i18n:Translate Profile}"
-            Icon="UserProfile.png"
-            Route="ProfileView">
-            <views:MyProfileView />
-        </ShellContent>
-    </FlyoutItem>
     <!--  Left menu header  -->
     <Shell.FlyoutHeader>
         <views:AppShellHeaderView />
     </Shell.FlyoutHeader>
+
     <!--  left menü item list  -->
     <MenuItem
         Clicked="MenuItem_Clicked"
