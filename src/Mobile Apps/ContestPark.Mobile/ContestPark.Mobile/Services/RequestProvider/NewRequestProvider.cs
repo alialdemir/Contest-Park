@@ -26,7 +26,7 @@ using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.RequestProvider
 {
-    internal class NewRequestProvider : INewRequestProvider
+    public class NewRequestProvider : INewRequestProvider
     {
         #region Private variable
 

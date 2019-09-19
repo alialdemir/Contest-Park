@@ -215,7 +215,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.Register<IMediaService, MediaService>();
 
-            containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
+            //containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
         }
 
         #endregion Register Instance

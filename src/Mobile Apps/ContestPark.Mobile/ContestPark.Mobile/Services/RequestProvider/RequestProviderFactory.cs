@@ -10,9 +10,9 @@ namespace ContestPark.Mobile.Services.RequestProvider
     {
         #region Methods
 
-        public RequestProvider CreateResilientHttpClient()
+        public NewRequestProvider CreateResilientHttpClient()
         {
-            return new RequestProvider(origin => CreatePolicies());
+            return new NewRequestProvider(origin => CreatePolicies());
         }
 
         private IEnumerable<AsyncPolicy> CreatePolicies()
