@@ -112,11 +112,6 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
             </Style>
 
-            <!--  Action bar text color  -->
-            <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
-                <Setter Property="BarTextColor" Value="{StaticResource BarTextColor}" />
-            </Style>
-
             <Style x:Key="ContentParkLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="25" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -199,7 +194,7 @@
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
             <Style x:Key="EmptyModelCard" TargetType="yummy:PancakeView">
-                <Setter Property="Margin" Value="24,0,24,0" />
+                <Setter Property="Margin" Value="24,10,24,0" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="HasShadow" Value="True" />

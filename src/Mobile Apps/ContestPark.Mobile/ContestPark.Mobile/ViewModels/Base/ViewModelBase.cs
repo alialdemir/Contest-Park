@@ -43,22 +43,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Page settings
 
-        private bool _isBusy;
         private bool _isShowEmptyMessage;
-        private string _title;
-
-        public bool IsBusy
-        {
-            get
-            {
-                return _isBusy;
-            }
-            set
-            {
-                _isBusy = value;
-                RaisePropertyChanged(() => IsBusy);
-            }
-        }
 
         public bool IsInitialized { get; set; } = false;
 
@@ -72,19 +57,6 @@ namespace ContestPark.Mobile.ViewModels.Base
             {
                 _isShowEmptyMessage = value;
                 RaisePropertyChanged(() => IsShowEmptyMessage);
-            }
-        }
-
-        public string Title
-        {
-            get
-            {
-                return _title;
-            }
-            set
-            {
-                _title = value;
-                RaisePropertyChanged(() => Title);
             }
         }
 

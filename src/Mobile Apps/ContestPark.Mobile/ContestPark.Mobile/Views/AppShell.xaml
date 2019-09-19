@@ -4,138 +4,90 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:ContestPark.Mobile.Views"
-    FlyoutBackgroundImage="logo.png"
+    x:Name="appShell"
+    FlyoutBackgroundImage="left_menu_background.png"
     FlyoutBackgroundImageAspect="AspectFill"
-    FlyoutBehavior="Flyout"
+    FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource White}"
+    Shell.ForegroundColor="#211414"
+    Shell.TabBarBackgroundColor="{StaticResource White}"
+    Shell.TabBarForegroundColor="#FFD969"
+    Shell.TabBarTitleColor="#211414"
+    Shell.TabBarUnselectedColor="#000000"
+    Shell.TitleColor="#211414"
     mc:Ignorable="d">
-
-    <!--<Shell.FlyoutHeader>
-        <settings:HeaderTemplate />
-    </Shell.FlyoutHeader>-->
-
-    <Shell.FlyoutIcon>
-        <FontImageSource
-            FontFamily="{StaticResource MaterialFont}"
-            Glyph="&#xf047;"
-            Size="24"
-            Color="White" />
-    </Shell.FlyoutIcon>
-
-    <FlyoutItem
-        Title="Menu with tab"
-        FlyoutIcon="&#xf035;"
-        Shell.BackgroundColor="Red"
-        Shell.ForegroundColor="White"
-        Shell.TabBarBackgroundColor="White"
-        Shell.TabBarDisabledColor="Gray"
-        Shell.TabBarForegroundColor="White"
-        Shell.TabBarIsVisible="True"
-        Shell.TabBarTitleColor="Orange"
-        Shell.TabBarUnselectedColor="Gray">
-        <!--<FlyoutItem.Icon>
-            <FontImageSource
-            FontFamily="{StaticResource MaterialFont}"
-            Glyph="&#xf077;"
-             Color="Red"
-            Size="24" />
-        </FlyoutItem.Icon>-->
-        <Tab Title="Page1">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource MaterialFont}"
-                    Glyph="&#xf611;"
-                    Size="24" />
-            </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate views:CategoriesView}" />
+    <!--  tabbar  -->
+    <TabBar>
+        <Tab Title="{i18n:Translate Categories}" Icon="Category.png">
+            <ShellContent>
+                <views:CategoriesView />
+            </ShellContent>
         </Tab>
-        <Tab Title="Page2">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource MaterialFont}"
-                    Glyph="&#xf027;"
-                    Size="24" />
-            </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate views:InviteView}" />
+        <Tab Title="{i18n:Translate Invite}" Icon="invite.png">
+            <ShellContent>
+                <views:InviteView />
+            </ShellContent>
         </Tab>
-        <Tab Title="Page2">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource MaterialFont}"
-                    Glyph="&#xf027;"
-                    Size="24" />
-            </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate views:ChatView}" />
+        <Tab Title="{i18n:Translate Chat}" Icon="Chat.png">
+            <ShellContent>
+                <views:ChatView />
+            </ShellContent>
         </Tab>
-        <Tab Title="Page2">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource MaterialFont}"
-                    Glyph="&#xf027;"
-                    Size="24" />
-            </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate views:ProfileView}" />
+        <Tab Title="{i18n:Translate Profile}" Icon="Category.png">
+            <ShellContent>
+                <views:MyProfileView />
+            </ShellContent>
         </Tab>
-    </FlyoutItem>
+    </TabBar>
 
-    <FlyoutItem
-        Title="Menu with out tab"
-        FlyoutIcon="&#xf036;"
-        Shell.BackgroundColor="Red"
-        Shell.ForegroundColor="White"
-        Shell.TabBarBackgroundColor="White"
-        Shell.TabBarDisabledColor="Gray"
-        Shell.TabBarForegroundColor="White"
-        Shell.TabBarIsVisible="True"
-        Shell.TabBarTitleColor="Orange"
-        Shell.TabBarUnselectedColor="Gray">
-        <!--<FlyoutItem.Icon>
-            <FontImageSource
-            FontFamily="{StaticResource MaterialFont}"
-            Glyph="&#xf077;"
-             Color="Red"
-            Size="24" />
-        </FlyoutItem.Icon>-->
+    <!--  Left menu header  -->
+    <Shell.FlyoutHeader>
+        <views:AppShellHeaderView />
+    </Shell.FlyoutHeader>
 
-        <!--  You can add here another tab to get tabs at bottom  -->
-        <Tab Title="Bat">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="{StaticResource MaterialFont}"
-                    Glyph="&#xf077;"
-                    Size="24" />
-            </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate views:MasterView}" />
-        </Tab>
-    </FlyoutItem>
+    <!--  left menü item list  -->
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="ContestStoreView"
+        IconImageSource="conteststore.svg"
+        Text="{i18n:Translate ContestStore}" />
 
-    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent
-            Title="About"
-            ContentTemplate="{DataTemplate views:MasterView}"
-            FlyoutIcon="&#xf029;" />
-    </FlyoutItem>-->
-    <Shell.ItemTemplate>
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="WinningsView"
+        IconImageSource="money_bag.svg"
+        Text="{i18n:Translate ConvertToCash}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="SettingsView"
+        IconImageSource="settings.svg"
+        Text="{i18n:Translate Settings}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="facebook"
+        IconImageSource="facebook.svg"
+        Text="Facebook" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="twitter"
+        IconImageSource="twitter.svg"
+        Text="Twitter" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="instagram"
+        IconImageSource="instagram.svg"
+        Text="Instagram" />
+
+    <Shell.MenuItemTemplate>
         <DataTemplate>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.8*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Margin="5"
-                    FontFamily="{StaticResource MaterialFont}"
-                    FontSize="35"
-                    Text="{Binding FlyoutIcon}"
-                    TextColor="White" />
-                <Label
-                    Grid.Column="1"
-                    FontAttributes="Italic"
-                    Text="{Binding Title}"
-                    TextColor="White"
-                    VerticalTextAlignment="Center" />
-            </Grid>
+            <views:AppShellListItemView />
         </DataTemplate>
-    </Shell.ItemTemplate>
+    </Shell.MenuItemTemplate>
 </Shell>

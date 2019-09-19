@@ -11,6 +11,7 @@ namespace ContestPark.Mobile.Views
         public CategoryDetailView()
         {
             InitializeComponent();
+            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
         #endregion Constructor

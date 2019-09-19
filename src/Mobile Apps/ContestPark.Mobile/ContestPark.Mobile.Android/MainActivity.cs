@@ -65,13 +65,7 @@ namespace ContestPark.Mobile.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            //   ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-
             base.OnCreate(bundle);
-
-            //#if !DEBUG
-            //            CheckForRoot();
-            //#endif
 
             // Check if running in sim
 

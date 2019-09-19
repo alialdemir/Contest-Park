@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             x:Name="lstView"
-            Margin="10"
+            Margin="10,70,10,10"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">

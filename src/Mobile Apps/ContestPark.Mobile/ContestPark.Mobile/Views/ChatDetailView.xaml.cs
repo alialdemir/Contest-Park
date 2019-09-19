@@ -16,6 +16,7 @@ namespace ContestPark.Mobile.Views
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, true);
+            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
         #endregion Constructor

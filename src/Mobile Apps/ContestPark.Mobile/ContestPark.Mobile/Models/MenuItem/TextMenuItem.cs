@@ -9,15 +9,5 @@ namespace ContestPark.Mobile.Models.MenuItem
         public object CommandParameter { get; set; }
 
         public ICommand SingleTap { get; set; }
-
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                _title = value;
-                RaisePropertyChanged(() => Title);
-            }
-        }
     }
 }

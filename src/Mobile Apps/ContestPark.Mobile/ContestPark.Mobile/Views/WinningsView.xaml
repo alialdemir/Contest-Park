@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView
-                Margin="10,15,10,0"
+                Margin="10,70,10,0"
                 Padding="10"
                 BackgroundColor="{StaticResource White}"
                 CornerRadius="8"
@@ -52,7 +52,7 @@
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="16"
                         HorizontalTextAlignment="Center"
-                        Text="Kazancını çekebilmen için minimum 100$ kazanmış olman gerekmektedir."
+                        Text="Kazancını çekebilmen için minimum 20$ kazanmış olman gerekmektedir."
                         TextColor="{StaticResource Black}" />
 
                     <yummy:PancakeView

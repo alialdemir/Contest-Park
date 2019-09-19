@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Converters.SignInSocialNetworkPage;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Token;
@@ -95,7 +94,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _settingsService.SetTokenInfo(token);
 
-                await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
+                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
             }
 
             UserDialogs.Instance.HideLoading();

@@ -233,8 +233,6 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            ExperimentalFeatures.Enable(ExperimentalFeatures.ShareFileRequest);
-
             await Share.RequestAsync(new ShareFileRequest
             {
                 Title = Title,

@@ -53,6 +53,7 @@ namespace ContestPark.Mobile.Configs
         private void RegisterTypeForNavigation(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<BaseNavigationPage>();
+
             containerRegistry.RegisterForNavigation<Xamarin.Forms.NavigationPage>();
 
             containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
@@ -93,12 +94,6 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
 
-            containerRegistry.RegisterForNavigation<MainView, MainPageViewModel>();
-
-            containerRegistry.RegisterForNavigation<MasterDetailView, MasterDetailViewModel>();
-
-            containerRegistry.RegisterForNavigation<MasterView, MasterViewModel>();
-
             containerRegistry.RegisterForNavigation<MissionsView, MissionsViewModel>();
 
             containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
@@ -110,6 +105,7 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
 
             containerRegistry.RegisterForNavigation<ProfileView, ProfileViewModel>();
+            containerRegistry.RegisterForNavigation<MyProfileView, ProfileViewModel>();
 
             containerRegistry.RegisterForNavigation<QuestionExpectedPopupView, QuestionExpectedPopupViewModel>();
 
@@ -130,8 +126,6 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<SignUpUserNameView, SignUpUserNameViewModel>();
 
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
-
-            containerRegistry.RegisterForNavigation<TabView, TabViewModel>();
 
             containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
         }

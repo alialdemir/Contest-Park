@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Views.AppShellHeaderView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="appShellHeaderView"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentView.Content>
+        <Grid>
+
+            <Image
+                Aspect="AspectFill"
+                HorizontalOptions="FillAndExpand"
+                Source="{Binding CoverPicture}"
+                VerticalOptions="FillAndExpand" />
+
+            <Grid
+                Margin="27,21,27,32"
+                ColumnSpacing="8"
+                VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <components:CircleImage
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Aspect="AspectFill"
+                    Command="{Binding Path=BindingContext.GotoProfileViewCommand, Source={x:Reference appShellHeaderView}}"
+                    HeightRequest="65"
+                    Source="{Binding Path=BindingContext.ProfilePicture, Source={x:Reference appShellHeaderView}}"
+                    WidthRequest="65" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="8,0,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource SofiaProMedium}"
+                    FontSize="18"
+                    Text="{Binding FullName}"
+                    TextColor="{StaticResource White}" />
+
+                <FlexLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    JustifyContent="SpaceAround"
+                    Wrap="Wrap">
+
+                    <yummy:PancakeView
+                        Padding="5"
+                        BackgroundGradientEndColor="#D03548"
+                        BackgroundGradientStartColor="#EB3349"
+                        CornerRadius="24"
+                        MinimumWidthRequest="50">
+                        <Grid ColumnSpacing="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="0"
+                                HeightRequest="20"
+                                Source="DolarSingleCoin.svg"
+                                WidthRequest="25" />
+
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource GothamRoundedMedium}"
+                                FontSize="14"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Balance.Money, StringFormat='+ {0:##.##}'}"
+                                TextColor="{StaticResource White}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </yummy:PancakeView>
+                    <yummy:PancakeView
+                        Padding="5"
+                        BackgroundGradientEndColor="#FFCC33"
+                        BackgroundGradientStartColor="#FFB347"
+                        CornerRadius="24"
+                        MinimumWidthRequest="50">
+                        <Grid ColumnSpacing="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ffimageloadingsvg:SvgCachedImage
+                                Grid.Column="0"
+                                HeightRequest="20"
+                                Source="ContestSingleCoin.svg"
+                                WidthRequest="25" />
+
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource GothamRoundedMedium}"
+                                FontSize="14"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Balance.Gold, StringFormat='+ {0:##}'}"
+                                TextColor="{StaticResource White}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </yummy:PancakeView>
+                </FlexLayout>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -9,7 +9,7 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <ListView
-            Margin="10,3,10,15"
+            Margin="10,50,10,15"
             HasUnevenRows="true"
             IsGroupingEnabled="true"
             ItemsSource="{Binding Items}"

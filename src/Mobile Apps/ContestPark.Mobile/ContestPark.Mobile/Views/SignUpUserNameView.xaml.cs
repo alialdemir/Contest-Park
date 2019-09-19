@@ -31,7 +31,7 @@ namespace ContestPark.Mobile.Views
 
             var viewModel = ((SignUpUserNameViewModel)BindingContext);
 
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || viewModel.IsInitialized)
                 return;
 
             viewModel.FullName = FullName;

@@ -37,7 +37,7 @@ namespace ContestPark.Mobile.Views
             base.OnAppearing();
 
             var viewModel = ((QuestionPopupViewModel)BindingContext);
-            if (viewModel == null && !viewModel.IsInitialized)
+            if (viewModel == null || viewModel.IsInitialized)
                 return;
 
             viewModel.DuelCreated = DuelCreated;
