@@ -29,7 +29,7 @@
     </NuGetPackageImportStamp>
     <AndroidKeyStore>false</AndroidKeyStore>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
@@ -46,7 +46,7 @@
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Release\</OutputPath>
     <Optimize>true</Optimize>
