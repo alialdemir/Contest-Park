@@ -19,7 +19,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <yummy:PancakeView
-            Margin="10,15,10,15"
+            Margin="10,70,10,15"
             BackgroundColor="{StaticResource White}"
             CornerRadius="12"
             Elevation="6"

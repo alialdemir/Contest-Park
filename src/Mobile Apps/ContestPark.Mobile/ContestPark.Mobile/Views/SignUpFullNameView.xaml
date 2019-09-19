@@ -24,7 +24,6 @@
         <ScrollView>
             <AbsoluteLayout>
                 <Components:LinearGradientButton
-                    x:Name="redBox"
                     Margin="0,0,0,70"
                     Padding="0,60,0,0"
                     AbsoluteLayout.LayoutBounds=".5,1,345,200"
@@ -45,7 +44,7 @@
                 <yummy:PancakeView
                     Padding="0"
                     AbsoluteLayout.LayoutBounds="0.5,0.5,350,400"
-                    AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional, HeightProportional"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
                     BackgroundColor="{StaticResource White}"
                     CornerRadius="10"
                     Elevation="6"

@@ -131,7 +131,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 _settingsService.SignUpCount += 1;
 
-                await PushNavigationPageAsync($"app:///{nameof(MasterDetailView)}/{nameof(BaseNavigationPage)}/{nameof(TabView)}?appModuleRefresh=OnInitialized");
+                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
             }
             else
             {

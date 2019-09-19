@@ -125,7 +125,11 @@
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
                     FontFamily="{DynamicResource SofiaProMedium}"
-                    Text="When you sig up, you approve the Privacy Policy,  Terms of use and Competition Rules" />
+                    Text="When you sig up, you approve the Privacy Policy,  Terms of use and Competition Rules">
+                    <custom:HtmlLabel.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PrivacyPolicyCommand}" />
+                    </custom:HtmlLabel.GestureRecognizers>
+                </custom:HtmlLabel>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

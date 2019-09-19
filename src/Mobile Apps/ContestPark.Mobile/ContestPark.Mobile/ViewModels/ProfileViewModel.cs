@@ -30,7 +30,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IIdentityService _identityService;
         private readonly IMediaService _mediaService;
         private readonly IPostService _postService;
-        private readonly ISettingsService _settingsService;
+        public readonly ISettingsService _settingsService;
         private string userName;
 
         #endregion Private variables
@@ -278,7 +278,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteGotoFollowersCommand()
         {
-            if (IsBusy)
+            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId))
                 return;
 
             IsBusy = true;
@@ -296,7 +296,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteGotoFollowingCommand()
         {
-            if (IsBusy)
+            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId))
                 return;
 
             IsBusy = true;
@@ -416,15 +416,11 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (IsInitialized)
-                return;
-
             if (parameters.ContainsKey("UserName")) userName = parameters.GetValue<string>("UserName");
 
             if (parameters.ContainsKey("IsVisibleBackArrow")) IsVisibleBackArrow = parameters.GetValue<bool>("IsVisibleBackArrow");
 
-            InitializeCommand.Execute(null);
-            IsInitialized = true;
+            base.OnNavigatedTo(parameters);
         }
 
         public override void OnNavigatingTo(INavigationParameters parameters)

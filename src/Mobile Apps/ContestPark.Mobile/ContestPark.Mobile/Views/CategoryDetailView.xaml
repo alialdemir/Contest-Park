@@ -31,6 +31,7 @@
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
+            Margin="0,60,0,0"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
