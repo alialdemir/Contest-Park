@@ -1,0 +1,8 @@
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
+    outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    configuration: '$(BuildConfiguration)'
+    clean: true
+    msbuildArchitectureOption: 'x64'
+    jdkOption: 'JDKVersion'
