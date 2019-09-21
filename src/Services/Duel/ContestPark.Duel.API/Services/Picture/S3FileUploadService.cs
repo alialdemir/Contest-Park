@@ -58,7 +58,7 @@ namespace ContestPark.Duel.API.Services.Picture
             }
             catch (Exception ex)
             {
-                _logger.LogError("Dosya yükleme sırasında hata", ex);
+                _logger.LogError($"Dosya yükleme sırasında hata. Link: {fileUrl}", ex.Message);
 
                 return null;
             }
