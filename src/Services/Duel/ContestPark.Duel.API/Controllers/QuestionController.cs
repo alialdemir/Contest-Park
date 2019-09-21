@@ -67,7 +67,7 @@ namespace ContestPark.Duel.API.Controllers
                             if (string.IsNullOrEmpty(fileUrl))
                             {
                                 Logger.LogError("Soru yükleme işlemi başarısız oldu");
-                                return;
+                                continue;
                             }
                         }
 
