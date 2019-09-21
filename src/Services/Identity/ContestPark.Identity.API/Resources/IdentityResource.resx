@@ -165,6 +165,9 @@
   <data name="ThereWasAnErrorInSendingPassword" xml:space="preserve">
     <value>There was an error in sending password.</value>
   </data>
+  <data name="ThisPhoneNumberIsRegistered" xml:space="preserve">
+    <value>This phone number is registered.</value>
+  </data>
   <data name="UnsupportedImageExtension" xml:space="preserve">
     <value>Your photo couldn't be uploaded. Photo should be less than 4 MB and saved as JPG, PNG file.</value>
   </data>

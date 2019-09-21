@@ -41,7 +41,9 @@ namespace ContestPark.Identity.API.Services
             if (user == null)
                 throw new ArgumentException("Invalid subject identifier");
 
-            var claims = GetClaimsFromUser(user);
+            IList<string> userRoles = await _userManager.GetRolesAsync(user);
+
+            var claims = GetClaimsFromUser(user, userRoles);
             context.IssuedClaims = claims.ToList();
         }
 
@@ -74,11 +76,12 @@ namespace ContestPark.Identity.API.Services
             }
         }
 
-        private IEnumerable<Claim> GetClaimsFromUser(ApplicationUser user)
+        private IEnumerable<Claim> GetClaimsFromUser(ApplicationUser user, IList<string> userRoles)
         {
             var claims = new List<Claim>
             {
                 new Claim(JwtClaimTypes.Subject, user.Id),
+                new Claim(JwtClaimTypes.Role, string.Join(", ", userRoles)),
                 new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };

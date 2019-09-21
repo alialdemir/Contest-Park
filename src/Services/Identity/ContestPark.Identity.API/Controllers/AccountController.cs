@@ -503,6 +503,12 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 return BadRequest(IdentityResource.GlobalErrorMessage);
             }
 
+            string isPhoneNumberRegistered = _userRepository.GetUserNameByPhoneNumber(signUpModel.Password);
+            if (!string.IsNullOrEmpty(isPhoneNumberRegistered))// telefon numarası kayıtlı mı kontrol ettik
+            {
+                return BadRequest(IdentityResource.ThisPhoneNumberIsRegistered);
+            }
+
             ApplicationUser user = new ApplicationUser
             {
                 UserName = signUpModel.UserName.ToLower(),
@@ -547,6 +553,8 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             try
             {
+                await _userManager.AddToRoleAsync(user, "user");// Role eklendi
+
                 // Bu kısım üye olmayı etkilemesin diye try-catch bloklarına aldım
                 _deviceInfoRepository.Insert(signUpModel.DeviceIdentifier);
             }

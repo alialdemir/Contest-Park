@@ -41,13 +41,13 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory
                                    purchase.ProductId,
                                    purchase.Token);
 
-            bool issuccsess = await _purchaseHistoryRepository.AddAsync(purchase);
-            if (!issuccsess)
+            int? issuccsess = await _purchaseHistoryRepository.AddAsync(purchase);
+            if (!issuccsess.HasValue)
             {
                 _logger.LogCritical("CRITTICAL: Satın alma geçmişi eklenirken hata oluştu", purchase.UserId);
             }
 
-            return issuccsess;
+            return issuccsess.HasValue;
         }
 
         #endregion Methods

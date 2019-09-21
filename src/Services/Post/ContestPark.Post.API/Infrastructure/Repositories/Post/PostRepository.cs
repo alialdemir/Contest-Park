@@ -31,9 +31,11 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// </summary>
         /// <param name="post">Post detayı</param>
         /// <returns>İşlem başarılı ise true değilse false</returns>
-        public Task<bool> AddPost(Tables.Post.Post post)
+        public async Task<bool> AddPost(Tables.Post.Post post)
         {
-            return _postRepository.AddAsync(post);
+            int? postId = await _postRepository.AddAsync(post);
+
+            return postId.HasValue;
         }
 
         /// <summary>

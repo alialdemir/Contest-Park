@@ -7,6 +7,7 @@ using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;

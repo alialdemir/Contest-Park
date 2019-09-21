@@ -26,9 +26,11 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.MoneyWithdrawReque
         /// Bakiye çekme talebi ekler
         /// </summary>
         /// <param name="money">Iban no ve ad soyad</param>
-        public Task<bool> Insert(Tables.MoneyWithdrawRequest money)
+        public async Task<bool> Insert(Tables.MoneyWithdrawRequest money)
         {
-            return _moneyWithdrawRequestRepository.AddAsync(money);
+            int? moneyWithdrawRequestId = await _moneyWithdrawRequestRepository.AddAsync(money);
+
+            return moneyWithdrawRequestId.HasValue;
         }
 
         #endregion Methods

@@ -205,6 +205,15 @@ namespace ContestPark.Identity.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This phone number is registered..
+        /// </summary>
+        public static string ThisPhoneNumberIsRegistered {
+            get {
+                return ResourceManager.GetString("ThisPhoneNumberIsRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your photo couldn&apos;t be uploaded. Photo should be less than 4 MB and saved as JPG, PNG file..
         /// </summary>
         public static string UnsupportedImageExtension {

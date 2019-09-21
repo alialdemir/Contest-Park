@@ -53,19 +53,17 @@ namespace ContestPark.Core.Dapper
         /// </summary>
         /// <param name="entity">Eklenen entity</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> AddAsync(TEntity entity)
+        public async Task<int?> AddAsync(TEntity entity)
         {
             try
             {
-                int? id = await _databaseConnection.Connection.InsertAsync<TEntity>(entity);
-
-                return id > 0;
+                return await _databaseConnection.Connection.InsertAsync<TEntity>(entity);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex);
 
-                return false;
+                return null;
             }
             finally
             {

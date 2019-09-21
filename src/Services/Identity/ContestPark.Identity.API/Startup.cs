@@ -138,8 +138,6 @@ namespace ContestPark.Identity.API
 
             #endregion S3 settings
 
-            //services.AddAWSService<IAmazonS3>();
-
             services.AddLocalizationCustom();
 
             services.AddCustomIdentityServer(Configuration, connectionString)

@@ -30,16 +30,18 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
         /// <param name="skirterUserId">Engelleyen kullanıcı id</param>
         /// <param name="deterredUserId">Engellenen kullanıcı id</param>
         /// <returns>İşlem durumu başarılı ise true değilse false</returns>
-        public Task<bool> BlockedAsync(string skirterUserId, string deterredUserId)
+        public async Task<bool> BlockedAsync(string skirterUserId, string deterredUserId)
         {
             if (string.IsNullOrEmpty(skirterUserId) || string.IsNullOrEmpty(deterredUserId))
-                return Task.FromResult(false);
+                return false;
 
-            return _blockRepository.AddAsync(new Tables.Block
+            int? blockId = await _blockRepository.AddAsync(new Tables.Block
             {
                 SkirterUserId = skirterUserId,
                 DeterredUserId = deterredUserId
             });
+
+            return blockId.HasValue;
         }
 
         /// <summary>

@@ -1,12 +1,16 @@
-﻿using Autofac;
+﻿using Amazon.S3;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Duel.API.Infrastructure.Repositories.AnswerLocalized;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Infrastructure.Repositories.Question;
+using ContestPark.Duel.API.Infrastructure.Repositories.QuestionLocalized;
+using ContestPark.Duel.API.Infrastructure.Repositories.QuestionOfQuestionLocalized;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
@@ -16,6 +20,7 @@ using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.Follow;
 using ContestPark.Duel.API.Services.NumberFormat;
+using ContestPark.Duel.API.Services.Picture;
 using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
@@ -42,6 +47,12 @@ namespace ContestPark.Duel.API
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization(options =>// Soru ekleme için admin policy oluşturuldu
+            {
+                options.AddPolicy("AdminPolicy", policy =>
+                    policy.RequireClaim("role", "Admin, User"));
+            });
+
             services.Configure<DuelSettings>(Configuration);
 
             services.AddSingleton<IRequestProvider, RequestProvider>();
@@ -87,6 +98,23 @@ namespace ContestPark.Duel.API
             services.AddTransient<IUserAnswerRepository, UserAnswerRepository>();
 
             services.AddSingleton<IScoreCalculator, ScoreCalculator>();
+
+            services.AddSingleton<IQuestionLocalizedRepository, QuestionLocalizedRepository>();
+
+            services.AddSingleton<IQuestionOfQuestionLocalizedRepository, QuestionOfQuestionLocalizedRepository>();
+
+            services.AddSingleton<IAnswerLocalizedRepository, AnswerLocalizedRepository>();
+
+            services.AddSingleton<IFileUploadService, S3FileUploadService>();
+
+            #region S3 settings
+
+            string awsAccessKeyId = Configuration["AwsAccessKeyId"];
+            string awsSecretAccessKey = Configuration["AwsSecretAccessKey"];
+
+            services.AddSingleton<IAmazonS3>(new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, Amazon.RegionEndpoint.EUCentral1));
+
+            #endregion S3 settings
 
             #region Event handler
 

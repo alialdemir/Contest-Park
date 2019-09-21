@@ -54,12 +54,14 @@ namespace ContestPark.Core.Dapper.Extensions
         {
             DatabaseInfo databaseInfo = GetDatabaseInfo(connectionString);
 
-            DatabaseConnection databaseConnection = new DatabaseConnection(connectionString);
+            DatabaseConnection databaseConnection = GetConnection(databaseInfo);
 
             var dbConnection = databaseConnection.Connection;
 
             string dbName = dbConnection.QuerySingleOrDefault<string>($"SHOW DATABASES LIKE '{databaseInfo.DatabaseName}'");
             int result = await dbConnection.ExecuteAsync($"CREATE DATABASE IF NOT EXISTS `{databaseInfo.DatabaseName}`;");
+
+            dbConnection.Close();
 
             return result > 0 && string.IsNullOrEmpty(dbName);
         }
