@@ -49,62 +49,72 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddQuestion([FromBody]List<QuestionSaveModel> questions)// Oyunucunun karşısına rakip ekler
+        public IActionResult AddQuestion([FromBody]List<QuestionSaveModel> questions)// Oyunucunun karşısına rakip ekler
         {
-            foreach (var item in questions)
+            Task.Factory.StartNew(async () =>
             {
-                foreach (var question in item.Questions)
+                Logger.LogInformation("Yeni sorular ekleniyor...");
+
+                foreach (var item in questions)
                 {
-                    string fileUrl = string.Empty;
-
-                    if (!string.IsNullOrEmpty(question.Link))
+                    foreach (var question in item.Questions)
                     {
-                        fileUrl = await _fileUploadService.UploadFileToStorageAsync(question.Link, question.SubCategoryId);
-                        if (string.IsNullOrEmpty(fileUrl))
-                            return BadRequest($"Dosya yükleme hatası oluştu. {question.Link}");
-                    }
+                        string fileUrl = string.Empty;
 
-                    int questionId = await _questionRepository.Insert(new Infrastructure.Tables.Question
-                    {
-                        Link = fileUrl,
-                        SubCategoryId = question.SubCategoryId,
-                        AnswerType = question.AnswerTypes,
-                        QuestionType = question.QuestionType,
-                    });
-
-                    foreach (var ql in item.QuestionLocalized)
-                    {
-                        int questionLocalizedId = _questionLocalizedRepository.IsQuestionRegistry(ql.Question);
-                        if (questionLocalizedId == 0)
+                        if (!string.IsNullOrEmpty(question.Link))
                         {
-                            questionLocalizedId = await _questionLocalizedRepository.Insert(new Infrastructure.Tables.QuestionLocalized
+                            fileUrl = await _fileUploadService.UploadFileToStorageAsync(question.Link, question.SubCategoryId);
+                            if (string.IsNullOrEmpty(fileUrl))
                             {
-                                Language = ql.Language,
-                                Question = ql.Question,
+                                Logger.LogError("Soru yükleme işlemi başarısız oldu");
+                                return;
+                            }
+                        }
+
+                        int questionId = await _questionRepository.Insert(new Infrastructure.Tables.Question
+                        {
+                            Link = fileUrl,
+                            SubCategoryId = question.SubCategoryId,
+                            AnswerType = question.AnswerTypes,
+                            QuestionType = question.QuestionType,
+                        });
+
+                        foreach (var ql in item.QuestionLocalized)
+                        {
+                            int questionLocalizedId = _questionLocalizedRepository.IsQuestionRegistry(ql.Question);
+                            if (questionLocalizedId == 0)
+                            {
+                                questionLocalizedId = await _questionLocalizedRepository.Insert(new Infrastructure.Tables.QuestionLocalized
+                                {
+                                    Language = ql.Language,
+                                    Question = ql.Question,
+                                });
+                            }
+
+                            await _questionOfQuestionLocalizedRepository.Insert(new Infrastructure.Tables.QuestionOfQuestionLocalized
+                            {
+                                QuestionId = questionId,
+                                QuestionLocalizedId = questionLocalizedId
                             });
                         }
 
-                        await _questionOfQuestionLocalizedRepository.Insert(new Infrastructure.Tables.QuestionOfQuestionLocalized
+                        foreach (var answer in item.Answers)
                         {
-                            QuestionId = questionId,
-                            QuestionLocalizedId = questionLocalizedId
-                        });
-                    }
-
-                    foreach (var answer in item.Answers)
-                    {
-                        await _answerLocalizedRepository.Insert(new Infrastructure.Tables.AnswerLocalized
-                        {
-                            QuestionId = questionId,
-                            Language = answer.Language,
-                            CorrectStylish = answer.CorrectStylish,
-                            Stylish1 = answer.Stylish1,
-                            Stylish2 = answer.Stylish2,
-                            Stylish3 = answer.Stylish3,
-                        });
+                            await _answerLocalizedRepository.Insert(new Infrastructure.Tables.AnswerLocalized
+                            {
+                                QuestionId = questionId,
+                                Language = answer.Language,
+                                CorrectStylish = answer.CorrectStylish,
+                                Stylish1 = answer.Stylish1,
+                                Stylish2 = answer.Stylish2,
+                                Stylish3 = answer.Stylish3,
+                            });
+                        }
                     }
                 }
-            }
+
+                Logger.LogInformation($"Yeni sorular ekrandi. Eklenen soru sayısı {questions.Count}");
+            });
 
             return Ok();
         }

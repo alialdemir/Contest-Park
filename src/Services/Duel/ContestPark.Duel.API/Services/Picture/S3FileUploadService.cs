@@ -36,22 +36,31 @@ namespace ContestPark.Duel.API.Services.Picture
         /// <returns>Dosya stream</returns>
         private async Task<Stream> DownloadFileAsync(string fileUrl)
         {
-            using (WebClient webClient = new WebClient())
+            try
             {
-                string filePath = $"{Path.GetTempPath()}contestparkgeciciimage.png";// TODO: MÜZİK YÜKLERKEN BURASI PATLAR
+                using (WebClient webClient = new WebClient())
+                {
+                    string filePath = $"{Path.GetTempPath()}contestparkgeciciimage.png";// TODO: MÜZİK YÜKLERKEN BURASI PATLAR
 
-                await webClient.DownloadFileTaskAsync(new Uri(fileUrl), filePath);
+                    await webClient.DownloadFileTaskAsync(new Uri(fileUrl), filePath);
 
-                byte[] fileByte = File.ReadAllBytes(filePath);
+                    byte[] fileByte = File.ReadAllBytes(filePath);
 
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
+                    if (File.Exists(filePath))
+                        File.Delete(filePath);
 
-                if (fileByte == null || fileByte.Length == 0)
-                    return null;
+                    if (fileByte == null || fileByte.Length == 0)
+                        return null;
 
-                MemoryStream mem = new MemoryStream(fileByte);
-                return mem;
+                    MemoryStream mem = new MemoryStream(fileByte);
+                    return mem;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Dosya yükleme sırasında hata", ex);
+
+                return null;
             }
         }
 
