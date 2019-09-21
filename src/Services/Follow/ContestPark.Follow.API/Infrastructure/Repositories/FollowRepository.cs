@@ -136,13 +136,15 @@ namespace ContestPark.Follow.API.Infrastructure.MySql.Repositories
         /// <param name="followUpUserId">Takip eden</param>
         /// <param name="followedUserId">Takip edilen</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public Task<bool> FollowAsync(string followUpUserId, string followedUserId)
+        public async Task<bool> FollowAsync(string followUpUserId, string followedUserId)
         {
-            return _followRepository.AddAsync(new Tables.Follow
+            int? followId = await _followRepository.AddAsync(new Tables.Follow
             {
                 FollowUpUserId = followUpUserId,
                 FollowedUserId = followedUserId
             });
+
+            return followId.HasValue;
         }
 
         /// <summary>

@@ -108,7 +108,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         /// <param name="balanceType">Bakiye tipi</param>
         /// <param name="score">Skor</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public Task<bool> UpdateScoreRank(string userId, short subCategoryId, BalanceTypes balanceType, byte score)
+        public async Task<bool> UpdateScoreRank(string userId, short subCategoryId, BalanceTypes balanceType, byte score)
         {
             string sql = @"SELECT * FROM ScoreRankings sr WHERE sr.UserId = @userId AND sr.subCategoryId = @subCategoryId";
             Tables.ScoreRanking scoreRanking = _scoreRankingRepository.QuerySingleOrDefault<Tables.ScoreRanking>(sql, new
@@ -147,10 +147,12 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
 
             if (scoreRanking.ScoreRankingId == 0)
             {
-                return _scoreRankingRepository.AddAsync(scoreRanking);
+                int? scoreRankingId = await _scoreRankingRepository.AddAsync(scoreRanking);
+
+                return scoreRankingId.HasValue;
             }
 
-            return _scoreRankingRepository.UpdateAsync(scoreRanking);
+            return await _scoreRankingRepository.UpdateAsync(scoreRanking);
         }
 
         #endregion Methods

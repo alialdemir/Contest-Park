@@ -29,13 +29,15 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
-        public Task<bool> FollowSubCategoryAsync(string userId, short subCategoryId)
+        public async Task<bool> FollowSubCategoryAsync(string userId, short subCategoryId)
         {
-            return _followSubCategoryRepository.AddAsync(new Tables.FollowSubCategory
+            int? followSubCategoryId = await _followSubCategoryRepository.AddAsync(new Tables.FollowSubCategory
             {
                 UserId = userId,
                 SubCategoryId = subCategoryId,
             });
+
+            return followSubCategoryId.HasValue;
         }
 
         /// <summary>

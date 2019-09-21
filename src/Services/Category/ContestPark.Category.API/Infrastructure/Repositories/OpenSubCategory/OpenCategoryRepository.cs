@@ -29,9 +29,11 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory
         /// </summary>
         /// <param name="openSubCategory"></param>
         /// <returns></returns>
-        public Task<bool> UnLockSubCategory(Tables.OpenSubCategory openSubCategory)
+        public async Task<bool> UnLockSubCategory(Tables.OpenSubCategory openSubCategory)
         {
-            return _openSubCategoryreRepository.AddAsync(openSubCategory);
+            int? openSubCategoryId = await _openSubCategoryreRepository.AddAsync(openSubCategory);
+
+            return openSubCategoryId.HasValue;
         }
 
         /// <summary>

@@ -172,6 +172,7 @@ services:
       - FollowUrl=http://contestpark.follow.api
       - SubCategoryUrl=http://contestpark.category.api
       - balanceUrl=http://contestpark.balance.api
+      - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkDuel;pwd=root;}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB:-redis.data}
       - Audience=duel

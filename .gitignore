@@ -340,6 +340,7 @@ ASALocalRun/
 healthchecksdb
 
 /data
+/data1
 *.env
 .env
 *appsettings.test.json
