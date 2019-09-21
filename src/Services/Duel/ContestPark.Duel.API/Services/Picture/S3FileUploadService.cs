@@ -91,7 +91,7 @@ namespace ContestPark.Duel.API.Services.Picture
                 TransferUtility transferUtility = new TransferUtility(_amazonS3);
 
                 string extension = ".png";// TODO: Burası müzik vs geldiği zaman patlar
-                string newFileName = $"questions/{GetUniqFileName()}{extension}";
+                string newFileName = $"questions/subcategoryId{subCategoryId}/{GetUniqFileName()}{extension}";
 
                 await transferUtility.UploadAsync(new TransferUtilityUploadRequest
                 {
