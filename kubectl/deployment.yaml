@@ -265,6 +265,8 @@ spec:
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
             - name: BetCommission
               value: "10"
+            - name: ClouldFrontUrl
+              value: $(CONTESTPARK_CLOUDFRONT_URL)
 
 ---
 apiVersion: extensions/v1beta1
