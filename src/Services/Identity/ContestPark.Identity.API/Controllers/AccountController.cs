@@ -224,10 +224,10 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (file == null)
                 return NotFound();
 
-            //if (_blobStorageService.CheckFileSize(file.Length))// 4 mb'den büyük ise dosya boyutu  geçersizdir
-            //{
-            //    return BadRequest(IdentityResource.UnsupportedImageExtension);
-            //}
+            if (_blobStorageService.CheckFileSize(file.Length))// 4 mb'den büyük ise dosya boyutu  geçersizdir
+            {
+                return BadRequest(IdentityResource.UnsupportedImageExtension);
+            }
 
             if (!_blobStorageService.CheckPictureExtension(file.ContentType))
             {
