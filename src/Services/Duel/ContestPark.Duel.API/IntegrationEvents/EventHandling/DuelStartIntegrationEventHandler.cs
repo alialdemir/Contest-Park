@@ -100,11 +100,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            PublishDuelStartingEvent(duelId,
-                                        @event.FounderUserId,
-                                        @event.FounderConnectionId,
-                                        @event.OpponentUserId,
-                                        @event.OpponentConnectionId);
+            await PublishDuelStartingEvent(duelId,
+                                           @event.FounderUserId,
+                                           @event.FounderConnectionId,
+                                           @event.OpponentUserId,
+                                           @event.OpponentConnectionId);
 
             var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
@@ -161,8 +161,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             Task.Factory.StartNew(async () =>
            {
-               await Task.Delay(3000);
-
                var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
                                                        founderUserId,
                                                        founderConnectionId,
@@ -182,13 +180,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="founderConnectionId">Kurucu connection id</param>
         /// <param name="opponentUserId">Rakip kullanıcı id</param>
         /// <param name="opponentConnectionId">Rakip connection id</param>
-        private void PublishDuelStartingEvent(int duelId,
+        private Task PublishDuelStartingEvent(int duelId,
                                               string founderUserId,
                                               string founderConnectionId,
                                               string opponentUserId,
                                               string opponentConnectionId)
         {
-            Task.Factory.StartNew(async () =>// Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
+            return Task.Factory.StartNew(async () =>// Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
             {
                 List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
             {
