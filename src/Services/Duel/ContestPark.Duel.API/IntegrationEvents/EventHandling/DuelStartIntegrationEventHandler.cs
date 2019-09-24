@@ -161,6 +161,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             Task.Factory.StartNew(async () =>
            {
+               await Task.Delay(1000);
                var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
                                                        founderUserId,
                                                        founderConnectionId,
