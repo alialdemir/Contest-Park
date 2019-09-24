@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
 {
     public interface IInAppBillingService
     {
-        Task<IEnumerable<InAppBillingProductModel>> GetProductInfoAsync();
+        Task<List<InAppBillingProductModel>> GetProductInfoAsync();
 
         Task<InAppBillingPurchaseModel> PurchaseAsync(string productId);
     }

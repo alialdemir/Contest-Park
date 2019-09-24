@@ -659,4 +659,7 @@
   <data name="YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore" xml:space="preserve">
     <value>You don't have enough balance to play. You must install balance out store contest.</value>
   </data>
+  <data name="Dolar" xml:space="preserve">
+    <value>Dollar</value>
+  </data>
 </root>

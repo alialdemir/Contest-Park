@@ -61,7 +61,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hesap Ayarları.
+        ///   Looks up a localized string similar to Account Settings.
         /// </summary>
         public static string AccountSettings {
             get {
@@ -70,7 +70,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İleri Düzeyde.
+        ///   Looks up a localized string similar to Advanced.
         /// </summary>
         public static string Advanced {
             get {
@@ -79,7 +79,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uygulama Ayarları.
+        ///   Looks up a localized string similar to App Settings.
         /// </summary>
         public static string AppSettings {
             get {
@@ -88,7 +88,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kazancınız hesabınıza aktarma isteği oluşturuldu..
+        ///   Looks up a localized string similar to A request to transfer your earnings to your account has been created..
         /// </summary>
         public static string ARequestToTransferYourEarningsToYourAccountHasBeenCreated {
             get {
@@ -97,7 +97,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Çıkmak istediğinize emin misiniz?.
+        ///   Looks up a localized string similar to Are you sure you want to leave?.
         /// </summary>
         public static string AreYouSureYouWantToLeave {
             get {
@@ -106,7 +106,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rakip Bekleniyor....
+        ///   Looks up a localized string similar to Awaiting opponent.
         /// </summary>
         public static string AwaitingOpponent {
             get {
@@ -115,7 +115,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Acemi.
+        ///   Looks up a localized string similar to Beginner.
         /// </summary>
         public static string Beginner {
             get {
@@ -124,7 +124,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bahis.
+        ///   Looks up a localized string similar to Bet.
         /// </summary>
         public static string Bet {
             get {
@@ -133,7 +133,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Engelle.
+        ///   Looks up a localized string similar to Block.
         /// </summary>
         public static string Block {
             get {
@@ -142,7 +142,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Engellenenler.
+        ///   Looks up a localized string similar to Blocking.
         /// </summary>
         public static string Blocking {
             get {
@@ -151,7 +151,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Satın Al.
+        ///   Looks up a localized string similar to Buy.
         /// </summary>
         public static string Buy {
             get {
@@ -160,7 +160,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İptal.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
@@ -169,7 +169,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kategoriler.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {
             get {
@@ -178,7 +178,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu kategori kilitli. Kilidi açmak ister misiniz?.
+        ///   Looks up a localized string similar to This category is locked. Do you want to unlock?.
         /// </summary>
         public static string CategoryLocked {
             get {
@@ -187,7 +187,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kapat resmi değiştir.
+        ///   Looks up a localized string similar to Change cover picture.
         /// </summary>
         public static string ChangeCoverPicture {
             get {
@@ -196,7 +196,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile resmi değiştir.
+        ///   Looks up a localized string similar to Change profile picture.
         /// </summary>
         public static string ChangeProfilePicture {
             get {
@@ -205,7 +205,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mesajlar.
+        ///   Looks up a localized string similar to Chat.
         /// </summary>
         public static string Chat {
             get {
@@ -214,7 +214,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sohbet Ayarları.
+        ///   Looks up a localized string similar to Chat Settings.
         /// </summary>
         public static string ChatSettings {
             get {
@@ -223,7 +223,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İşlem seçiniz.
+        ///   Looks up a localized string similar to Choose an action.
         /// </summary>
         public static string ChooseAnAction {
             get {
@@ -232,7 +232,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gallery&apos;den seç.
+        ///   Looks up a localized string similar to Choose from library.
         /// </summary>
         public static string ChooseFromLibrary {
             get {
@@ -241,7 +241,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yorumlar.
+        ///   Looks up a localized string similar to Comment.
         /// </summary>
         public static string Comment {
             get {
@@ -250,7 +250,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yorum.
+        ///   Looks up a localized string similar to Comments.
         /// </summary>
         public static string Comments {
             get {
@@ -259,7 +259,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Düello için sunucu ile bağlantı kurulamadı..
+        ///   Looks up a localized string similar to Failed to connect with server for duel..
         /// </summary>
         public static string ConnectionToTheServerForTheDuelWasNotEstablished {
             get {
@@ -268,7 +268,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ContestPark, Bilgi Yarışması çok eğlenceli, siz de oynamalısınız. Lütfen kayıt olurken kullanıcı adımı &quot;{0}&quot; referans kodu olarak yazınız. Hem siz hemde ben para ödülü kazanmış olurum..
+        ///   Looks up a localized string similar to ContestPark, Knowledge Contest is fun, you should play too. Please write my user &quot;{0}&quot; to the reference when sign up..
         /// </summary>
         public static string ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp {
             get {
@@ -278,7 +278,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu kategoriye ait geçmiş bulunmamakta..
+        ///   Looks up a localized string similar to There are no history for this category..
         /// </summary>
         public static string ContestPostEmptyMessage {
             get {
@@ -296,7 +296,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paranı Nakite Çevir.
+        ///   Looks up a localized string similar to Convert to cash.
         /// </summary>
         public static string ConvertToCash {
             get {
@@ -305,7 +305,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Gün .
+        ///   Looks up a localized string similar to  Day.
         /// </summary>
         public static string Day {
             get {
@@ -314,7 +314,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sil.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
             get {
@@ -323,7 +323,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Konuşmayı sil.
+        ///   Looks up a localized string similar to Delete Conversation.
         /// </summary>
         public static string DeleteConversation {
             get {
@@ -332,7 +332,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} ile aranızdaki sohbeti silmek istediğinizden emin misiniz?.
+        ///   Looks up a localized string similar to Are you sure you want to delete the conversation between you and {0}?.
         /// </summary>
         public static string DeleteMessage {
             get {
@@ -341,7 +341,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mesaj sil?.
+        ///   Looks up a localized string similar to Delete message?.
         /// </summary>
         public static string DeleteMessageTitle {
             get {
@@ -350,7 +350,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu Konuşmanın Tamamını Sil?.
+        ///   Looks up a localized string similar to Delete Entire Speech?.
         /// </summary>
         public static string DeleteThisEntireConversation {
             get {
@@ -359,7 +359,16 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Düello.
+        ///   Looks up a localized string similar to Dollar.
+        /// </summary>
+        public static string Dolar {
+            get {
+                return ResourceManager.GetString("Dolar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duel.
         /// </summary>
         public static string Duel {
             get {
@@ -368,7 +377,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Altın Kazan.
+        ///   Looks up a localized string similar to Earn Coins.
         /// </summary>
         public static string EarnCoins {
             get {
@@ -377,7 +386,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil Güncelle.
+        ///   Looks up a localized string similar to Edit Profile.
         /// </summary>
         public static string EditProfile {
             get {
@@ -386,7 +395,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-posta.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
             get {
@@ -395,7 +404,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eposta maksimum 255 karakter olmalıdır..
+        ///   Looks up a localized string similar to E-mail must be a maximum of 255 characters..
         /// </summary>
         public static string EmailMaxLength {
             get {
@@ -404,7 +413,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eposta alanını doldurmak zorunludur..
+        ///   Looks up a localized string similar to E-mail field is required..
         /// </summary>
         public static string EmailRequiredFields {
             get {
@@ -422,7 +431,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sms ile gelen kodu giriniz.
+        ///   Looks up a localized string similar to Enter the code from sms.
         /// </summary>
         public static string EnterTheCodeFromSms {
             get {
@@ -431,7 +440,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GİRİŞ ÜCRETİ.
+        ///   Looks up a localized string similar to ENTRY FEE.
         /// </summary>
         public static string EntryFee {
             get {
@@ -440,7 +449,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hata.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
             get {
@@ -449,7 +458,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Düello başlatılırken hata oluştu. Lütfen tekrar deneyiniz..
+        ///   Looks up a localized string similar to Error starting duel. Please try again..
         /// </summary>
         public static string ErrorStartingDuelPleaseTryAgain {
             get {
@@ -458,7 +467,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Çıkış.
+        ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
             get {
@@ -467,7 +476,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uzman.
+        ///   Looks up a localized string similar to Expert.
         /// </summary>
         public static string Expert {
             get {
@@ -476,7 +485,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rakip Bul.
+        ///   Looks up a localized string similar to Find Opponent.
         /// </summary>
         public static string FindOpponent {
             get {
@@ -485,7 +494,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BİTİRME BONUSU.
+        ///   Looks up a localized string similar to FINISH BONUS.
         /// </summary>
         public static string FinishBonus {
             get {
@@ -494,7 +503,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takip Et.
+        ///   Looks up a localized string similar to Follow.
         /// </summary>
         public static string Follow {
             get {
@@ -503,7 +512,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takipçi.
+        ///   Looks up a localized string similar to Followers.
         /// </summary>
         public static string Followers {
             get {
@@ -512,7 +521,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takip.
+        ///   Looks up a localized string similar to Following.
         /// </summary>
         public static string Following {
             get {
@@ -521,7 +530,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sosyal ağlarda bizi takip edin.
+        ///   Looks up a localized string similar to Follow us on social networks.
         /// </summary>
         public static string FollowUsOnSocialNetworks {
             get {
@@ -530,7 +539,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eposta adresi veya kullanıcı adınızı giriniz. Hesap bilgilerinizi içeren bir e-posta alacaksınız..
+        ///   Looks up a localized string similar to Enter your e-mail address or username. You will receive an email with your account information..
         /// </summary>
         public static string ForgetYourPasswordText {
             get {
@@ -539,7 +548,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifremi unuttum.
+        ///   Looks up a localized string similar to Forgot your password.
         /// </summary>
         public static string ForgotYourPassword {
             get {
@@ -548,7 +557,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ücretsiz Altın.
+        ///   Looks up a localized string similar to Free coins.
         /// </summary>
         public static string FreeCoins {
             get {
@@ -557,7 +566,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beleşçi.
+        ///   Looks up a localized string similar to Freeloader.
         /// </summary>
         public static string Freeloader {
             get {
@@ -566,7 +575,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ad soyad.
+        ///   Looks up a localized string similar to Full name.
         /// </summary>
         public static string Fullname {
             get {
@@ -575,7 +584,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ad Soyad maksimum 255 karakter olmalıdır..
+        ///   Looks up a localized string similar to The full name must be a maximum of 255 characters..
         /// </summary>
         public static string FullNameMaxLength {
             get {
@@ -584,7 +593,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ad Soyad minimum 3 karakter ve üzeri olmalıdır..
+        ///   Looks up a localized string similar to The full name must be a minimum of 3 characters or more..
         /// </summary>
         public static string FullNameMinLength {
             get {
@@ -593,7 +602,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ad Soyad alanını doldurmak zorunludur..
+        ///   Looks up a localized string similar to Full Name field is required..
         /// </summary>
         public static string FullNameRequiredFields {
             get {
@@ -602,7 +611,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dahi.
+        ///   Looks up a localized string similar to Genius.
         /// </summary>
         public static string Genius {
             get {
@@ -611,7 +620,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Genel.
+        ///   Looks up a localized string similar to Global.
         /// </summary>
         public static string Global {
             get {
@@ -620,7 +629,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üzgünüz, beklenmedik bir hata oluştu. Lütfen tekrar deneyiniz.
+        ///   Looks up a localized string similar to Sorry, an unexpected error occurred. Please try again.
         /// </summary>
         public static string GlobalErrorMessage {
             get {
@@ -629,7 +638,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Altın.
+        ///   Looks up a localized string similar to Gold.
         /// </summary>
         public static string Gold {
             get {
@@ -638,7 +647,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Saat .
+        ///   Looks up a localized string similar to Hour.
         /// </summary>
         public static string Hour {
             get {
@@ -647,7 +656,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz..
+        ///   Looks up a localized string similar to If you delete your copy of this conversation, it cannot be undone..
         /// </summary>
         public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {
             get {
@@ -656,7 +665,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adı veya şifre yanlış..
+        ///   Looks up a localized string similar to The username or password is incorrect..
         /// </summary>
         public static string invalid_username_or_password {
             get {
@@ -665,7 +674,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geçersiz telefon numarası..
+        ///   Looks up a localized string similar to Invalid phone number..
         /// </summary>
         public static string InvalidPhoneNumber {
             get {
@@ -674,7 +683,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geçersiz ürün id..
+        ///   Looks up a localized string similar to Invalid product id..
         /// </summary>
         public static string InvalidProductId {
             get {
@@ -683,7 +692,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Davet Et.
+        ///   Looks up a localized string similar to Invite.
         /// </summary>
         public static string Invite {
             get {
@@ -692,7 +701,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Davet Et, Para Kazan!.
+        ///   Looks up a localized string similar to Invite a friend, earn money.
         /// </summary>
         public static string InviteSaveMoney {
             get {
@@ -701,7 +710,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diller.
+        ///   Looks up a localized string similar to Languages.
         /// </summary>
         public static string Language {
             get {
@@ -710,7 +719,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beğeni.
+        ///   Looks up a localized string similar to Likes.
         /// </summary>
         public static string Likes {
             get {
@@ -719,7 +728,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Çıkış Yap.
+        ///   Looks up a localized string similar to LogOut.
         /// </summary>
         public static string LogOut {
             get {
@@ -728,7 +737,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kaybetti.
+        ///   Looks up a localized string similar to Lose.
         /// </summary>
         public static string Lose {
             get {
@@ -737,7 +746,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usta.
+        ///   Looks up a localized string similar to Master.
         /// </summary>
         public static string Master {
             get {
@@ -746,7 +755,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MAÇ SKORU.
+        ///   Looks up a localized string similar to MATCH SCORE.
         /// </summary>
         public static string MatchScore {
             get {
@@ -755,7 +764,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üye olma işlemi başarılı oldu. Fakat giriş yapılamadı. Lütfen giriş yap sayfasından giriş yapınız..
+        ///   Looks up a localized string similar to Membership was successful. But the login failed. Please login from the login page..
         /// </summary>
         public static string MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage {
             get {
@@ -764,7 +773,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sohbet.
+        ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string Message {
             get {
@@ -773,7 +782,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mesaj listeniz boş..
+        ///   Looks up a localized string similar to Your message list is empty..
         /// </summary>
         public static string MessageYourListIsEmpty {
             get {
@@ -782,7 +791,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Dakika .
+        ///   Looks up a localized string similar to  Minute.
         /// </summary>
         public static string Minute {
             get {
@@ -791,7 +800,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Görevler.
+        ///   Looks up a localized string similar to Missions.
         /// </summary>
         public static string Missions {
             get {
@@ -800,7 +809,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İsim.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
@@ -809,7 +818,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yeni Görevler Yakında!.
+        ///   Looks up a localized string similar to New Missions Coming Soon!.
         /// </summary>
         public static string NewMissionsComingSoon {
             get {
@@ -818,7 +827,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yeni Şifre.
+        ///   Looks up a localized string similar to New Password.
         /// </summary>
         public static string NewPassword {
             get {
@@ -827,7 +836,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Altın yok.
+        ///   Looks up a localized string similar to No Gold.
         /// </summary>
         public static string NoGold {
             get {
@@ -836,7 +845,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İnternet bağlantınızı kontrol ediniz..
+        ///   Looks up a localized string similar to Please check your Internet connection..
         /// </summary>
         public static string NoInternet {
             get {
@@ -845,7 +854,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bildirimler.
+        ///   Looks up a localized string similar to Notifications.
         /// </summary>
         public static string Notifications {
             get {
@@ -854,7 +863,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Çaylak.
+        ///   Looks up a localized string similar to Novice.
         /// </summary>
         public static string Novice {
             get {
@@ -863,7 +872,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tamam.
+        ///   Looks up a localized string similar to Okay.
         /// </summary>
         public static string Okay {
             get {
@@ -872,7 +881,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eski Şifre.
+        ///   Looks up a localized string similar to Old password.
         /// </summary>
         public static string OldPassword {
             get {
@@ -881,7 +890,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diğer.
+        ///   Looks up a localized string similar to Other.
         /// </summary>
         public static string Other {
             get {
@@ -890,7 +899,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitti.
+        ///   Looks up a localized string similar to Over.
         /// </summary>
         public static string Over {
             get {
@@ -899,7 +908,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifre.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
             get {
@@ -908,7 +917,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifre Değiştir.
+        ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string PasswordChange {
             get {
@@ -917,7 +926,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifreniz maksimum 32 karakter olmalıdır..
+        ///   Looks up a localized string similar to Your password must be 32 characters maximum..
         /// </summary>
         public static string PasswordMaxLength {
             get {
@@ -926,7 +935,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifreniz minimum 8 karakter ve üzeri olmalıdır..
+        ///   Looks up a localized string similar to Your password must be a minimum of 8 characters and above..
         /// </summary>
         public static string PasswordMinLength {
             get {
@@ -935,7 +944,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifre alanını doldurmak zorunludur..
+        ///   Looks up a localized string similar to Password field is required..
         /// </summary>
         public static string PasswordRequiredFields {
             get {
@@ -944,7 +953,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erişim izni yok.
+        ///   Looks up a localized string similar to No access allowed.
         /// </summary>
         public static string PermissionsDenied {
             get {
@@ -953,7 +962,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefon numarası.
+        ///   Looks up a localized string similar to Phone number.
         /// </summary>
         public static string PhoneNumber {
             get {
@@ -962,7 +971,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefon numarası alanını doldurmak zorunludur..
+        ///   Looks up a localized string similar to Phone number is necessary to fill the field..
         /// </summary>
         public static string PhoneNumberRequiredFields {
             get {
@@ -971,7 +980,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resim Ayarları.
+        ///   Looks up a localized string similar to Picture Settings.
         /// </summary>
         public static string PictureSettings {
             get {
@@ -980,7 +989,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OYNA.
+        ///   Looks up a localized string similar to PLAY.
         /// </summary>
         public static string Play {
             get {
@@ -989,7 +998,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OYNADI.
+        ///   Looks up a localized string similar to PLAYING.
         /// </summary>
         public static string Playing {
             get {
@@ -998,7 +1007,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beğeniler.
+        ///   Looks up a localized string similar to likes.
         /// </summary>
         public static string PostLikes {
             get {
@@ -1007,7 +1016,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil Gizle.
+        ///   Looks up a localized string similar to Private PROFİLE.
         /// </summary>
         public static string PrivateProfile {
             get {
@@ -1016,7 +1025,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ÖDÜL.
+        ///   Looks up a localized string similar to PRIZE.
         /// </summary>
         public static string Prize {
             get {
@@ -1025,7 +1034,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil.
+        ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {
             get {
@@ -1034,7 +1043,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Satın alma işlemi başarısız. Altınlarınız hesabınıza yüklenemedi. Lütfen support@contestpark.com adresine mail atın..
+        ///   Looks up a localized string similar to Purchase failed. Gold could not be loaded to your account. Please email support@contestpark.com..
         /// </summary>
         public static string PurchaseFail {
             get {
@@ -1043,7 +1052,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sıra.
+        ///   Looks up a localized string similar to Rank.
         /// </summary>
         public static string Rank {
             get {
@@ -1052,7 +1061,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takip ettiğin kimse yok. Git birilerini takip et!.
+        ///   Looks up a localized string similar to There&apos;s no one you follow. Go follow the one!.
         /// </summary>
         public static string RankFollowingNull {
             get {
@@ -1061,7 +1070,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sıralama.
+        ///   Looks up a localized string similar to Ranking.
         /// </summary>
         public static string Ranking {
             get {
@@ -1070,7 +1079,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Engelli kaldır.
+        ///   Looks up a localized string similar to Remove block.
         /// </summary>
         public static string RemoveBlock {
             get {
@@ -1079,7 +1088,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gerekli alanları doldurunuz..
+        ///   Looks up a localized string similar to Please fill in the required fields..
         /// </summary>
         public static string RequiredFields {
             get {
@@ -1088,7 +1097,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SONUÇLAR.
+        ///   Looks up a localized string similar to RESULTS.
         /// </summary>
         public static string Results {
             get {
@@ -1097,7 +1106,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rövanş.
+        ///   Looks up a localized string similar to Revenge.
         /// </summary>
         public static string Revenge {
             get {
@@ -1106,7 +1115,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Devam Et.
+        ///   Looks up a localized string similar to Right on.
         /// </summary>
         public static string RightOn {
             get {
@@ -1115,7 +1124,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kaydet.
+        ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
             get {
@@ -1124,7 +1133,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Puan.
+        ///   Looks up a localized string similar to Score.
         /// </summary>
         public static string Score {
             get {
@@ -1133,7 +1142,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oyuncu veya Kategori ara.
+        ///   Looks up a localized string similar to Search Players or categories.
         /// </summary>
         public static string SearchPlayersOrCategories {
             get {
@@ -1142,7 +1151,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Saniye .
+        ///   Looks up a localized string similar to Second.
         /// </summary>
         public static string Seconds {
             get {
@@ -1151,7 +1160,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tümü.
+        ///   Looks up a localized string similar to See all.
         /// </summary>
         public static string SeeAll {
             get {
@@ -1160,7 +1169,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dil Seçiniz.
+        ///   Looks up a localized string similar to Select language.
         /// </summary>
         public static string SelectLanguage {
             get {
@@ -1169,7 +1178,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İşlem Seçiniz.
+        ///   Looks up a localized string similar to Select process.
         /// </summary>
         public static string SelectProcess {
             get {
@@ -1178,7 +1187,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kazancı Hesabına Aktar.
+        ///   Looks up a localized string similar to Transfer to Gain Account.
         /// </summary>
         public static string SendMoney {
             get {
@@ -1187,7 +1196,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifreyi gönder.
+        ///   Looks up a localized string similar to Send password.
         /// </summary>
         public static string SendPassword {
             get {
@@ -1196,7 +1205,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu kategorinin kilidini zaten açtınız..
+        ///   Looks up a localized string similar to This category has already been unlocked..
         /// </summary>
         public static string ServerMessage_ThisCategoryOpen {
             get {
@@ -1205,7 +1214,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ayarlar.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
@@ -1214,7 +1223,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paylaş.
+        ///   Looks up a localized string similar to Share.
         /// </summary>
         public static string Share {
             get {
@@ -1223,7 +1232,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resmi görüntüle.
+        ///   Looks up a localized string similar to Show image.
         /// </summary>
         public static string ShowImage {
             get {
@@ -1232,7 +1241,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Giriş Yap ➝.
+        ///   Looks up a localized string similar to Sign in.
         /// </summary>
         public static string SignIn {
             get {
@@ -1241,7 +1250,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üye Ol.
+        ///   Looks up a localized string similar to Sign up.
         /// </summary>
         public static string SignUp {
             get {
@@ -1250,7 +1259,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sms kodunu giriniz.
+        ///   Looks up a localized string similar to Enter the SMS code.
         /// </summary>
         public static string SmsCode {
             get {
@@ -1259,7 +1268,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ses Efeckleri.
+        ///   Looks up a localized string similar to Sound effects.
         /// </summary>
         public static string Sounds {
             get {
@@ -1268,7 +1277,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Başarılı.
+        ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string Success {
             get {
@@ -1277,7 +1286,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fotoğraf çek.
+        ///   Looks up a localized string similar to Take a photo.
         /// </summary>
         public static string TakeAPhoto {
             get {
@@ -1286,7 +1295,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi..
+        ///   Looks up a localized string similar to Successful purchase. Your Gold uploaded to your account..
         /// </summary>
         public static string ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount {
             get {
@@ -1295,7 +1304,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu kategoride daha önce yarışan olmamış. İlk sırayı sen kapabilirsin!.
+        ///   Looks up a localized string similar to This category has never been competing before. You can take first place!.
         /// </summary>
         public static string ThisCategoryRankNull {
             get {
@@ -1304,7 +1313,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BERABERE.
+        ///   Looks up a localized string similar to TIE.
         /// </summary>
         public static string Tie {
             get {
@@ -1313,7 +1322,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kalan Süre.
+        ///   Looks up a localized string similar to Time left.
         /// </summary>
         public static string TimeLeft {
             get {
@@ -1322,7 +1331,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TOPLAM XP.
+        ///   Looks up a localized string similar to TOTAL XP.
         /// </summary>
         public static string TotalXp {
             get {
@@ -1331,7 +1340,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BANKA HESABIMA AKTAR.
+        ///   Looks up a localized string similar to TRANSFER TO MY BANK ACCOUNT.
         /// </summary>
         public static string TransferToBankAccount {
             get {
@@ -1340,7 +1349,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TÜRKİYE.
+        ///   Looks up a localized string similar to Turkey.
         /// </summary>
         public static string Turkey {
             get {
@@ -1349,7 +1358,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Türkçe.
+        ///   Looks up a localized string similar to Turkish.
         /// </summary>
         public static string Turkish {
             get {
@@ -1358,7 +1367,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Türk Lirası.
+        ///   Looks up a localized string similar to Turkish lira.
         /// </summary>
         public static string TurkishLira {
             get {
@@ -1367,7 +1376,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ürün listesine erişilemedi..
+        ///   Looks up a localized string similar to Failed to access product list..
         /// </summary>
         public static string UnableToAccessTheProductList {
             get {
@@ -1376,7 +1385,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mağazaya bağlanılamadı..
+        ///   Looks up a localized string similar to Failed to connect to store..
         /// </summary>
         public static string UnableToConnectToTheStore {
             get {
@@ -1385,7 +1394,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fotoğraf seçilemedi..
+        ///   Looks up a localized string similar to No photos selected..
         /// </summary>
         public static string UnableToTakePhotos {
             get {
@@ -1394,7 +1403,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takibi Bırak.
+        ///   Looks up a localized string similar to Unfollow.
         /// </summary>
         public static string UnFollow {
             get {
@@ -1403,7 +1412,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kilidi Aç.
+        ///   Looks up a localized string similar to Open the lock.
         /// </summary>
         public static string UnLock {
             get {
@@ -1412,7 +1421,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Güncelleme Başarılı!.
+        ///   Looks up a localized string similar to Update Successful!.
         /// </summary>
         public static string UpdateSuccessful {
             get {
@@ -1421,7 +1430,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adı.
+        ///   Looks up a localized string similar to User name.
         /// </summary>
         public static string UserName {
             get {
@@ -1430,7 +1439,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adınız maksimum 255 karakter olmalıdır..
+        ///   Looks up a localized string similar to Your username must be a maximum of 255 characters..
         /// </summary>
         public static string UserNameMaxLength {
             get {
@@ -1439,7 +1448,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adınız minimum 3 karakter ve üzeri olmalıdır..
+        ///   Looks up a localized string similar to Your username must be at least 3 characters or more..
         /// </summary>
         public static string UserNameMinLength {
             get {
@@ -1448,7 +1457,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adı alanını doldurmak zorunludur..
+        ///   Looks up a localized string similar to User name is required..
         /// </summary>
         public static string UserNameRequiredFields {
             get {
@@ -1457,7 +1466,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı bulunamadı..
+        ///   Looks up a localized string similar to User not found..
         /// </summary>
         public static string UserNotFound {
             get {
@@ -1466,7 +1475,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GALİP GELDİ.
+        ///   Looks up a localized string similar to VICTORIOUS.
         /// </summary>
         public static string Victorious {
             get {
@@ -1475,7 +1484,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to KAZANMA BONUSU.
+        ///   Looks up a localized string similar to VICTORY BONUS.
         /// </summary>
         public static string VictoryBonus {
             get {
@@ -1484,7 +1493,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Was.
         /// </summary>
         public static string Was {
             get {
@@ -1493,7 +1502,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reklam izle, altın kazan!.
+        ///   Looks up a localized string similar to Watch ad, get coins!.
         /// </summary>
         public static string WatchAdGetCoins {
             get {
@@ -1502,7 +1511,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mesajınızı silerken problemle karşılaştık. Lütfen tekrar deneyiniz..
+        ///   Looks up a localized string similar to We encountered while deleting your message with problems. Please try again..
         /// </summary>
         public static string WeHadaProblemDeletingTheMessagePleaseTryAgain {
             get {
@@ -1520,7 +1529,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adınızı ne olsun?.
+        ///   Looks up a localized string similar to What is your username?.
         /// </summary>
         public static string WhatYouGetYourUsername {
             get {
@@ -1529,7 +1538,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kazanan.
+        ///   Looks up a localized string similar to Winning.
         /// </summary>
         public static string Winning {
             get {
@@ -1538,7 +1547,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı adı veya eposta adresi yazınız..
+        ///   Looks up a localized string similar to Please enter your username or e-mail address..
         /// </summary>
         public static string WriteYourUserNameOrEmailAddress {
             get {
@@ -1547,7 +1556,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Engelleri kaldırabilirsin.
+        ///   Looks up a localized string similar to You can remove the barriers.
         /// </summary>
         public static string YouCanRemoveTheBarriers {
             get {
@@ -1556,7 +1565,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bu kategoriyi açmak için yeterli miktarda altınınız yok. Altın satın almak ister misiniz?.
+        ///   Looks up a localized string similar to You do not have an adequate amount of gold to open this category. Want to buy gold?.
         /// </summary>
         public static string YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory {
             get {
@@ -1565,7 +1574,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oynamak için yeterli bakiyeniz yok. Contest store üzerinden bakiye yüklemelisiniz..
+        ///   Looks up a localized string similar to You don&apos;t have enough balance to play. You must install balance out store contest..
         /// </summary>
         public static string YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore {
             get {
@@ -1574,7 +1583,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oynamak için yeterli altınınız yok. Contest store üzerinden altın satın alabilirsiniz..
+        ///   Looks up a localized string similar to You do not have enough gold to play. You can buy gold through the Contest store..
         /// </summary>
         public static string YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore {
             get {
@@ -1583,7 +1592,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kimseyi engellemiş görünmüyorsun!.
+        ///   Looks up a localized string similar to You don&apos;t seem to have blocked anyone!.
         /// </summary>
         public static string YouDontSeemToBeBlockingAnyone {
             get {
@@ -1592,7 +1601,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geçersiz kod girdiniz..
+        ///   Looks up a localized string similar to You have entered an invalid code..
         /// </summary>
         public static string YouHaveEnteredAnInvalidCode {
             get {
@@ -1601,7 +1610,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to KAYBETTİN!.
+        ///   Looks up a localized string similar to YOU LOSE!.
         /// </summary>
         public static string YouLose {
             get {
@@ -1610,7 +1619,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir..
+        ///   Looks up a localized string similar to You must earn a minimum of $ 100 to withdraw your winnings..
         /// </summary>
         public static string YouMustearnAminimumOfToWithdrawYourwinnings {
             get {
@@ -1619,7 +1628,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bilgileriniz güncellendi..
+        ///   Looks up a localized string similar to Your information has been updated..
         /// </summary>
         public static string YourInformationHasBeenUpdated {
             get {
@@ -1628,7 +1637,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seviye.
+        ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string YourLevel {
             get {
@@ -1637,7 +1646,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifreniz güncellendi..
+        ///   Looks up a localized string similar to Your password has been updated..
         /// </summary>
         public static string YourPasswordHasBeenUpdated {
             get {
@@ -1646,7 +1655,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonunuz uygulama içi satın almayı desteklemiyor..
+        ///   Looks up a localized string similar to Your phone does not support in-app purchase..
         /// </summary>
         public static string YourPhoneDoesNotSupportInAppPurchases {
             get {
@@ -1655,7 +1664,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEN KAZANDIN!.
+        ///   Looks up a localized string similar to YOU WIN!.
         /// </summary>
         public static string YouWin {
             get {

@@ -218,6 +218,9 @@
   <data name="DeleteThisEntireConversation" xml:space="preserve">
     <value>Bu Konuşmanın Tamamını Sil?</value>
   </data>
+  <data name="Dolar" xml:space="preserve">
+    <value>Dolar</value>
+  </data>
   <data name="Duel" xml:space="preserve">
     <value>Düello</value>
   </data>
@@ -523,7 +526,7 @@
     <value>Sms kodunu giriniz</value>
   </data>
   <data name="Sounds" xml:space="preserve">
-    <value>Ses Efeckleri</value>
+    <value>Ses Efektleri</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Başarılı</value>

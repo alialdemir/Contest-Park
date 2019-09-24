@@ -13995,16 +13995,16 @@ namespace ContestPark.Mobile.Droid
 			public const int contest_store_header = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int contest_store_money_1 = 2130837600;
+			public const int contest_store_money_5 = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int contest_store_money_2 = 2130837601;
+			public const int contest_store_money_6 = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int contest_store_money_3 = 2130837602;
+			public const int contest_store_money_7 = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int contest_store_money_4 = 2130837603;
+			public const int contest_store_money_8 = 2130837603;
 			
 			// aapt resource value: 0x7f020064
 			public const int ContestSingleCoin = 2130837604;

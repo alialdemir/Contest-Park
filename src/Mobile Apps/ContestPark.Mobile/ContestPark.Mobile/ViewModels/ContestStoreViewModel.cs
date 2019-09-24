@@ -10,7 +10,9 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Services;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -47,6 +49,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Constructors
 
+        #region Properties
+
+        public BalanceTypes BalanceType { get; set; } = BalanceTypes.Gold;
+        public List<InAppBillingProductModel> Products { get; set; }
+
+        #endregion Properties
+
         #region Methods
 
         protected override async Task InitializeAsync()
@@ -56,13 +65,13 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            var products = await _inAppBillingService.GetProductInfoAsync();
-            if (products != null)
-                Items.AddRange(products);
+            Products = await _inAppBillingService.GetProductInfoAsync();
+            if (Products != null)
+                Items.AddRange(Products.Where(x => x.BalanceTypes == BalanceType).ToList());
+
+            // await base.InitializeAsync();
 
             IsBusy = false;
-
-            await base.InitializeAsync();
         }
 
         private Platforms GetCurrentPlatform()
@@ -82,9 +91,18 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="productId">Ürün id</param>
         private async Task ExecutePurchaseCommandAsync(string productId)
         {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
             var purchaseInfo = await _inAppBillingService.PurchaseAsync(productId);
             if (purchaseInfo == null)
+            {
+                IsBusy = false;
+
                 return;
+            }
 
             bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
             {
@@ -131,6 +149,8 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.PurchaseFail,
                     ContestParkResources.Okay);
             }
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -143,11 +163,28 @@ namespace ContestPark.Mobile.ViewModels
                 ContestParkResources.Okay);
         }
 
+        private void ExecuteChangeBalanceTypeCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            BalanceType = BalanceType == BalanceTypes.Gold ? BalanceTypes.Money : BalanceTypes.Gold;
+
+            Items.Clear();
+
+            Items.AddRange(Products.Where(x => x.BalanceTypes == BalanceType).ToList());
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
 
         private ICommand purchaseCommand;
+        private ICommand changeBalanceType;
 
         private ICommand watchAdsVideoCommand;
 
@@ -159,6 +196,11 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand WatchAdsVideoCommand
         {
             get { return watchAdsVideoCommand ?? (watchAdsVideoCommand = new Command(async () => await ExecuteWatchAdsVideoCommandAsync())); }
+        }
+
+        public ICommand ChangeBalanceType
+        {
+            get { return changeBalanceType ?? (changeBalanceType = new Command(() => ExecuteChangeBalanceTypeCommand())); }
         }
 
         #endregion Commands

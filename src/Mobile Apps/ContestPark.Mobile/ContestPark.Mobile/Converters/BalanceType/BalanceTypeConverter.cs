@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Converters.BalanceType
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((BalanceTypes)value) == BalanceTypes.Gold ? ContestParkResources.Gold : ContestParkResources.TurkishLira;
+            return ((BalanceTypes)value) == BalanceTypes.Gold ? ContestParkResources.Gold : ContestParkResources.Dolar;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

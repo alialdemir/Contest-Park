@@ -8,9 +8,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
 {
     public class InAppBillingMockService : IInAppBillingService
     {
-        public Task<IEnumerable<InAppBillingProductModel>> GetProductInfoAsync()
+        public Task<List<InAppBillingProductModel>> GetProductInfoAsync()
         {
-            IEnumerable<InAppBillingProductModel> list = new List<InAppBillingProductModel>
+            List<InAppBillingProductModel> list = new List<InAppBillingProductModel>
             {
                 new InAppBillingProductModel
                 {

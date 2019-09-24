@@ -39,12 +39,15 @@ namespace ContestPark.Mobile.Services.InAppBilling
         {
             get
             {
-                return new string[4]
+                return new string[7]
                                 {
                                     "com.contestparkapp.app.250coins",
                                     "com.contestparkapp.app.1500coins",
                                     "com.contestparkapp.app.7000coins",
-                                    "com.contestparkapp.app.20000coins"
+                                    "com.contestparkapp.app.20000coins",
+                                    "com.contestparkapp.app.1dolar",
+                                    "com.contestparkapp.app.4dolar",
+                                    "com.contestparkapp.app.9dolar"
                                 };
             }
         }
@@ -62,7 +65,11 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
                 for (int i = 0; i < AndroidProductIds.Length; i++)
                 {
-                    productImages.Add(AndroidProductIds[i], $"assets/images/gold_0{(i + 1).ToString()}.png");
+                    string productId = AndroidProductIds[i];
+
+                    // eğer product id içinde dolar yazıyors varsa para paketleri yoksa altın paketleri gösterir
+                    string svgName = productId.EndsWith("dolar") ? "contest_store_money_" : "contest_store_gold_";
+                    productImages.Add(productId, $"assets/images/{svgName}{(i + 1).ToString()}.svg");
                 }
 
                 return productImages;
@@ -77,7 +84,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
         /// App stores ürünlerimizi döndürür
         /// </summary>
         /// <returns>Ürün listesi</returns>
-        public async Task<IEnumerable<InAppBillingProductModel>> GetProductInfoAsync()
+        public async Task<List<InAppBillingProductModel>> GetProductInfoAsync()
         {
             try
             {
@@ -116,9 +123,10 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     Description = product.Description,
                     LocalizedPrice = product.LocalizedPrice,
                     ProductId = product.ProductId,
-                    ProductName = product.Name,
-                    Image = ProductImages.ContainsKey(product.ProductId) ? ProductImages[product.ProductId] : ""
-                }).ToList();
+                    ProductName = product.Name.Replace(" (ContestPark)", ""),
+                    Image = ProductImages.ContainsKey(product.ProductId) ? ProductImages[product.ProductId] : "",
+                    BalanceTypes = product.Name.IndexOf("$") != -1 ? Enums.BalanceTypes.Money : Enums.BalanceTypes.Gold
+                }).OrderBy(x => x.Image).ToList();
             }
             catch (InAppBillingPurchaseException purchaseEx)
             {
@@ -259,7 +267,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     break;
 
                 case PurchaseError.UserCancelled:
-                    message = "UserCancelled.";
+                    //message = "UserCancelled.";
                     break;
 
                 case PurchaseError.AppStoreUnavailable:
@@ -298,6 +306,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
         private async Task ShowErrorDisplayAlertAsync(string message)
         {
+            if (string.IsNullOrEmpty(message))
+                return;
+
             await _pageDialogService?.DisplayAlertAsync(
                 ContestParkResources.Error,
                 message,

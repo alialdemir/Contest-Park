@@ -108,13 +108,15 @@ namespace ContestPark.Mobile.ViewModels
         {
             Bets.Clear();
 
-            Bets.AddRange(
-               new List<BetModel> {
+            if (BalanceType == BalanceTypes.Gold)
+            {
+                Bets.AddRange(
+           new List<BetModel> {
                                 new BetModel
                                 {
                                     Image = "prizeicon1.png",
                                     BalanceType = BalanceType,
-                                    Description = "Buraya herhangi bir açıklama gelebilir.",
+                                    Description = "",
                                     Title = ContestParkResources.Beginner,
                                     Prize = 40 * 2,
                                     EntryFee = 40,
@@ -124,7 +126,7 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     Image = "prizeicon2.png",
                                     BalanceType = BalanceType,
-                                    Description = "Buraya herhangi bir açıklama gelebilir.",
+                                    Description = "",
                                     Title = ContestParkResources.Novice,
                                     Prize = 300 * 2,
                                     EntryFee = 300,
@@ -134,7 +136,7 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     Image = "prizeicon3.png",
                                     BalanceType = BalanceType,
-                                    Description = "Buraya herhangi bir açıklama gelebilir.",
+                                    Description = "",
                                     Title = ContestParkResources.Advanced,
                                     Prize = 1000 * 2,
                                     EntryFee = 1000,
@@ -144,7 +146,7 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     Image = "prizeicon4.png",
                                     BalanceType = BalanceType,
-                                    Description = "Buraya herhangi bir açıklama gelebilir.",
+                                    Description = "",
                                     Title = ContestParkResources.Expert,
                                     Prize = 3000 * 2,
                                     EntryFee = 3000,
@@ -154,7 +156,7 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     Image = "prizeicon5.png",
                                     BalanceType = BalanceType,
-                                    Description = "Buraya herhangi bir açıklama gelebilir.",
+                                    Description = "",
                                     Title = ContestParkResources.Master,
                                     Prize = 4600 * 2,
                                     EntryFee = 4600,
@@ -164,14 +166,82 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     Image = "prizeicon6.png",
                                     BalanceType = BalanceType,
-                                    Description = "Buraya herhangi bir açıklama gelebilir.",
+                                    Description = "",
                                     Title = ContestParkResources.Genius,
                                     Prize = 10000 * 2,
                                     EntryFee = 10000,
                                     CurrentIndex = 6,
                                 }
-               }
-        );
+           }
+    );
+            }
+            else if (BalanceType == BalanceTypes.Money)
+            {
+                Bets.AddRange(
+           new List<BetModel> {
+                                new BetModel
+                                {
+                                    Image = "prizeicon1.png",
+                                    BalanceType = BalanceType,
+                                    Description = "",
+                                    Title = ContestParkResources.Beginner,
+                                    Prize = 1 * 2,
+                                    EntryFee = 1,
+                                    CurrentIndex = 1,
+                                },
+                                new BetModel
+                                {
+                                    Image = "prizeicon2.png",
+                                    BalanceType = BalanceType,
+                                    Description = "",
+                                    Title = ContestParkResources.Novice,
+                                    Prize = 3 * 2,
+                                    EntryFee = 3,
+                                    CurrentIndex = 2,
+                                },
+                                new BetModel
+                                {
+                                    Image = "prizeicon3.png",
+                                    BalanceType = BalanceType,
+                                    Description = "",
+                                    Title = ContestParkResources.Advanced,
+                                    Prize = 4 * 2,
+                                    EntryFee = 4,
+                                    CurrentIndex = 3,
+                                },
+                                new BetModel
+                                {
+                                    Image = "prizeicon4.png",
+                                    BalanceType = BalanceType,
+                                    Description = "",
+                                    Title = ContestParkResources.Expert,
+                                    Prize = 5 * 2,
+                                    EntryFee = 5,
+                                    CurrentIndex = 4,
+                                },
+                                new BetModel
+                                {
+                                    Image = "prizeicon5.png",
+                                    BalanceType = BalanceType,
+                                    Description = "",
+                                    Title = ContestParkResources.Master,
+                                    Prize = 6 * 2,
+                                    EntryFee = 6,
+                                    CurrentIndex = 5,
+                                },
+                                new BetModel
+                                {
+                                    Image = "prizeicon6.png",
+                                    BalanceType = BalanceType,
+                                    Description = "",
+                                    Title = ContestParkResources.Genius,
+                                    Prize = 10 * 2,
+                                    EntryFee = 10,
+                                    CurrentIndex = 6,
+                                }
+           }
+    );
+            }
         }
 
         /// <summary>

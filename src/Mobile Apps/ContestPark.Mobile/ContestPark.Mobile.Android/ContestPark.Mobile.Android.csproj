@@ -596,16 +596,16 @@
     <AndroidResource Include="Resources\drawable\contest_store_gold_4.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_4.svg" />
+    <AndroidResource Include="Resources\drawable\contest_store_money_8.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_3.svg" />
+    <AndroidResource Include="Resources\drawable\contest_store_money_7.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_2.svg" />
+    <AndroidResource Include="Resources\drawable\contest_store_money_6.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_1.svg" />
+    <AndroidResource Include="Resources\drawable\contest_store_money_5.svg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\options.png" />
