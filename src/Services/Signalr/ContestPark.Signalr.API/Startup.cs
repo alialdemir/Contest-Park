@@ -26,16 +26,16 @@ namespace ContestPark.Signalr.API
         {
             services.AddAuth(Configuration);
 
-            //string signalrStoreConnectionString = Configuration.GetValue<string>("Redis");
-            //if (!string.IsNullOrEmpty(signalrStoreConnectionString))
-            //{
-            //    services.AddSignalR()
-            //        .AddRedis(signalrStoreConnectionString);
-            //}
-            //else
-            //{
-            services.AddSignalR();
-            //}
+            string signalrStoreConnectionString = Configuration.GetValue<string>("Redis");
+            if (!string.IsNullOrEmpty(signalrStoreConnectionString))
+            {
+                services.AddSignalR()
+                    .AddRedis(signalrStoreConnectionString);
+            }
+            else
+            {
+                services.AddSignalR();
+            }
 
             services.AddRabbitMq(Configuration)
                     .AddCors(options =>

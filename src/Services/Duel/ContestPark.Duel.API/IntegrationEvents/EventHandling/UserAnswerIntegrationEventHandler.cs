@@ -54,6 +54,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                        Time: {@event.Time}");
 
             List<UserAnswerModel> userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
+            if (userAnswers == null || userAnswers.Count == 0)
+            {
+                _logger.LogWarning("Düello cevapları rediste bulunamadı...");
+                return Task.CompletedTask;
+            }
 
             UserAnswerModel currentRound = userAnswers.FirstOrDefault(x => x.QuestionId == @event.QuestionId);
             if (currentRound == null)

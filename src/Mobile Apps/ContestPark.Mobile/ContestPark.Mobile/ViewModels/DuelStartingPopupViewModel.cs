@@ -251,19 +251,22 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void OnDuelStarting(object sender, DuelStartingModel e)
         {
-            DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
-            if (duelEnterScreenModel != null)
-            {
-                RandomPicturStatus = false;
+            Device.BeginInvokeOnMainThread(() =>
+           {
+               DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
+               if (duelEnterScreenModel != null)
+               {
+                   RandomPicturStatus = false;
 
-                AnimationCommand?.Execute(null);
+                   AnimationCommand?.Execute(null);
 
-                DuelStarting = duelEnterScreenModel;
-            }
-            else
-            {
-                NotStartingDuel().Wait();
-            }
+                   DuelStarting = duelEnterScreenModel;
+               }
+               else
+               {
+                   NotStartingDuel().Wait();
+               }
+           });
         }
 
         /// <summary>
@@ -271,36 +274,38 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void OnDuelCreated(object sender, DuelCreated e)
         {
-            DuelCreated duelCreated = (DuelCreated)sender;
-            if (duelCreated == null)
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
-                return;
-            }
-
-            if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
-            {
-                var questionPopupView = new QuestionPopupView
+                DuelCreated duelCreated = (DuelCreated)sender;
+                if (duelCreated == null)
                 {
-                    DuelCreated = duelCreated,
-                    DuelStarting = new DuelStartingModel
+                    // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+                    return;
+                }
+
+                RandomPicturStatus = false;
+
+                if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
+                {
+                    var questionPopupView = new QuestionPopupView
                     {
-                        FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
-                        OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
-                        DuelId = DuelStarting.DuelId,
-                        FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
-                        FounderFullName = DuelStarting.FounderFullName,
-                        FounderUserId = DuelStarting.FounderUserId,
-                        OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
-                        OpponentFullName = DuelStarting.OpponentFullName,
-                        OpponentUserId = DuelStarting.OpponentUserId
-                    },
-                    SubcategoryName = SelectedSubCategory.SubcategoryName,
-                    SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
-                };
+                        DuelCreated = duelCreated,
+                        DuelStarting = new DuelStartingModel
+                        {
+                            FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
+                            OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
+                            DuelId = DuelStarting.DuelId,
+                            FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
+                            FounderFullName = DuelStarting.FounderFullName,
+                            FounderUserId = DuelStarting.FounderUserId,
+                            OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
+                            OpponentFullName = DuelStarting.OpponentFullName,
+                            OpponentUserId = DuelStarting.OpponentUserId
+                        },
+                        SubcategoryName = SelectedSubCategory.SubcategoryName,
+                        SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
+                    };
 
-                Device.BeginInvokeOnMainThread(async () =>
-                {
                     AudioStop();
 
                     await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
@@ -310,15 +315,15 @@ namespace ContestPark.Mobile.ViewModels
                     await PushPopupPageAsync(questionPopupView);
 
                     DuelCloseCommand.Execute(null);
-                });
 
-                OffSignalr();
-            }
-            else
-            {
-                // buraya gelmiş ise rakip bilgileriden önce sorular gelmiştir.... o zamaan rakip bilgileri gelince burayı tekrar çağırmalı
-                // TODO: rakip fotoğrafınn gelmesini beklet
-            }
+                    OffSignalr();
+                }
+                else
+                {
+                    // buraya gelmiş ise rakip bilgileriden önce sorular gelmiştir.... o zamaan rakip bilgileri gelince burayı tekrar çağırmalı
+                    // TODO: rakip fotoğrafınn gelmesini beklet
+                }
+            });
         }
 
         /// <summary>
@@ -349,6 +354,9 @@ namespace ContestPark.Mobile.ViewModels
 
             Device.StartTimer(new TimeSpan(0, 0, 0, 0, 700), () =>
             {
+                if (!RandomPicturStatus)
+                    return RandomPicturStatus;
+
                 if (pictureIndex >= 0)
                 {
                     pictureIndex--;
@@ -356,7 +364,8 @@ namespace ContestPark.Mobile.ViewModels
                     if (pictureIndex < 0)
                         pictureIndex = pictures.Length - 1;
 
-                    DuelStarting.OpponentProfilePicturePath = pictures[pictureIndex];
+                    if (DuelStarting.DuelId == 0)
+                        DuelStarting.OpponentProfilePicturePath = pictures[pictureIndex];
                 }
 
                 return RandomPicturStatus;

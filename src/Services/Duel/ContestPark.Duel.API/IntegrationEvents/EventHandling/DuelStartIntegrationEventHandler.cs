@@ -159,8 +159,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                              string opponentConnectionId,
                                              IEnumerable<QuestionModel> questions)
         {
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
            {
+               await Task.Delay(3000);
+
                var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
                                                        founderUserId,
                                                        founderConnectionId,

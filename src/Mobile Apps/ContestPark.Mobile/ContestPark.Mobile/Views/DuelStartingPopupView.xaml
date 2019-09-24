@@ -82,9 +82,6 @@
                         Text="{Binding DuelStarting.FounderCountry}"
                         TextColor="#FFD94E" />
                 </StackLayout>
-
-
-
             </Grid>
 
             <!--  Line  -->

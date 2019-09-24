@@ -75,6 +75,8 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                     options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
                 }).Build();
 
+                HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
+
                 EventListener();
 
                 GetConnection();
