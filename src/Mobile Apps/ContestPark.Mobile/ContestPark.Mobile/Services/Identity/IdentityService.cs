@@ -281,13 +281,15 @@ namespace ContestPark.Mobile.Services.Identity
             CultureInfo cultureInfo = Xamarin.Forms.DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             signUpModel.LanguageCode = cultureInfo.IetfLanguageTag;
 
-            signUpModel.DeviceIdentifier = Xamarin.Forms.DependencyService.Get<IDevice>().GetIdentifier();// IMEI numarası alındı ;)
+            signUpModel.DeviceIdentifier = Xamarin.Forms.DependencyService.Get<IDevice>().GetIdentifier();// IMEI numarası alındı
 
-            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, signUpModel);
+            signUpModel.ReferenceCode = "test";
+
+            var response = await _requestProvider.PostAsync<string>(uri, signUpModel);
 
             await ShowValidationMessages(response.Error);
 
-            return response.Data?.MemberNames?.Count() == 0;
+            return response.Error?.MemberNames?.Count() == 0;
         }
 
         /// <summary>
