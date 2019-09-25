@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -527,34 +528,11 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             try
             {
-                if (!string.IsNullOrEmpty(signUpModel.ReferenceCode))
-                {
-                    _logger.LogInformation($@"Referans kodu ile üye olma işlemi gerçekleşti. Reference Code:{signUpModel.ReferenceCode}
-                                                                                         New User Id: {user.Id}
-                                                                                         GiftMoneyAmount: {_identitySettings.GiftMoneyAmount}");
+                AddReferenceBalance(user.Id, signUpModel.ReferenceCode);
 
-                    string referenceUserId = _userRepository.GetUserIdByUserName(signUpModel.ReferenceCode);
-                    if (!string.IsNullOrEmpty(referenceUserId))// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
-                    {
-                        PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, user.Id);
-
-                        PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
-
-                        _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, referenceUserId, user.Id);
-                    }
-                    else
-                    {
-                        ReferenceModel referenceModel = _referenceRepository.IsCodeActive(signUpModel.ReferenceCode);
-                        if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
-                        {
-                            PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, user.Id);
-
-                            _referenceCodeRepostory.Insert(signUpModel.ReferenceCode, null, user.Id);
-                        }
-                    }
-                }
-
-                await _userManager.AddToRoleAsync(user, "user");// Role eklendi
+                bool isInRole = await _userManager.IsInRoleAsync(user, "user");
+                if (!isInRole)
+                    await _userManager.AddToRoleAsync(user, "user");// Role eklendi
 
                 if (!string.IsNullOrEmpty(signUpModel.DeviceIdentifier))
                 {
@@ -562,14 +540,49 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                     _deviceInfoRepository.Insert(signUpModel.DeviceIdentifier);
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                Logger.LogError($"Device info kayıt edilirken hata oluştu. device info id: {signUpModel.DeviceIdentifier}");
+                Logger.LogError($"Device info kayıt edilirken hata oluştu. device info id: {signUpModel.DeviceIdentifier}", ex);
             }
 
             _logger.LogInformation($"Register new user: {user.Id} userName: {user.UserName}");
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Referans kodu ile bakiye ekle
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="referenceCode">Referans kodu</param>
+        private void AddReferenceBalance(string userId, string referenceCode)
+        {
+            if (!string.IsNullOrEmpty(referenceCode))
+            {
+                _logger.LogInformation($@"Referans kodu ile üye olma işlemi gerçekleşti. Reference Code:{referenceCode}
+                                                                                         New User Id: {userId}
+                                                                                         GiftMoneyAmount: {_identitySettings.GiftMoneyAmount}");
+
+                string referenceUserId = _userRepository.GetUserIdByUserName(referenceCode);
+                if (!string.IsNullOrEmpty(referenceUserId))// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
+                {
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, userId);
+
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
+
+                    _referenceCodeRepostory.Insert(referenceCode, referenceUserId, userId);
+                }
+                else
+                {
+                    ReferenceModel referenceModel = _referenceRepository.IsCodeActive(referenceCode);
+                    if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
+                    {
+                        PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, userId);
+
+                        _referenceCodeRepostory.Insert(referenceCode, null, userId);
+                    }
+                }
+            }
         }
 
         /// <summary>
