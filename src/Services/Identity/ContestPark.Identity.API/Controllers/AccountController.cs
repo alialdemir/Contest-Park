@@ -522,7 +522,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 return BadRequest(IdentityResultErrors(result.Errors));
 
             // Kullanıcı yeni login olduğu için  belirli bir miktar altın ekledim
-            PublishChangeBalanceIntegrationEvent(10.00m, BalanceTypes.Gold, user.Id);
+            PublishChangeBalanceIntegrationEvent(120.00m, BalanceTypes.Gold, user.Id);
 
             if (!string.IsNullOrEmpty(signUpModel.ReferenceCode))
             {
