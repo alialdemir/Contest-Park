@@ -32,6 +32,9 @@ namespace ContestPark.Balance.API.IntegrationEvents.EventHandling
                                    {@event.BalanceType}
                                    {@event.BalanceHistoryType}");
 
+            if (@event.UserId.EndsWith("-bot"))
+                return;
+
             // TODO: işlem başarısız olursa rabbitmq eventi tekrar tetiklemeli
             bool isSuccess = await _balanceRepository.UpdateBalanceAsync(new Models.ChangeBalanceModel
             {

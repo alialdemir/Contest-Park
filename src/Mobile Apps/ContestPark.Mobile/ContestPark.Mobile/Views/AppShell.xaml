@@ -67,7 +67,7 @@
         IconImageSource="settings.svg"
         Text="{i18n:Translate Settings}" />
 
-    <MenuItem
+    <!--<MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="facebook"
         IconImageSource="facebook.svg"
@@ -77,7 +77,7 @@
         Clicked="MenuItem_Clicked"
         CommandParameter="twitter"
         IconImageSource="twitter.svg"
-        Text="Twitter" />
+        Text="Twitter" />-->
 
     <MenuItem
         Clicked="MenuItem_Clicked"

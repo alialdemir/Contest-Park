@@ -154,6 +154,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             result.IsSuccess = response.IsSuccessStatusCode;
 
+            result.HttpStatusCode = response.StatusCode;
+
             return result;
         }
 

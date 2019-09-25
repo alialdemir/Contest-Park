@@ -3,12 +3,18 @@
     x:Class="ContestPark.Mobile.Views.AppShellHeaderView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters.Balance"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="appShellHeaderView"
     prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converter:BalanceConverter x:Key="bc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid>
 
@@ -81,7 +87,7 @@
                                 FontSize="14"
                                 HorizontalOptions="CenterAndExpand"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Balance.Money, StringFormat='+ {0:##.##}'}"
+                                Text="{Binding Balance.Money, Converter={StaticResource bc}}"
                                 TextColor="{StaticResource White}"
                                 VerticalOptions="Center" />
                         </Grid>
@@ -110,7 +116,7 @@
                                 FontSize="14"
                                 HorizontalOptions="CenterAndExpand"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Balance.Gold, StringFormat='+ {0:##}'}"
+                                Text="{Binding Balance.Gold, Converter={StaticResource bc}}"
                                 TextColor="{StaticResource White}"
                                 VerticalOptions="Center" />
                         </Grid>

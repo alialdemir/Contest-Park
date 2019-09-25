@@ -18,7 +18,6 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -283,13 +282,11 @@ namespace ContestPark.Mobile.Services.Identity
 
             signUpModel.DeviceIdentifier = Xamarin.Forms.DependencyService.Get<IDevice>().GetIdentifier();// IMEI numarası alındı
 
-            signUpModel.ReferenceCode = "test";
-
             var response = await _requestProvider.PostAsync<string>(uri, signUpModel);
 
             await ShowValidationMessages(response.Error);
 
-            return response.Error?.MemberNames?.Count() == 0;
+            return response.IsSuccess;
         }
 
         /// <summary>

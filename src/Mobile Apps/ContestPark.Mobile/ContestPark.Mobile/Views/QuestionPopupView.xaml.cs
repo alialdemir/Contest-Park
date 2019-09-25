@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -44,7 +45,7 @@ namespace ContestPark.Mobile.Views
             viewModel.DuelScreen = DuelStarting;
             viewModel.SubcategoryName = SubcategoryName;
             viewModel.SubCategoryPicturePath = SubCategoryPicturePath;
-            //viewModel.AnimateStylishCommand = new Command(Stylishs.AnimateStylish);
+            viewModel.AnimateStylishCommand = new Command(Stylishs.AnimateStylish);
 
             viewModel.InitializeCommand.Execute(null);
             viewModel.IsInitialized = true;

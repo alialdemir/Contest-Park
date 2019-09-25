@@ -108,6 +108,14 @@ namespace ContestPark.Mobile.ViewModels
             });
             if (isRegister)
                 await LoginProcessAsync();
+            else
+            {
+                await DisplayAlertAsync("",
+                                        ContestParkResources.MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage,
+                                        ContestParkResources.Okay);
+
+                await RemoveFirstPopupAsync();
+            }
 
             UserDialogs.Instance.HideLoading();
 

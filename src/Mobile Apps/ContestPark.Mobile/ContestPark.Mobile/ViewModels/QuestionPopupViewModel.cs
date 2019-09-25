@@ -607,8 +607,6 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task BotSaveAnswer(SaveAnswerModel saveAnswer)
         {
-            Debug.WriteLine("bot cevap" + saveAnswer.Stylish);
-
             await _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
