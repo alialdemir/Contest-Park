@@ -100,11 +100,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            await PublishDuelStartingEvent(duelId,
-                                           @event.FounderUserId,
-                                           @event.FounderConnectionId,
-                                           @event.OpponentUserId,
-                                           @event.OpponentConnectionId);
+            PublishDuelStartingEvent(duelId,
+                                          @event.FounderUserId,
+                                          @event.FounderConnectionId,
+                                          @event.OpponentUserId,
+                                          @event.OpponentConnectionId);
 
             var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
@@ -163,11 +163,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
            {
                await Task.Delay(1000);
                var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
-                                                       founderUserId,
-                                                       founderConnectionId,
-                                                       opponentUserId,
-                                                       opponentConnectionId,
-                                                       questions);
+                                                                founderUserId,
+                                                                founderConnectionId,
+                                                                opponentUserId,
+                                                                opponentConnectionId,
+                                                                questions);
 
                _eventBus.Publish(duelEvent);
            });
@@ -181,13 +181,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="founderConnectionId">Kurucu connection id</param>
         /// <param name="opponentUserId">Rakip kullanıcı id</param>
         /// <param name="opponentConnectionId">Rakip connection id</param>
-        private Task PublishDuelStartingEvent(int duelId,
+        private void PublishDuelStartingEvent(int duelId,
                                               string founderUserId,
                                               string founderConnectionId,
                                               string opponentUserId,
                                               string opponentConnectionId)
         {
-            return Task.Factory.StartNew(async () =>// Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
+            Task.Factory.StartNew(async () =>// Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
             {
                 List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
             {

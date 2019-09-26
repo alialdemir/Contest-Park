@@ -24,7 +24,7 @@
 
             <Image
                 Margin="0,13,0,25"
-                Aspect="AspectFill"
+                Aspect="Fill"
                 HeightRequest="150"
                 IsVisible="{Binding Path=QuestionType, Source={x:Reference questionCardFactoryPage}, Converter={StaticResource qtc}}"
                 Source="{Binding Path=Link, Source={x:Reference questionCardFactoryPage}}"

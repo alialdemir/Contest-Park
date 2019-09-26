@@ -13,7 +13,6 @@ using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -403,7 +402,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Bekleme ekranı gösterir belirli süre sonra gizler
         /// </summary>
-        private void DisplayQuestionExpectedPopup()
+        private async void DisplayQuestionExpectedPopup()
         {
             if (IsBusy)
                 return;
@@ -416,7 +415,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ResetStylishColor();
 
-            PopupPage popupPage = QuestionExpectedPopup();
+            PopupPage popupPage = await QuestionExpectedPopup();
 
             StartGame(popupPage);
 
@@ -472,15 +471,12 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
             _duelSignalRService.OffNextQuestion();
 
-            Device.BeginInvokeOnMainThread(async () =>
+            await PushPopupPageAsync(new DuelResultPopupView()
             {
-                await PushPopupPageAsync(new DuelResultPopupView()
-                {
-                    DuelId = DuelScreen.DuelId
-                });
-
-                await RemoveFirstPopupAsync();
+                DuelId = DuelScreen.DuelId
             });
+
+            await RemoveFirstPopupAsync();
         }
 
         /// <summary>
@@ -542,7 +538,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Bekleme ekranı göster
         /// </summary>
-        private PopupPage QuestionExpectedPopup()
+        private async Task<PopupPage> QuestionExpectedPopup()
         {
             PopupPage popupPage = new QuestionExpectedPopupView()
             {
@@ -551,7 +547,7 @@ namespace ContestPark.Mobile.ViewModels
                 RoundCount = Round
             };
 
-            Device.BeginInvokeOnMainThread(async () => await PushPopupPageAsync(popupPage));
+            await PushPopupPageAsync(popupPage);
 
             return popupPage;
         }
@@ -582,13 +578,10 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task SaveAnswer(SaveAnswerModel saveAnswer)
         {
-            Debug.WriteLine("if öncesi  " + saveAnswer.Stylish);
             if (IsBusy)
                 return;
 
             IsBusy = true;
-
-            Debug.WriteLine("if sonrası " + saveAnswer.Stylish);
 
             await _duelSignalRService.SaveAnswer(new UserAnswer
             {

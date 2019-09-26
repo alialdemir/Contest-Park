@@ -251,79 +251,73 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void OnDuelStarting(object sender, DuelStartingModel e)
         {
-            Device.BeginInvokeOnMainThread(() =>
-           {
-               DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
-               if (duelEnterScreenModel != null)
-               {
-                   RandomPicturStatus = false;
+            DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
+            if (duelEnterScreenModel != null)
+            {
+                RandomPicturStatus = false;
 
-                   AnimationCommand?.Execute(null);
+                AnimationCommand?.Execute(null);
 
-                   DuelStarting = duelEnterScreenModel;
-               }
-               else
-               {
-                   NotStartingDuel().Wait();
-               }
-           });
+                DuelStarting = duelEnterScreenModel;
+            }
+            else
+            {
+                NotStartingDuel().Wait();
+            }
         }
 
         /// <summary>
         /// Düellodaki soruları alır
         /// </summary>
-        private void OnDuelCreated(object sender, DuelCreated e)
+        private async void OnDuelCreated(object sender, DuelCreated e)
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            DuelCreated duelCreated = (DuelCreated)sender;
+            if (duelCreated == null)
             {
-                DuelCreated duelCreated = (DuelCreated)sender;
-                if (duelCreated == null)
-                {
-                    // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
-                    return;
-                }
+                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+                return;
+            }
 
-                RandomPicturStatus = false;
+            RandomPicturStatus = false;
 
-                if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
+            if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
+            {
+                var questionPopupView = new QuestionPopupView
                 {
-                    var questionPopupView = new QuestionPopupView
+                    DuelCreated = duelCreated,
+                    DuelStarting = new DuelStartingModel
                     {
-                        DuelCreated = duelCreated,
-                        DuelStarting = new DuelStartingModel
-                        {
-                            FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
-                            OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
-                            DuelId = DuelStarting.DuelId,
-                            FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
-                            FounderFullName = DuelStarting.FounderFullName,
-                            FounderUserId = DuelStarting.FounderUserId,
-                            OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
-                            OpponentFullName = DuelStarting.OpponentFullName,
-                            OpponentUserId = DuelStarting.OpponentUserId
-                        },
-                        SubcategoryName = SelectedSubCategory.SubcategoryName,
-                        SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
-                    };
+                        FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
+                        OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
+                        DuelId = DuelStarting.DuelId,
+                        FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
+                        FounderFullName = DuelStarting.FounderFullName,
+                        FounderUserId = DuelStarting.FounderUserId,
+                        OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
+                        OpponentFullName = DuelStarting.OpponentFullName,
+                        OpponentUserId = DuelStarting.OpponentUserId
+                    },
+                    SubcategoryName = SelectedSubCategory.SubcategoryName,
+                    SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
+                };
 
-                    AudioStop();
+                AudioStop();
 
-                    await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
+                await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
 
-                    IsNextQuestionExit = true;
+                IsNextQuestionExit = true;
 
-                    await PushPopupPageAsync(questionPopupView);
+                await PushPopupPageAsync(questionPopupView);
 
-                    DuelCloseCommand.Execute(null);
+                DuelCloseCommand.Execute(null);
 
-                    OffSignalr();
-                }
-                else
-                {
-                    // buraya gelmiş ise rakip bilgileriden önce sorular gelmiştir.... o zamaan rakip bilgileri gelince burayı tekrar çağırmalı
-                    // TODO: rakip fotoğrafınn gelmesini beklet
-                }
-            });
+                OffSignalr();
+            }
+            else
+            {
+                // buraya gelmiş ise rakip bilgileriden önce sorular gelmiştir.... o zamaan rakip bilgileri gelince burayı tekrar çağırmalı
+                // TODO: rakip fotoğrafınn gelmesini beklet
+            }
         }
 
         /// <summary>
