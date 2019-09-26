@@ -266,7 +266,7 @@
     <Compile Include="CustomRenderer\SignInSocialNetworkPageRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Dependencies\Localize .cs" />
-    <Compile Include="Dependencies\UniqueIdAndroid.cs" />
+    <Compile Include="Dependencies\DeviceHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

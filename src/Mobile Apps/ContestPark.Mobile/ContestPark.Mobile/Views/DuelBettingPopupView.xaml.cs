@@ -42,6 +42,13 @@ namespace ContestPark.Mobile.Views
 
             viewModel.InitializeCommand.Execute(null);
             viewModel.IsInitialized = true;
+            // panview
+            //AbsoluteLayout.LayoutBounds = "0.5,0.5,345,451"
+            // btn
+            //AbsoluteLayout.LayoutBounds = ".5,1,345,200"
+            //pnv
+            //   DeviceHelper deviceHelper = DependencyService.Get<IDevice>().GeScreenSize();
+            //AbsoluteLayout.SetLayoutBounds(btnPlay, new Rectangle(115, 159, (deviceHelper.ScreenWidth - 100), (deviceHelper.ScreenHeight - 100)));
         }
 
         protected override bool OnBackButtonPressed()

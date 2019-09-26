@@ -3,14 +3,15 @@
     x:Class="ContestPark.Mobile.Views.ContestStoreView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="{Binding Title}"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{StaticResource GlobalBackgroundColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
@@ -29,61 +30,82 @@
                             Source="contest_store_header.png"
                             VerticalOptions="FillAndExpand" />
 
-                        <Grid BackgroundColor="{StaticResource White}" ColumnSpacing="0">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.ChangeBalanceType, Source={x:Reference lstView}}" />
-                            </Grid.GestureRecognizers>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="32" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
+                        <yummy:PancakeView
+                            Margin="0,0,0,5 "
+                            BackgroundColor="{StaticResource White}"
+                            CornerRadius="8"
+                            Elevation="6"
+                            HasShadow="True"
+                            IsClippedToBounds="True"
+                            Visual="Material">
 
-                            <ffimageloadingsvg:SvgCachedImage
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                HeightRequest="32"
-                                HorizontalOptions="EndAndExpand"
-                                Source="DolarSingleCoin.svg"
-                                WidthRequest="32" />
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="30">
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource GothamRoundedMedium}"
-                                FontSize="18"
-                                HorizontalOptions="CenterAndExpand"
-                                HorizontalTextAlignment="Center"
-                                Text="Altın Yükle"
-                                TextColor="{StaticResource Black}"
-                                VerticalOptions="Center" />
+                                <Grid
+                                    Margin="0"
+                                    Padding="0"
+                                    ColumnSpacing="0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    RowSpacing="0">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.ChangeBalanceType, Source={x:Reference lstView}}" CommandParameter="1" />
+                                    </Grid.GestureRecognizers>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                            <ffimageloadingsvg:SvgCachedImage
-                                Grid.Row="0"
-                                Grid.Column="2"
-                                HeightRequest="32"
-                                HorizontalOptions="EndAndExpand"
-                                Source="ContestSingleCoin.svg"
-                                WidthRequest="32" />
+                                    <Label
+                                        Grid.Column="0"
+                                        FontFamily="{StaticResource GothamRoundedMedium}"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="End"
+                                        Text="Altın Yükle"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center" />
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="3"
-                                Margin="0,0,17,0"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource GothamRoundedMedium}"
-                                FontSize="18"
-                                HorizontalOptions="CenterAndExpand"
-                                HorizontalTextAlignment="Center"
-                                Text="Bakiye Yükle"
-                                TextColor="{StaticResource Black}"
-                                VerticalOptions="Center" />
-                        </Grid>
+                                    <Image
+                                        Grid.Column="1"
+                                        Aspect="AspectFit"
+                                        HeightRequest="40"
+                                        Source="doublecoins.png"
+                                        WidthRequest="50" />
+                                </Grid>
+                                <Grid
+                                    Margin="0"
+                                    Padding="0"
+                                    ColumnSpacing="0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    RowSpacing="0">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.ChangeBalanceType, Source={x:Reference lstView}}" CommandParameter="2" />
+                                    </Grid.GestureRecognizers>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Grid.Column="0"
+                                        FontFamily="{StaticResource GothamRoundedMedium}"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="End"
+                                        Text="Bakiye Yükle"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Image
+                                        Grid.Column="1"
+                                        Aspect="AspectFit"
+                                        HeightRequest="40"
+                                        Source="doublecoinstl.png"
+                                        WidthRequest="50" />
+                                </Grid>
+                            </StackLayout>
+                        </yummy:PancakeView>
                     </StackLayout>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.HeaderTemplate>
@@ -130,7 +152,7 @@
                                     Grid.Column="1"
                                     FontAttributes="Bold"
                                     FontFamily="{StaticResource SofiaProSemiBold}"
-                                    FontSize="18"
+                                    FontSize="16"
                                     LineBreakMode="TailTruncation"
                                     Text="{Binding ProductName}"
                                     TextColor="#430856" />
@@ -151,11 +173,12 @@
                                     Grid.Column="2"
                                     FontAttributes="Bold"
                                     FontFamily="{StaticResource GothamRoundedBold}"
-                                    FontSize="16"
+                                    FontSize="Small"
                                     HeightRequest="30"
                                     HorizontalTextAlignment="End"
                                     Text="{Binding DisplayPrice}"
                                     TextColor="#F7416E"
+                                    VerticalOptions="CenterAndExpand"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>

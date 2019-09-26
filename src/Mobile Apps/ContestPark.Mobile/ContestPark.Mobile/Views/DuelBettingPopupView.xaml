@@ -38,12 +38,10 @@
             SelectedIndex="{Binding SelectedIndex}">
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
-                    <AbsoluteLayout>
+                    <RelativeLayout>
+
                         <Components:LinearGradientButton
-                            Margin="0,0,0,40"
-                            Padding="0,90,0,0"
-                            AbsoluteLayout.LayoutBounds=".5,1,345,200"
-                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            Padding="0,0,0,-60"
                             BackgroundColor="Transparent"
                             BorderRadius="48"
                             Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
@@ -52,26 +50,51 @@
                             FontAttributes="Bold"
                             FontFamily="{StaticResource GothamRoundedBold}"
                             FontSize="23"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                   Property=Height,
+                                                                                   Factor=.2,
+                                                                                   Constant=0}"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=0,
+                                                                                  Constant=300}"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=0.5,
+                                                                              Constant=-150}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                              ElementName=pvkView,
+                                                                              Property=Y,
+                                                                              Factor=1,
+                                                                              Constant=340}"
                             StartColor="#2CCCD8"
                             Text="{i18n:Translate Play}"
                             TextColor="{StaticResource White}"
-                            Visual="Material" />
-
+                            Visual="Material"
+                            WidthRequest="300" />
                         <yummy:PancakeView
+                            x:Name="pvkView"
                             Padding="0"
-                            AbsoluteLayout.LayoutBounds="0.5,0.5,345,451"
-                            AbsoluteLayout.LayoutFlags="XProportional, YProportional"
                             BackgroundColor="{StaticResource White}"
                             CornerRadius="10"
                             Elevation="6"
                             HasShadow="True"
-                            IsClippedToBounds="True">
+                            HeightRequest="400"
+                            IsClippedToBounds="True"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=0.5,
+                                                                              Constant=-150}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Height,
+                                                                              Factor=0.5,
+                                                                              Constant=-220}"
+                            WidthRequest="300">
 
                             <Grid
                                 Grid.Row="0"
                                 ColumnSpacing="0"
-                                RowSpacing="0"
-                                VerticalOptions="FillAndExpand">
+                                RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -174,7 +197,6 @@
 
                                 <Label
                                     Grid.Row="8"
-                                    Margin="0,0,0,20"
                                     FontFamily="{StaticResource MontserratMedium}"
                                     FontSize="10"
                                     HorizontalTextAlignment="Center"
@@ -201,7 +223,7 @@
                                     VerticalTextAlignment="Start" />
                             </Grid>
                         </yummy:PancakeView>
-                    </AbsoluteLayout>
+                    </RelativeLayout>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>
         </cards:CoverFlowView>

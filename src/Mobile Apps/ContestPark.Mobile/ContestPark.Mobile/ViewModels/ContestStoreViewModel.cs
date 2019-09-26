@@ -10,6 +10,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -163,14 +164,14 @@ namespace ContestPark.Mobile.ViewModels
                 ContestParkResources.Okay);
         }
 
-        private void ExecuteChangeBalanceTypeCommand()
+        private void ExecuteChangeBalanceTypeCommand(BalanceTypes balanceType)
         {
-            if (IsBusy)
+            if (IsBusy || BalanceType == balanceType)
                 return;
 
             IsBusy = true;
 
-            BalanceType = BalanceType == BalanceTypes.Gold ? BalanceTypes.Money : BalanceTypes.Gold;
+            BalanceType = balanceType;
 
             Items.Clear();
 
@@ -200,7 +201,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand ChangeBalanceType
         {
-            get { return changeBalanceType ?? (changeBalanceType = new Command(() => ExecuteChangeBalanceTypeCommand())); }
+            get { return changeBalanceType ?? (changeBalanceType = new Command<string>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)Convert.ToByte(balanceType)))); }
         }
 
         #endregion Commands

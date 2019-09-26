@@ -61,12 +61,12 @@
             <!--  Timer Start  -->
 
             <Grid Grid.Row="0" Grid.Column="2">
-                <!--<components:CircularProgress
+                <components:CircularProgress
                     Indeterminate="False"
                     Max="10"
                     Progress="{Binding Time, Converter={StaticResource tcc}}"
                     ProgressBackgroundColor="{StaticResource White}"
-                    ProgressColor="#3BE278" />-->
+                    ProgressColor="#3BE278" />
 
                 <Label
                     FontFamily="{StaticResource SofiaProBlack}"

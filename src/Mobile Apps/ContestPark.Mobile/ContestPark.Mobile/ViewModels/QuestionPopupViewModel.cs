@@ -293,7 +293,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private void SetCurrentQuestion()
         {
-            if (Round > DuelCreated.Questions.Count())
+            if (DuelCreated == null || DuelCreated.Questions == null || Round > DuelCreated.Questions.Count())
                 return;
 
             var currentQuestion = DuelCreated.Questions.ToList()[Round - 1];
