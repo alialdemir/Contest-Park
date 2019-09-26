@@ -17,6 +17,11 @@ namespace ContestPark.Mobile.Components
                                                                                            declaringType: typeof(CircleImage),
                                                                                            defaultValue: null);
 
+        public static readonly BindableProperty IsLoadingPlaceholderProperty = BindableProperty.Create(propertyName: nameof(IsLoadingPlaceholder),
+                                                                                           returnType: typeof(bool),
+                                                                                           declaringType: typeof(CircleImage),
+                                                                                           defaultValue: true);
+
         public CachedImage()
         {
             RetryCount = 0;
@@ -27,10 +32,19 @@ namespace ContestPark.Mobile.Components
             VerticalOptions = LayoutOptions.Center;
             CacheDuration = new TimeSpan(0, 1, 0, 0);
             //CacheType = FFImageLoading.Cache.CacheType.Memory;
-            LoadingPlaceholder = ImageSource.FromFile(DefaultImages.DefaultProfilePicture);
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) => Command?.Execute(CommandParameter);
             GestureRecognizers.Add(tapGestureRecognizer);
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            if (IsLoadingPlaceholder)
+            {
+                LoadingPlaceholder = ImageSource.FromFile(DefaultImages.DefaultProfilePicture);
+            }
+
+            base.OnBindingContextChanged();
         }
 
         public ICommand Command
@@ -48,6 +62,15 @@ namespace ContestPark.Mobile.Components
             set
             {
                 SetValue(CommandParameterProperty, value);
+            }
+        }
+
+        public bool IsLoadingPlaceholder
+        {
+            get { return (bool)GetValue(IsLoadingPlaceholderProperty); }
+            set
+            {
+                SetValue(IsLoadingPlaceholderProperty, value);
             }
         }
     }

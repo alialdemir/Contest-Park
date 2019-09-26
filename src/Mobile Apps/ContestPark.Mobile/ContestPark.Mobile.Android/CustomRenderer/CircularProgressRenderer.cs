@@ -1,5 +1,4 @@
-﻿using Android.Content;
-using com.refractored.monodroidtoolkit;
+﻿using com.refractored.monodroidtoolkit;
 using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using Xamarin.Forms;
@@ -9,64 +8,75 @@ using Xamarin.Forms.Platform.Android;
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
+    [System.Obsolete]
     public class CircularProgressRenderer : ViewRenderer<CircularProgress, HoloCircularProgressBar>
     {
-        public CircularProgressRenderer(Context context) : base(context)
-        {
-        }
-
         protected override void OnElementChanged(ElementChangedEventArgs<CircularProgress> e)
         {
-            base.OnElementChanged(e);
-
-            if (e.OldElement != null || this.Element == null)
-                return;
-
-            var progress = new HoloCircularProgressBar(Context)
+            try
             {
-                Max = Element.Max,
-                Progress = Element.Progress,
-                Indeterminate = Element.Indeterminate,
-                ProgressColor = Element.ProgressColor.ToAndroid(),
-                ProgressBackgroundColor = Element.ProgressBackgroundColor.ToAndroid(),
-                IndeterminateInterval = Element.IndeterminateSpeed,
-                IsMarkerEnabled = false,
-                CircleStrokeWidth = 10
-            };
+                if (e.OldElement != null || Element == null || Context == null)
+                    return;
 
-            SetNativeControl(progress);
+                var progress = new HoloCircularProgressBar(Context)
+                {
+                    Max = Element.Max,
+                    Progress = Element.Progress,
+                    Indeterminate = Element.Indeterminate,
+                    ProgressColor = Element.ProgressColor.ToAndroid(),
+                    ProgressBackgroundColor = Element.ProgressBackgroundColor.ToAndroid(),
+                    IndeterminateInterval = Element.IndeterminateSpeed,
+                    IsMarkerEnabled = false,
+                    CircleStrokeWidth = 10
+                };
+
+                SetNativeControl(progress);
+
+                base.OnElementChanged(e);
+            }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
         }
 
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            base.OnElementPropertyChanged(sender, e);
+            try
+            {
+                if (Control == null || Element == null || Context == null || e == null || e.PropertyName == null)
+                    return;
 
-            if (Control == null || Element == null)
-                return;
+                if (e.PropertyName == CircularProgress.MaxProperty.PropertyName)
+                {
+                    Control.Max = Element.Max;
+                }
+                else if (e.PropertyName == CircularProgress.ProgressProperty.PropertyName)
+                {
+                    Control.Progress = Element.Progress;
+                }
+                else if (e.PropertyName == CircularProgress.IndeterminateProperty.PropertyName)
+                {
+                    Control.Indeterminate = Element.Indeterminate;
+                }
+                else if (e.PropertyName == CircularProgress.ProgressBackgroundColorProperty.PropertyName)
+                {
+                    Control.ProgressBackgroundColor = Element.ProgressBackgroundColor.ToAndroid();
+                }
+                else if (e.PropertyName == CircularProgress.ProgressColorProperty.PropertyName)
+                {
+                    Control.ProgressColor = Element.ProgressColor.ToAndroid();
+                }
+                else if (e.PropertyName == CircularProgress.IndeterminateSpeedProperty.PropertyName)
+                {
+                    Control.IndeterminateInterval = Element.IndeterminateSpeed;
+                }
 
-            if (e.PropertyName == CircularProgress.MaxProperty.PropertyName)
-            {
-                Control.Max = Element.Max;
+                base.OnElementPropertyChanged(sender, e);
             }
-            else if (e.PropertyName == CircularProgress.ProgressProperty.PropertyName)
+            catch (System.Exception ex)
             {
-                Control.Progress = Element.Progress;
-            }
-            else if (e.PropertyName == CircularProgress.IndeterminateProperty.PropertyName)
-            {
-                Control.Indeterminate = Element.Indeterminate;
-            }
-            else if (e.PropertyName == CircularProgress.ProgressBackgroundColorProperty.PropertyName)
-            {
-                Control.ProgressBackgroundColor = Element.ProgressBackgroundColor.ToAndroid();
-            }
-            else if (e.PropertyName == CircularProgress.ProgressColorProperty.PropertyName)
-            {
-                Control.ProgressColor = Element.ProgressColor.ToAndroid();
-            }
-            else if (e.PropertyName == CircularProgress.IndeterminateSpeedProperty.PropertyName)
-            {
-                Control.IndeterminateInterval = Element.IndeterminateSpeed;
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }

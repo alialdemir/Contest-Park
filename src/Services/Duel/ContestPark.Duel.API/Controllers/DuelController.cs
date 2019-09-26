@@ -66,6 +66,10 @@ namespace ContestPark.Duel.API.Controllers
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
 
+            /* TODO: burada bot eklerken karşısına farklı bir kullanıcı denk gelebilir mi?
+             *       yani bot ekle dedik o sırada gerçek kullanıcı denk geldi bot sırada bekler mi?
+             *       Eğer sıkıntı olursa AddStandbyMode istek atınca guid oluşturulsun burada rakip eklerken o guide rakip eklensin
+            */
             AddWaitingOpponentEvent(userId, standbyModeModel);// Rakip eklendi
 
             return Ok();

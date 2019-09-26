@@ -66,6 +66,7 @@
                                 Grid.Row="0"
                                 Margin="0,21,0,0"
                                 HeightRequest="130"
+                                IsLoadingPlaceholder="False"
                                 Source="{Binding CategoryDetail.PicturePath}"
                                 WidthRequest="130" />
 

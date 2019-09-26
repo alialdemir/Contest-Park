@@ -6,10 +6,10 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
     x:Name="stylishView">
     <ContentView.Content>
-        <Grid Margin="56,0,56,0" RowSpacing="12">
+        <Grid Margin="22,0,22,0" RowSpacing="12">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="56" />

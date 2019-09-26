@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters.Quiz.QuestionType"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     x:Name="questionCardFactoryPage">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -14,21 +15,24 @@
         <StackLayout
             Margin="0,10,0,0"
             HorizontalOptions="Center"
-            Orientation="Vertical">
+            Orientation="Vertical"
+            VerticalOptions="Center">
 
             <Label
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="22"
+                HorizontalTextAlignment="Center"
                 Text="{Binding Path=Question, Source={x:Reference questionCardFactoryPage}}"
                 TextColor="{StaticResource White}" />
 
-            <Image
+            <components:CachedImage
                 Margin="0,13,0,25"
                 Aspect="Fill"
                 HeightRequest="150"
+                IsLoadingPlaceholder="False"
                 IsVisible="{Binding Path=QuestionType, Source={x:Reference questionCardFactoryPage}, Converter={StaticResource qtc}}"
                 Source="{Binding Path=Link, Source={x:Reference questionCardFactoryPage}}"
-                WidthRequest="150" />
+                WidthRequest="300" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

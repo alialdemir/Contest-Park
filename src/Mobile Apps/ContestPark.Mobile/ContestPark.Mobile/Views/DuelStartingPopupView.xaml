@@ -43,6 +43,7 @@
                         <Components:CircleImage
                             CacheType="None"
                             HeightRequest="97"
+                            IsLoadingPlaceholder="False"
                             Source="{Binding DuelStarting.FounderProfilePicturePath}"
                             WidthRequest="97" />
 
@@ -117,6 +118,7 @@
                         <Components:CircleImage
                             CacheType="None"
                             HeightRequest="97"
+                            IsLoadingPlaceholder="False"
                             Source="{Binding DuelStarting.OpponentProfilePicturePath}"
                             WidthRequest="97" />
 

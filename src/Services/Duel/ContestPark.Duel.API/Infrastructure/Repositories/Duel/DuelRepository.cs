@@ -97,7 +97,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
             string sql = @"SELECT
                            d.FounderUserId,
                            d.OpponentUserId,
-                           d.Bet AS Gold,
+                           d.Bet * 2 AS Gold,
                            d.SubCategoryId,
                            d.BalanceType,
                            d.FounderTotalScore AS FounderScore,

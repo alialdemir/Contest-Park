@@ -29,7 +29,7 @@
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
@@ -50,7 +50,6 @@
                         <!--  Top End  -->
 
                         <!--  Question Start  -->
-
                         <components:QuestionCardFactory
                             Grid.Row="1"
                             Link="{Binding CurrentQuestion.Link}"
@@ -80,7 +79,8 @@
                         Grid.Row="2"
                         AnswerCommand="{Binding AnswerCommand}"
                         AnswerType="{Binding CurrentQuestion.AnswerType}"
-                        Answers="{Binding Answers}" />
+                        Answers="{Binding Answers}"
+                        VerticalOptions="CenterAndExpand" />
 
                     <!--  Stylish End  -->
                 </Grid>

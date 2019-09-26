@@ -65,6 +65,10 @@ namespace ContestPark.Mobile.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+#if !DEBUG
+             CheckForRoot();
+#endif
+
             base.OnCreate(bundle);
 
             // Check if running in sim

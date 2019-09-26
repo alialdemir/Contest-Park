@@ -169,7 +169,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void AddToBot()
         {
-            int randomSecond = new Random().Next(5, 10);
+            int randomSecond = new Random().Next(3, 7);
 
             Device.StartTimer(new TimeSpan(0, 0, 0, randomSecond, 0), () =>
             {
