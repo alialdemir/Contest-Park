@@ -157,7 +157,7 @@ namespace ContestPark.Mobile.Configs
             TokenEndpoint = $"{connectBaseEndpoint}/token";
             LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
 
-            SignalREndpoint = $"http://contestparksignalrapi-prod.eu-central-1.elasticbeanstalk.com/contestparkhub";
+            SignalREndpoint = $"{endpoint}/contestparkhub";
         }
 
         /// <summary>

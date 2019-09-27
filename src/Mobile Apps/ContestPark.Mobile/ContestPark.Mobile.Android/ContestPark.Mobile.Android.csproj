@@ -69,7 +69,7 @@
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <AndroidLinkMode>Full</AndroidLinkMode>
     <MandroidI18n />
-    <AndroidLinkTool>proguard</AndroidLinkTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidDexTool>dx</AndroidDexTool>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
