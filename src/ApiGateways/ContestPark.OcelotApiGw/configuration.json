@@ -86,7 +86,7 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/Account/UpdateLanguage",
+      "DownstreamPathTemplate": "/api/{version}/Account/UpdateLanguage?language={language}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -94,7 +94,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/Account/UpdateLanguage",
+      "UpstreamPathTemplate": "/api/{version}/Account/UpdateLanguage?language={language}",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {

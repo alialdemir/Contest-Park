@@ -54,8 +54,7 @@ phases:
       - echo update kubectl config
       - aws eks update-kubeconfig --name $CLUSTER_NAME
       - echo Kubernetes apply started
-      - kubectl config current-context #make sure it's aws	
-      - cat kubectl/deployment.yaml
+      - kubectl config current-context #make sure it's aws
       - kubectl apply -f kubectl/deployment.yaml
       - kubectl apply -f kubectl/deployment-services.yaml
       - echo Finish

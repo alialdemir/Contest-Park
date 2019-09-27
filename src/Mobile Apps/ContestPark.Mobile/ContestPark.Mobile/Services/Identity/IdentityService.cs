@@ -114,9 +114,9 @@ namespace ContestPark.Mobile.Services.Identity
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> UpdateLanguageAsync(Languages language)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UpdateLanguage");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UpdateLanguage?language={(byte)language}");
 
-            var response = await _requestProvider.PostAsync<string>(uri, new { language });
+            var response = await _requestProvider.PostAsync<string>(uri);
             if (!response.IsSuccess && response.Error != null && !string.IsNullOrEmpty(response.Error.ErrorMessage))
             {
                 await ShowErrorMessage(response.Error.ErrorMessage);

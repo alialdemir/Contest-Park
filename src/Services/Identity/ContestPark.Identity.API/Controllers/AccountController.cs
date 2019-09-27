@@ -4,6 +4,7 @@ using ContestPark.Identity.API.Data.Repositories.DeviceInfo;
 using ContestPark.Identity.API.Data.Repositories.Reference;
 using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
+using ContestPark.Identity.API.Extensions;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
@@ -346,7 +347,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [Route("UpdateLanguage")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateLanguage([FromBody]Languages language)
+        public async Task<IActionResult> UpdateLanguage([FromQuery]Languages language)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
@@ -539,6 +540,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 UserName = signUpModel.UserName.ToLower(),
                 FullName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(signUpModel.FullName),
                 LanguageCode = signUpModel.LanguageCode.ToLower(),
+                Language = signUpModel.LanguageCode.ToLanguagesEnum(),
                 PhoneNumber = signUpModel.Password// Sms ile login olma sisteminde kullanıcıdan şifre almamak için şifresini telefon numarası yaptık
             };
 
