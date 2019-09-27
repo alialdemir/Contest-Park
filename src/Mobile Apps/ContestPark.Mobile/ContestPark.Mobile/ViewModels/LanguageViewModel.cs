@@ -124,10 +124,6 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            _settingsService.CurrentUser.Language = language;
-
-            _settingsService.RefreshCurrentUser(_settingsService.CurrentUser);
-
             ChangeDeviceCulture(languageCode);
 
             await _identityService.RefreshTokenAsync();

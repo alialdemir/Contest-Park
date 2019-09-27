@@ -1,14 +1,10 @@
-﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Helpers;
+﻿using ContestPark.Core.Enums;
+using ContestPark.Core.Models;
 
-namespace ContestPark.Mobile.Models.User
+namespace ContestPark.Identity.API.Models
 {
-    public class UserInfoModel : BaseModel
+    public class UserInfoModel
     {
-        public string UserId { get; set; }
-
-        public string UserName { get; set; }
-
         public string FullName { get; set; }
 
         private string _profilePicturePath = DefaultImages.DefaultProfilePicture;
@@ -39,19 +35,9 @@ namespace ContestPark.Mobile.Models.User
             }
         }
 
-        public Languages Language { get; set; }
-
-        private bool _isPrivateProfile;
-
-        public bool IsPrivateProfile
-        {
-            get { return _isPrivateProfile; }
-            set
-            {
-                _isPrivateProfile = value;
-
-                RaisePropertyChanged(() => IsPrivateProfile);
-            }
-        }
+        public Languages Language { get; set; } = Languages.English;
+        public bool IsPrivateProfile { get; set; }
+        public string UserName { get; set; }
+        public string UserId { get; set; }
     }
 }

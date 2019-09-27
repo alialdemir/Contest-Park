@@ -27,6 +27,29 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         #region Methods
 
         /// <summary>
+        /// Kullanıcı bilgilerini verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Kullanıcı bilgileri</returns>
+        public UserInfoModel UserInfo(string userId)
+        {
+            return _applicationDbContext
+                .Users
+                .Where(u => u.Id == userId)
+                .Select(u => new UserInfoModel
+                {
+                    CoverPicturePath = u.CoverPicturePath,
+                    ProfilePicturePath = u.ProfilePicturePath,
+                    FullName = u.FullName,
+                    UserName = u.UserName,
+                    IsPrivateProfile = u.IsPrivateProfile,
+                    Language = u.Language,
+                    UserId = u.Id,
+                })
+                .FirstOrDefault();
+        }
+
+        /// <summary>
         /// Telefon numarasına ait kullanıcı adı
         /// </summary>
         /// <param name="phoneNumber">Telefon numarası</param>

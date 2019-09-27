@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Balance;
+using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -17,6 +18,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IBalanceService _cpService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly ISettingsService _settingsService;
 
         #endregion Private variables
 
@@ -29,10 +31,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
-
-            FullName = settingsService.CurrentUser.FullName;
-            ProfilePicture = settingsService.CurrentUser.ProfilePicturePath;
-            CoverPicture = settingsService.CurrentUser.CoverPicturePath;
+            _settingsService = settingsService;
 
             InitializeAsync();
         }
@@ -104,7 +103,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override async Task InitializeAsync()
         {
             SetUserGoldCommand.Execute(null);
 
@@ -119,7 +118,17 @@ namespace ContestPark.Mobile.ViewModels
                     }
                 });
 
-            return base.InitializeAsync();
+            UserInfoModel currentUser = await _settingsService.GetUserInfo();
+            if (currentUser != null)
+            {
+                _settingsService.RefreshCurrentUser(currentUser);
+
+                FullName = currentUser.FullName;
+                ProfilePicture = currentUser.ProfilePicturePath;
+                CoverPicture = currentUser.CoverPicturePath;
+            }
+
+            await base.InitializeAsync();
         }
 
         /// <summary>
@@ -129,7 +138,6 @@ namespace ContestPark.Mobile.ViewModels
         private async Task SetUserGoldAsync()
         {
             var balance = await _cpService.GetBalanceAsync();
-
             if (balance != null)
             {
                 Balance = balance;

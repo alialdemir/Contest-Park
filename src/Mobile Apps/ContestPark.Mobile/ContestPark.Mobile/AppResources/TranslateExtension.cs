@@ -1,4 +1,7 @@
-﻿using ContestPark.Mobile.Dependencies;
+﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Extensions;
+using ContestPark.Mobile.Services.Settings;
+using Prism.Ioc;
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -13,16 +16,27 @@ namespace ContestPark.Mobile.AppResources
     {
         public static readonly Lazy<ResourceManager> resmgr = new Lazy<ResourceManager>(() => new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly));
         private const string ResourceId = "ContestPark.Mobile.AppResources.ContestParkResources";
-        private CultureInfo _cultureInfo;
+        private static CultureInfo _cultureInfo;
 
-        public CultureInfo CultureInfo
+        public static CultureInfo CultureInfo
         {
             get
             {
                 if (_cultureInfo == null)
-                    _cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                {
+                    ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                    if (settingsService != null && settingsService.CurrentUser != null)
+                    {
+                        _cultureInfo = new CultureInfo(settingsService.CurrentUser.Language.ToLanguageCode());
+                    }
+                }
 
                 return _cultureInfo;
+            }
+
+            set
+            {
+                _cultureInfo = value;
             }
         }
 

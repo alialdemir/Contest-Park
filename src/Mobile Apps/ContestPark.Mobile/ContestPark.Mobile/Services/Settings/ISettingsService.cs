@@ -74,6 +74,7 @@ namespace ContestPark.Mobile.Services.Settings
         /// <param name="methodName">The methodName <see cref="string"/></param>
         /// <returns>The <see cref="Task"/></returns>
         Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "");
+        Task<UserInfoModel> GetUserInfo();
 
         /// <summary>
         /// The GetValueOrDefault

@@ -1,4 +1,6 @@
-﻿using ContestPark.Mobile.Dependencies;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Token;
@@ -34,7 +36,7 @@ namespace ContestPark.Mobile.Services.Settings
 
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/settings";
+        private const string ApiUrlBase = "api/v1/account";
         private readonly INewRequestProvider _requestProvider;
 
         #endregion Private variables
@@ -190,6 +192,8 @@ namespace ContestPark.Mobile.Services.Settings
 
             _userInfo = currentUser;
 
+            TranslateExtension.CultureInfo = null;// i18n tekrar culture yüklemesi için null a çektik
+
             AddOrUpdateValue(currentUserJson, nameof(CurrentUser));
         }
 
@@ -206,14 +210,30 @@ namespace ContestPark.Mobile.Services.Settings
         /// Login olunca set edilmesi gereken değerleri set eder
         /// </summary>
         /// <param name="userToken">Token info</param>
-        public void SetTokenInfo(UserToken userToken)
+        public async void SetTokenInfo(UserToken userToken)
         {
             AuthAccessToken = userToken.AccessToken;
             RefreshToken = userToken.RefreshToken;
             TokenType = userToken.TokenType;
 
-            //// Current user yenilendi
-            RefreshCurrentUser(_userInfo.GetUserInfo(AuthAccessToken));
+            UserInfoModel currentUser = await GetUserInfo();
+            if (currentUser != null)
+            {
+                RefreshCurrentUser(currentUser);
+            }
+        }
+
+        /// <summary>
+        /// Şuanki kullanıcı bilgileri
+        /// </summary>
+        /// <returns>Login olan kullanıcı bilgileri</returns>
+        public async Task<UserInfoModel> GetUserInfo()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UserInfo");
+
+            var result = await _requestProvider.GetAsync<UserInfoModel>(uri);
+
+            return result.Data;
         }
 
         #endregion Setting Service

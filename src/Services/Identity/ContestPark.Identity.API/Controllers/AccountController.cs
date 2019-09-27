@@ -492,6 +492,23 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Kullanıcının temel bilgilerini döndürür
+        /// </summary>
+        /// <returns>Kullanıcı bilgileri</returns>
+        [HttpGet]
+        [Route("UserInfo")]
+        [ProducesResponseType(typeof(UserInfoModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult UserInfo()
+        {
+            UserInfoModel userInfo = _userRepository.UserInfo(UserId);
+            if (userInfo != null)
+                return Ok(userInfo);
+
+            return NotFound();
+        }
+
+        /// <summary>
         /// Telefon numarasına ait kullanıcı adını verir
         /// </summary>
         /// <param name="phoneNumber">Telefon numarası</param>

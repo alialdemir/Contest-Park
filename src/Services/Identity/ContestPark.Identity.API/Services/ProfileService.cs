@@ -86,19 +86,6 @@ namespace ContestPark.Identity.API.Services
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
 
-            if (!string.IsNullOrWhiteSpace(user.FullName))
-                claims.Add(new Claim("full_name", user.FullName));
-
-            if (!string.IsNullOrWhiteSpace(user.ProfilePicturePath))
-                claims.Add(new Claim("profile_picture_path", user.ProfilePicturePath));
-
-            if (!string.IsNullOrWhiteSpace(user.CoverPicturePath))
-                claims.Add(new Claim("cover_picture_path", user.CoverPicturePath));
-
-            claims.Add(new Claim("language", ((int)user.Language).ToString()));
-
-            claims.Add(new Claim("is_private_profile", user.IsPrivateProfile.ToString()));
-
             return claims;
         }
 
