@@ -66,7 +66,7 @@ namespace ContestPark.Mobile.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
 #if !DEBUG
-             CheckForRoot();
+            //CheckForRoot();
 #endif
 
             base.OnCreate(bundle);

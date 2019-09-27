@@ -31,7 +31,7 @@
                             VerticalOptions="FillAndExpand" />
 
                         <yummy:PancakeView
-                            Margin="0,0,0,5 "
+                            Margin="0,0,0,5"
                             BackgroundColor="{StaticResource White}"
                             CornerRadius="8"
                             Elevation="6"
@@ -193,7 +193,7 @@
                         GridBackgroundColor="{StaticResource ListBackgroundColor}"
                         IsShowRightText="True"
                         RightIconTextColor="{StaticResource Primary}"
-                        RightText="+100 coins"
+                        RightText="+40 coins"
                         SingleTap="{Binding Path=Parent.BindingContext.WatchAdsVideoCommand, Source={x:Reference lstView}}"
                         Source="ContestSingleCoin.svg"
                         Text="{i18n:Translate FreeCoins}" />

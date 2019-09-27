@@ -78,6 +78,9 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         {
             string key = GetKey(duelUser);
 
+            if (_redisClient.ContainsKey(key))
+                return true;
+
             return _redisClient.Remove(key);
         }
 

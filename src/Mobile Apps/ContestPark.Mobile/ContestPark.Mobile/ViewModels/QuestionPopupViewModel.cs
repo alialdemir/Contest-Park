@@ -9,6 +9,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -296,8 +297,14 @@ namespace ContestPark.Mobile.ViewModels
             if (DuelCreated == null || DuelCreated.Questions == null || Round > DuelCreated.Questions.Count())
                 return;
 
-            var currentQuestion = DuelCreated.Questions.ToList()[Round - 1];
             Languages currentLanguage = _settingsService.CurrentUser.Language;
+
+            var currentQuestion = DuelCreated.Questions.ToList()[Round - 1];
+            if (currentQuestion == null
+                || currentQuestion.Answers == null
+                || !currentQuestion.Answers.Any(x => x.Language == currentLanguage)
+                || !currentQuestion.Questions.Any(x => x.Language == currentLanguage))
+                return;
 
             CurrentQuestion = new Question
             {
@@ -696,5 +703,20 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand DuelCloseCommand => new Command<bool>((showAlert) => ExecuteDuelCloseCommand(showAlert));
 
         #endregion Commands
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+        }
+
+        public override void OnNavigatingTo(INavigationParameters parameters)
+        {
+            base.OnNavigatingTo(parameters);
+        }
     }
 }

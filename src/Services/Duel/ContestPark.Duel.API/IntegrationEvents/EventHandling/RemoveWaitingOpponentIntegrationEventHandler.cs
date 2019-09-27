@@ -82,7 +82,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                     {nameof(@event.UserId)}: {@event.UserId}
                                     {nameof(@event.SubCategoryId)}: {@event.SubCategoryId}
                                     {nameof(@event.Bet)}: {@event.Bet}
-                                    {nameof(@event.BalanceType)}: {@event.BalanceType}", ex);
+                                    {nameof(@event.BalanceType)}: {@event.BalanceType} exception: {ex.Message}");
 
                 SendErrorMessage(@event.UserId);
             }
