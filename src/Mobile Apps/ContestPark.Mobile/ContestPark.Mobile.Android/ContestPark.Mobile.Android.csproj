@@ -68,7 +68,6 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <AndroidLinkTool>proguard</AndroidLinkTool>
     <MandroidI18n />
   </PropertyGroup>
   <ItemGroup>
