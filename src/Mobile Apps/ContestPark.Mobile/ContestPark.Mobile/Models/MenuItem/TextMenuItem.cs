@@ -4,8 +4,6 @@ namespace ContestPark.Mobile.Models.MenuItem
 {
     public class TextMenuItem : MenuItem
     {
-        private string _title;
-
         public object CommandParameter { get; set; }
 
         public ICommand SingleTap { get; set; }

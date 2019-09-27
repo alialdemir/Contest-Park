@@ -71,6 +71,27 @@
     <MandroidI18n />
     <AndroidLinkTool>proguard</AndroidLinkTool>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>inimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -260,7 +281,6 @@
     <Compile Include="CustomRenderer\CustomSegmentedControlRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
     <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
-    <Compile Include="CustomRenderer\SignInSocialNetworkPageRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Dependencies\Localize .cs" />
     <Compile Include="Dependencies\DeviceHelper.cs" />
@@ -438,9 +458,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\singlecoin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\network.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\referee.png" />

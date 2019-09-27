@@ -99,7 +99,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="langName"></param>
         private async Task ExecuteChangeLanguageCommand(Languages language)
         {
-            if (IsBusy)
+            if (IsBusy || _settingsService.CurrentUser.Language == language)
                 return;
 
             IsBusy = true;

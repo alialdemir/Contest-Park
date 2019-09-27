@@ -5,7 +5,6 @@ namespace ContestPark.Mobile.Models.MenuItem
     public class SwitchMenuItem : MenuItem
     {
         private bool _isToggled;
-        private string _title;
         public object CommandParameter { get; set; }
 
         public bool IsToggled

@@ -11,6 +11,7 @@
     FlyoutBackgroundImage="left_menu_background.png"
     FlyoutBackgroundImageAspect="AspectFill"
     FlyoutBehavior="Disabled"
+    FlyoutIcon="menuicon.png"
     Shell.BackgroundColor="{StaticResource White}"
     Shell.ForegroundColor="#211414"
     Shell.TabBarBackgroundColor="{StaticResource White}"
@@ -21,22 +22,34 @@
     mc:Ignorable="d">
     <!--  tabbar  -->
     <TabBar>
-        <Tab Title="{i18n:Translate Categories}" Icon="Category.png">
+        <Tab
+            Title="{i18n:Translate Categories}"
+            Icon="Category.png"
+            Route="categories">
             <ShellContent>
                 <views:CategoriesView />
             </ShellContent>
         </Tab>
-        <Tab Title="{i18n:Translate Invite}" Icon="invite.png">
+        <Tab
+            Title="{i18n:Translate Invite}"
+            Icon="invite.png"
+            Route="invite">
             <ShellContent>
                 <views:InviteView />
             </ShellContent>
         </Tab>
-        <Tab Title="{i18n:Translate Chat}" Icon="Chat.png">
+        <Tab
+            Title="{i18n:Translate Chat}"
+            Icon="Chat.png"
+            Route="chat">
             <ShellContent>
                 <views:ChatView />
             </ShellContent>
         </Tab>
-        <Tab Title="{i18n:Translate Profile}" Icon="Category.png">
+        <Tab
+            Title="{i18n:Translate Profile}"
+            Icon="Category.png"
+            Route="profile">
             <ShellContent>
                 <views:MyProfileView />
             </ShellContent>
