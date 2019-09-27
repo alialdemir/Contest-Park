@@ -6,10 +6,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
-    Title="{Binding Title}"
+    Title=" {i18n:Translate Categories}"
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
 

@@ -30,7 +30,6 @@ namespace ContestPark.Mobile.ViewModels
                              IEventAggregator eventAggregator,
                              IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
-            Title = ContestParkResources.Chat;
             _chatService = chatService;
             _eventAggregator = eventAggregator;
         }
@@ -147,6 +146,8 @@ namespace ContestPark.Mobile.ViewModels
             //////}
 
             SubscriptionReflesh();
+
+            Title = ContestParkResources.Chat;
 
             IsBusy = false;
         }

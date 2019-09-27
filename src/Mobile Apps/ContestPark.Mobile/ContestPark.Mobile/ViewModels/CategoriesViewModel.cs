@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Events;
+﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
@@ -34,7 +33,6 @@ namespace ContestPark.Mobile.ViewModels
                                    IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService)
         {
-            Title = ContestParkResources.Categories;
             _categoryServices = categoryServices;
 
             gameService.NavigationService = navigationService;

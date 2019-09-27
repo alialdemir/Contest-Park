@@ -57,7 +57,6 @@ namespace ContestPark.Mobile.ViewModels
             _blockingService = blockingService;
             _followService = followService;
             _mediaService = mediaService;
-            Title = ContestParkResources.Profile;
         }
 
         #endregion Constructor

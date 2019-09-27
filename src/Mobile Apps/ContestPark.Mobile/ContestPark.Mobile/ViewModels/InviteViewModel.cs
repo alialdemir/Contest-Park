@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -19,7 +20,6 @@ namespace ContestPark.Mobile.ViewModels
 
         public InviteViewModel(ISettingsService settingsService)
         {
-            Title = ContestParkResources.Invite;// ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.
             _settingsService = settingsService;
         }
 
@@ -38,6 +38,11 @@ namespace ContestPark.Mobile.ViewModels
                 Title = "ContestPark",
                 Uri = "https://indir.contestpark.com",
             });
+        }
+
+        protected override Task InitializeAsync()
+        {
+            return base.InitializeAsync();
         }
 
         #endregion Methods

@@ -26,8 +26,8 @@ steps:
 
 - task: AndroidSigning@3
   inputs:
-    apksign: true
-    zipalign: true
+    apksign: false
+    zipalign: false
     apkFiles: '$(outputDirectory)/*.apk'
 
 - task: PublishBuildArtifacts@1

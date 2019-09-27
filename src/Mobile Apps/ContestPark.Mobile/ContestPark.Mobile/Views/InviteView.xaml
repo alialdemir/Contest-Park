@@ -7,7 +7,7 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="{Binding Title}"
+    Title="{i18n:Translate Invite}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <ScrollView>

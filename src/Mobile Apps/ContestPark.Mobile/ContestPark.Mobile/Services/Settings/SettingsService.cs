@@ -194,6 +194,12 @@ namespace ContestPark.Mobile.Services.Settings
 
             TranslateExtension.CultureInfo = null;// i18n tekrar culture yüklemesi için null a çektik
 
+            var culture = new CultureInfo(currentUser.Language.ToLanguageCode());
+
+            ContestParkResources.Culture = culture;
+
+            DependencyService.Get<ILocalize>().SetCultureInfo(culture);
+
             AddOrUpdateValue(currentUserJson, nameof(CurrentUser));
         }
 
