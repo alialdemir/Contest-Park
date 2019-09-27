@@ -41,23 +41,28 @@ namespace ContestPark.Balance.API.Controllers
 
         #region Properties
 
-        private Dictionary<string, decimal> _googlePlayPackages;
+        private Dictionary<string, PackageModel> _googlePlayPackages;
 
         /// <summary>
         /// Google playde tanımlı paket isimleri
         /// </summary>
-        public Dictionary<string, decimal> GooglePlayPackages
+        public Dictionary<string, PackageModel> GooglePlayPackages
         {
             get
             {
                 if (_googlePlayPackages == null)
                 {
-                    _googlePlayPackages = new Dictionary<string, decimal>
+                    _googlePlayPackages = new Dictionary<string, PackageModel>
                     {
-                        {"com.contestparkapp.app.250coins", 2.50m },
-                        {"com.contestparkapp.app.1500coins", 15.00m },
-                        {"com.contestparkapp.app.7000coins", 7.000m },
-                        {"com.contestparkapp.app.20000coins", 20.000m },
+                        // Gold
+                        {"com.contestparkapp.app.250coins", new PackageModel{ Amount=2.50m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.1500coins",  new PackageModel{ Amount=15.00m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.7000coins",  new PackageModel{ Amount=7.000m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.20000coins",  new PackageModel{ Amount=20.000m , BalanceType= BalanceTypes.Gold }},
+                        // Money
+                        {"com.contestparkapp.app.1dolar",  new PackageModel{ Amount=1.00m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.4dolar",  new PackageModel{ Amount=4.00m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.9dolar",  new PackageModel{ Amount=9.00m , BalanceType= BalanceTypes.Money }},
                     };
                 }
                 return _googlePlayPackages;
@@ -234,32 +239,41 @@ namespace ContestPark.Balance.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Purchase([FromBody]PurchaseModel purchase)
         {
+            Logger.LogError($@"Paket yükleme isteği geldi... UserId: {UserId}
+                                                             PackageName: {purchase.PackageName}
+                                                             Platform: {purchase.Platform}
+                                                             ProductId: {purchase.ProductId}
+                                                             Token: {purchase.Token}");
+
             #region Validations
 
-            decimal amount = GetAmountByPackageName(purchase.PackageName);
-            if (amount == 0)
+            PackageModel package = GetPackageByPackageName(purchase.PackageName);
+            if (package == null || package.Amount == 0)
+            {
+                Logger.LogError($@"Uygulama içi satın alma hata!. Paket adından bakiye tipi alınırken null değer geldi. Acil kontrol ediniz. UserId: {UserId}
+                                                                                                              PackageName: {purchase.PackageName}
+                                                                                                              Platform: {purchase.Platform}
+                                                                                                              ProductId: {purchase.ProductId}
+                                                                                                              Token: {purchase.Token}");
                 return BadRequest(BalanceResource.PackagenameIsIncorrect);
+            }
 
             #endregion Validations
 
-            Logger.LogInformation("Paket yükleme isteği geldi...", purchase.PackageName, purchase.ProductId);
-
             // TODO: google play istek atılıp token ve packet adı ile satın alım başarılı olmuşmu kontrol edilmeli
-
-            BalanceTypes? balanceType = GetBalanceTypeByPackageName(purchase.PackageName);
 
             bool isSuccess = await _balanceRepository.UpdateBalanceAsync(new ChangeBalanceModel
             {
                 UserId = UserId,
                 BalanceHistoryType = BalanceHistoryTypes.Buy,
-                BalanceType = balanceType ?? BalanceTypes.Gold,// gold hiçbir zaman gelmemesi lazım yukaruda null kontrol var
-                Amount = amount
+                BalanceType = package.BalanceType,// gold hiçbir zaman gelmemesi lazım yukaruda null kontrol var
+                Amount = package.Amount
             });
 
             if (!isSuccess)
                 return BadRequest(BalanceResource.ThePurchaseFailedPleaseEmailWithOurSupportTeam);
 
-            AddPurchaseHistory(purchase, amount, balanceType ?? BalanceTypes.Gold);
+            await AddPurchaseHistory(purchase, package);
 
             return Ok();
         }
@@ -270,52 +284,35 @@ namespace ContestPark.Balance.API.Controllers
         /// <param name="purchase">Satın alma bilgileri</param>
         /// <param name="amount">Satın alınan altın</param>
         /// <param name="balanceType">Satın alma itpi</param>
-        private void AddPurchaseHistory(PurchaseModel purchase, decimal amount, BalanceTypes balanceType)
+        private async Task AddPurchaseHistory(PurchaseModel purchase, PackageModel package)
         {
-            _purchaseHistoryRepository.AddAsync(new PurchaseHistory
+            await _purchaseHistoryRepository.AddAsync(new PurchaseHistory
             {
-                Amount = amount,
+                Amount = package.Amount,
                 UserId = UserId,
-                BalanceType = balanceType,// gold hiçbir zaman gelmemesi lazım yukaruda null kontrol var
+                BalanceType = package.BalanceType,
                 ProductId = purchase.ProductId,
                 PackageName = purchase.PackageName,
                 Token = purchase.Token,
                 Platform = purchase.Platform
-            }).Wait();
+            });
         }
 
         /// <summary>
-        /// Paket isimlerine göre bakiye tipini verir
+        /// Paket isimlerine göre paket bilgilerini verir
         /// </summary>
         /// <param name="packageName">Google play/App store paket name</param>
         /// <returns>Bakiye tipi</returns>
-        private BalanceTypes? GetBalanceTypeByPackageName(string packageName)
+        private PackageModel GetPackageByPackageName(string packageName)
         {
             // TODO: app store paketlerine göre balance type gelmeli
-
-            if (GooglePlayPackages.ContainsKey(packageName))
-            {
-                return BalanceTypes.Gold;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Paket isimlerine göre ne kadarlık bakiye yüklenceğini verir
-        /// </summary>
-        /// <param name="packageName">Google play/App store paket name</param>
-        /// <returns>Yüklenecek bakiye</returns>
-        private decimal GetAmountByPackageName(string packageName)
-        {
-            // TODO: app store paketleri tanımlanmalı
 
             if (GooglePlayPackages.ContainsKey(packageName))
             {
                 return GooglePlayPackages[packageName];
             }
 
-            return 0;
+            return null;
         }
 
         #endregion Methods

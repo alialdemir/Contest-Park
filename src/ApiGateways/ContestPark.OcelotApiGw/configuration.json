@@ -275,6 +275,18 @@
       "UpstreamPathTemplate": "/api/{version}/Balance",
       "UpstreamHttpMethod": [ "Get", "Post" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Balance/Purchase",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.balance.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Balance/Purchase",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
     // Follow
     {
       "DownstreamPathTemplate": "/api/{version}/Follow/{followedUserId}",
