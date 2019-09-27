@@ -11,7 +11,6 @@ using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Game
 {

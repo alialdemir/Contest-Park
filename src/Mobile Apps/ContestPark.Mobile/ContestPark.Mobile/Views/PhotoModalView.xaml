@@ -1,49 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage x:Class="ContestPark.Mobile.Views.PhotoModalView"
-                 xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-                 xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-                 xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-                 x:Name="photoModalViewPage"
-                 prism:ViewModelLocator.AutowireViewModel="True">
+<pages:PopupPage
+    x:Class="ContestPark.Mobile.Views.PhotoModalView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Name="photoModalViewPage"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation DurationIn="700"
-                                   EasingIn="CubicOut"
-                                   PositionIn="Center"
-                                   PositionOut="Center"
-                                   ScaleIn="1"
-                                   ScaleOut="0.7" />
+        <animations:ScaleAnimation
+            DurationIn="700"
+            EasingIn="CubicOut"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <Grid>
+        <Grid Margin="10,0,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <iconize:IconButton Grid.Row="0"
-                                Margin="10"
-                                BackgroundColor="Transparent"
-                                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference photoModalViewPage}}"
-                                FontSize="22"
-                                HorizontalOptions="End"
-                                Text="fas-times-circle"
-                                TextColor="{StaticResource White}"
-                                VerticalOptions="Start" />
+            <iconize:IconButton
+                Grid.Row="0"
+                Margin="10"
+                BackgroundColor="Transparent"
+                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference photoModalViewPage}}"
+                FontSize="22"
+                HorizontalOptions="End"
+                Text="fas-times-circle"
+                TextColor="{StaticResource White}"
+                VerticalOptions="Start" />
 
-            <cards:CoverFlowView x:Name="listPictures"
-                                 Grid.Row="1"
-                                 HorizontalOptions="FillAndExpand"
-                                 IsCyclical="false"
-                                 PositionShiftValue="100"
-                                 SelectedIndex="{Binding SelectedIndex}"
-                                 VerticalOptions="FillAndExpand">
+            <cards:CoverFlowView
+                x:Name="listPictures"
+                Grid.Row="1"
+                HorizontalOptions="FillAndExpand"
+                IsCyclical="false"
+                PositionShiftValue="100"
+                SelectedIndex="{Binding SelectedIndex}"
+                VerticalOptions="FillAndExpand">
                 <cards:CoverFlowView.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding PicturePath}" />
+                        <components:CachedImage
+                            Aspect="AspectFit"
+                            HeightRequest="300"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding PicturePath}" />
                     </DataTemplate>
                 </cards:CoverFlowView.ItemTemplate>
             </cards:CoverFlowView>

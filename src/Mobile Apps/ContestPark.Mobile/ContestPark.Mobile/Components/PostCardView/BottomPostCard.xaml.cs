@@ -50,7 +50,7 @@ namespace ContestPark.Mobile.Components.PostCardView
             _navigationService?.NavigateAsync(nameof(PostDetailView), new NavigationParameters
             {
                 { "PostId", postModel.PostId }
-            });
+            }, useModalNavigation: false);
 
             IsBusy = false;
         }
@@ -66,13 +66,13 @@ namespace ContestPark.Mobile.Components.PostCardView
             IsBusy = true;
 
             PostModel postModel = (PostModel)BindingContext;
-            if (postModel == null)
+            if (postModel == null || postModel.LikeCount == 0)
                 return;
 
             _navigationService?.NavigateAsync(nameof(PostLikesView), new NavigationParameters
             {
                 { "PostId", postModel.PostId }
-            });
+            }, useModalNavigation: false);
 
             IsBusy = false;
         }

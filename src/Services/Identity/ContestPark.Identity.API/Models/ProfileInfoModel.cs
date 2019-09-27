@@ -4,13 +4,49 @@
     {
         public string CoverPicture { get; set; }
 
-        public string FollowersCount { get; set; }
+        private string _followersCount = "0";
 
-        public string FollowUpCount { get; set; }
+        public string FollowersCount
+        {
+            get { return _followersCount; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _followersCount = value;
+                }
+            }
+        }
+
+        private string _followUpCount = "0";
+
+        public string FollowUpCount
+        {
+            get { return _followUpCount; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _followUpCount = value;
+                }
+            }
+        }
 
         public string FullName { get; set; }
 
-        public string GameCount { get; set; }
+        private string _gameCount;
+
+        public string GameCount
+        {
+            get { return _gameCount; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _gameCount = value;
+                }
+            }
+        }
 
         public bool? IsBlocked { get; set; }
 

@@ -81,8 +81,6 @@ namespace ContestPark.Mobile.ViewModels
 
             SubCategoryPostsCommand.Execute(null);
 
-            await base.InitializeAsync();
-
             IsBusy = false;
         }
 
@@ -227,6 +225,8 @@ namespace ContestPark.Mobile.ViewModels
                 return new Command(async () =>
                 {
                     ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel);
+
+                    await base.InitializeAsync();
                 });
             }
         }

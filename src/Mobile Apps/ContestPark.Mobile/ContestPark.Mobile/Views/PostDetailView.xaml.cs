@@ -36,10 +36,8 @@ namespace ContestPark.Mobile.Views
 
         protected override void OnAppearing()
         {
-            if (ViewModel.IsInitialized)
+            if (ViewModel.ListViewScrollToBottomCommand != null && ViewModel.EditorFocusCommand != null)
                 return;
-
-            ViewModel.InitializeCommand.Execute(null);
 
             ViewModel.ListViewScrollToBottomCommand = new Command<int>((index) =>
             {
@@ -48,8 +46,6 @@ namespace ContestPark.Mobile.Views
             });
 
             ViewModel.EditorFocusCommand = new Command(() => txtChatbox.Focus());
-
-            ViewModel.IsInitialized = true;
         }
 
         #endregion Methods
