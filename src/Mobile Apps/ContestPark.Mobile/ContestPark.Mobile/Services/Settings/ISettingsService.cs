@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Models.Token;
+﻿using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -106,14 +105,6 @@ namespace ContestPark.Mobile.Services.Settings
         /// The RemoveCurrentUser
         /// </summary>
         void RemoveCurrentUser();
-
-        /// <summary>
-        /// The SetSettingsAsync
-        /// </summary>
-        /// <param name="settingType">The settingType <see cref="SettingTypes"/></param>
-        /// <param name="settingValue">The settingValue <see cref="string"/></param>
-        /// <returns>The <see cref="Task"/></returns>
-        Task SetSettingsAsync(SettingTypes settingType, string settingValue);
 
         void SetTokenInfo(UserToken userToken);
 

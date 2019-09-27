@@ -16,7 +16,7 @@ namespace ContestPark.Mobile.Extensions
 
         public static Languages ToLanguagesEnum(this string langCode)
         {
-            return langCode == "tr-TR" ? Languages.Turkish : Languages.English;
+            return langCode.ToLower() == "tr-tr" ? Languages.Turkish : Languages.English;
         }
     }
 }

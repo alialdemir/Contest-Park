@@ -9,7 +9,6 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
-using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -703,20 +702,5 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand DuelCloseCommand => new Command<bool>((showAlert) => ExecuteDuelCloseCommand(showAlert));
 
         #endregion Commands
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            base.OnNavigatedFrom(parameters);
-        }
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            base.OnNavigatedTo(parameters);
-        }
-
-        public override void OnNavigatingTo(INavigationParameters parameters)
-        {
-            base.OnNavigatingTo(parameters);
-        }
     }
 }

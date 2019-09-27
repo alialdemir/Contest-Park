@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Identity;
@@ -120,6 +121,11 @@ namespace ContestPark.Mobile.Services.Identity
             _settingsService.RemoveCurrentUser();
 
             return Task.CompletedTask;
+        }
+
+        public Task<bool> UpdateLanguageAsync(Languages language)
+        {
+            return Task.FromResult(true);
         }
 
         public Task<bool> UpdateUserInfoAsync(UpdateUserInfoModel userInfo)

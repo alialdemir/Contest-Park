@@ -4,11 +4,13 @@ using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Models.MenuItem;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
+using Prism.Services;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -23,6 +25,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IIdentityService _identityService;
+        private readonly ICacheService _cacheService;
         private readonly ISettingsService _settingsService;
 
         #endregion Private variables
@@ -30,11 +33,13 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public LanguageViewModel(INavigationService navigationService,
+                                 ICacheService cacheService,
+                                 IPageDialogService dialogService,
                                  ISettingsService settingsService,
-                                 IIdentityService identityService) : base(navigationService)
+                                 IIdentityService identityService) : base(navigationService, dialogService: dialogService)
         {
             Title = ContestParkResources.Language;
-
+            _cacheService = cacheService;
             _settingsService = settingsService;
             _identityService = identityService;
         }
@@ -84,7 +89,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 ContestParkResources.Culture = culture;
 
-                DependencyService.Get<ILocalize>().SetCultureInfo(culture);
+                Xamarin.Forms.DependencyService.Get<ILocalize>().SetCultureInfo(culture);
             }
         }
 
@@ -105,13 +110,29 @@ namespace ContestPark.Mobile.ViewModels
 
             string languageCode = language.ToLanguageCode();
 
-            await _settingsService.SetSettingsAsync(SettingTypes.Language, languageCode);
+            bool isSuccess = await _identityService.UpdateLanguageAsync(language);
+            if (!isSuccess)
+            {
+                SwipedTogleChanges(_settingsService.CurrentUser.Language);
+
+                UserDialogs.Instance.HideLoading();
+
+                await DisplayAlertAsync("",
+                                        ContestParkResources.GlobalErrorMessage,
+                                        ContestParkResources.Okay);
+
+                return;
+            }
 
             _settingsService.CurrentUser.Language = language;
+
+            _settingsService.RefreshCurrentUser(_settingsService.CurrentUser);
 
             ChangeDeviceCulture(languageCode);
 
             await _identityService.RefreshTokenAsync();
+
+            _cacheService.EmptyAll();
 
             await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
 

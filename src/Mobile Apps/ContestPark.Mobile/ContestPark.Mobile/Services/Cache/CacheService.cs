@@ -34,6 +34,14 @@ namespace ContestPark.Mobile.Services.Cache
         }
 
         /// <summary>
+        /// param list of keys to flush
+        /// </summary>
+        public void EmptyAll()
+        {
+            Barrel.Current.EmptyAll();
+        }
+
+        /// <summary>
         /// Gets the data entry for the specified key.
         /// </summary>
         /// <param name="key">Unique identifier for the entry to get</param>

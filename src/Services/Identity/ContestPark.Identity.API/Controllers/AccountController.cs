@@ -338,6 +338,29 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         }
 
         /// <summary>
+        /// Kullanıcının dil ayarını günceller
+        /// </summary>
+        /// <param name="language">Dil ayarı</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateLanguage")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateLanguage([FromBody]Languages language)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(UserId);
+            if (user == null)
+                return NotFound();
+
+            user.Language = language;
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded && result.Errors.Count() > 0)
+                return BadRequest(result.Errors);
+
+            return Ok();
+        }
+
+        /// <summary>
         ///  Eski şifre ile şifre değiştir
         /// </summary>
         /// <param name="changePasswordModel">Şuanki şifre ve yeni şifre</param>

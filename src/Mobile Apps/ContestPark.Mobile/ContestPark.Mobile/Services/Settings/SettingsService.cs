@@ -1,11 +1,12 @@
-﻿using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Enums;
+﻿using ContestPark.Mobile.Dependencies;
+using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.RequestProvider;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -77,7 +78,15 @@ namespace ContestPark.Mobile.Services.Settings
                     {
                         _userInfo = JsonConvert.DeserializeObject<UserInfoModel>(currentUserJson);
                     }
-                    else _userInfo = new UserInfoModel();
+                    else
+                    {
+                        CultureInfo cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                        _userInfo = new UserInfoModel()
+
+                        {
+                            Language = cultureInfo.IetfLanguageTag.ToLanguagesEnum()
+                        };
+                    }
                 }
 
                 return _userInfo;
@@ -192,18 +201,6 @@ namespace ContestPark.Mobile.Services.Settings
         #endregion CurrentUser methods
 
         #region Setting Service
-
-        /// <summary>
-        /// Ayar tipine göre değerini kayıt eder
-        /// </summary>
-        /// <param name="settingType">Ayar tipi</param>
-        /// <param name="settingValue">Değeri</param>
-        public async Task SetSettingsAsync(SettingTypes settingType, string settingValue)// TODO: parametreden gönderirke problem olabilir property name eklenmesi lazım
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{(byte)settingType}", settingValue);
-
-            await _requestProvider.PostAsync<string>(uri);
-        }
 
         /// <summary>
         /// Login olunca set edilmesi gereken değerleri set eder

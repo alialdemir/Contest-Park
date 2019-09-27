@@ -2,6 +2,7 @@
 using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.ErrorModel;
@@ -97,10 +98,28 @@ namespace ContestPark.Mobile.Services.Identity
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangePassword");
 
-            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, changePasswordModel);
+            var response = await _requestProvider.PostAsync<string>(uri, changePasswordModel);
             if (!response.IsSuccess)
             {
-                await ShowErrorMessage(response.Data.ErrorMessage);
+                await ShowErrorMessage(response.Error.ErrorMessage);
+            }
+
+            return response.IsSuccess;
+        }
+
+        /// <summary>
+        /// Kullanıcının dil ayarını günceller
+        /// </summary>
+        /// <param name="language">Seçilen dil</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> UpdateLanguageAsync(Languages language)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UpdateLanguage");
+
+            var response = await _requestProvider.PostAsync<string>(uri, new { language });
+            if (!response.IsSuccess && response.Error != null && !string.IsNullOrEmpty(response.Error.ErrorMessage))
+            {
+                await ShowErrorMessage(response.Error.ErrorMessage);
             }
 
             return response.IsSuccess;

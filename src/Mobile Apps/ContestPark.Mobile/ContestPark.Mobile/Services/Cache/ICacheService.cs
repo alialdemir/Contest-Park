@@ -11,5 +11,6 @@ namespace ContestPark.Mobile.Services.Cache
         Task<T> Get<T>(string key);
 
         void Empty(string key);
+        void EmptyAll();
     }
 }
