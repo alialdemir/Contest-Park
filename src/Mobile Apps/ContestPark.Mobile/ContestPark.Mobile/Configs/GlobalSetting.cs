@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Defines the DefaultEndpoint
         /// </summary>
-        public const string DefaultEndpoint = "http://a6f201f4dd45911e9b243024e5102ee7-271143265.eu-central-1.elb.amazonaws.com";//"http://192.168.1.177:5105"; //"http://192.168.1.177:5105";
+        public const string DefaultEndpoint = "http://192.168.1.177:5105"; // "http://a6f201f4dd45911e9b243024e5102ee7-271143265.eu-central-1.elb.amazonaws.com";//"http://192.168.1.177:5105";
 
         #endregion Constants
 

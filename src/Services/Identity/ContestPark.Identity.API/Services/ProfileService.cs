@@ -83,7 +83,7 @@ namespace ContestPark.Identity.API.Services
                 new Claim(JwtClaimTypes.Subject, user.Id),
                 new Claim(JwtClaimTypes.Role, string.Join(", ", userRoles)),
                 new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
             };
 
             return claims;

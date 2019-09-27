@@ -25,15 +25,15 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public AppShellViewModel(INavigationService navigationService,
-                                           IEventAggregator eventAggregator,
-                                           IBalanceService cpService,
-                                           ISettingsService settingsService) : base(navigationService)
+                                 IEventAggregator eventAggregator,
+                                 IBalanceService cpService,
+                                 ISettingsService settingsService) : base(navigationService)
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
             _settingsService = settingsService;
 
-            InitializeAsync();
+            InitializeCommand.Execute(null);
         }
 
         #endregion Constructors
@@ -105,6 +105,16 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
+            UserInfoModel currentUser = await _settingsService.GetUserInfo();
+            if (currentUser != null)
+            {
+                _settingsService.RefreshCurrentUser(currentUser);
+
+                FullName = currentUser.FullName;
+                ProfilePicture = currentUser.ProfilePicturePath;
+                CoverPicture = currentUser.CoverPicturePath;
+            }
+
             SetUserGoldCommand.Execute(null);
 
             _eventAggregator
@@ -117,16 +127,6 @@ namespace ContestPark.Mobile.ViewModels
                         ProfilePicture = userInfo.ProfilePicturePath;
                     }
                 });
-
-            UserInfoModel currentUser = await _settingsService.GetUserInfo();
-            if (currentUser != null)
-            {
-                _settingsService.RefreshCurrentUser(currentUser);
-
-                FullName = currentUser.FullName;
-                ProfilePicture = currentUser.ProfilePicturePath;
-                CoverPicture = currentUser.CoverPicturePath;
-            }
 
             await base.InitializeAsync();
         }

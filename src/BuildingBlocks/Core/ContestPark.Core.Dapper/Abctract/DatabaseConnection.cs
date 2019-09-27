@@ -34,17 +34,10 @@ namespace ContestPark.Core.Dapper.Abctract
         {
             get
             {
-                try
-                {
-                    if (_connection.State != ConnectionState.Open && _connection.State != ConnectionState.Connecting)
-                        _connection.Open();
+                if (_connection.State != ConnectionState.Open && _connection.State != ConnectionState.Connecting)
+                    _connection.Open();
 
-                    return _connection;
-                }
-                catch (System.Exception ex)
-                {
-                    return _connection;
-                }
+                return _connection;
             }
         }
 

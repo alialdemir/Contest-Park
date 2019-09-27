@@ -50,18 +50,6 @@ namespace ContestPark.Core.Controllers
         public ILogger<ControllerBase> Logger { get; private set; }
 
         /// <summary>
-        /// Current user full name
-        /// </summary>
-        public string UserFullName
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(userFullName)) userFullName = User.FindFirst("full_name")?.Value;
-                return userFullName;
-            }
-        }
-
-        /// <summary>
         /// Current user id
         /// </summary>
         public string UserId

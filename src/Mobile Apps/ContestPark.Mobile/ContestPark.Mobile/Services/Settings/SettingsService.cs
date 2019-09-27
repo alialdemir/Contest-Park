@@ -210,17 +210,11 @@ namespace ContestPark.Mobile.Services.Settings
         /// Login olunca set edilmesi gereken değerleri set eder
         /// </summary>
         /// <param name="userToken">Token info</param>
-        public async void SetTokenInfo(UserToken userToken)
+        public void SetTokenInfo(UserToken userToken)
         {
             AuthAccessToken = userToken.AccessToken;
             RefreshToken = userToken.RefreshToken;
             TokenType = userToken.TokenType;
-
-            UserInfoModel currentUser = await GetUserInfo();
-            if (currentUser != null)
-            {
-                RefreshCurrentUser(currentUser);
-            }
         }
 
         /// <summary>
