@@ -655,7 +655,7 @@
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
-          "Host": "contestparksignalr.eu-central-1.elasticbeanstalk.com",
+          "Host": "contestparksignalrapi-prod.eu-central-1.elasticbeanstalk.com",
           "Port": 80
         }
       ],
