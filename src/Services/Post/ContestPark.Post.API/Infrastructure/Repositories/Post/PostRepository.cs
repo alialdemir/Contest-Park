@@ -130,8 +130,8 @@ namespace ContestPark.Post.API.Infrastructure.MySql
                             p.Description
 
                            FROM Posts p
-                           LEFT JOIN ContestParkCategory.SubCategories sc ON sc.SubCategoryId = p.SubCategoryId
-                           LEFT JOIN ContestParkCategory.SubCategoryLangs scl ON scl.SubCategoryId = p.SubCategoryId AND scl.`Language`= @language
+                           LEFT JOIN SubCategories sc ON sc.SubCategoryId = p.SubCategoryId
+                           LEFT JOIN SubCategoryLangs scl ON scl.SubCategoryId = p.SubCategoryId AND scl.`Language`= @language
                            {where}
                            ORDER BY p.CreatedDate desc";
 
