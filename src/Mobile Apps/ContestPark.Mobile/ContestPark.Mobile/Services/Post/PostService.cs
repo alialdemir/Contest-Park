@@ -70,9 +70,12 @@ namespace ContestPark.Mobile.Services.Post
         /// </summary>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Alt kategori postları</returns>
-        public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel)
+        public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel, bool isForceCache = false)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Subcategory/{subCategoryId}{pagingModel.ToString()}");
+
+            if (isForceCache)
+                _cacheService.Empty(uri);
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -80,7 +83,6 @@ namespace ContestPark.Mobile.Services.Post
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
-
             if (result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);

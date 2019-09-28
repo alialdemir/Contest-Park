@@ -99,13 +99,13 @@ namespace ContestPark.Duel.API
 
             services.AddSingleton<IScoreCalculator, ScoreCalculator>();
 
-            services.AddSingleton<IQuestionLocalizedRepository, QuestionLocalizedRepository>();
+            services.AddTransient<IQuestionLocalizedRepository, QuestionLocalizedRepository>();
 
-            services.AddSingleton<IQuestionOfQuestionLocalizedRepository, QuestionOfQuestionLocalizedRepository>();
+            services.AddTransient<IQuestionOfQuestionLocalizedRepository, QuestionOfQuestionLocalizedRepository>();
 
-            services.AddSingleton<IAnswerLocalizedRepository, AnswerLocalizedRepository>();
+            services.AddTransient<IAnswerLocalizedRepository, AnswerLocalizedRepository>();
 
-            services.AddSingleton<IFileUploadService, S3FileUploadService>();
+            services.AddTransient<IFileUploadService, S3FileUploadService>();
 
             #region S3 settings
 

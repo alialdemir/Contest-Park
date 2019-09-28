@@ -130,7 +130,7 @@ namespace ContestPark.Mobile.Services.Post
             });
         }
 
-        public Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel)
+        public Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel, bool isForceCache)
         {
             List<PostModel> posts = new List<PostModel>();
 

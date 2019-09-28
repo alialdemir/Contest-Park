@@ -1610,6 +1610,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You left the game during the duel. You are defeated..
+        /// </summary>
+        public static string YouLeftTheGameDuringTheDuelYouAreDefeated {
+            get {
+                return ResourceManager.GetString("YouLeftTheGameDuringTheDuelYouAreDefeated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to YOU LOSE!.
         /// </summary>
         public static string YouLose {

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ContestPark.Mobile.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -15,5 +16,16 @@ namespace ContestPark.Mobile.Views
         }
 
         #endregion Constructor
+
+        #region Overrides
+
+        protected override void OnDisappearing()
+        {
+            ((CategoryDetailViewModel)BindingContext).OnSleepEventCommand?.Execute(null);
+
+            base.OnDisappearing();
+        }
+
+        #endregion Overrides
     }
 }

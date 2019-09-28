@@ -246,7 +246,19 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
+        public ICommand ClosePopupCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await RemoveFirstPopupAsync();
+
+                    _eventAggregator.GetEvent<PostRefreshEvent>();
+                });
+            }
+        }
+
         public ICommand FindOpponentCommand { get { return new Command(async () => await ExecuteFindOpponentCommand()); } }
         public ICommand GotoChatCommand { get { return new Command(async () => await ExecuteGotoChatCommand()); } }
         public ICommand GotoProfilePageCommand { get { return new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)); } }

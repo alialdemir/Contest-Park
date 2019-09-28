@@ -331,15 +331,15 @@
                         Grid.Row="9"
                         Grid.Column="0"
                         Grid.ColumnSpan="5"
-                        Margin="10,0,0,0"
+                        Margin="10,0,10,0"
                         RowSpacing="7">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60" />
                             <RowDefinition Height="60" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="180" />
-                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <iconButton:IconButton

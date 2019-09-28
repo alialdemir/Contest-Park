@@ -152,6 +152,8 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult DuelEscape([FromRoute]int duelId)
         {
+            Logger.LogInformation("Düelodan çıkma isteği geldi. DuelId: {duelId} userId: {userId}", duelId, UserId);
+
             if (!_duelRepository.IsDuelFinish(duelId))
             {
                 return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);

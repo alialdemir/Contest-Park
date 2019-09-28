@@ -26,6 +26,8 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IGameService _gameService;
         private readonly IPostService _postService;
         private short _subCategoryId = 0;
+        private SubscriptionToken _subscriptionToken;
+        private readonly PostRefreshEvent _onSleepEvent;
 
         #endregion Private variable
 
@@ -45,6 +47,7 @@ namespace ContestPark.Mobile.ViewModels
             _postService = postService;
             _gameService = gameService;
             _eventAggregator = eventAggregator;
+            _onSleepEvent = eventAggregator.GetEvent<PostRefreshEvent>();
         }
 
         #endregion Constructor
@@ -70,10 +73,10 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override Task InitializeAsync()
         {
             if (IsBusy)
-                return;
+                return Task.CompletedTask;
 
             IsBusy = true;
 
@@ -82,6 +85,13 @@ namespace ContestPark.Mobile.ViewModels
             SubCategoryPostsCommand.Execute(null);
 
             IsBusy = false;
+
+            if (SubscriptionToken == null)
+            {
+                SubscriptionToken = _onSleepEvent.Subscribe(() => SubCategoryPostsCommand.Execute(true));
+            }
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -222,14 +232,27 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () =>
+                return new Command<bool>(async (isForceCache) =>
                 {
-                    ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel);
+                    ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel, isForceCache: isForceCache);
 
                     await base.InitializeAsync();
                 });
             }
         }
+
+        public ICommand OnSleepEventCommand
+        {
+            get
+            {
+                return new Command(() =>
+               {
+                   _onSleepEvent.Unsubscribe(SubscriptionToken);
+               });
+            }
+        }
+
+        public SubscriptionToken SubscriptionToken { get => _subscriptionToken; set => _subscriptionToken = value; }
 
         #endregion Commands
 

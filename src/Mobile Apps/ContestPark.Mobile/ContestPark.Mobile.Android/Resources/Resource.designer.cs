@@ -14862,43 +14862,37 @@ namespace ContestPark.Mobile.Droid
 			public const int splash = 2131165588;
 			
 			// aapt resource value: 0x7F070195
-			public const int stockmarket = 2131165589;
+			public const int stylishbackground = 2131165589;
 			
 			// aapt resource value: 0x7F070196
-			public const int stylishbackground = 2131165590;
+			public const int switchactive = 2131165590;
 			
 			// aapt resource value: 0x7F070197
-			public const int switchactive = 2131165591;
+			public const int switchpassive = 2131165591;
 			
 			// aapt resource value: 0x7F070198
-			public const int switchpassive = 2131165592;
+			public const int tooltip_frame_dark = 2131165592;
 			
 			// aapt resource value: 0x7F070199
-			public const int takimlar = 2131165593;
+			public const int tooltip_frame_light = 2131165593;
 			
 			// aapt resource value: 0x7F07019A
-			public const int tooltip_frame_dark = 2131165594;
+			public const int TUR_s = 2131165594;
 			
 			// aapt resource value: 0x7F07019B
-			public const int tooltip_frame_light = 2131165595;
+			public const int twitter = 2131165595;
 			
 			// aapt resource value: 0x7F07019C
-			public const int TUR_s = 2131165596;
+			public const int user = 2131165596;
 			
 			// aapt resource value: 0x7F07019D
-			public const int twitter = 2131165597;
+			public const int UserProfile = 2131165597;
 			
 			// aapt resource value: 0x7F07019E
-			public const int user = 2131165598;
+			public const int verify = 2131165598;
 			
 			// aapt resource value: 0x7F07019F
-			public const int UserProfile = 2131165599;
-			
-			// aapt resource value: 0x7F0701A0
-			public const int verify = 2131165600;
-			
-			// aapt resource value: 0x7F0701A1
-			public const int vs = 2131165601;
+			public const int vs = 2131165599;
 			
 			static Drawable()
 			{

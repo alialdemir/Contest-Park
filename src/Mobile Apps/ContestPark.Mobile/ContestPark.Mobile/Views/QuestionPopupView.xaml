@@ -9,82 +9,81 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Content>
-        <ScrollView>
+        <Grid
+            BackgroundColor="#FAFAFA"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="49*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="49*" />
+            </Grid.RowDefinitions>
+
             <yummy:PancakeView
                 BackgroundGradientEndColor="#A573FF"
                 BackgroundGradientStartColor="#645AFF"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand">
-                <Grid
-                    HorizontalOptions="FillAndExpand"
-                    RowSpacing="0"
-                    VerticalOptions="FillAndExpand">
+                VerticalOptions="FillAndExpand" />
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="49*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="49*" />
-                    </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                <!--  Top Start  -->
 
-                        <!--  Top Start  -->
+                <components:UsersInfo
+                    Grid.Row="0"
+                    FounderFullname="{Binding DuelScreen.FounderFullName}"
+                    FounderImageBorderColor="{Binding FounderImageBorderColor}"
+                    FounderScore="{Binding FounderScore}"
+                    FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
+                    OpponentFullname="{Binding DuelScreen.OpponentFullName}"
+                    OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
+                    OpponentScore="{Binding OpponentScore}"
+                    OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
+                    Time="{Binding Time}" />
 
-                        <components:UsersInfo
-                            Grid.Row="0"
-                            FounderFullname="{Binding DuelScreen.FounderFullName}"
-                            FounderImageBorderColor="{Binding FounderImageBorderColor}"
-                            FounderScore="{Binding FounderScore}"
-                            FounderSource="{Binding DuelScreen.FounderProfilePicturePath}"
-                            OpponentFullname="{Binding DuelScreen.OpponentFullName}"
-                            OpponentImageBorderColor="{Binding OpponentImageBorderColor}"
-                            OpponentScore="{Binding OpponentScore}"
-                            OpponentSource="{Binding DuelScreen.OpponentProfilePicturePath}"
-                            Time="{Binding Time}" />
+                <!--  Top End  -->
 
-                        <!--  Top End  -->
+                <!--  Question Start  -->
+                <components:QuestionCardFactory
+                    Grid.Row="1"
+                    Link="{Binding CurrentQuestion.Link}"
+                    Question="{Binding CurrentQuestion.NextQuestion}"
+                    QuestionType="{Binding CurrentQuestion.QuestionType}" />
 
-                        <!--  Question Start  -->
-                        <components:QuestionCardFactory
-                            Grid.Row="1"
-                            Link="{Binding CurrentQuestion.Link}"
-                            Question="{Binding CurrentQuestion.NextQuestion}"
-                            QuestionType="{Binding CurrentQuestion.QuestionType}" />
+                <!--  Question End  -->
+            </Grid>
 
-                        <!--  Question End  -->
-                    </Grid>
+            <BoxView Grid.Row="2" Color="#FAFAFA" />
 
-                    <BoxView Grid.Row="2" Color="#FAFAFA" />
+            <!--  Center Start  -->
 
-                    <!--  Center Start  -->
+            <Image
+                Grid.RowSpan="3"
+                HeightRequest="20"
+                HorizontalOptions="FillAndExpand"
+                Source="questioncenter.png"
+                TranslationY="-11" />
 
-                    <Image
-                        Grid.RowSpan="3"
-                        HeightRequest="20"
-                        HorizontalOptions="FillAndExpand"
-                        Source="questioncenter.png"
-                        TranslationY="-7" />
+            <!--  Center End  -->
 
-                    <!--  Center End  -->
+            <!--  Stylish Start  -->
 
-                    <!--  Stylish Start  -->
+            <components:Stylish
+                x:Name="Stylishs"
+                Grid.Row="2"
+                AnswerCommand="{Binding AnswerCommand}"
+                AnswerType="{Binding CurrentQuestion.AnswerType}"
+                Answers="{Binding Answers}"
+                VerticalOptions="CenterAndExpand" />
 
-                    <components:Stylish
-                        x:Name="Stylishs"
-                        Grid.Row="2"
-                        AnswerCommand="{Binding AnswerCommand}"
-                        AnswerType="{Binding CurrentQuestion.AnswerType}"
-                        Answers="{Binding Answers}"
-                        VerticalOptions="CenterAndExpand" />
-
-                    <!--  Stylish End  -->
-                </Grid>
-            </yummy:PancakeView>
-        </ScrollView>
+            <!--  Stylish End  -->
+        </Grid>
     </pages:PopupPage.Content>
 </pages:PopupPage>

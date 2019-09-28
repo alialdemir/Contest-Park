@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Services.Post
 
         Task<PostDetailModel> GetPostByPostIdAsync(int postId, PagingModel pagingModel);
 
-        Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel);
+        Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel, bool isForceCache = false);
 
         Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel);
 

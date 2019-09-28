@@ -1,5 +1,4 @@
 ﻿using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Settings;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -77,7 +76,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
                 HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
 
-                EventListener();
+                //EventListener();
 
                 GetConnection();
 
@@ -192,24 +191,24 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// Cihazı alta alma oyunu kapatma gibi durumlarda signalr tarafında disconnect olur
         /// </summary>
         /// <param name="eventAggregator"></param>
-        private void EventListener()
-        {
-            _eventAggregator
-                          .GetEvent<OnResumeEvent>()
-                          .Subscribe(async () =>
-                          {
-                              await ConnectAsync();
-                          });
+        //private void EventListener()
+        //{
+        //    _eventAggregator
+        //                  .GetEvent<OnResumeEvent>()
+        //                  .Subscribe(async () =>
+        //                  {
+        //                      await ConnectAsync();
+        //                  });
 
-            _eventAggregator
-                          .GetEvent<OnSleepEvent>()
-                          .Subscribe(async () =>
-                          {
-                              // TODO: disconnect olduğunda düelloda ise yenilmiş sayılsın
+        //    _eventAggregator
+        //                  .GetEvent<OnSleepEvent>()
+        //                  .Subscribe(async () =>
+        //                  {
+        //                      // TODO: disconnect olduğunda düelloda ise yenilmiş sayılsın
 
-                              await DisconnectAsync();
-                          });
-        }
+        //                      await DisconnectAsync();
+        //                  });
+        //}
 
         #endregion Methods
     }

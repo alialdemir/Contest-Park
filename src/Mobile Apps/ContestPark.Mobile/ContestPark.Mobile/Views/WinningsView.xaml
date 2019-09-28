@@ -33,7 +33,7 @@
                         Grid.Row="0"
                         Margin="0,14,0,14"
                         HeightRequest="95"
-                        Source="money.jpg"
+                        Source="money.png"
                         VerticalOptions="Center"
                         WidthRequest="150" />
 

@@ -61,7 +61,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex);
+                _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
 
                 return null;
             }
@@ -84,7 +84,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex);
+                _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
 
                 return 0;
             }
@@ -112,7 +112,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex);
+                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
 
                 return false;
             }
@@ -135,7 +135,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex);
+                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
 
                 return false;
             }
@@ -171,7 +171,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"GetById hata oluştu. table Name: {TableName} id: {id}", ex);
+                _logger.LogError($"GetById hata oluştu. table Name: {TableName} id: {id}", ex.Message);
 
                 return null;
             }
@@ -194,7 +194,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"GetById hata oluştu. table Name: {TableName}", ex);
+                _logger.LogError($"GetById hata oluştu. table Name: {TableName}", ex.Message);
 
                 return null;
             }
@@ -223,7 +223,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document silerken hata oluştu. Table Name: {TableName} id: {id}", ex);
+                _logger.LogError($"Document silerken hata oluştu. Table Name: {TableName} id: {id}", ex.Message);
 
                 return false;
             }
@@ -248,7 +248,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Documents silme hatası oluştu. Table Name: {TableName}", ex);
+                _logger.LogError($"Documents silme hatası oluştu. Table Name: {TableName}", ex.Message);
 
                 return false;
             }
@@ -273,7 +273,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {TableName} ", ex);
+                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {TableName} ", ex.Message);
 
                 return false;
             }
@@ -303,7 +303,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex);
+                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex.Message);
 
                 return false;
             }
@@ -357,7 +357,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex);
+                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex.Message);
                 return false;
             }
             finally

@@ -662,4 +662,7 @@
   <data name="Dolar" xml:space="preserve">
     <value>Dollar</value>
   </data>
+  <data name="YouLeftTheGameDuringTheDuelYouAreDefeated" xml:space="preserve">
+    <value>You left the game during the duel. You are defeated.</value>
+  </data>
 </root>

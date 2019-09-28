@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.Audio;
@@ -9,6 +10,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
@@ -28,7 +30,9 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IBotService _botService;
         private readonly IDuelService _duelService;
         private readonly IDuelSignalRService _duelSignalRService;
+        private readonly OnSleepEvent _onSleepEvent;
         private readonly ISettingsService _settingsService;
+        private SubscriptionToken _subscriptionToken;
 
         #endregion Private variables
 
@@ -37,12 +41,14 @@ namespace ContestPark.Mobile.ViewModels
         public QuestionPopupViewModel(IPopupNavigation popupNavigation,
                                       IDuelSignalRService duelSignalRService,
                                       IPageDialogService pageDialogService,
+                                      IEventAggregator eventAggregator,
                                       IDuelService duelService,
                                       ISettingsService settingsService,
                                       IAudioService audioService,
                                       IBotService botService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
         {
             _duelSignalRService = duelSignalRService;
+            _onSleepEvent = eventAggregator.GetEvent<OnSleepEvent>();
             _duelService = duelService;
             _settingsService = settingsService;
             _audioService = audioService;
@@ -207,14 +213,9 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override Task InitializeAsync()
         {
-            if (IsInitialized)
-                return Task.CompletedTask;
-
             SetCurrentQuestion();
 
             ResetImageBorderColor();
-
-            IsInitialized = true;
 
             DisplayQuestionExpectedPopup();
 
@@ -223,6 +224,8 @@ namespace ContestPark.Mobile.ViewModels
             StartTimer();
 
             base.InitializeAsync();
+
+            OnSleepEventListener();
 
             return Task.CompletedTask;
         }
@@ -470,12 +473,17 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelScreen.DuelId > 0)
             {
-                await _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
-                await _duelService.DuelEscape(DuelScreen.DuelId);
+                Task.Factory.StartNew(async () =>
+                {
+                    await _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
+                    await _duelService.DuelEscape(DuelScreen.DuelId);
+                }).Wait();
             }
 
             _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
             _duelSignalRService.OffNextQuestion();
+
+            _onSleepEvent.Unsubscribe(_subscriptionToken);
 
             await PushPopupPageAsync(new DuelResultPopupView()
             {
@@ -679,6 +687,21 @@ namespace ContestPark.Mobile.ViewModels
             {
                 Stylish = Stylish.UnableToReply,
                 UserId = _settingsService.CurrentUser.UserId
+            });
+        }
+
+        /// <summary>
+        /// Eğer soru ekranındayken oyundan çıkarsa yenilmiş sayılsın
+        /// </summary>
+        private void OnSleepEventListener()
+        {
+            _subscriptionToken = _onSleepEvent.Subscribe(() =>
+            {
+                DuelCloseCommand.Execute(false);
+
+                DisplayAlertAsync("",
+                                  ContestParkResources.YouLeftTheGameDuringTheDuelYouAreDefeated,
+                                  ContestParkResources.Okay);
             });
         }
 

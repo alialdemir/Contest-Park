@@ -29,6 +29,9 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
         {
             string key = GetKey(deuelId);
 
+            if (!_redisClient.ContainsKey(key))
+                return null;
+
             return _redisClient.Get<List<UserAnswerModel>>(key);
         }
 
@@ -49,12 +52,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 
             string key = GetKey(duelId);
 
-            //var userAnswer = GetAnswers(duelId);
-            //if (userAnswer != null)
-            //{
-            //    userAnswers.AddRange(userAnswer);
-            //}
-
             _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresAt: DateTime.Now.AddMinutes(10));// 10 dk sonra redis üzerinden otomatik siler
         }
 
@@ -64,7 +61,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
         /// <param name="duelId">Düello id</param>
         public void Remove(int duelId)
         {
-            _redisClient.Remove(GetKey(duelId));
+            string key = GetKey(duelId);
+            if (_redisClient.ContainsKey(key))
+            {
+                _redisClient.Remove(key);
+            }
         }
 
         private string GetKey(int duelId)

@@ -40,6 +40,8 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null || viewModel.IsInitialized)
                 return;
 
+            viewModel.IsInitialized = true;
+
             viewModel.DuelCreated = DuelCreated;
             viewModel.DuelScreen = DuelStarting;
             viewModel.SubcategoryName = SubcategoryName;
@@ -47,7 +49,6 @@ namespace ContestPark.Mobile.Views
             //viewModel.AnimateStylishCommand = new Command(Stylishs.AnimateStylish);
 
             viewModel.InitializeCommand.Execute(null);
-            viewModel.IsInitialized = true;
         }
 
         protected override bool OnBackButtonPressed()

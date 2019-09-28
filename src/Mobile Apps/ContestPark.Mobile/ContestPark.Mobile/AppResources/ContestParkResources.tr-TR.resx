@@ -642,6 +642,9 @@
   <data name="YouHaveEnteredAnInvalidCode" xml:space="preserve">
     <value>Geçersiz kod girdiniz.</value>
   </data>
+  <data name="YouLeftTheGameDuringTheDuelYouAreDefeated" xml:space="preserve">
+    <value>Düello sırasında oyundan çıktınız. Yenildiniz.</value>
+  </data>
   <data name="YouLose" xml:space="preserve">
     <value>KAYBETTİN!</value>
   </data>
