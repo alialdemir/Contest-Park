@@ -82,7 +82,7 @@ namespace ContestPark.Mobile.ViewModels
 
             SubCategoryDetailCommand.Execute(null);
 
-            SubCategoryPostsCommand.Execute(null);
+            SubCategoryPostsCommand.Execute(false);
 
             IsBusy = false;
 

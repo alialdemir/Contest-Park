@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.Audio;
@@ -7,6 +8,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
@@ -31,6 +33,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Private Variables
 
+        private readonly OnSleepEvent _onSleepEvent;
+        private SubscriptionToken _subscriptionToken;
         private readonly IAudioService _audioService;
 
         private readonly IDuelService _duelService;
@@ -44,6 +48,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public DuelStartingPopupViewModel(IAudioService audioService,
+                                          IEventAggregator eventAggregator,
                                           IDuelService duelService,
                                           IDuelSignalRService duelSignalRService,
                                           INavigationService navigationService,
@@ -58,6 +63,8 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService = duelSignalRService ?? throw new ArgumentNullException(nameof(duelSignalRService));
 
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+
+            _onSleepEvent = eventAggregator.GetEvent<OnSleepEvent>();
         }
 
         #endregion Constructor
@@ -91,6 +98,8 @@ namespace ContestPark.Mobile.ViewModels
 
         public StandbyModeModel StandbyModeModel { get; private set; } = new StandbyModeModel();
         private bool RandomPicturStatus { get; set; } = true;
+
+        public bool IsExit { get; set; }
 
         #endregion Properties
 
@@ -224,6 +233,8 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService.DuelStartingEventHandler -= OnDuelStarting;
             _duelSignalRService.OffDuelStarting();
 
+            _onSleepEvent.Unsubscribe(_subscriptionToken);
+
             await RemoveFirstPopupAsync();
 
             if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
@@ -306,6 +317,9 @@ namespace ContestPark.Mobile.ViewModels
                 await Task.Delay(3000); // Rakibi görebilmesi için 3sn beklettim
 
                 IsNextQuestionExit = true;
+
+                if (IsExit)
+                    return;
 
                 await PushPopupPageAsync(questionPopupView);
 
@@ -393,9 +407,35 @@ namespace ContestPark.Mobile.ViewModels
 
             DuelSignalrListener();// SignalR listener load
 
+            OnSleepEventListener();
+
             await RandomUserProfilePicturesAsync();
 
             DuelOpenCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// Eğer düello başlamışsa ve oyundan çıkarsa yenilmiş sayılsın
+        /// </summary>
+        private void OnSleepEventListener()
+        {
+            _subscriptionToken = _onSleepEvent.Subscribe(async () =>
+            {
+                IsExit = true;
+
+                IsNextQuestionExit = true;
+
+                DuelCloseCommand.Execute(null);
+
+                if (DuelStarting.DuelId > 0)
+                {
+                    await _duelService.DuelEscape(DuelStarting.DuelId);
+
+                    await DisplayAlertAsync("",
+                                        ContestParkResources.YouLeftTheGameDuringTheDuelYouAreDefeated,
+                                        ContestParkResources.Okay);
+                }
+            });
         }
 
         #endregion Methods

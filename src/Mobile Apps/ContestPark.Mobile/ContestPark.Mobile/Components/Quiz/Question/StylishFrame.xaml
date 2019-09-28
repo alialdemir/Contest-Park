@@ -35,6 +35,7 @@
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="19"
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Text="{Binding Path=Answer.Answers, Source={x:Reference stylishFrame}}"
                 TextColor="{Binding Path=Answer.Color, Source={x:Reference stylishFrame}, Converter={StaticResource sftcc}}"
                 VerticalOptions="CenterAndExpand" />

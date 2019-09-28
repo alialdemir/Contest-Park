@@ -13,7 +13,6 @@
     </ContentView.Resources>
     <ContentView.Content>
         <StackLayout
-            Margin="0,10,0,0"
             HorizontalOptions="Center"
             Orientation="Vertical"
             VerticalOptions="Center">
@@ -26,13 +25,13 @@
                 TextColor="{StaticResource White}" />
 
             <components:CachedImage
-                Margin="0,13,0,25"
+                Margin="0,13,0,10"
                 Aspect="Fill"
-                HeightRequest="150"
+                HeightRequest="100"
                 IsLoadingPlaceholder="False"
                 IsVisible="{Binding Path=QuestionType, Source={x:Reference questionCardFactoryPage}, Converter={StaticResource qtc}}"
                 Source="{Binding Path=Link, Source={x:Reference questionCardFactoryPage}}"
-                WidthRequest="300" />
+                WidthRequest="250" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>
