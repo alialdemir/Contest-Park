@@ -1,5 +1,4 @@
 ﻿using ContestPark.Category.API.Infrastructure.ElasticSearch;
-using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Core.Dapper.Extensions;
 using ContestPark.Core.FunctionalTests;
 using System;
@@ -20,8 +19,8 @@ namespace ContestPark.Category.API.FunctionalTests
             DatabaseExtension.DeleteDatabase(Conf.Configuration["ConnectionString"]);
 
             ElasticContext elasticContext = new ElasticContext(new Nest.ConnectionSettings(new Uri(Conf.Configuration["ElasticSearchURI"])), null);
-            SearchRepository searchRepository = new SearchRepository(elasticContext, null, Conf.Configuration, null);
-            searchRepository.DeleteSearchIndexs();
+            //SearchRepository searchRepository = new SearchRepository(elasticContext, null, Conf.Configuration, null);
+            //searchRepository.DeleteSearchIndexs();
         }
     }
 

@@ -3,7 +3,6 @@ using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -134,12 +133,9 @@ namespace ContestPark.Duel.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
-                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(GetDuelEscape(1)));
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
                 var response = await server.CreateClient()
                     .AddLangCode(langCode)
-                    .PostAsync(Entpoints.PostDuelEscape(), content);
+                    .PostAsync(Entpoints.PostDuelEscape(1), null);
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -156,90 +152,11 @@ namespace ContestPark.Duel.API.FunctionalTests
         {
             using (var server = CreateServer())
             {
-                string jsonContent = await Task.Run(() => JsonConvert.SerializeObject(GetDuelEscape(2)));
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
                 var response = await server.CreateClient()
-                    .PostAsync(Entpoints.PostDuelEscape(), content);
+                    .PostAsync(Entpoints.PostDuelEscape(1), null);
 
                 Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             }
-        }
-
-        private DuelEscapeModel GetDuelEscape(int duelId)
-        {
-            return new DuelEscapeModel
-            {
-                DuelId = duelId,
-                FounderUserId = "1111-1111-1111-1111",
-                OpponentUserId = "2222-2222-2222-2222",
-                Questions = new List<DuelFinishQuestionModel>
-                    {
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.A,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 1,
-                            FounderTime = 7,
-                            OpponentTime = 3
-                        },
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.C,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 2,
-                            FounderTime = 8,
-                            OpponentTime = 6
-                        },
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.D,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 3,
-                            FounderTime = 4,
-                            OpponentTime = 10
-                        },
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.A,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 4,
-                            FounderTime = 1,
-                            OpponentTime = 5
-                        },
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.B,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 5,
-                            FounderTime = 9,
-                            OpponentTime = 1
-                        },
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.C,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 6,
-                            FounderTime = 7,
-                            OpponentTime = 10
-                        },
-                        new DuelFinishQuestionModel
-                        {
-                            CorrectAnswer = Stylish.D,
-                            FounderAnswer = Stylish.A,
-                            OpponentAnswer = Stylish.C,
-                            QuestionId = 7,
-                            FounderTime = 6,
-                            OpponentTime = 6
-                        },
-                    }
-            };
         }
 
         [Theory]
