@@ -196,6 +196,8 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        public bool IsGameEnd { get; set; }
+
         #endregion Properties
 
         #region SignalR
@@ -476,7 +478,11 @@ namespace ContestPark.Mobile.ViewModels
                 Task.Factory.StartNew(async () =>
                 {
                     await _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
-                    await _duelService.DuelEscape(DuelScreen.DuelId);
+
+                    if (!IsGameEnd)// Oyun sonlanmadan çıkmış ise düellodan kaçtı olarak bildirdik
+                    {
+                        await _duelService.DuelEscape(DuelScreen.DuelId);
+                    }
                 }).Wait();
             }
 
@@ -502,6 +508,8 @@ namespace ContestPark.Mobile.ViewModels
             {
                 if (IsExit)
                     return false;
+
+                IsGameEnd = true;
 
                 DuelCloseCommand.Execute(false);
 

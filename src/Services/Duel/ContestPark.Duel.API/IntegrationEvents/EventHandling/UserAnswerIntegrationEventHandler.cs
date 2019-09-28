@@ -6,7 +6,6 @@ using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,11 +46,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <returns></returns>
         public Task Handle(UserAnswerIntegrationEvent @event)
         {
-            _logger.LogInformation($@"Soru cevaplandı. Duel id: {@event.DuelId}
-                                                       Question id: {@event.QuestionId}
-                                                       User id: {@event.UserId}
-                                                       Stylish: {@event.Stylish}
-                                                       Time: {@event.Time}");
+            _logger.LogInformation($@"Soru cevaplandı.", @event.DuelId,
+                                                         @event.QuestionId,
+                                                         @event.UserId,
+                                                         @event.Stylish,
+                                                         @event.Time,
+                                                         @event);
 
             List<UserAnswerModel> userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
             if (userAnswers == null || userAnswers.Count == 0)
@@ -142,15 +142,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 DuelBalanceInfoModel duelBalanceInfo = _duelRepository.GetDuelBalanceInfoByDuelId(duelId);
 
-                _logger.LogInformation($@"Duello sona erdi. Duel id: {duelId}
-                                                            BalanceType: {duelBalanceInfo.BalanceType}
-                                                            Bet: {duelBalanceInfo.Bet}
-                                                            Bet Commission: {duelBalanceInfo.BetCommission}
-                                                            Sub Category Id: { duelBalanceInfo.SubCategoryId}
-                                                            Founder User Id: {firstItem.FounderUserId}
-                                                            Opponent User Id: {firstItem.OpponentUserId}
-                                                            Founder Total Score: {founderTotalScore}
-                                                            Opponent Total Score: {opponentTotalScore}");
+                _logger.LogInformation($@"Duello sona erdi.",
+                                                            duelId,
+                                                            duelBalanceInfo.BalanceType,
+                                                            duelBalanceInfo.Bet,
+                                                            duelBalanceInfo.BetCommission,
+                                                            duelBalanceInfo.SubCategoryId,
+                                                            firstItem.FounderUserId,
+                                                            firstItem.OpponentUserId,
+                                                            founderTotalScore,
+                                                            opponentTotalScore);
 
                 var @duelFinishEvent = new DuelFinishIntegrationEvent(duelId,
                                                                       duelBalanceInfo.BalanceType,
@@ -170,9 +171,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             else
             {
-                string duelloInfoJson = JsonConvert.SerializeObject(userAnswers);
-
-                _logger.LogCritical($"CRITICAL: Duello bilgileri kayıt edilirken hata oluştu. {duelloInfoJson}", userAnswers);
+                _logger.LogCritical($"CRITICAL: Duello bilgileri kayıt edilirken hata oluştu.", userAnswers);
             }
         }
 
