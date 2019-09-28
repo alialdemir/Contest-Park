@@ -46,12 +46,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <returns></returns>
         public Task Handle(UserAnswerIntegrationEvent @event)
         {
-            _logger.LogInformation($@"Soru cevaplandı.", @event.DuelId,
+            _logger.LogInformation("Soru cevaplandı. {DuelId} {QuestionId} {UserId} {Stylish} {Time}", @event.DuelId,
                                                          @event.QuestionId,
                                                          @event.UserId,
                                                          @event.Stylish,
-                                                         @event.Time,
-                                                         @event);
+                                                         @event.Time);
 
             List<UserAnswerModel> userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
             if (userAnswers == null || userAnswers.Count == 0)

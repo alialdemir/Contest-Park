@@ -27,7 +27,6 @@ namespace ContestPark.Core.Controllers
 
         #region Properties
 
-        private string userFullName;
         private string userId = String.Empty;
 
         // <summary>

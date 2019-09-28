@@ -139,9 +139,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                         OpponentUserId = duelUserModel.UserId
                     });
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                    _logger.LogCritical("CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu.", waitingOpponentIntegration.UserId, waitingOpponentIntegration.UserId);
+                    _logger.LogCritical("CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu.", waitingOpponentIntegration.UserId, waitingOpponentIntegration.UserId, ex.Message);
 
                     // TODO: düello başlatılırken hata oluştu
                 }
