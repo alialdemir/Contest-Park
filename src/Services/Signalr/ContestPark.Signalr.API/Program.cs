@@ -1,9 +1,8 @@
-﻿using Amazon.CloudWatchLogs;
+﻿using ContestPark.Core.Provider;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using Serilog.Sinks.AwsCloudWatch;
 using System;
 using System.IO;
 
@@ -57,27 +56,8 @@ namespace ContestPark.Signalr.API
                 //     .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.WithProperty("ApplicationContext", AppName)
                 .Enrich.FromLogContext()
-                .ReadFrom.Configuration(configuration);
-
-            #region ClouldWatch settings
-
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == EnvironmentName.Production)// Sadece prod ortamında clouldwatch'a yazıyoruz
-            {
-                var cloudWatchLogsClient = new AmazonCloudWatchLogsClient(configuration["AwsAccessKeyId"], configuration["AwsSecretAccessKey"], Amazon.RegionEndpoint.EUCentral1);
-                loggerConfiguration.WriteTo.AmazonCloudWatch(new CloudWatchSinkOptions
-                {
-                    LogGroupName = configuration["AwsLogGroupName"],
-                    LogStreamNameProvider = new ConstantLogStreamNameProvider(AppName),
-                    MinimumLogEventLevel = Serilog.Events.LogEventLevel.Information,
-                    TextFormatter = new Serilog.Formatting.Json.JsonFormatter(),
-                }, cloudWatchLogsClient);
-            }
-            else
-            {
-                loggerConfiguration.WriteTo.Console();
-            }
-
-            #endregion ClouldWatch settings
+                .ReadFrom.Configuration(configuration)
+                .AddAmazonCloudWatch(configuration, AppName);
 
             return loggerConfiguration.CreateLogger();
         }

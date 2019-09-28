@@ -26,11 +26,11 @@ namespace ContestPark.Balance.API.IntegrationEvents.EventHandling
         /// <param name="event">Bakiye bilgileri</param>
         public async Task Handle(ChangeBalanceIntegrationEvent @event)
         {
-            _logger.LogInformation($@"Bakiye değiştirme işlemi handler edildi...
-                                   { @event.UserId}
-                                   {@event.Amount}
-                                   {@event.BalanceType}
-                                   {@event.BalanceHistoryType}");
+            _logger.LogInformation("Bakiye değiştirme işlemi handler edildi... {UserId} {Amount} {BalanceType} {BalanceHistoryType}",
+                                   @event.UserId,
+                                   @event.Amount,
+                                   @event.BalanceType,
+                                   @event.BalanceHistoryType);
 
             if (@event.UserId.EndsWith("-bot"))
                 return;
@@ -45,19 +45,19 @@ namespace ContestPark.Balance.API.IntegrationEvents.EventHandling
             });
             if (!isSuccess)
             {
-                _logger.LogError($@"Bakiye değiştirme işlemi başarısız oldu...
-                                   { @event.UserId}
-                                   {@event.Amount}
-                                   {@event.BalanceType}
-                                   {@event.BalanceHistoryType}");
+                _logger.LogError("Bakiye değiştirme işlemi başarısız oldu... {UserId} {Amount} {BalanceType} {BalanceHistoryType}",
+                                       @event.UserId,
+                                       @event.Amount,
+                                       @event.BalanceType,
+                                       @event.BalanceHistoryType);
                 return;
             }
 
-            _logger.LogInformation($@"Bakiye değiştirme işlemi başarılı oldu...
-                                   { @event.UserId}
-                                   {@event.Amount}
-                                   {@event.BalanceType}
-                                   {@event.BalanceHistoryType}");
+            _logger.LogInformation("Bakiye değiştirme işlemi başarılı oldu... {UserId} {Amount} {BalanceType} {BalanceHistoryType}",
+                                   @event.UserId,
+                                   @event.Amount,
+                                   @event.BalanceType,
+                                   @event.BalanceHistoryType);
         }
     }
 }
