@@ -45,11 +45,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             if (String.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
             {
-                _logger.LogWarning($@"Duello rakip bekleme modundan çıkarırken değerler boş geldi.
-                                    {nameof(@event.UserId)}: {@event.UserId}
-                                    {nameof(@event.SubCategoryId)}: {@event.SubCategoryId}
-                                    {nameof(@event.Bet)}: {@event.Bet}
-                                    {nameof(@event.BalanceType)}: {@event.BalanceType}");
+                _logger.LogWarning("Duello rakip bekleme modundan çıkarırken değerler boş geldi. {UserId} {SubCategoryId} {Bet} {BalanceType}",
+                                   @event.UserId,
+                                   @event.SubCategoryId,
+                                   @event.Bet,
+                                   @event.BalanceType);
 
                 return Task.CompletedTask;
             }
@@ -67,22 +67,22 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 if (!isSuccess)
                 {
-                    _logger.LogCritical($@"CRITICAL: Düello rakip bekleme modundan çıkarılırken hata oluştu.
-                                    {nameof(@event.UserId)}: {@event.UserId}
-                                    {nameof(@event.SubCategoryId)}: {@event.SubCategoryId}
-                                    {nameof(@event.Bet)}: {@event.Bet}
-                                    {nameof(@event.BalanceType)}: {@event.BalanceType}");
+                    _logger.LogCritical("CRITICAL: Düello rakip bekleme modundan çıkarılırken hata oluştu. {UserId} {SubCategoryId} {Bet} {BalanceType}",
+                                       @event.UserId,
+                                       @event.SubCategoryId,
+                                       @event.Bet,
+                                       @event.BalanceType);
 
                     SendErrorMessage(@event.UserId);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogCritical($@"CRITICAL: Düello rakip bekleme modundan çıkarılırken exception oluştu.
-                                    {nameof(@event.UserId)}: {@event.UserId}
-                                    {nameof(@event.SubCategoryId)}: {@event.SubCategoryId}
-                                    {nameof(@event.Bet)}: {@event.Bet}
-                                    {nameof(@event.BalanceType)}: {@event.BalanceType} exception: {ex.Message}");
+                _logger.LogError(ex, "CRITICAL: Düello rakip bekleme modundan çıkarılırken exception oluştu.. {UserId} {SubCategoryId} {Bet} {BalanceType}",
+                                   @event.UserId,
+                                   @event.SubCategoryId,
+                                   @event.Bet,
+                                   @event.BalanceType);
 
                 SendErrorMessage(@event.UserId);
             }

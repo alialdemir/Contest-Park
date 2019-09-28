@@ -87,12 +87,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }) ?? 0;
             if (duelId <= 0)
             {
-                _logger.LogCritical($@"CRITICAL: Düello başlatılamadı.
-                                                 founder user id: {@event.FounderUserId}
-                                                 founder user id: {@event.OpponentUserId}
-                                                 balance type: {@event.BalanceType}
-                                                 subCategory id: {@event.SubCategoryId}
-                                                 bet: {@event.Bet}");
+                _logger.LogCritical("CRITICAL: Düello başlatılamadı. {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
+                                    @event.FounderUserId,
+                                    @event.OpponentUserId,
+                                    @event.BalanceType,
+                                    @event.SubCategoryId,
+                                    @event.Bet);
 
                 SendErrorMessage(@event.FounderUserId, DuelResource.ErrorStartingDuelPleaseTryAgain);
                 SendErrorMessage(@event.OpponentUserId, DuelResource.ErrorStartingDuelPleaseTryAgain);
@@ -135,12 +135,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                     @event.OpponentConnectionId,
                                     questions);
 
-            _logger.LogInformation($@"Düello başlatıldı. DuelId: {duelId}
-                                                         founder user id: {@event.FounderUserId}
-                                                         founder user id: {@event.OpponentUserId}
-                                                         balance type: {@event.BalanceType}
-                                                         subCategory id: {@event.SubCategoryId}
-                                                         bet: {@event.Bet}");
+            _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
+                                   duelId,
+                                   @event.FounderUserId,
+                                   @event.OpponentUserId,
+                                   @event.BalanceType,
+                                   @event.SubCategoryId,
+                                   @event.Bet);
         }
 
         /// <summary>

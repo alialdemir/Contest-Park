@@ -57,10 +57,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 bool isSuccess = await _scoreRankingRepository.UpdateScoreRank(@event.FounderUserId, @event.SubCategoryId, @event.BalanceType, @event.FounderScore);
                 if (!isSuccess)
                 {
-                    _logger.LogError($@"Kullanıcıya skor eklenemedi. user Id: {@event.FounderUserId}
-                                                                     subCategory Id: {@event.SubCategoryId}
-                                                                     balance Type: {@event.BalanceType}
-                                                                     score: {@event.FounderScore}");
+                    _logger.LogError("Kullanıcıya skor eklenemedi. {FounderUserId} {SubCategoryId} {BalanceType} {FounderScore}",
+                                     @event.FounderUserId,
+                                     @event.SubCategoryId,
+                                     @event.BalanceType,
+                                     @event.FounderScore);
                 }
             }
 
@@ -69,10 +70,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 bool isSuccess = await _scoreRankingRepository.UpdateScoreRank(@event.OpponentUserId, @event.SubCategoryId, @event.BalanceType, @event.OpponentScore);
                 if (!isSuccess)
                 {
-                    _logger.LogError($@"Kullanıcıya skor eklenemedi. user Id: {@event.OpponentUserId}
-                                                                     subCategory Id: {@event.SubCategoryId}
-                                                                     balance Type: {@event.BalanceType}
-                                                                     score: {@event.OpponentScore}");
+                    _logger.LogError("Kullanıcıya skor eklenemedi. {FounderUserId} {SubCategoryId} {BalanceType} {FounderScore}",
+                                     @event.OpponentUserId,
+                                     @event.SubCategoryId,
+                                     @event.BalanceType,
+                                     @event.OpponentScore);
                 }
             }
 
@@ -113,13 +115,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                                    opponentVictoryScore);
             if (!isSuccessDuelScoreUpdate)
             {
-                _logger.LogError($@"Duello bitirme skorları tablosya yazılamadı. Duel Id: {@event.DuelId}
-                      FounderScore: {@event.FounderScore}
-                      OpponentScore: {@event.OpponentScore}
-                      founder finshBonus: {finshBonus}
-                      opponent finishScore: {finshBonus}
-                      founder victory score: {founderVictoryScore}
-                      opponent victory score: {opponentVictoryScore}");
+                _logger.LogError("Duello bitirme skorları tablosya yazılamadı. {DuelId} {FounderScore} {OpponentScore} {finshBonus} {founderVictoryScore} {opponentVictoryScore}",
+                                 @event.DuelId,
+                                 @event.FounderScore,
+                                 @event.OpponentScore,
+                                 finshBonus,
+                                 founderVictoryScore,
+                                 opponentVictoryScore);
             }
 
             #region Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)

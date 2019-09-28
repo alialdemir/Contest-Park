@@ -40,20 +40,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             if (string.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
             {
-                _logger.LogWarning($@"Duello oluşturulken değerler boş geldi.
-                                    {nameof(@event.UserId)}: {@event.UserId}
-                                    {nameof(@event.SubCategoryId)}: {@event.SubCategoryId}
-                                    {nameof(@event.Bet)}: {@event.Bet}
-                                    {nameof(@event.BalanceType)}: {@event.BalanceType}");
+                _logger.LogWarning("Duello oluşturulken değerler boş geldi. {UserId} {SubCategoryId} {Bet} {BalanceType}",
+                                   @event.UserId,
+                                   @event.SubCategoryId,
+                                   @event.Bet,
+                                   @event.BalanceType);
 
                 return Task.CompletedTask;
             }
 
-            _logger.LogInformation($@"Rakip bekleniyor...
-                                    { nameof(@event.UserId)}: { @event.UserId}
-                                    { nameof(@event.SubCategoryId)}: { @event.SubCategoryId}
-                                    { nameof(@event.Bet)}: { @event.Bet}
-                                    { nameof(@event.BalanceType)}: { @event.BalanceType}");
+            _logger.LogInformation("Rakip bekleniyor... {UserId} {SubCategoryId} {Bet} {BalanceType}",
+                                   @event.UserId,
+                                   @event.SubCategoryId,
+                                   @event.Bet,
+                                   @event.BalanceType);
 
             DuelUserModel waitingDuelUser = _duelUserRepository.GetDuelUser(new DuelUserModel
             {
@@ -97,11 +97,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (isSuccess)
             {
-                _logger.LogInformation($"Rakip bekleyen kullanıcı sıraya alındı. User Id: {@event.UserId}");
+                _logger.LogInformation("Rakip bekleyen {@event.UserId} sıraya alındı. ", @event.UserId);
             }
             else
             {
-                _logger.LogCritical($"CRITICAL: Kullanıcı düello sırasına eklenirken hata oluştu User Id: {@event.UserId}", @event);
+                _logger.LogCritical("CRITICAL: Kullanıcı düello sırasına eklenirken hata oluştu  {@@event}", @event);
             }
         }
 
@@ -133,7 +133,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     _eventBus.Publish(eventDuelStart);
 
-                    _logger.LogInformation("Rakipler eşleşti.", new
+                    _logger.LogInformation("{FounderUserId} ile {OpponentUserId} arasında düello için eşleşti.", new
                     {
                         FounderUserId = waitingOpponentIntegration.UserId,
                         OpponentUserId = duelUserModel.UserId
@@ -141,7 +141,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogCritical("CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu.", waitingOpponentIntegration.UserId, waitingOpponentIntegration.UserId, ex.Message);
+                    _logger.LogCritical(ex, "CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu. {FounderUserId} {OpponentUserId}", new
+                    {
+                        FounderUserId = waitingOpponentIntegration.UserId,
+                        OpponentUserId = duelUserModel.UserId
+                    });
 
                     // TODO: düello başlatılırken hata oluştu
                 }

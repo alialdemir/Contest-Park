@@ -113,7 +113,7 @@ namespace ContestPark.Duel.API.Controllers
                     }
                 }
 
-                Logger.LogInformation($"Yeni sorular ekrandi. Eklenen soru sayısı {questions.Count}");
+                Logger.LogInformation("Yeni sorular ekrandi. Eklenen soru sayısı {Count}", questions.Count);
             });
 
             return Ok();

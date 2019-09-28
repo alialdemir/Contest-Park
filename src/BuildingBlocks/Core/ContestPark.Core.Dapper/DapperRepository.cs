@@ -61,7 +61,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Collection eklenirken hata oluştu. table Name: {TableName}");
 
                 return null;
             }
@@ -84,7 +84,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Collection eklenirken hata oluştu. table Name: {TableName}");
 
                 return 0;
             }
@@ -112,7 +112,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Multiple collection eklenirken hata oluştu. table Name: {TableName}");
 
                 return false;
             }
@@ -135,7 +135,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Multiple collection eklenirken hata oluştu. table Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Multiple collection eklenirken hata oluştu. table Name: {TableName}");
 
                 return false;
             }
@@ -171,7 +171,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"GetById hata oluştu. table Name: {TableName} id: {id}", ex.Message);
+                _logger.LogError(ex, $"GetById hata oluştu. table Name: {TableName} id: {id}");
 
                 return null;
             }
@@ -194,7 +194,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"GetById hata oluştu. table Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"GetById hata oluştu. table Name: {TableName}");
 
                 return null;
             }
@@ -223,7 +223,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document silerken hata oluştu. Table Name: {TableName} id: {id}", ex.Message);
+                _logger.LogError(ex, $"Document silerken hata oluştu. Table Name: {TableName} id: {id}");
 
                 return false;
             }
@@ -248,7 +248,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Documents silme hatası oluştu. Table Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Documents silme hatası oluştu. Table Name: {TableName}");
 
                 return false;
             }
@@ -273,7 +273,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Document güncellenirken hata oluştu. Collection Name: {TableName} ", ex.Message);
+                _logger.LogError(ex, $"Document güncellenirken hata oluştu. Collection Name: {TableName} ");
 
                 return false;
             }
@@ -303,7 +303,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Documents güncelleme hata oluştu. Collection Name: {TableName}");
 
                 return false;
             }
@@ -357,7 +357,7 @@ namespace ContestPark.Core.Dapper
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Documents güncelleme hata oluştu. Collection Name: {TableName}", ex.Message);
+                _logger.LogError(ex, $"Documents güncelleme hata oluştu. Collection Name: {TableName}");
                 return false;
             }
             finally

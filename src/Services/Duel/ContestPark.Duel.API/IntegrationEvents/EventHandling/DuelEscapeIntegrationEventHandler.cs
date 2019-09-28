@@ -50,7 +50,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             Infrastructure.Tables.Duel duel = _duelRepository.GetDuelByDuelId(@event.DuelId);
             if (duel == null)
             {
-                _logger.LogCritical($"Düello çıkma işlemi sırasında düello id'ye ait düello bulunamadı. Duel Id: {@event.DuelId} Escaper UserId: {@event.EscaperUserId}");
+                _logger.LogCritical("Düello çıkma işlemi sırasında düello id'ye ait düello bulunamadı. {DuelId} {EscaperUserId}",
+                                    @event.DuelId,
+                                    @event.EscaperUserId);
 
                 SendErrorMessage(@event.EscaperUserId, "Düellodan çıkma işleminiz gerçekleşemedi.");
 
