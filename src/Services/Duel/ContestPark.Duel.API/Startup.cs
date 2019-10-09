@@ -69,8 +69,7 @@ namespace ContestPark.Duel.API
             services.AddSingleton<IRedisClient>(sp =>
             {
                 var settings = sp.GetRequiredService<IOptions<DuelSettings>>().Value;
-
-                return new RedisClient(settings.Redis);
+                return new PooledRedisClientManager(settings.Redis).GetClient();
             });
 
             ConfigureOtherService(services);
