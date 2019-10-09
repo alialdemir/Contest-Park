@@ -92,16 +92,15 @@ namespace ContestPark.Duel.API.Controllers
             ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
             if (contestDate == null)
                 return NotFound();
-
-            IEnumerable<string> followingUsers = await _followService.GetFollowingUserIds(UserId, pagingModel);
-            if (followingUsers == null)
-                return NotFound();
-
             RankingModel result = new RankingModel
             {
                 ContestFinishDate = contestDate.FinishDate,
-                Ranks = _scoreRankingRepository.GetFollowingRanking(subCategoryId, balanceType, contestDate.ContestDateId, followingUsers, pagingModel)
             };
+
+            IEnumerable<string> followingUsers = await _followService.GetFollowingUserIds(UserId, pagingModel);
+            if (followingUsers != null)
+                result.Ranks = _scoreRankingRepository.GetFollowingRanking(subCategoryId, balanceType, contestDate.ContestDateId, followingUsers, pagingModel);
+
             if (result.Ranks == null || result.Ranks.Items.Count() == 0)
                 return Ok(result);
 

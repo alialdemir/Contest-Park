@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
+﻿using ContestPark.Duel.API.Enums;
+using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.IntegrationEvents.Events;
@@ -44,7 +45,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         /// <param name="event"></param>
         /// <returns></returns>
-        public Task Handle(UserAnswerIntegrationEvent @event)
+        public async Task Handle(UserAnswerIntegrationEvent @event)
         {
             _logger.LogInformation("Soru cevaplandı. {DuelId} {QuestionId} {UserId} {Stylish} {Time}",
                                    @event.DuelId,
@@ -63,6 +64,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             UserAnswerModel currentRound = userAnswers.FirstOrDefault(x => x.QuestionId == @event.QuestionId);
             if (currentRound == null)
             {
+                _logger.LogError("Round soru bilgisi boş geldi. {QuestionId}", @event.QuestionId);
                 // TODO: Düelloda hata oluştu iptal et paraları geri ver
             }
 
@@ -89,28 +91,19 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             _userAnswerRepository.AddRangeAsync(userAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
-            if (currentRound.FounderAnswer == Enums.Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Enums.Stylish.NotSeeQuestion)
-                return Task.CompletedTask;
+            if (currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.NotSeeQuestion)
+                return;
 
-            Task.Factory.StartNew(async () =>// İki oyuncuda soruyu cevaplamışsa ikisinede verdikleri cevapları ve puanları gönderiyoruz
+            bool isGameEnd = round == MAX_ANSWER_COUNT;
+
+            byte nextRound = (byte)(round + 1);// Sonraki raunda geçiildi
+
+            PublishNextQuestionEvent(currentRound, @event.DuelId, isGameEnd, nextRound);
+
+            if (isGameEnd)
             {
-                bool isGameEnd = round == MAX_ANSWER_COUNT;
-
-                _logger.LogInformation("round: {round} {MAX_ANSWER_COUNT} {isGameEnd}", round, MAX_ANSWER_COUNT, isGameEnd);
-
-                byte nextRound = (byte)(round + 1);// Sonraki raunda geçiildi
-
-                PublishNextQuestionEvent(currentRound, @event.DuelId, isGameEnd, nextRound);
-
-                if (isGameEnd)
-                {
-                    _logger.LogInformation("The end düellooo");
-
-                    await SaveDuelDetailTable(@event.DuelId, userAnswers);
-                }
-            });
-
-            return Task.CompletedTask;
+                await SaveDuelDetailTable(@event.DuelId, userAnswers);
+            }
         }
 
         /// <summary>
@@ -133,10 +126,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 OpponentTime = x.OpponentTime,
             }).ToList());
 
-            _logger.LogInformation("düello cevapları {isSuccess}", isSuccess);
             if (isSuccess)
             {
+                _logger.LogInformation("anwer count {" + userAnswers.Count + "}");
+
                 UserAnswerModel firstItem = userAnswers.FirstOrDefault();// Kullanıcı idlerini alabilmek için ilk itemi aldım
+
+                _logger.LogInformation("quesitons {@userAnswers}", userAnswers);
+                _logger.LogInformation("quesitons {@firstItem}", firstItem);
 
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
@@ -153,19 +150,22 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                        founderTotalScore,
                                        opponentTotalScore);
 
-                var @duelFinishEvent = new DuelFinishIntegrationEvent(duelId,
-                                                                      duelBalanceInfo.BalanceType,
-                                                                      duelBalanceInfo.Bet,
-                                                                      duelBalanceInfo.BetCommission,
-                                                                      duelBalanceInfo.SubCategoryId,
-                                                                      firstItem.FounderUserId,
-                                                                      firstItem.OpponentUserId,
-                                                                      founderTotalScore,
-                                                                      opponentTotalScore,
-                                                                      isFounderFinishedTheGame,
-                                                                      isOpponentFinishedTheGame);
+                await Task.Factory.StartNew(() =>// İki oyuncuda soruyu cevaplamışsa ikisinede verdikleri cevapları ve puanları gönderiyoruz
+                {
+                    var @duelFinishEvent = new DuelFinishIntegrationEvent(duelId,
+                                                                        duelBalanceInfo.BalanceType,
+                                                                        duelBalanceInfo.Bet,
+                                                                        duelBalanceInfo.BetCommission,
+                                                                        duelBalanceInfo.SubCategoryId,
+                                                                        firstItem.FounderUserId,
+                                                                        firstItem.OpponentUserId,
+                                                                        founderTotalScore,
+                                                                        opponentTotalScore,
+                                                                        isFounderFinishedTheGame,
+                                                                        isOpponentFinishedTheGame);
 
-                _eventBus.Publish(@duelFinishEvent);
+                    _eventBus.Publish(@duelFinishEvent);
+                });
 
                 _userAnswerRepository.Remove(duelId);// redisdeki duello bilgileri silindi.
             }
