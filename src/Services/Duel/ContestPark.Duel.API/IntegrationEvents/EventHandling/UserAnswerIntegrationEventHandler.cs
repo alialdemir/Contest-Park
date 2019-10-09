@@ -184,16 +184,19 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="nextRound"></param>
         private void PublishNextQuestionEvent(UserAnswerModel currentRound, int duelId, bool isGameEnd, byte nextRound)
         {
-            var @nextQuestionEvent = new NextQuestionIntegrationEvent(duelId,
-                                                                      currentRound.FounderAnswer,
-                                                                      currentRound.OpponentAnswer,
-                                                                      currentRound.CorrectAnswer,
-                                                                      currentRound.FounderScore,
-                                                                      currentRound.OpponentScore,
-                                                                      nextRound,
-                                                                      isGameEnd);
+            Task.Factory.StartNew(() =>
+            {
+                var @nextQuestionEvent = new NextQuestionIntegrationEvent(duelId,
+                                                                    currentRound.FounderAnswer,
+                                                                    currentRound.OpponentAnswer,
+                                                                    currentRound.CorrectAnswer,
+                                                                    currentRound.FounderScore,
+                                                                    currentRound.OpponentScore,
+                                                                    nextRound,
+                                                                    isGameEnd);
 
-            _eventBus.Publish(@nextQuestionEvent);
+                _eventBus.Publish(@nextQuestionEvent);
+            });
         }
     }
 }
