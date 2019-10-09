@@ -66,7 +66,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 // TODO: Düelloda hata oluştu iptal et paraları geri ver
             }
 
-            // TODO: düelloda aynı soru kesinlikle iki kere gelmemeli
             int round = userAnswers.FindIndex(x => x.QuestionId == @event.QuestionId) + 1;// Question id'ye ait index bulukduğu roundu verir
 
             bool isFounder = @event.UserId == currentRound.FounderUserId;
@@ -97,12 +96,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 bool isGameEnd = round == MAX_ANSWER_COUNT;
 
+                _logger.LogInformation("round: {round} {MAX_ANSWER_COUNT} {isGameEnd}", round, MAX_ANSWER_COUNT, isGameEnd);
+
                 byte nextRound = (byte)(round + 1);// Sonraki raunda geçiildi
 
                 PublishNextQuestionEvent(currentRound, @event.DuelId, isGameEnd, nextRound);
 
                 if (isGameEnd)
                 {
+                    _logger.LogInformation("The end düellooo");
+
                     await SaveDuelDetailTable(@event.DuelId, userAnswers);
                 }
             });
@@ -130,6 +133,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 OpponentTime = x.OpponentTime,
             }).ToList());
 
+            _logger.LogInformation("düello cevapları {isSuccess}", isSuccess);
             if (isSuccess)
             {
                 UserAnswerModel firstItem = userAnswers.FirstOrDefault();// Kullanıcı idlerini alabilmek için ilk itemi aldım

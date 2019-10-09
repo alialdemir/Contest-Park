@@ -15,6 +15,7 @@ phases:
       - echo docker is build finish...
       - echo Started container tag...
       - docker tag contestparkbalance.api:latest $REPOSITORY_URI/balance-api:$IMAGE_TAG
+      - docker tag contestparkfollow.api:latest $REPOSITORY_URI/follow-api:$IMAGE_TAG
       - docker tag contestparkcategory.api:latest $REPOSITORY_URI/category-api:$IMAGE_TAG
       - docker tag contestparkchat.api:latest $REPOSITORY_URI/chat-api:$IMAGE_TAG
       - docker tag contestparkduel.api:latest $REPOSITORY_URI/duel-api:$IMAGE_TAG
@@ -27,6 +28,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI/balance-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/follow-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/category-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/chat-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/duel-api:$IMAGE_TAG
