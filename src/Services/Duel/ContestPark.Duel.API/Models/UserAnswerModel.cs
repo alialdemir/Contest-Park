@@ -29,6 +29,6 @@ namespace ContestPark.Duel.API.Models
 
         public string FounderUserId { get; set; }
         public string OpponentUserId { get; set; }
-        public Stylish CorrectAnswer { get; internal set; }
+        public Stylish CorrectAnswer { get; set; }
     }
 }

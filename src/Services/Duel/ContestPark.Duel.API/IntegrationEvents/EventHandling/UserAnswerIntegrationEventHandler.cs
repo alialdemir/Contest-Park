@@ -128,12 +128,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (isSuccess)
             {
-                _logger.LogInformation("anwer count {" + userAnswers.Count + "}");
-
                 UserAnswerModel firstItem = userAnswers.FirstOrDefault();// Kullanıcı idlerini alabilmek için ilk itemi aldım
-
-                _logger.LogInformation("quesitons {@userAnswers}", userAnswers);
-                _logger.LogInformation("quesitons {@firstItem}", firstItem);
 
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
@@ -145,6 +140,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Duello sona erdi. {duelId} {@duelBalanceInfo} {FounderUserId} {OpponentUserId} {founderTotalScore} {opponentTotalScore}",
                                        duelId,
+                                       duelBalanceInfo,
                                        firstItem.FounderUserId,
                                        firstItem.OpponentUserId,
                                        founderTotalScore,
