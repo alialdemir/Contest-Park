@@ -19,8 +19,8 @@ namespace ContestPark.Duel.API.Infrastructure.Tables
 
         public int TotalGoldScore { get; set; }
 
-        public string DisplayTotalMoneyScore { get; set; }
+        public string DisplayTotalMoneyScore { get; set; } = "0";
 
-        public string DisplayTotalGoldScore { get; set; }
+        public string DisplayTotalGoldScore { get; set; } = "0";
     }
 }

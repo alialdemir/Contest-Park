@@ -126,6 +126,8 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
                     UserId = userId,
                     SubCategoryId = subCategoryId,
                     ContestDateId = contestDate.ContestDateId,
+                    DisplayTotalMoneyScore = "0",
+                    DisplayTotalGoldScore = "0"
                 };
             }
 
