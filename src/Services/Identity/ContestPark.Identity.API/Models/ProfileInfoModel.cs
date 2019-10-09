@@ -34,7 +34,7 @@
 
         public string FullName { get; set; }
 
-        private string _gameCount;
+        private string _gameCount = "0";
 
         public string GameCount
         {

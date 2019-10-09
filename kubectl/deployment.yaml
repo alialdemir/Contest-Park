@@ -56,6 +56,51 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  name: follow-api
+spec:
+  selector:
+    matchLabels:
+      run: follow-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: follow-api
+    spec:
+      containers:
+        - name: follow-api
+          image: $(REPOSITORY_URI)/follow-api:$(IMAGE_TAG)
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: Audience
+              value: "follow"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: IsMigrateDatabase
+              value: "false"
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
   name: ocelot-apigw
 spec:
   selector:
