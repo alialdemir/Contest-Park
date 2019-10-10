@@ -319,14 +319,15 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return _changeBalanceTypeCommand ?? (_changeBalanceTypeCommand = new Command(() =>
+                return _changeBalanceTypeCommand ?? (_changeBalanceTypeCommand = new Command<string>((balanceType) =>
                 {
-                    if (IsBusy)
+                    if (IsBusy || balanceType == ((byte)BalanceType).ToString())
                         return;
 
                     IsBusy = true;
 
-                    BalanceType = BalanceType == BalanceTypes.Gold ? BalanceTypes.Money : BalanceTypes.Gold;
+                    BalanceType = balanceType == "2" ? BalanceTypes.Money : BalanceTypes.Gold;
+
                     InitBets();
 
                     IsBusy = false;
