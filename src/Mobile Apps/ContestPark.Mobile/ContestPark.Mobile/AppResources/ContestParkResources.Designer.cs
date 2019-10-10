@@ -1016,7 +1016,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Private PROFİLE.
+        ///   Looks up a localized string similar to Private Profile.
         /// </summary>
         public static string PrivateProfile {
             get {
