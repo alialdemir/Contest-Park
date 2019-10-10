@@ -11,7 +11,6 @@ using Prism;
 using Prism.DryIoc;
 using Prism.Events;
 using Prism.Ioc;
-using System.Diagnostics;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -51,7 +50,7 @@ namespace ContestPark.Mobile
             }
             catch (System.Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Crashes.TrackError(ex);
             }
         }
 

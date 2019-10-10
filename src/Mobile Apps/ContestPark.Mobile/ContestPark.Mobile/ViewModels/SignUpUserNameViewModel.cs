@@ -106,16 +106,8 @@ namespace ContestPark.Mobile.ViewModels
                 Password = PhoneNumber,
                 UserName = UserName,
             });
-            if (isRegister)
-                await LoginProcessAsync();
-            else
-            {
-                await DisplayAlertAsync("",
-                                        ContestParkResources.MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage,
-                                        ContestParkResources.Okay);
 
-                await RemoveFirstPopupAsync();
-            }
+            await LoginProcessAsync();
 
             UserDialogs.Instance.HideLoading();
 

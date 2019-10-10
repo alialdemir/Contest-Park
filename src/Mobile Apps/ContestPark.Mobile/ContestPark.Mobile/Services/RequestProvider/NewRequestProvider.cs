@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
+using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -15,7 +16,6 @@ using Prism.Services;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -121,7 +121,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Crashes.TrackError(ex);
 
                 return new ResponseModel<TResult>();
             }
@@ -278,7 +278,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex.Message);
+                    Crashes.TrackError(ex);
 
                     return new ResponseModel<TResult>();
                 }

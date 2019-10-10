@@ -45,7 +45,7 @@ namespace ContestPark.Mobile.Views
 
             NavigationParameters parameters = new NavigationParameters();
 
-            parameters.Add("UserName", viewModel._settingsService.CurrentUser?.UserName);
+            parameters.Add("UserName", viewModel._settingsService?.CurrentUser?.UserName);
             parameters.Add("IsVisibleBackArrow", false);
 
             viewModel.OnNavigatedTo(parameters);

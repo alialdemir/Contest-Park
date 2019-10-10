@@ -33,7 +33,7 @@ namespace ContestPark.Mobile.ViewModels
             _cpService = cpService;
             _settingsService = settingsService;
 
-            InitializeCommand.Execute(null);
+            InitializeCommand?.Execute(null);
         }
 
         #endregion Constructors

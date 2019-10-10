@@ -17,12 +17,14 @@ namespace ContestPark.Mobile.Views
         public AppShell(IEventAggregator eventAggregator)
         {
             InitializeComponent();
+
             _eventAggregator = eventAggregator;
+
             Routing.RegisterRoute("SettingsView", typeof(SettingsView));
             Routing.RegisterRoute("ContestStoreView", typeof(ContestStoreView));
             Routing.RegisterRoute("WinningsView", typeof(WinningsView));
 
-            eventAggregator// left menu navigation için
+            eventAggregator?// left menu navigation için
                         .GetEvent<TabPageNavigationEvent>()
                         .Subscribe(async (page) => await Current.GoToAsync(page.PageName));
 
@@ -40,7 +42,7 @@ namespace ContestPark.Mobile.Views
         /// </summary>
         private void MenuItem_Clicked(object sender, System.EventArgs e)
         {
-            if (IsBusy)
+            if (IsBusy || !(sender is MenuItem))
                 return;
 
             IsBusy = true;

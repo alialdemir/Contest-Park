@@ -251,11 +251,14 @@ namespace ContestPark.Mobile.ViewModels
             get
             {
                 return new Command(async () =>
-                {
-                    await RemoveFirstPopupAsync();
+               {
+                   if (_settingsService.IsSoundEffectActive)
+                       _audioService?.Stop();
 
-                    _eventAggregator.GetEvent<PostRefreshEvent>();
-                });
+                   await RemoveFirstPopupAsync();
+
+                   _eventAggregator.GetEvent<PostRefreshEvent>();
+               });
             }
         }
 

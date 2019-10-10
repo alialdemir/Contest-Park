@@ -138,7 +138,6 @@ namespace ContestPark.Mobile.ViewModels
         protected override async Task InitializeAsync()
         {
             var profileInfo = await _identityService.GetProfileInfoByUserName(userName);
-
             if (profileInfo != null)
             {
                 ProfileInfo = profileInfo;
