@@ -31,16 +31,19 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         /// <returns>Bekleyen kullanıcı</returns>
         public DuelUserModel GetDuelUser(DuelUserModel duelUser)
         {
+            if (duelUser == null)
+                return null;
+
             // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
-            string key = $"Duel:SubCategoryId{duelUser.SubCategoryId.ToString()}:Bet{duelUser.Bet}:BalanceType{duelUser.BalanceType}*";
+            string key = $"Duel:SubCategoryId{duelUser.SubCategoryId.ToString()}:Bet{duelUser.Bet.ToString()}:BalanceType{duelUser.BalanceType.ToString()}*";
 
             // Parametreden gelen kullanıcının düellosuna karşılık gelen rakip var mı baktık
-            var items = _redisClient.ScanAllKeys(key).ToList();
-            if (items == null || items.Count == 0)
+            var items = _redisClient.ScanAllKeys(key);
+            if (items == null || items.ToList().Count == 0)
                 return null;
 
             // Redis keyleri DuelUserModele çevirdik
-            var duelUsers = _redisClient.GetValues<DuelUserModel>(items);
+            var duelUsers = _redisClient.GetValues<DuelUserModel>(items.ToList());
 
             // Kendisi ile denk gelmesin diye user id göre filtreledik
             return duelUsers.FirstOrDefault(p => p.UserId != duelUser.UserId);
