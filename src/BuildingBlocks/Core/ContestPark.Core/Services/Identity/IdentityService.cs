@@ -54,10 +54,10 @@ namespace ContestPark.Core.Services.Identity
                 // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
                 string key = $"{redisKey}:{userId}*";
 
-                var items = _redisClient.ScanAllKeys(key).ToList();
-                if (items != null || items.Count != 0)
+                var items = _redisClient.ScanAllKeys(key);
+                if (items != null || items.ToList().Count != 0)
                 {
-                    users.AddRange(_redisClient.GetValues<UserModel>(items));
+                    users.AddRange(_redisClient.GetValues<UserModel>(items.ToList()));
                 }
             }
 
