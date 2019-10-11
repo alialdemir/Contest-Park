@@ -41,7 +41,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         /// <param name="event"></param>
         /// <returns></returns>
-        public Task Handle(RemoveWaitingOpponentIntegrationEvent @event)
+        public async Task Handle(RemoveWaitingOpponentIntegrationEvent @event)
         {
             if (String.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
             {
@@ -51,19 +51,19 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                    @event.Bet,
                                    @event.BalanceType);
 
-                return Task.CompletedTask;
+                return;
             }
 
             try
             {
-                bool isSuccess = _duelUserRepository.Delete(new DuelUserModel
+                bool isSuccess = await Task.Factory.StartNew(() => _duelUserRepository.Delete(new DuelUserModel
                 {
                     BalanceType = @event.BalanceType,
                     Bet = @event.Bet,
                     ConnectionId = @event.ConnectionId,
                     SubCategoryId = @event.SubCategoryId,
                     UserId = @event.UserId
-                });
+                }));
 
                 if (!isSuccess)
                 {
@@ -86,8 +86,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 SendErrorMessage(@event.UserId);
             }
-
-            return Task.CompletedTask;
         }
 
         private void SendErrorMessage(string userId)
