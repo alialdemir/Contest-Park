@@ -11,6 +11,7 @@ using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
@@ -30,6 +31,7 @@ namespace ContestPark.Mobile.Services.Identity
 
         private const string ApiUrlBase = "api/v1/Account";
         private readonly IPageDialogService _dialogService;
+        private readonly ICacheService _cacheService;
         private readonly INewRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
 
@@ -42,11 +44,13 @@ namespace ContestPark.Mobile.Services.Identity
         public IdentityService(
             INewRequestProvider requestProvider,
             IPageDialogService dialogService,
+            ICacheService cacheService,
             ISettingsService settingsService,
             ISignalRServiceBase signalRServiceBase)
         {
             _requestProvider = requestProvider;
             _dialogService = dialogService;
+            _cacheService = cacheService;
             _settingsService = settingsService;
             _signalRServiceBase = signalRServiceBase;
         }
@@ -337,6 +341,8 @@ namespace ContestPark.Mobile.Services.Identity
             _settingsService.SignalRConnectionId = string.Empty;
 
             _settingsService.RemoveCurrentUser();
+
+            _cacheService.EmptyAll();
 
             await _signalRServiceBase.DisconnectAsync();
         }

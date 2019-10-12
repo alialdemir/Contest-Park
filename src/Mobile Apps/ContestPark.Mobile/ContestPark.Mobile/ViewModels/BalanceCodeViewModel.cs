@@ -73,11 +73,11 @@ namespace ContestPark.Mobile.ViewModels
                      .GetEvent<GoldUpdatedEvent>()
                      .Publish();
 
+                BalanceCode.Code = string.Empty;
+
                 await DisplayAlertAsync(string.Empty,
                                         ContestParkResources.YourBalanceHasBeenLoaded,
                                         ContestParkResources.Okay);
-
-                await GoBackAsync();
             }
         }
 

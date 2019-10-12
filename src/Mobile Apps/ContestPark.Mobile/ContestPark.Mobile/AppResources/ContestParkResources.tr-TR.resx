@@ -248,6 +248,9 @@
   <data name="EnterBalanceCode" xml:space="preserve">
     <value>Bakiye kodu giriniz</value>
   </data>
+  <data name="EnterReferenceCode" xml:space="preserve">
+    <value>Referans kodu giriniz(isteğe bağlı)</value>
+  </data>
   <data name="EnterTheCodeFromSms" xml:space="preserve">
     <value>Sms ile gelen kodu giriniz</value>
   </data>
@@ -466,6 +469,9 @@
   </data>
   <data name="Ranking" xml:space="preserve">
     <value>Sıralama</value>
+  </data>
+  <data name="ReferenceCode" xml:space="preserve">
+    <value>Referans kodu</value>
   </data>
   <data name="RemoveBlock" xml:space="preserve">
     <value>Engelli kaldır</value>

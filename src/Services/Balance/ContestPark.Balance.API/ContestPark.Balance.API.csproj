@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <None Remove="Migrations\Scripts\GetBalance.sql" />
+    <None Remove="Migrations\Scripts\IsCodeActive.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\IsCodeActive.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\GetBalance.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>

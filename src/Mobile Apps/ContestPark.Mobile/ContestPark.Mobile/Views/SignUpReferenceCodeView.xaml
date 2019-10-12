@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="ContestPark.Mobile.Views.SignUpUserNameView"
+    x:Class="ContestPark.Mobile.Views.SignUpReferenceCodeView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="signUpUserNameView"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -27,7 +27,7 @@
                     Padding="0,0,0,-55"
                     BackgroundColor="Transparent"
                     BorderRadius="48"
-                    Command="{Binding Path=BindingContext.UserNameCommand, Source={x:Reference signUpUserNameView}}"
+                    Command="{Binding Path=BindingContext.ReferenceCodeCommand, Source={x:Reference signUpUserNameView}}"
                     CommandParameter="{Binding EntryFee}"
                     EndColor="#4048EF"
                     FontAttributes="Bold"
@@ -51,7 +51,7 @@
                                                                       Factor=1,
                                                                       Constant=340}"
                     StartColor="#5A7BEF"
-                    Text="{i18n:Translate Over}"
+                    Text="{i18n:Translate Okay}"
                     TextColor="{StaticResource White}"
                     Visual="Material" />
 
@@ -84,7 +84,6 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <Label
@@ -93,7 +92,7 @@
                             FontFamily="{StaticResource GothamRoundedBold}"
                             FontSize="24"
                             HorizontalTextAlignment="Center"
-                            Text="{i18n:Translate WhatYouGetYourUsername}"
+                            Text="{i18n:Translate ReferenceCode}"
                             TextColor="#EB3349" />
 
                         <Image
@@ -101,7 +100,7 @@
                             Margin="0,14,0,14"
                             HeightRequest="200"
                             HorizontalOptions="Center"
-                            Source="balancecode.jpg"
+                            Source="username.jpg"
                             WidthRequest="200" />
 
                         <Components:CustomEntry
@@ -113,24 +112,12 @@
                             FontSize="16"
                             HeightRequest="40"
                             HorizontalOptions="Fill"
-                            Placeholder="{i18n:Translate UserName}"
+                            Placeholder="{i18n:Translate EnterReferenceCode}"
                             PlaceholderColor="#484848"
-                            Text="{Binding UserName}"
+                            Text="{Binding ReferenceCode}"
                             TextColor="#484848"
                             Visual="Material"
                             WidthRequest="290" />
-                        <Label
-                            Grid.Row="3"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="Small"
-                            HorizontalTextAlignment="End"
-                            Text="Referans Code"
-                            TextColor="#66A6FF">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GotoReferenceCodeCommand}" />
-                            </Label.GestureRecognizers>
-                        </Label>
                     </Grid>
                 </yummy:PancakeView>
             </RelativeLayout>

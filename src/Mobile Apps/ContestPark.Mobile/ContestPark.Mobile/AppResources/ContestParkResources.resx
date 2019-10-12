@@ -677,4 +677,10 @@
   <data name="YourBalanceHasBeenLoaded" xml:space="preserve">
     <value>Your balance has been loaded.</value>
   </data>
+  <data name="EnterReferenceCode" xml:space="preserve">
+    <value>Enter reference code(optional)</value>
+  </data>
+  <data name="ReferenceCode" xml:space="preserve">
+    <value>Reference code</value>
+  </data>
 </root>

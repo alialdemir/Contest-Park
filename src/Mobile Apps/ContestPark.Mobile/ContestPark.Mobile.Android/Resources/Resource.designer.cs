@@ -14892,13 +14892,16 @@ namespace ContestPark.Mobile.Droid
 			public const int user = 2131165598;
 			
 			// aapt resource value: 0x7F07019F
-			public const int UserProfile = 2131165599;
+			public const int username = 2131165599;
 			
 			// aapt resource value: 0x7F0701A0
-			public const int verify = 2131165600;
+			public const int UserProfile = 2131165600;
 			
 			// aapt resource value: 0x7F0701A1
-			public const int vs = 2131165601;
+			public const int verify = 2131165601;
+			
+			// aapt resource value: 0x7F0701A2
+			public const int vs = 2131165602;
 			
 			static Drawable()
 			{

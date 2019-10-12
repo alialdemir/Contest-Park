@@ -449,6 +449,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter reference code(optional).
+        /// </summary>
+        public static string EnterReferenceCode {
+            get {
+                return ResourceManager.GetString("EnterReferenceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the code from sms.
         /// </summary>
         public static string EnterTheCodeFromSms {
@@ -1093,6 +1102,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Ranking {
             get {
                 return ResourceManager.GetString("Ranking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference code.
+        /// </summary>
+        public static string ReferenceCode {
+            get {
+                return ResourceManager.GetString("ReferenceCode", resourceCulture);
             }
         }
         

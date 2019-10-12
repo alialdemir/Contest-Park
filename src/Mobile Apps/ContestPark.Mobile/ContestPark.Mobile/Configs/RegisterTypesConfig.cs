@@ -124,6 +124,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<SignUpFullNameView, SignUpFullNameViewModel>();
 
+            containerRegistry.RegisterForNavigation<SignUpReferenceCodeView, SignUpReferenceCodeViewModel>();
+
             containerRegistry.RegisterForNavigation<SignUpUserNameView, SignUpUserNameViewModel>();
 
             containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();

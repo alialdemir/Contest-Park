@@ -1,12 +1,15 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Bet;
+using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using MvvmHelpers;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
@@ -21,6 +24,8 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
+        private readonly IEventAggregator _eventAggregator;
+
         private readonly IBalanceService _cpService;
 
         #endregion Private variables
@@ -28,11 +33,12 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public DuelBettingPopupViewModel(INavigationService navigationService,
+                                         IEventAggregator eventAggregator,
                                          IBalanceService cpService,
                                          IPageDialogService pageDialogService,
-                                         IPopupNavigation popupNavigation
-            ) : base(navigationService, pageDialogService, popupNavigation)
+                                         IPopupNavigation popupNavigation) : base(navigationService, pageDialogService, popupNavigation)
         {
+            _eventAggregator = eventAggregator;
             _cpService = cpService;
         }
 
@@ -241,6 +247,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 Bets.Insert(0, new BetModel
                 {
+                    Image = "prizeicon1.png",
                     Title = ContestParkResources.Freeloader,
                     EntryFee = 0,
                     Prize = 0
@@ -283,10 +290,19 @@ namespace ContestPark.Mobile.ViewModels
               ContestParkResources.YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore :
               ContestParkResources.YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore;
 
-                await DisplayAlertAsync("",
-                                        message,
-                                        ContestParkResources.Okay,
-                                        ContestParkResources.Cancel);
+                bool isBuy = await DisplayAlertAsync("",
+                                            message,
+                                            ContestParkResources.Buy,
+                                            ContestParkResources.Cancel);
+
+                if (isBuy)
+                {
+                    await RemoveFirstPopupAsync();
+
+                    _eventAggregator?
+                                .GetEvent<TabPageNavigationEvent>()
+                                .Publish(new PageNavigation(nameof(ContestStoreView)));
+                }
             }
 
             IsBusy = false;

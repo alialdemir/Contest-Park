@@ -123,7 +123,7 @@ namespace ContestPark.Balance.API.Controllers
 
             ReferenceModel reference = _referenceRepository.IsCodeActive(balanceCode.Code, UserId);
             if (reference == null)
-                return NotFound();
+                return BadRequest(BalanceResource.InvalidCode);
 
             bool isSuccess = await _referenceCodeRepostory.Insert(balanceCode.Code, string.Empty, UserId);
             if (!isSuccess)

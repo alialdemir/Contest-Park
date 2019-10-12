@@ -61,6 +61,15 @@ namespace ContestPark.Balance.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid code..
+        /// </summary>
+        public static string InvalidCode {
+            get {
+                return ResourceManager.GetString("InvalidCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid platform type..
         /// </summary>
         public static string InvalidPlatformType {

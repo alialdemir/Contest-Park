@@ -14,13 +14,13 @@
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
 
-    <!--<ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
         <ToolbarItem
             AutomationId="tbiCategorySearch"
             Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}"
             CommandParameter="{Binding SeeAllSubCateogryId}"
             IconImageSource="searchicon.png" />
-    </ContentPage.ToolbarItems>-->
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             Margin="0,8,0,0"

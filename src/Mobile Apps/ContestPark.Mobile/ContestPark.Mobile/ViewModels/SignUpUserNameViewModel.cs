@@ -59,6 +59,8 @@ namespace ContestPark.Mobile.ViewModels
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
 
+        private SignUpReferenceCodeView SignUpReferenceCodeView { get; set; }
+
         #endregion Properties
 
         #region Methods
@@ -100,11 +102,19 @@ namespace ContestPark.Mobile.ViewModels
 
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            bool isRegister = await _identityService.SignUpAsync(new SignUpModel
+            string referenceCode = string.Empty;
+
+            if (SignUpReferenceCodeView != null)
+            {
+                referenceCode = ((SignUpReferenceCodeViewModel)SignUpReferenceCodeView.BindingContext).ReferenceCode;
+            }
+
+            await _identityService.SignUpAsync(new SignUpModel
             {
                 FullName = FullName,
                 Password = PhoneNumber,
                 UserName = UserName,
+                ReferenceCode = referenceCode
             });
 
             await LoginProcessAsync();
@@ -141,11 +151,29 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Referans kodu girme sayfasına yönlendirir
+        /// </summary>
+        private void ExecuteGotoReferenceCodeCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            SignUpReferenceCodeView = new SignUpReferenceCodeView();
+
+            PushPopupPageAsync(SignUpReferenceCodeView);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
 
         public ICommand UserNameCommand => new Command(async () => await ExecuteUserNameCommandAsync());
+        public ICommand GotoReferenceCodeCommand => new Command(() => ExecuteGotoReferenceCodeCommand());
 
         #endregion Commands
     }

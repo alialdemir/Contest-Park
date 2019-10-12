@@ -2,6 +2,12 @@
 {
     public class BalanceCodeModel
     {
-        public string Code { get; set; }
+        private string _code;
+
+        public string Code
+        {
+            get { return _code; }
+            set { _code = value.ToUpper(); }
+        }
     }
 }
