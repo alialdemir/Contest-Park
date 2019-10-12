@@ -304,11 +304,23 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "contestpark.balance.api",
+          "Host": "balance-api",
           "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/Balance/Purchase",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Balance/Code",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "balance-.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Balance/Code",
       "UpstreamHttpMethod": [ "Post" ]
     },
     // Follow
