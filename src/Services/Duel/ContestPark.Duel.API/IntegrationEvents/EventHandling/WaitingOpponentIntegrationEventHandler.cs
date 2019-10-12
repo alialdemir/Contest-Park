@@ -68,7 +68,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 await StartDuel(@event, waitingDuelUser);
             }
-            else// rakip yoksa sıraya alır
+            else if (!@event.UserId.EndsWith("-bot"))// rakip yoksa ve bot değilse sıraya alır
             {
                 AddAwatingMode(@event);
             }
@@ -95,11 +95,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (isSuccess)
             {
-                _logger.LogInformation("Rakip bekleyen {@event.UserId} sıraya alındı. ", @event.UserId);
+                _logger.LogInformation("Rakip bekleyen {UserId} sıraya alındı. ", @event.UserId);
             }
             else
             {
-                _logger.LogCritical("CRITICAL: Kullanıcı düello sırasına eklenirken hata oluştu  {@@event}", @event);
+                _logger.LogCritical("CRITICAL: Kullanıcı düello sırasına eklenirken hata oluştu  {UserId}", @event.UserId);
             }
         }
 
@@ -131,19 +131,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                      _eventBus.Publish(eventDuelStart);
 
-                     _logger.LogInformation("{FounderUserId} ile {OpponentUserId} arasında düello için eşleşti.", new
-                     {
-                         FounderUserId = waitingOpponentIntegration.UserId,
-                         OpponentUserId = duelUserModel.UserId
-                     });
+                     _logger.LogInformation($"{waitingOpponentIntegration.UserId} ile {duelUserModel.UserId} arasında düello için eşleşti.");
                  }
                  catch (Exception ex)
                  {
-                     _logger.LogCritical(ex, "CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu. {FounderUserId} {OpponentUserId}", new
-                     {
-                         FounderUserId = waitingOpponentIntegration.UserId,
-                         OpponentUserId = duelUserModel.UserId
-                     });
+                     _logger.LogCritical(ex, $"CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu. {waitingOpponentIntegration.UserId} {duelUserModel.UserId}");
 
                      // TODO: düello başlatılırken hata oluştu
                  }

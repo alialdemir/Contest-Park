@@ -56,6 +56,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             try
             {
+                _logger.LogInformation("Rakip bekleme modundan çıktı. {UserId} {SubCategoryId} {Bet} {BalanceType}",
+                                       @event.UserId,
+                                       @event.SubCategoryId,
+                                       @event.Bet,
+                                       @event.BalanceType);
+
                 bool isSuccess = await Task.Factory.StartNew(() => _duelUserRepository.Delete(new DuelUserModel
                 {
                     BalanceType = @event.BalanceType,

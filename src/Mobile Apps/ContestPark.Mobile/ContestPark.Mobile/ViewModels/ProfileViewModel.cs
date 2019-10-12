@@ -124,13 +124,16 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
                 {
                     { "UserName", userName},
                     { "FullName", ProfileInfo.FullName},
                     { "SenderUserId", ProfileInfo.UserId},
                     {"SenderProfilePicturePath", ProfileInfo.ProfilePicturePath }
                 });
+            });
 
             IsBusy = false;
         }
@@ -205,7 +208,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (!IsMeProfile)
             {
-                await GotoPhotoModalPage(pictureType);
+                GotoPhotoModalPage(pictureType);
                 IsBusy = false;
 
                 return;
@@ -236,7 +239,7 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))
             {
-                await GotoPhotoModalPage(pictureType);
+                GotoPhotoModalPage(pictureType);
             }
 
             IsBusy = false;
@@ -337,7 +340,7 @@ namespace ContestPark.Mobile.ViewModels
         /// modalName göre modal açar
         /// </summary>
         /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
-        private async Task GotoPhotoModalPage(string modalName)
+        private void GotoPhotoModalPage(string modalName)
         {
             ObservableRangeCollection<PictureModel> pictures = new ObservableRangeCollection<PictureModel>();
 
@@ -360,7 +363,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (pictures.Count != 0)
             {
-                await PushPopupPageAsync(new PhotoModalView()
+                PushPopupPageAsync(new PhotoModalView()
                 {
                     Pictures = pictures
                 });

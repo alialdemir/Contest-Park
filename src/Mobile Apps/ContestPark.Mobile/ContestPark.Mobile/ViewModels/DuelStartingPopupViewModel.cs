@@ -224,6 +224,8 @@ namespace ContestPark.Mobile.ViewModels
 
             AudioStop();
 
+            IsNextQuestionExit = true;
+
             RandomPicturStatus = false;
 
             // Signalr events remove

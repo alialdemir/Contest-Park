@@ -97,14 +97,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Düello bahis panelini aç
         /// </summary>
-        private async Task ExecuteduelOpenPanelCommandAsync()
+        private void ExecuteduelOpenPanelCommandAsync()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await PushPopupPageAsync(new DuelBettingPopupView()
+            PushPopupPageAsync(new DuelBettingPopupView()
             {
                 SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
                 {
@@ -120,14 +120,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Sıralama sayfasına git
         /// </summary>
-        private async Task ExecuteGoToRankingPageCommandAsync()
+        private void ExecuteGoToRankingPageCommandAsync()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(RankingView), new NavigationParameters
+            PushNavigationPageAsync(nameof(RankingView), new NavigationParameters
             {
                 {"SubCategoryId", _subCategoryId },
                 {"ListType", RankingViewModel.ListTypes.ScoreRanking },
@@ -188,7 +188,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand DuelOpenPanelCommand
         {
-            get { return duelOpenPanelCommand ?? (duelOpenPanelCommand = new Command(async () => await ExecuteduelOpenPanelCommandAsync())); }
+            get { return duelOpenPanelCommand ?? (duelOpenPanelCommand = new Command(() => ExecuteduelOpenPanelCommandAsync())); }
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand GoToRankingPageCommand
         {
-            get { return goToRankingPageCommand ?? (goToRankingPageCommand = new Command(async () => await ExecuteGoToRankingPageCommandAsync())); }
+            get { return goToRankingPageCommand ?? (goToRankingPageCommand = new Command(() => ExecuteGoToRankingPageCommandAsync())); }
         }
 
         /// <summary>

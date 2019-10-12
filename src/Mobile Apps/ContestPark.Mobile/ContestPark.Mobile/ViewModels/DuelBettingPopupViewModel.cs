@@ -41,12 +41,6 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         private int _selectedIndex = 0;
-
-        /// <summary>
-        /// Kullanıcının altın miktarını tutar
-        /// </summary>
-        private BalanceModel _balance = new BalanceModel();
-
         private BalanceTypes balanceType = BalanceTypes.Gold;
 
         public BalanceTypes BalanceType
@@ -75,14 +69,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public SelectedSubCategoryModel SelectedSubCategory { get; set; } = new SelectedSubCategoryModel();
 
-        public BalanceModel Balance
-        {
-            get { return _balance; }
-            set
-            {
-                _balance = value;
-            }
-        }
+        public BalanceModel Balance { get; set; } = new BalanceModel();
 
         #endregion Properties
 
@@ -250,7 +237,7 @@ namespace ContestPark.Mobile.ViewModels
         private void AddFreeLoader()
         {
             // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
-            if (Balance.Gold == 0)// Altını hiç yoksa 0 altınla oynayabilir
+            if (Balance != null && Balance.Gold == 0)// Altını hiç yoksa 0 altınla oynayabilir
             {
                 Bets.Insert(0, new BetModel
                 {

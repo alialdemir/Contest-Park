@@ -239,14 +239,14 @@ namespace ContestPark.Mobile.ViewModels
         /// Profile sayfasına git
         /// </summary>
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommand()
+        private void ExecuteGotoProfilePageCommand()
         {
             if (IsBusy || string.IsNullOrEmpty(_userName))
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
                 {
                     {"UserName", _userName }
                 });
@@ -345,7 +345,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand GotoProfileCommand
         {
-            get { return gotoProfileCommand ?? (gotoProfileCommand = new Command(async () => await ExecuteGotoProfilePageCommand())); }
+            get { return gotoProfileCommand ?? (gotoProfileCommand = new Command(() => ExecuteGotoProfilePageCommand())); }
         }
 
         /// <summary>
