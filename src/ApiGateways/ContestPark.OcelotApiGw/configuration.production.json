@@ -316,7 +316,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-.api",
+          "Host": "balance-api",
           "Port": 80
         }
       ],
