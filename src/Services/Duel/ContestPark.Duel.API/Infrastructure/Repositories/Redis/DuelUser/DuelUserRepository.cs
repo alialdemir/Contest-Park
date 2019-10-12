@@ -79,12 +79,25 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         /// <returns>Başarılı olma durumu</returns>
         public bool Delete(DuelUserModel duelUser)
         {
-            string key = GetKey(duelUser);
+            if (duelUser == null)
+                return false;
 
-            if (_redisClient.ContainsKey(key))
-                return true;
+            bool result;
+            try
+            {
+                string key = GetKey(duelUser);
 
-            return _redisClient.Remove(key);
+                if (_redisClient.ContainsKey(key))
+                    return false;
+
+                result = _redisClient.Remove(key);
+            }
+            catch (Exception ex)
+            {
+                result = true;
+            }
+
+            return result;
         }
 
         #endregion Methods
@@ -94,8 +107,8 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         private string GetKey(DuelUserModel duelUserModel)
         {
             return "Duel:SubCategoryId" + duelUserModel.SubCategoryId.ToString() +
-                ":Bet" + duelUserModel.Bet +
-                ":BalanceType" + duelUserModel.BalanceType +
+                ":Bet" + duelUserModel.Bet.ToString() +
+                ":BalanceType" + duelUserModel.BalanceType.ToString() +
                 ":UserId" + duelUserModel.UserId +
                 ":ConnectionId" + duelUserModel.ConnectionId;
         }

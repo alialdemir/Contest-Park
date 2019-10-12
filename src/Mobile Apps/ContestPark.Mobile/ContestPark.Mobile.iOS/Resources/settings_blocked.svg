@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+  <g id="block_users_settings" data-name="block users settings" transform="translate(-5919 -4475)" opacity="0.59">
+    <g id="Ellipse_498" data-name="Ellipse 498" transform="translate(5919 4475)" fill="none" stroke="#0d0d0d" stroke-miterlimit="10" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+    <g id="Ellipse_498-2" data-name="Ellipse 498" transform="translate(5919 4475)" fill="none" stroke="#0d0d0d" stroke-miterlimit="10" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+    <g id="rounded-block-sign" transform="translate(5926 4482)">
+      <g id="block">
+        <path id="Path_2071" data-name="Path 2071" d="M10.593,0A10.593,10.593,0,1,0,21.185,10.593,10.624,10.624,0,0,0,10.593,0ZM2.119,10.593a8.5,8.5,0,0,1,8.474-8.474,8.348,8.348,0,0,1,5.19,1.8L3.919,15.783A8.348,8.348,0,0,1,2.119,10.593Zm8.474,8.474a8.348,8.348,0,0,1-5.19-1.8L17.266,5.4a8.348,8.348,0,0,1,1.8,5.19A8.5,8.5,0,0,1,10.593,19.067Z" stroke="#fff" stroke-width="1.3"/>
+      </g>
+    </g>
+    <g id="Ellipse_500" data-name="Ellipse 500" transform="translate(5919 4475)" fill="none" stroke="#0d0d0d" stroke-miterlimit="10" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+  </g>
+</svg>

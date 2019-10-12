@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using Prism;
 using Prism.Ioc;
 using System;
@@ -23,19 +24,20 @@ namespace ContestPark.Mobile.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            //      XfxControls.Init();
-            //    UserDialogs.Init(x=> { });
-            //    ImageCircleRenderer.Init();
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-
+#if !DEBUG
             CheckJailBreak();
+#endif
 
-            //   Rg.Plugins.Popup.Popup.Init();
+            //UserDialogs.Init();
+
+            ImageCircleRenderer.Init();
+
+            Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Forms.FormsMaterial.Init();
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
-
 
             return base.FinishedLaunching(app, options);
         }

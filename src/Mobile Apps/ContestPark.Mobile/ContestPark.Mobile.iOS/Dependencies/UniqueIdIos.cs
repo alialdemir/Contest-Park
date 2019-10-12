@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.iOS.Dependencies;
+using ContestPark.Mobile.Models.DeviceHelper;
 using Foundation;
 using System;
 using System.Runtime.InteropServices;
@@ -39,6 +40,11 @@ namespace ContestPark.Mobile.iOS.Dependencies
             }
 
             return serial;
+        }
+
+        public DeviceHelper GeScreenSize()
+        {
+            return new DeviceHelper();
         }
     }
 }

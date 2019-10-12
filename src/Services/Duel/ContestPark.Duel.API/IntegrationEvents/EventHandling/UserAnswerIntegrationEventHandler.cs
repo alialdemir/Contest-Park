@@ -66,6 +66,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 _logger.LogError("Round soru bilgisi boş geldi. {QuestionId}", @event.QuestionId);
                 // TODO: Düelloda hata oluştu iptal et paraları geri ver
+                return;
             }
 
             int round = userAnswers.FindIndex(x => x.QuestionId == @event.QuestionId) + 1;// Question id'ye ait index bulukduğu roundu verir
