@@ -83,6 +83,27 @@ namespace ContestPark.Mobile.Services.Cp
             return result.IsSuccess;
         }
 
+        /// <summary>
+        /// Hesaba bakiye kodu ile bakiye yükler
+        /// </summary>
+        /// <param name="balanceCodeModel">Bakiye kod bilgisi</param>
+        /// <returns>Başarılı ise true değilse false döner</returns>
+        public async Task<bool> BalanceCode(BalanceCodeModel balanceCodeModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Code");
+
+            var result = await _requestProvider.PostAsync<string>(uri, balanceCodeModel);
+
+            if (!result.IsSuccess && result.Error != null)
+            {
+                await _pageDialogService?.DisplayAlertAsync("",
+                                                            result.Error.ErrorMessage,
+                                                            ContestParkResources.Okay);
+            }
+
+            return result.IsSuccess;
+        }
+
         #endregion Methods
     }
 }

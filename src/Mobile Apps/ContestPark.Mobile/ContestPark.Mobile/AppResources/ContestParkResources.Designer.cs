@@ -115,6 +115,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Balance code.
+        /// </summary>
+        public static string BalanceCode {
+            get {
+                return ResourceManager.GetString("BalanceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beginner.
         /// </summary>
         public static string Beginner {
@@ -427,6 +436,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter balance code.
+        /// </summary>
+        public static string EnterBalanceCode {
+            get {
+                return ResourceManager.GetString("EnterBalanceCode", resourceCulture);
             }
         }
         
@@ -1187,6 +1205,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfer to Gain Account.
         /// </summary>
         public static string SendMoney {
@@ -1633,6 +1660,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YouMustearnAminimumOfToWithdrawYourwinnings {
             get {
                 return ResourceManager.GetString("YouMustearnAminimumOfToWithdrawYourwinnings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your balance has been loaded..
+        /// </summary>
+        public static string YourBalanceHasBeenLoaded {
+            get {
+                return ResourceManager.GetString("YourBalanceHasBeenLoaded", resourceCulture);
             }
         }
         

@@ -10,17 +10,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
-    Title=" {i18n:Translate Categories}"
+    Title="{i18n:Translate Categories}"
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem
             AutomationId="tbiCategorySearch"
             Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}"
             CommandParameter="{Binding SeeAllSubCateogryId}"
             IconImageSource="searchicon.png" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             Margin="0,8,0,0"

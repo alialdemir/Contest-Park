@@ -2,9 +2,13 @@
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
 using ContestPark.Balance.API.Infrastructure.Repositories.MoneyWithdrawRequest;
 using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
+using ContestPark.Balance.API.Infrastructure.Repositories.Reference;
+using ContestPark.Balance.API.Infrastructure.Repositories.ReferenceCode;
 using ContestPark.Balance.API.Infrastructure.Tables;
+using ContestPark.Balance.API.IntegrationEvents.Events;
 using ContestPark.Balance.API.Models;
 using ContestPark.Balance.API.Resources;
+using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,6 +24,9 @@ namespace ContestPark.Balance.API.Controllers
         #region Private Variables
 
         private readonly IBalanceRepository _balanceRepository;
+        private readonly IReferenceRepository _referenceRepository;
+        private readonly IReferenceCodeRepostory _referenceCodeRepostory;
+        private readonly IEventBus _eventBus;
         private readonly IMoneyWithdrawRequestRepository _moneyWithdrawRequestRepository;
         private readonly IPurchaseHistoryRepository _purchaseHistoryRepository;
 
@@ -28,11 +35,17 @@ namespace ContestPark.Balance.API.Controllers
         #region Constructor
 
         public BalanceController(IBalanceRepository balanceRepository,
+                                 IReferenceRepository referenceRepository,
+                                 IReferenceCodeRepostory referenceCodeRepostory,
+                                 IEventBus eventBus,
                                  IMoneyWithdrawRequestRepository moneyWithdrawRequestRepository,
                                  ILogger<BalanceController> logger,
                                  IPurchaseHistoryRepository purchaseHistoryRepository) : base(logger)
         {
             _balanceRepository = balanceRepository ?? throw new ArgumentNullException(nameof(balanceRepository));
+            _referenceRepository = referenceRepository;
+            _referenceCodeRepostory = referenceCodeRepostory;
+            _eventBus = eventBus;
             _moneyWithdrawRequestRepository = moneyWithdrawRequestRepository;
             _purchaseHistoryRepository = purchaseHistoryRepository ?? throw new ArgumentNullException(nameof(purchaseHistoryRepository));
         }
@@ -95,6 +108,37 @@ namespace ContestPark.Balance.API.Controllers
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// Bakiye koduna göre hesaba bakiye yükler
+        /// </summary>
+        /// <param name="balanceCode">Bakiye kodu</param>
+        [HttpPost("Code")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> BalanceCode([FromBody]BalanceCodeModel balanceCode)
+        {
+            if (balanceCode == null || string.IsNullOrEmpty(balanceCode.Code))
+                return BadRequest();
+
+            ReferenceModel reference = _referenceRepository.IsCodeActive(balanceCode.Code, UserId);
+            if (reference == null)
+                return NotFound();
+
+            bool isSuccess = await _referenceCodeRepostory.Insert(balanceCode.Code, string.Empty, UserId);
+            if (!isSuccess)
+            {
+                Logger.LogError("Bakiye kodu ile bakiye yükleme işlemi sırasında hata oluştu. {code} {UserId}", balanceCode.Code, UserId);
+
+                return BadRequest();
+            }
+
+            var @event = new ChangeBalanceIntegrationEvent(reference.Amount, UserId, reference.BalanceType, BalanceHistoryTypes.ReferenceCode);
+
+            _eventBus.Publish(@event);
+
+            return Ok();
+        }
 
         /// <summary>
         /// Giriş yapan kullanıcının tüm bakiye bilgilerini döner

@@ -51,5 +51,10 @@
         /// Parasını banka hesabına çekti
         /// </summary>
         MoneyWithdraw = 10,
+
+        /// <summary>
+        /// Referans kodu ile bakiye yükledi
+        /// </summary>
+        ReferenceCode = 11,
     }
 }

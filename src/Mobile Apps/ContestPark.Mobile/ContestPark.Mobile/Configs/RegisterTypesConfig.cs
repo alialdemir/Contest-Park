@@ -61,6 +61,7 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<AppShell, AppShellViewModel>();
 
             //containerRegistry.RegisterForNavigation<IconNavigationPage>(nameof(BaseNavigationPage));
+            containerRegistry.RegisterForNavigation<BalanceCodeView, BalanceCodeViewModel>();
 
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
 

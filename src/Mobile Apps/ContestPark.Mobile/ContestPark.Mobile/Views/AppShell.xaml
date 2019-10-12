@@ -76,6 +76,12 @@
 
     <MenuItem
         Clicked="MenuItem_Clicked"
+        CommandParameter="BalanceCodeView"
+        IconImageSource="balance.svg"
+        Text="{i18n:Translate BalanceCode}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
         CommandParameter="SettingsView"
         IconImageSource="settings.svg"
         Text="{i18n:Translate Settings}" />

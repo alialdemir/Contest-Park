@@ -1,5 +1,4 @@
 ﻿using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Models.PageNavigation;
 using Prism.Events;
 using System;
 using Xamarin.Forms;
@@ -10,19 +9,16 @@ namespace ContestPark.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
-        private readonly IEventAggregator _eventAggregator;
-
         #region Constructor
 
         public AppShell(IEventAggregator eventAggregator)
         {
             InitializeComponent();
 
-            _eventAggregator = eventAggregator;
-
             Routing.RegisterRoute("SettingsView", typeof(SettingsView));
             Routing.RegisterRoute("ContestStoreView", typeof(ContestStoreView));
             Routing.RegisterRoute("WinningsView", typeof(WinningsView));
+            Routing.RegisterRoute("BalanceCodeView", typeof(BalanceCodeView));
 
             eventAggregator?// left menu navigation için
                         .GetEvent<TabPageNavigationEvent>()
@@ -56,9 +52,7 @@ namespace ContestPark.Mobile.Views
             else if (!string.IsNullOrEmpty(name))
             {
                 Shell.Current.FlyoutIsPresented = false;
-                _eventAggregator
-                    .GetEvent<TabPageNavigationEvent>()
-                    .Publish(new PageNavigation(name));
+                Current.GoToAsync(name);
             }
 
             IsBusy = false;

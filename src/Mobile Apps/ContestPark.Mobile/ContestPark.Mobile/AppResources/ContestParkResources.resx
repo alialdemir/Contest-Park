@@ -665,4 +665,16 @@
   <data name="YouLeftTheGameDuringTheDuelYouAreDefeated" xml:space="preserve">
     <value>You left the game during the duel. You are defeated.</value>
   </data>
+  <data name="BalanceCode" xml:space="preserve">
+    <value>Balance code</value>
+  </data>
+  <data name="EnterBalanceCode" xml:space="preserve">
+    <value>Enter balance code</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="YourBalanceHasBeenLoaded" xml:space="preserve">
+    <value>Your balance has been loaded.</value>
+  </data>
 </root>

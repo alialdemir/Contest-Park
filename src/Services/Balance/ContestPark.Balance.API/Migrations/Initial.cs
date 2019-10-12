@@ -159,7 +159,54 @@ namespace ContestPark.Balance.API.Migrations
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "UpdateBalance.sql", "GetBalance.sql");
+            this.CreateTableIfNotExists("References", table =>
+            table
+
+                .WithColumn("ReferenceId")
+                .AsInt32()
+                .PrimaryKey()
+                .Identity()
+
+                .WithColumn("Code")
+                .AsString(255)
+                .NotNullable()
+
+                .WithColumn("BalanceType")
+                .AsByte()
+                .NotNullable()
+
+                 .WithColumn("Amount")
+                .AsDecimal(13, 2)
+                .NotNullable()
+
+                 .WithColumn("Menstruation")
+                 .AsInt32()
+                 .NotNullable()
+
+                 .WithColumn("FinishDate")
+                 .AsDateTime()
+                 .Nullable());
+
+            this.CreateTableIfNotExists("ReferenceCodes", table =>
+            table
+
+                .WithColumn("ReferenceCodeId")
+                .AsInt32()
+                .PrimaryKey()
+                .Identity()
+
+                .WithColumn("ReferenceUserId")
+                .AsString(450)
+
+                .WithColumn("NewUserId")
+                .AsString(450)
+                .NotNullable()
+
+                .WithColumn("Code")
+                .AsString(255)
+                .NotNullable());
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "UpdateBalance.sql", "GetBalance.sql", "IsCodeActive.sql");
         }
 
         public override void Down()

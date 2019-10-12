@@ -23,5 +23,10 @@ namespace ContestPark.Mobile.Services.Cp
         {
             return Task.FromResult(true);
         }
+
+        public Task<bool> BalanceCode(BalanceCodeModel balanceCodeModel)
+        {
+            return Task.FromResult(true);
+        }
     }
 }

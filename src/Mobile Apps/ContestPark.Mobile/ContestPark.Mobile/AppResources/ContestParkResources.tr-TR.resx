@@ -135,6 +135,9 @@
   <data name="AwaitingOpponent" xml:space="preserve">
     <value>Rakip Bekleniyor...</value>
   </data>
+  <data name="BalanceCode" xml:space="preserve">
+    <value>Bakiye kodu</value>
+  </data>
   <data name="Beginner" xml:space="preserve">
     <value>Acemi</value>
   </data>
@@ -241,6 +244,9 @@
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="EnterBalanceCode" xml:space="preserve">
+    <value>Bakiye kodu giriniz</value>
   </data>
   <data name="EnterTheCodeFromSms" xml:space="preserve">
     <value>Sms ile gelen kodu giriniz</value>
@@ -498,6 +504,9 @@
   <data name="SelectProcess" xml:space="preserve">
     <value>İşlem Seçiniz</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
   <data name="SendMoney" xml:space="preserve">
     <value>Kazancı Hesabına Aktar</value>
   </data>
@@ -650,6 +659,9 @@
   </data>
   <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
     <value>Kazancını çekebilmek için minimum 100$ kazanmış olman gerekmektedir.</value>
+  </data>
+  <data name="YourBalanceHasBeenLoaded" xml:space="preserve">
+    <value>Bakiyeniz yüklenmiştir.</value>
   </data>
   <data name="YourInformationHasBeenUpdated" xml:space="preserve">
     <value>Bilgileriniz güncellendi.</value>

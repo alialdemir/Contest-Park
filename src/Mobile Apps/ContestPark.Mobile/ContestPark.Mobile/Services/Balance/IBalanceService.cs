@@ -10,5 +10,7 @@ namespace ContestPark.Mobile.Services.Cp
         Task<BalanceModel> GetBalanceAsync();
 
         Task<bool> PurchaseAsync(PurchaseModel purchase);
+
+        Task<bool> BalanceCode(BalanceCodeModel balanceCodeModel);
     }
 }
