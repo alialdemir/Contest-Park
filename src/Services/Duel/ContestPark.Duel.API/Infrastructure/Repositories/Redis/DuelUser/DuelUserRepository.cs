@@ -82,22 +82,12 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
             if (duelUser == null)
                 return false;
 
-            bool result;
-            try
-            {
-                string key = GetKey(duelUser);
+            string key = GetKey(duelUser);
 
-                if (_redisClient.ContainsKey(key))
-                    return false;
+            if (!_redisClient.ContainsKey(key))
+                return false;
 
-                result = _redisClient.Remove(key);
-            }
-            catch (Exception ex)
-            {
-                result = true;
-            }
-
-            return result;
+            return _redisClient.Remove(key);
         }
 
         #endregion Methods

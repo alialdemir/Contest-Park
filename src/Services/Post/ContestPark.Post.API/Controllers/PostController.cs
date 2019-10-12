@@ -300,7 +300,7 @@ namespace ContestPark.Post.API.Controllers
                             // Düelloyu kuran
                             FounderFullName = founderUser?.FullName,
                             FounderProfilePicturePath = founderUser?.ProfilePicturePath,
-                            FounderUserName = founderUser?.FullName,
+                            FounderUserName = founderUser?.UserName,
                             FounderUserId = post.FounderUserId,
                             FounderTrueAnswerCount = post.FounderTrueAnswerCount,
 

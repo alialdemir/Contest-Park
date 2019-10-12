@@ -256,8 +256,8 @@ namespace ContestPark.Mobile.ViewModels
             ProfileInfo.IsFollowing = !ProfileInfo.IsFollowing;
 
             bool isSuccesss = await (ProfileInfo.IsFollowing == true ?
-                  _followService.UnFollowAsync(ProfileInfo.UserId) :
-                  _followService.FollowUpAsync(ProfileInfo.UserId));
+                  _followService.FollowUpAsync(ProfileInfo.UserId) :
+                  _followService.UnFollowAsync(ProfileInfo.UserId));
 
             if (!isSuccesss)
             {
