@@ -125,7 +125,7 @@
                             FontFamily="{StaticResource GothamRoundedBold}"
                             FontSize="Small"
                             HorizontalTextAlignment="End"
-                            Text="Referans Code"
+                            Text="{i18n:Translate ReferenceCode}"
                             TextColor="#66A6FF">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GotoReferenceCodeCommand}" />
