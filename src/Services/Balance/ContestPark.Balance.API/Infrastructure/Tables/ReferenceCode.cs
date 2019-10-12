@@ -1,15 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ContestPark.Core.Database.Models;
+using Dapper;
 
 namespace ContestPark.Balance.API.Infrastructure.Tables
 {
-    public class ReferenceCode
+    [Table("ReferenceCodes")]
+    public class ReferenceCode : EntityBase
     {
+        [Key]
         public int ReferenceCodeId { get; set; }
 
-        [MaxLength(450)]
         public string ReferenceUserId { get; set; }
 
-        [MaxLength(450)]
         public string NewUserId { get; set; }
 
         public string Code { get; set; }
