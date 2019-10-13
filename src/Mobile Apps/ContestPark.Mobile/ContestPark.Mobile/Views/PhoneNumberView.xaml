@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -49,8 +49,13 @@
                     Grid.Column="0"
                     Padding="0"
                     BorderColor="#666372"
-                    CornerRadius="50"
                     WidthRequest="80">
+                    <Frame.CornerRadius>
+                        <OnPlatform x:TypeArguments="x:Single">
+                            <On Platform="Android" Value="50" />
+                            <On Platform="Ios" Value="50" />
+                        </OnPlatform>
+                    </Frame.CornerRadius>
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal"
@@ -91,12 +96,18 @@
                     Text="{Binding PhoneNumber}"
                     TextColor="#484848"
                     Visual="Material">
+                    <custom:CustomEntry.CornerRadius>
+                        <OnPlatform x:TypeArguments="x:Single">
+                            <On Platform="Android" Value="124" />
+                            <On Platform="Ios" Value="100" />
+                        </OnPlatform>
+                    </custom:CustomEntry.CornerRadius>
                     <Entry.Behaviors>
                         <behavior:MaskedBehavior Mask="(XXX) XXX-XX-XX" />
                     </Entry.Behaviors>
                 </custom:CustomEntry>
 
-                <ffimageloadingsvg:SvgCachedImage
+                <!--    <ffimageloadingsvg:SvgCachedImage
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="0,0,10,0"
@@ -106,21 +117,28 @@
                     MinimumWidthRequest="26.52"
                     Source="verify.svg"
                     VerticalOptions="Center"
-                    WidthRequest="26.52" />
+                    WidthRequest="26.52" />-->
 
                 <custom:LinearGradientButton
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
                     BackgroundColor="Transparent"
-                    BorderRadius="124"
                     Command="{Binding SendSmsCommand}"
                     EndColor="#A573FF"
                     StartColor="#645AFF"
                     Style="{DynamicResource ButtonStyle}"
                     Text="{i18n:Translate SignIn}"
                     TextColor="{StaticResource White}"
-                    Visual="Material" />
+                    Visual="Material">
+                    <custom:LinearGradientButton.BorderRadius>
+                        <OnPlatform x:TypeArguments="x:Int32">
+                            <On Platform="Android" Value="124" />
+                            <On Platform="Ios" Value="100" />
+                        </OnPlatform>
+                    </custom:LinearGradientButton.BorderRadius>
+                </custom:LinearGradientButton>
 
+                <!--
                 <custom:HtmlLabel
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
@@ -129,7 +147,7 @@
                     <custom:HtmlLabel.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PrivacyPolicyCommand}" />
                     </custom:HtmlLabel.GestureRecognizers>
-                </custom:HtmlLabel>
+                </custom:HtmlLabel>-->
             </Grid>
         </ScrollView>
     </ContentPage.Content>

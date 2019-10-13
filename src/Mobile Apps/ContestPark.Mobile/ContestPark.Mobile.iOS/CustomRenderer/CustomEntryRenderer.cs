@@ -16,7 +16,7 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
         {
             base.OnElementChanged(e);
 
-            if (e.NewElement != null)
+            if (e.OldElement == null && Element is CustomEntry)
             {
                 var view = (CustomEntry)Element;
 

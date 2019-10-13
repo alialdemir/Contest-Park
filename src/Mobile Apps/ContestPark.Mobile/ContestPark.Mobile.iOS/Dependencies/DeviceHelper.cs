@@ -1,15 +1,13 @@
 ﻿using ContestPark.Mobile.Dependencies;
-using ContestPark.Mobile.iOS.Dependencies;
-using ContestPark.Mobile.Models.DeviceHelper;
 using Foundation;
 using System;
 using System.Runtime.InteropServices;
 
-[assembly: Xamarin.Forms.Dependency(typeof(UniqueIdIOS))]
+[assembly: Xamarin.Forms.DependencyAttribute(typeof(ContestPark.Mobile.iOS.Dependencies.DeviceHelper))]
 
 namespace ContestPark.Mobile.iOS.Dependencies
 {
-    public class UniqueIdIOS : IDevice
+    public class DeviceHelper : IDevice
     {
         [DllImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
         private static extern uint IOServiceGetMatchingService(uint masterPort, IntPtr matching);
@@ -42,9 +40,9 @@ namespace ContestPark.Mobile.iOS.Dependencies
             return serial;
         }
 
-        public DeviceHelper GeScreenSize()
+        public ContestPark.Mobile.Models.DeviceHelper.DeviceHelper GeScreenSize()
         {
-            return new DeviceHelper();
+            return new ContestPark.Mobile.Models.DeviceHelper.DeviceHelper();
         }
     }
 }

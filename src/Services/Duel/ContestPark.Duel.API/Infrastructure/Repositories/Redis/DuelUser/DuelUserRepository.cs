@@ -1,4 +1,5 @@
 ﻿using ContestPark.Duel.API.Models;
+using Microsoft.Extensions.Logging;
 using ServiceStack.Redis;
 using System;
 using System.Linq;
@@ -10,14 +11,17 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         #region Private Variables
 
         private readonly IRedisClient _redisClient;
+        private readonly ILogger<DuelUserRepository> _logger;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public DuelUserRepository(IRedisClient redisClient)
+        public DuelUserRepository(IRedisClient redisClient,
+                                  ILogger<DuelUserRepository> logger)
         {
             _redisClient = redisClient;
+            _logger = logger;
         }
 
         #endregion Constructor
@@ -31,22 +35,35 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         /// <returns>Bekleyen kullanıcı</returns>
         public DuelUserModel GetDuelUser(DuelUserModel duelUser)
         {
-            if (duelUser == null)
+            try
+            {
+                if (duelUser == null)
+                    return null;
+
+                // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
+                string key = $"Duel:SubCategoryId{duelUser.SubCategoryId.ToString()}:Bet{duelUser.Bet.ToString()}:BalanceType{duelUser.BalanceType.ToString()}*";
+                if (!_redisClient.ContainsKey(key))
+                    return null;
+
+                // Parametreden gelen kullanıcının düellosuna karşılık gelen rakip var mı baktık
+                var items = _redisClient.ScanAllKeys(key, pageSize: 1);
+                if (items == null || items.ToList().Count == 0)
+                    return null;
+
+                // Redis keyleri DuelUserModele çevirdik
+                var duelUsers = _redisClient.GetValues<DuelUserModel>(items.ToList());
+                if (duelUser == null)
+                    return null;
+
+                // Kendisi ile denk gelmesin diye user id göre filtreledik
+                return duelUsers.FirstOrDefault(p => p.UserId != duelUser.UserId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetDuelUser methodunda hata oluştu.");
+
                 return null;
-
-            // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
-            string key = $"Duel:SubCategoryId{duelUser.SubCategoryId.ToString()}:Bet{duelUser.Bet.ToString()}:BalanceType{duelUser.BalanceType.ToString()}*";
-
-            // Parametreden gelen kullanıcının düellosuna karşılık gelen rakip var mı baktık
-            var items = _redisClient.ScanAllKeys(key);
-            if (items == null || items.ToList().Count == 0)
-                return null;
-
-            // Redis keyleri DuelUserModele çevirdik
-            var duelUsers = _redisClient.GetValues<DuelUserModel>(items.ToList());
-
-            // Kendisi ile denk gelmesin diye user id göre filtreledik
-            return duelUsers.FirstOrDefault(p => p.UserId != duelUser.UserId);
+            }
         }
 
         /// <summary>
@@ -62,10 +79,12 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
             {
                 string key = GetKey(duelUser);
 
-                isLock = _redisClient.Set<DuelUserModel>(key, duelUser, expiresAt: DateTime.Now.AddSeconds(40));// 40 sn sonra redis üzerinden otomatik siler
+                isLock = _redisClient.Set<DuelUserModel>(key, duelUser/*, expiresAt: DateTime.Now.AddSeconds(40)*/);// 40 sn sonra redis üzerinden otomatik siler
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Duel user repository insert methodunda hata oluştu.");
+
                 isLock = true;
             }
 
@@ -79,15 +98,24 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         /// <returns>Başarılı olma durumu</returns>
         public bool Delete(DuelUserModel duelUser)
         {
-            if (duelUser == null)
+            try
+            {
+                if (duelUser == null)
+                    return false;
+
+                string key = GetKey(duelUser);
+
+                if (!_redisClient.ContainsKey(key))
+                    return false;
+
+                return _redisClient.Remove(key);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Duel user repository delete methodunda hata oluştu.");
+
                 return false;
-
-            string key = GetKey(duelUser);
-
-            if (!_redisClient.ContainsKey(key))
-                return false;
-
-            return _redisClient.Remove(key);
+            }
         }
 
         #endregion Methods

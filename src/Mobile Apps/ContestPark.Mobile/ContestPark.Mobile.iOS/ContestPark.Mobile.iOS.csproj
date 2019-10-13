@@ -26,6 +26,12 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -50,6 +56,8 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>Full</MtouchLink>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -94,8 +102,10 @@
     <Compile Include="CustomRenderer\CircularProgressRenderer.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
+    <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
-    <Compile Include="Dependencies\UniqueIdIos.cs" />
+    <Compile Include="Dependencies\Localize.cs" />
+    <Compile Include="Dependencies\DeviceHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -104,6 +114,51 @@
     <ITunesArtwork Include="iTunesArtwork@1x.png" />
     <ITunesArtwork Include="iTunesArtwork@2x.png" />
     <ITunesArtwork Include="iTunesArtwork@3x.png" />
+    <BundleResource Include="Resources\Fonts\ContestPark-Icon.ttf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-Bold.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-BoldItalic.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-Book.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-BookItalic.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-Light.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-LightItalic.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-Medium.otf" />
+    <BundleResource Include="Resources\Fonts\GothamRounded-MediumItalic.otf" />
+    <BundleResource Include="Resources\Fonts\Helvetica.ttf" />
+    <BundleResource Include="Resources\Fonts\Helvetica-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Black.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-BlackItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-BoldItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-ExtraBold.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-ExtraBoldItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-ExtraLight.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-ExtraLightItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Italic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Light.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-LightItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-MediumItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-SemiBoldItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-Thin.ttf" />
+    <BundleResource Include="Resources\Fonts\Montserrat-ThinItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Black Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Black Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Bold Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Bold Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro ExtraLight Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro ExtraLight Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Light Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Light Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Medium Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Medium Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Regular Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Regular Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Semi Bold Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro Semi Bold Italic Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro UltraLight Az.otf" />
+    <BundleResource Include="Resources\Fonts\Sofia Pro UltraLight Italic Az.otf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
@@ -201,7 +256,7 @@
       <Version>7.0.4</Version>
     </PackageReference>
     <PackageReference Include="CardsView">
-      <Version>2.1.0</Version>
+      <Version>2.3.4</Version>
     </PackageReference>
     <PackageReference Include="Com.Airbnb.iOS.Lottie">
       <Version>2.5.8</Version>
@@ -228,7 +283,7 @@
       <Version>3.3.4</Version>
     </PackageReference>
     <PackageReference Include="MonkeyCache.SQLite">
-      <Version>0.1.0.10-beta</Version>
+      <Version>1.3.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
@@ -287,12 +342,12 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
       <Version>2.4.11.982</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>1.1.8</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.2.0.709249</Version>
+      <Version>4.2.0.848062</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +367,270 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\balance.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\send_message.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_account.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_blocked.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_blocked_cancel.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_edit_profile_cover_photo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_edit_profile_email.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_edit_profile_name.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_edit_profile_profile_photo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_edit_profile_username.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_language.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_log_out.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_private_profile.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings_sound.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shareblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\singlecoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stylishbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TUR_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\twitter.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\user.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\UserProfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\verify.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\appstoreandgoogleplay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Category.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\comment.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_gold_1.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_gold_2.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_gold_3.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_gold_4.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_money_5.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_money_6.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_money_7.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contest_store_money_8.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ContestSingleCoin.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\conteststore.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\DefaultCoverPicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\DolarSingleCoin.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\doublecoins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\doublecoinstl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\facebook.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\find_opponent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fullname.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hour.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_favorite_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_favorite_border_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\instagram.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\invite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\invite_friends.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\left_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\left_menu_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LeftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\liked.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\likes.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menuicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\missions.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\money_bag.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prizeicon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prizeicon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prizeicon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prizeicon4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prizeicon5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prizeicon6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_chat.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_follow.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_play.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_unfollow.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\questioncenter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ranking_header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\referee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\revenge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\RightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search_cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search_result.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\segmented_control_background.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\segmented_control_first_background.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\segmented_control_last_background.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
