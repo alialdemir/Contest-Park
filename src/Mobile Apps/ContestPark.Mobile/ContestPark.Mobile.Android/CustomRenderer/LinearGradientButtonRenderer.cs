@@ -1,4 +1,5 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content;
+using Android.Graphics.Drawables;
 using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using Xamarin.Forms;
@@ -8,9 +9,13 @@ using Xamarin.Forms.Platform.Android;
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
-    [System.Obsolete]
     public class LinearGradientButtonRenderer : ButtonRenderer
     {
+        public LinearGradientButtonRenderer(Context context) : base(context)
+
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {
             base.OnElementChanged(e);
@@ -28,10 +33,10 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             GradientDrawable gd = new GradientDrawable(
               GradientDrawable.Orientation.TopBottom, colors);
 
-            gd.SetCornerRadius(button.BorderRadius);
+            gd.SetCornerRadius(button.CornerRadius);
 
             //apply the button background to newly created drawable gradient
-            Control.SetBackgroundDrawable(gd);
+            Control.SetBackground(gd);
         }
     }
 }

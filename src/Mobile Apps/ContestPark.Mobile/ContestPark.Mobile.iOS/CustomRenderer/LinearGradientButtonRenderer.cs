@@ -28,8 +28,7 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
 
             var gradientLayer = new CAGradientLayer()
             {
-                CornerRadius = 80,// nfloat.Parse(stack.BorderRadius.ToString()),
-                BorderWidth = 1,
+                CornerRadius = stack.CornerRadius,
 
                 StartPoint = new CGPoint(0, 0.5),
                 EndPoint = new CGPoint(1, 0.5)

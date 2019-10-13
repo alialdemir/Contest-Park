@@ -130,12 +130,12 @@
                     Text="{i18n:Translate SignIn}"
                     TextColor="{StaticResource White}"
                     Visual="Material">
-                    <custom:LinearGradientButton.BorderRadius>
+                    <custom:LinearGradientButton.CornerRadius>
                         <OnPlatform x:TypeArguments="x:Int32">
                             <On Platform="Android" Value="124" />
-                            <On Platform="Ios" Value="100" />
+                            <On Platform="Ios" Value="20" />
                         </OnPlatform>
-                    </custom:LinearGradientButton.BorderRadius>
+                    </custom:LinearGradientButton.CornerRadius>
                 </custom:LinearGradientButton>
 
                 <!--
