@@ -101,14 +101,13 @@
                             Margin="0,14,0,14"
                             HeightRequest="200"
                             HorizontalOptions="Center"
-                            Source="balancecode.jpg"
+                            Source="username.png"
                             WidthRequest="200" />
 
                         <Components:CustomEntry
                             Grid.Row="2"
                             BackgroundColor="Transparent"
                             BorderColor="#666372"
-                            CornerRadius="132"
                             FontFamily="{DynamicResource SofiaProMedium}"
                             FontSize="16"
                             HeightRequest="40"

@@ -31,7 +31,7 @@
     </MtouchSdkVersion>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchFastDev>true</MtouchFastDev>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -631,6 +631,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\segmented_control_last_background.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\username.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

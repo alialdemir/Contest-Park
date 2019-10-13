@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -48,14 +48,20 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Padding="0"
-                    BorderColor="#666372"
-                    WidthRequest="80">
+                    BorderColor="#666372">
                     <Frame.CornerRadius>
                         <OnPlatform x:TypeArguments="x:Single">
                             <On Platform="Android" Value="50" />
-                            <On Platform="Ios" Value="50" />
+                            <On Platform="iOS" Value="24" />
                         </OnPlatform>
                     </Frame.CornerRadius>
+                    <Frame.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="80" />
+                            <On Platform="iOS" Value="80" />
+                        </OnPlatform>
+                    </Frame.WidthRequest>
+
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal"
@@ -85,7 +91,6 @@
                     Grid.Column="1"
                     BackgroundColor="Transparent"
                     BorderColor="#666372"
-                    CornerRadius="132"
                     FontFamily="{DynamicResource SofiaProMedium}"
                     FontSize="16"
                     HeightRequest="40"
@@ -96,12 +101,6 @@
                     Text="{Binding PhoneNumber}"
                     TextColor="#484848"
                     Visual="Material">
-                    <custom:CustomEntry.CornerRadius>
-                        <OnPlatform x:TypeArguments="x:Single">
-                            <On Platform="Android" Value="124" />
-                            <On Platform="Ios" Value="100" />
-                        </OnPlatform>
-                    </custom:CustomEntry.CornerRadius>
                     <Entry.Behaviors>
                         <behavior:MaskedBehavior Mask="(XXX) XXX-XX-XX" />
                     </Entry.Behaviors>
@@ -133,12 +132,11 @@
                     <custom:LinearGradientButton.CornerRadius>
                         <OnPlatform x:TypeArguments="x:Int32">
                             <On Platform="Android" Value="124" />
-                            <On Platform="Ios" Value="20" />
+                            <On Platform="iOS" Value="24" />
                         </OnPlatform>
                     </custom:LinearGradientButton.CornerRadius>
                 </custom:LinearGradientButton>
 
-                <!--
                 <custom:HtmlLabel
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
@@ -147,7 +145,7 @@
                     <custom:HtmlLabel.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PrivacyPolicyCommand}" />
                     </custom:HtmlLabel.GestureRecognizers>
-                </custom:HtmlLabel>-->
+                </custom:HtmlLabel>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

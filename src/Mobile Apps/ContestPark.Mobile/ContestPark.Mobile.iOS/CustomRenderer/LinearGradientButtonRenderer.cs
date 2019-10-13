@@ -42,8 +42,6 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
                 endColor
             };
 
-            //gradientLayer.CornerRadius = stack.CornerRadius;
-
             NativeView.Layer.InsertSublayer(gradientLayer, 0);
         }
     }

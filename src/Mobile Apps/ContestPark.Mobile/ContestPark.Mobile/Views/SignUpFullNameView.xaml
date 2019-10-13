@@ -108,7 +108,6 @@
                             Grid.Row="2"
                             BackgroundColor="Transparent"
                             BorderColor="#666372"
-                            CornerRadius="132"
                             FontFamily="{DynamicResource SofiaProMedium}"
                             FontSize="16"
                             HeightRequest="40"

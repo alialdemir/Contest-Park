@@ -23,7 +23,7 @@ namespace ContestPark.Mobile.Components
             nameof(BorderWidth),
             typeof(int),
             typeof(CustomEntry),
-            Device.OnPlatform<int>(1, 2, 2));
+            defaultValue: Device.RuntimePlatform == Device.Android ? 2 : 1);
 
         // Gets or sets BorderWidth value
         public int BorderWidth
@@ -37,7 +37,7 @@ namespace ContestPark.Mobile.Components
             nameof(CornerRadius),
             typeof(float),
             typeof(CustomEntry),
-            Device.OnPlatform<float>(6, 7, 7));
+                defaultValue: Device.RuntimePlatform == Device.Android ? 132 : 24f);
 
         // Gets or sets CornerRadius value
         public float CornerRadius
