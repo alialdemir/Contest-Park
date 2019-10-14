@@ -7,7 +7,6 @@ using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -236,7 +235,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <returns></returns>
         protected override Task InitializeAsync()
         {
-            if (ServiceModel != null && ServiceModel.Items != null && ((List<TModel>)ServiceModel.Items).Count > 0)
+            if (ServiceModel != null && ServiceModel.Items != null && ServiceModel.Items.Any())
                 Items.AddRange(ServiceModel.Items);
             else IsShowEmptyMessage = true;
 

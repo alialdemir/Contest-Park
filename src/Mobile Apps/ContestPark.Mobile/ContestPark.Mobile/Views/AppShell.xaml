@@ -46,14 +46,14 @@
                 <views:ChatView />
             </ShellContent>
         </Tab>
-        <!--<Tab
+        <Tab
             Title="{i18n:Translate Profile}"
             Icon="Category.png"
             Route="profile">
             <ShellContent>
                 <views:MyProfileView />
             </ShellContent>
-        </Tab>-->
+        </Tab>
     </TabBar>
 
     <!--  Left menu header  -->
@@ -104,9 +104,9 @@
         IconImageSource="instagram.svg"
         Text="Instagram" />
 
-    <Shell.MenuItemTemplate>
+    <!--<Shell.MenuItemTemplate>
         <DataTemplate>
             <views:AppShellListItemView />
         </DataTemplate>
-    </Shell.MenuItemTemplate>
+    </Shell.MenuItemTemplate>-->
 </Shell>

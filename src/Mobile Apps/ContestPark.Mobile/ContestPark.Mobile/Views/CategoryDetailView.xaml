@@ -159,7 +159,6 @@
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
-                                BorderRadius="60"
                                 Command="{Binding DuelOpenPanelCommand}"
                                 EndColor="#F22E63"
                                 FontFamily="{StaticResource SofiaProRegular}"
@@ -168,13 +167,18 @@
                                 StartColor="#FF6480"
                                 Text="{i18n:Translate FindOpponent}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material" />
-
+                                Visual="Material">
+                                <Components:LinearGradientButton.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Int32">
+                                        <On Platform="Android" Value="60" />
+                                        <On Platform="iOS" Value="12" />
+                                    </OnPlatform>
+                                </Components:LinearGradientButton.CornerRadius>
+                            </Components:LinearGradientButton>
                             <Components:LinearGradientButton
                                 Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
-                                BorderRadius="60"
                                 Command="{Binding GoToRankingPageCommand}"
                                 EndColor="#5A7BEF"
                                 FontFamily="{StaticResource SofiaProRegular}"
@@ -183,7 +187,14 @@
                                 StartColor="#4048EF"
                                 Text="{i18n:Translate Ranking}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material" />
+                                Visual="Material">
+                                <Components:LinearGradientButton.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Int32">
+                                        <On Platform="Android" Value="60" />
+                                        <On Platform="iOS" Value="12" />
+                                    </OnPlatform>
+                                </Components:LinearGradientButton.CornerRadius>
+                            </Components:LinearGradientButton>
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>

@@ -13,7 +13,6 @@
     Title="{i18n:Translate Categories}"
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
-
     <ContentPage.ToolbarItems>
         <ToolbarItem
             AutomationId="tbiCategorySearch"

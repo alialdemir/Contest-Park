@@ -146,8 +146,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             {
                 result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
             }
-
-            if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
+            else if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
             {
                 result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
             }

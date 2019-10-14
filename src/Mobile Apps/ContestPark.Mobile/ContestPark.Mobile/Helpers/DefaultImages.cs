@@ -4,17 +4,17 @@
     {
         public static string DefaultProfilePicture
         {
-            get { return "assets/images/user.jpg"; }
+            get { return "https://d2blqp3orvbj09.cloudfront.net/user.jpg"; }
         }
 
         public static string DefaultLock
         {
-            get { return "assets/images/lock.png"; }
+            get { return "https://d2blqp3orvbj09.cloudfront.net/lock.png"; }
         }
 
         public static string DefaultCoverPicture
         {
-            get { return "assets/images/DefaultCoverPicture.jpg"; }
+            get { return "https://d2blqp3orvbj09.cloudfront.net/DefaultCoverPicture.jpg"; }
         }
     }
 }

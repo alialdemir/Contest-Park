@@ -58,20 +58,33 @@ namespace ContestPark.Mobile.Components
 
             stackLayout.Children.Add(new SubCategoryHorizontalScrollView());
 
-            Margin = new Thickness(8, 0, 8, 8);
-            Padding = new Thickness(0);
-
-            Content = new Frame
+            Frame frame = new Frame
             {
-                Padding = new Thickness(8),
                 HasShadow = true,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 IsClippedToBounds = true,
-                CornerRadius = 8,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 BackgroundColor = Color.FromHex("#FFFFFF"),
                 Content = stackLayout
             };
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    frame.Padding = new Thickness(16, 0, 16, 16);
+                    frame.CornerRadius = 16;
+                    Margin = new Thickness(16, 0, 16, 16);
+                    break;
+
+                default:
+                    frame.Padding = new Thickness(8);
+                    frame.CornerRadius = 8;
+                    Margin = new Thickness(8, 0, 8, 8);
+                    Padding = new Thickness(0);
+                    break;
+            }
+
+            Content = frame;
         }
 
         #endregion Override

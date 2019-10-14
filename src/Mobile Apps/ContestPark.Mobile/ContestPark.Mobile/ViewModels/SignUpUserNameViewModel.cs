@@ -109,7 +109,7 @@ namespace ContestPark.Mobile.ViewModels
                 referenceCode = ((SignUpReferenceCodeViewModel)SignUpReferenceCodeView.BindingContext).ReferenceCode;
             }
 
-            await _identityService.SignUpAsync(new SignUpModel
+            bool isSuccess = await _identityService.SignUpAsync(new SignUpModel
             {
                 FullName = FullName,
                 Password = PhoneNumber,
@@ -117,8 +117,10 @@ namespace ContestPark.Mobile.ViewModels
                 ReferenceCode = referenceCode
             });
 
-            await LoginProcessAsync();
-
+            if (isSuccess)
+            {
+                await LoginProcessAsync();
+            }
             UserDialogs.Instance.HideLoading();
 
             IsBusy = false;

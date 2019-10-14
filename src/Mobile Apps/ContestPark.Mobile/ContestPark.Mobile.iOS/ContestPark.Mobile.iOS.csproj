@@ -104,6 +104,7 @@
     <Compile Include="CustomRenderer\CustomGridRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
     <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
+    <Compile Include="CustomRenderer\ViewCellTransparent.cs" />
     <Compile Include="Dependencies\ConvertUIToImage.cs" />
     <Compile Include="Dependencies\Localize.cs" />
     <Compile Include="Dependencies\DeviceHelper.cs" />
@@ -436,9 +437,6 @@
     <BundleResource Include="Resources\twitter.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\user.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\UserProfile.png" />
   </ItemGroup>
   <ItemGroup>
@@ -493,9 +491,6 @@
     <BundleResource Include="Resources\conteststore.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\DefaultCoverPicture.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\DolarSingleCoin.svg" />
   </ItemGroup>
   <ItemGroup>
@@ -547,13 +542,12 @@
     <BundleResource Include="Resources\likes.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\lock.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\menuicon.png" />
+    <BundleResource Include="Resources\menuicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\missions.svg" />

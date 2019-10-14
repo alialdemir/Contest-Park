@@ -106,7 +106,7 @@
                     </Entry.Behaviors>
                 </custom:CustomEntry>
 
-                <!--    <ffimageloadingsvg:SvgCachedImage
+                <ffimageloadingsvg:SvgCachedImage
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="0,0,10,0"
@@ -116,7 +116,7 @@
                     MinimumWidthRequest="26.52"
                     Source="verify.svg"
                     VerticalOptions="Center"
-                    WidthRequest="26.52" />-->
+                    WidthRequest="26.52" />
 
                 <custom:LinearGradientButton
                     Grid.Row="3"

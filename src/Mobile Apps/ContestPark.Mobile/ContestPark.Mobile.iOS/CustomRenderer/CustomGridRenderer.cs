@@ -8,55 +8,37 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace ContestPark.Mobile.iOS.CustomRenderer
 {
-    public class CustomGridRenderer : PlatformEffect
+    public class CustomGridRenderer : ViewRenderer<CustomGrid, UIView>
     {
-        private bool _attached;
-        private readonly UILongPressGestureRecognizer _longPressRecognizer;
+        private UILongPressGestureRecognizer longPressGestureRecognizer;
+        private UITapGestureRecognizer tapGestureRecognizer;
 
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:Yukon.Application.iOSComponents.Effects.iOSLongPressedEffect"/> class.
-        /// </summary>
-        public CustomGridRenderer()
+        protected override void OnElementChanged(ElementChangedEventArgs<CustomGrid> e)
         {
-            _longPressRecognizer = new UILongPressGestureRecognizer(HandleLongClick);
-        }
+            longPressGestureRecognizer = longPressGestureRecognizer ??
+                new UILongPressGestureRecognizer(() =>
+                {
+                    Element.LongPressed?.Execute(Element.CommandParameter);
+                });
 
-        /// <summary>
-        /// Apply the handler
-        /// </summary>
-        protected override void OnAttached()
-        {
-            //because an effect can be detached immediately after attached (happens in listview), only attach the handler one time
-            if (!_attached)
+            tapGestureRecognizer = tapGestureRecognizer ??
+                new UITapGestureRecognizer(() =>
+                {
+                    Element.SingleTap?.Execute(Element.CommandParameter);
+                });
+
+            if (longPressGestureRecognizer != null && tapGestureRecognizer != null)
             {
-                Container.AddGestureRecognizer(_longPressRecognizer);
-                _attached = true;
-            }
-        }
-
-        /// <summary>
-        /// Invoke the command if there is one
-        /// </summary>
-        private void HandleLongClick()
-        {
-            if (Element is CustomGrid)
-            {
-                var cstmGrid = (CustomGrid)Element;
-
-                cstmGrid.LongPressed?.Execute(cstmGrid.CommandParameter);
-            }
-        }
-
-        /// <summary>
-        /// Clean the event handler on detach
-        /// </summary>
-        protected override void OnDetached()
-        {
-            if (_attached)
-            {
-                Container.RemoveGestureRecognizer(_longPressRecognizer);
-                _attached = false;
+                if (e.NewElement == null)
+                {
+                    this.RemoveGestureRecognizer(longPressGestureRecognizer);
+                    this.RemoveGestureRecognizer(tapGestureRecognizer);
+                }
+                else if (e.OldElement == null)
+                {
+                    this.AddGestureRecognizer(longPressGestureRecognizer);
+                    this.AddGestureRecognizer(tapGestureRecognizer);
+                }
             }
         }
     }
