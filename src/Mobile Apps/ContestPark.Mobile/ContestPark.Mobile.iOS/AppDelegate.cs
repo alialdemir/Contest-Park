@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using FFImageLoading.Forms.Platform;
+using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using Prism;
 using Prism.Ioc;
@@ -28,6 +29,7 @@ namespace ContestPark.Mobile.iOS
             CheckJailBreak();
 #endif
 
+            CachedImageRenderer.Init();
             //UserDialogs.Init();
 
             ImageCircleRenderer.Init();

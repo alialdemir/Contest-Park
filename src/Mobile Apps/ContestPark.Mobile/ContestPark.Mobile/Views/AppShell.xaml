@@ -46,14 +46,14 @@
                 <views:ChatView />
             </ShellContent>
         </Tab>
-        <Tab
+        <!--<Tab
             Title="{i18n:Translate Profile}"
             Icon="Category.png"
             Route="profile">
             <ShellContent>
                 <views:MyProfileView />
             </ShellContent>
-        </Tab>
+        </Tab>-->
     </TabBar>
 
     <!--  Left menu header  -->
@@ -86,7 +86,7 @@
         IconImageSource="settings.svg"
         Text="{i18n:Translate Settings}" />
 
-    <!--<MenuItem
+    <MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="facebook"
         IconImageSource="facebook.svg"
@@ -96,7 +96,7 @@
         Clicked="MenuItem_Clicked"
         CommandParameter="twitter"
         IconImageSource="twitter.svg"
-        Text="Twitter" />-->
+        Text="Twitter" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
