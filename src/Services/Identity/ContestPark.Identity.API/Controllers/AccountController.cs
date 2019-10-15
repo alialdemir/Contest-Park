@@ -716,11 +716,11 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// </summary>
         /// <param name="result">Errors</param>
         /// <returns></returns>
-        private List<string> IdentityResultErrors(IEnumerable<IdentityError> identityErrors)
+        private IEnumerable<string> IdentityResultErrors(IEnumerable<IdentityError> identityErrors)
         {
             var errors = identityErrors.Select(e =>
                     CurrentUserLanguage.HasFlag(Languages.Turkish) ? IdentityResource.ResourceManager.GetString(e.Code) : e.Description
-                    ).ToList();
+                    ).AsEnumerable();
 
             return errors;
         }

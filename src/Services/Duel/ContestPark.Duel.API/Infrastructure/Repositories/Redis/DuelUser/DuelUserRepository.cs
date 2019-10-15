@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ServiceStack.Redis;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
@@ -41,17 +42,17 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
                     return null;
 
                 // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
-                string key = $"Duel:SubCategoryId{duelUser.SubCategoryId.ToString()}:Bet{duelUser.Bet.ToString()}:BalanceType{duelUser.BalanceType.ToString()}*";
-                if (!_redisClient.ContainsKey(key))
-                    return null;
+                string key = $"Duel:SubCategoryId{duelUser.SubCategoryId.ToString()}:Bet{duelUser.Bet.ToString()}:BalanceType{duelUser.BalanceType.ToString()}";//*
 
                 // Parametreden gelen kullanıcının düellosuna karşılık gelen rakip var mı baktık
-                var items = _redisClient.ScanAllKeys(key, pageSize: 1);
+                var items = _redisClient.GetAllKeys();
                 if (items == null || items.ToList().Count == 0)
                     return null;
 
+                List<string> keys = items.Where(x => x.StartsWith(key)).ToList();
+
                 // Redis keyleri DuelUserModele çevirdik
-                var duelUsers = _redisClient.GetValues<DuelUserModel>(items.ToList());
+                var duelUsers = _redisClient.GetValues<DuelUserModel>(keys);
                 if (duelUser == null)
                     return null;
 
