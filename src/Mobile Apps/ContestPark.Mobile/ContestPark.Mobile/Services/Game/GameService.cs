@@ -61,7 +61,7 @@ namespace ContestPark.Mobile.Services.Game
         public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen)
         {
             if (isCategoryOpen)
-                await GoToCategoryDetailViewAsync(subCategoryId);
+                GoToCategoryDetailViewAsync(subCategoryId);
             else
             {
                 bool isUnLock = await OpenSubCategory(subCategoryId);
@@ -153,14 +153,14 @@ namespace ContestPark.Mobile.Services.Game
             if (isOk) await NavigationService?.NavigateAsync(nameof(ContestStoreView), useModalNavigation: false);
         }
 
-        private async Task GoToCategoryDetailViewAsync(short subCategoryId)
+        private void GoToCategoryDetailViewAsync(short subCategoryId)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
+            NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
                                                 {
                                                     { "SubCategoryId", subCategoryId }
                                                 }, useModalNavigation: false);

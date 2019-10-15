@@ -45,7 +45,7 @@ namespace ContestPark.Mobile.Configs
 
         #region Properties
 
-        public string AppCenterKey { get; } = "android=e39cee25-8a31-43e0-bc9c-20bfc2b2a53c";
+        public string AppCenterKey { get; } = "android=e39cee25-8a31-43e0-bc9c-20bfc2b2a53c;ios=4cb3ac35-c5b2-4a2c-a0e4-7659072f99ae";
 
         /// <summary>
         /// Gets the Instance

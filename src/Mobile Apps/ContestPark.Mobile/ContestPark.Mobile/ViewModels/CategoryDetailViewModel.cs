@@ -247,7 +247,11 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command(() =>
                {
-                   _onSleepEvent.Unsubscribe(SubscriptionToken);
+                   if (SubscriptionToken != null && _onSleepEvent != null)
+                   {
+
+                       _onSleepEvent.Unsubscribe(SubscriptionToken);
+                   }
                });
             }
         }

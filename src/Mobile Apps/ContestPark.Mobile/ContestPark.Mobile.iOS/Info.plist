@@ -60,6 +60,9 @@
       <string>Fonts/Montserrat-Regular.ttf</string>
       <string>Fonts/Montserrat-Medium.ttf</string>
       <string>Fonts/Sofia Pro Black Az.otf</string>
+      <string>iconize-fontawesome-regular.ttf</string>
+      <string>iconize-fontawesome-solid.ttf</string>
+      <string>iconize-fontawesome-brands.ttf</string>
     </array>
     <key>NSAppTransportSecurity</key>
     <dict>

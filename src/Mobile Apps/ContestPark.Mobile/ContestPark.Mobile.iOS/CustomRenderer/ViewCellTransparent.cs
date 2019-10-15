@@ -11,13 +11,21 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
     {
         public override UITableViewCell GetCell(Cell item, UITableViewCell reusableCell, UITableView tv)
         {
-            var cell = base.GetCell(item, reusableCell, tv);
-            if (cell != null)
+            try
             {
-                // Disable native cell selection color style - set as *Transparent*
-                cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+                var cell = base.GetCell(item, reusableCell, tv);
+                if (cell != null)
+                {
+                    // Disable native cell selection color style - set as *Transparent*
+                    cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+                }
+                return cell;
             }
-            return cell;
+            catch (System.Exception ex)
+            {
+            }
+
+            return base.GetCell(item, reusableCell, tv);
         }
     }
 }

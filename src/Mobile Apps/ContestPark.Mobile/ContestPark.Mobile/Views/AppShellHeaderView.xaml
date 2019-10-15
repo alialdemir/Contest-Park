@@ -17,7 +17,6 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-
             <Image
                 Aspect="AspectFill"
                 HorizontalOptions="FillAndExpand"

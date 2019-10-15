@@ -1,6 +1,7 @@
 ﻿using FFImageLoading.Forms.Platform;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
+using Plugin.Segmented.Control.iOS;
 using Prism;
 using Prism.Ioc;
 using System;
@@ -38,6 +39,8 @@ namespace ContestPark.Mobile.iOS
 
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
+
+            SegmentedControlRenderer.Initialize();
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 

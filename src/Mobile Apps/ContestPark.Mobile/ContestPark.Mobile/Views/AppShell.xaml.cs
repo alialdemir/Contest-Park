@@ -24,7 +24,7 @@ namespace ContestPark.Mobile.Views
                         .GetEvent<TabPageNavigationEvent>()
                         .Subscribe(async (page) => await Current.GoToAsync(page.PageName));
 
-            Navigated += (s, _) => Shell.Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
+            Navigated += (s, _) => Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
 
             Navigating += (s, _) => Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
         }

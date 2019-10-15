@@ -55,7 +55,7 @@ namespace ContestPark.Mobile.Views
         private void OnItemAppearing(object Sender, ItemVisibilityEventArgs e)
         {
             var currentItem = (PostCommentModel)e.Item;
-            if (!ViewModel.IsInitialized || ViewModel.ServiceModel.IsLastPage || !(currentItem is PostCommentModel))
+            if (!ViewModel.IsInitialized || !ViewModel.ServiceModel.HasNextPage || !(currentItem is PostCommentModel))
                 return;
 
             if (ViewModel.Items.FirstOrDefault().Equals(currentItem))

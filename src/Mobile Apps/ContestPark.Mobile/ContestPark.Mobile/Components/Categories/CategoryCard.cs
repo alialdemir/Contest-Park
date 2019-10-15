@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Categories;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace ContestPark.Mobile.Components
 {
@@ -58,9 +59,11 @@ namespace ContestPark.Mobile.Components
 
             stackLayout.Children.Add(new SubCategoryHorizontalScrollView());
 
-            Frame frame = new Frame
+            PancakeView frame = new PancakeView
             {
                 HasShadow = true,
+                Elevation = 8,
+                CornerRadius = 8,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 IsClippedToBounds = true,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -68,21 +71,10 @@ namespace ContestPark.Mobile.Components
                 Content = stackLayout
             };
 
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    frame.Padding = new Thickness(16, 0, 16, 16);
-                    frame.CornerRadius = 16;
-                    Margin = new Thickness(16, 0, 16, 16);
-                    break;
+            Margin = new Thickness(8, Device.RuntimePlatform == Device.iOS ? 8 : 0, 8, Device.RuntimePlatform == Device.iOS ? 0 : 8);
+            Padding = new Thickness(0);
 
-                default:
-                    frame.Padding = new Thickness(8);
-                    frame.CornerRadius = 8;
-                    Margin = new Thickness(8, 0, 8, 8);
-                    Padding = new Thickness(0);
-                    break;
-            }
+            frame.Padding = new Thickness(8);
 
             Content = frame;
         }
