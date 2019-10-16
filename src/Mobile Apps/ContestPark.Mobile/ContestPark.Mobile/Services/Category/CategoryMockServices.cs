@@ -189,7 +189,7 @@ namespace ContestPark.Mobile.Services.Category
         {
             return Task.FromResult(new CategoryDetailModel
             {
-                CategoryFollowersCount = 5,
+                FollowerCount = 5,
                 Description = "Takımı bil ödülü kazan!",
                 IsSubCategoryFollowUpStatus = true,
                 Level = 33,

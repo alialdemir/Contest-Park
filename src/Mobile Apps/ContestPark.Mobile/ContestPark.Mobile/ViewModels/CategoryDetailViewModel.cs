@@ -167,8 +167,16 @@ namespace ContestPark.Mobile.ViewModels
         {
             CategoryDetail.IsSubCategoryFollowUpStatus = !CategoryDetail.IsSubCategoryFollowUpStatus;
 
-            if (CategoryDetail.IsSubCategoryFollowUpStatus) CategoryDetail.CategoryFollowersCount++;
-            else CategoryDetail.CategoryFollowersCount--;
+            if (CategoryDetail.IsSubCategoryFollowUpStatus)
+            {
+                CategoryDetail.FollowerCount++;
+                CategoryDetail.Icon = "ic_favorite_black_24dp.png";
+            }
+            else
+            {
+                CategoryDetail.FollowerCount--;
+                CategoryDetail.Icon = "ic_favorite_border_black_24dp.png";
+            }
         }
 
         #endregion Methods
@@ -216,7 +224,12 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () => CategoryDetail = await _categoryService.GetSubCategoryDetail(_subCategoryId));
+                return new Command(async () =>
+                {
+                    CategoryDetail = await _categoryService.GetSubCategoryDetail(_subCategoryId);
+
+                    CategoryDetail.Icon = CategoryDetail.IsSubCategoryFollowUpStatus ? "ic_favorite_black_24dp.png" : "ic_favorite_border_black_24dp.png";
+                });
             }
         }
 
@@ -249,7 +262,6 @@ namespace ContestPark.Mobile.ViewModels
                {
                    if (SubscriptionToken != null && _onSleepEvent != null)
                    {
-
                        _onSleepEvent.Unsubscribe(SubscriptionToken);
                    }
                });

@@ -14,6 +14,7 @@ using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -243,7 +244,7 @@ namespace ContestPark.Mobile.ViewModels
         private void AddFreeLoader()
         {
             // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
-            if (Balance != null && Balance.Gold == 0)// Altını hiç yoksa 0 altınla oynayabilir
+            if (BalanceType == BalanceTypes.Gold && Balance != null && Balance.Gold < Bets?.FirstOrDefault().EntryFee)// Altını hiç yoksa 0 altınla oynayabilir
             {
                 Bets.Insert(0, new BetModel
                 {

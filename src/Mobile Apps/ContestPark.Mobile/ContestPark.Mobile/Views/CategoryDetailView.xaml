@@ -3,30 +3,16 @@
     x:Class="ContestPark.Mobile.Views.CategoryDetailView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
     Title="{Binding CategoryDetail.SubCategoryName}"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Converter:FollowButtonConverter x:Key="fbc" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem
-            Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}"
-            Icon="{Binding CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
-            IconColor="{StaticResource Primary}" />
-
-        <icon:IconToolbarItem
-            Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}"
-            Icon="shareblack.png"
-            IconColor="{StaticResource Primary}" />
+        <ToolbarItem Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}" Icon="{Binding Path=BindingContext.CategoryDetail.Icon, Source={x:Reference categoryDetailPage}}" />
+        <ToolbarItem Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}" Icon="shareblack.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
@@ -143,7 +129,7 @@
                                 FontFamily="{StaticResource SofiaProSemiBold}"
                                 FontSize="27"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding CategoryDetail.FollowerCount, Mode=TwoWay}"
+                                Text="{Binding CategoryDetail.FollowerCount}"
                                 TextColor="#FFC72E" />
 
                             <Label

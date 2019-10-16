@@ -23,15 +23,29 @@ namespace ContestPark.Mobile.Views
             eventAggregator?// left menu navigation için
                         .GetEvent<TabPageNavigationEvent>()
                         .Subscribe(async (page) => await Current.GoToAsync(page.PageName));
-
-            Navigated += (s, _) => Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
-
-            Navigating += (s, _) => Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
         }
 
         #endregion Constructor
 
         #region Events
+
+        protected override void OnNavigated(ShellNavigatedEventArgs args)
+        {
+            base.OnNavigated(args);
+            if (Current != null)
+            {
+                Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
+            }
+        }
+
+        protected override void OnNavigating(ShellNavigatingEventArgs args)
+        {
+            base.OnNavigating(args);
+            if (Current != null)
+            {
+                Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
+            }
+        }
 
         /// <summary>
         /// Parametreden gelen view adına göre yönlendirme yapar ve sol menuyu kapatır

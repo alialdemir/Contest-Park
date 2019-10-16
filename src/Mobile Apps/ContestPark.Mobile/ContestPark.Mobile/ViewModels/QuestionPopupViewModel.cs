@@ -622,6 +622,9 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task BotSaveAnswer(SaveAnswerModel saveAnswer)
         {
+            if (IsExit)
+                return;
+
             await _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
