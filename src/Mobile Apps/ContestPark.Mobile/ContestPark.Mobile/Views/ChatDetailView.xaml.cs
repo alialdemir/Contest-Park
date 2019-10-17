@@ -60,7 +60,7 @@ namespace ContestPark.Mobile.Views
         private void OnItemAppearing(object Sender, ItemVisibilityEventArgs e)
         {
             var currentItem = (ChatDetailModel)e.Item;
-            if (!ViewModel.IsInitialized || ViewModel.ServiceModel.IsLastPage || !(currentItem is ChatDetailModel))
+            if (!ViewModel.IsInitialized || !ViewModel.ServiceModel.HasNextPage || !(currentItem is ChatDetailModel))
                 return;
 
             if (ViewModel.Items.FirstOrDefault().Equals(currentItem))

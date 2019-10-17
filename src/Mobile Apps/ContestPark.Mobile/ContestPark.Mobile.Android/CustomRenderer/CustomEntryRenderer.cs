@@ -1,7 +1,7 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content;
+using Android.Graphics.Drawables;
 using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -9,9 +9,13 @@ using Xamarin.Forms.Platform.Android;
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
-    [Obsolete]
     public class CustomEntryRenderer : EntryRenderer
     {
+        public CustomEntryRenderer(Context context) : base(context)
+
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);

@@ -134,17 +134,17 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// <param name="action"></param>
         public void On<T>(string methodName, Action<T> action)
         {
-            IDisposable disposable = HubConnection.On<T>(methodName, action);
+            IDisposable disposable = HubConnection?.On<T>(methodName, action);
 
             if (!IsContainsKey(methodName))
             {
-                DisposableOns.Add(methodName, disposable);
+                DisposableOns?.Add(methodName, disposable);
             }
         }
 
         public async Task SendMessage(string methodName, params object[] param)
         {
-            await HubConnection.InvokeCoreAsync(methodName, param);
+            await HubConnection?.InvokeCoreAsync(methodName, param);
         }
 
         /// <summary>
@@ -162,6 +162,9 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         private bool IsContainsKey(string key)
         {
+            if (DisposableOns == null)
+                return false;
+
             return DisposableOns.ContainsKey(key);
         }
 

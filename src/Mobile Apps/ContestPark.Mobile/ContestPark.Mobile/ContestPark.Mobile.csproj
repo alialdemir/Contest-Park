@@ -32,13 +32,14 @@
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="Plugin.Badge" Version="2.2.1" />
     <PackageReference Include="Plugin.InAppBilling" Version="2.0.0" />
+    <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="4.1.0" />
     <PackageReference Include="Polly" Version="7.1.0" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1367" />
     <PackageReference Include="Prism.Forms" Version="7.2.0.1367" />
     <PackageReference Include="Prism.Plugin.Popups" Version="7.2.0.573" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
-    <PackageReference Include="Xam.Plugin.Iconize" Version="3.5.0.129" />
-    <PackageReference Include="Xam.Plugin.Iconize.FontAwesome" Version="3.5.0.114" />
+    <PackageReference Include="Xam.Plugin.Iconize" Version="3.5.1" />
+    <PackageReference Include="Xam.Plugin.Iconize.FontAwesome" Version="3.5.0.134" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.3.1" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />

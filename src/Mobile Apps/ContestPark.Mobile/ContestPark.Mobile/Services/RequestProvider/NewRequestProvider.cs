@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Models.ErrorModel;
+using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
@@ -142,12 +143,17 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     ErrorMessage = "invalid_username_or_password"
                 };
             }
+            if (!response.IsSuccessStatusCode && response.RequestMessage.RequestUri.AbsoluteUri.Contains("/api/v1/Account") && (serialized.Contains("userName") || serialized.Contains("fullName")))
+            {
+                // TODO: burada üye olma validasyonunda standarta uygun gelmeli
+                result.Error = new ValidationResultModel();
+                result.Error.MemberNames = JsonConvert.DeserializeObject<SignUpValidationModel>(serialized, _serializerSettings).Errors;
+            }
             else if (!response.IsSuccessStatusCode)
             {
                 result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
             }
-
-            if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
+            else if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
             {
                 result.Data = JsonConvert.DeserializeObject<TResult>(serialized, _serializerSettings);
             }

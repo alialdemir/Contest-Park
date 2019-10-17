@@ -3,7 +3,6 @@ using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Category;
-using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
@@ -18,7 +17,6 @@ namespace ContestPark.Mobile.Services.Game
     {
         #region Private variables
 
-        private readonly ICategoryFollowService _categoryFollowService;
         private readonly ICategoryService _categoryServices;
         private readonly IEventAggregator _eventAggregator;
         private readonly IPageDialogService _pageDialogService;
@@ -29,13 +27,11 @@ namespace ContestPark.Mobile.Services.Game
         #region Constructor
 
         public GameService(
-            ICategoryFollowService categoryFollowService,
             IPageDialogService pageDialogService,
             IEventAggregator eventAggregator,
             IPopupNavigation popupNavigation,
             ICategoryService categoryServices)
         {
-            _categoryFollowService = categoryFollowService;
             _pageDialogService = pageDialogService;
             _eventAggregator = eventAggregator;
             _popupNavigation = popupNavigation;
@@ -61,7 +57,7 @@ namespace ContestPark.Mobile.Services.Game
         public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen)
         {
             if (isCategoryOpen)
-                await GoToCategoryDetailViewAsync(subCategoryId);
+                GoToCategoryDetailViewAsync(subCategoryId);
             else
             {
                 bool isUnLock = await OpenSubCategory(subCategoryId);
@@ -85,7 +81,7 @@ namespace ContestPark.Mobile.Services.Game
         {
             if (isCategoryOpen)
             {
-                bool isSubCategoryFollowUpStatus = await _categoryFollowService?.IsFollowUpStatusAsync(selectedSubCategory.SubcategoryId);
+                bool isSubCategoryFollowUpStatus = await _categoryServices?.IsFollowUpStatusAsync(selectedSubCategory.SubcategoryId);
 
                 string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.SelectProcess,
                                                                                    ContestParkResources.Cancel,
@@ -153,14 +149,14 @@ namespace ContestPark.Mobile.Services.Game
             if (isOk) await NavigationService?.NavigateAsync(nameof(ContestStoreView), useModalNavigation: false);
         }
 
-        private async Task GoToCategoryDetailViewAsync(short subCategoryId)
+        private void GoToCategoryDetailViewAsync(short subCategoryId)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
+            NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
                                                 {
                                                     { "SubCategoryId", subCategoryId }
                                                 }, useModalNavigation: false);
@@ -240,7 +236,7 @@ namespace ContestPark.Mobile.Services.Game
         /// <param name="isSubCategoryFollowUpStatus">O anki alt kategori takip etme durumu</param>
         private async Task SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
         {
-            bool isOk = await _categoryFollowService?.SubCategoryFollowProgcess(subCategoryId, isSubCategoryFollowUpStatus);
+            bool isOk = await _categoryServices?.SubCategoryFollowProgcess(subCategoryId, isSubCategoryFollowUpStatus);
             if (isOk) SubCategoryRefleshEvent();
         }
 

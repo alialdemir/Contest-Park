@@ -2,7 +2,6 @@
 using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Category;
-using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.ViewModels.Base;
@@ -20,7 +19,6 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variable
 
-        private readonly ICategoryFollowService _categoryFollowService;
         private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IGameService _gameService;
@@ -36,14 +34,12 @@ namespace ContestPark.Mobile.ViewModels
         public CategoryDetailViewModel(INavigationService navigationService,
                                        IPopupNavigation popupNavigation,
                                        ICategoryService categoryService,
-                                       ICategoryFollowService categoryFollowService,
                                        IPostService postService,
                                        IGameService gameService,
                                        IEventAggregator eventAggregator) : base(navigationService, popupNavigation: popupNavigation)
         {
             NavigationService = navigationService;
             _categoryService = categoryService;
-            _categoryFollowService = categoryFollowService;
             _postService = postService;
             _gameService = gameService;
             _eventAggregator = eventAggregator;
@@ -148,7 +144,7 @@ namespace ContestPark.Mobile.ViewModels
 
             FollowCountChange();
 
-            bool isSuccess = await _categoryFollowService.SubCategoryFollowProgcess(_subCategoryId, CategoryDetail.IsSubCategoryFollowUpStatus);
+            bool isSuccess = await _categoryService.SubCategoryFollowProgcess(_subCategoryId, !CategoryDetail.IsSubCategoryFollowUpStatus);
             if (isSuccess)
             {
                 _eventAggregator
@@ -167,8 +163,14 @@ namespace ContestPark.Mobile.ViewModels
         {
             CategoryDetail.IsSubCategoryFollowUpStatus = !CategoryDetail.IsSubCategoryFollowUpStatus;
 
-            if (CategoryDetail.IsSubCategoryFollowUpStatus) CategoryDetail.CategoryFollowersCount++;
-            else CategoryDetail.CategoryFollowersCount--;
+            if (CategoryDetail.IsSubCategoryFollowUpStatus)
+            {
+                CategoryDetail.FollowerCount++;
+            }
+            else
+            {
+                CategoryDetail.FollowerCount--;
+            }
         }
 
         #endregion Methods
@@ -216,7 +218,10 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () => CategoryDetail = await _categoryService.GetSubCategoryDetail(_subCategoryId));
+                return new Command(async () =>
+                {
+                    CategoryDetail = await _categoryService.GetSubCategoryDetail(_subCategoryId);
+                });
             }
         }
 
@@ -247,7 +252,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command(() =>
                {
-                   _onSleepEvent.Unsubscribe(SubscriptionToken);
+                   if (SubscriptionToken != null && _onSleepEvent != null)
+                   {
+                       _onSleepEvent.Unsubscribe(SubscriptionToken);
+                   }
                });
             }
         }

@@ -4,37 +4,34 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
     Title="{Binding CategoryDetail.SubCategoryName}"
     prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ShareCommand}" Icon="shareblack.png" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Converter:FollowButtonConverter x:Key="fbc" />
+            <converter:SubCategoryFollowConverter x:Key="scfb" />
+            <converter:SubCategoryFollowButtonTextColorConverter x:Key="scfbsc" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.ToolbarItems>
-        <icon:IconToolbarItem
-            Command="{Binding Path=BindingContext.SubCategoryFollowProgcessCommand, Source={x:Reference categoryDetailPage}}"
-            Icon="{Binding CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource fbc}}"
-            IconColor="{StaticResource Primary}" />
-
-        <icon:IconToolbarItem
-            Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference categoryDetailPage}}"
-            Icon="shareblack.png"
-            IconColor="{StaticResource Primary}" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
-            Margin="0,60,0,0"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
+            <Components:NonPersistentSelectedItemListView.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,0,0,0" />
+                    <On Platform="iOS" Value="0,60,0,0" />
+                </OnPlatform>
+            </Components:NonPersistentSelectedItemListView.Margin>
             <Components:NonPersistentSelectedItemListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -96,7 +93,7 @@
                         BackgroundColor="{StaticResource White}"
                         CornerRadius="8"
                         HasShadow="True"
-                        HeightRequest="192"
+                        HeightRequest="235"
                         IsClippedToBounds="True"
                         TranslationY="-50"
                         WidthRequest="367">
@@ -108,6 +105,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />
                                 <RowDefinition Height="30" />
+                                <RowDefinition Height="35" />
                                 <RowDefinition Height="35" />
                                 <RowDefinition Height="35" />
                             </Grid.RowDefinitions>
@@ -143,7 +141,7 @@
                                 FontFamily="{StaticResource SofiaProSemiBold}"
                                 FontSize="27"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding CategoryDetail.FollowerCount, Mode=TwoWay}"
+                                Text="{Binding CategoryDetail.FollowerCount}"
                                 TextColor="#FFC72E" />
 
                             <Label
@@ -159,22 +157,26 @@
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
-                                BorderRadius="60"
                                 Command="{Binding DuelOpenPanelCommand}"
-                                EndColor="#F22E63"
+                                EndColor="#47E476"
                                 FontFamily="{StaticResource SofiaProRegular}"
                                 FontSize="15"
                                 HorizontalOptions="FillAndExpand"
-                                StartColor="#FF6480"
+                                StartColor="#2CCCD8"
                                 Text="{i18n:Translate FindOpponent}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material" />
-
+                                Visual="Material">
+                                <Components:LinearGradientButton.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Int32">
+                                        <On Platform="Android" Value="60" />
+                                        <On Platform="iOS" Value="12" />
+                                    </OnPlatform>
+                                </Components:LinearGradientButton.CornerRadius>
+                            </Components:LinearGradientButton>
                             <Components:LinearGradientButton
                                 Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
-                                BorderRadius="60"
                                 Command="{Binding GoToRankingPageCommand}"
                                 EndColor="#5A7BEF"
                                 FontFamily="{StaticResource SofiaProRegular}"
@@ -183,7 +185,34 @@
                                 StartColor="#4048EF"
                                 Text="{i18n:Translate Ranking}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material" />
+                                Visual="Material">
+                                <Components:LinearGradientButton.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Int32">
+                                        <On Platform="Android" Value="60" />
+                                        <On Platform="iOS" Value="12" />
+                                    </OnPlatform>
+                                </Components:LinearGradientButton.CornerRadius>
+                            </Components:LinearGradientButton>
+                            <Components:LinearGradientButton
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                BackgroundColor="Transparent"
+                                Command="{Binding SubCategoryFollowProgcessCommand}"
+                                EndColor="#FFCC33"
+                                FontFamily="{StaticResource SofiaProRegular}"
+                                FontSize="15"
+                                HorizontalOptions="FillAndExpand"
+                                StartColor="#FFB347"
+                                Text="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfb}}"
+                                TextColor="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfbsc}}"
+                                Visual="Material">
+                                <Components:LinearGradientButton.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Int32">
+                                        <On Platform="Android" Value="60" />
+                                        <On Platform="iOS" Value="12" />
+                                    </OnPlatform>
+                                </Components:LinearGradientButton.CornerRadius>
+                            </Components:LinearGradientButton>
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>

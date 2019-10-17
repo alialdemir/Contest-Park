@@ -7,7 +7,6 @@ using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -130,8 +129,11 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (IsInitialized)
                 return;
 
-            InitializeCommand.Execute(null);
-            IsInitialized = true;
+            Device.BeginInvokeOnMainThread(() =>// UI thread kitlememesi için mainthread üzerinden initialize ettik
+            {
+                InitializeCommand.Execute(null);
+                IsInitialized = true;
+            });
         }
 
         public virtual void OnNavigatingTo(INavigationParameters parameters)
@@ -177,7 +179,10 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public Task RemovePopupPageAsync(PopupPage popupPage)
         {
-            return _popupNavigation.RemovePageAsync(popupPage);
+            if (popupPage == null)
+                return Task.CompletedTask;
+
+            return _popupNavigation?.RemovePageAsync(popupPage);
         }
 
         #endregion Navigations
@@ -236,11 +241,11 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <returns></returns>
         protected override Task InitializeAsync()
         {
-            if (ServiceModel != null && ServiceModel.Items != null && ((List<TModel>)ServiceModel.Items).Count > 0)
+            if (ServiceModel != null && ServiceModel.Items != null && ServiceModel.Items.Any())
                 Items.AddRange(ServiceModel.Items);
             else IsShowEmptyMessage = true;
 
-            if (ServiceModel != null && !ServiceModel.IsLastPage)
+            if (ServiceModel != null && ServiceModel.HasNextPage)
                 ServiceModel.PageNumber++;
 
             ServiceModel.Items = null;
@@ -278,7 +283,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             {
                 return new Command<BaseModel>((currentItem) =>
                 {
-                    if (ServiceModel.IsLastPage || !(currentItem is BaseModel))
+                    if (!ServiceModel.HasNextPage || !(currentItem is BaseModel))
                         return;
 
                     if (Items.LastOrDefault().Equals(currentItem))

@@ -6,7 +6,13 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     x:Name="page">
     <ContentView.Content>
-        <StackLayout Margin="0,0,0,20" Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal">
+            <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,0,0,20" />
+                    <On Platform="iOS" Value="0,0,0,60" />
+                </OnPlatform>
+            </StackLayout.Margin>
             <Label
                 FontAttributes="Bold"
                 FontFamily="{DynamicResource SofiaProRegular}"

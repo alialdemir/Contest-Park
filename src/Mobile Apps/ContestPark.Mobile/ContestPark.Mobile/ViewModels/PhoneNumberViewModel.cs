@@ -56,7 +56,7 @@ namespace ContestPark.Mobile.ViewModels
         private CountryModel _country = new CountryModel()
         {
             Country = "Türkiye",
-            Flag = "assets/images/TUR_s.png",
+            Flag = Device.RuntimePlatform == Device.Android ? "assets/images/TUR_s.png" : "TUR_s.png",
             PhoneCode = "+90"
         };
 

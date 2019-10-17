@@ -24,9 +24,8 @@ namespace ContestPark.Mobile.Views
                         .GetEvent<TabPageNavigationEvent>()
                         .Subscribe(async (page) => await Current.GoToAsync(page.PageName));
 
-            Navigated += (s, _) => Shell.Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
-
-            Navigating += (s, _) => Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
+            Navigated += (e, o) => Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
+            Navigating += (e, o) => Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
         }
 
         #endregion Constructor
@@ -52,7 +51,7 @@ namespace ContestPark.Mobile.Views
             else if (!string.IsNullOrEmpty(name))
             {
                 Shell.Current.FlyoutIsPresented = false;
-                Current.GoToAsync(name);
+                //   Current.GoToAsync(name);
             }
 
             IsBusy = false;

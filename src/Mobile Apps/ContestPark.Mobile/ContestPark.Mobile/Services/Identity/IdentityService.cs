@@ -71,7 +71,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
 
-            await ShowValidationMessages(response.Data);
+            await ShowValidationMessages(response.Data.MemberNames);
 
             UserDialogs.Instance.HideLoading();
         }
@@ -159,7 +159,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
 
-            await ShowValidationMessages(response.Data);
+            await ShowValidationMessages(response.Data.MemberNames);
 
             UserDialogs.Instance.HideLoading();
         }
@@ -307,7 +307,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             var response = await _requestProvider.PostAsync<string>(uri, signUpModel);
 
-            await ShowValidationMessages(response.Error);
+            await ShowValidationMessages(response?.Error?.MemberNames);
 
             return response.IsSuccess;
         }
@@ -317,12 +317,12 @@ namespace ContestPark.Mobile.Services.Identity
         /// </summary>
         /// <param name="validationResult"></param>
         /// <returns></returns>
-        private async Task ShowValidationMessages(ValidationResultModel validationResult)
+        private async Task ShowValidationMessages(string[] validationResult)
         {
-            if (validationResult == null || validationResult.MemberNames == null)
+            if (validationResult == null || validationResult.Length == 0)
                 return;
 
-            foreach (var item in validationResult.MemberNames)
+            foreach (var item in validationResult)
             {
                 await _dialogService.DisplayAlertAsync("", item, ContestParkResources.Okay);
             }
@@ -357,7 +357,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             var result = await _requestProvider.PostAsync<string>(uri, userInfo);
 
-            await ShowValidationMessages(result.Error);
+            await ShowValidationMessages(result.Error.MemberNames);
 
             return result.IsSuccess;
         }

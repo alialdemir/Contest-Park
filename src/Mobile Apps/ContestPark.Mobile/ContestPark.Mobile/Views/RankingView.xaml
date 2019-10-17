@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:control="clr-namespace:Plugin.Segmented.Control;assembly=Plugin.Segmented"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -16,6 +17,10 @@
             <Converter:RankConverter x:Key="rank" />
             <Converter:RankBackgroundColorConverter x:Key="background" />
         </ResourceDictionary>
+        <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Serif" />
+            <On Platform="iOS" Value="Helvetica" />
+        </OnPlatform>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
@@ -31,58 +36,61 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="80" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Components:CustomSegmentedControl
-                            x:Name="SegControl"
+                        <control:SegmentedControl
+                            x:Name="SegmentedControl"
                             Grid.Row="0"
-                            Grid.ColumnSpan="2"
-                            HorizontalOptions="FillAndExpand"
-                            IsSelectedCheck="False"
-                            SelectedTextColor="{StaticResource Black}"
-                            TintColor="#4D4D4D"
-                            ValueChangedCommand="{Binding Path=BindingContext.SegmentValueChangedCommand, Source={x:Reference rankingPage}}">
-                            <Components:CustomSegmentedControl.Children>
-                                <Components:SegmentedControlOption Text="{i18n:Translate Global}" />
-                                <Components:SegmentedControlOption Text="{i18n:Translate Following}" />
-                            </Components:CustomSegmentedControl.Children>
-                        </Components:CustomSegmentedControl>
+                            Margin="8,8,8,8"
+                            FontFamily="{StaticResource PlatformFontName}"
+                            FontSize="16"
+                            SegmentSelectedCommand="{Binding Path=BindingContext.SegmentValueChangedCommand, Source={x:Reference rankingPage}}"
+                            SelectedTextColor="White"
+                            TintColor="#FFCC33">
+                            <control:SegmentedControl.Children>
+                                <control:SegmentedControlOption Text="{i18n:Translate Global}" />
+                                <control:SegmentedControlOption Text="{i18n:Translate Following}" />
+                            </control:SegmentedControl.Children>
+                        </control:SegmentedControl>
 
-                        <Image
-                            Grid.ColumnSpan="2"
-                            HeightRequest="80"
-                            HorizontalOptions="FillAndExpand"
-                            Source="ranking_header.png"
-                            TranslationY="50"
-                            VerticalOptions="FillAndExpand" />
+                        <Grid Grid.Row="1" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.RowSpan="2"
+                                Grid.ColumnSpan="2"
+                                Aspect="AspectFill"
+                                HorizontalOptions="FillAndExpand"
+                                Source="ranking_header.png"
+                                VerticalOptions="FillAndExpand" />
 
-                        <StackLayout
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="15.4,0,0,0"
-                            Orientation="Vertical"
-                            TranslationY="-20">
                             <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
                                 Margin="15,0,0,0"
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource SofiaProMedium}"
                                 FontSize="16.8"
                                 Text="{i18n:Translate TimeLeft}"
-                                TextColor="#FFF476" />
+                                TextColor="#FFF476"
+                                VerticalTextAlignment="End" />
 
                             <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
                                 Margin="15,0,0,0"
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource SofiaProMedium}"
                                 FontSize="14"
                                 Text="{Binding Path=BindingContext.Ranks.TimeLeft, Source={x:Reference rankingPage}}"
                                 TextColor="{StaticResource White}" />
-                        </StackLayout>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </Components:NonPersistentSelectedItemListView.HeaderTemplate>

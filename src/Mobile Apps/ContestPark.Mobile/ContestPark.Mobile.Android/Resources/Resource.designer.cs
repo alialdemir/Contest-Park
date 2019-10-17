@@ -180,11 +180,26 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Animation.abc_slide_in_top = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_in_top;
 			global::PanCardView.Droid.Resource.Animation.abc_slide_out_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_out_bottom;
 			global::PanCardView.Droid.Resource.Animation.abc_slide_out_top = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_out_top;
+			global::PanCardView.Droid.Resource.Animation.abc_tooltip_enter = global::ContestPark.Mobile.Droid.Resource.Animation.abc_tooltip_enter;
+			global::PanCardView.Droid.Resource.Animation.abc_tooltip_exit = global::ContestPark.Mobile.Droid.Resource.Animation.abc_tooltip_exit;
 			global::PanCardView.Droid.Resource.Animation.design_bottom_sheet_slide_in = global::ContestPark.Mobile.Droid.Resource.Animation.design_bottom_sheet_slide_in;
 			global::PanCardView.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::ContestPark.Mobile.Droid.Resource.Animation.design_bottom_sheet_slide_out;
 			global::PanCardView.Droid.Resource.Animation.design_snackbar_in = global::ContestPark.Mobile.Droid.Resource.Animation.design_snackbar_in;
 			global::PanCardView.Droid.Resource.Animation.design_snackbar_out = global::ContestPark.Mobile.Droid.Resource.Animation.design_snackbar_out;
+			global::PanCardView.Droid.Resource.Animation.EnterFromLeft = global::ContestPark.Mobile.Droid.Resource.Animation.EnterFromLeft;
+			global::PanCardView.Droid.Resource.Animation.EnterFromRight = global::ContestPark.Mobile.Droid.Resource.Animation.EnterFromRight;
+			global::PanCardView.Droid.Resource.Animation.ExitToLeft = global::ContestPark.Mobile.Droid.Resource.Animation.ExitToLeft;
+			global::PanCardView.Droid.Resource.Animation.ExitToRight = global::ContestPark.Mobile.Droid.Resource.Animation.ExitToRight;
 			global::PanCardView.Droid.Resource.Animator.design_appbar_state_list_animator = global::ContestPark.Mobile.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::PanCardView.Droid.Resource.Animator.design_fab_hide_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.design_fab_hide_motion_spec;
+			global::PanCardView.Droid.Resource.Animator.design_fab_show_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.design_fab_show_motion_spec;
+			global::PanCardView.Droid.Resource.Animator.mtrl_btn_state_list_anim = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_btn_state_list_anim;
+			global::PanCardView.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim;
+			global::PanCardView.Droid.Resource.Animator.mtrl_chip_state_list_anim = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_chip_state_list_anim;
+			global::PanCardView.Droid.Resource.Animator.mtrl_fab_hide_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_hide_motion_spec;
+			global::PanCardView.Droid.Resource.Animator.mtrl_fab_show_motion_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_show_motion_spec;
+			global::PanCardView.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec;
+			global::PanCardView.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec = global::ContestPark.Mobile.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec;
 			global::PanCardView.Droid.Resource.Attribute.actionBarDivider = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarDivider;
 			global::PanCardView.Droid.Resource.Attribute.actionBarItemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarItemBackground;
 			global::PanCardView.Droid.Resource.Attribute.actionBarPopupTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarPopupTheme;
@@ -241,20 +256,33 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundTintMode;
 			global::PanCardView.Droid.Resource.Attribute.barLength = global::ContestPark.Mobile.Droid.Resource.Attribute.barLength;
 			global::PanCardView.Droid.Resource.Attribute.behavior_autoHide = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_autoHide;
+			global::PanCardView.Droid.Resource.Attribute.behavior_fitToContents = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_fitToContents;
 			global::PanCardView.Droid.Resource.Attribute.behavior_hideable = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_hideable;
 			global::PanCardView.Droid.Resource.Attribute.behavior_overlapTop = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_overlapTop;
 			global::PanCardView.Droid.Resource.Attribute.behavior_peekHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_peekHeight;
 			global::PanCardView.Droid.Resource.Attribute.behavior_skipCollapsed = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_skipCollapsed;
 			global::PanCardView.Droid.Resource.Attribute.borderWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.borderWidth;
 			global::PanCardView.Droid.Resource.Attribute.borderlessButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::PanCardView.Droid.Resource.Attribute.bottomAppBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomAppBarStyle;
+			global::PanCardView.Droid.Resource.Attribute.bottomNavigationStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomNavigationStyle;
 			global::PanCardView.Droid.Resource.Attribute.bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomSheetDialogTheme;
 			global::PanCardView.Droid.Resource.Attribute.bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomSheetStyle;
+			global::PanCardView.Droid.Resource.Attribute.boxBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.boxBackgroundColor;
+			global::PanCardView.Droid.Resource.Attribute.boxBackgroundMode = global::ContestPark.Mobile.Droid.Resource.Attribute.boxBackgroundMode;
+			global::PanCardView.Droid.Resource.Attribute.boxCollapsedPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCollapsedPaddingTop;
+			global::PanCardView.Droid.Resource.Attribute.boxCornerRadiusBottomEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusBottomEnd;
+			global::PanCardView.Droid.Resource.Attribute.boxCornerRadiusBottomStart = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusBottomStart;
+			global::PanCardView.Droid.Resource.Attribute.boxCornerRadiusTopEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusTopEnd;
+			global::PanCardView.Droid.Resource.Attribute.boxCornerRadiusTopStart = global::ContestPark.Mobile.Droid.Resource.Attribute.boxCornerRadiusTopStart;
+			global::PanCardView.Droid.Resource.Attribute.boxStrokeColor = global::ContestPark.Mobile.Droid.Resource.Attribute.boxStrokeColor;
+			global::PanCardView.Droid.Resource.Attribute.boxStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.boxStrokeWidth;
 			global::PanCardView.Droid.Resource.Attribute.buttonBarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarButtonStyle;
 			global::PanCardView.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
 			global::PanCardView.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
 			global::PanCardView.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
 			global::PanCardView.Droid.Resource.Attribute.buttonBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarStyle;
 			global::PanCardView.Droid.Resource.Attribute.buttonGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonGravity;
+			global::PanCardView.Droid.Resource.Attribute.buttonIconDimen = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonIconDimen;
 			global::PanCardView.Droid.Resource.Attribute.buttonPanelSideLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonPanelSideLayout;
 			global::PanCardView.Droid.Resource.Attribute.buttonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonStyle;
 			global::PanCardView.Droid.Resource.Attribute.buttonStyleSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonStyleSmall;
@@ -266,9 +294,38 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.cardMaxElevation = global::ContestPark.Mobile.Droid.Resource.Attribute.cardMaxElevation;
 			global::PanCardView.Droid.Resource.Attribute.cardPreventCornerOverlap = global::ContestPark.Mobile.Droid.Resource.Attribute.cardPreventCornerOverlap;
 			global::PanCardView.Droid.Resource.Attribute.cardUseCompatPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::PanCardView.Droid.Resource.Attribute.cardViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.cardViewStyle;
 			global::PanCardView.Droid.Resource.Attribute.checkboxStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.checkboxStyle;
+			global::PanCardView.Droid.Resource.Attribute.checkedChip = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedChip;
+			global::PanCardView.Droid.Resource.Attribute.checkedIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedIcon;
+			global::PanCardView.Droid.Resource.Attribute.checkedIconEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedIconEnabled;
+			global::PanCardView.Droid.Resource.Attribute.checkedIconVisible = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedIconVisible;
 			global::PanCardView.Droid.Resource.Attribute.checkedTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::PanCardView.Droid.Resource.Attribute.chipBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.chipBackgroundColor;
+			global::PanCardView.Droid.Resource.Attribute.chipCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.chipCornerRadius;
+			global::PanCardView.Droid.Resource.Attribute.chipEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.chipEndPadding;
+			global::PanCardView.Droid.Resource.Attribute.chipGroupStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.chipGroupStyle;
+			global::PanCardView.Droid.Resource.Attribute.chipIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIcon;
+			global::PanCardView.Droid.Resource.Attribute.chipIconEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconEnabled;
+			global::PanCardView.Droid.Resource.Attribute.chipIconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconSize;
+			global::PanCardView.Droid.Resource.Attribute.chipIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconTint;
+			global::PanCardView.Droid.Resource.Attribute.chipIconVisible = global::ContestPark.Mobile.Droid.Resource.Attribute.chipIconVisible;
+			global::PanCardView.Droid.Resource.Attribute.chipMinHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.chipMinHeight;
+			global::PanCardView.Droid.Resource.Attribute.chipSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.chipSpacing;
+			global::PanCardView.Droid.Resource.Attribute.chipSpacingHorizontal = global::ContestPark.Mobile.Droid.Resource.Attribute.chipSpacingHorizontal;
+			global::PanCardView.Droid.Resource.Attribute.chipSpacingVertical = global::ContestPark.Mobile.Droid.Resource.Attribute.chipSpacingVertical;
+			global::PanCardView.Droid.Resource.Attribute.chipStandaloneStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStandaloneStyle;
+			global::PanCardView.Droid.Resource.Attribute.chipStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStartPadding;
+			global::PanCardView.Droid.Resource.Attribute.chipStrokeColor = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStrokeColor;
+			global::PanCardView.Droid.Resource.Attribute.chipStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStrokeWidth;
+			global::PanCardView.Droid.Resource.Attribute.chipStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.chipStyle;
 			global::PanCardView.Droid.Resource.Attribute.closeIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIcon;
+			global::PanCardView.Droid.Resource.Attribute.closeIconEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconEnabled;
+			global::PanCardView.Droid.Resource.Attribute.closeIconEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconEndPadding;
+			global::PanCardView.Droid.Resource.Attribute.closeIconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconSize;
+			global::PanCardView.Droid.Resource.Attribute.closeIconStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconStartPadding;
+			global::PanCardView.Droid.Resource.Attribute.closeIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconTint;
+			global::PanCardView.Droid.Resource.Attribute.closeIconVisible = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIconVisible;
 			global::PanCardView.Droid.Resource.Attribute.closeItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.closeItemLayout;
 			global::PanCardView.Droid.Resource.Attribute.collapseContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.collapseContentDescription;
 			global::PanCardView.Droid.Resource.Attribute.collapseIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.collapseIcon;
@@ -284,6 +341,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.colorError = global::ContestPark.Mobile.Droid.Resource.Attribute.colorError;
 			global::PanCardView.Droid.Resource.Attribute.colorPrimary = global::ContestPark.Mobile.Droid.Resource.Attribute.colorPrimary;
 			global::PanCardView.Droid.Resource.Attribute.colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Attribute.colorPrimaryDark;
+			global::PanCardView.Droid.Resource.Attribute.colorSecondary = global::ContestPark.Mobile.Droid.Resource.Attribute.colorSecondary;
 			global::PanCardView.Droid.Resource.Attribute.colorSwitchThumbNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorSwitchThumbNormal;
 			global::PanCardView.Droid.Resource.Attribute.commitIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.commitIcon;
 			global::PanCardView.Droid.Resource.Attribute.contentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.contentDescription;
@@ -300,12 +358,15 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.contentPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingTop;
 			global::PanCardView.Droid.Resource.Attribute.contentScrim = global::ContestPark.Mobile.Droid.Resource.Attribute.contentScrim;
 			global::PanCardView.Droid.Resource.Attribute.controlBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.controlBackground;
+			global::PanCardView.Droid.Resource.Attribute.coordinatorLayoutStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.coordinatorLayoutStyle;
+			global::PanCardView.Droid.Resource.Attribute.cornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.cornerRadius;
 			global::PanCardView.Droid.Resource.Attribute.counterEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.counterEnabled;
 			global::PanCardView.Droid.Resource.Attribute.counterMaxLength = global::ContestPark.Mobile.Droid.Resource.Attribute.counterMaxLength;
 			global::PanCardView.Droid.Resource.Attribute.counterOverflowTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.counterOverflowTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.counterTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.counterTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.customNavigationLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.customNavigationLayout;
 			global::PanCardView.Droid.Resource.Attribute.defaultQueryHint = global::ContestPark.Mobile.Droid.Resource.Attribute.defaultQueryHint;
+			global::PanCardView.Droid.Resource.Attribute.dialogCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogCornerRadius;
 			global::PanCardView.Droid.Resource.Attribute.dialogPreferredPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogPreferredPadding;
 			global::PanCardView.Droid.Resource.Attribute.dialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogTheme;
 			global::PanCardView.Droid.Resource.Attribute.displayOptions = global::ContestPark.Mobile.Droid.Resource.Attribute.displayOptions;
@@ -321,6 +382,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.editTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextColor;
 			global::PanCardView.Droid.Resource.Attribute.editTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextStyle;
 			global::PanCardView.Droid.Resource.Attribute.elevation = global::ContestPark.Mobile.Droid.Resource.Attribute.elevation;
+			global::PanCardView.Droid.Resource.Attribute.enforceMaterialTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.enforceMaterialTheme;
+			global::PanCardView.Droid.Resource.Attribute.enforceTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.enforceTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.errorEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.errorEnabled;
 			global::PanCardView.Droid.Resource.Attribute.errorTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.errorTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
@@ -333,12 +396,19 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.expandedTitleMarginTop = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginTop;
 			global::PanCardView.Droid.Resource.Attribute.expandedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.externalRouteEnabledDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::PanCardView.Droid.Resource.Attribute.fabAlignmentMode = global::ContestPark.Mobile.Droid.Resource.Attribute.fabAlignmentMode;
+			global::PanCardView.Droid.Resource.Attribute.fabCradleMargin = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCradleMargin;
+			global::PanCardView.Droid.Resource.Attribute.fabCradleRoundedCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCradleRoundedCornerRadius;
+			global::PanCardView.Droid.Resource.Attribute.fabCradleVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCradleVerticalOffset;
+			global::PanCardView.Droid.Resource.Attribute.fabCustomSize = global::ContestPark.Mobile.Droid.Resource.Attribute.fabCustomSize;
 			global::PanCardView.Droid.Resource.Attribute.fabSize = global::ContestPark.Mobile.Droid.Resource.Attribute.fabSize;
 			global::PanCardView.Droid.Resource.Attribute.fastScrollEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollEnabled;
 			global::PanCardView.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable;
 			global::PanCardView.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable;
 			global::PanCardView.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable;
 			global::PanCardView.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable;
+			global::PanCardView.Droid.Resource.Attribute.firstBaselineToTopHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.firstBaselineToTopHeight;
+			global::PanCardView.Droid.Resource.Attribute.floatingActionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.floatingActionButtonStyle;
 			global::PanCardView.Droid.Resource.Attribute.font = global::ContestPark.Mobile.Droid.Resource.Attribute.font;
 			global::PanCardView.Droid.Resource.Attribute.fontFamily = global::ContestPark.Mobile.Droid.Resource.Attribute.fontFamily;
 			global::PanCardView.Droid.Resource.Attribute.fontProviderAuthority = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderAuthority;
@@ -348,19 +418,31 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.fontProviderPackage = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderPackage;
 			global::PanCardView.Droid.Resource.Attribute.fontProviderQuery = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderQuery;
 			global::PanCardView.Droid.Resource.Attribute.fontStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.fontStyle;
+			global::PanCardView.Droid.Resource.Attribute.fontVariationSettings = global::ContestPark.Mobile.Droid.Resource.Attribute.fontVariationSettings;
 			global::PanCardView.Droid.Resource.Attribute.fontWeight = global::ContestPark.Mobile.Droid.Resource.Attribute.fontWeight;
 			global::PanCardView.Droid.Resource.Attribute.foregroundInsidePadding = global::ContestPark.Mobile.Droid.Resource.Attribute.foregroundInsidePadding;
 			global::PanCardView.Droid.Resource.Attribute.gapBetweenBars = global::ContestPark.Mobile.Droid.Resource.Attribute.gapBetweenBars;
 			global::PanCardView.Droid.Resource.Attribute.goIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.goIcon;
 			global::PanCardView.Droid.Resource.Attribute.headerLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.headerLayout;
 			global::PanCardView.Droid.Resource.Attribute.height = global::ContestPark.Mobile.Droid.Resource.Attribute.height;
+			global::PanCardView.Droid.Resource.Attribute.helperText = global::ContestPark.Mobile.Droid.Resource.Attribute.helperText;
+			global::PanCardView.Droid.Resource.Attribute.helperTextEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.helperTextEnabled;
+			global::PanCardView.Droid.Resource.Attribute.helperTextTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.helperTextTextAppearance;
+			global::PanCardView.Droid.Resource.Attribute.hideMotionSpec = global::ContestPark.Mobile.Droid.Resource.Attribute.hideMotionSpec;
 			global::PanCardView.Droid.Resource.Attribute.hideOnContentScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.hideOnContentScroll;
+			global::PanCardView.Droid.Resource.Attribute.hideOnScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.hideOnScroll;
 			global::PanCardView.Droid.Resource.Attribute.hintAnimationEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.hintAnimationEnabled;
 			global::PanCardView.Droid.Resource.Attribute.hintEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.hintEnabled;
 			global::PanCardView.Droid.Resource.Attribute.hintTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.hintTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.homeAsUpIndicator;
 			global::PanCardView.Droid.Resource.Attribute.homeLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.homeLayout;
+			global::PanCardView.Droid.Resource.Attribute.hoveredFocusedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Attribute.hoveredFocusedTranslationZ;
 			global::PanCardView.Droid.Resource.Attribute.icon = global::ContestPark.Mobile.Droid.Resource.Attribute.icon;
+			global::PanCardView.Droid.Resource.Attribute.iconEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.iconEndPadding;
+			global::PanCardView.Droid.Resource.Attribute.iconGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.iconGravity;
+			global::PanCardView.Droid.Resource.Attribute.iconPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.iconPadding;
+			global::PanCardView.Droid.Resource.Attribute.iconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.iconSize;
+			global::PanCardView.Droid.Resource.Attribute.iconStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.iconStartPadding;
 			global::PanCardView.Droid.Resource.Attribute.iconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.iconTint;
 			global::PanCardView.Droid.Resource.Attribute.iconTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.iconTintMode;
 			global::PanCardView.Droid.Resource.Attribute.iconifiedByDefault = global::ContestPark.Mobile.Droid.Resource.Attribute.iconifiedByDefault;
@@ -370,11 +452,20 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.insetForeground = global::ContestPark.Mobile.Droid.Resource.Attribute.insetForeground;
 			global::PanCardView.Droid.Resource.Attribute.isLightTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.isLightTheme;
 			global::PanCardView.Droid.Resource.Attribute.itemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.itemBackground;
+			global::PanCardView.Droid.Resource.Attribute.itemHorizontalPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemHorizontalPadding;
+			global::PanCardView.Droid.Resource.Attribute.itemHorizontalTranslationEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.itemHorizontalTranslationEnabled;
+			global::PanCardView.Droid.Resource.Attribute.itemIconPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconPadding;
+			global::PanCardView.Droid.Resource.Attribute.itemIconSize = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconSize;
 			global::PanCardView.Droid.Resource.Attribute.itemIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconTint;
 			global::PanCardView.Droid.Resource.Attribute.itemPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemPadding;
+			global::PanCardView.Droid.Resource.Attribute.itemSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.itemSpacing;
 			global::PanCardView.Droid.Resource.Attribute.itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearance;
+			global::PanCardView.Droid.Resource.Attribute.itemTextAppearanceActive = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearanceActive;
+			global::PanCardView.Droid.Resource.Attribute.itemTextAppearanceInactive = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearanceInactive;
 			global::PanCardView.Droid.Resource.Attribute.itemTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextColor;
 			global::PanCardView.Droid.Resource.Attribute.keylines = global::ContestPark.Mobile.Droid.Resource.Attribute.keylines;
+			global::PanCardView.Droid.Resource.Attribute.labelVisibilityMode = global::ContestPark.Mobile.Droid.Resource.Attribute.labelVisibilityMode;
+			global::PanCardView.Droid.Resource.Attribute.lastBaselineToBottomHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.lastBaselineToBottomHeight;
 			global::PanCardView.Droid.Resource.Attribute.layout = global::ContestPark.Mobile.Droid.Resource.Attribute.layout;
 			global::PanCardView.Droid.Resource.Attribute.layoutManager = global::ContestPark.Mobile.Droid.Resource.Attribute.layoutManager;
 			global::PanCardView.Droid.Resource.Attribute.layout_anchor = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_anchor;
@@ -387,6 +478,9 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.layout_keyline = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_keyline;
 			global::PanCardView.Droid.Resource.Attribute.layout_scrollFlags = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_scrollFlags;
 			global::PanCardView.Droid.Resource.Attribute.layout_scrollInterpolator = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::PanCardView.Droid.Resource.Attribute.liftOnScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.liftOnScroll;
+			global::PanCardView.Droid.Resource.Attribute.lineHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.lineHeight;
+			global::PanCardView.Droid.Resource.Attribute.lineSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.lineSpacing;
 			global::PanCardView.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
 			global::PanCardView.Droid.Resource.Attribute.listDividerAlertDialog = global::ContestPark.Mobile.Droid.Resource.Attribute.listDividerAlertDialog;
 			global::PanCardView.Droid.Resource.Attribute.listItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.listItemLayout;
@@ -400,8 +494,11 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingRight;
 			global::PanCardView.Droid.Resource.Attribute.logo = global::ContestPark.Mobile.Droid.Resource.Attribute.logo;
 			global::PanCardView.Droid.Resource.Attribute.logoDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.logoDescription;
+			global::PanCardView.Droid.Resource.Attribute.materialButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialButtonStyle;
+			global::PanCardView.Droid.Resource.Attribute.materialCardViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.materialCardViewStyle;
 			global::PanCardView.Droid.Resource.Attribute.maxActionInlineWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.maxActionInlineWidth;
 			global::PanCardView.Droid.Resource.Attribute.maxButtonHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.maxButtonHeight;
+			global::PanCardView.Droid.Resource.Attribute.maxImageSize = global::ContestPark.Mobile.Droid.Resource.Attribute.maxImageSize;
 			global::PanCardView.Droid.Resource.Attribute.measureWithLargestChild = global::ContestPark.Mobile.Droid.Resource.Attribute.measureWithLargestChild;
 			global::PanCardView.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
 			global::PanCardView.Droid.Resource.Attribute.mediaRouteButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteButtonStyle;
@@ -421,6 +518,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.navigationContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationContentDescription;
 			global::PanCardView.Droid.Resource.Attribute.navigationIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationIcon;
 			global::PanCardView.Droid.Resource.Attribute.navigationMode = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationMode;
+			global::PanCardView.Droid.Resource.Attribute.navigationViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationViewStyle;
 			global::PanCardView.Droid.Resource.Attribute.numericModifiers = global::ContestPark.Mobile.Droid.Resource.Attribute.numericModifiers;
 			global::PanCardView.Droid.Resource.Attribute.overlapAnchor = global::ContestPark.Mobile.Droid.Resource.Attribute.overlapAnchor;
 			global::PanCardView.Droid.Resource.Attribute.paddingBottomNoButtons = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingBottomNoButtons;
@@ -451,6 +549,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.reverseLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.reverseLayout;
 			global::PanCardView.Droid.Resource.Attribute.rippleColor = global::ContestPark.Mobile.Droid.Resource.Attribute.rippleColor;
 			global::PanCardView.Droid.Resource.Attribute.scrimAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::PanCardView.Droid.Resource.Attribute.scrimBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimBackground;
 			global::PanCardView.Droid.Resource.Attribute.scrimVisibleHeightTrigger = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
 			global::PanCardView.Droid.Resource.Attribute.searchHintIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.searchHintIcon;
 			global::PanCardView.Droid.Resource.Attribute.searchIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.searchIcon;
@@ -460,9 +559,14 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::ContestPark.Mobile.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
 			global::PanCardView.Droid.Resource.Attribute.showAsAction = global::ContestPark.Mobile.Droid.Resource.Attribute.showAsAction;
 			global::PanCardView.Droid.Resource.Attribute.showDividers = global::ContestPark.Mobile.Droid.Resource.Attribute.showDividers;
+			global::PanCardView.Droid.Resource.Attribute.showMotionSpec = global::ContestPark.Mobile.Droid.Resource.Attribute.showMotionSpec;
 			global::PanCardView.Droid.Resource.Attribute.showText = global::ContestPark.Mobile.Droid.Resource.Attribute.showText;
 			global::PanCardView.Droid.Resource.Attribute.showTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.showTitle;
 			global::PanCardView.Droid.Resource.Attribute.singleChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::PanCardView.Droid.Resource.Attribute.singleLine = global::ContestPark.Mobile.Droid.Resource.Attribute.singleLine;
+			global::PanCardView.Droid.Resource.Attribute.singleSelection = global::ContestPark.Mobile.Droid.Resource.Attribute.singleSelection;
+			global::PanCardView.Droid.Resource.Attribute.snackbarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.snackbarButtonStyle;
+			global::PanCardView.Droid.Resource.Attribute.snackbarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.snackbarStyle;
 			global::PanCardView.Droid.Resource.Attribute.spanCount = global::ContestPark.Mobile.Droid.Resource.Attribute.spanCount;
 			global::PanCardView.Droid.Resource.Attribute.spinBars = global::ContestPark.Mobile.Droid.Resource.Attribute.spinBars;
 			global::PanCardView.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.spinnerDropDownItemStyle;
@@ -473,8 +577,12 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.state_above_anchor = global::ContestPark.Mobile.Droid.Resource.Attribute.state_above_anchor;
 			global::PanCardView.Droid.Resource.Attribute.state_collapsed = global::ContestPark.Mobile.Droid.Resource.Attribute.state_collapsed;
 			global::PanCardView.Droid.Resource.Attribute.state_collapsible = global::ContestPark.Mobile.Droid.Resource.Attribute.state_collapsible;
+			global::PanCardView.Droid.Resource.Attribute.state_liftable = global::ContestPark.Mobile.Droid.Resource.Attribute.state_liftable;
+			global::PanCardView.Droid.Resource.Attribute.state_lifted = global::ContestPark.Mobile.Droid.Resource.Attribute.state_lifted;
 			global::PanCardView.Droid.Resource.Attribute.statusBarBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.statusBarBackground;
 			global::PanCardView.Droid.Resource.Attribute.statusBarScrim = global::ContestPark.Mobile.Droid.Resource.Attribute.statusBarScrim;
+			global::PanCardView.Droid.Resource.Attribute.strokeColor = global::ContestPark.Mobile.Droid.Resource.Attribute.strokeColor;
+			global::PanCardView.Droid.Resource.Attribute.strokeWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.strokeWidth;
 			global::PanCardView.Droid.Resource.Attribute.subMenuArrow = global::ContestPark.Mobile.Droid.Resource.Attribute.subMenuArrow;
 			global::PanCardView.Droid.Resource.Attribute.submitBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.submitBackground;
 			global::PanCardView.Droid.Resource.Attribute.subtitle = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitle;
@@ -489,8 +597,15 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.tabBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.tabBackground;
 			global::PanCardView.Droid.Resource.Attribute.tabContentStart = global::ContestPark.Mobile.Droid.Resource.Attribute.tabContentStart;
 			global::PanCardView.Droid.Resource.Attribute.tabGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.tabGravity;
+			global::PanCardView.Droid.Resource.Attribute.tabIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIconTint;
+			global::PanCardView.Droid.Resource.Attribute.tabIconTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIconTintMode;
+			global::PanCardView.Droid.Resource.Attribute.tabIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicator;
+			global::PanCardView.Droid.Resource.Attribute.tabIndicatorAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorAnimationDuration;
 			global::PanCardView.Droid.Resource.Attribute.tabIndicatorColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorColor;
+			global::PanCardView.Droid.Resource.Attribute.tabIndicatorFullWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorFullWidth;
+			global::PanCardView.Droid.Resource.Attribute.tabIndicatorGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorGravity;
 			global::PanCardView.Droid.Resource.Attribute.tabIndicatorHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::PanCardView.Droid.Resource.Attribute.tabInlineLabel = global::ContestPark.Mobile.Droid.Resource.Attribute.tabInlineLabel;
 			global::PanCardView.Droid.Resource.Attribute.tabMaxWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMaxWidth;
 			global::PanCardView.Droid.Resource.Attribute.tabMinWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMinWidth;
 			global::PanCardView.Droid.Resource.Attribute.tabMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMode;
@@ -499,20 +614,39 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.tabPaddingEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingEnd;
 			global::PanCardView.Droid.Resource.Attribute.tabPaddingStart = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingStart;
 			global::PanCardView.Droid.Resource.Attribute.tabPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingTop;
+			global::PanCardView.Droid.Resource.Attribute.tabRippleColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabRippleColor;
 			global::PanCardView.Droid.Resource.Attribute.tabSelectedTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::PanCardView.Droid.Resource.Attribute.tabStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.tabStyle;
 			global::PanCardView.Droid.Resource.Attribute.tabTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.tabTextAppearance;
 			global::PanCardView.Droid.Resource.Attribute.tabTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabTextColor;
+			global::PanCardView.Droid.Resource.Attribute.tabUnboundedRipple = global::ContestPark.Mobile.Droid.Resource.Attribute.tabUnboundedRipple;
 			global::PanCardView.Droid.Resource.Attribute.textAllCaps = global::ContestPark.Mobile.Droid.Resource.Attribute.textAllCaps;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceBody1 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceBody1;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceBody2 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceBody2;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceButton = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceButton;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceCaption = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceCaption;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceHeadline1 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline1;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceHeadline2 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline2;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceHeadline3 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline3;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceHeadline4 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline4;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceHeadline5 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline5;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceHeadline6 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceHeadline6;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceListItem = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItem;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceListItemSecondary = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItemSecondary;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceListItemSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceOverline = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceOverline;
 			global::PanCardView.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
 			global::PanCardView.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceSubtitle1 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSubtitle1;
+			global::PanCardView.Droid.Resource.Attribute.textAppearanceSubtitle2 = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSubtitle2;
 			global::PanCardView.Droid.Resource.Attribute.textColorAlertDialogListItem = global::ContestPark.Mobile.Droid.Resource.Attribute.textColorAlertDialogListItem;
 			global::PanCardView.Droid.Resource.Attribute.textColorSearchUrl = global::ContestPark.Mobile.Droid.Resource.Attribute.textColorSearchUrl;
+			global::PanCardView.Droid.Resource.Attribute.textEndPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.textEndPadding;
+			global::PanCardView.Droid.Resource.Attribute.textInputStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.textInputStyle;
+			global::PanCardView.Droid.Resource.Attribute.textStartPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.textStartPadding;
 			global::PanCardView.Droid.Resource.Attribute.theme = global::ContestPark.Mobile.Droid.Resource.Attribute.theme;
 			global::PanCardView.Droid.Resource.Attribute.thickness = global::ContestPark.Mobile.Droid.Resource.Attribute.thickness;
 			global::PanCardView.Droid.Resource.Attribute.thumbTextPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTextPadding;
@@ -543,7 +677,9 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Attribute.track = global::ContestPark.Mobile.Droid.Resource.Attribute.track;
 			global::PanCardView.Droid.Resource.Attribute.trackTint = global::ContestPark.Mobile.Droid.Resource.Attribute.trackTint;
 			global::PanCardView.Droid.Resource.Attribute.trackTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.trackTintMode;
+			global::PanCardView.Droid.Resource.Attribute.ttcIndex = global::ContestPark.Mobile.Droid.Resource.Attribute.ttcIndex;
 			global::PanCardView.Droid.Resource.Attribute.useCompatPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.useCompatPadding;
+			global::PanCardView.Droid.Resource.Attribute.viewInflaterClass = global::ContestPark.Mobile.Droid.Resource.Attribute.viewInflaterClass;
 			global::PanCardView.Droid.Resource.Attribute.voiceIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.voiceIcon;
 			global::PanCardView.Droid.Resource.Attribute.windowActionBar = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionBar;
 			global::PanCardView.Droid.Resource.Attribute.windowActionBarOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionBarOverlay;
@@ -558,6 +694,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
 			global::PanCardView.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
 			global::PanCardView.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::PanCardView.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps = global::ContestPark.Mobile.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps;
 			global::PanCardView.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
 			global::PanCardView.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
 			global::PanCardView.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
@@ -594,6 +731,10 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Color.bright_foreground_inverse_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_light;
 			global::PanCardView.Droid.Resource.Color.bright_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_material_dark;
 			global::PanCardView.Droid.Resource.Color.bright_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_material_light;
+			global::PanCardView.Droid.Resource.Color.browser_actions_bg_grey = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_bg_grey;
+			global::PanCardView.Droid.Resource.Color.browser_actions_divider_color = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_divider_color;
+			global::PanCardView.Droid.Resource.Color.browser_actions_text_color = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_text_color;
+			global::PanCardView.Droid.Resource.Color.browser_actions_title_color = global::ContestPark.Mobile.Droid.Resource.Color.browser_actions_title_color;
 			global::PanCardView.Droid.Resource.Color.button_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.button_material_dark;
 			global::PanCardView.Droid.Resource.Color.button_material_light = global::ContestPark.Mobile.Droid.Resource.Color.button_material_light;
 			global::PanCardView.Droid.Resource.Color.cardview_dark_background = global::ContestPark.Mobile.Droid.Resource.Color.cardview_dark_background;
@@ -601,6 +742,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Color.cardview_shadow_end_color = global::ContestPark.Mobile.Droid.Resource.Color.cardview_shadow_end_color;
 			global::PanCardView.Droid.Resource.Color.cardview_shadow_start_color = global::ContestPark.Mobile.Droid.Resource.Color.cardview_shadow_start_color;
 			global::PanCardView.Droid.Resource.Color.design_bottom_navigation_shadow_color = global::ContestPark.Mobile.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::PanCardView.Droid.Resource.Color.design_default_color_primary = global::ContestPark.Mobile.Droid.Resource.Color.design_default_color_primary;
+			global::PanCardView.Droid.Resource.Color.design_default_color_primary_dark = global::ContestPark.Mobile.Droid.Resource.Color.design_default_color_primary_dark;
 			global::PanCardView.Droid.Resource.Color.design_error = global::ContestPark.Mobile.Droid.Resource.Color.design_error;
 			global::PanCardView.Droid.Resource.Color.design_fab_shadow_end_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_end_color;
 			global::PanCardView.Droid.Resource.Color.design_fab_shadow_mid_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_mid_color;
@@ -615,6 +758,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Color.dim_foreground_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_light;
 			global::PanCardView.Droid.Resource.Color.dim_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_material_dark;
 			global::PanCardView.Droid.Resource.Color.dim_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_material_light;
+			global::PanCardView.Droid.Resource.Color.error_color_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.error_color_material_dark;
+			global::PanCardView.Droid.Resource.Color.error_color_material_light = global::ContestPark.Mobile.Droid.Resource.Color.error_color_material_light;
 			global::PanCardView.Droid.Resource.Color.foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.foreground_material_dark;
 			global::PanCardView.Droid.Resource.Color.foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.foreground_material_light;
 			global::PanCardView.Droid.Resource.Color.highlighted_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.highlighted_text_material_dark;
@@ -631,6 +776,32 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Color.material_grey_800 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_800;
 			global::PanCardView.Droid.Resource.Color.material_grey_850 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_850;
 			global::PanCardView.Droid.Resource.Color.material_grey_900 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_900;
+			global::PanCardView.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
+			global::PanCardView.Droid.Resource.Color.mtrl_bottom_nav_item_tint = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_bg_color_disabled = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_bg_color_disabled;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_bg_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_bg_color_selector;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_ripple_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_stroke_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_stroke_color_selector;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_text_color_disabled = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_text_color_disabled;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_text_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_text_color_selector;
+			global::PanCardView.Droid.Resource.Color.mtrl_btn_transparent_bg_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_btn_transparent_bg_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_chip_background_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_background_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_chip_close_icon_tint = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_close_icon_tint;
+			global::PanCardView.Droid.Resource.Color.mtrl_chip_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_ripple_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_chip_text_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_chip_text_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_fab_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_fab_ripple_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_scrim_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_scrim_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_tabs_colored_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_colored_ripple_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_tabs_icon_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_icon_color_selector;
+			global::PanCardView.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored;
+			global::PanCardView.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector;
+			global::PanCardView.Droid.Resource.Color.mtrl_tabs_ripple_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_tabs_ripple_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_text_btn_text_color_selector = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_text_btn_text_color_selector;
+			global::PanCardView.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_textinput_disabled_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_disabled_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color;
+			global::PanCardView.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color = global::ContestPark.Mobile.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color;
 			global::PanCardView.Droid.Resource.Color.notification_action_color_filter = global::ContestPark.Mobile.Droid.Resource.Color.notification_action_color_filter;
 			global::PanCardView.Droid.Resource.Color.notification_icon_bg_color = global::ContestPark.Mobile.Droid.Resource.Color.notification_icon_bg_color;
 			global::PanCardView.Droid.Resource.Color.notification_material_background_media_default_color = global::ContestPark.Mobile.Droid.Resource.Color.notification_material_background_media_default_color;
@@ -673,6 +844,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.abc_action_button_min_width_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::PanCardView.Droid.Resource.Dimension.abc_alert_dialog_button_dimen = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_dimen;
 			global::PanCardView.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_inset_vertical_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
@@ -682,6 +854,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.abc_control_corner_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_corner_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_control_inset_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_inset_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_control_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_padding_material;
+			global::PanCardView.Droid.Resource.Dimension.abc_dialog_corner_radius_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_corner_radius_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
 			global::PanCardView.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
 			global::PanCardView.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
@@ -729,6 +902,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
 			global::PanCardView.Droid.Resource.Dimension.abc_text_size_title_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_title_material;
 			global::PanCardView.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::PanCardView.Droid.Resource.Dimension.browser_actions_context_menu_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.browser_actions_context_menu_max_width;
+			global::PanCardView.Droid.Resource.Dimension.browser_actions_context_menu_min_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.browser_actions_context_menu_min_padding;
 			global::PanCardView.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_compat_inset_shadow;
 			global::PanCardView.Droid.Resource.Dimension.cardview_default_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_default_elevation;
 			global::PanCardView.Droid.Resource.Dimension.cardview_default_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_default_radius;
@@ -737,11 +912,15 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.compat_button_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
 			global::PanCardView.Droid.Resource.Dimension.compat_button_padding_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_padding_vertical_material;
 			global::PanCardView.Droid.Resource.Dimension.compat_control_corner_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_control_corner_material;
+			global::PanCardView.Droid.Resource.Dimension.compat_notification_large_icon_max_height = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::PanCardView.Droid.Resource.Dimension.compat_notification_large_icon_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
 			global::PanCardView.Droid.Resource.Dimension.design_appbar_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_appbar_elevation;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_active_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_elevation;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_height = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_icon_size;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_item_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_item_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
 			global::PanCardView.Droid.Resource.Dimension.design_bottom_navigation_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_margin;
@@ -754,10 +933,13 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.design_fab_image_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_image_size;
 			global::PanCardView.Droid.Resource.Dimension.design_fab_size_mini = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_size_mini;
 			global::PanCardView.Droid.Resource.Dimension.design_fab_size_normal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_size_normal;
+			global::PanCardView.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused;
 			global::PanCardView.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_translation_z_pressed;
 			global::PanCardView.Droid.Resource.Dimension.design_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_elevation;
 			global::PanCardView.Droid.Resource.Dimension.design_navigation_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_icon_padding;
 			global::PanCardView.Droid.Resource.Dimension.design_navigation_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::PanCardView.Droid.Resource.Dimension.design_navigation_item_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_item_horizontal_padding;
+			global::PanCardView.Droid.Resource.Dimension.design_navigation_item_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_item_icon_padding;
 			global::PanCardView.Droid.Resource.Dimension.design_navigation_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_max_width;
 			global::PanCardView.Droid.Resource.Dimension.design_navigation_padding_bottom = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_padding_bottom;
 			global::PanCardView.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
@@ -775,6 +957,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.design_tab_scrollable_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_scrollable_min_width;
 			global::PanCardView.Droid.Resource.Dimension.design_tab_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_text_size;
 			global::PanCardView.Droid.Resource.Dimension.design_tab_text_size_2line = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::PanCardView.Droid.Resource.Dimension.design_textinput_caption_translate_y = global::ContestPark.Mobile.Droid.Resource.Dimension.design_textinput_caption_translate_y;
 			global::PanCardView.Droid.Resource.Dimension.disabled_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.disabled_alpha_material_dark;
 			global::PanCardView.Droid.Resource.Dimension.disabled_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.disabled_alpha_material_light;
 			global::PanCardView.Droid.Resource.Dimension.fastscroll_default_thickness = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_default_thickness;
@@ -796,6 +979,54 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
 			global::PanCardView.Droid.Resource.Dimension.mr_dialog_fixed_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
 			global::PanCardView.Droid.Resource.Dimension.mr_dialog_fixed_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_bottomappbar_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_bottomappbar_height;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_corner_radius;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_disabled_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_disabled_elevation;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_disabled_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_disabled_z;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_elevation;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_focused_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_focused_z;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_hovered_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_hovered_z;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_icon_padding;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_inset = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_inset;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_letter_spacing = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_letter_spacing;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_padding_bottom = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_bottom;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_left;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_padding_right = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_right;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_padding_top;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_pressed_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_pressed_z;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_stroke_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_stroke_size;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_text_size;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_btn_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_btn_z;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_card_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_card_elevation;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_card_spacing = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_card_spacing;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_chip_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_chip_text_size;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_fab_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_fab_elevation;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_navigation_elevation;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_snackbar_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_snackbar_margin;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_padding_end = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_padding_end;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
+			global::PanCardView.Droid.Resource.Dimension.mtrl_toolbar_default_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mtrl_toolbar_default_height;
 			global::PanCardView.Droid.Resource.Dimension.notification_action_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_action_icon_size;
 			global::PanCardView.Droid.Resource.Dimension.notification_action_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_action_text_size;
 			global::PanCardView.Droid.Resource.Dimension.notification_big_circle_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_big_circle_margin;
@@ -811,6 +1042,10 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Dimension.notification_subtext_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_subtext_size;
 			global::PanCardView.Droid.Resource.Dimension.notification_top_pad = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_top_pad;
 			global::PanCardView.Droid.Resource.Dimension.notification_top_pad_large_text = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::PanCardView.Droid.Resource.Dimension.subtitle_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_corner_radius;
+			global::PanCardView.Droid.Resource.Dimension.subtitle_outline_width = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_outline_width;
+			global::PanCardView.Droid.Resource.Dimension.subtitle_shadow_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_shadow_offset;
+			global::PanCardView.Droid.Resource.Dimension.subtitle_shadow_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.subtitle_shadow_radius;
 			global::PanCardView.Droid.Resource.Dimension.tooltip_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_corner_radius;
 			global::PanCardView.Droid.Resource.Dimension.tooltip_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_horizontal_padding;
 			global::PanCardView.Droid.Resource.Dimension.tooltip_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_margin;
@@ -859,6 +1094,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
 			global::PanCardView.Droid.Resource.Drawable.abc_item_background_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_item_background_holo_dark;
 			global::PanCardView.Droid.Resource.Drawable.abc_item_background_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::PanCardView.Droid.Resource.Drawable.abc_list_divider_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_divider_material;
 			global::PanCardView.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
 			global::PanCardView.Droid.Resource.Drawable.abc_list_focused_holo = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_focused_holo;
 			global::PanCardView.Droid.Resource.Drawable.abc_list_longpressed_holo = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_longpressed_holo;
@@ -1081,6 +1317,9 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Drawable.ic_mr_button_disconnected_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
 			global::PanCardView.Droid.Resource.Drawable.ic_mr_button_disconnected_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
 			global::PanCardView.Droid.Resource.Drawable.ic_mr_button_grey = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::PanCardView.Droid.Resource.Drawable.ic_mtrl_chip_checked_black = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
+			global::PanCardView.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
+			global::PanCardView.Droid.Resource.Drawable.ic_mtrl_chip_close_circle = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
 			global::PanCardView.Droid.Resource.Drawable.ic_vol_type_speaker_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
 			global::PanCardView.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
 			global::PanCardView.Droid.Resource.Drawable.ic_vol_type_speaker_group_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
@@ -1107,6 +1346,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Drawable.mr_media_stop_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_stop_light;
 			global::PanCardView.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
 			global::PanCardView.Droid.Resource.Drawable.mr_vol_type_audiotrack_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::PanCardView.Droid.Resource.Drawable.mtrl_snackbar_background = global::ContestPark.Mobile.Droid.Resource.Drawable.mtrl_snackbar_background;
+			global::PanCardView.Droid.Resource.Drawable.mtrl_tabs_default_indicator = global::ContestPark.Mobile.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
 			global::PanCardView.Droid.Resource.Drawable.navigation_empty_icon = global::ContestPark.Mobile.Droid.Resource.Drawable.navigation_empty_icon;
 			global::PanCardView.Droid.Resource.Drawable.notification_action_background = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_action_background;
 			global::PanCardView.Droid.Resource.Drawable.notification_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg;
@@ -1157,6 +1398,13 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.beginning = global::ContestPark.Mobile.Droid.Resource.Id.beginning;
 			global::PanCardView.Droid.Resource.Id.blocking = global::ContestPark.Mobile.Droid.Resource.Id.blocking;
 			global::PanCardView.Droid.Resource.Id.bottom = global::ContestPark.Mobile.Droid.Resource.Id.bottom;
+			global::PanCardView.Droid.Resource.Id.bottomtab_navarea = global::ContestPark.Mobile.Droid.Resource.Id.bottomtab_navarea;
+			global::PanCardView.Droid.Resource.Id.bottomtab_tabbar = global::ContestPark.Mobile.Droid.Resource.Id.bottomtab_tabbar;
+			global::PanCardView.Droid.Resource.Id.browser_actions_header_text = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_header_text;
+			global::PanCardView.Droid.Resource.Id.browser_actions_menu_item_icon = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_item_icon;
+			global::PanCardView.Droid.Resource.Id.browser_actions_menu_item_text = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_item_text;
+			global::PanCardView.Droid.Resource.Id.browser_actions_menu_items = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_items;
+			global::PanCardView.Droid.Resource.Id.browser_actions_menu_view = global::ContestPark.Mobile.Droid.Resource.Id.browser_actions_menu_view;
 			global::PanCardView.Droid.Resource.Id.buttonPanel = global::ContestPark.Mobile.Droid.Resource.Id.buttonPanel;
 			global::PanCardView.Droid.Resource.Id.cancel_action = global::ContestPark.Mobile.Droid.Resource.Id.cancel_action;
 			global::PanCardView.Droid.Resource.Id.center = global::ContestPark.Mobile.Droid.Resource.Id.center;
@@ -1168,6 +1416,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.clip_vertical = global::ContestPark.Mobile.Droid.Resource.Id.clip_vertical;
 			global::PanCardView.Droid.Resource.Id.collapseActionView = global::ContestPark.Mobile.Droid.Resource.Id.collapseActionView;
 			global::PanCardView.Droid.Resource.Id.container = global::ContestPark.Mobile.Droid.Resource.Id.container;
+			global::PanCardView.Droid.Resource.Id.content = global::ContestPark.Mobile.Droid.Resource.Id.content;
 			global::PanCardView.Droid.Resource.Id.contentPanel = global::ContestPark.Mobile.Droid.Resource.Id.contentPanel;
 			global::PanCardView.Droid.Resource.Id.coordinator = global::ContestPark.Mobile.Droid.Resource.Id.coordinator;
 			global::PanCardView.Droid.Resource.Id.custom = global::ContestPark.Mobile.Droid.Resource.Id.custom;
@@ -1191,9 +1440,13 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.fill = global::ContestPark.Mobile.Droid.Resource.Id.fill;
 			global::PanCardView.Droid.Resource.Id.fill_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.fill_horizontal;
 			global::PanCardView.Droid.Resource.Id.fill_vertical = global::ContestPark.Mobile.Droid.Resource.Id.fill_vertical;
+			global::PanCardView.Droid.Resource.Id.filled = global::ContestPark.Mobile.Droid.Resource.Id.filled;
 			global::PanCardView.Droid.Resource.Id.@fixed = global::ContestPark.Mobile.Droid.Resource.Id.@fixed;
+			global::PanCardView.Droid.Resource.Id.flyoutcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.flyoutcontent_appbar;
+			global::PanCardView.Droid.Resource.Id.flyoutcontent_recycler = global::ContestPark.Mobile.Droid.Resource.Id.flyoutcontent_recycler;
 			global::PanCardView.Droid.Resource.Id.forever = global::ContestPark.Mobile.Droid.Resource.Id.forever;
 			global::PanCardView.Droid.Resource.Id.ghost_view = global::ContestPark.Mobile.Droid.Resource.Id.ghost_view;
+			global::PanCardView.Droid.Resource.Id.group_divider = global::ContestPark.Mobile.Droid.Resource.Id.group_divider;
 			global::PanCardView.Droid.Resource.Id.home = global::ContestPark.Mobile.Droid.Resource.Id.home;
 			global::PanCardView.Droid.Resource.Id.homeAsUp = global::ContestPark.Mobile.Droid.Resource.Id.homeAsUp;
 			global::PanCardView.Droid.Resource.Id.icon = global::ContestPark.Mobile.Droid.Resource.Id.icon;
@@ -1203,18 +1456,37 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.info = global::ContestPark.Mobile.Droid.Resource.Id.info;
 			global::PanCardView.Droid.Resource.Id.italic = global::ContestPark.Mobile.Droid.Resource.Id.italic;
 			global::PanCardView.Droid.Resource.Id.item_touch_helper_previous_elevation = global::ContestPark.Mobile.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::PanCardView.Droid.Resource.Id.labeled = global::ContestPark.Mobile.Droid.Resource.Id.labeled;
 			global::PanCardView.Droid.Resource.Id.largeLabel = global::ContestPark.Mobile.Droid.Resource.Id.largeLabel;
 			global::PanCardView.Droid.Resource.Id.left = global::ContestPark.Mobile.Droid.Resource.Id.left;
 			global::PanCardView.Droid.Resource.Id.line1 = global::ContestPark.Mobile.Droid.Resource.Id.line1;
 			global::PanCardView.Droid.Resource.Id.line3 = global::ContestPark.Mobile.Droid.Resource.Id.line3;
 			global::PanCardView.Droid.Resource.Id.listMode = global::ContestPark.Mobile.Droid.Resource.Id.listMode;
 			global::PanCardView.Droid.Resource.Id.list_item = global::ContestPark.Mobile.Droid.Resource.Id.list_item;
+			global::PanCardView.Droid.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
+			global::PanCardView.Droid.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
+			global::PanCardView.Droid.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
+			global::PanCardView.Droid.Resource.Id.main_viewpager = global::ContestPark.Mobile.Droid.Resource.Id.main_viewpager;
 			global::PanCardView.Droid.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
 			global::PanCardView.Droid.Resource.Id.media_actions = global::ContestPark.Mobile.Droid.Resource.Id.media_actions;
 			global::PanCardView.Droid.Resource.Id.message = global::ContestPark.Mobile.Droid.Resource.Id.message;
 			global::PanCardView.Droid.Resource.Id.middle = global::ContestPark.Mobile.Droid.Resource.Id.middle;
 			global::PanCardView.Droid.Resource.Id.mini = global::ContestPark.Mobile.Droid.Resource.Id.mini;
 			global::PanCardView.Droid.Resource.Id.mr_art = global::ContestPark.Mobile.Droid.Resource.Id.mr_art;
+			global::PanCardView.Droid.Resource.Id.mr_cast_checkbox = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_checkbox;
+			global::PanCardView.Droid.Resource.Id.mr_cast_close_button = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_close_button;
+			global::PanCardView.Droid.Resource.Id.mr_cast_group_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_group_icon;
+			global::PanCardView.Droid.Resource.Id.mr_cast_group_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_group_name;
+			global::PanCardView.Droid.Resource.Id.mr_cast_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_list;
+			global::PanCardView.Droid.Resource.Id.mr_cast_meta = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta;
+			global::PanCardView.Droid.Resource.Id.mr_cast_meta_art = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta_art;
+			global::PanCardView.Droid.Resource.Id.mr_cast_meta_subtitle = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta_subtitle;
+			global::PanCardView.Droid.Resource.Id.mr_cast_meta_title = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_meta_title;
+			global::PanCardView.Droid.Resource.Id.mr_cast_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_route_icon;
+			global::PanCardView.Droid.Resource.Id.mr_cast_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_route_name;
+			global::PanCardView.Droid.Resource.Id.mr_cast_stop_button = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_stop_button;
+			global::PanCardView.Droid.Resource.Id.mr_cast_volume_layout = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_volume_layout;
+			global::PanCardView.Droid.Resource.Id.mr_cast_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_cast_volume_slider;
 			global::PanCardView.Droid.Resource.Id.mr_chooser_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_list;
 			global::PanCardView.Droid.Resource.Id.mr_chooser_route_desc = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_desc;
 			global::PanCardView.Droid.Resource.Id.mr_chooser_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_icon;
@@ -1229,16 +1501,25 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.mr_custom_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_custom_control;
 			global::PanCardView.Droid.Resource.Id.mr_default_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_default_control;
 			global::PanCardView.Droid.Resource.Id.mr_dialog_area = global::ContestPark.Mobile.Droid.Resource.Id.mr_dialog_area;
+			global::PanCardView.Droid.Resource.Id.mr_dialog_header_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_dialog_header_name;
 			global::PanCardView.Droid.Resource.Id.mr_expandable_area = global::ContestPark.Mobile.Droid.Resource.Id.mr_expandable_area;
 			global::PanCardView.Droid.Resource.Id.mr_group_expand_collapse = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_expand_collapse;
+			global::PanCardView.Droid.Resource.Id.mr_group_volume_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_volume_route_name;
+			global::PanCardView.Droid.Resource.Id.mr_group_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_volume_slider;
 			global::PanCardView.Droid.Resource.Id.mr_media_main_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_media_main_control;
 			global::PanCardView.Droid.Resource.Id.mr_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_name;
+			global::PanCardView.Droid.Resource.Id.mr_picker_close_button = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_close_button;
+			global::PanCardView.Droid.Resource.Id.mr_picker_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_list;
+			global::PanCardView.Droid.Resource.Id.mr_picker_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_route_icon;
+			global::PanCardView.Droid.Resource.Id.mr_picker_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_picker_route_name;
 			global::PanCardView.Droid.Resource.Id.mr_playback_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_playback_control;
 			global::PanCardView.Droid.Resource.Id.mr_title_bar = global::ContestPark.Mobile.Droid.Resource.Id.mr_title_bar;
 			global::PanCardView.Droid.Resource.Id.mr_volume_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_control;
 			global::PanCardView.Droid.Resource.Id.mr_volume_group_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_group_list;
 			global::PanCardView.Droid.Resource.Id.mr_volume_item_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_item_icon;
 			global::PanCardView.Droid.Resource.Id.mr_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_slider;
+			global::PanCardView.Droid.Resource.Id.mtrl_child_content_container = global::ContestPark.Mobile.Droid.Resource.Id.mtrl_child_content_container;
+			global::PanCardView.Droid.Resource.Id.mtrl_internal_children_alpha_tag = global::ContestPark.Mobile.Droid.Resource.Id.mtrl_internal_children_alpha_tag;
 			global::PanCardView.Droid.Resource.Id.multiply = global::ContestPark.Mobile.Droid.Resource.Id.multiply;
 			global::PanCardView.Droid.Resource.Id.navigation_header_container = global::ContestPark.Mobile.Droid.Resource.Id.navigation_header_container;
 			global::PanCardView.Droid.Resource.Id.never = global::ContestPark.Mobile.Droid.Resource.Id.never;
@@ -1247,6 +1528,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.notification_background = global::ContestPark.Mobile.Droid.Resource.Id.notification_background;
 			global::PanCardView.Droid.Resource.Id.notification_main_column = global::ContestPark.Mobile.Droid.Resource.Id.notification_main_column;
 			global::PanCardView.Droid.Resource.Id.notification_main_column_container = global::ContestPark.Mobile.Droid.Resource.Id.notification_main_column_container;
+			global::PanCardView.Droid.Resource.Id.outline = global::ContestPark.Mobile.Droid.Resource.Id.outline;
 			global::PanCardView.Droid.Resource.Id.parallax = global::ContestPark.Mobile.Droid.Resource.Id.parallax;
 			global::PanCardView.Droid.Resource.Id.parentPanel = global::ContestPark.Mobile.Droid.Resource.Id.parentPanel;
 			global::PanCardView.Droid.Resource.Id.parent_matrix = global::ContestPark.Mobile.Droid.Resource.Id.parent_matrix;
@@ -1277,6 +1559,9 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.search_src_text = global::ContestPark.Mobile.Droid.Resource.Id.search_src_text;
 			global::PanCardView.Droid.Resource.Id.search_voice_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_voice_btn;
 			global::PanCardView.Droid.Resource.Id.select_dialog_listview = global::ContestPark.Mobile.Droid.Resource.Id.select_dialog_listview;
+			global::PanCardView.Droid.Resource.Id.selected = global::ContestPark.Mobile.Droid.Resource.Id.selected;
+			global::PanCardView.Droid.Resource.Id.shellcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_appbar;
+			global::PanCardView.Droid.Resource.Id.shellcontent_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_toolbar;
 			global::PanCardView.Droid.Resource.Id.shortcut = global::ContestPark.Mobile.Droid.Resource.Id.shortcut;
 			global::PanCardView.Droid.Resource.Id.showCustom = global::ContestPark.Mobile.Droid.Resource.Id.showCustom;
 			global::PanCardView.Droid.Resource.Id.showHome = global::ContestPark.Mobile.Droid.Resource.Id.showHome;
@@ -1285,6 +1570,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.snackbar_action = global::ContestPark.Mobile.Droid.Resource.Id.snackbar_action;
 			global::PanCardView.Droid.Resource.Id.snackbar_text = global::ContestPark.Mobile.Droid.Resource.Id.snackbar_text;
 			global::PanCardView.Droid.Resource.Id.snap = global::ContestPark.Mobile.Droid.Resource.Id.snap;
+			global::PanCardView.Droid.Resource.Id.snapMargins = global::ContestPark.Mobile.Droid.Resource.Id.snapMargins;
 			global::PanCardView.Droid.Resource.Id.spacer = global::ContestPark.Mobile.Droid.Resource.Id.spacer;
 			global::PanCardView.Droid.Resource.Id.split_action_bar = global::ContestPark.Mobile.Droid.Resource.Id.split_action_bar;
 			global::PanCardView.Droid.Resource.Id.src_atop = global::ContestPark.Mobile.Droid.Resource.Id.src_atop;
@@ -1292,17 +1578,22 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.src_over = global::ContestPark.Mobile.Droid.Resource.Id.src_over;
 			global::PanCardView.Droid.Resource.Id.start = global::ContestPark.Mobile.Droid.Resource.Id.start;
 			global::PanCardView.Droid.Resource.Id.status_bar_latest_event_content = global::ContestPark.Mobile.Droid.Resource.Id.status_bar_latest_event_content;
+			global::PanCardView.Droid.Resource.Id.stretch = global::ContestPark.Mobile.Droid.Resource.Id.stretch;
 			global::PanCardView.Droid.Resource.Id.submenuarrow = global::ContestPark.Mobile.Droid.Resource.Id.submenuarrow;
 			global::PanCardView.Droid.Resource.Id.submit_area = global::ContestPark.Mobile.Droid.Resource.Id.submit_area;
 			global::PanCardView.Droid.Resource.Id.tabMode = global::ContestPark.Mobile.Droid.Resource.Id.tabMode;
 			global::PanCardView.Droid.Resource.Id.tag_transition_group = global::ContestPark.Mobile.Droid.Resource.Id.tag_transition_group;
+			global::PanCardView.Droid.Resource.Id.tag_unhandled_key_event_manager = global::ContestPark.Mobile.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::PanCardView.Droid.Resource.Id.tag_unhandled_key_listeners = global::ContestPark.Mobile.Droid.Resource.Id.tag_unhandled_key_listeners;
 			global::PanCardView.Droid.Resource.Id.text = global::ContestPark.Mobile.Droid.Resource.Id.text;
 			global::PanCardView.Droid.Resource.Id.text2 = global::ContestPark.Mobile.Droid.Resource.Id.text2;
 			global::PanCardView.Droid.Resource.Id.textSpacerNoButtons = global::ContestPark.Mobile.Droid.Resource.Id.textSpacerNoButtons;
 			global::PanCardView.Droid.Resource.Id.textSpacerNoTitle = global::ContestPark.Mobile.Droid.Resource.Id.textSpacerNoTitle;
+			global::PanCardView.Droid.Resource.Id.textStart = global::ContestPark.Mobile.Droid.Resource.Id.textStart;
 			global::PanCardView.Droid.Resource.Id.text_input_password_toggle = global::ContestPark.Mobile.Droid.Resource.Id.text_input_password_toggle;
 			global::PanCardView.Droid.Resource.Id.textinput_counter = global::ContestPark.Mobile.Droid.Resource.Id.textinput_counter;
 			global::PanCardView.Droid.Resource.Id.textinput_error = global::ContestPark.Mobile.Droid.Resource.Id.textinput_error;
+			global::PanCardView.Droid.Resource.Id.textinput_helper_text = global::ContestPark.Mobile.Droid.Resource.Id.textinput_helper_text;
 			global::PanCardView.Droid.Resource.Id.time = global::ContestPark.Mobile.Droid.Resource.Id.time;
 			global::PanCardView.Droid.Resource.Id.title = global::ContestPark.Mobile.Droid.Resource.Id.title;
 			global::PanCardView.Droid.Resource.Id.titleDividerNoCustom = global::ContestPark.Mobile.Droid.Resource.Id.titleDividerNoCustom;
@@ -1316,6 +1607,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Id.transition_scene_layoutid_cache = global::ContestPark.Mobile.Droid.Resource.Id.transition_scene_layoutid_cache;
 			global::PanCardView.Droid.Resource.Id.transition_transform = global::ContestPark.Mobile.Droid.Resource.Id.transition_transform;
 			global::PanCardView.Droid.Resource.Id.uniform = global::ContestPark.Mobile.Droid.Resource.Id.uniform;
+			global::PanCardView.Droid.Resource.Id.unlabeled = global::ContestPark.Mobile.Droid.Resource.Id.unlabeled;
 			global::PanCardView.Droid.Resource.Id.up = global::ContestPark.Mobile.Droid.Resource.Id.up;
 			global::PanCardView.Droid.Resource.Id.useLogo = global::ContestPark.Mobile.Droid.Resource.Id.useLogo;
 			global::PanCardView.Droid.Resource.Id.view_offset_helper = global::ContestPark.Mobile.Droid.Resource.Id.view_offset_helper;
@@ -1330,14 +1622,24 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Integer.cancel_button_image_alpha = global::ContestPark.Mobile.Droid.Resource.Integer.cancel_button_image_alpha;
 			global::PanCardView.Droid.Resource.Integer.config_tooltipAnimTime = global::ContestPark.Mobile.Droid.Resource.Integer.config_tooltipAnimTime;
 			global::PanCardView.Droid.Resource.Integer.design_snackbar_text_max_lines = global::ContestPark.Mobile.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::PanCardView.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms;
 			global::PanCardView.Droid.Resource.Integer.hide_password_duration = global::ContestPark.Mobile.Droid.Resource.Integer.hide_password_duration;
 			global::PanCardView.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
 			global::PanCardView.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
 			global::PanCardView.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::PanCardView.Droid.Resource.Integer.mr_update_routes_delay_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_update_routes_delay_ms;
+			global::PanCardView.Droid.Resource.Integer.mtrl_btn_anim_delay_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_btn_anim_delay_ms;
+			global::PanCardView.Droid.Resource.Integer.mtrl_btn_anim_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_btn_anim_duration_ms;
+			global::PanCardView.Droid.Resource.Integer.mtrl_chip_anim_duration = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_chip_anim_duration;
+			global::PanCardView.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms;
 			global::PanCardView.Droid.Resource.Integer.show_password_duration = global::ContestPark.Mobile.Droid.Resource.Integer.show_password_duration;
 			global::PanCardView.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::ContestPark.Mobile.Droid.Resource.Integer.status_bar_notification_info_maxnum;
 			global::PanCardView.Droid.Resource.Interpolator.mr_fast_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mr_fast_out_slow_in;
 			global::PanCardView.Droid.Resource.Interpolator.mr_linear_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::PanCardView.Droid.Resource.Interpolator.mtrl_fast_out_linear_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_fast_out_linear_in;
+			global::PanCardView.Droid.Resource.Interpolator.mtrl_fast_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_fast_out_slow_in;
+			global::PanCardView.Droid.Resource.Interpolator.mtrl_linear = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_linear;
+			global::PanCardView.Droid.Resource.Interpolator.mtrl_linear_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mtrl_linear_out_slow_in;
 			global::PanCardView.Droid.Resource.Layout.abc_action_bar_title_item = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_bar_title_item;
 			global::PanCardView.Droid.Resource.Layout.abc_action_bar_up_container = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_bar_up_container;
 			global::PanCardView.Droid.Resource.Layout.abc_action_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_menu_item_layout;
@@ -1349,6 +1651,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
 			global::PanCardView.Droid.Resource.Layout.abc_alert_dialog_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_material;
 			global::PanCardView.Droid.Resource.Layout.abc_alert_dialog_title_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::PanCardView.Droid.Resource.Layout.abc_cascading_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_cascading_menu_item_layout;
 			global::PanCardView.Droid.Resource.Layout.abc_dialog_title_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_dialog_title_material;
 			global::PanCardView.Droid.Resource.Layout.abc_expanded_menu_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_expanded_menu_layout;
 			global::PanCardView.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_checkbox;
@@ -1364,6 +1667,10 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::ContestPark.Mobile.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
 			global::PanCardView.Droid.Resource.Layout.abc_search_view = global::ContestPark.Mobile.Droid.Resource.Layout.abc_search_view;
 			global::PanCardView.Droid.Resource.Layout.abc_select_dialog_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_select_dialog_material;
+			global::PanCardView.Droid.Resource.Layout.abc_tooltip = global::ContestPark.Mobile.Droid.Resource.Layout.abc_tooltip;
+			global::PanCardView.Droid.Resource.Layout.BottomTabLayout = global::ContestPark.Mobile.Droid.Resource.Layout.BottomTabLayout;
+			global::PanCardView.Droid.Resource.Layout.browser_actions_context_menu_page = global::ContestPark.Mobile.Droid.Resource.Layout.browser_actions_context_menu_page;
+			global::PanCardView.Droid.Resource.Layout.browser_actions_context_menu_row = global::ContestPark.Mobile.Droid.Resource.Layout.browser_actions_context_menu_row;
 			global::PanCardView.Droid.Resource.Layout.design_bottom_navigation_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_bottom_navigation_item;
 			global::PanCardView.Droid.Resource.Layout.design_bottom_sheet_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.design_bottom_sheet_dialog;
 			global::PanCardView.Droid.Resource.Layout.design_layout_snackbar = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_snackbar;
@@ -1378,12 +1685,23 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Layout.design_navigation_menu = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_menu;
 			global::PanCardView.Droid.Resource.Layout.design_navigation_menu_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_menu_item;
 			global::PanCardView.Droid.Resource.Layout.design_text_input_password_icon = global::ContestPark.Mobile.Droid.Resource.Layout.design_text_input_password_icon;
+			global::PanCardView.Droid.Resource.Layout.FlyoutContent = global::ContestPark.Mobile.Droid.Resource.Layout.FlyoutContent;
+			global::PanCardView.Droid.Resource.Layout.mr_cast_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_dialog;
+			global::PanCardView.Droid.Resource.Layout.mr_cast_group_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_group_item;
+			global::PanCardView.Droid.Resource.Layout.mr_cast_group_volume_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_group_volume_item;
+			global::PanCardView.Droid.Resource.Layout.mr_cast_media_metadata = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_media_metadata;
+			global::PanCardView.Droid.Resource.Layout.mr_cast_route_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_cast_route_item;
 			global::PanCardView.Droid.Resource.Layout.mr_chooser_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_chooser_dialog;
 			global::PanCardView.Droid.Resource.Layout.mr_chooser_list_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_chooser_list_item;
 			global::PanCardView.Droid.Resource.Layout.mr_controller_material_dialog_b = global::ContestPark.Mobile.Droid.Resource.Layout.mr_controller_material_dialog_b;
 			global::PanCardView.Droid.Resource.Layout.mr_controller_volume_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_controller_volume_item;
+			global::PanCardView.Droid.Resource.Layout.mr_dialog_header_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_dialog_header_item;
+			global::PanCardView.Droid.Resource.Layout.mr_picker_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_picker_dialog;
+			global::PanCardView.Droid.Resource.Layout.mr_picker_route_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_picker_route_item;
 			global::PanCardView.Droid.Resource.Layout.mr_playback_control = global::ContestPark.Mobile.Droid.Resource.Layout.mr_playback_control;
 			global::PanCardView.Droid.Resource.Layout.mr_volume_control = global::ContestPark.Mobile.Droid.Resource.Layout.mr_volume_control;
+			global::PanCardView.Droid.Resource.Layout.mtrl_layout_snackbar = global::ContestPark.Mobile.Droid.Resource.Layout.mtrl_layout_snackbar;
+			global::PanCardView.Droid.Resource.Layout.mtrl_layout_snackbar_include = global::ContestPark.Mobile.Droid.Resource.Layout.mtrl_layout_snackbar_include;
 			global::PanCardView.Droid.Resource.Layout.notification_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_action;
 			global::PanCardView.Droid.Resource.Layout.notification_action_tombstone = global::ContestPark.Mobile.Droid.Resource.Layout.notification_action_tombstone;
 			global::PanCardView.Droid.Resource.Layout.notification_media_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_media_action;
@@ -1399,9 +1717,11 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Layout.notification_template_media_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_media_custom;
 			global::PanCardView.Droid.Resource.Layout.notification_template_part_chronometer = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_part_chronometer;
 			global::PanCardView.Droid.Resource.Layout.notification_template_part_time = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_part_time;
+			global::PanCardView.Droid.Resource.Layout.RootLayout = global::ContestPark.Mobile.Droid.Resource.Layout.RootLayout;
 			global::PanCardView.Droid.Resource.Layout.select_dialog_item_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_item_material;
 			global::PanCardView.Droid.Resource.Layout.select_dialog_multichoice_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_multichoice_material;
 			global::PanCardView.Droid.Resource.Layout.select_dialog_singlechoice_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::PanCardView.Droid.Resource.Layout.ShellContent = global::ContestPark.Mobile.Droid.Resource.Layout.ShellContent;
 			global::PanCardView.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::ContestPark.Mobile.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
 			global::PanCardView.Droid.Resource.String.abc_action_bar_home_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_bar_home_description;
 			global::PanCardView.Droid.Resource.String.abc_action_bar_up_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_bar_up_description;
@@ -1423,6 +1743,16 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.String.abc_font_family_menu_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_menu_material;
 			global::PanCardView.Droid.Resource.String.abc_font_family_subhead_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_subhead_material;
 			global::PanCardView.Droid.Resource.String.abc_font_family_title_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_title_material;
+			global::PanCardView.Droid.Resource.String.abc_menu_alt_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_alt_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_ctrl_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_ctrl_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_delete_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_delete_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_enter_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_enter_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_function_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_function_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_meta_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_meta_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_shift_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_shift_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_space_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_space_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_menu_sym_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_menu_sym_shortcut_label;
+			global::PanCardView.Droid.Resource.String.abc_prepend_shortcut_label = global::ContestPark.Mobile.Droid.Resource.String.abc_prepend_shortcut_label;
 			global::PanCardView.Droid.Resource.String.abc_search_hint = global::ContestPark.Mobile.Droid.Resource.String.abc_search_hint;
 			global::PanCardView.Droid.Resource.String.abc_searchview_description_clear = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_clear;
 			global::PanCardView.Droid.Resource.String.abc_searchview_description_query = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_query;
@@ -1434,12 +1764,17 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.String.abc_toolbar_collapse_description = global::ContestPark.Mobile.Droid.Resource.String.abc_toolbar_collapse_description;
 			global::PanCardView.Droid.Resource.String.appbar_scrolling_view_behavior = global::ContestPark.Mobile.Droid.Resource.String.appbar_scrolling_view_behavior;
 			global::PanCardView.Droid.Resource.String.bottom_sheet_behavior = global::ContestPark.Mobile.Droid.Resource.String.bottom_sheet_behavior;
+			global::PanCardView.Droid.Resource.String.character_counter_content_description = global::ContestPark.Mobile.Droid.Resource.String.character_counter_content_description;
 			global::PanCardView.Droid.Resource.String.character_counter_pattern = global::ContestPark.Mobile.Droid.Resource.String.character_counter_pattern;
+			global::PanCardView.Droid.Resource.String.fab_transformation_scrim_behavior = global::ContestPark.Mobile.Droid.Resource.String.fab_transformation_scrim_behavior;
+			global::PanCardView.Droid.Resource.String.fab_transformation_sheet_behavior = global::ContestPark.Mobile.Droid.Resource.String.fab_transformation_sheet_behavior;
+			global::PanCardView.Droid.Resource.String.hide_bottom_view_on_scroll_behavior = global::ContestPark.Mobile.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::PanCardView.Droid.Resource.String.library_name = global::ContestPark.Mobile.Droid.Resource.String.library_name;
 			global::PanCardView.Droid.Resource.String.mr_button_content_description = global::ContestPark.Mobile.Droid.Resource.String.mr_button_content_description;
 			global::PanCardView.Droid.Resource.String.mr_cast_button_connected = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_connected;
 			global::PanCardView.Droid.Resource.String.mr_cast_button_connecting = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_connecting;
 			global::PanCardView.Droid.Resource.String.mr_cast_button_disconnected = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_disconnected;
+			global::PanCardView.Droid.Resource.String.mr_cast_dialog_title_view_placeholder = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_dialog_title_view_placeholder;
 			global::PanCardView.Droid.Resource.String.mr_chooser_searching = global::ContestPark.Mobile.Droid.Resource.String.mr_chooser_searching;
 			global::PanCardView.Droid.Resource.String.mr_chooser_title = global::ContestPark.Mobile.Droid.Resource.String.mr_chooser_title;
 			global::PanCardView.Droid.Resource.String.mr_controller_album_art = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_album_art;
@@ -1455,8 +1790,11 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.String.mr_controller_stop = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_stop;
 			global::PanCardView.Droid.Resource.String.mr_controller_stop_casting = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_stop_casting;
 			global::PanCardView.Droid.Resource.String.mr_controller_volume_slider = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_volume_slider;
+			global::PanCardView.Droid.Resource.String.mr_dialog_device_header = global::ContestPark.Mobile.Droid.Resource.String.mr_dialog_device_header;
+			global::PanCardView.Droid.Resource.String.mr_dialog_route_header = global::ContestPark.Mobile.Droid.Resource.String.mr_dialog_route_header;
 			global::PanCardView.Droid.Resource.String.mr_system_route_name = global::ContestPark.Mobile.Droid.Resource.String.mr_system_route_name;
 			global::PanCardView.Droid.Resource.String.mr_user_route_category_name = global::ContestPark.Mobile.Droid.Resource.String.mr_user_route_category_name;
+			global::PanCardView.Droid.Resource.String.mtrl_chip_close_icon_content_description = global::ContestPark.Mobile.Droid.Resource.String.mtrl_chip_close_icon_content_description;
 			global::PanCardView.Droid.Resource.String.password_toggle_content_description = global::ContestPark.Mobile.Droid.Resource.String.password_toggle_content_description;
 			global::PanCardView.Droid.Resource.String.path_password_eye = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye;
 			global::PanCardView.Droid.Resource.String.path_password_eye_mask_strike_through = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -1540,6 +1878,23 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
 			global::PanCardView.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
 			global::PanCardView.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::PanCardView.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge;
 			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
 			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
 			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
@@ -1547,6 +1902,17 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
 			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
 			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::PanCardView.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog;
+			global::PanCardView.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert;
 			global::PanCardView.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat;
 			global::PanCardView.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
 			global::PanCardView.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
@@ -1559,6 +1925,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.Base_V26_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Theme_AppCompat;
 			global::PanCardView.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light;
 			global::PanCardView.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
+			global::PanCardView.Droid.Resource.Style.Base_V28_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V28_Theme_AppCompat;
+			global::PanCardView.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light;
 			global::PanCardView.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat;
 			global::PanCardView.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
 			global::PanCardView.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
@@ -1625,11 +1993,18 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
 			global::PanCardView.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
 			global::PanCardView.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::PanCardView.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip;
+			global::PanCardView.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText;
+			global::PanCardView.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout;
 			global::PanCardView.Droid.Resource.Style.CardView = global::ContestPark.Mobile.Droid.Resource.Style.CardView;
 			global::PanCardView.Droid.Resource.Style.CardView_Dark = global::ContestPark.Mobile.Droid.Resource.Style.CardView_Dark;
 			global::PanCardView.Droid.Resource.Style.CardView_Light = global::ContestPark.Mobile.Droid.Resource.Style.CardView_Light;
 			global::PanCardView.Droid.Resource.Style.Platform_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_AppCompat;
 			global::PanCardView.Droid.Resource.Style.Platform_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::PanCardView.Droid.Resource.Style.Platform_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents;
+			global::PanCardView.Droid.Resource.Style.Platform_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.Platform_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents_Light;
+			global::PanCardView.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog;
 			global::PanCardView.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
 			global::PanCardView.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
 			global::PanCardView.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
@@ -1643,7 +2018,10 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut;
+			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow;
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title;
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
 			global::PanCardView.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
@@ -1714,9 +2092,25 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_Counter = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Counter;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_Error = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_HelperText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_HelperText;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_Hint = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Hint;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_Design_Tab = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Button = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Button;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
+			global::PanCardView.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
 			global::PanCardView.Droid.Resource.Style.TextAppearance_MediaRouter_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
@@ -1750,6 +2144,27 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
 			global::PanCardView.Droid.Resource.Style.Theme_Design_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
 			global::PanCardView.Droid.Resource.Style.Theme_Design_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Bridge;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar;
+			global::PanCardView.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge;
 			global::PanCardView.Droid.Resource.Style.Theme_MediaRouter = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter;
 			global::PanCardView.Droid.Resource.Style.Theme_MediaRouter_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light;
 			global::PanCardView.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
@@ -1761,6 +2176,18 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
 			global::PanCardView.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
 			global::PanCardView.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
 			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
 			global::PanCardView.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
 			global::PanCardView.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar;
@@ -1847,8 +2274,46 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Style.Widget_Design_Snackbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_Snackbar;
 			global::PanCardView.Droid.Resource.Style.Widget_Design_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_TabLayout;
 			global::PanCardView.Droid.Resource.Style.Widget_Design_TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_CardView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_CardView;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_NavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_NavigationView;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Snackbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TabLayout;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
+			global::PanCardView.Droid.Resource.Style.Widget_MaterialComponents_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
 			global::PanCardView.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
 			global::PanCardView.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::PanCardView.Droid.Resource.Style.Widget_Support_CoordinatorLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::PanCardView.Droid.Resource.Style.collectionViewStyle = global::ContestPark.Mobile.Droid.Resource.Style.collectionViewStyle;
 			global::PanCardView.Droid.Resource.Styleable.ActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar;
 			global::PanCardView.Droid.Resource.Styleable.ActionBar_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_background;
 			global::PanCardView.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -1896,21 +2361,40 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::PanCardView.Droid.Resource.Styleable.AlertDialog_buttonIconDimen = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_buttonIconDimen;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_listItemLayout;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_listLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_listLayout;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_showTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_showTitle;
 			global::PanCardView.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableItem = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableItem;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableTransition = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible;
+			global::PanCardView.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId = global::ContestPark.Mobile.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_background;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_elevation;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_expanded = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_liftOnScroll = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_liftOnScroll;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayoutStates = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::PanCardView.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable;
+			global::PanCardView.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
 			global::PanCardView.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
@@ -1939,7 +2423,10 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight;
+			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_lineHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_lineHeight;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
@@ -2001,6 +2488,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
@@ -2051,6 +2539,7 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground;
+			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
@@ -2061,13 +2550,26 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
 			global::PanCardView.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_backgroundTint;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset;
+			global::PanCardView.Droid.Resource.Styleable.BottomAppBar_hideOnScroll = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomAppBar_hideOnScroll;
 			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView;
 			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_elevation;
 			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled;
+			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemIconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemIconSize;
 			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive;
+			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive;
 			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_itemTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode;
 			global::PanCardView.Droid.Resource.Styleable.BottomNavigationView_menu = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_menu;
 			global::PanCardView.Droid.Resource.Styleable.BottomSheetBehavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::PanCardView.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents;
 			global::PanCardView.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
 			global::PanCardView.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
 			global::PanCardView.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
@@ -2087,6 +2589,48 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingLeft;
 			global::PanCardView.Droid.Resource.Styleable.CardView_contentPaddingRight = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingRight;
 			global::PanCardView.Droid.Resource.Styleable.CardView_contentPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::PanCardView.Droid.Resource.Styleable.Chip = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip;
+			global::PanCardView.Droid.Resource.Styleable.Chip_android_checkable = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_checkable;
+			global::PanCardView.Droid.Resource.Styleable.Chip_android_ellipsize = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_ellipsize;
+			global::PanCardView.Droid.Resource.Styleable.Chip_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_maxWidth;
+			global::PanCardView.Droid.Resource.Styleable.Chip_android_text = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_text;
+			global::PanCardView.Droid.Resource.Styleable.Chip_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_android_textAppearance;
+			global::PanCardView.Droid.Resource.Styleable.Chip_checkedIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_checkedIcon;
+			global::PanCardView.Droid.Resource.Styleable.Chip_checkedIconEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_checkedIconEnabled;
+			global::PanCardView.Droid.Resource.Styleable.Chip_checkedIconVisible = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_checkedIconVisible;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipBackgroundColor;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipCornerRadius;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipEndPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIcon;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipIconEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconEnabled;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipIconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconSize;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconTint;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipIconVisible = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipIconVisible;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipMinHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipMinHeight;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipStartPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipStrokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipStrokeColor;
+			global::PanCardView.Droid.Resource.Styleable.Chip_chipStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_chipStrokeWidth;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIcon;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIconEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconEnabled;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIconEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconEndPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconSize;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIconStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconStartPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconTint;
+			global::PanCardView.Droid.Resource.Styleable.Chip_closeIconVisible = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_closeIconVisible;
+			global::PanCardView.Droid.Resource.Styleable.Chip_hideMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_hideMotionSpec;
+			global::PanCardView.Droid.Resource.Styleable.Chip_iconEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_iconEndPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_iconStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_iconStartPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_rippleColor;
+			global::PanCardView.Droid.Resource.Styleable.Chip_showMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_showMotionSpec;
+			global::PanCardView.Droid.Resource.Styleable.Chip_textEndPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_textEndPadding;
+			global::PanCardView.Droid.Resource.Styleable.Chip_textStartPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.Chip_textStartPadding;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup_checkedChip = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_checkedChip;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup_chipSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_chipSpacing;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup_singleLine = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_singleLine;
+			global::PanCardView.Droid.Resource.Styleable.ChipGroup_singleSelection = global::ContestPark.Mobile.Droid.Resource.Styleable.ChipGroup_singleSelection;
 			global::PanCardView.Droid.Resource.Styleable.CollapsingToolbarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout;
 			global::PanCardView.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
 			global::PanCardView.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
@@ -2143,12 +2687,20 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec;
+			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ;
+			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_maxImageSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_maxImageSize;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
 			global::PanCardView.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::PanCardView.Droid.Resource.Styleable.FlowLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.FlowLayout;
+			global::PanCardView.Droid.Resource.Styleable.FlowLayout_itemSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.FlowLayout_itemSpacing;
+			global::PanCardView.Droid.Resource.Styleable.FlowLayout_lineSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.FlowLayout_lineSpacing;
 			global::PanCardView.Droid.Resource.Styleable.FontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily;
 			global::PanCardView.Droid.Resource.Styleable.FontFamily_fontProviderAuthority = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
 			global::PanCardView.Droid.Resource.Styleable.FontFamily_fontProviderCerts = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
@@ -2159,14 +2711,34 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont;
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_android_font = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_font;
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_font = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_font;
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_fontStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
 			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_fontWeight = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::PanCardView.Droid.Resource.Styleable.FontFamilyFont_ttcIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
 			global::PanCardView.Droid.Resource.Styleable.ForegroundLinearLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout;
 			global::PanCardView.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
 			global::PanCardView.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
 			global::PanCardView.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_centerColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_centerX = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_centerY = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_endColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_endX = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_endY = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_gradientRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_startColor = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_startX = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_startY = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_tileMode = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::PanCardView.Droid.Resource.Styleable.GradientColor_android_type = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColor_android_type;
+			global::PanCardView.Droid.Resource.Styleable.GradientColorItem = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColorItem;
+			global::PanCardView.Droid.Resource.Styleable.GradientColorItem_android_color = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::PanCardView.Droid.Resource.Styleable.GradientColorItem_android_offset = global::ContestPark.Mobile.Droid.Resource.Styleable.GradientColorItem_android_offset;
 			global::PanCardView.Droid.Resource.Styleable.LinearLayoutCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat;
 			global::PanCardView.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
 			global::PanCardView.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
@@ -2185,6 +2757,59 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow;
 			global::PanCardView.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
 			global::PanCardView.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_android_insetBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetBottom;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_android_insetLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetLeft;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_android_insetRight = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetRight;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_android_insetTop = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_android_insetTop;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_backgroundTint;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_backgroundTintMode;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_cornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_cornerRadius;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_icon;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_iconGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconGravity;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_iconPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconPadding;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_iconSize = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconSize;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_iconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconTint;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_iconTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_iconTintMode;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_rippleColor;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_strokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_strokeColor;
+			global::PanCardView.Droid.Resource.Styleable.MaterialButton_strokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialButton_strokeWidth;
+			global::PanCardView.Droid.Resource.Styleable.MaterialCardView = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialCardView;
+			global::PanCardView.Droid.Resource.Styleable.MaterialCardView_strokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialCardView_strokeColor;
+			global::PanCardView.Droid.Resource.Styleable.MaterialCardView_strokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialCardView_strokeWidth;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2 = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2;
+			global::PanCardView.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle;
 			global::PanCardView.Droid.Resource.Styleable.MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton;
 			global::PanCardView.Droid.Resource.Styleable.MediaRouteButton_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
 			global::PanCardView.Droid.Resource.Styleable.MediaRouteButton_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
@@ -2238,6 +2863,8 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.NavigationView_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_elevation;
 			global::PanCardView.Droid.Resource.Styleable.NavigationView_headerLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_headerLayout;
 			global::PanCardView.Droid.Resource.Styleable.NavigationView_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::PanCardView.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding;
+			global::PanCardView.Droid.Resource.Styleable.NavigationView_itemIconPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemIconPadding;
 			global::PanCardView.Droid.Resource.Styleable.NavigationView_itemIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemIconTint;
 			global::PanCardView.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.NavigationView_itemTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemTextColor;
@@ -2285,6 +2912,9 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.SearchView_submitBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_submitBackground;
 			global::PanCardView.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
 			global::PanCardView.Droid.Resource.Styleable.SearchView_voiceIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::PanCardView.Droid.Resource.Styleable.Snackbar = global::ContestPark.Mobile.Droid.Resource.Styleable.Snackbar;
+			global::PanCardView.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
+			global::PanCardView.Droid.Resource.Styleable.Snackbar_snackbarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.Snackbar_snackbarStyle;
 			global::PanCardView.Droid.Resource.Styleable.SnackbarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout;
 			global::PanCardView.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
 			global::PanCardView.Droid.Resource.Styleable.SnackbarLayout_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_elevation;
@@ -2295,6 +2925,15 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.Spinner_android_popupBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_popupBackground;
 			global::PanCardView.Droid.Resource.Styleable.Spinner_android_prompt = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_prompt;
 			global::PanCardView.Droid.Resource.Styleable.Spinner_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable_android_constantSize = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_constantSize;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable_android_dither = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_dither;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable_android_variablePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_variablePadding;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawable_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawable_android_visible;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawableItem = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawableItem;
+			global::PanCardView.Droid.Resource.Styleable.StateListDrawableItem_android_drawable = global::ContestPark.Mobile.Droid.Resource.Styleable.StateListDrawableItem_android_drawable;
 			global::PanCardView.Droid.Resource.Styleable.SwitchCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat;
 			global::PanCardView.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOff;
 			global::PanCardView.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOn;
@@ -2318,8 +2957,15 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabBackground;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabContentStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabContentStart;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIconTint;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIconTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIconTintMode;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicator;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabInlineLabel = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabInlineLabel;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMinWidth;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMode;
@@ -2328,9 +2974,11 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabRippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabRippleColor;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::PanCardView.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple;
 			global::PanCardView.Droid.Resource.Styleable.TextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.TextAppearance_android_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_fontFamily;
 			global::PanCardView.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
@@ -2348,12 +2996,24 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_android_hint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_android_hint;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_counterEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_counterMaxLength = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_helperText = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_helperText;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled;
+			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_hintEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
@@ -2362,6 +3022,10 @@ namespace ContestPark.Mobile.Droid
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
 			global::PanCardView.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::PanCardView.Droid.Resource.Styleable.ThemeEnforcement = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement;
+			global::PanCardView.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance;
+			global::PanCardView.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme;
+			global::PanCardView.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance;
 			global::PanCardView.Droid.Resource.Styleable.Toolbar = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar;
 			global::PanCardView.Droid.Resource.Styleable.Toolbar_android_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_android_gravity;
 			global::PanCardView.Droid.Resource.Styleable.Toolbar_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_android_minHeight;
@@ -5306,6 +5970,2268 @@ namespace ContestPark.Mobile.Droid
 			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Plugin.Badge.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_fade_in = global::ContestPark.Mobile.Droid.Resource.Animation.abc_fade_in;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_fade_out = global::ContestPark.Mobile.Droid.Resource.Animation.abc_fade_out;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_popup_enter = global::ContestPark.Mobile.Droid.Resource.Animation.abc_popup_enter;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_popup_exit = global::ContestPark.Mobile.Droid.Resource.Animation.abc_popup_exit;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_slide_in_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_slide_in_top = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_in_top;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_slide_out_bottom = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.abc_slide_out_top = global::ContestPark.Mobile.Droid.Resource.Animation.abc_slide_out_top;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.design_bottom_sheet_slide_in = global::ContestPark.Mobile.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::ContestPark.Mobile.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.design_snackbar_in = global::ContestPark.Mobile.Droid.Resource.Animation.design_snackbar_in;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.design_snackbar_out = global::ContestPark.Mobile.Droid.Resource.Animation.design_snackbar_out;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.EnterFromLeft = global::ContestPark.Mobile.Droid.Resource.Animation.EnterFromLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.EnterFromRight = global::ContestPark.Mobile.Droid.Resource.Animation.EnterFromRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.ExitToLeft = global::ContestPark.Mobile.Droid.Resource.Animation.ExitToLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Animation.ExitToRight = global::ContestPark.Mobile.Droid.Resource.Animation.ExitToRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Animator.design_appbar_state_list_animator = global::ContestPark.Mobile.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarDivider = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarDivider;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarItemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarPopupTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarSize = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarSplitStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarTabBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarTabStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarTabTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionBarWidgetTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionDropDownStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.actionLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionMenuTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionMenuTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeCloseDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeCopyDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeCutDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeFindDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModePasteDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModePopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeShareDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeSplitBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionOverflowButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionOverflowMenuStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionProviderClass = global::ContestPark.Mobile.Droid.Resource.Attribute.actionProviderClass;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.actionViewClass = global::ContestPark.Mobile.Droid.Resource.Attribute.actionViewClass;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.activityChooserViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.alertDialogCenterButtons = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.alertDialogStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.alertDialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.alertDialogTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.allowStacking = global::ContestPark.Mobile.Droid.Resource.Attribute.allowStacking;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.alpha = global::ContestPark.Mobile.Droid.Resource.Attribute.alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.alphabeticModifiers = global::ContestPark.Mobile.Droid.Resource.Attribute.alphabeticModifiers;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.arrowHeadLength = global::ContestPark.Mobile.Droid.Resource.Attribute.arrowHeadLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.arrowShaftLength = global::ContestPark.Mobile.Droid.Resource.Attribute.arrowShaftLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.autoSizeMaxTextSize = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeMaxTextSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.autoSizeMinTextSize = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeMinTextSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.autoSizePresetSizes = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizePresetSizes;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.autoSizeStepGranularity = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeStepGranularity;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.autoSizeTextType = global::ContestPark.Mobile.Droid.Resource.Attribute.autoSizeTextType;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.background = global::ContestPark.Mobile.Droid.Resource.Attribute.background;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundSplit;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.backgroundStacked = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundStacked;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.backgroundTint = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.backgroundTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.barLength = global::ContestPark.Mobile.Droid.Resource.Attribute.barLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.behavior_autoHide = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_autoHide;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.behavior_hideable = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_hideable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.behavior_overlapTop = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.behavior_peekHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.behavior_skipCollapsed = global::ContestPark.Mobile.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.borderWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.borderWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.borderlessButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonBarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonPanelSideLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonStyleSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonTint = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.buttonTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.buttonTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.cardBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.cardCornerRadius = global::ContestPark.Mobile.Droid.Resource.Attribute.cardCornerRadius;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.cardElevation = global::ContestPark.Mobile.Droid.Resource.Attribute.cardElevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.cardMaxElevation = global::ContestPark.Mobile.Droid.Resource.Attribute.cardMaxElevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.cardPreventCornerOverlap = global::ContestPark.Mobile.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.cardUseCompatPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.checkboxStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.checkboxStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.checkedTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.closeIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.closeIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.closeItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.closeItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.collapseContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.collapseContentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.collapseIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.collapseIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.collapsedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.collapsedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.color = global::ContestPark.Mobile.Droid.Resource.Attribute.color;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorAccent = global::ContestPark.Mobile.Droid.Resource.Attribute.colorAccent;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorBackgroundFloating = global::ContestPark.Mobile.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorButtonNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorButtonNormal;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorControlActivated = global::ContestPark.Mobile.Droid.Resource.Attribute.colorControlActivated;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorControlHighlight = global::ContestPark.Mobile.Droid.Resource.Attribute.colorControlHighlight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorControlNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorControlNormal;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorError = global::ContestPark.Mobile.Droid.Resource.Attribute.colorError;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorPrimary = global::ContestPark.Mobile.Droid.Resource.Attribute.colorPrimary;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.colorSwitchThumbNormal = global::ContestPark.Mobile.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.commitIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.commitIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.contentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentInsetEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentInsetEndWithActions = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentInsetLeft = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentInsetRight = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentInsetStart = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentInsetStartWithNavigation = global::ContestPark.Mobile.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentPaddingRight = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.contentPaddingTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.contentScrim = global::ContestPark.Mobile.Droid.Resource.Attribute.contentScrim;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.controlBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.controlBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.counterEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.counterEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.counterMaxLength = global::ContestPark.Mobile.Droid.Resource.Attribute.counterMaxLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.counterOverflowTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.counterTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.counterTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.customNavigationLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.customNavigationLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.defaultQueryHint = global::ContestPark.Mobile.Droid.Resource.Attribute.defaultQueryHint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dialogPreferredPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dialogTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.dialogTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.displayOptions = global::ContestPark.Mobile.Droid.Resource.Attribute.displayOptions;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.divider = global::ContestPark.Mobile.Droid.Resource.Attribute.divider;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dividerHorizontal = global::ContestPark.Mobile.Droid.Resource.Attribute.dividerHorizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dividerPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.dividerPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dividerVertical = global::ContestPark.Mobile.Droid.Resource.Attribute.dividerVertical;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.drawableSize = global::ContestPark.Mobile.Droid.Resource.Attribute.drawableSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.drawerArrowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dropDownListViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.editTextBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.editTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.editTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.editTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.elevation = global::ContestPark.Mobile.Droid.Resource.Attribute.elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.errorEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.errorEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.errorTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.errorTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expanded = global::ContestPark.Mobile.Droid.Resource.Attribute.expanded;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleMargin = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleMarginStart = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleMarginTop = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.expandedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.externalRouteEnabledDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fabSize = global::ContestPark.Mobile.Droid.Resource.Attribute.fabSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fastScrollEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.font = global::ContestPark.Mobile.Droid.Resource.Attribute.font;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontFamily = global::ContestPark.Mobile.Droid.Resource.Attribute.fontFamily;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontProviderAuthority = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontProviderCerts = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderCerts;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontProviderFetchStrategy = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontProviderFetchTimeout = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontProviderPackage = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderPackage;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontProviderQuery = global::ContestPark.Mobile.Droid.Resource.Attribute.fontProviderQuery;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.fontStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.fontWeight = global::ContestPark.Mobile.Droid.Resource.Attribute.fontWeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.foregroundInsidePadding = global::ContestPark.Mobile.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.gapBetweenBars = global::ContestPark.Mobile.Droid.Resource.Attribute.gapBetweenBars;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.goIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.goIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.headerLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.headerLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.height = global::ContestPark.Mobile.Droid.Resource.Attribute.height;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.hideOnContentScroll = global::ContestPark.Mobile.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.hintAnimationEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.hintEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.hintEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.hintTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.hintTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.homeLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.homeLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.icon = global::ContestPark.Mobile.Droid.Resource.Attribute.icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.iconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.iconTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.iconTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.iconTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.iconifiedByDefault = global::ContestPark.Mobile.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.imageButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.imageButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.indeterminateProgressStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.initialActivityCount = global::ContestPark.Mobile.Droid.Resource.Attribute.initialActivityCount;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.insetForeground = global::ContestPark.Mobile.Droid.Resource.Attribute.insetForeground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.isLightTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.isLightTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.itemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.itemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.itemIconTint = global::ContestPark.Mobile.Droid.Resource.Attribute.itemIconTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.itemPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.itemPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.itemTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.itemTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.keylines = global::ContestPark.Mobile.Droid.Resource.Attribute.keylines;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout = global::ContestPark.Mobile.Droid.Resource.Attribute.layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layoutManager = global::ContestPark.Mobile.Droid.Resource.Attribute.layoutManager;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_anchor = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_anchor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_anchorGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_behavior = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_behavior;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_collapseMode = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_collapseMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_collapseParallaxMultiplier = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_dodgeInsetEdges = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_insetEdge = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_insetEdge;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_keyline = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_keyline;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_scrollFlags = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.layout_scrollInterpolator = global::ContestPark.Mobile.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listDividerAlertDialog = global::ContestPark.Mobile.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.listItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.listLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listMenuViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.listMenuViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listPopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::ContestPark.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.logo = global::ContestPark.Mobile.Droid.Resource.Attribute.logo;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.logoDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.logoDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.maxActionInlineWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.maxButtonHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.maxButtonHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.measureWithLargestChild = global::ContestPark.Mobile.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteButtonTint = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteButtonTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteCloseDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRoutePauseDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRoutePauseDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRoutePlayDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRoutePlayDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteStopDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteStopDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.mediaRouteTvIconDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.menu = global::ContestPark.Mobile.Droid.Resource.Attribute.menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.multiChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.navigationContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationContentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.navigationIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.navigationMode = global::ContestPark.Mobile.Droid.Resource.Attribute.navigationMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.numericModifiers = global::ContestPark.Mobile.Droid.Resource.Attribute.numericModifiers;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.overlapAnchor = global::ContestPark.Mobile.Droid.Resource.Attribute.overlapAnchor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.paddingBottomNoButtons = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.paddingEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.paddingStart = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.paddingTopNoTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.panelBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.panelBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.panelMenuListTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.panelMenuListWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.passwordToggleContentDescription = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.passwordToggleDrawable = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.passwordToggleEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.passwordToggleTint = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.passwordToggleTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.popupMenuStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.popupMenuStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.popupTheme = global::ContestPark.Mobile.Droid.Resource.Attribute.popupTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.popupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.popupWindowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.preserveIconSpacing = global::ContestPark.Mobile.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.pressedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.progressBarPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.progressBarPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.progressBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.progressBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.queryBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.queryBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.queryHint = global::ContestPark.Mobile.Droid.Resource.Attribute.queryHint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.radioButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.radioButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.ratingBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.ratingBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.ratingBarStyleIndicator = global::ContestPark.Mobile.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.ratingBarStyleSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.reverseLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.reverseLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.rippleColor = global::ContestPark.Mobile.Droid.Resource.Attribute.rippleColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.scrimAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.scrimVisibleHeightTrigger = global::ContestPark.Mobile.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.searchHintIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.searchHintIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.searchIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.searchIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.searchViewStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.searchViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.seekBarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.seekBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.selectableItemBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.selectableItemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::ContestPark.Mobile.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.showAsAction = global::ContestPark.Mobile.Droid.Resource.Attribute.showAsAction;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.showDividers = global::ContestPark.Mobile.Droid.Resource.Attribute.showDividers;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.showText = global::ContestPark.Mobile.Droid.Resource.Attribute.showText;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.showTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.showTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.singleChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.spanCount = global::ContestPark.Mobile.Droid.Resource.Attribute.spanCount;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.spinBars = global::ContestPark.Mobile.Droid.Resource.Attribute.spinBars;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.spinnerStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.spinnerStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.splitTrack = global::ContestPark.Mobile.Droid.Resource.Attribute.splitTrack;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.srcCompat = global::ContestPark.Mobile.Droid.Resource.Attribute.srcCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.stackFromEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.stackFromEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.state_above_anchor = global::ContestPark.Mobile.Droid.Resource.Attribute.state_above_anchor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.state_collapsed = global::ContestPark.Mobile.Droid.Resource.Attribute.state_collapsed;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.state_collapsible = global::ContestPark.Mobile.Droid.Resource.Attribute.state_collapsible;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.statusBarBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.statusBarBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.statusBarScrim = global::ContestPark.Mobile.Droid.Resource.Attribute.statusBarScrim;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.subMenuArrow = global::ContestPark.Mobile.Droid.Resource.Attribute.subMenuArrow;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.submitBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.submitBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.subtitle = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.subtitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.subtitleTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitleTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.subtitleTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.suggestionRowLayout = global::ContestPark.Mobile.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.switchMinWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.switchMinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.switchPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.switchPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.switchStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.switchStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.switchTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.switchTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.tabBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabContentStart = global::ContestPark.Mobile.Droid.Resource.Attribute.tabContentStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabGravity = global::ContestPark.Mobile.Droid.Resource.Attribute.tabGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabIndicatorColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabIndicatorHeight = global::ContestPark.Mobile.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabMaxWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMaxWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabMinWidth = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tabMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabPaddingEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabPaddingStart = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabPaddingTop = global::ContestPark.Mobile.Droid.Resource.Attribute.tabPaddingTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabSelectedTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.tabTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tabTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tabTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAllCaps = global::ContestPark.Mobile.Droid.Resource.Attribute.textAllCaps;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceListItem = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceListItemSecondary = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceListItemSmall = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::ContestPark.Mobile.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textColorAlertDialogListItem = global::ContestPark.Mobile.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.textColorSearchUrl = global::ContestPark.Mobile.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.theme = global::ContestPark.Mobile.Droid.Resource.Attribute.theme;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.thickness = global::ContestPark.Mobile.Droid.Resource.Attribute.thickness;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.thumbTextPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTextPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.thumbTint = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.thumbTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.thumbTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tickMark = global::ContestPark.Mobile.Droid.Resource.Attribute.tickMark;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tickMarkTint = global::ContestPark.Mobile.Droid.Resource.Attribute.tickMarkTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tickMarkTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tickMarkTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tint = global::ContestPark.Mobile.Droid.Resource.Attribute.tint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.tintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.title = global::ContestPark.Mobile.Droid.Resource.Attribute.title;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleEnabled = global::ContestPark.Mobile.Droid.Resource.Attribute.titleEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleMargin = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMargin;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleMarginStart = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleMarginTop = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMarginTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleMargins = global::ContestPark.Mobile.Droid.Resource.Attribute.titleMargins;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Attribute.titleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleTextColor = global::ContestPark.Mobile.Droid.Resource.Attribute.titleTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.titleTextStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.titleTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.toolbarId = global::ContestPark.Mobile.Droid.Resource.Attribute.toolbarId;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.toolbarStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.toolbarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tooltipForegroundColor = global::ContestPark.Mobile.Droid.Resource.Attribute.tooltipForegroundColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tooltipFrameBackground = global::ContestPark.Mobile.Droid.Resource.Attribute.tooltipFrameBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.tooltipText = global::ContestPark.Mobile.Droid.Resource.Attribute.tooltipText;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.track = global::ContestPark.Mobile.Droid.Resource.Attribute.track;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.trackTint = global::ContestPark.Mobile.Droid.Resource.Attribute.trackTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.trackTintMode = global::ContestPark.Mobile.Droid.Resource.Attribute.trackTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.useCompatPadding = global::ContestPark.Mobile.Droid.Resource.Attribute.useCompatPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.voiceIcon = global::ContestPark.Mobile.Droid.Resource.Attribute.voiceIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowActionBar = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowActionBarOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowActionModeOverlay = global::ContestPark.Mobile.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowFixedHeightMajor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowFixedHeightMinor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowFixedWidthMajor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowFixedWidthMinor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowMinWidthMajor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowMinWidthMinor = global::ContestPark.Mobile.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Plugin.Segmented.Control.Droid.Resource.Attribute.windowNoTitle = global::ContestPark.Mobile.Droid.Resource.Attribute.windowNoTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Plugin.Segmented.Control.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::ContestPark.Mobile.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_btn_colored_text_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_color_highlight_material = global::ContestPark.Mobile.Droid.Resource.Color.abc_color_highlight_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_hint_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_hint_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_input_method_navigation_guard = global::ContestPark.Mobile.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_primary_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_primary_text_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_search_url_text = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_search_url_text_normal = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_search_url_text_pressed = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_search_url_text_selected = global::ContestPark.Mobile.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_secondary_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_secondary_text_material_light = global::ContestPark.Mobile.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_tint_btn_checkable = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_tint_default = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_default;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_tint_edittext = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_edittext;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_tint_seek_thumb = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_tint_spinner = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.abc_tint_switch_track = global::ContestPark.Mobile.Droid.Resource.Color.abc_tint_switch_track;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.accent_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.accent_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.accent_material_light = global::ContestPark.Mobile.Droid.Resource.Color.accent_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.background_floating_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.background_floating_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.background_floating_material_light = global::ContestPark.Mobile.Droid.Resource.Color.background_floating_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.background_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.background_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.background_material_light = global::ContestPark.Mobile.Droid.Resource.Color.background_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.bright_foreground_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.bright_foreground_inverse_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.bright_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.bright_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.bright_foreground_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.button_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.button_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.button_material_light = global::ContestPark.Mobile.Droid.Resource.Color.button_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.cardview_dark_background = global::ContestPark.Mobile.Droid.Resource.Color.cardview_dark_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.cardview_light_background = global::ContestPark.Mobile.Droid.Resource.Color.cardview_light_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.cardview_shadow_end_color = global::ContestPark.Mobile.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.cardview_shadow_start_color = global::ContestPark.Mobile.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_bottom_navigation_shadow_color = global::ContestPark.Mobile.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_error = global::ContestPark.Mobile.Droid.Resource.Color.design_error;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_shadow_end_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_shadow_mid_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_shadow_start_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_stroke_end_inner_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_stroke_end_outer_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_stroke_top_inner_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_fab_stroke_top_outer_color = global::ContestPark.Mobile.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_snackbar_background_color = global::ContestPark.Mobile.Droid.Resource.Color.design_snackbar_background_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.design_tint_password_toggle = global::ContestPark.Mobile.Droid.Resource.Color.design_tint_password_toggle;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.dim_foreground_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.dim_foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.dim_foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.dim_foreground_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.foreground_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.foreground_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.foreground_material_light = global::ContestPark.Mobile.Droid.Resource.Color.foreground_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.highlighted_text_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.highlighted_text_material_light = global::ContestPark.Mobile.Droid.Resource.Color.highlighted_text_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_blue_grey_800 = global::ContestPark.Mobile.Droid.Resource.Color.material_blue_grey_800;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_blue_grey_900 = global::ContestPark.Mobile.Droid.Resource.Color.material_blue_grey_900;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_blue_grey_950 = global::ContestPark.Mobile.Droid.Resource.Color.material_blue_grey_950;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_deep_teal_200 = global::ContestPark.Mobile.Droid.Resource.Color.material_deep_teal_200;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_deep_teal_500 = global::ContestPark.Mobile.Droid.Resource.Color.material_deep_teal_500;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_100 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_100;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_300 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_300;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_50 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_50;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_600 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_600;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_800 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_800;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_850 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_850;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.material_grey_900 = global::ContestPark.Mobile.Droid.Resource.Color.material_grey_900;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.normal = global::ContestPark.Mobile.Droid.Resource.Color.normal;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.notification_action_color_filter = global::ContestPark.Mobile.Droid.Resource.Color.notification_action_color_filter;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.notification_icon_bg_color = global::ContestPark.Mobile.Droid.Resource.Color.notification_icon_bg_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.notification_material_background_media_default_color = global::ContestPark.Mobile.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_dark_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_dark_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_dark_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_dark_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_text_default_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_text_default_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_default_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_text_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.primary_text_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.ripple_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.ripple_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.ripple_material_light = global::ContestPark.Mobile.Droid.Resource.Color.ripple_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.secondary_text_default_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.secondary_text_default_material_light = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.secondary_text_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.secondary_text_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.segmented_control_text = global::ContestPark.Mobile.Droid.Resource.Color.segmented_control_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.selected = global::ContestPark.Mobile.Droid.Resource.Color.selected;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.switch_thumb_disabled_material_light = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.switch_thumb_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.switch_thumb_material_light = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.switch_thumb_normal_material_dark = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.switch_thumb_normal_material_light = global::ContestPark.Mobile.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.tooltip_background_dark = global::ContestPark.Mobile.Droid.Resource.Color.tooltip_background_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Color.tooltip_background_light = global::ContestPark.Mobile.Droid.Resource.Color.tooltip_background_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_elevation_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_button_min_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_button_min_width_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_control_corner_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_control_inset_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_control_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_fixed_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_min_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_padding_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dialog_title_divider_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_floating_window_z = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_panel_menu_list_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_progress_bar_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_search_view_preferred_height = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_search_view_preferred_width = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_seekbar_track_background_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_select_dialog_padding_start_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_switch_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_switch_padding;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_body_1_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_body_2_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_button_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_caption_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_display_1_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_display_2_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_display_3_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_display_4_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_headline_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_large_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_medium_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_menu_header_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_menu_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_small_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_subhead_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_title_material = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::ContestPark.Mobile.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.cardview_default_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.cardview_default_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.cardview_default_radius;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.compat_button_inset_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.compat_button_inset_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.compat_button_padding_horizontal_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.compat_button_padding_vertical_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.compat_control_corner_material = global::ContestPark.Mobile.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_appbar_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_active_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_height = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_item_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_item_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_shadow_height = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_navigation_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min = global::ContestPark.Mobile.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_fab_border_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_border_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_fab_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_fab_image_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_image_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_fab_size_mini = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_fab_size_normal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::ContestPark.Mobile.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_navigation_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_navigation_icon_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_navigation_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_navigation_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_navigation_padding_bottom = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_action_inline_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_background_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_elevation = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_padding_horizontal = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_padding_vertical = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_snackbar_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_tab_max_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_max_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_tab_scrollable_min_width = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_tab_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_text_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.design_tab_text_size_2line = global::ContestPark.Mobile.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.disabled_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.disabled_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.fastscroll_default_thickness = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_default_thickness;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.fastscroll_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_margin;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.fastscroll_minimum_range = global::ContestPark.Mobile.Droid.Resource.Dimension.fastscroll_minimum_range;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.highlight_alpha_material_colored = global::ContestPark.Mobile.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.highlight_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.highlight_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.hint_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.hint_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.hint_pressed_alpha_material_dark = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.hint_pressed_alpha_material_light = global::ContestPark.Mobile.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::ContestPark.Mobile.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::ContestPark.Mobile.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::ContestPark.Mobile.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.mr_dialog_fixed_width_major = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.mr_dialog_fixed_width_minor = global::ContestPark.Mobile.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_action_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_action_text_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_action_text_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_big_circle_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_content_margin_start = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_large_icon_height = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_large_icon_width = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_main_column_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_media_narrow_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_right_icon_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_right_side_padding_top = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_small_icon_background_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_small_icon_size_as_large = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_subtext_size = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_subtext_size;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_top_pad = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_top_pad;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.notification_top_pad_large_text = global::ContestPark.Mobile.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_corner_radius = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_corner_radius;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_horizontal_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_horizontal_padding;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_margin = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_margin;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_precise_anchor_threshold = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_precise_anchor_threshold;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_vertical_padding = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_vertical_padding;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_y_offset_non_touch = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_y_offset_non_touch;
+			global::Plugin.Segmented.Control.Droid.Resource.Dimension.tooltip_y_offset_touch = global::ContestPark.Mobile.Droid.Resource.Dimension.tooltip_y_offset_touch;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_borderless_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_check_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_colored_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_radio_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_cab_background_top_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_control_background_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_control_background_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_dialog_material_background = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_edit_text_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_ab_back_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_clear_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_go_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_menu_overflow_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_star_black_16dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_star_black_36dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_star_black_48dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_star_half_black_16dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_star_half_black_36dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_star_half_black_48dp = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_item_background_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_item_background_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_focused_holo = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_longpressed_holo = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_list_selector_holo_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ratingbar_indicator_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ratingbar_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_ratingbar_small_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_seekbar_thumb_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_seekbar_tick_mark_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_seekbar_track_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_switch_thumb_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_tab_indicator_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_cursor_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_textfield_search_material = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.abc_vector_test = global::ContestPark.Mobile.Droid.Resource.Drawable.abc_vector_test;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.avd_hide_password = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_hide_password;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.avd_show_password = global::ContestPark.Mobile.Droid.Resource.Drawable.avd_show_password;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.design_bottom_navigation_item_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.design_fab_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_fab_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.design_ic_visibility = global::ContestPark.Mobile.Droid.Resource.Drawable.design_ic_visibility;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.design_ic_visibility_off = global::ContestPark.Mobile.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.design_password_eye = global::ContestPark.Mobile.Droid.Resource.Drawable.design_password_eye;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.design_snackbar_background = global::ContestPark.Mobile.Droid.Resource.Drawable.design_snackbar_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_audiotrack_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_audiotrack_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_audiotrack_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_dialog_close_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_dialog_close_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_dialog_close_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_dialog_close_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_00 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_00;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_01 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_01;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_02 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_02;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_03 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_03;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_04 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_04;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_05 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_05;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_06 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_06;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_07 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_07;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_08 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_08;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_09 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_09;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_10 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_10;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_11 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_11;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_12 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_12;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_13 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_13;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_14 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_14;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_collapse_15 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_collapse_15;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_00 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_00;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_01 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_01;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_02 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_02;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_03 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_03;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_04 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_04;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_05 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_05;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_06 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_06;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_07 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_07;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_08 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_08;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_09 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_09;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_10 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_10;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_11 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_11;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_12 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_12;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_13 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_13;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_14 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_14;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_group_expand_15 = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_group_expand_15;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_media_pause_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_pause_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_media_pause_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_pause_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_media_play_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_play_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_media_play_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_play_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_media_stop_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_stop_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_media_stop_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_media_stop_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_00_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_00_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_01_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_01_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_02_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_02_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_03_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_03_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_04_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_04_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_05_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_05_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_06_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_06_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_07_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_07_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_08_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_08_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_09_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_09_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_10_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_10_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_11_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_11_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_12_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_12_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_13_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_13_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_14_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_14_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_15_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_15_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_16_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_16_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_17_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_17_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_18_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_18_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_19_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_19_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_20_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_20_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_21_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_21_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_22_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_22_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_23_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_23_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_23_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_23_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_24_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_24_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_24_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_24_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_25_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_25_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_25_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_25_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_26_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_26_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_26_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_26_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_27_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_27_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_27_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_27_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_28_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_28_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_28_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_28_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_29_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_29_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_29_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_29_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_30_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_30_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connected_30_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connected_30_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_00_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_01_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_02_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_03_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_04_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_05_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_06_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_07_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_08_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_09_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_10_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_11_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_12_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_13_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_14_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_15_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_16_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_17_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_18_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_19_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_20_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_21_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_22_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_23_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_23_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_23_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_23_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_24_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_24_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_24_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_24_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_25_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_25_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_25_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_25_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_26_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_26_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_26_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_26_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_27_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_27_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_27_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_27_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_28_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_28_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_28_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_28_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_29_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_29_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_29_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_29_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_30_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_30_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_connecting_30_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_connecting_30_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_disabled_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_disabled_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disabled_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_disconnected_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_disconnected_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_mr_button_grey = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_vol_type_speaker_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_vol_type_speaker_group_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_vol_type_speaker_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_speaker_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_vol_type_tv_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_tv_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.ic_vol_type_tv_light = global::ContestPark.Mobile.Droid.Resource.Drawable.ic_vol_type_tv_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_button_connected_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connected_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_button_connected_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connected_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_button_connecting_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connecting_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_button_connecting_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_connecting_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_button_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_button_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_button_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_dialog_close_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_close_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_dialog_close_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_close_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_dialog_material_background_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_material_background_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_dialog_material_background_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_group_collapse = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_group_collapse;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_group_expand = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_group_expand;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_media_pause_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_pause_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_media_pause_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_pause_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_media_play_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_play_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_media_play_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_play_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_media_stop_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_stop_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_media_stop_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_media_stop_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.mr_vol_type_audiotrack_light = global::ContestPark.Mobile.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.navigation_empty_icon = global::ContestPark.Mobile.Droid.Resource.Drawable.navigation_empty_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_action_background = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_action_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_bg_low = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_low;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_bg_low_normal = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_bg_low_pressed = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_bg_normal = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_normal;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_bg_normal_pressed = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_icon_background = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_icon_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_template_icon_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_template_icon_low_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notification_tile_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notification_tile_bg;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::ContestPark.Mobile.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.segmented_control_background = global::ContestPark.Mobile.Droid.Resource.Drawable.segmented_control_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.segmented_control_first_background = global::ContestPark.Mobile.Droid.Resource.Drawable.segmented_control_first_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.segmented_control_last_background = global::ContestPark.Mobile.Droid.Resource.Drawable.segmented_control_last_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.tooltip_frame_dark = global::ContestPark.Mobile.Droid.Resource.Drawable.tooltip_frame_dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Drawable.tooltip_frame_light = global::ContestPark.Mobile.Droid.Resource.Drawable.tooltip_frame_light;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.ALT = global::ContestPark.Mobile.Droid.Resource.Id.ALT;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.CTRL = global::ContestPark.Mobile.Droid.Resource.Id.CTRL;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.FUNCTION = global::ContestPark.Mobile.Droid.Resource.Id.FUNCTION;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.META = global::ContestPark.Mobile.Droid.Resource.Id.META;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.SHIFT = global::ContestPark.Mobile.Droid.Resource.Id.SHIFT;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.SYM = global::ContestPark.Mobile.Droid.Resource.Id.SYM;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.SegControl = global::ContestPark.Mobile.Droid.Resource.Id.SegControl;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action0 = global::ContestPark.Mobile.Droid.Resource.Id.action0;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar = global::ContestPark.Mobile.Droid.Resource.Id.action_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar_activity_content = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_activity_content;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar_container = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar_root = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_root;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar_spinner = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar_subtitle = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_bar_title = global::ContestPark.Mobile.Droid.Resource.Id.action_bar_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_container = global::ContestPark.Mobile.Droid.Resource.Id.action_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_context_bar = global::ContestPark.Mobile.Droid.Resource.Id.action_context_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_divider = global::ContestPark.Mobile.Droid.Resource.Id.action_divider;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_image = global::ContestPark.Mobile.Droid.Resource.Id.action_image;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_menu_divider = global::ContestPark.Mobile.Droid.Resource.Id.action_menu_divider;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_menu_presenter = global::ContestPark.Mobile.Droid.Resource.Id.action_menu_presenter;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_mode_bar = global::ContestPark.Mobile.Droid.Resource.Id.action_mode_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_mode_bar_stub = global::ContestPark.Mobile.Droid.Resource.Id.action_mode_bar_stub;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_mode_close_button = global::ContestPark.Mobile.Droid.Resource.Id.action_mode_close_button;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.action_text = global::ContestPark.Mobile.Droid.Resource.Id.action_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.actions = global::ContestPark.Mobile.Droid.Resource.Id.actions;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.activity_chooser_view_content = global::ContestPark.Mobile.Droid.Resource.Id.activity_chooser_view_content;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.add = global::ContestPark.Mobile.Droid.Resource.Id.add;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.alertTitle = global::ContestPark.Mobile.Droid.Resource.Id.alertTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.all = global::ContestPark.Mobile.Droid.Resource.Id.all;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.always = global::ContestPark.Mobile.Droid.Resource.Id.always;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.async = global::ContestPark.Mobile.Droid.Resource.Id.async;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.auto = global::ContestPark.Mobile.Droid.Resource.Id.auto;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.beginning = global::ContestPark.Mobile.Droid.Resource.Id.beginning;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.blocking = global::ContestPark.Mobile.Droid.Resource.Id.blocking;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.bottom = global::ContestPark.Mobile.Droid.Resource.Id.bottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.bottomtab_navarea = global::ContestPark.Mobile.Droid.Resource.Id.bottomtab_navarea;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.bottomtab_tabbar = global::ContestPark.Mobile.Droid.Resource.Id.bottomtab_tabbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.buttonPanel = global::ContestPark.Mobile.Droid.Resource.Id.buttonPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.cancel_action = global::ContestPark.Mobile.Droid.Resource.Id.cancel_action;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.center = global::ContestPark.Mobile.Droid.Resource.Id.center;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.center_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.center_horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.center_vertical = global::ContestPark.Mobile.Droid.Resource.Id.center_vertical;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.checkbox = global::ContestPark.Mobile.Droid.Resource.Id.checkbox;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.chronometer = global::ContestPark.Mobile.Droid.Resource.Id.chronometer;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.clip_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.clip_horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.clip_vertical = global::ContestPark.Mobile.Droid.Resource.Id.clip_vertical;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.collapseActionView = global::ContestPark.Mobile.Droid.Resource.Id.collapseActionView;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.container = global::ContestPark.Mobile.Droid.Resource.Id.container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.contentPanel = global::ContestPark.Mobile.Droid.Resource.Id.contentPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.coordinator = global::ContestPark.Mobile.Droid.Resource.Id.coordinator;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.custom = global::ContestPark.Mobile.Droid.Resource.Id.custom;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.customPanel = global::ContestPark.Mobile.Droid.Resource.Id.customPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.decor_content_parent = global::ContestPark.Mobile.Droid.Resource.Id.decor_content_parent;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.default_activity_button = global::ContestPark.Mobile.Droid.Resource.Id.default_activity_button;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.design_bottom_sheet = global::ContestPark.Mobile.Droid.Resource.Id.design_bottom_sheet;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.design_menu_item_action_area = global::ContestPark.Mobile.Droid.Resource.Id.design_menu_item_action_area;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.design_menu_item_action_area_stub = global::ContestPark.Mobile.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.design_menu_item_text = global::ContestPark.Mobile.Droid.Resource.Id.design_menu_item_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.design_navigation_view = global::ContestPark.Mobile.Droid.Resource.Id.design_navigation_view;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.disableHome = global::ContestPark.Mobile.Droid.Resource.Id.disableHome;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.edit_query = global::ContestPark.Mobile.Droid.Resource.Id.edit_query;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.end = global::ContestPark.Mobile.Droid.Resource.Id.end;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.end_padder = global::ContestPark.Mobile.Droid.Resource.Id.end_padder;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.enterAlways = global::ContestPark.Mobile.Droid.Resource.Id.enterAlways;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.enterAlwaysCollapsed = global::ContestPark.Mobile.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.exitUntilCollapsed = global::ContestPark.Mobile.Droid.Resource.Id.exitUntilCollapsed;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.expand_activities_button = global::ContestPark.Mobile.Droid.Resource.Id.expand_activities_button;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.expanded_menu = global::ContestPark.Mobile.Droid.Resource.Id.expanded_menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.fill = global::ContestPark.Mobile.Droid.Resource.Id.fill;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.fill_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.fill_horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.fill_vertical = global::ContestPark.Mobile.Droid.Resource.Id.fill_vertical;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.@fixed = global::ContestPark.Mobile.Droid.Resource.Id.@fixed;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.flyoutcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.flyoutcontent_appbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.flyoutcontent_recycler = global::ContestPark.Mobile.Droid.Resource.Id.flyoutcontent_recycler;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.forever = global::ContestPark.Mobile.Droid.Resource.Id.forever;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.ghost_view = global::ContestPark.Mobile.Droid.Resource.Id.ghost_view;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.home = global::ContestPark.Mobile.Droid.Resource.Id.home;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.homeAsUp = global::ContestPark.Mobile.Droid.Resource.Id.homeAsUp;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.icon = global::ContestPark.Mobile.Droid.Resource.Id.icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.icon_group = global::ContestPark.Mobile.Droid.Resource.Id.icon_group;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.ifRoom = global::ContestPark.Mobile.Droid.Resource.Id.ifRoom;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.image = global::ContestPark.Mobile.Droid.Resource.Id.image;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.info = global::ContestPark.Mobile.Droid.Resource.Id.info;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.italic = global::ContestPark.Mobile.Droid.Resource.Id.italic;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.item_touch_helper_previous_elevation = global::ContestPark.Mobile.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.largeLabel = global::ContestPark.Mobile.Droid.Resource.Id.largeLabel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.left = global::ContestPark.Mobile.Droid.Resource.Id.left;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.line1 = global::ContestPark.Mobile.Droid.Resource.Id.line1;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.line3 = global::ContestPark.Mobile.Droid.Resource.Id.line3;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.listMode = global::ContestPark.Mobile.Droid.Resource.Id.listMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.list_item = global::ContestPark.Mobile.Droid.Resource.Id.list_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.media_actions = global::ContestPark.Mobile.Droid.Resource.Id.media_actions;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.message = global::ContestPark.Mobile.Droid.Resource.Id.message;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.middle = global::ContestPark.Mobile.Droid.Resource.Id.middle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mini = global::ContestPark.Mobile.Droid.Resource.Id.mini;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_art = global::ContestPark.Mobile.Droid.Resource.Id.mr_art;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_chooser_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_list;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_chooser_route_desc = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_desc;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_chooser_route_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_chooser_route_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_route_name;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_chooser_title = global::ContestPark.Mobile.Droid.Resource.Id.mr_chooser_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_close = global::ContestPark.Mobile.Droid.Resource.Id.mr_close;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_control_divider = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_divider;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_control_playback_ctrl = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_playback_ctrl;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_control_subtitle = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_control_title = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_control_title_container = global::ContestPark.Mobile.Droid.Resource.Id.mr_control_title_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_custom_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_custom_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_default_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_default_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_dialog_area = global::ContestPark.Mobile.Droid.Resource.Id.mr_dialog_area;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_expandable_area = global::ContestPark.Mobile.Droid.Resource.Id.mr_expandable_area;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_group_expand_collapse = global::ContestPark.Mobile.Droid.Resource.Id.mr_group_expand_collapse;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_media_main_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_media_main_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_name = global::ContestPark.Mobile.Droid.Resource.Id.mr_name;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_playback_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_playback_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_title_bar = global::ContestPark.Mobile.Droid.Resource.Id.mr_title_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_volume_control = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_volume_group_list = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_group_list;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_volume_item_icon = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_item_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.mr_volume_slider = global::ContestPark.Mobile.Droid.Resource.Id.mr_volume_slider;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.multiply = global::ContestPark.Mobile.Droid.Resource.Id.multiply;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.navigation_header_container = global::ContestPark.Mobile.Droid.Resource.Id.navigation_header_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.never = global::ContestPark.Mobile.Droid.Resource.Id.never;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.none = global::ContestPark.Mobile.Droid.Resource.Id.none;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.normal = global::ContestPark.Mobile.Droid.Resource.Id.normal;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.notification_background = global::ContestPark.Mobile.Droid.Resource.Id.notification_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.notification_main_column = global::ContestPark.Mobile.Droid.Resource.Id.notification_main_column;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.notification_main_column_container = global::ContestPark.Mobile.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.parallax = global::ContestPark.Mobile.Droid.Resource.Id.parallax;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.parentPanel = global::ContestPark.Mobile.Droid.Resource.Id.parentPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.parent_matrix = global::ContestPark.Mobile.Droid.Resource.Id.parent_matrix;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.pin = global::ContestPark.Mobile.Droid.Resource.Id.pin;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.progress_circular = global::ContestPark.Mobile.Droid.Resource.Id.progress_circular;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.progress_horizontal = global::ContestPark.Mobile.Droid.Resource.Id.progress_horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.radio = global::ContestPark.Mobile.Droid.Resource.Id.radio;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.right = global::ContestPark.Mobile.Droid.Resource.Id.right;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.right_icon = global::ContestPark.Mobile.Droid.Resource.Id.right_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.right_side = global::ContestPark.Mobile.Droid.Resource.Id.right_side;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.save_image_matrix = global::ContestPark.Mobile.Droid.Resource.Id.save_image_matrix;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.save_non_transition_alpha = global::ContestPark.Mobile.Droid.Resource.Id.save_non_transition_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.save_scale_type = global::ContestPark.Mobile.Droid.Resource.Id.save_scale_type;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.screen = global::ContestPark.Mobile.Droid.Resource.Id.screen;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.scroll = global::ContestPark.Mobile.Droid.Resource.Id.scroll;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.scrollIndicatorDown = global::ContestPark.Mobile.Droid.Resource.Id.scrollIndicatorDown;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.scrollIndicatorUp = global::ContestPark.Mobile.Droid.Resource.Id.scrollIndicatorUp;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.scrollView = global::ContestPark.Mobile.Droid.Resource.Id.scrollView;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.scrollable = global::ContestPark.Mobile.Droid.Resource.Id.scrollable;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_badge = global::ContestPark.Mobile.Droid.Resource.Id.search_badge;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_bar = global::ContestPark.Mobile.Droid.Resource.Id.search_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_button = global::ContestPark.Mobile.Droid.Resource.Id.search_button;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_close_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_close_btn;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_edit_frame = global::ContestPark.Mobile.Droid.Resource.Id.search_edit_frame;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_go_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_go_btn;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_mag_icon = global::ContestPark.Mobile.Droid.Resource.Id.search_mag_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_plate = global::ContestPark.Mobile.Droid.Resource.Id.search_plate;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_src_text = global::ContestPark.Mobile.Droid.Resource.Id.search_src_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.search_voice_btn = global::ContestPark.Mobile.Droid.Resource.Id.search_voice_btn;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.select_dialog_listview = global::ContestPark.Mobile.Droid.Resource.Id.select_dialog_listview;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.shape_id = global::ContestPark.Mobile.Droid.Resource.Id.shape_id;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.shellcontent_appbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_appbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.shellcontent_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.shellcontent_toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.shortcut = global::ContestPark.Mobile.Droid.Resource.Id.shortcut;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.showCustom = global::ContestPark.Mobile.Droid.Resource.Id.showCustom;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.showHome = global::ContestPark.Mobile.Droid.Resource.Id.showHome;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.showTitle = global::ContestPark.Mobile.Droid.Resource.Id.showTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.smallLabel = global::ContestPark.Mobile.Droid.Resource.Id.smallLabel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.snackbar_action = global::ContestPark.Mobile.Droid.Resource.Id.snackbar_action;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.snackbar_text = global::ContestPark.Mobile.Droid.Resource.Id.snackbar_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.snap = global::ContestPark.Mobile.Droid.Resource.Id.snap;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.spacer = global::ContestPark.Mobile.Droid.Resource.Id.spacer;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.split_action_bar = global::ContestPark.Mobile.Droid.Resource.Id.split_action_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.src_atop = global::ContestPark.Mobile.Droid.Resource.Id.src_atop;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.src_in = global::ContestPark.Mobile.Droid.Resource.Id.src_in;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.src_over = global::ContestPark.Mobile.Droid.Resource.Id.src_over;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.start = global::ContestPark.Mobile.Droid.Resource.Id.start;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.status_bar_latest_event_content = global::ContestPark.Mobile.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.submenuarrow = global::ContestPark.Mobile.Droid.Resource.Id.submenuarrow;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.submit_area = global::ContestPark.Mobile.Droid.Resource.Id.submit_area;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.tabMode = global::ContestPark.Mobile.Droid.Resource.Id.tabMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.tag_transition_group = global::ContestPark.Mobile.Droid.Resource.Id.tag_transition_group;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.text = global::ContestPark.Mobile.Droid.Resource.Id.text;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.text2 = global::ContestPark.Mobile.Droid.Resource.Id.text2;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.textSpacerNoButtons = global::ContestPark.Mobile.Droid.Resource.Id.textSpacerNoButtons;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.textSpacerNoTitle = global::ContestPark.Mobile.Droid.Resource.Id.textSpacerNoTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.text_input_password_toggle = global::ContestPark.Mobile.Droid.Resource.Id.text_input_password_toggle;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.textinput_counter = global::ContestPark.Mobile.Droid.Resource.Id.textinput_counter;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.textinput_error = global::ContestPark.Mobile.Droid.Resource.Id.textinput_error;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.time = global::ContestPark.Mobile.Droid.Resource.Id.time;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.title = global::ContestPark.Mobile.Droid.Resource.Id.title;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.titleDividerNoCustom = global::ContestPark.Mobile.Droid.Resource.Id.titleDividerNoCustom;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.title_template = global::ContestPark.Mobile.Droid.Resource.Id.title_template;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.top = global::ContestPark.Mobile.Droid.Resource.Id.top;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.topPanel = global::ContestPark.Mobile.Droid.Resource.Id.topPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.touch_outside = global::ContestPark.Mobile.Droid.Resource.Id.touch_outside;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.transition_current_scene = global::ContestPark.Mobile.Droid.Resource.Id.transition_current_scene;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.transition_layout_save = global::ContestPark.Mobile.Droid.Resource.Id.transition_layout_save;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.transition_position = global::ContestPark.Mobile.Droid.Resource.Id.transition_position;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.transition_scene_layoutid_cache = global::ContestPark.Mobile.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.transition_transform = global::ContestPark.Mobile.Droid.Resource.Id.transition_transform;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.uniform = global::ContestPark.Mobile.Droid.Resource.Id.uniform;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.up = global::ContestPark.Mobile.Droid.Resource.Id.up;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.useLogo = global::ContestPark.Mobile.Droid.Resource.Id.useLogo;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.view_offset_helper = global::ContestPark.Mobile.Droid.Resource.Id.view_offset_helper;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.visible = global::ContestPark.Mobile.Droid.Resource.Id.visible;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.volume_item_container = global::ContestPark.Mobile.Droid.Resource.Id.volume_item_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.withText = global::ContestPark.Mobile.Droid.Resource.Id.withText;
+			global::Plugin.Segmented.Control.Droid.Resource.Id.wrap_content = global::ContestPark.Mobile.Droid.Resource.Id.wrap_content;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.abc_config_activityDefaultDur = global::ContestPark.Mobile.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.abc_config_activityShortDur = global::ContestPark.Mobile.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.app_bar_elevation_anim_duration = global::ContestPark.Mobile.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.bottom_sheet_slide_duration = global::ContestPark.Mobile.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.cancel_button_image_alpha = global::ContestPark.Mobile.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.config_tooltipAnimTime = global::ContestPark.Mobile.Droid.Resource.Integer.config_tooltipAnimTime;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.design_snackbar_text_max_lines = global::ContestPark.Mobile.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.hide_password_duration = global::ContestPark.Mobile.Droid.Resource.Integer.hide_password_duration;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::ContestPark.Mobile.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.show_password_duration = global::ContestPark.Mobile.Droid.Resource.Integer.show_password_duration;
+			global::Plugin.Segmented.Control.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::ContestPark.Mobile.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.Segmented.Control.Droid.Resource.Interpolator.mr_fast_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mr_fast_out_slow_in;
+			global::Plugin.Segmented.Control.Droid.Resource.Interpolator.mr_linear_out_slow_in = global::ContestPark.Mobile.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_action_bar_title_item = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_action_bar_up_container = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_action_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_action_menu_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_action_mode_bar = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_action_mode_close_item_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_activity_chooser_view = global::ContestPark.Mobile.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::ContestPark.Mobile.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_alert_dialog_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_alert_dialog_title_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_dialog_title_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_expanded_menu_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_list_menu_item_icon = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_list_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_list_menu_item_radio = global::ContestPark.Mobile.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_popup_menu_header_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_popup_menu_item_layout = global::ContestPark.Mobile.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_screen_content_include = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_content_include;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_screen_simple = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_simple;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_screen_toolbar = global::ContestPark.Mobile.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::ContestPark.Mobile.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_search_view = global::ContestPark.Mobile.Droid.Resource.Layout.abc_search_view;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.abc_select_dialog_material = global::ContestPark.Mobile.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.BottomTabLayout = global::ContestPark.Mobile.Droid.Resource.Layout.BottomTabLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_bottom_navigation_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_bottom_sheet_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_layout_snackbar = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_snackbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_layout_snackbar_include = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_layout_tab_icon = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_layout_tab_text = global::ContestPark.Mobile.Droid.Resource.Layout.design_layout_tab_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_menu_item_action_area = global::ContestPark.Mobile.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_navigation_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_navigation_item_header = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item_header;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_navigation_item_separator = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_navigation_item_subheader = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_navigation_menu = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_navigation_menu_item = global::ContestPark.Mobile.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.design_text_input_password_icon = global::ContestPark.Mobile.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.FlyoutContent = global::ContestPark.Mobile.Droid.Resource.Layout.FlyoutContent;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.mr_chooser_dialog = global::ContestPark.Mobile.Droid.Resource.Layout.mr_chooser_dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.mr_chooser_list_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_chooser_list_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.mr_controller_material_dialog_b = global::ContestPark.Mobile.Droid.Resource.Layout.mr_controller_material_dialog_b;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.mr_controller_volume_item = global::ContestPark.Mobile.Droid.Resource.Layout.mr_controller_volume_item;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.mr_playback_control = global::ContestPark.Mobile.Droid.Resource.Layout.mr_playback_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.mr_volume_control = global::ContestPark.Mobile.Droid.Resource.Layout.mr_volume_control;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_action;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_action_tombstone = global::ContestPark.Mobile.Droid.Resource.Layout.notification_action_tombstone;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_media_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_media_action;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_media_cancel_action = global::ContestPark.Mobile.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_big_media = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_big_media_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_big_media_narrow = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_big_media_narrow_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_custom_big = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_custom_big;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_icon_group = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_icon_group;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_lines_media = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_lines_media;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_media = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_media;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_media_custom = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_media_custom;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_part_chronometer = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.notification_template_part_time = global::ContestPark.Mobile.Droid.Resource.Layout.notification_template_part_time;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.RadioButton = global::ContestPark.Mobile.Droid.Resource.Layout.RadioButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.RadioGroup = global::ContestPark.Mobile.Droid.Resource.Layout.RadioGroup;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.RootLayout = global::ContestPark.Mobile.Droid.Resource.Layout.RootLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.select_dialog_item_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_item_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.select_dialog_multichoice_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.select_dialog_singlechoice_material = global::ContestPark.Mobile.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.ShellContent = global::ContestPark.Mobile.Droid.Resource.Layout.ShellContent;
+			global::Plugin.Segmented.Control.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::ContestPark.Mobile.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_action_bar_home_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_bar_home_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_action_bar_up_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_bar_up_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_action_menu_overflow_description = global::ContestPark.Mobile.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_action_mode_done = global::ContestPark.Mobile.Droid.Resource.String.abc_action_mode_done;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_activity_chooser_view_see_all = global::ContestPark.Mobile.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_activitychooserview_choose_application = global::ContestPark.Mobile.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_capital_off = global::ContestPark.Mobile.Droid.Resource.String.abc_capital_off;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_capital_on = global::ContestPark.Mobile.Droid.Resource.String.abc_capital_on;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_body_1_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_body_1_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_body_2_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_body_2_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_button_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_button_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_caption_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_caption_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_display_1_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_1_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_display_2_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_2_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_display_3_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_3_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_display_4_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_display_4_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_headline_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_headline_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_menu_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_menu_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_subhead_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_subhead_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_font_family_title_material = global::ContestPark.Mobile.Droid.Resource.String.abc_font_family_title_material;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_search_hint = global::ContestPark.Mobile.Droid.Resource.String.abc_search_hint;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_searchview_description_clear = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_clear;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_searchview_description_query = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_query;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_searchview_description_search = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_search;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_searchview_description_submit = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_submit;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_searchview_description_voice = global::ContestPark.Mobile.Droid.Resource.String.abc_searchview_description_voice;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_shareactionprovider_share_with = global::ContestPark.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::ContestPark.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Plugin.Segmented.Control.Droid.Resource.String.abc_toolbar_collapse_description = global::ContestPark.Mobile.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.appbar_scrolling_view_behavior = global::ContestPark.Mobile.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Plugin.Segmented.Control.Droid.Resource.String.bottom_sheet_behavior = global::ContestPark.Mobile.Droid.Resource.String.bottom_sheet_behavior;
+			global::Plugin.Segmented.Control.Droid.Resource.String.character_counter_pattern = global::ContestPark.Mobile.Droid.Resource.String.character_counter_pattern;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_button_content_description = global::ContestPark.Mobile.Droid.Resource.String.mr_button_content_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_cast_button_connected = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_connected;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_cast_button_connecting = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_connecting;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_cast_button_disconnected = global::ContestPark.Mobile.Droid.Resource.String.mr_cast_button_disconnected;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_chooser_searching = global::ContestPark.Mobile.Droid.Resource.String.mr_chooser_searching;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_chooser_title = global::ContestPark.Mobile.Droid.Resource.String.mr_chooser_title;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_album_art = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_album_art;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_casting_screen = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_casting_screen;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_close_description = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_close_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_collapse_group = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_collapse_group;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_disconnect = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_disconnect;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_expand_group = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_expand_group;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_no_info_available = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_no_info_available;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_no_media_selected = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_no_media_selected;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_pause = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_pause;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_play = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_play;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_stop = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_stop;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_stop_casting = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_stop_casting;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_controller_volume_slider = global::ContestPark.Mobile.Droid.Resource.String.mr_controller_volume_slider;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_system_route_name = global::ContestPark.Mobile.Droid.Resource.String.mr_system_route_name;
+			global::Plugin.Segmented.Control.Droid.Resource.String.mr_user_route_category_name = global::ContestPark.Mobile.Droid.Resource.String.mr_user_route_category_name;
+			global::Plugin.Segmented.Control.Droid.Resource.String.password_toggle_content_description = global::ContestPark.Mobile.Droid.Resource.String.password_toggle_content_description;
+			global::Plugin.Segmented.Control.Droid.Resource.String.path_password_eye = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye;
+			global::Plugin.Segmented.Control.Droid.Resource.String.path_password_eye_mask_strike_through = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::Plugin.Segmented.Control.Droid.Resource.String.path_password_eye_mask_visible = global::ContestPark.Mobile.Droid.Resource.String.path_password_eye_mask_visible;
+			global::Plugin.Segmented.Control.Droid.Resource.String.path_password_strike_through = global::ContestPark.Mobile.Droid.Resource.String.path_password_strike_through;
+			global::Plugin.Segmented.Control.Droid.Resource.String.search_menu_title = global::ContestPark.Mobile.Droid.Resource.String.search_menu_title;
+			global::Plugin.Segmented.Control.Droid.Resource.String.status_bar_notification_info_overflow = global::ContestPark.Mobile.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.AlertDialog_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Animation_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::ContestPark.Mobile.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Animation_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.Animation_AppCompat_Tooltip;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Animation_Design_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::ContestPark.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_CardView = global::ContestPark.Mobile.Droid.Resource.Style.Base_CardView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::ContestPark.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V26_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.CardView = global::ContestPark.Mobile.Droid.Resource.Style.CardView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.CardView_Dark = global::ContestPark.Mobile.Droid.Resource.Style.CardView_Dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.CardView_Light = global::ContestPark.Mobile.Droid.Resource.Style.CardView_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_V21_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_V21_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_V25_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_V25_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::ContestPark.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Info = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Media;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Time = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_Counter = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_Error = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_Hint = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Design_Tab = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_MediaRouter_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::ContestPark.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_Design = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_Design_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_Design_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_Design_Light_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_Design_NoActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_MediaRouter = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_MediaRouter_Light = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel = global::ContestPark.Mobile.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light = global::ContestPark.Mobile.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Button = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_EditText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ImageButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ListMenuView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ListView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_SearchView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_SeekBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Spinner = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::ContestPark.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Compat_NotificationActionContainer = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Compat_NotificationActionText = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_AppBarLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_BottomSheet_Modal = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_CollapsingToolbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_NavigationView = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_Snackbar = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_TabLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_Design_TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_displayOptions = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_divider = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_divider;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_height = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_homeLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_itemPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_logo = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_logo;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_navigationMode = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_subtitle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_title = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBarLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMenuItemView = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMenuView = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMenuView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode_height = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActivityChooserView = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::ContestPark.Mobile.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_listLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_showTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_expanded = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayoutStates = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatImageView = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatImageView_android_src = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatImageView_srcCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatImageView_tint = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatImageView_tintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatSeekBar = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatSeekBar_tickMark = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarSize = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorAccent = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorError = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorError;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorPrimary = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_dividerVertical = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_editTextBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_editTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_editTextStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_panelBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_switchStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomNavigationView = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomNavigationView_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomNavigationView_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomNavigationView_itemIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomNavigationView_itemTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomNavigationView_menu = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomSheetBehavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::ContestPark.Mobile.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ButtonBarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ButtonBarLayout_allowStacking = global::ContestPark.Mobile.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_cardCornerRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_cardElevation = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_cardMaxElevation = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_contentPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_contentPaddingRight = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CardView_contentPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_title = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::ContestPark.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ColorStateListItem = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ColorStateListItem_alpha = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ColorStateListItem_android_alpha = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ColorStateListItem_android_color = global::ContestPark.Mobile.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CompoundButton = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CompoundButton_android_button = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CompoundButton_buttonTint = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_keylines = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::ContestPark.Mobile.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DesignTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.DesignTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_color = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::ContestPark.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::ContestPark.Mobile.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily_fontProviderAuthority = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily_fontProviderCerts = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily_fontProviderPackage = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamily_fontProviderQuery = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont_android_font = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont_font = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont_fontStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.FontFamilyFont_fontWeight = global::ContestPark.Mobile.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ForegroundLinearLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::ContestPark.Mobile.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::ContestPark.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ListPopupWindow = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::ContestPark.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MediaRouteButton = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MediaRouteButton_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MediaRouteButton_android_minWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MediaRouteButton_mediaRouteButtonTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MediaRouteButton_mediaRouteButtonTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup_android_enabled = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuGroup_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_actionLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_actionViewClass = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_alphabeticModifiers = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_alphabeticModifiers;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_checkable = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_checked = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_enabled = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_onClick = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_title = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_android_visible = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_contentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_contentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_iconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_iconTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_iconTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_iconTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_numericModifiers = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_numericModifiers;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_showAsAction = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuItem_tooltipText = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuItem_tooltipText;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_headerBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.MenuView_subMenuArrow = global::ContestPark.Mobile.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_headerLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_itemBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_itemIconTint = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_itemTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.NavigationView_menu = global::ContestPark.Mobile.Droid.Resource.Styleable.NavigationView_menu;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.PopupWindow = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.PopupWindowBackgroundState = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::ContestPark.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecycleListView = global::ContestPark.Mobile.Droid.Resource.Styleable.RecycleListView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::ContestPark.Mobile.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::ContestPark.Mobile.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_android_orientation = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_layoutManager = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_reverseLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_spanCount = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.RecyclerView_stackFromEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ScrimInsetsFrameLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ScrollingViewBehavior_Layout = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::ContestPark.Mobile.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_android_focusable = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_android_imeOptions = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_android_inputType = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_closeIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_commitIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_goIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_queryBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_queryHint = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_searchHintIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_searchIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_submitBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SearchView_voiceIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SnackbarLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SnackbarLayout_elevation = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Spinner = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Spinner_android_entries = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Spinner_android_popupBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Spinner_android_prompt = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Spinner_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_showText = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_thumbTint = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_thumbTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_track = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_trackTint = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.SwitchCompat_trackTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabItem = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabItem_android_icon = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabItem_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabItem_android_text = global::ContestPark.Mobile.Droid.Resource.Styleable.TabItem_android_text;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabBackground = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabContentStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabPadding = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabPaddingBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TabLayout_tabTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_fontFamily;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_shadowDx = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_shadowDy = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_shadowRadius = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_textColor = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_textColorHint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_textColorLink = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_textSize = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_android_typeface = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_fontFamily = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::ContestPark.Mobile.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_android_hint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_counterEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_counterMaxLength = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_hintEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_android_gravity = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_android_minHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_buttonGravity = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_collapseIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_logo = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_logo;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_logoDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_navigationIcon = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_popupTheme = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_subtitle = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_title = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_title;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleMargin = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleMargins = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.Toolbar_titleTextColor = global::ContestPark.Mobile.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.View = global::ContestPark.Mobile.Droid.Resource.Styleable.View;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.View_android_focusable = global::ContestPark.Mobile.Droid.Resource.Styleable.View_android_focusable;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.View_android_theme = global::ContestPark.Mobile.Droid.Resource.Styleable.View_android_theme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.View_paddingEnd = global::ContestPark.Mobile.Droid.Resource.Styleable.View_paddingEnd;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.View_paddingStart = global::ContestPark.Mobile.Droid.Resource.Styleable.View_paddingStart;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.View_theme = global::ContestPark.Mobile.Droid.Resource.Styleable.View_theme;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewBackgroundHelper = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewStubCompat = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewStubCompat_android_id = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Plugin.Segmented.Control.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::ContestPark.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::ContestPark.Mobile.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::ContestPark.Mobile.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::ContestPark.Mobile.Droid.Resource.Attribute.font;
@@ -12913,10 +15839,10 @@ namespace ContestPark.Mobile.Droid
 			public const int secondary_text_disabled_material_light = 2131034275;
 			
 			// aapt resource value: 0x7F0500A4
-			public const int selected = 2131034276;
+			public const int segmented_control_text = 2131034276;
 			
 			// aapt resource value: 0x7F0500A5
-			public const int selectedBorder = 2131034277;
+			public const int selected = 2131034277;
 			
 			// aapt resource value: 0x7F0500A6
 			public const int switch_thumb_disabled_material_dark = 2131034278;
@@ -13974,934 +16900,925 @@ namespace ContestPark.Mobile.Droid
 			public const int contest_store_money_8 = 2131165290;
 			
 			// aapt resource value: 0x7F07006D
-			public const int DefaultCoverPicture = 2131165293;
+			public const int design_bottom_navigation_item_background = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int design_bottom_navigation_item_background = 2131165294;
+			public const int design_fab_background = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int design_fab_background = 2131165295;
+			public const int design_ic_visibility = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int design_ic_visibility = 2131165296;
+			public const int design_ic_visibility_off = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int design_ic_visibility_off = 2131165297;
+			public const int design_password_eye = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public const int design_password_eye = 2131165298;
+			public const int design_snackbar_background = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int design_snackbar_background = 2131165299;
+			public const int DolarSingleCoin = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int DolarSingleCoin = 2131165300;
+			public const int doublecoins = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int doublecoins = 2131165301;
+			public const int doublecoinstl = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int doublecoinstl = 2131165302;
+			public const int facebook = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int facebook = 2131165303;
+			public const int find_opponent = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int find_opponent = 2131165304;
+			public const int fullname = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int fullname = 2131165305;
+			public const int hour = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int hour = 2131165306;
+			public const int ic_audiotrack_dark = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int ic_audiotrack_dark = 2131165307;
+			public const int ic_audiotrack_light = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int ic_audiotrack_light = 2131165308;
+			public const int ic_dialog_close_dark = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int ic_dialog_close_dark = 2131165309;
+			public const int ic_dialog_close_light = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int ic_dialog_close_light = 2131165310;
+			public const int ic_errorstatus = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int ic_errorstatus = 2131165311;
+			public const int ic_favorite_black_24dp = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int ic_favorite_black_24dp = 2131165312;
+			public const int ic_favorite_border_black_24dp = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int ic_favorite_border_black_24dp = 2131165313;
+			public const int ic_group_collapse_00 = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int ic_group_collapse_00 = 2131165314;
+			public const int ic_group_collapse_01 = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int ic_group_collapse_01 = 2131165315;
+			public const int ic_group_collapse_02 = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int ic_group_collapse_02 = 2131165316;
+			public const int ic_group_collapse_03 = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int ic_group_collapse_03 = 2131165317;
+			public const int ic_group_collapse_04 = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int ic_group_collapse_04 = 2131165318;
+			public const int ic_group_collapse_05 = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int ic_group_collapse_05 = 2131165319;
+			public const int ic_group_collapse_06 = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int ic_group_collapse_06 = 2131165320;
+			public const int ic_group_collapse_07 = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int ic_group_collapse_07 = 2131165321;
+			public const int ic_group_collapse_08 = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int ic_group_collapse_08 = 2131165322;
+			public const int ic_group_collapse_09 = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int ic_group_collapse_09 = 2131165323;
+			public const int ic_group_collapse_10 = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int ic_group_collapse_10 = 2131165324;
+			public const int ic_group_collapse_11 = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int ic_group_collapse_11 = 2131165325;
+			public const int ic_group_collapse_12 = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int ic_group_collapse_12 = 2131165326;
+			public const int ic_group_collapse_13 = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int ic_group_collapse_13 = 2131165327;
+			public const int ic_group_collapse_14 = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int ic_group_collapse_14 = 2131165328;
+			public const int ic_group_collapse_15 = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int ic_group_collapse_15 = 2131165329;
+			public const int ic_group_expand_00 = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int ic_group_expand_00 = 2131165330;
+			public const int ic_group_expand_01 = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int ic_group_expand_01 = 2131165331;
+			public const int ic_group_expand_02 = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int ic_group_expand_02 = 2131165332;
+			public const int ic_group_expand_03 = 2131165332;
 			
 			// aapt resource value: 0x7F070095
-			public const int ic_group_expand_03 = 2131165333;
+			public const int ic_group_expand_04 = 2131165333;
 			
 			// aapt resource value: 0x7F070096
-			public const int ic_group_expand_04 = 2131165334;
+			public const int ic_group_expand_05 = 2131165334;
 			
 			// aapt resource value: 0x7F070097
-			public const int ic_group_expand_05 = 2131165335;
+			public const int ic_group_expand_06 = 2131165335;
 			
 			// aapt resource value: 0x7F070098
-			public const int ic_group_expand_06 = 2131165336;
+			public const int ic_group_expand_07 = 2131165336;
 			
 			// aapt resource value: 0x7F070099
-			public const int ic_group_expand_07 = 2131165337;
+			public const int ic_group_expand_08 = 2131165337;
 			
 			// aapt resource value: 0x7F07009A
-			public const int ic_group_expand_08 = 2131165338;
+			public const int ic_group_expand_09 = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-			public const int ic_group_expand_09 = 2131165339;
+			public const int ic_group_expand_10 = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int ic_group_expand_10 = 2131165340;
+			public const int ic_group_expand_11 = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int ic_group_expand_11 = 2131165341;
+			public const int ic_group_expand_12 = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int ic_group_expand_12 = 2131165342;
+			public const int ic_group_expand_13 = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int ic_group_expand_13 = 2131165343;
+			public const int ic_group_expand_14 = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int ic_group_expand_14 = 2131165344;
+			public const int ic_group_expand_15 = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int ic_group_expand_15 = 2131165345;
+			public const int ic_media_pause_dark = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int ic_media_pause_dark = 2131165346;
+			public const int ic_media_pause_light = 2131165346;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int ic_media_pause_light = 2131165347;
+			public const int ic_media_play_dark = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int ic_media_play_dark = 2131165348;
+			public const int ic_media_play_light = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int ic_media_play_light = 2131165349;
+			public const int ic_media_stop_dark = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int ic_media_stop_dark = 2131165350;
+			public const int ic_media_stop_light = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int ic_media_stop_light = 2131165351;
+			public const int ic_mr_button_connected_00_dark = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int ic_mr_button_connected_00_dark = 2131165352;
+			public const int ic_mr_button_connected_00_light = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int ic_mr_button_connected_00_light = 2131165353;
+			public const int ic_mr_button_connected_01_dark = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int ic_mr_button_connected_01_dark = 2131165354;
+			public const int ic_mr_button_connected_01_light = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int ic_mr_button_connected_01_light = 2131165355;
+			public const int ic_mr_button_connected_02_dark = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int ic_mr_button_connected_02_dark = 2131165356;
+			public const int ic_mr_button_connected_02_light = 2131165356;
 			
 			// aapt resource value: 0x7F0700AD
-			public const int ic_mr_button_connected_02_light = 2131165357;
+			public const int ic_mr_button_connected_03_dark = 2131165357;
 			
 			// aapt resource value: 0x7F0700AE
-			public const int ic_mr_button_connected_03_dark = 2131165358;
+			public const int ic_mr_button_connected_03_light = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int ic_mr_button_connected_03_light = 2131165359;
+			public const int ic_mr_button_connected_04_dark = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int ic_mr_button_connected_04_dark = 2131165360;
+			public const int ic_mr_button_connected_04_light = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int ic_mr_button_connected_04_light = 2131165361;
+			public const int ic_mr_button_connected_05_dark = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int ic_mr_button_connected_05_dark = 2131165362;
+			public const int ic_mr_button_connected_05_light = 2131165362;
 			
 			// aapt resource value: 0x7F0700B3
-			public const int ic_mr_button_connected_05_light = 2131165363;
+			public const int ic_mr_button_connected_06_dark = 2131165363;
 			
 			// aapt resource value: 0x7F0700B4
-			public const int ic_mr_button_connected_06_dark = 2131165364;
+			public const int ic_mr_button_connected_06_light = 2131165364;
 			
 			// aapt resource value: 0x7F0700B5
-			public const int ic_mr_button_connected_06_light = 2131165365;
+			public const int ic_mr_button_connected_07_dark = 2131165365;
 			
 			// aapt resource value: 0x7F0700B6
-			public const int ic_mr_button_connected_07_dark = 2131165366;
+			public const int ic_mr_button_connected_07_light = 2131165366;
 			
 			// aapt resource value: 0x7F0700B7
-			public const int ic_mr_button_connected_07_light = 2131165367;
+			public const int ic_mr_button_connected_08_dark = 2131165367;
 			
 			// aapt resource value: 0x7F0700B8
-			public const int ic_mr_button_connected_08_dark = 2131165368;
+			public const int ic_mr_button_connected_08_light = 2131165368;
 			
 			// aapt resource value: 0x7F0700B9
-			public const int ic_mr_button_connected_08_light = 2131165369;
+			public const int ic_mr_button_connected_09_dark = 2131165369;
 			
 			// aapt resource value: 0x7F0700BA
-			public const int ic_mr_button_connected_09_dark = 2131165370;
+			public const int ic_mr_button_connected_09_light = 2131165370;
 			
 			// aapt resource value: 0x7F0700BB
-			public const int ic_mr_button_connected_09_light = 2131165371;
+			public const int ic_mr_button_connected_10_dark = 2131165371;
 			
 			// aapt resource value: 0x7F0700BC
-			public const int ic_mr_button_connected_10_dark = 2131165372;
+			public const int ic_mr_button_connected_10_light = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int ic_mr_button_connected_10_light = 2131165373;
+			public const int ic_mr_button_connected_11_dark = 2131165373;
 			
 			// aapt resource value: 0x7F0700BE
-			public const int ic_mr_button_connected_11_dark = 2131165374;
+			public const int ic_mr_button_connected_11_light = 2131165374;
 			
 			// aapt resource value: 0x7F0700BF
-			public const int ic_mr_button_connected_11_light = 2131165375;
+			public const int ic_mr_button_connected_12_dark = 2131165375;
 			
 			// aapt resource value: 0x7F0700C0
-			public const int ic_mr_button_connected_12_dark = 2131165376;
+			public const int ic_mr_button_connected_12_light = 2131165376;
 			
 			// aapt resource value: 0x7F0700C1
-			public const int ic_mr_button_connected_12_light = 2131165377;
+			public const int ic_mr_button_connected_13_dark = 2131165377;
 			
 			// aapt resource value: 0x7F0700C2
-			public const int ic_mr_button_connected_13_dark = 2131165378;
+			public const int ic_mr_button_connected_13_light = 2131165378;
 			
 			// aapt resource value: 0x7F0700C3
-			public const int ic_mr_button_connected_13_light = 2131165379;
+			public const int ic_mr_button_connected_14_dark = 2131165379;
 			
 			// aapt resource value: 0x7F0700C4
-			public const int ic_mr_button_connected_14_dark = 2131165380;
+			public const int ic_mr_button_connected_14_light = 2131165380;
 			
 			// aapt resource value: 0x7F0700C5
-			public const int ic_mr_button_connected_14_light = 2131165381;
+			public const int ic_mr_button_connected_15_dark = 2131165381;
 			
 			// aapt resource value: 0x7F0700C6
-			public const int ic_mr_button_connected_15_dark = 2131165382;
+			public const int ic_mr_button_connected_15_light = 2131165382;
 			
 			// aapt resource value: 0x7F0700C7
-			public const int ic_mr_button_connected_15_light = 2131165383;
+			public const int ic_mr_button_connected_16_dark = 2131165383;
 			
 			// aapt resource value: 0x7F0700C8
-			public const int ic_mr_button_connected_16_dark = 2131165384;
+			public const int ic_mr_button_connected_16_light = 2131165384;
 			
 			// aapt resource value: 0x7F0700C9
-			public const int ic_mr_button_connected_16_light = 2131165385;
+			public const int ic_mr_button_connected_17_dark = 2131165385;
 			
 			// aapt resource value: 0x7F0700CA
-			public const int ic_mr_button_connected_17_dark = 2131165386;
+			public const int ic_mr_button_connected_17_light = 2131165386;
 			
 			// aapt resource value: 0x7F0700CB
-			public const int ic_mr_button_connected_17_light = 2131165387;
+			public const int ic_mr_button_connected_18_dark = 2131165387;
 			
 			// aapt resource value: 0x7F0700CC
-			public const int ic_mr_button_connected_18_dark = 2131165388;
+			public const int ic_mr_button_connected_18_light = 2131165388;
 			
 			// aapt resource value: 0x7F0700CD
-			public const int ic_mr_button_connected_18_light = 2131165389;
+			public const int ic_mr_button_connected_19_dark = 2131165389;
 			
 			// aapt resource value: 0x7F0700CE
-			public const int ic_mr_button_connected_19_dark = 2131165390;
+			public const int ic_mr_button_connected_19_light = 2131165390;
 			
 			// aapt resource value: 0x7F0700CF
-			public const int ic_mr_button_connected_19_light = 2131165391;
+			public const int ic_mr_button_connected_20_dark = 2131165391;
 			
 			// aapt resource value: 0x7F0700D0
-			public const int ic_mr_button_connected_20_dark = 2131165392;
+			public const int ic_mr_button_connected_20_light = 2131165392;
 			
 			// aapt resource value: 0x7F0700D1
-			public const int ic_mr_button_connected_20_light = 2131165393;
+			public const int ic_mr_button_connected_21_dark = 2131165393;
 			
 			// aapt resource value: 0x7F0700D2
-			public const int ic_mr_button_connected_21_dark = 2131165394;
+			public const int ic_mr_button_connected_21_light = 2131165394;
 			
 			// aapt resource value: 0x7F0700D3
-			public const int ic_mr_button_connected_21_light = 2131165395;
+			public const int ic_mr_button_connected_22_dark = 2131165395;
 			
 			// aapt resource value: 0x7F0700D4
-			public const int ic_mr_button_connected_22_dark = 2131165396;
+			public const int ic_mr_button_connected_22_light = 2131165396;
 			
 			// aapt resource value: 0x7F0700D5
-			public const int ic_mr_button_connected_22_light = 2131165397;
+			public const int ic_mr_button_connected_23_dark = 2131165397;
 			
 			// aapt resource value: 0x7F0700D6
-			public const int ic_mr_button_connected_23_dark = 2131165398;
+			public const int ic_mr_button_connected_23_light = 2131165398;
 			
 			// aapt resource value: 0x7F0700D7
-			public const int ic_mr_button_connected_23_light = 2131165399;
+			public const int ic_mr_button_connected_24_dark = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int ic_mr_button_connected_24_dark = 2131165400;
+			public const int ic_mr_button_connected_24_light = 2131165400;
 			
 			// aapt resource value: 0x7F0700D9
-			public const int ic_mr_button_connected_24_light = 2131165401;
+			public const int ic_mr_button_connected_25_dark = 2131165401;
 			
 			// aapt resource value: 0x7F0700DA
-			public const int ic_mr_button_connected_25_dark = 2131165402;
+			public const int ic_mr_button_connected_25_light = 2131165402;
 			
 			// aapt resource value: 0x7F0700DB
-			public const int ic_mr_button_connected_25_light = 2131165403;
+			public const int ic_mr_button_connected_26_dark = 2131165403;
 			
 			// aapt resource value: 0x7F0700DC
-			public const int ic_mr_button_connected_26_dark = 2131165404;
+			public const int ic_mr_button_connected_26_light = 2131165404;
 			
 			// aapt resource value: 0x7F0700DD
-			public const int ic_mr_button_connected_26_light = 2131165405;
+			public const int ic_mr_button_connected_27_dark = 2131165405;
 			
 			// aapt resource value: 0x7F0700DE
-			public const int ic_mr_button_connected_27_dark = 2131165406;
+			public const int ic_mr_button_connected_27_light = 2131165406;
 			
 			// aapt resource value: 0x7F0700DF
-			public const int ic_mr_button_connected_27_light = 2131165407;
+			public const int ic_mr_button_connected_28_dark = 2131165407;
 			
 			// aapt resource value: 0x7F0700E0
-			public const int ic_mr_button_connected_28_dark = 2131165408;
+			public const int ic_mr_button_connected_28_light = 2131165408;
 			
 			// aapt resource value: 0x7F0700E1
-			public const int ic_mr_button_connected_28_light = 2131165409;
+			public const int ic_mr_button_connected_29_dark = 2131165409;
 			
 			// aapt resource value: 0x7F0700E2
-			public const int ic_mr_button_connected_29_dark = 2131165410;
+			public const int ic_mr_button_connected_29_light = 2131165410;
 			
 			// aapt resource value: 0x7F0700E3
-			public const int ic_mr_button_connected_29_light = 2131165411;
+			public const int ic_mr_button_connected_30_dark = 2131165411;
 			
 			// aapt resource value: 0x7F0700E4
-			public const int ic_mr_button_connected_30_dark = 2131165412;
+			public const int ic_mr_button_connected_30_light = 2131165412;
 			
 			// aapt resource value: 0x7F0700E5
-			public const int ic_mr_button_connected_30_light = 2131165413;
+			public const int ic_mr_button_connecting_00_dark = 2131165413;
 			
 			// aapt resource value: 0x7F0700E6
-			public const int ic_mr_button_connecting_00_dark = 2131165414;
+			public const int ic_mr_button_connecting_00_light = 2131165414;
 			
 			// aapt resource value: 0x7F0700E7
-			public const int ic_mr_button_connecting_00_light = 2131165415;
+			public const int ic_mr_button_connecting_01_dark = 2131165415;
 			
 			// aapt resource value: 0x7F0700E8
-			public const int ic_mr_button_connecting_01_dark = 2131165416;
+			public const int ic_mr_button_connecting_01_light = 2131165416;
 			
 			// aapt resource value: 0x7F0700E9
-			public const int ic_mr_button_connecting_01_light = 2131165417;
+			public const int ic_mr_button_connecting_02_dark = 2131165417;
 			
 			// aapt resource value: 0x7F0700EA
-			public const int ic_mr_button_connecting_02_dark = 2131165418;
+			public const int ic_mr_button_connecting_02_light = 2131165418;
 			
 			// aapt resource value: 0x7F0700EB
-			public const int ic_mr_button_connecting_02_light = 2131165419;
+			public const int ic_mr_button_connecting_03_dark = 2131165419;
 			
 			// aapt resource value: 0x7F0700EC
-			public const int ic_mr_button_connecting_03_dark = 2131165420;
+			public const int ic_mr_button_connecting_03_light = 2131165420;
 			
 			// aapt resource value: 0x7F0700ED
-			public const int ic_mr_button_connecting_03_light = 2131165421;
+			public const int ic_mr_button_connecting_04_dark = 2131165421;
 			
 			// aapt resource value: 0x7F0700EE
-			public const int ic_mr_button_connecting_04_dark = 2131165422;
+			public const int ic_mr_button_connecting_04_light = 2131165422;
 			
 			// aapt resource value: 0x7F0700EF
-			public const int ic_mr_button_connecting_04_light = 2131165423;
+			public const int ic_mr_button_connecting_05_dark = 2131165423;
 			
 			// aapt resource value: 0x7F0700F0
-			public const int ic_mr_button_connecting_05_dark = 2131165424;
+			public const int ic_mr_button_connecting_05_light = 2131165424;
 			
 			// aapt resource value: 0x7F0700F1
-			public const int ic_mr_button_connecting_05_light = 2131165425;
+			public const int ic_mr_button_connecting_06_dark = 2131165425;
 			
 			// aapt resource value: 0x7F0700F2
-			public const int ic_mr_button_connecting_06_dark = 2131165426;
+			public const int ic_mr_button_connecting_06_light = 2131165426;
 			
 			// aapt resource value: 0x7F0700F3
-			public const int ic_mr_button_connecting_06_light = 2131165427;
+			public const int ic_mr_button_connecting_07_dark = 2131165427;
 			
 			// aapt resource value: 0x7F0700F4
-			public const int ic_mr_button_connecting_07_dark = 2131165428;
+			public const int ic_mr_button_connecting_07_light = 2131165428;
 			
 			// aapt resource value: 0x7F0700F5
-			public const int ic_mr_button_connecting_07_light = 2131165429;
+			public const int ic_mr_button_connecting_08_dark = 2131165429;
 			
 			// aapt resource value: 0x7F0700F6
-			public const int ic_mr_button_connecting_08_dark = 2131165430;
+			public const int ic_mr_button_connecting_08_light = 2131165430;
 			
 			// aapt resource value: 0x7F0700F7
-			public const int ic_mr_button_connecting_08_light = 2131165431;
+			public const int ic_mr_button_connecting_09_dark = 2131165431;
 			
 			// aapt resource value: 0x7F0700F8
-			public const int ic_mr_button_connecting_09_dark = 2131165432;
+			public const int ic_mr_button_connecting_09_light = 2131165432;
 			
 			// aapt resource value: 0x7F0700F9
-			public const int ic_mr_button_connecting_09_light = 2131165433;
+			public const int ic_mr_button_connecting_10_dark = 2131165433;
 			
 			// aapt resource value: 0x7F0700FA
-			public const int ic_mr_button_connecting_10_dark = 2131165434;
+			public const int ic_mr_button_connecting_10_light = 2131165434;
 			
 			// aapt resource value: 0x7F0700FB
-			public const int ic_mr_button_connecting_10_light = 2131165435;
+			public const int ic_mr_button_connecting_11_dark = 2131165435;
 			
 			// aapt resource value: 0x7F0700FC
-			public const int ic_mr_button_connecting_11_dark = 2131165436;
+			public const int ic_mr_button_connecting_11_light = 2131165436;
 			
 			// aapt resource value: 0x7F0700FD
-			public const int ic_mr_button_connecting_11_light = 2131165437;
+			public const int ic_mr_button_connecting_12_dark = 2131165437;
 			
 			// aapt resource value: 0x7F0700FE
-			public const int ic_mr_button_connecting_12_dark = 2131165438;
+			public const int ic_mr_button_connecting_12_light = 2131165438;
 			
 			// aapt resource value: 0x7F0700FF
-			public const int ic_mr_button_connecting_12_light = 2131165439;
+			public const int ic_mr_button_connecting_13_dark = 2131165439;
 			
 			// aapt resource value: 0x7F070100
-			public const int ic_mr_button_connecting_13_dark = 2131165440;
+			public const int ic_mr_button_connecting_13_light = 2131165440;
 			
 			// aapt resource value: 0x7F070101
-			public const int ic_mr_button_connecting_13_light = 2131165441;
+			public const int ic_mr_button_connecting_14_dark = 2131165441;
 			
 			// aapt resource value: 0x7F070102
-			public const int ic_mr_button_connecting_14_dark = 2131165442;
+			public const int ic_mr_button_connecting_14_light = 2131165442;
 			
 			// aapt resource value: 0x7F070103
-			public const int ic_mr_button_connecting_14_light = 2131165443;
+			public const int ic_mr_button_connecting_15_dark = 2131165443;
 			
 			// aapt resource value: 0x7F070104
-			public const int ic_mr_button_connecting_15_dark = 2131165444;
+			public const int ic_mr_button_connecting_15_light = 2131165444;
 			
 			// aapt resource value: 0x7F070105
-			public const int ic_mr_button_connecting_15_light = 2131165445;
+			public const int ic_mr_button_connecting_16_dark = 2131165445;
 			
 			// aapt resource value: 0x7F070106
-			public const int ic_mr_button_connecting_16_dark = 2131165446;
+			public const int ic_mr_button_connecting_16_light = 2131165446;
 			
 			// aapt resource value: 0x7F070107
-			public const int ic_mr_button_connecting_16_light = 2131165447;
+			public const int ic_mr_button_connecting_17_dark = 2131165447;
 			
 			// aapt resource value: 0x7F070108
-			public const int ic_mr_button_connecting_17_dark = 2131165448;
+			public const int ic_mr_button_connecting_17_light = 2131165448;
 			
 			// aapt resource value: 0x7F070109
-			public const int ic_mr_button_connecting_17_light = 2131165449;
+			public const int ic_mr_button_connecting_18_dark = 2131165449;
 			
 			// aapt resource value: 0x7F07010A
-			public const int ic_mr_button_connecting_18_dark = 2131165450;
+			public const int ic_mr_button_connecting_18_light = 2131165450;
 			
 			// aapt resource value: 0x7F07010B
-			public const int ic_mr_button_connecting_18_light = 2131165451;
+			public const int ic_mr_button_connecting_19_dark = 2131165451;
 			
 			// aapt resource value: 0x7F07010C
-			public const int ic_mr_button_connecting_19_dark = 2131165452;
+			public const int ic_mr_button_connecting_19_light = 2131165452;
 			
 			// aapt resource value: 0x7F07010D
-			public const int ic_mr_button_connecting_19_light = 2131165453;
+			public const int ic_mr_button_connecting_20_dark = 2131165453;
 			
 			// aapt resource value: 0x7F07010E
-			public const int ic_mr_button_connecting_20_dark = 2131165454;
+			public const int ic_mr_button_connecting_20_light = 2131165454;
 			
 			// aapt resource value: 0x7F07010F
-			public const int ic_mr_button_connecting_20_light = 2131165455;
+			public const int ic_mr_button_connecting_21_dark = 2131165455;
 			
 			// aapt resource value: 0x7F070110
-			public const int ic_mr_button_connecting_21_dark = 2131165456;
+			public const int ic_mr_button_connecting_21_light = 2131165456;
 			
 			// aapt resource value: 0x7F070111
-			public const int ic_mr_button_connecting_21_light = 2131165457;
+			public const int ic_mr_button_connecting_22_dark = 2131165457;
 			
 			// aapt resource value: 0x7F070112
-			public const int ic_mr_button_connecting_22_dark = 2131165458;
+			public const int ic_mr_button_connecting_22_light = 2131165458;
 			
 			// aapt resource value: 0x7F070113
-			public const int ic_mr_button_connecting_22_light = 2131165459;
+			public const int ic_mr_button_connecting_23_dark = 2131165459;
 			
 			// aapt resource value: 0x7F070114
-			public const int ic_mr_button_connecting_23_dark = 2131165460;
+			public const int ic_mr_button_connecting_23_light = 2131165460;
 			
 			// aapt resource value: 0x7F070115
-			public const int ic_mr_button_connecting_23_light = 2131165461;
+			public const int ic_mr_button_connecting_24_dark = 2131165461;
 			
 			// aapt resource value: 0x7F070116
-			public const int ic_mr_button_connecting_24_dark = 2131165462;
+			public const int ic_mr_button_connecting_24_light = 2131165462;
 			
 			// aapt resource value: 0x7F070117
-			public const int ic_mr_button_connecting_24_light = 2131165463;
+			public const int ic_mr_button_connecting_25_dark = 2131165463;
 			
 			// aapt resource value: 0x7F070118
-			public const int ic_mr_button_connecting_25_dark = 2131165464;
+			public const int ic_mr_button_connecting_25_light = 2131165464;
 			
 			// aapt resource value: 0x7F070119
-			public const int ic_mr_button_connecting_25_light = 2131165465;
+			public const int ic_mr_button_connecting_26_dark = 2131165465;
 			
 			// aapt resource value: 0x7F07011A
-			public const int ic_mr_button_connecting_26_dark = 2131165466;
+			public const int ic_mr_button_connecting_26_light = 2131165466;
 			
 			// aapt resource value: 0x7F07011B
-			public const int ic_mr_button_connecting_26_light = 2131165467;
+			public const int ic_mr_button_connecting_27_dark = 2131165467;
 			
 			// aapt resource value: 0x7F07011C
-			public const int ic_mr_button_connecting_27_dark = 2131165468;
+			public const int ic_mr_button_connecting_27_light = 2131165468;
 			
 			// aapt resource value: 0x7F07011D
-			public const int ic_mr_button_connecting_27_light = 2131165469;
+			public const int ic_mr_button_connecting_28_dark = 2131165469;
 			
 			// aapt resource value: 0x7F07011E
-			public const int ic_mr_button_connecting_28_dark = 2131165470;
+			public const int ic_mr_button_connecting_28_light = 2131165470;
 			
 			// aapt resource value: 0x7F07011F
-			public const int ic_mr_button_connecting_28_light = 2131165471;
+			public const int ic_mr_button_connecting_29_dark = 2131165471;
 			
 			// aapt resource value: 0x7F070120
-			public const int ic_mr_button_connecting_29_dark = 2131165472;
+			public const int ic_mr_button_connecting_29_light = 2131165472;
 			
 			// aapt resource value: 0x7F070121
-			public const int ic_mr_button_connecting_29_light = 2131165473;
+			public const int ic_mr_button_connecting_30_dark = 2131165473;
 			
 			// aapt resource value: 0x7F070122
-			public const int ic_mr_button_connecting_30_dark = 2131165474;
+			public const int ic_mr_button_connecting_30_light = 2131165474;
 			
 			// aapt resource value: 0x7F070123
-			public const int ic_mr_button_connecting_30_light = 2131165475;
+			public const int ic_mr_button_disabled_dark = 2131165475;
 			
 			// aapt resource value: 0x7F070124
-			public const int ic_mr_button_disabled_dark = 2131165476;
+			public const int ic_mr_button_disabled_light = 2131165476;
 			
 			// aapt resource value: 0x7F070125
-			public const int ic_mr_button_disabled_light = 2131165477;
+			public const int ic_mr_button_disconnected_dark = 2131165477;
 			
 			// aapt resource value: 0x7F070126
-			public const int ic_mr_button_disconnected_dark = 2131165478;
+			public const int ic_mr_button_disconnected_light = 2131165478;
 			
 			// aapt resource value: 0x7F070127
-			public const int ic_mr_button_disconnected_light = 2131165479;
+			public const int ic_mr_button_grey = 2131165479;
 			
 			// aapt resource value: 0x7F070128
-			public const int ic_mr_button_grey = 2131165480;
+			public const int ic_mtrl_chip_checked_black = 2131165480;
 			
 			// aapt resource value: 0x7F070129
-			public const int ic_mtrl_chip_checked_black = 2131165481;
+			public const int ic_mtrl_chip_checked_circle = 2131165481;
 			
 			// aapt resource value: 0x7F07012A
-			public const int ic_mtrl_chip_checked_circle = 2131165482;
+			public const int ic_mtrl_chip_close_circle = 2131165482;
 			
 			// aapt resource value: 0x7F07012B
-			public const int ic_mtrl_chip_close_circle = 2131165483;
+			public const int ic_successstatus = 2131165483;
 			
 			// aapt resource value: 0x7F07012C
-			public const int ic_successstatus = 2131165484;
+			public const int ic_vol_type_speaker_dark = 2131165484;
 			
 			// aapt resource value: 0x7F07012D
-			public const int ic_vol_type_speaker_dark = 2131165485;
+			public const int ic_vol_type_speaker_group_dark = 2131165485;
 			
 			// aapt resource value: 0x7F07012E
-			public const int ic_vol_type_speaker_group_dark = 2131165486;
+			public const int ic_vol_type_speaker_group_light = 2131165486;
 			
 			// aapt resource value: 0x7F07012F
-			public const int ic_vol_type_speaker_group_light = 2131165487;
+			public const int ic_vol_type_speaker_light = 2131165487;
 			
 			// aapt resource value: 0x7F070130
-			public const int ic_vol_type_speaker_light = 2131165488;
+			public const int ic_vol_type_tv_dark = 2131165488;
 			
 			// aapt resource value: 0x7F070131
-			public const int ic_vol_type_tv_dark = 2131165489;
+			public const int ic_vol_type_tv_light = 2131165489;
 			
 			// aapt resource value: 0x7F070132
-			public const int ic_vol_type_tv_light = 2131165490;
+			public const int instagram = 2131165490;
 			
 			// aapt resource value: 0x7F070133
-			public const int instagram = 2131165491;
+			public const int invite = 2131165491;
 			
 			// aapt resource value: 0x7F070134
-			public const int invite = 2131165492;
-			
-			// aapt resource value: 0x7F070135
-			public const int invite_friends = 2131165493;
-			
-			// aapt resource value: 0x7F070138
-			public const int LeftArrow = 2131165496;
-			
-			// aapt resource value: 0x7F070136
-			public const int left_arrow = 2131165494;
+			public const int invite_friends = 2131165492;
 			
 			// aapt resource value: 0x7F070137
-			public const int left_menu_background = 2131165495;
+			public const int LeftArrow = 2131165495;
+			
+			// aapt resource value: 0x7F070135
+			public const int left_arrow = 2131165493;
+			
+			// aapt resource value: 0x7F070136
+			public const int left_menu_background = 2131165494;
+			
+			// aapt resource value: 0x7F070138
+			public const int liked = 2131165496;
 			
 			// aapt resource value: 0x7F070139
-			public const int liked = 2131165497;
+			public const int likes = 2131165497;
 			
 			// aapt resource value: 0x7F07013A
-			public const int likes = 2131165498;
+			public const int logo = 2131165498;
 			
 			// aapt resource value: 0x7F07013B
-			public const int @lock = 2131165499;
+			public const int MaterialActivityIndicatorBackground = 2131165499;
 			
 			// aapt resource value: 0x7F07013C
-			public const int logo = 2131165500;
+			public const int MaterialProgressBar = 2131165500;
 			
 			// aapt resource value: 0x7F07013D
-			public const int MaterialActivityIndicatorBackground = 2131165501;
+			public const int menuicon = 2131165501;
 			
 			// aapt resource value: 0x7F07013E
-			public const int MaterialProgressBar = 2131165502;
+			public const int missions = 2131165502;
 			
 			// aapt resource value: 0x7F07013F
-			public const int menuicon = 2131165503;
+			public const int money = 2131165503;
 			
 			// aapt resource value: 0x7F070140
-			public const int missions = 2131165504;
+			public const int money_bag = 2131165504;
 			
 			// aapt resource value: 0x7F070141
-			public const int money = 2131165505;
+			public const int mr_button_connected_dark = 2131165505;
 			
 			// aapt resource value: 0x7F070142
-			public const int money_bag = 2131165506;
+			public const int mr_button_connected_light = 2131165506;
 			
 			// aapt resource value: 0x7F070143
-			public const int mr_button_connected_dark = 2131165507;
+			public const int mr_button_connecting_dark = 2131165507;
 			
 			// aapt resource value: 0x7F070144
-			public const int mr_button_connected_light = 2131165508;
+			public const int mr_button_connecting_light = 2131165508;
 			
 			// aapt resource value: 0x7F070145
-			public const int mr_button_connecting_dark = 2131165509;
+			public const int mr_button_dark = 2131165509;
 			
 			// aapt resource value: 0x7F070146
-			public const int mr_button_connecting_light = 2131165510;
+			public const int mr_button_light = 2131165510;
 			
 			// aapt resource value: 0x7F070147
-			public const int mr_button_dark = 2131165511;
+			public const int mr_dialog_close_dark = 2131165511;
 			
 			// aapt resource value: 0x7F070148
-			public const int mr_button_light = 2131165512;
+			public const int mr_dialog_close_light = 2131165512;
 			
 			// aapt resource value: 0x7F070149
-			public const int mr_dialog_close_dark = 2131165513;
+			public const int mr_dialog_material_background_dark = 2131165513;
 			
 			// aapt resource value: 0x7F07014A
-			public const int mr_dialog_close_light = 2131165514;
+			public const int mr_dialog_material_background_light = 2131165514;
 			
 			// aapt resource value: 0x7F07014B
-			public const int mr_dialog_material_background_dark = 2131165515;
+			public const int mr_group_collapse = 2131165515;
 			
 			// aapt resource value: 0x7F07014C
-			public const int mr_dialog_material_background_light = 2131165516;
+			public const int mr_group_expand = 2131165516;
 			
 			// aapt resource value: 0x7F07014D
-			public const int mr_group_collapse = 2131165517;
+			public const int mr_media_pause_dark = 2131165517;
 			
 			// aapt resource value: 0x7F07014E
-			public const int mr_group_expand = 2131165518;
+			public const int mr_media_pause_light = 2131165518;
 			
 			// aapt resource value: 0x7F07014F
-			public const int mr_media_pause_dark = 2131165519;
+			public const int mr_media_play_dark = 2131165519;
 			
 			// aapt resource value: 0x7F070150
-			public const int mr_media_pause_light = 2131165520;
+			public const int mr_media_play_light = 2131165520;
 			
 			// aapt resource value: 0x7F070151
-			public const int mr_media_play_dark = 2131165521;
+			public const int mr_media_stop_dark = 2131165521;
 			
 			// aapt resource value: 0x7F070152
-			public const int mr_media_play_light = 2131165522;
+			public const int mr_media_stop_light = 2131165522;
 			
 			// aapt resource value: 0x7F070153
-			public const int mr_media_stop_dark = 2131165523;
+			public const int mr_vol_type_audiotrack_dark = 2131165523;
 			
 			// aapt resource value: 0x7F070154
-			public const int mr_media_stop_light = 2131165524;
+			public const int mr_vol_type_audiotrack_light = 2131165524;
 			
 			// aapt resource value: 0x7F070155
-			public const int mr_vol_type_audiotrack_dark = 2131165525;
+			public const int mtrl_snackbar_background = 2131165525;
 			
 			// aapt resource value: 0x7F070156
-			public const int mr_vol_type_audiotrack_light = 2131165526;
+			public const int mtrl_tabs_default_indicator = 2131165526;
 			
 			// aapt resource value: 0x7F070157
-			public const int mtrl_snackbar_background = 2131165527;
+			public const int navigation_empty_icon = 2131165527;
 			
 			// aapt resource value: 0x7F070158
-			public const int mtrl_tabs_default_indicator = 2131165528;
+			public const int notification_action_background = 2131165528;
 			
 			// aapt resource value: 0x7F070159
-			public const int navigation_empty_icon = 2131165529;
+			public const int notification_bg = 2131165529;
 			
 			// aapt resource value: 0x7F07015A
-			public const int notification_action_background = 2131165530;
+			public const int notification_bg_low = 2131165530;
 			
 			// aapt resource value: 0x7F07015B
-			public const int notification_bg = 2131165531;
+			public const int notification_bg_low_normal = 2131165531;
 			
 			// aapt resource value: 0x7F07015C
-			public const int notification_bg_low = 2131165532;
+			public const int notification_bg_low_pressed = 2131165532;
 			
 			// aapt resource value: 0x7F07015D
-			public const int notification_bg_low_normal = 2131165533;
+			public const int notification_bg_normal = 2131165533;
 			
 			// aapt resource value: 0x7F07015E
-			public const int notification_bg_low_pressed = 2131165534;
+			public const int notification_bg_normal_pressed = 2131165534;
 			
 			// aapt resource value: 0x7F07015F
-			public const int notification_bg_normal = 2131165535;
+			public const int notification_icon_background = 2131165535;
 			
 			// aapt resource value: 0x7F070160
-			public const int notification_bg_normal_pressed = 2131165536;
+			public const int notification_template_icon_bg = 2131165536;
 			
 			// aapt resource value: 0x7F070161
-			public const int notification_icon_background = 2131165537;
+			public const int notification_template_icon_low_bg = 2131165537;
 			
 			// aapt resource value: 0x7F070162
-			public const int notification_template_icon_bg = 2131165538;
+			public const int notification_tile_bg = 2131165538;
 			
 			// aapt resource value: 0x7F070163
-			public const int notification_template_icon_low_bg = 2131165539;
+			public const int notify_panel_notification_icon_bg = 2131165539;
 			
 			// aapt resource value: 0x7F070164
-			public const int notification_tile_bg = 2131165540;
+			public const int options = 2131165540;
 			
 			// aapt resource value: 0x7F070165
-			public const int notify_panel_notification_icon_bg = 2131165541;
+			public const int pin_progress_pinned = 2131165541;
 			
 			// aapt resource value: 0x7F070166
-			public const int options = 2131165542;
+			public const int pin_progress_shadow = 2131165542;
 			
 			// aapt resource value: 0x7F070167
-			public const int pin_progress_pinned = 2131165543;
+			public const int pin_progress_unpinned = 2131165543;
 			
 			// aapt resource value: 0x7F070168
-			public const int pin_progress_shadow = 2131165544;
+			public const int prizeicon1 = 2131165544;
 			
 			// aapt resource value: 0x7F070169
-			public const int pin_progress_unpinned = 2131165545;
+			public const int prizeicon2 = 2131165545;
 			
 			// aapt resource value: 0x7F07016A
-			public const int prizeicon1 = 2131165546;
+			public const int prizeicon3 = 2131165546;
 			
 			// aapt resource value: 0x7F07016B
-			public const int prizeicon2 = 2131165547;
+			public const int prizeicon4 = 2131165547;
 			
 			// aapt resource value: 0x7F07016C
-			public const int prizeicon3 = 2131165548;
+			public const int prizeicon5 = 2131165548;
 			
 			// aapt resource value: 0x7F07016D
-			public const int prizeicon4 = 2131165549;
+			public const int prizeicon6 = 2131165549;
 			
 			// aapt resource value: 0x7F07016E
-			public const int prizeicon5 = 2131165550;
+			public const int profile_chat = 2131165550;
 			
 			// aapt resource value: 0x7F07016F
-			public const int prizeicon6 = 2131165551;
+			public const int profile_follow = 2131165551;
 			
 			// aapt resource value: 0x7F070170
-			public const int profile_chat = 2131165552;
+			public const int profile_play = 2131165552;
 			
 			// aapt resource value: 0x7F070171
-			public const int profile_follow = 2131165553;
+			public const int profile_unfollow = 2131165553;
 			
 			// aapt resource value: 0x7F070172
-			public const int profile_play = 2131165554;
+			public const int questioncenter = 2131165554;
 			
 			// aapt resource value: 0x7F070173
-			public const int profile_unfollow = 2131165555;
+			public const int ranking_header = 2131165555;
 			
 			// aapt resource value: 0x7F070174
-			public const int questioncenter = 2131165556;
+			public const int referee = 2131165556;
 			
 			// aapt resource value: 0x7F070175
-			public const int ranking_header = 2131165557;
+			public const int revenge = 2131165557;
 			
 			// aapt resource value: 0x7F070176
-			public const int referee = 2131165558;
+			public const int RightArrow = 2131165558;
 			
 			// aapt resource value: 0x7F070177
-			public const int revenge = 2131165559;
+			public const int roundedbg = 2131165559;
 			
 			// aapt resource value: 0x7F070178
-			public const int RightArrow = 2131165560;
+			public const int roundedbgdark = 2131165560;
 			
 			// aapt resource value: 0x7F070179
-			public const int roundedbg = 2131165561;
+			public const int save = 2131165561;
 			
 			// aapt resource value: 0x7F07017A
-			public const int roundedbgdark = 2131165562;
+			public const int scrubber_control_normal_holo = 2131165562;
 			
 			// aapt resource value: 0x7F07017B
-			public const int save = 2131165563;
-			
-			// aapt resource value: 0x7F07017C
-			public const int scrubber_control_normal_holo = 2131165564;
-			
-			// aapt resource value: 0x7F07017D
-			public const int scrubber_control_pressed_holo = 2131165565;
-			
-			// aapt resource value: 0x7F070180
-			public const int searchicon = 2131165568;
+			public const int scrubber_control_pressed_holo = 2131165563;
 			
 			// aapt resource value: 0x7F07017E
-			public const int search_cancel = 2131165566;
+			public const int searchicon = 2131165566;
+			
+			// aapt resource value: 0x7F07017C
+			public const int search_cancel = 2131165564;
+			
+			// aapt resource value: 0x7F07017D
+			public const int search_result = 2131165565;
 			
 			// aapt resource value: 0x7F07017F
-			public const int search_result = 2131165567;
+			public const int segmented_control_background = 2131165567;
+			
+			// aapt resource value: 0x7F070180
+			public const int segmented_control_first_background = 2131165568;
 			
 			// aapt resource value: 0x7F070181
-			public const int segmented_control_background = 2131165569;
+			public const int segmented_control_last_background = 2131165569;
 			
 			// aapt resource value: 0x7F070182
-			public const int segmented_control_first_background = 2131165570;
+			public const int send_message = 2131165570;
 			
 			// aapt resource value: 0x7F070183
-			public const int segmented_control_last_background = 2131165571;
+			public const int settings = 2131165571;
 			
 			// aapt resource value: 0x7F070184
-			public const int send_message = 2131165572;
+			public const int settings_account = 2131165572;
 			
 			// aapt resource value: 0x7F070185
-			public const int settings = 2131165573;
+			public const int settings_blocked = 2131165573;
 			
 			// aapt resource value: 0x7F070186
-			public const int settings_account = 2131165574;
+			public const int settings_blocked_cancel = 2131165574;
 			
 			// aapt resource value: 0x7F070187
-			public const int settings_blocked = 2131165575;
+			public const int settings_edit_profile_cover_photo = 2131165575;
 			
 			// aapt resource value: 0x7F070188
-			public const int settings_blocked_cancel = 2131165576;
+			public const int settings_edit_profile_email = 2131165576;
 			
 			// aapt resource value: 0x7F070189
-			public const int settings_edit_profile_cover_photo = 2131165577;
+			public const int settings_edit_profile_name = 2131165577;
 			
 			// aapt resource value: 0x7F07018A
-			public const int settings_edit_profile_email = 2131165578;
+			public const int settings_edit_profile_profile_photo = 2131165578;
 			
 			// aapt resource value: 0x7F07018B
-			public const int settings_edit_profile_name = 2131165579;
+			public const int settings_edit_profile_username = 2131165579;
 			
 			// aapt resource value: 0x7F07018C
-			public const int settings_edit_profile_profile_photo = 2131165580;
+			public const int settings_language = 2131165580;
 			
 			// aapt resource value: 0x7F07018D
-			public const int settings_edit_profile_username = 2131165581;
+			public const int settings_log_out = 2131165581;
 			
 			// aapt resource value: 0x7F07018E
-			public const int settings_language = 2131165582;
+			public const int settings_private_profile = 2131165582;
 			
 			// aapt resource value: 0x7F07018F
-			public const int settings_log_out = 2131165583;
+			public const int settings_sound = 2131165583;
 			
 			// aapt resource value: 0x7F070190
-			public const int settings_private_profile = 2131165584;
+			public const int share = 2131165584;
 			
 			// aapt resource value: 0x7F070191
-			public const int settings_sound = 2131165585;
+			public const int shareblack = 2131165585;
 			
 			// aapt resource value: 0x7F070192
-			public const int share = 2131165586;
+			public const int singlecoin = 2131165586;
 			
 			// aapt resource value: 0x7F070193
-			public const int shareblack = 2131165587;
+			public const int sms = 2131165587;
 			
 			// aapt resource value: 0x7F070194
-			public const int singlecoin = 2131165588;
+			public const int splash = 2131165588;
 			
 			// aapt resource value: 0x7F070195
-			public const int sms = 2131165589;
+			public const int stylishbackground = 2131165589;
 			
 			// aapt resource value: 0x7F070196
-			public const int splash = 2131165590;
+			public const int switchactive = 2131165590;
 			
 			// aapt resource value: 0x7F070197
-			public const int stylishbackground = 2131165591;
+			public const int switchpassive = 2131165591;
 			
 			// aapt resource value: 0x7F070198
-			public const int switchactive = 2131165592;
+			public const int tooltip_frame_dark = 2131165592;
 			
 			// aapt resource value: 0x7F070199
-			public const int switchpassive = 2131165593;
+			public const int tooltip_frame_light = 2131165593;
 			
 			// aapt resource value: 0x7F07019A
-			public const int tooltip_frame_dark = 2131165594;
+			public const int TUR_s = 2131165594;
 			
 			// aapt resource value: 0x7F07019B
-			public const int tooltip_frame_light = 2131165595;
+			public const int twitter = 2131165595;
 			
 			// aapt resource value: 0x7F07019C
-			public const int TUR_s = 2131165596;
+			public const int username = 2131165596;
 			
 			// aapt resource value: 0x7F07019D
-			public const int twitter = 2131165597;
+			public const int UserProfile = 2131165597;
 			
 			// aapt resource value: 0x7F07019E
-			public const int user = 2131165598;
+			public const int verify = 2131165598;
 			
 			// aapt resource value: 0x7F07019F
-			public const int username = 2131165599;
-			
-			// aapt resource value: 0x7F0701A0
-			public const int UserProfile = 2131165600;
-			
-			// aapt resource value: 0x7F0701A1
-			public const int verify = 2131165601;
-			
-			// aapt resource value: 0x7F0701A2
-			public const int vs = 2131165602;
+			public const int vs = 2131165599;
 			
 			static Drawable()
 			{

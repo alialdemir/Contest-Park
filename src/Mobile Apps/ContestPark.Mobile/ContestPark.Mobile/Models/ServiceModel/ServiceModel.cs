@@ -12,15 +12,5 @@ namespace ContestPark.Mobile.Models.ServiceModel
         public IEnumerable<T> Items { get; set; }
 
         public bool HasNextPage { get; set; }
-
-        [JsonIgnore]
-        public bool IsLastPage
-        {
-            get
-            {
-                if (PageNumber <= 0) return true;
-                return PageNumber > (Count / PageSize);
-            }
-        }
     }
 }

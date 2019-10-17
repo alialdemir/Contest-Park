@@ -82,14 +82,14 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        private async Task ExecutGoToCategorySearchPageCommand(short categoryId = 0)
+        private void ExecutGoToCategorySearchPageCommand(short categoryId = 0)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync($"{nameof(SearchView)}", new NavigationParameters
+            PushNavigationPageAsync($"{nameof(SearchView)}", new NavigationParameters
                                                 {
                                                     { "CategoryId", categoryId }
                                                 }, useModalNavigation: false);
@@ -102,7 +102,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _goToCategorySearchPageCommand;
-        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>(async (categoryId) => await ExecutGoToCategorySearchPageCommand(categoryId)));
+        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>((categoryId) => ExecutGoToCategorySearchPageCommand(categoryId)));
 
         #endregion Commands
     }

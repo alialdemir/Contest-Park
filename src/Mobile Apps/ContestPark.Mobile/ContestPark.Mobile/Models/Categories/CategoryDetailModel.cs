@@ -6,25 +6,9 @@
         private byte _level = 1;
         private string _picturePath;
 
-        private int categoryFollowersCount;
-
         private string description;
 
         private string subCategoryName;
-
-        /// <summary>
-        /// Kategoriyi takip eden kullanıcı sayısı
-        /// </summary>
-        public int CategoryFollowersCount
-        {
-            get { return categoryFollowersCount; }
-            set
-            {
-                categoryFollowersCount = value;
-
-                RaisePropertyChanged(() => CategoryFollowersCount);
-            }
-        }
 
         /// <summary>
         /// Kategori açıklaması
@@ -101,6 +85,17 @@
             }
         }
 
-        public long FollowerCount { get; set; }
+        private long _followerCount;
+
+        public long FollowerCount
+        {
+            get { return _followerCount; }
+            set
+            {
+                _followerCount = value;
+
+                RaisePropertyChanged(() => FollowerCount);
+            }
+        }
     }
 }

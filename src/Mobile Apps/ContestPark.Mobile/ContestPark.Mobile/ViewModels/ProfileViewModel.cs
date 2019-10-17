@@ -64,7 +64,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         private bool _isMeProfile = false;
-        private bool isVisibleBackArrow = false;
+        private bool isVisibleBackArrow = true;
         private ProfileInfoModel profileInfo;
 
         /// <summary>

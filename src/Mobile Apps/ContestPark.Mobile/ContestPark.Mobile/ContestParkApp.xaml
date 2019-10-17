@@ -123,6 +123,7 @@
                 <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
                 <Setter Property="HasUnevenRows" Value="True" />
+                <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
             </Style>
 
             <Style
