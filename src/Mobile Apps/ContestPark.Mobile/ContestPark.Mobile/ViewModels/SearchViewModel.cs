@@ -4,7 +4,6 @@ using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Services.Category;
-using ContestPark.Mobile.Services.CategoryFollow;
 using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.ViewModels.Base;
@@ -22,7 +21,6 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variable
 
-        private readonly ICategoryFollowService _categoryFollowService;
         private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IFollowService _followService;
@@ -33,14 +31,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructors
 
-        public SearchViewModel(ICategoryFollowService categoryFollowService,
-                               ICategoryService categoryServices,
+        public SearchViewModel(ICategoryService categoryServices,
                                IEventAggregator eventAggregator,
                                IFollowService followService,
                                IGameService gameService)
         {
             Title = ContestParkResources.SearchPlayersOrCategories;
-            _categoryFollowService = categoryFollowService;
             _categoryService = categoryServices;
             _eventAggregator = eventAggregator;
             _followService = followService;
@@ -100,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (IsFollowingCategory)
             {
-                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync("'", ServiceModel);
+                ServiceModel = await _categoryService.FollowedSubCategoriesAsync("'", ServiceModel);
             }
             else if (_categoryId > 0)
             {
@@ -225,7 +221,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (IsFollowingCategory)
             {
-                ServiceModel = await _categoryFollowService.FollowedSubCategoriesAsync(Search, new PagingModel { });
+                ServiceModel = await _categoryService.FollowedSubCategoriesAsync(Search, new PagingModel { });
             }
             else
             {

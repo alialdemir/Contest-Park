@@ -48,7 +48,8 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Padding="0"
-                    BorderColor="#666372">
+                    BorderColor="#666372"
+                    HasShadow="False">
                     <Frame.CornerRadius>
                         <OnPlatform x:TypeArguments="x:Single">
                             <On Platform="Android" Value="50" />

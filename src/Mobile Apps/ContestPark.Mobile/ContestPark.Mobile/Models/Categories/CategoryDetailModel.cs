@@ -24,18 +24,6 @@
             }
         }
 
-        private string _İCON;
-
-        public string Icon
-        {
-            get { return _İCON; }
-            set
-            {
-                _İCON = value;
-                RaisePropertyChanged(() => Icon);
-            }
-        }
-
         public bool IsSubCategoryFollowUpStatus
         {
             get

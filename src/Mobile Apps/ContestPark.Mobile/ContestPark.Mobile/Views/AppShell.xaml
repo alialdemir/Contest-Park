@@ -104,9 +104,9 @@
         IconImageSource="instagram.svg"
         Text="Instagram" />
 
-    <!--<Shell.MenuItemTemplate>
+    <Shell.MenuItemTemplate>
         <DataTemplate>
             <views:AppShellListItemView />
         </DataTemplate>
-    </Shell.MenuItemTemplate>-->
+    </Shell.MenuItemTemplate>
 </Shell>

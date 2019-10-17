@@ -14,6 +14,66 @@ namespace ContestPark.Mobile.Services.Category
 {
     public class CategoryMockServices : ICategoryService
     {
+        public Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel)
+        {
+            return Task.FromResult(new ServiceModel<SearchModel>
+            {
+                Count = 3,
+                PageNumber = 1,
+                PageSize = 1,
+                Items = new List<SearchModel>
+                {
+                    new SearchModel
+                    {
+                            DisplayPrice="0",
+                            PicturePath=DefaultImages.DefaultLock,
+                            Price=0,
+                            SubCategoryId= 2,
+                            SubCategoryName="Football Players",
+                            CategoryName = "Football",
+                    },
+                    new SearchModel
+                    {
+                            DisplayPrice="10k",
+                            PicturePath=DefaultImages.DefaultLock,
+                            Price=10000,
+                            SubCategoryId= 3,
+                            SubCategoryName="Stadiums",
+                            CategoryName = "Football",
+                    },
+                    new SearchModel
+                    {
+                            DisplayPrice="100k",
+                            PicturePath=DefaultImages.DefaultLock,
+                            Price=100000,
+                            SubCategoryId=1,
+                            SubCategoryName="Teams",
+                            CategoryName = "Football",
+                    },
+                }
+            });
+        }
+
+        public Task<bool> FollowSubCategoryAsync(short subCategoryId)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> IsFollowUpStatusAsync(short subCategoryId)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> UnFollowSubCategoryAsync(short subCategoryId)
+        {
+            return Task.FromResult(true);
+        }
+
         public Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel)
         {
             return Task.FromResult(new ServiceModel<CategoryModel>
@@ -178,13 +238,6 @@ namespace ContestPark.Mobile.Services.Category
             });
         }
 
-        public async Task<bool> FollowSubCategoryAsync(short subCategoryId)
-        {
-            await Task.Delay(3000);
-
-            return true;
-        }
-
         public Task<CategoryDetailModel> GetSubCategoryDetail(short subCategoryId)
         {
             return Task.FromResult(new CategoryDetailModel
@@ -197,11 +250,6 @@ namespace ContestPark.Mobile.Services.Category
                 SubCategoryName = "Takımlar",
                 PicturePath = "assets/images/headhitting.png",
             });
-        }
-
-        public Task<bool> IsFollowUpStatusAsync(short subCategoryId)
-        {
-            return Task.FromResult(true);
         }
 
         public Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold)
@@ -311,20 +359,6 @@ namespace ContestPark.Mobile.Services.Category
                             .ToList();
 
             return Task.FromResult(items);
-        }
-
-        public Task<bool> SubCategoryFollowProgcess(short subCategoryId, bool isSubCategoryFollowUpStatus)
-        {
-            //  await Task.Delay(3000);
-
-            return Task.FromResult(true);
-        }
-
-        public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)
-        {
-            await Task.Delay(3000);
-
-            return true;
         }
 
         private CategoryModel GetCategoryModel()

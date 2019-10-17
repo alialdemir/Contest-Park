@@ -1,14 +1,15 @@
-﻿using System;
+﻿using ContestPark.Mobile.AppResources;
+using System;
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace ContestPark.Mobile.Converters.CategoryDetail
+namespace ContestPark.Mobile.Converters
 {
-    public class ZeroFalseConventer : IValueConverter
+    public class SubCategoryFollowConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return int.TryParse(value.ToString(), out int zero) && !(zero == 0);
+            return (bool)value ? ContestParkResources.UnFollow : ContestParkResources.Follow;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

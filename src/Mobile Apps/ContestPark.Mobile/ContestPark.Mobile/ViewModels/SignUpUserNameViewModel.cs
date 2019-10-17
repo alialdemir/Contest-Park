@@ -174,6 +174,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
+        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
         public ICommand UserNameCommand => new Command(async () => await ExecuteUserNameCommandAsync());
         public ICommand GotoReferenceCodeCommand => new Command(() => ExecuteGotoReferenceCodeCommand());
 

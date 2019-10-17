@@ -15845,43 +15845,40 @@ namespace ContestPark.Mobile.Droid
 			public const int selected = 2131034277;
 			
 			// aapt resource value: 0x7F0500A6
-			public const int selectedBorder = 2131034278;
+			public const int switch_thumb_disabled_material_dark = 2131034278;
 			
 			// aapt resource value: 0x7F0500A7
-			public const int switch_thumb_disabled_material_dark = 2131034279;
+			public const int switch_thumb_disabled_material_light = 2131034279;
 			
 			// aapt resource value: 0x7F0500A8
-			public const int switch_thumb_disabled_material_light = 2131034280;
+			public const int switch_thumb_material_dark = 2131034280;
 			
 			// aapt resource value: 0x7F0500A9
-			public const int switch_thumb_material_dark = 2131034281;
+			public const int switch_thumb_material_light = 2131034281;
 			
 			// aapt resource value: 0x7F0500AA
-			public const int switch_thumb_material_light = 2131034282;
+			public const int switch_thumb_normal_material_dark = 2131034282;
 			
 			// aapt resource value: 0x7F0500AB
-			public const int switch_thumb_normal_material_dark = 2131034283;
+			public const int switch_thumb_normal_material_light = 2131034283;
 			
 			// aapt resource value: 0x7F0500AC
-			public const int switch_thumb_normal_material_light = 2131034284;
+			public const int tabHamburgerMenu = 2131034284;
 			
 			// aapt resource value: 0x7F0500AD
-			public const int tabHamburgerMenu = 2131034285;
+			public const int textIcon = 2131034285;
 			
 			// aapt resource value: 0x7F0500AE
-			public const int textIcon = 2131034286;
+			public const int tooltip_background_dark = 2131034286;
 			
 			// aapt resource value: 0x7F0500AF
-			public const int tooltip_background_dark = 2131034287;
+			public const int tooltip_background_light = 2131034287;
 			
 			// aapt resource value: 0x7F0500B0
-			public const int tooltip_background_light = 2131034288;
+			public const int white_disabled_material = 2131034288;
 			
 			// aapt resource value: 0x7F0500B1
-			public const int white_disabled_material = 2131034289;
-			
-			// aapt resource value: 0x7F0500B2
-			public const int window_background = 2131034290;
+			public const int window_background = 2131034289;
 			
 			static Color()
 			{
