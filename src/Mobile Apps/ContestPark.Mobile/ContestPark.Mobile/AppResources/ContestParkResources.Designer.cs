@@ -1349,6 +1349,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was a problem sending your message. Please try again..
+        /// </summary>
+        public static string ThereWasAProblemSendingYourMessagePleaseTryAgain {
+            get {
+                return ResourceManager.GetString("ThereWasAProblemSendingYourMessagePleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This category has never been competing before. You can take first place!.
         /// </summary>
         public static string ThisCategoryRankNull {

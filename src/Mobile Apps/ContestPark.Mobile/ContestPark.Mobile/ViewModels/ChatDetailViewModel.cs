@@ -257,26 +257,36 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Mesaj gönder
         /// </summary>
-        private Task ExecuteSendMessageCommand()
+        private async Task ExecuteSendMessageCommand()
         {
             if (IsBusy || string.IsNullOrEmpty(_message))
-                return Task.CompletedTask;
+                return;
 
             IsBusy = true;
 
-            Items.Add(new ChatDetailModel
+            var lastMessage = new ChatDetailModel
             {
                 Date = DateTime.Now,
                 Message = _message,
                 SenderId = _settingsService.CurrentUser.UserId
+            };
+
+            Items.Add(lastMessage);
+
+            bool isSuccess = await _chatService.SendMessage(new MessageModel
+            {
+                Text = _message.Trim(),
+                ReceiverUserId = SenderUserId,
             });
 
-            //////await _chatService.SendChat(new SendChatModel
-            //////{
-            //////    Message = _message.Trim(),
-            //////    ReceiverId = SenderUserId,
-            //////    PublicKey = "675b5dce-10cc-4bcd-b635-1e911f6c4eaa"// TODO: config gibi bir yerden çekilmeli
-            //////});
+            if (!isSuccess)
+            {
+                Items.Remove(lastMessage);
+
+                await DisplayAlertAsync("",
+                    ContestParkResources.ThereWasAProblemSendingYourMessagePleaseTryAgain,
+                    ContestParkResources.Okay);
+            }
 
             ListViewScrollToBottomCommand?.Execute(Items.Count - 1);
 
@@ -286,7 +296,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = false;
 
-            return Task.CompletedTask;
+            return;
         }
 
         /// <summary>

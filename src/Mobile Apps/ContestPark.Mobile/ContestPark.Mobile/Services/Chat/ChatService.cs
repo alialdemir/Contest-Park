@@ -77,6 +77,23 @@ namespace ContestPark.Mobile.Services.Chat
         }
 
         /// <summary>
+        /// Mesaj gönderme
+        /// </summary>
+        /// <param name="messageModel">Mesaj ve kullanıcı id</param>
+        /// <returns></returns>
+        public async Task<bool> SendMessage(MessageModel messageModel)
+        {
+            if (string.IsNullOrEmpty(messageModel.ReceiverUserId))
+                return false;
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+
+            var result = await _requestProvider.PostAsync<string>($"{uri}", messageModel);
+
+            return result.IsSuccess;
+        }
+
+        /// <summary>
         /// Login olan kullanıcının mesaj listesi
         /// </summary>
         /// <returns>Mesaj listesi.</returns>

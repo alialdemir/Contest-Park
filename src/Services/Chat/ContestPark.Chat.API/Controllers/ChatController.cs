@@ -66,6 +66,8 @@ namespace ContestPark.Chat.API.Controllers
                 return Ok(result);
 
             IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.SenderUserId).AsEnumerable());
+            if (users == null)
+                return NotFound();
 
             result.Items.ToList().ForEach(message =>
             {

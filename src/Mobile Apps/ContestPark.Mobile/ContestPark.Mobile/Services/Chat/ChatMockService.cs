@@ -60,6 +60,11 @@ namespace ContestPark.Mobile.Services.Chat
             return await Task.FromResult(true);
         }
 
+        public Task<bool> SendMessage(MessageModel messageModel)
+        {
+            return Task.FromResult(true);
+        }
+
         public async Task<ServiceModel<ChatModel>> UserChatList(PagingModel pagingModel)
         {
             await Task.Delay(2000);
