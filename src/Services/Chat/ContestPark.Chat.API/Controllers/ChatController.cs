@@ -66,12 +66,14 @@ namespace ContestPark.Chat.API.Controllers
                 return Ok(result);
 
             IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.SenderUserId).AsEnumerable());
-            if (users == null)
-                return NotFound();
+            if (users == null || users.Count() == 0)
+                return Ok(result);
 
             result.Items.ToList().ForEach(message =>
             {
                 UserModel user = users.FirstOrDefault(x => x.UserId == message.SenderUserId);
+                if (user == null)
+                    return;
 
                 message.UserFullName = user.FullName;
                 message.UserProfilePicturePath = user.ProfilePicturePath;
