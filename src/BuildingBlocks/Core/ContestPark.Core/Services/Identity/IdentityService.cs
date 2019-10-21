@@ -49,6 +49,10 @@ namespace ContestPark.Core.Services.Identity
         public async Task<IEnumerable<UserModel>> GetUserInfosAsync(IEnumerable<string> userIds, bool includeCoverPicturePath = false)
         {
             List<UserModel> users = new List<UserModel>();
+
+            if (userIds == null || userIds.Count() == 0)
+                return users;
+
             foreach (string userId in userIds)
             {
                 // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik

@@ -292,9 +292,14 @@ namespace ContestPark.Chat.API.Controllers
         public async Task<IActionResult> UserBlockedList([FromQuery]PagingModel paging)
         {
             ServiceModel<BlockModel> result = _blockRepository.UserBlockedList(UserId, paging);
-            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.UserId).AsEnumerable());
+            if (result == null || result.Items == null || result.Items.Count() == 0)
+                return NotFound();
 
-            result.Items.ToList().ForEach(block => block.FullName = users.FirstOrDefault(u => u.UserId == block.UserId).FullName);
+            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.UserId).AsEnumerable());
+            if (users != null && users.Count() != 0)
+            {
+                result.Items.ToList().ForEach(block => block.FullName = users.FirstOrDefault(u => u.UserId == block.UserId).FullName);
+            }
 
             return Ok(result);
         }
