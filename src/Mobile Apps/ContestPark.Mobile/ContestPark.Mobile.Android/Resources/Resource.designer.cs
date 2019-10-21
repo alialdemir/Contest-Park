@@ -9490,7 +9490,6 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_appbar = global::ContestPark.Mobile.Droid.Resource.Id.main_appbar;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_tablayout = global::ContestPark.Mobile.Droid.Resource.Id.main_tablayout;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_toolbar = global::ContestPark.Mobile.Droid.Resource.Id.main_toolbar;
-			global::Xamarin.Forms.Material.Android.Resource.Id.main_viewpager = global::ContestPark.Mobile.Droid.Resource.Id.main_viewpager;
 			global::Xamarin.Forms.Material.Android.Resource.Id.masked = global::ContestPark.Mobile.Droid.Resource.Id.masked;
 			global::Xamarin.Forms.Material.Android.Resource.Id.materialformsedittext = global::ContestPark.Mobile.Droid.Resource.Id.materialformsedittext;
 			global::Xamarin.Forms.Material.Android.Resource.Id.media_actions = global::ContestPark.Mobile.Droid.Resource.Id.media_actions;
@@ -10244,7 +10243,6 @@ namespace ContestPark.Mobile.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialProgressBarHorizontal = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialProgressBarHorizontal;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialSlider = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialSlider;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialTheme = global::ContestPark.Mobile.Droid.Resource.Style.XamarinFormsMaterialTheme;
-			global::Xamarin.Forms.Material.Android.Resource.Style.collectionViewStyle = global::ContestPark.Mobile.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_background = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_backgroundSplit = global::ContestPark.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;

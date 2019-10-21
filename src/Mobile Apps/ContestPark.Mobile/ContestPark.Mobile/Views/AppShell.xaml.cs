@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.Views
             else if (!string.IsNullOrEmpty(name))
             {
                 Shell.Current.FlyoutIsPresented = false;
-                //   Current.GoToAsync(name);
+                Current.GoToAsync(name);
             }
 
             IsBusy = false;
