@@ -124,16 +124,13 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+            PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
                 {
                     { "UserName", userName},
                     { "FullName", ProfileInfo.FullName},
                     { "SenderUserId", ProfileInfo.UserId},
                     {"SenderProfilePicturePath", ProfileInfo.ProfilePicturePath }
                 });
-            });
 
             IsBusy = false;
         }

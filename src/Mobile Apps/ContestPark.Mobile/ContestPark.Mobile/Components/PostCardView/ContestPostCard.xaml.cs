@@ -52,7 +52,7 @@ namespace ContestPark.Mobile.Components.PostCardView
                     _navigationService?.NavigateAsync(nameof(ProfileView), new NavigationParameters
                     {
                          { "UserName", userName }
-                    });
+                    }, useModalNavigation: false);
 
                     IsBusy = false;
                 }));
