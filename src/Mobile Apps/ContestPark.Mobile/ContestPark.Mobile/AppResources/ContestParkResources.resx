@@ -683,7 +683,4 @@
   <data name="ReferenceCode" xml:space="preserve">
     <value>Reference code</value>
   </data>
-  <data name="ThereWasAProblemSendingYourMessagePleaseTryAgain" xml:space="preserve">
-    <value>There was a problem sending your message. Please try again.</value>
-  </data>
 </root>

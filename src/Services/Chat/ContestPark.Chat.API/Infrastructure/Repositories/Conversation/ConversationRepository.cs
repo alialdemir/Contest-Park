@@ -103,10 +103,10 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Conversation
         /// <returns>Konuşma detayı</returns>
         public ServiceModel<MessageModel> UserMessages(string userId, PagingModel paging)
         {
-            string sql = @"SELECT
+            string sql = @"SELECT DISTINCT
+                           c.ConversationId,
                            c.LastMessageDate AS DATE,
                            c.LastMessage AS Message,
-                           c.ConversationId,
                            CASE WHEN c.SenderUserId = @userId THEN c.ReceiverUserId ELSE c.SenderUserId END AS SenderUserId,
                            c.LastWriterUserId
                            FROM Conversations c

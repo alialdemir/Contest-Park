@@ -1,10 +1,12 @@
-﻿using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
+using Prism.Services;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Chat
@@ -16,17 +18,19 @@ namespace ContestPark.Mobile.Services.Chat
         private const string ApiUrlBase = "api/v1/chat";
         private readonly ICacheService _cacheService;
         private readonly INewRequestProvider _requestProvider;
+        private readonly IPageDialogService _pageDialogService;
 
         #endregion Private variables
 
         #region Constructor
 
         public ChatService(INewRequestProvider requestProvider,
-                           ICacheService cacheService
-            )
+                           IPageDialogService pageDialogService,
+                           ICacheService cacheService)
         {
             _cacheService = cacheService;
             _requestProvider = requestProvider;
+            _pageDialogService = pageDialogService;
         }
 
         #endregion Constructor
@@ -63,7 +67,7 @@ namespace ContestPark.Mobile.Services.Chat
         /// <summary>
         /// İlgili chat'deki tüm mesajları sil
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> DeleteAsync(long conversationId)
         {
             if (conversationId <= 0)
@@ -80,15 +84,22 @@ namespace ContestPark.Mobile.Services.Chat
         /// Mesaj gönderme
         /// </summary>
         /// <param name="messageModel">Mesaj ve kullanıcı id</param>
-        /// <returns></returns>
+        /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> SendMessage(MessageModel messageModel)
         {
-            if (string.IsNullOrEmpty(messageModel.ReceiverUserId))
+            if (messageModel == null || string.IsNullOrEmpty(messageModel.Text) || string.IsNullOrEmpty(messageModel.ReceiverUserId))
                 return false;
 
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
 
             var result = await _requestProvider.PostAsync<string>($"{uri}", messageModel);
+
+            if (!result.IsSuccess)
+            {
+                await _pageDialogService.DisplayAlertAsync("",
+                    result.Error.ErrorMessage,
+                    ContestParkResources.Okay);
+            }
 
             return result.IsSuccess;
         }

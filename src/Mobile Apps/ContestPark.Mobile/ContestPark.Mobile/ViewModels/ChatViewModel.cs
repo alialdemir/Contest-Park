@@ -122,7 +122,7 @@ namespace ContestPark.Mobile.ViewModels
                     { "SenderUserId", selectedModel.SenderUserId},
                     { "ConversationId", selectedModel.ConversationId},
                     {"SenderProfilePicturePath", selectedModel.UserProfilePicturePath }
-                });
+                }, useModalNavigation: false);
             }
 
             IsBusy = false;

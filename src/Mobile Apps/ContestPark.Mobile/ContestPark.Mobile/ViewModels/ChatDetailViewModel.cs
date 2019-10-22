@@ -282,10 +282,6 @@ namespace ContestPark.Mobile.ViewModels
             if (!isSuccess)
             {
                 Items.Remove(lastMessage);
-
-                await DisplayAlertAsync("",
-                    ContestParkResources.ThereWasAProblemSendingYourMessagePleaseTryAgain,
-                    ContestParkResources.Okay);
             }
 
             ListViewScrollToBottomCommand?.Execute(Items.Count - 1);

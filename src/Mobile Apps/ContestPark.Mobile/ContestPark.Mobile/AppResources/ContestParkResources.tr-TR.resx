@@ -552,9 +552,6 @@
   <data name="ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount" xml:space="preserve">
     <value>Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi.</value>
   </data>
-  <data name="ThereWasAProblemSendingYourMessagePleaseTryAgain" xml:space="preserve">
-    <value>Mesajınız gönderilirken problem oldu. Lütfen tekrar deneyiniz.</value>
-  </data>
   <data name="ThisCategoryRankNull" xml:space="preserve">
     <value>Bu kategoride daha önce yarışan olmamış. İlk sırayı sen kapabilirsin!</value>
     <comment>Name kısmı ingilizce olmalı</comment>
