@@ -183,7 +183,7 @@ namespace ContestPark.Mobile.ViewModels
             await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
                 {
                     {"UserName", userName }
-                });
+                }, useModalNavigation: false);
 
             IsBusy = false;
         }

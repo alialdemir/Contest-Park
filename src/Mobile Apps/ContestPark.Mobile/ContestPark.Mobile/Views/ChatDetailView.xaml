@@ -3,8 +3,8 @@
     x:Class="ContestPark.Mobile.Views.ChatDetailView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:chatDetail="clr-namespace:ContestPark.Mobile.Components.ChatDetail"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -18,7 +18,7 @@
             <chatDetail:ChatDataTemplateSelector x:Key="MessageTemplateSelector" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <NavigationPage.TitleView>
+    <Shell.TitleView>
         <StackLayout
             Margin="0"
             Padding="0"
@@ -39,9 +39,9 @@
                 VerticalOptions="Center"
                 VerticalTextAlignment="Start" />
         </StackLayout>
-    </NavigationPage.TitleView>
+    </Shell.TitleView>
     <ContentPage.Content>
-        <StackLayout Margin="10,15,10,25" Orientation="Vertical">
+        <StackLayout Margin="10,35,10,25" Orientation="Vertical">
             <yummy:PancakeView
                 Padding="11"
                 BackgroundColor="{StaticResource White}"

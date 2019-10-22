@@ -23,15 +23,10 @@
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
+            Margin="0,60,0,0"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
-            <Components:NonPersistentSelectedItemListView.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="Android" Value="0,0,0,0" />
-                    <On Platform="iOS" Value="0,60,0,0" />
-                </OnPlatform>
-            </Components:NonPersistentSelectedItemListView.Margin>
             <Components:NonPersistentSelectedItemListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>

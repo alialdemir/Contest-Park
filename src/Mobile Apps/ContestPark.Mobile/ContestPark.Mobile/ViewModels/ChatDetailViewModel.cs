@@ -249,7 +249,7 @@ namespace ContestPark.Mobile.ViewModels
             PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
                 {
                     {"UserName", _userName }
-                });
+                }, useModalNavigation: true);
 
             IsBusy = false;
         }

@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Models;
+﻿using ContestPark.Core.Dapper.Abctract;
+using ContestPark.Duel.API.Models;
 using Microsoft.Extensions.Logging;
 using ServiceStack.Redis;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
 {
-    public class DuelUserRepository : IDuelUserRepository
+    public class DuelUserRepository : Disposable, IDuelUserRepository
     {
         #region Private Variables
 
@@ -46,7 +47,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
 
                 // Parametreden gelen kullanıcının düellosuna karşılık gelen rakip var mı baktık
                 var items = _redisClient.GetAllKeys();
-                if (items == null || items.ToList().Count == 0)
+                if (items == null || items.Count == 0)
                     return null;
 
                 List<string> keys = items.Where(x => x.StartsWith(key)).ToList();
@@ -74,22 +75,18 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         /// <returns>Başarılı olma durumu</returns>
         public bool Insert(DuelUserModel duelUser)
         {
-            bool isLock = false;
-
             try
             {
                 string key = GetKey(duelUser);
 
-                isLock = _redisClient.Set<DuelUserModel>(key, duelUser/*, expiresAt: DateTime.Now.AddSeconds(40)*/);// 40 sn sonra redis üzerinden otomatik siler
+                return _redisClient.Set<DuelUserModel>(key, duelUser, expiresAt: DateTime.Now.AddMinutes(1));// 40 sn sonra redis üzerinden otomatik siler
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Duel user repository insert methodunda hata oluştu.");
 
-                isLock = true;
+                return true;
             }
-
-            return isLock;
         }
 
         /// <summary>
@@ -130,6 +127,14 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
                 ":BalanceType" + duelUserModel.BalanceType.ToString() +
                 ":UserId" + duelUserModel.UserId +
                 ":ConnectionId" + duelUserModel.ConnectionId;
+        }
+
+        public override void DisposeCore()
+        {
+            base.DisposeCore();
+
+            if (_redisClient != null)
+                _redisClient.Dispose();
         }
 
         #endregion Private methds
