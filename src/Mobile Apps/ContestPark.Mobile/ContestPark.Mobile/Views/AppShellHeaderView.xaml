@@ -17,10 +17,10 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-            <Image
+            <components:CachedImage
                 Aspect="AspectFill"
                 HorizontalOptions="FillAndExpand"
-                Source="{Binding CoverPicture}"
+                Source="{Binding Path=BindingContext.CoverPicture, Source={x:Reference appShellHeaderView}}"
                 VerticalOptions="FillAndExpand" />
 
             <Grid

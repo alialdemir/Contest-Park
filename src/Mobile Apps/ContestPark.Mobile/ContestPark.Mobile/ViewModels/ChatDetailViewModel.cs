@@ -10,6 +10,7 @@ using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -174,18 +175,26 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            string buttons = await IsBlockingAsync() == true ? ContestParkResources.RemoveBlock : ContestParkResources.Block;
+            List<string> buttons = new List<string>()
+            {
+                ContestParkResources.DeleteConversation
+            };
+
+            if (Items.Count != 0)
+            {
+                buttons.Add(await IsBlockingAsync() == true ? ContestParkResources.RemoveBlock : ContestParkResources.Block);
+            }
 
             string selectedActionSheet = await DisplayActionSheetAsync(
                 ContestParkResources.ChatSettings,
                 ContestParkResources.Cancel, null,
-                ContestParkResources.DeleteConversation, buttons);
+                buttons.ToArray());
 
             IsBusy = false;
 
             if (selectedActionSheet == ContestParkResources.DeleteConversation)
                 DeleteMessageCommand.Execute(null);
-            else if (selectedActionSheet == buttons)
+            else if (buttons.Count != 1 && selectedActionSheet == buttons[1])
                 BlockingProgressCommand.Execute(await IsBlockingAsync());
         }
 

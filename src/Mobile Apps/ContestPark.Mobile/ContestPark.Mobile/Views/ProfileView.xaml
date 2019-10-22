@@ -37,15 +37,16 @@
                         </Grid.RowDefinitions>
 
                         <!--  cover picture  -->
-                        <Image
+                        <components:CachedImage
                             Grid.RowSpan="3"
                             Aspect="AspectFill"
                             HeightRequest="259"
+                            HorizontalOptions="FillAndExpand"
                             Source="{Binding ProfileInfo.CoverPicture}">
-                            <Image.GestureRecognizers>
+                            <components:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" CommandParameter="Cover" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                            </components:CachedImage.GestureRecognizers>
+                        </components:CachedImage>
 
                         <!--  Back button  -->
                         <iconize:IconButton

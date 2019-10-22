@@ -153,7 +153,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (string.IsNullOrEmpty(name) || _navigationService == null)
                 return Task.CompletedTask;
 
-            return _navigationService.NavigateAsync(name, parameters, useModalNavigation);
+            return _navigationService.NavigateAsync(name, parameters, false);
         }
 
         public Task PushPopupPageAsync(PopupPage page)
