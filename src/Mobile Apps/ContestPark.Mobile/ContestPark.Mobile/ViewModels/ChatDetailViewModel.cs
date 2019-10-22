@@ -10,6 +10,7 @@ using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -114,8 +115,6 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private long ConversationId { get; set; }
-
         /// <summary>
         /// Konuştuğu kullanıcı id
         /// </summary>
@@ -152,8 +151,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            bool isSuccess = false;
-
+            bool isSuccess;
             if (await IsBlockingAsync() == true)
                 isSuccess = await _blockingService.UnBlock(SenderUserId);
             else
@@ -196,7 +194,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteDeleteMessageCommandAsync()
         {
-            if (IsBusy || ConversationId == 0)
+            if (IsBusy || Items == null || Items.Count == 0 || Items.FirstOrDefault().ConversationId == 0)
                 return;
 
             IsBusy = true;
@@ -213,8 +211,9 @@ namespace ContestPark.Mobile.ViewModels
                 Items.CopyTo(items, 0);
 
                 Items.Clear();
+                long conversationId = Items.First().ConversationId;
 
-                bool isRemoveMessages = await _chatService.DeleteAsync(ConversationId);
+                bool isRemoveMessages = await _chatService.DeleteAsync(conversationId);
 
                 if (!isRemoveMessages)// eğer hata olursa mesajları geri yüklüyoruz
                 {
@@ -228,7 +227,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     _eventAggregator
                                 .GetEvent<MessageRefleshEvent>()
-                                .Publish(ConversationId);
+                                .Publish(conversationId);
                 }
             }
 
@@ -268,6 +267,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 Date = DateTime.Now,
                 Message = _message,
+                IsIncoming = true,
                 SenderId = _settingsService.CurrentUser.UserId
             };
 

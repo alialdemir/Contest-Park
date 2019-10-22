@@ -41,7 +41,7 @@
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
-        <StackLayout Margin="10,35,10,25" Orientation="Vertical">
+        <StackLayout Margin="10,65,10,25" Orientation="Vertical">
             <yummy:PancakeView
                 Padding="11"
                 BackgroundColor="{StaticResource White}"

@@ -10,5 +10,6 @@ namespace ContestPark.Chat.API.Model
 
         public string SenderId { get; set; }
         public bool IsIncoming { get; set; }
+        public long ConversationId { get; set; }
     }
 }

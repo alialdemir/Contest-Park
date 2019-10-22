@@ -87,6 +87,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
         public ServiceModel<ConversationDetailModel> ConversationDetail(string userId, string senderUserId, PagingModel paging)
         {
             string sql = @"SELECT
+                           c.ConversationId,
                            m.CreatedDate as Date,
                            m.TEXT as Message,
                            m.AuthorUserId as SenderId,

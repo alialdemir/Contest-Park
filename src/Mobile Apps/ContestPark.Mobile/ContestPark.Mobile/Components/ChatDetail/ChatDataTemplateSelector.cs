@@ -18,7 +18,7 @@ namespace ContestPark.Mobile.Components.ChatDetail
             var messageVm = item as ChatDetailModel;
             if (messageVm == null)
                 return null;
-            return messageVm.IsIncoming ? this.incomingDataTemplate : this.outgoingDataTemplate;
+            return messageVm.IsIncoming ? this.outgoingDataTemplate : this.incomingDataTemplate;
         }
 
         private readonly DataTemplate incomingDataTemplate;

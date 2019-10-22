@@ -33,6 +33,8 @@ namespace ContestPark.Mobile.Models.Chat
             }
         }
 
+        public long ConversationId { get; set; }
+
         public string SenderId
         {
             get { return senderId; }
