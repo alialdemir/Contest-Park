@@ -1,15 +1,22 @@
-﻿using Android.Graphics;
+﻿using Android.Content;
+using Android.Graphics;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+
 [assembly: ExportRenderer(typeof(Xamarin.Forms.Switch), typeof(CustomSwitchRendererd))]
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
-    [System.Obsolete]
     public class CustomSwitchRendererd : SwitchRenderer
     {
+        public CustomSwitchRendererd(Context context) : base(context)
+
+        {
+        }
+
         private Xamarin.Forms.Switch view;
+
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Switch> e)
         {
             base.OnElementChanged(e);
@@ -50,7 +57,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
         private void UpdateSwitchThumbImage(Xamarin.Forms.Switch view)
         {
-
             if (this.Control.Checked)
             {
                 Control.SetThumbResource(Resource.Drawable.switchactive);
@@ -59,7 +65,6 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             {
                 Control.SetThumbResource(Resource.Drawable.switchpassive);
             }
-
         }
 
         protected override void Dispose(bool disposing)

@@ -1,4 +1,5 @@
-﻿using com.refractored.monodroidtoolkit;
+﻿using Android.Content;
+using com.refractored.monodroidtoolkit;
 using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using Xamarin.Forms;
@@ -8,9 +9,13 @@ using Xamarin.Forms.Platform.Android;
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
-    [System.Obsolete]
     public class CircularProgressRenderer : ViewRenderer<CircularProgress, HoloCircularProgressBar>
     {
+        public CircularProgressRenderer(Context context) : base(context)
+
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<CircularProgress> e)
         {
             try
