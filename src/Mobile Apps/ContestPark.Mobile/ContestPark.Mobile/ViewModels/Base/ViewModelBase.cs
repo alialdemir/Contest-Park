@@ -112,12 +112,12 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Navigations
 
-        public Task GoBackAsync()
+        public Task GoBackAsync(bool? useModalNavigation = false)
         {
             if (_navigationService == null)
                 return Task.CompletedTask;
 
-            return _navigationService?.GoBackAsync();
+            return _navigationService?.GoBackAsync(useModalNavigation: useModalNavigation);
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)

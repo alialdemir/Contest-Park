@@ -3,12 +3,18 @@
     x:Class="ContestPark.Mobile.Views.WinningsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Balance"
     xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:BalanceConverter x:Key="bc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView
@@ -45,7 +51,7 @@
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="24"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding Balance, StringFormat='{0:##.##}$'}"
+                        Text="{Binding Balance, Converter={StaticResource bc}}"
                         TextColor="#FFCC33" />
 
                     <Label

@@ -103,11 +103,14 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand _goToCategorySearchPageCommand;
         public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>((categoryId) => ExecutGoToCategorySearchPageCommand(categoryId)));
 
-        private ICommand ConnectToSignalr => new Command(async () =>
-         {
-             if (!_baseSignalRService.IsConnect)
-                 await _baseSignalRService.Init();
-         });
+        private ICommand ConnectToSignalr => new Command(() =>
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (!_baseSignalRService.IsConnect)
+                    _baseSignalRService.Init();
+            });
+        });
 
         #endregion Commands
     }

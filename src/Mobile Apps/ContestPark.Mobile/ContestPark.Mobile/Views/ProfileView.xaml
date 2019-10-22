@@ -22,6 +22,7 @@
             <converter1:FollowIconConverter x:Key="isFollowIconConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             InfiniteScroll="{Binding InfiniteScroll}"

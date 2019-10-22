@@ -72,8 +72,10 @@ namespace ContestPark.Mobile.ViewModels
         private async Task GetBalanceAsync()
         {
             var balance = await _balanceService.GetBalanceAsync();
-
-            Balance = balance.Money;
+            if (balance != null)
+            {
+                Balance = balance.Money;
+            }
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteBalanceCommand()
         {
-            decimal minBalanceAmount = 100.00m;
+            decimal minBalanceAmount = 20.00m;
             if (Balance < minBalanceAmount)
             {
                 await DisplayAlertAsync(string.Empty,

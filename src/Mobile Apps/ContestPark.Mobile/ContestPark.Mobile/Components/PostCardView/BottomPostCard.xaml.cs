@@ -44,13 +44,13 @@ namespace ContestPark.Mobile.Components.PostCardView
             IsBusy = true;
 
             PostModel postModel = (PostModel)BindingContext;
-            if (postModel == null)
-                return;
-
-            _navigationService?.NavigateAsync(nameof(PostDetailView), new NavigationParameters
+            if (postModel != null)
+            {
+                _navigationService?.NavigateAsync(nameof(PostDetailView), new NavigationParameters
             {
                 { "PostId", postModel.PostId }
             }, useModalNavigation: false);
+            }
 
             IsBusy = false;
         }
@@ -66,13 +66,13 @@ namespace ContestPark.Mobile.Components.PostCardView
             IsBusy = true;
 
             PostModel postModel = (PostModel)BindingContext;
-            if (postModel == null || postModel.LikeCount == 0)
-                return;
-
-            _navigationService?.NavigateAsync(nameof(PostLikesView), new NavigationParameters
+            if (postModel != null && postModel.LikeCount != 0)
+            {
+                _navigationService?.NavigateAsync(nameof(PostLikesView), new NavigationParameters
             {
                 { "PostId", postModel.PostId }
             }, useModalNavigation: false);
+            }
 
             IsBusy = false;
         }
@@ -91,8 +91,11 @@ namespace ContestPark.Mobile.Components.PostCardView
             PostModel postModel = (PostModel)BindingContext;
 
             if (postService == null || postModel == null)
-                return;
+            {
+                IsBusy = false;
 
+                return;
+            }
             if (postModel.IsLike)
                 postModel.LikeCount -= 1;
             else
