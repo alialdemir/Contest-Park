@@ -216,11 +216,14 @@ namespace ContestPark.Mobile.ViewModels
 
             if (isDelete)
             {
+                long conversationId = Items.FirstOrDefault().ConversationId;
+                if (conversationId == 0)
+                    return;
+
                 ChatDetailModel[] items = new ChatDetailModel[Items.Count];
                 Items.CopyTo(items, 0);
 
                 Items.Clear();
-                long conversationId = Items.First().ConversationId;
 
                 bool isRemoveMessages = await _chatService.DeleteAsync(conversationId);
 
