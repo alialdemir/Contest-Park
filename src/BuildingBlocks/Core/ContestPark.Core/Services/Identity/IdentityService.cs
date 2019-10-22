@@ -56,17 +56,17 @@ namespace ContestPark.Core.Services.Identity
             foreach (string userId in userIds)
             {
                 // keyleri alt kategori id, bahis miktarı ve bakiye tipine göre filtreledik
-                string key = $"{redisKey}:{userId}*";
+                string key = $"{redisKey}:{userId}";
 
-                var items = _redisClient.ScanAllKeys(key);
-                if (items != null || items.ToList().Count != 0)
+                var items = _redisClient.GetValues<UserModel>(new List<string> { key });
+                if (items != null || items.Count != 0)
                 {
-                    users.AddRange(_redisClient.GetValues<UserModel>(items.ToList()));
+                    users.AddRange(items);
                 }
             }
 
             var notFoundUserIds = userIds.Where(u => !users.Any(x => x.UserId == u)).AsEnumerable();
-            if (notFoundUserIds.Count() > 0) // users listesinde yani redisde olmayan kullanıcıları gidip identity serviceden alıp redise ekleyip return ediyoruz
+            if (notFoundUserIds != null && notFoundUserIds.Count() > 0) // users listesinde yani redisde olmayan kullanıcıları gidip identity serviceden alıp redise ekleyip return ediyoruz
             {
                 IEnumerable<UserModel> serviceUsers = await _requestProvider.PostAsync<IEnumerable<UserModel>>($"{baseUrl}/UserInfos?includeCoverPicturePath={includeCoverPicturePath}", userIds);
 
@@ -102,13 +102,13 @@ namespace ContestPark.Core.Services.Identity
 
             foreach (UserModel user in users)
             {
-                _redisClient.Set<UserModel>(GetKey(user.UserId, user.UserName), user, expiresAt: DateTime.Now.AddMinutes(30));// 30 dakkika sonra redis üzerinden otomatik siler
+                _redisClient.Set<UserModel>(GetKey(user.UserId, user.UserName), user, expiresAt: DateTime.Now.AddMinutes(5));// 30 dakkika sonra redis üzerinden otomatik siler
             }
         }
 
         private string GetKey(string userId, string userName)
         {
-            return $"{redisKey}:{userId}:{userName}";
+            return $"{redisKey}:{userId}";
         }
 
         /// <summary>
