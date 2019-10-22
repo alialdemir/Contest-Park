@@ -3,16 +3,14 @@
     x:Class="ContestPark.Mobile.Views.DuelBettingPopupView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters.BalanceType"
-    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-    xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
-    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
     xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="duelBettingPopupView"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -64,7 +62,7 @@
                                                                               ElementName=pvkView,
                                                                               Property=Y,
                                                                               Factor=0,
-                                                                              Constant=50}"
+                                                                              Constant=10}"
                             StartColor="#FFB347"
                             Text="{i18n:Translate Dolar}"
                             TextColor="{StaticResource White}"
@@ -97,7 +95,7 @@
                                                                               ElementName=pvkView,
                                                                               Property=Y,
                                                                               Factor=0,
-                                                                              Constant=50}"
+                                                                              Constant=10}"
                             StartColor="#FFB347"
                             Text="{i18n:Translate Gold}"
                             TextColor="{StaticResource White}"

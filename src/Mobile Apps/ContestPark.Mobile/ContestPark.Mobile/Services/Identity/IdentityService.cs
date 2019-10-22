@@ -357,7 +357,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             var result = await _requestProvider.PostAsync<string>(uri, userInfo);
 
-            await ShowValidationMessages(result.Error.MemberNames);
+            await ShowValidationMessages(result.Error?.MemberNames);
 
             return result.IsSuccess;
         }

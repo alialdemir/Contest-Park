@@ -14,13 +14,13 @@
     Title="{i18n:Translate Categories}"
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem
             AutomationId="tbiCategorySearch"
             Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}"
             CommandParameter="{Binding SeeAllSubCateogryId}"
             IconImageSource="searchicon.png" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView SeparatorColor="Transparent" Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.Margin>

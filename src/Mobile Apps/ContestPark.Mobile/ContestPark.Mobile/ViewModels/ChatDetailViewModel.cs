@@ -132,7 +132,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _chatService.ChatDetailAsync(ConversationId, ServiceModel);
+            ServiceModel = await _chatService.ChatDetailAsync(SenderUserId, ServiceModel);
 
             await base.InitializeAsync();
 
@@ -196,7 +196,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteDeleteMessageCommandAsync()
         {
-            if (IsBusy)
+            if (IsBusy || ConversationId == 0)
                 return;
 
             IsBusy = true;
@@ -376,11 +376,10 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
             if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");
             if (parameters.ContainsKey("SenderUserId")) SenderUserId = parameters.GetValue<string>("SenderUserId");
-            if (parameters.ContainsKey("ConversationId")) ConversationId = parameters.GetValue<long>("ConversationId");
             if (parameters.ContainsKey("SenderProfilePicturePath")) SenderProfilePicturePath = parameters.GetValue<string>("SenderProfilePicturePath");
 
             StartHub();
-            //base.OnNavigatingTo(parameters);
+            base.OnNavigatedTo(parameters);
         }
 
         #endregion Navigations

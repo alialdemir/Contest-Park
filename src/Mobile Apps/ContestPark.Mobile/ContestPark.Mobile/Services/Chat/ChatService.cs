@@ -42,9 +42,9 @@ namespace ContestPark.Mobile.Services.Chat
         /// </summary>
         /// <param name="senderId">kullanıcı Id</param>
         /// <returns>Sohbet geçmiþinin listesi</returns>
-        public async Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(long conversationId, PagingModel pagingModel)
+        public async Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{conversationId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{senderUserId}{pagingModel.ToString()}");
 
             var result = await _requestProvider.GetAsync<ServiceModel<ChatDetailModel>>(uri);
 

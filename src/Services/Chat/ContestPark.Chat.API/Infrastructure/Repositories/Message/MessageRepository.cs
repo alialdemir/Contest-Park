@@ -84,7 +84,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
         /// <param name="conversationId">Konuşma id</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Konuşma detayı</returns>
-        public ServiceModel<ConversationDetailModel> ConversationDetail(string userId, long conversationId, PagingModel paging)
+        public ServiceModel<ConversationDetailModel> ConversationDetail(string userId, string senderUserId, PagingModel paging)
         {
             string sql = @"SELECT
                            m.CreatedDate as Date,
@@ -93,14 +93,15 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
                            m.AuthorUserId = @userId AS IsIncoming
                            FROM Messages m
                            INNER JOIN Conversations c ON c.ConversationId = m.ConversationId
-                           WHERE m.ConversationId = @conversationId
-                           AND ((c.ReceiverUserId = @userId AND m.ReceiverIsDeleted=FALSE) OR (c.SenderUserId=@userId AND m.SenderIsDeleted=FALSE))
+                           WHERE m.ConversationId = c.ConversationId
+                           AND ((c.ReceiverUserId = @userId AND c.SenderUserId = @senderUserId) OR (c.ReceiverUserId = @senderUserId AND c.SenderUserId = @userId))
+                           AND ((c.ReceiverUserId = @userId AND m.ReceiverIsDeleted=FALSE) OR (c.SenderUserId= @userId AND m.SenderIsDeleted=FALSE))
                            ORDER BY m.CreatedDate ASC";
 
             return _messageRepository.ToServiceModel<ConversationDetailModel>(sql, new
             {
                 userId,
-                conversationId
+                senderUserId
             }, pagingModel: paging);
         }
 
@@ -110,7 +111,7 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Message
         /// <param name="userId"></param>
         public async void ChatSeen(string userId)
         {
-            bool isSuccess = await _messageRepository.ExecuteAsync("SP_SeenAllChat", new
+            await _messageRepository.ExecuteAsync("SP_SeenAllChat", new
             {
                 userId,
             }, commandType: CommandType.StoredProcedure);

@@ -60,8 +60,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if (!_baseSignalRService.IsConnect)
-                await _baseSignalRService.Init();
+            ConnectToSignalr.Execute(null);
 
             //TODO: Kategorileri sayfala
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
@@ -103,6 +102,12 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand _goToCategorySearchPageCommand;
         public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>((categoryId) => ExecutGoToCategorySearchPageCommand(categoryId)));
+
+        private ICommand ConnectToSignalr => new Command(async () =>
+         {
+             if (!_baseSignalRService.IsConnect)
+                 await _baseSignalRService.Init();
+         });
 
         #endregion Commands
     }

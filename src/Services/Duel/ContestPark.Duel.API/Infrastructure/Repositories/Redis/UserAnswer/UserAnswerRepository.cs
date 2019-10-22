@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Models;
+﻿using ContestPark.Core.Dapper.Abctract;
+using ContestPark.Duel.API.Models;
 using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 {
-    public class UserAnswerRepository : IUserAnswerRepository
+    public class UserAnswerRepository : Disposable, IUserAnswerRepository
     {
         #region Private Variables
 
@@ -71,6 +72,14 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
         private string GetKey(int duelId)
         {
             return $"DuelUserAnswer:{duelId}";
+        }
+
+        public override void DisposeCore()
+        {
+            base.DisposeCore();
+
+            if (_redisClient != null)
+                _redisClient.Dispose();
         }
 
         #endregion Methods

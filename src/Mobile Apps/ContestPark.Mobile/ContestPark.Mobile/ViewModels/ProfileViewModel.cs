@@ -119,7 +119,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="receiverUserId">alıcının kullanıcı id</param>
         public void GotoChatDetail()
         {
-            if (IsBusy)
+            if (IsBusy || ProfileInfo == null)
                 return;
 
             IsBusy = true;
