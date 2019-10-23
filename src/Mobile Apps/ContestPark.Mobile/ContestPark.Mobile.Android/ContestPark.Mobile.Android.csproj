@@ -102,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
-      <Version>7.0.4</Version>
+      <Version>7.0.35</Version>
     </PackageReference>
     <PackageReference Include="CardsView">
       <Version>2.3.4</Version>
@@ -326,7 +326,6 @@
     <AndroidAsset Include="Assets\GothamRounded-LightItalic.otf" />
     <AndroidAsset Include="Assets\GothamRounded-Medium.otf" />
     <AndroidAsset Include="Assets\GothamRounded-MediumItalic.otf" />
-    <AndroidAsset Include="Assets\ContestPark-Icon.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
