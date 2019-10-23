@@ -72,6 +72,11 @@ namespace ContestPark.Duel.API
                 return new PooledRedisClientManager(settings.Redis).GetClient();
             });
 
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = Environment.GetEnvironmentVariable("Redis");
+            });
+
             ConfigureOtherService(services);
 
             services

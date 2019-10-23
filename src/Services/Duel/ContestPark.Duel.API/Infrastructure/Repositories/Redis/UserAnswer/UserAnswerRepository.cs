@@ -1,25 +1,25 @@
-﻿using ContestPark.Core.Dapper.Abctract;
-using ContestPark.Duel.API.Models;
-using ServiceStack.Redis;
+﻿using ContestPark.Duel.API.Models;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 {
-    public class UserAnswerRepository : Disposable, IUserAnswerRepository
+    public class UserAnswerRepository : IUserAnswerRepository
     {
         #region Private Variables
 
-        private readonly IRedisClient _redisClient;
+        private readonly IDistributedCache _distributedCache;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public UserAnswerRepository(IRedisClient redisClient)
+        public UserAnswerRepository(IDistributedCache distributedCache)
         {
-            _redisClient = redisClient;
+            _distributedCache = distributedCache;
         }
 
         #endregion Constructor
@@ -30,10 +30,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
         {
             string key = GetKey(deuelId);
 
-            if (!_redisClient.ContainsKey(key))
+            string json = _distributedCache.GetString(key);
+            if (string.IsNullOrEmpty(json))
                 return null;
 
-            return _redisClient.Get<List<UserAnswerModel>>(key);
+            return JsonConvert.DeserializeObject<List<UserAnswerModel>>(json);
         }
 
         public void Add(UserAnswerModel userAnswer)
@@ -53,7 +54,12 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 
             string key = GetKey(duelId);
 
-            _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresAt: DateTime.Now.AddMinutes(10));// 10 dk sonra redis üzerinden otomatik siler
+            string data = JsonConvert.SerializeObject(userAnswers);
+
+            var option = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(10));
+            option.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+
+            _distributedCache.SetString(key, data);
         }
 
         /// <summary>
@@ -63,23 +69,13 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
         public void Remove(int duelId)
         {
             string key = GetKey(duelId);
-            if (_redisClient.ContainsKey(key))
-            {
-                _redisClient.Remove(key);
-            }
+
+            _distributedCache.Remove(key);
         }
 
         private string GetKey(int duelId)
         {
             return $"DuelUserAnswer:{duelId}";
-        }
-
-        public override void DisposeCore()
-        {
-            base.DisposeCore();
-
-            if (_redisClient != null)
-                _redisClient.Dispose();
         }
 
         #endregion Methods

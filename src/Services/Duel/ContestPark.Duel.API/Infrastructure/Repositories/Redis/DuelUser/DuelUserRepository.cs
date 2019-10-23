@@ -1,6 +1,8 @@
 ﻿using ContestPark.Core.Dapper.Abctract;
 using ContestPark.Duel.API.Models;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         #region Private Variables
 
         private readonly IRedisClient _redisClient;
+        private readonly IDistributedCache _distributedCache;
         private readonly ILogger<DuelUserRepository> _logger;
 
         #endregion Private Variables
@@ -20,9 +23,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         #region Constructor
 
         public DuelUserRepository(IRedisClient redisClient,
+                                  IDistributedCache distributedCache,
                                   ILogger<DuelUserRepository> logger)
         {
             _redisClient = redisClient;
+            _distributedCache = distributedCache;
             _logger = logger;
         }
 
@@ -79,7 +84,14 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
             {
                 string key = GetKey(duelUser);
 
-                return _redisClient.Set<DuelUserModel>(key, duelUser, expiresAt: DateTime.Now.AddMinutes(1));// 40 sn sonra redis üzerinden otomatik siler
+                string data = JsonConvert.SerializeObject(duelUser);
+
+                var option = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(1));
+                option.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
+
+                _distributedCache.SetString(key, data);
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -96,24 +108,14 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
         /// <returns>Başarılı olma durumu</returns>
         public bool Delete(DuelUserModel duelUser)
         {
-            try
-            {
-                if (duelUser == null)
-                    return false;
-
-                string key = GetKey(duelUser);
-
-                if (!_redisClient.ContainsKey(key))
-                    return false;
-
-                return _redisClient.Remove(key);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Duel user repository delete methodunda hata oluştu.");
-
+            if (duelUser == null)
                 return false;
-            }
+
+            string key = GetKey(duelUser);
+
+            _distributedCache.Remove(key);
+
+            return true;
         }
 
         #endregion Methods
