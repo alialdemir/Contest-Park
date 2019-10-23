@@ -28,8 +28,8 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.AwsCloudWatch" Version="4.0.155" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00798" />
-    <PackageReference Include="ServiceStack.Redis" Version="5.5.0" />
-    <PackageReference Include="ServiceStack.Redis.Core" Version="5.5.0" />
+    <PackageReference Include="ServiceStack.Redis" Version="5.7.0" />
+    <PackageReference Include="ServiceStack.Redis.Core" Version="5.7.0" />
   </ItemGroup>
 
   <ItemGroup>

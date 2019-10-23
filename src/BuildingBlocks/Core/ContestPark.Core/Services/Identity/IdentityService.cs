@@ -102,7 +102,7 @@ namespace ContestPark.Core.Services.Identity
 
             foreach (UserModel user in users)
             {
-                _redisClient.Set<UserModel>(GetKey(user.UserId, user.UserName), user, expiresAt: DateTime.Now.AddMinutes(5));// 30 dakkika sonra redis üzerinden otomatik siler
+                _redisClient.Set<UserModel>(GetKey(user.UserId, user.UserName), user, expiresIn: TimeSpan.FromMinutes(5));// 5 dakkika sonra redis üzerinden otomatik siler
             }
         }
 
