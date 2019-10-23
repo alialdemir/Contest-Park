@@ -18,7 +18,7 @@
     <EmbeddedResource Include="Audios\Success.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.0.35" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.4" />
     <PackageReference Include="CardsView" Version="2.3.4" />
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="3.0.0" />
     <PackageReference Include="IdentityModel" Version="3.8.0" />
