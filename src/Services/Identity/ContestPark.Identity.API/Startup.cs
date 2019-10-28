@@ -61,6 +61,7 @@ namespace ContestPark.Identity.API
             }
 
             app.UseExceptionHandlerConfigure()
+                .AddCors()
                 .UseMiddleware<ServiceAuthorizeMiddleware>()
                 .UseCustomIdentityServer()
                 .UseRequestLocalizationCustom()
