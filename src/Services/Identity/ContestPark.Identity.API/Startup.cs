@@ -148,7 +148,8 @@ namespace ContestPark.Identity.API
 
             services
                 .AddIntegrationEventLogEFDbContext(connectionString)
-                .AddRabbitMq(Configuration);
+                .AddRabbitMq(Configuration)
+                .AddCorsConfigure();
 
             services.AddTransient<Func<DbConnection, IIntegrationEventLogService>>(
             sp => (DbConnection c) => new IntegrationEventLogService(c));
