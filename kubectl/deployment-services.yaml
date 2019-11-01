@@ -124,25 +124,3 @@ spec:
   selector:
     run: admin-api
   type: LoadBalancer
-
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: signalr-api
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/send-timeout: "3600"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
-  labels:
-    run: signalr-api
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
-  selector:
-    run: signalr-api
-  type: LoadBalancer
