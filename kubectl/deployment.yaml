@@ -417,12 +417,6 @@ spec:
     metadata:
       labels:
         run: signalr-api
-      annotations:
-        nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-        nginx.ingress.kubernetes.io/send-timeout: "3600"
-        service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
     spec:
       containers:
         - name: signalr-api
