@@ -368,7 +368,7 @@ spec:
   selector:
     matchLabels:
       run: admin-api
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -407,11 +407,11 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: admin-api
+  name: signalr-api
 spec:
   selector:
     matchLabels:
-      run: admin-api
+      run: signalr-api
   replicas: 2
   template:
     metadata:
