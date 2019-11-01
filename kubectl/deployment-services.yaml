@@ -124,3 +124,19 @@ spec:
   selector:
     run: admin-api
   type: LoadBalancer
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: signalr-api
+  labels:
+    run: signalr-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: signalr-api
+  type: LoadBalancer
