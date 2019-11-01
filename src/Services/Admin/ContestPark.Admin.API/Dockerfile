@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
+WORKDIR /src
+COPY ["src/Services/Admin/ContestPark.Admin.API/ContestPark.Admin.API.csproj", "src/Services/Admin/ContestPark.Admin.API/"]
+RUN dotnet restore "src/Services/Admin/ContestPark.Admin.API/ContestPark.Admin.API.csproj"
+COPY . .
+WORKDIR "/src/src/Services/Admin/ContestPark.Admin.API"
+RUN dotnet build "ContestPark.Admin.API.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "ContestPark.Admin.API.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "ContestPark.Admin.API.dll"]

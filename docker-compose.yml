@@ -120,3 +120,12 @@ services:
     build:
       context: .
       dockerfile: src/Services/Duel/ContestPark.Duel.API/Dockerfile
+      
+  contestpark.admin.api:
+    image: contestparkadmin.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+      - mysql-data
+    build:
+      context: .
+      dockerfile: src/Services/Admin/ContestPark.Admin.API/Dockerfile
