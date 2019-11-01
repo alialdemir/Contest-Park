@@ -21,6 +21,7 @@ namespace ContestPark.Identity.API.Configuration
                 new ApiResource("question", "Question Service"),
                 new ApiResource("identity", "Identity Service"),
                 new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
+                new ApiResource("admin", "Admin Service"),
             };
         }
 
@@ -52,6 +53,32 @@ namespace ContestPark.Identity.API.Configuration
                                         "post",
                                         "question",
                                         "identity",
+                                    },
+                        },
+                 new Client
+                        {
+                            ClientId = "web-client",
+                            ClientName = "ContestPark web client Client",
+                            AccessTokenLifetime = 3600 * 24 * 90,// 3 month
+                            AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                            RequireClientSecret = false,
+                            AllowOfflineAccess = true,
+                            AllowedScopes =new List<string>
+                                    {
+                                        IdentityServerConstants.StandardScopes.OpenId,
+                                        IdentityServerConstants.StandardScopes.Profile,
+                                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                                        "category",
+                                        "balance",
+                                        "duel",
+                                        "chat",
+                                        "follow",
+                                        "mobileshoppingagg",
+                                        "signalr",
+                                        "post",
+                                        "question",
+                                        "identity",
+                                        "admin"
                                     },
                         },
             };

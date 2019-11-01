@@ -358,3 +358,47 @@ spec:
               value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: admin-api
+spec:
+  selector:
+    matchLabels:
+      run: admin-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: admin-api
+    spec:
+      containers:
+        - name: admin-api
+          image: $(REPOSITORY_URI)/admin-api:$(IMAGE_TAG)
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: ClouldFrontUrl
+              value: $(CONTESTPARK_CLOUDFRONT_URL)
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: Audience
+              value: "admin"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)

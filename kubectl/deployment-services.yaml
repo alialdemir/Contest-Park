@@ -109,3 +109,18 @@ spec:
   selector:
     run: post-api
   type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-api
+  labels:
+    run: admin-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: admin-api
+  type: LoadBalancer
