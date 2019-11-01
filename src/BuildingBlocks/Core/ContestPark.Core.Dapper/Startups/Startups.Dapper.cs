@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddTransient<IDatabaseConnection, DatabaseConnection>();
 
+            services.AddSingleton(typeof(IQueryRepository), typeof(DapperQueryRepository));
             services.AddSingleton(typeof(IRepository<>), typeof(DapperRepository<>));
 
             return services;

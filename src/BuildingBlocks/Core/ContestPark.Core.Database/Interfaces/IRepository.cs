@@ -1,7 +1,5 @@
-﻿using ContestPark.Core.Database.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -11,7 +9,7 @@ namespace ContestPark.Core.Database.Interfaces
     /// Document Db Repository arayüzü
     /// </summary>
     /// <typeparam name="T">Generic entity</typeparam>
-    public interface IRepository<TEntity> where TEntity : class//, IEntity, new()
+    public interface IRepository<TEntity> : IQueryRepository where TEntity : class//, IEntity, new()
     {
         Task<int> CountAsync();
 
@@ -31,17 +29,7 @@ namespace ContestPark.Core.Database.Interfaces
 
         Task<bool> RemoveAsync(dynamic id);
 
-        IEnumerable<T> QueryMultiple<T>(string sql, object parameters = null, CommandType? commandType = null);
-
-        T QuerySingleOrDefault<T>(string sql, object parameters = null, CommandType? commandType = null);
-
-        IEnumerable<TThird> SpQuery<TFirst, TSecond, TThird>(string sql, Func<TFirst, TSecond, TThird> map, object parameters = null, string splitOn = "", CommandType? commandType = null);
-
         Task<bool> RemoveAsync(Expression<Func<TEntity, bool>> predicate);
-
-        Task<bool> ExecuteAsync(string sql, object parameters = null, CommandType? commandType = null);
-
-        ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null);
 
         Task<int?> AddAndGetIdAsync(TEntity entity);
     }

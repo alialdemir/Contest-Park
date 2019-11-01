@@ -73,8 +73,11 @@ namespace ContestPark.Identity.API
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+
+            eventBus.Subscribe<ChangedGameCountIntegrationEvent, ChangedGameCountIntegrationEventHandler>();
             eventBus.Subscribe<DeleteFileIntegrationEvent, DeleteFileIntegrationEventHandler>();
             eventBus.Subscribe<FollowIntegrationEvent, FollowIntegrationEventHandler>();
+            eventBus.Subscribe<UnFollowIntegrationEvent, UnFollowIntegrationEventHandler>();
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -157,8 +160,10 @@ namespace ContestPark.Identity.API
 
             services.AddTransient<IIdentityIntegrationEventService, IdentityIntegrationEventService>();
 
+            services.AddTransient<ChangedGameCountIntegrationEventHandler>();
             services.AddTransient<DeleteFileIntegrationEventHandler>();
             services.AddTransient<FollowIntegrationEventHandler>();
+            services.AddTransient<UnFollowIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);

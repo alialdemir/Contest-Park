@@ -155,6 +155,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #endregion Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
 
+            ChangedGameCount(@event.OpponentUserId);
+
+            ChangedGameCount(@event.FounderUserId);
+
             AddPost(@event);
         }
 
@@ -191,6 +195,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                   @event.SubCategoryId);
 
                 _eventBus.Publish(postEvent);
+            });
+        }
+
+        /// <summary>
+        /// Oyuncunuun oyun oynama sayısını artırmak için event tetikler
+        /// </summary>
+        /// <param name="userId"></param>
+        private void ChangedGameCount(string userId)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var @event = new ChangedGameCountIntegrationEvent(userId);
+
+                _eventBus.Publish(@event);
             });
         }
 
