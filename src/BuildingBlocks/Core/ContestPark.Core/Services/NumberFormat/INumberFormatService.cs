@@ -1,4 +1,4 @@
-﻿namespace ContestPark.Duel.API.Services.NumberFormat
+﻿namespace ContestPark.Core.Services.NumberFormat
 {
     public interface INumberFormatService
     {

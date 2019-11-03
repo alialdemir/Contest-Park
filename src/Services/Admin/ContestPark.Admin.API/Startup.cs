@@ -4,6 +4,7 @@ using ContestPark.Admin.API.Infrastructure.Repositories.Category;
 using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
 using ContestPark.Admin.API.Resources;
 using ContestPark.Core.Middlewares;
+using ContestPark.Core.Services.NumberFormat;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,12 @@ namespace ContestPark.Admin.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization(options =>// Soru ekleme için admin policy oluşturuldu
+            {
+                options.AddPolicy("AdminPolicy", policy =>
+                    policy.RequireClaim("role", "Admin, User"));
+            });
+
             services.Configure<AdminSettings>(Configuration);
 
             services.AddAuth(Configuration)
@@ -39,9 +46,10 @@ namespace ContestPark.Admin.API
             services.AddLocalizationCustom();
 
             services
-                    .AddRabbitMq(Configuration)
+                    //   .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
+            services.AddTransient<INumberFormatService, NumberFormatService>();
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 
@@ -73,7 +81,7 @@ namespace ContestPark.Admin.API
             app.UseRequestLocalizationCustom()
                .UseMvc();
 
-            ConfigureEventBus(app);
+            //    ConfigureEventBus(app);
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

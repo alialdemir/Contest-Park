@@ -1,13 +1,16 @@
 ﻿using ContestPark.Admin.API.Infrastructure.Repositories.Category;
 using ContestPark.Admin.API.Model.Category;
 using ContestPark.Core.Database.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Controllers
 {
+    [Authorize(Policy = "AdminPolicy")]
     public class CategoryController : Core.Controllers.ControllerBase
     {
         #region Private Variables
@@ -26,7 +29,7 @@ namespace ContestPark.Admin.API.Controllers
 
         #endregion Constructor
 
-        #region Methods
+        #region Services
 
         /// <summary>
         /// Kategori güncelleme objesi verir
@@ -35,7 +38,7 @@ namespace ContestPark.Admin.API.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetCategories([FromQuery]PagingModel paging)// Oyunucunun karşısına rakip ekler
+        public IActionResult GetCategories([FromQuery]PagingModel paging)
         {
             var subCategories = _categoryRepository.GetCategories(CurrentUserLanguage, paging);
             if (subCategories == null || subCategories.Items.Count() == 0)
@@ -51,7 +54,7 @@ namespace ContestPark.Admin.API.Controllers
         [HttpGet("{categoryId}")]
         [ProducesResponseType(typeof(CategoryUpdateModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetCategory([FromRoute]short categoryId)// Oyunucunun karşısına rakip ekler
+        public IActionResult GetCategory([FromRoute]short categoryId)
         {
             var category = _categoryRepository.GetCategoryById(categoryId);
             if (category == null)
@@ -60,6 +63,40 @@ namespace ContestPark.Admin.API.Controllers
             return Ok(category);
         }
 
-        #endregion Methods
+        /// <summary>
+        /// Kategori güncelle
+        /// </summary>
+        /// <param name="categoryUpdate">Kategori bilgisi</param>
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> UpdateCategoryAsync([FromBody]CategoryUpdateModel categoryUpdate)
+        {
+            // TODO: Elasticsearch evemt publish
+            bool isSuccess = await _categoryRepository.UpdateAsync(categoryUpdate);
+            if (!isSuccess)
+                return BadRequest();
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Kategori ekle
+        /// </summary>
+        /// <param name="categoryInsert">Kategori bilgisi</param>
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> InsertCategoryAsync([FromBody]CategoryInsertModel categoryInsert)
+        {
+            // TODO: Elasticsearch evemt publish
+            bool isSuccess = await _categoryRepository.InsertAsync(categoryInsert);
+            if (!isSuccess)
+                return BadRequest();
+
+            return Ok();
+        }
+
+        #endregion Services
     }
 }

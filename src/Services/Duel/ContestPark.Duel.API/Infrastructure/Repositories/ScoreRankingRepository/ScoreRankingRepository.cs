@@ -1,9 +1,9 @@
 ﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
+using ContestPark.Core.Services.NumberFormat;
 using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Models;
-using ContestPark.Duel.API.Services.NumberFormat;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
+using ContestPark.Core.Services.NumberFormat;
 using ContestPark.Core.Services.RequestProvider;
 using ContestPark.Duel.API.Infrastructure.Repositories.AnswerLocalized;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
@@ -19,7 +20,6 @@ using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.Follow;
-using ContestPark.Duel.API.Services.NumberFormat;
 using ContestPark.Duel.API.Services.Picture;
 using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.Duel.API.Services.SubCategory;
