@@ -38,7 +38,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
         {
             string sql = @"SELECT
                            c.CategoryId,
-                           cl.TEXT,
+                           cl.Text AS CategoryName,
                            c.Visibility,
                            c.DisplayOrder,
                            c.ModifiedDate,
@@ -94,7 +94,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
                     result.LocalizedModels.Add(categoryLocalized);
 
                 return result;
-            }, param, splitOn: "CategoryId", CommandType.Text).FirstOrDefault();
+            }, param, splitOn: "CategoryId, CategoryId", CommandType.Text).FirstOrDefault();
 
             return result;
         }
