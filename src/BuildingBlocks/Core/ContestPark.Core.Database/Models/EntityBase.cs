@@ -7,7 +7,6 @@ namespace ContestPark.Core.Database.Models
 {
     public class EntityBase : IEntity
     {
-        [ReadOnly(true)]
         public DateTime? ModifiedDate { get; set; }
 
         [ReadOnly(true)]
