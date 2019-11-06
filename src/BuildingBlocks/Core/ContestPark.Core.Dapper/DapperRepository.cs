@@ -250,6 +250,8 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
+                entity.ModifiedDate = DateTime.Now;
+
                 int recordsAffected = await _databaseConnection.Connection.UpdateAsync<TEntity>(entity);
 
                 return recordsAffected > 0;
@@ -279,6 +281,8 @@ namespace ContestPark.Core.Dapper
 
                 foreach (var item in entities)
                 {
+                    item.ModifiedDate = DateTime.Now;
+
                     recordsAffected += await _databaseConnection.Connection.UpdateAsync<TEntity>(item);
                 }
 

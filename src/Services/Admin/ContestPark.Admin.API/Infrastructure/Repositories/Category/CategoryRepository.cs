@@ -68,7 +68,6 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
                 CategoryId = categoryUpdate.CategoryId,
                 Visibility = categoryUpdate.Visibility,
                 DisplayOrder = categoryUpdate.DisplayOrder,
-                ModifiedDate = DateTime.Now
             });
 
             if (!isSuccess)
@@ -107,8 +106,8 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
                            cl.Text AS CategoryName,
                            c.Visibility,
                            c.DisplayOrder,
-                           c.ModifiedDate,
-                           c.CreatedDate
+                           cl.ModifiedDate,
+                           cl.CreatedDate
                            FROM Categories c
                            INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = c.CategoryId
                            WHERE cl.`Language` = @language";
