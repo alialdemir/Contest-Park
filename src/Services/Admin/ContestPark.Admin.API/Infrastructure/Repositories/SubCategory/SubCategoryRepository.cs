@@ -38,6 +38,32 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         #region Methods
 
         /// <summary>
+        /// Seçilen dile göre tüm alt kategori döndürür
+        /// </summary>
+        /// <param name="language">Dil</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Alt kategoriler</returns>
+        public ServiceModel<SubCategoryModel> GetSubCategories(Languages language, PagingModel paging)
+        {
+            string sql = @"SELECT
+                         sc.SubCategoryId,
+                         scl.SubCategoryName,
+                         sc.Visibility,
+                         sc.DisplayOrder,
+                         scl.ModifiedDate,
+                         scl.CreatedDate,
+                         (SELECT COUNT(*) FROM SubCategoryRls scr WHERE scr.SubCategoryId = sc.SubCategoryId) AS LinkedCategories
+                         FROM SubCategories sc
+                         INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId
+                         WHERE scl.`Language` = 1";
+
+            return _subCategoryRepository.ToServiceModel<SubCategoryModel>(sql, new
+            {
+                language
+            }, pagingModel: paging);
+        }
+
+        /// <summary>
         /// Alt kategori güncelle
         /// </summary>
         /// <param name="subCategoryUpdate">Alt kategori bilgileri</param>
@@ -118,7 +144,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         /// <param name="language">Dil</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Alt kategori dropdown list</returns>
-        public ServiceModel<SubCategoryDropdownModel> GetSubCategories(Languages language, PagingModel paging)
+        public ServiceModel<SubCategoryDropdownModel> GetSubCategoryDropList(Languages language, PagingModel paging)
         {
             string sql = @"SELECT scl.SubCategoryName, scl.SubCategoryId
                            FROM SubCategoryLangs scl

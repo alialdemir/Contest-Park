@@ -32,6 +32,22 @@ namespace ContestPark.Admin.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Kategori listesi verir
+        /// </summary>
+        /// <param name="categoryId">Kategori id</param>
+        [HttpGet]
+        [ProducesResponseType(typeof(ServiceModel<SubCategoryModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetCategories([FromQuery]PagingModel paging)
+        {
+            var subCategories = _subCategoryRepository.GetSubCategories(CurrentUserLanguage, paging);
+            if (subCategories == null || subCategories.Items.Count() == 0)
+                return NotFound();
+
+            return Ok(subCategories);
+        }
+
+        /// <summary>
         /// Kategori güncelle
         /// </summary>
         /// <param name="subCategoryUpdate">Kategori bilgisi</param>
@@ -74,9 +90,9 @@ namespace ContestPark.Admin.API.Controllers
         [HttpGet("Dropdown")]
         [ProducesResponseType(typeof(ServiceModel<SubCategoryDropdownModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetSubCategories([FromQuery]PagingModel paging)
+        public IActionResult GetSubCategoryDropList([FromQuery]PagingModel paging)
         {
-            var subCategories = _subCategoryRepository.GetSubCategories(CurrentUserLanguage, paging);
+            var subCategories = _subCategoryRepository.GetSubCategoryDropList(CurrentUserLanguage, paging);
             if (subCategories == null || subCategories.Items.Count() == 0)
                 return NotFound();
 

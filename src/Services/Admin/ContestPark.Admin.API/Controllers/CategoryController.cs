@@ -32,7 +32,7 @@ namespace ContestPark.Admin.API.Controllers
         #region Services
 
         /// <summary>
-        /// Kategori güncelleme objesi verir
+        /// Kategori listesi verir
         /// </summary>
         /// <param name="categoryId">Kategori id</param>
         [HttpGet]
