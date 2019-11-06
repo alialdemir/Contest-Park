@@ -1,9 +1,12 @@
-﻿using ContestPark.Admin.API.Model.SubCategory;
+﻿using ContestPark.Admin.API.Model;
+using ContestPark.Admin.API.Model.Category;
+using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Services.NumberFormat;
 using System;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,6 +41,47 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         #region Methods
 
         /// <summary>
+        /// Kategori güncelleme objesi verir
+        /// </summary>
+        /// <param name="subCategoryId"></param>
+        /// <param name="pagingModel"></param>
+        /// <returns>Kategori</returns>
+        public SubCategoryUpdateModel GetSubCategoryById(short subCategoryId)
+        {
+            string sql = @"SELECT
+                           scl.SubCategoryName as Text,
+                           scl.Language,
+                           sc.Price,
+                           sc.PicturePath,
+                           scl.Description,
+                           sc.Visibility,
+                           sc.DisplayOrder
+                           FROM SubCategories sc
+                           INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId
+                           WHERE sc.SubCategoryId = @subCategoryId";
+
+            var param = new
+            {
+                subCategoryId
+            };
+
+            var data = _subCategoryRepository.QueryMultiple<SubCategoryUpdateModel>(sql, param, CommandType.Text);
+
+            SubCategoryUpdateModel subCategory = data.FirstOrDefault();
+
+            return new SubCategoryUpdateModel
+            {
+                CategoryIds = _subCategoryRepository.QueryMultiple<short>("SELECT scr.CategoryId FROM SubCategoryRls scr WHERE scr.SubCategoryId = @subCategoryId", param),
+                DisplayOrder = subCategory.DisplayOrder,
+                PicturePath = subCategory.PicturePath,
+                Price = subCategory.Price,
+                SubCategoryId = subCategoryId,
+                Visibility = subCategory.Visibility,
+                LocalizedModels = _subCategoryRepository.QueryMultiple<LocalizedModel>("SELECT scl.`Language`, scl.SubCategoryName AS TEXT, scl.Description FROM SubCategoryLangs scl WHERE scl.SubCategoryId = @subCategoryId", param)
+            };
+        }
+
+        /// <summary>
         /// Seçilen dile göre tüm alt kategori döndürür
         /// </summary>
         /// <param name="language">Dil</param>
@@ -55,7 +99,8 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
                          (SELECT COUNT(*) FROM SubCategoryRls scr WHERE scr.SubCategoryId = sc.SubCategoryId) AS LinkedCategories
                          FROM SubCategories sc
                          INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId
-                         WHERE scl.`Language` = 1";
+                         WHERE scl.`Language` = @language
+                         ORDER BY sc.CreatedDate DESC";
 
             return _subCategoryRepository.ToServiceModel<SubCategoryModel>(sql, new
             {
@@ -144,13 +189,14 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         /// <param name="language">Dil</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Alt kategori dropdown list</returns>
-        public ServiceModel<SubCategoryDropdownModel> GetSubCategoryDropList(Languages language, PagingModel paging)
+        public ServiceModel<CategoryDropdownModel> GetSubCategoryDropList(Languages language, PagingModel paging)
         {
             string sql = @"SELECT scl.SubCategoryName, scl.SubCategoryId
                            FROM SubCategoryLangs scl
-                           WHERE scl.`Language`=@language";
+                           WHERE scl.`Language`=@language
+                           ORDER BY scl.CreatedDate DESC";
 
-            return _subCategoryRepository.ToServiceModel<SubCategoryDropdownModel>(sql, new
+            return _subCategoryRepository.ToServiceModel<CategoryDropdownModel>(sql, new
             {
                 language
             }, pagingModel: paging);

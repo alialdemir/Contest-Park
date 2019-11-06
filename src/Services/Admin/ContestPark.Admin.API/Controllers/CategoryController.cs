@@ -97,6 +97,22 @@ namespace ContestPark.Admin.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Kategori adını ve alt kategori id listesi döndürür
+        /// </summary>
+        /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
+        [HttpGet("Dropdown")]
+        [ProducesResponseType(typeof(ServiceModel<CategoryDropdownModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetSubCategoryDropList([FromQuery]PagingModel paging)
+        {
+            var categories = _categoryRepository.GetCategoryDropList(CurrentUserLanguage, paging);
+            if (categories == null || categories.Items.Count() == 0)
+                return NotFound();
+
+            return Ok(categories);
+        }
+
         #endregion Services
     }
 }

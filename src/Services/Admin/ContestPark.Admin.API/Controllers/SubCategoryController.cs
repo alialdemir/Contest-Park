@@ -1,4 +1,5 @@
 ﻿using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
+using ContestPark.Admin.API.Model.Category;
 using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Core.Database.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -30,6 +31,22 @@ namespace ContestPark.Admin.API.Controllers
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Kategori güncelleme objesi verir
+        /// </summary>
+        /// <param name="subCategoryId">Kategori id</param>
+        [HttpGet("{subCategoryId}")]
+        [ProducesResponseType(typeof(SubCategoryUpdateModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetCategory([FromRoute]short subCategoryId)
+        {
+            var category = _subCategoryRepository.GetSubCategoryById(subCategoryId);
+            if (category == null)
+                return NotFound();
+
+            return Ok(category);
+        }
 
         /// <summary>
         /// Kategori listesi verir
@@ -88,7 +105,7 @@ namespace ContestPark.Admin.API.Controllers
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
         [HttpGet("Dropdown")]
-        [ProducesResponseType(typeof(ServiceModel<SubCategoryDropdownModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ServiceModel<CategoryDropdownModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetSubCategoryDropList([FromQuery]PagingModel paging)
         {

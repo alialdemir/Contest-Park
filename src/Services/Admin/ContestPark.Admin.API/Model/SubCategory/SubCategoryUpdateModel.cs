@@ -14,8 +14,8 @@ namespace ContestPark.Admin.API.Model.SubCategory
 
         public string PicturePath { get; set; }
 
-        public List<LocalizedModel> LocalizedModels { get; set; }
+        public IEnumerable<LocalizedModel> LocalizedModels { get; set; }
 
-        public List<short> CategoryIds { get; set; }
+        public IEnumerable<short> CategoryIds { get; set; }
     }
 }

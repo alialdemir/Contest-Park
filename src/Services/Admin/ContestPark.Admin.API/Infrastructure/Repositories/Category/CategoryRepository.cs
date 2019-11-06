@@ -34,6 +34,25 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
         #region Methods
 
         /// <summary>
+        /// Tüm  kategorileri isim ve id listesi seçilen dile göre getirir
+        /// </summary>
+        /// <param name="language">Dil</param>
+        /// <param name="paging">Sayfalama</param>
+        /// <returns>Kategori dropdown list</returns>
+        public ServiceModel<CategoryDropdownModel> GetCategoryDropList(Languages language, PagingModel paging)
+        {
+            string sql = @"SELECT cl.CategoryId, cl.Text AS CategoryName
+                           FROM CategoryLocalizeds cl
+                           WHERE cl.`Language` = @language
+                           ORDER BY cl.CreatedDate DESC";
+
+            return _categoryRepository.ToServiceModel<CategoryDropdownModel>(sql, new
+            {
+                language
+            }, pagingModel: paging);
+        }
+
+        /// <summary>
         /// Yeni kategori ekle
         /// </summary>
         /// <param name="categoryInsert">Kategori bilgisi</param>
@@ -74,9 +93,9 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
                 return false;
 
             string sqlTemplate = @"UPDATE CategoryLocalizeds
-                                            SET
-                                            TEXT = '@Text',  ModifiedDate = CURRENT_TIMESTAMP()
-                                            WHERE CategoryId = @CategoryId AND LANGUAGE=@LANGUAGE;";
+                                   SET
+                                   TEXT = '@Text',  ModifiedDate = CURRENT_TIMESTAMP()
+                                   WHERE CategoryId = @CategoryId AND LANGUAGE=@LANGUAGE;";
 
             string sql = "";
 
@@ -110,7 +129,8 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.Category
                            cl.CreatedDate
                            FROM Categories c
                            INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = c.CategoryId
-                           WHERE cl.`Language` = @language";
+                           WHERE cl.`Language` = @language
+                           ORDER BY c.CreatedDate DESC";
 
             return _categoryRepository.ToServiceModel<CategoryModel>(sql, new
             {
