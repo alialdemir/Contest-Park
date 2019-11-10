@@ -3,14 +3,14 @@
     x:Class="ContestPark.Mobile.Views.DuelBettingPopupView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
-    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="duelBettingPopupView"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -34,239 +34,242 @@
 
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
-                    <RelativeLayout>
-                        <!--  Para ile oyna  -->
-                        <Components:LinearGradientButton
-                            Padding="0,-70,0,0"
-                            BackgroundColor="Transparent"
-                            BorderRadius="48"
-                            Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
-                            CommandParameter="2"
-                            EndColor="#FFCC33"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="23"
-                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                   Property=Height,
-                                                                                   Factor=.2,
-                                                                                   Constant=0}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                    <ViewCell>
+
+                        <RelativeLayout>
+                            <!--  Para ile oyna  -->
+                            <Components:LinearGradientButton
+                                Padding="0,-70,0,0"
+                                BackgroundColor="Transparent"
+                                BorderRadius="48"
+                                Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
+                                CommandParameter="2"
+                                EndColor="#FFCC33"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource GothamRoundedBold}"
+                                FontSize="23"
+                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                       Property=Height,
+                                                                                       Factor=.2,
+                                                                                       Constant=0}"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Width,
+                                                                                      Factor=0,
+                                                                                      Constant=150}"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
+                                                                                  Factor=0.5,
+                                                                                  Constant=-150}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                                  ElementName=pvkView,
+                                                                                  Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=150}"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                              Property=Width,
-                                                                              Factor=0.5,
-                                                                              Constant=-150}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                              ElementName=pvkView,
-                                                                              Property=Y,
-                                                                              Factor=0,
-                                                                              Constant=10}"
-                            StartColor="#FFB347"
-                            Text="{i18n:Translate Dolar}"
-                            TextColor="{StaticResource White}"
-                            Visual="Material" />
+                                                                                  Constant=10}"
+                                StartColor="#FFB347"
+                                Text="{i18n:Translate Dolar}"
+                                TextColor="{StaticResource White}"
+                                Visual="Material" />
 
-                        <!--  Altınla oyna  -->
-                        <Components:LinearGradientButton
-                            Padding="0,-70,0,0"
-                            BackgroundColor="Transparent"
-                            BorderRadius="48"
-                            Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
-                            CommandParameter="1"
-                            EndColor="#FFCC33"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="23"
-                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                   Property=Height,
-                                                                                   Factor=.2,
-                                                                                   Constant=0}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                            <!--  Altınla oyna  -->
+                            <Components:LinearGradientButton
+                                Padding="0,-70,0,0"
+                                BackgroundColor="Transparent"
+                                BorderRadius="48"
+                                Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
+                                CommandParameter="1"
+                                EndColor="#FFCC33"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource GothamRoundedBold}"
+                                FontSize="23"
+                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                       Property=Height,
+                                                                                       Factor=.2,
+                                                                                       Constant=0}"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Width,
+                                                                                      Factor=0,
+                                                                                      Constant=150}"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
+                                                                                  Factor=0.5,
+                                                                                  Constant=0}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                                  ElementName=pvkView,
+                                                                                  Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=150}"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                              Property=Width,
-                                                                              Factor=0.5,
-                                                                              Constant=0}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                              ElementName=pvkView,
-                                                                              Property=Y,
-                                                                              Factor=0,
-                                                                              Constant=10}"
-                            StartColor="#FFB347"
-                            Text="{i18n:Translate Gold}"
-                            TextColor="{StaticResource White}"
-                            Visual="Material" />
+                                                                                  Constant=10}"
+                                StartColor="#FFB347"
+                                Text="{i18n:Translate Gold}"
+                                TextColor="{StaticResource White}"
+                                Visual="Material" />
 
-                        <!--  Play  -->
-                        <Components:LinearGradientButton
-                            Padding="0,0,0,-60"
-                            BackgroundColor="Transparent"
-                            BorderRadius="48"
-                            Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
-                            CommandParameter="{Binding EntryFee}"
-                            EndColor="#47E476"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="23"
-                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                   Property=Height,
-                                                                                   Factor=.2,
-                                                                                   Constant=0}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                            <!--  Play  -->
+                            <Components:LinearGradientButton
+                                Padding="0,0,0,-60"
+                                BackgroundColor="Transparent"
+                                BorderRadius="48"
+                                Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
+                                CommandParameter="{Binding EntryFee}"
+                                EndColor="#47E476"
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource GothamRoundedBold}"
+                                FontSize="23"
+                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                       Property=Height,
+                                                                                       Factor=.2,
+                                                                                       Constant=0}"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Width,
+                                                                                      Factor=0,
+                                                                                      Constant=300}"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
-                                                                                  Factor=0,
-                                                                                  Constant=300}"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                              Property=Width,
-                                                                              Factor=0.5,
-                                                                              Constant=-150}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                              ElementName=pvkView,
-                                                                              Property=Y,
-                                                                              Factor=1,
-                                                                              Constant=340}"
-                            StartColor="#2CCCD8"
-                            Text="{i18n:Translate Play}"
-                            TextColor="{StaticResource White}"
-                            Visual="Material"
-                            WidthRequest="300" />
-                        <yummy:PancakeView
-                            x:Name="pvkView"
-                            Padding="0"
-                            BackgroundColor="{StaticResource White}"
-                            CornerRadius="10"
-                            Elevation="6"
-                            HasShadow="True"
-                            HeightRequest="400"
-                            IsClippedToBounds="True"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                              Property=Width,
-                                                                              Factor=0.5,
-                                                                              Constant=-150}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                              Property=Height,
-                                                                              Factor=0.5,
-                                                                              Constant=-220}"
-                            WidthRequest="300">
+                                                                                  Factor=0.5,
+                                                                                  Constant=-150}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                                  ElementName=pvkView,
+                                                                                  Property=Y,
+                                                                                  Factor=1,
+                                                                                  Constant=340}"
+                                StartColor="#2CCCD8"
+                                Text="{i18n:Translate Play}"
+                                TextColor="{StaticResource White}"
+                                Visual="Material"
+                                WidthRequest="300" />
+                            <yummy:PancakeView
+                                x:Name="pvkView"
+                                Padding="0"
+                                BackgroundColor="{StaticResource White}"
+                                CornerRadius="10"
+                                Elevation="6"
+                                HasShadow="True"
+                                HeightRequest="400"
+                                IsClippedToBounds="True"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=0.5,
+                                                                                  Constant=-150}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0.5,
+                                                                                  Constant=-220}"
+                                WidthRequest="300">
 
-                            <Grid
-                                Grid.Row="0"
-                                ColumnSpacing="0"
-                                RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-
-                                <iconize:IconButton
+                                <Grid
                                     Grid.Row="0"
-                                    BackgroundColor="Transparent"
-                                    Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference duelBettingPopupView}}"
-                                    FontSize="23"
-                                    HorizontalOptions="End"
-                                    Opacity="0.45"
-                                    Text="far-times-circle"
-                                    TextColor="#140F26"
-                                    VerticalOptions="Start" />
+                                    ColumnSpacing="0"
+                                    RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Label
-                                    Grid.Row="1"
-                                    FontAttributes="Bold"
-                                    FontFamily="{StaticResource GothamRoundedBold}"
-                                    FontSize="24"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Title}"
-                                    TextColor="#FDBC2E" />
-                                <Label
-                                    Grid.Row="2"
-                                    FontFamily="{StaticResource MontserratRegular}"
-                                    FontSize="10"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Description}"
-                                    TextColor="{StaticResource Black}" />
+                                    <iconize:IconButton
+                                        Grid.Row="0"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference duelBettingPopupView}}"
+                                        FontSize="23"
+                                        HorizontalOptions="End"
+                                        Opacity="0.45"
+                                        Text="far-times-circle"
+                                        TextColor="#140F26"
+                                        VerticalOptions="Start" />
 
-                                <Image
-                                    Grid.Row="3"
-                                    Margin="0,14,0,14"
-                                    HeightRequest="110"
-                                    HorizontalOptions="Center"
-                                    Source="{Binding Image}"
-                                    WidthRequest="110" />
+                                    <Label
+                                        Grid.Row="1"
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource GothamRoundedBold}"
+                                        FontSize="24"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Title}"
+                                        TextColor="#FDBC2E" />
+                                    <Label
+                                        Grid.Row="2"
+                                        FontFamily="{StaticResource MontserratRegular}"
+                                        FontSize="10"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Description}"
+                                        TextColor="{StaticResource Black}" />
 
-                                <Components:DobleCoinsView
-                                    Grid.Row="4"
-                                    BalanceType="{Binding BalanceType}"
-                                    CoinSize="Large"
-                                    Coins="Positive"
-                                    DisplayCoins="{Binding Prize}"
-                                    HorizontalOptions="Center" />
+                                    <Image
+                                        Grid.Row="3"
+                                        Margin="0,14,0,14"
+                                        HeightRequest="110"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding Image}"
+                                        WidthRequest="110" />
 
-                                <Label
-                                    Grid.Row="5"
-                                    Margin="0,0,0,18.5"
-                                    FontFamily="{StaticResource MontserratMedium}"
-                                    FontSize="13"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{i18n:Translate Prize}"
-                                    TextColor="{StaticResource Black}" />
+                                    <Components:DobleCoinsView
+                                        Grid.Row="4"
+                                        BalanceType="{Binding BalanceType}"
+                                        CoinSize="Large"
+                                        Coins="Positive"
+                                        DisplayCoins="{Binding Prize}"
+                                        HorizontalOptions="Center" />
 
-                                <BoxView
-                                    Grid.Row="6"
-                                    Margin="80,0,80,0"
-                                    HeightRequest="1"
-                                    WidthRequest="50"
-                                    Color="#DEDEDE" />
+                                    <Label
+                                        Grid.Row="5"
+                                        Margin="0,0,0,18.5"
+                                        FontFamily="{StaticResource MontserratMedium}"
+                                        FontSize="13"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{i18n:Translate Prize}"
+                                        TextColor="{StaticResource Black}" />
 
-                                <Components:DobleCoinsView
-                                    Grid.Row="7"
-                                    Margin="0,18.5,0,0"
-                                    BalanceType="{Binding BalanceType}"
-                                    CoinSize="Small"
-                                    Coins="Negative"
-                                    DisplayCoins="{Binding EntryFee}"
-                                    HorizontalOptions="Center" />
+                                    <BoxView
+                                        Grid.Row="6"
+                                        Margin="80,0,80,0"
+                                        HeightRequest="1"
+                                        WidthRequest="50"
+                                        Color="#DEDEDE" />
 
-                                <Label
-                                    Grid.Row="8"
-                                    FontFamily="{StaticResource MontserratMedium}"
-                                    FontSize="10"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{i18n:Translate EntryFee}"
-                                    TextColor="{StaticResource Black}" />
+                                    <Components:DobleCoinsView
+                                        Grid.Row="7"
+                                        Margin="0,18.5,0,0"
+                                        BalanceType="{Binding BalanceType}"
+                                        CoinSize="Small"
+                                        Coins="Negative"
+                                        DisplayCoins="{Binding EntryFee}"
+                                        HorizontalOptions="Center" />
 
-                                <StackLayout Grid.Row="9" IsEnabled="False">
-                                    <Slider
-                                        Maximum="6"
-                                        MaximumTrackColor="#72F7C5"
-                                        MinimumTrackColor="#B0E881"
-                                        ThumbColor="Transparent"
-                                        Value="{Binding CurrentIndex}" />
-                                </StackLayout>
+                                    <Label
+                                        Grid.Row="8"
+                                        FontFamily="{StaticResource MontserratMedium}"
+                                        FontSize="10"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{i18n:Translate EntryFee}"
+                                        TextColor="{StaticResource Black}" />
 
-                                <Label
-                                    Grid.Row="10"
-                                    Margin="35,0,0,0"
-                                    FontFamily="{StaticResource MontserratRegular}"
-                                    FontSize="10"
-                                    HorizontalTextAlignment="Start"
-                                    Text="{Binding Title}"
-                                    TextColor="{StaticResource Black}"
-                                    VerticalTextAlignment="Start" />
-                            </Grid>
-                        </yummy:PancakeView>
-                    </RelativeLayout>
+                                    <StackLayout Grid.Row="9" IsEnabled="False">
+                                        <Slider
+                                            Maximum="6"
+                                            MaximumTrackColor="#72F7C5"
+                                            MinimumTrackColor="#B0E881"
+                                            ThumbColor="Transparent"
+                                            Value="{Binding CurrentIndex}" />
+                                    </StackLayout>
+
+                                    <Label
+                                        Grid.Row="10"
+                                        Margin="35,0,0,0"
+                                        FontFamily="{StaticResource MontserratRegular}"
+                                        FontSize="10"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource Black}"
+                                        VerticalTextAlignment="Start" />
+                                </Grid>
+                            </yummy:PancakeView>
+                        </RelativeLayout>
+                    </ViewCell>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>
         </cards:CoverFlowView>

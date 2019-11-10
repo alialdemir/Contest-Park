@@ -11,7 +11,7 @@
         <RowDefinition Height="20" />
     </components:CustomGrid.RowDefinitions>
     <components:CustomGrid.ColumnDefinitions>
-        <ColumnDefinition Width="90" />
+        <ColumnDefinition Width="80" />
     </components:CustomGrid.ColumnDefinitions>
 
     <cacheImage:CachedImage

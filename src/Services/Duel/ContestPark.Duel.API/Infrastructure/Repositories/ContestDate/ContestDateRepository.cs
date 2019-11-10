@@ -30,8 +30,8 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ContestDate
         {
             string sql = @"SELECT cd.ContestDateId, cd.FinishDate
                           FROM ContestDates cd
-                          WHERE cd.StartDate <= timestamp(current_date)
-                          ORDER BY cd.FinishDate ASC
+                          WHERE cd.StartDate <= CURRENT_TIMESTAMP()
+                          ORDER BY cd.FinishDate DESC
                           LIMIT 1";
 
             return _contestDateRepository.QuerySingleOrDefault<ContestDateModel>(sql);

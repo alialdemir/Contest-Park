@@ -112,8 +112,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Beginner,
-                                    Prize = 40 * 2,
-                                    EntryFee = 40,
+                                    Prize = 80.00m,
+                                    EntryFee = 40.00m,
                                     CurrentIndex = 1,
                                 },
                                 new BetModel
@@ -122,8 +122,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Novice,
-                                    Prize = 300 * 2,
-                                    EntryFee = 300,
+                                    Prize = 600.00m,
+                                    EntryFee = 300.00m,
                                     CurrentIndex = 2,
                                 },
                                 new BetModel
@@ -132,8 +132,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Advanced,
-                                    Prize = 1000 * 2,
-                                    EntryFee = 1000,
+                                    Prize = 2000.00m,
+                                    EntryFee = 1000.00m,
                                     CurrentIndex = 3,
                                 },
                                 new BetModel
@@ -142,8 +142,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Expert,
-                                    Prize = 3000 * 2,
-                                    EntryFee = 3000,
+                                    Prize = 6000.00m,
+                                    EntryFee = 3000.00m,
                                     CurrentIndex = 4,
                                 },
                                 new BetModel
@@ -152,8 +152,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Master,
-                                    Prize = 4600 * 2,
-                                    EntryFee = 4600,
+                                    Prize = 9200.00m,
+                                    EntryFee = 4600.00m,
                                     CurrentIndex = 5,
                                 },
                                 new BetModel
@@ -162,8 +162,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Genius,
-                                    Prize = 10000 * 2,
-                                    EntryFee = 10000,
+                                    Prize = 20000.00m,
+                                    EntryFee = 10000.00m,
                                     CurrentIndex = 6,
                                 }
            }
@@ -179,8 +179,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Beginner,
-                                    Prize = 1 * 2,
-                                    EntryFee = 1,
+                                    Prize = 2.00m,
+                                    EntryFee = 1.00m,
                                     CurrentIndex = 1,
                                 },
                                 new BetModel
@@ -189,8 +189,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Novice,
-                                    Prize = 3 * 2,
-                                    EntryFee = 3,
+                                    Prize = 6.00m,
+                                    EntryFee = 3.00m,
                                     CurrentIndex = 2,
                                 },
                                 new BetModel
@@ -199,8 +199,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Advanced,
-                                    Prize = 4 * 2,
-                                    EntryFee = 4,
+                                    Prize = 8.00m,
+                                    EntryFee = 4.00m,
                                     CurrentIndex = 3,
                                 },
                                 new BetModel
@@ -209,8 +209,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Expert,
-                                    Prize = 5 * 2,
-                                    EntryFee = 5,
+                                    Prize = 10.00m,
+                                    EntryFee = 5.00m,
                                     CurrentIndex = 4,
                                 },
                                 new BetModel
@@ -219,8 +219,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Master,
-                                    Prize = 6 * 2,
-                                    EntryFee = 6,
+                                    Prize = 12.00m,
+                                    EntryFee = 6.00m,
                                     CurrentIndex = 5,
                                 },
                                 new BetModel
@@ -229,8 +229,8 @@ namespace ContestPark.Mobile.ViewModels
                                     BalanceType = BalanceType,
                                     Description = "",
                                     Title = ContestParkResources.Genius,
-                                    Prize = 10 * 2,
-                                    EntryFee = 10,
+                                    Prize = 20.00m,
+                                    EntryFee = 10.00m,
                                     CurrentIndex = 6,
                                 }
            }
