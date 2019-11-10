@@ -9,6 +9,7 @@ namespace ContestPark.Admin.API.Model.SubCategory
         public bool Visibility { get; set; }
 
         public byte DisplayOrder { get; set; }
+        public string DisplayPrice { get; set; }
 
         public string SubCategoryName { get; set; }
 

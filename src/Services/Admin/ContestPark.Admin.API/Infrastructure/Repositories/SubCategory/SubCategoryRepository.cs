@@ -6,6 +6,7 @@ using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Services.NumberFormat;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -94,6 +95,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
                          scl.SubCategoryName,
                          sc.Visibility,
                          sc.DisplayOrder,
+                         sc.DisplayPrice,
                          scl.ModifiedDate,
                          scl.CreatedDate,
                          (SELECT COUNT(*) FROM SubCategoryRls scr WHERE scr.SubCategoryId = sc.SubCategoryId) AS LinkedCategories
@@ -129,14 +131,27 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
             if (!isSuccess)
                 return false;
 
+            await SubCategoryOfCategory(subCategoryUpdate.SubCategoryId, subCategoryUpdate.CategoryIds);
+
+            return await UpdateSubCategoryLang(subCategoryUpdate.SubCategoryId, subCategoryUpdate.LocalizedModels);
+        }
+
+        /// <summary>
+        /// Alt kategori localized bilgilerini günceller
+        /// </summary>
+        /// <param name="subCategoryId"></param>
+        /// <param name="localizedModels"></param>
+        /// <returns></returns>
+        private async Task<bool> UpdateSubCategoryLang(short subCategoryId, IEnumerable<LocalizedModel> localizedModels)
+        {
             string sqlTemplate = @"UPDATE SubCategoryLangs
-                                            SET
-                                            SubCategoryName = '@SubCategoryName',  ModifiedDate = CURRENT_TIMESTAMP(), Description = '@Description'
-                                            WHERE SubCategoryId = @SubCategoryId AND LANGUAGE=@LANGUAGE;";
+                                   SET
+                                   SubCategoryName = '@SubCategoryName',  ModifiedDate = CURRENT_TIMESTAMP(), Description = '@Description'
+                                   WHERE SubCategoryId = @SubCategoryId AND LANGUAGE=@LANGUAGE;";
 
             string sql = "";
 
-            foreach (var categoryLocalized in subCategoryUpdate.LocalizedModels)// Tek seferde güncelleme yapsın diye bu şekilde yaprım
+            foreach (var categoryLocalized in localizedModels)// Tek seferde güncelleme yapsın diye bu şekilde yaprım
             {
                 sql += sqlTemplate
                     .Replace("@LANGUAGE", ((byte)categoryLocalized.Language).ToString())
@@ -146,8 +161,42 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
 
             return await _subCategoryLocalizedRepository.ExecuteAsync(sql, new
             {
-                subCategoryUpdate.SubCategoryId,
+                subCategoryId
             });
+        }
+
+        /// <summary>
+        /// Yeni listedeki kategori id'leri eklenenleri ekler silinenleri siler
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategory Id</param>
+        /// <returns></returns>
+        private async Task SubCategoryOfCategory(short subCategoryId, IEnumerable<short> categoryIds)
+        {
+            string sql = @"SELECT scr.CategoryId FROM SubCategoryRls scr WHERE  scr.SubCategoryId = @subCategoryId";
+
+            IEnumerable<short> subCategoryOfCategories = _subCategoryOfCategoryRepository.QueryMultiple<short>(sql, new
+            {
+                subCategoryId
+            });
+
+            // ekli olmayanlar eklendi
+            List<short> addedCategoryIds = categoryIds.Where(x => !subCategoryOfCategories.Any(categoryId => categoryId == x)).ToList();
+            await _subCategoryOfCategoryRepository.AddRangeAsync(addedCategoryIds.Select(categoryId => new Tables.SubCategoryOfCategory
+            {
+                CategoryId = categoryId,
+                SubCategoryId = subCategoryId
+            }).ToList());
+
+            // Ekli olupda kaldırılanlar silindi
+            List<short> deletedCategoryIds = subCategoryOfCategories.Where(x => !categoryIds.Any(categoryId => categoryId == x)).ToList();
+            foreach (short categoryId in deletedCategoryIds)
+            {
+                await _subCategoryOfCategoryRepository.ExecuteAsync("DELETE FROM SubCategoryRls scr WHERE scr.SubCategoryId = @subCategoryId AND scr.CategoryId = @categoryId", new
+                {
+                    categoryId,
+                    subCategoryId
+                });
+            }
         }
 
         /// <summary>
