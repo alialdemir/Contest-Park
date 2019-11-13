@@ -270,8 +270,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             var balance = await _cpService.GetBalanceAsync();
-
-            if ((BalanceType == BalanceTypes.Gold && bet <= balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= balance.Money))
+            if (balance != null && ((BalanceType == BalanceTypes.Gold && bet <= balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= balance.Money)))
             {
                 await PushPopupPageAsync(new DuelStartingPopupView()
                 {

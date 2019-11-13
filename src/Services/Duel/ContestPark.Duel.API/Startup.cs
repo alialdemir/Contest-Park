@@ -66,7 +66,7 @@ namespace ContestPark.Duel.API
 
             services.AddLocalizationCustom();
 
-            services.AddSingleton<IRedisClient>(sp =>
+            services.AddTransient<IRedisClient>(sp =>
             {
                 var settings = sp.GetRequiredService<IOptions<DuelSettings>>().Value;
                 return new PooledRedisClientManager(settings.Redis).GetClient();
