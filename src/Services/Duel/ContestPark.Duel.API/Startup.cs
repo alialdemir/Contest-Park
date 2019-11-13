@@ -164,15 +164,15 @@ namespace ContestPark.Duel.API
 
         protected virtual void ConfigureOtherService(IServiceCollection services)
         {
-            services.AddSingleton<IRequestProvider, RequestProvider>();
+            services.AddTransient<IRequestProvider, RequestProvider>();
 
-            services.AddSingleton<IIdentityService, IdentityService>();
+            services.AddTransient<IIdentityService, IdentityService>();
 
-            services.AddSingleton<IFollowService, FollowService>();
+            services.AddTransient<IFollowService, FollowService>();
 
-            services.AddSingleton<IBalanceService, BalanceService>();
+            services.AddTransient<IBalanceService, BalanceService>();
 
-            services.AddSingleton<ISubCategoryService, SubCategoryService>();
+            services.AddTransient<ISubCategoryService, SubCategoryService>();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

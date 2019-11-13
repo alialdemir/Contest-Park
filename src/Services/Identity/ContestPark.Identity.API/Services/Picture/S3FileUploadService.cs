@@ -124,10 +124,6 @@ namespace ContestPark.Identity.API.Services.Picture
 
                 return $"{clouldFrontUrl}/{newFileName}";
             }
-            catch (AmazonS3Exception ex)
-            {
-                _logger.LogCritical($"Dosya yükleme sırasında hata oluştu. User id: {userId} file name: {fileName}", ex.Message);
-            }
             catch (Exception ex)
             {
                 _logger.LogCritical($"Dosya yükleme sırasında hata oluştu. User id: {userId} file name: {fileName}", ex.Message);
@@ -153,10 +149,6 @@ namespace ContestPark.Identity.API.Services.Picture
                 var response = await _amazonS3.PutBucketAsync(putBucketRequest);
 
                 return response.HttpStatusCode == System.Net.HttpStatusCode.OK;
-            }
-            catch (AmazonS3Exception ex)
-            {
-                _logger.LogCritical("Bucket oluşturma sırasında hata oluştu.", ex);
             }
             catch (Exception ex)
             {

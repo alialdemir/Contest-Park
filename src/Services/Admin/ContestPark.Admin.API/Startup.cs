@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using ContestPark.Admin.API.Infrastructure.Repositories.Category;
 using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
 using ContestPark.Admin.API.Resources;
+using ContestPark.Admin.API.Services.Picture;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.NumberFormat;
 using ContestPark.EventBus.Abstractions;
@@ -52,6 +53,7 @@ namespace ContestPark.Admin.API
             services.AddTransient<INumberFormatService, NumberFormatService>();
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddSingleton<IFileUploadService, S3FileUploadService>();
 
             var container = new ContainerBuilder();
             container.Populate(services);

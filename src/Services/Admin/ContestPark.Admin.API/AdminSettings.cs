@@ -2,5 +2,6 @@
 {
     public class AdminSettings
     {
+        public string ClouldFrontUrl { get; set; }
     }
 }

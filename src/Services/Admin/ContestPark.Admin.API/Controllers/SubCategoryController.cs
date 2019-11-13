@@ -1,6 +1,7 @@
 ﻿using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
 using ContestPark.Admin.API.Model.Category;
 using ContestPark.Admin.API.Model.SubCategory;
+using ContestPark.Admin.API.Services.Picture;
 using ContestPark.Core.Database.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +18,24 @@ namespace ContestPark.Admin.API.Controllers
         #region Private Variables
 
         private readonly ISubCategoryRepository _subCategoryRepository;
+        private readonly IFileUploadService _fileUploadService;
 
         #endregion Private Variables
 
         #region Constructor
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="subCategoryRepository"></param>
+        /// <param name="fileUploadService"></param>
         public SubCategoryController(ILogger<SubCategoryController> logger,
-                                     ISubCategoryRepository subCategoryRepository) : base(logger)
+                                     ISubCategoryRepository subCategoryRepository,
+                                     IFileUploadService fileUploadService) : base(logger)
         {
             _subCategoryRepository = subCategoryRepository;
+            _fileUploadService = fileUploadService;
         }
 
         #endregion Constructor

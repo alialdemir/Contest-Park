@@ -30,7 +30,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="AWS.Logger.SeriLog" Version="1.4.0" />
-    <PackageReference Include="AWSSDK.S3" Version="3.3.106" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.106.4" />
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.4.0" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
