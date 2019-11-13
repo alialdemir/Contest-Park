@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    x:Name="customGrid">
+    x:Name="customGrid"
+    RowSpacing="0">
     <components:CustomGrid.RowDefinitions>
         <RowDefinition Height="90" />
-        <RowDefinition Height="20" />
+        <RowDefinition Height="Auto" />
     </components:CustomGrid.RowDefinitions>
     <components:CustomGrid.ColumnDefinitions>
         <ColumnDefinition Width="80" />

@@ -253,6 +253,8 @@ namespace ContestPark.Mobile.ViewModels
             FounderScore += questionModel.FounderScore;
             OpponentScore += questionModel.OpponentScore;
 
+            _audioService.Stop();
+
             ChangeStylishColor(questionModel.FounderStylish, questionModel.CorrectStylish);
             ChangeStylishColor(questionModel.OpponentStylish, questionModel.CorrectStylish);
             ChangeStylishColor(questionModel.CorrectStylish, questionModel.CorrectStylish);
@@ -488,6 +490,8 @@ namespace ContestPark.Mobile.ViewModels
 
             _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
             _duelSignalRService.OffNextQuestion();
+
+            _audioService.Stop();
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 

@@ -30,7 +30,7 @@ namespace ContestPark.Mobile.Components
 
             StackLayout stackLayout = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 20 };
 
-            foreach (SubCategoryModel subCategory in categoryModel.SubCategories)
+            categoryModel.SubCategories.ForEach(subCategory =>
             {
                 stackLayout.Children.Add(new SubCategoryCard
                 {
@@ -40,7 +40,7 @@ namespace ContestPark.Mobile.Components
                     DisplayPrice = subCategory.DisplayPrice,
                     IsCategoryOpen = subCategory.IsCategoryOpen
                 });
-            }
+            });
 
             Content = stackLayout;
         }
