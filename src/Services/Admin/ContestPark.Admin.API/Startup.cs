@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Amazon.S3;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Admin.API.Infrastructure.Repositories.Category;
 using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
@@ -49,6 +50,10 @@ namespace ContestPark.Admin.API
             services
                     //   .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
+
+            string awsAccessKeyId = Configuration["AwsAccessKeyId"];
+            string awsSecretAccessKey = Configuration["AwsSecretAccessKey"];
+            services.AddSingleton<IAmazonS3>(new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, Amazon.RegionEndpoint.EUCentral1));
 
             services.AddTransient<INumberFormatService, NumberFormatService>();
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();

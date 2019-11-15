@@ -204,7 +204,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         /// </summary>
         /// <param name="subCategoryInsert">Alt kategori bilgisi</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> InsertAsync(SubCategoryInsertModel subCategoryInsert)
+        public async Task<short?> InsertAsync(SubCategoryInsertModel subCategoryInsert)
         {
             int? subCategoryId = await _subCategoryRepository.AddAsync(new Tables.SubCategory
             {
@@ -215,7 +215,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
             });
 
             if (!subCategoryId.HasValue)
-                return false;
+                return (short)subCategoryId;
 
             await _subCategoryOfCategoryRepository.AddRangeAsync(subCategoryInsert.CategoryIds.Select(categoryId => new Tables.SubCategoryOfCategory
             {
@@ -223,13 +223,15 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
                 CategoryId = categoryId,
             }));
 
-            return await _subCategoryLocalizedRepository.AddRangeAsync(subCategoryInsert.LocalizedModels.Select(x => new Tables.SubCategoryLocalized
+            await _subCategoryLocalizedRepository.AddRangeAsync(subCategoryInsert.LocalizedModels.Select(x => new Tables.SubCategoryLocalized
             {
                 Description = x.Description,
                 Language = x.Language,
                 SubCategoryId = Convert.ToInt16(subCategoryId.Value),
                 SubCategoryName = x.Text,
             }));
+
+            return (short)subCategoryId;
         }
 
         /// <summary>

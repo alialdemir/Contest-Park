@@ -4,8 +4,11 @@ using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Admin.API.Services.Picture;
 using ContestPark.Core.Database.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -81,10 +84,26 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSubCategoryAsync([FromBody]SubCategoryUpdateModel subCategoryUpdate)
+        public async Task<IActionResult> UpdateSubCategoryAsync([FromBody]SubCategoryUpdateModel subCategoryUpdate, IList<IFormFile> files)
         {
+            IFormFile file = files.First();
+            if (file != null)
+            {
+                Stream pictureStream = file.OpenReadStream();
+                if (pictureStream == null || pictureStream.Length == 0)
+                    return NotFound();
+
+                string fileName = await _fileUploadService.UploadFileToStorageAsync(pictureStream,
+                                                                                    file.FileName,
+                                                                                    file.ContentType,
+                                                                                    subCategoryUpdate.SubCategoryId);
+                if (string.IsNullOrEmpty(fileName))
+                    return BadRequest();
+
+                subCategoryUpdate.PicturePath = fileName;
+            }
+
             // TODO: Elasticsearch evemt publish
-            // TODO: alt kategori resmini s3 kayıt edilecek
             bool isSuccess = await _subCategoryRepository.UpdateAsync(subCategoryUpdate);
             if (!isSuccess)
                 return BadRequest();
@@ -99,15 +118,29 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> InsertSubCategoryAsync([FromBody]SubCategoryInsertModel subCategoryInsert)
+        public async Task<IActionResult> InsertSubCategoryAsync([FromBody]SubCategoryInsertModel subCategoryInsert, IList<IFormFile> files)
         {
-            // TODO: Elasticsearch evemt publish
-            // TODO: alt kategori resmini s3 kayıt edilecek
-            bool isSuccess = await _subCategoryRepository.InsertAsync(subCategoryInsert);
-            if (!isSuccess)
+            if (files.Count == 0)
                 return BadRequest();
 
-            return Ok();
+            IFormFile file = files.First();
+            if (file == null)
+                return NotFound();
+
+            // TODO: Elasticsearch evemt publish
+            short? subCategoryId = await _subCategoryRepository.InsertAsync(subCategoryInsert);
+            if (!subCategoryId.HasValue)
+                return BadRequest();
+
+            return await UpdateSubCategoryAsync(new SubCategoryUpdateModel
+            {
+                CategoryIds = subCategoryInsert.CategoryIds,
+                DisplayOrder = subCategoryInsert.DisplayOrder,
+                LocalizedModels = subCategoryInsert.LocalizedModels,
+                SubCategoryId = subCategoryId.Value,
+                Price = subCategoryInsert.Price,
+                Visibility = false,
+            }, files);
         }
 
         /// <summary>

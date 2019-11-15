@@ -2,6 +2,7 @@
 using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
+using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
 {
@@ -11,9 +12,10 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
 
         ServiceModel<SubCategoryModel> GetSubCategories(Languages language, PagingModel paging);
 
-        System.Threading.Tasks.Task<bool> InsertAsync(SubCategoryInsertModel subCategoryInsert);
+        Task<short?> InsertAsync(SubCategoryInsertModel subCategoryInsert);
 
-        System.Threading.Tasks.Task<bool> UpdateAsync(SubCategoryUpdateModel subCategoryUpdate);
+        Task<bool> UpdateAsync(SubCategoryUpdateModel subCategoryUpdate);
+
         SubCategoryUpdateModel GetSubCategoryById(short subCategoryId);
     }
 }
