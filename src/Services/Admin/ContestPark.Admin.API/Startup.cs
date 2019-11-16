@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Admin.API.Infrastructure.Repositories.Category;
 using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
+using ContestPark.Admin.API.Providers;
 using ContestPark.Admin.API.Resources;
 using ContestPark.Admin.API.Services.Picture;
 using ContestPark.Core.Middlewares;
@@ -40,7 +41,11 @@ namespace ContestPark.Admin.API
 
             services.AddAuth(Configuration)
                     .AddMySql()
-                    .AddMvc()
+                    .AddMvc(options =>
+                    {
+                        // add custom model binders to beginning of collection
+                        options.ModelBinderProviders.Insert(0, new FormDataJsonBinderProvider());
+                    })
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(AdminResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

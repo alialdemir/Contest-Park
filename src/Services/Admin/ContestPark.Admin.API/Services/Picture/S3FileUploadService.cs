@@ -14,20 +14,30 @@ namespace ContestPark.Admin.API.Services.Picture
 {
     public class S3FileUploadService : IFileUploadService
     {
+        #region Private Variables
+
         private readonly string bucketName = "contestpark";
         private readonly string clouldFrontUrl;
 
         private readonly IAmazonS3 _amazonS3;
         private readonly ILogger<S3FileUploadService> _logger;
 
+        #endregion Private Variables
+
+        #region Constructor
+
         public S3FileUploadService(ILogger<S3FileUploadService> logger,
-                                   IOptions<AdminSettings> identitySettings,
-                                   IAmazonS3 amazonS3)
+                               IOptions<AdminSettings> identitySettings,
+                               IAmazonS3 amazonS3)
         {
             clouldFrontUrl = identitySettings.Value.ClouldFrontUrl;
             _logger = logger;
             _amazonS3 = amazonS3;
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         /// <summary>
         /// Dosyayı indirip stream olarak döndürür
@@ -82,14 +92,40 @@ namespace ContestPark.Admin.API.Services.Picture
         }
 
         /// <summary>
-        /// S3 dosya adı verir
+        /// Soru resmi için S3 dosya yolunu verir
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <param name="extension">Dosya Uzantısı</param>
         /// <returns>Dosya yolu</returns>
         private string GetSubCategoryS3FilePath(short subCategoryId, string extension)
         {
-            return $"questions/subcategoryId{subCategoryId}/{GetUniqFileName()}{extension}"; ;
+            return $"questions/subcategoryId{subCategoryId}/{GetUniqFileName()}{extension}";
+        }
+
+        /// <summary>
+        /// S3 üzerinden dosya siler
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteFileToStorageAsync(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return false;
+
+            try
+            {
+                string key = path.Replace(clouldFrontUrl + "/", "");
+
+                var response = await _amazonS3.DeleteObjectAsync(bucketName, key);
+
+                return response.HttpStatusCode == HttpStatusCode.OK;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical($"Alt kategori resmi silme işlemi sırasında hata oluştu. file name: {path}", ex.Message);
+
+                return false;
+            }
         }
 
         /// <summary>
@@ -114,7 +150,8 @@ namespace ContestPark.Admin.API.Services.Picture
 
                 TransferUtility transferUtility = new TransferUtility(_amazonS3);
 
-                string newFileName = GetSubCategoryS3FilePath(subCategoryId, fileName);
+                string extension = Path.GetExtension(fileName);
+                string newFileName = $"categories/{GetUniqFileName()}{extension}";
 
                 await transferUtility.UploadAsync(new TransferUtilityUploadRequest
                 {
@@ -256,5 +293,7 @@ namespace ContestPark.Admin.API.Services.Picture
 
             return fileSizeMb > maximumFileSize;// 4 mb'den büyük ise dosya boyutu  geçersizdir
         }
+
+        #endregion Methods
     }
 }

@@ -14,7 +14,6 @@ namespace ContestPark.Admin.API.Model.SubCategory
         public List<LocalizedModel> LocalizedModels { get; set; }
 
         public List<short> CategoryIds { get; set; }
-
-        public IList<IFormFile> Files { get; set; }
+        public IFormFile File { get; set; }
     }
 }

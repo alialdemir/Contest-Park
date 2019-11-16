@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace ContestPark.Admin.API.Model.SubCategory
 {
@@ -17,5 +18,7 @@ namespace ContestPark.Admin.API.Model.SubCategory
         public IEnumerable<LocalizedModel> LocalizedModels { get; set; }
 
         public IEnumerable<short> CategoryIds { get; set; }
+
+        public IFormFile File { get; set; }
     }
 }

@@ -150,7 +150,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
         public async Task<IActionResult> ChangeCoverPicture(IList<IFormFile> files)// Burda tek list olarak alınmaması lazım ama tek alınca yüklenmiyor
         {
-            if (files.Count == 0)
+            if (files == null || files.Count == 0)
                 return BadRequest();
 
             IFormFile file = files.First();
@@ -220,7 +220,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
         public async Task<IActionResult> ChangeProfilePicture(IList<IFormFile> files)// Burda tek list olarak alınmaması lazım ama tek alınca yüklenmiyor
         {
-            if (files.Count == 0)
+            if (files == null || files.Count == 0)
                 return BadRequest();
 
             IFormFile file = files.First();

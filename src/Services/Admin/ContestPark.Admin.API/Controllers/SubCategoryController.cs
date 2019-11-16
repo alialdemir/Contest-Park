@@ -4,10 +4,8 @@ using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Admin.API.Services.Picture;
 using ContestPark.Core.Database.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -84,18 +82,19 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSubCategoryAsync([FromBody]SubCategoryUpdateModel subCategoryUpdate, IList<IFormFile> files)
+        public async Task<IActionResult> UpdateSubCategoryAsync([FromForm]SubCategoryUpdateModel subCategoryUpdate)
         {
-            IFormFile file = files.First();
-            if (file != null)
+            if (subCategoryUpdate.File != null)
             {
-                Stream pictureStream = file.OpenReadStream();
+                Stream pictureStream = subCategoryUpdate.File.OpenReadStream();
                 if (pictureStream == null || pictureStream.Length == 0)
                     return NotFound();
 
+                await _fileUploadService.DeleteFileToStorageAsync(subCategoryUpdate.PicturePath);
+
                 string fileName = await _fileUploadService.UploadFileToStorageAsync(pictureStream,
-                                                                                    file.FileName,
-                                                                                    file.ContentType,
+                                                                                    subCategoryUpdate.File.FileName,
+                                                                                    subCategoryUpdate.File.ContentType,
                                                                                     subCategoryUpdate.SubCategoryId);
                 if (string.IsNullOrEmpty(fileName))
                     return BadRequest();
@@ -118,14 +117,10 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> InsertSubCategoryAsync([FromBody]SubCategoryInsertModel subCategoryInsert, IList<IFormFile> files)
+        public async Task<IActionResult> InsertSubCategoryAsync([FromForm]SubCategoryInsertModel subCategoryInsert)
         {
-            if (files.Count == 0)
+            if (subCategoryInsert.File == null)
                 return BadRequest();
-
-            IFormFile file = files.First();
-            if (file == null)
-                return NotFound();
 
             // TODO: Elasticsearch evemt publish
             short? subCategoryId = await _subCategoryRepository.InsertAsync(subCategoryInsert);
@@ -140,7 +135,8 @@ namespace ContestPark.Admin.API.Controllers
                 SubCategoryId = subCategoryId.Value,
                 Price = subCategoryInsert.Price,
                 Visibility = false,
-            }, files);
+                File = subCategoryInsert.File
+            });
         }
 
         /// <summary>
