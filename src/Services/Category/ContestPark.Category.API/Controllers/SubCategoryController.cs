@@ -308,6 +308,12 @@ namespace ContestPark.Category.API.Controllers
             if (!isSuccess)
                 return BadRequest(CategoryResource.CouldNotPpenSubcategoryLock);
 
+            Logger.LogInformation("Alt kategori kilidi açılldı. {subCategoryId} {balanceType} {userId} şuanki bakiye: {amount}",
+                             subCategoryId,
+                             balanceType,
+                             UserId,
+                             balance.Amount);
+
             // bakiyesinden alt kategori fiyatı kadar altın/para düşme eventi yollandı
             var @event = new ChangeBalanceIntegrationEvent(-subCategoryPrice,
                                                            UserId,
