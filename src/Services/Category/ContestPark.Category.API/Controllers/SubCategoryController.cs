@@ -273,8 +273,13 @@ namespace ContestPark.Category.API.Controllers
         [HttpPost("{subCategoryId}/unlock")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UnLockSubCategory([FromRoute]short subCategoryId, [FromQuery]BalanceTypes balanceType)
+        public async Task<IActionResult> UnLockSubCategory([FromRoute]short subCategoryId, [FromQuery]BalanceTypes balanceType = BalanceTypes.Gold)
         {
+            Logger.LogInformation("Alt kategori kilit açma isteği geldi. {subCategoryId} {balanceType} {userId}",
+                                  subCategoryId,
+                                  balanceType,
+                                  UserId);
+
             if (subCategoryId < 0)
                 return BadRequest();
 

@@ -20,9 +20,9 @@ namespace ContestPark.Category.API.Services.Balance
             _categorySettings = settings.Value;
         }
 
-        public Task<BalanceModel> GetBalance(string userId, BalanceTypes balanceType)
+        public Task<BalanceModel> GetBalance(string userId, BalanceTypes balanceType = BalanceTypes.Gold)
         {
-            return _requestProvider.GetAsync<BalanceModel>($"{_categorySettings.BalanceUrl}/api/v1/Balance/{userId}?balanceType={(byte)balanceType}");
+            return _requestProvider.GetAsync<BalanceModel>($"{_categorySettings.BalanceUrl}/api/v1/Balance/{userId}?balanceType={balanceType}");
         }
     }
 }
