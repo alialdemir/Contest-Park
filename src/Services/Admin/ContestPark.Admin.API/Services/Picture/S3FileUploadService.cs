@@ -70,13 +70,13 @@ namespace ContestPark.Admin.API.Services.Picture
         /// </summary>
         /// <param name="fileUrl">Dosya linki</param>
         /// <returns>Dosya stream</returns>
-        private async Task<string> DownloadFileAsync(Uri uri)
+        private async Task<string> DownloadFileAsync(Uri uri, string extension)
         {
             try
             {
                 using (WebClient webClient = new WebClient())
                 {
-                    string filePath = $"{Path.GetTempPath()}contestparkgeciciimage.png";
+                    string filePath = $"{Path.GetTempPath()}contestparktempfile{extension}";
 
                     await webClient.DownloadFileTaskAsync(uri, filePath);
 
@@ -206,7 +206,7 @@ namespace ContestPark.Admin.API.Services.Picture
         /// <param name="fileUrl">Mp3 veya jpg dosya link</param>
         /// <param name="questionType">Soru tipi</param>
         /// <returns>İndirilen dosyanın path</returns>
-        private async Task<string> GetFileStreamByQuestionType(string fileUrl, QuestionTypes questionType)
+        private async Task<string> GetFileStreamByQuestionType(string fileUrl, QuestionTypes questionType, string extension)
         {
             switch (questionType)
             {
@@ -214,13 +214,13 @@ namespace ContestPark.Admin.API.Services.Picture
                     bool isUrl = Uri.TryCreate(fileUrl, UriKind.Absolute, out Uri uriResult);
                     if (isUrl)
                     {
-                        fileUrl = await DownloadFileAsync(uriResult);
+                        fileUrl = await DownloadFileAsync(uriResult, extension);
                     }
 
                     return await _ffmpegService.CutVideoAsync(fileUrl);
 
                 case QuestionTypes.Image:
-                    return await DownloadFileAsync(new Uri(fileUrl));
+                    return await DownloadFileAsync(new Uri(fileUrl), extension);
             }
 
             return null;
@@ -238,7 +238,9 @@ namespace ContestPark.Admin.API.Services.Picture
             if (string.IsNullOrEmpty(fileUrl))
                 return string.Empty;
 
-            string outputFilePath = await GetFileStreamByQuestionType(fileUrl, questionType);
+            string extension = questionType == QuestionTypes.Music ? ".mp3" : ".png";
+
+            string outputFilePath = await GetFileStreamByQuestionType(fileUrl, questionType, extension);
             if (string.IsNullOrEmpty(outputFilePath))
                 return string.Empty;
 
@@ -254,9 +256,9 @@ namespace ContestPark.Admin.API.Services.Picture
                 if (await CreateBucketIfNotExistsAsync() == false)
                     return string.Empty;
 
-                TransferUtility transferUtility = new TransferUtility(_amazonS3);
+                string newFileName = GetSubCategoryS3FilePath(subCategoryId, extension);
 
-                string newFileName = GetSubCategoryS3FilePath(subCategoryId, ".png");
+                TransferUtility transferUtility = new TransferUtility(_amazonS3);
 
                 await transferUtility.UploadAsync(new TransferUtilityUploadRequest
                 {

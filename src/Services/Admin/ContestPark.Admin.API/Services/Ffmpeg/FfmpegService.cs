@@ -14,7 +14,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
         private readonly ILogger<FfmpegService> _logger;
         private readonly string _ffmpegPath;
-        private readonly string _ffmpegTempPath = "";
+        private readonly string _ffmpegTempPath;
 
         #endregion Private Variables
 
@@ -30,6 +30,8 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         }
 
         #endregion Constructor
+
+        #region Methods
 
         /// <summary>
         /// Dosyayı indirip stream olarak döndürür
@@ -82,11 +84,13 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
             {
-                _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız.mp3 Url: {mp3Url}", mp3Url);
+                _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
                 return string.Empty;
             }
 
             return mediaFile.FileInfo.FullName;
         }
+
+        #endregion Methods
     }
 }
