@@ -23,6 +23,9 @@ namespace ContestPark.Admin.API.Services.Spotify
             if (spotify == null || spotify.Albums == null || spotify.Artists == null || spotify.Tracks == null || subCategoryId <= 0)
                 return;
 
+            _subCategoryId = subCategoryId;
+            SpotifyQuestionTypes = spotifyQuestionTypes;
+
             Question1(spotify.Tracks);
             Question2(spotify.Tracks, spotify.Albums);
             Question3(spotify.Artists);
@@ -32,9 +35,6 @@ namespace ContestPark.Admin.API.Services.Spotify
             Question7(spotify.Albums);
             Question8(spotify.Albums);
             Question9(spotify.Artists);
-
-            _subCategoryId = subCategoryId;
-            SpotifyQuestionTypes = spotifyQuestionTypes;
         }
 
         #endregion Constructor
@@ -66,6 +66,9 @@ namespace ContestPark.Admin.API.Services.Spotify
         /// <param name="tracks"></param>
         private void Question1(List<TrackModel> tracks)
         {
+            if (tracks == null || !tracks.Any())
+                return;
+
             var question1 = tracks
                                .Select(track => new QuestionSaveModel
                                {
@@ -105,6 +108,9 @@ namespace ContestPark.Admin.API.Services.Spotify
         /// <param name="albums"></param>
         private void Question2(List<TrackModel> tracks, List<AlbumModel> albums)
         {
+            if (tracks == null || !tracks.Any() || albums == null || !albums.Any())
+                return;
+
             var question2 = tracks
                                 .Select(track => new QuestionSaveModel
                                 {
@@ -144,6 +150,9 @@ namespace ContestPark.Admin.API.Services.Spotify
         /// <param name="genres">artistInfo.Artist.Genres</param>
         private void Question3(List<ArtistModel> artists)
         {
+            if (artists == null || !artists.Any())
+                return;
+
             var question3 = artists
                                 .Select(artis => new QuestionSaveModel
                                 {
@@ -183,6 +192,9 @@ namespace ContestPark.Admin.API.Services.Spotify
         /// <param name="albums">Albümler</param>
         private void Question4(List<AlbumModel> albums)
         {
+            if (albums == null || !albums.Any())
+                return;
+
             var question4 = albums
                                 .Select(track => new QuestionSaveModel
                                 {
@@ -221,6 +233,9 @@ namespace ContestPark.Admin.API.Services.Spotify
         /// </summary>
         private void Question5(List<AlbumModel> albums)
         {
+            if (albums == null || !albums.Any())
+                return;
+
             var question5 = albums
                                 .Select(track => new QuestionSaveModel
                                 {
@@ -256,7 +271,7 @@ namespace ContestPark.Admin.API.Services.Spotify
 
         private void Question6(List<TrackModel> tracks)
         {
-            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist)
+            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist || tracks == null || !tracks.Any())
                 return;
 
             var question5 = tracks
@@ -294,7 +309,7 @@ namespace ContestPark.Admin.API.Services.Spotify
 
         private void Question7(List<AlbumModel> albums)
         {
-            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist)
+            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist || albums == null || !albums.Any())
                 return;
 
             var question5 = albums
@@ -332,7 +347,7 @@ namespace ContestPark.Admin.API.Services.Spotify
 
         private void Question8(List<AlbumModel> albums)
         {
-            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist)
+            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist || albums == null || !albums.Any())
                 return;
 
             var question5 = albums
@@ -370,7 +385,7 @@ namespace ContestPark.Admin.API.Services.Spotify
 
         private void Question9(List<ArtistModel> artis)
         {
-            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist)
+            if (SpotifyQuestionTypes != SpotifyQuestionTypes.Playlist || artis == null || !artis.Any())
                 return;
 
             var question5 = artis

@@ -90,20 +90,23 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #endregion Kazanma bonusu verilecek mi belirler
 
-            // Düello bitti eventi yayınladık
-            var @duelFinishEvent = new DuelFinishIntegrationEvent(@event.DuelId,
-                                                                  duel.BalanceType,
-                                                                  duel.Bet,
-                                                                  duel.BetCommission,
-                                                                  duel.SubCategoryId,
-                                                                  duel.FounderUserId,
-                                                                  duel.OpponentUserId,
-                                                                  duel.FounderTotalScore ?? 0,
-                                                                  duel.OpponentTotalScore ?? 0,
-                                                                  isFounderFinishedTheGame,
-                                                                  isOpponentFinishedTheGame);
+            Task.Factory.StartNew(() =>
+            {
+                // Düello bitti eventi yayınladık
+                var @duelFinishEvent = new DuelFinishIntegrationEvent(@event.DuelId,
+                                                                            duel.BalanceType,
+                                                                            duel.Bet,
+                                                                            duel.BetCommission,
+                                                                            duel.SubCategoryId,
+                                                                            duel.FounderUserId,
+                                                                            duel.OpponentUserId,
+                                                                            duel.FounderTotalScore ?? 0,
+                                                                            duel.OpponentTotalScore ?? 0,
+                                                                            isFounderFinishedTheGame,
+                                                                            isOpponentFinishedTheGame);
 
-            _eventBus.Publish(duelFinishEvent);
+                _eventBus.Publish(duelFinishEvent);
+            });
 
             return Task.CompletedTask;
         }
@@ -115,9 +118,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="message">Gönderilecek mesaj</param>
         private void SendErrorMessage(string userId, string message)
         {
-            var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
+            Task.Factory.StartNew(() =>
+            {
+                var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
 
-            _eventBus.Publish(@event);
+                _eventBus.Publish(@event);
+            });
         }
 
         #endregion Methods

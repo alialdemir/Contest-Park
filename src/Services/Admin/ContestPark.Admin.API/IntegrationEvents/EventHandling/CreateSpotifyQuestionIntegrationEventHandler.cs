@@ -48,10 +48,10 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
         {
             switch (spotifyQuestionType)
             {
-                case Enums.SpotifyQuestionTypes.Playlist:
+                case SpotifyQuestionTypes.Playlist:
                     return _spotifyService.GetPlaylistQuestions(spotifyId);
 
-                case Enums.SpotifyQuestionTypes.Artist:
+                case SpotifyQuestionTypes.Artist:
                     return _spotifyService.GetArtistQuestionAsync(spotifyId);
             }
 
@@ -80,6 +80,8 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
 
                 return;
             }
+
+            _logger.LogInformation("Toplam oluşturulacak soru sayısı: {Count} Spotify Id: {SpotifyId}", spotifyQuestionManager.Questions.Count, @event.SpotifyId)
 
             var @eventQuestion = new CreateQuestionIntegrationEvent(spotifyQuestionManager.Questions);
 
