@@ -25,7 +25,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         {
             _logger = logger;
 
-            _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg\\ffmpeg.exe");
+            _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg/ffmpeg.exe");
             _ffmpegTempPath = Path.Combine(Path.GetTempPath(), "ffmpeg.exe");
         }
 
