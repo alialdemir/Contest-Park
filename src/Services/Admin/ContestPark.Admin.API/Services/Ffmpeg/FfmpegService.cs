@@ -1,7 +1,6 @@
 ﻿using FFmpeg.NET;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -13,21 +12,18 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         #region Private Variables
 
         private readonly ILogger<FfmpegService> _logger;
-        private readonly string _ffmpegPath;
         private readonly string _ffmpegTempPath;
 
         #endregion Private Variables
 
         #region Constructor
 
-        public FfmpegService(IOptions<AdminSettings> options,
-            IHostingEnvironment env,
+        public FfmpegService(IHostingEnvironment env,
                              ILogger<FfmpegService> logger)
         {
             _logger = logger;
 
-            _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg/ffmpeg.exe");
-            _ffmpegTempPath = $"{env.WebRootPath}/ffmpeg.exe";
+            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
         }
 
         #endregion Constructor
@@ -49,7 +45,11 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             MediaFile inputFile = new MediaFile(mp3Url);
             MediaFile outputFile = new MediaFile(outputPath);
 
-            Engine ffmpeg = new Engine(_ffmpegTempPath);
+            FileInfo file = new FileInfo(_ffmpegTempPath);
+
+            _logger.LogInformation("file info path " + file.FullName);
+
+            Engine ffmpeg = new Engine(file.FullName);
             ConversionOptions options = new ConversionOptions();
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
@@ -58,6 +58,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
             {
                 _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
+
                 return string.Empty;
             }
 
