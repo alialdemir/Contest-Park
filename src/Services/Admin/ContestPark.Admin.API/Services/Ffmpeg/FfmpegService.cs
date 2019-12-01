@@ -61,15 +61,15 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             if (string.IsNullOrEmpty(mp3Url))
                 return string.Empty;
 
-            if (!File.Exists(_ffmpegPath))
-                _ffmpegTempPath = await DownloadFfmpegAsync();
+            if (!File.Exists(_ffmpegTempPath))
+                await DownloadFfmpegAsync();
 
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
             MediaFile inputFile = new MediaFile(mp3Url);
             MediaFile outputFile = new MediaFile(outputPath);
 
-            Engine ffmpeg = new Engine(_ffmpegPath);
+            Engine ffmpeg = new Engine(_ffmpegTempPath);
             ConversionOptions options = new ConversionOptions();
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
