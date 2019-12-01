@@ -26,7 +26,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             _logger = logger;
 
             _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg\\ffmpeg.exe");
-            _ffmpegTempPath = $"{Path.GetTempPath()}ffmpeg.exe";
+            _ffmpegTempPath = Path.Combine(Path.GetTempPath(), "ffmpeg.exe");
         }
 
         #endregion Constructor
@@ -43,6 +43,8 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
                 using (WebClient webClient = new WebClient())
                 {
                     await webClient.DownloadFileTaskAsync(_ffmpegPath, _ffmpegTempPath);
+
+                    _logger.LogInformation("Ffmpeg exe indirildi.");
                 }
             }
             catch (Exception ex)
@@ -63,6 +65,8 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             if (!File.Exists(_ffmpegTempPath))
                 await DownloadFfmpegAsync();
+
+            _logger.LogInformation("Ffmpeg info. _ffmpegPath: {_ffmpegPath} _ffmpegTempPath: {_ffmpegTempPath}", _ffmpegPath, _ffmpegTempPath);
 
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
