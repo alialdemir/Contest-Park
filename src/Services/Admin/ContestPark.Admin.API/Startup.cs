@@ -130,9 +130,8 @@ namespace ContestPark.Admin.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
-#if !DEBUG
+
             ConfigureEventBus(app);
-#endif
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)

@@ -1,4 +1,5 @@
 ﻿using FFmpeg.NET;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -21,12 +22,13 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         #region Constructor
 
         public FfmpegService(IOptions<AdminSettings> options,
+            IHostingEnvironment env,
                              ILogger<FfmpegService> logger)
         {
             _logger = logger;
 
             _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg/ffmpeg.exe");
-            _ffmpegTempPath = Path.Combine(Path.GetTempPath(), "ffmpeg.exe");
+            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
         }
 
         #endregion Constructor
@@ -68,8 +70,6 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             if (!File.Exists(_ffmpegTempPath))
                 await DownloadFfmpegAsync();
 
-            _logger.LogInformation("Ffmpeg info. _ffmpegPath: {_ffmpegPath} _ffmpegTempPath: {_ffmpegTempPath}", _ffmpegPath, _ffmpegTempPath);
-
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
             MediaFile inputFile = new MediaFile(mp3Url);
@@ -78,7 +78,11 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             Engine ffmpeg = new Engine(_ffmpegTempPath);
             ConversionOptions options = new ConversionOptions();
 
+            _logger.LogInformation("CUT VİDEO");
+
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
+
+            _logger.LogInformation("Ffmpeg info. _ffmpegPath: {_ffmpegPath} _ffmpegTempPath: {_ffmpegTempPath}", _ffmpegPath, _ffmpegTempPath);
 
             MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
 
