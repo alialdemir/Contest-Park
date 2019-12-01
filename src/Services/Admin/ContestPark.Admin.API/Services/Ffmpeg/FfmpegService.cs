@@ -80,26 +80,17 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
 
-            try
+            _logger.LogInformation("is ffmpeg exists  " + _ffmpegTempPath);
+            _logger.LogInformation("mp3Url  " + mp3Url);
+
+            MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
+            if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
             {
-                _logger.LogInformation("is ffmpeg exists  " + File.Exists(_ffmpegTempPath));
-
-                MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
-
-                if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
-                {
-                    _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
-                    return string.Empty;
-                }
-
-                return mediaFile.FileInfo.FullName;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Fffmpeg hata oluştu.");
-
+                _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
                 return string.Empty;
             }
+
+            return mediaFile.FileInfo.FullName;
         }
 
         #endregion Methods
