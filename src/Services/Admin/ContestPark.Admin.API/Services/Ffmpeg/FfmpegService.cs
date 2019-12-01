@@ -1,8 +1,9 @@
 ﻿using FFmpeg.NET;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Services.Ffmpeg
@@ -13,20 +14,42 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
         private readonly ILogger<FfmpegService> _logger;
         private readonly string _ffmpegPath;
+        private readonly string _ffmpegTempPath = "";
 
         #endregion Private Variables
 
         #region Constructor
 
-        public FfmpegService(IHostingEnvironment hostingEnvironment,
+        public FfmpegService(IOptions<AdminSettings> options,
                              ILogger<FfmpegService> logger)
         {
             _logger = logger;
 
-            _ffmpegPath = Path.Combine(hostingEnvironment.WebRootPath, "ffmpeg\\ffmpeg.exe");
+            _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg\\ffmpeg.exe");
+            _ffmpegTempPath = $"{Path.GetTempPath()}ffmpeg.exe";
         }
 
         #endregion Constructor
+
+        /// <summary>
+        /// Dosyayı indirip stream olarak döndürür
+        /// </summary>
+        /// <param name="fileUrl">Dosya linki</param>
+        /// <returns>Dosya stream</returns>
+        private async Task DownloadFfmpegAsync()
+        {
+            try
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    await webClient.DownloadFileTaskAsync(_ffmpegPath, _ffmpegTempPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Ffmpeg dosyası indirme sırasında hata. Link: {_ffmpegPath}", ex.Message);
+            }
+        }
 
         /// <summary>
         /// Mp3 dosya linkini alıp ilk 10 saniyesini kesip döndüdürür
@@ -37,6 +60,9 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         {
             if (string.IsNullOrEmpty(mp3Url))
                 return string.Empty;
+
+            if (!File.Exists(_ffmpegPath))
+                _ffmpegTempPath = await DownloadFfmpegAsync();
 
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 

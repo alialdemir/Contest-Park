@@ -116,8 +116,6 @@ namespace ContestPark.Admin.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
-
             var pathBase = Configuration["PATH_BASE"];
             if (!string.IsNullOrEmpty(pathBase))
             {
@@ -132,8 +130,9 @@ namespace ContestPark.Admin.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
-
+#if !DEBUG
             ConfigureEventBus(app);
+#endif
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)
