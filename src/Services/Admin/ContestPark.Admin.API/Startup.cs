@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Admin.API.Infrastructure.Repositories.AnswerLocalized;
 using ContestPark.Admin.API.Infrastructure.Repositories.Category;
+using ContestPark.Admin.API.Infrastructure.Repositories.Question;
 using ContestPark.Admin.API.Infrastructure.Repositories.QuestionLocalized;
 using ContestPark.Admin.API.Infrastructure.Repositories.QuestionOfQuestionLocalized;
 using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
@@ -83,6 +84,8 @@ namespace ContestPark.Admin.API
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             services.AddSingleton<IFileUploadService, S3FileUploadService>();
+
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
 
             services.AddTransient<IQuestionLocalizedRepository, QuestionLocalizedRepository>();
 
