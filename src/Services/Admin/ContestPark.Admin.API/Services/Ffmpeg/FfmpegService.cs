@@ -31,7 +31,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             _logger = logger;
 
             _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg/ffmpeg.exe");
-            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
+            _ffmpegTempPath = $"{Path.GetTempPath()}ffmpeg.exe";
         }
 
         #endregion Constructor
@@ -75,9 +75,8 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
-            string contentRootPath = _env.ContentRootPath;
-            _logger.LogInformation("new path  " + Path.Combine(contentRootPath, _ffmpegTempPath));
-            _logger.LogInformation("contentRootPath  " + contentRootPath);
+            _logger.LogInformation("_ffmpegTempPath  " + _ffmpegTempPath);
+            _logger.LogInformation("mp3Url  " + mp3Url);
 
             MediaFile inputFile = new MediaFile(mp3Url);
             MediaFile outputFile = new MediaFile(outputPath);
