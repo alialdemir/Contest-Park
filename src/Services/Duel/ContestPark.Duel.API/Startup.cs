@@ -4,14 +4,11 @@ using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.NumberFormat;
 using ContestPark.Core.Services.RequestProvider;
-using ContestPark.Duel.API.Infrastructure.Repositories.AnswerLocalized;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Infrastructure.Repositories.Question;
-using ContestPark.Duel.API.Infrastructure.Repositories.QuestionLocalized;
-using ContestPark.Duel.API.Infrastructure.Repositories.QuestionOfQuestionLocalized;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
@@ -97,12 +94,6 @@ namespace ContestPark.Duel.API
             services.AddTransient<IUserAnswerRepository, UserAnswerRepository>();
 
             services.AddSingleton<IScoreCalculator, ScoreCalculator>();
-
-            services.AddTransient<IQuestionLocalizedRepository, QuestionLocalizedRepository>();
-
-            services.AddTransient<IQuestionOfQuestionLocalizedRepository, QuestionOfQuestionLocalizedRepository>();
-
-            services.AddTransient<IAnswerLocalizedRepository, AnswerLocalizedRepository>();
 
             services.AddTransient<IFileUploadService, S3FileUploadService>();
 

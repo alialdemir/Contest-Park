@@ -204,6 +204,8 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+      - SpotifyClientId=${CONTESTPARK_SPOTIFY_CLIENTID}
+      - SpotifySecretId=${CONTESTPARK_SPOTIFY_SECRETID}
     ports:
       - "5110:80"
     volumes:

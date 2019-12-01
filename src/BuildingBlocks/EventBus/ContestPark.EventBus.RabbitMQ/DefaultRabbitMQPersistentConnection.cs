@@ -5,7 +5,6 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
 using System;
-using System.IO;
 using System.Net.Sockets;
 
 namespace ContestPark.EventBus.RabbitMQ
@@ -52,14 +51,10 @@ namespace ContestPark.EventBus.RabbitMQ
 
             _disposed = true;
 
-            try
-            {
-                _connection.Dispose();
-            }
-            catch (IOException ex)
-            {
-                _logger.LogCritical(ex.ToString());
-            }
+            if (_connection == null)
+                return;
+
+            _connection.Dispose();
         }
 
         public bool TryConnect()

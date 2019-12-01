@@ -402,3 +402,7 @@ spec:
               value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: SpotifyClientId
+              value: $(CONTESTPARK_SPOTIFY_CLIENTID)
+            - name: SpotifySecretId
+              value: $(CONTESTPARK_SPOTIFY_SECRETID)

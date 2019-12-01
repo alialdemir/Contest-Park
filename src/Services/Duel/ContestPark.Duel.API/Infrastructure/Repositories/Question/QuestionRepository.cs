@@ -33,18 +33,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Question
         #region Methods
 
         /// <summary>
-        /// Soru ekle
-        /// </summary>
-        /// <param name="question">Soru bilgisi</param>
-        /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<int> Insert(Tables.Question question)
-        {
-            int? questionId = await _questionRepository.AddAsync(question);
-
-            return questionId.Value;
-        }
-
-        /// <summary>
         /// Duelloda sorulacak soruları getirir
         /// daha önce sorulmamış 7 soru döndürür
         ///  Kurucu ve rakip kullanıcının daha önce sorulmamış soruları seçilen dillere göre getirir

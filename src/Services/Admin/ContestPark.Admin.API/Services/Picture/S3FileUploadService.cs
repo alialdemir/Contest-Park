@@ -2,6 +2,8 @@
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using Amazon.S3.Util;
+using ContestPark.Admin.API.Enums;
+using ContestPark.Admin.API.Services.Ffmpeg;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -21,17 +23,20 @@ namespace ContestPark.Admin.API.Services.Picture
 
         private readonly IAmazonS3 _amazonS3;
         private readonly ILogger<S3FileUploadService> _logger;
+        private readonly IFfmpegService _ffmpegService;
 
         #endregion Private Variables
 
         #region Constructor
 
         public S3FileUploadService(ILogger<S3FileUploadService> logger,
-                               IOptions<AdminSettings> identitySettings,
+                               IOptions<AdminSettings> options,
+                               IFfmpegService ffmpegService,
                                IAmazonS3 amazonS3)
         {
-            clouldFrontUrl = identitySettings.Value.ClouldFrontUrl;
+            clouldFrontUrl = options.Value.ClouldFrontUrl;
             _logger = logger;
+            _ffmpegService = ffmpegService;
             _amazonS3 = amazonS3;
         }
 
@@ -40,35 +45,47 @@ namespace ContestPark.Admin.API.Services.Picture
         #region Methods
 
         /// <summary>
+        /// Verilen dosya yolundaki dosyayı stream olarak döndürür
+        /// </summary>
+        /// <param name="filePath">Dosya yolu</param>
+        /// <returns>Stream file</returns>
+        private Stream GetStream(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                return null;
+
+            byte[] fileByte = File.ReadAllBytes(filePath);
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            if (fileByte == null || fileByte.Length == 0)
+                return null;
+
+            return new MemoryStream(fileByte);
+        }
+
+        /// <summary>
         /// Dosyayı indirip stream olarak döndürür
         /// </summary>
         /// <param name="fileUrl">Dosya linki</param>
         /// <returns>Dosya stream</returns>
-        private async Task<Stream> DownloadFileAsync(string fileUrl)
+        private async Task<string> DownloadFileAsync(Uri uri)
         {
             try
             {
                 using (WebClient webClient = new WebClient())
                 {
-                    string filePath = $"{Path.GetTempPath()}contestparkgeciciimage.png";// TODO: MÜZİK YÜKLERKEN BURASI PATLAR
+                    string filePath = $"{Path.GetTempPath()}contestparkgeciciimage.png";
 
-                    await webClient.DownloadFileTaskAsync(new Uri(fileUrl), filePath);
+                    await webClient.DownloadFileTaskAsync(uri, filePath);
 
-                    byte[] fileByte = File.ReadAllBytes(filePath);
-
-                    if (File.Exists(filePath))
-                        File.Delete(filePath);
-
-                    if (fileByte == null || fileByte.Length == 0)
-                        return null;
-
-                    MemoryStream mem = new MemoryStream(fileByte);
-                    return mem;
+                    return filePath;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Dosya yükleme sırasında hata. Link: {fileUrl}", ex.Message);
+                _logger.LogError($"Dosya yükleme sırasında hata. Link: {uri.AbsoluteUri}", ex.Message);
 
                 return null;
             }
@@ -184,18 +201,48 @@ namespace ContestPark.Admin.API.Services.Picture
         }
 
         /// <summary>
+        /// Soru tipine göre dosya path verir
+        /// </summary>
+        /// <param name="fileUrl">Mp3 veya jpg dosya link</param>
+        /// <param name="questionType">Soru tipi</param>
+        /// <returns>İndirilen dosyanın path</returns>
+        private async Task<string> GetFileStreamByQuestionType(string fileUrl, QuestionTypes questionType)
+        {
+            switch (questionType)
+            {
+                case QuestionTypes.Music:
+                    bool isUrl = Uri.TryCreate(fileUrl, UriKind.Absolute, out Uri uriResult);
+                    if (isUrl)
+                    {
+                        fileUrl = await DownloadFileAsync(uriResult);
+                    }
+
+                    return await _ffmpegService.CutVideoAsync(fileUrl);
+
+                case QuestionTypes.Image:
+                    return await DownloadFileAsync(new Uri(fileUrl));
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Resim yükleme
         /// </summary>
         /// <param name="fileStream">Resim stream</param>
         /// <param name="fileName">Dosyanın adı</param>
         /// <param name="userId">Hangi kullanıcının resmi</param>
         /// <returns>Resim url</returns>
-        public async Task<string> UploadFileToStorageAsync(string fileUrl, short subCategoryId)
+        public async Task<string> UploadFileToStorageAsync(string fileUrl, short subCategoryId, QuestionTypes questionType)
         {
             if (string.IsNullOrEmpty(fileUrl))
                 return string.Empty;
 
-            Stream fileStream = await DownloadFileAsync(fileUrl);
+            string outputFilePath = await GetFileStreamByQuestionType(fileUrl, questionType);
+            if (string.IsNullOrEmpty(outputFilePath))
+                return string.Empty;
+
+            Stream fileStream = GetStream(outputFilePath);
             if (fileStream == null)
                 return string.Empty;
 
@@ -241,6 +288,10 @@ namespace ContestPark.Admin.API.Services.Picture
             return string.Empty;
         }
 
+        /// <summary>
+        /// Bucket daha önceden açılmamış ise açar
+        /// </summary>
+        /// <returns>Başarılı ise true değilse false</returns>
         private async Task<bool> CreateBucketIfNotExistsAsync()
         {
             try
@@ -249,13 +300,11 @@ namespace ContestPark.Admin.API.Services.Picture
                 if (isBucketExists)
                     return true;
 
-                var putBucketRequest = new PutBucketRequest
+                var response = await _amazonS3.PutBucketAsync(new PutBucketRequest
                 {
                     BucketName = bucketName,
                     UseClientRegion = true,
-                };
-
-                var response = await _amazonS3.PutBucketAsync(putBucketRequest);
+                });
 
                 return response.HttpStatusCode == HttpStatusCode.OK;
             }

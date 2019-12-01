@@ -1,11 +1,18 @@
 ﻿using Amazon.S3;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Admin.API.Infrastructure.Repositories.AnswerLocalized;
 using ContestPark.Admin.API.Infrastructure.Repositories.Category;
+using ContestPark.Admin.API.Infrastructure.Repositories.QuestionLocalized;
+using ContestPark.Admin.API.Infrastructure.Repositories.QuestionOfQuestionLocalized;
 using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
+using ContestPark.Admin.API.IntegrationEvents.EventHandling;
+using ContestPark.Admin.API.IntegrationEvents.Events;
 using ContestPark.Admin.API.Providers;
 using ContestPark.Admin.API.Resources;
+using ContestPark.Admin.API.Services.Ffmpeg;
 using ContestPark.Admin.API.Services.Picture;
+using ContestPark.Admin.API.Services.Spotify;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.NumberFormat;
 using ContestPark.EventBus.Abstractions;
@@ -53,17 +60,45 @@ namespace ContestPark.Admin.API
             services.AddLocalizationCustom();
 
             services
-                    //   .AddRabbitMq(Configuration)
+                    .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
+
+            services.AddTransient<ISpotifyService, SpotifyService>();
+            services.AddTransient<IFfmpegService, FfmpegService>();
+
+            #region s3
 
             string awsAccessKeyId = Configuration["AwsAccessKeyId"];
             string awsSecretAccessKey = Configuration["AwsSecretAccessKey"];
             services.AddSingleton<IAmazonS3>(new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, Amazon.RegionEndpoint.EUCentral1));
 
+            #endregion s3
+
+            #region Repositories
+
             services.AddTransient<INumberFormatService, NumberFormatService>();
+
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
+
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+
             services.AddSingleton<IFileUploadService, S3FileUploadService>();
+
+            services.AddTransient<IQuestionLocalizedRepository, QuestionLocalizedRepository>();
+
+            services.AddTransient<IQuestionOfQuestionLocalizedRepository, QuestionOfQuestionLocalizedRepository>();
+
+            services.AddTransient<IAnswerLocalizedRepository, AnswerLocalizedRepository>();
+
+            #endregion Repositories
+
+            #region Event handler
+
+            services.AddTransient<CreateQuestionIntegrationEventHandler>();
+
+            services.AddTransient<CreateSpotifyQuestionIntegrationEventHandler>();
+
+            #endregion Event handler
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -77,6 +112,8 @@ namespace ContestPark.Admin.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // app.UseStaticFiles();
 
             var pathBase = Configuration["PATH_BASE"];
             if (!string.IsNullOrEmpty(pathBase))
@@ -93,7 +130,9 @@ namespace ContestPark.Admin.API
             app.UseRequestLocalizationCustom()
                .UseMvc();
 
-            //    ConfigureEventBus(app);
+#if !DEBUG
+                ConfigureEventBus(app);
+#endif
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)
@@ -107,7 +146,8 @@ namespace ContestPark.Admin.API
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
-            // eventBus.Subscribe<ChangeBalanceIntegrationEvent, ChangeBalanceIntegrationEventHandler>();
+            eventBus.Subscribe<CreateQuestionIntegrationEvent, CreateQuestionIntegrationEventHandler>();
+            eventBus.Subscribe<CreateSpotifyQuestionIntegrationEvent, CreateSpotifyQuestionIntegrationEventHandler>();
         }
     }
 }

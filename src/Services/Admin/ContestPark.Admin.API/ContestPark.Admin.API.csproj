@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="AWS.Logger.SeriLog" Version="1.4.0" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.106.4" />
@@ -26,6 +19,9 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.AwsCloudWatch" Version="4.0.155" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00798" />
+    <PackageReference Include="SpotifyAPI.Web" Version="4.2.2" />
+    <PackageReference Include="SpotifyAPI.Web.Auth" Version="4.2.2" />
+    <PackageReference Include="xFFmpeg.NET" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +29,10 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core\ContestPark.Core.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus.RabbitMQ\ContestPark.EventBus.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus\ContestPark.EventBus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\local\**\*.*" CopyToPublishDirectory="Never" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,5 +49,4 @@
       <LastGenOutput>AdminResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
 </Project>
