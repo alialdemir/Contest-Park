@@ -76,17 +76,16 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
             string contentRootPath = _env.ContentRootPath;
+            _logger.LogInformation("new path  " + Path.Combine(contentRootPath, _ffmpegTempPath));
+            _logger.LogInformation("contentRootPath  " + contentRootPath);
 
-            MediaFile inputFile = new MediaFile(Path.Combine(contentRootPath, mp3Url));
+            MediaFile inputFile = new MediaFile(mp3Url);
             MediaFile outputFile = new MediaFile(outputPath);
 
-            Engine ffmpeg = new Engine();
+            Engine ffmpeg = new Engine(_ffmpegTempPath);
             ConversionOptions options = new ConversionOptions();
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
-
-            _logger.LogInformation("new path  " + Path.Combine(contentRootPath, _ffmpegTempPath));
-            _logger.LogInformation("mp3Url  " + Path.Combine(contentRootPath, mp3Url));
 
             MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
             if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
