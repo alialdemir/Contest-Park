@@ -85,7 +85,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
 
-            _logger.LogInformation("is ffmpeg exists  " + Path.Combine(contentRootPath, _ffmpegTempPath));
+            _logger.LogInformation("new path  " + Path.Combine(contentRootPath, _ffmpegTempPath));
             _logger.LogInformation("mp3Url  " + Path.Combine(contentRootPath, mp3Url));
 
             MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
