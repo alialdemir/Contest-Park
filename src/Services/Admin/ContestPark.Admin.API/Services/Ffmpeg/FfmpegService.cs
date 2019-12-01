@@ -11,6 +11,8 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 {
     public class FfmpegService : IFfmpegService
     {
+        private readonly IHostingEnvironment _env;
+
         #region Private Variables
 
         private readonly ILogger<FfmpegService> _logger;
@@ -25,6 +27,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             IHostingEnvironment env,
                              ILogger<FfmpegService> logger)
         {
+            _env = env;
             _logger = logger;
 
             _ffmpegPath = Path.Combine(options.Value.ClouldFrontUrl, "ffmpeg/ffmpeg.exe");
@@ -72,16 +75,18 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
-            MediaFile inputFile = new MediaFile(mp3Url);
+            string contentRootPath = _env.ContentRootPath;
+
+            MediaFile inputFile = new MediaFile(Path.Combine(contentRootPath, mp3Url));
             MediaFile outputFile = new MediaFile(outputPath);
 
-            Engine ffmpeg = new Engine(_ffmpegTempPath);
+            Engine ffmpeg = new Engine();
             ConversionOptions options = new ConversionOptions();
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
 
-            _logger.LogInformation("is ffmpeg exists  " + _ffmpegTempPath);
-            _logger.LogInformation("mp3Url  " + mp3Url);
+            _logger.LogInformation("is ffmpeg exists  " + Path.Combine(contentRootPath, _ffmpegTempPath));
+            _logger.LogInformation("mp3Url  " + Path.Combine(contentRootPath, mp3Url));
 
             MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
             if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
