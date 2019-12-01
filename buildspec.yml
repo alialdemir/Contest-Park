@@ -50,6 +50,8 @@ phases:
       - sed -i 's/$(CONTESTPARK_CLOUDFRONT_URL)/'"\""$CONTESTPARK_CLOUDFRONT_URL"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_AWS_SECRET_ACCESS_KEY)/'"\""$CONTESTPARK_AWS_SECRET_ACCESS_KEY"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_SERVICE_BUS_USERNAME)/'"\""$CONTESTPARK_SERVICE_BUS_USERNAME"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_SPOTIFY_CLIENTID)/'"\""$CONTESTPARK_SPOTIFY_CLIENTID"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_SPOTIFY_SECRETID)/'"\""$CONTESTPARK_SPOTIFY_SECRETID"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(IMAGE_TAG)/'""$IMAGE_TAG""'/g' kubectl/deployment.yaml
       - sed -i 's/$(REPOSITORY_URI)/'""$REPOSITORY_URI""'/g' kubectl/deployment.yaml
       - echo update kubectl config
