@@ -18,10 +18,9 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
         #region Constructor
 
-        public FfmpegService(IHostingEnvironment env,
-                             ILogger<FfmpegService> logger)
+        public FfmpegService(IHostingEnvironment env)
         {
-            _logger = logger;
+            //    _logger = logger;
 
             _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
         }
@@ -40,11 +39,11 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             if (string.IsNullOrEmpty(mp3Url))
                 return string.Empty;
 
-            if (File.Exists(_ffmpegTempPath))
-                _logger.LogInformation("FFMOEG file bulunamadı.");
+            //if (File.Exists(_ffmpegTempPath))
+            //    _logger.LogInformation("FFMOEG file bulunamadı.");
 
-            if (File.Exists(mp3Url))
-                _logger.LogInformation("mp3Url file bulunamadı.");
+            //if (File.Exists(mp3Url))
+            //    _logger.LogInformation("mp3Url file bulunamadı.");
 
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
@@ -53,7 +52,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             FileInfo file = new FileInfo(_ffmpegTempPath);
 
-            _logger.LogInformation("file info path " + file.FullName);
+            // _logger.LogInformation("file info path " + file.FullName);
 
             Engine ffmpeg = new Engine(file.FullName);
             ConversionOptions options = new ConversionOptions();
@@ -63,7 +62,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
             if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
             {
-                _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
+                //   _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
 
                 return string.Empty;
             }
