@@ -40,6 +40,12 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             if (string.IsNullOrEmpty(mp3Url))
                 return string.Empty;
 
+            if (File.Exists(_ffmpegTempPath))
+                _logger.LogInformation("FFMOEG file bulunamadı.");
+
+            if (File.Exists(mp3Url))
+                _logger.LogInformation("mp3Url file bulunamadı.");
+
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
 
             MediaFile inputFile = new MediaFile(mp3Url);

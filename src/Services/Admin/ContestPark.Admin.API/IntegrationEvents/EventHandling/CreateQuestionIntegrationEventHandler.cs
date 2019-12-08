@@ -46,6 +46,10 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
             _questionRepository = questionRepository;
         }
 
+        #endregion Constructor
+
+        #region Nethods
+
         /// <summary>
         /// Oyuna soru ekleme eventi
         /// </summary>
@@ -119,6 +123,6 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
             _logger.LogInformation("Yeni sorular ekrandi. Eklenen soru sayısı {Count}", @event.Questions.Count);
         }
 
-        #endregion Constructor
+        #endregion Nethods
     }
 }
