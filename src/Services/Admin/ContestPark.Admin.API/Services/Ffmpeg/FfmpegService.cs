@@ -21,16 +21,19 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         public FfmpegService(IHostingEnvironment env,
                              ILogger<FfmpegService> logger)
         {
-            if (env == null)
-                throw new Exception("env boşşşşşşşşşşşşşşşş");
-
-            if (env.WebRootPath == null)
-                throw new Exception("env.WebRootPath boşşşşşşşşşşşşşşşş");
-
-            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
             _logger = logger;
             if (_logger == null)
                 throw new Exception("logger boşşşşşşşşşşşşşşşş");
+
+            string contentRootPath = env.ContentRootPath;
+            string webRootPath = env.WebRootPath;
+
+            _logger.LogWarning("contentRootPath", contentRootPath);
+            _logger.LogWarning("webRootPath", webRootPath);
+            _logger.LogWarning("env.WebRootPath", env.WebRootPath);
+
+            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
+
             logger.LogWarning("ffpeg exists " + File.Exists(_ffmpegTempPath).ToString());
         }
 
