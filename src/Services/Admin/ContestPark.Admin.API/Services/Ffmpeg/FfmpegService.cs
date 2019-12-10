@@ -40,13 +40,20 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             if (string.IsNullOrEmpty(mp3Url))
                 return string.Empty;
 
-            if (File.Exists(_ffmpegTempPath))
-                _logger.LogInformation("FFMOEG file bulunamadı.");
+            if (!File.Exists(_ffmpegTempPath))
+            {
+                _logger.LogInformation("FFMPEG file bulunamadı.");
 
-            if (File.Exists(mp3Url))
+                return string.Empty;
+            }
+
+            if (!File.Exists(mp3Url))
+            {
                 _logger.LogInformation("mp3Url file bulunamadı.");
+                return string.Empty;
+            }
 
-            string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".mp3");
+            string outputPath = $"{Path.GetTempPath()}{ Guid.NewGuid()}.mp3";
 
             MediaFile inputFile = new MediaFile(mp3Url);
             MediaFile outputFile = new MediaFile(outputPath);
@@ -55,8 +62,6 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             Engine ffmpeg = new Engine(file.FullName);
             ConversionOptions options = new ConversionOptions();
-
-            _logger.LogInformation("File.Exists  " + File.Exists(file.FullName));
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
 
