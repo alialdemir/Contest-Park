@@ -28,9 +28,8 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             string contentRootPath = env.ContentRootPath;
             string webRootPath = env.WebRootPath;
 
-            _logger.LogWarning("contentRootPath", contentRootPath);
-            _logger.LogWarning("webRootPath", webRootPath);
-            _logger.LogWarning("env.WebRootPath", env.WebRootPath);
+            _logger.LogWarning("contentRootPath " + contentRootPath);
+            _logger.LogWarning("webRootPath " + webRootPath);
 
             _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
 
