@@ -58,9 +58,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             MediaFile inputFile = new MediaFile(mp3Url);
             MediaFile outputFile = new MediaFile(outputPath);
 
-            FileInfo file = new FileInfo(_ffmpegTempPath);
-
-            Engine ffmpeg = new Engine(file.FullName);
+            Engine ffmpeg = new Engine(_ffmpegTempPath);
             ConversionOptions options = new ConversionOptions();
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
