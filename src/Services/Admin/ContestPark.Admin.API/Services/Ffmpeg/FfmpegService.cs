@@ -22,15 +22,6 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
                              ILogger<FfmpegService> logger)
         {
             _logger = logger;
-            if (_logger == null)
-                throw new Exception("logger boşşşşşşşşşşşşşşşş");
-
-            string webRootPath = env.WebRootPath;
-
-            var path = env.WebRootFileProvider.GetFileInfo("ffmpeg/ffmpeg.exe")?.PhysicalPath;
-
-            _logger.LogWarning("path " + path);
-            _logger.LogWarning("webRootPath " + webRootPath);
 
             _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
         }
@@ -62,10 +53,10 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
 
             FileInfo file = new FileInfo(_ffmpegTempPath);
 
-            _logger.LogInformation("file info path " + file.FullName);
-
             Engine ffmpeg = new Engine(file.FullName);
             ConversionOptions options = new ConversionOptions();
+
+            _logger.LogInformation("File.Exists  " + File.Exists(file.FullName));
 
             options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
 
