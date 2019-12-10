@@ -23,7 +23,7 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
         {
             _logger = logger;
 
-            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg.exe");
+            _ffmpegTempPath = Path.Combine(env.WebRootPath, "ffmpeg/ffmpeg.exe");
         }
 
         #endregion Constructor
