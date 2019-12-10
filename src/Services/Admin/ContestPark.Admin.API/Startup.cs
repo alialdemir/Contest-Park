@@ -116,6 +116,8 @@ namespace ContestPark.Admin.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             var pathBase = Configuration["PATH_BASE"];
             if (!string.IsNullOrEmpty(pathBase))
             {
