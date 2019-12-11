@@ -54,24 +54,40 @@ namespace ContestPark.Admin.API.Services.Ffmpeg
             }
 
             string outputPath = $"{Path.GetTempPath()}{ Guid.NewGuid()}.mp3";
-
-            MediaFile inputFile = new MediaFile(mp3Url);
-            MediaFile outputFile = new MediaFile(outputPath);
-
-            Engine ffmpeg = new Engine(_ffmpegTempPath);
-            ConversionOptions options = new ConversionOptions();
-
-            options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
-
-            MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
-            if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
+            try
             {
-                _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
+                MediaFile inputFile = new MediaFile(mp3Url);
+                MediaFile outputFile = new MediaFile(outputPath);
 
-                return string.Empty;
+                Engine ffmpeg = new Engine(_ffmpegTempPath);
+                ConversionOptions options = new ConversionOptions();
+                _logger.LogInformation("CutMedia öncesi");
+
+                options.CutMedia(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
+
+                _logger.LogInformation("ConvertAsync öncesi");
+
+                MediaFile mediaFile = await ffmpeg.ConvertAsync(inputFile, outputFile, options);
+
+                _logger.LogInformation("media file");
+
+                if (mediaFile == null || mediaFile.FileInfo == null || string.IsNullOrEmpty(mediaFile.FileInfo.FullName))
+                {
+                    _logger.LogWarning("Mp3 dosyası kesme işlemi başarısız. mp3 Url: {mp3Url}", mp3Url);
+
+                    return string.Empty;
+                }
+                _logger.LogInformation("FileInfo");
+                _logger.LogInformation("mediaFile.FileInfo.FullName" + mediaFile.FileInfo.FullName);
+
+                return mediaFile.FileInfo.FullName;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ffmpeg error");
             }
 
-            return mediaFile.FileInfo.FullName;
+            return string.Empty;
         }
 
         #endregion Methods
