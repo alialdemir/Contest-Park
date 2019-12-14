@@ -35,7 +35,6 @@ namespace ContestPark.Balance.API
             services.Configure<BalanceSettings>(Configuration);
 
             services.AddAuth(Configuration)
-                    //  .AddCosmosDb(Configuration)
                     .AddMySql()
                     .AddMvc()
                     .AddJsonOptions()
@@ -56,6 +55,7 @@ namespace ContestPark.Balance.API
             services.AddTransient<IMoneyWithdrawRequestRepository, MoneyWithdrawRequestRepository>();
 
             services.AddTransient<ChangeBalanceIntegrationEventHandler>();
+            services.AddTransient<MultiChangeBalanceIntegrationEventHandler>();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -100,6 +100,7 @@ namespace ContestPark.Balance.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<ChangeBalanceIntegrationEvent, ChangeBalanceIntegrationEventHandler>();
+            eventBus.Subscribe<MultiChangeBalanceIntegrationEvent, MultiChangeBalanceIntegrationEventHandler>();
         }
     }
 }

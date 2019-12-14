@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.Database.Models;
 using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository
@@ -12,5 +13,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         ServiceModel<RankModel> GetRankingBySubCategoryId(short subCategoryId, BalanceTypes balanceType, short contestDateId, PagingModel pagingModel);
 
         Task<bool> UpdateScoreRank(string userId, short subCategoryId, BalanceTypes balanceType, byte score);
+
+        IEnumerable<WinnersModel> Winners(short contestDateId, BalanceTypes balanceType);
     }
 }

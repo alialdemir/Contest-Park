@@ -406,3 +406,41 @@ spec:
               value: $(CONTESTPARK_SPOTIFY_CLIENTID)
             - name: SpotifySecretId
               value: $(CONTESTPARK_SPOTIFY_SECRETID)
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backgroundtasks
+spec:
+  selector:
+    matchLabels:
+      run: backgroundtasks
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: backgroundtasks
+    spec:
+      containers:
+        - name: backgroundtasks
+          image: $(REPOSITORY_URI)/backgroundtasks:$(IMAGE_TAG)
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: DuelUrl
+              value:  "http://duel-api"

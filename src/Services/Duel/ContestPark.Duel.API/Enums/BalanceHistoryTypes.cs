@@ -46,5 +46,20 @@
         /// Düello başladığı anda bahis miktarı kadar bakiye azaltmak için
         /// </summary>
         Duel = 9,
+
+        /// <summary>
+        /// Parasını banka hesabına çekti
+        /// </summary>
+        MoneyWithdraw = 10,
+
+        /// <summary>
+        /// Referans kodu ile bakiye yükledi
+        /// </summary>
+        ReferenceCode = 11,
+
+        /// <summary>
+        /// Aylık sıfırlanan sıralamada herhangi bir kategoride kazanırsa
+        /// </summary>
+        CategoryWinner = 12,
     }
 }

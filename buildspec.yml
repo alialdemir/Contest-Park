@@ -23,6 +23,7 @@ phases:
       - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
       - docker tag contestparkadmin.api:latest $REPOSITORY_URI/admin-api:$IMAGE_TAG
+      - docker tag contestpark.backgroundtasks:latest $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
@@ -36,6 +37,7 @@ phases:
       - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/admin-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
       - echo Pushing end...
       - echo image path replace
       - sed -i 's/$(CONTESTPARK_AZURE_SERVICE_BUS)/'"\""$CONTESTPARK_AZURE_SERVICE_BUS"\""'/g' kubectl/deployment.yaml

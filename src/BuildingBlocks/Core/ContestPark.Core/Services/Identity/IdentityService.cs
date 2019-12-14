@@ -29,8 +29,9 @@ namespace ContestPark.Core.Services.Identity
         {
             _requestProvider = requestProvider ?? throw new ArgumentNullException(nameof(requestProvider));
             _redisClient = redisClient;
+
             string identityUrl = configuration["identityUrl"] ?? throw new ArgumentNullException(nameof(baseUrl));
-            baseUrl = identityUrl + "/api/v1/account";
+            baseUrl = $"{identityUrl}/api/v1/account";
         }
 
         #endregion Constructor

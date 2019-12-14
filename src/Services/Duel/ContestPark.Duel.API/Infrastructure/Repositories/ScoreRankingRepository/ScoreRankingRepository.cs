@@ -5,6 +5,7 @@ using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository
@@ -33,6 +34,58 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Her kategori için parametredeki yarışma id ve bakiye tipine göre ilk 3 kazananını verir
+        /// </summary>
+        /// <param name="contestDateId">Yarışma tarih id</param>
+        /// <param name="balanceType">Bakiye tipi</param>
+        /// <returns>Her kategori için kazanan ilk 3 kullanıcı</returns>
+        public IEnumerable<WinnersModel> Winners(short contestDateId, BalanceTypes balanceType)
+        {
+            string sql = @"SELECT
+                                (
+                                SELECT          sr.UserId
+                                                        FROM ScoreRankings sr
+                                                        WHERE sr.ContestDateId = @contestDateId  AND sr.SubCategoryId=sc.SubCategoryId
+                                                        ORDER BY
+                                                        CASE
+                                                            WHEN @balanceType=1 THEN sr.TotalGoldScore
+                                                            WHEN @balanceType=2 THEN sr.TotalMoneyScore
+                                                        END DESC
+                                                        LIMIT 1
+                                ) AS Premier,
+                                (
+                                SELECT          sr.UserId
+                                                        FROM ScoreRankings sr
+                                                        WHERE sr.ContestDateId = @contestDateId  AND sr.SubCategoryId=sc.SubCategoryId
+                                                        ORDER BY
+                                                        CASE
+                                                            WHEN @balanceType=1 THEN sr.TotalGoldScore
+                                                            WHEN @balanceType=2 THEN sr.TotalMoneyScore
+                                                        END DESC
+                                                        LIMIT 1,1
+                                ) AS Secondary,
+                                (
+                                SELECT          sr.UserId
+                                                        FROM ScoreRankings sr
+                                                        WHERE sr.ContestDateId = @contestDateId  AND sr.SubCategoryId=sc.SubCategoryId
+                                                        ORDER BY
+                                                        CASE
+                                                            WHEN @balanceType=1 THEN sr.TotalGoldScore
+                                                            WHEN @balanceType=2 THEN sr.TotalMoneyScore
+                                                        END DESC
+                                                        LIMIT 2, 1
+                                ) AS Third
+                                FROM SubCategories sc";
+
+            return _scoreRankingRepository.QueryMultiple<WinnersModel>(sql, new
+            {
+                contestDateId,
+                balanceType
+            })
+              .Where(x => !string.IsNullOrEmpty(x.Premier) && !string.IsNullOrEmpty(x.Secondary) && !string.IsNullOrEmpty(x.Third));
+        }
 
         /// <summary>
         /// Alt kategori id ve bakiye tipine göre skor sıralama listesi verir

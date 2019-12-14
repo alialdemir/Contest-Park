@@ -124,3 +124,18 @@ spec:
   selector:
     run: admin-api
   type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backgroundtasks
+  labels:
+    run: backgroundtasks
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: backgroundtasks
+  type: LoadBalancer

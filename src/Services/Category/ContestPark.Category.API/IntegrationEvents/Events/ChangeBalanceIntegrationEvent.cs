@@ -45,28 +45,53 @@ namespace ContestPark.Category.API.IntegrationEvents.Events
         Defeat = 2,
 
         /// <summary>
+        /// Düello beabere
+        /// </summary>
+        Draw = 3,
+
+        /// <summary>
         /// In app purchase satın alım yaptı
         /// </summary>
-        Buy = 3,
+        Buy = 4,
 
         /// <summary>
         /// Alt kategori kilidini açtı
         /// </summary>
-        UnLockSubCategory = 4,
+        UnLockSubCategory = 5,
 
         /// <summary>
         /// Günlük login olma altın hakkını aldı
         /// </summary>
-        DailyChip = 5,
+        DailyChip = 6,
 
         /// <summary>
         /// Görev yaptı
         /// </summary>
-        Mission = 6,
+        Mission = 7,
 
         /// <summary>
         /// Joker alımı yaptı
         /// </summary>
-        Boost = 7
+        Boost = 8,
+
+        /// <summary>
+        /// Düello başladığı anda bahis miktarı kadar bakiye azaltmak için
+        /// </summary>
+        Duel = 9,
+
+        /// <summary>
+        /// Parasını banka hesabına çekti
+        /// </summary>
+        MoneyWithdraw = 10,
+
+        /// <summary>
+        /// Referans kodu ile bakiye yükledi
+        /// </summary>
+        ReferenceCode = 11,
+
+        /// <summary>
+        /// Aylık sıfırlanan sıralamada herhangi bir kategoride kazanırsa
+        /// </summary>
+        CategoryWinner = 12,
     }
 }

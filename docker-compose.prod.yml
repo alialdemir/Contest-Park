@@ -178,3 +178,19 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     
+
+  contestpark.backgroundtasks:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+      - DuelUrl=http://contestpark.duel.api
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

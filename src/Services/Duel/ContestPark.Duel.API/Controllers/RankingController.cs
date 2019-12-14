@@ -46,6 +46,20 @@ namespace ContestPark.Duel.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Aktif olan yarışma başlangıç ve bitiş tarihlerini verir
+        /// </summary>
+        /// <returns>Aktif olan yarışma tarihi</returns>
+        [HttpGet("ActiveContestDate")]
+        public IActionResult ActiveContestDate()
+        {
+            ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
+            if (contestDate == null)
+                return BadRequest();
+
+            return Ok(contestDate);
+        }
+
+        /// <summary>
         /// Bakiye tipine göre alt kategori skor sıralaması getir
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>

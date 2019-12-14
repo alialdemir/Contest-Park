@@ -56,5 +56,10 @@
         /// Referans kodu ile bakiye yükledi
         /// </summary>
         ReferenceCode = 11,
+
+        /// <summary>
+        /// Aylık sıfırlanan sıralamada herhangi bir kategoride kazanırsa
+        /// </summary>
+        CategoryWinner = 12,
     }
 }
