@@ -23,7 +23,7 @@ phases:
       - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
       - docker tag contestparkadmin.api:latest $REPOSITORY_URI/admin-api:$IMAGE_TAG
-      - docker tag contestpark.backgroundtasks:latest $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
+      - docker tag contestparkbackgroundtasks:latest $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
