@@ -1,6 +1,6 @@
 ﻿using ContestPark.EventBus.Events;
 
-namespace ContestPark.BackgroundTasks.IntegrationEvents
+namespace ContestPark.BackgroundTasks.IntegrationEvents.Events
 {
     public class DeliverGoldToWinnersIntegrationEvent : IntegrationEvent
     {

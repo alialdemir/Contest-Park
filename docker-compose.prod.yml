@@ -188,7 +188,7 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
-      - DuelUrl=http://contestpark.duel.api
+      - DuelUrl=http://duel-api
     ports:
       - "80"
     volumes:

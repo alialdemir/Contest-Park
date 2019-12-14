@@ -1,4 +1,4 @@
-﻿using ContestPark.BackgroundTasks.IntegrationEvents;
+﻿using ContestPark.BackgroundTasks.IntegrationEvents.Events;
 using ContestPark.BackgroundTasks.Models;
 using ContestPark.BackgroundTasks.Services.Duel;
 using ContestPark.EventBus.Abstractions;
@@ -60,7 +60,7 @@ namespace ContestPark.BackgroundTasks.Tasks
 
             TimeSpan diff = contestDate.FinishDate - DateTime.Now;
 
-            _timer = new Timer(CheckContestWinner,
+            _timer = new Timer(DeliverGoldToWinners,
                                contestDate.ContestDateId,
                                diff,
                                TimeSpan.FromSeconds(2));
@@ -72,7 +72,7 @@ namespace ContestPark.BackgroundTasks.Tasks
         /// Yarışmanın sona erdiğini event olarak publish eder
         /// </summary>
         /// <param name="contestDate"></param>
-        private void CheckContestWinner(object contestDate)
+        private void DeliverGoldToWinners(object contestDate)
         {
             // TODO: Eğer yarışma tarihi bitmiş ise her alt kategoride aktif olan yarışmadaki ilk 3 kullanıcıyı getir
             // TODO: yeni tarih ekle

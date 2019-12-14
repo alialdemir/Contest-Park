@@ -6,6 +6,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Services.Follow;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace ContestPark.Duel.API.Controllers
         /// </summary>
         /// <returns>Aktif olan yarışma tarihi</returns>
         [HttpGet("ActiveContestDate")]
+        [AllowAnonymous]
         public IActionResult ActiveContestDate()
         {
             ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
