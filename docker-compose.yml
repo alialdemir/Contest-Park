@@ -131,7 +131,7 @@ services:
       dockerfile: src/Services/Admin/ContestPark.Admin.API/Dockerfile
       
   contestpark.backgroundtasks:
-    image: contestparkbackgroundtasks.api:${TAG:-latest}
+    image: contestparkbackgroundtasks:${TAG:-latest}
     depends_on:
       - rabbitmq
     build:
