@@ -32,7 +32,7 @@ namespace ContestPark.BackgroundTasks
 
             services.AddHostedService<NewContestDateTask>();
 
-            services.AddSingleton<IDuelService, DuelService>();
+            services.AddTransient<IDuelService, DuelService>();
 
             return new AutofacServiceProvider(container.Build());
         }
