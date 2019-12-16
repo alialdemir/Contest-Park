@@ -57,7 +57,7 @@ namespace ContestPark.BackgroundTasks.Tasks
 
                 await Task.Delay(3000);
 
-                return StartAsync(stoppingToken);
+                return await StartAsync(stoppingToken);
             }
 
             _logger.LogInformation("Yarışma bitiş tarihi {finishDate}", contestDate.FinishDate);
