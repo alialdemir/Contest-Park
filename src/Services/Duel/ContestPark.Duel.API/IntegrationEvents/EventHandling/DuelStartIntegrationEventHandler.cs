@@ -100,11 +100,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            PublishDuelStartingEvent(duelId,
-                                          @event.FounderUserId,
-                                          @event.FounderConnectionId,
-                                          @event.OpponentUserId,
-                                          @event.OpponentConnectionId);
+            await PublishDuelStartingEvent(duelId,
+                                           @event.FounderUserId,
+                                           @event.FounderConnectionId,
+                                           @event.OpponentUserId,
+                                           @event.OpponentConnectionId);
 
             var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
@@ -160,18 +160,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                              string opponentConnectionId,
                                              IEnumerable<QuestionModel> questions)
         {
-            Task.Factory.StartNew(async () =>
-           {
-               await Task.Delay(1000);
-               var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
-                                                                founderUserId,
-                                                                founderConnectionId,
-                                                                opponentUserId,
-                                                                opponentConnectionId,
-                                                                questions);
+            var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
+                                                             founderUserId,
+                                                             founderConnectionId,
+                                                             opponentUserId,
+                                                             opponentConnectionId,
+                                                             questions);
 
-               _eventBus.Publish(duelEvent);
-           });
+            _eventBus.Publish(duelEvent);
         }
 
         /// <summary>
@@ -182,46 +178,44 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="founderConnectionId">Kurucu connection id</param>
         /// <param name="opponentUserId">Rakip kullanıcı id</param>
         /// <param name="opponentConnectionId">Rakip connection id</param>
-        private void PublishDuelStartingEvent(int duelId,
-                                              string founderUserId,
-                                              string founderConnectionId,
-                                              string opponentUserId,
-                                              string opponentConnectionId)
+        private async Task PublishDuelStartingEvent(int duelId,
+                                                    string founderUserId,
+                                                    string founderConnectionId,
+                                                    string opponentUserId,
+                                                    string opponentConnectionId)
         {
-            Task.Factory.StartNew(async () =>// Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
-            {
-                List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
+            // Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
+            List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
             {
                 founderUserId,
                 opponentUserId
             }, includeCoverPicturePath: true)).ToList();
 
-                UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
-                UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
+            UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
+            UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
 
-                if (founderUserModel == null || opponentUserModel == null)
-                {
-                    _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
+            if (founderUserModel == null || opponentUserModel == null)
+            {
+                _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
 
-                    return;
-                }
+                return;
+            }
 
-                // TODO: #issue 213
+            // TODO: #issue 213
 
-                var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
-                    founderUserModel.CoverPicturePath,
-                    founderUserModel.ProfilePicturePath,
-                    founderUserModel.UserId,
-                    founderConnectionId,
-                    founderUserModel.FullName,
-                    opponentUserModel.CoverPicturePath,
-                    opponentUserModel.FullName,
-                    opponentUserModel.ProfilePicturePath,
-                    opponentUserModel.UserId,
-                    opponentConnectionId);
+            var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
+                                                                         founderUserModel.CoverPicturePath,
+                                                                         founderUserModel.ProfilePicturePath,
+                                                                         founderUserModel.UserId,
+                                                                         founderConnectionId,
+                                                                         founderUserModel.FullName,
+                                                                         opponentUserModel.CoverPicturePath,
+                                                                         opponentUserModel.FullName,
+                                                                         opponentUserModel.ProfilePicturePath,
+                                                                         opponentUserModel.UserId,
+                                                                         opponentConnectionId);
 
-                _eventBus.Publish(@duelScreenEvent);
-            });
+            _eventBus.Publish(@duelScreenEvent);
         }
 
         /// <summary>
@@ -231,12 +225,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="message">Gönderilecek mesaj</param>
         private void SendErrorMessage(string userId, string message)
         {
-            Task.Factory.StartNew(() =>
-            {
-                var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
+            var @event = new SendErrorMessageWithSignalrIntegrationEvent(userId, message);
 
-                _eventBus.Publish(@event);
-            });
+            _eventBus.Publish(@event);
         }
 
         /// <summary>
@@ -250,14 +241,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (bet <= 0)
                 return;
 
-            Task.Factory.StartNew(() =>
-            {
-                bet = -bet;
+            bet = -bet;
 
-                var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
+            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
 
-                _eventBus.Publish(@event);
-            });
+            _eventBus.Publish(@event);
         }
 
         #endregion Methods

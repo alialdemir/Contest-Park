@@ -66,7 +66,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (waitingDuelUser != null)// eğer bekleyen rakip varsa onu alır
             {
-                await StartDuel(@event, waitingDuelUser);
+                await StartDuelAsync(@event, waitingDuelUser);
             }
             else if (!@event.UserId.EndsWith("-bot"))// rakip yoksa ve bot değilse sıraya alır
             {
@@ -106,40 +106,37 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <summary>
         /// Singalr ile oyunu başlat
         /// </summary>
-        private async Task StartDuel(WaitingOpponentIntegrationEvent waitingOpponentIntegration, DuelUserModel duelUserModel)
+        private async Task StartDuelAsync(WaitingOpponentIntegrationEvent waitingOpponentIntegration, DuelUserModel duelUserModel)
         {
-            await Task.Factory.StartNew(() =>
-             {
-                 try
-                 {
-                     _duelUserRepository.Delete(duelUserModel);
+            try
+            {
+                _duelUserRepository.Delete(duelUserModel);
 
-                     bool random = new Random().Next(1, 6) % 2 == 0;// Random bir sayı alıp tek mi çift mi diye baktık ona göre kurucu veya rakip konumuna getiriyoruz :D
+                bool random = new Random().Next(1, 6) % 2 == 0;// Random bir sayı alıp tek mi çift mi diye baktık ona göre kurucu veya rakip konumuna getiriyoruz :D
 
-                     var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: waitingOpponentIntegration.SubCategoryId,
-                                                                 bet: waitingOpponentIntegration.Bet,
+                var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: waitingOpponentIntegration.SubCategoryId,
+                                                            bet: waitingOpponentIntegration.Bet,
 
-                                                                 founderUserId: random ? waitingOpponentIntegration.UserId : duelUserModel.UserId,
-                                                                 founderConnectionId: random ? waitingOpponentIntegration.ConnectionId : duelUserModel.ConnectionId,
-                                                                 founderLanguage: random ? waitingOpponentIntegration.Language : duelUserModel.Language,
+                                                            founderUserId: random ? waitingOpponentIntegration.UserId : duelUserModel.UserId,
+                                                            founderConnectionId: random ? waitingOpponentIntegration.ConnectionId : duelUserModel.ConnectionId,
+                                                            founderLanguage: random ? waitingOpponentIntegration.Language : duelUserModel.Language,
 
-                                                                 opponentUserId: !random ? waitingOpponentIntegration.UserId : duelUserModel.UserId,
-                                                                 opponentConnectionId: !random ? waitingOpponentIntegration.ConnectionId : duelUserModel.ConnectionId,
-                                                                 opponentLanguage: !random ? waitingOpponentIntegration.Language : duelUserModel.Language,
+                                                            opponentUserId: !random ? waitingOpponentIntegration.UserId : duelUserModel.UserId,
+                                                            opponentConnectionId: !random ? waitingOpponentIntegration.ConnectionId : duelUserModel.ConnectionId,
+                                                            opponentLanguage: !random ? waitingOpponentIntegration.Language : duelUserModel.Language,
 
-                                                                 balanceType: duelUserModel.BalanceType);
+                                                            balanceType: duelUserModel.BalanceType);
 
-                     _eventBus.Publish(eventDuelStart);
+                _eventBus.Publish(eventDuelStart);
 
-                     _logger.LogInformation($"{waitingOpponentIntegration.UserId} ile {duelUserModel.UserId} arasında düello için eşleşti.");
-                 }
-                 catch (Exception ex)
-                 {
-                     _logger.LogCritical(ex, $"CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu. {waitingOpponentIntegration.UserId} {duelUserModel.UserId}");
+                _logger.LogInformation($"{waitingOpponentIntegration.UserId} ile {duelUserModel.UserId} arasında düello için eşleşti.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, $"CRITICAL: DuelStartIntegrationEvent publish edilirken hata oluştu. {waitingOpponentIntegration.UserId} {duelUserModel.UserId}");
 
-                     // TODO: düello başlatılırken hata oluştu
-                 }
-             });
+                // TODO: düello başlatılırken hata oluştu
+            }
         }
 
         #endregion Private methods

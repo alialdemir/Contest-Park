@@ -6,6 +6,7 @@ using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,11 +31,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _eventBus = eventBus;
         }
 
-        public Task Handle(DeliverGoldToWinnersIntegrationEvent @event)
+        public async Task Handle(DeliverGoldToWinnersIntegrationEvent @event)
         {
             _logger.LogInformation("{contestDateId} numaralı yarışma kazananlarına altınlar dağıtılıyor.", @event.ContestDateId);
 
-            //ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
+            ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
             //if (contestDate.FinishDate > DateTime.Now)
             //{
             //    _logger.LogError("Süresi dolmamış yarışmanın ödülleri dağıtılmaya çalışıldı.");
@@ -51,7 +52,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 _logger.LogWarning("{contestDateId} numaralı yarışmada kazanan bulunamadı.", @event.ContestDateId);
 
-                return Task.CompletedTask;
+                return;
             }
 
             List<ChangeBalanceModel> changeBalances = new List<ChangeBalanceModel>();
@@ -82,9 +83,25 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent(changeBalances);
             _eventBus.Publish(@changeBalancesEvent);
 
-            _logger.LogInformation("{contestDateId} numaralı yarışma kazananlarına altınlar dağıtıldı.", @event.ContestDateId);
+            await AddNewContestDate(contestDate.FinishDate);
 
-            return Task.CompletedTask;
+            _logger.LogInformation("{contestDateId} numaralı yarışma kazananlarına altınlar dağıtıldı.", @event.ContestDateId);
+        }
+
+        /// <summary>
+        /// Yeni yarışma başlatır
+        /// </summary>
+        /// <param name="currentContestFinishDate">Şuan ki yarışma bitiş tarihi</param>
+        /// <returns></returns>
+        private async Task AddNewContestDate(DateTime currentContestFinishDate)
+        {
+            DateTime newContestDate = currentContestFinishDate.AddMonths(1);
+
+            bool isSuccess = await _contestDateRepository.AddAsync(currentContestFinishDate, newContestDate);
+            if (!isSuccess)
+            {
+                _logger.LogError("Yeni yarışma tarihi eklenemedi acil kontrol ediniz!!");
+            }
         }
     }
 }

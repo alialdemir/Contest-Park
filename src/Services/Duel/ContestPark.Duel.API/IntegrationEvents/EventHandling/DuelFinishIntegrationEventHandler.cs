@@ -182,20 +182,17 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="event">Düello bilgileri</param>
         private void AddPost(DuelFinishIntegrationEvent @event)
         {
-            Task.Factory.StartNew(() =>
-            {
-                var @postEvent = new NewPostAddedIntegrationEvent(PostTypes.Contest,
-                                                                  @event.FounderUserId,
-                                                                  @event.Bet,
-                                                                  @event.OpponentUserId,
-                                                                  @event.OpponentScore,
-                                                                  @event.DuelId,
-                                                                  @event.FounderUserId,
-                                                                  @event.FounderScore,
-                                                                  @event.SubCategoryId);
+            var @postEvent = new NewPostAddedIntegrationEvent(PostTypes.Contest,
+                                                              @event.FounderUserId,
+                                                              @event.Bet,
+                                                              @event.OpponentUserId,
+                                                              @event.OpponentScore,
+                                                              @event.DuelId,
+                                                              @event.FounderUserId,
+                                                              @event.FounderScore,
+                                                              @event.SubCategoryId);
 
-                _eventBus.Publish(postEvent);
-            });
+            _eventBus.Publish(postEvent);
         }
 
         /// <summary>
@@ -204,12 +201,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="userId"></param>
         private void ChangedGameCount(string userId)
         {
-            Task.Factory.StartNew(() =>
-            {
-                var @event = new ChangedGameCountIntegrationEvent(userId);
+            var @event = new ChangedGameCountIntegrationEvent(userId);
 
-                _eventBus.Publish(@event);
-            });
+            _eventBus.Publish(@event);
         }
 
         /// <summary>
@@ -223,12 +217,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (bet <= 0)
                 return;
 
-            Task.Factory.StartNew(() =>
-            {
-                var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, balanceHistoryType);
+            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, balanceHistoryType);
 
-                _eventBus.Publish(@event);
-            });
+            _eventBus.Publish(@event);
         }
 
         #endregion Methods

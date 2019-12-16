@@ -1,5 +1,7 @@
 ﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Duel.API.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.ContestDate
 {
@@ -35,6 +37,23 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ContestDate
                           LIMIT 1";
 
             return _contestDateRepository.QuerySingleOrDefault<ContestDateModel>(sql);
+        }
+
+        /// <summary>
+        /// Yeni yarışma tarihi ekle
+        /// </summary>
+        /// <param name="startedDate">Yarışma başlangıç tarihi</param>
+        /// <param name="finishDate">Yarışma bitiş tarihi</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> AddAsync(DateTime startedDate, DateTime finishDate)
+        {
+            int? id = await _contestDateRepository.AddAsync(new Tables.ContestDate
+            {
+                StartDate = startedDate,
+                FinishDate = finishDate
+            });
+
+            return id.HasValue && id.Value > 0;
         }
 
         #endregion Methods

@@ -43,7 +43,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <returns></returns>
         public async Task Handle(RemoveWaitingOpponentIntegrationEvent @event)
         {
-            if (String.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
+            if (string.IsNullOrEmpty(@event.UserId) || @event.SubCategoryId < 0 || @event.Bet < 0)
             {
                 _logger.LogWarning("Duello rakip bekleme modundan çıkarırken değerler boş geldi. {UserId} {SubCategoryId} {Bet} {BalanceType}",
                                    @event.UserId,
