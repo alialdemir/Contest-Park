@@ -45,7 +45,6 @@ namespace ContestPark.BackgroundTasks.Tasks
         /// Background task başlangıç
         /// </summary>
         /// <param name="stoppingToken"></param>
-        /// <returns></returns>
         public override async Task StartAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Yeni yarışma başlatma task başlatılıyor.");
@@ -62,6 +61,7 @@ namespace ContestPark.BackgroundTasks.Tasks
                 return;
             }
 
+            contestDate.ContestDateId = 3;
             contestDate.FinishDate = DateTime.Now.AddSeconds(60);
 
             TimeSpan diff = contestDate.FinishDate - DateTime.Now;
@@ -69,7 +69,7 @@ namespace ContestPark.BackgroundTasks.Tasks
             _timer = new Timer(DeliverGoldToWinners,
                                contestDate.ContestDateId,
                                diff,
-                               TimeSpan.FromSeconds(2));
+                               TimeSpan.FromMinutes(1));
 
             _logger.LogInformation("Yeni yarışma başlatma task başladı.");
         }
