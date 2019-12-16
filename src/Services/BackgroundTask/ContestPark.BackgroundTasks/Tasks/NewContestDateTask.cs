@@ -55,6 +55,8 @@ namespace ContestPark.BackgroundTasks.Tasks
             {
                 _logger.LogWarning("Yarışma bitiş bilgileri boş geldi.");
 
+                stoppingToken.ThrowIfCancellationRequested();
+
                 return;
             }
 
