@@ -57,10 +57,10 @@ namespace ContestPark.BackgroundTasks.Tasks
 
                 await Task.Delay(3000);
 
-                return await StartAsync(stoppingToken);
-            }
+                await StartAsync(stoppingToken);
 
-            _logger.LogInformation("Yarışma bitiş tarihi {finishDate}", contestDate.FinishDate);
+                return;
+            }
 
             TimeSpan diff = contestDate.FinishDate - DateTime.Now;
 
