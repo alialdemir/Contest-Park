@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.BackgroundTasks.Services.Duel;
 using ContestPark.BackgroundTasks.Tasks;
+using ContestPark.Core.Services.RequestProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,17 +28,18 @@ namespace ContestPark.BackgroundTasks
                 .AddHostedService<NewContestDateTask>()
                 .AddRabbitMq(Configuration);
 
-            var container = new ContainerBuilder();
-            container.Populate(services);
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+
+            services.AddSingleton<IDuelService, DuelService>();
 
             services.AddHostedService<NewContestDateTask>();
 
-            services.AddTransient<IDuelService, DuelService>();
+            var container = new ContainerBuilder();
+            container.Populate(services);
 
             return new AutofacServiceProvider(container.Build());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             var pathBase = Configuration["PATH_BASE"];
