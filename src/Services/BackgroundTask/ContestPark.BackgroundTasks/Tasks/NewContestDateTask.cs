@@ -24,23 +24,15 @@ namespace ContestPark.BackgroundTasks.Tasks
         #region Constructor
 
         public NewContestDateTask(ILogger<NewContestDateTask> logger,
-                                  //   IEventBus eventBus,
-                                  IDuelService duelService
-
-            )
+                                  IEventBus eventBus,
+                                  IDuelService duelService)
         {
             _logger = logger;
-            //  _eventBus = eventBus;
+            _eventBus = eventBus;
             _duelService = duelService;
         }
 
         #endregion Constructor
-
-        #region Properties
-
-        private ContestDateModel ContestDate { get; set; }
-
-        #endregion Properties
 
         #region Methods
 
@@ -56,29 +48,29 @@ namespace ContestPark.BackgroundTasks.Tasks
         /// <returns></returns>
         public override async Task StartAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Yeni yarışma başlatma işlemi başlatılıyor.");
+            _logger.LogInformation("Yeni yarışma başlatma task başlatılıyor.");
 
-            ContestDate = await _duelService.ActiveContestDate();
-            if (ContestDate == null)
+            ContestDateModel contestDate = await _duelService.ActiveContestDate();
+            if (contestDate == null)
             {
                 _logger.LogWarning("Yarışma bitiş bilgileri boş geldi.");
 
                 return;
             }
 
-            _logger.LogInformation("Yarışma bitiş tarihi {finishDate}", ContestDate.FinishDate);
+            _logger.LogInformation("Yarışma bitiş tarihi {finishDate}", contestDate.FinishDate);
 
             // TEST
-            ContestDate.FinishDate = DateTime.Now.AddSeconds(60);
+            contestDate.FinishDate = DateTime.Now.AddSeconds(60);
 
-            TimeSpan diff = ContestDate.FinishDate - DateTime.Now;
+            TimeSpan diff = contestDate.FinishDate - DateTime.Now;
 
             _timer = new Timer(DeliverGoldToWinners,
-                               ContestDate.ContestDateId,
+                               contestDate.ContestDateId,
                                diff,
                                TimeSpan.FromSeconds(2));
 
-            _logger.LogInformation("Yeni yarışma başlatma işlemi başladı.");
+            _logger.LogInformation("Yeni yarışma başlatma task başladı.");
         }
 
         /// <summary>
@@ -105,7 +97,7 @@ namespace ContestPark.BackgroundTasks.Tasks
         /// <returns></returns>
         public override Task StopAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Yeni yarışma başlatma işlemi durdu.");
+            _logger.LogInformation("Yeni yarışma başlatma task durdu.");
 
             _timer?.Change(Timeout.Infinite, 0);
 
@@ -115,6 +107,8 @@ namespace ContestPark.BackgroundTasks.Tasks
         public override void Dispose()
         {
             _timer?.Dispose();
+
+            _logger.LogInformation("Yeni yarışma başlatma timer dispose edildi.");
         }
 
         #endregion Methods
