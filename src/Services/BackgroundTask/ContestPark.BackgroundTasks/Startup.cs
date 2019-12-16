@@ -32,8 +32,6 @@ namespace ContestPark.BackgroundTasks
 
             services.AddSingleton<IDuelService, DuelService>();
 
-            services.AddHostedService<NewContestDateTask>();
-
             var container = new ContainerBuilder();
             container.Populate(services);
 

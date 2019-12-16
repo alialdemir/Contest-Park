@@ -111,7 +111,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            _logger.LogInformation("Yeni yarışma tarihi eklendi. {newContestDate}, newContestDate");
+            _logger.LogInformation("Yeni yarışma tarihi eklendi. {newContestDate}", newContestDate);
         }
     }
 }
