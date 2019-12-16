@@ -6,11 +6,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 {
     public class MultiChangeBalanceIntegrationEvent : IntegrationEvent
     {
-        public MultiChangeBalanceIntegrationEvent(List<ChangeBalanceModel> changeBalances)
-        {
-            ChangeBalances = changeBalances;
-        }
+        public List<ChangeBalanceModel> ChangeBalances { get; } = new List<ChangeBalanceModel>();
 
-        public List<ChangeBalanceModel> ChangeBalances { get; }
+        public MultiChangeBalanceIntegrationEvent AddChangeBalance(ChangeBalanceModel changeBalance)
+        {
+            if (changeBalance != null)
+            {
+                this.ChangeBalances.Add(changeBalance);
+            }
+
+            return this;
+        }
     }
 }

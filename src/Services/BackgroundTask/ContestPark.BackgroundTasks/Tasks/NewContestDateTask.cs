@@ -61,9 +61,6 @@ namespace ContestPark.BackgroundTasks.Tasks
                 return;
             }
 
-            contestDate.ContestDateId = 3;
-            contestDate.FinishDate = DateTime.Now.AddSeconds(60);
-
             _logger.LogInformation("{contestDateId} numaralı yarışma bitiş tarihi: {finishDate}", contestDate.ContestDateId, contestDate.FinishDate);
 
             TimeSpan diff = contestDate.FinishDate - DateTime.Now;
@@ -82,9 +79,6 @@ namespace ContestPark.BackgroundTasks.Tasks
         /// <param name="contestDate"></param>
         private void DeliverGoldToWinners(object contestDate)
         {
-            // TODO: Eğer yarışma tarihi bitmiş ise her alt kategoride aktif olan yarışmadaki ilk 3 kullanıcıyı getir
-            // TODO: yeni tarih ekle
-            // TODO: ilk üçe giren tüm kullanıcılara altın ver
             _timer?.Change(Timeout.Infinite, 0);
 
             var @event = new DeliverGoldToWinnersIntegrationEvent((short)contestDate);
