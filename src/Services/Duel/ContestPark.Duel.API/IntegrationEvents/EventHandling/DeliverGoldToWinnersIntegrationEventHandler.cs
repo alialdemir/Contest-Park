@@ -59,22 +59,29 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             foreach (var item in winners)
             {
-                ChangeBalanceModel changeBalance = new ChangeBalanceModel
+                changeBalances.Add(new ChangeBalanceModel
                 {
                     BalanceType = balanceGold,
                     BalanceHistoryType = BalanceHistoryTypes.CategoryWinner,
                     UserId = item.Premier,
                     Amount = 3000
-                };
-                changeBalances.Add(changeBalance);
+                });
 
-                changeBalance.Amount = 2000;
-                changeBalance.UserId = item.Secondary;
-                changeBalances.Add(changeBalance);
+                changeBalances.Add(new ChangeBalanceModel
+                {
+                    BalanceType = balanceGold,
+                    BalanceHistoryType = BalanceHistoryTypes.CategoryWinner,
+                    UserId = item.Secondary,
+                    Amount = 2000
+                });
 
-                changeBalance.Amount = 1000;
-                changeBalance.UserId = item.Third;
-                changeBalances.Add(changeBalance);
+                changeBalances.Add(new ChangeBalanceModel
+                {
+                    BalanceType = balanceGold,
+                    BalanceHistoryType = BalanceHistoryTypes.CategoryWinner,
+                    UserId = item.Third,
+                    Amount = 1000
+                });
             }
 
             var json = JsonConvert.SerializeObject(changeBalances);
@@ -101,7 +108,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (!isSuccess)
             {
                 _logger.LogError("Yeni yarışma tarihi eklenemedi acil kontrol ediniz!!");
+                return;
             }
+
+            _logger.LogInformation("Yeni yarışma tarihi eklendi. {newContestDate}, newContestDate");
         }
     }
 }
