@@ -108,6 +108,8 @@ namespace ContestPark.Duel.API
 
             #region Event handler
 
+            services.AddTransient<DeliverGoldToWinnersIntegrationEventHandler>();
+
             services.AddTransient<DuelEscapeIntegrationEventHandler>();
 
             services.AddTransient<DuelFinishIntegrationEventHandler>();
@@ -174,6 +176,8 @@ namespace ContestPark.Duel.API
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+
+            eventBus.Subscribe<DeliverGoldToWinnersIntegrationEvent, DeliverGoldToWinnersIntegrationEventHandler>();
 
             eventBus.Subscribe<DuelEscapeIntegrationEvent, DuelEscapeIntegrationEventHandler>();
 

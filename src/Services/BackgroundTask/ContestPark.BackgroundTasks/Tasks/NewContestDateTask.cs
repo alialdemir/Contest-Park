@@ -60,9 +60,6 @@ namespace ContestPark.BackgroundTasks.Tasks
 
             _logger.LogInformation("Yarışma bitiş tarihi {finishDate}", contestDate.FinishDate);
 
-            // TEST
-            contestDate.FinishDate = DateTime.Now.AddSeconds(60);
-
             TimeSpan diff = contestDate.FinishDate - DateTime.Now;
 
             _timer = new Timer(DeliverGoldToWinners,
