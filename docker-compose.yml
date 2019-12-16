@@ -134,7 +134,6 @@ services:
     image: contestparkbackgroundtasks:${TAG:-latest}
     depends_on:
       - rabbitmq
-      - contestpark.duel.api
     build:
       context: .
       dockerfile: src/Services/BackgroundTask/ContestPark.BackgroundTasks/Dockerfile

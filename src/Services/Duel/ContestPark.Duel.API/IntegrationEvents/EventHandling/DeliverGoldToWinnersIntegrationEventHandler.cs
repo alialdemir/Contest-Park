@@ -1,10 +1,12 @@
 ﻿using ContestPark.Duel.API.Enums;
+using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +16,17 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
     public class DeliverGoldToWinnersIntegrationEventHandler : IIntegrationEventHandler<DeliverGoldToWinnersIntegrationEvent>
     {
         private readonly IScoreRankingRepository _scoreRankingRepository;
+        private readonly IContestDateRepository _contestDateRepository;
         private readonly ILogger<DeliverGoldToWinnersIntegrationEventHandler> _logger;
         private readonly IEventBus _eventBus;
 
         public DeliverGoldToWinnersIntegrationEventHandler(IScoreRankingRepository scoreRankingRepository,
+                                                           IContestDateRepository contestDateRepository,
                                                            ILogger<DeliverGoldToWinnersIntegrationEventHandler> logger,
                                                            IEventBus eventBus)
         {
             _scoreRankingRepository = scoreRankingRepository;
+            _contestDateRepository = contestDateRepository;
             _logger = logger;
             _eventBus = eventBus;
         }
@@ -29,6 +34,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         public Task Handle(DeliverGoldToWinnersIntegrationEvent @event)
         {
             _logger.LogInformation("{contestDateId} numaralı yarışma kazananlarına altınlar dağıtılıyor.", @event.ContestDateId);
+
+            ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
+            if (contestDate.FinishDate > DateTime.Now)
+            {
+                _logger.LogError("Süresi dolmamış yarışmanın ödülleri dağıtılmaya çalışıldı.");
+
+                return Task.CompletedTask;
+            }
 
             BalanceTypes balanceGold = BalanceTypes.Gold;
 
