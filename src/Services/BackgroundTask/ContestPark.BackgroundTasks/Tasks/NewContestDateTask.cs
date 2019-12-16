@@ -68,8 +68,8 @@ namespace ContestPark.BackgroundTasks.Tasks
 
             _logger.LogInformation("Yarışma bitiş tarihi {finishDate}", ContestDate.FinishDate);
 
-            // test
-            ContestDate.FinishDate = DateTime.Now.AddSeconds(50);
+            // TEST
+            ContestDate.FinishDate = DateTime.Now.AddSeconds(60);
 
             TimeSpan diff = ContestDate.FinishDate - DateTime.Now;
 
