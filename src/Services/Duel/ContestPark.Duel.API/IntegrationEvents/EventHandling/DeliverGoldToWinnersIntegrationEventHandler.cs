@@ -6,7 +6,6 @@ using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,13 +34,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             _logger.LogInformation("{contestDateId} numaralı yarışma kazananlarına altınlar dağıtılıyor.", @event.ContestDateId);
 
-            ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
-            if (contestDate.FinishDate > DateTime.Now)
-            {
-                _logger.LogError("Süresi dolmamış yarışmanın ödülleri dağıtılmaya çalışıldı.");
+            //ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
+            //if (contestDate.FinishDate > DateTime.Now)
+            //{
+            //    _logger.LogError("Süresi dolmamış yarışmanın ödülleri dağıtılmaya çalışıldı.");
 
-                return Task.CompletedTask;
-            }
+            //    return Task.CompletedTask;
+            //}
 
             BalanceTypes balanceGold = BalanceTypes.Gold;
 

@@ -64,6 +64,8 @@ namespace ContestPark.BackgroundTasks.Tasks
             contestDate.ContestDateId = 3;
             contestDate.FinishDate = DateTime.Now.AddSeconds(60);
 
+            _logger.LogInformation("{contestDateId} numaralı yarışma bitiş tarihi: {finishDate}", contestDate.ContestDateId, contestDate.FinishDate);
+
             TimeSpan diff = contestDate.FinishDate - DateTime.Now;
 
             _timer = new Timer(DeliverGoldToWinners,
