@@ -38,6 +38,11 @@ namespace ContestPark.Mobile.Services.AdMob
 
         private void LoadEvents()
         {
+            Admob.OnRewarded += (o, e) =>
+              {
+                  UserDialogs.Instance.ShowLoading("", MaskType.Black);
+              };
+
             Admob.OnRewardedVideoAdLoaded += (o, e) =>
             {
                 Admob.ShowRewardedVideo();
@@ -65,7 +70,6 @@ namespace ContestPark.Mobile.Services.AdMob
             if (!CrossMTAdmob.IsSupported)
                 return;
 
-            UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
             Task.Factory.StartNew(() =>
             {

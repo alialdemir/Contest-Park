@@ -1,6 +1,8 @@
 ﻿using ContestPark.Mobile.Components.PostCardView;
+using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Post;
+using MarcTron.Plugin.Controls;
 using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -53,28 +55,41 @@ namespace ContestPark.Mobile.Components
         {
             return new StackLayout
             {
-                Margin = new Thickness(10, 0, 10, 10),
+                Margin = new Thickness(10, 10, 10, 10),
                 Children =
                 {
-                    new Frame
-                    {
-                        Padding = 0,
-                        HasShadow = true,
-                        IsClippedToBounds = true,
-                        CornerRadius = 8,
-                        HorizontalOptions = LayoutOptions.FillAndExpand,
-                        BackgroundColor = (Color)Application.Current.Resources["White"],
-                        Content = new StackLayout
-                        {
-                            Padding = new Thickness(11,7,11,7),
-                            Spacing = 0,
-                            Children =
-                            {
-                                view,
-                                new BottomPostCard(NavigationService)
-                            }
-                        }
-                    }
+                    new StackLayout
+                                {
+                                    Margin = new Thickness(10, 0, 10, 10),
+                                    Children =
+                                    {
+                                        new Frame
+                                        {
+                                            Padding = 0,
+                                            HasShadow = true,
+                                            IsClippedToBounds = true,
+                                            CornerRadius = 8,
+                                            HorizontalOptions = LayoutOptions.FillAndExpand,
+                                            BackgroundColor = (Color)Application.Current.Resources["White"],
+                                            Content = new StackLayout
+                                            {
+                                                Padding = new Thickness(11,7,11,7),
+                                                Spacing = 0,
+                                                Children =
+                                                {
+                                                    view,
+                                                    new BottomPostCard(NavigationService),
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+
+                                new MTAdView
+                                {
+                                    AdsId = GlobalSetting.BannerAdUnitId1,
+                                    PersonalizedAds = true,
+                                }
                 }
             };
         }
