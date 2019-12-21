@@ -256,9 +256,9 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     Image = "prizeicon1.png",
                     Title = ContestParkResources.Freeloader,
-                    Description = "Reklam izle oyna başla!",
+                    Description = ContestParkResources.AdvertiseWatchPlayGames,
                     EntryFee = 0,
-                    Prize = 0
+                    Prize = 80.00m,
                 });
 
                 SelectedIndex = 0;

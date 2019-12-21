@@ -686,4 +686,7 @@
   <data name="AnErrorOccurredDuringThePrizeAwardingProcess" xml:space="preserve">
     <value>An error occurred during the prize-awarding process.</value>
   </data>
+  <data name="AdvertiseWatchPlayGames" xml:space="preserve">
+    <value>Advertise watch, play games!</value>
+  </data>
 </root>

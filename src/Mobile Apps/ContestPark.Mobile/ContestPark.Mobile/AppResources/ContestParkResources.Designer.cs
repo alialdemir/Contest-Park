@@ -79,6 +79,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advertise watch, play games!.
+        /// </summary>
+        public static string AdvertiseWatchPlayGames {
+            get {
+                return ResourceManager.GetString("AdvertiseWatchPlayGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred during the prize-awarding process..
         /// </summary>
         public static string AnErrorOccurredDuringThePrizeAwardingProcess {
