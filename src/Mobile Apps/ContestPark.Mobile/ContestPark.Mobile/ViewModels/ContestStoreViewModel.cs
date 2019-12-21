@@ -4,6 +4,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.InAppBillingProduct;
 using ContestPark.Mobile.Models.User;
+using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.Settings;
@@ -25,6 +26,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IBalanceService _balanceService;
+        private readonly IAdMobService _adMobService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IInAppBillingService _inAppBillingService;
         private readonly ISettingsService _settingsService;
@@ -36,14 +38,16 @@ namespace ContestPark.Mobile.ViewModels
         public ContestStoreViewModel(
             IPageDialogService pageDialogService,
             IInAppBillingService inAppBillingService,
-            IBalanceService cpService,
+            IBalanceService balanceService,
+            IAdMobService adMobService,
             ISettingsService settingsService,
             IEventAggregator eventAggregator
             ) : base(dialogService: pageDialogService)
         {
             Title = ContestParkResources.ContestStore;
             _inAppBillingService = inAppBillingService;
-            _balanceService = cpService;
+            _balanceService = balanceService;
+            _adMobService = adMobService;
             _settingsService = settingsService;
             _eventAggregator = eventAggregator;
         }
@@ -66,6 +70,8 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            _adMobService.OnRewardedVideoAdClosed += _adMobService_OnRewardedVideoAdClosed;
+
             Products = await _inAppBillingService.GetProductInfoAsync();
             if (Products != null)
                 Items.AddRange(Products.Where(x => x.BalanceTypes == BalanceType).ToList());
@@ -73,6 +79,20 @@ namespace ContestPark.Mobile.ViewModels
             // await base.InitializeAsync();
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// Reklam izleme işlemi bitnce altın eklemesi için servere istek gönderir
+        /// </summary>
+        private async void _adMobService_OnRewardedVideoAdClosed(object sender, EventArgs e)
+        {
+            bool isSuccess = await _balanceService.RewardedVideoaAsync();
+            if (!isSuccess)
+            {
+                await DisplayAlertAsync(ContestParkResources.Error,
+                                        ContestParkResources.AnErrorOccurredDuringThePrizeAwardingProcess,
+                                        ContestParkResources.Okay);
+            }
         }
 
         private Platforms GetCurrentPlatform()
@@ -157,11 +177,9 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Reklam izle altın al
         /// </summary>
-        private async Task ExecuteWatchAdsVideoCommandAsync()
+        private void ExecuteWatchAdsVideoCommand()
         {
-            await DisplayAlertAsync("",
-                "Coming soon!",
-                ContestParkResources.Okay);
+            _adMobService.ShowOrLoadRewardedVideo();
         }
 
         private void ExecuteChangeBalanceTypeCommand(BalanceTypes balanceType)
@@ -196,12 +214,20 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand WatchAdsVideoCommand
         {
-            get { return watchAdsVideoCommand ?? (watchAdsVideoCommand = new Command(async () => await ExecuteWatchAdsVideoCommandAsync())); }
+            get { return watchAdsVideoCommand ?? (watchAdsVideoCommand = new Command(() => ExecuteWatchAdsVideoCommand())); }
         }
 
         public ICommand ChangeBalanceType
         {
             get { return changeBalanceType ?? (changeBalanceType = new Command<string>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)Convert.ToByte(balanceType)))); }
+        }
+
+        public ICommand RemoveOnRewardedVideoAdClosed
+        {
+            get
+            {
+                return new Command(() => _adMobService.OnRewardedVideoAdClosed -= _adMobService_OnRewardedVideoAdClosed);
+            }
         }
 
         #endregion Commands

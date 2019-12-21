@@ -123,6 +123,9 @@
   <data name="Advanced" xml:space="preserve">
     <value>İleri Düzeyde</value>
   </data>
+  <data name="AnErrorOccurredDuringThePrizeAwardingProcess" xml:space="preserve">
+    <value>Ödül verme işlemi sırasında hata oluştu.</value>
+  </data>
   <data name="AppSettings" xml:space="preserve">
     <value>Uygulama Ayarları</value>
   </data>

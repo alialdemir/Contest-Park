@@ -3,6 +3,7 @@ using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
+using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Duel;
@@ -29,6 +30,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAudioService _audioService;
         private readonly IBotService _botService;
         private readonly IDuelService _duelService;
+        private readonly IAdMobService _adMobService;
         private readonly IDuelSignalRService _duelSignalRService;
         private readonly OnSleepEvent _onSleepEvent;
         private readonly ISettingsService _settingsService;
@@ -43,6 +45,7 @@ namespace ContestPark.Mobile.ViewModels
                                       IPageDialogService pageDialogService,
                                       IEventAggregator eventAggregator,
                                       IDuelService duelService,
+                                      IAdMobService adMobService,
                                       ISettingsService settingsService,
                                       IAudioService audioService,
                                       IBotService botService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
@@ -50,6 +53,7 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService = duelSignalRService;
             _onSleepEvent = eventAggregator.GetEvent<OnSleepEvent>();
             _duelService = duelService;
+            _adMobService = adMobService;
             _settingsService = settingsService;
             _audioService = audioService;
             _botService = botService;
@@ -229,6 +233,8 @@ namespace ContestPark.Mobile.ViewModels
 
             OnSleepEventListener();
 
+            LoadInterstitialVideo();
+
             return Task.CompletedTask;
         }
 
@@ -296,6 +302,14 @@ namespace ContestPark.Mobile.ViewModels
 
                 return false;
             });
+        }
+
+        /// <summary>
+        /// Tam ekran reklma yükle
+        /// </summary>
+        private void LoadInterstitialVideo()
+        {
+            _adMobService.LoadInterstitialVideo();
         }
 
         private void SetCurrentQuestion()

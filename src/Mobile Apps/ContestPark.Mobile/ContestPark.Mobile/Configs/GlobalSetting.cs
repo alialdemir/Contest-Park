@@ -45,12 +45,32 @@ namespace ContestPark.Mobile.Configs
 
         #region Properties
 
-        public string AppCenterKey { get; } = "android=e39cee25-8a31-43e0-bc9c-20bfc2b2a53c;ios=4cb3ac35-c5b2-4a2c-a0e4-7659072f99ae";
+        public const string AppCenterKey = "android=e39cee25-8a31-43e0-bc9c-20bfc2b2a53c;ios=4cb3ac35-c5b2-4a2c-a0e4-7659072f99ae";
+
+        /// <summary>
+        /// Admob application id
+        /// </summary>
+        public const string AppUnitId = "ca-app-pub-9252497061180957~6594686426";
+
+        /// <summary>
+        /// Banner reklam unit id
+        /// </summary>
+        public const string BannerAdUnitId1 = "ca-app-pub-9252497061180957/4978352429";
+
+        /// <summary>
+        /// Ödüllü reklam unit id
+        /// </summary>
+        public const string RewardedVideoUnitId = "ca-app-pub-9252497061180957/3899759909";
+
+        /// <summary>
+        /// Tam ekran reklam unit id
+        /// </summary>
+        public const string InterstitialUnitId = "ca-app-pub-9252497061180957/5063920823";
 
         /// <summary>
         /// Gets the Instance
         /// </summary>
-        public static GlobalSetting Instance { get; } = new GlobalSetting();
+        public static GlobalSetting Instance = new GlobalSetting();
 
         /// <summary>
         /// Gets or sets the AuthorizeEndpoint
@@ -91,7 +111,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Gets the ClientId
         /// </summary>
-        public string ClientId => "xamarin";
+        public const string ClientId = "xamarin";
 
         /// <summary>
         /// Gets or sets the GatewaEndpoint
@@ -121,7 +141,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Gets or sets the Scope
         /// </summary>
-        public string Scope { get; set; } = "category identity balance chat duel follow signalr post question offline_access";
+        public const string Scope = "category identity balance chat duel follow signalr post question offline_access";
 
         /// <summary>
         /// Gets or sets the SignalREndpoint

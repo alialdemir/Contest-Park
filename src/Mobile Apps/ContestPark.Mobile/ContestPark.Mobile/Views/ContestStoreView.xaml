@@ -9,6 +9,7 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="pageContestStore"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}">
@@ -194,7 +195,7 @@
                         IsShowRightText="True"
                         RightIconTextColor="{StaticResource Primary}"
                         RightText="+40 coins"
-                        SingleTap="{Binding Path=Parent.BindingContext.WatchAdsVideoCommand, Source={x:Reference lstView}}"
+                        SingleTap="{Binding Path=BindingContext.WatchAdsVideoCommand, Source={x:Reference pageContestStore}}"
                         Source="ContestSingleCoin.svg"
                         Text="{i18n:Translate FreeCoins}" />
                 </DataTemplate>

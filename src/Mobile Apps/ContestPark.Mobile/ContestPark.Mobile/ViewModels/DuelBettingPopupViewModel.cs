@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.PageNavigation;
+using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -28,6 +29,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         private readonly IBalanceService _cpService;
+        private readonly IAdMobService _adMobService;
 
         #endregion Private variables
 
@@ -36,11 +38,13 @@ namespace ContestPark.Mobile.ViewModels
         public DuelBettingPopupViewModel(INavigationService navigationService,
                                          IEventAggregator eventAggregator,
                                          IBalanceService cpService,
+                                         IAdMobService adMobService,
                                          IPageDialogService pageDialogService,
                                          IPopupNavigation popupNavigation) : base(navigationService, pageDialogService, popupNavigation)
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
+            _adMobService = adMobService;
         }
 
         #endregion Constructor
@@ -246,10 +250,13 @@ namespace ContestPark.Mobile.ViewModels
             // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
             if (BalanceType == BalanceTypes.Gold && Balance != null && Balance.Gold < Bets?.FirstOrDefault().EntryFee)// Altını hiç yoksa 0 altınla oynayabilir
             {
+                _adMobService.OnRewardedVideoAdClosed += _adMobService_OnRewardedVideoAdClosed;
+
                 Bets.Insert(0, new BetModel
                 {
                     Image = "prizeicon1.png",
                     Title = ContestParkResources.Freeloader,
+                    Description = "Reklam izle oyna başla!",
                     EntryFee = 0,
                     Prize = 0
                 });
@@ -259,15 +266,34 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// Reklam izle oyna başla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void _adMobService_OnRewardedVideoAdClosed(object sender, System.EventArgs e)
+        {
+            await ExecuteDuelStartCommandAsync(0, true);
+        }
+
+        /// <summary>
         /// Seçilen altın miktarı kadar altını varsa düello başlatır yoksa mesaj verir
         /// </summary>
         /// <param name="bet">Seçilen bahis miktarı</param>
-        private async Task ExecuteDuelStartCommandAsync(decimal bet)
+        private async Task ExecuteDuelStartCommandAsync(decimal bet, bool isRewarded = false)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            if (bet == 0 && !isRewarded)
+            {
+                _adMobService.ShowOrLoadRewardedVideo();
+
+                IsBusy = false;
+
+                return;
+            }
 
             var balance = await _cpService.GetBalanceAsync();
             if (balance != null && ((BalanceType == BalanceTypes.Gold && bet <= balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= balance.Money)))

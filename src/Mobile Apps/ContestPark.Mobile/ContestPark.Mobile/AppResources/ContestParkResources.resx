@@ -683,4 +683,7 @@
   <data name="ReferenceCode" xml:space="preserve">
     <value>Reference code</value>
   </data>
+  <data name="AnErrorOccurredDuringThePrizeAwardingProcess" xml:space="preserve">
+    <value>An error occurred during the prize-awarding process.</value>
+  </data>
 </root>

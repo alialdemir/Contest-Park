@@ -211,9 +211,9 @@ namespace ContestPark.Mobile.Services.Identity
                 {
                     {"username", loginModel.UserName },
                     {"password", loginModel.Password },
-                    {"client_id", GlobalSetting.Instance.ClientId },
+                    {"client_id", GlobalSetting.ClientId },
                     {"grant_type", "password" },
-                    {"scope", GlobalSetting.Instance.Scope },
+                    {"scope", GlobalSetting.Scope },
                 };
 
                 var result = await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
@@ -253,7 +253,7 @@ namespace ContestPark.Mobile.Services.Identity
                 {
                     {"grant_type", "refresh_token" },
                     {"refresh_token", refreshToken },
-                    {"client_id", GlobalSetting.Instance.ClientId },
+                    {"client_id", GlobalSetting.ClientId },
                 };
 
                 var response = await _requestProvider.PostAsync<RefreshTokenModel>(GlobalSetting.Instance.TokenEndpoint, from);

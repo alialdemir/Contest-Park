@@ -74,7 +74,7 @@ namespace ContestPark.Mobile
         {
             base.OnStart();
 
-            AppCenter.Start(GlobalSetting.Instance.AppCenterKey, typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnResume()

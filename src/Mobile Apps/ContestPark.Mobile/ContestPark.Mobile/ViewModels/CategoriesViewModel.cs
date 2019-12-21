@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Signalr.Base;
@@ -19,6 +20,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly ISignalRServiceBase _baseSignalRService;
+        private readonly IAdMobService _adMobService;
         private readonly ICategoryService _categoryServices;
 
         #endregion Private variables
@@ -30,6 +32,7 @@ namespace ContestPark.Mobile.ViewModels
                                    INavigationService navigationService,
                                    IPageDialogService pageDialogService,
                                    IGameService gameService,
+                                   IAdMobService adMobService,
                                    IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService)
         {
@@ -41,6 +44,7 @@ namespace ContestPark.Mobile.ViewModels
             ServiceModel.PageSize = 9999;// Şimdilik 9999 verdim kategorilerde safyalama yok
 
             _baseSignalRService = baseSignalRService;
+            _adMobService = adMobService;
         }
 
         #endregion Constructor
