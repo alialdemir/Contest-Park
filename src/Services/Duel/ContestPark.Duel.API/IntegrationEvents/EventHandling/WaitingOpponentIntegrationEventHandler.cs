@@ -83,6 +83,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void AddAwatingMode(WaitingOpponentIntegrationEvent @event)
         {
+            // TODO: reklam izleyerek altın aldığını history olarak tutulmalı
+            if (@event.Bet == 0 && @event.BalanceType == Enums.BalanceTypes.Gold)// Eğer reklam izleyerek oynuyorsa 0 altın geliyor o zaman mininmum bahis mikatarı kadar
+            {
+                _logger.LogInformation("Reklam izleyerek düello yapıldı {userId}", @event.UserId);
+
+                @event.Bet = 40;//Minimum bahis miktarı 40 altınla olduğu için 40 verdik
+            }
+
             bool isSuccess = _duelUserRepository.Insert(new DuelUserModel
             {
                 Bet = @event.Bet,
@@ -106,7 +114,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <summary>
         /// Singalr ile oyunu başlat
         /// </summary>
-        private async Task StartDuelAsync(WaitingOpponentIntegrationEvent waitingOpponentIntegration, DuelUserModel duelUserModel)
+        private Task StartDuelAsync(WaitingOpponentIntegrationEvent waitingOpponentIntegration, DuelUserModel duelUserModel)
         {
             try
             {
@@ -137,6 +145,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 // TODO: düello başlatılırken hata oluştu
             }
+
+            return Task.CompletedTask;
         }
 
         #endregion Private methods

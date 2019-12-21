@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Services.Audio;
+﻿using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
@@ -211,6 +212,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.Register<IAudioService, AudioService>();
 
             containerRegistry.Register<IMediaService, MediaService>();
+
+            containerRegistry.Register<IAdMobService, AdMobService>();
 
             //containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
         }

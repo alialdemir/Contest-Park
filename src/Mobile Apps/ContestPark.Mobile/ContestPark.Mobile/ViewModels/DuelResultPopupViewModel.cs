@@ -4,6 +4,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
+using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
@@ -27,6 +28,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAudioService _audioService;
         private readonly IDuelService _duelService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IAdMobService _adMobService;
         private readonly ISettingsService _settingsService;
 
         #endregion Private variables
@@ -36,12 +38,14 @@ namespace ContestPark.Mobile.ViewModels
         public DuelResultPopupViewModel(
             IPopupNavigation popupNavigation,
             IEventAggregator eventAggregator,
+            IAdMobService adMobService,
             IAudioService audioService,
             ISettingsService settingsService,
             IDuelService duelService
             ) : base(popupNavigation: popupNavigation)
         {
             _eventAggregator = eventAggregator;
+            _adMobService = adMobService;
             _audioService = audioService;
             _settingsService = settingsService;
             _duelService = duelService;
@@ -70,6 +74,8 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
+            _adMobService.ShowInterstitial();// Düello sonucuna gelen kullanıcılara reklam gösterildi
+
             DuelResult = await _duelService.DuelResult(DuelId);
 
             ProfilePictureBorderColorCommand?.Execute(null);

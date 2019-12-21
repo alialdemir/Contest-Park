@@ -28,5 +28,10 @@ namespace ContestPark.Mobile.Services.Cp
         {
             return Task.FromResult(true);
         }
+
+        public Task<bool> RewardedVideoaAsync()
+        {
+            return Task.FromResult(true);
+        }
     }
 }

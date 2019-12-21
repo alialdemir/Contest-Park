@@ -61,5 +61,10 @@
         /// Aylık sıfırlanan sıralamada herhangi bir kategoride kazanırsa
         /// </summary>
         CategoryWinner = 12,
+
+        /// <summary>
+        /// Reklama izleyerek altın kazandı
+        /// </summary>
+        RewardedVideo = 13,
     }
 }

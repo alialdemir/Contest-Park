@@ -17,19 +17,43 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
+        #region Properties
+
+        private ContestStoreViewModel _viewModel;
+
+        public ContestStoreViewModel ViewModel
+        {
+            get
+            {
+                if (_viewModel == null)
+                {
+                    _viewModel = ((ContestStoreViewModel)BindingContext);
+                }
+
+                return _viewModel;
+            }
+        }
+
+        #endregion Properties
+
         #region Methods
 
         protected override void OnAppearing()
         {
-            ContestStoreViewModel viewModel = ((ContestStoreViewModel)BindingContext);
-
-            if (viewModel == null || viewModel.IsInitialized)
+            if (ViewModel == null || ViewModel.IsInitialized)
                 return;
 
-            viewModel.InitializeCommand.Execute(null);
-            viewModel.IsInitialized = true;
+            ViewModel.InitializeCommand.Execute(null);
+            ViewModel.IsInitialized = true;
 
             base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            ViewModel.RemoveOnRewardedVideoAdClosed.Execute(null);
+
+            base.OnDisappearing();
         }
 
         #endregion Methods

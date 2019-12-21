@@ -110,6 +110,26 @@ namespace ContestPark.Balance.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Reklam izleyerek altın kazandı
+        /// </summary>
+        [HttpPost("RewardedVideo")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult RewardedVideo()
+        {
+            decimal rewardedVideoGoldBalance = 40;
+
+            var @event = new ChangeBalanceIntegrationEvent(rewardedVideoGoldBalance,
+                                                           UserId,
+                                                           BalanceTypes.Gold,
+                                                           BalanceHistoryTypes.RewardedVideo);
+
+            _eventBus.Publish(@event);
+
+            return Ok();
+        }
+
+        /// <summary>
         /// Bakiye koduna göre hesaba bakiye yükler
         /// </summary>
         /// <param name="balanceCode">Bakiye kodu</param>
@@ -133,7 +153,10 @@ namespace ContestPark.Balance.API.Controllers
                 return BadRequest();
             }
 
-            var @event = new ChangeBalanceIntegrationEvent(reference.Amount, UserId, reference.BalanceType, BalanceHistoryTypes.ReferenceCode);
+            var @event = new ChangeBalanceIntegrationEvent(reference.Amount,
+                                                           UserId,
+                                                           reference.BalanceType,
+                                                           BalanceHistoryTypes.ReferenceCode);
 
             _eventBus.Publish(@event);
 

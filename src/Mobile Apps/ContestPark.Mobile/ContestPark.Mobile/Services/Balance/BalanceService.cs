@@ -32,6 +32,19 @@ namespace ContestPark.Mobile.Services.Cp
         #region Methods
 
         /// <summary>
+        /// Reklam izleyerek altın kazandı
+        /// </summary>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> RewardedVideoaAsync()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/RewardedVideo");
+
+            var result = await _requestProvider.PostAsync<string>(uri);
+
+            return result.IsSuccess;
+        }
+
+        /// <summary>
         /// Giriiş toplam altın miktarını verir
         /// </summary>
         /// <returns>Toplam altın miktarı</returns>
