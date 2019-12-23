@@ -10,34 +10,34 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
 {
     public class CustomGridRenderer : ViewRenderer<CustomGrid, UIView>
     {
-        private UILongPressGestureRecognizer longPressGestureRecognizer;
-        private UITapGestureRecognizer tapGestureRecognizer;
+        private UILongPressGestureRecognizer _longPressGestureRecognizer;
+        private UITapGestureRecognizer _tapGestureRecognizer;
 
         protected override void OnElementChanged(ElementChangedEventArgs<CustomGrid> e)
         {
-            longPressGestureRecognizer = longPressGestureRecognizer ??
+            _longPressGestureRecognizer = _longPressGestureRecognizer ??
                 new UILongPressGestureRecognizer(() =>
                 {
                     Element.LongPressed?.Execute(Element.CommandParameter);
                 });
 
-            tapGestureRecognizer = tapGestureRecognizer ??
+            _tapGestureRecognizer = _tapGestureRecognizer ??
                 new UITapGestureRecognizer(() =>
                 {
                     Element.SingleTap?.Execute(Element.CommandParameter);
                 });
 
-            if (longPressGestureRecognizer != null && tapGestureRecognizer != null)
+            if (_longPressGestureRecognizer != null && _tapGestureRecognizer != null)
             {
                 if (e.NewElement == null)
                 {
-                    this.RemoveGestureRecognizer(longPressGestureRecognizer);
-                    this.RemoveGestureRecognizer(tapGestureRecognizer);
+                    this.RemoveGestureRecognizer(_longPressGestureRecognizer);
+                    this.RemoveGestureRecognizer(_tapGestureRecognizer);
                 }
                 else if (e.OldElement == null)
                 {
-                    this.AddGestureRecognizer(longPressGestureRecognizer);
-                    this.AddGestureRecognizer(tapGestureRecognizer);
+                    this.AddGestureRecognizer(_longPressGestureRecognizer);
+                    this.AddGestureRecognizer(_tapGestureRecognizer);
                 }
             }
         }
