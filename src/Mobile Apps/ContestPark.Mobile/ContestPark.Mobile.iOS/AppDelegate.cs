@@ -26,9 +26,9 @@ namespace ContestPark.Mobile.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-#if !DEBUG
-            CheckJailBreak();
-#endif
+            //#if !DEBUG
+            //            CheckJailBreak();
+            //#endif
 
             CachedImageRenderer.Init();
             //UserDialogs.Init();

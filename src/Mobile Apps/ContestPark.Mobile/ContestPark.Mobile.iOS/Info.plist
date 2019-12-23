@@ -23,11 +23,11 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>ContestPark.Mobile</string>
+	<string>ContestPark</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.contestpark.app</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-60@2x</string>
@@ -72,6 +72,6 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Media.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
