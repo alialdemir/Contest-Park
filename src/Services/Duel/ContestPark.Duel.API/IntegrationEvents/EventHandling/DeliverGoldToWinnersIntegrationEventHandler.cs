@@ -72,7 +72,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     BalanceType = balanceGold,
                     BalanceHistoryType = BalanceHistoryTypes.CategoryWinner,
                     UserId = item.Premier,
-                    Amount = 3000
+                    Amount = 3000.00m
                 });
 
                 @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
@@ -80,7 +80,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     BalanceType = balanceGold,
                     BalanceHistoryType = BalanceHistoryTypes.CategoryWinner,
                     UserId = item.Secondary,
-                    Amount = 2000
+                    Amount = 2000.00m
                 });
 
                 @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
@@ -88,7 +88,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     BalanceType = balanceGold,
                     BalanceHistoryType = BalanceHistoryTypes.CategoryWinner,
                     UserId = item.Third,
-                    Amount = 1000
+                    Amount = 1000.00m
                 });
             }
 

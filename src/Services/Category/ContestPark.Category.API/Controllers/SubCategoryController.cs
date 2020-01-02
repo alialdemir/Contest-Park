@@ -71,8 +71,8 @@ namespace ContestPark.Category.API.Controllers
             List<CategoryModel> categoryList = new List<CategoryModel>();
 
             ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
-                                                                                                               CurrentUserLanguage,
-                                                                                                               pagingModel);
+                                                                                                                CurrentUserLanguage,
+                                                                                                                pagingModel);
             if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Count() > 0)
             {
                 CategoryModel categoryModel = new CategoryModel()
@@ -155,7 +155,6 @@ namespace ContestPark.Category.API.Controllers
             }
 
             bool isSuccess = await _followSubCategoryRepository.FollowSubCategoryAsync(UserId, subCategoryId);
-
             if (!isSuccess)
             {
                 Logger.LogError($"Alt kategori takip etme sırasında hata oluştu. sub Category Id: {subCategoryId} user id: {UserId}");

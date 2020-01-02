@@ -264,6 +264,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -653,10 +655,46 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Contents.json">
-      <Visible>false</Visible>
+      <Visible>true</Visible>
     </ImageAsset>
-    <ImageAsset Include="Medias.xcassets\AppIcons.appiconset\Contents.json">
-      <Visible>false</Visible>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon1024.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon167.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon120.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon152.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon180.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon29.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon40.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon58.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon76.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon80.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon87.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon20.png">
+      <Visible>true</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons1.appiconset\Icon60.png">
+      <Visible>true</Visible>
     </ImageAsset>
   </ItemGroup>
   <ItemGroup />
