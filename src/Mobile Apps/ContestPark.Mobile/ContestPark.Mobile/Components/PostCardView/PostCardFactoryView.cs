@@ -1,6 +1,8 @@
 ﻿using ContestPark.Mobile.Components.PostCardView;
+using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Post;
+using MarcTron.Plugin.Controls;
 using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -30,22 +32,22 @@ namespace ContestPark.Mobile.Components
             base.OnBindingContextChanged();
 
             PostModel postListModel = (PostModel)BindingContext;
-            if (postListModel != null)
+            if (postListModel == null)
+                return;
+
+            switch (postListModel.PostType)
             {
-                switch (postListModel.PostType)
-                {
-                    case PostTypes.Contest:
-                        Content = CreateContent(new ContestPostCard(NavigationService));
-                        break;
+                case PostTypes.Contest:
+                    Content = CreateContent(new ContestPostCard(NavigationService));
+                    break;
 
-                    case PostTypes.Text:
-                        Content = CreateContent(new TextPostCard(NavigationService));
-                        break;
+                case PostTypes.Text:
+                    Content = CreateContent(new TextPostCard(NavigationService));
+                    break;
 
-                    case PostTypes.Image:
-                        Content = CreateContent(new ImagePostCard(NavigationService));
-                        break;
-                }
+                case PostTypes.Image:
+                    Content = CreateContent(new ImagePostCard(NavigationService));
+                    break;
             }
         }
 
@@ -83,11 +85,11 @@ namespace ContestPark.Mobile.Components
                                     }
                                 },
 
-                                //new MTAdView
-                                //{
-                                //    AdsId = GlobalSetting.BannerAdUnitId1,
-                                //    PersonalizedAds = true,
-                                //}
+                                new MTAdView
+                                {
+                                    AdsId = GlobalSetting.BannerAdUnitId1,
+                                    PersonalizedAds = true,
+                                }
                 }
             };
         }

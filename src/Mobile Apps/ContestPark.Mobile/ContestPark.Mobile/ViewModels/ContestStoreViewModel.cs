@@ -179,7 +179,14 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteWatchAdsVideoCommand()
         {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
             _adMobService.ShowOrLoadRewardedVideo();
+
+            IsBusy = false;
         }
 
         private void ExecuteChangeBalanceTypeCommand(BalanceTypes balanceType)
