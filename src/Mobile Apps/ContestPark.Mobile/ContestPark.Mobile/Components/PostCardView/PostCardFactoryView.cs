@@ -89,6 +89,7 @@ namespace ContestPark.Mobile.Components
                                 {
                                     AdsId = GlobalSetting.BannerAdUnitId1,
                                     PersonalizedAds = true,
+                                    HeightRequest=60
                                 }
                 }
             };

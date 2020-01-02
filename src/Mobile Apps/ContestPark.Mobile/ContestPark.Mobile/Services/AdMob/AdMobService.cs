@@ -3,7 +3,6 @@ using ContestPark.Mobile.Configs;
 using MarcTron.Plugin;
 using MarcTron.Plugin.Interfaces;
 using System;
-using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.AdMob
 {
@@ -70,13 +69,10 @@ namespace ContestPark.Mobile.Services.AdMob
             if (!CrossMTAdmob.IsSupported)
                 return;
 
-            Task.Factory.StartNew(() =>
-            {
-                if (!Admob.IsRewardedVideoLoaded())
-                    Admob.LoadRewardedVideo(GlobalSetting.RewardedVideoUnitId);
-                else
-                    Admob.ShowRewardedVideo();
-            });
+            if (!Admob.IsRewardedVideoLoaded())
+                Admob.LoadRewardedVideo(GlobalSetting.RewardedVideoUnitId);
+            else
+                Admob.ShowRewardedVideo();
         }
 
         /// <summary>
@@ -87,11 +83,8 @@ namespace ContestPark.Mobile.Services.AdMob
             if (!CrossMTAdmob.IsSupported)
                 return;
 
-            Task.Factory.StartNew(() =>
-            {
-                if (!Admob.IsInterstitialLoaded())
-                    Admob.LoadInterstitial(GlobalSetting.InterstitialUnitId);
-            });
+            if (!Admob.IsInterstitialLoaded())
+                Admob.LoadInterstitial(GlobalSetting.InterstitialUnitId);
         }
 
         /// <summary>
@@ -102,10 +95,7 @@ namespace ContestPark.Mobile.Services.AdMob
             if (!CrossMTAdmob.IsSupported)
                 return;
 
-            Task.Factory.StartNew(() =>
-            {
-                Admob.ShowInterstitial();
-            });
+            Admob.ShowInterstitial();
         }
 
         #endregion Methods
