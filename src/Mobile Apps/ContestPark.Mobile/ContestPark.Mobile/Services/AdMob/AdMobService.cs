@@ -3,6 +3,7 @@ using ContestPark.Mobile.Configs;
 using MarcTron.Plugin;
 using MarcTron.Plugin.Interfaces;
 using System;
+using System.Diagnostics;
 
 namespace ContestPark.Mobile.Services.AdMob
 {
@@ -39,20 +40,23 @@ namespace ContestPark.Mobile.Services.AdMob
         {
             Admob.OnRewarded += (o, e) =>
               {
+                  Debug.WriteLine("OnRewarded");
                   UserDialogs.Instance.ShowLoading("", MaskType.Black);
               };
 
             Admob.OnRewardedVideoAdLoaded += (o, e) =>
             {
+                Debug.WriteLine("OnRewardedVideoAdLoaded");
                 Admob.ShowRewardedVideo();
 
                 UserDialogs.Instance.HideLoading();
             };
 
             Admob.OnRewardedVideoAdFailedToLoad += (o, e) =>
-              {
-                  UserDialogs.Instance.HideLoading();
-              };
+            {
+                Debug.WriteLine("OnRewardedVideoAdFailedToLoad");
+                UserDialogs.Instance.HideLoading();
+            };
 
             Admob.OnRewardedVideoAdClosed += (o, e) => OnRewardedVideoAdClosed?.Invoke(o, e);
         }
