@@ -18,7 +18,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -27,7 +26,7 @@ using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.RequestProvider
 {
-    public class NewRequestProvider : INewRequestProvider
+    public class RequestProvider : IRequestProvider
     {
         #region Private variable
 
@@ -41,7 +40,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         #region Constructor
 
-        public NewRequestProvider(Func<string, IEnumerable<AsyncPolicy>> policyCreator)
+        public RequestProvider(Func<string, IEnumerable<AsyncPolicy>> policyCreator)
         {
             _policyCreator = policyCreator;
             _policyWrappers = new ConcurrentDictionary<string, AsyncPolicyWrap>();
@@ -146,8 +145,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
             if (!response.IsSuccessStatusCode && response.RequestMessage.RequestUri.AbsoluteUri.Contains("/api/v1/Account") && (serialized.Contains("userName") || serialized.Contains("fullName")))
             {
                 // TODO: burada üye olma validasyonunda standarta uygun gelmeli
-                result.Error = new ValidationResultModel();
-                result.Error.MemberNames = JsonConvert.DeserializeObject<SignUpValidationModel>(serialized, _serializerSettings).Errors;
+                result.Error = new ValidationResultModel
+                {
+                    MemberNames = JsonConvert.DeserializeObject<SignUpValidationModel>(serialized, _serializerSettings).Errors
+                };
             }
             else if (!response.IsSuccessStatusCode)
             {
@@ -184,20 +185,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         #region Private methods
 
-        private static string GetOriginFromUri(string uri)
-        {
-            var url = new Uri(uri);
-
-            var origin = $"{url.Scheme}://{url.DnsSafeHost}:{url.Port}";
-
-            return origin;
-        }
-
-        private static string NormalizeOrigin(string origin)
-        {
-            return origin?.Trim().ToLower();
-        }
-
         private HttpClient CreateHttpClient()
         {
             HttpClient httpClient = new HttpClient();
@@ -219,50 +206,12 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return httpClient;
         }
 
-        private void HandleResponse(HttpResponseMessage response)
-        {
-            //if (!response.IsSuccessStatusCode)
-            //{
-            //    string content = await response.Content.ReadAsStringAsync();
-
-            //    if (response.StatusCode == HttpStatusCode.Forbidden ||
-            //        response.StatusCode == HttpStatusCode.Unauthorized)
-            //    {
-            //        // TODO: burda farklı bir çözüm bulunmalı exception fırlatınca uygulama patlıyor
-            //        // athrow new ServiceAuthenticationException(content);
-            //    }
-
-            //    // throw new HttpRequestExceptionEx(response.StatusCode, content);
-            //}
-        }
-
-        private async Task<T> HttpInvoker<T>(string origin, Func<Context, Task<T>> action)
-        {
-            var normalizedOrigin = NormalizeOrigin(origin);
-
-            if (!_policyWrappers.TryGetValue(normalizedOrigin, out AsyncPolicyWrap policyWrap))
-            {
-                policyWrap = Policy.WrapAsync(_policyCreator(normalizedOrigin).ToArray());
-                _policyWrappers.TryAdd(normalizedOrigin, policyWrap);
-            }
-
-            // Executes the action applying all the policies defined in the wrapper
-            return await policyWrap.ExecuteAsync(action, new Context(normalizedOrigin));
-        }
-
         private async Task<ResponseModel<TResult>> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
         {
             using (HttpClient httpClient = CreateHttpClient())
             {
-                ResponseModel<TResult> result = new ResponseModel<TResult>();
-
                 try
                 {
-                    // a new StringContent must be created for each retry as it is disposed after each call
-                    //var origin = GetOriginFromUri(url);
-
-                    //return HttpInvoker(origin, async (context) =>
-                    //{
                     if (await CheckNetworkAsync())
 
                         return new ResponseModel<TResult>();
@@ -289,7 +238,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     return new ResponseModel<TResult>();
                 }
             }
-            //     });
         }
 
         private async Task<bool> CheckNetworkAsync()

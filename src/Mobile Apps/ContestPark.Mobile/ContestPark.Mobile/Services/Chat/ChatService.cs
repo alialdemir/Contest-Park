@@ -4,7 +4,6 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
-using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using Prism.Services;
 using System.Threading.Tasks;
@@ -15,20 +14,17 @@ namespace ContestPark.Mobile.Services.Chat
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/chat";
-        private readonly ICacheService _cacheService;
-        private readonly INewRequestProvider _requestProvider;
+        private const string _apiUrlBase = "api/v1/chat";
+        private readonly IRequestProvider _requestProvider;
         private readonly IPageDialogService _pageDialogService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public ChatService(INewRequestProvider requestProvider,
-                           IPageDialogService pageDialogService,
-                           ICacheService cacheService)
+        public ChatService(IRequestProvider requestProvider,
+                           IPageDialogService pageDialogService)
         {
-            _cacheService = cacheService;
             _requestProvider = requestProvider;
             _pageDialogService = pageDialogService;
         }
@@ -44,7 +40,7 @@ namespace ContestPark.Mobile.Services.Chat
         /// <returns>Sohbet geçmiþinin listesi</returns>
         public async Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{senderUserId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{senderUserId}{pagingModel.ToString()}");
 
             var result = await _requestProvider.GetAsync<ServiceModel<ChatDetailModel>>(uri);
 
@@ -57,7 +53,7 @@ namespace ContestPark.Mobile.Services.Chat
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> ChatSeenAsync()
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ReadMessages");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ReadMessages");
 
             var result = await _requestProvider.PostAsync<string>(uri);
 
@@ -73,7 +69,7 @@ namespace ContestPark.Mobile.Services.Chat
             if (conversationId <= 0)
                 return false;
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.DeleteAsync<string>($"{uri}/{conversationId}");
 
@@ -90,7 +86,7 @@ namespace ContestPark.Mobile.Services.Chat
             if (messageModel == null || string.IsNullOrEmpty(messageModel.Text) || string.IsNullOrEmpty(messageModel.ReceiverUserId))
                 return false;
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.PostAsync<string>($"{uri}", messageModel);
 
@@ -110,16 +106,9 @@ namespace ContestPark.Mobile.Services.Chat
         /// <returns>Mesaj listesi.</returns>
         public async Task<ServiceModel<ChatModel>> UserChatList(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
-
-            //if (!_cacheService.IsExpired(key: uri))
-            //{
-            //    return await _cacheService.Get<ServiceModel<ChatModel>>(uri);
-            //}
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
 
             var result = await _requestProvider.GetAsync<ServiceModel<ChatModel>>(uri);
-
-            //      _cacheService.Add(uri, result.Data);
 
             return result.Data;
         }
@@ -130,7 +119,7 @@ namespace ContestPark.Mobile.Services.Chat
         /// <returns>Okunmamýþ mesaj sayısı</returns>
         public async Task<int> UserChatVisibilityCountAsync()
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UnReadMessageCount");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/UnReadMessageCount");
 
             var result = await _requestProvider.GetAsync<UnReadMessageCountModel>(uri);
 

@@ -29,10 +29,10 @@ namespace ContestPark.Mobile.Services.Identity
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/Account";
+        private const string _apiUrlBase = "api/v1/Account";
         private readonly IPageDialogService _dialogService;
         private readonly ICacheService _cacheService;
-        private readonly INewRequestProvider _requestProvider;
+        private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
 
         private readonly ISignalRServiceBase _signalRServiceBase;
@@ -42,7 +42,7 @@ namespace ContestPark.Mobile.Services.Identity
         #region Constructor
 
         public IdentityService(
-            INewRequestProvider requestProvider,
+            IRequestProvider requestProvider,
             IPageDialogService dialogService,
             ICacheService cacheService,
             ISettingsService settingsService,
@@ -67,7 +67,7 @@ namespace ContestPark.Mobile.Services.Identity
         {
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangeCoverPicture");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeCoverPicture");
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
 
@@ -83,7 +83,7 @@ namespace ContestPark.Mobile.Services.Identity
         /// <returns>Eğer telefon numarası kayıtlı ise kullanıcı adı değilse null döner</returns>
         public async Task<string> GetUserNameByPhoneNumber(string phoneNumber)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/GetUserName?phoneNumber={phoneNumber}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/GetUserName?phoneNumber={phoneNumber}");
 
             var response = await _requestProvider.GetAsync<UserNameModel>(uri);
             if (response.IsSuccess)
@@ -100,7 +100,7 @@ namespace ContestPark.Mobile.Services.Identity
         /// <param name="changePasswordModel">Kullanıcı şifre bilgileri</param>
         public async Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangePassword");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangePassword");
 
             var response = await _requestProvider.PostAsync<string>(uri, changePasswordModel);
             if (!response.IsSuccess)
@@ -118,7 +118,7 @@ namespace ContestPark.Mobile.Services.Identity
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> UpdateLanguageAsync(Languages language)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UpdateLanguage?language={(byte)language}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/UpdateLanguage?language={(byte)language}");
 
             var response = await _requestProvider.PostAsync<string>(uri);
             if (!response.IsSuccess && response.Error != null && !string.IsNullOrEmpty(response.Error.ErrorMessage))
@@ -136,7 +136,7 @@ namespace ContestPark.Mobile.Services.Identity
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> ChangePasswordAsync(int code)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangePassword/Codecheck?code={code}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangePassword/Codecheck?code={code}");
 
             var response = await _requestProvider.GetAsync<string>(uri);
             if (!response.IsSuccess)
@@ -155,7 +155,7 @@ namespace ContestPark.Mobile.Services.Identity
         {
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ChangeProfilePicture");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeProfilePicture");
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
 
@@ -174,7 +174,7 @@ namespace ContestPark.Mobile.Services.Identity
             {
                 await ShowErrorMessage(ContestParkResources.WriteYourUserNameOrEmailAddress);
             }
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ForgotYourPassword");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ForgotYourPassword");
 
             var result = await _requestProvider.PostAsync<ValidationResultModel>(uri, new { UserNameOrEmail });
 
@@ -191,7 +191,7 @@ namespace ContestPark.Mobile.Services.Identity
             if (string.IsNullOrEmpty(userName))
                 return null;
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Profile/{userName}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Profile/{userName}");
 
             var result = await _requestProvider.GetAsync<ProfileInfoModel>(uri);
 
@@ -297,7 +297,7 @@ namespace ContestPark.Mobile.Services.Identity
                 return false;
             }
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             // TODO: uygulama dili değişince nuradaki dil değişecek mi test edilmesi lazım
             CultureInfo cultureInfo = Xamarin.Forms.DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
@@ -353,7 +353,7 @@ namespace ContestPark.Mobile.Services.Identity
         /// <param name="userInfo">Ad soyad ve kullanıcı adı modeli</param>
         public async Task<bool> UpdateUserInfoAsync(UpdateUserInfoModel userInfo)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Update");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Update");
 
             var result = await _requestProvider.PostAsync<string>(uri, userInfo);
 

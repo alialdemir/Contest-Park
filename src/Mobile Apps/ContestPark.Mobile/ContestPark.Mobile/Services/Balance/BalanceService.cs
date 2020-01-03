@@ -12,15 +12,15 @@ namespace ContestPark.Mobile.Services.Cp
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/Balance";
-        private readonly INewRequestProvider _requestProvider;
+        private const string _apiUrlBase = "api/v1/Balance";
+        private readonly IRequestProvider _requestProvider;
         private readonly IPageDialogService _pageDialogService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public BalanceService(INewRequestProvider requestProvider,
+        public BalanceService(IRequestProvider requestProvider,
                               IPageDialogService pageDialogService)
         {
             _requestProvider = requestProvider;
@@ -37,7 +37,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> RewardedVideoaAsync()
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/RewardedVideo");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/RewardedVideo");
 
             var result = await _requestProvider.PostAsync<string>(uri);
 
@@ -50,7 +50,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// <returns>Toplam altın miktarı</returns>
         public async Task<BalanceModel> GetBalanceAsync()
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.GetAsync<BalanceModel>(uri);
 
@@ -64,7 +64,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// <returns>Altın miktarı eklendi ise true eklenemedi ise false döner</returns>
         public async Task<bool> PurchaseAsync(PurchaseModel purchase)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Purchase");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Purchase");
 
             var result = await _requestProvider.PostAsync<string>(uri, purchase);
 
@@ -82,7 +82,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// </summary>
         public async Task<bool> GetBalanceRequest(IbanNoModel ibanNo)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, ApiUrlBase);
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.PostAsync<string>(uri, ibanNo);
 
@@ -103,7 +103,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// <returns>Başarılı ise true değilse false döner</returns>
         public async Task<bool> BalanceCode(BalanceCodeModel balanceCodeModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Code");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Code");
 
             var result = await _requestProvider.PostAsync<string>(uri, balanceCodeModel);
 

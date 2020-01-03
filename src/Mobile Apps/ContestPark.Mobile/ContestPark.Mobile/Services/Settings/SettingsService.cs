@@ -37,13 +37,13 @@ namespace ContestPark.Mobile.Services.Settings
         #region Private variables
 
         private const string ApiUrlBase = "api/v1/account";
-        private readonly INewRequestProvider _requestProvider;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public SettingsService(INewRequestProvider requestProvider)
+        public SettingsService(IRequestProvider requestProvider)
         {
             _requestProvider = requestProvider;
         }

@@ -13,15 +13,15 @@ namespace ContestPark.Mobile.Services.Score
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/Ranking/SubCategory";
+        private const string _apiUrlBase = "api/v1/Ranking/SubCategory";
         private readonly ICacheService _cacheService;
-        private readonly INewRequestProvider _requestProvider;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public ScoreService(INewRequestProvider requestProvider,
+        public ScoreService(IRequestProvider requestProvider,
                             ICacheService cacheService
             )
         {
@@ -41,7 +41,7 @@ namespace ContestPark.Mobile.Services.Score
         /// <returns>Takip ettiklerinin sıralama listesi</returns>
         public async Task<RankModel> FollowingRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/Following{pagingModel.ToString()}&balanceType={balanceType}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/Following{pagingModel.ToString()}&balanceType={balanceType}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -49,7 +49,7 @@ namespace ContestPark.Mobile.Services.Score
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);
-            if (result != null && result.IsSuccess)
+            if (result.Data != null && result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);
             }
@@ -65,7 +65,7 @@ namespace ContestPark.Mobile.Services.Score
         /// <returns>Sıralama listesi</returns>
         public async Task<RankModel> SubCategoryRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}{pagingModel.ToString()}&balanceType={balanceType}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}{pagingModel.ToString()}&balanceType={balanceType}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -73,7 +73,7 @@ namespace ContestPark.Mobile.Services.Score
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);
-            if (result != null && result.IsSuccess)
+            if (result.Data != null && result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);
             }

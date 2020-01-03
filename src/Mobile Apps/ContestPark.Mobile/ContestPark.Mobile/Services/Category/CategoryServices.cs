@@ -18,15 +18,15 @@ namespace ContestPark.Mobile.Services.Category
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/SubCategory";
+        private const string _apiUrlBase = "api/v1/SubCategory";
         private readonly ICacheService _cacheService;
-        private readonly INewRequestProvider _requestProvider;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public CategoryServices(INewRequestProvider requestProvider,
+        public CategoryServices(IRequestProvider requestProvider,
                                 ICacheService cacheService
             )
         {
@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <param name="subCategoryId">Alt kategori Id</param>
         public async Task<bool> FollowSubCategoryAsync(short subCategoryId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/Follow");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/Follow");
 
             try
             {
@@ -84,7 +84,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Alt kategoriyi ise takip ediyor true etmiyorsa ise false</returns>
         public async Task<bool> IsFollowUpStatusAsync(short subCategoryId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/FollowStatus");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/FollowStatus");
 
             var result = await _requestProvider.GetAsync<SubCategoryFollowModel>(uri);
 
@@ -111,7 +111,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <param name="subCategoryId">Alt kategori Id</param>
         public async Task<bool> UnFollowSubCategoryAsync(short subCategoryId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/UnFollow");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/UnFollow");
 
             try
             {
@@ -136,7 +136,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Tüm kategorileri döndürür.</returns>
         public async Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -145,7 +145,7 @@ namespace ContestPark.Mobile.Services.Category
 
             var response = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
 
-            if (response.IsSuccess)
+            if (response.Data != null && response.IsSuccess)
             {
                 if (_cacheService.IsExpired(uri))
                     _cacheService.Empty(uri);
@@ -178,7 +178,7 @@ namespace ContestPark.Mobile.Services.Category
         {
             // TODO: kullanıcı kategoriyi takip ederse veya level atlarsa cache deki kategori detay bilgilerinin yenilenmesi lazım
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -186,8 +186,8 @@ namespace ContestPark.Mobile.Services.Category
             }
 
             var response = await _requestProvider.GetAsync<CategoryDetailModel>(uri);
-
-            _cacheService.Add(uri, response.Data);
+            if (response.Data != null && response.IsSuccess)
+                _cacheService.Add(uri, response.Data);
 
             return response.Data;
         }
@@ -199,7 +199,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns></returns>
         public async Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}/unlock?balanceType={balanceType}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/unlock?balanceType={balanceType}");
 
             var result = await _requestProvider.PostAsync<string>(uri);
 
@@ -232,12 +232,14 @@ namespace ContestPark.Mobile.Services.Category
         /// </summary>
         private void DeleteCategoryCache(short subCategoryId)
         {
-            string subCategoryDetailKey = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{subCategoryId}");
+            string subCategoryDetailKey = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}");
             string categorieskey = $"{GlobalSetting.Instance.GatewaEndpoint}/api/v1/SubCategory?PageSize=9999&PageNumber=1";
+
             if (!_cacheService.IsExpired(categorieskey))
             {
                 _cacheService.Empty(categorieskey);
             }
+
             if (!_cacheService.IsExpired(subCategoryDetailKey))
             {
                 _cacheService.Empty(subCategoryDetailKey);

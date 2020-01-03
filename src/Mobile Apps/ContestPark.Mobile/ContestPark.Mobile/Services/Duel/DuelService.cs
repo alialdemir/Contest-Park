@@ -12,16 +12,16 @@ namespace ContestPark.Mobile.Services.Duel
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/Duel";
+        private const string _apiUrlBase = "api/v1/Duel";
 
-        private readonly INewRequestProvider _requestProvider;
+        private readonly IRequestProvider _requestProvider;
         private readonly ICacheService _cacheService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public DuelService(INewRequestProvider requestProvider,
+        public DuelService(IRequestProvider requestProvider,
                            ICacheService cacheService)
         {
             _requestProvider = requestProvider;
@@ -40,7 +40,7 @@ namespace ContestPark.Mobile.Services.Duel
         {
             if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
-                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/AddOpponent");
+                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/AddOpponent");
 
                 await _requestProvider.PostAsync<string>(url, standbyModeModel);
             }
@@ -53,8 +53,7 @@ namespace ContestPark.Mobile.Services.Duel
         /// <returns>Düello sonucu</returns>
         public async Task<DuelResultModel> DuelResult(int duelId)
         {
-            // TODO: cache
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{duelId}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{duelId}");
 
             var result = await _requestProvider.GetAsync<DuelResultModel>(uri);
 
@@ -68,7 +67,7 @@ namespace ContestPark.Mobile.Services.Duel
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> DuelEscape(int duelId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{duelId}/DuelEscape");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{duelId}/DuelEscape");
 
             var result = await _requestProvider.PostAsync<string>(uri);
 
@@ -110,7 +109,7 @@ namespace ContestPark.Mobile.Services.Duel
         {
             if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
-                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/ExitStandbyMode");
+                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ExitStandbyMode");
 
                 await _requestProvider.PostAsync<string>(url, standbyModeModel);
             }
@@ -150,7 +149,7 @@ namespace ContestPark.Mobile.Services.Duel
         {
             if (standbyModeModel != null && standbyModeModel.SubCategoryId > 0)
             {
-                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}");
+                string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}");
 
                 var result = await _requestProvider.PostAsync<string>(url, standbyModeModel);
 

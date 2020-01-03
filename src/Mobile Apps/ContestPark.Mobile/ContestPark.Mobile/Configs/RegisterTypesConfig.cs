@@ -162,7 +162,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowService>();
 
-                containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
@@ -192,7 +192,7 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
-                containerRegistry.RegisterSingleton<INewRequestProvider, NewRequestProvider>();
+                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
 
                 containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 

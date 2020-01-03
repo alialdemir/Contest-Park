@@ -16,7 +16,7 @@ namespace ContestPark.Mobile.Services.Mission
 
         private readonly ICacheService _cacheService;
 
-        private const string ApiUrlBase = "api/v1/mission";
+        private const string _apiUrlBase = "api/v1/mission";
 
         #endregion Private variables
 
@@ -39,18 +39,18 @@ namespace ContestPark.Mobile.Services.Mission
         /// <returns>Tüm görevleri döndürür.</returns>
         public async Task<MissionListModel> MissionListAsync(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
                 return await _cacheService.Get<MissionListModel>(uri);
             }
 
-            var missions = await _requestProvider.GetAsync<MissionListModel>(uri);
+            var response = await _requestProvider.GetAsync<MissionListModel>(uri);
+            if (response.Data != null && response.IsSuccess)
+                _cacheService.Add(uri, response.Data);
 
-            _cacheService.Add(uri, missions);
-
-            return missions;
+            return response.Data;
         }
 
         /// <summary>
@@ -60,11 +60,11 @@ namespace ContestPark.Mobile.Services.Mission
         /// <returns>İşlem sonucu</returns>
         public async Task<bool> TakesMissionGoldAsync(short missionId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{missionId}/status");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{missionId}/status");
 
-            var result = await _requestProvider.PostAsync<string>(uri);
+            var response = await _requestProvider.PostAsync<string>(uri);
 
-            return true;
+            return response.IsSuccess;
         }
 
         #endregion Methods

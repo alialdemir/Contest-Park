@@ -14,20 +14,22 @@ namespace ContestPark.Mobile.Services.Post
     {
         #region Private variables
 
-        private const string ApiUrlBase = "api/v1/Post";
+        private const string _apiUrlBase = "api/v1/Post";
         private readonly ICacheService _cacheService;
-        private readonly INewRequestProvider _requestProvider;
+        private readonly IRequestProvider _requestProvider;
 
         #endregion Private variables
 
         #region Constructor
 
-        public PostService(INewRequestProvider requestProvider,
+        public PostService(IRequestProvider requestProvider,
                            ICacheService cacheService)
         {
             _requestProvider = requestProvider;
             _cacheService = cacheService;
         }
+
+        public static string ApiUrlBase1 => _apiUrlBase;
 
         #endregion Constructor
 
@@ -40,7 +42,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>İşlem başarılı ise true değilse false</returns>
         public async Task<bool> DisLikeAsync(int postId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}/UnLike");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/UnLike");
 
             var result = await _requestProvider.DeleteAsync<string>(uri);
 
@@ -54,14 +56,14 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Post detayı</returns>
         public async Task<PostDetailModel> GetPostByPostIdAsync(int postId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}{pagingModel.ToString()}");
 
             var result = await _requestProvider.GetAsync<PostDetailModel>(uri);
-
-            if (result.IsSuccess)
+            if (result.Data != null && result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);
             }
+
             return result.Data;
         }
 
@@ -72,7 +74,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Alt kategori postları</returns>
         public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel, bool isForceCache = false)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/Subcategory/{subCategoryId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/Subcategory/{subCategoryId}{pagingModel.ToString()}");
 
             if (isForceCache)
                 _cacheService.Empty(uri);
@@ -83,7 +85,7 @@ namespace ContestPark.Mobile.Services.Post
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
-            if (result.IsSuccess)
+            if (result.Data != null && result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);
             }
@@ -99,7 +101,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Posts listesi</returns>
         public async Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/User/{userId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/User/{userId}{pagingModel.ToString()}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -107,8 +109,7 @@ namespace ContestPark.Mobile.Services.Post
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
-
-            if (result.IsSuccess)
+            if (result.Data != null && result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);
             }
@@ -122,7 +123,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>İşlem başarılı ise true değilse false</returns>
         public async Task<bool> LikeAsync(int postId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}/Like");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Like");
 
             var result = await _requestProvider.PostAsync<string>(uri);
 
@@ -137,7 +138,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Postu beğenen kullanıcı listesi</returns>
         public async Task<ServiceModel<PostLikeModel>> PostLikesAsync(int postId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}/Like{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Like{pagingModel.ToString()}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -145,8 +146,7 @@ namespace ContestPark.Mobile.Services.Post
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostLikeModel>>(uri);
-
-            if (result.IsSuccess)
+            if (result.Data != null && result.IsSuccess)
             {
                 _cacheService.Add(uri, result.Data);
             }
@@ -162,7 +162,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Başarılı ise true değilsa falase</returns>
         public async Task<bool> SendCommentAsync(int postId, string comment)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/{postId}/Comment");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Comment");
 
             var result = await _requestProvider.PostAsync<string>(uri, new { comment });
 
