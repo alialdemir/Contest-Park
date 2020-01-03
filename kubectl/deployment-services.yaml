@@ -1,3 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-api
+  labels:
+    run: identity-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: identity-api
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: follow-api
+  labels:
+    run: follow-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: follow-api
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -16,6 +43,77 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: balance-api
+  labels:
+    run: balance-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: balance-api
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: category-api
+  labels:
+    run: category-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: category-api
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-api
+  labels:
+    run: chat-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: chat-api
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: duel-api
+  labels:
+    run: duel-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: duel-api
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-api
+  labels:
+    run: post-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: post-api
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: admin-api
   labels:
     run: admin-api
@@ -25,4 +123,19 @@ spec:
       protocol: TCP
   selector:
     run: admin-api
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backgroundtasks
+  labels:
+    run: backgroundtasks
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: backgroundtasks
   type: LoadBalancer
