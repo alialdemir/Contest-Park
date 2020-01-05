@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       run: identity-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -61,7 +61,7 @@ spec:
   selector:
     matchLabels:
       run: follow-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -106,7 +106,7 @@ spec:
   selector:
     matchLabels:
       run: ocelot-apigw
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -129,7 +129,7 @@ spec:
   selector:
     matchLabels:
       run: balance-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -172,7 +172,7 @@ spec:
   selector:
     matchLabels:
       run: category-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -221,7 +221,7 @@ spec:
   selector:
     matchLabels:
       run: chat-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -266,7 +266,7 @@ spec:
   selector:
     matchLabels:
       run: duel-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -322,7 +322,7 @@ spec:
   selector:
     matchLabels:
       run: post-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -368,7 +368,7 @@ spec:
   selector:
     matchLabels:
       run: admin-api
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -416,7 +416,7 @@ spec:
   selector:
     matchLabels:
       run: backgroundtasks
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
