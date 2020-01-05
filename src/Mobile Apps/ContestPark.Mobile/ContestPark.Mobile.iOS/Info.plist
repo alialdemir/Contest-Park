@@ -1,65 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-  <dict>
-    <key>UIDeviceFamily</key>
-    <array>
-      <integer>1</integer>
-      <integer>2</integer>
-    </array>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>MinimumOSVersion</key>
-    <string>8.0</string>
-    <key>CFBundleDisplayName</key>
-    <string>ContestPark</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.contestpark.app</string>
-    <key>CFBundleVersion</key>
-    <string>1.3</string>
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-    <key>UIAppFonts</key>
-    <array>
-      <string>Fonts/Sofia Pro Regular Az.otf</string>
-      <string>Fonts/Sofia Pro Light Az.otf</string>
-      <string>Fonts/Sofia Pro Semi Bold Az.otf</string>
-      <string>Fonts/Sofia Pro Bold Az.otf</string>
-      <string>Fonts/Sofia Pro Medium Az.otf</string>
-      <string>Fonts/GothamRounded-Bold.otf</string>
-      <string>Fonts/GothamRounded-Medium.otf</string>
-      <string>Fonts/Montserrat-Regular.ttf</string>
-      <string>Fonts/Montserrat-Medium.ttf</string>
-      <string>Fonts/Sofia Pro Black Az.otf</string>
-      <string>Fonts/iconize-fontawesome-regular.ttf</string>
-      <string>Fonts/iconize-fontawesome-solid.ttf</string>
-      <string>Fonts/iconize-fontawesome-brands.ttf</string>
-    </array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true />
-    </dict>
-    <key>CFBundleShortVersionString</key>
-    <string>1</string>
-    <key>UIMainStoryboardFile</key>
-    <string>LaunchScreen</string>
-    <key>XSAppIconAssets</key>
-    <string>Media.xcassets/AppIcons1.appiconset</string>
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-9252497061180957~6594686426</string>
-    <key>GADIsAdManagerApp</key>
-    <true />
-  </dict>
+<dict>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>7.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>ContestPark</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.contestpark.ios</string>
+	<key>CFBundleVersion</key>
+	<string>1.3</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Sofia Pro Regular Az.otf</string>
+		<string>Fonts/Sofia Pro Light Az.otf</string>
+		<string>Fonts/Sofia Pro Semi Bold Az.otf</string>
+		<string>Fonts/Sofia Pro Bold Az.otf</string>
+		<string>Fonts/Sofia Pro Medium Az.otf</string>
+		<string>Fonts/GothamRounded-Bold.otf</string>
+		<string>Fonts/GothamRounded-Medium.otf</string>
+		<string>Fonts/Montserrat-Regular.ttf</string>
+		<string>Fonts/Montserrat-Medium.ttf</string>
+		<string>Fonts/Sofia Pro Black Az.otf</string>
+		<string>Fonts/iconize-fontawesome-regular.ttf</string>
+		<string>Fonts/iconize-fontawesome-solid.ttf</string>
+		<string>Fonts/iconize-fontawesome-brands.ttf</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>AppIcon2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>100_icon</string>
+					<string>114_icon</string>
+					<string>120_icon</string>
+					<string>144_icon</string>
+					<string>152_icon</string>
+					<string>167_icon</string>
+					<string>180_icon</string>
+					<string>29_icon</string>
+					<string>40_icon</string>
+					<string>50_icon</string>
+					<string>512_icon</string>
+					<string>57_icon</string>
+					<string>58_icon</string>
+					<string>72_icon</string>
+					<string>76_icon</string>
+					<string>80_icon</string>
+					<string>87_icon</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>XSAppIconAssets</key>
+	<string>Media.xcassets/AppIcon.appiconset</string>
+</dict>
 </plist>
