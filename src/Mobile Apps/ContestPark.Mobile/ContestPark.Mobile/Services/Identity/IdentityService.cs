@@ -70,8 +70,10 @@ namespace ContestPark.Mobile.Services.Identity
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeCoverPicture");
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
-
-            await ShowValidationMessages(response.Data.MemberNames);
+            if (response != null && response.Data != null)
+            {
+                await ShowValidationMessages(response.Data.MemberNames);
+            }
 
             UserDialogs.Instance.HideLoading();
         }
@@ -158,8 +160,10 @@ namespace ContestPark.Mobile.Services.Identity
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeProfilePicture");
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
-
-            await ShowValidationMessages(response.Data.MemberNames);
+            if (response != null && response.Data != null)
+            {
+                await ShowValidationMessages(response.Data.MemberNames);
+            }
 
             UserDialogs.Instance.HideLoading();
         }
