@@ -2,11 +2,9 @@
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Gms.Ads;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using ContestPark.Mobile.Configs;
 using ImageCircle.Forms.Plugin.Droid;
 using Lottie.Forms.Droid;
 using Plugin.CurrentActivity;
@@ -99,7 +97,7 @@ namespace ContestPark.Mobile.Droid
 
             AnimationViewRenderer.Init();
 
-            MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
+            //   MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
 
