@@ -67,7 +67,6 @@
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidLinkMode>None</AndroidLinkMode>
     <MandroidI18n />
-    <AndroidDexTool>dx</AndroidDexTool>
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
   </PropertyGroup>
