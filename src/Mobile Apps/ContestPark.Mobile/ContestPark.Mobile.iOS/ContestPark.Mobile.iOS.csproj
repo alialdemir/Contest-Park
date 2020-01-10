@@ -110,8 +110,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: ali aldemir (V6854F4555)</CodesignKey>
+    <CodesignProvision>iOS Team Provisioning Profile: *</CodesignProvision>
+    <CodesignKey>Apple Development: ali aldemir (V6854F4555)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
     <CodesignExtraArgs />
