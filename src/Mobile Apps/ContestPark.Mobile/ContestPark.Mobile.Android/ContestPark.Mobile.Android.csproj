@@ -69,6 +69,7 @@
     <MandroidI18n />
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidDexTool>d8</AndroidDexTool>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
