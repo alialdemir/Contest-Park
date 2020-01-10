@@ -10,6 +10,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Droid.Dependencies
 {
+    [System.Obsolete]
     public class Analytics : IAnalytics
     {
         public void SendEvent(string eventCategory, string eventAction, string eventLabel, long? eventValue)

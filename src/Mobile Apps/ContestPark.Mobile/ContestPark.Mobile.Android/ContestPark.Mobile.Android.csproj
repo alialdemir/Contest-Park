@@ -62,7 +62,7 @@
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
-    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidLinkMode>None</AndroidLinkMode>
