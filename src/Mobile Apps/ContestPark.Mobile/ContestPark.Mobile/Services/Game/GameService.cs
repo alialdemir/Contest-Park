@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Views;
 using Prism.Events;
@@ -21,6 +22,7 @@ namespace ContestPark.Mobile.Services.Game
         private readonly IEventAggregator _eventAggregator;
         private readonly IPageDialogService _pageDialogService;
         private readonly IPopupNavigation _popupNavigation;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
 
@@ -30,11 +32,13 @@ namespace ContestPark.Mobile.Services.Game
             IPageDialogService pageDialogService,
             IEventAggregator eventAggregator,
             IPopupNavigation popupNavigation,
+            IAnalyticsService analyticsService,
             ICategoryService categoryServices)
         {
             _pageDialogService = pageDialogService;
             _eventAggregator = eventAggregator;
             _popupNavigation = popupNavigation;
+            _analyticsService = analyticsService;
             _categoryServices = categoryServices;
         }
 
@@ -54,10 +58,10 @@ namespace ContestPark.Mobile.Services.Game
         /// </summary>
         /// <param name="subCategoryModel"></param>
         /// <returns>Kilitli ise kilidi açsınmı isteğini sorar açsın derse true döndürür</returns>
-        public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen)
+        public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen, string subCategoryName)
         {
             if (isCategoryOpen)
-                GoToCategoryDetailViewAsync(subCategoryId);
+                GoToCategoryDetailViewAsync(subCategoryId, subCategoryName);
             else
             {
                 bool isUnLock = await OpenSubCategory(subCategoryId);
@@ -149,12 +153,14 @@ namespace ContestPark.Mobile.Services.Game
             if (isOk) await NavigationService?.NavigateAsync(nameof(ContestStoreView), useModalNavigation: false);
         }
 
-        private void GoToCategoryDetailViewAsync(short subCategoryId)
+        private void GoToCategoryDetailViewAsync(short subCategoryId, string subCategoryName)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            _analyticsService.SendEvent("Kategori", "Kategori Detayı", subCategoryName);
 
             NavigationService?.NavigateAsync(nameof(CategoryDetailView), new NavigationParameters
                                                 {

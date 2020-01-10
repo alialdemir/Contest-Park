@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Chat;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.Services.Settings;
@@ -26,6 +27,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IBlockingService _blockingService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IChatService _chatService;
+        private readonly IAnalyticsService _analyticsService;
         private string _fullName, _userName;
         // private readonly IChatsSignalRService _chatsSignalRService;
 
@@ -36,11 +38,13 @@ namespace ContestPark.Mobile.ViewModels
         public ChatDetailViewModel(INavigationService navigationService,
                                    IPageDialogService pageDialogService,
                                    IChatService chatService,
+                                   IAnalyticsService analyticsService,
                                    IBlockingService blockingService,
                                    IEventAggregator eventAggregator,
                                    ISettingsService settingsService) : base(navigationService, pageDialogService)
         {
             _chatService = chatService;
+            _analyticsService = analyticsService;
             _settingsService = settingsService;
             _blockingService = blockingService;
             _eventAggregator = eventAggregator;
@@ -229,6 +233,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 if (!isRemoveMessages)// eğer hata olursa mesajları geri yüklüyoruz
                 {
+                    _analyticsService.SendEvent("Mesaj", "Mesaj Detay Sil", "Fail");
+
                     Items.AddRange(items);
 
                     await DisplayAlertAsync("",
@@ -237,6 +243,8 @@ namespace ContestPark.Mobile.ViewModels
                 }
                 else
                 {
+                    _analyticsService.SendEvent("Mesaj", "Mesaj Detay Sil", "Success");
+
                     _eventAggregator
                                 .GetEvent<MessageRefleshEvent>()
                                 .Publish(conversationId);
@@ -274,6 +282,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
+
+            _analyticsService.SendEvent("Mesaj", "Mesaj Gönderildi", $"{_settingsService.CurrentUser.UserName} - {_userName}");
 
             var lastMessage = new ChatDetailModel
             {

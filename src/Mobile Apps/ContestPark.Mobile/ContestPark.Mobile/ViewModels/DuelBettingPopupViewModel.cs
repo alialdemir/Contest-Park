@@ -6,6 +6,7 @@ using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -30,6 +31,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IBalanceService _cpService;
         private readonly IAdMobService _adMobService;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
 
@@ -40,11 +42,13 @@ namespace ContestPark.Mobile.ViewModels
                                          IBalanceService cpService,
                                          IAdMobService adMobService,
                                          IPageDialogService pageDialogService,
+                                         IAnalyticsService analyticsService,
                                          IPopupNavigation popupNavigation) : base(navigationService, pageDialogService, popupNavigation)
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
             _adMobService = adMobService;
+            _analyticsService = analyticsService;
         }
 
         #endregion Constructor
@@ -250,7 +254,7 @@ namespace ContestPark.Mobile.ViewModels
             // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
             if (BalanceType == BalanceTypes.Gold && Balance != null && Balance.Gold < Bets?.FirstOrDefault().EntryFee)// Altını hiç yoksa 0 altınla oynayabilir
             {
-                _adMobService.OnRewardedVideoAdClosed += _adMobService_OnRewardedVideoAdClosed;
+                _adMobService.OnRewardedVideoAdClosed += OnRewardedVideoAdClosed;
 
                 Bets.Insert(0, new BetModel
                 {
@@ -270,8 +274,12 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void _adMobService_OnRewardedVideoAdClosed(object sender, System.EventArgs e)
+        private async void OnRewardedVideoAdClosed(object sender, System.EventArgs e)
         {
+            _adMobService.OnRewardedVideoAdClosed -= OnRewardedVideoAdClosed;
+
+            _analyticsService.SendEvent("Düello", "Oyna", "Video İzle Oyna");
+
             await ExecuteDuelStartCommandAsync(0, true);
         }
 
@@ -298,40 +306,61 @@ namespace ContestPark.Mobile.ViewModels
             var balance = await _cpService.GetBalanceAsync();
             if (balance != null && ((BalanceType == BalanceTypes.Gold && bet <= balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= balance.Money)))
             {
-                await PushPopupPageAsync(new DuelStartingPopupView()
-                {
-                    SelectedSubCategory = SelectedSubCategory,
-                    Bet = bet,
-                    OpponentUserId = OpponentUserId,
-                    BalanceType = BalanceType,
-                    StandbyMode = string.IsNullOrEmpty(OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
-                });
+                _analyticsService.SendEvent("Düello", "Oyna", "Success");
 
-                ClosePopupCommand.Execute(null);
+                PushDuelStartingPopupPageAsync(bet);
             }
             else
             {
-                string message =
-              BalanceType == BalanceTypes.Gold ?
-              ContestParkResources.YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore :
-              ContestParkResources.YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore;
-
-                bool isBuy = await DisplayAlertAsync("",
-                                            message,
-                                            ContestParkResources.Buy,
-                                            ContestParkResources.Cancel);
-
-                if (isBuy)
-                {
-                    await RemoveFirstPopupAsync();
-
-                    _eventAggregator?
-                                .GetEvent<TabPageNavigationEvent>()
-                                .Publish(new PageNavigation(nameof(ContestStoreView)));
-                }
+                await NoGoldDisplayAlertAsync();
             }
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// Düello ekranına yönlendirir
+        /// </summary>
+        /// <param name="bet">Bahis miktarı</param>
+        private void PushDuelStartingPopupPageAsync(decimal bet)
+        {
+            PushPopupPageAsync(new DuelStartingPopupView()
+            {
+                SelectedSubCategory = SelectedSubCategory,
+                Bet = bet,
+                OpponentUserId = OpponentUserId,
+                BalanceType = BalanceType,
+                StandbyMode = string.IsNullOrEmpty(OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
+            });
+
+            ClosePopupCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// Altın/Para miktarınız yeterli değil contest store üzerinden yükleyin mesajını gösterir
+        /// </summary>
+        private async Task NoGoldDisplayAlertAsync()
+        {
+            string message =
+          BalanceType == BalanceTypes.Gold ?
+          ContestParkResources.YouDontHaveEnoughGoldToPlayYouCanBuyGoldFromTheContestStore :
+          ContestParkResources.YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore;
+
+            bool isBuy = await DisplayAlertAsync("",
+                                        message,
+                                        ContestParkResources.Buy,
+                                        ContestParkResources.Cancel);
+
+            if (isBuy)
+            {
+                await RemoveFirstPopupAsync();
+
+                _analyticsService.SendEvent("Düello", "Oyna", "Contest store");
+
+                _eventAggregator?
+                            .GetEvent<TabPageNavigationEvent>()
+                            .Publish(new PageNavigation(nameof(ContestStoreView)));
+            }
         }
 
         #endregion Methods

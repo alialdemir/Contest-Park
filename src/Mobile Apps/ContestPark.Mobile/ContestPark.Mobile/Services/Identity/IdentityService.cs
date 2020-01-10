@@ -3,6 +3,7 @@ using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.ErrorModel;
@@ -11,6 +12,7 @@ using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
@@ -32,6 +34,7 @@ namespace ContestPark.Mobile.Services.Identity
         private const string _apiUrlBase = "api/v1/Account";
         private readonly IPageDialogService _dialogService;
         private readonly ICacheService _cacheService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
 
@@ -45,12 +48,14 @@ namespace ContestPark.Mobile.Services.Identity
             IRequestProvider requestProvider,
             IPageDialogService dialogService,
             ICacheService cacheService,
+            IAnalyticsService analyticsService,
             ISettingsService settingsService,
             ISignalRServiceBase signalRServiceBase)
         {
             _requestProvider = requestProvider;
             _dialogService = dialogService;
             _cacheService = cacheService;
+            _analyticsService = analyticsService;
             _settingsService = settingsService;
             _signalRServiceBase = signalRServiceBase;
         }
@@ -126,6 +131,10 @@ namespace ContestPark.Mobile.Services.Identity
             if (!response.IsSuccess && response.Error != null && !string.IsNullOrEmpty(response.Error.ErrorMessage))
             {
                 await ShowErrorMessage(response.Error.ErrorMessage);
+            }
+            else
+            {
+                _analyticsService.SendEvent("Ayarlar", "Dil", language.ToLanguageCode());
             }
 
             return response.IsSuccess;
@@ -339,7 +348,9 @@ namespace ContestPark.Mobile.Services.Identity
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.LogoutEndpoint);
 
-            await _requestProvider.PostAsync<string>(uri);
+            var response = await _requestProvider.PostAsync<string>(uri);
+
+            _analyticsService.SendEvent("Login", "Logout", response.IsSuccess ? "Success" : "Fail");
 
             _settingsService.AuthAccessToken = string.Empty;
             _settingsService.SignalRConnectionId = string.Empty;
@@ -376,10 +387,10 @@ namespace ContestPark.Mobile.Services.Identity
                      message,
                            ContestParkResources.Okay);
 #else
-                await _dialogService.DisplayAlertAsync(
-                              ContestParkResources.Error,
-                         ContestParkResources.GlobalErrorMessage,
-                               ContestParkResources.Okay);
+            await _dialogService.DisplayAlertAsync(
+                          ContestParkResources.Error,
+                     ContestParkResources.GlobalErrorMessage,
+                           ContestParkResources.Okay);
 #endif
         }
 

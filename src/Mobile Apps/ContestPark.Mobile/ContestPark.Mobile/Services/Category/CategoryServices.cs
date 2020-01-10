@@ -7,6 +7,7 @@ using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.ServiceModel;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Diagnostics;
@@ -21,17 +22,20 @@ namespace ContestPark.Mobile.Services.Category
         private const string _apiUrlBase = "api/v1/SubCategory";
         private readonly ICacheService _cacheService;
         private readonly IRequestProvider _requestProvider;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public CategoryServices(IRequestProvider requestProvider,
-                                ICacheService cacheService
-            )
+        public CategoryServices(
+            IRequestProvider requestProvider,
+            IAnalyticsService analyticsService,
+            ICacheService cacheService)
         {
             _cacheService = cacheService;
             _requestProvider = requestProvider;
+            _analyticsService = analyticsService;
         }
 
         #endregion Constructor
@@ -220,6 +224,8 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Alt kategori listesi</returns>
         public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short categoryId, PagingModel pagingModel)
         {
+            _analyticsService.SendEvent("Arama", "Arama", searchText);
+
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q={searchText}");
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);

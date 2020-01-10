@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.RequestProvider;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Settings;
 using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
@@ -31,7 +32,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
         #region Private variable
 
         private readonly Func<string, IEnumerable<AsyncPolicy>> _policyCreator;
-
+        private readonly IAnalyticsService _analyticsService;
         private readonly ConcurrentDictionary<string, AsyncPolicyWrap> _policyWrappers;
 
         private readonly JsonSerializerSettings _serializerSettings;
@@ -40,9 +41,11 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         #region Constructor
 
-        public RequestProvider(Func<string, IEnumerable<AsyncPolicy>> policyCreator)
+        public RequestProvider(Func<string, IEnumerable<AsyncPolicy>> policyCreator,
+                               IAnalyticsService analyticsService)
         {
             _policyCreator = policyCreator;
+            _analyticsService = analyticsService;
             _policyWrappers = new ConcurrentDictionary<string, AsyncPolicyWrap>();
 
             _serializerSettings = new JsonSerializerSettings
@@ -234,6 +237,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 catch (Exception ex)
                 {
                     Crashes.TrackError(ex);
+
+                    _analyticsService.SendEvent("Hata", "Servis Hatalari", ex.Message);
 
                     return new ResponseModel<TResult>();
                 }

@@ -66,5 +66,9 @@
     <string>Your description</string>
     <key>NSCalendarsUsageDescription</key>
     <string> user your calendar.</string>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-9252497061180957~6594686426</string>
+    <key>GADIsAdManagerApp</key>
+    <true />
   </dict>
 </plist>

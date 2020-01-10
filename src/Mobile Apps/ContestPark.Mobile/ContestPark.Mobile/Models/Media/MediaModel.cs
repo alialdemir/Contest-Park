@@ -7,5 +7,6 @@ namespace ContestPark.Mobile.Models.Media
         public Stream File { get; set; }
 
         public string FileName { get; set; }
+        public string AnalyticsEventLabel { get; internal set; }
     }
 }

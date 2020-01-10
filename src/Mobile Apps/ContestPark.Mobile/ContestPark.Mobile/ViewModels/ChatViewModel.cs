@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Chat;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Chat;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -20,6 +21,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IChatService _chatService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
 
@@ -28,10 +30,12 @@ namespace ContestPark.Mobile.ViewModels
         public ChatViewModel(IChatService chatService,
                              INavigationService navigationService,
                              IEventAggregator eventAggregator,
+                             IAnalyticsService analyticsService,
                              IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
             _chatService = chatService;
             _eventAggregator = eventAggregator;
+            _analyticsService = analyticsService;
         }
 
         #endregion Constructor
@@ -89,12 +93,18 @@ namespace ContestPark.Mobile.ViewModels
                 bool isSuccess = await _chatService.DeleteAsync(conversationId);
                 if (!isSuccess)
                 {
+                    _analyticsService.SendEvent("Mesaj", "Mesaj Sil", "Fail");
+
                     Items.Add(selectedModel);
                     Items.OrderByDescending(x => x.Date);
 
                     await DisplayAlertAsync("",
                         ContestParkResources.WeHadaProblemDeletingTheMessagePleaseTryAgain,
                         ContestParkResources.Okay);
+                }
+                else
+                {
+                    _analyticsService.SendEvent("Mesaj", "Mesaj Sil", "Success");
                 }
             }
 

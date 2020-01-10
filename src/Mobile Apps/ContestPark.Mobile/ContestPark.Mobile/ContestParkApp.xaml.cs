@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
@@ -33,6 +34,8 @@ namespace ContestPark.Mobile
         {
             try
             {
+                Crashes.SentErrorReport += Crashes_SentErrorReport;
+
                 InitializeComponent();
 
                 Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
@@ -54,7 +57,36 @@ namespace ContestPark.Mobile
             }
         }
 
+        /// <summary>
+        /// Uygulamada oluşan tüm hataları ga gönderildi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Crashes_SentErrorReport(object sender, SentErrorReportEventArgs e)
+        {
+            _analyticsService?.SendEvent("Hata", "Uygulama Hatalari ", e.Report.Exception.Message);
+        }
+
         #endregion OnInitialized
+
+        #region Properties
+
+        private IAnalyticsService _analyticsService;
+
+        public IAnalyticsService AnalyticsService
+        {
+            get
+            {
+                if (_analyticsService == null)
+                {
+                    _analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
+                }
+
+                return _analyticsService;
+            }
+        }
+
+        #endregion Properties
 
         #region Register Types
 

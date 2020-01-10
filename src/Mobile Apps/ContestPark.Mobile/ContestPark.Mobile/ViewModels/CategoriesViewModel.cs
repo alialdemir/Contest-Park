@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Signalr.Base;
@@ -9,6 +10,7 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,6 +23,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly ISignalRServiceBase _baseSignalRService;
         private readonly IAdMobService _adMobService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly ICategoryService _categoryServices;
 
         #endregion Private variables
@@ -33,6 +36,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IPageDialogService pageDialogService,
                                    IGameService gameService,
                                    IAdMobService adMobService,
+                                   IAnalyticsService analyticsService,
                                    IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService)
         {
@@ -45,6 +49,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _baseSignalRService = baseSignalRService;
             _adMobService = adMobService;
+            _analyticsService = analyticsService;
         }
 
         #endregion Constructor
@@ -91,6 +96,13 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
+
+            if (categoryId != 0)
+            {
+                string subCategoryName = Items.FirstOrDefault(x => x.CategoryId == categoryId).CategoryName;
+
+                _analyticsService.SendEvent("Kategori", "Tümünü Gör", subCategoryName);
+            }
 
             PushNavigationPageAsync($"{nameof(SearchView)}", new NavigationParameters
                                                 {

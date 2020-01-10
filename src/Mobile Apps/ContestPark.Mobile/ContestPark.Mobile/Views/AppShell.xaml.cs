@@ -1,5 +1,8 @@
-﻿using ContestPark.Mobile.Events;
+﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Services.Analytics;
 using Prism.Events;
+using Prism.Ioc;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -44,13 +47,20 @@ namespace ContestPark.Mobile.Views
 
             string name = ((MenuItem)sender).CommandParameter.ToString();
 
+            IAnalyticsService analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
+
             if (name == "facebook" || name == "twitter" || name == "instagram")
             {
+                analyticsService.SendEvent("Sol Menü", "Sosyal Medya", name);
+
                 OpenUri($"https://www.{name}.com/contestpark");
             }
             else if (!string.IsNullOrEmpty(name))
             {
+                analyticsService.SendEvent("Sol Menü", "Menü link", name);
+
                 Shell.Current.FlyoutIsPresented = false;
+
                 Current.GoToAsync(name);
             }
 
@@ -69,7 +79,7 @@ namespace ContestPark.Mobile.Views
         {
             if (!string.IsNullOrEmpty(url))
             {
-                Device.OpenUri(new Uri(url));
+                Xamarin.Forms.Device.OpenUri(new Uri(url));
             }
         }
 

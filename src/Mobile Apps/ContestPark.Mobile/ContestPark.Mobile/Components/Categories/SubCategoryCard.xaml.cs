@@ -109,7 +109,9 @@ namespace ContestPark.Mobile.Components
 
                 IGameService gameService = RegisterTypesConfig.Container.Resolve<IGameService>();
 
-                await gameService?.PushCategoryDetailViewAsync(SubCategoryId, IsCategoryOpen);
+                await gameService?.PushCategoryDetailViewAsync(SubCategoryId,
+                                                               IsCategoryOpen,
+                                                               SubCategoryName);
 
                 IsBusy = false;
             });

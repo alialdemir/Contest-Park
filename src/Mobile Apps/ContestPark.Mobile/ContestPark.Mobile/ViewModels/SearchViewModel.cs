@@ -185,7 +185,10 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            await _gameService.PushCategoryDetailViewAsync(selectedModel.SubCategoryId, selectedModel.IsCategoryOpen);
+            await _gameService.PushCategoryDetailViewAsync(
+                selectedModel.SubCategoryId,
+                selectedModel.IsCategoryOpen,
+                selectedModel.CategoryName);
 
             IsBusy = false;
         }
@@ -201,7 +204,8 @@ namespace ContestPark.Mobile.ViewModels
             if (selectedModel != null)
             {
                 _gameService?.PushCategoryDetailViewAsync(selectedModel.SubCategoryId,
-                                                          selectedModel.IsCategoryOpen);
+                                                          selectedModel.IsCategoryOpen,
+                                                          selectedModel.CategoryName);
             }
         }
 

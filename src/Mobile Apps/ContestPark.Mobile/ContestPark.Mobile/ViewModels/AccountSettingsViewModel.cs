@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Settings;
@@ -30,6 +31,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly ISettingsService _settingsService;
 
         private readonly IEventAggregator _eventAggregator;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private varaibles
 
@@ -38,7 +40,7 @@ namespace ContestPark.Mobile.ViewModels
         public AccountSettingsViewModel(ISettingsService settingsService,
                                         IPageDialogService dialogService,
                                         IEventAggregator eventAggregator,
-
+                                        IAnalyticsService analyticsService,
                                         IIdentityService identityService,
                                         IMediaService mediaService) : base(dialogService: dialogService)
         {
@@ -46,6 +48,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _settingsService = settingsService;
             _eventAggregator = eventAggregator;
+            _analyticsService = analyticsService;
             _identityService = identityService;
             _mediaService = mediaService;
         }
@@ -91,22 +94,6 @@ namespace ContestPark.Mobile.ViewModels
                                         CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
-
-                //////new MenuItemList(ContestParkResources.PasswordChange)
-                //////                {
-                //////                    new InputMenuItem {
-                //////                        Icon = "fas-lock",
-                //////                        IsPassword = true,
-                //////                        MenuType = Enums.MenuTypes.Input,
-                //////                        Placeholder = ContestParkResources.OldPassword,
-                //////                    },
-                //////                    new InputMenuItem {
-                //////                        IsPassword = true,
-                //////                        Icon = "fas-unlock",
-                //////                        MenuType = Enums.MenuTypes.Input,
-                //////                        Placeholder = ContestParkResources.NewPassword,
-                //////                    },
-                //////                },
             });
 
             return base.InitializeAsync();
@@ -117,13 +104,21 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ChangeCoverPicture()
         {
-            var media = await _mediaService.ShowMediaActionSheet();
-            if (media == null)
+            if (IsBusy)
                 return;
 
-            await _identityService.ChangeCoverPictureAsync(media);
+            IsBusy = true;
 
-            // TODO: reflesh menü ve profildeki resimler
+            var media = await _mediaService.ShowMediaActionSheet();
+            if (media != null)
+            {
+                await _identityService.ChangeCoverPictureAsync(media);
+
+                _analyticsService.SendEvent("Ayarlar", "Kapak Resmi Değiştir", media.AnalyticsEventLabel);
+            }
+
+            // TODO: reflesh menü ve profildeki resimleri güncelle
+            IsBusy = false;
         }
 
         /// <summary>
@@ -131,13 +126,22 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ChangeProfilePictureAsync()
         {
-            var media = await _mediaService.ShowMediaActionSheet();
-            if (media == null)
+            if (IsBusy)
                 return;
 
-            await _identityService.ChangeProfilePictureAsync(media);
+            IsBusy = true;
 
-            // TODO: reflesh menü ve profildeki resimler
+            var media = await _mediaService.ShowMediaActionSheet();
+            if (media != null)
+            {
+                await _identityService.ChangeProfilePictureAsync(media);
+
+                _analyticsService.SendEvent("Ayarlar", "Profil Resmi Değiştir", media.AnalyticsEventLabel);
+            }
+
+            // TODO: reflesh menü ve profildeki resimleri güncelle
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -149,38 +153,7 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             await UpdateUserInfoAsync();
-            ////await UpdatePasswordAsync();
         }
-
-        /// <summary>
-        /// Şifre değiştir
-        /// </summary>
-        //////private async Task UpdatePasswordAsync()
-        //////{
-        //////    var menuItems = Items.Select(p => p.MenuItems).ToList().LastOrDefault();
-
-        //////    string oldPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text;
-        //////    string newPassword = ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text;
-
-        //////    if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
-        //////        return;
-
-        //////    bool isSuccess = await _identityService.ChangePasswordAsync(new ChangePasswordModel
-        //////    {
-        //////        OldPassword = oldPassword,
-        //////        NewPassword = newPassword,
-        //////    });
-
-        //////    if (isSuccess)
-        //////    {
-        //////        ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.OldPassword)).Text = "";
-        //////        ((InputMenuItem)menuItems.FirstOrDefault(p => ((InputMenuItem)p).Placeholder == ContestParkResources.NewPassword)).Text = "";
-
-        //////        await DisplayAlertAsync(ContestParkResources.UpdateSuccessful,
-        //////                                ContestParkResources.YourPasswordHasBeenUpdated,
-        //////                                ContestParkResources.Okay);
-        //////    }
-        //////}
 
         /// <summary>
         /// Kullanıcı adı ve ad soyad bilgilerini güncelle
@@ -204,6 +177,8 @@ namespace ContestPark.Mobile.ViewModels
             });
             if (isSuccess)
             {
+                _analyticsService.SendEvent("Ayarlar", "Kullanıcı Bilgileri", $"{_settingsService.CurrentUser.UserName} - {userName}");
+
                 _settingsService.CurrentUser.UserName = userName;
                 _settingsService.CurrentUser.FullName = fullName;
 

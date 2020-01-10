@@ -333,7 +333,7 @@ namespace ContestPark.Chat.API.FunctionalTests
 
                 Assert.Equal("3333-3333-3333-bot", firstItem.UserId);
 
-                Assert.Equal("Bot", firstItem.FullName);
+                Assert.Equal("Bot", firstItem.UserName);
 
                 Assert.True(firstItem.IsBlocked);
             }

@@ -3,6 +3,7 @@ using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -21,7 +22,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly ISettingsService _settingsService;
-
+        private readonly IAnalyticsService _analyticsService;
         private readonly IIdentityService _identityService;
 
         #endregion Private variables
@@ -31,12 +32,14 @@ namespace ContestPark.Mobile.ViewModels
         public SignUpUserNameViewModel(IPopupNavigation popupNavigation,
                                        INavigationService navigationService,
                                        ISettingsService settingsService,
+                                       IAnalyticsService analyticsService,
                                        IPageDialogService dialogService,
                                        IIdentityService identityService) : base(navigationService: navigationService,
                                                                                 dialogService: dialogService,
                                                                                 popupNavigation: popupNavigation)
         {
             _settingsService = settingsService;
+            _analyticsService = analyticsService;
             _identityService = identityService;
         }
 
@@ -137,11 +140,17 @@ namespace ContestPark.Mobile.ViewModels
                 Password = PhoneNumber
             });
 
-            if (token != null)
+            bool isTokenExits = token != null;
+
+            _analyticsService.SendEvent("Login", "Login", isTokenExits ? "Success" : "Fail");
+
+            if (isTokenExits)
             {
                 _settingsService.SetTokenInfo(token);
 
                 _settingsService.SignUpCount += 1;
+
+                _analyticsService.SetUserId(_settingsService.CurrentUser.UserId);
 
                 await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
             }

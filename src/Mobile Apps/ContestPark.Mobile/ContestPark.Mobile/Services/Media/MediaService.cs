@@ -127,7 +127,8 @@ namespace ContestPark.Mobile.Services.Media
             return new MediaModel
             {
                 File = file.GetStream(),
-                FileName = Path.GetFileName(file.Path)
+                FileName = Path.GetFileName(file.Path),
+                AnalyticsEventLabel = "Galery"// GA eventleri için kamera mı yoksa galery'den mi fotoğraf yüklediğini ölçmek için eklendi
             };
         }
 
@@ -169,7 +170,8 @@ namespace ContestPark.Mobile.Services.Media
             return new MediaModel
             {
                 File = file.GetStream(),
-                FileName = Path.GetFileName(file.Path)
+                FileName = Path.GetFileName(file.Path),
+                AnalyticsEventLabel = "Kamera"// GA eventleri için kamera mı yoksa galery'den mi fotoğraf yüklediğini ölçmek için eklendi
             };
         }
 

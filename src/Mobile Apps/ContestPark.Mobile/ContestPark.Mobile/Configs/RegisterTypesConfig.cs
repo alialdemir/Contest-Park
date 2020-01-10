@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Bot;
@@ -214,6 +215,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.Register<IMediaService, MediaService>();
 
             containerRegistry.Register<IAdMobService, AdMobService>();
+
+            containerRegistry.RegisterSingleton<IAnalyticsService, AnalyticsService>();
 
             //containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
         }

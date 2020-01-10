@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "788456912839",
+    "firebase_url": "https://contestpark-4bef1.firebaseio.com",
+    "project_id": "contestpark-4bef1",
+    "storage_bucket": "contestpark-4bef1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788456912839:android:da736636ad6229e5488be2",
+        "android_client_info": {
+          "package_name": "com.contestparkapp.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788456912839-8al1tvk3rrb1r29635iikee54te6edmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTpEY2qodiQt7ilKOKi2E0IbMJpbQdTGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788456912839-8al1tvk3rrb1r29635iikee54te6edmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

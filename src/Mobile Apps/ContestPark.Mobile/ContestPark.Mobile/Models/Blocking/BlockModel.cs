@@ -47,5 +47,17 @@ namespace ContestPark.Mobile.Models.Blocking
                 RaisePropertyChanged(() => UserId);
             }
         }
+
+        private string _userName;
+
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+                RaisePropertyChanged(() => UserName);
+            }
+        }
     }
 }

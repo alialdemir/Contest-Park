@@ -3,8 +3,8 @@ using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.InAppBillingProduct;
-using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.Settings;
@@ -13,7 +13,6 @@ using Prism.Events;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -27,6 +26,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IBalanceService _balanceService;
         private readonly IAdMobService _adMobService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IInAppBillingService _inAppBillingService;
         private readonly ISettingsService _settingsService;
@@ -40,6 +40,7 @@ namespace ContestPark.Mobile.ViewModels
             IInAppBillingService inAppBillingService,
             IBalanceService balanceService,
             IAdMobService adMobService,
+            IAnalyticsService analyticsService,
             ISettingsService settingsService,
             IEventAggregator eventAggregator
             ) : base(dialogService: pageDialogService)
@@ -48,6 +49,7 @@ namespace ContestPark.Mobile.ViewModels
             _inAppBillingService = inAppBillingService;
             _balanceService = balanceService;
             _adMobService = adMobService;
+            _analyticsService = analyticsService;
             _settingsService = settingsService;
             _eventAggregator = eventAggregator;
         }
@@ -70,7 +72,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            _adMobService.OnRewardedVideoAdClosed += _adMobService_OnRewardedVideoAdClosed;
+            _adMobService.OnRewardedVideoAdClosed += OnRewardedVideoAdClosed;
 
             Products = await _inAppBillingService.GetProductInfoAsync();
             if (Products != null)
@@ -84,8 +86,10 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Reklam izleme işlemi bitnce altın eklemesi için servere istek gönderir
         /// </summary>
-        private async void _adMobService_OnRewardedVideoAdClosed(object sender, EventArgs e)
+        private async void OnRewardedVideoAdClosed(object sender, EventArgs e)
         {
+            _analyticsService.SendEvent("ContestStore", "Ücretsiz Altın", "Ücretsiz Altın");
+
             bool isSuccess = await _balanceService.RewardedVideoaAsync();
             if (!isSuccess)
             {
@@ -117,7 +121,11 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            var purchaseInfo = await _inAppBillingService.PurchaseAsync(productId);
+            string productName = Items.FirstOrDefault(x => x.ProductId == productId).ProductName;
+
+            _analyticsService.SendEvent("Enhanced ECommerce", "Impression", productName);
+
+            InAppBillingPurchaseModel purchaseInfo = await _inAppBillingService.PurchaseAsync(productId);
             if (purchaseInfo == null)
             {
                 IsBusy = false;
@@ -134,6 +142,8 @@ namespace ContestPark.Mobile.ViewModels
             });
             if (isSuccessGoldPurchase)
             {
+                SendProductEvent(purchaseInfo, "Purchase", productName);
+
                 await DisplayAlertAsync(
                     ContestParkResources.Success,
                     ContestParkResources.ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount,
@@ -151,19 +161,7 @@ namespace ContestPark.Mobile.ViewModels
                  Purchase failed. Your gold could not be uploaded to your account. Please send an email to support@contestpark.com address.
                  */
 
-                UserInfoModel userInfo = _settingsService.CurrentUser;
-
-                Debug.WriteLine($@"Satın alma işlemi api tarafından başarısız oldu!
-                                       UserId: {userInfo.UserId}
-                                       UserName: {userInfo.UserName}
-                                       Product Id: {purchaseInfo.ProductId}
-                                       Id: {purchaseInfo.Id}
-                                       Auto renewing: {purchaseInfo.AutoRenewing}
-                                       Payload: {purchaseInfo.Payload}
-                                       Purchase token: {purchaseInfo.PurchaseToken}
-                                       Transaction date utc: {purchaseInfo.TransactionDateUtc}
-                                       State: {purchaseInfo.State.ToString()}
-                                       Consumption state: {purchaseInfo.ConsumptionState.ToString()}");
+                SendProductEvent(purchaseInfo, "Remove From Cart", productName);
 
                 await DisplayAlertAsync(
                     ContestParkResources.Error,
@@ -172,6 +170,29 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// Product ga eventi gönderir
+        /// </summary>
+        /// <param name="purchaseInfo"></param>
+        /// <param name="eventAction"></param>
+        /// <param name="eventLabel"></param>
+        private void SendProductEvent(InAppBillingPurchaseModel purchaseInfo, string eventAction, string eventLabel)
+        {
+            _analyticsService.SendEvent("Enhanced ECommerce", new Dictionary<string, string>
+                {
+                    { "ea", eventAction },
+                    { "el", eventLabel },
+                    { "ProductId", purchaseInfo.ProductId },
+                    { "Id", purchaseInfo.Id },
+                    { "AutoRenewing", purchaseInfo.AutoRenewing.ToString() },
+                    { "Payload", purchaseInfo.Payload },
+                    { "PurchaseToken", purchaseInfo.PurchaseToken },
+                    { "TransactionDateUtc", purchaseInfo.TransactionDateUtc.ToLongDateString()},
+                    { "State", purchaseInfo.State.ToString() },
+                    { "ConsumptionState", purchaseInfo.ConsumptionState.ToString() },
+                });
         }
 
         /// <summary>
@@ -233,7 +254,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(() => _adMobService.OnRewardedVideoAdClosed -= _adMobService_OnRewardedVideoAdClosed);
+                return new Command(() => _adMobService.OnRewardedVideoAdClosed -= OnRewardedVideoAdClosed);
             }
         }
 

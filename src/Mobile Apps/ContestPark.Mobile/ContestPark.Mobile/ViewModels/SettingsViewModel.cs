@@ -1,6 +1,8 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -25,6 +27,8 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private readonly IIdentityService _identityService;
 
+        private readonly IAnalyticsService _analyticsService;
+
         /// <summary>
         /// Defines the _settingsService
         /// </summary>
@@ -36,10 +40,12 @@ namespace ContestPark.Mobile.ViewModels
 
         public SettingsViewModel(INavigationService navigationService,
                                  IIdentityService identityService,
+                                 IAnalyticsService analyticsService,
                                  ISettingsService settingsService) : base(navigationService)
         {
             Title = ContestParkResources.Settings;
             _identityService = identityService;
+            _analyticsService = analyticsService;
             _settingsService = settingsService;
         }
 
@@ -66,15 +72,13 @@ namespace ContestPark.Mobile.ViewModels
                                         CommandParameter = nameof(LanguageView),
                                         Icon = "settings_language.svg",
                                         Title = ContestParkResources.Language,
-                                        MenuType = Enums.MenuTypes.Label,
-                                        //IconColor ="#0D0D0D",
+                                        MenuType = MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
-                                    new Models.MenuItem.SwitchMenuItem {
+                                    new SwitchMenuItem {
                                         Icon = "settings_sound.svg",
                                         Title = ContestParkResources.Sounds,
-                                        MenuType = Enums.MenuTypes.Switch,
-                                        //IconColor ="#0D0D0D",
+                                        MenuType = MenuTypes.Switch,
                                         IsToggled = _settingsService.IsSoundEffectActive,
                                         SingleTap =  new Command(()=> ChangeSoundAsync()),
                                         CornerRadius = new CornerRadius(0,0,8,8)
@@ -87,23 +91,20 @@ namespace ContestPark.Mobile.ViewModels
                                         CommandParameter = nameof(AccountSettingsView),
                                         Icon = "settings_account.svg",
                                         Title = ContestParkResources.EditProfile,
-                                        MenuType = Enums.MenuTypes.Label,
-                                        //IconColor ="#0D0D0D",
+                                        MenuType = MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
                                     new TextMenuItem {
                                         CommandParameter = nameof(BlockingView),
                                         Icon = "settings_blocked.svg",
                                         Title = ContestParkResources.Blocking,
-                                        MenuType = Enums.MenuTypes.Label,
-                                        //IconColor ="#0D0D0D",
+                                        MenuType = MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
                                     new SwitchMenuItem {
                                         Icon = "settings_private_profile.svg",
                                         Title = ContestParkResources.PrivateProfile,
-                                        MenuType = Enums.MenuTypes.Switch,
-                                        //IconColor ="#0D0D0D",
+                                        MenuType = MenuTypes.Switch,
                                         IsToggled = _settingsService.CurrentUser.IsPrivateProfile,
                                         SingleTap = new Command( async()=> await  ChangePrivateProfileAsync()),
                                         CornerRadius = new CornerRadius(0,0,8,8)
@@ -115,8 +116,7 @@ namespace ContestPark.Mobile.ViewModels
                                     new TextMenuItem {
                                         Icon = "settings_log_out.svg",
                                         Title = ContestParkResources.LogOut,
-                                        MenuType = Enums.MenuTypes.Label,
-                                        //IconColor ="#0D0D0D",
+                                        MenuType = MenuTypes.Label,
                                         SingleTap = new Command(async()=> await ExitAppAsync()),
                                         CornerRadius = new CornerRadius(0,0,8,8)
                                     },
@@ -133,6 +133,8 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ChangePrivateProfileAsync()
         {
+            _analyticsService.SendEvent("Ayarlar", "Ayarlar", "Private Profil");
+
             _settingsService.CurrentUser.IsPrivateProfile = !_settingsService.CurrentUser.IsPrivateProfile;
 
             bool isSuccess = await _identityService.UpdateUserInfoAsync(new UpdateUserInfoModel
@@ -158,6 +160,8 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ChangeSoundAsync()
         {
+            _analyticsService.SendEvent("Ayarlar", "Ayarlar", "Ses Ayarı");
+
             _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
         }
 
@@ -172,6 +176,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
+
+            _analyticsService.SendEvent("Ayarlar", "Ayarlar", name);
 
             await PushNavigationPageAsync(name);
 

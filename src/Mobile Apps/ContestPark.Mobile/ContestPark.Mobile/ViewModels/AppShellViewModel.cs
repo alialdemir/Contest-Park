@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.User;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -17,6 +18,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IBalanceService _cpService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
 
@@ -27,10 +29,12 @@ namespace ContestPark.Mobile.ViewModels
         public AppShellViewModel(INavigationService navigationService,
                                  IEventAggregator eventAggregator,
                                  IBalanceService cpService,
+                                 IAnalyticsService analyticsService,
                                  ISettingsService settingsService) : base(navigationService)
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
+            _analyticsService = analyticsService;
             _settingsService = settingsService;
 
             InitializeCommand?.Execute(null);
@@ -157,6 +161,8 @@ namespace ContestPark.Mobile.ViewModels
             {
                 if (_eventAggregator != null)
                 {
+                    _analyticsService.SendEvent("Sol Menü", "Sol menü profil fotoğrafı", _settingsService.CurrentUser.UserName);
+
                     _eventAggregator.GetEvent<TabChangeEvent>().Publish(Enums.Tabs.Profile);
 
                     _eventAggregator

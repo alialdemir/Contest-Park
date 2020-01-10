@@ -164,13 +164,9 @@ namespace ContestPark.Mobile.ViewModels
             CategoryDetail.IsSubCategoryFollowUpStatus = !CategoryDetail.IsSubCategoryFollowUpStatus;
 
             if (CategoryDetail.IsSubCategoryFollowUpStatus)
-            {
                 CategoryDetail.FollowerCount++;
-            }
             else
-            {
                 CategoryDetail.FollowerCount--;
-            }
         }
 
         #endregion Methods

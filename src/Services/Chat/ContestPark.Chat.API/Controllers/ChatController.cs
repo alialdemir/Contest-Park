@@ -295,7 +295,12 @@ namespace ContestPark.Chat.API.Controllers
             IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(result.Items.Select(x => x.UserId).AsEnumerable());
             if (users != null && users.Count() != 0)
             {
-                result.Items.ToList().ForEach(block => block.FullName = users.FirstOrDefault(u => u.UserId == block.UserId).FullName);
+                result.Items.ToList().ForEach(block =>
+                {
+                    var user = users.FirstOrDefault(u => u.UserId == block.UserId);
+                    block.UserName = user.FullName;
+                    block.UserName = user.UserName;
+                });
             }
 
             return Ok(result);

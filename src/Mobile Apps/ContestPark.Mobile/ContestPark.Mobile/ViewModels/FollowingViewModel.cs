@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models.Follow;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -17,6 +18,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IFollowService _followService;
+        private readonly IAnalyticsService _analyticsService;
         private string userId;
 
         #endregion Private variables
@@ -26,10 +28,12 @@ namespace ContestPark.Mobile.ViewModels
         public FollowingViewModel(
                 INavigationService navigationService,
                 IPageDialogService dialogService,
-                IFollowService followService
+                IFollowService followService,
+                IAnalyticsService analyticsService
             ) : base(navigationService, dialogService)
         {
             _followService = followService;
+            _analyticsService = analyticsService;
             Title = ContestParkResources.Following;
         }
 
@@ -53,11 +57,16 @@ namespace ContestPark.Mobile.ViewModels
             if (IsBusy || string.IsNullOrEmpty(userId))
                 return;
 
-            IsBusy = true;
-
-            FollowModel followModel = Items.Where(x => x.UserId == userId).First();
+            FollowModel followModel = Items.Where(x => x.UserId == userId).FirstOrDefault();
             if (followModel == null)
                 return;
+
+            IsBusy = true;
+
+            _analyticsService.SendEvent("Takipleşme", followModel.IsFollowing
+                ? "Takip Edilenler - Takip Et"
+                : "Takip Edilenler - Takipten Çıkart"
+                , $"{followModel.UserId}");
 
             Items.Where(x => x.UserId == userId).First().IsFollowing = !followModel.IsFollowing;
 
