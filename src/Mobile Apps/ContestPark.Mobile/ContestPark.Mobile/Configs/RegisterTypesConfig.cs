@@ -143,72 +143,72 @@ namespace ContestPark.Mobile.Configs
 
             if (!GlobalSetting.Instance.IsMockData)
             {
-                containerRegistry.Register<IIdentityService, IdentityService>();
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
-                containerRegistry.Register<IInAppBillingService, InAppBillingService>();
+                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
 
-                containerRegistry.Register<IBlockingService, BlockingService>();
+                containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
-                containerRegistry.Register<IPostService, PostService>();
+                containerRegistry.RegisterSingleton<IPostService, PostService>();
 
-                containerRegistry.Register<ICategoryService, CategoryServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
-                containerRegistry.Register<IChatService, ChatService>();
+                containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
-                containerRegistry.Register<IBalanceService, BalanceService>();
+                containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
-                containerRegistry.Register<IMissionService, MissionService>();
+                containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
-                containerRegistry.Register<IDuelService, DuelService>();
+                containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
-                containerRegistry.Register<IFollowService, FollowService>();
+                containerRegistry.RegisterSingleton<IFollowService, FollowService>();
 
-                containerRegistry.Register<IRequestProvider, RequestProvider>();
+                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
 
-                containerRegistry.Register<ISignalRServiceBase, SignalRServiceBase>();
+                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
-                containerRegistry.Register<IDuelSignalRService, DuelSignalRService>();
+                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
-                containerRegistry.Register<IScoreService, ScoreService>();
+                containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
             }
             else
             {
-                containerRegistry.Register<IIdentityService, IdentityMockService>();
+                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
 
-                containerRegistry.Register<IInAppBillingService, InAppBillingMockService>();
+                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
 
-                containerRegistry.Register<IBlockingService, BlockingMockService>();
+                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
 
-                containerRegistry.Register<IPostService, PostMockService>();
+                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
 
-                containerRegistry.Register<ICategoryService, CategoryMockServices>();
+                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
 
-                containerRegistry.Register<IChatService, ChatMockService>();
+                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
 
-                containerRegistry.Register<IBalanceService, BalanceMockService>();
+                containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
-                containerRegistry.Register<IMissionService, MissionMockService>();
+                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
 
-                containerRegistry.Register<IDuelService, DuelMockService>();
+                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 
-                containerRegistry.Register<IFollowService, FollowMockService>();
+                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
 
-                containerRegistry.Register<IRequestProvider, RequestProvider>();
+                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
 
-                containerRegistry.Register<ISignalRServiceBase, SignalRMockServiceBase>();
+                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
 
-                containerRegistry.Register<IDuelSignalRService, DuelSignalRMockService>();
+                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
 
-                containerRegistry.Register<IScoreService, ScoreMockService>();
+                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
             }
 
-            containerRegistry.Register<ISettingsService, SettingsService>();
+            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
 
-            containerRegistry.Register<IBotService, BotService>();
+            containerRegistry.RegisterSingleton<IBotService, BotService>();
 
-            containerRegistry.Register<IGameService, GameService>();
+            containerRegistry.RegisterSingleton<IGameService, GameService>();
 
-            containerRegistry.Register<ICacheService, CacheService>();
+            containerRegistry.RegisterSingleton<ICacheService, CacheService>();
 
             containerRegistry.Register<IAudioService, AudioService>();
 
@@ -216,7 +216,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.Register<IAdMobService, AdMobService>();
 
-            containerRegistry.Register<IAnalyticsService, AnalyticsService>();
+            containerRegistry.RegisterSingleton<IAnalyticsService, AnalyticsService>();
 
             //containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
         }

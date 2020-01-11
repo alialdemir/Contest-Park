@@ -47,6 +47,7 @@
     <AndroidLinkMode>Full</AndroidLinkMode>
     <AndroidLinkSkip>
     </AndroidLinkSkip>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
