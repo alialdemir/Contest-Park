@@ -1,35 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <linker>
 
+  <assembly fullname="SQLite-net">
+    <type fullname="*" preserve="all" />
+  </assembly>
+
+  <assembly fullname="SQLitePCLRaw.batteries_v2">
+    <type fullname="*" preserve="all" />
+  </assembly>
+
+  <assembly fullname="SQLitePCLRaw.core">
+    <type fullname="*" preserve="all" />
+  </assembly>
+
   <assembly fullname="DryIoc">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
   </assembly>
 
   <assembly fullname="System">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
   </assembly>
 
   <assembly fullname="mscorlib">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
   </assembly>
 
   <assembly fullname="Prism">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
   </assembly>
 
   <assembly fullname="Prism.DryIoc.Forms">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
   </assembly>
 
-  <assembly fullname="CrisisConnect">
-    <type fullname="*" />
+  <assembly fullname="ContestPark.Mobile">
+    <type fullname="*" preserve="all" />
   </assembly>
 
   <assembly fullname="Prism.Forms">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
+  </assembly>
+
+  <assembly fullname="Plugin.Permissions">
+    <type fullname="*" preserve="all" />
   </assembly>
 
   <assembly fullname="Newtonsoft.Json">
-    <type fullname="*" />
+    <type fullname="*" preserve="all" />
   </assembly>
 </linker>
