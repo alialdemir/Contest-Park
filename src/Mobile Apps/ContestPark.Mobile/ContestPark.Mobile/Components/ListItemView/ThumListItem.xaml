@@ -26,7 +26,7 @@
             HeightRequest="80"
             IsClippedToBounds="True"
             Visual="Material">
-            <Components:CustomGrid
+            <Grid
                 x:Name="cstmGrid"
                 Padding="17,17,0,17"
                 ColumnSpacing="7"
@@ -94,7 +94,7 @@
                     IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
                     VerticalOptions="CenterAndExpand"
                     WidthRequest="25" />
-            </Components:CustomGrid>
+            </Grid>
         </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

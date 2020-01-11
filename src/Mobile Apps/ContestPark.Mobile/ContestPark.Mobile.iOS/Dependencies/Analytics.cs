@@ -1,11 +1,10 @@
 ﻿using ContestPark.Mobile.Dependencies;
-using Firebase.Analytics;
 using Foundation;
 using System.Collections.Generic;
 using System.Globalization;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Analytics))]
+[assembly: Dependency(typeof(ContestPark.Mobile.iOS.Dependencies.Analytics))]
 
 namespace ContestPark.Mobile.iOS.Dependencies
 {

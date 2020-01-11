@@ -21,28 +21,26 @@
             HasShadow="True"
             HeightRequest="80"
             IsClippedToBounds="True">
-            <components:CustomGrid
+            <Grid
                 x:Name="thumListItem"
                 Margin="14,15,14,15"
                 ColumnSpacing="0"
-                CommandParameter="{Binding SubCategoryId}"
                 RowSpacing="0">
 
-                <components:CustomGrid.RowDefinitions>
+                <Grid.RowDefinitions>
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
-                </components:CustomGrid.RowDefinitions>
-                <components:CustomGrid.ColumnDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="Auto" />
-                </components:CustomGrid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
                 <components:CachedImage
                     x:Name="imgCategory"
                     Grid.RowSpan="2"
                     Grid.Column="0"
-                    CommandParameter="{Binding SubCategoryId}"
                     HeightRequest="50"
                     Source="{Binding Path=PicturePath}"
                     VerticalOptions="Center"
@@ -79,7 +77,7 @@
                     DisplayCoins="{Binding DisplayPrice}"
                     HorizontalOptions="Center"
                     IsVisible="{Binding IsCategoryOpen, Converter={StaticResource not}}" />
-            </components:CustomGrid>
+            </Grid>
         </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

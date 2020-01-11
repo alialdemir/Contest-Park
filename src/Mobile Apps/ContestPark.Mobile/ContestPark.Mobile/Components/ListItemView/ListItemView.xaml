@@ -16,7 +16,7 @@
             HasShadow="True"
             HeightRequest="80"
             IsClippedToBounds="True">
-            <Components:CustomGrid
+            <Grid
                 x:Name="cstmGrid"
                 Margin="14,15,14,15"
                 ColumnSpacing="0"
@@ -73,8 +73,7 @@
                     HorizontalTextAlignment="End"
                     Text="{Binding Path=Date, Source={x:Reference listItemView}}"
                     TextColor="#181C2F" />
-
-            </Components:CustomGrid>
+            </Grid>
         </yummy:PancakeView>
     </ContentView.Content>
 </ContentView>

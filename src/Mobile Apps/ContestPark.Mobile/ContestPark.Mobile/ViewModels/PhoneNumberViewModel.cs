@@ -13,6 +13,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -200,10 +201,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(() =>
-          {
-              Device.OpenUri(new Uri("https://d2blqp3orvbj09.cloudfront.net/privacy-policy.html"));
-          });
+                return new Command(() => Launcher.OpenAsync(new Uri("https://d2blqp3orvbj09.cloudfront.net/privacy-policy.html")));
             }
         }
 

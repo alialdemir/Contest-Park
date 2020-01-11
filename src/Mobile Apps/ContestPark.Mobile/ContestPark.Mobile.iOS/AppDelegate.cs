@@ -46,7 +46,7 @@ namespace ContestPark.Mobile.iOS
 
             //   MobileAds.SharedInstance.Start(CompletionHandler);
 
-            Firebase.Core.App.Configure();
+            //Firebase.Core.App.Configure();
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 

@@ -3,7 +3,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Analytics;
 using Prism.Events;
 using Prism.Ioc;
-using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -79,7 +79,7 @@ namespace ContestPark.Mobile.Views
         {
             if (!string.IsNullOrEmpty(url))
             {
-                Xamarin.Forms.Device.OpenUri(new Uri(url));
+                Launcher.OpenAsync(url);
             }
         }
 

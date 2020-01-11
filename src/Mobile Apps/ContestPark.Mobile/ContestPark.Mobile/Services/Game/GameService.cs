@@ -89,7 +89,7 @@ namespace ContestPark.Mobile.Services.Game
 
                 string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.SelectProcess,
                                                                                    ContestParkResources.Cancel,
-                                                                                   "",
+                                                                                   null,
                                                                                    //buttons
                                                                                    ContestParkResources.FindOpponent,
                                                                                    ContestParkResources.Ranking,

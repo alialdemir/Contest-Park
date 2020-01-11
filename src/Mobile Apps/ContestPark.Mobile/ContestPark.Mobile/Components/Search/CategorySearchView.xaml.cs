@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using ContestPark.Mobile.Models.Categories;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,7 +23,15 @@ namespace ContestPark.Mobile.Components.Search
         {
             set
             {
-                thumListItem.SingleTap = imgCategory.Command = value;
+                TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer
+                {
+                    Command = value,
+                    CommandParameter = ((SearchModel)BindingContext).SubCategoryId
+                };
+
+                thumListItem.GestureRecognizers.Add(tapGestureRecognizer);
+
+                imgCategory.GestureRecognizers.Add(tapGestureRecognizer);
             }
         }
 

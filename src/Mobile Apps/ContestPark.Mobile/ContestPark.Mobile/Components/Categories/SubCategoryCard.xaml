@@ -1,58 +1,66 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<components:CustomGrid
+<ContentView
     x:Class="ContestPark.Mobile.Components.SubCategoryCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    x:Name="customGrid"
-    RowSpacing="0">
-    <components:CustomGrid.RowDefinitions>
-        <RowDefinition Height="90" />
-        <RowDefinition Height="Auto" />
-    </components:CustomGrid.RowDefinitions>
-    <components:CustomGrid.ColumnDefinitions>
-        <ColumnDefinition Width="80" />
-    </components:CustomGrid.ColumnDefinitions>
+    xmlns:ges="clr-namespace:ContestPark.Mobile.GestureRecognizer"
+    x:Name="subCategoryCard">
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
 
-    <cacheImage:CachedImage
-        x:Name="imgSubCategoryImageSource"
-        Grid.Row="0"
-        Grid.Column="0"
-        Aspect="AspectFit"
-        CacheDuration="365"
-        DownsampleToViewSize="true"
-        HeightRequest="73"
-        WidthRequest="73" />
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}" />
+                <ges:LongPressGestureRecognizer Command="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}" />
+            </Grid.GestureRecognizers>
 
-    <Label
-        x:Name="lblSubCategoryName"
-        Grid.Row="1"
-        Grid.Column="0"
-        FontFamily="{DynamicResource SofiaProMedium}"
-        FontSize="13"
-        HorizontalTextAlignment="Center"
-        TextColor="#404040" />
+            <cacheImage:CachedImage
+                x:Name="imgSubCategoryImageSource"
+                Grid.Row="0"
+                Grid.Column="0"
+                Aspect="AspectFit"
+                CacheDuration="365"
+                DownsampleToViewSize="true"
+                HeightRequest="73"
+                WidthRequest="73" />
 
-    <Image
-        x:Name="goldBadge"
-        HeightRequest="42"
-        HorizontalOptions="End"
-        Source="singlecoin.png"
-        TranslationX="6"
-        TranslationY="6"
-        VerticalOptions="End"
-        WidthRequest="42" />
+            <Label
+                x:Name="lblSubCategoryName"
+                Grid.Row="1"
+                Grid.Column="0"
+                FontFamily="{DynamicResource SofiaProMedium}"
+                FontSize="13"
+                HorizontalTextAlignment="Center"
+                TextColor="#404040" />
 
-    <Label
-        x:Name="lblDisplayPrice"
-        Margin="0"
-        FontSize="14"
-        HorizontalOptions="CenterAndExpand"
-        HorizontalTextAlignment="Center"
-        TextColor="Black"
-        TranslationX="30"
-        TranslationY="28"
-        VerticalOptions="CenterAndExpand"
-        VerticalTextAlignment="Center" />
-</components:CustomGrid>
+            <Image
+                x:Name="goldBadge"
+                HeightRequest="42"
+                HorizontalOptions="End"
+                Source="singlecoin.png"
+                TranslationX="6"
+                TranslationY="6"
+                VerticalOptions="End"
+                WidthRequest="42" />
+
+            <Label
+                x:Name="lblDisplayPrice"
+                Margin="0"
+                FontSize="14"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                TextColor="Black"
+                TranslationX="30"
+                TranslationY="28"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

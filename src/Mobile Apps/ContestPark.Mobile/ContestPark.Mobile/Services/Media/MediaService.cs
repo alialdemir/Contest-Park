@@ -76,7 +76,7 @@ namespace ContestPark.Mobile.Services.Media
         {
             string selected = await _pageDialogService?.DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
                                                                                     ContestParkResources.Cancel,
-                                                                                    "",
+                                                                                    null,
                                                                                     //buttons
                                                                                     ContestParkResources.ChooseFromLibrary,
                                                                                     ContestParkResources.TakeAPhoto);

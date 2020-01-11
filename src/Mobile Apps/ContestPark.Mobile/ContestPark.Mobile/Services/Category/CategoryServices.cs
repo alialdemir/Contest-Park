@@ -91,6 +91,8 @@ namespace ContestPark.Mobile.Services.Category
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/FollowStatus");
 
             var result = await _requestProvider.GetAsync<SubCategoryFollowModel>(uri);
+            if (result.Data == null)
+                return false;
 
             return result.Data.IsSubCategoryFollowed;
         }
@@ -148,6 +150,9 @@ namespace ContestPark.Mobile.Services.Category
             }
 
             var response = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
+
+            if (response.Data == null)
+                response.Data = new ServiceModel<CategoryModel>();
 
             if (response.Data != null && response.IsSuccess)
             {
