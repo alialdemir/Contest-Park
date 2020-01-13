@@ -9,8 +9,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -40,6 +38,7 @@
 		<string>Fonts/iconize-fontawesome-regular.ttf</string>
 		<string>Fonts/iconize-fontawesome-solid.ttf</string>
 		<string>Fonts/iconize-fontawesome-brands.ttf</string>
+		<string>Fonts/icomoon.ttf</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -69,6 +68,10 @@
 	<key>GADIsAdManagerApp</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>

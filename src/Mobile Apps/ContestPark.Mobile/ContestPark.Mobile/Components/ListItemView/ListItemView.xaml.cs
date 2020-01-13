@@ -156,7 +156,7 @@ namespace ContestPark.Mobile.Components
 
             cstmGrid.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = LongPressed,
+                Command = SingleTap,
                 CommandParameter = CommandParameter
             });
         }

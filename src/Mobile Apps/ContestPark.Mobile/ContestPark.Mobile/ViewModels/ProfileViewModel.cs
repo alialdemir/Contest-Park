@@ -213,7 +213,7 @@ namespace ContestPark.Mobile.ViewModels
 
             string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
                                                             ContestParkResources.Cancel,
-                                                            "",
+                                                            null,
                                                             //buttons
                                                             ContestParkResources.ShowImage,
                                                             ContestParkResources.ChooseFromLibrary,
@@ -276,7 +276,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteGotoFollowersCommand()
         {
-            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId) || ProfileInfo.FollowersCount == "0")
+            if (IsBusy || (ProfileInfo != null && string.IsNullOrEmpty(ProfileInfo.UserId) || ProfileInfo.FollowersCount == "0"))
                 return;
 
             IsBusy = true;
@@ -294,7 +294,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteGotoFollowingCommand()
         {
-            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId) || ProfileInfo.FollowUpCount == "0")
+            if (IsBusy || (ProfileInfo != null && string.IsNullOrEmpty(ProfileInfo.UserId) || ProfileInfo.FollowUpCount == "0"))
                 return;
 
             IsBusy = true;
@@ -314,7 +314,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
                                                             ContestParkResources.Cancel,
-                                                               "",
+                                                               null,
                                                            //buttons
                                                            ProfileInfo.IsBlocked ? ContestParkResources.RemoveBlock : ContestParkResources.Block);
             if (string.Equals(selected, ContestParkResources.RemoveBlock) || string.Equals(selected, ContestParkResources.Block))

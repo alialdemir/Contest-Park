@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView
-                Margin="10,15,10,0"
+                Margin="8,8,8,0"
                 Padding="10"
                 BackgroundColor="{StaticResource White}"
                 CornerRadius="8"
@@ -63,7 +63,7 @@
                                 <Span
                                     FontAttributes="Bold"
                                     FontSize="18"
-                                    Text="&#x0a;Unutmayın! topladığınız para 20$ üzerine geçince iban numaranızı göndererek paranızı çekebilirsiniz." />
+                                    Text="&#x0a;Unutmayın! topladığınız para 100TL üzerine geçince iban numaranızı göndererek paranızı çekebilirsiniz." />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>

@@ -21,7 +21,7 @@
                 TextColor="#404040"
                 VerticalOptions="Center" />
 
-            <Label
+            <!--<Label
                 FontAttributes="Bold"
                 FontFamily="{DynamicResource SofiaProRegular}"
                 FontSize="14"
@@ -32,7 +32,7 @@
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=SeeAllPressed, Source={x:Reference page}}" CommandParameter="{Binding Path=SeeAllCommandParameter, Source={x:Reference page}}" />
                 </Label.GestureRecognizers>
-            </Label>
+            </Label>-->
         </StackLayout>
     </ContentView.Content>
 </ContentView>

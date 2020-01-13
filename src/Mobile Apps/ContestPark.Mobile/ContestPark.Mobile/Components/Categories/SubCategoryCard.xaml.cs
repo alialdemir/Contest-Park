@@ -156,7 +156,6 @@ namespace ContestPark.Mobile.Components
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-
             lblDisplayPrice.IsVisible = goldBadge.IsVisible = !IsCategoryOpen;
         }
 

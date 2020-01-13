@@ -36,16 +36,14 @@
 
                     <yummy:PancakeView
                         Grid.Row="0"
-                        Margin="10,12,10,0"
+                        Margin="0"
                         Padding="0"
                         BackgroundGradientEndColor="#14D2B8"
                         BackgroundGradientStartColor="#27DB94"
-                        CornerRadius="10"
                         Elevation="6"
                         HasShadow="True"
                         HeightRequest="280"
                         HorizontalOptions="FillAndExpand"
-                        IsClippedToBounds="True"
                         VerticalOptions="FillAndExpand">
                         <Grid ColumnSpacing="0" RowSpacing="0">
                             <Grid.RowDefinitions>
@@ -87,6 +85,7 @@
                         Margin="24,0,24,0"
                         BackgroundColor="{StaticResource White}"
                         CornerRadius="8"
+                        Elevation="6"
                         HasShadow="True"
                         HeightRequest="235"
                         IsClippedToBounds="True"
@@ -142,6 +141,7 @@
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="1"
+                                FontAttributes="Bold"
                                 FontFamily="{StaticResource SofiaProSemiBold}"
                                 FontSize="16"
                                 HorizontalTextAlignment="Center"

@@ -10,11 +10,11 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentView.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BalanceConverter x:Key="bc" />
         </ResourceDictionary>
-    </ContentView.Resources>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView
@@ -60,9 +60,8 @@
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="16"
                         HorizontalTextAlignment="Center"
-                        Text="Kazancını çekebilmen için minimum 20$ kazanmış olman gerekmektedir."
+                        Text="Kazancını çekebilmen için minimum 100 TL kazanmış olman gerekmektedir."
                         TextColor="{StaticResource Black}" />
-
 
                     <custom:LinearGradientButton
                         Grid.Row="3"

@@ -198,12 +198,26 @@ namespace ContestPark.Mobile.ViewModels.Base
     }
 
     public abstract class ViewModelBase<TModel> : ViewModelBase where TModel : IModelBase
+
     {
         #region Constructor
 
         public ViewModelBase(INavigationService navigationService = null,
                              IPageDialogService dialogService = null,
-                             IPopupNavigation popupNavigation = null) : base(navigationService, dialogService, popupNavigation) { }
+                             IPopupNavigation popupNavigation = null,
+                             bool isActiveSkeletonLoading = false) : base(navigationService, dialogService, popupNavigation)
+        {
+            if (isActiveSkeletonLoading)
+            {
+                Items.Add(default(TModel));
+                Items.Add(default(TModel));
+                Items.Add(default(TModel));
+                Items.Add(default(TModel));
+                Items.Add(default(TModel));
+                Items.Add(default(TModel));
+                Items.Add(default(TModel));
+            }
+        }
 
         #endregion Constructor
 
@@ -241,8 +255,13 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <returns></returns>
         protected override Task InitializeAsync()
         {
+            Items.Clear();// Skeleton dataları silindi
+
             if (ServiceModel != null && ServiceModel.Items != null && ServiceModel.Items.Any())
+            {
+                IsShowEmptyMessage = false;
                 Items.AddRange(ServiceModel.Items);
+            }
             else IsShowEmptyMessage = true;
 
             if (ServiceModel != null && ServiceModel.HasNextPage)

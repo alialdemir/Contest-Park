@@ -3,13 +3,24 @@
     x:Class="ContestPark.Mobile.Components.ListItemView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
+    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="listItemView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:SkeletonLoadingConverter x:Key="slc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <yummy:PancakeView
-            Margin="10,6,10,0"
+            Margin="8,6,8,0"
             Padding="0"
+            extension:Skeleton.Animation="Fade"
+            extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+            extension:Skeleton.IsParent="True"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
@@ -32,9 +43,11 @@
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
 
-                <Components:CircleImage
+                <components:CircleImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference listItemView}}"
                     CommandParameter="{Binding UserName}"
                     HeightRequest="50"
@@ -46,6 +59,8 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="14,0,0,0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontAttributes="Bold"
                     FontFamily="{DynamicResource SofiaProSemiBold}"
                     FontSize="18"
@@ -53,11 +68,13 @@
                     Text="{Binding Path=Text, Source={x:Reference listItemView}}"
                     TextColor="#181C2F" />
 
-                <Components:HtmlLabel
+                <components:HtmlLabel
                     Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Margin="14,0,0,0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontFamily="{DynamicResource SofiaProLight}"
                     FontSize="14"
                     LineBreakMode="TailTruncation"

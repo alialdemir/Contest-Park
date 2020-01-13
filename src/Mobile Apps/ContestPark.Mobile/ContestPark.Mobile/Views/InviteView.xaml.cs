@@ -11,6 +11,7 @@ namespace ContestPark.Mobile.Views
         public InviteView()
         {
             InitializeComponent();
+            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = ImageSource.FromFile("menuicon.png") });
         }
 
         #endregion Constructor

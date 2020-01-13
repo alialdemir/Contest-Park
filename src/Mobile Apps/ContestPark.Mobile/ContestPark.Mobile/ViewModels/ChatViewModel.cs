@@ -31,11 +31,12 @@ namespace ContestPark.Mobile.ViewModels
                              INavigationService navigationService,
                              IEventAggregator eventAggregator,
                              IAnalyticsService analyticsService,
-                             IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
+                             IPageDialogService pageDialogService) : base(navigationService, pageDialogService, isActiveSkeletonLoading: true)
         {
             _chatService = chatService;
             _eventAggregator = eventAggregator;
             _analyticsService = analyticsService;
+            Title = ContestParkResources.Chat;
         }
 
         #endregion Constructor
@@ -63,6 +64,28 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Properties
 
         #region Methods
+
+        protected override async Task InitializeAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _chatService.UserChatList(ServiceModel);
+            await base.InitializeAsync();
+
+            //////if (!string.IsNullOrEmpty(BadgeCount))
+            //////{
+            //////    bool isSuccess = await _chatService.ChatSeenAsync();
+            //////    if (isSuccess)
+            //////        BadgeCount = string.Empty;
+            //////}
+
+            SubscriptionReflesh();
+
+            IsBusy = false;
+        }
 
         /// <summary>
         /// Mesaj sil
@@ -133,30 +156,6 @@ namespace ContestPark.Mobile.ViewModels
                     {"SenderProfilePicturePath", selectedModel.UserProfilePicturePath }
                 }, useModalNavigation: false);
             }
-
-            IsBusy = false;
-        }
-
-        protected override async Task InitializeAsync()
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            ServiceModel = await _chatService.UserChatList(ServiceModel);
-            await base.InitializeAsync();
-
-            //////if (!string.IsNullOrEmpty(BadgeCount))
-            //////{
-            //////    bool isSuccess = await _chatService.ChatSeenAsync();
-            //////    if (isSuccess)
-            //////        BadgeCount = string.Empty;
-            //////}
-
-            SubscriptionReflesh();
-
-            Title = ContestParkResources.Chat;
 
             IsBusy = false;
         }

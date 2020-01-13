@@ -8,6 +8,11 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
 
+            <OnPlatform x:Key="icomoon" x:TypeArguments="x:String">
+                <On Platform="Android" Value="icomoon.ttf#icomoon" />
+                <On Platform="iOS" Value="icomoon" />
+            </OnPlatform>
+
             <OnPlatform x:Key="SofiaProRegular" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Sofia Pro Regular Az.otf#Sofia Pro Regular Az" />
                 <On Platform="iOS" Value="Sofia Pro Regular Az" />
@@ -60,6 +65,7 @@
 
             <!--  Yeni başlangıç  -->
 
+            <Color x:Key="SkeletonLoading">#e8e8e8</Color>
             <Color x:Key="White">#FFFFFF</Color>
 
             <Color x:Key="BarTextColor">#211414</Color>
@@ -120,7 +126,7 @@
             <Style x:Key="ListView" TargetType="ListView">
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
                 <Setter Property="RefreshCommand" Value="{Binding RefreshCommand}" />
-                <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
+                <!--<Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />-->
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
                 <Setter Property="HasUnevenRows" Value="True" />
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />

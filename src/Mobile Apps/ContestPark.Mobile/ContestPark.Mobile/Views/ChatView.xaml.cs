@@ -12,6 +12,7 @@ namespace ContestPark.Mobile.Views
         public ChatView()
         {
             InitializeComponent();
+            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = ImageSource.FromFile("menuicon.png") });
         }
 
         #endregion Constructor

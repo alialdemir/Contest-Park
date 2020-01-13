@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.Components
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    thickness = new Thickness(8);
+                    thickness = new Thickness(8, 0, 8, 8);
                     break;
 
                 default:
@@ -73,7 +73,6 @@ namespace ContestPark.Mobile.Components
                 {
                     new StackLayout
                                 {
-                                    //Margin = new Thickness(10, 0, 10, 10),
                                     Children =
                                     {
                                         new Frame

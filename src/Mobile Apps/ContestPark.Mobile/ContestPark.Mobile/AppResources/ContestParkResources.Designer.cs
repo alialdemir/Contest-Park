@@ -755,7 +755,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Languages.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
             get {

@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Helpers;
-using System;
+﻿using System;
 
 namespace ContestPark.Mobile.Models.Chat
 {
@@ -20,7 +19,7 @@ namespace ContestPark.Mobile.Models.Chat
             }
         }
 
-        private string _userProfilePicturePath = DefaultImages.DefaultProfilePicture;
+        private string _userProfilePicturePath = string.Empty;// DefaultImages.DefaultProfilePicture;
 
         public string UserProfilePicturePath
         {
