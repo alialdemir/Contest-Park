@@ -18,7 +18,6 @@
             Margin="8,6,8,0"
             Padding="0"
             extension:Skeleton.Animation="Fade"
-            extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
             extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
             extension:Skeleton.IsParent="True"
             BackgroundColor="{StaticResource White}"
