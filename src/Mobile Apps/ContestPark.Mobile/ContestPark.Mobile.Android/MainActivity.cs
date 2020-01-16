@@ -93,7 +93,7 @@ namespace ContestPark.Mobile.Droid
 
             Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
-            Xamarin.Forms.FormsMaterial.Init(this, bundle);
+            global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
             AnimationViewRenderer.Init();
 
