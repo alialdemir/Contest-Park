@@ -10,7 +10,6 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Droid.Dependencies
 {
-    [System.Obsolete]
     public class Analytics : IAnalytics
     {
         public void SendEvent(string eventCategory, string eventAction, string eventLabel, long? eventValue)
@@ -34,6 +33,7 @@ namespace ContestPark.Mobile.Droid.Dependencies
             SendEvent("event", additionalData);
         }
 
+        [System.Obsolete]
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
             var firebaseAnalytics = FirebaseAnalytics.GetInstance(Forms.Context);
@@ -53,6 +53,7 @@ namespace ContestPark.Mobile.Droid.Dependencies
             firebaseAnalytics.LogEvent(eventId, bundle);
         }
 
+        [System.Obsolete]
         public void SetUserId(string userId)
         {
             if (string.IsNullOrEmpty(userId))
