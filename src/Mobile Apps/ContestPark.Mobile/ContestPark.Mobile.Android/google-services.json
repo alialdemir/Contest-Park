@@ -30,6 +30,13 @@
             {
               "client_id": "788456912839-8al1tvk3rrb1r29635iikee54te6edmt.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "788456912839-v4ifeinpimb6r96v5mcsjeo2skh5bmqh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.contestpark.app"
+              }
             }
           ]
         }

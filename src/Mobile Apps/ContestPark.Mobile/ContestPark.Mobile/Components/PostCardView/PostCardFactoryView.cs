@@ -53,22 +53,9 @@ namespace ContestPark.Mobile.Components
 
         private StackLayout CreateContent(ContentView view)
         {
-            Thickness thickness;
-
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    thickness = new Thickness(8, 0, 8, 8);
-                    break;
-
-                default:
-                    thickness = new Thickness(10);
-                    break;
-            }
-
             return new StackLayout
             {
-                Margin = thickness,
+                Margin = new Thickness(8, 0, 8, 8),
                 Children =
                 {
                     new StackLayout

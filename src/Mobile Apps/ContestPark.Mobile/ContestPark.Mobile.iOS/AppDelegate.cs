@@ -46,9 +46,9 @@ namespace ContestPark.Mobile.iOS
 
             //   MobileAds.SharedInstance.Start(CompletionHandler);
 
-            //Firebase.Core.App.Configure();
-
             LoadApplication(new ContestParkApp(new IOSInitializer()));
+
+            Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
         }
@@ -62,18 +62,20 @@ namespace ContestPark.Mobile.iOS
         {
             string[] cydiaPaths = new string[]
             {
-        @"/Applications/Cydia.app",
-        @"/Library/MobileSubstrate/MobileSubstrate.dylib",
-        @"/bin/bash",
-        @"/usr/sbin/sshd",
-        @"/etc/apt"
+                    @"/Applications/Cydia.app",
+                    @"/Library/MobileSubstrate/MobileSubstrate.dylib",
+                    @"/bin/bash",
+                    @"/usr/sbin/sshd",
+                    @"/etc/apt"
             };
+
             foreach (var item in cydiaPaths)
             {
                 NSString filePath = new NSString(item);
                 if (File.Exists(filePath))
                     return true;
             }
+
             return false;
         }
 

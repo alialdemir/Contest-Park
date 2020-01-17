@@ -247,7 +247,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteFollowProcessCommand()
         {
-            if (IsBusy || string.IsNullOrEmpty(ProfileInfo.UserId))
+            if (IsBusy || ProfileInfo == null || string.IsNullOrEmpty(ProfileInfo.UserId))
                 return;
 
             IsBusy = true;
@@ -339,6 +339,9 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
         private void GotoPhotoModalPage(string modalName)
         {
+            if (ProfileInfo == null || string.IsNullOrEmpty(modalName))
+                return;
+
             ObservableRangeCollection<PictureModel> pictures = new ObservableRangeCollection<PictureModel>();
 
             if (modalName == "Profile")

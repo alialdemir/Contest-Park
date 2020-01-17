@@ -6,6 +6,7 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    xmlns:ges="clr-namespace:ContestPark.Mobile.GestureRecognizer"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="listItemView">
     <ContentView.Resources>
@@ -15,6 +16,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <yummy:PancakeView
+            x:Name="pncView"
             Margin="8,6,8,0"
             Padding="0"
             extension:Skeleton.Animation="Fade"
@@ -26,8 +28,10 @@
             HasShadow="True"
             HeightRequest="80"
             IsClippedToBounds="True">
+            <yummy:PancakeView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Path=SingleTap, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+            </yummy:PancakeView.GestureRecognizers>
             <Grid
-                x:Name="cstmGrid"
                 Margin="14,15,14,15"
                 ColumnSpacing="0"
                 RowSpacing="0">
@@ -65,7 +69,12 @@
                     FontSize="18"
                     LineBreakMode="TailTruncation"
                     Text="{Binding Path=Text, Source={x:Reference listItemView}}"
-                    TextColor="#181C2F" />
+                    TextColor="#181C2F">
+                    <Label.GestureRecognizers>
+                        <ges:LongPressGestureRecognizer Command="{Binding Path=LongPressed, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+                        <TapGestureRecognizer Command="{Binding Path=SingleTap, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+                    </Label.GestureRecognizers>
+                </Label>
 
                 <components:HtmlLabel
                     Grid.Row="1"
@@ -78,7 +87,12 @@
                     FontSize="14"
                     LineBreakMode="TailTruncation"
                     Text="{Binding Path=Detail, Source={x:Reference listItemView}}"
-                    TextColor="#181C2F" />
+                    TextColor="#181C2F">
+                    <components:HtmlLabel.GestureRecognizers>
+                        <ges:LongPressGestureRecognizer Command="{Binding Path=LongPressed, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+                        <TapGestureRecognizer Command="{Binding Path=SingleTap, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+                    </components:HtmlLabel.GestureRecognizers>
+                </components:HtmlLabel>
 
                 <Label
                     Grid.RowSpan="1"
@@ -88,7 +102,12 @@
                     FontSize="13"
                     HorizontalTextAlignment="End"
                     Text="{Binding Path=Date, Source={x:Reference listItemView}}"
-                    TextColor="#181C2F" />
+                    TextColor="#181C2F">
+                    <Label.GestureRecognizers>
+                        <ges:LongPressGestureRecognizer Command="{Binding Path=LongPressed, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+                        <TapGestureRecognizer Command="{Binding Path=SingleTap, Source={x:Reference listItemView}}" CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
         </yummy:PancakeView>
     </ContentView.Content>

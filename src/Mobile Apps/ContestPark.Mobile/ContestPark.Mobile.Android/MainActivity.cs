@@ -97,7 +97,7 @@ namespace ContestPark.Mobile.Droid
 
             AnimationViewRenderer.Init();
 
-            //   MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
+            //    MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
 

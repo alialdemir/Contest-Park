@@ -57,7 +57,7 @@ namespace ContestPark.Balance.API.Controllers
         private Dictionary<string, PackageModel> _googlePlayPackages;
 
         /// <summary>
-        /// Google playde tanımlı paket isimleri
+        /// Google play ve apple store da tanımlı paket isimleri
         /// </summary>
         public Dictionary<string, PackageModel> GooglePlayPackages
         {
@@ -70,40 +70,17 @@ namespace ContestPark.Balance.API.Controllers
                         // Gold
                         {"com.contestparkapp.app.250coins", new PackageModel{ Amount=2.50m, BalanceType= BalanceTypes.Gold } },
                         {"com.contestparkapp.app.1500coins",  new PackageModel{ Amount=15.00m, BalanceType= BalanceTypes.Gold } },
-                        {"com.contestparkapp.app.7000coins",  new PackageModel{ Amount=7.000m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.7000coins",  new PackageModel{ Amount=7.00m, BalanceType= BalanceTypes.Gold } },
                         {"com.contestparkapp.app.20000coins",  new PackageModel{ Amount=20.000m , BalanceType= BalanceTypes.Gold }},
                         // Money
-                        {"com.contestparkapp.app.1dolar",  new PackageModel{ Amount=1.00m , BalanceType= BalanceTypes.Money }},
-                        {"com.contestparkapp.app.4dolar",  new PackageModel{ Amount=4.00m , BalanceType= BalanceTypes.Money }},
-                        {"com.contestparkapp.app.9dolar",  new PackageModel{ Amount=9.00m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.6",  new PackageModel{ Amount=6.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.12",  new PackageModel{ Amount=12.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.19",  new PackageModel{ Amount=19.99m , BalanceType= BalanceTypes.Money }},
                     };
                 }
                 return _googlePlayPackages;
             }
         }
-
-        //private Dictionary<string, decimal> _appStorePackages;
-
-        ///// <summary>
-        ///// App store tanımlı paket isimleri
-        ///// </summary>
-        //public Dictionary<string, decimal> AppStorePackages
-        //{
-        //    get
-        //    {
-        //        if (_appStorePackages == null)
-        //        {
-        //            _appStorePackages = new Dictionary<string, decimal>
-        //            {
-        //                {"com.contestparkapp.app.250coins", 250 },
-        //                {"com.contestparkapp.app.1500coins",1500 },
-        //                {"com.contestparkapp.app.7000coins",7000 },
-        //                {"com.contestparkapp.app.20000coins", 20000},
-        //            };
-        //        }
-        //        return _appStorePackages;
-        //    }
-        //}
 
         #endregion Properties
 

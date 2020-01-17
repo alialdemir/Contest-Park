@@ -18,14 +18,18 @@
     </ContentView.Resources>
     <ContentView.Content>
         <yummy:PancakeView
-            Margin="10,6,10,0"
-            Padding="0"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
             HasShadow="True"
             HeightRequest="80"
             IsClippedToBounds="True">
+            <yummy:PancakeView.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="8" />
+                    <On Platform="iOS" Value="8" />
+                </OnPlatform>
+            </yummy:PancakeView.Margin>
             <Grid
                 x:Name="cstmGrid"
                 Margin="14,15,14,15"

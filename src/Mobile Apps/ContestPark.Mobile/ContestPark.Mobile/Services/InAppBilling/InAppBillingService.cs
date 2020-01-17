@@ -45,9 +45,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                     "com.contestparkapp.app.1500coins",
                                     "com.contestparkapp.app.7000coins",
                                     "com.contestparkapp.app.20000coins",
-                                    "com.contestparkapp.app.1dolar",
-                                    "com.contestparkapp.app.4dolar",
-                                    "com.contestparkapp.app.9dolar"
+                                    "com.contestparkapp.app.6",
+                                    "com.contestparkapp.app.12",
+                                    "com.contestparkapp.app.19"
                                 };
             }
         }

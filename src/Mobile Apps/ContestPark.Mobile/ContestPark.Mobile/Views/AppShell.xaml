@@ -13,13 +13,6 @@
     FlyoutBackgroundImageAspect="AspectFill"
     FlyoutBehavior="Disabled"
     FlyoutIcon="menuicon.png"
-    Shell.BackgroundColor="{StaticResource White}"
-    Shell.ForegroundColor="#211414"
-    Shell.TabBarBackgroundColor="{StaticResource White}"
-    Shell.TabBarForegroundColor="#FFD969"
-    Shell.TabBarTitleColor="#211414"
-    Shell.TabBarUnselectedColor="#000000"
-    Shell.TitleColor="#211414"
     mc:Ignorable="d">
     <Shell.Resources>
         <ResourceDictionary>

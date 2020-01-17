@@ -29,10 +29,10 @@
             SeparatorVisibility="None"
             Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.Header>
-                <StackLayout>
+                <StackLayout Spacing="0">
                     <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="130" />
+                            <RowDefinition Height="150" />
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -139,7 +139,7 @@
                         BackgroundColor="{StaticResource White}"
                         CornerRadius="8"
                         HasShadow="True"
-                        HeightRequest="88"
+                        HeightRequest="90"
                         IsClippedToBounds="True"
                         TranslationY="-20"
                         WidthRequest="367">

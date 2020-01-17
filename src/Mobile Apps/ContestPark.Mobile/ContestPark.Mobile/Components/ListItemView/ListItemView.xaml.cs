@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.GestureRecognizer;
 using System;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -148,17 +149,14 @@ namespace ContestPark.Mobile.Components
         {
             base.OnBindingContextChanged();
 
-            cstmGrid.GestureRecognizers.Add(new LongPressGestureRecognizer
+            if (pncView.GestureRecognizers.Any(x => x.GetType() == typeof(LongPressGestureRecognizer)))
             {
-                Command = LongPressed,
-                CommandParameter = CommandParameter
-            });
-
-            cstmGrid.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = SingleTap,
-                CommandParameter = CommandParameter
-            });
+                pncView.GestureRecognizers.Add(new LongPressGestureRecognizer
+                {
+                    Command = LongPressed,
+                    CommandParameter = CommandParameter
+                });
+            }
         }
 
         #endregion Override

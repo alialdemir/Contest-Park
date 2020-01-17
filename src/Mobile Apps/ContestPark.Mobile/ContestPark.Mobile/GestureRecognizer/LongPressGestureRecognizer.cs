@@ -5,37 +5,32 @@ namespace ContestPark.Mobile.GestureRecognizer
 {
     public class LongPressGestureRecognizer : Element, IGestureRecognizer
     {
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand),
-                                                                                          typeof(LongPressGestureRecognizer),
-                                                                                          (object)null,
-                                                                                          BindingMode.OneWay,
-                                                                                          (BindableProperty.ValidateValueDelegate)null,
-                                                                                          (BindableProperty.BindingPropertyChangedDelegate)null,
-                                                                                          (BindableProperty.BindingPropertyChangingDelegate)null,
-                                                                                          (BindableProperty.CoerceValueDelegate)null,
-                                                                                          (BindableProperty.CreateDefaultValueDelegate)null);
-
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter),
-                                                                                                   typeof(object),
-                                                                                                   typeof(LongPressGestureRecognizer),
-                                                                                                   (object)null,
-                                                                                                   BindingMode.TwoWay,
-                                                                                                   (BindableProperty.ValidateValueDelegate)null,
-                                                                                                   (BindableProperty.BindingPropertyChangedDelegate)null,
-                                                                                                   (BindableProperty.BindingPropertyChangingDelegate)null,
-                                                                                                   (BindableProperty.CoerceValueDelegate)null,
-                                                                                                   (BindableProperty.CreateDefaultValueDelegate)null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(propertyName: nameof(Command),
+                                                                                                       returnType: typeof(ICommand),
+                                                                                                       declaringType: typeof(LongPressGestureRecognizer),
+                                                                                                       defaultValue: null);
 
         public ICommand Command
         {
-            get { return (ICommand)this.GetValue(CommandProperty); }
-            set { this.SetValue(CommandProperty, (object)value); }
+            get { return (ICommand)GetValue(CommandProperty); }
+            set
+            {
+                SetValue(CommandProperty, value);
+            }
         }
+
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
+                                                                                                                returnType: typeof(object),
+                                                                                                                declaringType: typeof(LongPressGestureRecognizer),
+                                                                                                                defaultValue: null);
 
         public object CommandParameter
         {
-            get { return this.GetValue(CommandParameterProperty); }
-            set { this.SetValue(CommandParameterProperty, value); }
+            get { return GetValue(CommandParameterProperty); }
+            set
+            {
+                SetValue(CommandParameterProperty, value);
+            }
         }
     }
 }
