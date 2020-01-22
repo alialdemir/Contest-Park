@@ -115,6 +115,11 @@
             <Color x:Key="PrimaryText">#212121</Color>
 
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform Android="8" iOS="8" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
             </Style>
 

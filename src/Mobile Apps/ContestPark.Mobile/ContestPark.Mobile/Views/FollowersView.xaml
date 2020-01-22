@@ -10,7 +10,6 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
-            Margin="0,60,0,0"
             InfiniteScroll="{Binding InfiniteScroll}"
             SeparatorVisibility="None"
             Style="{StaticResource ListView}">

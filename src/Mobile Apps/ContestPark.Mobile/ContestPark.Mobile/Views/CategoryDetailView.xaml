@@ -3,31 +3,37 @@
     x:Class="ContestPark.Mobile.Views.CategoryDetailView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
     Title="{Binding CategoryDetail.SubCategoryName}"
+    Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding ShareCommand}" Icon="shareblack.png" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:SubCategoryFollowConverter x:Key="scfb" />
             <converter:SubCategoryFollowButtonTextColorConverter x:Key="scfbsc" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding ShareCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Share}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Components:NonPersistentSelectedItemListView
+        <components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
-            Margin="0,60,0,0"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
-            <Components:NonPersistentSelectedItemListView.Header>
+            <components:NonPersistentSelectedItemListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -52,7 +58,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <Components:CachedImage
+                            <components:CachedImage
                                 Grid.Row="0"
                                 Margin="0,21,0,0"
                                 HeightRequest="130"
@@ -148,7 +154,7 @@
                                 Text="{i18n:Translate Followers}"
                                 TextColor="{StaticResource CategoryDetailTextColor}" />
 
-                            <Components:LinearGradientButton
+                            <components:LinearGradientButton
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
@@ -161,14 +167,14 @@
                                 Text="{i18n:Translate FindOpponent}"
                                 TextColor="{StaticResource White}"
                                 Visual="Material">
-                                <Components:LinearGradientButton.CornerRadius>
+                                <components:LinearGradientButton.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Int32">
                                         <On Platform="Android" Value="60" />
                                         <On Platform="iOS" Value="12" />
                                     </OnPlatform>
-                                </Components:LinearGradientButton.CornerRadius>
-                            </Components:LinearGradientButton>
-                            <Components:LinearGradientButton
+                                </components:LinearGradientButton.CornerRadius>
+                            </components:LinearGradientButton>
+                            <components:LinearGradientButton
                                 Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
@@ -181,14 +187,14 @@
                                 Text="{i18n:Translate Ranking}"
                                 TextColor="{StaticResource White}"
                                 Visual="Material">
-                                <Components:LinearGradientButton.CornerRadius>
+                                <components:LinearGradientButton.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Int32">
                                         <On Platform="Android" Value="60" />
                                         <On Platform="iOS" Value="12" />
                                     </OnPlatform>
-                                </Components:LinearGradientButton.CornerRadius>
-                            </Components:LinearGradientButton>
-                            <Components:LinearGradientButton
+                                </components:LinearGradientButton.CornerRadius>
+                            </components:LinearGradientButton>
+                            <components:LinearGradientButton
                                 Grid.Row="4"
                                 Grid.ColumnSpan="2"
                                 BackgroundColor="Transparent"
@@ -201,31 +207,31 @@
                                 Text="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfb}}"
                                 TextColor="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfbsc}}"
                                 Visual="Material">
-                                <Components:LinearGradientButton.CornerRadius>
+                                <components:LinearGradientButton.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Int32">
                                         <On Platform="Android" Value="60" />
                                         <On Platform="iOS" Value="12" />
                                     </OnPlatform>
-                                </Components:LinearGradientButton.CornerRadius>
-                            </Components:LinearGradientButton>
+                                </components:LinearGradientButton.CornerRadius>
+                            </components:LinearGradientButton>
                         </Grid>
                     </yummy:PancakeView>
                 </Grid>
-            </Components:NonPersistentSelectedItemListView.Header>
-            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+            </components:NonPersistentSelectedItemListView.Header>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:PostCardFactoryView NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference categoryDetailPage}}" />
+                        <components:PostCardFactoryView NavigationService="{Binding Path=BindingContext.NavigationService, Source={x:Reference categoryDetailPage}}" />
                     </ViewCell>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.ItemTemplate>
-            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
                     <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstCategoryPosts}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
                         <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate ContestPostEmptyMessage}" />
                     </yummy:PancakeView>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.FooterTemplate>
-        </Components:NonPersistentSelectedItemListView>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

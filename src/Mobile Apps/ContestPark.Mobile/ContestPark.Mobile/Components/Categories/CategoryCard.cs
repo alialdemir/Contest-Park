@@ -71,8 +71,7 @@ namespace ContestPark.Mobile.Components
                 Content = stackLayout
             };
 
-            Margin = new Thickness(8, Device.RuntimePlatform == Device.iOS ? 8 : 0, 8, Device.RuntimePlatform == Device.iOS ? 0 : 8);
-            Padding = new Thickness(0);
+            Margin = new Thickness(0, 0, 0, 8);
 
             frame.Padding = new Thickness(8);
 

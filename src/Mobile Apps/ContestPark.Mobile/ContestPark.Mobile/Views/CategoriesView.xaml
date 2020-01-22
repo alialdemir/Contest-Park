@@ -4,11 +4,10 @@
     x:Class="ContestPark.Mobile.Views.CategoriesView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
     Title="{i18n:Translate Categories}"
@@ -33,15 +32,8 @@
             </BackButtonBehavior.IconOverride>
         </BackButtonBehavior>
     </Shell.BackButtonBehavior>-->
-
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView SeparatorColor="Transparent" Style="{StaticResource ListView}">
-            <components:NonPersistentSelectedItemListView.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="Android" Value="0,8,0,0" />
-                    <On Platform="iOS" Value="0,32,0,0" />
-                </OnPlatform>
-            </components:NonPersistentSelectedItemListView.Margin>
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

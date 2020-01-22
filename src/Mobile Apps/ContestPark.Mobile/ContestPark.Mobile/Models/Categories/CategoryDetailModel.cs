@@ -6,19 +6,20 @@
         private byte _level = 1;
         private string _picturePath;
 
-        private string description;
+        private string _description;
 
-        private string subCategoryName;
+        private string _subCategoryName;
+
 
         /// <summary>
         /// Kategori açıklaması
         /// </summary>
         public string Description
         {
-            get { return description; }
+            get { return _description; }
             set
             {
-                description = value;
+                _description = value;
 
                 RaisePropertyChanged(() => Description);
             }
@@ -59,10 +60,10 @@
         /// </summary>
         public string SubCategoryName
         {
-            get { return subCategoryName; }
+            get { return _subCategoryName; }
             set
             {
-                subCategoryName = value;
+                _subCategoryName = value;
 
                 RaisePropertyChanged(() => SubCategoryName);
             }

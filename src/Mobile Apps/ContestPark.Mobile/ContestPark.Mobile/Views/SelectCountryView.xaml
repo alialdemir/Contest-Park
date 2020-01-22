@@ -19,11 +19,13 @@
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
         <ListView
+            BackgroundColor="{StaticResource White}"
             GroupDisplayBinding="{Binding Key}"
             GroupShortNameBinding="{Binding Key}"
             IsGroupingEnabled="true"
             ItemSelected="ListView_ItemSelected"
-            ItemsSource="{Binding Items}">
+            ItemsSource="{Binding Items}"
+            SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

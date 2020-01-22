@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -29,6 +30,9 @@
             <Grid
                 x:Name="cstmGrid"
                 Padding="17,17,0,17"
+                effects:LongPressedEffect.CommandParameter="{Binding Path=CommandParameter, Source={x:Reference thumListItemPage}}"
+                effects:LongPressedEffect.LongPressed="{Binding Path=LongPressed, Source={x:Reference thumListItemPage}}"
+                effects:LongPressedEffect.SingleTap="{Binding Path=SingleTap, Source={x:Reference thumListItemPage}}"
                 ColumnSpacing="7"
                 RowSpacing="0">
 
@@ -42,6 +46,10 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="24" />
                 </Grid.ColumnDefinitions>
+
+                <Grid.Effects>
+                    <effects:LongPressedEffect />
+                </Grid.Effects>
 
                 <ffimageloadingsvg:SvgCachedImage
                     Grid.RowSpan="2"

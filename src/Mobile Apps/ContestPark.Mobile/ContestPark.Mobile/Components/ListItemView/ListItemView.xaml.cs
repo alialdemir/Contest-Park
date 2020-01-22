@@ -1,6 +1,4 @@
-﻿using ContestPark.Mobile.GestureRecognizer;
-using System;
-using System.Linq;
+﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,9 +20,9 @@ namespace ContestPark.Mobile.Components
         #region Properties
 
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(propertyName: nameof(Source),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
+                                                                                         returnType: typeof(string),
+                                                                                         declaringType: typeof(ListItemView),
+                                                                                         defaultValue: String.Empty);
 
         public string Source
         {
@@ -33,9 +31,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty TextProperty = BindableProperty.Create(propertyName: nameof(Text),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
+                                                                                       returnType: typeof(string),
+                                                                                       declaringType: typeof(ListItemView),
+                                                                                       defaultValue: String.Empty);
 
         public string Text
         {
@@ -44,9 +42,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty DetailProperty = BindableProperty.Create(propertyName: nameof(Detail),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
+                                                                                         returnType: typeof(string),
+                                                                                         declaringType: typeof(ListItemView),
+                                                                                         defaultValue: String.Empty);
 
         public string Detail
         {
@@ -58,9 +56,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty UserNameProperty = BindableProperty.Create(propertyName: nameof(UserName),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
+                                                                                           returnType: typeof(string),
+                                                                                           declaringType: typeof(ListItemView),
+                                                                                           defaultValue: String.Empty);
 
         public string UserName
         {
@@ -72,9 +70,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty DateProperty = BindableProperty.Create(propertyName: nameof(Date),
-                                                                                                    returnType: typeof(string),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: String.Empty);
+                                                                                       returnType: typeof(string),
+                                                                                       declaringType: typeof(ListItemView),
+                                                                                       defaultValue: String.Empty);
 
         public string Date
         {
@@ -86,9 +84,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty LongPressedProperty = BindableProperty.Create(propertyName: nameof(LongPressed),
-                                                                                                      returnType: typeof(ICommand),
-                                                                                                      declaringType: typeof(ListItemView),
-                                                                                                      defaultValue: null);
+                                                                                              returnType: typeof(ICommand),
+                                                                                              declaringType: typeof(ListItemView),
+                                                                                              defaultValue: null);
 
         public ICommand LongPressed
         {
@@ -100,9 +98,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
-                                                                                                           returnType: typeof(object),
-                                                                                                           declaringType: typeof(ListItemView),
-                                                                                                           defaultValue: null);
+                                                                                                   returnType: typeof(object),
+                                                                                                   declaringType: typeof(ListItemView),
+                                                                                                   defaultValue: null);
 
         public object CommandParameter
         {
@@ -114,9 +112,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty SingleTapProperty = BindableProperty.Create(propertyName: nameof(SingleTap),
-                                                                                                    returnType: typeof(ICommand),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: null);
+                                                                                            returnType: typeof(ICommand),
+                                                                                            declaringType: typeof(ListItemView),
+                                                                                            defaultValue: null);
 
         public ICommand SingleTap
         {
@@ -128,9 +126,9 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty GotoProfilePageCommandProperty = BindableProperty.Create(propertyName: nameof(GotoProfilePageCommand),
-                                                                                                    returnType: typeof(ICommand),
-                                                                                                    declaringType: typeof(ListItemView),
-                                                                                                    defaultValue: null);
+                                                                                                         returnType: typeof(ICommand),
+                                                                                                         declaringType: typeof(ListItemView),
+                                                                                                         defaultValue: null);
 
         public ICommand GotoProfilePageCommand
         {
@@ -142,23 +140,5 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Properties
-
-        #region Override
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            if (pncView.GestureRecognizers.Any(x => x.GetType() == typeof(LongPressGestureRecognizer)))
-            {
-                pncView.GestureRecognizers.Add(new LongPressGestureRecognizer
-                {
-                    Command = LongPressed,
-                    CommandParameter = CommandParameter
-                });
-            }
-        }
-
-        #endregion Override
     }
 }

@@ -70,9 +70,9 @@ namespace ContestPark.Mobile.Components
         private ICommand _subCategoriesDisplayActionSheetCommand;
 
         public static readonly BindableProperty SubCategoriesDisplayActionSheetCommandProperty = BindableProperty.Create(propertyName: nameof(SubCategoriesDisplayActionSheetCommand),
-                                                                                                 returnType: typeof(ICommand),
-                                                                                                 declaringType: typeof(SubCategoryCard),
-                                                                                                 defaultValue: null);
+                                                                                                                         returnType: typeof(ICommand),
+                                                                                                                         declaringType: typeof(SubCategoryCard),
+                                                                                                                         defaultValue: null);
 
         /// <summary>
         /// Alt kategori display alert command
@@ -86,6 +86,11 @@ namespace ContestPark.Mobile.Components
         }
 
         private ICommand _pushCategoryDetailViewCommand;
+
+        public static readonly BindableProperty PushCategoryDetailViewCommandProperty = BindableProperty.Create(propertyName: nameof(PushCategoryDetailViewCommand),
+                                                                                                                returnType: typeof(ICommand),
+                                                                                                                declaringType: typeof(SubCategoryCard),
+                                                                                                                defaultValue: null);
 
         public ICommand PushCategoryDetailViewCommand
         {

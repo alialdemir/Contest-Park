@@ -10,8 +10,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="chatPage"
     Title="{Binding Title}"
-    prism:ViewModelLocator.AutowireViewModel="True"
-    Icon="fas-comments">
+    prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />

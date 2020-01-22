@@ -25,7 +25,6 @@
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
             x:Name="lstView"
-            Margin="10,15,10,8"
             Footer="{Binding RankEmptyMessage}"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
@@ -41,7 +40,6 @@
                         <control:SegmentedControl
                             x:Name="SegmentedControl"
                             Grid.Row="0"
-                            Margin="8,8,8,8"
                             FontFamily="{StaticResource PlatformFontName}"
                             FontSize="16"
                             SegmentSelectedCommand="{Binding Path=BindingContext.SegmentValueChangedCommand, Source={x:Reference rankingPage}}"

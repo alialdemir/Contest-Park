@@ -4,10 +4,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    xmlns:ges="clr-namespace:ContestPark.Mobile.GestureRecognizer"
+    xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
     x:Name="subCategoryCard">
     <ContentView.Content>
-        <Grid RowSpacing="0">
+        <Grid
+            effects:LongPressedEffect.LongPressed="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}"
+            effects:LongPressedEffect.SingleTap="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}"
+            RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90" />
                 <RowDefinition Height="Auto" />
@@ -16,10 +19,9 @@
                 <ColumnDefinition Width="80" />
             </Grid.ColumnDefinitions>
 
-            <Grid.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}" />
-                <ges:LongPressGestureRecognizer Command="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}" />
-            </Grid.GestureRecognizers>
+            <Grid.Effects>
+                <effects:LongPressedEffect />
+            </Grid.Effects>
 
             <cacheImage:CachedImage
                 x:Name="imgSubCategoryImageSource"

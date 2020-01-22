@@ -173,20 +173,20 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        private ICommand duelOpenPanelCommand;
+        private ICommand _duelOpenPanelCommand;
 
-        private ICommand goToRankingPageCommand;
+        private ICommand _goToRankingPageCommand;
 
-        private ICommand shareCommand;
+        private ICommand _shareCommand;
 
-        private ICommand subCategoryFollowProgcessCommand;
+        private ICommand _subCategoryFollowProgcessCommand;
 
         /// <summary>
         /// Düello bahis paneli aç command
         /// </summary>
         public ICommand DuelOpenPanelCommand
         {
-            get { return duelOpenPanelCommand ?? (duelOpenPanelCommand = new Command(() => ExecuteduelOpenPanelCommandAsync())); }
+            get { return _duelOpenPanelCommand ?? (_duelOpenPanelCommand = new Command(() => ExecuteduelOpenPanelCommandAsync())); }
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand GoToRankingPageCommand
         {
-            get { return goToRankingPageCommand ?? (goToRankingPageCommand = new Command(() => ExecuteGoToRankingPageCommandAsync())); }
+            get { return _goToRankingPageCommand ?? (_goToRankingPageCommand = new Command(() => ExecuteGoToRankingPageCommandAsync())); }
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand ShareCommand
         {
-            get { return shareCommand ?? (shareCommand = new Command(() => _gameService?.SubCategoryShare(CategoryDetail.SubCategoryName))); }
+            get { return _shareCommand ?? (_shareCommand = new Command(() => _gameService?.SubCategoryShare(CategoryDetail.SubCategoryName))); }
         }
 
         public ICommand SubCategoryDetailCommand
@@ -226,7 +226,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand SubCategoryFollowProgcessCommand
         {
-            get { return subCategoryFollowProgcessCommand ?? (subCategoryFollowProgcessCommand = new Command(async () => await ExecuteSubCategoryFollowProgcessCommandAsync())); }
+            get { return _subCategoryFollowProgcessCommand ?? (_subCategoryFollowProgcessCommand = new Command(async () => await ExecuteSubCategoryFollowProgcessCommandAsync())); }
         }
 
         private ICommand SubCategoryPostsCommand

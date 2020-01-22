@@ -17,7 +17,9 @@
         public const string TabCategories = "\ue909";
         public const string Icon14 = "\ue90a";
         public const string Icon15 = "\ue90b";
-        public const string Icon16 = "\ue90c";
+        public const string Share = "\ue90c";
+        public const string UnCategoryFollow = "\ued70";
+        public const string CategoryFollow = "\ued6f";
         public const string Icon17 = "\ue90d";
         public const string Icon18 = "\ue90e";
         public const string Icon19 = "\ue90f";

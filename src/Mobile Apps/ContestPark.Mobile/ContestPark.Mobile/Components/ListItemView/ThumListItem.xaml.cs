@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.GestureRecognizer;
-using System;
+﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -162,25 +161,5 @@ namespace ContestPark.Mobile.Components
 
         #endregion Properties
 
-        #region Override
-
-        protected override void OnBindingContextChanged()
-        {
-            cstmGrid.GestureRecognizers.Add(new LongPressGestureRecognizer
-            {
-                Command = LongPressed,
-                CommandParameter = CommandParameter
-            });
-
-            cstmGrid.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = SingleTap,
-                CommandParameter = CommandParameter
-            });
-
-            base.OnBindingContextChanged();
-        }
-
-        #endregion Override
     }
 }
