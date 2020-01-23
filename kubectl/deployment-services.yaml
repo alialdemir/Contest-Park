@@ -34,11 +34,11 @@ metadata:
     run: ocelot-apigw
 spec:
   ports:
-    - name: my-https-port
+    - name: ocelot-apigw-https
       port: 443
       protocol: HTTPS
       targetPort: 5001
-    - name: my-http-port
+    - name: ocelot-apigw-http
       port: 80
       protocol: HTTP
       targetPort: 5002
