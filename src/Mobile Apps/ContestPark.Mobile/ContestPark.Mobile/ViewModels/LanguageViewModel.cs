@@ -52,7 +52,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             bool isTurkish = _settingsService.CurrentUser.Language == Languages.Turkish;
 
-            Items.AddRange(new List<MenuItemList>()
+            ServiceModel.Items = new List<MenuItemList>()
             {
                 new MenuItemList(ContestParkResources.SelectLanguage)
                                 {
@@ -72,7 +72,7 @@ namespace ContestPark.Mobile.ViewModels
                                         CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
-            });
+            };
 
             return base.InitializeAsync();
         }

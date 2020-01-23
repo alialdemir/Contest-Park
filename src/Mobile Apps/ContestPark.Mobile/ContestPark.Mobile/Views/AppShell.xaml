@@ -11,7 +11,7 @@
     x:Name="appShell"
     FlyoutBackgroundImage="left_menu_background.png"
     FlyoutBackgroundImageAspect="AspectFill"
-    FlyoutBehavior="Disabled"
+    FlyoutHeaderBehavior="Fixed"
     FlyoutIcon="menuicon.png"
     mc:Ignorable="d">
     <Shell.Resources>
@@ -28,11 +28,129 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95000000" />
                 <Setter Property="Shell.TabBarTitleColor" Value="Black" />
             </Style>
-            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellContent" />
         </ResourceDictionary>
     </Shell.Resources>
+
+    <!--  Left menu header  -->
+    <Shell.FlyoutHeader>
+        <views:AppShellHeaderView />
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Menu" FlyoutDisplayOptions="AsSingleItem">
+
+        <!--  tabbar  -->
+        <ShellContent Title="{i18n:Translate Categories}" ContentTemplate="{DataTemplate views:CategoriesView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabCategories}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="{i18n:Translate Invite}" ContentTemplate="{DataTemplate views:InviteView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabInvite}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="{i18n:Translate Chat}" ContentTemplate="{DataTemplate views:ChatView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabChat}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="{i18n:Translate Profile}" ContentTemplate="{DataTemplate views:ProfileView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabProfile}" />
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+
+    <!--  left menü item list  -->
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="ContestStoreView"
+        IconImageSource="{x:Static icons:ContestParkIcon.ContestStore}"
+        Text="{i18n:Translate ContestStore}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="WinningsView"
+        IconImageSource="{x:Static icons:ContestParkIcon.MoneyBag}"
+        Text="{i18n:Translate ConvertToCash}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="BalanceCodeView"
+        IconImageSource="{x:Static icons:ContestParkIcon.BalanceCode}"
+        Text="{i18n:Translate BalanceCode}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="SettingsView"
+        IconImageSource="{x:Static icons:ContestParkIcon.Settings}"
+        Text="{i18n:Translate Settings}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="facebook"
+        IconImageSource="{x:Static icons:ContestParkIcon.Facebook}"
+        Text="Facebook" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="twitter"
+        IconImageSource="{x:Static icons:ContestParkIcon.Twitter}"
+        Text="Twitter" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="instagram"
+        IconImageSource="{x:Static icons:ContestParkIcon.Instagram}"
+        Text="Instagram" />
+
+    <!--<MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="WinningsView"
+        IconImageSource="money_bag.svg"
+        Text="{i18n:Translate ConvertToCash}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="BalanceCodeView"
+        IconImageSource="balance.svg"
+        Text="{i18n:Translate BalanceCode}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="SettingsView"
+        IconImageSource="settings.svg"
+        Text="{i18n:Translate Settings}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="facebook"
+        IconImageSource="facebook.svg"
+        Text="Facebook" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="twitter"
+        IconImageSource="twitter.svg"
+        Text="Twitter" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="instagram"
+        IconImageSource="instagram.svg"
+        Text="Instagram" />-->
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <views:AppShellListItemView />
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
     <!--  tabbar  -->
-    <TabBar>
+    <!--<TabBar>
         <Tab Title="{i18n:Translate Categories}" Route="categories">
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabCategories}" />
@@ -66,15 +184,15 @@
                 <views:MyProfileView />
             </ShellContent>
         </Tab>
-    </TabBar>
+    </TabBar>-->
 
     <!--  Left menu header  -->
-    <Shell.FlyoutHeader>
+    <!--<Shell.FlyoutHeader>
         <views:AppShellHeaderView />
-    </Shell.FlyoutHeader>
+    </Shell.FlyoutHeader>-->
 
     <!--  left menü item list  -->
-    <MenuItem
+    <!--<MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="ContestStoreView"
         IconImageSource="conteststore.svg"
@@ -120,5 +238,5 @@
         <DataTemplate>
             <views:AppShellListItemView />
         </DataTemplate>
-    </Shell.MenuItemTemplate>
+    </Shell.MenuItemTemplate>-->
 </Shell>

@@ -57,6 +57,8 @@ namespace ContestPark.Mobile.Views
                 analyticsService.SendEvent("Sol Menü", "Sosyal Medya", name);
 
                 OpenUri($"https://www.{name}.com/contestpark");
+
+                Shell.Current.FlyoutIsPresented = false;
             }
             else if (!string.IsNullOrEmpty(name))
             {

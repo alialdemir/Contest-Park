@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override Task InitializeAsync()
         {
-            Items.AddRange(new List<MenuItemList>()
+            ServiceModel.Items = new List<MenuItemList>()
             {
                 new MenuItemList(ContestParkResources.AccountSettings)
                                 {
@@ -94,7 +94,7 @@ namespace ContestPark.Mobile.ViewModels
                                         CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
-            });
+            };
 
             return base.InitializeAsync();
         }

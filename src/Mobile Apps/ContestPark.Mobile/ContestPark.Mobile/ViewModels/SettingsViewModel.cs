@@ -64,7 +64,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             ICommand pushPageCommand = new Command<string>(async (pageName) => await ExecutePushPageCommand(pageName));
-            Items.AddRange(new List<MenuItemList>()
+            ServiceModel.Items = new List<MenuItemList>()
             {
                 new MenuItemList(ContestParkResources.AppSettings)
                                 {
@@ -121,7 +121,7 @@ namespace ContestPark.Mobile.ViewModels
                                         CornerRadius = new CornerRadius(0,0,8,8)
                                     },
                                 },
-            });
+            };
 
             IsBusy = false;
 

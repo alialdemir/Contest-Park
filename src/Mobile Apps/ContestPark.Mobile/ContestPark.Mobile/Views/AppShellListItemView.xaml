@@ -3,26 +3,28 @@
     x:Class="ContestPark.Mobile.Views.AppShellListItemView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:prism="http://prismlibrary.com"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentView.Content>
-        <Grid Margin="36,16.8,0,16.8" ColumnSpacing="22">
+        <Grid Margin="32,32,32,0" ColumnSpacing="16">
             <Grid.RowDefinitions>
-                <RowDefinition Height="45" />
+                <RowDefinition Height="32" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="32" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <ffimageloadingsvg:SvgCachedImage
+            <Image
                 Grid.Row="0"
                 Grid.Column="0"
-                HeightRequest="45"
+                HeightRequest="32"
                 HorizontalOptions="Center"
-                Source="{Binding Icon}"
-                WidthRequest="45" />
+                WidthRequest="32">
+                <Image.Source>
+                    <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{Binding Icon}" />
+                </Image.Source>
+            </Image>
 
             <Label
                 Grid.Row="0"

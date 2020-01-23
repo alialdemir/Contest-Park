@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    xmlns:ges="clr-namespace:ContestPark.Mobile.GestureRecognizer"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
         <yummy:PancakeView
@@ -14,31 +13,25 @@
             HasShadow="True"
             IsClippedToBounds="True"
             VerticalOptions="Start">
-            <Grid Margin="14,8,0,8" ColumnSpacing="22">
+            <Grid Padding="16" ColumnSpacing="16">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="32" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="32" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SingleTap}" CommandParameter="{Binding CommandParameter}" />
                 </Grid.GestureRecognizers>
-                <!--<icon:IconImage
-                Grid.Row="0"
-                Grid.Column="0"
-                Icon="{Binding Icon}"
-                IconColor="{Binding IconColor}"
-                IconSize="22" />-->
 
                 <ffimageloadingsvg:SvgCachedImage
                     Grid.Row="0"
                     Grid.Column="0"
-                    HeightRequest="40"
+                    HeightRequest="32"
                     Source="{Binding Icon}"
-                    WidthRequest="40" />
+                    WidthRequest="32" />
 
                 <Label
                     Grid.Row="0"

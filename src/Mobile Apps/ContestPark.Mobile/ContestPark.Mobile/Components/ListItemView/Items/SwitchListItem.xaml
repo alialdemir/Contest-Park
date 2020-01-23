@@ -14,12 +14,12 @@
             HasShadow="True"
             IsClippedToBounds="True"
             VerticalOptions="Start">
-            <Grid Margin="14,8,14,8" ColumnSpacing="22">
+            <Grid Padding="16" ColumnSpacing="16">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="32" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="32" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -27,9 +27,9 @@
                 <ffimageloadingsvg:SvgCachedImage
                     Grid.Row="0"
                     Grid.Column="0"
-                    HeightRequest="40"
+                    HeightRequest="32"
                     Source="{Binding Icon}"
-                    WidthRequest="40" />
+                    WidthRequest="32" />
 
                 <Label
                     Grid.Row="0"

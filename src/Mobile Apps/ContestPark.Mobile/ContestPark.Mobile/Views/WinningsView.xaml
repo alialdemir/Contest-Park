@@ -18,8 +18,7 @@
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView
-                Margin="10,70,10,0"
-                Padding="10"
+                Padding="16"
                 BackgroundColor="{StaticResource White}"
                 CornerRadius="8"
                 Elevation="6"

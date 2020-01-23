@@ -7,13 +7,13 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="accountSettingsView"
     Title="{Binding Title}"
+    Padding="8,0,8,8"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding Path=BindingContext.SaveCommand, Source={x:Reference accountSettingsView}}" IconImageSource="save.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ListView
-            Margin="10,50,10,15"
             HasUnevenRows="true"
             IsGroupingEnabled="true"
             ItemsSource="{Binding Items}"

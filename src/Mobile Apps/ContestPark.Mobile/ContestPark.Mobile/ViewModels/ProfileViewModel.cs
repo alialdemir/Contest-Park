@@ -276,7 +276,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteGotoFollowersCommand()
         {
-            if (IsBusy || (ProfileInfo != null && string.IsNullOrEmpty(ProfileInfo.UserId) || ProfileInfo.FollowersCount == "0"))
+            if (IsBusy || (ProfileInfo == null || string.IsNullOrEmpty(ProfileInfo.UserId) || ProfileInfo.FollowersCount == "0"))
                 return;
 
             IsBusy = true;

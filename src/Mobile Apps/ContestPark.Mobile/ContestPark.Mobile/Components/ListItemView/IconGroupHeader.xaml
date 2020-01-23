@@ -6,7 +6,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
         <yummy:PancakeView
-            Margin="0,12,0,0"
+            Margin="0,8,0,0"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8,8,0,0"
             Elevation="6"
@@ -14,7 +14,7 @@
             IsClippedToBounds="True"
             VerticalOptions="Start">
             <Label
-                Margin="21,16,0,19.4"
+                Margin="16"
                 FontAttributes="Bold"
                 FontFamily="{DynamicResource SofiaProRegular}"
                 FontSize="Medium"

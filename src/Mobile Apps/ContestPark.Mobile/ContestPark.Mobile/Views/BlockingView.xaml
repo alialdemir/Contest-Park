@@ -11,6 +11,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="blockingViewPage"
     Title="{Binding Title}"
+    Padding="8,8,8,8"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,7 +20,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <yummy:PancakeView
-            Margin="10,70,10,15"
             BackgroundColor="{StaticResource White}"
             CornerRadius="12"
             Elevation="6"
@@ -56,14 +56,15 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid
-                                Margin="21,8,14,8"
+                                Padding="16"
+                                BackgroundColor="{StaticResource White}"
                                 ColumnSpacing="16"
                                 RowSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="50" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="35" />
+                                    <ColumnDefinition Width="50" />
                                     <ColumnDefinition Width="2*" />
                                     <ColumnDefinition Width="22" />
                                 </Grid.ColumnDefinitions>
@@ -71,9 +72,9 @@
                                 <components:CircleImage
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    HeightRequest="35"
+                                    HeightRequest="50"
                                     Source="{Binding ProfilePicturePath}"
-                                    WidthRequest="35" />
+                                    WidthRequest="50" />
 
                                 <Label
                                     Grid.Row="0"
