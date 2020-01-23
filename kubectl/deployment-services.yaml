@@ -30,18 +30,20 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ocelot-apigw
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-central-1:162939618331:certificate/c295d531-a1f2-46a6-864f-d1782e809673
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
   labels:
     run: ocelot-apigw
 spec:
   ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 80
-    - name: https
-      protocol: TCP
-      port: 443
-      targetPort: 80
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8080
   selector:
     run: ocelot-apigw
   type: LoadBalancer
