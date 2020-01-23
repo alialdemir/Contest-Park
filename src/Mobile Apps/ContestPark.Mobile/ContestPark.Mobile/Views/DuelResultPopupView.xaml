@@ -13,6 +13,7 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="duelResultPopupViewPage"
+    Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation

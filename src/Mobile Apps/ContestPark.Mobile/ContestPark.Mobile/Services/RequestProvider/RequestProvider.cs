@@ -190,7 +190,15 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private HttpClient CreateHttpClient()
         {
+            //   ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            //   ServicePointManager.ServerCertificateValidationCallback +=
+            //(sender, cert, chain, error) =>
+            //{
+            //    return true;
+            //};
+
             HttpClient httpClient = new HttpClient();
+
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();

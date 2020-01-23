@@ -6,6 +6,7 @@
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Content>
         <Grid
