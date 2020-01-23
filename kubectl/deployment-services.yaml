@@ -34,8 +34,14 @@ metadata:
     run: ocelot-apigw
 spec:
   ports:
-    - port: 80
-      protocol: TCP
+    - name: my-https-port
+      port: 443
+      protocol: HTTPS
+      targetPort: 5001
+    - name: my-http-port
+      port: 80
+      protocol: HTTP
+      targetPort: 5002
   selector:
     run: ocelot-apigw
   type: LoadBalancer
