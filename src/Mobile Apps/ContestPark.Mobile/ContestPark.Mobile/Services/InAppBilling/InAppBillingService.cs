@@ -25,6 +25,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
         public InAppBillingService(IPageDialogService pageDialogService)
         {
             billing = CrossInAppBilling.Current;
+
             _pageDialogService = pageDialogService;
         }
 
@@ -35,7 +36,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
         /// <summary>
         /// Google play de tanımlı ürün id'leri
         /// </summary>
-        public string[] AndroidProductIds
+        public string[] ProductIds
         {
             get
             {
@@ -63,9 +64,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
                 // TODO: ios eklendiği zaman burda if platform ios ise ios product ids dönünmeli
 
-                for (int i = 0; i < AndroidProductIds.Length; i++)
+                for (int i = 0; i < ProductIds.Length; i++)
                 {
-                    string productId = AndroidProductIds[i];
+                    string productId = ProductIds[i];
 
                     // eğer product id içinde dolar yazıyors varsa para paketleri yoksa altın paketleri gösterir
                     string svgName = productId.EndsWith("dolar") ? "contest_store_money_" : "contest_store_gold_";
@@ -107,7 +108,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                IEnumerable<InAppBillingProduct> propductList = await billing.GetProductInfoAsync(ItemType.InAppPurchase, AndroidProductIds);
+                IEnumerable<InAppBillingProduct> propductList = await billing.GetProductInfoAsync(ItemType.InAppPurchase, ProductIds);
                 if (propductList == null || propductList.Count() <= 0)
                 {
                     Debug.WriteLine("Uygulama içi satın alınacak ürün listesi gelmedi.");

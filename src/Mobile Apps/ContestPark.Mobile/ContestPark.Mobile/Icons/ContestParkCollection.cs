@@ -18,6 +18,7 @@
         public const string Icon14 = "\ue90a";
         public const string Icon15 = "\ue90b";
         public const string BalanceCode = "\ued71";
+        public const string Save = "\ued73";
         public const string MoneyBag = "\ued72";
         public const string Share = "\ue90c";
         public const string UnCategoryFollow = "\ued70";

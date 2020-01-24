@@ -19,7 +19,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-
         <ToolbarItem Command="{Binding ShareCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Share}" />

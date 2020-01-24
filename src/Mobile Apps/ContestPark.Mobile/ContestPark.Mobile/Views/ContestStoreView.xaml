@@ -18,10 +18,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView
-            x:Name="lstView"
-            Margin="10,70,10,10"
-            Style="{StaticResource ListViewHeaderAndFooter}">
+        <components:NonPersistentSelectedItemListView x:Name="lstView" Style="{StaticResource ListViewHeaderAndFooter}">
             <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
@@ -196,7 +193,14 @@
                         RightText="+40 coins"
                         SingleTap="{Binding Path=BindingContext.WatchAdsVideoCommand, Source={x:Reference pageContestStore}}"
                         Source="ContestSingleCoin.svg"
-                        Text="{i18n:Translate FreeCoins}" />
+                        Text="{i18n:Translate FreeCoins}">
+                        <components:ThumListItem.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="iOS" Value="False" />
+                                <On Platform="Android, WinPhone, Windows" Value="True" />
+                            </OnPlatform>
+                        </components:ThumListItem.IsVisible>
+                    </components:ThumListItem>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>

@@ -14,7 +14,7 @@
             IsClippedToBounds="True"
             VerticalOptions="Start">
             <Label
-                Margin="16"
+                Padding="16"
                 FontAttributes="Bold"
                 FontFamily="{DynamicResource SofiaProRegular}"
                 FontSize="Medium"
