@@ -6,6 +6,7 @@ using ImageCircle.Forms.Plugin.iOS;
 using Plugin.Segmented.Control.iOS;
 using Prism;
 using Prism.Ioc;
+using Rg.Plugins.Popup;
 using System;
 using System.IO;
 using System.Text;
@@ -37,7 +38,7 @@ namespace ContestPark.Mobile.iOS
 
             ImageCircleRenderer.Init();
 
-            Rg.Plugins.Popup.Popup.Init();
+            Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();

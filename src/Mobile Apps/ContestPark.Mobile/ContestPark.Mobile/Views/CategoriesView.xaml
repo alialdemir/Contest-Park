@@ -4,15 +4,12 @@
     x:Class="ContestPark.Mobile.Views.CategoriesView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
-    Title="{i18n:Translate Categories}"
     prism:ViewModelLocator.AutowireViewModel="True"
-    Shell.NavBarIsVisible="True"
     mc:Ignorable="d">
     <!--<ContentPage.ToolbarItems>
         <ToolbarItem
@@ -21,19 +18,8 @@
             CommandParameter="{Binding SeeAllSubCateogryId}"
             IconImageSource="searchicon.png" />
     </ContentPage.ToolbarItems>-->
-
-    <!--<Shell.BackButtonBehavior>
-        <BackButtonBehavior>
-            <BackButtonBehavior.IconOverride>
-                <FontImageSource
-                    FontFamily="{StaticResource icomoon}"
-                    Glyph="{x:Static icons:ContestParkIcon.HamburgerMenu}"
-                    Size="20" />
-            </BackButtonBehavior.IconOverride>
-        </BackButtonBehavior>
-    </Shell.BackButtonBehavior>-->
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView SeparatorColor="Transparent" Style="{StaticResource ListView}">
+        <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

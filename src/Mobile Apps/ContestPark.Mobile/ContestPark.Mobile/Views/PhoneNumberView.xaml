@@ -13,7 +13,6 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid
-                Margin="20,0,20,0"
                 HorizontalOptions="Center"
                 RowSpacing="15"
                 VerticalOptions="Center">
@@ -22,7 +21,7 @@
                     <RowDefinition Height="41" />
                     <RowDefinition Height="48.9" />
                     <RowDefinition Height="48.9" />
-                    <RowDefinition Height="38" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -142,6 +141,7 @@
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
                     FontFamily="{DynamicResource SofiaProMedium}"
+                    HorizontalTextAlignment="Center"
                     LineBreakMode="WordWrap"
                     Text="When you sig up, you approve the Privacy Policy, Terms of use and Competition Rules">
                     <custom:HtmlLabel.GestureRecognizers>

@@ -12,7 +12,6 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="profilePage"
-    Title="{i18n:Translate Profile}"
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
     Icon="fas-user-circle"

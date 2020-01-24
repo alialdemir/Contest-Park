@@ -117,10 +117,11 @@
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
                 <Setter Property="Padding">
                     <Setter.Value>
-                        <OnPlatform Android="8" iOS="8" />
+                        <OnPlatform Android="8" iOS="8,20,8,8" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
+                <Setter Property="Title" Value="{Binding Title}" />
             </Style>
 
             <Style x:Key="ContentParkLabel" TargetType="Label">
@@ -131,10 +132,13 @@
             <Style x:Key="ListView" TargetType="ListView">
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
                 <Setter Property="RefreshCommand" Value="{Binding RefreshCommand}" />
-                <!--<Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />-->
+                <Setter Property="SeparatorColor" Value="Transparent" />
+                <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
                 <Setter Property="HasUnevenRows" Value="True" />
+                <Setter Property="SelectionMode" Value="None" />
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
+                <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
             <Style
@@ -143,7 +147,6 @@
                 TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
                 <Setter Property="Header" Value=" " />
-                <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 
             <Style
@@ -151,7 +154,14 @@
                 BasedOn="{StaticResource ListView}"
                 TargetType="ListView">
                 <Setter Property="Footer" Value=" " />
-                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
+
+            <Style
+                x:Key="ListViewGroup"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
+                <Setter Property="IsGroupingEnabled" Value="True" />
+                <Setter Property="IsPullToRefreshEnabled" Value="False" />
             </Style>
 
             <Style

@@ -8,7 +8,6 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,29 +22,30 @@
                 CornerRadius="8"
                 Elevation="6"
                 HasShadow="True"
-                HorizontalOptions="FillAndExpand"
-                IsClippedToBounds="True"
                 VerticalOptions="Start">
                 <Grid
-                    ColumnSpacing="0"
-                    RowSpacing="0"
-                    VerticalOptions="CenterAndExpand">
+                    HorizontalOptions="Center"
+                    RowSpacing="15"
+                    VerticalOptions="Center">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="154" />
+                        <RowDefinition Height="48.9" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="48.9" />
                     </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
                     <Image
                         Grid.Row="0"
-                        Margin="0,14,0,14"
-                        HeightRequest="95"
-                        Source="money.png"
-                        VerticalOptions="Center"
-                        WidthRequest="150" />
+                        Grid.Column="0"
+                        Source="money.png" />
 
                     <Label
                         Grid.Row="1"
+                        Grid.Column="0"
                         Margin="0,0,0,20"
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="24"
@@ -55,6 +55,7 @@
 
                     <Label
                         Grid.Row="2"
+                        Grid.Column="0"
                         Margin="0,0,0,20"
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="16"
@@ -64,16 +65,22 @@
 
                     <custom:LinearGradientButton
                         Grid.Row="3"
-                        Padding="8"
+                        Grid.Column="0"
                         BackgroundColor="Transparent"
-                        BorderRadius="124"
                         Command="{Binding BalanceCommand}"
                         EndColor="#1CD881"
                         StartColor="#18A263"
                         Style="{DynamicResource ButtonStyle}"
                         Text="{i18n:Translate TransferToBankAccount}"
                         TextColor="{StaticResource White}"
-                        Visual="Material" />
+                        Visual="Material">
+                        <custom:LinearGradientButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="Android" Value="124" />
+                                <On Platform="iOS" Value="24" />
+                            </OnPlatform>
+                        </custom:LinearGradientButton.CornerRadius>
+                    </custom:LinearGradientButton>
                 </Grid>
             </yummy:PancakeView>
         </ScrollView>

@@ -7,10 +7,88 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <ScrollView>
+            <yummy:PancakeView
+                Padding="16"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="8"
+                Elevation="6"
+                HasShadow="True"
+                VerticalOptions="Start">
+                <Grid RowSpacing="15" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="154" />
+                        <RowDefinition Height="48.9" />
+                        <RowDefinition Height="48.9" />
+                        <RowDefinition Height="48.9" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Source="money.png" />
+
+                    <custom:CustomEntry
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#666372"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="16"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand"
+                        MaxLength="6"
+                        Placeholder="IBAN NO"
+                        PlaceholderColor="#484848"
+                        Text="{Binding IbanNo.IbanNo}"
+                        TextColor="#484848"
+                        Visual="Material" />
+
+                    <custom:CustomEntry
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#666372"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="16"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand"
+                        MaxLength="6"
+                        Placeholder="{i18n:Translate Fullname}"
+                        PlaceholderColor="#484848"
+                        Text="{Binding IbanNo.FullName}"
+                        TextColor="#484848"
+                        Visual="Material" />
+
+                    <custom:LinearGradientButton
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding BalanceCommand}"
+                        EndColor="#A573FF"
+                        StartColor="#645AFF"
+                        Style="{DynamicResource ButtonStyle}"
+                        Text="{i18n:Translate SendMoney}"
+                        TextColor="{StaticResource White}"
+                        Visual="Material">
+                        <custom:LinearGradientButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="Android" Value="124" />
+                                <On Platform="iOS" Value="24" />
+                            </OnPlatform>
+                        </custom:LinearGradientButton.CornerRadius>
+                    </custom:LinearGradientButton>
+                </Grid>
+            </yummy:PancakeView>
+        </ScrollView>
+
+        <!--<ScrollView>
             <yummy:PancakeView
                 Margin="10,70,10,0"
                 Padding="10"
@@ -86,6 +164,6 @@
                         Visual="Material" />
                 </Grid>
             </yummy:PancakeView>
-        </ScrollView>
+        </ScrollView>-->
     </ContentPage.Content>
 </ContentPage>

@@ -58,7 +58,7 @@
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent Title="{i18n:Translate Profile}" ContentTemplate="{DataTemplate views:ProfileView}">
+        <ShellContent Title="{i18n:Translate Profile}" ContentTemplate="{DataTemplate views:MyProfileView}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabProfile}" />
             </ShellContent.Icon>
@@ -108,135 +108,11 @@
         IconImageSource="{x:Static icons:ContestParkIcon.Instagram}"
         Text="Instagram" />
 
-    <!--<MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="WinningsView"
-        IconImageSource="money_bag.svg"
-        Text="{i18n:Translate ConvertToCash}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="BalanceCodeView"
-        IconImageSource="balance.svg"
-        Text="{i18n:Translate BalanceCode}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="SettingsView"
-        IconImageSource="settings.svg"
-        Text="{i18n:Translate Settings}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="facebook"
-        IconImageSource="facebook.svg"
-        Text="Facebook" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="twitter"
-        IconImageSource="twitter.svg"
-        Text="Twitter" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="instagram"
-        IconImageSource="instagram.svg"
-        Text="Instagram" />-->
 
     <Shell.MenuItemTemplate>
         <DataTemplate>
             <views:AppShellListItemView />
         </DataTemplate>
     </Shell.MenuItemTemplate>
-    <!--  tabbar  -->
-    <!--<TabBar>
-        <Tab Title="{i18n:Translate Categories}" Route="categories">
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabCategories}" />
-            </Tab.Icon>
 
-            <ShellContent>
-                <views:CategoriesView />
-            </ShellContent>
-        </Tab>
-        <Tab Title="{i18n:Translate Invite}" Route="invite">
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabInvite}" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:InviteView />
-            </ShellContent>
-        </Tab>
-        <Tab Title="{i18n:Translate Chat}" Route="chat">
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabChat}" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:ChatView />
-            </ShellContent>
-        </Tab>
-        <Tab Title="{i18n:Translate Profile}" Route="profile">
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabProfile}" />
-            </Tab.Icon>
-            <ShellContent>
-                <views:MyProfileView />
-            </ShellContent>
-        </Tab>
-    </TabBar>-->
-
-    <!--  Left menu header  -->
-    <!--<Shell.FlyoutHeader>
-        <views:AppShellHeaderView />
-    </Shell.FlyoutHeader>-->
-
-    <!--  left menü item list  -->
-    <!--<MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="ContestStoreView"
-        IconImageSource="conteststore.svg"
-        Text="{i18n:Translate ContestStore}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="WinningsView"
-        IconImageSource="money_bag.svg"
-        Text="{i18n:Translate ConvertToCash}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="BalanceCodeView"
-        IconImageSource="balance.svg"
-        Text="{i18n:Translate BalanceCode}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="SettingsView"
-        IconImageSource="settings.svg"
-        Text="{i18n:Translate Settings}" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="facebook"
-        IconImageSource="facebook.svg"
-        Text="Facebook" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="twitter"
-        IconImageSource="twitter.svg"
-        Text="Twitter" />
-
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="instagram"
-        IconImageSource="instagram.svg"
-        Text="Instagram" />
-
-    <Shell.MenuItemTemplate>
-        <DataTemplate>
-            <views:AppShellListItemView />
-        </DataTemplate>
-    </Shell.MenuItemTemplate>-->
 </Shell>

@@ -7,7 +7,6 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="{i18n:Translate BalanceCode}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <ScrollView>
@@ -17,10 +16,11 @@
                 CornerRadius="8"
                 Elevation="6"
                 HasShadow="True"
-                HorizontalOptions="FillAndExpand"
-                IsClippedToBounds="True"
                 VerticalOptions="Start">
-                <Grid HorizontalOptions="Center">
+                <Grid
+                    HorizontalOptions="Center"
+                    RowSpacing="15"
+                    VerticalOptions="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="154" />
                         <RowDefinition Height="48.9" />
@@ -28,7 +28,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="310" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Image
@@ -41,31 +41,35 @@
                         Grid.Column="0"
                         BackgroundColor="Transparent"
                         BorderColor="#666372"
-                        CornerRadius="132"
                         FontFamily="{DynamicResource SofiaProMedium}"
                         FontSize="16"
                         HeightRequest="40"
-                        HorizontalOptions="Fill"
+                        HorizontalOptions="FillAndExpand"
                         MaxLength="6"
                         Placeholder="{i18n:Translate EnterBalanceCode}"
                         PlaceholderColor="#484848"
                         Text="{Binding BalanceCode.Code}"
                         TextColor="#484848"
-                        Visual="Material"
-                        WidthRequest="310" />
+                        Visual="Material" />
 
                     <custom:LinearGradientButton
                         Grid.Row="2"
                         Grid.Column="0"
                         BackgroundColor="Transparent"
-                        BorderRadius="124"
                         Command="{Binding BalanceCodeCommand}"
                         EndColor="#1CD881"
                         StartColor="#18A263"
                         Style="{DynamicResource ButtonStyle}"
                         Text="{i18n:Translate Send}"
                         TextColor="{StaticResource White}"
-                        Visual="Material" />
+                        Visual="Material">
+                        <custom:LinearGradientButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="Android" Value="124" />
+                                <On Platform="iOS" Value="24" />
+                            </OnPlatform>
+                        </custom:LinearGradientButton.CornerRadius>
+                    </custom:LinearGradientButton>
                 </Grid>
             </yummy:PancakeView>
         </ScrollView>

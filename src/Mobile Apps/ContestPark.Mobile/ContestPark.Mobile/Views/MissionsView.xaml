@@ -9,7 +9,6 @@
     xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="missionsViewPage"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>

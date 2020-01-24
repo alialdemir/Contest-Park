@@ -10,7 +10,6 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
-    Title="{Binding CategoryDetail.SubCategoryName}"
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>

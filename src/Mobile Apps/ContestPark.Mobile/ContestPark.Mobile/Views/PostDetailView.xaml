@@ -8,7 +8,6 @@
     xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="postDetailPage"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>

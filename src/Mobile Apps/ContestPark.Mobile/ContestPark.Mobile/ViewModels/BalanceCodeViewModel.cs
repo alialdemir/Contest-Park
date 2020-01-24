@@ -31,6 +31,8 @@ namespace ContestPark.Mobile.ViewModels
         {
             _balanceService = balanceService;
             _eventAggregator = eventAggregator;
+
+            Title = ContestParkResources.BalanceCode;
         }
 
         #endregion Constructor

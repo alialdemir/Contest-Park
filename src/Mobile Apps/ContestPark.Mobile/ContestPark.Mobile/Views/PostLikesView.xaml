@@ -6,11 +6,9 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="postLikesViewPage"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
-            Margin="0,60,0,0"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewOnlyFooter}">

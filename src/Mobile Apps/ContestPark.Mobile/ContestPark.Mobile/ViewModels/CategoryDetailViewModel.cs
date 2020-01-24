@@ -217,6 +217,8 @@ namespace ContestPark.Mobile.ViewModels
                 return new Command(async () =>
                 {
                     CategoryDetail = await _categoryService.GetSubCategoryDetail(_subCategoryId);
+
+                    Title = CategoryDetail?.SubCategoryName;
                 });
             }
         }

@@ -44,11 +44,8 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
 
         private void HandleTapClick(UITapGestureRecognizer sender)
         {
-            if (sender.State == UIGestureRecognizerState.Began)
-            {
-                var command = LongPressedEffect.GetSingleTap(Element);
-                command?.Execute(LongPressedEffect.GetCommandParameter(Element));
-            }
+            var command = LongPressedEffect.GetSingleTap(Element);
+            command?.Execute(LongPressedEffect.GetCommandParameter(Element));
         }
 
         protected override void OnDetached()

@@ -4,32 +4,25 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    Title="{Binding Title}"
     Padding="8,0,8,8"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <ListView
-            HasUnevenRows="true"
-            HeightRequest="160"
-            IsGroupingEnabled="true"
-            ItemsSource="{Binding Items}"
-            SelectionMode="None"
-            SeparatorVisibility="None">
-            <ListView.GroupHeaderTemplate>
+        <components:NonPersistentSelectedItemListView Style="{StaticResource ListViewGroup}">
+            <components:NonPersistentSelectedItemListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <components:IconGroupHeader />
                     </ViewCell>
                 </DataTemplate>
-            </ListView.GroupHeaderTemplate>
-            <ListView.ItemTemplate>
+            </components:NonPersistentSelectedItemListView.GroupHeaderTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <components:ListItemFactory />
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

@@ -11,7 +11,6 @@
     xmlns:search="clr-namespace:ContestPark.Mobile.Components.Search"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="searchViewPage"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="0">

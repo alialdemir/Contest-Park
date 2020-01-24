@@ -50,6 +50,8 @@ namespace ContestPark.Mobile.ViewModels
 
             ) : base(navigationService, dialogService, popupNavigation)
         {
+            Title = ContestParkResources.Profile;
+
             _identityService = identityService;
             _postService = postService;
             NavigationService = navigationService;

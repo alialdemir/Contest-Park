@@ -10,7 +10,6 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="pageContestStore"
-    Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}">
     <ContentPage.Resources>
