@@ -67,11 +67,11 @@
 	<string>ca-app-pub-9252497061180957~6594686426</string>
 	<key>GADIsAdManagerApp</key>
 	<true/>
-	<key>CFBundleVersion</key>
-	<string>1.2</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>CFBundleVersion</key>
+	<string>1.5</string>
 </dict>
 </plist>
