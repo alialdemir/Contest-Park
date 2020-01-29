@@ -32,7 +32,7 @@ steps:
 - task: AndroidSigning@3
   displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
   inputs:
-    apkFiles: '$(Parameters.appFiles)'
+    apkFiles: '$(Build.SourcesDirectory)/app/build/outputs/apk/release/*.apk'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '${KeyStore.Password}'
     apksignerKeystoreAlias: '${KeyStore.Alias}'
