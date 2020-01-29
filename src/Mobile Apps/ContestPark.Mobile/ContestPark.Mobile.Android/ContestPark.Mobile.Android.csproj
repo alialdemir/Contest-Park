@@ -657,9 +657,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\username.png" />
   </ItemGroup>
-  <ItemGroup>
-    <LinkDescription Include="Linker.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
