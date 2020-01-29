@@ -26,21 +26,18 @@ steps:
   displayName: 'Build Xamarin.Android project'
   inputs:
     projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
-    outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    outputDirectory: '$(Build.ArtifactStagingDirectory)'
     configuration: '$(Parameters.configuration)'
 
 - task: AndroidSigning@3
   displayName: 'Signing and aligning APK file'
   inputs:
-    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    apkFiles: '$(Build.ArtifactStagingDirectory)/*.apk'
     apksignerKeystoreFile: 'myRelease.keystore'
-    apksignerKeystorePassword: '${KeyStore.Password}'
-    apksignerKeystoreAlias: '${KeyStore.Alias}'
-    apksignerKeyPassword: '${KeyStore.Password}'
     zipalign: false
 
 - task: PublishBuildArtifacts@1
   displayName: Drop
   inputs:
-    PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
   condition: succeededOrFailed()
