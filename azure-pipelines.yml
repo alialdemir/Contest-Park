@@ -30,9 +30,9 @@ steps:
     configuration: '$(Parameters.configuration)'
 
 - task: AndroidSigning@3
-  displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
+  displayName: 'Signing and aligning APK file'
   inputs:
-    apkFiles: '$(Build.SourcesDirectory)/app/build/outputs/apk/release/*.apk'
+    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '${KeyStore.Password}'
     apksignerKeystoreAlias: '${KeyStore.Alias}'
