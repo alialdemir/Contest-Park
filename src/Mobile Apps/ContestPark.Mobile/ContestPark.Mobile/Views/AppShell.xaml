@@ -46,11 +46,11 @@
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent Title="{i18n:Translate Invite}" ContentTemplate="{DataTemplate views:InviteView}">
+        <!--<ShellContent Title="{i18n:Translate Invite}" ContentTemplate="{DataTemplate views:InviteView}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabInvite}" />
             </ShellContent.Icon>
-        </ShellContent>
+        </ShellContent>-->
 
         <ShellContent Title="{i18n:Translate Chat}" ContentTemplate="{DataTemplate views:ChatView}">
             <ShellContent.Icon>
@@ -108,11 +108,9 @@
         IconImageSource="{x:Static icons:ContestParkIcon.Instagram}"
         Text="Instagram" />
 
-
     <Shell.MenuItemTemplate>
         <DataTemplate>
             <views:AppShellListItemView />
         </DataTemplate>
     </Shell.MenuItemTemplate>
-
 </Shell>

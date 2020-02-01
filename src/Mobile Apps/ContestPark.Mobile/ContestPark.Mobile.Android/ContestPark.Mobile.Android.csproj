@@ -12,7 +12,7 @@
     <RootNamespace>ContestPark.Mobile.Droid</RootNamespace>
     <AssemblyName>ContestPark.Mobile.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -71,7 +71,9 @@
     <AndroidPackageFormat>aab</AndroidPackageFormat>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -331,6 +333,7 @@
       <Link>.editorconfig</Link>
     </None>
     <GoogleServicesJson Include="google-services.json" />
+    <None Include="linker.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
