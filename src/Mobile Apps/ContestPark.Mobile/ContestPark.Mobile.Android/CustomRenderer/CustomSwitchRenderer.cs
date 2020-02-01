@@ -22,7 +22,9 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             base.OnElementChanged(e);
             if (e.OldElement != null || e.NewElement == null)
                 return;
+
             view = Element;
+
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.JellyBean)
             {
                 if (this.Control != null)
