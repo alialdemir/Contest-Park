@@ -12,6 +12,7 @@ namespace ContestPark.Mobile.Models.Duel.Quiz
 
         public byte Time { get; set; }
 
+        public BalanceTypes BalanceType { get; set; }
         public int QuestionId { get; set; }
     }
 }

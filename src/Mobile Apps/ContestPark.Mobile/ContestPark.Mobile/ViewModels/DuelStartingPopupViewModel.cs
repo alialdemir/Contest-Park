@@ -308,8 +308,9 @@ namespace ContestPark.Mobile.ViewModels
                         FounderUserId = DuelStarting.FounderUserId,
                         OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
                         OpponentFullName = DuelStarting.OpponentFullName,
-                        OpponentUserId = DuelStarting.OpponentUserId
+                        OpponentUserId = DuelStarting.OpponentUserId,
                     },
+                    BalanceType = StandbyModeModel.BalanceType,
                     SubcategoryName = SelectedSubCategory.SubcategoryName,
                     SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
                 };

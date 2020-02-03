@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.Duel;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
@@ -27,6 +28,7 @@ namespace ContestPark.Mobile.Views
         public string SubcategoryName { get; set; }
 
         public string SubCategoryPicturePath { get; set; }
+        public BalanceTypes BalanceType { get; set; }
 
         #endregion Properties
 
@@ -44,6 +46,7 @@ namespace ContestPark.Mobile.Views
 
             viewModel.DuelCreated = DuelCreated;
             viewModel.DuelScreen = DuelStarting;
+            viewModel.BalanceType = BalanceType;
             viewModel.SubcategoryName = SubcategoryName;
             viewModel.SubCategoryPicturePath = SubCategoryPicturePath;
             //viewModel.AnimateStylishCommand = new Command(Stylishs.AnimateStylish);

@@ -4,6 +4,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.DuelDetail;
 using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
+using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IDuelDetailRepository _duelDetailRepository;
         private readonly IDuelRepository _duelRepository;
         private readonly IEventBus _eventBus;
+        private readonly IBalanceService _balanceService;
         private readonly ILogger<UserAnswerIntegrationEventHandler> _logger;
         private const byte MAX_ANSWER_COUNT = 7;
 
@@ -34,6 +36,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                  IDuelDetailRepository duelDetailRepository,
                                                  IDuelRepository duelRepository,
                                                  IEventBus eventBus,
+                                                 IBalanceService balanceService,
                                                  ILogger<UserAnswerIntegrationEventHandler> logger)
         {
             _userAnswerRepository = userAnswerRepository;
@@ -41,6 +44,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _duelDetailRepository = duelDetailRepository;
             _duelRepository = duelRepository;
             _eventBus = eventBus;
+            _balanceService = balanceService;
             _logger = logger;
         }
 
@@ -53,8 +57,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// iki kullanıcıda soruyu cevapladıysa ikisinede cevapları gönderir
         ///
         /// </summary>
-        /// <param name="event"></param>
-        /// <returns></returns>
         public async Task Handle(UserAnswerIntegrationEvent @event)
         {
             _logger.LogInformation(
@@ -98,6 +100,41 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 currentRound.OpponentTime = @event.Time;
                 currentRound.OpponentScore = score;
             }
+
+            #region Bot kazanma ayarları
+
+            if (@event.BalanceType == BalanceTypes.Money && (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot")))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
+            {
+                _logger.LogInformation("Para ile düello oynanıyor...");
+
+                byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
+                byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
+
+                string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
+                string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
+
+                BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Money);// bot olmayan kullanıcının para miktarını aldık
+                bool withdrawalStatus = balance.Amount >= 80.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
+
+                _logger.LogInformation("Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
+
+                if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+                {
+                    byte scoreDiff = (byte)(opponentTotalScore - founderTotalScore);
+                    currentRound.FounderScore = (byte)(scoreDiff + 5);// Rakip ile kurucu arasındaki puan farkının +5
+
+                    _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
+                }
+                else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+                {
+                    byte scoreDiff = (byte)(founderTotalScore - opponentTotalScore);
+                    currentRound.OpponentScore = (byte)(scoreDiff + 5);// Kurucu ile rakip arasındaki puan farkının +5
+
+                    _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
+                }
+            }
+
+            #endregion Bot kazanma ayarları
 
             userAnswers[round - 1] = currentRound;// Şuandaki round bilgileri aynı indexe set edildi
 

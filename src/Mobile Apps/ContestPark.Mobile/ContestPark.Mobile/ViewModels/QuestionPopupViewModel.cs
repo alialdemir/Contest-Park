@@ -81,6 +81,7 @@ namespace ContestPark.Mobile.ViewModels
         private DuelCreated _duelCreadted;
 
         private byte _time = 10;
+        public BalanceTypes BalanceType { get; set; }
 
         public AnswerPair Answers
         {
@@ -630,6 +631,7 @@ namespace ContestPark.Mobile.ViewModels
                 DuelId = DuelScreen.DuelId,
                 Stylish = saveAnswer.Stylish,
                 UserId = saveAnswer.UserId,
+                BalanceType = BalanceType,
             });
 
             IsBusy = false;
@@ -650,6 +652,7 @@ namespace ContestPark.Mobile.ViewModels
                 DuelId = DuelScreen.DuelId,
                 Stylish = saveAnswer.Stylish,
                 UserId = saveAnswer.UserId,
+                BalanceType = BalanceType,
             });
         }
 

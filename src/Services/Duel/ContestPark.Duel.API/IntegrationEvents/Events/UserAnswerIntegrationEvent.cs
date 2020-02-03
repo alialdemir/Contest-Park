@@ -27,5 +27,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public byte Time { get; set; }
 
         public int QuestionId { get; set; }
+
+        public BalanceTypes BalanceType { get; set; }
     }
 }
