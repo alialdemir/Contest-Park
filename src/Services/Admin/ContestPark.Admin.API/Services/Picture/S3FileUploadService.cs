@@ -3,7 +3,6 @@ using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using Amazon.S3.Util;
 using ContestPark.Admin.API.Enums;
-using ContestPark.Admin.API.Services.Ffmpeg;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -23,7 +22,7 @@ namespace ContestPark.Admin.API.Services.Picture
 
         private readonly IAmazonS3 _amazonS3;
         private readonly ILogger<S3FileUploadService> _logger;
-        private readonly IFfmpegService _ffmpegService;
+        // private readonly IFfmpegService _ffmpegService;
 
         #endregion Private Variables
 
@@ -31,12 +30,12 @@ namespace ContestPark.Admin.API.Services.Picture
 
         public S3FileUploadService(ILogger<S3FileUploadService> logger,
                                IOptions<AdminSettings> options,
-                               IFfmpegService ffmpegService,
+                               //    IFfmpegService ffmpegService,
                                IAmazonS3 amazonS3)
         {
             clouldFrontUrl = options.Value.ClouldFrontUrl;
             _logger = logger;
-            _ffmpegService = ffmpegService;
+            // _ffmpegService = ffmpegService;
             _amazonS3 = amazonS3;
         }
 
@@ -217,7 +216,8 @@ namespace ContestPark.Admin.API.Services.Picture
                         fileUrl = await DownloadFileAsync(uriResult, extension);
                     }
 
-                    return await _ffmpegService.CutVideoAsync(fileUrl);
+                    return fileUrl;
+                //        return await _ffmpegService.CutVideoAsync(fileUrl);
 
                 case QuestionTypes.Image:
                     return await DownloadFileAsync(new Uri(fileUrl), extension);
