@@ -659,8 +659,8 @@
   <data name="YouDontHaveEnoughBalanceToPlayYouMustUploadTheBalanceViaTheContestStore" xml:space="preserve">
     <value>You don't have enough balance to play. You must install balance out store contest.</value>
   </data>
-  <data name="Dolar" xml:space="preserve">
-    <value>Dollar</value>
+  <data name="Money" xml:space="preserve">
+    <value>Money</value>
   </data>
   <data name="YouLeftTheGameDuringTheDuelYouAreDefeated" xml:space="preserve">
     <value>You left the game during the duel. You are defeated.</value>

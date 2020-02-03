@@ -45,6 +45,11 @@
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabCategories}" />
             </ShellContent.Icon>
         </ShellContent>
+        <ShellContent Title="{i18n:Translate ContestStore}" ContentTemplate="{DataTemplate views:ContestStoreView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.ContestStore}" />
+            </ShellContent.Icon>
+        </ShellContent>
 
         <!--<ShellContent Title="{i18n:Translate Invite}" ContentTemplate="{DataTemplate views:InviteView}">
             <ShellContent.Icon>

@@ -105,21 +105,40 @@ namespace ContestPark.Mobile.ViewModels
 
             if (rank != null)
             {
-                if (rank.Ranks.Count > 0)
-                {
-                    rank.Ranks.Items.ToList().FirstOrDefault().CornerRadius = new CornerRadius(8, 8, 0, 0);
-                    rank.Ranks.Items.ToList().LastOrDefault().CornerRadius = new CornerRadius(0, 0, 8, 8);
-                }
-                ServiceModel = rank.Ranks;
-
-                await base.InitializeAsync();
-
                 if (Ranks == null || Ranks.ContestFinishDate == null)
                 {
                     Ranks = new RankModel
                     {
                         ContestFinishDate = rank.ContestFinishDate
                     };
+
+                    int rankCount = rank.Ranks.Items.Count();
+                    if (rankCount >= 1)
+                    {
+                        Ranks.First = rank.Ranks.Items.ToList()[0];
+                    }
+
+                    if (rankCount >= 2)
+                    {
+                        Ranks.Secound = rank.Ranks.Items.ToList()[1];
+                    }
+
+                    if (rankCount >= 3)
+                    {
+                        Ranks.Third = rank.Ranks.Items.ToList()[2];
+                    }
+
+                    if (rankCount >= 4)
+                    {
+                        rank.Ranks.Items = rank.Ranks.Items.Skip(3).ToList();
+
+                        ServiceModel = rank.Ranks;
+                    }
+
+                    await base.InitializeAsync();
+
+                    if (rankCount <= 4 && rankCount != 0)
+                        IsShowEmptyMessage = false;
 
                     TimeLeftCommand.Execute(null);
                 }
@@ -215,6 +234,11 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand SegmentValueChangedCommand => new Command<int>((selectedSegmentIndex) => SegmentValueChanged(selectedSegmentIndex));
         private ICommand TimeLeftCommand => new Command(() => ExecuteTimeLeftCommand());
+
+        public ICommand GotoBackCommand
+        {
+            get { return new Command(() => GoBackAsync()); }
+        }
 
         #endregion Commands
 

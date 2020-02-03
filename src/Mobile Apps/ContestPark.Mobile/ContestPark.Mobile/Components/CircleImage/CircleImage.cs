@@ -1,4 +1,5 @@
 ﻿using FFImageLoading.Transformations;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Components
@@ -16,6 +17,11 @@ namespace ContestPark.Mobile.Components
             set
             {
                 SetValue(BorderColorProperty, value);
+
+                if (Transformations.Any(x => x.GetType() == typeof(CircleTransformation)))
+                    Transformations.Remove(Transformations.FirstOrDefault(x => x.GetType() == typeof(CircleTransformation)));
+
+                Transformations.Add(new CircleTransformation(10, value));
             }
         }
 

@@ -3,17 +3,20 @@
     x:Class="ContestPark.Mobile.Views.RankingView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:control="clr-namespace:Plugin.Segmented.Control;assembly=Plugin.Segmented"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="rankingPage"
+    Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:RankConverter x:Key="rank" />
+            <Converter:RankIsVisibleConverter x:Key="rankIsVisible" />
             <Converter:RankBackgroundColorConverter x:Key="background" />
         </ResourceDictionary>
         <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
@@ -22,13 +25,158 @@
         </OnPlatform>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Components:NonPersistentSelectedItemListView
+        <components:NonPersistentSelectedItemListView
             x:Name="lstView"
             Footer="{Binding RankEmptyMessage}"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
-            <Components:NonPersistentSelectedItemListView.HeaderTemplate>
+            <components:NonPersistentSelectedItemListView.HeaderTemplate>
+                <DataTemplate>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <yummy:PancakeView
+                            Grid.Row="0"
+                            Margin="0"
+                            Padding="0"
+                            BackgroundGradientEndColor="#2E3742"
+                            BackgroundGradientStartColor="#424E5C"
+                            Elevation="6"
+                            HasShadow="True"
+                            HeightRequest="280"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                Padding="16"
+                                ColumnSpacing="16"
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--  Title  -->
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="3"
+                                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                                    FontSize="23"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Path=BindingContext.Title, Source={x:Reference rankingPage}}"
+                                    TextColor="{StaticResource White}" />
+
+                                <!--  Back button  -->
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HeightRequest="32"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="32">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference rankingPage}}" />
+                                    </Image.GestureRecognizers>
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="{StaticResource icomoon}"
+                                            Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
+                                            Color="{StaticResource White}" />
+                                    </Image.Source>
+                                </Image>
+
+                                <components:RankTopView
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    IsVisible="{Binding Path=BindingContext.Ranks.Secound, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
+                                    Rank="Secound"
+                                    Ranking="{Binding Path=BindingContext.Ranks.Secound, Source={x:Reference rankingPage}}"
+                                    VerticalOptions="End" />
+
+                                <components:RankTopView
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    IsVisible="{Binding Path=BindingContext.Ranks.First, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
+                                    Rank="First"
+                                    Ranking="{Binding Path=BindingContext.Ranks.First, Source={x:Reference rankingPage}}" />
+
+                                <components:RankTopView
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    IsVisible="{Binding Path=BindingContext.Ranks.Third, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
+                                    Rank="Third"
+                                    Ranking="{Binding Path=BindingContext.Ranks.Third, Source={x:Reference rankingPage}}"
+                                    VerticalOptions="End" />
+
+                                <!--  TimeLeft  -->
+                                <StackLayout
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="3"
+                                    HorizontalOptions="Center"
+                                    Orientation="Horizontal">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource SofiaProMedium}"
+                                        FontSize="16.8"
+                                        HorizontalTextAlignment="End"
+                                        Text="{i18n:Translate TimeLeft}"
+                                        TextColor="#FFCC33" />
+
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource SofiaProMedium}"
+                                        FontSize="14"
+                                        Text="{Binding Path=BindingContext.Ranks.TimeLeft, Source={x:Reference rankingPage}}"
+                                        TextColor="{StaticResource White}" />
+                                </StackLayout>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </Grid>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.HeaderTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <yummy:PancakeView
+                            Padding="16,0,0,0"
+                            BackgroundColor="{Binding ., Converter={StaticResource background}, ConverterParameter={x:Reference lstView}}"
+                            CornerRadius="{Binding CornerRadius}"
+                            Elevation="6"
+                            HasShadow="True"
+                            HorizontalOptions="FillAndExpand"
+                            IsClippedToBounds="True"
+                            VerticalOptions="FillAndExpand">
+                            <components:RankView GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}" Rank="{Binding ., Converter={StaticResource rank}, ConverterParameter={x:Reference lstView}}" />
+                        </yummy:PancakeView>
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                        <Label Style="{StaticResource EmptyModel}" Text="{Binding .}" />
+                    </yummy:PancakeView>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
+        <!--<components:NonPersistentSelectedItemListView
+            x:Name="lstView"
+            Footer="{Binding RankEmptyMessage}"
+            InfiniteScroll="{Binding InfiniteScroll}"
+            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+            Style="{StaticResource ListViewHeaderAndFooter}">
+            <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
                     <Grid ColumnSpacing="0" RowSpacing="0">
 
@@ -90,8 +238,8 @@
                         </Grid>
                     </Grid>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.HeaderTemplate>
-            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+            </components:NonPersistentSelectedItemListView.HeaderTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <yummy:PancakeView
@@ -103,18 +251,18 @@
                             HorizontalOptions="FillAndExpand"
                             IsClippedToBounds="True"
                             VerticalOptions="FillAndExpand">
-                            <Components:RankView GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}" Rank="{Binding ., Converter={StaticResource rank}, ConverterParameter={x:Reference lstView}}" />
+                            <components:RankView GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}" Rank="{Binding ., Converter={StaticResource rank}, ConverterParameter={x:Reference lstView}}" />
                         </yummy:PancakeView>
                     </ViewCell>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.ItemTemplate>
-            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
                     <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
                         <Label Style="{StaticResource EmptyModel}" Text="{Binding .}" />
                     </yummy:PancakeView>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.FooterTemplate>
-        </Components:NonPersistentSelectedItemListView>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>-->
     </ContentPage.Content>
 </ContentPage>

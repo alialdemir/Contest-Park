@@ -76,7 +76,7 @@
                             <ffimageloadingsvg:SvgCachedImage
                                 Grid.Column="0"
                                 HeightRequest="20"
-                                Source="DolarSingleCoin.svg"
+                                Source="SingleMoney.svg"
                                 WidthRequest="25" />
 
                             <Label

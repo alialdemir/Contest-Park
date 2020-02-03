@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.RankTopView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="rankTopView"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <components:CachedImage
+                Grid.Row="0"
+                HeightRequest="50"
+                Source="{Binding Path=RankGif, Source={x:Reference rankTopView}}"
+                WidthRequest="50" />
+
+            <components:CircleImage
+                x:Name="profilePicture"
+                Grid.Row="1"
+                Margin="0,0,0,8"
+                Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference rankTopView}}"
+                CommandParameter="{Binding Path=Ranking.UserName, Source={x:Reference rankTopView}}"
+                HeightRequest="100"
+                Source="{Binding Path=Ranking.UserProfilePicturePath, Source={x:Reference rankTopView}}"
+                WidthRequest="100" />
+
+            <Label
+                Grid.Row="2"
+                FontFamily="{StaticResource SofiaProRegular}"
+                FontSize="15"
+                HorizontalOptions="Center"
+                Text="{Binding Path=Ranking.UserFullName, Source={x:Reference rankTopView}}"
+                TextColor="{StaticResource White}" />
+
+            <Label
+                Grid.Row="3"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource SofiaProSemiBold}"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Path=Ranking.TotalScore, Source={x:Reference rankTopView}}"
+                TextColor="#F53D6B" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

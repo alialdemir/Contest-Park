@@ -70,7 +70,7 @@
                 HeightRequest="20"
                 HorizontalOptions="FillAndExpand"
                 Source="questioncenter.png"
-                TranslationY="-11" />
+                TranslationY="-15" />
 
             <!--  Center End  -->
 

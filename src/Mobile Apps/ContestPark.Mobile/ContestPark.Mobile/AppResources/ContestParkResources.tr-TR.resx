@@ -227,9 +227,6 @@
   <data name="DeleteThisEntireConversation" xml:space="preserve">
     <value>Bu Konuşmanın Tamamını Sil?</value>
   </data>
-  <data name="Dolar" xml:space="preserve">
-    <value>Dolar</value>
-  </data>
   <data name="Duel" xml:space="preserve">
     <value>Düello</value>
   </data>
@@ -384,6 +381,9 @@
   </data>
   <data name="Missions" xml:space="preserve">
     <value>Görevler</value>
+  </data>
+  <data name="Money" xml:space="preserve">
+    <value>Para</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>İsim</value>

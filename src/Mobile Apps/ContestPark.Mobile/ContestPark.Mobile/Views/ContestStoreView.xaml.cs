@@ -12,7 +12,6 @@ namespace ContestPark.Mobile.Views
         public ContestStoreView()
         {
             InitializeComponent();
-            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
         #endregion Constructor

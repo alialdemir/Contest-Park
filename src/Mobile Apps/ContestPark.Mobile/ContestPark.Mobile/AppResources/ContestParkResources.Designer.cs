@@ -386,15 +386,6 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dollar.
-        /// </summary>
-        public static string Dolar {
-            get {
-                return ResourceManager.GetString("Dolar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Duel.
         /// </summary>
         public static string Duel {
@@ -850,6 +841,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Missions {
             get {
                 return ResourceManager.GetString("Missions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money.
+        /// </summary>
+        public static string Money {
+            get {
+                return ResourceManager.GetString("Money", resourceCulture);
             }
         }
         

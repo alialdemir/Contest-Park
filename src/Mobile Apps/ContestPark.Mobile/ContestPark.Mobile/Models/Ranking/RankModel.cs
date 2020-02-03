@@ -37,5 +37,44 @@ namespace ContestPark.Mobile.Models.Ranking
                 RaisePropertyChanged(() => TimeLeft);
             }
         }
+
+        private RankingModel _first;
+
+        public RankingModel First
+        {
+            get { return _first; }
+            set
+            {
+                _first = value;
+
+                RaisePropertyChanged(() => First);
+            }
+        }
+
+        private RankingModel _secound;
+
+        public RankingModel Secound
+        {
+            get { return _secound; }
+            set
+            {
+                _secound = value;
+
+                RaisePropertyChanged(() => Secound);
+            }
+        }
+
+        private RankingModel _third;
+
+        public RankingModel Third
+        {
+            get { return _third; }
+            set
+            {
+                _third = value;
+
+                RaisePropertyChanged(() => Third);
+            }
+        }
     }
 }
