@@ -181,6 +181,11 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand _subCategoryFollowProgcessCommand;
 
+        public ICommand GotoBackCommand
+        {
+            get { return new Command(() => GoBackAsync()); }
+        }
+
         /// <summary>
         /// Düello bahis paneli aç command
         /// </summary>

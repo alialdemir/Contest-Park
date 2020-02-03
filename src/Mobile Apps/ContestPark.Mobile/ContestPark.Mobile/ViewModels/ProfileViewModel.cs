@@ -66,8 +66,8 @@ namespace ContestPark.Mobile.ViewModels
         #region Properties
 
         private bool _isMeProfile = false;
-        private bool isVisibleBackArrow = true;
-        private ProfileInfoModel profileInfo;
+        private bool _isVisibleBackArrow = true;
+        private ProfileInfoModel _profileInfo;
 
         /// <summary>
         /// Kendi profilindemi onu döndürür true ise kendi profili false ise başkasının profili
@@ -88,10 +88,10 @@ namespace ContestPark.Mobile.ViewModels
 
         public bool IsVisibleBackArrow
         {
-            get { return isVisibleBackArrow; }
+            get { return _isVisibleBackArrow; }
             set
             {
-                isVisibleBackArrow = value;
+                _isVisibleBackArrow = value;
                 RaisePropertyChanged(() => IsVisibleBackArrow);
             }
         }
@@ -103,10 +103,10 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ProfileInfoModel ProfileInfo
         {
-            get { return profileInfo; }
+            get { return _profileInfo; }
             set
             {
-                profileInfo = value;
+                _profileInfo = value;
                 RaisePropertyChanged(() => ProfileInfo);
             }
         }

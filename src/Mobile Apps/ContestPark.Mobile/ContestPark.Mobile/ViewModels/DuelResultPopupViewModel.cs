@@ -96,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            await RemoveFirstPopupAsync();
+            ClosePopupCommand.Execute(null);
 
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
@@ -121,7 +121,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            await RemoveFirstPopupAsync();
+            ClosePopupCommand.Execute(null);
 
             bool isFounder = DuelResult.IsFounder;
             string userName = isFounder ? DuelResult.OpponentUserName : DuelResult.FounderUserName;
@@ -156,7 +156,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            await RemoveFirstPopupAsync();
+            ClosePopupCommand.Execute(null);
 
             _eventAggregator
                 .GetEvent<TabPageNavigationEvent>()
@@ -181,7 +181,8 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            await RemoveFirstPopupAsync();
+            ClosePopupCommand.Execute(null);
+
             // TODO: burada karşı rakipbe rövanş yapmak ister misiniz diye sorması lazım
             await PushPopupPageAsync(new DuelBettingPopupView()
             {

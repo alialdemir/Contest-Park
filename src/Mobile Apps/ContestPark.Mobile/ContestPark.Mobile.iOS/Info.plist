@@ -51,18 +51,6 @@
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
 	<string>Media.xcassets/AppIcon.appiconset</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take photos.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the photo gallery.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Fill in a reason why your app needs access to location.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your description</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string> user your calendar.</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9252497061180957~6594686426</string>
 	<key>GADIsAdManagerApp</key>
@@ -71,7 +59,19 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
 	<key>CFBundleVersion</key>
-	<string>1.7</string>
+	<string>1.8</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Yarışmaları takminize eklemek izin vermelisiniz.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
 </dict>
 </plist>

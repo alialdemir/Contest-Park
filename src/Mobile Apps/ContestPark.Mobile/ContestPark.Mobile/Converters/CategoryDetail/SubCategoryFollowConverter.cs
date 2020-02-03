@@ -1,4 +1,4 @@
-﻿using ContestPark.Mobile.AppResources;
+﻿using ContestPark.Mobile.Icons;
 using System;
 using System.Globalization;
 using Xamarin.Forms;
@@ -9,7 +9,7 @@ namespace ContestPark.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? ContestParkResources.UnFollow : ContestParkResources.Follow;
+            return (bool)value ? ContestParkIcon.UnCategoryFollow : ContestParkIcon.CategoryFollow;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

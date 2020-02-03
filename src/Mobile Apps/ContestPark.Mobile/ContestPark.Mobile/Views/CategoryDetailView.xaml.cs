@@ -12,6 +12,8 @@ namespace ContestPark.Mobile.Views
         public CategoryDetailView()
         {
             InitializeComponent();
+
+            Shell.SetNavBarIsVisible(this, false);
             Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
@@ -21,7 +23,8 @@ namespace ContestPark.Mobile.Views
 
         protected override void OnDisappearing()
         {
-            ((CategoryDetailViewModel)BindingContext).OnSleepEventCommand?.Execute(null);
+            if (BindingContext != null)
+                ((CategoryDetailViewModel)BindingContext).OnSleepEventCommand?.Execute(null);
 
             base.OnDisappearing();
         }

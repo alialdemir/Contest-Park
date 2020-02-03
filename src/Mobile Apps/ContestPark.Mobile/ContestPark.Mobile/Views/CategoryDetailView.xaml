@@ -15,16 +15,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:SubCategoryFollowConverter x:Key="scfb" />
-            <converter:SubCategoryFollowButtonTextColorConverter x:Key="scfbsc" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding ShareCommand}">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Share}" />
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
@@ -49,38 +41,107 @@
                         HeightRequest="280"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
-                        <Grid ColumnSpacing="0" RowSpacing="0">
+                        <Grid
+                            Padding="16"
+                            ColumnSpacing="16"
+                            RowSpacing="0">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="32" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="32" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Back button  -->
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HeightRequest="32"
+                                HorizontalOptions="Start"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GotoBackCommand}" />
+                                </Image.GestureRecognizers>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="{StaticResource icomoon}"
+                                        Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
+                                        Color="{StaticResource Black}" />
+                                </Image.Source>
+                            </Image>
+
+                            <!--  Follow  -->
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HeightRequest="32"
+                                HorizontalOptions="End"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SubCategoryFollowProgcessCommand}" />
+                                </Image.GestureRecognizers>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="{StaticResource icomoon}"
+                                        Glyph="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfb}}"
+                                        Color="{StaticResource Black}" />
+                                </Image.Source>
+                            </Image>
+
+                            <!--  Share  -->
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HeightRequest="32"
+                                HorizontalOptions="End"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ShareCommand}" />
+                                </Image.GestureRecognizers>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="{StaticResource icomoon}"
+                                        Glyph="{x:Static icons:ContestParkIcon.Share}"
+                                        Color="{StaticResource Black}" />
+                                </Image.Source>
+                            </Image>
 
                             <components:CachedImage
-                                Grid.Row="0"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
                                 Margin="0,21,0,0"
                                 HeightRequest="130"
                                 IsLoadingPlaceholder="False"
                                 Source="{Binding CategoryDetail.PicturePath}"
+                                TranslationY="-40"
                                 WidthRequest="130" />
 
                             <Label
-                                Grid.Row="1"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="3"
                                 Margin="0,10.7,0,0"
                                 FontFamily="{DynamicResource SofiaProSemiBold}"
                                 FontSize="23"
                                 HorizontalOptions="Center"
                                 Text="{Binding CategoryDetail.SubCategoryName}"
-                                TextColor="{StaticResource White}" />
+                                TextColor="{StaticResource White}"
+                                TranslationY="-40" />
 
                             <Label
-                                Grid.Row="2"
+                                Grid.Row="3"
+                                Grid.ColumnSpan="3"
                                 Margin="0,2,0,0"
                                 FontFamily="{DynamicResource SofiaProRegular}"
                                 FontSize="15"
                                 HorizontalOptions="Center"
                                 Text="{Binding CategoryDetail.Description}"
-                                TextColor="{StaticResource White}" />
+                                TextColor="{StaticResource White}"
+                                TranslationY="-40" />
                         </Grid>
                     </yummy:PancakeView>
 
@@ -91,7 +152,7 @@
                         CornerRadius="8"
                         Elevation="6"
                         HasShadow="True"
-                        HeightRequest="235"
+                        HeightRequest="200"
                         IsClippedToBounds="True"
                         TranslationY="-50"
                         WidthRequest="367">
@@ -184,26 +245,6 @@
                                 StartColor="#4048EF"
                                 Text="{i18n:Translate Ranking}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material">
-                                <components:LinearGradientButton.CornerRadius>
-                                    <OnPlatform x:TypeArguments="x:Int32">
-                                        <On Platform="Android" Value="60" />
-                                        <On Platform="iOS" Value="12" />
-                                    </OnPlatform>
-                                </components:LinearGradientButton.CornerRadius>
-                            </components:LinearGradientButton>
-                            <components:LinearGradientButton
-                                Grid.Row="4"
-                                Grid.ColumnSpan="2"
-                                BackgroundColor="Transparent"
-                                Command="{Binding SubCategoryFollowProgcessCommand}"
-                                EndColor="#FFCC33"
-                                FontFamily="{StaticResource SofiaProRegular}"
-                                FontSize="15"
-                                HorizontalOptions="FillAndExpand"
-                                StartColor="#FFB347"
-                                Text="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfb}}"
-                                TextColor="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfbsc}}"
                                 Visual="Material">
                                 <components:LinearGradientButton.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Int32">
