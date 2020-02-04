@@ -122,6 +122,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 {
                     byte scoreDiff = (byte)(opponentTotalScore - founderTotalScore);
                     currentRound.FounderScore = (byte)(scoreDiff + 5);// Rakip ile kurucu arasındaki puan farkının +5
+                    currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
@@ -129,6 +130,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 {
                     byte scoreDiff = (byte)(founderTotalScore - opponentTotalScore);
                     currentRound.OpponentScore = (byte)(scoreDiff + 5);// Kurucu ile rakip arasındaki puan farkının +5
+                    currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
