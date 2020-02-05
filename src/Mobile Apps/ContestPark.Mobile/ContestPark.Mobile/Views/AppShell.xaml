@@ -75,7 +75,7 @@
         Clicked="MenuItem_Clicked"
         CommandParameter="ContestStoreView"
         IconImageSource="{x:Static icons:ContestParkIcon.ContestStore}"
-        Text="{i18n:Translate ContestStore}" />    -->
+        Text="{i18n:Translate ContestStore}" />-->
     <MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="WinningsView"

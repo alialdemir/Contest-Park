@@ -3,7 +3,6 @@
     x:Class="ContestPark.Mobile.Components.InputListItem"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
         <yummy:PancakeView
@@ -22,12 +21,15 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <ffimageloadingsvg:SvgCachedImage
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    HeightRequest="32"
-                    Source="{Binding Icon}"
-                    WidthRequest="32" />
+                <Image Grid.Row="0" Grid.Column="0">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{Binding Icon}"
+                            Size="32"
+                            Color="{StaticResource SettingsIconColor}" />
+                    </Image.Source>
+                </Image>
 
                 <Entry
                     Grid.Row="0"

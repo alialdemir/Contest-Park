@@ -61,8 +61,6 @@
 	<string>LaunchScreen</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
-	<key>CFBundleVersion</key>
-	<string>1.8</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Yarışmaları takminize eklemek izin vermelisiniz.</string>
 	<key>NSCameraUsageDescription</key>
@@ -73,5 +71,7 @@
 	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
+	<key>CFBundleVersion</key>
+	<string>1.11</string>
 </dict>
 </plist>

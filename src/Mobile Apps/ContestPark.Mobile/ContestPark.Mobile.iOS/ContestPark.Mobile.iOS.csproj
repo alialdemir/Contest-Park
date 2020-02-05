@@ -71,6 +71,8 @@
     <MtouchDebug>true</MtouchDebug>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -401,7 +403,7 @@
       <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.iOS.Analytics">
-      <Version>6.0.4</Version>
+      <Version>6.0.4.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.991250" />
     <PackageReference Include="Xamarin.Forms.PancakeView">
@@ -414,7 +416,10 @@
       <Version>4.3.0.991250</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Google.iOS.Analytics">
-      <Version>3.17.0.3</Version>
+      <Version>3.17.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.iOS.MobileAds">
+      <Version>7.47.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Google.iOS.SignIn">
       <Version>4.4.0</Version>

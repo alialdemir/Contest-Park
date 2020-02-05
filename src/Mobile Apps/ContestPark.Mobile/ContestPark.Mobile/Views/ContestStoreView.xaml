@@ -193,14 +193,7 @@
                         RightText="+40 coins"
                         SingleTap="{Binding Path=BindingContext.WatchAdsVideoCommand, Source={x:Reference pageContestStore}}"
                         Source="ContestSingleCoin.svg"
-                        Text="{i18n:Translate FreeCoins}">
-                        <components:ThumListItem.IsVisible>
-                            <OnPlatform x:TypeArguments="x:Boolean">
-                                <On Platform="iOS" Value="False" />
-                                <On Platform="Android, WinPhone, Windows" Value="True" />
-                            </OnPlatform>
-                        </components:ThumListItem.IsVisible>
-                    </components:ThumListItem>
+                        Text="{i18n:Translate FreeCoins}" />
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>

@@ -71,7 +71,7 @@
                                     <FontImageSource
                                         FontFamily="{StaticResource icomoon}"
                                         Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
-                                        Color="{StaticResource Black}" />
+                                        Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
 
@@ -89,7 +89,7 @@
                                     <FontImageSource
                                         FontFamily="{StaticResource icomoon}"
                                         Glyph="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfb}}"
-                                        Color="{StaticResource Black}" />
+                                        Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
 
@@ -104,10 +104,7 @@
                                     <TapGestureRecognizer Command="{Binding ShareCommand}" />
                                 </Image.GestureRecognizers>
                                 <Image.Source>
-                                    <FontImageSource
-                                        FontFamily="{StaticResource icomoon}"
-                                        Glyph="{x:Static icons:ContestParkIcon.Share}"
-                                        Color="{StaticResource Black}" />
+                                    <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.LanguageSettings}" />
                                 </Image.Source>
                             </Image>
 

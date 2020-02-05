@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.InAppBilling
 {
@@ -40,6 +41,20 @@ namespace ContestPark.Mobile.Services.InAppBilling
         {
             get
             {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    return new string[7]
+                                    {
+                                        "com.contestpark.app.6money",
+                                        "com.contestpark.app.12money",
+                                        "com.contestpark.app.19money",
+                                        "com.contestpark.app.250Coins",
+                                        "com.contestpark.app.1500Coins",
+                                        "com.contestpark.app.7000Coins",
+                                        "com.contestpark.app.2000Coins"
+                                    };
+                }
+
                 return new string[7]
                                 {
                                     "com.contestparkapp.app.250coins",

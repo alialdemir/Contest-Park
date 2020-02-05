@@ -40,7 +40,7 @@ namespace ContestPark.Mobile.Services.AdMob
             Admob.OnRewarded += (o, e) =>
               {
                   Debug.WriteLine("OnRewarded");
-                  UserDialogs.Instance.ShowLoading("", MaskType.Black);
+                  //    UserDialogs.Instance.ShowLoading("", MaskType.Black);
               };
 
             Admob.OnRewardedVideoAdLoaded += (o, e) =>

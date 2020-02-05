@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Services.Analytics;
@@ -70,13 +71,13 @@ namespace ContestPark.Mobile.ViewModels
                                 {
                                     new TextMenuItem {
                                         CommandParameter = nameof(LanguageView),
-                                        Icon = "settings_language.svg",
+                                        Icon = ContestParkIcon.LanguageSettings,
                                         Title = ContestParkResources.Language,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
                                     new SwitchMenuItem {
-                                        Icon = "settings_sound.svg",
+                                        Icon = ContestParkIcon.SoundSettings,
                                         Title = ContestParkResources.Sounds,
                                         MenuType = MenuTypes.Switch,
                                         IsToggled = _settingsService.IsSoundEffectActive,
@@ -89,20 +90,20 @@ namespace ContestPark.Mobile.ViewModels
                                     {
                                     new TextMenuItem {
                                         CommandParameter = nameof(AccountSettingsView),
-                                        Icon = "settings_account.svg",
+                                        Icon = ContestParkIcon.AccountSettings,
                                         Title = ContestParkResources.EditProfile,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
                                     new TextMenuItem {
                                         CommandParameter = nameof(BlockingView),
-                                        Icon = "settings_blocked.svg",
+                                        Icon = ContestParkIcon.BlockedSettings,
                                         Title = ContestParkResources.Blocking,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = pushPageCommand
                                     },
                                     new SwitchMenuItem {
-                                        Icon = "settings_private_profile.svg",
+                                        Icon = ContestParkIcon.PrivateProfileSettings,
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = MenuTypes.Switch,
                                         IsToggled = _settingsService.CurrentUser.IsPrivateProfile,
@@ -114,7 +115,7 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.Other)
                                 {
                                     new TextMenuItem {
-                                        Icon = "settings_log_out.svg",
+                                        Icon = ContestParkIcon.Exit,
                                         Title = ContestParkResources.LogOut,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = new Command(async()=> await ExitAppAsync()),
