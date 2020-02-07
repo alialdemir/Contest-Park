@@ -59,7 +59,7 @@ namespace ContestPark.Balance.API.Controllers
         /// <summary>
         /// Google play tanımlı paket isimleri
         /// </summary>
-        public Dictionary<string, PackageModel> PlayStorePackages
+        public Dictionary<string, PackageModel> Products
         {
             get
             {
@@ -67,6 +67,8 @@ namespace ContestPark.Balance.API.Controllers
                 {
                     _googlePlayPackages = new Dictionary<string, PackageModel>
                     {
+                        // Android
+
                         // Gold
                         {"com.contestparkapp.app.250coins", new PackageModel{ Amount = 2.50m, BalanceType= BalanceTypes.Gold } },
                         {"com.contestparkapp.app.1500coins",  new PackageModel{ Amount = 15.00m, BalanceType= BalanceTypes.Gold } },
@@ -76,20 +78,9 @@ namespace ContestPark.Balance.API.Controllers
                         {"com.contestparkapp.app.6",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.12",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.19",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
-                    };
-                }
-                return _googlePlayPackages;
-            }
-        }
 
-        public Dictionary<string, PackageModel> AppleStorePackages
-        {
-            get
-            {
-                if (_googlePlayPackages == null)
-                {
-                    _googlePlayPackages = new Dictionary<string, PackageModel>
-                    {
+                        // Ios
+
                         // Gold
                         {"com.contestpark.app.250Coins", new PackageModel{ Amount = 2.50m, BalanceType= BalanceTypes.Gold } },
                         {"com.contestpark.app.1500Coins",  new PackageModel{ Amount = 15.00m, BalanceType= BalanceTypes.Gold } },
@@ -314,7 +305,7 @@ namespace ContestPark.Balance.API.Controllers
 
             #region Validations
 
-            PackageModel package = GetPackageByPackageName(purchase.PackageName, purchase.Platform);
+            PackageModel package = GetPackageByPackageName(purchase.PackageName);
             if (package == null || package.Amount == 0)
             {
                 Logger.LogError($@"Uygulama içi satın alma hata!. Paket adından bakiye tipi alınırken null değer geldi. Acil kontrol ediniz. UserId: {UserId}
@@ -370,16 +361,11 @@ namespace ContestPark.Balance.API.Controllers
         /// </summary>
         /// <param name="packageName">Google play/App store paket name</param>
         /// <returns>Bakiye tipi</returns>
-        private PackageModel GetPackageByPackageName(string packageName, Platforms platform)
+        private PackageModel GetPackageByPackageName(string packageName)
         {
-            if (platform == Platforms.Ios && AppleStorePackages.ContainsKey(packageName))
+            if (Products.ContainsKey(packageName))
             {
-                return AppleStorePackages[packageName];
-            }
-
-            if (platform == Platforms.Android && PlayStorePackages.ContainsKey(packageName))
-            {
-                return PlayStorePackages[packageName];
+                return Products[packageName];
             }
 
             return null;
