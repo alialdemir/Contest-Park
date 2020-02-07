@@ -5,7 +5,6 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using ImageCircle.Forms.Plugin.Droid;
 using Lottie.Forms.Droid;
 using Plugin.CurrentActivity;
 using Plugin.Iconize;
@@ -78,8 +77,6 @@ namespace ContestPark.Mobile.Droid
             CrossCurrentActivity.Current.Activity = this;
 
             UserDialogs.Init(this);
-
-            ImageCircleRenderer.Init();
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 

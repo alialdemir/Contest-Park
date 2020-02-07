@@ -72,6 +72,6 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
 	<key>CFBundleVersion</key>
-	<string>1.11</string>
+	<string>1.12</string>
 </dict>
 </plist>

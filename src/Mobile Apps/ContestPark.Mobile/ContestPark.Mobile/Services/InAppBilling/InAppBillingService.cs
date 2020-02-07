@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.InAppBillingProduct;
 using Plugin.InAppBilling;
 using Plugin.InAppBilling.Abstractions;
@@ -37,58 +38,137 @@ namespace ContestPark.Mobile.Services.InAppBilling
         /// <summary>
         /// Google play de tanımlı ürün id'leri
         /// </summary>
-        public string[] ProductIds
+        private List<InAppBillingProductModel> Products
         {
             get
             {
                 if (Device.RuntimePlatform == Device.iOS)
                 {
-                    return new string[7]
+                    return new List<InAppBillingProductModel>
                                     {
-                                        "com.contestpark.app.6money",
-                                        "com.contestpark.app.12money",
-                                        "com.contestpark.app.19money",
-                                        "com.contestpark.app.250Coins",
-                                        "com.contestpark.app.1500Coins",
-                                        "com.contestpark.app.7000Coins",
-                                        "com.contestpark.app.2000Coins"
+                                        // Money
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.6money",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney6,
+                                            Description = ContestParkResources.ProductMoney6,
+                                            Image =  "contest_store_money_5.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.12money",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney12,
+                                            Description = ContestParkResources.ProductMoney12,
+                                            Image =  "contest_store_money_6.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.19money",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney19,
+                                            Description = ContestParkResources.ProductMoney19,
+                                            Image =  "contest_store_money_7.svg"
+                                        },
+                                        // Gold
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.250Coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold250Name,
+                                            Description = ContestParkResources.ProductGold250Description,
+                                            Image =  "contest_store_gold_1.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.1500Coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold1500Name,
+                                            Description = ContestParkResources.ProductGold1500Description,
+                                            Image =  "contest_store_gold_2.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.7000Coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold7000Name,
+                                            Description = ContestParkResources.ProductGold7000Description,
+                                            Image =  "contest_store_gold_3.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.2000Coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold20000Name,
+                                            Description = ContestParkResources.ProductGold20000Description,
+                                            Image =  "contest_store_gold_4.svg"
+                                        },
                                     };
                 }
 
-                return new string[7]
-                                {
-                                    "com.contestparkapp.app.250coins",
-                                    "com.contestparkapp.app.1500coins",
-                                    "com.contestparkapp.app.7000coins",
-                                    "com.contestparkapp.app.20000coins",
-                                    "com.contestparkapp.app.6",
-                                    "com.contestparkapp.app.12",
-                                    "com.contestparkapp.app.19"
-                                };
-            }
-        }
+                return new List<InAppBillingProductModel>
+                                    {
+                                        // Money
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.6",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney6,
+                                            Description = ContestParkResources.ProductMoney6,
+                                            Image =  "contest_store_money_5.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.12",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney12,
+                                            Description = ContestParkResources.ProductMoney12,
+                                            Image =  "contest_store_money_6.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.19",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney19,
+                                            Description = ContestParkResources.ProductMoney19,
+                                            Image =  "contest_store_money_7.svg"
+                                        },
 
-        /// <summary>
-        /// Ürün resimleri
-        /// </summary>
-        public Dictionary<string, string> ProductImages
-        {
-            get
-            {
-                var productImages = new Dictionary<string, string>();
-
-                // TODO: ios eklendiği zaman burda if platform ios ise ios product ids dönünmeli
-
-                for (int i = 0; i < ProductIds.Length; i++)
-                {
-                    string productId = ProductIds[i];
-
-                    // eğer product id içinde dolar yazıyors varsa para paketleri yoksa altın paketleri gösterir
-                    string svgName = productId.EndsWith("dolar") ? "contest_store_money_" : "contest_store_gold_";
-                    productImages.Add(productId, $"assets/images/{svgName}{(i + 1).ToString()}.svg");
-                }
-
-                return productImages;
+                                        // Gold
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.250coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold250Name,
+                                            Description = ContestParkResources.ProductGold250Description,
+                                            Image =  "contest_store_gold_1.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.1500coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold1500Name,
+                                            Description = ContestParkResources.ProductGold1500Description,
+                                            Image =  "contest_store_gold_2.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.7000coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold7000Name,
+                                            Description = ContestParkResources.ProductGold7000Description,
+                                            Image =  "contest_store_gold_3.svg"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.20000coins",
+                                            BalanceTypes=    BalanceTypes.Gold,
+                                            ProductName = ContestParkResources.ProductGold20000Name,
+                                            Description = ContestParkResources.ProductGold20000Description,
+                                            Image =  "contest_store_gold_4.svg"
+                                        },
+                                    };
             }
         }
 
@@ -123,7 +203,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                IEnumerable<InAppBillingProduct> propductList = await billing.GetProductInfoAsync(ItemType.InAppPurchase, ProductIds);
+                IEnumerable<InAppBillingProduct> propductList = await billing.GetProductInfoAsync(ItemType.InAppPurchase, Products.Select(x => x.ProductId).ToArray());
                 if (propductList == null || propductList.Count() <= 0)
                 {
                     Debug.WriteLine("Uygulama içi satın alınacak ürün listesi gelmedi.");
@@ -136,12 +216,12 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 return propductList.Select(product => new InAppBillingProductModel
                 {
                     CurrencyCode = product.CurrencyCode,
-                    Description = product.Description,
                     LocalizedPrice = product.LocalizedPrice,
+                    Description = Products.FirstOrDefault(x => x.ProductId == product.ProductId).Description,
                     ProductId = product.ProductId,
-                    ProductName = product.Name.Replace(" (ContestPark)", ""),
-                    Image = ProductImages.ContainsKey(product.ProductId) ? ProductImages[product.ProductId] : "",
-                    BalanceTypes = product.Name.IndexOf("$") != -1 ? Enums.BalanceTypes.Money : Enums.BalanceTypes.Gold
+                    ProductName = Products.FirstOrDefault(x => x.ProductId == product.ProductId).ProductName,
+                    Image = Products.FirstOrDefault(x => x.ProductId == product.ProductId).Image,
+                    BalanceTypes = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes,
                 }).OrderBy(x => x.Image).ToList();
             }
             catch (InAppBillingPurchaseException purchaseEx)
@@ -181,7 +261,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return null;
                 }
 
-                bool isExistsProductId = ProductImages.ContainsKey(productId);
+                bool isExistsProductId = Products.Any(product => product.ProductId == productId);
                 if (!isExistsProductId)
                 {
                     await ShowErrorDisplayAlertAsync(ContestParkResources.InvalidProductId);

@@ -460,6 +460,39 @@
   <data name="Prize" xml:space="preserve">
     <value>ÖDÜL</value>
   </data>
+  <data name="ProductGold1500Description" xml:space="preserve">
+    <value>Nice chunk of coins you have over here</value>
+  </data>
+  <data name="ProductGold1500Name" xml:space="preserve">
+    <value>1500 Coins</value>
+  </data>
+  <data name="ProductGold20000Description" xml:space="preserve">
+    <value>Coins like a cartoon duck</value>
+  </data>
+  <data name="ProductGold20000Name" xml:space="preserve">
+    <value>20000 Coins</value>
+  </data>
+  <data name="ProductGold250Description" xml:space="preserve">
+    <value>A small investment can go far!</value>
+  </data>
+  <data name="ProductGold250Name" xml:space="preserve">
+    <value>250 Coins</value>
+  </data>
+  <data name="ProductGold7000Description" xml:space="preserve">
+    <value>Shake it, shale it like a wallet full of coins</value>
+  </data>
+  <data name="ProductGold7000Name" xml:space="preserve">
+    <value>7000 Coins</value>
+  </data>
+  <data name="ProductMoney12" xml:space="preserve">
+    <value>12.99 ₺ Yükle</value>
+  </data>
+  <data name="ProductMoney6" xml:space="preserve">
+    <value>6.99 ₺ Yükle</value>
+  </data>
+  <data name="ProductMoney61" xml:space="preserve">
+    <value>19.99 ₺ Yükle</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>
   </data>

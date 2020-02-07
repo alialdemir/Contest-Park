@@ -1,8 +1,6 @@
 ﻿using ContestPark.Mobile.Components.PostCardView;
-using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Post;
-using MarcTron.Plugin.Controls;
 
 //using MarcTron.Plugin.Controls;
 using Prism.Navigation;
@@ -86,12 +84,12 @@ namespace ContestPark.Mobile.Components
                                     }
                                 },
 
-                                new MTAdView
-                                {
-                                    AdsId = GlobalSetting.BannerAdUnitId1,
-                                    PersonalizedAds = true,
-                                    HeightRequest=60
-                                }
+                                //new MTAdView
+                                //{
+                                //    AdsId = GlobalSetting.BannerAdUnitId1,
+                                //    PersonalizedAds = true,
+                                //    HeightRequest=60
+                                //}
                 }
             };
         }

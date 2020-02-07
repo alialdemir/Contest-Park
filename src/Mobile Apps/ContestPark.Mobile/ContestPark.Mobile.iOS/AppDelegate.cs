@@ -1,9 +1,5 @@
 ﻿using FFImageLoading.Forms.Platform;
 using Foundation;
-using Google.MobileAds;
-
-//using Google.MobileAds;
-using ImageCircle.Forms.Plugin.iOS;
 using Plugin.Segmented.Control.iOS;
 using Prism;
 using Prism.Ioc;
@@ -35,9 +31,6 @@ namespace ContestPark.Mobile.iOS
             //#endif
 
             CachedImageRenderer.Init();
-            //UserDialogs.Init();
-
-            ImageCircleRenderer.Init();
 
             Popup.Init();
 
@@ -46,11 +39,11 @@ namespace ContestPark.Mobile.iOS
 
             SegmentedControlRenderer.Initialize();
 
-            MobileAds.SharedInstance.Start(CompletionHandler);
+            //MobileAds.SharedInstance.Start(CompletionHandler);
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
-            Firebase.Core.App.Configure();
+            //Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
         }
@@ -58,7 +51,7 @@ namespace ContestPark.Mobile.iOS
         /// <summary>
         /// Admob için eklendi
         /// </summary>
-        private void CompletionHandler(InitializationStatus status) { }
+        //private void CompletionHandler(InitializationStatus status) { }
 
         private bool CheckCydia()
         {

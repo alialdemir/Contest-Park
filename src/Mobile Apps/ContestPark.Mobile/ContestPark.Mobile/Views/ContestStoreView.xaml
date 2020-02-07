@@ -182,7 +182,7 @@
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>
-            <components:NonPersistentSelectedItemListView.FooterTemplate>
+            <!--<components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
                     <components:ThumListItem
                         AutomationId="WatchAdGetCoins"
@@ -195,7 +195,7 @@
                         Source="ContestSingleCoin.svg"
                         Text="{i18n:Translate FreeCoins}" />
                 </DataTemplate>
-            </components:NonPersistentSelectedItemListView.FooterTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>-->
         </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

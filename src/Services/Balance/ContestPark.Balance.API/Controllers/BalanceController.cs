@@ -57,9 +57,9 @@ namespace ContestPark.Balance.API.Controllers
         private Dictionary<string, PackageModel> _googlePlayPackages;
 
         /// <summary>
-        /// Google play ve apple store da tanımlı paket isimleri
+        /// Google play tanımlı paket isimleri
         /// </summary>
-        public Dictionary<string, PackageModel> GooglePlayPackages
+        public Dictionary<string, PackageModel> PlayStorePackages
         {
             get
             {
@@ -68,14 +68,37 @@ namespace ContestPark.Balance.API.Controllers
                     _googlePlayPackages = new Dictionary<string, PackageModel>
                     {
                         // Gold
-                        {"com.contestparkapp.app.250coins", new PackageModel{ Amount=2.50m, BalanceType= BalanceTypes.Gold } },
-                        {"com.contestparkapp.app.1500coins",  new PackageModel{ Amount=15.00m, BalanceType= BalanceTypes.Gold } },
-                        {"com.contestparkapp.app.7000coins",  new PackageModel{ Amount=7.00m, BalanceType= BalanceTypes.Gold } },
-                        {"com.contestparkapp.app.20000coins",  new PackageModel{ Amount=20.000m , BalanceType= BalanceTypes.Gold }},
+                        {"com.contestparkapp.app.250coins", new PackageModel{ Amount = 2.50m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.1500coins",  new PackageModel{ Amount = 15.00m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.7000coins",  new PackageModel{ Amount = 7.00m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestparkapp.app.20000coins",  new PackageModel{ Amount = 20.000m , BalanceType= BalanceTypes.Gold }},
                         // Money
-                        {"com.contestparkapp.app.6",  new PackageModel{ Amount=6.99m , BalanceType= BalanceTypes.Money }},
-                        {"com.contestparkapp.app.12",  new PackageModel{ Amount=12.99m , BalanceType= BalanceTypes.Money }},
-                        {"com.contestparkapp.app.19",  new PackageModel{ Amount=19.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.6",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.12",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.19",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
+                    };
+                }
+                return _googlePlayPackages;
+            }
+        }
+
+        public Dictionary<string, PackageModel> AppleStorePackages
+        {
+            get
+            {
+                if (_googlePlayPackages == null)
+                {
+                    _googlePlayPackages = new Dictionary<string, PackageModel>
+                    {
+                        // Gold
+                        {"com.contestpark.app.250Coins", new PackageModel{ Amount = 2.50m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestpark.app.1500Coins",  new PackageModel{ Amount = 15.00m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestpark.app.700Coins",  new PackageModel{ Amount = 7.00m, BalanceType= BalanceTypes.Gold } },
+                        {"com.contestpark.app.20000Coins",  new PackageModel{ Amount = 20.000m , BalanceType= BalanceTypes.Gold }},
+                        // Money
+                        {"com.contestpark.app.6money",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestpark.app.12money",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestpark.app.19money",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
                     };
                 }
                 return _googlePlayPackages;
@@ -291,7 +314,7 @@ namespace ContestPark.Balance.API.Controllers
 
             #region Validations
 
-            PackageModel package = GetPackageByPackageName(purchase.PackageName);
+            PackageModel package = GetPackageByPackageName(purchase.PackageName, purchase.Platform);
             if (package == null || package.Amount == 0)
             {
                 Logger.LogError($@"Uygulama içi satın alma hata!. Paket adından bakiye tipi alınırken null değer geldi. Acil kontrol ediniz. UserId: {UserId}
@@ -347,13 +370,16 @@ namespace ContestPark.Balance.API.Controllers
         /// </summary>
         /// <param name="packageName">Google play/App store paket name</param>
         /// <returns>Bakiye tipi</returns>
-        private PackageModel GetPackageByPackageName(string packageName)
+        private PackageModel GetPackageByPackageName(string packageName, Platforms platform)
         {
-            // TODO: app store paketlerine göre balance type gelmeli
-
-            if (GooglePlayPackages.ContainsKey(packageName))
+            if (platform == Platforms.Ios && AppleStorePackages.ContainsKey(packageName))
             {
-                return GooglePlayPackages[packageName];
+                return AppleStorePackages[packageName];
+            }
+
+            if (platform == Platforms.Android && PlayStorePackages.ContainsKey(packageName))
+            {
+                return PlayStorePackages[packageName];
             }
 
             return null;

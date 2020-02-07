@@ -1079,6 +1079,105 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nice chunk of coins you have over here.
+        /// </summary>
+        public static string ProductGold1500Description {
+            get {
+                return ResourceManager.GetString("ProductGold1500Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1500 Coins.
+        /// </summary>
+        public static string ProductGold1500Name {
+            get {
+                return ResourceManager.GetString("ProductGold1500Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coins like a cartoon duck.
+        /// </summary>
+        public static string ProductGold20000Description {
+            get {
+                return ResourceManager.GetString("ProductGold20000Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20000 Coins.
+        /// </summary>
+        public static string ProductGold20000Name {
+            get {
+                return ResourceManager.GetString("ProductGold20000Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A small investment can go far!.
+        /// </summary>
+        public static string ProductGold250Description {
+            get {
+                return ResourceManager.GetString("ProductGold250Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 250 Coins.
+        /// </summary>
+        public static string ProductGold250Name {
+            get {
+                return ResourceManager.GetString("ProductGold250Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shake it, shale it like a wallet full of coins.
+        /// </summary>
+        public static string ProductGold7000Description {
+            get {
+                return ResourceManager.GetString("ProductGold7000Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7000 Coins.
+        /// </summary>
+        public static string ProductGold7000Name {
+            get {
+                return ResourceManager.GetString("ProductGold7000Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload ₺12.99 to your account.
+        /// </summary>
+        public static string ProductMoney12 {
+            get {
+                return ResourceManager.GetString("ProductMoney12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload ₺19.99 to your account.
+        /// </summary>
+        public static string ProductMoney19 {
+            get {
+                return ResourceManager.GetString("ProductMoney19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload ₺6.99 to your account.
+        /// </summary>
+        public static string ProductMoney6 {
+            get {
+                return ResourceManager.GetString("ProductMoney6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {

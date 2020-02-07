@@ -73,6 +73,7 @@
                                 <ColumnDefinition Width="25" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
+
                             <ffimageloadingsvg:SvgCachedImage
                                 Grid.Column="0"
                                 HeightRequest="20"

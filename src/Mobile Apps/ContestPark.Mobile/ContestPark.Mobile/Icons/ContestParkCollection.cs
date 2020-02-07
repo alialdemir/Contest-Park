@@ -34,5 +34,7 @@
         public const string CoverPictureSettings = "\ue912";
         public const string Edit = "\ue931";
         public const string EmailSettings = "\ue933";
+
+        public const string SingleMoney = "\uef12";
     }
 }

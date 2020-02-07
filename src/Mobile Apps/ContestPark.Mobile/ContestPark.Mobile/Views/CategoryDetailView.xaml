@@ -104,7 +104,7 @@
                                     <TapGestureRecognizer Command="{Binding ShareCommand}" />
                                 </Image.GestureRecognizers>
                                 <Image.Source>
-                                    <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.LanguageSettings}" />
+                                    <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Share}" />
                                 </Image.Source>
                             </Image>
 
