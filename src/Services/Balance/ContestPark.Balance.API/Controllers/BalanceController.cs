@@ -331,7 +331,7 @@ namespace ContestPark.Balance.API.Controllers
             if (!isSuccess)
                 return BadRequest(BalanceResource.ThePurchaseFailedPleaseEmailWithOurSupportTeam);
 
-            await AddPurchaseHistory(purchase, package);
+            AddPurchaseHistory(purchase, package);
 
             return Ok();
         }
@@ -342,9 +342,9 @@ namespace ContestPark.Balance.API.Controllers
         /// <param name="purchase">Satın alma bilgileri</param>
         /// <param name="amount">Satın alınan altın</param>
         /// <param name="balanceType">Satın alma itpi</param>
-        private async Task AddPurchaseHistory(PurchaseModel purchase, PackageModel package)
+        private void AddPurchaseHistory(PurchaseModel purchase, PackageModel package)
         {
-            await _purchaseHistoryRepository.AddAsync(new PurchaseHistory
+            _purchaseHistoryRepository.AddAsync(new PurchaseHistory
             {
                 Amount = package.Amount,
                 UserId = UserId,

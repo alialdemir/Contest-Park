@@ -224,7 +224,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 try
                 {
                     if (await CheckNetworkAsync())
-
                         return new ResponseModel<TResult>();
 
                     HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);

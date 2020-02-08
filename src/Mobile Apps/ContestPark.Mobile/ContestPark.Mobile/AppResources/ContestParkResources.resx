@@ -714,12 +714,12 @@
     <value>7000 Coins</value>
   </data>
   <data name="ProductMoney12" xml:space="preserve">
-    <value>Upload ₺12.99 to your account</value>
+    <value>Upload ₺12.99</value>
   </data>
   <data name="ProductMoney19" xml:space="preserve">
-    <value>Upload ₺19.99 to your account</value>
+    <value>Upload ₺19.99</value>
   </data>
   <data name="ProductMoney6" xml:space="preserve">
-    <value>Upload ₺6.99 to your account</value>
+    <value>Upload ₺6.99</value>
   </data>
 </root>

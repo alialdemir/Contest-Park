@@ -73,6 +73,7 @@ namespace ContestPark.Mobile.Services.Cp
                                                             result.Error.ErrorMessage,
                                                             ContestParkResources.Okay);
             }
+
             return result.IsSuccess;
         }
 
@@ -84,7 +85,6 @@ namespace ContestPark.Mobile.Services.Cp
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.PostAsync<string>(uri, ibanNo);
-
             if (!result.IsSuccess && result.Error != null)
             {
                 await _pageDialogService?.DisplayAlertAsync("",

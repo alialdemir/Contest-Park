@@ -46,6 +46,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 {
                     return new List<InAppBillingProductModel>
                                     {
+                        // IOS
                                         // Money
                                         new InAppBillingProductModel
                                         {
@@ -98,7 +99,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                         },
                                         new InAppBillingProductModel
                                         {
-                                            ProductId = "com.contestpark.app.2000Coins",
+                                            ProductId = "com.contestpark.app.20000Coins",
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold20000Name,
                                             Description = ContestParkResources.ProductGold20000Description,
@@ -330,7 +331,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
             finally
             {
                 //Disconnect, it is okay if we never connected
-                await billing.DisconnectAsync();
+                //      await billing.DisconnectAsync();
             }
 
             return null;

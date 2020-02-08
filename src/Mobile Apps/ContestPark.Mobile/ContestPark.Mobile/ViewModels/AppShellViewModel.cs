@@ -132,6 +132,13 @@ namespace ContestPark.Mobile.ViewModels
                     }
                 });
 
+            _eventAggregator
+                .GetEvent<GoldUpdatedEvent>()
+                .Subscribe(() =>
+                {
+                    SetUserGoldCommand.Execute(null);
+                });
+
             await base.InitializeAsync();
         }
 

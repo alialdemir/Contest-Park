@@ -935,6 +935,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\rank3.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SingleMoney.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

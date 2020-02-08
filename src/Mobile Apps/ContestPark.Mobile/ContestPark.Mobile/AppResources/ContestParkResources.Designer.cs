@@ -1151,7 +1151,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload ₺12.99 to your account.
+        ///   Looks up a localized string similar to Upload ₺12.99.
         /// </summary>
         public static string ProductMoney12 {
             get {
@@ -1160,7 +1160,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload ₺19.99 to your account.
+        ///   Looks up a localized string similar to Upload ₺19.99.
         /// </summary>
         public static string ProductMoney19 {
             get {
@@ -1169,7 +1169,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload ₺6.99 to your account.
+        ///   Looks up a localized string similar to Upload ₺6.99.
         /// </summary>
         public static string ProductMoney6 {
             get {
