@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Analytics;
@@ -125,11 +126,17 @@ namespace ContestPark.Mobile.ViewModels
                 .GetEvent<ChangeUserInfoEvent>()
                 .Subscribe((userInfo) =>
                 {
-                    if (userInfo != null)
-                    {
+                    if (userInfo == null)
+                        return;
+
+                    if (!string.IsNullOrEmpty(userInfo.FullName))
                         FullName = userInfo.FullName;
+
+                    if (!string.IsNullOrEmpty(userInfo.ProfilePicturePath) && userInfo.ProfilePicturePath != DefaultImages.DefaultProfilePicture)
                         ProfilePicture = userInfo.ProfilePicturePath;
-                    }
+
+                    if (!string.IsNullOrEmpty(userInfo.CoverPicturePath) && userInfo.CoverPicturePath != DefaultImages.DefaultCoverPicture)
+                        CoverPicture = userInfo.CoverPicturePath;
                 });
 
             _eventAggregator

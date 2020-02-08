@@ -112,7 +112,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Navigations
 
-        public Task GoBackAsync(bool? useModalNavigation = false)
+        public virtual Task GoBackAsync(bool? useModalNavigation = false)
         {
             if (_navigationService == null)
                 return Task.CompletedTask;
@@ -188,6 +188,14 @@ namespace ContestPark.Mobile.ViewModels.Base
         #endregion Navigations
 
         #region Commands
+
+        public ICommand GotoBackCommand
+        {
+            get
+            {
+                return new Command<bool?>((useModalNavigation) => GoBackAsync(useModalNavigation));
+            }
+        }
 
         /// <summary>
         /// Veri yükle command

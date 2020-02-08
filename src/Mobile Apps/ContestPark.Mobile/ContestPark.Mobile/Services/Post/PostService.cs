@@ -99,9 +99,12 @@ namespace ContestPark.Mobile.Services.Post
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Posts listesi</returns>
-        public async Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel)
+        public async Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel, bool isForceCache = false)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/User/{userId}{pagingModel.ToString()}");
+
+            if (isForceCache)
+                _cacheService.Empty(uri);
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -113,6 +116,7 @@ namespace ContestPark.Mobile.Services.Post
             {
                 _cacheService.Add(uri, result.Data);
             }
+
             return result.Data;
         }
 

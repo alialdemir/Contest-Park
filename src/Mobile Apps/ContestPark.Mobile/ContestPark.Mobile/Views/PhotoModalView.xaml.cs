@@ -32,7 +32,7 @@ namespace ContestPark.Mobile.Views
         {
             base.OnAppearing();
 
-            if (Pictures.Count != 0)
+            if (Pictures != null && Pictures.Count != 0)
             {
                 listPictures.ItemsSource = Pictures;
                 listPictures.SelectedIndex = SelectedIndex;

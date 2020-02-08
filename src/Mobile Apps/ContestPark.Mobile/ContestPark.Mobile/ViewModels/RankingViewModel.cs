@@ -235,11 +235,6 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand SegmentValueChangedCommand => new Command<int>((selectedSegmentIndex) => SegmentValueChanged(selectedSegmentIndex));
         private ICommand TimeLeftCommand => new Command(() => ExecuteTimeLeftCommand());
 
-        public ICommand GotoBackCommand
-        {
-            get { return new Command(() => GoBackAsync()); }
-        }
-
         #endregion Commands
 
         #region Navigation

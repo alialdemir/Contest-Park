@@ -210,11 +210,11 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterSingleton<ICacheService, CacheService>();
 
-            containerRegistry.Register<IAudioService, AudioService>();
+            containerRegistry.RegisterSingleton<IAudioService, AudioService>();
 
-            containerRegistry.Register<IMediaService, MediaService>();
+            containerRegistry.RegisterSingleton<IMediaService, MediaService>();
 
-            containerRegistry.Register<IAdMobService, AdMobService>();
+            containerRegistry.RegisterSingleton<IAdMobService, AdMobService>();
 
             containerRegistry.RegisterSingleton<IAnalyticsService, AnalyticsService>();
 

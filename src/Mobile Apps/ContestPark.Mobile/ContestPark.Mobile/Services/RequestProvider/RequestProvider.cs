@@ -287,7 +287,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                 return new MultipartFormDataContent
                         {
-                            { streamContent, "files", media.FileName }// TODO: filename kısmında uzantı isteyebilir
+                            { streamContent, "files", media.FileName }
                         };
             }
             else if (data != null)
@@ -299,6 +299,11 @@ namespace ContestPark.Mobile.Services.RequestProvider
             return null;
         }
 
+        /// <summary>
+        /// Resim adına göre content type döndürür
+        /// </summary>
+        /// <param name="path">Resim adı</param>
+        /// <returns>Content type</returns>
         private string GetImageContentType(string path)
         {
             string extension = Path.GetExtension(path);

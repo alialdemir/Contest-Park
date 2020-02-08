@@ -40,7 +40,6 @@ namespace ContestPark.Mobile.Views
             base.OnAppearing();
 
             ProfileViewModel viewModel = ((ProfileViewModel)BindingContext);
-
             if (viewModel == null || viewModel.IsInitialized)
                 return;
 

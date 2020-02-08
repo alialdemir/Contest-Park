@@ -172,7 +172,7 @@ namespace ContestPark.Mobile.Services.Post
             });
         }
 
-        public Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel)
+        public Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel, bool isForceCache = false)
         {
             return Task.FromResult(new ServiceModel<PostModel>
             {

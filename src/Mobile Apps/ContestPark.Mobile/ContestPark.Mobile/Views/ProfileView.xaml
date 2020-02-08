@@ -54,6 +54,7 @@
                             Margin="16,16,0,0"
                             BackgroundColor="Transparent"
                             Command="{Binding GotoBackCommand}"
+                            CommandParameter="{StaticResource False}"
                             FontSize="24"
                             HorizontalOptions="Start"
                             IsVisible="{Binding IsVisibleBackArrow}"

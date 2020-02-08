@@ -1,4 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
@@ -12,6 +14,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using MvvmHelpers;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
@@ -30,8 +33,11 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IIdentityService _identityService;
         private readonly IMediaService _mediaService;
         private readonly IPostService _postService;
+        private readonly IEventAggregator _eventAggregator;
         public readonly ISettingsService _settingsService;
-        private string userName;
+        private string _userName;
+        private SubscriptionToken _changeUserInfoEventSubscriptionToken;
+        private SubscriptionToken _postRefreshEventSubscriptionToken;
 
         #endregion Private variables
 
@@ -43,6 +49,7 @@ namespace ContestPark.Mobile.ViewModels
             IIdentityService identityService,
             IPostService postService,
             IPopupNavigation popupNavigation,
+            IEventAggregator eventAggregator,
             ISettingsService settingsService,
             IBlockingService blockingService,
             IFollowService followService,
@@ -54,6 +61,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _identityService = identityService;
             _postService = postService;
+            _eventAggregator = eventAggregator;
             NavigationService = navigationService;
             _settingsService = settingsService;
             _blockingService = blockingService;
@@ -115,6 +123,85 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
+        protected override async Task InitializeAsync()
+        {
+            var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
+            if (profileInfo != null)
+            {
+                ProfileInfo = profileInfo;
+
+                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
+
+                if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
+                {
+                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+                }
+
+                if (_settingsService.CurrentUser.UserId == profileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
+                {
+                    EventSubscription();
+                }
+            }
+            else
+            {
+                await DisplayAlertAsync("",
+                    ContestParkResources.UserNotFound,
+                    ContestParkResources.Okay);
+            }
+
+            IsBusy = false;
+
+            await base.InitializeAsync();
+        }
+
+        public override Task GoBackAsync(bool? useModalNavigation = false)
+        {
+            if (_changeUserInfoEventSubscriptionToken != null)// Profil bilgileri güncelle eventi unsubscribe yapıldı
+            {
+                _eventAggregator
+                    .GetEvent<ChangeUserInfoEvent>()
+                    .Unsubscribe(_changeUserInfoEventSubscriptionToken);
+
+                _eventAggregator
+                    .GetEvent<PostRefreshEvent>()
+                    .Unsubscribe(_postRefreshEventSubscriptionToken);
+            }
+
+            return base.GoBackAsync(useModalNavigation);
+        }
+
+        /// <summary>
+        /// Profil, kapak veya kullanıcı adı değişince profili günceller
+        /// </summary>
+        private void EventSubscription()
+        {
+            _changeUserInfoEventSubscriptionToken = _eventAggregator
+                                                               .GetEvent<ChangeUserInfoEvent>()
+                                                               .Subscribe((userInfo) =>
+                                                               {
+                                                                   if (userInfo == null)
+                                                                       return;
+
+                                                                   if (!string.IsNullOrEmpty(userInfo.FullName))
+                                                                       ProfileInfo.FullName = userInfo.FullName;
+
+                                                                   if (!string.IsNullOrEmpty(userInfo.ProfilePicturePath) && userInfo.ProfilePicturePath != DefaultImages.DefaultProfilePicture)
+                                                                       ProfileInfo.ProfilePicturePath = userInfo.ProfilePicturePath;
+
+                                                                   if (!string.IsNullOrEmpty(userInfo.CoverPicturePath) && userInfo.CoverPicturePath != DefaultImages.DefaultCoverPicture)
+                                                                       ProfileInfo.CoverPicture = userInfo.CoverPicturePath;
+                                                               });
+
+            _postRefreshEventSubscriptionToken = _eventAggregator
+                                                            .GetEvent<PostRefreshEvent>()
+                                                            .Subscribe(async () =>
+                                                            {
+                                                                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true);
+
+                                                                await base.InitializeAsync();
+                                                            });
+        }
+
         /// <summary>
         /// Mesaj detayına git
         /// </summary>
@@ -128,39 +215,13 @@ namespace ContestPark.Mobile.ViewModels
 
             PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
                 {
-                    { "UserName", userName},
+                    { "UserName", _userName},
                     { "FullName", ProfileInfo.FullName},
                     { "SenderUserId", ProfileInfo.UserId},
                     {"SenderProfilePicturePath", ProfileInfo.ProfilePicturePath }
                 });
 
             IsBusy = false;
-        }
-
-        protected override async Task InitializeAsync()
-        {
-            var profileInfo = await _identityService.GetProfileInfoByUserName(userName);
-            if (profileInfo != null)
-            {
-                ProfileInfo = profileInfo;
-
-                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
-
-                if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
-                {
-                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
-                }
-            }
-            else
-            {
-                await DisplayAlertAsync("",
-                    ContestParkResources.UserNotFound,
-                    ContestParkResources.Okay);
-            }
-
-            IsBusy = false;
-
-            await base.InitializeAsync();
         }
 
         /// <summary>
@@ -232,8 +293,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 switch (pictureType)
                 {
-                    case "Profile": await _identityService.ChangeCoverPictureAsync(media); break;
-                    case "Cover": await _identityService.ChangeProfilePictureAsync(media); break;
+                    case "Profile": await _identityService.ChangeProfilePictureAsync(media); break;
+                    case "Cover": await _identityService.ChangeCoverPictureAsync(media); break;
                 }
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))
@@ -388,11 +449,6 @@ namespace ContestPark.Mobile.ViewModels
             get { return new Command(() => GotoChatDetail()); }
         }
 
-        public ICommand GotoBackCommand
-        {
-            get { return new Command(() => GoBackAsync()); }
-        }
-
         public ICommand GotoFollowersCommand
         {
             get { return new Command(() => ExecuteGotoFollowersCommand()); }
@@ -413,13 +469,29 @@ namespace ContestPark.Mobile.ViewModels
             get { return new Command(async () => await ExecutePlayDuelCommand()); }
         }
 
+        public ICommand RemoveEvents
+        {
+            get
+            {
+                return new Command(() =>
+               {
+                   if (_changeUserInfoEventSubscriptionToken != null)
+                   {
+                       _eventAggregator
+                           .GetEvent<ChangeUserInfoEvent>()
+                           .Unsubscribe(_changeUserInfoEventSubscriptionToken);
+                   }
+               });
+            }
+        }
+
         #endregion Commands
 
         #region Navigation
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("UserName")) userName = parameters.GetValue<string>("UserName");
+            if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
 
             if (parameters.ContainsKey("IsVisibleBackArrow")) IsVisibleBackArrow = parameters.GetValue<bool>("IsVisibleBackArrow");
 

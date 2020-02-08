@@ -3,6 +3,7 @@ using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
@@ -10,14 +11,17 @@ using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
+using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
 using Newtonsoft.Json;
+using Prism.Events;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
@@ -37,7 +41,7 @@ namespace ContestPark.Mobile.Services.Identity
         private readonly IAnalyticsService _analyticsService;
         private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
-
+        private readonly IEventAggregator _eventAggregator;
         private readonly ISignalRServiceBase _signalRServiceBase;
 
         #endregion Private variables
@@ -50,6 +54,7 @@ namespace ContestPark.Mobile.Services.Identity
             ICacheService cacheService,
             IAnalyticsService analyticsService,
             ISettingsService settingsService,
+            IEventAggregator eventAggregator,
             ISignalRServiceBase signalRServiceBase)
         {
             _requestProvider = requestProvider;
@@ -57,6 +62,7 @@ namespace ContestPark.Mobile.Services.Identity
             _cacheService = cacheService;
             _analyticsService = analyticsService;
             _settingsService = settingsService;
+            _eventAggregator = eventAggregator;
             _signalRServiceBase = signalRServiceBase;
         }
 
@@ -74,10 +80,53 @@ namespace ContestPark.Mobile.Services.Identity
 
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeCoverPicture");
 
-            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
-            if (response != null && response.Data != null)
+            var response = await _requestProvider.PostAsync<PictureModel>(uri, media);
+            if (response.Error != null)
+                await ShowValidationMessages(new string[1] { response.Error.ErrorMessage });
+
+            if (response.IsSuccess)
             {
-                await ShowValidationMessages(response.Data.MemberNames);
+                _eventAggregator
+                           .GetEvent<ChangeUserInfoEvent>()
+                           .Publish(new UserInfoModel
+                           {
+                               CoverPicturePath = response.Data.PicturePath
+                           });
+
+                _eventAggregator
+                           .GetEvent<PostRefreshEvent>()
+                           .Publish();
+            }
+
+            UserDialogs.Instance.HideLoading();
+        }
+
+        /// <summary>
+        /// Profil resmi değiştir
+        /// </summary>
+        /// <param name="picture">Resim stream</param>
+        public async Task ChangeProfilePictureAsync(MediaModel media)
+        {
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeProfilePicture");
+
+            var response = await _requestProvider.PostAsync<PictureModel>(uri, media);
+            if (response.Error != null)
+                await ShowValidationMessages(new string[1] { response.Error.ErrorMessage });
+
+            if (response.IsSuccess)
+            {
+                _eventAggregator
+                           .GetEvent<ChangeUserInfoEvent>()
+                           .Publish(new UserInfoModel
+                           {
+                               ProfilePicturePath = response.Data.PicturePath
+                           });
+
+                _eventAggregator
+                           .GetEvent<PostRefreshEvent>()
+                           .Publish();
             }
 
             UserDialogs.Instance.HideLoading();
@@ -156,25 +205,6 @@ namespace ContestPark.Mobile.Services.Identity
             }
 
             return response.IsSuccess;
-        }
-
-        /// <summary>
-        /// Profil resmi değiştir
-        /// </summary>
-        /// <param name="picture">Resim stream</param>
-        public async Task ChangeProfilePictureAsync(MediaModel media)
-        {
-            UserDialogs.Instance.ShowLoading("", MaskType.Black);
-
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangeProfilePicture");
-
-            var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
-            if (response != null && response.Data != null)
-                await ShowValidationMessages(response.Data.MemberNames);
-            else if (response.Error != null)
-                await ShowValidationMessages(new string[1] { response.Error.ErrorMessage });
-
-            UserDialogs.Instance.HideLoading();
         }
 
         /// <summary>

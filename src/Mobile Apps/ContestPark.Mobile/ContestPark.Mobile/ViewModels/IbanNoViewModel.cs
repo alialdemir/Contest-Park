@@ -89,7 +89,7 @@ namespace ContestPark.Mobile.ViewModels
                                         ContestParkResources.ARequestToTransferYourEarningsToYourAccountHasBeenCreated,
                                         ContestParkResources.Okay);
 
-                await GoBackAsync();
+                GotoBackCommand.Execute(false);
             }
         }
 

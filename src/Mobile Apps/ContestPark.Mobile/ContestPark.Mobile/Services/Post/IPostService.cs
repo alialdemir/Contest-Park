@@ -14,7 +14,7 @@ namespace ContestPark.Mobile.Services.Post
 
         Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel, bool isForceCache = false);
 
-        Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel);
+        Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel, bool isForceCache = false);
 
         Task<bool> LikeAsync(int postId);
 
