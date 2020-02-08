@@ -86,8 +86,8 @@ namespace ContestPark.Identity.API.Services.Picture
         /// <returns>Resim url</returns>
         public async Task<string> UploadFileToStorageAsync(Stream fileStream, string fileName, string userId, string contentType, PictureTypes pictureType)
         {
-            //if (CheckFileSize(fileStream.Length))
-            //    return string.Empty;
+            if (CheckFileSize(fileStream.Length))
+                return string.Empty;
 
             if (!CheckPictureExtension(contentType))
                 return string.Empty;

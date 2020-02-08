@@ -282,9 +282,12 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 if (media == null || media.File == null || string.IsNullOrEmpty(media.FileName))
                     return null;
 
+                StreamContent streamContent = new StreamContent(media.File);
+                streamContent.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+
                 return new MultipartFormDataContent
                         {
-                            { new StreamContent(media.File), "files", media.FileName }// TODO: filename kısmında uzantı isteyebilir
+                            { streamContent, "files", media.FileName }// TODO: filename kısmında uzantı isteyebilir
                         };
             }
             else if (data != null)
