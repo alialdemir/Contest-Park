@@ -1,21 +1,11 @@
 ﻿using ContestPark.Mobile.Enums;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class QuestionCardFactory : ContentView
+    public class QuestionCardFactory : ContentView
     {
-        #region Constructor
-
-        public QuestionCardFactory()
-        {
-            InitializeComponent();
-        }
-
-        #endregion Constructor
-
         #region Properties
 
         public static readonly BindableProperty QuestionProperty = BindableProperty.Create(propertyName: nameof(Question),
@@ -52,5 +42,30 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Properties
+
+        #region Override
+
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (propertyName == nameof(QuestionType) || propertyName == nameof(Question) || propertyName == nameof(Link))
+            {
+                switch (QuestionType)
+                {
+                    case QuestionTypes.Music:
+                        Content = new MusicQuestion() { Question = Question, Link = Link }; break;
+
+                    case QuestionTypes.Image:
+                        Content = new ImageQuestion() { Question = Question, Link = Link }; break;
+
+                    case QuestionTypes.Text:
+                    default:
+                        Content = new TextQuestion() { Question = Question }; break;
+                }
+            }
+        }
+
+        #endregion Override
     }
 }

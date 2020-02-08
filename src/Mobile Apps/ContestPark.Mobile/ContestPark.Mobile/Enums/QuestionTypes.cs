@@ -4,7 +4,7 @@
     {
         Text = 1,
 
-        //Music = 2,
+        Music = 2,
         Image = 3
     }
 }

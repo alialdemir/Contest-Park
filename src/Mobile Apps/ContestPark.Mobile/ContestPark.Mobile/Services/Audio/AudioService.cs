@@ -7,6 +7,21 @@ namespace ContestPark.Mobile.Services.Audio
 {
     public class AudioService : IAudioService
     {
+        #region Private variables
+
+        private readonly ISimpleAudioPlayer _simpleAudioPlayer;
+
+        #endregion Private variables
+
+        #region Constructor
+
+        public AudioService()
+        {
+            _simpleAudioPlayer = CrossSimpleAudioPlayer.Current;
+        }
+
+        #endregion Constructor
+
         #region Methods
 
         /// <summary>
@@ -16,38 +31,95 @@ namespace ContestPark.Mobile.Services.Audio
         /// <param name="loop">Ses tekrar tekrar çalmasını sağlar</param>
         public void Play(Audio audio, bool loop = false)
         {
+            if (_simpleAudioPlayer == null)
+                return;
+
             var assembly = typeof(ContestParkApp).GetTypeInfo().Assembly;
             Stream audioStream = assembly.GetManifestResourceStream("ContestPark.Mobile." + $"Audios.{audio.ToString()}.mp3");
             if (audioStream != null)
             {
-                ISimpleAudioPlayer player = CrossSimpleAudioPlayer.Current;
-                if (player == null)
-                    return;
+                _simpleAudioPlayer.Load(audioStream);
 
-                player.Load(audioStream);
-
-                player.Play();
+                _simpleAudioPlayer.Play();
 
                 if (loop)
                 {
-                    player.PlaybackEnded += Player_PlaybackEnded;
+                    _simpleAudioPlayer.PlaybackEnded += Player_PlaybackEnded;
                 }
             }
         }
 
         private void Player_PlaybackEnded(object sender, EventArgs e)
         {
+            if (_simpleAudioPlayer == null)
+                return;
+
             CrossSimpleAudioPlayer.Current?.Play();
         }
 
         public void Stop()
         {
-            ISimpleAudioPlayer currentPlayer = CrossSimpleAudioPlayer.Current;
-            if (currentPlayer != null)
-            {
-                currentPlayer.Stop();
-                currentPlayer.PlaybackEnded -= Player_PlaybackEnded;
-            }
+            if (_simpleAudioPlayer == null)
+                return;
+
+            _simpleAudioPlayer.Stop();
+            _simpleAudioPlayer.PlaybackEnded -= Player_PlaybackEnded;
+        }
+
+        /// <summary>
+        /// Mp3 müzik dosyası çalar
+        /// </summary>
+        /// <param name="mp3Url">Mp3 url</param>
+        private void Play(string mp3Url)
+        {
+            if (_simpleAudioPlayer == null || string.IsNullOrEmpty(mp3Url))
+                return;
+
+            _simpleAudioPlayer.Load(mp3Url);
+
+            _simpleAudioPlayer.Play();
+        }
+
+        /// <summary>
+        /// Müzik aç/kapat
+        /// </summary>
+        /// <param name="mp3Url">Mp3 müzik linki</param>
+        public void ToggleAudio(string mp3Url)
+        {
+            if (_simpleAudioPlayer.IsPlaying)
+                Stop();
+            else
+                Play(mp3Url);
+        }
+
+        /// <summary>
+        /// Şarkıyı 5 saniye geri sarar
+        /// </summary>
+        public void WindBack()
+        {
+            Seek(-5);
+        }
+
+        /// <summary>
+        /// Şarkıyı 5 saniye ileri sarar
+        /// </summary>
+        public void FastForward()
+        {
+            Seek(5);
+        }
+
+        /// <summary>
+        /// Çağan şarkıyı position değeri kadar ileri sarar
+        /// </summary>
+        /// <param name="position">İleri sarılacak süre</param>
+        private void Seek(double position = 5)
+        {
+            if (_simpleAudioPlayer == null)
+                return;
+
+            double nextPosition = _simpleAudioPlayer.CurrentPosition + position;
+            if (nextPosition <= _simpleAudioPlayer.Duration)
+                _simpleAudioPlayer.Seek(nextPosition);
         }
 
         #endregion Methods

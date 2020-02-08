@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Ranking;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +19,20 @@ namespace ContestPark.Mobile.Components
         #endregion Constructor
 
         #region Properties
+
+        public static readonly BindableProperty GotoProfilePageCommandProperty = BindableProperty.Create(propertyName: nameof(GotoProfilePageCommand),
+                                                                                         returnType: typeof(ICommand),
+                                                                                         declaringType: typeof(RankTopView),
+                                                                                         defaultValue: null);
+
+        public ICommand GotoProfilePageCommand
+        {
+            get { return (ICommand)GetValue(GotoProfilePageCommandProperty); }
+            set
+            {
+                SetValue(GotoProfilePageCommandProperty, value);
+            }
+        }
 
         public static readonly BindableProperty RankProperty = BindableProperty.Create(propertyName: nameof(Rank),
                                                                                         returnType: typeof(Ranks),

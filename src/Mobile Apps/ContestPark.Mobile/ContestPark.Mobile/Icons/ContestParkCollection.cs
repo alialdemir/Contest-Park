@@ -35,6 +35,8 @@
         public const string Edit = "\ue931";
         public const string EmailSettings = "\ue933";
 
-        public const string SingleMoney = "\uef12";
+        public const string WindBack = "\ue914";
+        public const string Play = "\ue915";
+        public const string FastForward = "\ue916";
     }
 }

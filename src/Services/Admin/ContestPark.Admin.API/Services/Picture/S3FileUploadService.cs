@@ -265,7 +265,7 @@ namespace ContestPark.Admin.API.Services.Picture
                     BucketName = bucketName,
                     InputStream = fileStream,
                     Key = newFileName,
-                    ContentType = "image/jpeg",// burası dinamik olmalı
+                    ContentType = questionType == QuestionTypes.Music ? "audio/mpeg" : "image/jpeg",// burası dinamik olmalı
 
                     StorageClass = S3StorageClass.Standard,
                     PartSize = fileStream.Length,

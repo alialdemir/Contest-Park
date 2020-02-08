@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="ContestPark.Mobile.Components.QuestionCardFactory"
+    x:Class="ContestPark.Mobile.Components.ImageQuestion"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters.Quiz.QuestionType"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    x:Name="questionCardFactoryPage">
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Quiz.QuestionType"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="imageQuestion"
+    mc:Ignorable="d">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Converter:QuestionTypeConverter x:Key="qtc" />
+            <converter:QuestionTypeConverter x:Key="qtc" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
@@ -21,7 +24,7 @@
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="22"
                 HorizontalTextAlignment="Center"
-                Text="{Binding Path=Question, Source={x:Reference questionCardFactoryPage}}"
+                Text="{Binding Path=Question, Source={x:Reference imageQuestion}}"
                 TextColor="{StaticResource White}" />
 
             <components:CachedImage
@@ -29,8 +32,7 @@
                 Aspect="Fill"
                 HeightRequest="100"
                 IsLoadingPlaceholder="False"
-                IsVisible="{Binding Path=QuestionType, Source={x:Reference questionCardFactoryPage}, Converter={StaticResource qtc}}"
-                Source="{Binding Path=Link, Source={x:Reference questionCardFactoryPage}}"
+                Source="{Binding Path=Link, Source={x:Reference imageQuestion}}"
                 WidthRequest="250" />
         </StackLayout>
     </ContentView.Content>

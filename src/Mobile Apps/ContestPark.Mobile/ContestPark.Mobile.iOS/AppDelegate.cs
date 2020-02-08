@@ -1,4 +1,5 @@
-﻿using FFImageLoading.Forms.Platform;
+﻿using ContestPark.Mobile.AppResources;
+using FFImageLoading.Forms.Platform;
 using Foundation;
 using Plugin.Segmented.Control.iOS;
 using Prism;
@@ -7,7 +8,9 @@ using Rg.Plugins.Popup;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 using UIKit;
+using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.iOS
 {
@@ -26,9 +29,12 @@ namespace ContestPark.Mobile.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            //#if !DEBUG
-            //            CheckJailBreak();
-            //#endif
+#if !DEBUG
+                        CheckJailBreak();
+#endif
+
+            if (CheckNetworkAsync())
+                return false;
 
             CachedImageRenderer.Init();
 
@@ -46,6 +52,31 @@ namespace ContestPark.Mobile.iOS
             //Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        /// <summary>
+        /// Uygulama ilk açıldığında internet var mı diye kontrol eder
+        /// </summary>
+        /// <returns>İnternet yoksa false varsa true</returns>
+        private bool CheckNetworkAsync()
+        {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                var alert = UIAlertController.Create("", ContestParkResources.NoInternet, UIAlertControllerStyle.Alert);
+
+                alert.AddAction(UIAlertAction.Create(ContestParkResources.Okay, UIAlertActionStyle.Default,
+                action =>
+                {
+                    Thread.CurrentThread.Abort();
+                }
+                ));
+                var rootVC = UIApplication.SharedApplication.Windows[0].RootViewController;
+                rootVC.PresentViewController(alert, true, null);
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

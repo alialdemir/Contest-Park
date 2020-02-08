@@ -61,16 +61,15 @@
                             <Image
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                HeightRequest="32"
-                                HorizontalOptions="Start"
-                                WidthRequest="32">
+                                HorizontalOptions="Start">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GotoBackCommand}" />
+                                    <TapGestureRecognizer Command="{Binding GotoBackCommand}" CommandParameter="{StaticResource False}" />
                                 </Image.GestureRecognizers>
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="{StaticResource icomoon}"
                                         Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
+                                        Size="32"
                                         Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
@@ -79,9 +78,7 @@
                             <Image
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                HeightRequest="32"
-                                HorizontalOptions="End"
-                                WidthRequest="32">
+                                HorizontalOptions="End">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SubCategoryFollowProgcessCommand}" />
                                 </Image.GestureRecognizers>
@@ -89,6 +86,7 @@
                                     <FontImageSource
                                         FontFamily="{StaticResource icomoon}"
                                         Glyph="{Binding Path=CategoryDetail.IsSubCategoryFollowUpStatus, Converter={StaticResource scfb}}"
+                                        Size="32"
                                         Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
@@ -97,14 +95,15 @@
                             <Image
                                 Grid.Row="0"
                                 Grid.Column="2"
-                                HeightRequest="32"
-                                HorizontalOptions="End"
-                                WidthRequest="32">
+                                HorizontalOptions="End">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ShareCommand}" />
                                 </Image.GestureRecognizers>
                                 <Image.Source>
-                                    <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Share}" />
+                                    <FontImageSource
+                                        FontFamily="{StaticResource icomoon}"
+                                        Glyph="{x:Static icons:ContestParkIcon.Share}"
+                                        Size="32" />
                                 </Image.Source>
                             </Image>
 
