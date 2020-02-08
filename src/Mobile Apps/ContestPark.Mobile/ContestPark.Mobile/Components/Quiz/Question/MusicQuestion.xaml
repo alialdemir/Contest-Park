@@ -11,12 +11,12 @@
     <ContentView.Content>
         <Grid HorizontalOptions="Center" VerticalOptions="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <!--<RowDefinition Height="Auto" />-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -26,10 +26,12 @@
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="22"
                 HorizontalTextAlignment="Center"
-                Text="{Binding Path=Question, Source={x:Reference questionCardFactoryPage}}"
-                TextColor="{StaticResource White}" />
+                Text="{Binding Path=Question, Source={x:Reference musicQuestion}}"
+                TextColor="{StaticResource White}"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
 
-            <Image Grid.Row="1" Grid.Column="0">
+            <!--<Image Grid.Row="1" Grid.Column="0">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=WindBackCommand, Source={x:Reference musicQuestion}}" />
                 </Image.GestureRecognizers>
@@ -63,7 +65,7 @@
                         Glyph="{x:Static icons:ContestParkIcon.FastForward}"
                         Color="{StaticResource White}" />
                 </Image.Source>
-            </Image>
+            </Image>-->
         </Grid>
     </ContentView.Content>
 </ContentView>

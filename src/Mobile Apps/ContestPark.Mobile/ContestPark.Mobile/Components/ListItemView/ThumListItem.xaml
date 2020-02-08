@@ -29,16 +29,17 @@
             Visual="Material">
             <Grid
                 x:Name="cstmGrid"
-                Padding="17,17,0,17"
+                Padding="16,0,0,0"
                 effects:LongPressedEffect.CommandParameter="{Binding Path=CommandParameter, Source={x:Reference thumListItemPage}}"
                 effects:LongPressedEffect.LongPressed="{Binding Path=LongPressed, Source={x:Reference thumListItemPage}}"
                 effects:LongPressedEffect.SingleTap="{Binding Path=SingleTap, Source={x:Reference thumListItemPage}}"
                 ColumnSpacing="7"
-                RowSpacing="0">
+                RowSpacing="0"
+                VerticalOptions="Center">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />

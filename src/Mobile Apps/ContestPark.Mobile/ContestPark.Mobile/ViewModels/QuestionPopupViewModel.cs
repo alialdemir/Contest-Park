@@ -338,6 +338,11 @@ namespace ContestPark.Mobile.ViewModels
                 Questions = currentQuestion.Questions.Where(x => x.Language == currentLanguage).ToList()
             };
 
+            if (CurrentQuestion.QuestionType == QuestionTypes.Music)// Eğer soru müzikli ise play edildi
+            {
+                _audioService.ToggleAudio(CurrentQuestion.Link);
+            }
+
             CreateAnswerPair();
         }
 

@@ -1,6 +1,7 @@
 ﻿using Plugin.SimpleAudioPlayer;
 using System;
 using System.IO;
+using System.Net;
 using System.Reflection;
 
 namespace ContestPark.Mobile.Services.Audio
@@ -75,9 +76,15 @@ namespace ContestPark.Mobile.Services.Audio
             if (_simpleAudioPlayer == null || string.IsNullOrEmpty(mp3Url))
                 return;
 
-            _simpleAudioPlayer.Load(mp3Url);
+            if (mp3Url.StartsWith("https://") || mp3Url.StartsWith("http://"))
+            {
+                WebClient wc = new WebClient();
+                Stream fileStream = wc.OpenRead(mp3Url);
 
-            _simpleAudioPlayer.Play();
+                _simpleAudioPlayer.Load(fileStream);
+
+                _simpleAudioPlayer.Play();
+            }
         }
 
         /// <summary>

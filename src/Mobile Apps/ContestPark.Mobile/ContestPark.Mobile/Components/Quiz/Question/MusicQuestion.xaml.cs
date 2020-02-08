@@ -1,8 +1,4 @@
-﻿using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Services.Audio;
-using Prism.Ioc;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
@@ -45,53 +41,53 @@ namespace ContestPark.Mobile.Components
 
         #endregion Properties
 
-        #region Commands
+        //#region Commands
 
-        public ICommand WindBackCommand
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
-                    if (audioService == null)
-                        return;
+        //public ICommand WindBackCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(() =>
+        //        {
+        //            IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
+        //            if (audioService == null)
+        //                return;
 
-                    audioService.WindBack();
-                });
-            }
-        }
+        //            audioService.WindBack();
+        //        });
+        //    }
+        //}
 
-        public ICommand PlayCommand
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
-                    if (audioService == null || string.IsNullOrEmpty(Link))
-                        return;
+        //public ICommand PlayCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(() =>
+        //        {
+        //            IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
+        //            if (audioService == null || string.IsNullOrEmpty(Link))
+        //                return;
 
-                    audioService.ToggleAudio(Link);
-                });
-            }
-        }
+        //            audioService.ToggleAudio(Link);
+        //        });
+        //    }
+        //}
 
-        public ICommand FastForwardCommand
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
-                    if (audioService == null)
-                        return;
+        //public ICommand FastForwardCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(() =>
+        //        {
+        //            IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
+        //            if (audioService == null)
+        //                return;
 
-                    audioService.FastForward();
-                });
-            }
-        }
+        //            audioService.FastForward();
+        //        });
+        //    }
+        //}
 
-        #endregion Commands
+        //#endregion Commands
     }
 }

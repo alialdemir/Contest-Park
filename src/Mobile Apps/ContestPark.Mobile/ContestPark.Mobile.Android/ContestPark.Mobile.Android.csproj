@@ -118,6 +118,9 @@
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
       <Version>3.0.3</Version>
     </PackageReference>
+    <PackageReference Include="MarcTron.Admob">
+      <Version>1.4.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>2.6.4</Version>
     </PackageReference>
