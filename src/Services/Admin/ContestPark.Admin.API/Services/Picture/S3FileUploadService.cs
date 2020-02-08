@@ -238,7 +238,7 @@ namespace ContestPark.Admin.API.Services.Picture
             if (string.IsNullOrEmpty(fileUrl))
                 return string.Empty;
 
-            string extension = Path.GetExtension(fileUrl); // questionType == QuestionTypes.Music ? ".mp3" : ".png";
+            string extension = questionType == QuestionTypes.Music ? ".mp3" : ".png";
 
             string outputFilePath = await GetFileStreamByQuestionType(fileUrl, questionType, extension);
             if (string.IsNullOrEmpty(outputFilePath))
@@ -265,7 +265,7 @@ namespace ContestPark.Admin.API.Services.Picture
                     BucketName = bucketName,
                     InputStream = fileStream,
                     Key = newFileName,
-                    ContentType = extension == ".mp3" ? "audio/mpeg" : "image/jpeg",// burası dinamik olmalı
+                    ContentType = questionType == QuestionTypes.Music ? "audio/mpeg" : "image/jpeg",// burası dinamik olmalı
 
                     StorageClass = S3StorageClass.Standard,
                     PartSize = fileStream.Length,
