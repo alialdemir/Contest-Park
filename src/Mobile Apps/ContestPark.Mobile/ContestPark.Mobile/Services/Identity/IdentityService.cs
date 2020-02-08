@@ -170,9 +170,9 @@ namespace ContestPark.Mobile.Services.Identity
 
             var response = await _requestProvider.PostAsync<ValidationResultModel>(uri, media);
             if (response != null && response.Data != null)
-            {
                 await ShowValidationMessages(response.Data.MemberNames);
-            }
+            else if (response.Error != null)
+                await ShowValidationMessages(new string[1] { response.Error.ErrorMessage });
 
             UserDialogs.Instance.HideLoading();
         }

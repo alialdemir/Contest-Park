@@ -12,6 +12,6 @@ namespace ContestPark.Identity.API.Services.BlobStorage
 
         Task<string> UploadFileToStorageAsync(Stream fileStream, string fileName, string userId, string contentType, PictureTypes pictureType);
 
-        Task DeleteFileAsync(string userId, string uri, PictureTypes pictureType);
+        void DeleteFile(string userId, string uri, PictureTypes pictureType);
     }
 }

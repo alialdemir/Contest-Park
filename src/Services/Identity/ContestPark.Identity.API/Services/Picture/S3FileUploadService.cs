@@ -46,7 +46,7 @@ namespace ContestPark.Identity.API.Services.Picture
         /// <param name="userId">Resmin sahibinin user id</param>
         /// <param name="uri">Resim url</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public async Task DeleteFileAsync(string userId, string uri, PictureTypes pictureType)
+        public void DeleteFile(string userId, string uri, PictureTypes pictureType)
         {
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(uri))
                 return;

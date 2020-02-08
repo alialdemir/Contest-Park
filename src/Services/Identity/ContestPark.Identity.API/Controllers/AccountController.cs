@@ -45,7 +45,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         private readonly IDeviceInfoRepository _deviceInfoRepository;
         private readonly IUserRepository _userRepository;
         private readonly IIdentityIntegrationEventService _identityIntegrationEventService;
-        private readonly IFileUploadService _blobStorageService;
+        private readonly IFileUploadService _fileUploadService;
 
         #endregion Private variables
 
@@ -62,7 +62,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                  IDeviceInfoRepository deviceInfoRepository,
                                  IUserRepository userRepository,
                                  IIdentityIntegrationEventService identityIntegrationEventService,
-                                 IFileUploadService blobStorageService) : base(logger)
+                                 IFileUploadService fileUploadService) : base(logger)
         {
             _emailService = emailService;
             _logger = logger;
@@ -75,7 +75,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             _deviceInfoRepository = deviceInfoRepository;
             _userRepository = userRepository;
             _identityIntegrationEventService = identityIntegrationEventService;
-            _blobStorageService = blobStorageService;
+            _fileUploadService = fileUploadService;
         }
 
         #endregion Constructor
@@ -162,7 +162,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             //    return BadRequest(IdentityResource.UnsupportedImageExtension);
             //}
 
-            if (!_blobStorageService.CheckPictureExtension(file.ContentType))
+            if (!_fileUploadService.CheckPictureExtension(file.ContentType))
             {
                 return StatusCode((int)HttpStatusCode.UnsupportedMediaType, new ValidationResult(IdentityResource.UnsupportedImageExtension));
             }
@@ -171,7 +171,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (pictureStream == null || pictureStream.Length == 0)
                 return NotFound();
 
-            string fileName = await _blobStorageService.UploadFileToStorageAsync(pictureStream,
+            string fileName = await _fileUploadService.UploadFileToStorageAsync(pictureStream,
                                                                                  file.FileName,
                                                                                  UserId,
                                                                                  file.ContentType,
@@ -185,7 +185,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             if (!string.IsNullOrEmpty(user.CoverPicturePath))// Eğer varsa eski resmi sil
             {
-                await _blobStorageService.DeleteFileAsync(UserId, user.CoverPicturePath, Enums.PictureTypes.Cover);
+                _fileUploadService.DeleteFile(UserId, user.CoverPicturePath, Enums.PictureTypes.Cover);
             }
 
             // Profil resmi db güncelle
@@ -227,12 +227,12 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (file == null)
                 return NotFound();
 
-            if (_blobStorageService.CheckFileSize(file.Length))// 4 mb'den büyük ise dosya boyutu  geçersizdir
-            {
-                return BadRequest(IdentityResource.UnsupportedImageExtension);
-            }
+            //if (_fileUploadService.CheckFileSize(file.Length))// 4 mb'den büyük ise dosya boyutu  geçersizdir
+            //{
+            //    return BadRequest(IdentityResource.UnsupportedImageExtension);
+            //}
 
-            if (!_blobStorageService.CheckPictureExtension(file.ContentType))
+            if (!_fileUploadService.CheckPictureExtension(file.ContentType))
             {
                 return StatusCode((int)HttpStatusCode.UnsupportedMediaType, new ValidationResult(IdentityResource.UnsupportedImageExtension));
             }
@@ -241,7 +241,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (pictureStream == null || pictureStream.Length == 0)
                 return NotFound();
 
-            string fileName = await _blobStorageService.UploadFileToStorageAsync(pictureStream,
+            string fileName = await _fileUploadService.UploadFileToStorageAsync(pictureStream,
                                                                                  file.FileName,
                                                                                  UserId,
                                                                                  file.ContentType,
@@ -255,7 +255,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
             if (!string.IsNullOrEmpty(user.ProfilePicturePath))// Eğer varsa eski resmi sil
             {
-                await _blobStorageService.DeleteFileAsync(UserId, user.ProfilePicturePath, Enums.PictureTypes.Profile);
+                _fileUploadService.DeleteFile(UserId, user.ProfilePicturePath, Enums.PictureTypes.Profile);
             }
 
             // Profil resmi db güncelle
