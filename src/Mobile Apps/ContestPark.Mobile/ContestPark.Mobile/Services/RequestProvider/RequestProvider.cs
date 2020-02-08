@@ -283,7 +283,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     return null;
 
                 StreamContent streamContent = new StreamContent(media.File);
-                streamContent.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+                streamContent.Headers.ContentType = new MediaTypeHeaderValue(GetImageContentType(media.FileName));
 
                 return new MultipartFormDataContent
                         {
@@ -297,6 +297,18 @@ namespace ContestPark.Mobile.Services.RequestProvider
             }
 
             return null;
+        }
+
+        private string GetImageContentType(string path)
+        {
+            string extension = Path.GetExtension(path);
+            switch (extension)
+            {
+                case ".jpg": return "image/jpeg";
+                case ".png": return "image/png";
+            }
+
+            return string.Empty;
         }
 
         #endregion Private methods
