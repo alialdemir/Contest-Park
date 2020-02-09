@@ -119,6 +119,8 @@ namespace ContestPark.Admin.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> InsertSubCategoryAsync([FromBody]SubCategoryInsertModel subCategoryInsert)
         {
+            Logger.LogInformation("alt kategori ekle", subCategoryInsert);
+
             if (subCategoryInsert.File == null)
                 return BadRequest();
 
