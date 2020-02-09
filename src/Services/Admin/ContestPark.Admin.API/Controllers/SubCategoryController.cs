@@ -82,7 +82,8 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSubCategoryAsync([FromBody]SubCategoryUpdateModel subCategoryUpdate)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UpdateSubCategoryAsync([FromForm]SubCategoryUpdateModel subCategoryUpdate)
         {
             if (subCategoryUpdate.File != null)
             {
@@ -117,10 +118,9 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> InsertSubCategoryAsync([FromBody]SubCategoryInsertModel subCategoryInsert)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> InsertSubCategoryAsync([FromForm]SubCategoryInsertModel subCategoryInsert)
         {
-            Logger.LogInformation("alt kategori ekle", subCategoryInsert);
-
             if (subCategoryInsert.File == null)
                 return BadRequest();
 
