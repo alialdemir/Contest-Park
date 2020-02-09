@@ -1,5 +1,4 @@
 ﻿using ContestPark.Admin.API.Infrastructure.Repositories.SubCategory;
-using ContestPark.Admin.API.Model.Category;
 using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Admin.API.Services.Picture;
 using ContestPark.Core.Database.Models;
@@ -91,7 +90,10 @@ namespace ContestPark.Admin.API.Controllers
                 if (pictureStream == null || pictureStream.Length == 0)
                     return NotFound();
 
-                await _fileUploadService.DeleteFileToStorageAsync(subCategoryUpdate.PicturePath);
+                if (!string.IsNullOrEmpty(subCategoryUpdate.PicturePath))
+                {
+                    await _fileUploadService.DeleteFileToStorageAsync(subCategoryUpdate.PicturePath);
+                }
 
                 string fileName = await _fileUploadService.UploadFileToStorageAsync(pictureStream,
                                                                                     subCategoryUpdate.File.FileName,
@@ -146,7 +148,7 @@ namespace ContestPark.Admin.API.Controllers
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
         [HttpGet("Dropdown")]
-        [ProducesResponseType(typeof(ServiceModel<CategoryDropdownModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ServiceModel<SubCategoryDropdownModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetSubCategoryDropList([FromQuery]PagingModel paging)
         {

@@ -1,5 +1,4 @@
 ﻿using ContestPark.Admin.API.Model;
-using ContestPark.Admin.API.Model.Category;
 using ContestPark.Admin.API.Model.SubCategory;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
@@ -240,14 +239,14 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         /// <param name="language">Dil</param>
         /// <param name="paging">Sayfalama</param>
         /// <returns>Alt kategori dropdown list</returns>
-        public ServiceModel<CategoryDropdownModel> GetSubCategoryDropList(Languages language, PagingModel paging)
+        public ServiceModel<SubCategoryDropdownModel> GetSubCategoryDropList(Languages language, PagingModel paging)
         {
             string sql = @"SELECT scl.SubCategoryName, scl.SubCategoryId
                            FROM SubCategoryLangs scl
                            WHERE scl.`Language`=@language
                            ORDER BY scl.CreatedDate DESC";
 
-            return _subCategoryRepository.ToServiceModel<CategoryDropdownModel>(sql, new
+            return _subCategoryRepository.ToServiceModel<SubCategoryDropdownModel>(sql, new
             {
                 language
             }, pagingModel: paging);
