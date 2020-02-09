@@ -94,15 +94,15 @@ namespace ContestPark.Mobile.Components
             switch (CoinSize)
             {
                 case CoinSize.Small:
-                    imgCoins.WidthRequest = 50;
-                    imgCoins.HeightRequest = 40;
-                    lblCoins.FontSize = 16;
+                    imgCoins.WidthRequest = 32;
+                    imgCoins.HeightRequest = 32;
+                    lblCoins.FontSize = 15;
                     break;
 
                 default:
-                    imgCoins.WidthRequest = 71;
-                    imgCoins.HeightRequest = 54;
-                    lblCoins.FontSize = 22;
+                    imgCoins.WidthRequest = 64;
+                    imgCoins.HeightRequest = 64;
+                    lblCoins.FontSize = 15;
                     break;
             }
 

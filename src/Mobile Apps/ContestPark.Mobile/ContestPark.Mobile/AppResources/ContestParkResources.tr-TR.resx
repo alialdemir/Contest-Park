@@ -678,9 +678,6 @@
   <data name="WriteYourUserNameOrEmailAddress" xml:space="preserve">
     <value>Kullanıcı adı veya eposta adresi yazınız.</value>
   </data>
-  <data name="YouCanRemoveTheBarriers" xml:space="preserve">
-    <value>Engelleri kaldırabilirsin</value>
-  </data>
   <data name="YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory" xml:space="preserve">
     <value>Bu kategoriyi açmak için yeterli miktarda altınınız yok. Altın satın almak ister misiniz?</value>
   </data>

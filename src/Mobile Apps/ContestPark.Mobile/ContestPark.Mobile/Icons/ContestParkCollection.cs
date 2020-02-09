@@ -38,5 +38,7 @@
         public const string WindBack = "\ue914";
         public const string Play = "\ue915";
         public const string FastForward = "\ue916";
+        public const string Delete = "\ue917";
+        public const string Check = "\ue918";
     }
 }

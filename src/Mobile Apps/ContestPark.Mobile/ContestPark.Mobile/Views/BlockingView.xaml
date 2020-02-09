@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="blockingViewPage"
@@ -17,94 +17,72 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <yummy:PancakeView
-            BackgroundColor="{StaticResource White}"
-            CornerRadius="12"
-            Elevation="6"
-            HasShadow="True"
-            IsClippedToBounds="True">
-            <components:NonPersistentSelectedItemListView
-                x:Name="lstBlockedUsers"
-                InfiniteScroll="{Binding InfiniteScroll}"
-                IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
-                SeparatorColor="#E9E9E9"
-                SeparatorVisibility="Default"
-                Style="{StaticResource ListViewHeaderAndFooter}">
-                <components:NonPersistentSelectedItemListView.HeaderTemplate>
-                    <DataTemplate>
+        <components:NonPersistentSelectedItemListView
+            x:Name="lstBlockedUsers"
+            InfiniteScroll="{Binding InfiniteScroll}"
+            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+            Style="{StaticResource ListViewOnlyFooter}">
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
                         <yummy:PancakeView
+                            Margin="0,0,0,8"
+                            Padding="16,0,16,0"
                             BackgroundColor="{StaticResource White}"
-                            CornerRadius="8,8,0,0"
+                            CornerRadius="6"
                             Elevation="6"
                             HasShadow="True"
-                            IsClippedToBounds="True"
                             VerticalOptions="Start">
-                            <Label
-                                Margin="21,16,0,19.4"
-                                FontAttributes="Bold"
-                                FontFamily="{DynamicResource SofiaProRegular}"
-                                FontSize="14"
-                                Text="{i18n:Translate YouCanRemoveTheBarriers}"
-                                TextColor="#404040"
-                                VerticalOptions="Center" />
-                        </yummy:PancakeView>
-                    </DataTemplate>
-                </components:NonPersistentSelectedItemListView.HeaderTemplate>
-                <components:NonPersistentSelectedItemListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid
-                                Padding="16"
-                                BackgroundColor="{StaticResource White}"
-                                ColumnSpacing="16"
-                                RowSpacing="0">
+
+                            <Grid ColumnSpacing="8" RowSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="82" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50" />
                                     <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="32" />
                                 </Grid.ColumnDefinitions>
 
                                 <components:CircleImage
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    HeightRequest="50"
-                                    Source="{Binding ProfilePicturePath}"
-                                    WidthRequest="50" />
+                                    Source="{Binding ProfilePicturePath}" />
 
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
                                     LineBreakMode="TailTruncation"
-                                    Text="{Binding FullName}"
-                                    TextColor="#040404"
+                                    Text="{Binding UserName}"
+                                    TextColor="#181C2F"
                                     VerticalTextAlignment="Center" />
 
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    HeightRequest="22"
-                                    Source="settings_blocked_cancel.svg"
-                                    WidthRequest="22">
-                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" />
-                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                                </ffimageloadingsvg:SvgCachedImage>
+                                <Image Grid.Row="0" Grid.Column="2">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.BlockingProgressCommand, Source={x:Reference blockingViewPage}}" CommandParameter="{Binding UserId}" />
+                                    </Image.GestureRecognizers>
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="{StaticResource icomoon}"
+                                            Glyph="{x:Static icons:ContestParkIcon.Delete}"
+                                            Size="32"
+                                            Color="{StaticResource Black}" />
+                                    </Image.Source>
+                                </Image>
                             </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </components:NonPersistentSelectedItemListView.ItemTemplate>
-                <components:NonPersistentSelectedItemListView.FooterTemplate>
-                    <DataTemplate>
-                        <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstBlockedUsers}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
-                            <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}" />
                         </yummy:PancakeView>
-                    </DataTemplate>
-                </components:NonPersistentSelectedItemListView.FooterTemplate>
-            </components:NonPersistentSelectedItemListView>
-        </yummy:PancakeView>
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstBlockedUsers}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                        <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate YouDontSeemToBeBlockingAnyone}" />
+                    </yummy:PancakeView>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

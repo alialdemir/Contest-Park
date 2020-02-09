@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ContestPark.Mobile.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -15,5 +16,22 @@ namespace ContestPark.Mobile.Views
         }
 
         #endregion Constructor
+
+        #region Methods
+
+        protected override void OnAppearing()
+        {
+            MissionsViewModel viewModel = ((MissionsViewModel)BindingContext);
+
+            if (viewModel == null || viewModel.IsInitialized)
+                return;
+
+            viewModel.InitializeCommand.Execute(null);
+            viewModel.IsInitialized = true;
+
+            base.OnAppearing();
+        }
+
+        #endregion Methods
     }
 }

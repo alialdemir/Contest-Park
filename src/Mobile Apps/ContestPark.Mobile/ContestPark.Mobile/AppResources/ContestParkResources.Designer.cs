@@ -1718,15 +1718,6 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can remove the barriers.
-        /// </summary>
-        public static string YouCanRemoveTheBarriers {
-            get {
-                return ResourceManager.GetString("YouCanRemoveTheBarriers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You do not have an adequate amount of gold to open this category. Want to buy gold?.
         /// </summary>
         public static string YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory {

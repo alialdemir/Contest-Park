@@ -20,6 +20,7 @@ namespace ContestPark.Mobile.Views
 
             Routing.RegisterRoute("SettingsView", typeof(SettingsView));
             Routing.RegisterRoute("ContestStoreView", typeof(ContestStoreView));
+            Routing.RegisterRoute("MissionsView", typeof(MissionsView));
             Routing.RegisterRoute("WinningsView", typeof(WinningsView));
             Routing.RegisterRoute("BalanceCodeView", typeof(BalanceCodeView));
 

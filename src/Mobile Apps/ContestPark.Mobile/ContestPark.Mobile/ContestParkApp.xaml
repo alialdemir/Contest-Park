@@ -78,7 +78,7 @@
 
             <Color x:Key="CategoryDetailTextColor">#303030</Color>
 
-            <Color x:Key="Black">#000000</Color>
+            <Color x:Key="Black">#211414</Color>
 
             <!--  Yeni başlangıç  -->
 
@@ -144,7 +144,6 @@
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
                 <Setter Property="HasUnevenRows" Value="True" />
                 <Setter Property="SelectionMode" Value="None" />
-                <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
                 <Setter Property="SeparatorVisibility" Value="None" />
             </Style>
 

@@ -52,8 +52,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Kullanıcıyu engelle engeli kaldır işlemini yapar
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">Kullanıcı id</param>
         private async Task ExecuteBlockingProgressCommand(string userId)
         {
             if (IsBusy)
@@ -61,7 +60,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            BlockModel selectedModel = Items.First(p => p.UserId == userId);
+            BlockModel selectedModel = Items.FirstOrDefault(p => p.UserId == userId);
             if (selectedModel != null)
             {
                 _analyticsService.SendEvent("Ayarlar", "Kullanıcı Engel Kaldırma", selectedModel.UserName);

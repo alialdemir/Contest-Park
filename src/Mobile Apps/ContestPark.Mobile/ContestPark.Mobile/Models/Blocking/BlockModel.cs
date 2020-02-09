@@ -5,19 +5,8 @@ namespace ContestPark.Mobile.Models.Blocking
 {
     public class BlockModel : BaseModel
     {
-        private string _fullName;
         private bool _isBlocked;
         private string _userId;
-
-        public string FullName
-        {
-            get { return _fullName; }
-            set
-            {
-                _fullName = value;
-                RaisePropertyChanged(() => FullName);
-            }
-        }
 
         public bool IsBlocked
         {

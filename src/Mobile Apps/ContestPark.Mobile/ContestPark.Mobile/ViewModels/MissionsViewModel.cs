@@ -94,6 +94,10 @@ namespace ContestPark.Mobile.ViewModels
                    .Where(p => p.MissionId == missionId)
                    .FirstOrDefault()
                    .MissionStatus = true;
+                Items
+                   .Where(p => p.MissionId == missionId)
+                   .FirstOrDefault()
+                   .IsCompleteMission = true;
 
                 // Header da bulunan tamamlanan görev sayısıı güncelledik
                 string[] headerSplit = ListViewHeader.Split('/');

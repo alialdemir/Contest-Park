@@ -25,12 +25,12 @@ namespace ContestPark.Mobile.Services.Blocking
                  {
                      new BlockModel
                      {
-                         FullName ="Ali Aldemir",
+                         UserName = "witcherfearless",
                          UserId ="1111-1111-1111-1111"
                      },
                      new BlockModel
                      {
-                         FullName ="demo",
+                         UserName = "fatmagul345",
                          UserId = "2222-2222-2222-2222"
                      }
                  }
