@@ -1,7 +1,11 @@
-﻿using ContestPark.Mobile.Models.PhotoModal;
+﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Views;
+using Prism.Ioc;
 using Prism.Navigation;
+using Rg.Plugins.Popup.Contracts;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -46,13 +50,18 @@ namespace ContestPark.Mobile.Components.PostCardView
 
                     IsBusy = true;
 
-                    PostModel model = (PostModel)BindingContext;
-                    if (model != null)
+                    PostModel postModel = (PostModel)BindingContext;
+                    IPopupNavigation popupNavigation = RegisterTypesConfig.Container.Resolve<IPopupNavigation>();
+
+                    if (postModel != null && popupNavigation != null)
                     {
-                        _navigationService?.NavigateAsync(nameof(PhotoModalView), new NavigationParameters
-                                                    {
-                                                         { "userPictureList",  new PhotoModal { PicturePath = model.PicturePath } }
-                                                    }, useModalNavigation: true);
+                        popupNavigation.PushAsync(new PhotoModalView()
+                        {
+                            Pictures = new MvvmHelpers.ObservableRangeCollection<PictureModel>(new List<PictureModel>
+                            {
+                                new PictureModel { PicturePath = postModel.PicturePath }
+                            })
+                        });
                     }
 
                     IsBusy = false;
@@ -86,11 +95,15 @@ namespace ContestPark.Mobile.Components.PostCardView
 
         #endregion Commands
 
+        #region Overrides
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
 
             lblDescription.IsVisible = BindingContext != null && !string.IsNullOrEmpty(((PostModel)BindingContext)?.Description);
         }
+
+        #endregion Overrides
     }
 }

@@ -3,8 +3,8 @@
     x:Class="ContestPark.Mobile.Components.PostCardView.BottomPostCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     x:Name="bottomPostCard">
     <ContentView.Content>
         <Grid Margin="8">
@@ -25,24 +25,26 @@
                 Spacing="0">
                 <!--  Beğeni  -->
 
-                <ffimageloadingsvg:SvgCachedImage
-                    HeightRequest="16"
-                    HorizontalOptions="Start"
-                    Source="{Binding LikeSource}"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="16">
-                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                <Image HorizontalOptions="Start" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding LikeProcessCommand, Source={x:Reference bottomPostCard}}" />
-                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                </ffimageloadingsvg:SvgCachedImage>
+                    </Image.GestureRecognizers>
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{x:Static icons:ContestParkIcon.Like}"
+                            Size="32"
+                            Color="{Binding LikeSource}" />
+                    </Image.Source>
+                </Image>
 
                 <Label
-                    Margin="5,0,0,0"
+                    Margin="4,0,0,0"
                     FontFamily="{StaticResource SofiaProRegular}"
-                    FontSize="14"
+                    FontSize="16"
                     HorizontalOptions="EndAndExpand"
                     Text="{Binding LikeCount}"
-                    TextColor="#131315"
+                    TextColor="#6C7B8A"
                     VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPostLikesViewCommand, Source={x:Reference bottomPostCard}}" />
@@ -50,9 +52,9 @@
                 </Label>
 
                 <Label
-                    Margin="5,0,0,0"
+                    Margin="4,0,0,0"
                     FontFamily="{StaticResource SofiaProLight}"
-                    FontSize="14"
+                    FontSize="16"
                     HorizontalOptions="EndAndExpand"
                     Text="{i18n:Translate Likes}"
                     TextColor="#6C7B8A"
@@ -64,25 +66,29 @@
 
                 <!--  Yorum  -->
 
-                <ffimageloadingsvg:SvgCachedImage
-                    Margin="21,0,0,0"
-                    HeightRequest="16"
+                <Image
+                    Margin="8,0,0,0"
                     HorizontalOptions="Start"
-                    Source="comment.svg"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="16">
-                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference bottomPostCard}}" />
-                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                </ffimageloadingsvg:SvgCachedImage>
+                    </Image.GestureRecognizers>
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{x:Static icons:ContestParkIcon.Comment}"
+                            Size="32"
+                            Color="#6C7B8A" />
+                    </Image.Source>
+                </Image>
 
                 <Label
-                    Margin="5,0,0,0"
+                    Margin="4,0,0,0"
                     FontFamily="{StaticResource SofiaProRegular}"
-                    FontSize="14"
+                    FontSize="16"
                     HorizontalOptions="EndAndExpand"
                     Text="{Binding CommentCount}"
-                    TextColor="#131315"
+                    TextColor="#6C7B8A"
                     VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference bottomPostCard}}" />
@@ -90,9 +96,9 @@
                 </Label>
 
                 <Label
-                    Margin="5,0,0,0"
+                    Margin="4,0,0,0"
                     FontFamily="{StaticResource SofiaProLight}"
-                    FontSize="14"
+                    FontSize="16"
                     HorizontalOptions="EndAndExpand"
                     Text="{i18n:Translate Comments}"
                     TextColor="#6C7B8A"

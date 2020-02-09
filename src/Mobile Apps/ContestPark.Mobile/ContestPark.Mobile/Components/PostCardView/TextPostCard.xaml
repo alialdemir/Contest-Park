@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     x:Name="textPostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -53,17 +53,21 @@
                     Orientation="Horizontal"
                     Spacing="1">
 
-                    <ffimageloadingsvg:SvgCachedImage
-                        Margin="0,0,8,0"
-                        HeightRequest="12"
-                        Source="hour.svg"
-                        VerticalOptions="Start"
-                        WidthRequest="12" />
+
+                    <Image Margin="0,0,8,0" VerticalOptions="Start">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="{StaticResource icomoon}"
+                                Glyph="{x:Static icons:ContestParkIcon.Clock}"
+                                Size="16"
+                                Color="#6C7B8A" />
+                        </Image.Source>
+                    </Image>
 
                     <Label
                         HorizontalOptions="Start"
                         Text="{Binding Date, Converter={StaticResource moment}}"
-                        TextColor="#181C2F"
+                        TextColor="#6C7B8A"
                         TranslationY="-5" />
                 </StackLayout>
             </Grid>

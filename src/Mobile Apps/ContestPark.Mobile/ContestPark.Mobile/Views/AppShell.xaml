@@ -82,11 +82,11 @@
         IconImageSource="{x:Static icons:ContestParkIcon.MoneyBag}"
         Text="{i18n:Translate ConvertToCash}" />
 
-    <MenuItem
+    <!--<MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="MissionsView"
         IconImageSource="{x:Static icons:ContestParkIcon.Missions}"
-        Text="{i18n:Translate Missions}" />
+        Text="{i18n:Translate Missions}" />-->
 
     <!--<MenuItem
         Clicked="MenuItem_Clicked"

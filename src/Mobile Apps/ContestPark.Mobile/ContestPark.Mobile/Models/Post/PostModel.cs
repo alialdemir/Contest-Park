@@ -41,7 +41,7 @@ namespace ContestPark.Mobile.Models.Post
         {
             get
             {
-                return IsLike ? "liked.svg" : "likes.svg";
+                return IsLike ? "#ffc107" : "#6C7B8A";
             }
         }
 

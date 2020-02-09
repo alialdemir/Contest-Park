@@ -38,7 +38,14 @@
         public const string WindBack = "\ue914";
         public const string Play = "\ue915";
         public const string FastForward = "\ue916";
-        public const string Delete = "\ue917";
-        public const string Check = "\ue918";
+        public const string Close = "\ue917";
+        public const string Check = "\ue919";
+        public const string Clock = "\ue918";
+        public const string Like = "\ue91b";
+        public const string Comment = "\ue91c";
+
+        public const string ChatThreeDot = "\ue91a";
+        public const string FindOpponent = "\ue91d";
+        public const string Revenge = "\ue91e";
     }
 }

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     x:Name="imagePostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -53,18 +53,22 @@
                     Orientation="Horizontal"
                     Spacing="1">
 
-                    <ffimageloadingsvg:SvgCachedImage
-                        Margin="0,0,8,0"
-                        HeightRequest="12"
-                        Source="hour.svg"
-                        VerticalOptions="Start"
-                        WidthRequest="12" />
+                    <Image Margin="0,0,8,0" VerticalOptions="Start">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="{StaticResource icomoon}"
+                                Glyph="{x:Static icons:ContestParkIcon.Clock}"
+                                Size="16"
+                                Color="#6C7B8A" />
+                        </Image.Source>
+                    </Image>
 
                     <Label
-                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
                         Text="{Binding Date, Converter={StaticResource moment}}"
-                        TextColor="#181C2F"
-                        TranslationY="-5" />
+                        TextColor="#6C7B8A"
+                        TranslationY="-5"
+                        VerticalTextAlignment="Center" />
                 </StackLayout>
             </Grid>
 
@@ -79,12 +83,10 @@
                 VerticalOptions="CenterAndExpand" />
 
             <Image
-                Margin="0,15,0,0"
                 Aspect="AspectFill"
                 HeightRequest="147"
                 HorizontalOptions="FillAndExpand"
                 Source="{Binding PicturePath}">
-
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=GotoPhotoModalCommand, Source={x:Reference imagePostCardPage}}" />
                 </Image.GestureRecognizers>

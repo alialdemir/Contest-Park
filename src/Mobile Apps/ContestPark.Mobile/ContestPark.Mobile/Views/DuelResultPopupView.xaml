@@ -8,7 +8,7 @@
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:iconButton="clr-namespace:ContestPark.Mobile.Components.IconButton"
-    xmlns:iconizeButton="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -341,7 +341,7 @@
                                 BackgroundGradientEndColor="#27DB94"
                                 BackgroundGradientStartColor="#14D2B8"
                                 Command="{Binding RevengeCommand}"
-                                Icon="revenge.png"
+                                Icon="{x:Static icons:ContestParkIcon.Revenge}"
                                 Text="{i18n:Translate Revenge}" />-->
 
                             <iconButton:IconButton
@@ -350,16 +350,16 @@
                                 BackgroundGradientEndColor="#F15887"
                                 BackgroundGradientStartColor="#FE9B86"
                                 Command="{Binding FindOpponentCommand}"
-                                Icon="find_opponent.png"
+                                Icon="{x:Static icons:ContestParkIcon.FindOpponent}"
                                 Text="{i18n:Translate FindOpponent}" />
 
                             <!--<iconButton:IconButton
                                 Grid.Row="1"
-                                Grid.Column="1"
+                                Grid.Column="0"
                                 BackgroundGradientEndColor="#424E5C"
                                 BackgroundGradientStartColor="#2E3742"
                                 Command="{Binding GotoChatCommand}"
-                                Icon="Chat.png"
+                                Icon="{x:Static icons:ContestParkIcon.ChatThreeDot}"
                                 Text="{i18n:Translate Message}" />-->
 
                             <iconButton:IconButton
@@ -368,22 +368,29 @@
                                 BackgroundGradientEndColor="#FFB347"
                                 BackgroundGradientStartColor="#FFCC33"
                                 Command="{Binding ShareCommand}"
-                                Icon="share.png"
+                                Icon="{x:Static icons:ContestParkIcon.Share}"
                                 Text="{i18n:Translate Share}" />
                         </Grid>
                     </Grid>
 
                     <!--  Close button  -->
-                    <iconizeButton:IconButton
-                        BackgroundColor="Transparent"
-                        Command="{Binding ClosePopupCommand}"
-                        FontSize="32"
-                        HorizontalOptions="EndAndExpand"
-                        Text="far-times-circle"
-                        TextColor="{StaticResource White}"
-                        VerticalOptions="StartAndExpand" />
+                    <Image
+                        Grid.Row="0"
+                        Margin="0,8,8,0"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=ClosePopupCommand}" />
+                        </Image.GestureRecognizers>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="{StaticResource icomoon}"
+                                Glyph="{x:Static icons:ContestParkIcon.Close}"
+                                Size="32"
+                                Color="{StaticResource White}" />
+                        </Image.Source>
+                    </Image>
                 </Grid>
-
             </yummy:PancakeView>
         </ScrollView>
     </pages:PopupPage.Content>

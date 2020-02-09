@@ -20,12 +20,15 @@
                 Orientation="Horizontal"
                 Spacing="9"
                 VerticalOptions="Center">
-
-                <Image
-                    BackgroundColor="Transparent"
-                    HeightRequest="24"
-                    Source="{Binding Icon, Source={x:Reference iconButtonPage}}"
-                    WidthRequest="24" />
+                <Image>
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{Binding Icon, Source={x:Reference iconButtonPage}}"
+                            Size="24"
+                            Color="{StaticResource White}" />
+                    </Image.Source>
+                </Image>
 
                 <Label
                     FontAttributes="Bold"
