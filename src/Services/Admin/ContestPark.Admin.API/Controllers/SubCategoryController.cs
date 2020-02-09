@@ -82,7 +82,7 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSubCategoryAsync([FromForm]SubCategoryUpdateModel subCategoryUpdate)
+        public async Task<IActionResult> UpdateSubCategoryAsync([FromBody]SubCategoryUpdateModel subCategoryUpdate)
         {
             if (subCategoryUpdate.File != null)
             {
@@ -117,7 +117,7 @@ namespace ContestPark.Admin.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> InsertSubCategoryAsync([FromForm]SubCategoryInsertModel subCategoryInsert)
+        public async Task<IActionResult> InsertSubCategoryAsync([FromBody]SubCategoryInsertModel subCategoryInsert)
         {
             if (subCategoryInsert.File == null)
                 return BadRequest();

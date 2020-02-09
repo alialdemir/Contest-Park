@@ -531,9 +531,6 @@
     <AndroidResource Include="Resources\drawable\find_opponent.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\revenge.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\left_menu_background.png" />
   </ItemGroup>
   <ItemGroup>
