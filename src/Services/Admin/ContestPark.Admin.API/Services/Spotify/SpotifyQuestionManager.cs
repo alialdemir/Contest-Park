@@ -245,8 +245,8 @@ namespace ContestPark.Admin.API.Services.Spotify
                 return;
 
             var question5 = albums
-                                .Where(album => !string.IsNullOrEmpty(album.AlbumName))
-                                .Select(track => new QuestionSaveModel
+                                .Where(album => !string.IsNullOrEmpty(album.AlbumName) && !string.IsNullOrEmpty(album.AlbumImage))
+                                .Select(album => new QuestionSaveModel
                                 {
                                     Questions = new List<Question>
                                     {
@@ -254,15 +254,15 @@ namespace ContestPark.Admin.API.Services.Spotify
                                             {
                                                 QuestionType = QuestionTypes.Image,
                                                 AnswerTypes = AnswerTypes.Text,
-                                                Link = track.AlbumImage,
+                                                Link = album.AlbumImage,
                                                 SubCategoryId = _subCategoryId
                                             },
                                     },
                                     Answers = GetRandomAnswers(albums
-                                    .Where(a => a.AlbumName != track.AlbumName && !string.IsNullOrEmpty(a.AlbumName))
+                                    .Where(a => a.AlbumName != album.AlbumName && !string.IsNullOrEmpty(a.AlbumName))
                                     .Select(x => x.AlbumName)
                                     .ToList(),
-                                                               correctAnswer: track.AlbumName.ToString()),
+                                                               correctAnswer: album.AlbumName.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                     new QuestionLocalized
@@ -365,7 +365,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                 return;
 
             var question5 = albums
-                                .Where(artis => !string.IsNullOrEmpty(artis.ArtistName))
+                                .Where(artis => !string.IsNullOrEmpty(artis.ArtistName) && !string.IsNullOrEmpty(artis.AlbumImage))
                                 .Select(album => new QuestionSaveModel
                                 {
                                     Questions = new List<Question>
