@@ -45,8 +45,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>CFBundleShortVersionString</key>
-	<string>1</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
@@ -72,6 +70,8 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
 	<key>CFBundleVersion</key>
-	<string>1.19</string>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2</string>
 </dict>
 </plist>
