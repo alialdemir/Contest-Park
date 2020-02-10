@@ -145,6 +145,7 @@
                 <Setter Property="HasUnevenRows" Value="True" />
                 <Setter Property="SelectionMode" Value="None" />
                 <Setter Property="SeparatorVisibility" Value="None" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
             <Style

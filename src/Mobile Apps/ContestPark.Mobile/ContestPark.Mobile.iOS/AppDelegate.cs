@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using Plugin.Segmented.Control.iOS;
@@ -40,16 +41,16 @@ namespace ContestPark.Mobile.iOS
 
             Popup.Init();
 
+            Google.MobileAds.MobileAds.Configure(GlobalSetting.AppUnitId);
+
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
 
             SegmentedControlRenderer.Initialize();
 
-            //MobileAds.SharedInstance.Start(CompletionHandler);
-
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
-            //Firebase.Core.App.Configure();
+            //  Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
         }

@@ -118,9 +118,6 @@
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
       <Version>3.0.3</Version>
     </PackageReference>
-    <PackageReference Include="MarcTron.Admob">
-      <Version>1.4.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>2.6.4</Version>
     </PackageReference>
@@ -225,6 +222,9 @@
         2.4.11.982
       </Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Ads">
+      <Version>60.1142.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Analytics.Impl">
       <Version>60.1142.1</Version>
     </PackageReference>
@@ -245,6 +245,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderer\AdMobViewRenderer.cs" />
     <Compile Include="CustomRenderer\AndroidLongPressedEffect.cs" />
     <Compile Include="CustomRenderer\CircularProgressRenderer.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
@@ -391,9 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\menuicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\singlecoin.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\searchicon.png" />

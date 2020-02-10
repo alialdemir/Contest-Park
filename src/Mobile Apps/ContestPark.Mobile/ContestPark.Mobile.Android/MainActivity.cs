@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
 using Plugin.CurrentActivity;
 using Plugin.Iconize;
@@ -80,6 +81,8 @@ namespace ContestPark.Mobile.Droid
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
+            Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
+
             Xamarin.Essentials.Platform.Init(this, bundle);
 
             global::Rg.Plugins.Popup.Popup.Init(this, bundle);
@@ -93,8 +96,6 @@ namespace ContestPark.Mobile.Droid
             global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
             AnimationViewRenderer.Init();
-
-            //    MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
 

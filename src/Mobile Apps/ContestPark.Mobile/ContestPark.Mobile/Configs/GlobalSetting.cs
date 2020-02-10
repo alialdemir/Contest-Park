@@ -55,7 +55,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Banner reklam unit id
         /// </summary>
-        public const string BannerAdUnitId1 = "ca-app-pub-9252497061180957/4978352429";
+        public const string BannerAdUnitId = "ca-app-pub-9252497061180957/4978352429";
 
         /// <summary>
         /// Ödüllü reklam unit id

@@ -359,6 +359,9 @@ namespace ContestPark.Mobile.Services.Identity
 
             var response = await _requestProvider.PostAsync<string>(uri, signUpModel);
 
+            if (!string.IsNullOrEmpty(response.Error?.ErrorMessage))
+                await ShowValidationMessages(new string[1] { response?.Error?.ErrorMessage });
+
             await ShowValidationMessages(response?.Error?.MemberNames);
 
             return response.IsSuccess;

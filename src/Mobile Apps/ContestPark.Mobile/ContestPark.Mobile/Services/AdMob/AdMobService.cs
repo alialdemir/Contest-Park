@@ -1,8 +1,9 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.Configs;
-using MarcTron.Plugin;
+using ContestPark.Mobile.Dependencies;
 using System;
 using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.AdMob
 {
@@ -21,11 +22,11 @@ namespace ContestPark.Mobile.Services.AdMob
 
         #region Properties
 
-        private IMTAdmob Admob
+        private IAdmob Admob
         {
             get
             {
-                return CrossMTAdmob.Current;
+                return DependencyService.Get<IAdmob>();
             }
         }
 
@@ -68,9 +69,6 @@ namespace ContestPark.Mobile.Services.AdMob
         /// </summary>
         public void ShowOrLoadRewardedVideo()
         {
-            if (!CrossMTAdmob.IsSupported)
-                return;
-
             if (!Admob.IsRewardedVideoLoaded())
                 Admob.LoadRewardedVideo(GlobalSetting.RewardedVideoUnitId);
             else
@@ -82,9 +80,6 @@ namespace ContestPark.Mobile.Services.AdMob
         /// </summary>
         public void LoadInterstitialVideo()
         {
-            if (!CrossMTAdmob.IsSupported)
-                return;
-
             if (!Admob.IsInterstitialLoaded())
                 Admob.LoadInterstitial(GlobalSetting.InterstitialUnitId);
         }
@@ -94,9 +89,6 @@ namespace ContestPark.Mobile.Services.AdMob
         /// </summary>
         public void ShowInterstitial()
         {
-            if (!CrossMTAdmob.IsSupported)
-                return;
-
             Admob.ShowInterstitial();
         }
 

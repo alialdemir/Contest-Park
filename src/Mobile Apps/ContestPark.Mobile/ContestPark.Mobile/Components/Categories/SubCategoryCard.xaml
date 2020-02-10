@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     x:Name="subCategoryCard">
     <ContentView.Content>
         <Grid
@@ -42,11 +43,11 @@
                 HorizontalTextAlignment="Center"
                 TextColor="#404040" />
 
-            <Image
+            <ffimageloadingsvg:SvgCachedImage
                 x:Name="goldBadge"
                 HeightRequest="42"
                 HorizontalOptions="End"
-                Source="singlecoin.png"
+                Source="ContestSingleCoin.svg"
                 TranslationX="6"
                 TranslationY="6"
                 VerticalOptions="End"

@@ -149,7 +149,7 @@ namespace ContestPark.Mobile.ViewModels
         /// Profile sayfasına git
         /// </summary>
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommand(string userName)
+        private void ExecuteGotoProfilePageCommand(string userName)
         {
             if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
@@ -271,7 +271,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand FindOpponentCommand { get { return new Command(async () => await ExecuteFindOpponentCommand()); } }
         public ICommand GotoChatCommand { get { return new Command(async () => await ExecuteGotoChatCommand()); } }
-        public ICommand GotoProfilePageCommand { get { return new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)); } }
+        public ICommand GotoProfilePageCommand { get { return new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName)); } }
         public ICommand RevengeCommand { get { return new Command(async () => await ExecuteRevengeCommand()); } }
         public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
 

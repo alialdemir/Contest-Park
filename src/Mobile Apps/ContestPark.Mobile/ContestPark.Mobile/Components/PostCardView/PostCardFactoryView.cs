@@ -1,8 +1,8 @@
-﻿using ContestPark.Mobile.Components.PostCardView;
+﻿using ContestPark.Mobile.Components.AdMob;
+using ContestPark.Mobile.Components.PostCardView;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Post;
-using MarcTron.Plugin.Controls;
 using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -84,10 +84,10 @@ namespace ContestPark.Mobile.Components
                                     }
                                 },
 
-                                new MTAdView
+                                new AdMobView
                                 {
-                                    AdsId = GlobalSetting.BannerAdUnitId1,
-                                    PersonalizedAds = true,
+                                    AdUnitId = GlobalSetting.BannerAdUnitId,
+                                    UserPersonalizedAds = true,
                                     HeightRequest=60
                                 }
                 }
