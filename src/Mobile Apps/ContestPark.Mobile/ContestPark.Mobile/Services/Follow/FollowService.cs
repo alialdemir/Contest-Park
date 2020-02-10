@@ -1,10 +1,12 @@
 ﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
+using Prism.Events;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Follow
@@ -15,6 +17,7 @@ namespace ContestPark.Mobile.Services.Follow
 
         private const string _apiUrlBase = "api/v1/Follow";
         private readonly IRequestProvider _requestProvider;
+        private readonly IEventAggregator _eventAggregator;
         private readonly ICacheService _cacheService;
 
         #endregion Private variables
@@ -22,9 +25,11 @@ namespace ContestPark.Mobile.Services.Follow
         #region Constructor
 
         public FollowService(IRequestProvider requestProvider,
-            ICacheService cacheService)
+                             IEventAggregator eventAggregator,
+                             ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _eventAggregator = eventAggregator;
             _cacheService = cacheService;
         }
 
@@ -87,6 +92,8 @@ namespace ContestPark.Mobile.Services.Follow
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{followedUserId}");
 
             var result = await _requestProvider.PostAsync<string>(uri);
+            if (result.IsSuccess)
+                EmptyFollowCache(followedUserId);
 
             return result.IsSuccess;
         }
@@ -100,8 +107,20 @@ namespace ContestPark.Mobile.Services.Follow
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{followedUserId}");
 
             var result = await _requestProvider.DeleteAsync<string>(uri);
+            if (result.IsSuccess)
+                EmptyFollowCache(followedUserId);
 
             return result.IsSuccess;
+        }
+
+        private void EmptyFollowCache(string userId)
+        {
+            _cacheService.EmptyByKey(_apiUrlBase);
+            _cacheService.EmptyByKey("/api/v1/Account/Profile");
+
+            _eventAggregator
+                .GetEvent<ChangedFollowCountEvent>()
+                .Publish(userId);
         }
 
         #endregion Methods

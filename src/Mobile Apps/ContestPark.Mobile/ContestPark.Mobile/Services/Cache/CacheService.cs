@@ -1,5 +1,7 @@
 ﻿using ContestPark.Mobile.Configs;
 using MonkeyCache.SQLite;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Cache
@@ -62,6 +64,19 @@ namespace ContestPark.Mobile.Services.Cache
         public bool IsExpired(string key)
         {
             return Barrel.Current.IsExpired(key);
+        }
+
+        /// <summary>
+        /// Key değerini içeren cache'leri siler
+        /// </summary>
+        /// <param name="key">Key</param>
+        public void EmptyByKey(string key)
+        {
+            IEnumerable<string> keys = Barrel.Current.GetKeys();
+            if (keys == null || !keys.Any(x => x.Contains(key)))
+                return;
+
+            Barrel.Current.Empty(keys.Where(x => x.Contains(key)).ToArray());
         }
     }
 }

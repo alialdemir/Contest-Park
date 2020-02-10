@@ -78,7 +78,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Margin="14,0,0,0"
+                    Margin="14,4,0,0"
                     extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
                     extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontFamily="{DynamicResource SofiaProLight}"

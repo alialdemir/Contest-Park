@@ -70,7 +70,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                 return;
 
             var question1 = tracks
-                                .Where(track => !string.IsNullOrEmpty(track.TrackName))
+                                .Where(track => !string.IsNullOrEmpty(track.TrackName) && !string.IsNullOrEmpty(track.TracksUrl))
                                .Select(track => new QuestionSaveModel
                                {
                                    Questions = new List<Question>
@@ -114,7 +114,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                 return;
 
             var question2 = tracks
-                                .Where(track => !string.IsNullOrEmpty(track.AlbulId))
+                                .Where(track => !string.IsNullOrEmpty(track.AlbulId) && !string.IsNullOrEmpty(track.TracksUrl))
                                 .Select(track => new QuestionSaveModel
                                 {
                                     Questions = new List<Question>
@@ -287,7 +287,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                 return;
 
             var question5 = tracks
-                                .Where(x => !string.IsNullOrEmpty(x.ArtisName))
+                                .Where(track => !string.IsNullOrEmpty(track.ArtisName) && !string.IsNullOrEmpty(track.TracksUrl))
                                 .Select(track => new QuestionSaveModel
                                 {
                                     Questions = new List<Question>

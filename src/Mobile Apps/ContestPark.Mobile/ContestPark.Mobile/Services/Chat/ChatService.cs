@@ -4,6 +4,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.ServiceModel;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using Prism.Services;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace ContestPark.Mobile.Services.Chat
 
         private const string _apiUrlBase = "api/v1/chat";
         private readonly IRequestProvider _requestProvider;
+        private readonly ICacheService _cacheService;
         private readonly IPageDialogService _pageDialogService;
 
         #endregion Private variables
@@ -23,9 +25,11 @@ namespace ContestPark.Mobile.Services.Chat
         #region Constructor
 
         public ChatService(IRequestProvider requestProvider,
+                           ICacheService cacheService,
                            IPageDialogService pageDialogService)
         {
             _requestProvider = requestProvider;
+            _cacheService = cacheService;
             _pageDialogService = pageDialogService;
         }
 
@@ -72,6 +76,8 @@ namespace ContestPark.Mobile.Services.Chat
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.DeleteAsync<string>($"{uri}/{conversationId}");
+            if (result.IsSuccess)
+                _cacheService.EmptyByKey(_apiUrlBase);
 
             return result.IsSuccess;
         }
@@ -93,8 +99,12 @@ namespace ContestPark.Mobile.Services.Chat
             if (!result.IsSuccess)
             {
                 await _pageDialogService.DisplayAlertAsync("",
-                    result.Error.ErrorMessage,
-                    ContestParkResources.Okay);
+                                                           result.Error.ErrorMessage,
+                                                           ContestParkResources.Okay);
+            }
+            else
+            {
+                _cacheService.EmptyByKey(_apiUrlBase);
             }
 
             return result.IsSuccess;
@@ -108,7 +118,16 @@ namespace ContestPark.Mobile.Services.Chat
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
 
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<ChatModel>>(uri);
+            }
+
             var result = await _requestProvider.GetAsync<ServiceModel<ChatModel>>(uri);
+            if (result.Data != null && result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
 
             return result.Data;
         }

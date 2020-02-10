@@ -12,5 +12,6 @@ namespace ContestPark.Mobile.Services.Cache
 
         void Empty(string key);
         void EmptyAll();
+        void EmptyByKey(string key);
     }
 }

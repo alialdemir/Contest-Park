@@ -33,7 +33,7 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
-        #region Methods
+        #region Override
 
         protected override void OnAppearing()
         {
@@ -52,6 +52,6 @@ namespace ContestPark.Mobile.Views
             viewModel.IsInitialized = true;
         }
 
-        #endregion Methods
+        #endregion Override
     }
 }

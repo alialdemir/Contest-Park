@@ -236,7 +236,16 @@ namespace ContestPark.Mobile.Services.Identity
 
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Profile/{userName}");
 
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ProfileInfoModel>(uri);
+            }
+
             var result = await _requestProvider.GetAsync<ProfileInfoModel>(uri);
+            if (result.Data != null && result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
 
             return result.Data;
         }

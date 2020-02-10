@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.InAppBillingProduct;
+using ContestPark.Mobile.Services.Cache;
 using Plugin.InAppBilling;
 using Plugin.InAppBilling.Abstractions;
 using Prism.Services;
@@ -18,17 +19,21 @@ namespace ContestPark.Mobile.Services.InAppBilling
         #region Private variables
 
         private readonly IPageDialogService _pageDialogService;
-        private readonly IInAppBilling billing;
+        private readonly ICacheService _cacheService;
+        private readonly IInAppBilling _billing;
+        private const string _productCacheKey = "in-app-purche";
 
         #endregion Private variables
 
         #region Constructor
 
-        public InAppBillingService(IPageDialogService pageDialogService)
+        public InAppBillingService(IPageDialogService pageDialogService,
+                                   ICacheService cacheService)
         {
-            billing = CrossInAppBilling.Current;
+            _billing = CrossInAppBilling.Current;
 
             _pageDialogService = pageDialogService;
+            _cacheService = cacheService;
         }
 
         #endregion Constructor
@@ -183,6 +188,11 @@ namespace ContestPark.Mobile.Services.InAppBilling
         /// <returns>Ürün listesi</returns>
         public async Task<List<InAppBillingProductModel>> GetProductInfoAsync()
         {
+            if (!_cacheService.IsExpired(key: _productCacheKey))
+            {
+                return await _cacheService.Get<List<InAppBillingProductModel>>(_productCacheKey);
+            }
+
             try
             {
                 if (!CrossInAppBilling.IsSupported)
@@ -194,7 +204,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                bool isConnected = await billing.ConnectAsync(ItemType.InAppPurchase);
+                bool isConnected = await _billing.ConnectAsync(ItemType.InAppPurchase);
                 if (!isConnected)
                 {
                     Debug.WriteLine("Uygulama için satın alma bağlantısı sağlanamadı.");
@@ -204,7 +214,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                IEnumerable<InAppBillingProduct> propductList = await billing.GetProductInfoAsync(ItemType.InAppPurchase, Products.Select(x => x.ProductId).ToArray());
+                IEnumerable<InAppBillingProduct> propductList = await _billing.GetProductInfoAsync(ItemType.InAppPurchase, Products.Select(x => x.ProductId).ToArray());
                 if (propductList == null || propductList.Count() <= 0)
                 {
                     Debug.WriteLine("Uygulama içi satın alınacak ürün listesi gelmedi.");
@@ -214,7 +224,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                return propductList.Select(product => new InAppBillingProductModel
+                var products = propductList.Select(product => new InAppBillingProductModel
                 {
                     CurrencyCode = product.CurrencyCode,
                     LocalizedPrice = product.LocalizedPrice,
@@ -224,6 +234,10 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     Image = Products.FirstOrDefault(x => x.ProductId == product.ProductId).Image,
                     BalanceTypes = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes,
                 }).OrderBy(x => x.Image).ToList();
+
+                _cacheService.Add(_productCacheKey, products);
+
+                return products;
             }
             catch (InAppBillingPurchaseException purchaseEx)
             {
@@ -238,7 +252,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
             finally
             {
                 //Disconnect, it is okay if we never connected
-                await billing.DisconnectAsync();
+                await _billing.DisconnectAsync();
             }
 
             return new List<InAppBillingProductModel>();
@@ -272,7 +286,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return null;
                 }
 
-                bool isConnected = await billing.ConnectAsync(ItemType.InAppPurchase);
+                bool isConnected = await _billing.ConnectAsync(ItemType.InAppPurchase);
                 if (!isConnected)
                 {
                     Debug.WriteLine("Uygulama için satın alma bağlantısı sağlanamadı.");

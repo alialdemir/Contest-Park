@@ -38,6 +38,7 @@ namespace ContestPark.Mobile.ViewModels
         private string _userName;
         private SubscriptionToken _changeUserInfoEventSubscriptionToken;
         private SubscriptionToken _postRefreshEventSubscriptionToken;
+        private SubscriptionToken _changedFollowCountEventSubscriptionToken;
 
         #endregion Private variables
 
@@ -126,46 +127,49 @@ namespace ContestPark.Mobile.ViewModels
         protected override async Task InitializeAsync()
         {
             var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
-            if (profileInfo != null)
-            {
-                ProfileInfo = profileInfo;
-
-                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
-
-                if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
-                {
-                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
-                }
-
-                if (_settingsService.CurrentUser.UserId == profileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
-                {
-                    EventSubscription();
-                }
-            }
-            else
+            if (profileInfo == null)
             {
                 await DisplayAlertAsync("",
                     ContestParkResources.UserNotFound,
                     ContestParkResources.Okay);
+
+                IsBusy = false;
+
+                return;
             }
+
+            ProfileInfo = profileInfo;
+
+            IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
+
+            if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
+            {
+                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+            }
+
+            EventSubscription();
 
             IsBusy = false;
 
             await base.InitializeAsync();
         }
 
+        /// <summary>
+        /// Profil eventleri unsubscribe yapıldı
+        /// </summary>
         public override Task GoBackAsync(bool? useModalNavigation = false)
         {
-            if (_changeUserInfoEventSubscriptionToken != null)// Profil bilgileri güncelle eventi unsubscribe yapıldı
-            {
-                _eventAggregator
-                    .GetEvent<ChangeUserInfoEvent>()
-                    .Unsubscribe(_changeUserInfoEventSubscriptionToken);
+            _eventAggregator
+                .GetEvent<ChangeUserInfoEvent>()
+                .Unsubscribe(_changeUserInfoEventSubscriptionToken);
 
-                _eventAggregator
-                    .GetEvent<PostRefreshEvent>()
+            _eventAggregator
+                .GetEvent<PostRefreshEvent>()
                     .Unsubscribe(_postRefreshEventSubscriptionToken);
-            }
+
+            _eventAggregator
+                    .GetEvent<ChangedFollowCountEvent>()
+                    .Unsubscribe(_changedFollowCountEventSubscriptionToken);
 
             return base.GoBackAsync(useModalNavigation);
         }
@@ -175,31 +179,53 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void EventSubscription()
         {
-            _changeUserInfoEventSubscriptionToken = _eventAggregator
-                                                               .GetEvent<ChangeUserInfoEvent>()
-                                                               .Subscribe((userInfo) =>
-                                                               {
-                                                                   if (userInfo == null)
-                                                                       return;
+            if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
+            {
+                _changeUserInfoEventSubscriptionToken = _eventAggregator
+                                                  .GetEvent<ChangeUserInfoEvent>()
+                                                  .Subscribe((userInfo) =>
+                                                  {
+                                                      if (userInfo == null)
+                                                          return;
 
-                                                                   if (!string.IsNullOrEmpty(userInfo.FullName))
-                                                                       ProfileInfo.FullName = userInfo.FullName;
+                                                      if (!string.IsNullOrEmpty(userInfo.FullName))
+                                                          ProfileInfo.FullName = userInfo.FullName;
 
-                                                                   if (!string.IsNullOrEmpty(userInfo.ProfilePicturePath) && userInfo.ProfilePicturePath != DefaultImages.DefaultProfilePicture)
-                                                                       ProfileInfo.ProfilePicturePath = userInfo.ProfilePicturePath;
+                                                      if (!string.IsNullOrEmpty(userInfo.ProfilePicturePath) && userInfo.ProfilePicturePath != DefaultImages.DefaultProfilePicture)
+                                                          ProfileInfo.ProfilePicturePath = userInfo.ProfilePicturePath;
 
-                                                                   if (!string.IsNullOrEmpty(userInfo.CoverPicturePath) && userInfo.CoverPicturePath != DefaultImages.DefaultCoverPicture)
-                                                                       ProfileInfo.CoverPicture = userInfo.CoverPicturePath;
-                                                               });
+                                                      if (!string.IsNullOrEmpty(userInfo.CoverPicturePath) && userInfo.CoverPicturePath != DefaultImages.DefaultCoverPicture)
+                                                          ProfileInfo.CoverPicture = userInfo.CoverPicturePath;
+                                                  });
 
-            _postRefreshEventSubscriptionToken = _eventAggregator
-                                                            .GetEvent<PostRefreshEvent>()
-                                                            .Subscribe(async () =>
-                                                            {
-                                                                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true);
+                _postRefreshEventSubscriptionToken = _eventAggregator
+                                                                .GetEvent<PostRefreshEvent>()
+                                                                .Subscribe(async () =>
+                                                                {
+                                                                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true);
 
-                                                                await base.InitializeAsync();
-                                                            });
+                                                                    await base.InitializeAsync();
+                                                                });
+            }
+
+            _changedFollowCountEventSubscriptionToken = _eventAggregator
+                                                                .GetEvent<ChangedFollowCountEvent>()
+                                                                .Subscribe(async (userId) =>
+                                                                {
+                                                                    if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)
+                                                                    {
+                                                                        var currentUserProfileInfo = await _identityService.GetProfileInfoByUserName(_settingsService.CurrentUser.UserName);
+                                                                        if (currentUserProfileInfo != null)
+                                                                            ProfileInfo = currentUserProfileInfo;
+                                                                    }
+
+                                                                    if (userId != ProfileInfo.UserId)
+                                                                        return;
+
+                                                                    var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
+                                                                    if (profileInfo != null)
+                                                                        ProfileInfo = profileInfo;
+                                                                });
         }
 
         /// <summary>
