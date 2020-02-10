@@ -32,3 +32,9 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(outputDirectory)'
+
+- task: XamariniOS@2
+    inputs:
+      solutionFile: '**/*iOS.csproj'
+      configuration: 'AppStore'
+      packageApp: true
