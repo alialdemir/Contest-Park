@@ -735,9 +735,6 @@
     <BundleResource Include="Resources\likes.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\menuicon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -817,9 +814,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sms.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\switchactive.png" />

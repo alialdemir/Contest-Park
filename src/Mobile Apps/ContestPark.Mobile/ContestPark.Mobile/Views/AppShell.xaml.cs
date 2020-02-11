@@ -1,6 +1,10 @@
-﻿using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Services.Analytics;
+using ContestPark.Mobile.Services.Settings;
+using ContestPark.Mobile.ViewModels;
 using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Essentials;
@@ -38,6 +42,52 @@ namespace ContestPark.Mobile.Views
         #endregion Constructor
 
         #region Events
+
+        public bool IsLoadedMenuItems { get; set; }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            if (BindingContext == null)
+                return;
+
+            ((AppShellViewModel)BindingContext).MenuItems = new Command(() =>
+            {
+                #region Menu items
+
+                ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+
+                if (settingsService.CurrentUser.UserId == "1111-1111-1111-1111" || IsLoadedMenuItems)
+                    return;
+
+                MenuItem winningsViewMenu = new MenuItem
+                {
+                    CommandParameter = "WinningsView",
+                    IconImageSource = FontImageSource.FromFile(ContestParkIcon.MoneyBag),
+                    Text = ContestParkResources.ConvertToCash,
+                };
+
+                winningsViewMenu.Clicked += MenuItem_Clicked;
+
+                Items.Insert(1, winningsViewMenu);
+
+                MenuItem balanceCodeViewMenu = new MenuItem
+                {
+                    CommandParameter = "BalanceCodeView",
+                    IconImageSource = FontImageSource.FromFile(ContestParkIcon.BalanceCode),
+                    Text = ContestParkResources.BalanceCode,
+                };
+
+                balanceCodeViewMenu.Clicked += MenuItem_Clicked;
+
+                Items.Insert(2, balanceCodeViewMenu);
+
+                IsLoadedMenuItems = true;
+
+                #endregion Menu items
+            });
+        }
 
         /// <summary>
         /// Parametreden gelen view adına göre yönlendirme yapar ve sol menuyu kapatır

@@ -38,7 +38,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 Text = string.Format(ContestParkResources.ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp, _settingsService.CurrentUser.UserName),
                 Title = "ContestPark",
-                Uri = "https://indir.contestpark.com",
+                Uri = "http://indir.contestpark.com",
             });
         }
 

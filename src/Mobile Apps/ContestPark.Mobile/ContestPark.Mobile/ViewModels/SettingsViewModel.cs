@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.AppResources;
+﻿using Acr.UserDialogs;
+using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Models.Identity;
@@ -190,9 +191,20 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExitAppAsync()
         {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            UserDialogs.Instance.ShowLoading();
+
             await _identityService.Unauthorized();
 
             await PushNavigationPageAsync($"app:///{nameof(PhoneNumberView)}?appModuleRefresh=OnInitialized");
+
+            UserDialogs.Instance.HideLoading();
+
+            IsBusy = false;
         }
 
         #endregion Methods

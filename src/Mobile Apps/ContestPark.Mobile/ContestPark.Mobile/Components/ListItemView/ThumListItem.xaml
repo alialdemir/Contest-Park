@@ -7,7 +7,6 @@
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="thumListItemPage">
     <ContentView.Resources>
@@ -18,7 +17,7 @@
     <ContentView.Content>
 
         <yummy:PancakeView
-            Margin="0,3,0,3"
+            Margin="0,0,0,8"
             Padding="0"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
@@ -29,23 +28,23 @@
             Visual="Material">
             <Grid
                 x:Name="cstmGrid"
-                Padding="16,0,0,0"
+                Padding="16,0,16,0"
                 effects:LongPressedEffect.CommandParameter="{Binding Path=CommandParameter, Source={x:Reference thumListItemPage}}"
                 effects:LongPressedEffect.LongPressed="{Binding Path=LongPressed, Source={x:Reference thumListItemPage}}"
                 effects:LongPressedEffect.SingleTap="{Binding Path=SingleTap, Source={x:Reference thumListItemPage}}"
-                ColumnSpacing="7"
+                ColumnSpacing="0"
                 RowSpacing="0"
                 VerticalOptions="Center">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="32" />
-                    <RowDefinition Height="32" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="24" />
+                    <!--<ColumnDefinition Width="16" />-->
                 </Grid.ColumnDefinitions>
 
                 <Grid.Effects>
@@ -55,13 +54,14 @@
                 <ffimageloadingsvg:SvgCachedImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
-                    HeightRequest="60"
+                    HeightRequest="50"
                     Source="{Binding Path=Source, Source={x:Reference thumListItemPage}}"
-                    WidthRequest="55" />
+                    WidthRequest="50" />
 
                 <Label
                     Grid.Row="0"
                     Grid.Column="1"
+                    Margin="16,0,0,0"
                     FontAttributes="Bold"
                     FontFamily="{StaticResource SofiaProSemiBold}"
                     FontSize="18"
@@ -73,36 +73,34 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
+                    Margin="16,0,0,0"
                     FontFamily="{StaticResource SofiaProLight}"
                     FontSize="14"
                     LineBreakMode="TailTruncation"
                     Text="{Binding Path=Detail, Source={x:Reference thumListItemPage}}"
-                    TextColor="#181C2F"
-                    VerticalTextAlignment="Start" />
+                    TextColor="#181C2F" />
 
                 <Label
-                    Grid.Row="0"
+                    Grid.RowSpan="2"
                     Grid.Column="2"
                     FontAttributes="Bold"
                     FontFamily="{StaticResource GothamRoundedBold}"
                     FontSize="16"
-                    HeightRequest="30"
                     HorizontalTextAlignment="End"
                     IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
                     Text="{Binding Path=RightText, Source={x:Reference thumListItemPage}}"
                     TextColor="{Binding Path=RightIconTextColor, Source={x:Reference thumListItemPage}}"
-                    VerticalTextAlignment="Center" />
+                    VerticalOptions="Center" />
 
-                <icon:IconImage
-                    Grid.RowSpan="3"
+                <!--<icon:IconImage
+                    Grid.RowSpan="2"
                     Grid.Column="3"
                     HeightRequest="25"
                     Icon="{Binding Path=RightIconSource, Source={x:Reference thumListItemPage}}"
                     IconColor="{StaticResource Primary}"
                     IconSize="16"
                     IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="25" />
+                    WidthRequest="25" />-->
             </Grid>
         </yummy:PancakeView>
     </ContentView.Content>

@@ -36,20 +36,6 @@ namespace ContestPark.Mobile.Services.Post
         #region Methods
 
         /// <summary>
-        /// Post beğenmekten vazgeç
-        /// </summary>
-        /// <param name="postId">Post id</param>
-        /// <returns>İşlem başarılı ise true değilse false</returns>
-        public async Task<bool> DisLikeAsync(int postId)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/UnLike");
-
-            var result = await _requestProvider.DeleteAsync<string>(uri);
-
-            return result.IsSuccess;
-        }
-
-        /// <summary>
         /// Post id ait postu döndürür
         /// </summary>
         /// <param name="postId">Post id</param>
@@ -130,8 +116,34 @@ namespace ContestPark.Mobile.Services.Post
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Like");
 
             var result = await _requestProvider.PostAsync<string>(uri);
+            if (result.IsSuccess)
+                RemovePostCache();
 
             return result.IsSuccess;
+        }
+
+        /// <summary>
+        /// Post beğenmekten vazgeç
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>İşlem başarılı ise true değilse false</returns>
+        public async Task<bool> DisLikeAsync(int postId)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/UnLike");
+
+            var result = await _requestProvider.DeleteAsync<string>(uri);
+            if (result.IsSuccess)
+                RemovePostCache();
+
+            return result.IsSuccess;
+        }
+
+        /// <summary>
+        /// Cache siler
+        /// </summary>
+        private void RemovePostCache()
+        {
+            _cacheService.EmptyByKey(_apiUrlBase);
         }
 
         /// <summary>

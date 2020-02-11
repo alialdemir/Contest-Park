@@ -30,11 +30,6 @@ namespace ContestPark.Mobile.Components
                                                                                          declaringType: typeof(ThumListItem),
                                                                                          defaultValue: String.Empty);
 
-        public static readonly BindableProperty GridBackgroundColorProperty = BindableProperty.Create(propertyName: nameof(GridBackgroundColor),
-                                                                                                      returnType: typeof(Color),
-                                                                                                      declaringType: typeof(ThumListItem),
-                                                                                                      defaultValue: (Color)ContestParkApp.Current.Resources["ListBackgroundColor"]);
-
         public static readonly BindableProperty IsShowRightTextProperty = BindableProperty.Create(propertyName: nameof(IsShowRightText),
                                                                                                   returnType: typeof(bool),
                                                                                                   declaringType: typeof(ThumListItem),
@@ -91,12 +86,6 @@ namespace ContestPark.Mobile.Components
             {
                 SetValue(DetailProperty, value);
             }
-        }
-
-        public Color GridBackgroundColor
-        {
-            get { return (Color)GetValue(GridBackgroundColorProperty); }
-            set { SetValue(GridBackgroundColorProperty, value); }
         }
 
         public bool IsShowRightText
@@ -160,6 +149,5 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Properties
-
     }
 }

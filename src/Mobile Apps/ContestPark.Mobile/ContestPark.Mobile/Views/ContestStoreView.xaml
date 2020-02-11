@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -109,76 +108,16 @@
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <yummy:PancakeView
-                            Margin="0,3,0,3"
-                            Padding="0"
-                            BackgroundColor="{StaticResource White}"
-                            CornerRadius="8"
-                            Elevation="6"
-                            HasShadow="True"
-                            HeightRequest="80"
-                            IsClippedToBounds="True"
-                            Visual="Material">
-                            <Grid
-                                x:Name="cstmGrid"
-                                Padding="17"
-                                ColumnSpacing="7"
-                                RowSpacing="0">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.PurchaseCommand, Source={x:Reference lstView}}" CommandParameter="{Binding ProductId}" />
-                                </Grid.GestureRecognizers>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="30" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    HeightRequest="60"
-                                    Source="{Binding Image}"
-                                    WidthRequest="55" />
-
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    FontFamily="{StaticResource SofiaProSemiBold}"
-                                    FontSize="16"
-                                    LineBreakMode="TailTruncation"
-                                    Text="{Binding ProductName}"
-                                    TextColor="#430856" />
-
-                                <components:HtmlLabel
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    FontFamily="{StaticResource SofiaProLight}"
-                                    FontSize="14"
-                                    LineBreakMode="TailTruncation"
-                                    Text="{Binding Description}"
-                                    TextColor="#181C2F"
-                                    VerticalTextAlignment="Start" />
-
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    FontAttributes="Bold"
-                                    FontFamily="{StaticResource GothamRoundedBold}"
-                                    FontSize="Small"
-                                    HeightRequest="30"
-                                    HorizontalTextAlignment="End"
-                                    Text="{Binding DisplayPrice}"
-                                    TextColor="#F7416E"
-                                    VerticalOptions="CenterAndExpand"
-                                    VerticalTextAlignment="Center" />
-                            </Grid>
-                        </yummy:PancakeView>
+                        <components:ThumListItem
+                            AutomationId="WatchAdGetCoins"
+                            CommandParameter="{Binding ProductId}"
+                            Detail="{Binding Description}"
+                            IsShowRightText="True"
+                            RightIconTextColor="#F7416E"
+                            RightText="{Binding DisplayPrice}"
+                            SingleTap="{Binding Path=BindingContext.PurchaseCommand, Source={x:Reference lstView}}"
+                            Source="{Binding Image}"
+                            Text="{Binding ProductName}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>
@@ -187,20 +126,12 @@
                     <components:ThumListItem
                         AutomationId="WatchAdGetCoins"
                         Detail="{i18n:Translate WatchAdGetCoins}"
-                        GridBackgroundColor="{StaticResource ListBackgroundColor}"
                         IsShowRightText="True"
                         RightIconTextColor="{StaticResource Primary}"
                         RightText="+40 coins"
                         SingleTap="{Binding Path=BindingContext.WatchAdsVideoCommand, Source={x:Reference pageContestStore}}"
                         Source="ContestSingleCoin.svg"
-                        Text="{i18n:Translate FreeCoins}">
-                        <!--<components:ThumListItem.IsVisible>
-                            <OnPlatform x:TypeArguments="x:Boolean">
-                                <On Platform="Android" Value="True" />
-                                <On Platform="iOS" Value="False" />
-                            </OnPlatform>
-                        </components:ThumListItem.IsVisible>-->
-                    </components:ThumListItem>
+                        Text="{i18n:Translate FreeCoins}" />
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>

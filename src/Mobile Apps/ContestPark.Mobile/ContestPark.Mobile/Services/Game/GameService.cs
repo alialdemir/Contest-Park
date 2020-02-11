@@ -132,7 +132,7 @@ namespace ContestPark.Mobile.Services.Game
             {
                 Text = "Social competition platform.",
                 Title = "ContestPark",
-                Uri = "https://indir.contestpark.com",
+                Uri = "http://indir.contestpark.com",
             });
         }
 

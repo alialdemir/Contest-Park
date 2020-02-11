@@ -122,6 +122,8 @@ namespace ContestPark.Mobile.ViewModels
 
             SetUserGoldCommand.Execute(null);
 
+            MenuItems?.Execute(null);
+
             _eventAggregator
                 .GetEvent<ChangeUserInfoEvent>()
                 .Subscribe((userInfo) =>
@@ -187,6 +189,8 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         private ICommand SetUserGoldCommand => new Command(async () => await SetUserGoldAsync());
+
+        public ICommand MenuItems { get; set; }
 
         #endregion Commands
     }
