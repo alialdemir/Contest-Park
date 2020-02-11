@@ -87,7 +87,7 @@ namespace ContestPark.Mobile.Components
                                 new AdMobView
                                 {
                                     AdUnitId = GlobalSetting.BannerAdUnitId,
-                                    UserPersonalizedAds = true,
+                                    UserPersonalizedAds = false,
                                     HeightRequest=60
                                 }
                 }

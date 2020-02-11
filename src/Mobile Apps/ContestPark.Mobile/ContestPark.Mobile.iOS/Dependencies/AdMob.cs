@@ -13,7 +13,11 @@ namespace ContestPark.Mobile.iOS.Dependencies
 {
     public class AdMob : RewardBasedVideoAdDelegate, IAdmob
     {
+        #region Private variables
+
         private Interstitial _adInterstitial;
+
+        #endregion Private variables
 
         #region Constructor
 

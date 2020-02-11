@@ -52,6 +52,7 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
         private Request GetRequest()
         {
             var request = Request.GetDefaultRequest();
+
             return request;
         }
 

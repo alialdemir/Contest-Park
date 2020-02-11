@@ -16,7 +16,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
     public class AdMobViewRenderer : ViewRenderer<AdMobView, AdView>
     {
         private string _adUnitId = string.Empty;
-        private readonly AdSize _adSize = AdSize.SmartBanner;
+        private readonly AdSize _adSize = AdSize.Banner;
         private AdView _adView;
 
         public AdMobViewRenderer(Context context) : base(context)
