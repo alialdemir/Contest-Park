@@ -833,6 +833,21 @@
   <ItemGroup>
     <BundleResource Include="Resources\vs.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\select_categories.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\choose_prize.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\question-answer.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\earn_money.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tutorial_next.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

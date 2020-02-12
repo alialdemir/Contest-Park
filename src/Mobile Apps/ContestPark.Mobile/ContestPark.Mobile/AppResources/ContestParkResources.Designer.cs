@@ -341,6 +341,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Defeat your opponent by giving the fastest and correct answers to the questions..
+        /// </summary>
+        public static string DefeatYourOpponentByGivingTheFastestAndCorrectAnswersToTheQuestions {
+            get {
+                return ResourceManager.GetString("DefeatYourOpponentByGivingTheFastestAndCorrectAnswersToTheQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -382,6 +391,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string DeleteThisEntireConversation {
             get {
                 return ResourceManager.GetString("DeleteThisEntireConversation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DETERMINING THE PRIZE.
+        /// </summary>
+        public static string DeterminingThePrize {
+            get {
+                return ResourceManager.GetString("DeterminingThePrize", resourceCulture);
             }
         }
         
@@ -656,6 +674,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GET THE MONEY AWARD.
+        /// </summary>
+        public static string GetTheMoneyAward {
+            get {
+                return ResourceManager.GetString("GetTheMoneyAward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Global.
         /// </summary>
         public static string Global {
@@ -746,11 +773,29 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KNOW QUESTIONS.
+        /// </summary>
+        public static string KnowQuestions {
+            get {
+                return ResourceManager.GetString("KnowQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Let&apos;s start.
+        /// </summary>
+        public static string LetsStart {
+            get {
+                return ResourceManager.GetString("LetsStart", resourceCulture);
             }
         }
         
@@ -881,6 +926,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Gold.
         /// </summary>
         public static string NoGold {
@@ -994,6 +1048,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string PasswordRequiredFields {
             get {
                 return ResourceManager.GetString("PasswordRequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay an entrance fee of half the prize you want to win..
+        /// </summary>
+        public static string PayAnEntranceFeeOfHalfThePrizeYouWantToWin {
+            get {
+                return ResourceManager.GetString("PayAnEntranceFeeOfHalfThePrizeYouWantToWin", resourceCulture);
             }
         }
         
@@ -1322,6 +1385,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Category.
+        /// </summary>
+        public static string SelectCategory {
+            get {
+                return ResourceManager.GetString("SelectCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select language.
         /// </summary>
         public static string SelectLanguage {
@@ -1336,6 +1408,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string SelectProcess {
             get {
                 return ResourceManager.GetString("SelectProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the category you want to play by the area you are interested in..
+        /// </summary>
+        public static string SelectTheCategoryYouWantToPlayByTheAreaYouAreInterestedIn {
+            get {
+                return ResourceManager.GetString("SelectTheCategoryYouWantToPlayByTheAreaYouAreInterestedIn", resourceCulture);
             }
         }
         
@@ -1705,6 +1786,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Winning {
             get {
                 return ResourceManager.GetString("Winning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Withdraw the prize money from the application by sending an iban number..
+        /// </summary>
+        public static string WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber {
+            get {
+                return ResourceManager.GetString("WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber", resourceCulture);
             }
         }
         

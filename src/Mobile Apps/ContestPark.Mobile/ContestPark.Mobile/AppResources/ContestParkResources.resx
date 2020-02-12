@@ -719,4 +719,34 @@
   <data name="ProductMoney6" xml:space="preserve">
     <value>Upload ₺6.99</value>
   </data>
+  <data name="DefeatYourOpponentByGivingTheFastestAndCorrectAnswersToTheQuestions" xml:space="preserve">
+    <value>Defeat your opponent by giving the fastest and correct answers to the questions.</value>
+  </data>
+  <data name="DeterminingThePrize" xml:space="preserve">
+    <value>DETERMINING THE PRIZE</value>
+  </data>
+  <data name="GetTheMoneyAward" xml:space="preserve">
+    <value>GET THE MONEY AWARD</value>
+  </data>
+  <data name="KnowQuestions" xml:space="preserve">
+    <value>KNOW QUESTIONS</value>
+  </data>
+  <data name="LetsStart" xml:space="preserve">
+    <value>Let's start</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PayAnEntranceFeeOfHalfThePrizeYouWantToWin" xml:space="preserve">
+    <value>Pay an entrance fee of half the prize you want to win.</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="SelectTheCategoryYouWantToPlayByTheAreaYouAreInterestedIn" xml:space="preserve">
+    <value>Select the category you want to play by the area you are interested in.</value>
+  </data>
+  <data name="WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber" xml:space="preserve">
+    <value>Withdraw the prize money from the application by sending an iban number.</value>
+  </data>
 </root>

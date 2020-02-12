@@ -120,17 +120,15 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
 
-            containerRegistry.RegisterForNavigation<SignInView, SignInViewModel>();
-
             containerRegistry.RegisterForNavigation<SignUpFullNameView, SignUpFullNameViewModel>();
 
             containerRegistry.RegisterForNavigation<SignUpReferenceCodeView, SignUpReferenceCodeViewModel>();
 
             containerRegistry.RegisterForNavigation<SignUpUserNameView, SignUpUserNameViewModel>();
 
-            containerRegistry.RegisterForNavigation<SignUpView, SignUpViewModel>();
-
             containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
+
+            containerRegistry.RegisterForNavigation<TutorialPopupView, TutorialPopupViewModel>();
         }
 
         #endregion Navigation

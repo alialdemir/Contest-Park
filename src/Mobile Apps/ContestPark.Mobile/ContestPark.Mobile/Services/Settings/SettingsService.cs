@@ -19,16 +19,13 @@ namespace ContestPark.Mobile.Services.Settings
     {
         #region Setting Constants
 
-        private const string signalRConnectionIdDefault = "SignalRConnectionIdDefault";
-
+        private readonly bool IsTutorialDisplayedDefault = false;
         private readonly string AccessTokenDefault = string.Empty;
         private readonly string CurrentUserDefault = string.Empty;
 
-        private readonly string IdTokenDefault = string.Empty;
-        private readonly bool IsSoundEffectActiveDefaultDefault = true;
+        private readonly bool IsSoundEffectActiveDefault = true;
         private readonly string RefleshTokenDefault = string.Empty;
 
-        private readonly string SignalRConnectionIdDefault = string.Empty;
         private readonly string TokenTypeDefault = "Bearer";
         private readonly byte SignUpCountDefault = 0;
 
@@ -97,7 +94,13 @@ namespace ContestPark.Mobile.Services.Settings
 
         public bool IsSoundEffectActive
         {
-            get => GetValueOrDefault(IsSoundEffectActiveDefaultDefault);
+            get => GetValueOrDefault(IsSoundEffectActiveDefault);
+            set => AddOrUpdateValue(value);
+        }
+
+        public bool IsTutorialDisplayed
+        {
+            get => GetValueOrDefault(IsTutorialDisplayedDefault);
             set => AddOrUpdateValue(value);
         }
 

@@ -212,6 +212,9 @@
     <value> Gün </value>
     <comment>Sıralama için gün baş harfi</comment>
   </data>
+  <data name="DefeatYourOpponentByGivingTheFastestAndCorrectAnswersToTheQuestions" xml:space="preserve">
+    <value>Sorulara en hızlı ve doğru cevap vererek rakibini yen.</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Sil</value>
   </data>
@@ -226,6 +229,9 @@
   </data>
   <data name="DeleteThisEntireConversation" xml:space="preserve">
     <value>Bu Konuşmanın Tamamını Sil?</value>
+  </data>
+  <data name="DeterminingThePrize" xml:space="preserve">
+    <value>ÖDÜLLÜ BELİRLE</value>
   </data>
   <data name="Duel" xml:space="preserve">
     <value>Düello</value>
@@ -317,6 +323,9 @@
   <data name="Genius" xml:space="preserve">
     <value>Dahi</value>
   </data>
+  <data name="GetTheMoneyAward" xml:space="preserve">
+    <value>PARA ÖDÜLÜNÜ AL</value>
+  </data>
   <data name="Global" xml:space="preserve">
     <value>Genel</value>
   </data>
@@ -348,8 +357,14 @@
   <data name="InviteSaveMoney" xml:space="preserve">
     <value>Davet Et, Para Kazan!</value>
   </data>
+  <data name="KnowQuestions" xml:space="preserve">
+    <value>SORULARI BİL</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Diller</value>
+  </data>
+  <data name="LetsStart" xml:space="preserve">
+    <value>Hadi Başla</value>
   </data>
   <data name="Likes" xml:space="preserve">
     <value>Beğeni</value>
@@ -394,6 +409,9 @@
   <data name="NewPassword" xml:space="preserve">
     <value>Yeni Şifre</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>İleri</value>
+  </data>
   <data name="NoGold" xml:space="preserve">
     <value>Altın yok</value>
   </data>
@@ -432,6 +450,9 @@
   </data>
   <data name="PasswordRequiredFields" xml:space="preserve">
     <value>Şifre alanını doldurmak zorunludur.</value>
+  </data>
+  <data name="PayAnEntranceFeeOfHalfThePrizeYouWantToWin" xml:space="preserve">
+    <value>Kazanmak istediğin ödülün yarısı kadar giriş ücreti öde.</value>
   </data>
   <data name="PermissionsDenied" xml:space="preserve">
     <value>Erişim izni yok</value>
@@ -543,11 +564,17 @@
   <data name="SeeAll" xml:space="preserve">
     <value>Tümü</value>
   </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>KATEGORİ SEÇ</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Dil Seçiniz</value>
   </data>
   <data name="SelectProcess" xml:space="preserve">
     <value>İşlem Seçiniz</value>
+  </data>
+  <data name="SelectTheCategoryYouWantToPlayByTheAreaYouAreInterestedIn" xml:space="preserve">
+    <value>İlgi duyduğun alana göre oynamak istediğin kategoriyi seç.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Gönder</value>
@@ -674,6 +701,9 @@
   </data>
   <data name="Winning" xml:space="preserve">
     <value>Kazanan</value>
+  </data>
+  <data name="WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber" xml:space="preserve">
+    <value>Para ödülünü uygulama içerisinden iban numarası göndererek çek.</value>
   </data>
   <data name="WriteYourUserNameOrEmailAddress" xml:space="preserve">
     <value>Kullanıcı adı veya eposta adresi yazınız.</value>

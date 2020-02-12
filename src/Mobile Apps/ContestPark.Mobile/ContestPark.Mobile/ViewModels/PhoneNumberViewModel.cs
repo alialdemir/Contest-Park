@@ -23,8 +23,8 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public PhoneNumberViewModel(IPopupNavigation popupNavigation,
-            INavigationService navigationService,
-            ISettingsService settingsService,
+                                    INavigationService navigationService,
+                                    ISettingsService settingsService,
                                     IIdentityService identityService,
                                     IPageDialogService dialogService) : base(navigationService: navigationService,
                                                                              dialogService: dialogService,
@@ -79,6 +79,18 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Properties
 
         #region Methods
+
+        protected override Task InitializeAsync()
+        {
+            if (!_settingsService.IsTutorialDisplayed)
+            {
+                PushPopupPageAsync(new TutorialPopupView());
+
+                _settingsService.IsTutorialDisplayed = true;
+            }
+
+            return base.InitializeAsync();
+        }
 
         private void OnCountry(object sender, CountryModel e)
         {

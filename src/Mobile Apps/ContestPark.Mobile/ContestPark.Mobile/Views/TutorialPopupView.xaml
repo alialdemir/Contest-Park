@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="ContestPark.Mobile.Views.TutorialPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+    xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="tutorialPopupView"
+    Padding="0"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    mc:Ignorable="d">
+    <pages:PopupPage.Content>
+        <cards:CoverFlowView
+            IsCyclical="false"
+            ItemsSource="{Binding Items}"
+            SelectedIndex="{Binding SelectedIndex}">
+            <controls:IndicatorsControl />
+            <cards:CoverFlowView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <yummy:PancakeView
+                            BackgroundGradientEndColor="{Binding BackgroundGradientEndColor}"
+                            BackgroundGradientStartColor="{Binding BackgroundGradientStartColor}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="Center"
+                                RowSpacing="0"
+                                VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="250" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    HeightRequest="250"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="{Binding Icon}"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="250" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,36,0,8"
+                                    FontAttributes="Bold"
+                                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                                    FontSize="32"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Title}"
+                                    TextColor="{StaticResource White}" />
+
+                                <Label
+                                    Grid.Row="2"
+                                    Margin="0,0,0,36"
+                                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                                    FontSize="22"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Description}"
+                                    TextColor="{StaticResource White}" />
+
+                                <custom:LinearGradientButton
+                                    Grid.Row="4"
+                                    Margin="0,0,16,0"
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding Path=BindingContext.NextTutorialCommand, Source={x:Reference tutorialPopupView}}"
+                                    EndColor="{StaticResource White}"
+                                    FontAttributes="Bold"
+                                    HeightRequest="50"
+                                    HorizontalOptions="End"
+                                    StartColor="{StaticResource White}"
+                                    Style="{DynamicResource ButtonStyle}"
+                                    Text="{Binding ButtonText}"
+                                    TextColor="{StaticResource Black}"
+                                    WidthRequest="189">
+                                    <custom:LinearGradientButton.CornerRadius>
+                                        <OnPlatform x:TypeArguments="x:Int32">
+                                            <On Platform="Android" Value="124" />
+                                            <On Platform="iOS" Value="24" />
+                                        </OnPlatform>
+                                    </custom:LinearGradientButton.CornerRadius>
+                                </custom:LinearGradientButton>
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="4"
+                                    HeightRequest="32"
+                                    HorizontalOptions="End"
+                                    Source="next_tutorial.svg"
+                                    TranslationX="-32"
+                                    WidthRequest="32">
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.NextTutorialCommand, Source={x:Reference tutorialPopupView}}" />
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </ViewCell>
+                </DataTemplate>
+            </cards:CoverFlowView.ItemTemplate>
+        </cards:CoverFlowView>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

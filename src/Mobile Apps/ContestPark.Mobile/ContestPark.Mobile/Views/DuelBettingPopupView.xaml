@@ -35,7 +35,6 @@
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
                         <RelativeLayout>
                             <!--  Para ile oyna  -->
                             <Components:LinearGradientButton

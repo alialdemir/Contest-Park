@@ -46,10 +46,9 @@ namespace ContestPark.Mobile
 
                 ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
-                if (string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                    NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
-                else
+                if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
                     NavigationService.NavigateAsync(nameof(AppShell));
+                else NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
             }
             catch (System.Exception ex)
             {

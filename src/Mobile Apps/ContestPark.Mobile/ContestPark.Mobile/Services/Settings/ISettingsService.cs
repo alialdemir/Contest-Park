@@ -47,6 +47,8 @@ namespace ContestPark.Mobile.Services.Settings
         /// </summary>
         string TokenType { get; set; }
 
+        bool IsTutorialDisplayed { get; set; }
+
         #endregion Properties
 
         #region Methods
@@ -74,6 +76,7 @@ namespace ContestPark.Mobile.Services.Settings
         /// <param name="methodName">The methodName <see cref="string"/></param>
         /// <returns>The <see cref="Task"/></returns>
         Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "");
+
         Task<UserInfoModel> GetUserInfo();
 
         /// <summary>
