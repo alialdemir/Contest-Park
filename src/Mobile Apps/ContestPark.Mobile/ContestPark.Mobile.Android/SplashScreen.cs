@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using ContestPark.Mobile.AppResources;
+using System;
 using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Droid
@@ -13,11 +14,65 @@ namespace ContestPark.Mobile.Droid
         {
             base.OnCreate(bundle);
 
+#if !DEBUG
+            CheckForRoot();
+#endif
+
             if (CheckNetworkAsync())
                 return;
 
             this.StartActivity(typeof(MainActivity));
         }
+
+        #region Security
+
+        private bool CanExecuteSuCommand()
+        {
+            try
+            {
+                Java.Lang.Runtime.GetRuntime().Exec("su");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
+                return false;
+            }
+        }
+
+        private bool HasSuperApk()
+        {
+            return new Java.IO.File("/system/app/Superuser.apk").Exists();
+        }
+
+        private bool IsTestKeyBuild()
+        {
+            string str = Build.Tags;
+            if ((str != null) && (str.Contains("test-keys")))
+                return true;
+            return false;
+        }
+
+        private void CheckForRoot()
+        {
+            if (CanExecuteSuCommand() || HasSuperApk() || IsTestKeyBuild())
+            {
+                //Eğer rootlu bir cihaz uygulamanızı yüklediyse, uygulamanızı kapatabilirsiniz.
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetMessage(ContestParkResources.NoInternet);
+
+                alert.SetPositiveButton(ContestParkResources.Okay, (senderAlert, args) =>
+                {
+                    Process.KillProcess(Process.MyPid());
+                });
+
+                Dialog dialog = alert.Create();
+                dialog.Show();
+            }
+        }
+
+        #endregion Security
 
         /// <summary>
         /// Uygulama ilk açıldığında internet var mı diye kontrol eder

@@ -12,7 +12,6 @@ using Plugin.Iconize;
 using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
-using System;
 using Xamarin.Forms.PancakeView.Droid;
 
 namespace ContestPark.Mobile.Droid
@@ -65,10 +64,6 @@ namespace ContestPark.Mobile.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-#if !DEBUG
-            CheckForRoot();
-#endif
-
             base.OnCreate(bundle);
 
             // Check if running in sim
@@ -103,46 +98,5 @@ namespace ContestPark.Mobile.Droid
 
             Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim
         }
-
-        #region Security
-
-        private bool CanExecuteSuCommand()
-        {
-            try
-            {
-                Java.Lang.Runtime.GetRuntime().Exec("su");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-
-                return false;
-            }
-        }
-
-        private bool HasSuperApk()
-        {
-            return new Java.IO.File("/system/app/Superuser.apk").Exists();
-        }
-
-        private bool IsTestKeyBuild()
-        {
-            string str = Build.Tags;
-            if ((str != null) && (str.Contains("test-keys")))
-                return true;
-            return false;
-        }
-
-        private void CheckForRoot()
-        {
-            if (CanExecuteSuCommand() || HasSuperApk() || IsTestKeyBuild())
-            {
-                //Eğer rootlu bir cihaz uygulamanızı yüklediyse, uygulamanızı kapatabilirsiniz.
-                Process.KillProcess(Process.MyPid());
-            }
-        }
-
-        #endregion Security
     }
 }
