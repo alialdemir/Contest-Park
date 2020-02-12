@@ -15,7 +15,7 @@ namespace ContestPark.Mobile.Droid
             base.OnCreate(bundle);
 
 #if !DEBUG
-            CheckForRoot();
+            //  CheckForRoot();
 #endif
 
             if (CheckNetworkAsync())
@@ -58,17 +58,7 @@ namespace ContestPark.Mobile.Droid
         {
             if (CanExecuteSuCommand() || HasSuperApk() || IsTestKeyBuild())
             {
-                //Eğer rootlu bir cihaz uygulamanızı yüklediyse, uygulamanızı kapatabilirsiniz.
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetMessage(ContestParkResources.NoInternet);
-
-                alert.SetPositiveButton(ContestParkResources.Okay, (senderAlert, args) =>
-                {
-                    Process.KillProcess(Process.MyPid());
-                });
-
-                Dialog dialog = alert.Create();
-                dialog.Show();
+                Process.KillProcess(Process.MyPid());
             }
         }
 
