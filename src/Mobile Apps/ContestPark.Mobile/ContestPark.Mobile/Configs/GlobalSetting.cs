@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Defines the DefaultEndpoint
         /// </summary>
-        public const string DefaultEndpoint = "http://api.contestpark.com";//"http://192.168.1.177:5105"; //"http://192.168.1.177:5105";
+        public const string DefaultEndpoint = "https://api.contestpark.com";//"http://192.168.1.177:5105"; //"http://192.168.1.177:5105";
 
         #endregion Constants
 
