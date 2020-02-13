@@ -506,13 +506,13 @@
     <value>7000 Coins</value>
   </data>
   <data name="ProductMoney12" xml:space="preserve">
-    <value>12.99 ₺ Yükle</value>
+    <value>12.99 Contest Lira Satın Al</value>
+  </data>
+  <data name="ProductMoney19" xml:space="preserve">
+    <value>19.99 Contest Lira Satın Al</value>
   </data>
   <data name="ProductMoney6" xml:space="preserve">
-    <value>6.99 ₺ Yükle</value>
-  </data>
-  <data name="ProductMoney61" xml:space="preserve">
-    <value>19.99 ₺ Yükle</value>
+    <value>6.99 Contest Lira Satın Al</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>

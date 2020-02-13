@@ -541,10 +541,10 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
             if (signUpModel == null)
                 return BadRequest();
 
-            if (string.IsNullOrEmpty(signUpModel.DeviceIdentifier) || _deviceInfoRepository.CheckDeviceIdentifier(signUpModel.DeviceIdentifier))
-            {
-                return BadRequest(IdentityResource.GlobalErrorMessage);
-            }
+            //if (!string.IsNullOrEmpty(signUpModel.DeviceIdentifier) && _deviceInfoRepository.CheckDeviceIdentifier(signUpModel.DeviceIdentifier))
+            //{
+            //    return BadRequest(IdentityResource.GlobalErrorMessage);
+            //}
 
             string isPhoneNumberRegistered = _userRepository.GetUserNameByPhoneNumber(signUpModel.Password);
             if (!string.IsNullOrEmpty(isPhoneNumberRegistered))// telefon numarası kayıtlı mı kontrol ettik

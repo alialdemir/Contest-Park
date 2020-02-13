@@ -848,6 +848,18 @@
   <ItemGroup>
     <BundleResource Include="Resources\tutorial_next.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next_tutorial.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\question_answer.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
