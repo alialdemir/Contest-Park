@@ -63,7 +63,7 @@
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=10}"
+                                                                                  Constant=50}"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Money}"
                                 TextColor="{StaticResource White}"
@@ -96,7 +96,7 @@
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=10}"
+                                                                                  Constant=50}"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Gold}"
                                 TextColor="{StaticResource White}"
@@ -139,6 +139,7 @@
                                 x:Name="pvkView"
                                 Padding="0"
                                 BackgroundColor="{StaticResource White}"
+                                BorderColor="Transparent"
                                 CornerRadius="10"
                                 Elevation="6"
                                 HasShadow="True"
@@ -264,7 +265,7 @@
 
                                     <Label
                                         Grid.Row="10"
-                                        Margin="35,0,0,0"
+                                        Margin="16,-15,0,0"
                                         FontFamily="{StaticResource MontserratRegular}"
                                         FontSize="10"
                                         HorizontalTextAlignment="Start"

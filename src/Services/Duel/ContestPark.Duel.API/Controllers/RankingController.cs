@@ -94,13 +94,29 @@ namespace ContestPark.Duel.API.Controllers
             return Ok(await GetRankingModel(result));
         }
 
+        [HttpGet("SubCategory/AllTimes")]
+        [ProducesResponseType(typeof(RankingModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AllTimes([FromQuery]PagingModel pagingModel)
+        {
+            RankingModel result = new RankingModel
+            {
+                Ranks = _scoreRankingRepository.AllTimes(pagingModel)
+            };
+
+            if (result.Ranks == null || result.Ranks.Items.Count() == 0)
+                return Ok(result);
+
+            return Ok(await GetRankingModel(result));
+        }
+
         [HttpGet("SubCategory/{subCategoryId}/Following")]
         [ProducesResponseType(typeof(RankingModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetFollowingRank([FromRoute]short subCategoryId,
-                                 [EnumDataType(typeof(BalanceTypes), ErrorMessage = "Balance type value doesn't exist within enum")]
-                                 [FromQuery]BalanceTypes balanceType,
-                                 [FromQuery]PagingModel pagingModel)
+                                                          [EnumDataType(typeof(BalanceTypes), ErrorMessage = "Balance type value doesn't exist within enum")]
+                                                          [FromQuery]BalanceTypes balanceType,
+                                                          [FromQuery]PagingModel pagingModel)
         {
             if (subCategoryId <= 0)
                 return BadRequest();

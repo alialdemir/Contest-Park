@@ -134,7 +134,7 @@
                             WidthRequest="290" />
                         <Label
                             Grid.Row="4"
-                            Margin="10,0,10,0"
+                            Margin="0,8,16,0"
                             FontAttributes="Bold"
                             FontFamily="{StaticResource GothamRoundedBold}"
                             FontSize="Small"

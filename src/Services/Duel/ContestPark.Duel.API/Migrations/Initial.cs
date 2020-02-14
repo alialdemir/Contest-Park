@@ -10,6 +10,9 @@ namespace ContestPark.Duel.API.Migrations
         public override void Up()
         {
             Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "SP_GetRankingBySubCategoryId.sql");
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
                                    "SP_RandomQuestions.sql");
 
             this.CreateTableIfNotExists("ScoreRankings", table =>

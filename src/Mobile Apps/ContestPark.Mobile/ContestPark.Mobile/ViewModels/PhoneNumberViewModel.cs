@@ -213,7 +213,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(() => Launcher.OpenAsync(new Uri("https://d2blqp3orvbj09.cloudfront.net/privacy-policy.html")));
+                return new Command(() => Launcher.OpenAsync(new Uri("http://contestpark.com/privacy-policy.html")));
             }
         }
 

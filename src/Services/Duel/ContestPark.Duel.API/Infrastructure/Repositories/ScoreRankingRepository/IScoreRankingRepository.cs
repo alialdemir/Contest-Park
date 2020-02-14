@@ -8,6 +8,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
 {
     public interface IScoreRankingRepository
     {
+        ServiceModel<RankModel> AllTimes(PagingModel pagingModel);
         ServiceModel<RankModel> GetFollowingRanking(short subCategoryId, BalanceTypes balanceType, short contestDateId, System.Collections.Generic.IEnumerable<string> followingUsers, PagingModel pagingModel);
 
         ServiceModel<RankModel> GetRankingBySubCategoryId(short subCategoryId, BalanceTypes balanceType, short contestDateId, PagingModel pagingModel);

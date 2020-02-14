@@ -5,6 +5,7 @@ using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -88,7 +89,30 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         }
 
         /// <summary>
+        /// Tüm zamanlardaki para ile skor sıralamasını getirir
+        /// </summary>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Para kazananların sıralaması</returns>
+        public ServiceModel<RankModel> AllTimes(PagingModel pagingModel)
+        {
+            ServiceModel<RankModel> result = new ServiceModel<RankModel>
+            {
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize
+            };
+
+            result.Items = _scoreRankingRepository.QueryMultiple<RankModel>("SP_GetRankingAllTimes", new
+            {
+                pagingModel.Offset,
+                pagingModel.PageSize
+            }, commandType: CommandType.StoredProcedure);
+
+            return result;
+        }
+
+        /// <summary>
         /// Alt kategori id ve bakiye tipine göre skor sıralama listesi verir
+        /// Eğer contestDateId sıfır gelirse tüm zamanlardaki sıralamayı getirir
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <param name="balanceType">Bakiye tip</param>
@@ -96,26 +120,22 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         /// <returns>Alt kategori sıralaması</returns>
         public ServiceModel<RankModel> GetRankingBySubCategoryId(short subCategoryId, BalanceTypes balanceType, short contestDateId, PagingModel pagingModel)
         {
-            string sql = @"SELECT CASE
-                                  WHEN @balanceType=1 THEN sr.DisplayTotalGoldScore
-                                  WHEN @balanceType=2 THEN sr.DisplayTotalMoneyScore
-                                  END AS TotalScore,
-                                  sr.UserId
-                        FROM ScoreRankings sr
-                        WHERE sr.ContestDateId = @contestDateId
-                           AND sr.SubCategoryId = @subCategoryId
-                        ORDER BY
-                        CASE
-                            WHEN @balanceType=1 THEN sr.TotalGoldScore
-                            WHEN @balanceType=2 THEN sr.TotalMoneyScore
-                        END DESC";
+            ServiceModel<RankModel> result = new ServiceModel<RankModel>
+            {
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize
+            };
 
-            return _scoreRankingRepository.ToServiceModel<RankModel>(sql, new
+            result.Items = _scoreRankingRepository.QueryMultiple<RankModel>("SP_GetRankingBySubCategoryId", new
             {
                 subCategoryId,
                 balanceType,
-                contestDateId
-            }, pagingModel: pagingModel);
+                contestDateId,
+                pagingModel.Offset,
+                pagingModel.PageSize
+            }, commandType: CommandType.StoredProcedure);
+
+            return result;
         }
 
         /// <summary>
