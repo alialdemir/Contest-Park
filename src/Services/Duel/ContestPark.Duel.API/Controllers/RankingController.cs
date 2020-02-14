@@ -94,7 +94,7 @@ namespace ContestPark.Duel.API.Controllers
             return Ok(await GetRankingModel(result));
         }
 
-        [HttpGet("SubCategory/AllTimes")]
+        [HttpGet("AllTimes")]
         [ProducesResponseType(typeof(RankingModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> AllTimes([FromQuery]PagingModel pagingModel)
