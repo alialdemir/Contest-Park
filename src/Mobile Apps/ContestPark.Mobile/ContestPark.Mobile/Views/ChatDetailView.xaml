@@ -87,6 +87,7 @@
                         Grid.Column="0"
                         AutoSize="TextChanges"
                         AutomationId="txtChatbox"
+                        BackgroundColor="{StaticResource White}"
                         Completed="txtChatbox_Completed"
                         Focused="TxtChatbox_Focused"
                         FontFamily="{StaticResource SofiaProRegular}"

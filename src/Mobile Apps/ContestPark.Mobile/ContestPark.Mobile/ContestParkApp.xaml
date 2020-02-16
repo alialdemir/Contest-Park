@@ -140,7 +140,7 @@
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
                 <Setter Property="RefreshCommand" Value="{Binding RefreshCommand}" />
                 <Setter Property="SeparatorColor" Value="Transparent" />
-                <Setter Property="IsRefreshing" Value="{Binding IsBusy, Mode=OneWay}" />
+                <Setter Property="IsRefreshing" Value="{Binding IsRefreshing, Mode=OneWay}" />
                 <Setter Property="IsPullToRefreshEnabled" Value="True" />
                 <Setter Property="HasUnevenRows" Value="True" />
                 <Setter Property="SelectionMode" Value="None" />

@@ -75,6 +75,7 @@ namespace ContestPark.Mobile.Components
                     break;
 
                 default:
+
                     lblScore.Margin = new Thickness(0, 0, 16, 0);
                     imgCoins.IsVisible = false;
                     break;

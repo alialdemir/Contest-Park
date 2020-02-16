@@ -20,6 +20,17 @@ namespace ContestPark.Mobile.Components
 
         #region Properties
 
+        public static readonly BindableProperty BalanceTypeProperty = BindableProperty.Create(propertyName: nameof(BalanceType),
+                                                                                                  returnType: typeof(BalanceTypes),
+                                                                                                  declaringType: typeof(RankTopView),
+                                                                                                  defaultValue: null);
+
+        public BalanceTypes BalanceType
+        {
+            get { return (BalanceTypes)GetValue(BalanceTypeProperty); }
+            set { SetValue(BalanceTypeProperty, value); }
+        }
+
         public static readonly BindableProperty GotoProfilePageCommandProperty = BindableProperty.Create(propertyName: nameof(GotoProfilePageCommand),
                                                                                          returnType: typeof(ICommand),
                                                                                          declaringType: typeof(RankTopView),
@@ -102,6 +113,24 @@ namespace ContestPark.Mobile.Components
                     RankGif = "rank3.gif";
                     profilePicture.BorderColor = "#C38651";
                     profilePicture.HeightRequest = profilePicture.WidthRequest = 70;
+                    break;
+            }
+
+            switch (BalanceType)
+            {
+                case BalanceTypes.Money:
+                    imgCoins.Source = ImageSource.FromFile("doublecoinstl.png");
+                    Grid.SetColumn(lblScore, 0);
+                    break;
+
+                case BalanceTypes.Gold:
+                    imgCoins.Source = ImageSource.FromFile("doublecoins.png");
+                    Grid.SetColumn(lblScore, 0);
+                    break;
+
+                default:
+                    Grid.SetColumnSpan(lblScore, 2);
+                    imgCoins.IsVisible = false;
                     break;
             }
         }

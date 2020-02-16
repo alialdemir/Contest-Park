@@ -59,6 +59,18 @@ namespace ContestPark.Mobile.ViewModels.Base
             }
         }
 
+        private bool _isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                RaisePropertyChanged(() => IsRefreshing);
+            }
+        }
+
         #endregion Page settings
 
         #region Virtoal methods
@@ -263,7 +275,8 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <returns></returns>
         protected override Task InitializeAsync()
         {
-            Items.Clear();// Skeleton dataları silindi
+            if (ServiceModel.PageNumber == 1)
+                Items.Clear();// Skeleton dataları silindi
 
             if (ServiceModel != null && ServiceModel.Items != null && ServiceModel.Items.Any())
             {
@@ -276,6 +289,9 @@ namespace ContestPark.Mobile.ViewModels.Base
                 ServiceModel.PageNumber++;
 
             ServiceModel.Items = null;
+
+            IsRefreshing = false;
+
             return base.InitializeAsync();
         }
 
@@ -284,6 +300,8 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// </summary>
         protected virtual void Reflesh()
         {
+            IsRefreshing = true;
+
             IsShowEmptyMessage = false;
             Items?.Clear();
 

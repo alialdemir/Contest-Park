@@ -9,16 +9,24 @@
     x:Name="rankTopView"
     mc:Ignorable="d">
     <ContentView.Content>
-        <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid
+            ColumnSpacing="0"
+            HorizontalOptions="Center"
+            RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
             <components:CachedImage
                 Grid.Row="0"
+                Grid.ColumnSpan="2"
                 HeightRequest="50"
                 Source="{Binding Path=RankGif, Source={x:Reference rankTopView}}"
                 WidthRequest="50" />
@@ -26,6 +34,7 @@
             <components:CircleImage
                 x:Name="profilePicture"
                 Grid.Row="1"
+                Grid.ColumnSpan="2"
                 Margin="0,0,0,8"
                 Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference rankTopView}}"
                 CommandParameter="{Binding Path=Ranking.UserName, Source={x:Reference rankTopView}}"
@@ -35,20 +44,33 @@
 
             <Label
                 Grid.Row="2"
+                Grid.ColumnSpan="2"
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="15"
-                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
                 Text="{Binding Path=Ranking.UserFullName, Source={x:Reference rankTopView}}"
                 TextColor="{StaticResource White}" />
 
             <Label
+                x:Name="lblScore"
                 Grid.Row="3"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource SofiaProSemiBold}"
                 FontSize="15"
                 HorizontalTextAlignment="Center"
                 Text="{Binding Path=Ranking.TotalScore, Source={x:Reference rankTopView}}"
-                TextColor="#F53D6B" />
+                TextColor="#F53D6B"
+                VerticalTextAlignment="Center" />
+
+            <Image
+                x:Name="imgCoins"
+                Grid.Row="3"
+                Grid.Column="1"
+                Aspect="AspectFit"
+                HeightRequest="32"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="Center"
+                WidthRequest="32" />
         </Grid>
     </ContentView.Content>
 </ContentView>

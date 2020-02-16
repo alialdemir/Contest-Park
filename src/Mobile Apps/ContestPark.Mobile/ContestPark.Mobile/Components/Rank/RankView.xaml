@@ -4,14 +4,20 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
     x:Name="rankView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:SkeletonLoadingConverter x:Key="slc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="30" />
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="80" />
@@ -23,10 +29,10 @@
                 Grid.Column="0"
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="15"
-                HorizontalTextAlignment="Start"
+                HorizontalTextAlignment="Center"
                 Text="{Binding Source={x:Reference rankView}, Path=Rank}"
                 TextColor="#181C2F"
-                VerticalOptions="Center" />
+                VerticalTextAlignment="Center" />
 
             <Components:CircleImage
                 Grid.Row="0"

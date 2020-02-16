@@ -126,32 +126,35 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
-            if (profileInfo == null)
+            if (ProfileInfo == null)
             {
-                await DisplayAlertAsync("",
-                    ContestParkResources.UserNotFound,
-                    ContestParkResources.Okay);
+                var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
+                if (profileInfo == null)
+                {
+                    await DisplayAlertAsync("",
+                        ContestParkResources.UserNotFound,
+                        ContestParkResources.Okay);
 
-                IsBusy = false;
+                    IsBusy = false;
 
-                return;
+                    return;
+                }
+
+                ProfileInfo = profileInfo;
+
+                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
+
+                EventSubscription();
             }
-
-            ProfileInfo = profileInfo;
-
-            IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
 
             if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
             {
                 ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
             }
 
-            EventSubscription();
+            await base.InitializeAsync();
 
             IsBusy = false;
-
-            await base.InitializeAsync();
         }
 
         /// <summary>

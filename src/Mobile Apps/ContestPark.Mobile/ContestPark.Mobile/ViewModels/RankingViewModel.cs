@@ -105,7 +105,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (rank != null)
             {
-                if (Ranks == null || Ranks.ContestFinishDate == null)
+                if (Ranks == null || Ranks.ContestFinishDate == null || !Items.Any())
                 {
                     Ranks = new RankModel
                     {
@@ -141,6 +141,12 @@ namespace ContestPark.Mobile.ViewModels
                         IsShowEmptyMessage = false;
 
                     TimeLeftCommand.Execute(null);
+                }
+                else
+                {
+                    ServiceModel = rank.Ranks;
+
+                    await base.InitializeAsync();
                 }
             }
 

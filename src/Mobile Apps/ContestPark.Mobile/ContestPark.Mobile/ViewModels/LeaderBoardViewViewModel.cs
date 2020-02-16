@@ -1,5 +1,4 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Ranking;
 using ContestPark.Mobile.Services.Score;
 using ContestPark.Mobile.ViewModels.Base;
@@ -56,13 +55,11 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            BalanceTypes balanceType = BalanceTypes.Gold;
-
             var rank = await _scoreService.AllTimesAsync(ServiceModel);
 
             if (rank != null)
             {
-                if (Ranks == null || Ranks.ContestFinishDate == null)
+                if (Ranks == null || Ranks.ContestFinishDate == null || !Items.Any())
                 {
                     Ranks = new RankModel
                     {
@@ -99,9 +96,7 @@ namespace ContestPark.Mobile.ViewModels
                 }
                 else
                 {
-                    var result = await _scoreService.AllTimesAsync(ServiceModel);
-
-                    ServiceModel = result.Ranks;
+                    ServiceModel = rank.Ranks;
 
                     await base.InitializeAsync();
                 }
