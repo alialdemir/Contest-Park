@@ -5,7 +5,6 @@ using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Models;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -95,7 +94,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         /// <returns>Para kazananların sıralaması</returns>
         public ServiceModel<RankModel> AllTimes(PagingModel pagingModel)
         {
-            return _scoreRankingRepository.ToServiceModel<RankModel>("SP_GetRankingAllTimes", commandType: CommandType.StoredProcedure, pagingModel: pagingModel);
+            return _scoreRankingRepository.ToServiceModel<RankModel>("SP_GetRankingAllTimes", new { }, pagingModel: pagingModel);
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
                 subCategoryId,
                 balanceType,
                 contestDateId,
-            }, commandType: CommandType.StoredProcedure, pagingModel);
+            }, pagingModel);
         }
 
         /// <summary>

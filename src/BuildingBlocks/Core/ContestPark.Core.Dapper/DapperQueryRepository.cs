@@ -95,12 +95,11 @@ namespace ContestPark.Core.Dapper
         /// <summary>
         /// Sayfalama yaparak geriye döndürür
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <param name="commandType"></param>
-        /// <param name="pagingModel"></param>
-        /// <returns></returns>
+        /// <typeparam name="TResult">Return modeli</typeparam>
+        /// <param name="sql">Sql query</param>
+        /// <param name="parameters">Parameters</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Service model</returns>
         public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null)
         {
             dynamic paramss = CreateExpandoFromObject(parameters);
@@ -121,6 +120,34 @@ namespace ContestPark.Core.Dapper
             };
 
             serviceModel.Items = QueryMultiple<TResult>(query2, (object)paramss);
+
+            return serviceModel;
+        }
+
+        /// <summary>
+        /// StoredProcedure ile sayfalama yaparak çekme
+        /// </summary>
+        /// <typeparam name="TResult">Return modeli</typeparam>
+        /// <param name="sql">Sql query</param>
+        /// <param name="parameters">Parameters</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Service model</returns>
+        public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, PagingModel pagingModel)
+        {
+            dynamic paramss = CreateExpandoFromObject(parameters);
+            paramss.PageSize = pagingModel.PageSize;
+            paramss.Offset = pagingModel.Offset + 1;
+
+            long nextPageCount = QueryMultiple<object>(sql, paramss).Count();
+
+            ServiceModel<TResult> serviceModel = new ServiceModel<TResult>
+            {
+                PageSize = pagingModel.PageSize,
+                PageNumber = pagingModel.PageNumber,
+                HasNextPage = nextPageCount > 0
+            };
+
+            serviceModel.Items = QueryMultiple<TResult>(sql, parameters, commandType: CommandType.StoredProcedure);
 
             return serviceModel;
         }
