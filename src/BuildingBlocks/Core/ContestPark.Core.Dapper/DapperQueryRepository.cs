@@ -147,7 +147,9 @@ namespace ContestPark.Core.Dapper
                 HasNextPage = nextPageCount > 0
             };
 
-            serviceModel.Items = QueryMultiple<TResult>(sql, parameters, commandType: CommandType.StoredProcedure);
+            paramss.Offset = pagingModel.Offset;
+
+            serviceModel.Items = QueryMultiple<TResult>(sql, paramss, commandType: CommandType.StoredProcedure);
 
             return serviceModel;
         }
@@ -162,7 +164,8 @@ namespace ContestPark.Core.Dapper
         private static ExpandoObject CreateExpandoFromObject(object source)
         {
             var result = new ExpandoObject();
-            if (source == null) return result;
+            if (source == null)
+                return result;
 
             IDictionary<string, object> dictionary = result;
             foreach (var property in source
