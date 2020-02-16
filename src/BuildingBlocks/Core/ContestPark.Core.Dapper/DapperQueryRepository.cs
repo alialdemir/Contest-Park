@@ -136,7 +136,7 @@ namespace ContestPark.Core.Dapper
         {
             dynamic paramss = CreateExpandoFromObject(parameters);
             paramss.PageSize = pagingModel.PageSize;
-            paramss.Offset = pagingModel.Offset + 1;
+            paramss.Offset = NextOffset(pagingModel.PageSize, pagingModel.PageNumber);
 
             long nextPageCount = QueryMultiple<object>(sql, paramss).Count();
 
