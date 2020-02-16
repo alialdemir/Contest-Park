@@ -51,7 +51,6 @@ namespace ContestPark.Core.Dapper
         public T QuerySingleOrDefault<T>(string sql, object parameters = null, CommandType? commandType = null)
         {
             var result = _databaseConnection.Connection.QuerySingleOrDefault<T>(sql, parameters, commandType: commandType);
-
             ((Disposable)_databaseConnection)?.DisposeCore();
 
             return result;
@@ -110,13 +109,13 @@ namespace ContestPark.Core.Dapper
             string query1 = sql + " LIMIT @Offset2, @PageSize; ";
             string query2 = sql + " LIMIT @Offset, @PageSize";
 
-            long nextPageCount = QueryMultiple<object>(query1, (object)paramss).Count();
+            IEnumerable<TResult> nextPageCount = QueryMultiple<TResult>(query1, (object)paramss);
 
             ServiceModel<TResult> serviceModel = new ServiceModel<TResult>
             {
                 PageSize = pagingModel.PageSize,
                 PageNumber = pagingModel.PageNumber,
-                HasNextPage = nextPageCount > 0
+                HasNextPage = nextPageCount.Any()
             };
 
             serviceModel.Items = QueryMultiple<TResult>(query2, (object)paramss);
@@ -138,13 +137,13 @@ namespace ContestPark.Core.Dapper
             paramss.PageSize = pagingModel.PageSize;
             paramss.Offset = NextOffset(pagingModel.PageSize, pagingModel.PageNumber);
 
-            long nextPageCount = QueryMultiple<object>(sql, paramss).Count();
+            IEnumerable<TResult> nextPageCount = QueryMultiple<TResult>(sql, paramss, commandType: CommandType.StoredProcedure);
 
             ServiceModel<TResult> serviceModel = new ServiceModel<TResult>
             {
                 PageSize = pagingModel.PageSize,
                 PageNumber = pagingModel.PageNumber,
-                HasNextPage = nextPageCount > 0
+                HasNextPage = nextPageCount.Any()
             };
 
             paramss.Offset = pagingModel.Offset;
@@ -156,7 +155,7 @@ namespace ContestPark.Core.Dapper
 
         private int NextOffset(int pageSize, int pageNumber)
         {
-            pageNumber = pageNumber + 1;
+            pageNumber += 1;
 
             return pageSize * (pageNumber - 1);
         }
