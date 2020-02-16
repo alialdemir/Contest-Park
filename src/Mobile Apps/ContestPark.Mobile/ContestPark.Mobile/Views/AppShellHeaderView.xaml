@@ -3,8 +3,8 @@
     x:Class="ContestPark.Mobile.Views.AppShellHeaderView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters.Balance"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -12,7 +12,7 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Converter:BalanceConverter x:Key="bc" />
+            <converter:BalanceConverter x:Key="bc" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>

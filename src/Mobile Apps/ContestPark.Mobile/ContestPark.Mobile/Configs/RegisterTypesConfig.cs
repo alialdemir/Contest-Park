@@ -95,6 +95,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<LanguageView, LanguageViewModel>();
 
+            containerRegistry.RegisterForNavigation<LeaderBoardView, LeaderBoardViewViewModel>();
+
             containerRegistry.RegisterForNavigation<MissionsView, MissionsViewModel>();
 
             containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();

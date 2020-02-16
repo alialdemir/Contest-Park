@@ -13,6 +13,7 @@
 
             if (number1.Length <= 4)
                 return number1;
+
             if (number1.Length == 5)
                 return number1.Substring(0, 2) + "K";
             else if (number1.Length >= 6 && number1.Length < 7)

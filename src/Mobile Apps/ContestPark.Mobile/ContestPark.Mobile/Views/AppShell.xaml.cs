@@ -103,11 +103,11 @@ namespace ContestPark.Mobile.Views
 
             IAnalyticsService analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
 
-            if (name == "facebook" || name == "twitter" || name == "instagram")
+            if (name.StartsWith("https://") || name.StartsWith("http://"))
             {
-                analyticsService.SendEvent("Sol Menü", "Sosyal Medya", name);
+                analyticsService.SendEvent("Sol Menü", "Link", name);
 
-                OpenUri($"https://www.{name}.com/contestpark");
+                OpenUri(name);
 
                 Shell.Current.FlyoutIsPresented = false;
             }

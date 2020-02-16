@@ -81,6 +81,29 @@ namespace ContestPark.Mobile.Services.Score
             return result.Data;
         }
 
+        /// <summary>
+        /// Kazanılan para sıralaması
+        /// </summary>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Para kazananların sıralaması</returns>
+        public async Task<RankModel> AllTimesAsync(PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Ranking/AllTimes{pagingModel.ToString()}");
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<RankModel>(uri);
+            }
+
+            var result = await _requestProvider.GetAsync<RankModel>(uri);
+            if (result.Data != null && result.IsSuccess)
+            {
+                _cacheService.Add(uri, result.Data);
+            }
+
+            return result.Data;
+        }
+
         #endregion Methods
     }
 }

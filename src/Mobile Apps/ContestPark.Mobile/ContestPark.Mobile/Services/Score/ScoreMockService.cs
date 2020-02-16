@@ -11,6 +11,11 @@ namespace ContestPark.Mobile.Services.Score
 {
     public class ScoreMockService : IScoreService
     {
+        public Task<RankModel> AllTimesAsync(PagingModel pagingModel)
+        {
+            return SubCategoryRankingAsync(1, BalanceTypes.Money, new PagingModel());
+        }
+
         public Task<RankModel> FollowingRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
             return Task.FromResult(

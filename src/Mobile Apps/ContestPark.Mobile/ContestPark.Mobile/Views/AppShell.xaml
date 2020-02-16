@@ -37,7 +37,7 @@
         <views:AppShellHeaderView />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem  Title="Menu" FlyoutDisplayOptions="AsSingleItem">
+    <FlyoutItem Title="Menu" FlyoutDisplayOptions="AsSingleItem">
 
         <!--  tabbar  -->
         <ShellContent Title="{i18n:Translate Categories}" ContentTemplate="{DataTemplate views:CategoriesView}">
@@ -56,6 +56,12 @@
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabInvite}" />
             </ShellContent.Icon>
         </ShellContent>-->
+
+        <ShellContent Title="{i18n:Translate LeaderBoard}" ContentTemplate="{DataTemplate views:LeaderBoardView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.TabRanking}" />
+            </ShellContent.Icon>
+        </ShellContent>
 
         <ShellContent Title="{i18n:Translate Chat}" ContentTemplate="{DataTemplate views:ChatView}">
             <ShellContent.Icon>
@@ -97,25 +103,31 @@
 
     <MenuItem
         Clicked="MenuItem_Clicked"
+        CommandParameter="http://contestpark.com/#why"
+        IconImageSource="{x:Static icons:ContestParkIcon.HowToPlay}"
+        Text="{i18n:Translate HowToPlay}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
         CommandParameter="SettingsView"
         IconImageSource="{x:Static icons:ContestParkIcon.Settings}"
         Text="{i18n:Translate Settings}" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
-        CommandParameter="facebook"
+        CommandParameter="https://www.facebook.com/contestpark"
         IconImageSource="{x:Static icons:ContestParkIcon.Facebook}"
         Text="Facebook" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
-        CommandParameter="twitter"
+        CommandParameter="https://www.twitter.com/contestpark"
         IconImageSource="{x:Static icons:ContestParkIcon.Twitter}"
         Text="Twitter" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
-        CommandParameter="instagram"
+        CommandParameter="https://www.instagram.com/contestpark"
         IconImageSource="{x:Static icons:ContestParkIcon.Instagram}"
         Text="Instagram" />
 

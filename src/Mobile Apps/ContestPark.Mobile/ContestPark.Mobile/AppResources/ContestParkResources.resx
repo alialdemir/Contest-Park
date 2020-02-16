@@ -749,4 +749,10 @@
   <data name="WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber" xml:space="preserve">
     <value>Withdraw the prize money from the application by sending an iban number.</value>
   </data>
+  <data name="LeaderBoard" xml:space="preserve">
+    <value>LeaderBoard</value>
+  </data>
+  <data name="HowToPlay" xml:space="preserve">
+    <value>How to play?</value>
+  </data>
 </root>

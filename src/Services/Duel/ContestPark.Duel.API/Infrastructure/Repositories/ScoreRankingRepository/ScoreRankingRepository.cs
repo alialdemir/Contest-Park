@@ -95,19 +95,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         /// <returns>Para kazananların sıralaması</returns>
         public ServiceModel<RankModel> AllTimes(PagingModel pagingModel)
         {
-            ServiceModel<RankModel> result = new ServiceModel<RankModel>
-            {
-                PageNumber = pagingModel.PageNumber,
-                PageSize = pagingModel.PageSize
-            };
-
-            result.Items = _scoreRankingRepository.QueryMultiple<RankModel>("SP_GetRankingAllTimes", new
+            return _scoreRankingRepository.ToServiceModel<RankModel>("SP_GetRankingAllTimes", new
             {
                 pagingModel.Offset,
                 pagingModel.PageSize
             }, commandType: CommandType.StoredProcedure);
-
-            return result;
         }
 
         /// <summary>
@@ -120,13 +112,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         /// <returns>Alt kategori sıralaması</returns>
         public ServiceModel<RankModel> GetRankingBySubCategoryId(short subCategoryId, BalanceTypes balanceType, short contestDateId, PagingModel pagingModel)
         {
-            ServiceModel<RankModel> result = new ServiceModel<RankModel>
-            {
-                PageNumber = pagingModel.PageNumber,
-                PageSize = pagingModel.PageSize
-            };
-
-            result.Items = _scoreRankingRepository.QueryMultiple<RankModel>("SP_GetRankingBySubCategoryId", new
+            return _scoreRankingRepository.ToServiceModel<RankModel>("SP_GetRankingBySubCategoryId", new
             {
                 subCategoryId,
                 balanceType,
@@ -134,8 +120,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
                 pagingModel.Offset,
                 pagingModel.PageSize
             }, commandType: CommandType.StoredProcedure);
-
-            return result;
         }
 
         /// <summary>

@@ -6,6 +6,7 @@
         public const string TabInvite = "\ue907";
         public const string TabProfile = "\ue908";
         public const string TabCategories = "\ue909";
+        public const string TabRanking = "\ue928";
         public const string Save = "\ued73";
         public const string Share = "\ue90c";
         public const string UnCategoryFollow = "\ued70";
@@ -47,5 +48,6 @@
         public const string ChatThreeDot = "\ue91a";
         public const string FindOpponent = "\ue91d";
         public const string Revenge = "\ue91e";
+        public const string HowToPlay = "\ue92a";
     }
 }

@@ -719,6 +719,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How to play?.
+        /// </summary>
+        public static string HowToPlay {
+            get {
+                return ResourceManager.GetString("HowToPlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you delete your copy of this conversation, it cannot be undone..
         /// </summary>
         public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {
@@ -787,6 +796,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LeaderBoard.
+        /// </summary>
+        public static string LeaderBoard {
+            get {
+                return ResourceManager.GetString("LeaderBoard", resourceCulture);
             }
         }
         

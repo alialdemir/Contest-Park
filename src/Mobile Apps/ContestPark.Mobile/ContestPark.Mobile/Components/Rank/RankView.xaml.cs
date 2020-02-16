@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContestPark.Mobile.Enums;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,6 +19,17 @@ namespace ContestPark.Mobile.Components
         #endregion Constructors
 
         #region Property
+
+        public static readonly BindableProperty BalanceTypeProperty = BindableProperty.Create(propertyName: nameof(BalanceType),
+                                                                                                    returnType: typeof(BalanceTypes),
+                                                                                                    declaringType: typeof(RankView),
+                                                                                                    defaultValue: null);
+
+        public BalanceTypes BalanceType
+        {
+            get { return (BalanceTypes)GetValue(BalanceTypeProperty); }
+            set { SetValue(BalanceTypeProperty, value); }
+        }
 
         public static readonly BindableProperty GotoProfilePageCommandProperty = BindableProperty.Create(propertyName: nameof(GotoProfilePageCommand),
                                                                                            returnType: typeof(ICommand),
@@ -45,5 +57,30 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Property
+
+        #region Overrides
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            switch (BalanceType)
+            {
+                case BalanceTypes.Money:
+                    imgCoins.Source = ImageSource.FromFile("doublecoinstl.png");
+                    break;
+
+                case BalanceTypes.Gold:
+                    imgCoins.Source = ImageSource.FromFile("doublecoins.png");
+                    break;
+
+                default:
+                    lblScore.Margin = new Thickness(0, 0, 16, 0);
+                    imgCoins.IsVisible = false;
+                    break;
+            }
+        }
+
+        #endregion Overrides
     }
 }

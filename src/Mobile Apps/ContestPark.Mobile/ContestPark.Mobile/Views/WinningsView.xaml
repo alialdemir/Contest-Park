@@ -3,7 +3,7 @@
     x:Class="ContestPark.Mobile.Views.WinningsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Balance"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"

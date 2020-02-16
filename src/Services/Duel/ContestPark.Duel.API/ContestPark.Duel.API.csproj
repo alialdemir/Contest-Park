@@ -6,10 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\Scripts\SP_GetRankingBySubCategoryId.sql" />
     <None Remove="Migrations\Scripts\SP_RandomQuestions.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\SP_GetRankingBySubCategoryId.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SP_RandomQuestions.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>

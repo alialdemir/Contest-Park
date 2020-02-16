@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace ContestPark.Mobile.Converters.Balance
+namespace ContestPark.Mobile.Converters
 {
     public class BalanceConverter : IValueConverter
     {

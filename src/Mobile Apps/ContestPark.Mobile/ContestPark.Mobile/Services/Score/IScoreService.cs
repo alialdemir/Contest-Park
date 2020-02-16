@@ -10,5 +10,6 @@ namespace ContestPark.Mobile.Services.Score
         Task<RankModel> SubCategoryRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel);
 
         Task<RankModel> FollowingRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel);
+        Task<RankModel> AllTimesAsync(PagingModel pagingModel);
     }
 }

@@ -94,6 +94,11 @@ namespace ContestPark.Duel.API.Controllers
             return Ok(await GetRankingModel(result));
         }
 
+        /// <summary>
+        /// Tüm zamanlardaki para ile skor sıralamasını getirir
+        /// </summary>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Para kazananların sıralaması</returns>
         [HttpGet("AllTimes")]
         [ProducesResponseType(typeof(RankingModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -110,6 +115,13 @@ namespace ContestPark.Duel.API.Controllers
             return Ok(await GetRankingModel(result));
         }
 
+        /// <summary>
+        /// Takip ettiğin kullanıcıların sıralaması
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <param name="balanceType">Bakiye tipi</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Takip ettiğin kullanıcıların sıralaması</returns>
         [HttpGet("SubCategory/{subCategoryId}/Following")]
         [ProducesResponseType(typeof(RankingModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
