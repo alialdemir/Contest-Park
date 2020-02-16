@@ -95,11 +95,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
         /// <returns>Para kazananların sıralaması</returns>
         public ServiceModel<RankModel> AllTimes(PagingModel pagingModel)
         {
-            return _scoreRankingRepository.ToServiceModel<RankModel>("SP_GetRankingAllTimes", new
-            {
-                pagingModel.Offset,
-                pagingModel.PageSize
-            }, commandType: CommandType.StoredProcedure);
+            return _scoreRankingRepository.ToServiceModel<RankModel>("SP_GetRankingAllTimes", commandType: CommandType.StoredProcedure, pagingModel: pagingModel);
         }
 
         /// <summary>
@@ -117,9 +113,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepositor
                 subCategoryId,
                 balanceType,
                 contestDateId,
-                pagingModel.Offset,
-                pagingModel.PageSize
-            }, commandType: CommandType.StoredProcedure);
+            }, commandType: CommandType.StoredProcedure, pagingModel);
         }
 
         /// <summary>
