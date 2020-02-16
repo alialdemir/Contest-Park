@@ -26,7 +26,7 @@
         <components:NonPersistentSelectedItemListView
             x:Name="lstView"
             InfiniteScroll="{Binding InfiniteScroll}"
-            Style="{StaticResource ListViewHeaderAndFooter}">
+            Style="{StaticResource ListViewOnlyHeader}">
             <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
 

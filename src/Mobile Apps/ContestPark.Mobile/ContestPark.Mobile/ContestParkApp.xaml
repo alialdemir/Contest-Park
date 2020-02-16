@@ -164,6 +164,13 @@
             </Style>
 
             <Style
+                x:Key="ListViewOnlyHeader"
+                BasedOn="{StaticResource ListView}"
+                TargetType="ListView">
+                <Setter Property="Header" Value=" " />
+            </Style>
+
+            <Style
                 x:Key="ListViewGroup"
                 BasedOn="{StaticResource ListView}"
                 TargetType="ListView">

@@ -46,9 +46,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <returns>Post nesnesi</returns>
         public PostModel GetPostDetailByPostId(string userId, int postId, Languages language)
         {
-            string sql = GetSql("WHERE p.PostId = @postId");
-
-            return _postRepository.QuerySingleOrDefault<PostModel>(sql, new
+            return _postRepository.QuerySingleOrDefault<PostModel>("SP_GetPostDetailByPostId", new
             {
                 userId,
                 postId,
@@ -65,9 +63,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <returns>Subcategory posts</returns>
         public ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, Languages language, PagingModel paging)
         {
-            string sql = GetSql("WHERE p.SubCategoryId = @subCategoryId");
-
-            return _postRepository.ToServiceModel<PostModel>(sql, new
+            return _postRepository.ToServiceModel<PostModel>("SP_GetPostsBySubcategoryId", new
             {
                 userId,
                 subCategoryId,
@@ -85,57 +81,12 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <returns>Post listesi</returns>
         public ServiceModel<PostModel> GetPostByUserId(string profileUserId, string userId, Languages language, PagingModel paging)
         {
-            string sql = GetSql("WHERE p.OwnerUserId = @profileUserId OR p.FounderUserId = @profileUserId OR p.CompetitorUserId = @profileUserId");
-
-            return _postRepository.ToServiceModel<PostModel>(sql, new
+            return _postRepository.ToServiceModel<PostModel>("SP_GetPostByUserId", new
             {
                 userId,
                 profileUserId,
                 language = (byte)language
             }, pagingModel: paging);
-        }
-
-        /// <summary>
-        /// Alt kategori detayı, profil sayfası ve post detay sayfasındaki sql sorgusu aynı sadece where koşulu değişiyor
-        /// bu yüzden sorguyu tek bir yerden alıp where kısmını parametre olarak geçtik
-        /// Buradaki sorguyu değiştirirseniz 3 sayfada etkilenecektir...
-        /// </summary>
-        /// <param name="where">Koşul</param>
-        /// <returns>Sql query</returns>
-        private string GetSql(string where)
-        {
-            string sql = $@"SELECT
-                             p.CreatedDate AS Date,
-                             p.LikeCount,
-                             p.CommentCount,
-                             p.OwnerUserId,
-                             p.PostId,
-                             p.PostType,
-                             p.Bet,
-                             scl.SubCategoryName,
-                             sc.PicturePath AS SubCategoryPicturePath,
-                             p.Bet,
-
-                             p.DuelId,
-                             p.SubCategoryId,
-                             p.CompetitorUserId,
-                             p.CompetitorTrueAnswerCount,
-                             p.FounderUserId,
-                             p.FounderTrueAnswerCount,
-                             FNC_PostIsLike(@userId, p.PostId) AS IsLike,
-
-                            p.PostImageType,
-                            p.PicturePath,
-
-                            p.Description
-
-                           FROM Posts p
-                           LEFT JOIN SubCategories sc ON sc.SubCategoryId = p.SubCategoryId
-                           LEFT JOIN SubCategoryLangs scl ON scl.SubCategoryId = p.SubCategoryId AND scl.`Language`= @language
-                           {where}
-                           ORDER BY p.CreatedDate desc";
-
-            return sql;
         }
 
         #endregion Methods

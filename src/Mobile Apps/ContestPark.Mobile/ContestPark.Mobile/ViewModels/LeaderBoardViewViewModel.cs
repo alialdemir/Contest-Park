@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.ViewModels
 
             BalanceTypes balanceType = BalanceTypes.Gold;
 
-            RankModel rank = await _scoreService.AllTimesAsync(ServiceModel);
+            var rank = await _scoreService.AllTimesAsync(ServiceModel);
 
             if (rank != null)
             {
@@ -96,6 +96,14 @@ namespace ContestPark.Mobile.ViewModels
 
                     if (rankCount <= 4 && rankCount != 0)
                         IsShowEmptyMessage = false;
+                }
+                else
+                {
+                    var result = await _scoreService.AllTimesAsync(ServiceModel);
+
+                    ServiceModel = result.Ranks;
+
+                    await base.InitializeAsync();
                 }
             }
 

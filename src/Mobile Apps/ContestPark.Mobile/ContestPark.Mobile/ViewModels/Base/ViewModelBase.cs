@@ -299,7 +299,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #endregion Virtual methods
 
-        #region Paging
+        #region Commands
 
         /// <summary>
         /// Sayfalama için scrollbar aşayağıya gelince tekiklenen command
@@ -318,10 +318,6 @@ namespace ContestPark.Mobile.ViewModels.Base
                 });
             }
         }
-
-        #endregion Paging
-
-        #region Commands
 
         /// <summary>
         /// Reflesh command
