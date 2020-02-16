@@ -132,7 +132,7 @@ namespace ContestPark.Core.Dapper
         /// <param name="parameters">Parameters</param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Service model</returns>
-        public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, PagingModel pagingModel)
+        public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, PagingModel pagingModel = null)
         {
             dynamic paramss = CreateExpandoFromObject(parameters);
             paramss.PageSize = pagingModel.PageSize;
