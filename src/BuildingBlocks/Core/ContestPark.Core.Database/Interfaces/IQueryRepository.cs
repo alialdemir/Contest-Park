@@ -18,6 +18,6 @@ namespace ContestPark.Core.Database.Interfaces
 
         ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null);
 
-        ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, PagingModel pagingModel = null);
+        ServiceModel<TResult> ToSpServiceModel<TResult>(string sql, object parameters = null, PagingModel pagingModel = null);
     }
 }
