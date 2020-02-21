@@ -16,6 +16,7 @@ namespace ContestPark.Mobile.Models.Categories
                 displayPrice = value;
 
                 RaisePropertyChanged(() => DisplayPrice);
+                RaisePropertyChanged(() => IsCategoryOpen);
             }
         }
 

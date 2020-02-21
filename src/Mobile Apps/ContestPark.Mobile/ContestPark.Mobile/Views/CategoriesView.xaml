@@ -5,12 +5,22 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
+    Padding="0,8,0,8"
     prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{StaticResource GlobalBackgroundColor}"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:SkeletonLoadingConverter x:Key="slc" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <!--<ContentPage.ToolbarItems>
         <ToolbarItem
             AutomationId="tbiCategorySearch"
@@ -23,7 +33,68 @@
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:CategoryCard SeeAllCommandParameter="{Binding CategoryId}" SeeAllPressed="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}" />
+                        <Frame
+                            Margin="0,0,0,8"
+                            extension:Skeleton.Animation="Fade"
+                            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+                            extension:Skeleton.IsParent="True"
+                            CornerRadius="8"
+                            HasShadow="True"
+                            IsClippedToBounds="True">
+
+                            <Grid ColumnSpacing="0" RowSpacing="16">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="0,0,16,0"
+                                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                                    extension:Skeleton.IsBusy="{Binding IsBusy}"
+                                    FontAttributes="Bold"
+                                    FontFamily="{DynamicResource SofiaProBold}"
+                                    FontSize="14"
+                                    Text="{Binding CategoryName}"
+                                    TextColor="#404040"
+                                    WidthRequest="30" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                                    extension:Skeleton.IsBusy="{Binding IsBusy}"
+                                    FontAttributes="Bold"
+                                    FontFamily="{DynamicResource SofiaProBold}"
+                                    FontSize="14"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{i18n:Translate SeeAll}"
+                                    TextColor="#FFC575">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}" CommandParameter="{Binding CategoryId}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <CollectionView
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    HeightRequest="95"
+                                    ItemsLayout="HorizontalList"
+                                    ItemsSource="{Binding SubCategories}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <components:SubCategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.PushCategoryDetailViewCommand, Source={x:Reference categoriesPage}}" SubCategoriesDisplayActionSheetCommand="{Binding Path=BindingContext.SubCategoriesDisplayActionSheetCommand, Source={x:Reference categoriesPage}}" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

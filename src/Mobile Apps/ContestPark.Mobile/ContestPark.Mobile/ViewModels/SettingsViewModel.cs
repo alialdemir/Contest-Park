@@ -196,7 +196,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            UserDialogs.Instance.ShowLoading();
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
             await _identityService.Unauthorized();
 

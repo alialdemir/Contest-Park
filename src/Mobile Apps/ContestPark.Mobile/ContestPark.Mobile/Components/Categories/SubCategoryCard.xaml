@@ -3,65 +3,91 @@
     x:Class="ContestPark.Mobile.Components.SubCategoryCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:cacheImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
+    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    x:Name="subCategoryCard">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="subCategoryCard"
+    effects:LongPressedEffect.CommandParameter="{Binding .}"
+    effects:LongPressedEffect.LongPressed="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}"
+    effects:LongPressedEffect.SingleTap="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}"
+    mc:Ignorable="d">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:NegativeBooleanConverter x:Key="nbc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Effects>
+        <effects:LongPressedEffect />
+    </ContentView.Effects>
     <ContentView.Content>
         <Grid
-            effects:LongPressedEffect.LongPressed="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}"
-            effects:LongPressedEffect.SingleTap="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}"
-            RowSpacing="0">
+            extension:Skeleton.Animation="Fade"
+            extension:Skeleton.IsBusy="{Binding IsBusy}"
+            extension:Skeleton.IsParent="True"
+            WidthRequest="95">
             <Grid.RowDefinitions>
-                <RowDefinition Height="90" />
+                <RowDefinition Height="70" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid.Effects>
-                <effects:LongPressedEffect />
-            </Grid.Effects>
-
-            <cacheImage:CachedImage
-                x:Name="imgSubCategoryImageSource"
+            <components:CachedImage
                 Grid.Row="0"
                 Grid.Column="0"
+                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                extension:Skeleton.IsBusy="{Binding IsBusy}"
                 Aspect="AspectFit"
                 CacheDuration="365"
                 DownsampleToViewSize="true"
-                HeightRequest="73"
-                WidthRequest="73" />
+                HeightRequest="70"
+                Source="{Binding PicturePath}"
+                WidthRequest="85">
+                <components:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}" CommandParameter="{Binding .}" />
+                </components:CachedImage.GestureRecognizers>
+            </components:CachedImage>
 
             <Label
-                x:Name="lblSubCategoryName"
                 Grid.Row="1"
                 Grid.Column="0"
-                FontFamily="{DynamicResource SofiaProMedium}"
+                Margin="0,0,8,0"
+                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                extension:Skeleton.IsBusy="{Binding IsBusy}"
+                FontFamily="{DynamicResource SofiaProBold}"
                 FontSize="13"
                 HorizontalTextAlignment="Center"
+                LineBreakMode="TailTruncation"
+                Text="{Binding SubCategoryName}"
                 TextColor="#404040" />
 
             <ffimageloadingsvg:SvgCachedImage
-                x:Name="goldBadge"
                 HeightRequest="42"
                 HorizontalOptions="End"
+                IsVisible="{Binding Path=IsCategoryOpen, Converter={StaticResource nbc}}"
                 Source="ContestSingleCoin.svg"
-                TranslationX="6"
+                TranslationX="0"
                 TranslationY="6"
                 VerticalOptions="End"
                 WidthRequest="42" />
 
             <Label
-                x:Name="lblDisplayPrice"
                 Margin="0"
+                FontFamily="{DynamicResource SofiaProBold}"
                 FontSize="14"
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
+                IsVisible="{Binding Path=IsCategoryOpen, Converter={StaticResource nbc}}"
+                Text="{Binding DisplayPrice}"
                 TextColor="Black"
                 TranslationX="30"
-                TranslationY="28"
+                TranslationY="-10"
                 VerticalOptions="CenterAndExpand"
                 VerticalTextAlignment="Center" />
         </Grid>

@@ -17,7 +17,6 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
     {
         #region Private variables
 
-        private readonly IEventBus _eventBus;
         private readonly IQuestionLocalizedRepository _questionLocalizedRepository;
         private readonly IAnswerLocalizedRepository _answerLocalizedRepository;
         private readonly IQuestionOfQuestionLocalizedRepository _questionOfQuestionLocalizedRepository;
@@ -29,8 +28,7 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
 
         #region Constructor
 
-        public CreateQuestionIntegrationEventHandler(IEventBus eventBus,
-                                                     IQuestionLocalizedRepository questionLocalizedRepository,
+        public CreateQuestionIntegrationEventHandler(IQuestionLocalizedRepository questionLocalizedRepository,
                                                      IAnswerLocalizedRepository answerLocalizedRepository,
                                                      IQuestionOfQuestionLocalizedRepository questionOfQuestionLocalizedRepository,
                                                      IFileUploadService fileUploadService,
@@ -38,7 +36,6 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
                                                      ILogger<CreateQuestionIntegrationEventHandler> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _questionLocalizedRepository = questionLocalizedRepository;
             _answerLocalizedRepository = answerLocalizedRepository;
             _questionOfQuestionLocalizedRepository = questionOfQuestionLocalizedRepository;

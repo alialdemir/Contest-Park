@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
@@ -23,6 +24,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly ISignalRServiceBase _baseSignalRService;
+        private readonly IGameService _gameService;
         private readonly IAdMobService _adMobService;
         private readonly IAnalyticsService _analyticsService;
         private readonly ICategoryService _categoryServices;
@@ -51,8 +53,32 @@ namespace ContestPark.Mobile.ViewModels
             ServiceModel.PageSize = 9999;// Şimdilik 9999 verdim kategorilerde safyalama yok
 
             _baseSignalRService = baseSignalRService;
+            _gameService = gameService;
             _adMobService = adMobService;
             _analyticsService = analyticsService;
+
+            #region Skeleton loading
+
+            var categories = new CategoryModel
+            {
+                IsBusy = true,
+                SubCategories = new System.Collections.Generic.List<SubCategoryModel>
+                {
+                  new SubCategoryModel{ IsBusy = true, DisplayPrice = "0" },
+                  new SubCategoryModel{ IsBusy = true, DisplayPrice = "0" },
+                  new SubCategoryModel{ IsBusy = true, DisplayPrice = "0" },
+                  new SubCategoryModel{ IsBusy = true, DisplayPrice = "0" },
+                  new SubCategoryModel{ IsBusy = true, DisplayPrice = "0" },
+                }
+            };
+
+            Items.Add(categories);
+            Items.Add(categories);
+            Items.Add(categories);
+            Items.Add(categories);
+            Items.Add(categories);
+
+            #endregion Skeleton loading
         }
 
         #endregion Constructor
@@ -115,6 +141,43 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Alt kategoriye uzun basınca ActionSheet gösterir
+        /// </summary>
+        private async Task AddLongPressed(SubCategoryModel subCategory)
+        {
+            if (IsBusy || subCategory == null)
+                return;
+
+            IsBusy = true;
+
+            await _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
+            {
+                SubcategoryId = subCategory.SubCategoryId,
+                SubcategoryName = subCategory.SubCategoryName,
+                SubCategoryPicturePath = subCategory.PicturePath
+            }, subCategory.IsCategoryOpen);
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Alt kategoriye tıklanınca kategori detaya gider
+        /// </summary>
+        private async Task AddSingleTap(SubCategoryModel subCategory)
+        {
+            if (IsBusy || subCategory == null)
+                return;
+
+            IsBusy = true;
+
+            await _gameService?.PushCategoryDetailViewAsync(subCategory.SubCategoryId,
+                                                            subCategory.IsCategoryOpen,
+                                                            subCategory.SubCategoryName);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
@@ -129,7 +192,28 @@ namespace ContestPark.Mobile.ViewModels
                 if (!_baseSignalRService.IsConnect)
                     _baseSignalRService.Init();
             });
-        });
+        }); private ICommand _pushCategoryDetailViewCommand;
+
+        public ICommand PushCategoryDetailViewCommand
+        {
+            get
+            {
+                return _pushCategoryDetailViewCommand ?? (_pushCategoryDetailViewCommand = new Command<SubCategoryModel>(async (subCategory) => await AddSingleTap(subCategory)));
+            }
+        }
+
+        private ICommand _subCategoriesDisplayActionSheetCommand;
+
+        /// <summary>
+        /// Alt kategori display alert command
+        /// </summary>
+        public ICommand SubCategoriesDisplayActionSheetCommand
+        {
+            get
+            {
+                return _subCategoriesDisplayActionSheetCommand ?? (_subCategoriesDisplayActionSheetCommand = new Command<SubCategoryModel>(async (subCategory) => await AddLongPressed(subCategory)));
+            }
+        }
 
         #endregion Commands
     }

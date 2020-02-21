@@ -13,6 +13,7 @@ using ContestPark.Admin.API.Providers;
 using ContestPark.Admin.API.Resources;
 using ContestPark.Admin.API.Services.Ffmpeg;
 using ContestPark.Admin.API.Services.Picture;
+using ContestPark.Admin.API.Services.QuestionService;
 using ContestPark.Admin.API.Services.Spotify;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.NumberFormat;
@@ -66,6 +67,7 @@ namespace ContestPark.Admin.API
 
             services.AddTransient<ISpotifyService, SpotifyService>();
             services.AddTransient<IFfmpegService, FfmpegService>();
+            services.AddTransient<IQuestionService, QuestionService>();
 
             #region s3
 
@@ -100,6 +102,8 @@ namespace ContestPark.Admin.API
             services.AddTransient<CreateQuestionIntegrationEventHandler>();
 
             services.AddTransient<CreateSpotifyQuestionIntegrationEventHandler>();
+
+            services.AddTransient<QuestionConfigIntegrationEventHandler>();
 
             #endregion Event handler
 
@@ -149,6 +153,7 @@ namespace ContestPark.Admin.API
 
             eventBus.Subscribe<CreateQuestionIntegrationEvent, CreateQuestionIntegrationEventHandler>();
             eventBus.Subscribe<CreateSpotifyQuestionIntegrationEvent, CreateSpotifyQuestionIntegrationEventHandler>();
+            eventBus.Subscribe<QuestionConfigIntegrationEvent, QuestionConfigIntegrationEventHandler>();
         }
     }
 }

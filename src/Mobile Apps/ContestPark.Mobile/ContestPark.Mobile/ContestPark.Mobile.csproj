@@ -61,9 +61,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ContestParkResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Components\Categories\CategoryHeader.xaml.cs">
-      <DependentUpon>CategoryHeader.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Components\PostCardView\TextPostCard.xaml.cs">
       <DependentUpon>TextPostCard.xaml</DependentUpon>
     </Compile>
@@ -96,9 +93,6 @@
     <EmbeddedResource Update="AppResources\ContestParkResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ContestParkResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Components\Categories\CategoryHeader.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\Categories\SubCategoryCard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
