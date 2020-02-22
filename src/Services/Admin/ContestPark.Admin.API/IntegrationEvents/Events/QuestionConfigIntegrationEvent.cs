@@ -13,4 +13,3 @@ namespace ContestPark.Admin.API.IntegrationEvents.Events
         public QuestionConfigModel QuestionConfig { get; }
     }
 }
-}
