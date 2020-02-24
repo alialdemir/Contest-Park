@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -44,16 +45,20 @@ namespace ContestPark.Admin.API.Services.QuestionService
         public List<QuestionSaveModel> GenerateQuestion(QuestionConfigModel configModel)
         {
             if (configModel == null
-                || !configModel.AnswerKey.Any()
                 || configModel.SubCategoryId <= 0
-                || string.IsNullOrEmpty(configModel.Json)
+                || configModel.File == null
                 || string.IsNullOrEmpty(configModel.Question)
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return null;
 
-            IEnumerable<KeyValuePair<string, string>> questions = JsonKeyValue(configModel.Json);
+            StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
+            string jsonQuestion = reader.ReadToEnd();
+            if (string.IsNullOrEmpty(jsonQuestion))
+                return null;
 
-            JArray jsonArray = JArray.Parse(configModel.Json);
+            IEnumerable<KeyValuePair<string, string>> questions = JsonKeyValue(jsonQuestion);
+
+            JArray jsonArray = JArray.Parse(jsonQuestion);
 
             var answers = questions
                                 .Where(x => x.Key == configModel.AnswerKey)

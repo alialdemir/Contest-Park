@@ -40,7 +40,7 @@ namespace ContestPark.Admin.API.IntegrationEvents.EventHandling
         {
             if (@event.QuestionConfig == null
                 || @event.QuestionConfig.SubCategoryId <= 0
-                || string.IsNullOrEmpty(@event.QuestionConfig.Json)
+                || @event.QuestionConfig.File == null
                 || string.IsNullOrEmpty(@event.QuestionConfig.AnswerKey)
                 || string.IsNullOrEmpty(@event.QuestionConfig.Question))
             {

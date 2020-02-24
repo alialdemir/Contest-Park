@@ -1,10 +1,6 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Services.Analytics;
-using ContestPark.Mobile.Services.Settings;
-using ContestPark.Mobile.ViewModels;
 using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Essentials;
@@ -52,41 +48,41 @@ namespace ContestPark.Mobile.Views
             if (BindingContext == null)
                 return;
 
-            ((AppShellViewModel)BindingContext).MenuItems = new Command(() =>
-            {
-                #region Menu items
+            //((AppShellViewModel)BindingContext).MenuItems = new Command(() =>
+            //{
+            //    #region Menu items
 
-                ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+            //    //      ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
-                if (settingsService.CurrentUser.UserId == "1111-1111-1111-1111" || IsLoadedMenuItems)
-                    return;
+            //    if (/*settingsService.CurrentUser.UserId == "1111-1111-1111-1111" */ IsLoadedMenuItems)
+            //        return;
 
-                MenuItem winningsViewMenu = new MenuItem
-                {
-                    CommandParameter = "WinningsView",
-                    IconImageSource = FontImageSource.FromFile(ContestParkIcon.MoneyBag),
-                    Text = ContestParkResources.ConvertToCash,
-                };
+            //    MenuItem winningsViewMenu = new MenuItem
+            //    {
+            //        CommandParameter = "WinningsView",
+            //        IconImageSource = FontImageSource.FromFile(ContestParkIcon.MoneyBag),
+            //        Text = ContestParkResources.ConvertToCash,
+            //    };
 
-                winningsViewMenu.Clicked += MenuItem_Clicked;
+            //    winningsViewMenu.Clicked += MenuItem_Clicked;
 
-                Items.Insert(1, winningsViewMenu);
+            //    Items.Insert(1, winningsViewMenu);
 
-                MenuItem balanceCodeViewMenu = new MenuItem
-                {
-                    CommandParameter = "BalanceCodeView",
-                    IconImageSource = FontImageSource.FromFile(ContestParkIcon.BalanceCode),
-                    Text = ContestParkResources.BalanceCode,
-                };
+            //    MenuItem balanceCodeViewMenu = new MenuItem
+            //    {
+            //        CommandParameter = "BalanceCodeView",
+            //        IconImageSource = FontImageSource.FromFile(ContestParkIcon.BalanceCode),
+            //        Text = ContestParkResources.BalanceCode,
+            //    };
 
-                balanceCodeViewMenu.Clicked += MenuItem_Clicked;
+            //    balanceCodeViewMenu.Clicked += MenuItem_Clicked;
 
-                Items.Insert(2, balanceCodeViewMenu);
+            //    Items.Insert(2, balanceCodeViewMenu);
 
-                IsLoadedMenuItems = true;
+            //    IsLoadedMenuItems = true;
 
-                #endregion Menu items
-            });
+            //    #endregion Menu items
+            //});
         }
 
         /// <summary>

@@ -5,7 +5,6 @@ using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Linq;
 using System.Net;
 
 namespace ContestPark.Duel.API.Controllers
@@ -57,12 +56,11 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult AddQuestion([FromBody]QuestionConfigModel configModel)// Oyunucunun karşısına rakip ekler
+        public IActionResult AddQuestion([FromForm]QuestionConfigModel configModel)// Oyunucunun karşısına rakip ekler
         {
             if (configModel == null
-                || !configModel.AnswerKey.Any()
                 || configModel.SubCategoryId <= 0
-                || string.IsNullOrEmpty(configModel.Json)
+                || configModel.File == null
                 || string.IsNullOrEmpty(configModel.Question)
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return BadRequest();
