@@ -3,6 +3,7 @@ using ContestPark.Admin.API.Model.Question;
 using ContestPark.Admin.API.Model.Translate;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Services.RequestProvider;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,16 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
         #region Methods
 
+        private byte[] ConvertToBytes(IFormFile image)
+        {
+            byte[] jsonFile = null;
+
+            BinaryReader reader = new BinaryReader(image.OpenReadStream());
+            jsonFile = reader.ReadBytes((int)image.Length);
+
+            return jsonFile;
+        }
+
         /// <summary>
         /// Json sorularını bizim database modeline göre hazırlar
         /// </summary>
@@ -51,7 +62,11 @@ namespace ContestPark.Admin.API.Services.QuestionService
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return null;
 
-            StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
+            byte[] arrayOfMyString = ConvertToBytes(configModel.File);
+
+            MemoryStream stream = new MemoryStream(arrayOfMyString);
+
+            StreamReader reader = new StreamReader(stream);
             string jsonQuestion = reader.ReadToEnd();
             if (string.IsNullOrEmpty(jsonQuestion))
                 return null;
