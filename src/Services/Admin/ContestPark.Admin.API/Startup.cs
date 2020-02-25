@@ -65,6 +65,7 @@ namespace ContestPark.Admin.API
                     .AddRabbitMq(Configuration)
                     .AddCorsConfigure();
 
+            services.AddSingleton<IRequestProvider, RequestProvider>();
             services.AddTransient<ISpotifyService, SpotifyService>();
             services.AddTransient<IFfmpegService, FfmpegService>();
             services.AddTransient<IQuestionService, QuestionService>();
