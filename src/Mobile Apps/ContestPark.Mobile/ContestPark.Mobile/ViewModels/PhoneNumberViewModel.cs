@@ -82,7 +82,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override Task InitializeAsync()
         {
-            if (!_settingsService.IsTutorialDisplayed)
+            if (!_settingsService.IsTutorialDisplayed && Device.RuntimePlatform == Device.Android)
             {
                 PushPopupPageAsync(new TutorialPopupView());
 

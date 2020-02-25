@@ -83,11 +83,11 @@
         IconImageSource="{x:Static icons:ContestParkIcon.ContestStore}"
         Text="{i18n:Translate ContestStore}" />-->
 
-    <MenuItem
+    <!--<MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="WinningsView"
         IconImageSource="{x:Static icons:ContestParkIcon.MoneyBag}"
-        Text="{i18n:Translate ConvertToCash}" />
+        Text="{i18n:Translate ConvertToCash}" />-->
 
     <!--<MenuItem
         Clicked="MenuItem_Clicked"

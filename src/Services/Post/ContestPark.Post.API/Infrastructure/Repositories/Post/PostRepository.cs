@@ -3,6 +3,7 @@ using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Post.API.Infrastructure.MySql.Post;
 using ContestPark.Post.API.Models.Post;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Post.API.Infrastructure.MySql
@@ -46,12 +47,14 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <returns>Post nesnesi</returns>
         public PostModel GetPostDetailByPostId(string userId, int postId, Languages language)
         {
-            return _postRepository.QuerySingleOrDefault<PostModel>("SP_GetPostDetailByPostId", new
+            var result = _postRepository.ToSpServiceModel<PostModel>("SP_GetPostDetailByPostId", new
             {
                 userId,
                 postId,
                 language = (byte)language
             });
+
+            return result.Items.FirstOrDefault();
         }
 
         /// <summary>
@@ -63,7 +66,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <returns>Subcategory posts</returns>
         public ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, Languages language, PagingModel paging)
         {
-            return _postRepository.ToServiceModel<PostModel>("SP_GetPostsBySubcategoryId", new
+            return _postRepository.ToSpServiceModel<PostModel>("SP_GetPostsBySubcategoryId", new
             {
                 userId,
                 subCategoryId,
@@ -81,7 +84,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql
         /// <returns>Post listesi</returns>
         public ServiceModel<PostModel> GetPostByUserId(string profileUserId, string userId, Languages language, PagingModel paging)
         {
-            return _postRepository.ToServiceModel<PostModel>("SP_GetPostByUserId", new
+            return _postRepository.ToSpServiceModel<PostModel>("SP_GetPostByUserId", new
             {
                 userId,
                 profileUserId,
