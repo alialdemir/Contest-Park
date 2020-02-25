@@ -17,6 +17,7 @@ using ContestPark.Admin.API.Services.QuestionService;
 using ContestPark.Admin.API.Services.Spotify;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.NumberFormat;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
