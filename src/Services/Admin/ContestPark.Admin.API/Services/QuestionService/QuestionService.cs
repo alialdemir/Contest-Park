@@ -3,7 +3,7 @@ using ContestPark.Admin.API.Model.Question;
 using ContestPark.Admin.API.Model.Translate;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Services.RequestProvider;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
         #region Private Variables
 
         private readonly IRequestProvider _requestProvider;
-
+        private readonly ILogger<QuestionService> _logger;
         private readonly Dictionary<string, string> _translates = new Dictionary<string, string>();
         private readonly Regex _keyRegex = new Regex(@"[^{{\\}]+(?=}})");
         private const string _trCode = "tr";
@@ -29,24 +29,16 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
         #region Constructor
 
-        public QuestionService(IRequestProvider requestProvider)
+        public QuestionService(IRequestProvider requestProvider,
+                               ILogger<QuestionService> logger)
         {
             _requestProvider = requestProvider;
+            _logger = logger;
         }
 
         #endregion Constructor
 
         #region Methods
-
-        private byte[] ConvertToBytes(IFormFile image)
-        {
-            byte[] jsonFile = null;
-
-            BinaryReader reader = new BinaryReader(image.OpenReadStream());
-            jsonFile = reader.ReadBytes((int)image.Length);
-
-            return jsonFile;
-        }
 
         /// <summary>
         /// Json sorularını bizim database modeline göre hazırlar
@@ -62,18 +54,21 @@ namespace ContestPark.Admin.API.Services.QuestionService
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return null;
 
-            byte[] arrayOfMyString = ConvertToBytes(configModel.File);
+            _logger.LogInformation("Soru oluşturma servisi çağrıldı");
 
-            MemoryStream stream = new MemoryStream(arrayOfMyString);
-
-            StreamReader reader = new StreamReader(stream);
+            StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
             string jsonQuestion = reader.ReadToEnd();
+
+            _logger.LogInformation("Json soru:  {{size}}", jsonQuestion);
+
             if (string.IsNullOrEmpty(jsonQuestion))
                 return null;
 
             IEnumerable<KeyValuePair<string, string>> questions = JsonKeyValue(jsonQuestion);
 
             JArray jsonArray = JArray.Parse(jsonQuestion);
+
+            _logger.LogInformation("Json convert success");
 
             var answers = questions
                                 .Where(x => x.Key == configModel.AnswerKey)
