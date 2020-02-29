@@ -63,7 +63,7 @@
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=50}"
+                                                                                  Constant=10}"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Money}"
                                 TextColor="{StaticResource White}"
@@ -96,7 +96,7 @@
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=50}"
+                                                                                  Constant=10}"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Gold}"
                                 TextColor="{StaticResource White}"
