@@ -122,7 +122,7 @@ namespace ContestPark.Mobile.ViewModels
 
             SetUserGoldCommand.Execute(null);
 
-            //       MenuItems?.Execute(null);
+            MenuItems?.Execute(null);
 
             _eventAggregator
                 .GetEvent<ChangeUserInfoEvent>()

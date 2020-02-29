@@ -63,7 +63,7 @@ namespace ContestPark.Mobile.Views
 
                 MenuItem winningsViewMenu = new MenuItem
                 {
-                    CommandParameter = "WinningsView",
+                    CommandParameter = $"http://contestpark.com/balancecode.html?q={settingsService.AuthAccessToken}",
                     IconImageSource = FontImageSource.FromFile(ContestParkIcon.MoneyBag),
                     Text = ContestParkResources.ConvertToCash,
                 };
@@ -74,7 +74,7 @@ namespace ContestPark.Mobile.Views
 
                 MenuItem balanceCodeViewMenu = new MenuItem
                 {
-                    CommandParameter = "http://contestpark.com/balancecode.html",
+                    CommandParameter = nameof(BalanceCodeView),
                     IconImageSource = FontImageSource.FromFile(ContestParkIcon.BalanceCode),
                     Text = ContestParkResources.BalanceCode,
                 };

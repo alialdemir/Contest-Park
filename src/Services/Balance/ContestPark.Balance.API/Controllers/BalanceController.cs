@@ -179,7 +179,7 @@ namespace ContestPark.Balance.API.Controllers
         /// </summary>
         /// <param name="ibanNoModel">Iban no ve ad soyad</param>
         /// <returns>Başarılı ise ok değilse hata mesajı</returns>
-        [HttpPost()]
+        [HttpPost]
         [ProducesResponseType(typeof(IbanNoModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> SendMoneyRequest([FromBody]IbanNoModel ibanNoModel)
