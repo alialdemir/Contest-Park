@@ -160,9 +160,32 @@ namespace ContestPark.Mobile.ViewModels
             {
                 if (!string.IsNullOrEmpty(OpponentUserId))
                 {
-                    //////    bool isSuccess = await _duelService.DuelStartWithUserId(OpponentUserId);
-                    //////    if (!isSuccess)
-                    //////        await NotStartingDuel();
+                    var opponentUserInfo = await _duelService.InviteDuel(new InviteDuelModel
+                    {
+                        Bet = StandbyModeModel.Bet,
+                        SubCategoryId = StandbyModeModel.SubCategoryId,
+                        BalanceType = StandbyModeModel.BalanceType,
+                        OpponentUserId = OpponentUserId,
+                    });
+                    if (opponentUserInfo != null)
+                    {
+                        // TODO: timer ekle 10 sn içinde rakip kabul etmezse iptal et
+                        DuelStarting.OpponentUserId = opponentUserInfo.UserId;
+                        DuelStarting.OpponentProfilePicturePath = opponentUserInfo.ProfilePicturePath;
+                        DuelStarting.OpponentCoverPicturePath = opponentUserInfo.CoverPicturePath;
+                        DuelStarting.OpponentFullName = opponentUserInfo.FullName;
+                        DuelStarting.OpponentCountry = ContestParkResources.AwaitingOpponent;
+                        //DuelStarting.OpponentLevel = opponentUserInfo.Level
+                    }
+                    else
+                    {
+                        await DisplayAlertAsync(
+                            ContestParkResources.Error,
+                            ContestParkResources.TheOpponentDidNotAcceptTheDuel,
+                            ContestParkResources.Okay);
+
+                        DuelCloseCommand.Execute(null);
+                    }
                 }
                 //else if (!string.IsNullOrEmpty(DuelId))
                 //{

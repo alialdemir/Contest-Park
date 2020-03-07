@@ -11,6 +11,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
+        public EventHandler<InviteModel> InviteDuelEventHandler { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void DuelStarting()
         {
@@ -44,6 +45,10 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public Task LeaveGroup(int duelId)
         {
             return Task.CompletedTask;
+        }
+
+        public void InviteDuel()
+        {
         }
     }
 }

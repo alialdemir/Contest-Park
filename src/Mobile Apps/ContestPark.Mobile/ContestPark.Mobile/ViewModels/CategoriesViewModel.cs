@@ -7,6 +7,7 @@ using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Signalr.Base;
+using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
@@ -27,6 +28,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IGameService _gameService;
         private readonly IAdMobService _adMobService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IDuelSignalRService _duelSignalRService;
         private readonly ICategoryService _categoryServices;
 
         #endregion Private variables
@@ -40,6 +42,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IGameService gameService,
                                    IAdMobService adMobService,
                                    IAnalyticsService analyticsService,
+                                   IDuelSignalRService duelSignalRService,
                                    IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService)
         {
@@ -56,6 +59,7 @@ namespace ContestPark.Mobile.ViewModels
             _gameService = gameService;
             _adMobService = adMobService;
             _analyticsService = analyticsService;
+            _duelSignalRService = duelSignalRService;
 
             #region Skeleton loading
 
@@ -186,13 +190,27 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>((categoryId) => ExecutGoToCategorySearchPageCommand(categoryId)));
 
         private ICommand ConnectToSignalr => new Command(() =>
+       {
+           Device.BeginInvokeOnMainThread(async () =>
+           {
+               if (!_baseSignalRService.IsConnect)
+                   await _baseSignalRService.Init();
+
+               // Düello daveti dinleme
+               _duelSignalRService.InviteDuelEventHandler += OnInviteModel;
+               _duelSignalRService.InviteDuel();
+           });
+       });
+
+        /// <summary>
+        /// Düello davetleri buraya düşer
+        /// </summary>
+        private void OnInviteModel(object sender, InviteModel e)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (!_baseSignalRService.IsConnect)
-                    _baseSignalRService.Init();
-            });
-        }); private ICommand _pushCategoryDetailViewCommand;
+            InviteModel invite = (InviteModel)sender;
+        }
+
+        private ICommand _pushCategoryDetailViewCommand;
 
         public ICommand PushCategoryDetailViewCommand
         {

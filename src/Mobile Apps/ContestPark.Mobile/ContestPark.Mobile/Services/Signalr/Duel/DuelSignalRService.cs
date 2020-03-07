@@ -28,6 +28,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
 
         public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
+        public EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
 
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
 
@@ -51,6 +52,17 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
             _signalRService?.On<DuelCreated>("DuelCreated", (data) =>
             {
                 DuelCreatedEventHandler?.Invoke(data, null);
+            });
+        }
+
+        /// <summary>
+        /// Düello daveti kabul etme eventi
+        /// </summary>
+        public void InviteDuel()
+        {
+            _signalRService?.On<InviteModel>("InviteDuel", (data) =>
+            {
+                InviteDuelEventHandler?.Invoke(data, null);
             });
         }
 

@@ -19,11 +19,13 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         void OffNextQuestion();
         System.Threading.Tasks.Task SaveAnswer(UserAnswer userAnswer);
         System.Threading.Tasks.Task LeaveGroup(int duelId);
+        void InviteDuel();
 
         EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
 
         EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
 
         EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
+        EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
     }
 }

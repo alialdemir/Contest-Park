@@ -755,4 +755,7 @@
   <data name="HowToPlay" xml:space="preserve">
     <value>How to play?</value>
   </data>
+  <data name="TheOpponentDidNotAcceptTheDuel" xml:space="preserve">
+    <value>The opponent did not accept the duel.</value>
+  </data>
 </root>

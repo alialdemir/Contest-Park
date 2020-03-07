@@ -54,7 +54,7 @@ namespace ContestPark.Duel.API.Controllers
         /// <param name="inviteDuel">Daveti bilgisi</param>
         /// <returns>Davet edilen kullanıcı bilgileri</returns>
         [HttpPost("Invite")]
-        [ProducesResponseType(typeof(DuelResultModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(UserModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> InviteDuel([FromBody]InviteDuelModel inviteDuel)
         {

@@ -1556,6 +1556,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The opponent did not accept the duel..
+        /// </summary>
+        public static string TheOpponentDidNotAcceptTheDuel {
+            get {
+                return ResourceManager.GetString("TheOpponentDidNotAcceptTheDuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successful purchase. Your Gold uploaded to your account..
         /// </summary>
         public static string ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount {

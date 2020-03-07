@@ -159,6 +159,20 @@ namespace ContestPark.Mobile.Services.Duel
             return false;
         }
 
+        /// <summary>
+        /// Düelloya davet et
+        /// </summary>
+        /// <param name="inviteDuel">Daveti bilgisi</param>
+        /// <returns>Davet edilen kullanıcı bilgileri</returns>
+        public async Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel)
+        {
+            string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Invite");
+
+            var result = await _requestProvider.PostAsync<OpponentUserModel>(url, inviteDuel);
+
+            return result.Data;
+        }
+
         #endregion Methods
     }
 }

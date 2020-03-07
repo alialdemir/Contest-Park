@@ -53,6 +53,18 @@ namespace ContestPark.Mobile.Services.Duel
             return Task.CompletedTask;
         }
 
+        public Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel)
+        {
+            return Task.FromResult(new OpponentUserModel
+            {
+                CoverPicturePath = DefaultImages.DefaultCoverPicture,
+                FullName = "Elif Öz",
+                ProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                UserId = "1111-1111-1111-1111",
+                UserName = "elfoz"
+            });
+        }
+
         public Task<string[]> RandomUserProfilePictures()
         {
             return Task.FromResult(new string[] {

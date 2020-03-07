@@ -7,7 +7,9 @@ namespace ContestPark.Mobile.Services.Duel
     public interface IDuelService
     {
         Task AddOpponent(StandbyModeModel standbyModeModel);
+
         Task<bool> DuelEscape(int duelId);
+
         Task<DuelResultModel> DuelResult(int duelId);
 
         //   Task<bool> DuelStartWithDuelId(string duelId);
@@ -19,5 +21,7 @@ namespace ContestPark.Mobile.Services.Duel
         Task<string[]> RandomUserProfilePictures();
 
         Task<bool> StandbyMode(StandbyModeModel standbyModeModel);
+
+        Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel);
     }
 }

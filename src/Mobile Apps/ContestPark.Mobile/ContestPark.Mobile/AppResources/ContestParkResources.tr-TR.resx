@@ -621,6 +621,9 @@
   <data name="TakeAPhoto" xml:space="preserve">
     <value>Fotoğraf çek</value>
   </data>
+  <data name="TheOpponentDidNotAcceptTheDuel" xml:space="preserve">
+    <value>Rakip oyuncu düelloyu kabul etmedi.</value>
+  </data>
   <data name="ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount" xml:space="preserve">
     <value>Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi.</value>
   </data>
