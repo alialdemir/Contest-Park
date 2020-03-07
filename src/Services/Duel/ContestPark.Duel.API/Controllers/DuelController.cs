@@ -113,7 +113,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("AcceptInviteDuel")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite)
+        public async Task<IActionResult> AcceptInviteDuel([FromBody]AcceptInviteDuelModel acceptInvite)
         {
             if (acceptInvite == null
                 || acceptInvite.SubCategoryId <= 0
