@@ -147,6 +147,9 @@ namespace ContestPark.Mobile.ViewModels
                 FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
             };
 
+            if (_settingsService.IsSoundEffectActive)
+                _audioService.Play(Audio.AwaitingOpponent, true);
+
             if (string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
             {
                 await DisplayAlertAsync(
@@ -428,9 +431,6 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task StandbyModeOff()
         {
-            if (_settingsService.IsSoundEffectActive)
-                _audioService.Play(Audio.AwaitingOpponent, true);
-
             DuelSignalrListener();// SignalR listener load
 
             OnSleepEventListener();

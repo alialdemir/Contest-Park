@@ -61,6 +61,8 @@ namespace ContestPark.Duel.API.Controllers
             if (inviteDuel == null || string.IsNullOrEmpty(inviteDuel.OpponentUserId) || inviteDuel.SubCategoryId <= 0)
                 return BadRequest();
 
+            Logger.LogInformation("Düello daveti gönderiliyor. {founderUserId} - {opponentUserId}", UserId, inviteDuel.OpponentUserId);
+
             BalanceModel balance = await _balanceService.GetBalance(UserId, inviteDuel.BalanceType);
             if (inviteDuel.Bet > balance.Amount)
             {
@@ -72,7 +74,7 @@ namespace ContestPark.Duel.API.Controllers
                 return BadRequest();
 
             UserModel opponentUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == inviteDuel.OpponentUserId);
-            UserModel founderUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == inviteDuel.OpponentUserId);
+            UserModel founderUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == UserId);
 
             SubCategoryModel subCategory = await _subCategoryService.GetSubCategoryInfo(inviteDuel.SubCategoryId, CurrentUserLanguage, inviteDuel.OpponentUserId);// TODO: CurrentUserLanguage değeri rakibin dil seçeneği olmalı !
             if (subCategory == null)
@@ -89,6 +91,8 @@ namespace ContestPark.Duel.API.Controllers
                                                         bet: inviteDuel.Bet);
 
             _eventBus.Publish(@event);
+
+            Logger.LogInformation("Düello daveti gönderildi. {founderUserId} - {opponentUserId}", UserId, inviteDuel.OpponentUserId);
 
             return Ok(opponentUserModel);
         }
