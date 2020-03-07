@@ -61,8 +61,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                    {
                        JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
                        {
-                           //ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                           //DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                            NullValueHandling = NullValueHandling.Ignore
                        };
                        jsonSerializerSettings.Converters.Add(new StringEnumConverter());
@@ -75,8 +73,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                 }).Build();
 
                 HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
-
-                //EventListener();
 
                 GetConnection();
 
@@ -104,7 +100,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                     {
                         ConnectionRetryCount++;
                         Debug.WriteLine($"Signalr bağlanmaya çalışılıyor. Retry count: {ConnectionRetryCount}");
-                        await Task.Delay(8000);
+                        await Task.Delay(5000);
                         await ConnectAsync();
                     }
 #else
@@ -189,29 +185,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                 _settingsService.SignalRConnectionId = "";
             });
         }
-
-        /// <summary>
-        /// Cihazı alta alma oyunu kapatma gibi durumlarda signalr tarafında disconnect olur
-        /// </summary>
-        /// <param name="eventAggregator"></param>
-        //private void EventListener()
-        //{
-        //    _eventAggregator
-        //                  .GetEvent<OnResumeEvent>()
-        //                  .Subscribe(async () =>
-        //                  {
-        //                      await ConnectAsync();
-        //                  });
-
-        //    _eventAggregator
-        //                  .GetEvent<OnSleepEvent>()
-        //                  .Subscribe(async () =>
-        //                  {
-        //                      // TODO: disconnect olduğunda düelloda ise yenilmiş sayılsın
-
-        //                      await DisconnectAsync();
-        //                  });
-        //}
 
         #endregion Methods
     }

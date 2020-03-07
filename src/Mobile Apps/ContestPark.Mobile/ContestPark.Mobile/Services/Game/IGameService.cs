@@ -8,6 +8,7 @@ namespace ContestPark.Mobile.Services.Game
     {
         INavigationService NavigationService { get; set; }
 
+        Task<bool> OpenSubCategoryProgcess(short subCategoryId);
         Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen, string subCategoryName);
 
         Task SubCategoriesDisplayActionSheetAsync(SelectedSubCategoryModel selectedSubCategory, bool isCategoryOpen);

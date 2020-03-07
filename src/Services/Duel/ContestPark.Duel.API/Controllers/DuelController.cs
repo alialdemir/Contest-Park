@@ -49,6 +49,51 @@ namespace ContestPark.Duel.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Düelloya davet et
+        /// </summary>
+        /// <param name="inviteDuel">Daveti bilgisi</param>
+        /// <returns>Davet edilen kullanıcı bilgileri</returns>
+        [HttpPost("Invite")]
+        [ProducesResponseType(typeof(DuelResultModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> InviteDuel([FromBody]InviteDuelModel inviteDuel)
+        {
+            if (inviteDuel == null || string.IsNullOrEmpty(inviteDuel.OpponentUserId) || inviteDuel.SubCategoryId <= 0)
+                return BadRequest();
+
+            BalanceModel balance = await _balanceService.GetBalance(UserId, inviteDuel.BalanceType);
+            if (inviteDuel.Bet > balance.Amount)
+            {
+                return BadRequest(DuelResource.YourBalanceIsInsufficient);
+            }
+
+            var opponentUserInfo = await _identityService.GetUserInfosAsync(new string[] { inviteDuel.OpponentUserId, UserId }, includeCoverPicturePath: true);
+            if (opponentUserInfo == null || opponentUserInfo.Count() != 2)
+                return BadRequest();
+
+            UserModel opponentUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == inviteDuel.OpponentUserId);
+            UserModel founderUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == inviteDuel.OpponentUserId);
+
+            SubCategoryModel subCategory = await _subCategoryService.GetSubCategoryInfo(inviteDuel.SubCategoryId, CurrentUserLanguage, inviteDuel.OpponentUserId);// TODO: CurrentUserLanguage değeri rakibin dil seçeneği olmalı !
+            if (subCategory == null)
+                return BadRequest();
+
+            var @event = new InviteDuelIntegrationEvent(opponentUserId: opponentUserModel.UserId,
+                                                        founderUserId: founderUserModel.UserId,
+                                                        founderProfilePicturePath: founderUserModel.ProfilePicturePath,
+                                                        founderFullname: founderUserModel.FullName,
+                                                        subCategoryName: subCategory.SubCategoryName,
+                                                        subCategoryPicture: subCategory.SubCategoryPicturePath,
+                                                        balanceType: inviteDuel.BalanceType,
+                                                        isOpponentOpenSubCategory: subCategory.IsSubCategoryOpen,
+                                                        bet: inviteDuel.Bet);
+
+            _eventBus.Publish(@event);
+
+            return Ok(opponentUserModel);
+        }
+
+        /// <summary>
         /// Rakip ekler
         /// </summary>
         /// <param name="standbyModeModel">Bekleme modu bilgileri</param>
@@ -205,7 +250,7 @@ namespace ContestPark.Duel.API.Controllers
             result.OpponentProfilePicturePath = opponentUser.ProfilePicturePath;
             result.OpponentUserName = opponentUser.UserName;
 
-            SubCategoryModel subCategoryModel = await _subCategoryService.GetSubCategoryInfo(result.SubCategoryId, CurrentUserLanguage);
+            SubCategoryModel subCategoryModel = await _subCategoryService.GetSubCategoryInfo(result.SubCategoryId, CurrentUserLanguage, UserId);
             if (subCategoryModel != null)
             {
                 result.SubCategoryName = subCategoryModel.SubCategoryName;

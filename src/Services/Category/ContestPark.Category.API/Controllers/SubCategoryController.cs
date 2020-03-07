@@ -237,31 +237,39 @@ namespace ContestPark.Category.API.Controllers
             if (subCategoryId < 0)
                 return BadRequest();
 
-            SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, CurrentUserLanguage);
+            SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, CurrentUserLanguage, UserId);
             if (subCategoryDetail == null)
                 return NotFound();
 
             return Ok(subCategoryDetail);
         }
 
+        /// <summary>
+        /// Kategorinin detayını döndürür
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori Id</param>
+        /// <param name="language">Dil</param>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         [Route("{subCategoryId}/Info")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetSubCategoryInfo([FromRoute]short subCategoryId, [FromQuery]Languages language)
+        public IActionResult GetSubCategoryInfo([FromRoute]short subCategoryId, [FromQuery]Languages language, [FromQuery]string userId)
         {
             if (subCategoryId < 0)
                 return BadRequest();
 
-            SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, language);
+            SubCategoryDetailInfoModel subCategoryDetail = _categoryRepository.GetSubCategoryDetail(subCategoryId, language, userId);
             if (subCategoryDetail == null)
                 return NotFound();
 
             return Ok(new
             {
                 subCategoryDetail.SubCategoryName,
-                SubCategoryPicturePath = subCategoryDetail.PicturePath
+                SubCategoryPicturePath = subCategoryDetail.PicturePath,
+                subCategoryDetail.IsSubCategoryOpen
             });
         }
 

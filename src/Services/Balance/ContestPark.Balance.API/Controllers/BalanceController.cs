@@ -324,7 +324,7 @@ namespace ContestPark.Balance.API.Controllers
             {
                 UserId = UserId,
                 BalanceHistoryType = BalanceHistoryTypes.Buy,
-                BalanceType = package.BalanceType,// gold hiçbir zaman gelmemesi lazım yukaruda null kontrol var
+                BalanceType = package.BalanceType,
                 Amount = package.Amount
             });
 

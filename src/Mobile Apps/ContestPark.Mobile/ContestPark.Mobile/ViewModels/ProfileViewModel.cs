@@ -418,11 +418,19 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Düello başlat
         /// </summary>
-        private async Task ExecutePlayDuelCommand()
+        private void ExecutePlayDuelCommand()
         {
-            // TODO: Kategori listesi gelmeli seçilen kategoride düello başlatılmalı
+            if (IsBusy || ProfileInfo == null || string.IsNullOrEmpty(ProfileInfo.UserId))
+                return;
 
-            await DisplayAlertAsync("", "Comingsoon", ContestParkResources.Okay);
+            IsBusy = true;
+
+            PushPopupPageAsync(new SelectSubCategoryView()
+            {
+                OpponentUserId = ProfileInfo.UserId
+            });
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -495,7 +503,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand PlayDuelCommand
         {
-            get { return new Command(async () => await ExecutePlayDuelCommand()); }
+            get { return new Command(() => ExecutePlayDuelCommand()); }
         }
 
         public ICommand RemoveEvents

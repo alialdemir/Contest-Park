@@ -60,6 +60,8 @@ namespace ContestPark.Signalr.API
 
             services.AddTransient<SendMessageWithSignalrIntegrationEventHandler>();
 
+            services.AddTransient<InviteDuelIntegrationEventHandler>();
+
             #endregion Event handler
 
             var container = new ContainerBuilder();
@@ -109,6 +111,8 @@ namespace ContestPark.Signalr.API
             eventBus.Subscribe<SendErrorMessageWithSignalrIntegrationEvent, SendErrorMessageWithSignalrIntegrationEventHandler>();
 
             eventBus.Subscribe<SendMessageWithSignalrIntegrationEvent, SendMessageWithSignalrIntegrationEventHandler>();
+
+            eventBus.Subscribe<InviteDuelIntegrationEvent, InviteDuelIntegrationEventHandler>();
         }
     }
 

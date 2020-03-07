@@ -16,7 +16,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
 
         bool DecreasingFollowersCount(short subCategoryId);
 
-        SubCategoryDetailInfoModel GetSubCategoryDetail(short subCategoryId, Languages language);
+        SubCategoryDetailInfoModel GetSubCategoryDetail(short subCategoryId, Languages language, string userId);
 
         decimal GetSubCategoryPrice(short subCategoryId);
     }

@@ -120,6 +120,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<SelectCountryView, SelectCountryViewModel>();
 
+            containerRegistry.RegisterForNavigation<SelectSubCategoryView, SelectSubCategoryViewModel>();
+
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<SignUpFullNameView, SignUpFullNameViewModel>();

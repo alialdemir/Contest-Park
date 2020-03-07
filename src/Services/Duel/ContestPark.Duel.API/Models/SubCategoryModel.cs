@@ -5,5 +5,7 @@
         public string SubCategoryName { get; set; }
 
         public string SubCategoryPicturePath { get; set; }
+
+        public bool IsSubCategoryOpen { get; set; }
     }
 }

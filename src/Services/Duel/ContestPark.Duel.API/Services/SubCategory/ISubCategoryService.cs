@@ -6,6 +6,6 @@ namespace ContestPark.Duel.API.Services.SubCategory
 {
     public interface ISubCategoryService
     {
-        Task<SubCategoryModel> GetSubCategoryInfo(short subCategoryId, Languages language);
+        Task<SubCategoryModel> GetSubCategoryInfo(short subCategoryId, Languages language, string userId);
     }
 }

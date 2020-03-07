@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.CategoryCard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="categoryCard"
+    mc:Ignorable="d">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:SkeletonLoadingConverter x:Key="slc" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Frame
+            Margin="0,0,0,8"
+            extension:Skeleton.Animation="Fade"
+            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+            extension:Skeleton.IsParent="True"
+            CornerRadius="8"
+            HasShadow="True"
+            IsClippedToBounds="True">
+
+            <Grid ColumnSpacing="0" RowSpacing="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,16,0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding IsBusy}"
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource SofiaProBold}"
+                    FontSize="14"
+                    Text="{Binding CategoryName}"
+                    TextColor="#404040"
+                    WidthRequest="30" />
+
+                <!--<Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding IsBusy}"
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource SofiaProBold}"
+                    FontSize="14"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{i18n:Translate SeeAll}"
+                    TextColor="#FFC575">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=GoToCategorySearchPageCommand, Source={x:Reference categoryCard}}" CommandParameter="{Binding CategoryId}" />
+                    </Label.GestureRecognizers>
+                </Label>-->
+
+                <CollectionView
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="95"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding SubCategories}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <components:SubCategoryCard PushCategoryDetailViewCommand="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference categoryCard}}" SubCategoriesDisplayActionSheetCommand="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference categoryCard}}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

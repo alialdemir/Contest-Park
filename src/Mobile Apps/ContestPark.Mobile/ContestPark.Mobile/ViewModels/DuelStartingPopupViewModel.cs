@@ -140,6 +140,13 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            DuelStarting = new DuelStartingModel()
+            {
+                FounderFullName = _settingsService.CurrentUser.FullName,
+                FounderCoverPicturePath = _settingsService.CurrentUser.CoverPicturePath,
+                FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
+            };
+
             if (string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
             {
                 await DisplayAlertAsync(
@@ -151,12 +158,12 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (StandbyModes.Off == StandbyMode)
             {
-                //////if (!string.IsNullOrEmpty(OpponentUserId))
-                //////{
-                //////    bool isSuccess = await _duelService.DuelStartWithUserId(OpponentUserId);
-                //////    if (!isSuccess)
-                //////        await NotStartingDuel();
-                //////}
+                if (!string.IsNullOrEmpty(OpponentUserId))
+                {
+                    //////    bool isSuccess = await _duelService.DuelStartWithUserId(OpponentUserId);
+                    //////    if (!isSuccess)
+                    //////        await NotStartingDuel();
+                }
                 //else if (!string.IsNullOrEmpty(DuelId))
                 //{
                 //    bool isSuccess = await _duelService.DuelStartWithDuelId(DuelId);
@@ -398,13 +405,6 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task StandbyModeOff()
         {
-            DuelStarting = new DuelStartingModel()
-            {
-                FounderFullName = _settingsService.CurrentUser.FullName,
-                FounderCoverPicturePath = _settingsService.CurrentUser.CoverPicturePath,
-                FounderProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath
-            };
-
             if (_settingsService.IsSoundEffectActive)
                 _audioService.Play(Audio.AwaitingOpponent, true);
 

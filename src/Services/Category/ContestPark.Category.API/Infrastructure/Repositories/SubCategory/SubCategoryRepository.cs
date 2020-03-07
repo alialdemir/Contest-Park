@@ -125,12 +125,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
         /// <returns>Alt kategori detay</returns>
-        public SubCategoryDetailInfoModel GetSubCategoryDetail(short subCategoryId, Languages language)
+        public SubCategoryDetailInfoModel GetSubCategoryDetail(short subCategoryId, Languages language, string userId)
         {
             return _subCategoryRepository.QuerySingleOrDefault<SubCategoryDetailInfoModel>("SP_GetSubCategoryDetail", new
             {
                 subCategoryId,
-                langId = (byte)language
+                langId = (byte)language,
+                userId
             }, CommandType.StoredProcedure);
         }
 

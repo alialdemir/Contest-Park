@@ -20,9 +20,9 @@ namespace ContestPark.Duel.API.Services.SubCategory
             _categorySettings = settings.Value;
         }
 
-        public Task<SubCategoryModel> GetSubCategoryInfo(short subCategoryId, Languages language)
+        public Task<SubCategoryModel> GetSubCategoryInfo(short subCategoryId, Languages language, string userId)
         {
-            string url = $"{_categorySettings.SubCategoryUrl}/api/v1/SubCategory/{subCategoryId}/Info?language={(byte)language}";
+            string url = $"{_categorySettings.SubCategoryUrl}/api/v1/SubCategory/{subCategoryId}/Info?language={(byte)language}&userId={userId}";
 
             return _requestProvider.GetAsync<SubCategoryModel>(url);
         }

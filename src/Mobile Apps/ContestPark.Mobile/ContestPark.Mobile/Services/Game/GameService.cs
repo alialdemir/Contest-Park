@@ -64,13 +64,25 @@ namespace ContestPark.Mobile.Services.Game
                 GoToCategoryDetailViewAsync(subCategoryId, subCategoryName);
             else
             {
-                bool isUnLock = await OpenSubCategory(subCategoryId);
-                if (isUnLock)
-                {
-                    SubCategoryRefleshEvent();
+                return await OpenSubCategoryProgcess(subCategoryId);
+            }
 
-                    return true;
-                }
+            return false;
+        }
+
+        /// <summary>
+        /// Alt kategori kilitli ise kategori kilidi açılsın mı dialog çıkarır
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Kilit açılmış ise true açılmamış ise false</returns>
+        public async Task<bool> OpenSubCategoryProgcess(short subCategoryId)
+        {
+            bool isUnLock = await OpenSubCategory(subCategoryId);
+            if (isUnLock)
+            {
+                SubCategoryRefleshEvent();
+
+                return true;
             }
 
             return false;
