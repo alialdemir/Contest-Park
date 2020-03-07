@@ -3,9 +3,18 @@
     x:Class="ContestPark.Mobile.Components.DobleCoinsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="dobleCoinsView"
     mc:Ignorable="d">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:DoubleCoinsPriceConverter x:Key="dcpc" />
+            <converter:DoubleCoinsPriceTextColorConverter x:Key="dcptcc" />
+            <converter:DoubleCoinsPriceIconConverter x:Key="dcpic" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid
             Margin="0"
@@ -18,18 +27,27 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                x:Name="lblCoins"
                 Grid.Column="0"
                 FontFamily="{StaticResource GothamRoundedMedium}"
+                FontSize="15"
                 HorizontalOptions="End"
                 HorizontalTextAlignment="End"
-                TextColor="#8EF0A7"
-                VerticalTextAlignment="Center" />
+                TextColor="{Binding Path=Coins, Source={x:Reference dobleCoinsView}, Converter={StaticResource dcptcc}}"
+                VerticalTextAlignment="Center">
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Path=Coins, Source={x:Reference dobleCoinsView}, Converter={StaticResource dcpc}}" />
+                        <Span Text="{Binding Path=DisplayCoins, Source={x:Reference dobleCoinsView}}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
             <Image
                 x:Name="imgCoins"
                 Grid.Column="1"
-                Aspect="AspectFit" />
+                Aspect="AspectFit"
+                Source="{Binding BalanceType, Source={x:Reference dobleCoinsView}, Converter={StaticResource dcpic}}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

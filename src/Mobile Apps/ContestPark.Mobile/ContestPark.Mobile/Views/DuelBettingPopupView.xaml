@@ -30,7 +30,7 @@
             IsCyclical="false"
             ItemsSource="{Binding Bets}"
             SelectedIndex="{Binding SelectedIndex}">
-            <controls:IndicatorsControl />
+            <controls:IndicatorsControl TranslationY="20" />
 
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
@@ -54,16 +54,16 @@
                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                       Property=Width,
                                                                                       Factor=0,
-                                                                                      Constant=150}"
+                                                                                      Constant=175}"
                                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
                                                                                   Factor=0.5,
-                                                                                  Constant=-150}"
+                                                                                  Constant=-175}"
                                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=10}"
+                                                                                  Constant=0}"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Money}"
                                 TextColor="{StaticResource White}"
@@ -87,7 +87,7 @@
                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                       Property=Width,
                                                                                       Factor=0,
-                                                                                      Constant=150}"
+                                                                                      Constant=175}"
                                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
                                                                                   Factor=0.5,
@@ -96,7 +96,7 @@
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=0,
-                                                                                  Constant=10}"
+                                                                                  Constant=0}"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Gold}"
                                 TextColor="{StaticResource White}"
@@ -120,21 +120,22 @@
                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                       Property=Width,
                                                                                       Factor=0,
-                                                                                      Constant=300}"
+                                                                                      Constant=350}"
                                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
                                                                                   Factor=0.5,
-                                                                                  Constant=-150}"
+                                                                                  Constant=-175}"
                                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
                                                                                   ElementName=pvkView,
                                                                                   Property=Y,
                                                                                   Factor=1,
-                                                                                  Constant=340}"
+                                                                                  Constant=370}"
                                 StartColor="#2CCCD8"
                                 Text="{i18n:Translate Play}"
                                 TextColor="{StaticResource White}"
                                 Visual="Material"
-                                WidthRequest="300" />
+                                WidthRequest="350" />
+
                             <yummy:PancakeView
                                 x:Name="pvkView"
                                 Padding="0"
@@ -143,17 +144,17 @@
                                 CornerRadius="10"
                                 Elevation="6"
                                 HasShadow="True"
-                                HeightRequest="400"
+                                HeightRequest="430"
                                 IsClippedToBounds="True"
                                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Width,
                                                                                   Factor=0.5,
-                                                                                  Constant=-150}"
+                                                                                  Constant=-175}"
                                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                                   Property=Height,
                                                                                   Factor=0.5,
-                                                                                  Constant=-220}"
-                                WidthRequest="300">
+                                                                                  Constant=-225}"
+                                WidthRequest="350">
 
                                 <Grid
                                     Grid.Row="0"
@@ -171,6 +172,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+
 
                                     <Image
                                         Grid.Row="0"
@@ -265,7 +267,7 @@
 
                                     <Label
                                         Grid.Row="10"
-                                        Margin="16,-15,0,0"
+                                        Margin="16,-5,0,0"
                                         FontFamily="{StaticResource MontserratRegular}"
                                         FontSize="10"
                                         HorizontalTextAlignment="Start"

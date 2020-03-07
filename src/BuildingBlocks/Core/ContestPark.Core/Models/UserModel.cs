@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace ContestPark.Core.Models
+﻿namespace ContestPark.Core.Models
 {
     public class UserModel
     {
@@ -8,10 +6,33 @@ namespace ContestPark.Core.Models
 
         public string UserName { get; set; }
 
-        public string ProfilePicturePath { get; set; }
+        private string _profilePicturePath = DefaultImages.DefaultProfilePicture;
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string CoverPicturePath { get; set; }
+        public string ProfilePicturePath
+        {
+            get { return _profilePicturePath; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _profilePicturePath = value;
+                }
+            }
+        }
+
+        private string _coverPicturePath = DefaultImages.DefaultCoverPicture;
+
+        public string CoverPicturePath
+        {
+            get { return _coverPicturePath; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _coverPicturePath = value;
+                }
+            }
+        }
 
         public string UserId { get; set; }
     }

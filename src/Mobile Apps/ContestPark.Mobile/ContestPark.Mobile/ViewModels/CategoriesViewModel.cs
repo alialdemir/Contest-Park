@@ -13,6 +13,7 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using Rg.Plugins.Popup.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -41,10 +42,11 @@ namespace ContestPark.Mobile.ViewModels
                                    IPageDialogService pageDialogService,
                                    IGameService gameService,
                                    IAdMobService adMobService,
+                                   IPopupNavigation popupNavigation,
                                    IAnalyticsService analyticsService,
                                    IDuelSignalRService duelSignalRService,
                                    IEventAggregator eventAggregator
-            ) : base(navigationService, pageDialogService)
+            ) : base(navigationService, pageDialogService, popupNavigation: popupNavigation)
         {
             Title = ContestParkResources.Categories;
 
@@ -182,6 +184,28 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Düello davetleri buraya düşer
+        /// </summary>
+        private void OnInviteModel(object sender, InviteModel e)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            string popupName = CurrentPopupName();
+            if (popupName != nameof(QuestionExpectedPopupView) && popupName != nameof(QuestionPopupView) && popupName != nameof(AcceptDuelInvitationPopupView))
+            {
+                PushPopupPageAsync(new AcceptDuelInvitationPopupView
+                {
+                    InviteModel = (InviteModel)sender
+                });
+            }
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
@@ -201,14 +225,6 @@ namespace ContestPark.Mobile.ViewModels
                _duelSignalRService.InviteDuel();
            });
        });
-
-        /// <summary>
-        /// Düello davetleri buraya düşer
-        /// </summary>
-        private void OnInviteModel(object sender, InviteModel e)
-        {
-            InviteModel invite = (InviteModel)sender;
-        }
 
         private ICommand _pushCategoryDetailViewCommand;
 

@@ -189,6 +189,18 @@ namespace ContestPark.Mobile.ViewModels.Base
             return RemovePopupPageAsync(popupPage);
         }
 
+        public string CurrentPopupName()
+        {
+            if (_popupNavigation == null || _popupNavigation.PopupStack.Count == 0)
+                return string.Empty;
+
+            PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();
+            if (popupPage == null)
+                return string.Empty;
+
+            return popupPage.GetType().Name;
+        }
+
         public Task RemovePopupPageAsync(PopupPage popupPage)
         {
             if (popupPage == null)

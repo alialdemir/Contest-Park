@@ -49,10 +49,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         /// </summary>
         public void DuelCreated()
         {
-            _signalRService?.On<DuelCreated>("DuelCreated", (data) =>
-            {
-                DuelCreatedEventHandler?.Invoke(data, null);
-            });
+            _signalRService?.On<DuelCreated>("DuelCreated", (data) => DuelCreatedEventHandler?.Invoke(data, null));
         }
 
         /// <summary>
@@ -60,10 +57,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         /// </summary>
         public void InviteDuel()
         {
-            _signalRService?.On<InviteModel>("InviteDuel", (data) =>
-            {
-                InviteDuelEventHandler?.Invoke(data, null);
-            });
+            _signalRService?.On<InviteModel>("InviteDuel", (data) => InviteDuelEventHandler?.Invoke(data, null));
         }
 
         /// <summary>

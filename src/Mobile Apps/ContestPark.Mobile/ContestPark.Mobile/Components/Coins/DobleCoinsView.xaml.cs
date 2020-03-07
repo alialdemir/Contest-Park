@@ -80,34 +80,18 @@ namespace ContestPark.Mobile.Components
         {
             base.OnBindingContextChanged();
 
-            switch (BalanceType)
-            {
-                case BalanceTypes.Money:
-                    imgCoins.Source = ImageSource.FromFile("doublecoinstl.png");
-                    break;
-
-                default:
-                    imgCoins.Source = ImageSource.FromFile("doublecoins.png");
-                    break;
-            }
-
             switch (CoinSize)
             {
                 case CoinSize.Small:
                     imgCoins.WidthRequest = 32;
                     imgCoins.HeightRequest = 32;
-                    lblCoins.FontSize = 15;
                     break;
 
                 default:
                     imgCoins.WidthRequest = 64;
                     imgCoins.HeightRequest = 64;
-                    lblCoins.FontSize = 15;
                     break;
             }
-
-            lblCoins.Text = (Coins == Enums.Coins.Negative ? "-" : "+") + DisplayCoins;
-            lblCoins.TextColor = Color.FromHex(Coins == Enums.Coins.Negative ? "#FB1A1A" : TextColor.ToHex());
         }
 
         #endregion Overrides

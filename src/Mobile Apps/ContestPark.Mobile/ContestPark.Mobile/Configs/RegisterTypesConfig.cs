@@ -108,6 +108,7 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<PostLikesView, PostLikesViewModel>();
 
             containerRegistry.RegisterForNavigation<ProfileView, ProfileViewModel>();
+
             containerRegistry.RegisterForNavigation<MyProfileView, ProfileViewModel>();
 
             containerRegistry.RegisterForNavigation<QuestionExpectedPopupView, QuestionExpectedPopupViewModel>();
@@ -133,6 +134,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
 
             containerRegistry.RegisterForNavigation<TutorialPopupView, TutorialPopupViewModel>();
+
+            containerRegistry.RegisterForNavigation<AcceptDuelInvitationPopupView, AcceptDuelInvitationPopupViewModel>();
         }
 
         #endregion Navigation
