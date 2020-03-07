@@ -33,7 +33,7 @@ namespace ContestPark.Mobile.Views
 
             viewModel.InviteModel = InviteModel;
 
-            //viewModel.InitializeCommand.Execute(null);
+            viewModel.InitializeCommand.Execute(null);
             viewModel.IsInitialized = true;
         }
 

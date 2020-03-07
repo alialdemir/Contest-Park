@@ -773,6 +773,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} invited you to a duel..
+        /// </summary>
+        public static string InvitedYouToADuel {
+            get {
+                return ResourceManager.GetString("InvitedYouToADuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invite a friend, earn money.
         /// </summary>
         public static string InviteSaveMoney {

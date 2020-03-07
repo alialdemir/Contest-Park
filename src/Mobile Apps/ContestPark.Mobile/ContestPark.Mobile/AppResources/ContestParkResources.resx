@@ -758,4 +758,7 @@
   <data name="TheOpponentDidNotAcceptTheDuel" xml:space="preserve">
     <value>The opponent did not accept the duel.</value>
   </data>
+  <data name="InvitedYouToADuel" xml:space="preserve">
+    <value>{0} invited you to a duel.</value>
+  </data>
 </root>

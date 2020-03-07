@@ -357,6 +357,9 @@
   <data name="Invite" xml:space="preserve">
     <value>Davet Et</value>
   </data>
+  <data name="InvitedYouToADuel" xml:space="preserve">
+    <value>{0} adlı oyuncu sizi düelloya davet etti.</value>
+  </data>
   <data name="InviteSaveMoney" xml:space="preserve">
     <value>Davet Et, Para Kazan!</value>
   </data>

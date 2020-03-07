@@ -58,7 +58,11 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> InviteDuel([FromBody]InviteDuelModel inviteDuel)
         {
-            if (inviteDuel == null || string.IsNullOrEmpty(inviteDuel.OpponentUserId) || inviteDuel.SubCategoryId <= 0)
+            if (inviteDuel == null
+                || string.IsNullOrEmpty(inviteDuel.OpponentUserId)
+                || inviteDuel.SubCategoryId <= 0
+                || inviteDuel.Bet < 0
+                || UserId == inviteDuel.OpponentUserId)
                 return BadRequest();
 
             Logger.LogInformation("Düello daveti gönderiliyor. {founderUserId} - {opponentUserId}", UserId, inviteDuel.OpponentUserId);
@@ -81,11 +85,17 @@ namespace ContestPark.Duel.API.Controllers
                 return BadRequest();
 
             var @event = new InviteDuelIntegrationEvent(opponentUserId: opponentUserModel.UserId,
+
                                                         founderUserId: founderUserModel.UserId,
+                                                        founderConnectionId: inviteDuel.FounderConnectionId,
                                                         founderProfilePicturePath: founderUserModel.ProfilePicturePath,
                                                         founderFullname: founderUserModel.FullName,
+                                                        founderLanguage: CurrentUserLanguage,
+
                                                         subCategoryName: subCategory.SubCategoryName,
                                                         subCategoryPicture: subCategory.SubCategoryPicturePath,
+
+                                                        subCategoryId: inviteDuel.SubCategoryId,
                                                         balanceType: inviteDuel.BalanceType,
                                                         isOpponentOpenSubCategory: subCategory.IsSubCategoryOpen,
                                                         bet: inviteDuel.Bet);
@@ -95,6 +105,48 @@ namespace ContestPark.Duel.API.Controllers
             Logger.LogInformation("Düello daveti gönderildi. {founderUserId} - {opponentUserId}", UserId, inviteDuel.OpponentUserId);
 
             return Ok(opponentUserModel);
+        }
+
+        /// <summary>
+        /// Düello davetini kabul et
+        /// </summary>
+        [HttpPost("AcceptInviteDuel")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite)
+        {
+            if (acceptInvite == null
+                || acceptInvite.SubCategoryId <= 0
+                || acceptInvite.Bet < 0
+                || acceptInvite.FounderUserId == UserId
+                || string.IsNullOrEmpty(acceptInvite.FounderConnectionId)
+                || string.IsNullOrEmpty(acceptInvite.FounderUserId)
+                || string.IsNullOrEmpty(acceptInvite.OpponentConnectionId))
+            {
+                return BadRequest();
+            }
+
+            BalanceModel balance = await _balanceService.GetBalance(UserId, acceptInvite.BalanceType);
+            if (acceptInvite.Bet > balance.Amount)
+            {
+                return BadRequest(DuelResource.YourBalanceIsInsufficient);
+            }
+
+            var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: acceptInvite.SubCategoryId,
+                                                               bet: acceptInvite.Bet,
+                                                               balanceType: acceptInvite.BalanceType,
+
+                                                               founderUserId: acceptInvite.FounderUserId,
+                                                               founderConnectionId: acceptInvite.FounderConnectionId,
+                                                               founderLanguage: acceptInvite.FounderLanguage,
+
+                                                               opponentUserId: UserId,
+                                                               opponentConnectionId: acceptInvite.OpponentConnectionId,
+                                                               opponentLanguage: CurrentUserLanguage);
+
+            _eventBus.Publish(eventDuelStart);
+
+            return Ok();
         }
 
         /// <summary>

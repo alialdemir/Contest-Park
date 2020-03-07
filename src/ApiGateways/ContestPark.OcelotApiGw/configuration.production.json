@@ -697,6 +697,18 @@
       "UpstreamPathTemplate": "/api/{version}/Duel/Invite",
       "UpstreamHttpMethod": [ "Post" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "duel-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
     // Signalr
     {
       "DownstreamPathTemplate": "/{catchAll}",

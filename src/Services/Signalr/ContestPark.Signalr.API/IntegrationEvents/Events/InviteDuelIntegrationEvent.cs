@@ -6,14 +6,16 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
     public class InviteDuelIntegrationEvent : IntegrationEvent
     {
         public InviteDuelIntegrationEvent(string opponentUserId,
-                                          string founderUserId,
-                                          string founderProfilePicturePath,
-                                          string founderFullname,
-                                          string subCategoryName,
-                                          string subCategoryPicture,
-                                          BalanceTypes balanceType,
-                                          bool isOpponentOpenSubCategory,
-                                          decimal bet)
+                                            string founderUserId,
+                                            string founderProfilePicturePath,
+                                            string founderFullname,
+                                            string subCategoryName,
+                                            string subCategoryPicture,
+                                            BalanceTypes balanceType,
+                                            bool isOpponentOpenSubCategory,
+                                            decimal bet,
+                                            short subCategoryId,
+                                            string founderConnectionId)
         {
             OpponentUserId = opponentUserId;
             FounderUserId = founderUserId;
@@ -24,16 +26,20 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
             BalanceType = balanceType;
             IsOpponentOpenSubCategory = isOpponentOpenSubCategory;
             Bet = bet;
+            SubCategoryId = subCategoryId;
+            FounderConnectionId = founderConnectionId;
         }
 
-        public string OpponentUserId { get; set; }
-        public string FounderUserId { get; set; }
-        public string FounderProfilePicturePath { get; set; }
-        public string FounderFullname { get; set; }
-        public string SubCategoryName { get; set; }
-        public string SubCategoryPicture { get; set; }
-        public BalanceTypes BalanceType { get; set; }
-        public bool IsOpponentOpenSubCategory { get; set; }
-        public decimal Bet { get; set; }
+        public string OpponentUserId { get; }
+        public string FounderUserId { get; }
+        public string FounderProfilePicturePath { get; }
+        public string FounderFullname { get; }
+        public string SubCategoryName { get; }
+        public string SubCategoryPicture { get; }
+        public BalanceTypes BalanceType { get; }
+        public bool IsOpponentOpenSubCategory { get; }
+        public decimal Bet { get; }
+        public short SubCategoryId { get; }
+        public string FounderConnectionId { get; }
     }
 }

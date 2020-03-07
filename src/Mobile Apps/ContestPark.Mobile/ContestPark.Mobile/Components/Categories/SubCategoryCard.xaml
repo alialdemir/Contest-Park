@@ -57,7 +57,6 @@
             <Label
                 Grid.Row="1"
                 Grid.Column="0"
-                Margin="0,0,8,0"
                 extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
                 extension:Skeleton.IsBusy="{Binding IsBusy}"
                 FontFamily="{DynamicResource SofiaProBold}"

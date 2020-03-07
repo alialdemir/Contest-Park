@@ -170,7 +170,12 @@
                 Aspect="AspectFill"
                 HorizontalOptions="Center"
                 Source="vs.png"
-                VerticalOptions="Center" />
+                VerticalOptions="Center">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DuelCloseCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
 
             <!--  VS circle  -->
         </Grid>
