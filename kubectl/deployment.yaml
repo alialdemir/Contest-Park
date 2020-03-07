@@ -479,11 +479,11 @@ spec:
               value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
             - name: EventBusPassword
               value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
             - name: AwsAccessKeyId
               value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
             - name: AwsSecretAccessKey
               value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
-            - name: Redis
-              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
