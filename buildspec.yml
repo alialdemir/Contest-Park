@@ -24,6 +24,7 @@ phases:
       - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
       - docker tag contestparkadmin.api:latest $REPOSITORY_URI/admin-api:$IMAGE_TAG
       - docker tag contestparkbackgroundtasks:latest $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
+      - docker tag contestparkbackgroundtasks:latest $REPOSITORY_URI/signalr-api:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
@@ -38,6 +39,7 @@ phases:
       - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/admin-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/signalr-api:$IMAGE_TAG
       - echo Pushing end...
       - echo image path replace
       - sed -i 's/$(CONTESTPARK_AZURE_SERVICE_BUS)/'"\""$CONTESTPARK_AZURE_SERVICE_BUS"\""'/g' kubectl/deployment.yaml
