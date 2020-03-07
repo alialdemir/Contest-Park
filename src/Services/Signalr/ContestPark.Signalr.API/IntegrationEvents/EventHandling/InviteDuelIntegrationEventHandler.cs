@@ -29,10 +29,6 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
 
         #region Methods
 
-        /// <summary>
-        /// Server tarafından client'lere hata mesajı gibi mesajları gönderir
-        /// </summary>
-        /// <param name="event">Mesaj bilgisi</param>
         public async Task Handle(InviteDuelIntegrationEvent @event)
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
