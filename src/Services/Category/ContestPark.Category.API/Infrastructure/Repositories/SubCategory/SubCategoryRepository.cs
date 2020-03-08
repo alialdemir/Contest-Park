@@ -40,7 +40,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
             {
                 UserId = userId,
                 LangId = (int)language,
-            }).Items;
+            }, pagingModel: new PagingModel()).Items;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
             {
                 UserId = userId,
                 LangId = (int)language,
-            }).Items;
+            }, pagingModel: new PagingModel()).Items;
         }
 
         /// <summary>
