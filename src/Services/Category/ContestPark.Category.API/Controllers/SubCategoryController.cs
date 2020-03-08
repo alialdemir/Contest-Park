@@ -75,7 +75,7 @@ namespace ContestPark.Category.API.Controllers
             ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
                                                                                                            CurrentUserLanguage,
                                                                                                            pagingModel);
-            if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Count() > 0)
+            if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Any())
             {
                 CategoryModel categoryModel = new CategoryModel()
                 {
@@ -95,7 +95,7 @@ namespace ContestPark.Category.API.Controllers
             #region En son oynadıklarım
 
             IEnumerable<SubCategoryModel> lastCategoriesPlayed = _categoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage);
-            if (lastCategoriesPlayed != null && lastCategoriesPlayed.Count() > 0)
+            if (lastCategoriesPlayed != null && lastCategoriesPlayed.Any())
             {
                 CategoryModel categoryModel = new CategoryModel()
                 {
@@ -113,7 +113,7 @@ namespace ContestPark.Category.API.Controllers
             #region Önerilen kategoriler
 
             IEnumerable<SubCategoryModel> recommendedSubcategories = _categoryRepository.RecommendedSubcategories(UserId, CurrentUserLanguage);
-            if (recommendedSubcategories != null && recommendedSubcategories.Count() > 0)
+            if (recommendedSubcategories != null && recommendedSubcategories.Any())
             {
                 CategoryModel categoryModel = new CategoryModel()
                 {

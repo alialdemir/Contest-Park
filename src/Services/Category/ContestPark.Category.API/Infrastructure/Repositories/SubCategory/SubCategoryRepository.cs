@@ -38,8 +38,8 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         {
             return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_LastCategoriesPlayed", new
             {
-                userId,
-                LangId = (byte)language
+                UserId = userId,
+                LangId = (int)language,
             }).Items;
         }
 
@@ -53,8 +53,8 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         {
             return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_RecommendedSubcategories", new
             {
-                userId,
-                LangId = (byte)language
+                UserId = userId,
+                LangId = (int)language,
             }).Items;
         }
 

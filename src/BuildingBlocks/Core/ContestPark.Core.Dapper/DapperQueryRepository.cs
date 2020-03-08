@@ -115,10 +115,13 @@ namespace ContestPark.Core.Dapper
             {
                 PageSize = pagingModel.PageSize,
                 PageNumber = pagingModel.PageNumber,
-                HasNextPage = nextPageCount.Any()
+                HasNextPage = nextPageCount.Any(),
+                Items = new List<TResult>()
             };
 
-            serviceModel.Items = QueryMultiple<TResult>(query2, (object)paramss);
+            IEnumerable<TResult> data = QueryMultiple<TResult>(query2, (object)paramss);
+            if (data != null && data.Any())
+                serviceModel.Items = data;
 
             return serviceModel;
         }
@@ -143,12 +146,15 @@ namespace ContestPark.Core.Dapper
             {
                 PageSize = pagingModel.PageSize,
                 PageNumber = pagingModel.PageNumber,
-                HasNextPage = nextPageCount.Any()
+                HasNextPage = nextPageCount.Any(),
+                Items = new List<TResult>()
             };
 
             paramss.Offset = pagingModel.Offset;
 
-            serviceModel.Items = QueryMultiple<TResult>(sql, paramss, commandType: CommandType.StoredProcedure);
+            IEnumerable<TResult> data = QueryMultiple<TResult>(sql, paramss, commandType: CommandType.StoredProcedure);
+            if (data != null && data.Any())
+                serviceModel.Items = data;
 
             return serviceModel;
         }
