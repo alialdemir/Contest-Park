@@ -101,6 +101,9 @@ namespace ContestPark.Core.Dapper
         /// <returns>Service model</returns>
         public ServiceModel<TResult> ToServiceModel<TResult>(string sql, object parameters = null, CommandType? commandType = null, PagingModel pagingModel = null)
         {
+            if (pagingModel == null)
+                pagingModel = new PagingModel();
+
             dynamic paramss = CreateExpandoFromObject(parameters);
             paramss.PageSize = pagingModel.PageSize;
             paramss.Offset = pagingModel.Offset;
@@ -136,6 +139,9 @@ namespace ContestPark.Core.Dapper
         /// <returns>Service model</returns>
         public ServiceModel<TResult> ToSpServiceModel<TResult>(string sql, object parameters = null, PagingModel pagingModel = null)
         {
+            if (pagingModel == null)
+                pagingModel = new PagingModel();
+
             dynamic paramss = CreateExpandoFromObject(parameters);
             paramss.PageSize = pagingModel.PageSize;
             paramss.Offset = NextOffset(pagingModel.PageSize, pagingModel.PageNumber);

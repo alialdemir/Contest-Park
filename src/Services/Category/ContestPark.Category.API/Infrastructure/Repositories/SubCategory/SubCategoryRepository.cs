@@ -36,11 +36,11 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         /// <returns>En son oynadığı alt kategori listesi</returns>
         public IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language)
         {
-            return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_LastCategoriesPlayed", new
+            return _subCategoryRepository.ToSpServiceModel<SubCategoryModel>("SP_LastCategoriesPlayed", new
             {
                 UserId = userId,
                 LangId = (int)language,
-            }, pagingModel: new PagingModel()).Items;
+            }).Items;
         }
 
         /// <summary>
@@ -51,11 +51,11 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         /// <returns>Önerilen kategoriler</returns>
         public IEnumerable<SubCategoryModel> RecommendedSubcategories(string userId, Languages language)
         {
-            return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_RecommendedSubcategories", new
+            return _subCategoryRepository.ToSpServiceModel<SubCategoryModel>("SP_RecommendedSubcategories", new
             {
                 UserId = userId,
                 LangId = (int)language,
-            }, pagingModel: new PagingModel()).Items;
+            }).Items;
         }
 
         /// <summary>
