@@ -74,33 +74,6 @@ namespace ContestPark.Mobile.Services.Duel
             return result.IsSuccess;
         }
 
-        ///// <summary>
-        ///// Düel id ye ait düelloyu başlatır
-        ///// </summary>
-        ///// <param name="duelId">Duello id</param>
-        ///// <returns>İşlem başarılı ise true değilse fale</returns>
-        //public async Task<bool> DuelStartWithDuelId(string duelId)
-        //{
-        //    string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/duelStart");
-        //    string result = await _requestProvider.PostAsync<string>(url, new { duelId });
-
-        //    return string.IsNullOrEmpty(result);
-        //}
-
-        /// <summary>
-        /// Kullanıcı id ile arasında düello başlatır
-        /// </summary>
-        /// <param name="userId">Kullanıcı id</param>
-        /// <returns>İşlem başarılı ise true değilse fale</returns>
-        //////////public async Task<bool> DuelStartWithUserId(string userId)// NOTE: bu bildirimden gelen kullanıcı ile düello yapmak için şuan bildirim olmadığı için gerek yok
-        //////////{
-        //////////    string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/duelStart");
-
-        //////////    var result = await _requestProvider.PostAsync<string>(url, new { userId });
-
-        //////////    return result.IsSuccess;
-        //////////}
-
         /// <summary>
         /// Bekleme modundan çık
         /// </summary>

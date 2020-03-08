@@ -1,6 +1,7 @@
 ﻿using ContestPark.Category.API.Model;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
+using System.Collections.Generic;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
 {
@@ -19,5 +20,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         SubCategoryDetailInfoModel GetSubCategoryDetail(short subCategoryId, Languages language, string userId);
 
         decimal GetSubCategoryPrice(short subCategoryId);
+        IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language);
+        IEnumerable<SubCategoryModel> RecommendedSubcategories(string userId, Languages language);
     }
 }

@@ -45,13 +45,10 @@
                                                                   Constant=-260}"
                 WidthRequest="350">
 
-                <Grid
-                    Grid.Row="0"
-                    ColumnSpacing="0"
-                    RowSpacing="0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Label

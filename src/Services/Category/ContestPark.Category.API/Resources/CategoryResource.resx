@@ -126,6 +126,12 @@
   <data name="FollowedCategories" xml:space="preserve">
     <value>Followed Categories</value>
   </data>
+  <data name="RecommendedSubcategories" xml:space="preserve">
+    <value>Recommended Categories</value>
+  </data>
+  <data name="TheLastCategoriesIPlayed" xml:space="preserve">
+    <value>The last categories I played.</value>
+  </data>
   <data name="ThisCategoryIsAlreadyUnlocked" xml:space="preserve">
     <value>This category is already unlocked.</value>
   </data>

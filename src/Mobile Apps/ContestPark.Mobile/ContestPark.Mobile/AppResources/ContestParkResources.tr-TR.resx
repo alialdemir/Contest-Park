@@ -753,6 +753,9 @@
   <data name="YourLevel" xml:space="preserve">
     <value>Seviye</value>
   </data>
+  <data name="YourOpponentDidNotAcceptYourDuelInvitation" xml:space="preserve">
+    <value>Rakibiniz düello davetinizi kabul etmedi.</value>
+  </data>
   <data name="YourPasswordHasBeenUpdated" xml:space="preserve">
     <value>Şifreniz güncellendi.</value>
   </data>

@@ -70,9 +70,11 @@ namespace ContestPark.Category.API.Controllers
             };
             List<CategoryModel> categoryList = new List<CategoryModel>();
 
+            #region Takip ettiğim kategoriler
+
             ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
-                                                                                                                CurrentUserLanguage,
-                                                                                                                pagingModel);
+                                                                                                           CurrentUserLanguage,
+                                                                                                           pagingModel);
             if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Count() > 0)
             {
                 CategoryModel categoryModel = new CategoryModel()
@@ -88,13 +90,55 @@ namespace ContestPark.Category.API.Controllers
                 result.HasNextPage = followedSubCategories.HasNextPage;
             }
 
+            #endregion Takip ettiğim kategoriler
+
+            #region En son oynadıklarım
+
+            IEnumerable<SubCategoryModel> lastCategoriesPlayed = _categoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage);
+            if (lastCategoriesPlayed != null && lastCategoriesPlayed.Count() > 0)
+            {
+                CategoryModel categoryModel = new CategoryModel()
+                {
+                    CategoryId = -2,
+                    CategoryName = CategoryResource.TheLastCategoriesIPlayed
+                };
+
+                categoryModel.SubCategories.AddRange(lastCategoriesPlayed);
+
+                categoryList.Add(categoryModel);
+            }
+
+            #endregion En son oynadıklarım
+
+            #region Önerilen kategoriler
+
+            IEnumerable<SubCategoryModel> recommendedSubcategories = _categoryRepository.RecommendedSubcategories(UserId, CurrentUserLanguage);
+            if (recommendedSubcategories != null && recommendedSubcategories.Count() > 0)
+            {
+                CategoryModel categoryModel = new CategoryModel()
+                {
+                    CategoryId = -3,
+                    CategoryName = CategoryResource.RecommendedSubcategories
+                };
+
+                categoryModel.SubCategories.AddRange(recommendedSubcategories);
+
+                categoryList.Add(categoryModel);
+            }
+
+            #endregion Önerilen kategoriler
+
+            #region Tüm kategoriler
+
             ServiceModel<CategoryModel> categories = _categoryRepository.GetCategories(UserId,
-                                                                                      CurrentUserLanguage,
-                                                                                      pagingModel);
+                                                                                  CurrentUserLanguage,
+                                                                                  pagingModel);
 
             categoryList.AddRange(categories.Items);
 
             result.HasNextPage = categories.HasNextPage;
+
+            #endregion Tüm kategoriler
 
             result.Items = categoryList;
 

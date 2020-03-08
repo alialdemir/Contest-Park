@@ -41,15 +41,16 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                                     {
                                         @event.OpponentUserId,
                                         @event.FounderUserId,
-                                        @event.FounderConnectionId,
                                         @event.FounderProfilePicturePath,
+                                        @event.FounderLanguage,
                                         @event.FounderFullname,
                                         @event.SubCategoryName,
                                         @event.SubCategoryPicture,
                                         @event.BalanceType,
                                         @event.IsOpponentOpenSubCategory,
                                         @event.Bet,
-                                        @event.SubCategoryId
+                                        @event.SubCategoryId,
+                                        @event.FounderConnectionId
                                     });
             }
         }

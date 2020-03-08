@@ -29,6 +29,36 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         #region Methods
 
         /// <summary>
+        /// Kullanıcı id'ye ait en son oynadığı alt kategorileri verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="language">Dil</param>
+        /// <returns>En son oynadığı alt kategori listesi</returns>
+        public IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language)
+        {
+            return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_LastCategoriesPlayed", new
+            {
+                userId,
+                LangId = (byte)language
+            }).Items;
+        }
+
+        /// <summary>
+        /// Oyunucunun oynadığı son alt kategorilere ait öneri kategori verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="language">Dil</param>
+        /// <returns>Önerilen kategoriler</returns>
+        public IEnumerable<SubCategoryModel> RecommendedSubcategories(string userId, Languages language)
+        {
+            return _subCategoryRepository.ToServiceModel<SubCategoryModel>("SP_RecommendedSubcategories", new
+            {
+                userId,
+                LangId = (byte)language
+            }).Items;
+        }
+
+        /// <summary>
         /// Kategori takipçi sayısını bir azaltır
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>

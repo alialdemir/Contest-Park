@@ -163,32 +163,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 if (!string.IsNullOrEmpty(OpponentUserId))
                 {
-                    var opponentUserInfo = await _duelService.InviteDuel(new InviteDuelModel
-                    {
-                        Bet = StandbyModeModel.Bet,
-                        SubCategoryId = StandbyModeModel.SubCategoryId,
-                        BalanceType = StandbyModeModel.BalanceType,
-                        OpponentUserId = OpponentUserId,
-                    });
-                    if (opponentUserInfo != null)
-                    {
-                        // TODO: timer ekle 10 sn içinde rakip kabul etmezse iptal et
-                        DuelStarting.OpponentUserId = opponentUserInfo.UserId;
-                        DuelStarting.OpponentProfilePicturePath = opponentUserInfo.ProfilePicturePath;
-                        DuelStarting.OpponentCoverPicturePath = opponentUserInfo.CoverPicturePath;
-                        DuelStarting.OpponentFullName = opponentUserInfo.FullName;
-                        DuelStarting.OpponentCountry = ContestParkResources.AwaitingOpponent;
-                        //DuelStarting.OpponentLevel = opponentUserInfo.Level
-                    }
-                    else
-                    {
-                        await DisplayAlertAsync(
-                            ContestParkResources.Error,
-                            ContestParkResources.TheOpponentDidNotAcceptTheDuel,
-                            ContestParkResources.Okay);
-
-                        DuelCloseCommand.Execute(null);
-                    }
+                    await DuelStartWithInvite();
                 }
                 //else if (!string.IsNullOrEmpty(DuelId))
                 //{
@@ -204,6 +179,57 @@ namespace ContestPark.Mobile.ViewModels
             await base.InitializeAsync();
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// Düello daveti ile düello başlama adımlarını gerçekleştirir
+        /// </summary>
+        private async Task DuelStartWithInvite()
+        {
+            var opponentUserInfo = await _duelService.InviteDuel(new InviteDuelModel
+            {
+                Bet = StandbyModeModel.Bet,
+                SubCategoryId = StandbyModeModel.SubCategoryId,
+                BalanceType = StandbyModeModel.BalanceType,
+                OpponentUserId = OpponentUserId,
+                FounderConnectionId = _settingsService.SignalRConnectionId
+            });
+            if (opponentUserInfo != null)
+            {
+                DuelStarting.OpponentUserId = opponentUserInfo.UserId;
+                DuelStarting.OpponentProfilePicturePath = opponentUserInfo.ProfilePicturePath;
+                DuelStarting.OpponentCoverPicturePath = opponentUserInfo.CoverPicturePath;
+                DuelStarting.OpponentFullName = opponentUserInfo.FullName;
+                DuelStarting.OpponentCountry = ContestParkResources.AwaitingOpponent;
+                //DuelStarting.OpponentLevel = opponentUserInfo.Level
+
+                Device.StartTimer(new TimeSpan(0, 0, 15), () =>// 15 Saniye içinde rakip düelloyu kabul etmezse oyuncuya rakibiniz düello davetinizi kabul etmedi mesajı veriyoruz
+                {
+                    if (DuelStarting.DuelId <= 0 && !IsNextQuestionExit)
+                    {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            await DisplayAlertAsync(
+                               string.Empty,
+                               ContestParkResources.YourOpponentDidNotAcceptYourDuelInvitation,
+                               ContestParkResources.Okay);
+
+                            DuelCloseCommand.Execute(null);
+                        });
+                    }
+
+                    return false;
+                });
+            }
+            else
+            {
+                await DisplayAlertAsync(
+                    ContestParkResources.Error,
+                    ContestParkResources.TheOpponentDidNotAcceptTheDuel,
+                    ContestParkResources.Okay);
+
+                DuelCloseCommand.Execute(null);
+            }
         }
 
         /// <summary>
@@ -272,7 +298,7 @@ namespace ContestPark.Mobile.ViewModels
 
             await RemoveFirstPopupAsync();
 
-            if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
+            if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId) && StandbyMode == StandbyModes.On)
             {
                 await _duelService.ExitStandMode(StandbyModeModel);
             }

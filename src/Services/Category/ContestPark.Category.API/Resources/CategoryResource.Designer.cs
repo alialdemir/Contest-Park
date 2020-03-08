@@ -88,6 +88,24 @@ namespace ContestPark.Category.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recommended Categories.
+        /// </summary>
+        public static string RecommendedSubcategories {
+            get {
+                return ResourceManager.GetString("RecommendedSubcategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The last categories I played..
+        /// </summary>
+        public static string TheLastCategoriesIPlayed {
+            get {
+                return ResourceManager.GetString("TheLastCategoriesIPlayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This category is already unlocked..
         /// </summary>
         public static string ThisCategoryIsAlreadyUnlocked {

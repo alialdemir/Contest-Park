@@ -11,5 +11,6 @@ namespace ContestPark.Mobile.Models.Duel
         public decimal Bet { get; set; }
 
         public BalanceTypes BalanceType { get; set; }
+        public string FounderConnectionId { get; set; }
     }
 }

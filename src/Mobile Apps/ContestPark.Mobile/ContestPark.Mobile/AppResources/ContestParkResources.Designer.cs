@@ -1943,6 +1943,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your opponent did not accept your duel invitation..
+        /// </summary>
+        public static string YourOpponentDidNotAcceptYourDuelInvitation {
+            get {
+                return ResourceManager.GetString("YourOpponentDidNotAcceptYourDuelInvitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your password has been updated..
         /// </summary>
         public static string YourPasswordHasBeenUpdated {
