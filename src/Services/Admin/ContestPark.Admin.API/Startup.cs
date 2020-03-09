@@ -105,8 +105,6 @@ namespace ContestPark.Admin.API
 
             services.AddTransient<CreateSpotifyQuestionIntegrationEventHandler>();
 
-            services.AddTransient<QuestionConfigIntegrationEventHandler>();
-
             #endregion Event handler
 
             var container = new ContainerBuilder();
@@ -155,7 +153,6 @@ namespace ContestPark.Admin.API
 
             eventBus.Subscribe<CreateQuestionIntegrationEvent, CreateQuestionIntegrationEventHandler>();
             eventBus.Subscribe<CreateSpotifyQuestionIntegrationEvent, CreateSpotifyQuestionIntegrationEventHandler>();
-            eventBus.Subscribe<QuestionConfigIntegrationEvent, QuestionConfigIntegrationEventHandler>();
         }
     }
 }

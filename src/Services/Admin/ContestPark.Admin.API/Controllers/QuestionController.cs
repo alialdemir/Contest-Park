@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Controllers
 {
@@ -73,22 +74,24 @@ namespace ContestPark.Duel.API.Controllers
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return BadRequest();
 
-            Logger.LogInformation("Question size", configModel.File.Length, configModel.File.ContentDisposition);
-
-            var questions = _questionService.GenerateQuestion(configModel);
-            if (questions == null || !questions.Any())
+            Task.Factory.StartNew(() =>
             {
-                Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
+                Logger.LogInformation("Json ile soru oluşturuluyor");
 
-                return BadRequest();
-            }
+                var questions = _questionService.GenerateQuestion(configModel);
+                if (questions == null || !questions.Any())
+                {
+                    Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
 
-            var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
+                    return;
+                }
 
-            _eventBus.Publish(@eventQuestion);
-            //var @event = new QuestionConfigIntegrationEvent(configModel);
+                var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
 
-            //_eventBus.Publish(@event);
+                _eventBus.Publish(@eventQuestion);
+
+                Logger.LogInformation("Json ile {{count}} adet soru oluşturuldu", questions.Count);
+            });
 
             return Ok();
         }
