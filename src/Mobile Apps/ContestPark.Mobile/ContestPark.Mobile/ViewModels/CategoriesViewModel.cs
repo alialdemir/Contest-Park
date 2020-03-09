@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;

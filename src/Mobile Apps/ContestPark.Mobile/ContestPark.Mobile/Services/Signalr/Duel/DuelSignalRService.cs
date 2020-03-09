@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.Signalr.Base;
 using System;

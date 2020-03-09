@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Duel;
@@ -26,7 +27,8 @@ namespace ContestPark.Mobile.ViewModels
         public enum StandbyModes
         {
             On,
-            Off
+            Off,
+            Invited
         }
 
         #endregion Enums
@@ -159,17 +161,22 @@ namespace ContestPark.Mobile.ViewModels
 
                 DuelCloseCommand.Execute(null);
             }
+            else if (StandbyModes.Invited == StandbyMode)
+            {
+                DuelSignalrListener();// SignalR listener load
+
+                OnSleepEventListener();
+            }
             else if (StandbyModes.Off == StandbyMode)
             {
                 if (!string.IsNullOrEmpty(OpponentUserId))
                 {
                     await DuelStartWithInvite();
+
+                    DuelSignalrListener();// SignalR listener load
+
+                    OnSleepEventListener();
                 }
-                //else if (!string.IsNullOrEmpty(DuelId))
-                //{
-                //    bool isSuccess = await _duelService.DuelStartWithDuelId(DuelId);
-                //    // TODO: direk Duel id(notification) ile gelirse gibi durumlar..
-                //}
             }
             else
             {
@@ -203,8 +210,9 @@ namespace ContestPark.Mobile.ViewModels
                 DuelStarting.OpponentCountry = ContestParkResources.AwaitingOpponent;
                 //DuelStarting.OpponentLevel = opponentUserInfo.Level
 
-                Device.StartTimer(new TimeSpan(0, 0, 15), () =>// 15 Saniye içinde rakip düelloyu kabul etmezse oyuncuya rakibiniz düello davetinizi kabul etmedi mesajı veriyoruz
+                Device.StartTimer(new TimeSpan(0, 0, 15), () =>
                 {
+                    // 15 Saniye içinde rakip düelloyu kabul etmezse oyuncuya rakibiniz düello davetinizi kabul etmedi mesajı veriyoruz
                     if (DuelStarting.DuelId <= 0 && !IsNextQuestionExit)
                     {
                         Device.BeginInvokeOnMainThread(async () =>

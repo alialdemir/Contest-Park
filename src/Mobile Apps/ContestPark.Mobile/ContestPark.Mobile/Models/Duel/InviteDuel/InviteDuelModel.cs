@@ -1,6 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 
-namespace ContestPark.Mobile.Models.Duel
+namespace ContestPark.Mobile.Models.Duel.InviteDuel
 {
     public class InviteDuelModel
     {

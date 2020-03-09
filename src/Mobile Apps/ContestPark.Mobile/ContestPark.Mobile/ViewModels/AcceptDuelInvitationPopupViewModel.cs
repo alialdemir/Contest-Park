@@ -1,5 +1,8 @@
-﻿using ContestPark.Mobile.Models.Duel;
+﻿using ContestPark.Mobile.Models.Duel.InviteDuel;
+using ContestPark.Mobile.Services.Duel;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using ContestPark.Mobile.Views;
 using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
@@ -10,10 +13,22 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class AcceptDuelInvitationPopupViewModel : ViewModelBase
     {
+        #region Private varaibles
+
+        private readonly ISettingsService _settingsService;
+
+        private readonly IDuelService _duelService;
+
+        #endregion Private varaibles
+
         #region Constructor
 
-        public AcceptDuelInvitationPopupViewModel(IPopupNavigation popupNavigation) : base(popupNavigation: popupNavigation)
+        public AcceptDuelInvitationPopupViewModel(IPopupNavigation popupNavigation,
+                                                  ISettingsService settingsService,
+                                                  IDuelService duelService) : base(popupNavigation: popupNavigation)
         {
+            _settingsService = settingsService;
+            _duelService = duelService;
         }
 
         #endregion Constructor
@@ -66,6 +81,9 @@ namespace ContestPark.Mobile.ViewModels
             return base.InitializeAsync();
         }
 
+        /// <summary>
+        /// Düello davetini kabul et
+        /// </summary>
         private async Task ExecuteAcceptDuelInviteCommand()
         {
             if (IsBusy)
@@ -73,7 +91,32 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            await Task.Delay(3345);
+            bool isSuccess = await _duelService.AcceptInviteDuel(new AcceptInviteDuelModel
+            {
+                BalanceType = InviteModel.BalanceType,
+                Bet = InviteModel.Bet,
+                SubCategoryId = InviteModel.SubCategoryId,
+                FounderConnectionId = InviteModel.FounderConnectionId,
+                FounderLanguage = InviteModel.FounderLanguage,
+                FounderUserId = InviteModel.FounderUserId,
+                OpponentConnectionId = _settingsService.SignalRConnectionId,
+            });
+            if (isSuccess)
+            {
+                await PushPopupPageAsync(new DuelStartingPopupView
+                {
+                    SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
+                    {
+                        SubcategoryId = InviteModel.SubCategoryId,
+                        SubcategoryName = InviteModel.SubCategoryName,
+                        SubCategoryPicturePath = InviteModel.SubCategoryPicture,
+                    },
+                    Bet = InviteModel.Bet,
+                    OpponentUserId = _settingsService.CurrentUser.UserId,
+                    BalanceType = InviteModel.BalanceType,
+                    StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited
+                });
+            }
 
             IsBusy = false;
         }

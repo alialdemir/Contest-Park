@@ -79,7 +79,7 @@ namespace ContestPark.Category.API.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Followed Categories.
+        ///   Looks up a localized string similar to Followed categories.
         /// </summary>
         public static string FollowedCategories {
             get {
@@ -88,7 +88,7 @@ namespace ContestPark.Category.API.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recommended Categories.
+        ///   Looks up a localized string similar to Recommended categories.
         /// </summary>
         public static string RecommendedSubcategories {
             get {

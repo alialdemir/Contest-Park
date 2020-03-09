@@ -16,13 +16,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 
         public string FounderConnectionId { get; }
 
-        public BalanceTypes BalanceType { get; }
+        public BalanceTypes BalanceType { get; set; }
 
-        public Languages FounderLanguage { get; }
+        public Languages FounderLanguage { get; set; }
 
-        public Languages OpponentLanguage { get; }
+        public Languages OpponentLanguage { get; set; }
 
-        public string OpponentConnectionId { get; }
+        public string OpponentConnectionId { get; set; }
 
         public DuelStartIntegrationEvent(short subCategoryId,
                                          decimal bet,

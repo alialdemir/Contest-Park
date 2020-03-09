@@ -7,7 +7,6 @@
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
-    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="categoryCard"
     mc:Ignorable="d">
@@ -28,8 +27,8 @@
 
             <Grid ColumnSpacing="0" RowSpacing="16">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

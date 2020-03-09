@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using System.Threading.Tasks;
@@ -144,6 +145,20 @@ namespace ContestPark.Mobile.Services.Duel
             var result = await _requestProvider.PostAsync<OpponentUserModel>(url, inviteDuel);
 
             return result.Data;
+        }
+
+        /// <summary>
+        /// Düello davetini kabul et
+        /// </summary>
+        /// <param name="inviteDuel"></param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite)
+        {
+            string url = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/AcceptInviteDuel");
+
+            var result = await _requestProvider.PostAsync<string>(url, acceptInvite);
+
+            return result.IsSuccess;
         }
 
         #endregion Methods

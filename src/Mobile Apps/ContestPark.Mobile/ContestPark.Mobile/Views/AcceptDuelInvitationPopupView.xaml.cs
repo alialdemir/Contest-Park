@@ -1,4 +1,4 @@
-﻿using ContestPark.Mobile.Models.Duel;
+﻿using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 

@@ -1,12 +1,18 @@
 ﻿using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Duel
 {
     public class DuelMockService : IDuelService
     {
+        public Task<bool> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task AddOpponent(StandbyModeModel standbyModeModel)
         {
             return Task.CompletedTask;
@@ -50,7 +56,7 @@ namespace ContestPark.Mobile.Services.Duel
 
         public Task ExitStandMode(StandbyModeModel standbyModeModel)
         {
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel)

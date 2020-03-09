@@ -124,10 +124,10 @@
     <value>Could not open subcategory lock.</value>
   </data>
   <data name="FollowedCategories" xml:space="preserve">
-    <value>Followed Categories</value>
+    <value>Followed categories</value>
   </data>
   <data name="RecommendedSubcategories" xml:space="preserve">
-    <value>Recommended Categories</value>
+    <value>Recommended categories</value>
   </data>
   <data name="TheLastCategoriesIPlayed" xml:space="preserve">
     <value>The last categories I played.</value>

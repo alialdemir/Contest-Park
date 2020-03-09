@@ -1,9 +1,11 @@
 ﻿using ContestPark.Mobile.Enums;
+using Newtonsoft.Json;
 
-namespace ContestPark.Mobile.Models.Duel
+namespace ContestPark.Mobile.Models.Duel.InviteDuel
 {
     public class InviteModel
     {
+        [JsonIgnore]
         public decimal EntryFee
         {
             get { return Bet / 2; }// İki kişi oynandığı için ikiye böldük

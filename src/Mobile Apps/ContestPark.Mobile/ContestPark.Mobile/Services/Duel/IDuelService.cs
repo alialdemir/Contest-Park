@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Duel
@@ -23,5 +24,6 @@ namespace ContestPark.Mobile.Services.Duel
         Task<bool> StandbyMode(StandbyModeModel standbyModeModel);
 
         Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel);
+        Task<bool> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite);
     }
 }
