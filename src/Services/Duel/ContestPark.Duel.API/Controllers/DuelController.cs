@@ -86,13 +86,7 @@ namespace ContestPark.Duel.API.Controllers
             {
                 Logger.LogInformation("Bot kullanıcısına düellod daveti geldi.", UserId, inviteDuel.OpponentUserId);
 
-                string randomOpponentUserId = await _identityService.GetRandomUserId();
-                if (string.IsNullOrEmpty(randomOpponentUserId))
-                {
-                    Logger.LogInformation("Rastgele kullanıcı id çekerken hata oluştu");
 
-                    return Ok();
-                }
 
                 var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: inviteDuel.SubCategoryId,
                                                                    bet: inviteDuel.Bet,
@@ -100,7 +94,7 @@ namespace ContestPark.Duel.API.Controllers
                                                                    founderUserId: UserId,
                                                                    founderConnectionId: inviteDuel.FounderConnectionId,
                                                                    founderLanguage: CurrentUserLanguage,
-                                                                   opponentUserId: randomOpponentUserId,
+                                                                   opponentUserId: inviteDuel.OpponentUserId,
                                                                    opponentConnectionId: string.Empty,
                                                                    opponentLanguage: CurrentUserLanguage);
 
