@@ -45,6 +45,10 @@ namespace ContestPark.Post.API.Migrations
                 .AsDecimal(13, 2)
                 .Nullable()
 
+                .WithColumn("BalanceType")
+                .AsByte()
+                .NotNullable()
+
                 .WithColumn("DuelId")
                 .AsInt32()
                 .Nullable()
