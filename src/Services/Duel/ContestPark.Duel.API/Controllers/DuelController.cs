@@ -84,23 +84,25 @@ namespace ContestPark.Duel.API.Controllers
 
             if (inviteDuel.OpponentUserId.EndsWith("-bot"))
             {
-                Logger.LogInformation("Bot kullanıcısına düellod daveti geldi.", UserId, inviteDuel.OpponentUserId);
+                Task.Factory.StartNew(async () =>
+                {
+                    Logger.LogInformation("Bot kullanıcısına düellod daveti geldi.", UserId, inviteDuel.OpponentUserId);
 
+                    var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: inviteDuel.SubCategoryId,
+                                                                       bet: inviteDuel.Bet,
+                                                                       balanceType: inviteDuel.BalanceType,
+                                                                       founderUserId: UserId,
+                                                                       founderConnectionId: inviteDuel.FounderConnectionId,
+                                                                       founderLanguage: CurrentUserLanguage,
+                                                                       opponentUserId: inviteDuel.OpponentUserId,
+                                                                       opponentConnectionId: string.Empty,
+                                                                       opponentLanguage: CurrentUserLanguage);
+                    await Task.Delay(3000);
 
+                    _eventBus.Publish(eventDuelStart);
 
-                var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: inviteDuel.SubCategoryId,
-                                                                   bet: inviteDuel.Bet,
-                                                                   balanceType: inviteDuel.BalanceType,
-                                                                   founderUserId: UserId,
-                                                                   founderConnectionId: inviteDuel.FounderConnectionId,
-                                                                   founderLanguage: CurrentUserLanguage,
-                                                                   opponentUserId: inviteDuel.OpponentUserId,
-                                                                   opponentConnectionId: string.Empty,
-                                                                   opponentLanguage: CurrentUserLanguage);
-
-                _eventBus.Publish(eventDuelStart);
-
-                Logger.LogInformation("Bot kullanıcısına düellod daveti kabul edildi.", UserId, inviteDuel.OpponentUserId);
+                    Logger.LogInformation("Bot kullanıcısına düellod daveti kabul edildi.", UserId, inviteDuel.OpponentUserId);
+                }).Wait();
 
                 return Ok(opponentUserModel);
             }
