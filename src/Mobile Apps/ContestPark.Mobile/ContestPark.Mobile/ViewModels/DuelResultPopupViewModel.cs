@@ -6,6 +6,7 @@ using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
@@ -31,6 +32,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IAdMobService _adMobService;
         private readonly ISettingsService _settingsService;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
 
@@ -42,6 +44,7 @@ namespace ContestPark.Mobile.ViewModels
             IAdMobService adMobService,
             IAudioService audioService,
             ISettingsService settingsService,
+            IAnalyticsService analyticsService,
             IDuelService duelService
             ) : base(popupNavigation: popupNavigation)
         {
@@ -49,6 +52,7 @@ namespace ContestPark.Mobile.ViewModels
             _adMobService = adMobService;
             _audioService = audioService;
             _settingsService = settingsService;
+            _analyticsService = analyticsService;
             _duelService = duelService;
         }
 
@@ -109,6 +113,8 @@ namespace ContestPark.Mobile.ViewModels
                 }
             });
 
+            _analyticsService.SendEvent("Düello Sonucu", "Rakip Bul", DuelResult.SubCategoryName);
+
             IsBusy = false;
         }
 
@@ -143,6 +149,8 @@ namespace ContestPark.Mobile.ViewModels
                                 }
                 });
 
+            _analyticsService.SendEvent("Düello Sonucu", "Sohbet", DuelResult.SubCategoryName);
+
             IsBusy = false;
         }
 
@@ -169,6 +177,8 @@ namespace ContestPark.Mobile.ViewModels
                                 }
                 });
 
+            _analyticsService.SendEvent("Düello Sonucu", "Profile Git", DuelResult.SubCategoryName);
+
             IsBusy = false;
         }
 
@@ -194,6 +204,8 @@ namespace ContestPark.Mobile.ViewModels
                 },
                 OpponentUserId = DuelResult.IsFounder ? DuelResult.OpponentUserId : DuelResult.FounderUserId
             });
+
+            _analyticsService.SendEvent("Düello Sonucu", "Rövanş", DuelResult.SubCategoryName);
 
             IsBusy = false;
         }
@@ -245,6 +257,8 @@ namespace ContestPark.Mobile.ViewModels
                 Title = Title,
                 File = new ShareFile(path)
             });
+
+            _analyticsService.SendEvent("Düello Sonucu", "Paylaş", DuelResult.SubCategoryName);
 
             IsBusy = false;
         }

@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Droid.Dependencies;
 using Firebase.Analytics;
+using Plugin.CurrentActivity;
 using System.Collections.Generic;
 using System.Globalization;
 using Xamarin.Forms;
@@ -16,13 +17,13 @@ namespace ContestPark.Mobile.Droid.Dependencies
         {
             var additionalData = new Dictionary<string, string>
             {
-                { "ec", eventCategory },
-                { "ea", eventAction }
+                { eventAction.Replace(" ", "_"), eventLabel },
+                { eventCategory, eventAction },
             };
 
-            if (!string.IsNullOrEmpty(eventLabel))
+            if (!string.IsNullOrEmpty(eventAction))
             {
-                additionalData.Add("el", eventLabel);
+                additionalData.Add("el", eventAction);
             }
 
             if (eventValue.HasValue)
@@ -35,7 +36,7 @@ namespace ContestPark.Mobile.Droid.Dependencies
 
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
-            var firebaseAnalytics = FirebaseAnalytics.GetInstance(Forms.Context);
+            var firebaseAnalytics = FirebaseAnalytics.GetInstance(CrossCurrentActivity.Current.AppContext);
 
             if (parameters == null)
             {
@@ -57,7 +58,7 @@ namespace ContestPark.Mobile.Droid.Dependencies
             if (string.IsNullOrEmpty(userId))
                 return;
 
-            var firebaseAnalytics = FirebaseAnalytics.GetInstance(Forms.Context);
+            var firebaseAnalytics = FirebaseAnalytics.GetInstance(CrossCurrentActivity.Current.AppContext);
 
             firebaseAnalytics.SetUserId(userId);
         }

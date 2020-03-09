@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.Profile;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Identity;
@@ -33,6 +34,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IIdentityService _identityService;
         private readonly IMediaService _mediaService;
         private readonly IPostService _postService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly IEventAggregator _eventAggregator;
         public readonly ISettingsService _settingsService;
         private string _userName;
@@ -50,6 +52,7 @@ namespace ContestPark.Mobile.ViewModels
             IIdentityService identityService,
             IPostService postService,
             IPopupNavigation popupNavigation,
+            IAnalyticsService analyticsService,
             IEventAggregator eventAggregator,
             ISettingsService settingsService,
             IBlockingService blockingService,
@@ -62,6 +65,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _identityService = identityService;
             _postService = postService;
+            _analyticsService = analyticsService;
             _eventAggregator = eventAggregator;
             NavigationService = navigationService;
             _settingsService = settingsService;
@@ -250,6 +254,8 @@ namespace ContestPark.Mobile.ViewModels
                     {"SenderProfilePicturePath", ProfileInfo.ProfilePicturePath }
                 });
 
+            _analyticsService.SendEvent("Profil", "Sohbet", _userName);
+
             IsBusy = false;
         }
 
@@ -277,6 +283,12 @@ namespace ContestPark.Mobile.ViewModels
                 await DisplayAlertAsync("",
                     ContestParkResources.GlobalErrorMessage,
                     ContestParkResources.Okay);
+            }
+            else
+            {
+                _analyticsService.SendEvent("Profil",
+                                            ProfileInfo.IsBlocked ? "Engel Kaldır" : "Engelle",
+                                            _userName);
             }
 
             IsBusy = false;
@@ -322,8 +334,19 @@ namespace ContestPark.Mobile.ViewModels
 
                 switch (pictureType)
                 {
-                    case "Profile": await _identityService.ChangeProfilePictureAsync(media); break;
-                    case "Cover": await _identityService.ChangeCoverPictureAsync(media); break;
+                    case "Profile":
+                        await _identityService.ChangeProfilePictureAsync(media);
+
+                        _analyticsService.SendEvent("Profil", "Profil Resmi Değiştir", media.AnalyticsEventLabel);
+
+                        break;
+
+                    case "Cover":
+                        await _identityService.ChangeCoverPictureAsync(media);
+
+                        _analyticsService.SendEvent("Profil", "Kapak Resmi Değiştir", media.AnalyticsEventLabel);
+
+                        break;
                 }
             }
             else if (string.Equals(selected, ContestParkResources.ShowImage))
@@ -344,7 +367,6 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            // TODO: burada tersini aldığımız için aşağıda yanlış işlem yapıyor olabilir kontrol edilmesi lazım
             ProfileInfo.IsFollowing = !ProfileInfo.IsFollowing;
 
             bool isSuccesss = await (ProfileInfo.IsFollowing == true ?
@@ -358,6 +380,12 @@ namespace ContestPark.Mobile.ViewModels
                 await DisplayAlertAsync("",
                     ContestParkResources.GlobalErrorMessage,
                     ContestParkResources.Okay);
+            }
+            else
+            {
+                _analyticsService.SendEvent("Profil",
+                                            ProfileInfo.IsFollowing ? "Takipten Çıkart" : "Takip Et",
+                                            _userName);
             }
 
             IsBusy = false;
@@ -378,6 +406,8 @@ namespace ContestPark.Mobile.ViewModels
                     {"UserId", ProfileInfo.UserId}
                 });
 
+            _analyticsService.SendEvent("Profil", "Takip Edenler", _userName);
+
             IsBusy = false;
         }
 
@@ -395,6 +425,8 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     {"UserId", ProfileInfo.UserId}
                 });
+
+            _analyticsService.SendEvent("Profil", "Takip Edilenler", _userName);
 
             IsBusy = false;
         }
@@ -429,6 +461,8 @@ namespace ContestPark.Mobile.ViewModels
             {
                 OpponentUserId = ProfileInfo.UserId
             });
+
+            _analyticsService.SendEvent("Profil", "Düello Daveti", _userName);
 
             IsBusy = false;
         }

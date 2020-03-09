@@ -225,6 +225,9 @@
     <PackageReference Include="Xamarin.Firebase.Ads">
       <Version>60.1142.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>60.1142.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Analytics.Impl">
       <Version>60.1142.1</Version>
     </PackageReference>

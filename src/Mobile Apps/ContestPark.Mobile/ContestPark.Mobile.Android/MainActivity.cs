@@ -94,6 +94,7 @@ namespace ContestPark.Mobile.Droid
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
 
+
             PancakeViewRenderer.Init();
 
             Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim

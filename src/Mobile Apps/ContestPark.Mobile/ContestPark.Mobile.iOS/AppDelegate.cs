@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using FFImageLoading.Forms.Platform;
+using Firebase.Core;
 using Foundation;
 using Plugin.Segmented.Control.iOS;
 using Prism;
@@ -50,7 +51,7 @@ namespace ContestPark.Mobile.iOS
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
-            //  Firebase.Core.App.Configure();
+            App.Configure();
 
             return base.FinishedLaunching(app, options);
         }

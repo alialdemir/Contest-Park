@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.User;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -20,6 +21,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variable
 
         private readonly IPostService _postService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly ISettingsService _settingsService;
         private int postId;
 
@@ -64,10 +66,12 @@ namespace ContestPark.Mobile.ViewModels
             INavigationService navigationService,
             IPageDialogService dialogService,
             IPostService postService,
+            IAnalyticsService analyticsService,
             ISettingsService settingsService
             ) : base(navigationService, dialogService)
         {
             _postService = postService;
+            _analyticsService = analyticsService;
             _settingsService = settingsService;
             NavigationService = navigationService;
             Title = ContestParkResources.Comment;
@@ -142,6 +146,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 Items.Remove(postComment);
                 await DisplayAlertAsync("", ContestParkResources.GlobalErrorMessage, ContestParkResources.Okay);
+            }
+            else
+            {
+                _analyticsService.SendEvent("Post", "Post Yorum", PostModel.Post.PostType.ToString());
             }
 
             ListViewScrollToBottomCommand?.Execute(Items.Count - 1);

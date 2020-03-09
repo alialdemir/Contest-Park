@@ -4,6 +4,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.AdMob;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Duel;
@@ -32,6 +33,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IDuelService _duelService;
         private readonly IAdMobService _adMobService;
         private readonly IDuelSignalRService _duelSignalRService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly OnSleepEvent _onSleepEvent;
         private readonly ISettingsService _settingsService;
         private SubscriptionToken _subscriptionToken;
@@ -44,6 +46,7 @@ namespace ContestPark.Mobile.ViewModels
                                       IDuelSignalRService duelSignalRService,
                                       IPageDialogService pageDialogService,
                                       IEventAggregator eventAggregator,
+                                      IAnalyticsService analyticsService,
                                       IDuelService duelService,
                                       IAdMobService adMobService,
                                       ISettingsService settingsService,
@@ -51,6 +54,7 @@ namespace ContestPark.Mobile.ViewModels
                                       IBotService botService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
         {
             _duelSignalRService = duelSignalRService;
+            _analyticsService = analyticsService;
             _onSleepEvent = eventAggregator.GetEvent<OnSleepEvent>();
             _duelService = duelService;
             _adMobService = adMobService;
@@ -272,6 +276,8 @@ namespace ContestPark.Mobile.ViewModels
             PlaySound(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
 
             ChangeImageBorderColor(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
+
+            _analyticsService.SendEvent("Düello", $"{questionModel.Round}. Raund Oynandı", SubcategoryName);
 
             if (questionModel.IsGameEnd || Round >= 7)
             {
@@ -638,6 +644,8 @@ namespace ContestPark.Mobile.ViewModels
                 UserId = saveAnswer.UserId,
                 BalanceType = BalanceType,
             });
+
+            _analyticsService.SendEvent("Düello", saveAnswer.Stylish.ToString(), SubcategoryName);
 
             IsBusy = false;
         }

@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Post;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Post;
@@ -24,9 +25,11 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IGameService _gameService;
         private readonly IPostService _postService;
+        private readonly IAnalyticsService _analyticsService;
         private short _subCategoryId = 0;
-        private SubscriptionToken _subscriptionToken;
         private readonly PostRefreshEvent _onSleepEvent;
+
+        private SubscriptionToken _subscriptionToken;
 
         #endregion Private variable
 
@@ -36,12 +39,14 @@ namespace ContestPark.Mobile.ViewModels
                                        IPopupNavigation popupNavigation,
                                        ICategoryService categoryService,
                                        IPostService postService,
+                                       IAnalyticsService analyticsService,
                                        IGameService gameService,
                                        IEventAggregator eventAggregator) : base(navigationService, popupNavigation: popupNavigation)
         {
             NavigationService = navigationService;
             _categoryService = categoryService;
             _postService = postService;
+            _analyticsService = analyticsService;
             _gameService = gameService;
             _eventAggregator = eventAggregator;
             _onSleepEvent = eventAggregator.GetEvent<PostRefreshEvent>();
@@ -112,6 +117,8 @@ namespace ContestPark.Mobile.ViewModels
                 }
             });
 
+            _analyticsService.SendEvent("Kategori Detay", "Rakip Bul", CategoryDetail.SubCategoryName);
+
             IsBusy = false;
         }
 
@@ -130,6 +137,8 @@ namespace ContestPark.Mobile.ViewModels
                 {"SubCategoryId", _subCategoryId },
                 {"ListType", RankingViewModel.ListTypes.ScoreRanking },
             });
+
+            _analyticsService.SendEvent("Kategori Detay", "Sıralama", CategoryDetail.SubCategoryName);
 
             IsBusy = false;
         }
@@ -152,6 +161,8 @@ namespace ContestPark.Mobile.ViewModels
                 _eventAggregator
                             .GetEvent<SubCategoryRefleshEvent>()
                             .Publish();
+
+                _analyticsService.SendEvent("Kategori Detay", "Kategori Takip", CategoryDetail.SubCategoryName);
             }
             else FollowCountChange();// eğer işlem başarısız ise takibi geri aldık
 

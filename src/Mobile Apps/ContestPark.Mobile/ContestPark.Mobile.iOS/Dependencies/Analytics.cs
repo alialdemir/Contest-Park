@@ -14,13 +14,13 @@ namespace ContestPark.Mobile.iOS.Dependencies
         {
             var additionalData = new Dictionary<string, string>
             {
-                { "ec", eventCategory },
-                { "ea", eventAction }
+                { eventAction.Replace(" ", "_"), eventLabel },
+                { eventCategory, eventAction },
             };
 
-            if (!string.IsNullOrEmpty(eventLabel))
+            if (!string.IsNullOrEmpty(eventAction))
             {
-                additionalData.Add("el", eventLabel);
+                additionalData.Add("el", eventAction);
             }
 
             if (eventValue.HasValue)
@@ -35,7 +35,7 @@ namespace ContestPark.Mobile.iOS.Dependencies
         {
             if (parameters == null)
             {
-                // Firebase.Analytics.Analytics.LogEvent(eventId, (Dictionary<object, object>)null);
+                Firebase.Analytics.Analytics.LogEvent(eventId, (NSDictionary<NSString, NSObject>)null);
 
                 return;
             }
@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.iOS.Dependencies
 
             var parametersDictionary = NSDictionary<NSString, NSObject>.FromObjectsAndKeys(values.ToArray(), keys.ToArray(), keys.Count);
 
-            //    Firebase.Analytics.Analytics.LogEvent(eventId, parametersDictionary);
+            Firebase.Analytics.Analytics.LogEvent(eventId, parametersDictionary);
         }
 
         public void SetUserId(string userId)
@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.iOS.Dependencies
             if (string.IsNullOrEmpty(userId))
                 return;
 
-            //     Firebase.Analytics.Analytics.SetUserId(userId);
+            Firebase.Analytics.Analytics.SetUserID(userId);
         }
     }
 }

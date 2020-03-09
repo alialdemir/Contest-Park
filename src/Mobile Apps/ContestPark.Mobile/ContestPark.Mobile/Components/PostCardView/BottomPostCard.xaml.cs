@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Models.Post;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Views;
 using Prism.Ioc;
@@ -115,6 +116,15 @@ namespace ContestPark.Mobile.Components.PostCardView
                     postModel.LikeCount += 1;
 
                 postModel.IsLike = !postModel.IsLike;
+            }
+            else
+            {
+                IAnalyticsService analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
+
+                analyticsService.SendEvent(
+                    "Post",
+                    postModel.IsLike ? "Post Beğenmekten Vazgeç" : "Post Beğen",
+                    postModel.PostType.ToString());
             }
 
             IsBusy = false;
