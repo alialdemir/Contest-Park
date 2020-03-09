@@ -80,6 +80,39 @@ namespace ContestPark.Duel.API.Controllers
             UserModel opponentUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == inviteDuel.OpponentUserId);
             UserModel founderUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == UserId);
 
+            #region Eğer davet ettiği oyuncu bot ise kabul etmiş sayıyoruz
+
+            if (inviteDuel.OpponentUserId.EndsWith("-bot"))
+            {
+                Logger.LogInformation("Bot kullanıcısına düellod daveti geldi.", UserId, inviteDuel.OpponentUserId);
+
+                string randomOpponentUserId = await _identityService.GetRandomUserId();
+                if (string.IsNullOrEmpty(randomOpponentUserId))
+                {
+                    Logger.LogInformation("Rastgele kullanıcı id çekerken hata oluştu");
+
+                    return Ok();
+                }
+
+                var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: inviteDuel.SubCategoryId,
+                                                                   bet: inviteDuel.Bet,
+                                                                   balanceType: inviteDuel.BalanceType,
+                                                                   founderUserId: UserId,
+                                                                   founderConnectionId: inviteDuel.FounderConnectionId,
+                                                                   founderLanguage: CurrentUserLanguage,
+                                                                   opponentUserId: randomOpponentUserId,
+                                                                   opponentConnectionId: string.Empty,
+                                                                   opponentLanguage: CurrentUserLanguage);
+
+                _eventBus.Publish(eventDuelStart);
+
+                Logger.LogInformation("Bot kullanıcısına düellod daveti kabul edildi.", UserId, inviteDuel.OpponentUserId);
+
+                return Ok(opponentUserModel);
+            }
+
+            #endregion Eğer davet ettiği oyuncu bot ise kabul etmiş sayıyoruz
+
             SubCategoryModel subCategory = await _subCategoryService.GetSubCategoryInfo(inviteDuel.SubCategoryId, CurrentUserLanguage, inviteDuel.OpponentUserId);// TODO: CurrentUserLanguage değeri rakibin dil seçeneği olmalı !
             if (subCategory == null)
                 return BadRequest();
