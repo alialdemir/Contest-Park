@@ -60,6 +60,8 @@ namespace ContestPark.Admin.API.Services.QuestionService
             StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
             string jsonQuestion = reader.ReadToEnd();
 
+            reader.Dispose();
+
             if (string.IsNullOrEmpty(jsonQuestion))
             {
                 _logger.LogError("Json soruları parse edilemedi.");

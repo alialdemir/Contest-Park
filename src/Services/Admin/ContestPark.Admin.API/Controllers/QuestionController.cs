@@ -90,7 +90,7 @@ namespace ContestPark.Duel.API.Controllers
 
                 _eventBus.Publish(@eventQuestion);
 
-                Logger.LogInformation("Json ile {{count}} adet soru oluşturuldu", questions.Count);
+                Logger.LogInformation("Json ile {count} adet soru oluşturuldu", questions.Count);
             });
 
             return Ok();
