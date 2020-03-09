@@ -1,8 +1,13 @@
-﻿using ContestPark.Mobile.Models.Duel.InviteDuel;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Duel.InviteDuel;
+using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
+using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
@@ -13,6 +18,8 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class AcceptDuelInvitationPopupViewModel : ViewModelBase
     {
+        private readonly IEventAggregator _eventAggregator;
+
         #region Private varaibles
 
         private readonly ISettingsService _settingsService;
@@ -24,9 +31,12 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public AcceptDuelInvitationPopupViewModel(IPopupNavigation popupNavigation,
+                                                  IEventAggregator eventAggregator,
                                                   ISettingsService settingsService,
-                                                  IDuelService duelService) : base(popupNavigation: popupNavigation)
+                                                  IPageDialogService pageDialogService,
+                                                  IDuelService duelService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
         {
+            _eventAggregator = eventAggregator;
             _settingsService = settingsService;
             _duelService = duelService;
         }
@@ -116,6 +126,22 @@ namespace ContestPark.Mobile.ViewModels
                     BalanceType = InviteModel.BalanceType,
                     StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited
                 });
+            }
+            else
+            {
+                bool isBuy = await DisplayAlertAsync(
+                    ContestParkResources.NoGold,
+                    ContestParkResources.YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory,
+                    ContestParkResources.Buy,
+                    ContestParkResources.Cancel);
+                if (isBuy)
+                {
+                    _eventAggregator
+                                .GetEvent<TabPageNavigationEvent>()
+                                .Publish(new PageNavigation(nameof(ContestStoreView)));
+                }
+
+                await RemoveFirstPopupAsync();
             }
 
             IsBusy = false;

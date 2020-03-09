@@ -13,6 +13,9 @@ namespace ContestPark.Post.API.Models.Post
         public decimal? Bet { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public BalanceTypes BalanceType { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? DuelId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

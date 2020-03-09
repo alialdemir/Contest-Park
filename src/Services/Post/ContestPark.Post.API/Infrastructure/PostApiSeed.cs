@@ -47,6 +47,7 @@ namespace ContestPark.Post.API.Infrastructure
                     {
                             PostType = Enums.PostTypes.Contest,
                             OwnerUserId = "1111-1111-1111-1111",
+                            BalanceType = Enums.BalanceTypes.Gold,
                             FounderUserId = "1111-1111-1111-1111",
                             FounderTrueAnswerCount = 253,
                             Bet = 500,
@@ -58,6 +59,7 @@ namespace ContestPark.Post.API.Infrastructure
                         new Tables.Post.Post
                     {
                             PostType = Enums.PostTypes.Contest,
+                            BalanceType = Enums.BalanceTypes.Money,
                             OwnerUserId = "1111-1111-1111-1111",
                             FounderUserId = "1111-1111-1111-1111",
                             FounderTrueAnswerCount = 23,

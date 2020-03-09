@@ -280,6 +280,7 @@ namespace ContestPark.Post.API.Controllers
 
                             // Düello bilgileri
                             Bet = post.Bet,
+                            BalanceType = post.BalanceType,
                             SubCategoryId = post.SubCategoryId,
                             Description = post.Description,
                             DuelId = post.DuelId,

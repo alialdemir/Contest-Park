@@ -39,11 +39,13 @@ namespace ContestPark.Post.API.IntegrationEvents.EventHandling
                 PostImageType = @event.PostImageType,
                 SubCategoryId = @event.SubCategoryId,
                 PostType = @event.PostType,
+                BalanceType = @event.BalanceType,
             });
 
             if (!isSuccess)
             {
                 _logger.LogCritical("CRITICAL: post eklenemedi post bilgileri. Lütfen manuel ekleyin..", @event.Bet,
+                    @event.BalanceType,
                     @event.CompetitorTrueAnswerCount,
                     @event.CompetitorUserId,
                     @event.Description,

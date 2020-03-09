@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
+using Prism.Services;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Duel
@@ -16,6 +17,7 @@ namespace ContestPark.Mobile.Services.Duel
         private const string _apiUrlBase = "api/v1/Duel";
 
         private readonly IRequestProvider _requestProvider;
+        private readonly IPageDialogService _pageDialogService;
         private readonly ICacheService _cacheService;
 
         #endregion Private variables
@@ -23,9 +25,11 @@ namespace ContestPark.Mobile.Services.Duel
         #region Constructor
 
         public DuelService(IRequestProvider requestProvider,
+                           IPageDialogService pageDialogService,
                            ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _pageDialogService = pageDialogService;
             _cacheService = cacheService;
         }
 

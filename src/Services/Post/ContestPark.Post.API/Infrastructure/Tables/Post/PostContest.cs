@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Post.API.Enums;
+using Newtonsoft.Json;
 
 namespace ContestPark.Post.API.Infrastructure.Tables.Post
 {
@@ -24,5 +25,8 @@ namespace ContestPark.Post.API.Infrastructure.Tables.Post
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? SubCategoryId { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public BalanceTypes BalanceType { get; set; }
     }
 }

@@ -185,6 +185,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             var @postEvent = new NewPostAddedIntegrationEvent(PostTypes.Contest,
                                                               @event.FounderUserId,
                                                               @event.Bet,
+                                                              @event.BalanceType,
                                                               @event.OpponentUserId,
                                                               @event.OpponentScore,
                                                               @event.DuelId,

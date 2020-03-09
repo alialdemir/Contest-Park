@@ -51,6 +51,9 @@ namespace ContestPark.Post.API.IntegrationEvents.Events
         public decimal? Bet { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public BalanceTypes BalanceType { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string CompetitorUserId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

@@ -76,9 +76,9 @@
 
                             <ffimageloadingsvg:SvgCachedImage
                                 Grid.Column="0"
-                                HeightRequest="20"
+                                HeightRequest="32"
                                 Source="SingleMoney.svg"
-                                WidthRequest="25" />
+                                WidthRequest="32" />
 
                             <Label
                                 Grid.Column="1"

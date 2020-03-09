@@ -1,4 +1,5 @@
-﻿using ContestPark.EventBus.Events;
+﻿using ContestPark.Duel.API.Enums;
+using ContestPark.EventBus.Events;
 
 namespace ContestPark.Duel.API.IntegrationEvents.Events
 {
@@ -9,6 +10,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public NewPostAddedIntegrationEvent(PostTypes postType,
                                           string ownerUserId,
                                           decimal? bet,
+                                          BalanceTypes balanceType,
                                           string competitorUserId,
                                           byte? competitorTrueAnswerCount,
                                           int duelId,
@@ -19,6 +21,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             PostType = postType;
             OwnerUserId = ownerUserId;
             Bet = bet;
+            BalanceType = balanceType;
             CompetitorUserId = competitorUserId;
             CompetitorTrueAnswerCount = competitorTrueAnswerCount;
             DuelId = duelId;
@@ -38,6 +41,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         #endregion Post
 
         #region Post contest
+
+        public BalanceTypes BalanceType { get; set; }
 
         public decimal? Bet { get; set; }
 
