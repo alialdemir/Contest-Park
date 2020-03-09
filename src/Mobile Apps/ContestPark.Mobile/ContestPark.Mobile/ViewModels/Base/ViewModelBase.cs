@@ -165,14 +165,14 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (string.IsNullOrEmpty(name) || _navigationService == null)
                 return Task.CompletedTask;
 
-            return _navigationService.NavigateAsync(name, parameters, false);
+            return _navigationService.NavigateAsync(name, parameters, useModalNavigation);
         }
 
         public Task PushPopupPageAsync(PopupPage page)
         {
             if (page == null || _popupNavigation == null)
                 return Task.CompletedTask;
-
+            // TODO: burada IPopupNavigation kullanmak yerine INavigationService ile popup açabiliyoruz ancak prism popup bug varmış o güncellendikten sonra IPopupNavigation iptal edilmeli: link: https://github.com/dansiegel/Prism.Plugin.Popups/pull/136
             return _popupNavigation.PushAsync(page);
         }
 

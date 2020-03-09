@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Categories.CategoryDetail;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
@@ -103,7 +104,7 @@ namespace ContestPark.Mobile.ViewModels
 
             PushPopupPageAsync(new DuelBettingPopupView()
             {
-                SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
+                SelectedSubCategory = new SelectedSubCategoryModel
                 {
                     SubcategoryId = _subCategoryId,
                     SubcategoryName = CategoryDetail.SubCategoryName,

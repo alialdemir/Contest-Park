@@ -30,7 +30,7 @@ namespace ContestPark.Mobile.Views
 
             eventAggregator?// left menu navigation için
                         .GetEvent<TabPageNavigationEvent>()
-                        .Subscribe(async (page) => await Current.GoToAsync(page.PageName));
+                        .Subscribe((page) => Current.GoToAsync(page.PageName));
 
             if (Device.RuntimePlatform == Device.Android)
             {

@@ -335,18 +335,18 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <!--<iconButton:IconButton
+                            <iconButton:IconButton
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 BackgroundGradientEndColor="#27DB94"
                                 BackgroundGradientStartColor="#14D2B8"
                                 Command="{Binding RevengeCommand}"
                                 Icon="{x:Static icons:ContestParkIcon.Revenge}"
-                                Text="{i18n:Translate Revenge}" />-->
+                                Text="{i18n:Translate Revenge}" />
 
                             <iconButton:IconButton
                                 Grid.Row="0"
-                                Grid.ColumnSpan="2"
+                                Grid.Column="1"
                                 BackgroundGradientEndColor="#F15887"
                                 BackgroundGradientStartColor="#FE9B86"
                                 Command="{Binding FindOpponentCommand}"

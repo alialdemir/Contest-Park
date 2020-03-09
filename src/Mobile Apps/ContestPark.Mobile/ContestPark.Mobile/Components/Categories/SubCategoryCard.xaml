@@ -28,7 +28,7 @@
             extension:Skeleton.Animation="Fade"
             extension:Skeleton.IsBusy="{Binding IsBusy}"
             extension:Skeleton.IsParent="True"
-            WidthRequest="95">
+            WidthRequest="105">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70" />
                 <RowDefinition Height="Auto" />

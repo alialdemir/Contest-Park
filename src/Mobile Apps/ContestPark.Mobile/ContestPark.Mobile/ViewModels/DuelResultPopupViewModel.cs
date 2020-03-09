@@ -4,6 +4,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
+using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Duel;
@@ -114,7 +115,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Mesaj detaya git
         /// </summary>
-        private async Task ExecuteGotoChatCommand()
+        private void ExecuteGotoChatCommand()
         {
             if (IsBusy || DuelResult == null)
                 return;
@@ -131,7 +132,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _eventAggregator
                 .GetEvent<TabPageNavigationEvent>()
-                .Publish(new Models.PageNavigation.PageNavigation(nameof(ChatDetailView))
+                .Publish(new PageNavigation(nameof(ChatDetailView))
                 {
                     Parameters = new NavigationParameters
                                 {
@@ -160,7 +161,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _eventAggregator
                 .GetEvent<TabPageNavigationEvent>()
-                .Publish(new Models.PageNavigation.PageNavigation(nameof(ProfileView))
+                .Publish(new PageNavigation(nameof(ProfileView))
                 {
                     Parameters = new NavigationParameters
                                 {
@@ -183,7 +184,6 @@ namespace ContestPark.Mobile.ViewModels
 
             ClosePopupCommand.Execute(null);
 
-            // TODO: burada karşı rakipbe rövanş yapmak ister misiniz diye sorması lazım
             await PushPopupPageAsync(new DuelBettingPopupView()
             {
                 SelectedSubCategory = new SelectedSubCategoryModel
@@ -270,7 +270,7 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         public ICommand FindOpponentCommand { get { return new Command(async () => await ExecuteFindOpponentCommand()); } }
-        public ICommand GotoChatCommand { get { return new Command(async () => await ExecuteGotoChatCommand()); } }
+        public ICommand GotoChatCommand { get { return new Command(() => ExecuteGotoChatCommand()); } }
         public ICommand GotoProfilePageCommand { get { return new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName)); } }
         public ICommand RevengeCommand { get { return new Command(async () => await ExecuteRevengeCommand()); } }
         public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
