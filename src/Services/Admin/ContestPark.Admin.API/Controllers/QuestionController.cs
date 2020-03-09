@@ -1,10 +1,12 @@
 ﻿using ContestPark.Admin.API.Enums;
 using ContestPark.Admin.API.IntegrationEvents.Events;
 using ContestPark.Admin.API.Model.Question;
+using ContestPark.Admin.API.Services.QuestionService;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 using System.Net;
 
 namespace ContestPark.Duel.API.Controllers
@@ -14,6 +16,8 @@ namespace ContestPark.Duel.API.Controllers
     {
         #region Private Variables
 
+        private readonly IQuestionService _questionService;
+
         private readonly IEventBus _eventBus;
 
         #endregion Private Variables
@@ -21,8 +25,10 @@ namespace ContestPark.Duel.API.Controllers
         #region Constructor
 
         public QuestionController(ILogger<QuestionController> logger,
+                                  IQuestionService questionService,
                                   IEventBus eventBus) : base(logger)
         {
+            _questionService = questionService;
             _eventBus = eventBus;
         }
 
@@ -62,13 +68,27 @@ namespace ContestPark.Duel.API.Controllers
             if (configModel == null
                 || configModel.SubCategoryId <= 0
                 || configModel.File == null
+                || configModel.File.Length == 0
                 || string.IsNullOrEmpty(configModel.Question)
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return BadRequest();
 
-            var @event = new QuestionConfigIntegrationEvent(configModel);
+            Logger.LogInformation("Question size", configModel.File.Length, configModel.File.ContentDisposition);
 
-            _eventBus.Publish(@event);
+            var questions = _questionService.GenerateQuestion(configModel);
+            if (questions == null || !questions.Any())
+            {
+                Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
+
+                return BadRequest();
+            }
+
+            var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
+
+            _eventBus.Publish(@eventQuestion);
+            //var @event = new QuestionConfigIntegrationEvent(configModel);
+
+            //_eventBus.Publish(@event);
 
             return Ok();
         }

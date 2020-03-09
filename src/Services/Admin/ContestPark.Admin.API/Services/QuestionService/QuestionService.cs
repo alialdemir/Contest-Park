@@ -50,6 +50,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
             if (configModel == null
                 || configModel.SubCategoryId <= 0
                 || configModel.File == null
+                || configModel.File.Length == 0
                 || string.IsNullOrEmpty(configModel.Question)
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return null;
