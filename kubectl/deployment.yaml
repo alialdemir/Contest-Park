@@ -514,6 +514,8 @@ spec:
               value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
             - name: identityUrl
               value: "http://identity-api"
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
             - name: Audience
               value: "notification"
             - name: EventBusConnection
