@@ -1,5 +1,8 @@
 ﻿using ContestPark.Core.Database.Interfaces;
+using ContestPark.Core.Database.Models;
+using ContestPark.Core.Enums;
 using ContestPark.Notification.API.Enums;
+using ContestPark.Notification.API.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -55,6 +58,22 @@ namespace ContestPark.Notification.API.Infrastructure.Repositories.Notification
                 whoId,
                 link
             });
+        }
+
+        /// <summary>
+        /// Kullanıcı id'ye ait bildirimler
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="langId">Dil seçimi</param>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Bildirim listesi</returns>
+        public ServiceModel<NotificationModel> Notifications(string userId, Languages langId, PagingModel pagingModel)
+        {
+            return _notificationRepsoitory.ToSpServiceModel<NotificationModel>("SP_Notifications", new
+            {
+                userId,
+                langId
+            }, pagingModel);
         }
 
         #endregion Methods
