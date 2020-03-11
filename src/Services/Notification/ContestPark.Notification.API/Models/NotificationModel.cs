@@ -13,13 +13,7 @@ namespace ContestPark.Notification.API.Models
 
         public string WhoUserName { get; set; }
 
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set { _description = string.Format(value, WhoUserName); }
-        }
+        public string Description { get; set; }
 
         public string ProfilePicturePath { get; set; }
 

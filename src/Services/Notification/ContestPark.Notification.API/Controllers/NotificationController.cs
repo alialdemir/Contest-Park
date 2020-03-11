@@ -62,7 +62,7 @@ namespace ContestPark.Notification.API.Controllers
                                 select new NotificationModel
                                 {
                                     Date = notification.Date,
-                                    Description = notification.Description,
+                                    Description = string.Format(notification.Description, user.UserName),
                                     IsNotificationSeen = notification.IsNotificationSeen,
                                     Link = notification.Link,
                                     NotificationId = notification.NotificationId,
