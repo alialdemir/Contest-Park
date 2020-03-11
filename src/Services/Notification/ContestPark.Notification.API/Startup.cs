@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
@@ -30,8 +31,6 @@ namespace ContestPark.Notification.API
         {
             services.Configure<NotificationSettings>(Configuration);
 
-            services.AddSingleton<IRequestProvider, RequestProvider>();
-
             services.AddAuth(Configuration)
                     .AddMySql()
                     .AddMvc()
@@ -48,6 +47,8 @@ namespace ContestPark.Notification.API
             services.AddTransient<INotificationRepository, NotificationRepository>();
 
             services.AddTransient<AddNotificationIntegrationEventHandler>();
+
+            ConfigureIdentityService(services);
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -78,6 +79,12 @@ namespace ContestPark.Notification.API
                .UseMvc();
 
             ConfigureEventBus(app);
+        }
+
+        protected virtual void ConfigureIdentityService(IServiceCollection services)
+        {
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+            services.AddSingleton<IIdentityService, IdentityService>();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)
