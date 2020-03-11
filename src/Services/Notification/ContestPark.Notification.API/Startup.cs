@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using ServiceStack.Redis;
 using System;
 
 namespace ContestPark.Notification.API
@@ -37,6 +39,13 @@ namespace ContestPark.Notification.API
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(NotificationResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton<IRedisClient>(sp =>
+            {
+                var settings = sp.GetRequiredService<IOptions<NotificationSettings>>().Value;
+
+                return new RedisClient(settings.Redis);
+            });
 
             services.AddLocalizationCustom();
 
