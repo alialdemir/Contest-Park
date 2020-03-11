@@ -697,6 +697,19 @@
       "UpstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
       "UpstreamHttpMethod": [ "Post" ]
     },
+    // Notification
+    {
+      "DownstreamPathTemplate": "/api/{version}/Notification",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.notification.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Notification",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
     // Signalr
     {
       "DownstreamPathTemplate": "/{catchAll}",

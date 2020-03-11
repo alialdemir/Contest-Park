@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
+using ContestPark.Post.API.Models;
 using ContestPark.Post.API.Models.Post;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace ContestPark.Post.API.Infrastructure.MySql.Post
         ServiceModel<PostModel> GetPostByUserId(string profileUserId, string userId, Languages language, PagingModel paging);
 
         PostModel GetPostDetailByPostId(string userId, int postId, Languages language);
-
+        PostOwnerModel GetPostOwnerInfo(int postId);
         ServiceModel<PostModel> GetPostsBySubcategoryId(string userId, int subCategoryId, Languages language, PagingModel paging);
     }
 }

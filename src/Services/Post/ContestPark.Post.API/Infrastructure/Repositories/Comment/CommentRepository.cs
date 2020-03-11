@@ -2,6 +2,7 @@
 using ContestPark.Core.Database.Models;
 using ContestPark.Post.API.Models;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Post.API.Infrastructure.Repositories.Comment
@@ -59,6 +60,28 @@ namespace ContestPark.Post.API.Infrastructure.Repositories.Comment
             {
                 postId
             }, pagingModel: pagingModel);
+        }
+
+        /// <summary>
+        /// Posta yorum yapanları ve post sahiplerini döndürür
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public IEnumerable<PostCommentedModel> PostCommented(int postId)
+        {
+            string sql = @"SELECT
+                           c.UserId,
+                           p.OwnerUserId,
+                           p.CompetitorUserId,
+                           p.PicturePath
+                           FROM Posts p
+                           INNER JOIN Comments c ON c.PostId = p.PostId
+                           WHERE p.PostId = @postId";
+
+            return _commentRepository.QueryMultiple<PostCommentedModel>(sql, new
+            {
+                postId
+            });
         }
 
         #endregion Methods

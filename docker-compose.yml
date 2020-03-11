@@ -137,3 +137,12 @@ services:
     build:
       context: .
       dockerfile: src/Services/BackgroundTask/ContestPark.BackgroundTasks/Dockerfile
+      
+  contestpark.notification.api:
+    image: contestparknotification.api:${TAG:-latest}
+    depends_on:
+      - rabbitmq
+      - mysql-data
+    build:
+      context: .
+      dockerfile: src/Services/Notification/ContestPark.Notification.API/Dockerfile

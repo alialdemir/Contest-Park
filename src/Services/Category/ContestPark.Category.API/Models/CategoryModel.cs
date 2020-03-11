@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ContestPark.Category.API.Model
+namespace ContestPark.Category.API.Models
 {
     public class CategoryModel
     {

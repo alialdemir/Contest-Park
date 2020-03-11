@@ -1,5 +1,5 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.Search;
-using ContestPark.Category.API.Model;
+using ContestPark.Category.API.Models;
 using ContestPark.Core.Database.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

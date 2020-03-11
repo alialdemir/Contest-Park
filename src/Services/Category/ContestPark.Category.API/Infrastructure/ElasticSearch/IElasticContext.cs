@@ -1,5 +1,5 @@
 ﻿using ContestPark.Category.API.Infrastructure.Tables;
-using ContestPark.Category.API.Model;
+using ContestPark.Category.API.Models;
 using ContestPark.Core.Database.Models;
 using Nest;
 using System.Collections.Generic;

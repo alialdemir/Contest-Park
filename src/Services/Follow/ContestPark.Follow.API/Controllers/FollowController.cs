@@ -2,6 +2,7 @@
 using ContestPark.Core.Models;
 using ContestPark.Core.Services.Identity;
 using ContestPark.EventBus.Abstractions;
+using ContestPark.Follow.API.Enums;
 using ContestPark.Follow.API.Infrastructure.MySql.Repositories;
 using ContestPark.Follow.API.IntegrationEvents.Events;
 using ContestPark.Follow.API.Models;
@@ -85,6 +86,10 @@ namespace ContestPark.Follow.API.Controllers
             // Kullanıcıların takipçi sayısının değiştiğini diğer servise bildirdik
             var @event = new FollowIntegrationEvent(UserId, followedUserId);
             _eventBus.Publish(@event);
+
+            // Takip edildi bildirimi gönderildi
+            var @eventNotification = new AddNotificationIntegrationEvent(UserId, new string[1] { followedUserId }, NotificationTypes.Follow, null, string.Empty);
+            _eventBus.Publish(@eventNotification);
 
             return Ok();
         }

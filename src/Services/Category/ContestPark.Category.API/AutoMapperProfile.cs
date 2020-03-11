@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ContestPark.Category.API.Infrastructure.Tables;
-using ContestPark.Category.API.Model;
+using ContestPark.Category.API.Models;
 
 namespace ContestPark.Category.API
 {

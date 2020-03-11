@@ -1,4 +1,4 @@
-﻿using ContestPark.Category.API.Model;
+﻿using ContestPark.Category.API.Models;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;

@@ -4,7 +4,7 @@ using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
-using ContestPark.Category.API.Model;
+using ContestPark.Category.API.Models;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;

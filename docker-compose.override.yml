@@ -227,3 +227,22 @@ services:
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      
+  contestpark.notification.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkNotification;pwd=root;}
+      - identityUrl=http://contestpark.identity.api
+      - Audience=notification
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=true
+      - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
+      - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
+      - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+    ports:
+      - "5112:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

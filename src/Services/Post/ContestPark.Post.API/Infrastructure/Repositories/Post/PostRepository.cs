@@ -2,6 +2,7 @@
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Post.API.Infrastructure.MySql.Post;
+using ContestPark.Post.API.Models;
 using ContestPark.Post.API.Models.Post;
 using System.Linq;
 using System.Threading.Tasks;
@@ -90,6 +91,26 @@ namespace ContestPark.Post.API.Infrastructure.MySql
                 profileUserId,
                 language = (byte)language
             }, pagingModel: paging);
+        }
+
+        /// <summary>
+        /// Post id'sine ait owner ve rakip kullanıcı id'lerini verir
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Owner ve rakip kullanıcı id ayrıca resim varsa onu verir</returns>
+        public PostOwnerModel GetPostOwnerInfo(int postId)
+        {
+            string sql = @"SELECT
+                           p.OwnerUserId,
+                           p.CompetitorUserId,
+                           p.PicturePath
+                           FROM Posts p
+                           WHERE p.PostId = @postId";
+
+            return _postRepository.QuerySingleOrDefault<PostOwnerModel>(sql, new
+            {
+                postId
+            });
         }
 
         #endregion Methods

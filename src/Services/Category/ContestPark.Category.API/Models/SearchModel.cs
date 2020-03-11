@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ContestPark.Category.API.Model
+namespace ContestPark.Category.API.Models
 {
     public class SearchModel
     {

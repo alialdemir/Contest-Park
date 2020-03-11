@@ -1,5 +1,5 @@
 ﻿using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Category.API.Model;
+using ContestPark.Category.API.Models;
 using ContestPark.Category.API.Services.Balance;
 using System.Threading.Tasks;
 

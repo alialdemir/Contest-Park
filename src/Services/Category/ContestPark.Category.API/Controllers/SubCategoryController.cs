@@ -3,7 +3,7 @@ using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
 using ContestPark.Category.API.Infrastructure.Tables;
 using ContestPark.Category.API.IntegrationEvents.Events;
-using ContestPark.Category.API.Model;
+using ContestPark.Category.API.Models;
 using ContestPark.Category.API.Resources;
 using ContestPark.Category.API.Services.Balance;
 using ContestPark.Core.Database.Models;
