@@ -510,6 +510,8 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
             - name: identityUrl
               value: "http://identity-api"
             - name: Audience
