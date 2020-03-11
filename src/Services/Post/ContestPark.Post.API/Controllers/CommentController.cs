@@ -106,17 +106,21 @@ namespace ContestPark.Post.API.Controllers
             // Burada aynı user id iki defa dönmesin diye kontrol koydum
             foreach (var postCommented in postCommenteds)
             {
-                if (postCommented.UserId != postCommented.OwnerUserId)
+                if (postCommented.UserId != postCommented.OwnerUserId
+                    && !string.IsNullOrEmpty(postCommented.OwnerUserId))
                 {
                     commentedUserIds.Add(postCommented.OwnerUserId);
                 }
 
-                if (postCommented.UserId != postCommented.CompetitorUserId)
+                if (postCommented.UserId != postCommented.CompetitorUserId
+                    && !string.IsNullOrEmpty(postCommented.CompetitorUserId))
                 {
                     commentedUserIds.Add(postCommented.CompetitorUserId);
                 }
 
-                if (postCommented.UserId != postCommented.OwnerUserId && postCommented.UserId != postCommented.CompetitorUserId)
+                if (postCommented.UserId != postCommented.OwnerUserId
+                    && postCommented.UserId != postCommented.CompetitorUserId
+                    && !string.IsNullOrEmpty(postCommented.UserId))
                 {
                     commentedUserIds.Add(postCommented.UserId);
                 }

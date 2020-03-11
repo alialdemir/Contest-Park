@@ -6,6 +6,7 @@ using ContestPark.Post.API.IntegrationEvents.Events;
 using ContestPark.Post.API.Models;
 using ContestPark.Post.API.Resources;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Post.API.IntegrationEvents.EventHandling
@@ -59,9 +60,17 @@ namespace ContestPark.Post.API.IntegrationEvents.EventHandling
             if (postOwnerModel == null)
                 return;
 
+            List<string> userIds = new List<string>();
+
+            if (!string.IsNullOrEmpty(postOwnerModel.OwnerUserId))
+                userIds.Add(postOwnerModel.OwnerUserId);
+
+            if (!string.IsNullOrEmpty(postOwnerModel.CompetitorUserId))
+                userIds.Add(postOwnerModel.CompetitorUserId);
+
             // postu beğendiği bildirimi post ile ilişkisi olanlara gönderildi
             var @eventNotification = new AddNotificationIntegrationEvent(@event.UserId,
-                                                                         new string[2] { postOwnerModel.OwnerUserId, postOwnerModel.CompetitorUserId },
+                                                                         userIds,
                                                                          NotificationTypes.PostLike,
                                                                          @event.PostId,
                                                                          postOwnerModel.PicturePath);

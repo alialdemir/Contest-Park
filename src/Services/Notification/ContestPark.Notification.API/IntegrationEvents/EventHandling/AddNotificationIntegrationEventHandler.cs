@@ -36,9 +36,16 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
         /// <param name="event">Bildirim bilgileri</param>
         public async Task Handle(AddNotificationIntegrationEvent @event)
         {
+            bool isNotificationBeAdded = _notificationRepository.IsNotificationBeAdded(@event.NotificationType,
+                                                                                       @event.PostId ?? 0,
+                                                                                       @event.WhoId,
+                                                                                       @event.Link);
+            if (!isNotificationBeAdded)// Hızlı hızlı beğenme comment vs yapıp sürekli bildirim göndermesin diye kontrol koyduk
+                return;
+
             var notifications = @event
                                      .WhonIds
-                                     .Where(whonId => whonId != @event.WhoId && (!whonId.EndsWith("-bot") || !@event.WhoId.EndsWith("-bot")))
+                                     .Where(whonId => !string.IsNullOrEmpty(whonId) && whonId != @event.WhoId && (!whonId.EndsWith("-bot") || !@event.WhoId.EndsWith("-bot")))
                                      .Select(whonId => new Infrastructure.Tables.Notification
                                      {
                                          NotificationType = @event.NotificationType,
@@ -48,7 +55,7 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
                                          Link = @event.Link,
                                      }).ToList();
 
-            if (!notifications.Any())
+            if (notifications == null && !notifications.Any())
                 return;
 
             bool isSuccess = await _notificationRepository.AddRangeAsync(notifications);

@@ -97,7 +97,7 @@ namespace ContestPark.Notification.API.Migrations
                 .WithDefault(SystemMethods.CurrentDateTime));
 
             Create.ForeignKey()
-                        .FromTable("Notifications")
+                        .FromTable("Notifications")// TODO: burada fk adı çok uzun olduğu için hata veriyor
                         .ForeignColumn("NotificationType")
                         .ToTable("NotificationTypes")
                         .PrimaryColumn("NotificationTypeId");

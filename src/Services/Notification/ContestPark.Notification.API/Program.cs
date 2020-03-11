@@ -48,8 +48,8 @@ namespace ContestPark.Notification.API
                 {
                     var settings = services.GetService<IOptions<NotificationSettings>>();
 
-                    //if (!settings.Value.IsMigrateDatabase)
-                    //    return;
+                    if (!settings.Value.IsMigrateDatabase)
+                        return;
 
                     updateDatabase(
                         settings.Value.ConnectionString,
@@ -89,7 +89,8 @@ namespace ContestPark.Notification.API
                 .Enrich.WithProperty("ApplicationContext", AppName)
                 .Enrich.FromLogContext()
                 .ReadFrom.Configuration(configuration)
-                .AddAmazonCloudWatch(configuration, AppName);
+                .AddAmazonCloudWatch(configuration, AppName)
+                ;
 
             return loggerConfiguration.CreateLogger();
         }
