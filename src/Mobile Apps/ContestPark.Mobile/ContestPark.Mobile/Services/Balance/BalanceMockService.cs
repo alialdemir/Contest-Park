@@ -33,5 +33,10 @@ namespace ContestPark.Mobile.Services.Cp
         {
             return Task.FromResult(true);
         }
+
+        public Task<decimal> RewardAsync()
+        {
+            return Task.FromResult(555.00m);
+        }
     }
 }
