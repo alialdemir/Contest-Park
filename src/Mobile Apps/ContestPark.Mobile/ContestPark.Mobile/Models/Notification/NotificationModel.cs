@@ -23,8 +23,19 @@ namespace ContestPark.Mobile.Models.Notification
 
         public DateTime Date { get; set; }
 
-        public NotificationTypes NotificationType { get; set; }
+        public int PostId { get; set; }
 
-        public bool IsFollowing { get; set; }
+        public NotificationTypes NotificationType { get; set; }
+        private bool _isFollowing;
+
+        public bool IsFollowing
+        {
+            get { return _isFollowing; }
+            set
+            {
+                _isFollowing = value;
+                RaisePropertyChanged(() => IsFollowing);
+            }
+        }
     }
 }

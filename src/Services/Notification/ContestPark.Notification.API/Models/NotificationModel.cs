@@ -20,6 +20,8 @@ namespace ContestPark.Notification.API.Models
         public bool IsNotificationSeen { get; set; }
 
         public string Link { get; set; }
+        
+        public int PostId { get; set; }
 
         public DateTime Date { get; set; }
 

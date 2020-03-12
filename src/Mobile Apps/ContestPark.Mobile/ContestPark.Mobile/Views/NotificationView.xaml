@@ -5,14 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:prism="http://prismlibrary.com"
-    Padding="0"
+    x:Name="notificationView"
+    Padding="0,8,0,0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:NotificationCardFactory />
+                        <components:NotificationCardFactory FollowProcessCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference notificationView}}" GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference notificationView}}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

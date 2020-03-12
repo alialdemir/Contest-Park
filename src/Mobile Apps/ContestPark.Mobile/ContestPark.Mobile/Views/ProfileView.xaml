@@ -40,10 +40,12 @@
                         <!--  cover picture  -->
                         <components:CachedImage
                             Grid.RowSpan="3"
+                            Margin="0"
                             Aspect="AspectFill"
                             HeightRequest="259"
                             HorizontalOptions="FillAndExpand"
-                            Source="{Binding ProfileInfo.CoverPicture}">
+                            Source="{Binding ProfileInfo.CoverPicture}"
+                            VerticalOptions="Fill">
                             <components:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ChangePhotoCommand}" CommandParameter="Cover" />
                             </components:CachedImage.GestureRecognizers>

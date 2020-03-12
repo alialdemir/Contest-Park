@@ -117,6 +117,7 @@ namespace ContestPark.Mobile.Services.Follow
         {
             _cacheService.EmptyByKey(_apiUrlBase);
             _cacheService.EmptyByKey("/api/v1/Account/Profile");
+            _cacheService.EmptyByKey("/api/v1/Notification");
 
             _eventAggregator
                 .GetEvent<ChangedFollowCountEvent>()

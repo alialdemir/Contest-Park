@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="ContestPark.Mobile.Components.UserFollowListItem"
+    x:Class="ContestPark.Mobile.Components.RightThumListItem"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:Name="userFollowListItemPage">
+    x:Name="rightThumListItem"
+    mc:Ignorable="d">
     <ContentView.Resources>
         <ResourceDictionary>
-            <converter:IconConverter x:Key="fbc" />
             <converter:FollowButtonVisibleConverter x:Key="fbvc" />
-            <converter:FollowButtonTextConverter x:Key="fbtc" />
-            <converter:FollowButtonBackgroundGradientEndColor x:Key="fbbgec" />
-            <converter:FollowButtonBackgroundGradientStartColor x:Key="fbbgsc" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
@@ -25,7 +24,6 @@
             HeightRequest="80"
             IsClippedToBounds="True">
             <Grid
-                x:Name="cstmGrid"
                 Padding="16"
                 ColumnSpacing="0"
                 RowSpacing="0">
@@ -43,7 +41,7 @@
                 <components:CircleImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
-                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}"
+                    Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference rightThumListItem}}"
                     CommandParameter="{Binding UserName}"
                     HeightRequest="50"
                     Source="{Binding ProfilePicturePath}"
@@ -72,29 +70,14 @@
                     TextColor="#181C2F"
                     VerticalOptions="FillAndExpand" />
 
-                <yummy:PancakeView
+                <Image
                     Grid.RowSpan="2"
                     Grid.Column="2"
-                    Padding="8"
-                    BackgroundGradientEndColor="{Binding Path=IsFollowing, Converter={StaticResource fbbgec}}"
-                    BackgroundGradientStartColor="{Binding Path=IsFollowing, Converter={StaticResource fbbgsc}}"
-                    CornerRadius="13"
-                    HeightRequest="20"
+                    HeightRequest="50"
                     IsVisible="{Binding Path=UserId, Converter={StaticResource fbvc}}"
+                    Source="{Binding Link}"
                     VerticalOptions="Center"
-                    WidthRequest="70">
-                    <yummy:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Path=RightButtonCommand, Source={x:Reference userFollowListItemPage}}" CommandParameter="{Binding UserId}" />
-                    </yummy:PancakeView.GestureRecognizers>
-                    <Label
-                        FontAttributes="Bold"
-                        FontFamily="{StaticResource SofiaProRegular}"
-                        FontSize="15"
-                        HorizontalTextAlignment="Center"
-                        Text="{Binding Path=IsFollowing, Converter={StaticResource fbtc}}"
-                        TextColor="{StaticResource White}"
-                        VerticalTextAlignment="Center" />
-                </yummy:PancakeView>
+                    WidthRequest="50" />
             </Grid>
         </yummy:PancakeView>
     </ContentView.Content>

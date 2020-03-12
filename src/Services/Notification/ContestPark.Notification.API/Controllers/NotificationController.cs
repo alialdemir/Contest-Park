@@ -72,6 +72,7 @@ namespace ContestPark.Notification.API.Controllers
                                     FullName = user.FullName,
                                     UserName = user.UserName,
                                     IsFollowing = notification.IsFollowing,
+                                    PostId = notification.PostId,
                                 }).ToList();
             }
 
