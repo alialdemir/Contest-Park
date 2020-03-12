@@ -22,9 +22,9 @@ namespace ContestPark.Mobile.Services.Notification
                     new NotificationModel
                     {
                       NotificationId= 14,
-                      WhoUserId= "96a89e5a-0ad1-43a6-9f5e-f53915ba6e20",
-                      WhoFullName= "Sinem Gürgen",
-                      WhoUserName= "sinem",
+                      UserId= "96a89e5a-0ad1-43a6-9f5e-f53915ba6e20",
+                      FullName= "Sinem Gürgen",
+                      UserName= "sinem",
                       Description= "sinem postunu beğendi.",
                       ProfilePicturePath= "https://d2blqp3orvbj09.cloudfront.net/user.jpg",
                       IsNotificationSeen= false,
@@ -34,9 +34,9 @@ namespace ContestPark.Mobile.Services.Notification
                     new NotificationModel
                     {
                       NotificationId= 14,
-                      WhoUserId= "96a89e5a-0ad1-43a6-9f5e-f53915ba6e20",
-                      WhoFullName= "Sinem Gürgen",
-                      WhoUserName= "sinem",
+                      UserId= "96a89e5a-0ad1-43a6-9f5e-f53915ba6e20",
+                      FullName= "Sinem Gürgen",
+                      UserName= "sinem",
                       Description= "sinem postunu beğendi.",
                       ProfilePicturePath= "https://d2blqp3orvbj09.cloudfront.net/user.jpg",
                       IsNotificationSeen= false,
@@ -46,9 +46,9 @@ namespace ContestPark.Mobile.Services.Notification
                     new NotificationModel
                     {
                       NotificationId= 14,
-                      WhoUserId= "96a89e5a-0ad1-43a6-9f5e-f53915ba6e20",
-                      WhoFullName= "Sinem Gürgen",
-                      WhoUserName= "sinem",
+                      UserId= "96a89e5a-0ad1-43a6-9f5e-f53915ba6e20",
+                      FullName= "Sinem Gürgen",
+                      UserName= "sinem",
                       Description= "sinem postunu beğendi.",
                       ProfilePicturePath= "https://d2blqp3orvbj09.cloudfront.net/user.jpg",
                       IsNotificationSeen= false,

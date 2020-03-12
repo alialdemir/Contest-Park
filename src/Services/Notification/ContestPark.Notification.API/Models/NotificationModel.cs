@@ -24,5 +24,7 @@ namespace ContestPark.Notification.API.Models
         public DateTime Date { get; set; }
 
         public NotificationTypes NotificationType { get; set; }
+
+        public bool? IsFollowing { get; set; }
     }
 }

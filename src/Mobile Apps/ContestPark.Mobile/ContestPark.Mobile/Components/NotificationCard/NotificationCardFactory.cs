@@ -29,7 +29,10 @@ namespace ContestPark.Mobile.Components
                 switch (notificationModel.NotificationType)
                 {
                     case Enums.NotificationTypes.Follow:
-                        Content = CreateContent(new UserFollowListItem());
+                        Content = CreateContent(new UserFollowListItem()
+                        {
+                            BindingContext = BindingContext
+                        });
                         break;
                 }
             }

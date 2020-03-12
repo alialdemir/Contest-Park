@@ -71,6 +71,7 @@ namespace ContestPark.Notification.API.Controllers
                                     ProfilePicturePath = user.ProfilePicturePath,
                                     FullName = user.FullName,
                                     UserName = user.UserName,
+                                    IsFollowing = notification.IsFollowing,
                                 }).ToList();
             }
 
