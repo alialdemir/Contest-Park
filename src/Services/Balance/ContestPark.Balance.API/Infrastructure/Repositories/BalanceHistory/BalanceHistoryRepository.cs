@@ -31,12 +31,12 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory
         {
             string sql = @"(SELECT (CASE
                             WHEN EXISTS(
-                            SELECT NULL FROM BalanceHistories bh
+                            SELECT 1 FROM BalanceHistories bh
                             WHERE bh.BalanceHistoryType  = @balanceHistoryType
                             AND bh.UserId = @userId
                             AND HOUR(TIMEDIFF(NOW(), bh.CreatedDate)) >= 12)
-                            THEN 0
-                            ELSE 1
+                            THEN 1
+                            ELSE 0
                             END))";
 
             return _balanceHistoryRepository.QuerySingleOrDefault<bool>(sql, new
