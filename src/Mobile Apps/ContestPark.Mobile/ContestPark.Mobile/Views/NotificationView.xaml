@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.NotificationView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:prism="http://prismlibrary.com"
+    Padding="0"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Content>
+        <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:NotificationCardFactory />
+                    </ViewCell>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+        </components:NonPersistentSelectedItemListView>
+    </ContentPage.Content>
+</ContentPage>

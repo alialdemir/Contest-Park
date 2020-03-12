@@ -42,21 +42,19 @@ namespace ContestPark.Notification.API.Infrastructure.Repositories.Notification
         /// </summary>
         /// <param name="notificationId">Bildirim</param>
         /// <returns>Bildirim eklenebilir mi true/false</returns>
-        public bool IsNotificationBeAdded(NotificationTypes notificationType, int postId, string whoId, string link)
+        public bool IsNotificationBeAdded(NotificationTypes notificationType, int postId, string whoId)
         {
             string sql = @"SELECT 1 FROM Notifications n
-                           WHERE TIME_TO_SEC(TIMEDIFF(NOW(), n.CreatedDate)) < 120
-                           AND n.NotificationId = @notificationType
+                           WHERE TIME_TO_SEC(TIMEDIFF(NOW(), n.CreatedDate)) < 550
+                           AND n.NotificationType = @notificationType
                            AND n.PostId = @postId
-                           AND n.WhoId = @whoId
-                           AND n.Link = @link";
+                           AND n.WhoId = @whoId";
 
             return _notificationRepsoitory.QuerySingleOrDefault<bool>(sql, new
             {
-                notificationType,
+                notificationType = (byte)notificationType,
                 postId,
                 whoId,
-                link
             });
         }
 

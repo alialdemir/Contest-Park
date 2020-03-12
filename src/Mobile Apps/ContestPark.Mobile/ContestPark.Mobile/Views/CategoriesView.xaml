@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
@@ -20,6 +21,13 @@
             CommandParameter="{Binding SeeAllSubCateogryId}"
             IconImageSource="searchicon.png" />
     </ContentPage.ToolbarItems>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding Path=BindingContext.GotoNotificationsCommand, Source={x:Reference categoriesPage}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Notification}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>

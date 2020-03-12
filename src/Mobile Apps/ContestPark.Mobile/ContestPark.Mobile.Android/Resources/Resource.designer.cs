@@ -26543,31 +26543,28 @@ namespace ContestPark.Mobile.Droid
 			public const int subtitle_shadow_radius = 2131099867;
 			
 			// aapt resource value: 0x7F0600DC
-			public const int textsize_badge_count = 2131099868;
+			public const int tooltip_corner_radius = 2131099868;
 			
 			// aapt resource value: 0x7F0600DD
-			public const int tooltip_corner_radius = 2131099869;
+			public const int tooltip_horizontal_padding = 2131099869;
 			
 			// aapt resource value: 0x7F0600DE
-			public const int tooltip_horizontal_padding = 2131099870;
+			public const int tooltip_margin = 2131099870;
 			
 			// aapt resource value: 0x7F0600DF
-			public const int tooltip_margin = 2131099871;
+			public const int tooltip_precise_anchor_extra_offset = 2131099871;
 			
 			// aapt resource value: 0x7F0600E0
-			public const int tooltip_precise_anchor_extra_offset = 2131099872;
+			public const int tooltip_precise_anchor_threshold = 2131099872;
 			
 			// aapt resource value: 0x7F0600E1
-			public const int tooltip_precise_anchor_threshold = 2131099873;
+			public const int tooltip_vertical_padding = 2131099873;
 			
 			// aapt resource value: 0x7F0600E2
-			public const int tooltip_vertical_padding = 2131099874;
+			public const int tooltip_y_offset_non_touch = 2131099874;
 			
 			// aapt resource value: 0x7F0600E3
-			public const int tooltip_y_offset_non_touch = 2131099875;
-			
-			// aapt resource value: 0x7F0600E4
-			public const int tooltip_y_offset_touch = 2131099876;
+			public const int tooltip_y_offset_touch = 2131099875;
 			
 			static Dimension()
 			{

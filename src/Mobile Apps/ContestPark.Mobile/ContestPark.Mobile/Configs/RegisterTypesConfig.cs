@@ -14,6 +14,7 @@ using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
+using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
 using ContestPark.Mobile.Services.Score;
@@ -99,6 +100,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<MissionsView, MissionsViewModel>();
 
+            containerRegistry.RegisterForNavigation<NotificationView, NotificationViewModel>();
+
             containerRegistry.RegisterForNavigation<PhoneNumberView, PhoneNumberViewModel>();
 
             containerRegistry.RegisterForNavigation<PhotoModalView, PhotoModalViewModel>();
@@ -164,6 +167,8 @@ namespace ContestPark.Mobile.Configs
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
+                containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
+
                 containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
                 containerRegistry.RegisterSingleton<IFollowService, FollowService>();
@@ -193,6 +198,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
+
+                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
 
                 containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
 

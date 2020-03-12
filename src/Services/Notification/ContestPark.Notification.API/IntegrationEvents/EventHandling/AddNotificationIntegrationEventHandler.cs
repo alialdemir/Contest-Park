@@ -38,9 +38,8 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
         {
             bool isNotificationBeAdded = _notificationRepository.IsNotificationBeAdded(@event.NotificationType,
                                                                                        @event.PostId ?? 0,
-                                                                                       @event.WhoId,
-                                                                                       @event.Link);
-            if (isNotificationBeAdded)// Hızlı hızlı beğenme comment vs yapıp sürekli bildirim göndermesin diye kontrol koyduk
+                                                                                       @event.WhoId);
+            if (!isNotificationBeAdded)// Hızlı hızlı beğenme comment vs yapıp sürekli bildirim göndermesin diye kontrol koyduk
             {
                 _logger.LogInformation("Seri bildirim gönderme işlemi yapılıyor.",
                                        @event.NotificationType,

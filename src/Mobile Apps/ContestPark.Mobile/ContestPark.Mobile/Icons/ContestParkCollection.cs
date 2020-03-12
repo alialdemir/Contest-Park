@@ -49,5 +49,6 @@
         public const string FindOpponent = "\ue91d";
         public const string Revenge = "\ue91e";
         public const string HowToPlay = "\ue92a";
+        public const string Notification = "\ue92f";
     }
 }

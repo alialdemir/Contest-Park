@@ -51,14 +51,14 @@ namespace ContestPark.Notification.API.Controllers
 
             IEnumerable<string> userIds = result
                                             .Items
-                                            .Select(notification => notification.WhoUserId)
+                                            .Select(notification => notification.UserId)
                                             .ToList();
 
             IEnumerable<UserModel> userInfos = await _identityService.GetUserInfosAsync(userIds);
             if (userInfos != null && userInfos.Any())
             {
                 result.Items = (from notification in result.Items
-                                let user = userInfos.FirstOrDefault(user => user.UserId == notification.WhoUserId)
+                                let user = userInfos.FirstOrDefault(user => user.UserId == notification.UserId)
                                 select new NotificationModel
                                 {
                                     Date = notification.Date,
@@ -67,10 +67,10 @@ namespace ContestPark.Notification.API.Controllers
                                     Link = notification.Link,
                                     NotificationId = notification.NotificationId,
                                     NotificationType = notification.NotificationType,
-                                    WhoUserId = notification.WhoUserId,
+                                    UserId = notification.UserId,
                                     ProfilePicturePath = user.ProfilePicturePath,
-                                    WhoFullName = user.FullName,
-                                    WhoUserName = user.UserName,
+                                    FullName = user.FullName,
+                                    UserName = user.UserName,
                                 }).ToList();
             }
 

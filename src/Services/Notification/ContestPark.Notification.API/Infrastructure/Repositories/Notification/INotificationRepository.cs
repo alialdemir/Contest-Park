@@ -11,7 +11,8 @@ namespace ContestPark.Notification.API.Infrastructure.Repositories.Notification
     {
         Task<bool> AddRangeAsync(IEnumerable<Tables.Notification> notifications);
 
-        bool IsNotificationBeAdded(NotificationTypes notificationType, int postId, string whoId, string link);
+        bool IsNotificationBeAdded(NotificationTypes notificationType, int postId, string whoId);
+
         ServiceModel<NotificationModel> Notifications(string userId, Languages langId, PagingModel pagingModel);
     }
 }

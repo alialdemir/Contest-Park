@@ -1,10 +1,9 @@
-﻿using ContestPark.Mobile.Components.PostCardView;
-using ContestPark.Mobile.Models.Notification;
+﻿using ContestPark.Mobile.Models.Notification;
 using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ContestPark.Mobile.Components.NotificationCard
+namespace ContestPark.Mobile.Components
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public class NotificationCardFactory : ContentView
@@ -29,8 +28,8 @@ namespace ContestPark.Mobile.Components.NotificationCard
             {
                 switch (notificationModel.NotificationType)
                 {
-                    case Enums.NotificationTypes.Contest:
-                        Content = CreateContent(new ContestPostCard(NavigationService));
+                    case Enums.NotificationTypes.Follow:
+                        Content = CreateContent(new UserFollowListItem());
                         break;
                 }
             }

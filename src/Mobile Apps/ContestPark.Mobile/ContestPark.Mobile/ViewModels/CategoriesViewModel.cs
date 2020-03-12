@@ -214,6 +214,24 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand _goToCategorySearchPageCommand;
         public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>((categoryId) => ExecutGoToCategorySearchPageCommand(categoryId)));
 
+        public ICommand GotoNotificationsCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    if (IsBusy)
+                        return;
+
+                    IsBusy = true;
+
+                    PushNavigationPageAsync(nameof(NotificationView));
+
+                    IsBusy = false;
+                });
+            }
+        }
+
         private ICommand ConnectToSignalr => new Command(() =>
        {
            Device.BeginInvokeOnMainThread(async () =>

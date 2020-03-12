@@ -7,11 +7,11 @@ namespace ContestPark.Notification.API.Models
     {
         public int NotificationId { get; set; }
 
-        public string WhoUserId { get; set; }
+        public string UserId { get; set; }
 
-        public string WhoFullName { get; set; }
+        public string FullName { get; set; }
 
-        public string WhoUserName { get; set; }
+        public string UserName { get; set; }
 
         public string Description { get; set; }
 
