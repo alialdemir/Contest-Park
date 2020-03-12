@@ -30,11 +30,12 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory
         public bool IsReward(string userId)
         {
             string sql = @"(SELECT (CASE
-                            WHEN EXISTS(
-                            SELECT 1 FROM BalanceHistories bh
+                            WHEN (
+                            SELECT HOUR(TIMEDIFF(NOW(), bh.CreatedDate)) FROM BalanceHistories bh
                             WHERE bh.BalanceHistoryType  = @balanceHistoryType
                             AND bh.UserId = @userId
-                            AND HOUR(TIMEDIFF(NOW(), bh.CreatedDate)) >= 12)
+                            ORDER BY bh.CreatedDate DESC
+                            LIMIT 0,1) >= 12
                             THEN 1
                             ELSE 0
                             END))";
