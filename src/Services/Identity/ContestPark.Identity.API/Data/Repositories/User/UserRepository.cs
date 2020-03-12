@@ -50,6 +50,20 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         }
 
         /// <summary>
+        /// Kullanıcı id'sine ait telefon numarasını verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Kullanıcının telefon numarası</returns>
+        public string GetPhoneNumber(string userId)
+        {
+            return _applicationDbContext
+                                    .Users
+                                    .Where(u => u.Id == userId)
+                                    .Select(u => u.PhoneNumber)
+                                    .FirstOrDefault();
+        }
+
+        /// <summary>
         /// Telefon numarasına ait kullanıcı adı
         /// </summary>
         /// <param name="phoneNumber">Telefon numarası</param>

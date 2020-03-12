@@ -1,13 +1,17 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
+using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Game;
+using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
@@ -32,6 +36,8 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAdMobService _adMobService;
         private readonly IBalanceService _balanceService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IIdentityService _identityService;
+        private readonly ISettingsService _settingsService;
         private readonly IDuelSignalRService _duelSignalRService;
         private readonly ICategoryService _categoryServices;
 
@@ -48,6 +54,8 @@ namespace ContestPark.Mobile.ViewModels
                                    IPopupNavigation popupNavigation,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
+                                   IIdentityService identityService,
+                                   ISettingsService settingsService,
                                    IDuelSignalRService duelSignalRService,
                                    IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService, popupNavigation: popupNavigation)
@@ -66,6 +74,8 @@ namespace ContestPark.Mobile.ViewModels
             _adMobService = adMobService;
             _balanceService = balanceService;
             _analyticsService = analyticsService;
+            _identityService = identityService;
+            _settingsService = settingsService;
             _duelSignalRService = duelSignalRService;
 
             #region Skeleton loading
@@ -282,16 +292,38 @@ namespace ContestPark.Mobile.ViewModels
             get
             {
                 return new Command(async () =>
+                {
+                    decimal giftGold = await _balanceService.RewardAsync();
+                    if (giftGold > 0)
                     {
-                        decimal giftGold = await _balanceService.RewardAsync();
-                        if (giftGold > 0)
+                        await PushPopupPageAsync(new GiftGoldPopupView
                         {
-                            await PushPopupPageAsync(new GiftGoldPopupView
-                            {
-                                GiftGold = giftGold
-                            });
+                            GiftGold = giftGold
+                        });
+                    }
+                });
+            }
+        }
+
+        public ICommand ScopeRefleshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    if (true)
+                    {
+                        UserToken token = await _identityService.GetTokenAsync(new LoginModel
+                        {
+                            Password = _settingsService.CurrentUser.pho,
+                            UserName = _settingsService.CurrentUser.UserName
+                        });
+                        if (token != null)
+                        {
+                            _settingsService.SetTokenInfo(token);
                         }
-                    });
+                    }
+                });
             }
         }
 

@@ -20,6 +20,18 @@ namespace ContestPark.Mobile.ViewModels
 
         private string _gift = "gift1.gif";
 
+        private decimal _giftGold;
+
+        public decimal GiftGold
+        {
+            get { return _giftGold; }
+            set
+            {
+                _giftGold = value;
+                RaisePropertyChanged(() => GiftGold);
+            }
+        }
+
         public string Gift
         {
             get { return _gift; }

@@ -83,14 +83,34 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         #region Methods
 
         /// <summary>
+        /// Kullanıcı id'sine ait telefon numarası
+        /// </summary>
+        /// <returns>Telefon numarası</returns>
+        [HttpGet]
+        [Route("PhoneNumber")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public IActionResult GetPhoneNumber()
+        {
+            string phoneNumber = _userRepository.GetPhoneNumber(UserId);
+            if (string.IsNullOrEmpty(phoneNumber))
+                return NotFound();
+
+            return Ok(new
+            {
+                phoneNumber
+            });
+        }
+
+        /// <summary>
         /// Kullanıcı adına göre profil bilgilerini verir
         /// </summary>
         /// <param name="userName">Kullanıcı adı</param>
         /// <returns>Profil bilgileri</returns>
         [HttpGet]
         [Route("Profile/{userName}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProfileInfoModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetProfile([FromRoute] string userName)
         {
             UserProfileModel userProfile = _userRepository.GetUserInfoByUserName(userName);

@@ -25,5 +25,6 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         string GetUserIdByUserName(string userName);
         string GetUserNameByPhoneNumber(string phoneNumber);
         UserInfoModel UserInfo(string userId);
+        string GetPhoneNumber(string userId);
     }
 }

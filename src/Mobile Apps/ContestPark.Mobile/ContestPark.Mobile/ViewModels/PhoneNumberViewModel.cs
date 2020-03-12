@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.Identity;
@@ -190,7 +191,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task SignInAsync(string userName)// sms login gelince sil
         {
-            UserToken token = await _identityService.GetTokenAsync(new Models.LoginModel
+            UserToken token = await _identityService.GetTokenAsync(new LoginModel
             {
                 Password = PhoneNumberNoRegex,
                 UserName = userName

@@ -14,6 +14,18 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
+      "DownstreamPathTemplate": "/api/{version}/Account/PhoneNumber",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Account/PhoneNumber",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/{version}/Account/GetUserName?phoneNumber={phoneNumber}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

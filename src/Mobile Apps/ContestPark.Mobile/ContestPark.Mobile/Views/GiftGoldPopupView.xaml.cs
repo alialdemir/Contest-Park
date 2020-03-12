@@ -34,6 +34,7 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null)
                 return;
 
+            viewModel.GiftGold = GiftGold;
             viewModel.InitializeCommand.Execute(null);
             viewModel.IsInitialized = true;
         }
