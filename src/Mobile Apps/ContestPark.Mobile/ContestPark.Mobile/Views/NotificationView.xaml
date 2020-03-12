@@ -13,7 +13,10 @@
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:NotificationCardFactory FollowProcessCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference notificationView}}" GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference notificationView}}" />
+                        <components:NotificationCardFactory
+                            FollowProcessCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference notificationView}}"
+                            GotoPostDetailCommand="{Binding Path=BindingContext.GotoPostDetailCommand, Source={x:Reference notificationView}}"
+                            GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference notificationView}}" />
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

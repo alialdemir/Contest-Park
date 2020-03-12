@@ -19,7 +19,7 @@ namespace ContestPark.Post.API.Models.Post
         public int? DuelId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? SubCategoryId { get; set; }
+        public short? SubCategoryId { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string CompetitorUserId { get; set; }

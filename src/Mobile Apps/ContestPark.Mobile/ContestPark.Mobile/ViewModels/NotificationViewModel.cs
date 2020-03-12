@@ -153,7 +153,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand GotoPostDetailCommand
         {
-            get { return _gotoPostDetailCommand ?? (_gotoPostDetailCommand = new Command<int>(async (postId) => await ExecuteGotoPostDetailCommand(postId))); }
+            get { return _gotoPostDetailCommand ?? (_gotoPostDetailCommand = new Command<int>((postId) => ExecuteGotoPostDetailCommand(postId))); }
         }
 
         #endregion Commands
