@@ -1,5 +1,6 @@
 ﻿using ContestPark.Balance.API.Enums;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
+using ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory;
 using ContestPark.Balance.API.Infrastructure.Repositories.MoneyWithdrawRequest;
 using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
 using ContestPark.Balance.API.Infrastructure.Repositories.Reference;
@@ -25,6 +26,7 @@ namespace ContestPark.Balance.API.Controllers
 
         private readonly IBalanceRepository _balanceRepository;
         private readonly IReferenceRepository _referenceRepository;
+        private readonly IBalanceHistoryRepository _balanceHistoryRepository;
         private readonly IReferenceCodeRepostory _referenceCodeRepostory;
         private readonly IEventBus _eventBus;
         private readonly IMoneyWithdrawRequestRepository _moneyWithdrawRequestRepository;
@@ -36,6 +38,7 @@ namespace ContestPark.Balance.API.Controllers
 
         public BalanceController(IBalanceRepository balanceRepository,
                                  IReferenceRepository referenceRepository,
+                                 IBalanceHistoryRepository balanceHistoryRepository,
                                  IReferenceCodeRepostory referenceCodeRepostory,
                                  IEventBus eventBus,
                                  IMoneyWithdrawRequestRepository moneyWithdrawRequestRepository,
@@ -44,6 +47,7 @@ namespace ContestPark.Balance.API.Controllers
         {
             _balanceRepository = balanceRepository ?? throw new ArgumentNullException(nameof(balanceRepository));
             _referenceRepository = referenceRepository;
+            _balanceHistoryRepository = balanceHistoryRepository;
             _referenceCodeRepostory = referenceCodeRepostory;
             _eventBus = eventBus;
             _moneyWithdrawRequestRepository = moneyWithdrawRequestRepository;
@@ -99,6 +103,33 @@ namespace ContestPark.Balance.API.Controllers
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// Günlük altın kazanma hakkı
+        /// </summary>
+        [HttpPost("Reward")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult DailyReward()
+        {
+            if (!_balanceHistoryRepository.IsReward(UserId))
+                return NotFound();
+
+            var rndNumber = new Random().Next(60, 120);// 60-120 arası altın üretir
+
+            decimal reward = Convert.ToDecimal(rndNumber.ToString("N2"));
+
+            Logger.LogInformation("Kullanıcı günlük altın kazandı. {gold} - {userId}", reward, UserId);
+
+            var @event = new ChangeBalanceIntegrationEvent(reward,
+                                                           UserId,
+                                                           BalanceTypes.Gold,
+                                                           BalanceHistoryTypes.DailyChip);
+
+            _eventBus.Publish(@event);
+
+            return Ok(new { Amount = reward });
+        }
 
         /// <summary>
         /// Reklam izleyerek altın kazandı

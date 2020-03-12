@@ -764,4 +764,13 @@
   <data name="YourOpponentDidNotAcceptYourDuelInvitation" xml:space="preserve">
     <value>Your opponent did not accept your duel invitation.</value>
   </data>
+  <data name="DailyReward" xml:space="preserve">
+    <value>Daily Reward</value>
+  </data>
+  <data name="TapToOpen" xml:space="preserve">
+    <value>TAP TO OPEN</value>
+  </data>
+  <data name="Collect" xml:space="preserve">
+    <value>Collect</value>
+  </data>
 </root>

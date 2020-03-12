@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="0,60,0,0" Orientation="Vertical">
+        <StackLayout Orientation="Vertical">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <components:NonPersistentSelectedItemListView
                     x:Name="lstMessages"

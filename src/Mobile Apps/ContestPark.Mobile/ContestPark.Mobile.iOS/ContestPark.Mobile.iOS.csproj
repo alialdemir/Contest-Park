@@ -860,6 +860,15 @@
   <ItemGroup>
     <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\coins.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gift1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gift2.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

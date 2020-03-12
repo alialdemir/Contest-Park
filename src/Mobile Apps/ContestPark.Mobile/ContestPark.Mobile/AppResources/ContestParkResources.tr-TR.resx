@@ -186,6 +186,9 @@
   <data name="ChooseFromLibrary" xml:space="preserve">
     <value>Gallery'den seç</value>
   </data>
+  <data name="Collect" xml:space="preserve">
+    <value>Topla</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>Yorumlar</value>
   </data>
@@ -207,6 +210,9 @@
   </data>
   <data name="ConvertToCash" xml:space="preserve">
     <value>Paranı Nakite Çevir</value>
+  </data>
+  <data name="DailyReward" xml:space="preserve">
+    <value>Günlük Ödül</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value> Gün </value>
@@ -623,6 +629,9 @@
   </data>
   <data name="TakeAPhoto" xml:space="preserve">
     <value>Fotoğraf çek</value>
+  </data>
+  <data name="TapToOpen" xml:space="preserve">
+    <value>AÇMAK İÇİN DOKUNUN</value>
   </data>
   <data name="TheOpponentDidNotAcceptTheDuel" xml:space="preserve">
     <value>Rakip oyuncu düelloyu kabul etmedi.</value>

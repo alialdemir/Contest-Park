@@ -45,6 +45,20 @@ namespace ContestPark.Mobile.Services.Cp
         }
 
         /// <summary>
+        /// Günlük altın kazanma hakkı
+        /// </summary>
+        public async Task<decimal> RewardAsync()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Reward");
+
+            var result = await _requestProvider.PostAsync<RewardModel>(uri);
+            if (!result.IsSuccess)
+                return 0;
+
+            return result.Data.Amount;
+        }
+
+        /// <summary>
         /// Giriiş toplam altın miktarını verir
         /// </summary>
         /// <returns>Toplam altın miktarı</returns>

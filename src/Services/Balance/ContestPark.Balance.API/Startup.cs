@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
+using ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory;
 using ContestPark.Balance.API.Infrastructure.Repositories.MoneyWithdrawRequest;
 using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
 using ContestPark.Balance.API.Infrastructure.Repositories.Reference;
@@ -51,6 +52,7 @@ namespace ContestPark.Balance.API
             services.AddTransient<IPurchaseHistoryRepository, PurchaseHistoryRepository>();
             services.AddTransient<IReferenceRepository, ReferenceRepository>();
             services.AddTransient<IReferenceCodeRepostory, ReferenceCodeRepostory>();
+            services.AddTransient<IBalanceHistoryRepository, BalanceHistoryRepository>();
 
             services.AddTransient<IMoneyWithdrawRequestRepository, MoneyWithdrawRequestRepository>();
 

@@ -268,6 +268,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collect.
+        /// </summary>
+        public static string Collect {
+            get {
+                return ResourceManager.GetString("Collect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comment.
         /// </summary>
         public static string Comment {
@@ -328,6 +337,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string ConvertToCash {
             get {
                 return ResourceManager.GetString("ConvertToCash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily Reward.
+        /// </summary>
+        public static string DailyReward {
+            get {
+                return ResourceManager.GetString("DailyReward", resourceCulture);
             }
         }
         
@@ -1561,6 +1579,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string TakeAPhoto {
             get {
                 return ResourceManager.GetString("TakeAPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TAP TO OPEN.
+        /// </summary>
+        public static string TapToOpen {
+            get {
+                return ResourceManager.GetString("TapToOpen", resourceCulture);
             }
         }
         

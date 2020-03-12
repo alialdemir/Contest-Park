@@ -6,6 +6,7 @@ using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Category;
+using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
@@ -29,6 +30,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly ISignalRServiceBase _baseSignalRService;
         private readonly IGameService _gameService;
         private readonly IAdMobService _adMobService;
+        private readonly IBalanceService _balanceService;
         private readonly IAnalyticsService _analyticsService;
         private readonly IDuelSignalRService _duelSignalRService;
         private readonly ICategoryService _categoryServices;
@@ -44,6 +46,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IGameService gameService,
                                    IAdMobService adMobService,
                                    IPopupNavigation popupNavigation,
+                                   IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
                                    IDuelSignalRService duelSignalRService,
                                    IEventAggregator eventAggregator
@@ -61,6 +64,7 @@ namespace ContestPark.Mobile.ViewModels
             _baseSignalRService = baseSignalRService;
             _gameService = gameService;
             _adMobService = adMobService;
+            _balanceService = balanceService;
             _analyticsService = analyticsService;
             _duelSignalRService = duelSignalRService;
 
@@ -106,6 +110,8 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             ConnectToSignalr.Execute(null);
+
+            CheckRewardCommand.Execute(null);
 
             //TODO: Kategorileri sayfala
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
@@ -265,6 +271,27 @@ namespace ContestPark.Mobile.ViewModels
             get
             {
                 return _subCategoriesDisplayActionSheetCommand ?? (_subCategoriesDisplayActionSheetCommand = new Command<SubCategoryModel>(async (subCategory) => await AddLongPressed(subCategory)));
+            }
+        }
+
+        /// <summary>
+        /// Hediye altın kazanma durumunu kontrol edip kazanmışsa popup açar
+        /// </summary>
+        public ICommand CheckRewardCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                    {
+                        decimal giftGold = await _balanceService.RewardAsync();
+                        if (giftGold > 0)
+                        {
+                            await PushPopupPageAsync(new GiftGoldPopupView
+                            {
+                                GiftGold = giftGold
+                            });
+                        }
+                    });
             }
         }
 
