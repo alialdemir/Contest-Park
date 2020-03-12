@@ -8,7 +8,6 @@ using ContestPark.Duel.API.Services.Balance;
 using ContestPark.Duel.API.Services.ScoreCalculator;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -151,17 +150,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Oyuncunun şuanki Altın miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                byte scoreDiff = (byte)(new Random().Next(0, 5));
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
                 {
-                    currentRound.FounderScore = (byte)scoreDiff;
+                    currentRound.FounderScore = @event.Time;
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
                 else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
                 {
-                    currentRound.OpponentScore = (byte)scoreDiff;
+                    currentRound.OpponentScore = @event.Time;
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
