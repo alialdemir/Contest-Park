@@ -35,8 +35,8 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory
                             WHERE bh.BalanceHistoryType  = @balanceHistoryType
                             AND bh.UserId = @userId
                             AND HOUR(TIMEDIFF(NOW(), bh.CreatedDate)) >= 12)
-                            THEN 1
-                            ELSE 0
+                            THEN 0
+                            ELSE 1
                             END))";
 
             return _balanceHistoryRepository.QuerySingleOrDefault<bool>(sql, new
