@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
@@ -77,6 +78,16 @@ namespace ContestPark.Mobile.Services.Identity
                 IsFollowing = false,
                 UserId = userId,
                 IsBlocked = true,
+            });
+        }
+
+        public Task<RandomUserModel> GetRandomBotUser()
+        {
+            return Task.FromResult(new RandomUserModel
+            {
+                FullName = "Elif Öz",
+                ProfilePicturePath = DefaultImages.DefaultProfilePicture,
+                UserId = "2222-2222-2222-2222",
             });
         }
 

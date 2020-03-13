@@ -7,6 +7,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
@@ -69,6 +70,20 @@ namespace ContestPark.Mobile.Services.Identity
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Rastgele bot kullanıcı bilgileri verir
+        /// </summary>
+        /// <returns>Kullanıcı bilgileri</returns>
+        public async Task<RandomUserModel> GetRandomBotUser()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/RandomUser");
+            var response = await _requestProvider.GetAsync<RandomUserModel>(uri);
+            if (!response.IsSuccess)
+                return null;
+
+            return response.Data;
+        }
 
         /// <summary>
         /// Kapak resmi değiştir

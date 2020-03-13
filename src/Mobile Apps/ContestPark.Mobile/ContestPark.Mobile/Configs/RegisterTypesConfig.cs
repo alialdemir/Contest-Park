@@ -12,6 +12,7 @@ using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InAppBilling;
+using ContestPark.Mobile.Services.InviteDuel;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
 using ContestPark.Mobile.Services.Notification;
@@ -231,6 +232,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterSingleton<IAdMobService, AdMobService>();
 
             containerRegistry.RegisterSingleton<IAnalyticsService, AnalyticsService>();
+
+            containerRegistry.RegisterSingleton<IInviteDuelService, InviteDuelService>();
 
             //containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
         }

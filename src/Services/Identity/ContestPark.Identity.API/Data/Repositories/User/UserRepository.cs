@@ -211,9 +211,9 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         /// Rastgele bot kullanıcı verir
         /// </summary>
         /// <returns>Rastgele bir kullanıcı</returns>
-        public RandomUserModel GetRandomBotUserId()
+        public RandomUserModel GetRandomBotUser()
         {
-            string sql = @"SELECT a.Id FROM AspNetUsers a
+            string sql = @"SELECT a.Id, a.ProfilePicturePath, a.FullName FROM AspNetUsers a
                            WHERE a.IsBot = true
                            ORDER BY RAND()
                            LIMIT 1";

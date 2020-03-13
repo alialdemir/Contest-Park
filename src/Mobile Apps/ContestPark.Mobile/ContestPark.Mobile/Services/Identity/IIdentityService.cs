@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
@@ -19,8 +20,12 @@ namespace ContestPark.Mobile.Services.Identity
         Task ChangeProfilePictureAsync(MediaModel media);
 
         Task ForgetYourPasswordAsync(string userNameOrEmailAddress);
+
         Task<string> GetPhoneNumber();
+
         Task<ProfileInfoModel> GetProfileInfoByUserName(string userName);
+
+        Task<RandomUserModel> GetRandomBotUser();
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);
 

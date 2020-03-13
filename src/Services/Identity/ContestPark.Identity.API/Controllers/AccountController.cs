@@ -690,9 +690,9 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [HttpGet("RandomUser")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        public IActionResult GetRandomUserId()
+        public IActionResult GetRandomUser()
         {
-            var user = _userRepository.GetRandomBotUserId();
+            var user = _userRepository.GetRandomBotUser();
             if (user == null)
                 return NotFound();
 
