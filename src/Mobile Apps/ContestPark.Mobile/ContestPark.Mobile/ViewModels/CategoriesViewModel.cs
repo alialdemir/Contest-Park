@@ -12,6 +12,7 @@ using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Services.InviteDuel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
@@ -37,6 +38,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAdMobService _adMobService;
         private readonly IBalanceService _balanceService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IInviteDuelService _inviteDuelService;
         private readonly IIdentityService _identityService;
         private readonly ISettingsService _settingsService;
         private readonly IDuelSignalRService _duelSignalRService;
@@ -55,6 +57,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IPopupNavigation popupNavigation,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
+                                   IInviteDuelService inviteDuelService,
                                    IIdentityService identityService,
                                    ISettingsService settingsService,
                                    IDuelSignalRService duelSignalRService,
@@ -75,6 +78,7 @@ namespace ContestPark.Mobile.ViewModels
             _adMobService = adMobService;
             _balanceService = balanceService;
             _analyticsService = analyticsService;
+            _inviteDuelService = inviteDuelService;
             _identityService = identityService;
             _settingsService = settingsService;
             _duelSignalRService = duelSignalRService;
@@ -130,6 +134,8 @@ namespace ContestPark.Mobile.ViewModels
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
 
             await base.InitializeAsync();
+
+            _inviteDuelService.InviteDuelCommand.Execute(null);
 
             IsBusy = false;
         }
@@ -231,7 +237,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _goToCategorySearchPageCommand;
-        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>((categoryId) => ExecutGoToCategorySearchPageCommand(categoryId)));
+        public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>(ExecutGoToCategorySearchPageCommand));
 
         public ICommand GotoNotificationsCommand
         {
