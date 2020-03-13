@@ -809,6 +809,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is looking for an opponent..
+        /// </summary>
+        public static string IsLookingForAnOpponent {
+            get {
+                return ResourceManager.GetString("IsLookingForAnOpponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KNOW QUESTIONS.
         /// </summary>
         public static string KnowQuestions {

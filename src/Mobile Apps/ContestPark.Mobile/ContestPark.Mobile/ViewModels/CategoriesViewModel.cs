@@ -135,7 +135,7 @@ namespace ContestPark.Mobile.ViewModels
 
             await base.InitializeAsync();
 
-            _inviteDuelService.InviteDuelCommand.Execute(null);
+            _inviteDuelService.InviteDuelCommand.Execute(Items);
 
             IsBusy = false;
         }
@@ -221,7 +221,10 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             string popupName = CurrentPopupName();
-            if (popupName != nameof(QuestionExpectedPopupView) && popupName != nameof(QuestionPopupView) && popupName != nameof(AcceptDuelInvitationPopupView))
+            if (popupName != nameof(DuelStartingPopupView)
+                && popupName != nameof(QuestionPopupView)
+                && popupName != nameof(QuestionExpectedPopupView)
+                && popupName != nameof(AcceptDuelInvitationPopupView))
             {
                 PushPopupPageAsync(new AcceptDuelInvitationPopupView
                 {

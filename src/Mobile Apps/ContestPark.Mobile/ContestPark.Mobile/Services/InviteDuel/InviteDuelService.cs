@@ -1,7 +1,7 @@
-﻿using ContestPark.Mobile.Enums;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
-using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Identity;
@@ -28,7 +28,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
         private readonly ISettingsService _settingsService;
         private readonly IPopupNavigation _popupNavigation;
 
-        private readonly decimal[] _goldBets = new decimal[] { 80.00m, 600.00m, 2000.00m, 6000.00m, 9200.00m, 20000.00m };
+        private readonly decimal[] _goldBets = new decimal[] { 0, 80.00m, 600.00m, 2000.00m, 6000.00m, 9200.00m, 20000.00m };
         private readonly decimal[] _moneyBets = new decimal[] { 2.00m, 6.00m, 8.00m, 10.00m, 12.00m, 20.00m };
 
         #endregion Private variables
@@ -52,11 +52,13 @@ namespace ContestPark.Mobile.Services.InviteDuel
 
         #region Properties
 
-        public int RandomSecond
+        public byte BalanceTypeIndex { get; set; }
+
+        private int RandomSecond
         {
             get
             {
-                return 1000;// new Random().Next(5000, 20000);
+                return new Random().Next(10000, 20000);
             }
         }
 
@@ -67,49 +69,60 @@ namespace ContestPark.Mobile.Services.InviteDuel
         /// <summary>
         /// Belirli aralıklarla ekrana düello daveti isteği gösterir
         /// </summary>
-        private void StartTimer()
+        private void StartTimer(IEnumerable<CategoryModel> categories)
         {
+            if (categories == null || !categories.Any())
+                return;
+
             Device.StartTimer(TimeSpan.FromMilliseconds(RandomSecond), () =>
             {
-                InviteDuel().Wait();
+                Device.BeginInvokeOnMainThread(async () => await InviteDuel(categories));
 
                 return false;
             });
         }
 
-        private async Task InviteDuel()
+        /// <summary>
+        /// Random düello daveti gösterir
+        /// </summary>
+        /// <param name="categories">Kategoriler</param>
+        private async Task InviteDuel(IEnumerable<CategoryModel> categories)
         {
             string popupName = CurrentPopupName();
-            if (popupName == nameof(QuestionExpectedPopupView)
-                || popupName == nameof(QuestionPopupView)
-                || popupName == nameof(AcceptDuelInvitationPopupView))// Eğer düellodaysa davet göndermesin
+
+            if (popupName.EndsWith("PopupView"))// Eğer düellodaysa davet göndermesin
             {
-                StartTimer();
+                StartTimer(categories);
+
                 return;
             }
+
+            // TODO: random bot user çekerken liste şeklinde çekelim mobile tarafta random davet atsın böylece sunucuya giden request sayısını azaltmış oluruz
 
             var randomBotUser = await _identityService.GetRandomBotUser();
             if (randomBotUser == null)
             {
-                StartTimer();
+                StartTimer(categories);
+
                 return;
             }
 
-            var categories = await _categoryService.CategoryListAsync(new PagingModel { PageSize = 9999 });
-            if (categories == null || !categories.Items.Any())
-            {
-                StartTimer();
-                return;
-            }
-
-            SubCategoryModel subCategory = GetRandomSubCategory(categories.Items);
+            SubCategoryModel subCategory = GetRandomSubCategory(categories);
             if (subCategory == null)
             {
-                StartTimer();
+                StartTimer(categories);
+
                 return;
             }
-
             BalanceTypes balanceType = BalanceTypes.Gold;
+
+            BalanceTypeIndex += 1;
+
+            if (BalanceTypeIndex > 3)
+            {
+                BalanceTypeIndex = 0;
+                balanceType = BalanceTypes.Money;
+            }
 
             await _popupNavigation.PushAsync(new AcceptDuelInvitationPopupView
             {
@@ -117,7 +130,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 {
                     BalanceType = balanceType,
                     Bet = await GetRandomBet(balanceType),
-                    FounderConnectionId = "bot",
+                    FounderConnectionId = "rnsadjge4",
                     FounderFullname = randomBotUser.FullName,
                     FounderUserId = randomBotUser.UserId,
                     FounderProfilePicturePath = randomBotUser.ProfilePicturePath,
@@ -127,10 +140,13 @@ namespace ContestPark.Mobile.Services.InviteDuel
                     SubCategoryId = subCategory.SubCategoryId,
                     SubCategoryName = subCategory.SubCategoryName,
                     SubCategoryPicture = subCategory.PicturePath,
+                    Description = string.Format(ContestParkResources.IsLookingForAnOpponent, randomBotUser.FullName),
                 }
             });
 
-            StartTimer();
+            await Task.Delay(5000);
+
+            StartTimer(categories);
         }
 
         /// <summary>
@@ -143,13 +159,20 @@ namespace ContestPark.Mobile.Services.InviteDuel
             var balance = await _balanceService.GetBalanceAsync();
 
             decimal[] bets;
-            int index;
+            int index = 0;
 
             if (balanceType == BalanceTypes.Money)
             {
                 bets = _moneyBets
                                .Where(bet => bet <= balance.Money)
                                .ToArray();
+
+                if (bets.Length == 0)
+                {
+                    return _moneyBets
+                                .OrderBy(x => Guid.NewGuid())
+                                .FirstOrDefault();
+                }
 
                 index = new Random().Next(0, bets.Length - 1);
 
@@ -197,7 +220,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
 
         public ICommand InviteDuelCommand
         {
-            get { return new Command(StartTimer); }
+            get { return new Command<IEnumerable<CategoryModel>>(StartTimer); }
         }
 
         #endregion Commands

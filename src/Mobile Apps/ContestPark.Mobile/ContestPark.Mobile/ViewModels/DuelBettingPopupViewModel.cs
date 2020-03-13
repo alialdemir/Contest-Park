@@ -260,6 +260,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     Image = "prizeicon1.png",
                     Title = ContestParkResources.Freeloader,
+                    BalanceType = BalanceTypes.Gold,
                     Description = ContestParkResources.AdvertiseWatchPlayGames,
                     EntryFee = 0,
                     Prize = 80.00m,

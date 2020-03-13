@@ -40,22 +40,7 @@ namespace ContestPark.Mobile.Services.Identity
             return Task.CompletedTask;
         }
 
-        public Task<bool> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
-        {
-            return Task.FromResult(true);
-        }
-
-        public Task<bool> ChangePasswordAsync(int code)
-        {
-            return Task.FromResult(true);
-        }
-
         public Task ChangeProfilePictureAsync(MediaModel picture)
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task ForgetYourPasswordAsync(string userNameOrEmailAddress)
         {
             return Task.CompletedTask;
         }

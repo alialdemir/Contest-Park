@@ -8,7 +8,6 @@ using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Duel;
-using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
@@ -205,24 +204,6 @@ namespace ContestPark.Mobile.Services.Identity
         }
 
         /// <summary>
-        /// Şifremi unuttum kodu kontrol eder
-        /// </summary>
-        /// <param name="code">Kod</param>
-        /// <returns>Başarılı ise true değilse false</returns>
-        public async Task<bool> ChangePasswordAsync(int code)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ChangePassword/Codecheck?code={code}");
-
-            var response = await _requestProvider.GetAsync<string>(uri);
-            if (!response.IsSuccess)
-            {
-                await ShowErrorMessage(ContestParkResources.YouHaveEnteredAnInvalidCode);
-            }
-
-            return response.IsSuccess;
-        }
-
-        /// <summary>
         /// Kullanıcıya ait telefon numarası
         /// </summary>
         /// <returns>Telefon numarası</returns>
@@ -235,23 +216,6 @@ namespace ContestPark.Mobile.Services.Identity
                 return string.Empty;
 
             return response.Data.PhoneNumber;
-        }
-
-        /// <summary>
-        /// Şifremi unuttum
-        /// </summary>
-        /// <param name="UserNameOrEmail">Kullanıcı adı veya eposta adresi</param>
-        public async Task ForgetYourPasswordAsync(string UserNameOrEmail)
-        {
-            if (string.IsNullOrEmpty(UserNameOrEmail))
-            {
-                await ShowErrorMessage(ContestParkResources.WriteYourUserNameOrEmailAddress);
-            }
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/ForgotYourPassword");
-
-            var result = await _requestProvider.PostAsync<ValidationResultModel>(uri, new { UserNameOrEmail });
-
-            await ShowErrorMessage(result.Data.ErrorMessage);
         }
 
         /// <summary>

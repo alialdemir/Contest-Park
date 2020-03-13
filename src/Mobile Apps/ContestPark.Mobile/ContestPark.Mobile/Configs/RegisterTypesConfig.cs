@@ -89,8 +89,6 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<FollowingView, FollowingViewModel>();
 
-            containerRegistry.RegisterForNavigation<ForgetYourPasswordView, ForgetYourPasswordViewModel>();
-
             containerRegistry.RegisterForNavigation<GiftGoldPopupView, GiftGoldPopupViewModel>();
 
             containerRegistry.RegisterForNavigation<IbanNoView, IbanNoViewModel>();

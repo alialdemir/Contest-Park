@@ -776,4 +776,7 @@
   <data name="YourNotificationListIsEmpty" xml:space="preserve">
     <value>Your notification list is empty.</value>
   </data>
+  <data name="IsLookingForAnOpponent" xml:space="preserve">
+    <value>{0} is looking for an opponent.</value>
+  </data>
 </root>

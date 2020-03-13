@@ -12,12 +12,6 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="acceptDuelInvitationPopupView"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <pages:PopupPage.Resources>
-        <ResourceDictionary>
-            <converter:AcceptDuelDescriptionConverter x:Key="addc" />
-        </ResourceDictionary>
-    </pages:PopupPage.Resources>
-
     <pages:PopupPage.Content>
 
         <RelativeLayout>
@@ -171,9 +165,9 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         FontFamily="{StaticResource MontserratRegular}"
-                        FontSize="10"
+                        FontSize="14"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding Path=InviteModel.FounderFullname, Converter={StaticResource addc}}"
+                        Text="{Binding InviteModel.Description}"
                         TextColor="{StaticResource Black}"
                         VerticalTextAlignment="Center" />
 

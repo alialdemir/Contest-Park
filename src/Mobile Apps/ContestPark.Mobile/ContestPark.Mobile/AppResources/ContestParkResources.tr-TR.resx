@@ -369,6 +369,9 @@
   <data name="InviteSaveMoney" xml:space="preserve">
     <value>Davet Et, Para Kazan!</value>
   </data>
+  <data name="IsLookingForAnOpponent" xml:space="preserve">
+    <value>{0} rakip arıyor.</value>
+  </data>
   <data name="KnowQuestions" xml:space="preserve">
     <value>SORULARI BİL</value>
   </data>
