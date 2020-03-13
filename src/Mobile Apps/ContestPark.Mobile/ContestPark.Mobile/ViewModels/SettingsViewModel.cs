@@ -135,7 +135,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ChangePrivateProfileAsync()
         {
-            _analyticsService.SendEvent("Ayarlar", "Ayarlar", "Private Profil");
+            _analyticsService.SendEvent("Ayarlar", "Tıklama", "Private Profil");
 
             _settingsService.CurrentUser.IsPrivateProfile = !_settingsService.CurrentUser.IsPrivateProfile;
 
@@ -162,7 +162,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ChangeSoundAsync()
         {
-            _analyticsService.SendEvent("Ayarlar", "Ayarlar", "Ses Ayarı");
+            _analyticsService.SendEvent("Ayarlar", "Tıklama", "Ses Ayarı");
 
             _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
         }
@@ -179,7 +179,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            _analyticsService.SendEvent("Ayarlar", "Ayarlar", name);
+            _analyticsService.SendEvent("Ayarlar", "Tıklama", name);
 
             await PushNavigationPageAsync(name);
 

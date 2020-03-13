@@ -208,10 +208,10 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         }
 
         /// <summary>
-        /// Rastgele kullanıcı id verir
+        /// Rastgele bot kullanıcı verir
         /// </summary>
-        /// <returns>Rastgele bir kullanıcı id</returns>
-        public string GetRandomBotUserId()
+        /// <returns>Rastgele bir kullanıcı</returns>
+        public RandomUserModel GetRandomBotUserId()
         {
             string sql = @"SELECT a.Id FROM AspNetUsers a
                            WHERE a.IsBot = true
@@ -221,7 +221,12 @@ namespace ContestPark.Identity.API.Data.Repositories.User
             return _applicationDbContext
                                 .Users
                                 .FromSql(sql)
-                                .Select(u => u.Id)
+                                .Select(u => new RandomUserModel
+                                {
+                                    UserId = u.Id,
+                                    ProfilePicturePath = u.ProfilePicturePath,
+                                    FullName = u.FullName,
+                                })
                                 .FirstOrDefault();
         }
 

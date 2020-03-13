@@ -118,7 +118,7 @@ namespace ContestPark.Core.Services.Identity
         /// <returns>Kullanıcı id</returns>
         public async Task<string> GetRandomUserId()
         {
-            UserIdModel user = await _requestProvider.GetAsync<UserIdModel>($"{baseUrl}/RandomUserId");
+            UserIdModel user = await _requestProvider.GetAsync<UserIdModel>($"{baseUrl}/RandomUser");
 
             return user.UserId;
         }

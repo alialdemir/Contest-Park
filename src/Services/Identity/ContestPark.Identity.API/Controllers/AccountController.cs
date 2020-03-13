@@ -687,15 +687,16 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// Rastgele kullanıcı id verir
         /// </summary>
         /// <returns>Kullanıcı id</returns>
-        [HttpGet("RandomUserId")]
+        [HttpGet("RandomUser")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         public IActionResult GetRandomUserId()
         {
-            return Ok(new
-            {
-                userId = _userRepository.GetRandomBotUserId()
-            });
+            var user = _userRepository.GetRandomBotUserId();
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
         }
 
         /// <summary>
