@@ -30,7 +30,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
         #region Constructor
 
-        public SearchRepository(IElasticContext elasticContext,
+        public SearchRepository(//IElasticContext elasticContext,
                                 IFollowSubCategoryRepository followSubCategoryRepository,
                                 IRepository<Tables.SubCategory> subCategoryRepository,
                                 IConfiguration configuration,
@@ -38,7 +38,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                 IMapper mapper)
         {
             ElasticSearchIndexName = configuration["ElasticSearchIndexName"];
-            _elasticContext = elasticContext;
+            //   _elasticContext = elasticContext;
             _followSubCategoryRepository = followSubCategoryRepository;
             _subCategoryRepository = subCategoryRepository;
             _openCategoryRepository = openCategoryRepository;
@@ -182,16 +182,16 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         {
             #region Geçici olarak mysql üzerinden search ekledim
 
-            string sql1 = @"SELECT
+            string sql1 = $@"SELECT
                             a.FullName,
                             a.UserName,
                             a.ProfilePicturePath AS PicturePath,
                             a.Id AS UserId,
                             FNC_IsFollow(@userId, a.Id) AS IsFollowing
                             FROM AspNetUsers a
-                            WHERE a.FullName LIKE '%@searchText%' OR a.UserName LIKE '%@searchText%'";
+                            WHERE a.FullName LIKE '%{searchText}%' OR a.UserName LIKE '%{searchText}%'";
 
-            string sqlSubCategory = @"SELECT
+            string sqlSubCategory = $@"SELECT
                                       scl.SubCategoryName,
                                       sc.SubCategoryId,
                                       2 AS SearchType,
@@ -235,9 +235,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                       INNER JOIN SubCategories sc ON sc.SubCategoryId = scl.SubCategoryId
                                       INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = sc.SubCategoryId
                                       INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = scr.CategoryId AND cl.`Language` = @language
-                                      WHERE scl.SubCategoryName LIKE '%@searchText%' AND scl.`Language` = @language AND sc.Visibility = 1";
+                                      WHERE scl.SubCategoryName LIKE '%{searchText}%' AND scl.`Language` = @language AND sc.Visibility = 1";
 
-            string sql3 = @"SELECT
+            string sql3 = $@"SELECT
                             scl.SubCategoryName,
                             sc.SubCategoryId,
                             cl.TEXT AS CategoryName,
@@ -282,7 +282,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                             INNER JOIN SubCategoryRls scr ON c.CategoryId = scr.CategoryId
                             INNER JOIN SubCategories sc ON sc.SubCategoryId = scr.SubCategoryId
                             INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = @language
-							WHERE cl.Text LIKE '%@searchText%' AND cl.`Language` = @language AND c.Visibility = 1";
+							WHERE cl.Text LIKE '%{searchText}%' AND cl.`Language` = @language AND c.Visibility = 1";
 
             var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
             {
@@ -307,16 +307,24 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 picturePath = DefaultImages.DefaultProfilePicture,
             }, pagingModel: pagingModel);
 
-            ServiceModel<SearchModel> result = new ServiceModel<SearchModel>();
+            List<SearchModel> searches = new List<SearchModel>();
 
             if (searchUsers != null && searchUsers.Items.Any())
-                result.Items.ToList().AddRange(searchUsers.Items);
+                searches.AddRange(searchUsers.Items);
 
             if (searchSubCategories != null && searchSubCategories.Items.Any())
-                result.Items.ToList().AddRange(searchSubCategories.Items);
+                searches.AddRange(searchSubCategories.Items);
 
             if (searchCategories != null && searchCategories.Items.Any())
-                result.Items.ToList().AddRange(searchCategories.Items);
+                searches.AddRange(searchCategories.Items);
+
+            ServiceModel<SearchModel> result = new ServiceModel<SearchModel>
+            {
+                Items = searches,
+                PageNumber = pagingModel.PageNumber,
+                PageSize = pagingModel.PageSize,
+                HasNextPage = searchUsers.HasNextPage && searchSubCategories.HasNextPage && searchCategories.HasNextPage,
+            };
 
             return Task.FromResult(result);
 
