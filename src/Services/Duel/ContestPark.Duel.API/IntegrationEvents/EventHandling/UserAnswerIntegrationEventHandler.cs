@@ -103,6 +103,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #region Bot kazanma ayarları
 
+            #region Cevaplama
+
             if (@event.UserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
                 _logger.LogInformation("Altın ile düello oynanıyor...");
@@ -113,19 +115,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
                 string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
-                BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Money);// bot olmayan kullanıcının Altın miktarını aldık
-                bool withdrawalStatus = balance.Amount >= 80.00m;// Oyunun Altın miktarı 80'den fazla ise Altını her an çekebilir
-
-                _logger.LogInformation("Oyuncunun şuanki Altın miktarı {balance} {realUserId}", balance.Amount, realUserId);
-
-                if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
+                if (botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
                 {
                     currentRound.FounderScore = @event.Time;
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
-                else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
+                else if (botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
                 {
                     currentRound.OpponentScore = @event.Time;
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
@@ -133,6 +130,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
             }
+
+            #endregion Cevaplama
+
+            #region Para
 
             if (@event.BalanceType == BalanceTypes.Money && (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot")))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
             {
@@ -166,6 +167,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
             }
+
+            #endregion Para
 
             #endregion Bot kazanma ayarları
 
