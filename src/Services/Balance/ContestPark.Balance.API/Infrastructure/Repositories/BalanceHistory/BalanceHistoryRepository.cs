@@ -29,27 +29,23 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory
         /// <returns>Eğer 12 saatlik altın alma hakkı açılmışsa true açılmamışsa false döner</returns>
         public bool IsReward(string userId)
         {
-            string sql = @"(SELECT (CASE
-                            WHEN (
-                            SELECT HOUR(TIMEDIFF(NOW(), bh.CreatedDate)) FROM BalanceHistories bh
-                            WHERE bh.BalanceHistoryType  = @balanceHistoryType
-                            AND bh.UserId = @userId
-                            ORDER BY bh.CreatedDate DESC
-                            LIMIT 0,1) >= 12
-                            THEN 1
-                            ELSE NULL
-                            END))";
+            string sql = @"SELECT ISNULL((
+                           SELECT case when
+                           HOUR(TIMEDIFF(NOW(), bh.CreatedDate))  >= 12
+                           then NULL
+                           ELSE 1
+                           END
+                           FROM BalanceHistories bh
+                           WHERE (bh.BalanceHistoryType = @balanceHistoryType
+                           AND bh.UserId = @userId)
+                           ORDER BY bh.CreatedDate DESC
+                           LIMIT 0,1))";
 
-            bool? isReward = _balanceHistoryRepository.QuerySingleOrDefault<bool?>(sql, new
+            return _balanceHistoryRepository.QuerySingleOrDefault<bool>(sql, new
             {
                 balanceHistoryType = (byte)BalanceHistoryTypes.DailyChip,
                 userId,
             });
-
-            if (isReward.HasValue)
-                return isReward.Value;
-
-            return true;
         }
 
         #endregion Methods
