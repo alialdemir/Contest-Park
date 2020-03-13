@@ -1,7 +1,6 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.Models;
 using ContestPark.Core.Database.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -63,7 +62,6 @@ namespace ContestPark.Category.API.Controllers
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
         [HttpGet]
-        [AllowAnonymous]
         [ProducesResponseType(typeof(ServiceModel<SearchModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SearchAsync([FromQuery]PagingModel pagingModel, [FromQuery]short categoryId, [FromQuery(Name = "q")]string searchText = "")

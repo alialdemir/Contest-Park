@@ -178,7 +178,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// <param name="searchFilters">Dönen data neye göre filtrelenecek kategor id göre mi yoksa alt kategori id göre mi</param>
         /// <param name="filterIds">Filtrelenmek istenen idler</param>
         /// <returns>Aranan veri listesi</returns>
-        public async Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, string userId, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
+        public Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, string userId, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
         {
             #region Geçici olarak mysql üzerinden search ekledim
 
@@ -189,7 +189,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                             a.Id AS UserId,
                             FNC_IsFollow(@userId, a.Id) AS IsFollowing
                             FROM AspNetUsers a
-                            WHERE a.FullName LIKE @searchText OR a.UserName LIKE @searchText";
+                            WHERE a.FullName LIKE '%@searchText%' OR a.UserName LIKE '%@searchText%'";
 
             string sqlSubCategory = @"SELECT
                                       scl.SubCategoryName,
@@ -235,7 +235,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                       INNER JOIN SubCategories sc ON sc.SubCategoryId = scl.SubCategoryId
                                       INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = sc.SubCategoryId
                                       INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = scr.CategoryId AND cl.`Language` = @language
-                                      WHERE scl.SubCategoryName LIKE @searchText AND scl.`Language` = @language AND sc.Visibility = 1";
+                                      WHERE scl.SubCategoryName LIKE '%@searchText%' AND scl.`Language` = @language AND sc.Visibility = 1";
 
             string sql3 = @"SELECT
                             scl.SubCategoryName,
@@ -282,7 +282,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                             INNER JOIN SubCategoryRls scr ON c.CategoryId = scr.CategoryId
                             INNER JOIN SubCategories sc ON sc.SubCategoryId = scr.SubCategoryId
                             INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = @language
-							WHERE cl.Text LIKE @searchText AND cl.`Language` = @language AND c.Visibility = 1";
+							WHERE cl.Text LIKE '%@searchText%' AND cl.`Language` = @language AND c.Visibility = 1";
 
             var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
             {
@@ -318,7 +318,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             if (searchCategories != null && searchCategories.Items.Any())
                 result.Items.ToList().AddRange(searchCategories.Items);
 
-            return result;
+            return Task.FromResult(result);
 
             #endregion Geçici olarak mysql üzerinden search ekledim
 
