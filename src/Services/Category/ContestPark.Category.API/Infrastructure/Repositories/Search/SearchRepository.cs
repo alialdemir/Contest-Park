@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
-using ContestPark.Category.API.Extensions;
 using ContestPark.Category.API.Infrastructure.ElasticSearch;
 using ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines;
 using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Models;
+using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +22,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         private readonly IElasticContext _elasticContext;
         private readonly string ElasticSearchIndexName;
         private readonly IFollowSubCategoryRepository _followSubCategoryRepository;
+        private readonly IRepository<Tables.SubCategory> _subCategoryRepository;
         private readonly IOpenCategoryRepository _openCategoryRepository;
         private readonly IMapper _mapper;
 
@@ -32,6 +32,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
         public SearchRepository(IElasticContext elasticContext,
                                 IFollowSubCategoryRepository followSubCategoryRepository,
+                                IRepository<Tables.SubCategory> subCategoryRepository,
                                 IConfiguration configuration,
                                 IOpenCategoryRepository openCategoryRepository,
                                 IMapper mapper)
@@ -39,6 +40,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             ElasticSearchIndexName = configuration["ElasticSearchIndexName"];
             _elasticContext = elasticContext;
             _followSubCategoryRepository = followSubCategoryRepository;
+            _subCategoryRepository = subCategoryRepository;
             _openCategoryRepository = openCategoryRepository;
             _mapper = mapper;
         }
@@ -178,80 +180,226 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// <returns>Aranan veri listesi</returns>
         public async Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, string userId, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
         {
-            var serviceModel = new ServiceModel<SearchModel>
+            #region Geçici olarak mysql üzerinden search ekledim
+
+            string sql1 = @"SELECT
+                            a.FullName,
+                            a.UserName,
+                            a.ProfilePicturePath AS PicturePath,
+                            a.Id AS UserId,
+                            FNC_IsFollow(@userId, a.Id) AS IsFollowing
+                            FROM AspNetUsers a
+                            WHERE a.FullName LIKE @searchText OR a.UserName LIKE @searchText";
+
+            string sqlSubCategory = @"SELECT
+                                      scl.SubCategoryName,
+                                      sc.SubCategoryId,
+                                      2 AS SearchType,
+                                      cl.Text AS CategoryName,
+                                      (case (SELECT
+                                      (CASE
+                                      WHEN EXISTS(
+                                      SELECT NULL
+                                      FROM OpenSubCategories AS osc  where osc.UserId = @userId and osc.SubCategoryId = sc.SubCategoryId)
+                                      THEN 1
+                                      ELSE 0
+                                      END) )
+                                      when 1 then 0
+                                      else sc.DisplayPrice
+                                      end) as DisplayPrice,
+
+                                      (case (SELECT
+                                      (CASE
+                                      WHEN EXISTS(
+                                      SELECT NULL
+                                      FROM OpenSubCategories AS osc  where osc.UserId = @userId and osc.SubCategoryId = sc.SubCategoryId)
+                                      THEN 1
+                                      ELSE 0
+                                      END) )
+                                      when 1 then 0
+                                      else sc.Price
+                                      end) as Price,
+                                      (case
+                                      when sc.Price = 0 then sc.PicturePath
+                                      when (SELECT
+                                      (CASE
+                                      WHEN EXISTS(
+                                      SELECT NULL AS emp
+                                      FROM OpenSubCategories AS osc  where osc.UserId = @userId and osc.SubCategoryId = sc.SubCategoryId
+                                      ) THEN 1
+                                      ELSE 0
+                                      END) ) = 1 then sc.PicturePath
+                                      ELSE @picturePath
+                                      end) as PicturePath
+                                      FROM SubCategoryLangs scl
+                                      INNER JOIN SubCategories sc ON sc.SubCategoryId = scl.SubCategoryId
+                                      INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = sc.SubCategoryId
+                                      INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = scr.CategoryId AND cl.`Language` = @language
+                                      WHERE scl.SubCategoryName LIKE @searchText AND scl.`Language` = @language AND sc.Visibility = 1";
+
+            string sql3 = @"SELECT
+                            scl.SubCategoryName,
+                            sc.SubCategoryId,
+                            cl.TEXT AS CategoryName,
+                            2 AS SearchType,
+                            (case (SELECT
+                            (CASE
+                            WHEN EXISTS(
+                            SELECT NULL
+                            FROM OpenSubCategories AS osc  where osc.UserId = @userId and osc.SubCategoryId = sc.SubCategoryId)
+                            THEN 1
+                            ELSE 0
+                            END) )
+                            when 1 then 0
+                            else sc.DisplayPrice
+                            end) as DisplayPrice,
+
+                            (case (SELECT
+                            (CASE
+                            WHEN EXISTS(
+                            SELECT NULL
+                            FROM OpenSubCategories AS osc  where osc.UserId = @userId and osc.SubCategoryId = sc.SubCategoryId)
+                            THEN 1
+                            ELSE 0
+                            END) )
+                            when 1 then 0
+                            else sc.Price
+                            end) as Price,
+                            (case
+                            when sc.Price = 0 then sc.PicturePath
+                            when (SELECT
+                            (CASE
+                            WHEN EXISTS(
+                            SELECT NULL AS emp
+                            FROM OpenSubCategories AS osc  where osc.UserId = @userId and osc.SubCategoryId = sc.SubCategoryId
+                            ) THEN 1
+                            ELSE 0
+                            END) ) = 1 then sc.PicturePath
+                            ELSE @picturePath
+                            end) as PicturePath
+                            FROM CategoryLocalizeds cl
+                            INNER JOIN Categories c ON cl.CategoryId = c.CategoryId
+                            INNER JOIN SubCategoryRls scr ON c.CategoryId = scr.CategoryId
+                            INNER JOIN SubCategories sc ON sc.SubCategoryId = scr.SubCategoryId
+                            INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = @language
+							WHERE cl.Text LIKE @searchText AND cl.`Language` = @language AND c.Visibility = 1";
+
+            var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
             {
-                PageNumber = pagingModel.PageNumber,
-                PageSize = pagingModel.PageSize
-            };
+                userId,
+                searchText,
+                language
+            }, pagingModel: pagingModel);
 
-            string indexName = GetIndexName(SearchTypes.Category, language);
-
-            bool isFilterIdNull = filterIds != null && filterIds[0] != 0;
-            if (!isFilterIdNull)// eğer filterIds boş ise tüm kategoriler ve oyuncular üzerinde arama yapmalı o yüzden player indexinide ekledik
+            var searchSubCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sqlSubCategory, new
             {
-                indexName += "," + GetIndexName(SearchTypes.Player, null);
-            }
+                userId,
+                searchText,
+                language,
+                picturePath = DefaultImages.DefaultProfilePicture,
+            }, pagingModel: pagingModel);
 
-            IEnumerable<Tables.Search> searchResponse = null;
-
-            if (string.IsNullOrEmpty(searchText))
+            var searchCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sql3, new
             {
-                var elasticSearchBuilder = new ElasticSearchBuilder(indexName, _elasticContext)
-                                                                            .SetSize(pagingModel.PageSize)
-                                                                            .SetFrom(pagingModel.PageSize * (pagingModel.PageNumber - 1));
-                if (isFilterIdNull)
-                {
-                    elasticSearchBuilder.AddFilter<Tables.Search>(searchFilters.GetDisplayName(), filterIds.Select(x => x.ToString()).ToArray());
-                }
+                userId,
+                searchText,
+                language,
+                picturePath = DefaultImages.DefaultProfilePicture,
+            }, pagingModel: pagingModel);
 
-                searchResponse = elasticSearchBuilder.Build()
-                                                    .Execute<Tables.Search>();
-            }
-            else
-            {
-                // Elasticsearch Suggest yaparken filtre koyamadığımız için burada gelen auto complate içinden sadece takip ettiği kategorileri filtreliyoruz
-                searchResponse = (await _elasticContext.SearchAsync<Tables.Search>(indexName, searchText, pagingModel))
-                                                                    .Where(search =>
-                                                                    // eğer filterIds yoksa tüm alt kategorileri listelesin
-                                                                    !isFilterIdNull
-                                                                    ||
-                                                                    // kategori aramadan geliyorsa CategoryId göre filtreledik alt kategori arama yapıyorsa SubCategoryId göre filtreledik
-                                                                    filterIds.Contains(searchFilters == SearchFilters.SubCategoryId ? search.SubCategoryId : search.CategoryId)
-                                                                    ).ToList();
-            }
+            ServiceModel<SearchModel> result = new ServiceModel<SearchModel>();
 
-            if (searchResponse != null && searchResponse.Count() > 0)
-            {
-                // Filtrenmiş hali ile kaç tane kaldığı sayısını ekledik
-                //    serviceModel.HasNextPage = searchResponse.HasNextPage(searchResponse.Count(), pagingModel);
+            if (searchUsers != null && searchUsers.Items.Any())
+                result.Items.ToList().AddRange(searchUsers.Items);
 
-                serviceModel.Items = _mapper.Map<List<SearchModel>>(searchResponse);
+            if (searchSubCategories != null && searchSubCategories.Items.Any())
+                result.Items.ToList().AddRange(searchSubCategories.Items);
 
-                if (serviceModel.Items.Any(x => x.SearchType == SearchTypes.Category))
-                {
-                    List<short> openSubCategories = _openCategoryRepository.IsSubCategoryOpen(userId, serviceModel.Items.Select(x => x.SubCategoryId).AsEnumerable());
+            if (searchCategories != null && searchCategories.Items.Any())
+                result.Items.ToList().AddRange(searchCategories.Items);
 
-                    serviceModel.Items = serviceModel
-                        .Items
-                        .Select(sc => new SearchModel
-                        {
-                            CategoryName = sc.CategoryName,
-                            DisplayPrice = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? "0" : sc.DisplayPrice,
-                            FullName = sc.FullName,
-                            IsFollowing = sc.IsFollowing,
-                            PicturePath = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? sc.PicturePath : DefaultImages.DefaultLock,
-                            Price = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? 0 : sc.Price,
-                            SearchType = sc.SearchType,
-                            SubCategoryId = sc.SubCategoryId,
-                            SubCategoryName = sc.SubCategoryName,
-                            UserId = sc.UserId,
-                            UserName = sc.UserName,
-                        })
-                        .ToList();
-                }
-            }
+            return result;
 
-            return serviceModel;
+            #endregion Geçici olarak mysql üzerinden search ekledim
+
+            #region Elastic search aktif olana kadar burayı commentledik
+
+            ////var serviceModel = new ServiceModel<SearchModel>
+            ////{
+            ////    PageNumber = pagingModel.PageNumber,
+            ////    PageSize = pagingModel.PageSize
+            ////};
+
+            ////string indexName = GetIndexName(SearchTypes.Category, language);
+
+            ////bool isFilterIdNull = filterIds != null && filterIds[0] != 0;
+            ////if (!isFilterIdNull)// eğer filterIds boş ise tüm kategoriler ve oyuncular üzerinde arama yapmalı o yüzden player indexinide ekledik
+            ////{
+            ////    indexName += "," + GetIndexName(SearchTypes.Player, null);
+            ////}
+
+            ////IEnumerable<Tables.Search> searchResponse = null;
+
+            ////if (string.IsNullOrEmpty(searchText))
+            ////{
+            ////    var elasticSearchBuilder = new ElasticSearchBuilder(indexName, _elasticContext)
+            ////                                                                .SetSize(pagingModel.PageSize)
+            ////                                                                .SetFrom(pagingModel.PageSize * (pagingModel.PageNumber - 1));
+            ////    if (isFilterIdNull)
+            ////    {
+            ////        elasticSearchBuilder.AddFilter<Tables.Search>(searchFilters.GetDisplayName(), filterIds.Select(x => x.ToString()).ToArray());
+            ////    }
+
+            ////    searchResponse = elasticSearchBuilder.Build()
+            ////                                        .Execute<Tables.Search>();
+            ////}
+            ////else
+            ////{
+            ////    // Elasticsearch Suggest yaparken filtre koyamadığımız için burada gelen auto complate içinden sadece takip ettiği kategorileri filtreliyoruz
+            ////    searchResponse = (await _elasticContext.SearchAsync<Tables.Search>(indexName, searchText, pagingModel))
+            ////                                                        .Where(search =>
+            ////                                                        // eğer filterIds yoksa tüm alt kategorileri listelesin
+            ////                                                        !isFilterIdNull
+            ////                                                        ||
+            ////                                                        // kategori aramadan geliyorsa CategoryId göre filtreledik alt kategori arama yapıyorsa SubCategoryId göre filtreledik
+            ////                                                        filterIds.Contains(searchFilters == SearchFilters.SubCategoryId ? search.SubCategoryId : search.CategoryId)
+            ////                                                        ).ToList();
+            ////}
+
+            ////if (searchResponse != null && searchResponse.Count() > 0)
+            ////{
+            ////    // Filtrenmiş hali ile kaç tane kaldığı sayısını ekledik
+            ////    //    serviceModel.HasNextPage = searchResponse.HasNextPage(searchResponse.Count(), pagingModel);
+
+            ////    serviceModel.Items = _mapper.Map<List<SearchModel>>(searchResponse);
+
+            ////    if (serviceModel.Items.Any(x => x.SearchType == SearchTypes.Category))
+            ////    {
+            ////        List<short> openSubCategories = _openCategoryRepository.IsSubCategoryOpen(userId, serviceModel.Items.Select(x => x.SubCategoryId).AsEnumerable());
+
+            ////        serviceModel.Items = serviceModel
+            ////            .Items
+            ////            .Select(sc => new SearchModel
+            ////            {
+            ////                CategoryName = sc.CategoryName,
+            ////                DisplayPrice = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? "0" : sc.DisplayPrice,
+            ////                FullName = sc.FullName,
+            ////                IsFollowing = sc.IsFollowing,
+            ////                PicturePath = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? sc.PicturePath : DefaultImages.DefaultLock,
+            ////                Price = openSubCategories.Any(x => x == sc.SubCategoryId) || sc.Price == 0 ? 0 : sc.Price,
+            ////                SearchType = sc.SearchType,
+            ////                SubCategoryId = sc.SubCategoryId,
+            ////                SubCategoryName = sc.SubCategoryName,
+            ////                UserId = sc.UserId,
+            ////                UserName = sc.UserName,
+            ////            })
+            ////            .ToList();
+            ////    }
+            ////}
+
+            ////return serviceModel;
+
+            #endregion Elastic search aktif olana kadar burayı commentledik
         }
 
         #endregion Methods

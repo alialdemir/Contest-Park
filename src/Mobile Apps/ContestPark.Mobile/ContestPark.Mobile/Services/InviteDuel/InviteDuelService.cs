@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
         {
             get
             {
-                return new Random().Next(10000, 20000);
+                return new Random().Next(15, 60);
             }
         }
 
@@ -74,7 +74,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
             if (categories == null || !categories.Any())
                 return;
 
-            Device.StartTimer(TimeSpan.FromMilliseconds(RandomSecond), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(RandomSecond), () =>
             {
                 Device.BeginInvokeOnMainThread(async () => await InviteDuel(categories));
 
