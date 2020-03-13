@@ -804,9 +804,6 @@
     <BundleResource Include="Resources\search_result.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\searchicon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\send_message.svg" />
   </ItemGroup>
   <ItemGroup>

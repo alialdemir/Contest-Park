@@ -7,6 +7,7 @@
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="categoryCard"
     mc:Ignorable="d">
@@ -49,9 +50,10 @@
                     TextColor="#404040"
                     WidthRequest="30" />
 
-                <!--<Label
+                <Label
                     Grid.Row="0"
                     Grid.Column="1"
+                    Margin="0,0,16,0"
                     extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
                     extension:Skeleton.IsBusy="{Binding IsBusy}"
                     FontAttributes="Bold"
@@ -63,7 +65,7 @@
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=GoToCategorySearchPageCommand, Source={x:Reference categoryCard}}" CommandParameter="{Binding CategoryId}" />
                     </Label.GestureRecognizers>
-                </Label>-->
+                </Label>
 
                 <CollectionView
                     Grid.Row="1"

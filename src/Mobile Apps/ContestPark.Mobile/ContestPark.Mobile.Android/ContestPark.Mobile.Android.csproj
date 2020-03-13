@@ -398,9 +398,6 @@
     <AndroidResource Include="Resources\drawable\menuicon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\searchicon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\left_arrow.png" />
   </ItemGroup>
   <ItemGroup>

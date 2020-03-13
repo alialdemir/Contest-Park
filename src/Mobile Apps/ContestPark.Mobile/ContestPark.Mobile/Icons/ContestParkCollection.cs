@@ -50,5 +50,6 @@
         public const string Revenge = "\ue91e";
         public const string HowToPlay = "\ue92a";
         public const string Notification = "\ue92f";
+        public const string Search = "\ue932";
     }
 }

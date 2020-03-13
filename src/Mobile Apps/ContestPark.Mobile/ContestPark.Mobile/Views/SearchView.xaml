@@ -7,84 +7,89 @@
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:search="clr-namespace:ContestPark.Mobile.Components.Search"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="searchViewPage"
+    Padding="0,8,0,0"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="0">
-            <StackLayout
-                BackgroundColor="{StaticResource White}"
-                HeightRequest="66"
-                HorizontalOptions="FillAndExpand">
-                <yummy:PancakeView
-                    Margin="24,9,24,0"
-                    BackgroundColor="#F8F8F8"
-                    CornerRadius="24"
+    <Shell.TitleView>
+        <yummy:PancakeView
+            Margin="4"
+            BackgroundColor="#F8F8F8"
+            CornerRadius="24"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout Margin="5" Orientation="Horizontal">
+                <Image
+                    Margin="19,0,0,0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{x:Static icons:ContestParkIcon.Search}"
+                            Size="16"
+                            Color="Black" />
+                    </Image.Source>
+                </Image>
+                <Entry
+                    FontFamily="{StaticResource SofiaProLight}"
+                    FontSize="15"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="CenterAndExpand">
-                    <StackLayout Margin="5" Orientation="Horizontal">
-                        <Image
-                            Margin="19,0,0,0"
-                            HorizontalOptions="Start"
-                            Source="searchicon.png"
-                            VerticalOptions="Center" />
-                        <Entry
-                            FontFamily="{StaticResource SofiaProLight}"
-                            FontSize="15"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="{i18n:Translate SearchPlayersOrCategories}"
-                            PlaceholderColor="#505050"
-                            Text="{Binding Search}"
-                            VerticalOptions="Center">
-                            <Entry.Behaviors>
-                                <behaviors:EventToCommandBehavior Command="{Binding SearchTextCommand}" EventName="TextChanged" />
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Image
-                            Margin="0,0,19,0"
-                            HorizontalOptions="Start"
-                            Source="search_cancel.png"
-                            VerticalOptions="Center">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ClearSearchCommand}" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </StackLayout>
-                </yummy:PancakeView>
+                    Placeholder="{i18n:Translate SearchPlayersOrCategories}"
+                    PlaceholderColor="#505050"
+                    Text="{Binding Search}"
+                    VerticalOptions="Center">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior Command="{Binding SearchTextCommand}" EventName="TextChanged" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Image
+                    Margin="0,0,19,0"
+                    HorizontalOptions="Start"
+                    Source="search_cancel.png"
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClearSearchCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
-            <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListViewHeaderAndFooter}">
-                <Components:NonPersistentSelectedItemListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <search:SearchFactory
-                                FollowCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference searchViewPage}}"
-                                GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference searchViewPage}}"
-                                PushCategoryDetailCommand="{Binding Path=BindingContext.PushCategoryDetailCommand, Source={x:Reference searchViewPage}}" />
-                        </ViewCell>
-                    </DataTemplate>
-                </Components:NonPersistentSelectedItemListView.ItemTemplate>
-                <Components:NonPersistentSelectedItemListView.FooterTemplate>
-                    <DataTemplate>
-                        <StackLayout Margin="0,0,0,30" Orientation="Vertical">
-                            <ffimageloadingsvg:SvgCachedImage
-                                Margin="0,71,0,23"
-                                HeightRequest="95"
-                                HorizontalOptions="Center"
-                                Source="search_result.svg"
-                                VerticalOptions="Center"
-                                WidthRequest="135" />
-                            <Label
-                                FontFamily="{StaticResource SofiaProRegular}"
-                                FontSize="15"
-                                HorizontalTextAlignment="Center"
-                                Text="galiba hepsi bu kadar.."
-                                TextColor="#A3BFC6" />
-                        </StackLayout>
-                    </DataTemplate>
-                </Components:NonPersistentSelectedItemListView.FooterTemplate>
-            </Components:NonPersistentSelectedItemListView>
-        </StackLayout>
+        </yummy:PancakeView>
+    </Shell.TitleView>
+    <ContentPage.Content>
+
+        <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListViewOnlyFooter}">
+            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <search:SearchFactory
+                            FollowCommand="{Binding Path=BindingContext.FollowCommand, Source={x:Reference searchViewPage}}"
+                            GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference searchViewPage}}"
+                            PushCategoryDetailCommand="{Binding Path=BindingContext.PushCategoryDetailCommand, Source={x:Reference searchViewPage}}" />
+                    </ViewCell>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.ItemTemplate>
+            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout Margin="0,0,0,30" Orientation="Vertical">
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="0,71,0,23"
+                            HeightRequest="95"
+                            HorizontalOptions="Center"
+                            Source="search_result.svg"
+                            VerticalOptions="Center"
+                            WidthRequest="135" />
+                        <Label
+                            FontFamily="{StaticResource SofiaProRegular}"
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            Text="galiba hepsi bu kadar.."
+                            TextColor="#A3BFC6" />
+                    </StackLayout>
+                </DataTemplate>
+            </Components:NonPersistentSelectedItemListView.FooterTemplate>
+        </Components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

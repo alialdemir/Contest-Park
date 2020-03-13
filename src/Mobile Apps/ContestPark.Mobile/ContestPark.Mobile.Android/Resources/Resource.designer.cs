@@ -27692,62 +27692,59 @@ namespace ContestPark.Mobile.Droid
 			// aapt resource value: 0x7F070178
 			public const int scrubber_control_pressed_holo = 2131165560;
 			
-			// aapt resource value: 0x7F07017B
-			public const int searchicon = 2131165563;
-			
 			// aapt resource value: 0x7F070179
 			public const int search_cancel = 2131165561;
 			
 			// aapt resource value: 0x7F07017A
 			public const int search_result = 2131165562;
 			
+			// aapt resource value: 0x7F07017B
+			public const int segmented_control_background = 2131165563;
+			
 			// aapt resource value: 0x7F07017C
-			public const int segmented_control_background = 2131165564;
+			public const int segmented_control_first_background = 2131165564;
 			
 			// aapt resource value: 0x7F07017D
-			public const int segmented_control_first_background = 2131165565;
+			public const int segmented_control_last_background = 2131165565;
 			
 			// aapt resource value: 0x7F07017E
-			public const int segmented_control_last_background = 2131165566;
+			public const int select_categories = 2131165566;
 			
 			// aapt resource value: 0x7F07017F
-			public const int select_categories = 2131165567;
+			public const int send_message = 2131165567;
 			
 			// aapt resource value: 0x7F070180
-			public const int send_message = 2131165568;
+			public const int SingleMoney = 2131165568;
 			
 			// aapt resource value: 0x7F070181
-			public const int SingleMoney = 2131165569;
+			public const int sms = 2131165569;
 			
 			// aapt resource value: 0x7F070182
-			public const int sms = 2131165570;
+			public const int splash = 2131165570;
 			
 			// aapt resource value: 0x7F070183
-			public const int splash = 2131165571;
+			public const int switchactive = 2131165571;
 			
 			// aapt resource value: 0x7F070184
-			public const int switchactive = 2131165572;
+			public const int switchpassive = 2131165572;
 			
 			// aapt resource value: 0x7F070185
-			public const int switchpassive = 2131165573;
+			public const int tooltip_frame_dark = 2131165573;
 			
 			// aapt resource value: 0x7F070186
-			public const int tooltip_frame_dark = 2131165574;
+			public const int tooltip_frame_light = 2131165574;
 			
 			// aapt resource value: 0x7F070187
-			public const int tooltip_frame_light = 2131165575;
+			public const int TUR_s = 2131165575;
 			
 			// aapt resource value: 0x7F070188
-			public const int TUR_s = 2131165576;
+			public const int username = 2131165576;
 			
 			// aapt resource value: 0x7F070189
-			public const int username = 2131165577;
+			public const int verify = 2131165577;
 			
 			// aapt resource value: 0x7F07018A
-			public const int verify = 2131165578;
-			
-			// aapt resource value: 0x7F07018B
-			public const int vs = 2131165579;
+			public const int vs = 2131165578;
 			
 			static Drawable()
 			{

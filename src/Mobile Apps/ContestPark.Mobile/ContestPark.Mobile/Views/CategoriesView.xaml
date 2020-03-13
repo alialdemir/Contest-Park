@@ -14,17 +14,15 @@
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}"
     mc:Ignorable="d">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem
-            AutomationId="tbiCategorySearch"
-            Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}"
-            CommandParameter="{Binding SeeAllSubCateogryId}"
-            IconImageSource="searchicon.png" />
-    </ContentPage.ToolbarItems>-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding Path=BindingContext.GotoNotificationsCommand, Source={x:Reference categoriesPage}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Notification}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding Path=BindingContext.GoToCategorySearchPageCommand, Source={x:Reference categoriesPage}}" CommandParameter="{Binding SeeAllSubCateogryId}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Search}" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

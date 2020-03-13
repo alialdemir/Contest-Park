@@ -23,6 +23,9 @@ namespace ContestPark.Mobile.Components.Search
         {
             set
             {
+                if (BindingContext == null || !(BindingContext is SearchModel))
+                    return;
+
                 TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer
                 {
                     Command = value,

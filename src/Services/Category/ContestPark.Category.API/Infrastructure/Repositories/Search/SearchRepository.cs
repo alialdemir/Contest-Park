@@ -30,7 +30,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
         #region Constructor
 
-        public SearchRepository(//IElasticContext elasticContext,
+        public SearchRepository(IElasticContext elasticContext,
                                 IFollowSubCategoryRepository followSubCategoryRepository,
                                 IRepository<Tables.SubCategory> subCategoryRepository,
                                 IConfiguration configuration,
@@ -38,7 +38,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                 IMapper mapper)
         {
             ElasticSearchIndexName = configuration["ElasticSearchIndexName"];
-            //   _elasticContext = elasticContext;
+            _elasticContext = elasticContext;
             _followSubCategoryRepository = followSubCategoryRepository;
             _subCategoryRepository = subCategoryRepository;
             _openCategoryRepository = openCategoryRepository;
@@ -296,7 +296,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 userId,
                 searchText,
                 language,
-                picturePath = DefaultImages.DefaultProfilePicture,
+                picturePath = DefaultImages.DefaultLock,
             }, pagingModel: pagingModel);
 
             var searchCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sql3, new
@@ -304,7 +304,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                 userId,
                 searchText,
                 language,
-                picturePath = DefaultImages.DefaultProfilePicture,
+                picturePath = DefaultImages.DefaultLock,
             }, pagingModel: pagingModel);
 
             List<SearchModel> searches = new List<SearchModel>();

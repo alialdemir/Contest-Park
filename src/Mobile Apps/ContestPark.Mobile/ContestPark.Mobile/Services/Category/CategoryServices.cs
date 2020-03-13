@@ -229,7 +229,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Alt kategori listesi</returns>
         public async Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short categoryId, PagingModel pagingModel)
         {
-            _analyticsService.SendEvent("Arama", "Arama", searchText);
+            _analyticsService.SendEvent("Arama", "Kategori Kullanıcı ara", searchText);
 
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q={searchText}");
 
