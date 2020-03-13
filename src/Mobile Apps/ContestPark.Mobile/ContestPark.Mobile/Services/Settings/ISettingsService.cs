@@ -49,6 +49,8 @@ namespace ContestPark.Mobile.Services.Settings
 
         bool IsTutorialDisplayed { get; set; }
 
+        string LastUpdatedScopeName { get; set; }
+
         #endregion Properties
 
         #region Methods

@@ -59,6 +59,11 @@ namespace ContestPark.Mobile.Services.Identity
             return Task.CompletedTask;
         }
 
+        public Task<string> GetPhoneNumber()
+        {
+            return Task.FromResult("5444261154");
+        }
+
         public Task<ProfileInfoModel> GetProfileInfoByUserName(string userId)
         {
             return Task.FromResult(new ProfileInfoModel

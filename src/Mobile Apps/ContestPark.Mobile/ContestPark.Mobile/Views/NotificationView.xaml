@@ -4,12 +4,17 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="http://prismlibrary.com"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="notificationView"
     Padding="0,8,0,0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
+        <components:NonPersistentSelectedItemListView
+            x:Name="lstNotification"
+            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
+            Style="{StaticResource ListViewOnlyFooter}">
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -20,6 +25,13 @@
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
+                <DataTemplate>
+                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstNotification}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                        <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate YourNotificationListIsEmpty}" />
+                    </yummy:PancakeView>
+                </DataTemplate>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

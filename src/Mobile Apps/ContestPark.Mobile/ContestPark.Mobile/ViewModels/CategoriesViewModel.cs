@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Categories;
@@ -122,6 +123,8 @@ namespace ContestPark.Mobile.ViewModels
             ConnectToSignalr.Execute(null);
 
             CheckRewardCommand.Execute(null);
+
+            ScopeRefleshCommand.Execute(null);
 
             //TODO: Kategorileri sayfala
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
@@ -305,22 +308,31 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Token alırken scope kısmında gönderdiğimiz servislere yenisi eklenirse o servisi kullanmak için tekrar token alıp set ediyoruz
+        /// </summary>
         public ICommand ScopeRefleshCommand
         {
             get
             {
                 return new Command(async () =>
                 {
-                    if (true)
+                    if (_settingsService.LastUpdatedScopeName != GlobalSetting.Scope)
                     {
+                        string phoneNumber = await _identityService.GetPhoneNumber();
+                        if (string.IsNullOrEmpty(phoneNumber))
+                            return;
+
                         UserToken token = await _identityService.GetTokenAsync(new LoginModel
                         {
-                            Password = _settingsService.CurrentUser.pho,
+                            Password = phoneNumber,
                             UserName = _settingsService.CurrentUser.UserName
                         });
                         if (token != null)
                         {
                             _settingsService.SetTokenInfo(token);
+
+                            _settingsService.LastUpdatedScopeName = GlobalSetting.Scope;
                         }
                     }
                 });

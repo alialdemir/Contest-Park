@@ -230,7 +230,7 @@
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
             <Style x:Key="EmptyModelCard" TargetType="yummy:PancakeView">
-                <Setter Property="Margin" Value="24,10,24,0" />
+                <Setter Property="Margin" Value="8,0,8,0" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="HasShadow" Value="True" />

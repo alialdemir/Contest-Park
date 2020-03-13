@@ -19,7 +19,7 @@ namespace ContestPark.Mobile.Services.Identity
         Task ChangeProfilePictureAsync(MediaModel media);
 
         Task ForgetYourPasswordAsync(string userNameOrEmailAddress);
-
+        Task<string> GetPhoneNumber();
         Task<ProfileInfoModel> GetProfileInfoByUserName(string userName);
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);

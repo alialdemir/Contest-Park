@@ -18,7 +18,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Components:NonPersistentSelectedItemListView
-            x:Name="lstView"
+            x:Name="lstChat"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewOnlyFooter}">
@@ -41,7 +41,7 @@
             </Components:NonPersistentSelectedItemListView.ItemTemplate>
             <Components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
-                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
+                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstChat}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
                         <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate MessageYourListIsEmpty}" />
                     </yummy:PancakeView>
                 </DataTemplate>

@@ -762,6 +762,9 @@
   <data name="YourLevel" xml:space="preserve">
     <value>Seviye</value>
   </data>
+  <data name="YourNotificationListIsEmpty" xml:space="preserve">
+    <value>Bildirim listeniz boş.</value>
+  </data>
   <data name="YourOpponentDidNotAcceptYourDuelInvitation" xml:space="preserve">
     <value>Rakibiniz düello davetinizi kabul etmedi.</value>
   </data>

@@ -773,4 +773,7 @@
   <data name="Collect" xml:space="preserve">
     <value>Collect</value>
   </data>
+  <data name="YourNotificationListIsEmpty" xml:space="preserve">
+    <value>Your notification list is empty.</value>
+  </data>
 </root>

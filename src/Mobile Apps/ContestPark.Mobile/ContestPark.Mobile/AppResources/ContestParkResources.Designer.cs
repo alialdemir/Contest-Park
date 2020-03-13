@@ -1970,6 +1970,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your notification list is empty..
+        /// </summary>
+        public static string YourNotificationListIsEmpty {
+            get {
+                return ResourceManager.GetString("YourNotificationListIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your opponent did not accept your duel invitation..
         /// </summary>
         public static string YourOpponentDidNotAcceptYourDuelInvitation {

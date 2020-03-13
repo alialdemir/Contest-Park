@@ -37,14 +37,19 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory
                             ORDER BY bh.CreatedDate DESC
                             LIMIT 0,1) >= 12
                             THEN 1
-                            ELSE 0
+                            ELSE NULL
                             END))";
 
-            return _balanceHistoryRepository.QuerySingleOrDefault<bool>(sql, new
+            bool? isReward = _balanceHistoryRepository.QuerySingleOrDefault<bool?>(sql, new
             {
                 balanceHistoryType = (byte)BalanceHistoryTypes.DailyChip,
                 userId,
             });
+
+            if (isReward.HasValue)
+                return isReward.Value;
+
+            return true;
         }
 
         #endregion Methods

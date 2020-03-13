@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.BackgroundTasks.Services.Duel;
-using ContestPark.BackgroundTasks.Tasks;
 using ContestPark.Core.Services.RequestProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +24,7 @@ namespace ContestPark.BackgroundTasks
             services
                 .Configure<BackgroundTaskSettings>(this.Configuration)
                 .AddOptions()
-                .AddHostedService<NewContestDateTask>()
+                //////////////// şuan aktiif oyuncu az olduğu için puanlar sıfırlanmasın   .AddHostedService<NewContestDateTask>()
                 .AddRabbitMq(Configuration);
 
             services.AddSingleton<IRequestProvider, RequestProvider>();

@@ -208,6 +208,21 @@ namespace ContestPark.Mobile.Services.Identity
         }
 
         /// <summary>
+        /// Kullanıcıya ait telefon numarası
+        /// </summary>
+        /// <returns>Telefon numarası</returns>
+        public async Task<string> GetPhoneNumber()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/PhoneNumber");
+
+            var response = await _requestProvider.GetAsync<PhoneNumberModel>(uri);
+            if (!response.IsSuccess)
+                return string.Empty;
+
+            return response.Data.PhoneNumber;
+        }
+
+        /// <summary>
         /// Şifremi unuttum
         /// </summary>
         /// <param name="UserNameOrEmail">Kullanıcı adı veya eposta adresi</param>

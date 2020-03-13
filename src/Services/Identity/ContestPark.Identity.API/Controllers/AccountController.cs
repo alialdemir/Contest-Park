@@ -83,7 +83,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         #region Methods
 
         /// <summary>
-        /// Kullanıcı id'sine ait telefon numarası
+        /// Kullanıcıya ait telefon numarası
         /// </summary>
         /// <returns>Telefon numarası</returns>
         [HttpGet]

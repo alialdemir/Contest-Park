@@ -44,18 +44,29 @@ namespace ContestPark.Notification.API.Infrastructure.Repositories.Notification
         /// <returns>Bildirim eklenebilir mi true/false</returns>
         public bool IsNotificationBeAdded(NotificationTypes notificationType, int postId, string whoId)
         {
-            string sql = @"SELECT 1 FROM Notifications n
-                           WHERE TIME_TO_SEC(TIMEDIFF(NOW(), n.CreatedDate)) < 550
-                           AND n.NotificationType = @notificationType
-                           AND n.PostId = @postId
-                           AND n.WhoId = @whoId";
+            string sql = @"(SELECT (CASE
+                            WHEN (
+                            SELECT SECOND(TIMEDIFF(NOW(), n.CreatedDate)) FROM Notifications n
+                            WHERE n.NotificationType = @notificationType
+                            AND n.PostId = @postId
+                            AND n.WhoId = @whoId
+                            ORDER BY n.CreatedDate DESC
+                            LIMIT 0,1) >= 60
+                            THEN 1
+                            ELSE NULL
+                            END))";
 
-            return _notificationRepsoitory.QuerySingleOrDefault<bool>(sql, new
+            bool? isNotificationBeAdded = _notificationRepsoitory.QuerySingleOrDefault<bool?>(sql, new
             {
                 notificationType = (byte)notificationType,
                 postId,
                 whoId,
             });
+
+            if (isNotificationBeAdded.HasValue)
+                return isNotificationBeAdded.Value;
+
+            return true;
         }
 
         /// <summary>

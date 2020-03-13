@@ -101,12 +101,12 @@
                             Text="VS"
                             TextColor="#000000" />
 
-                        <Label
+                        <!--<Label
                             FontFamily="{StaticResource SofiaProMedium}"
                             FontSize="13"
                             HorizontalOptions="Center"
                             Text="{Binding Date, Converter={StaticResource moment}}"
-                            TextColor="#000000" />
+                            TextColor="#000000" />-->
                     </StackLayout>
 
                     <!--  Competitor  -->

@@ -29,6 +29,8 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly string TokenTypeDefault = "Bearer";
         private readonly byte SignUpCountDefault = 0;
 
+        private readonly string LastUpdatedScopeNameDefault = string.Empty;
+
         #endregion Setting Constants
 
         #region Private variables
@@ -115,6 +117,12 @@ namespace ContestPark.Mobile.Services.Settings
         public string TokenType
         {
             get => GetValueOrDefault(TokenTypeDefault);
+            set => AddOrUpdateValue(value);
+        }
+
+        public string LastUpdatedScopeName
+        {
+            get => GetValueOrDefault(LastUpdatedScopeNameDefault);
             set => AddOrUpdateValue(value);
         }
 
