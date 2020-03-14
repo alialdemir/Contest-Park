@@ -51,7 +51,7 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
 
             var notifications = @event
                                      .WhonIds
-                                     .Where(whonId => !string.IsNullOrEmpty(whonId) && whonId != @event.WhoId && (!whonId.EndsWith("-bot") || !@event.WhoId.EndsWith("-bot")))
+                                     .Where(whonId => !string.IsNullOrEmpty(whonId) && whonId != @event.WhoId && !whonId.EndsWith("-bot"))
                                      .Select(whonId => new Infrastructure.Tables.Notification
                                      {
                                          NotificationType = @event.NotificationType,

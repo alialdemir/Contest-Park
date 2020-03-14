@@ -359,12 +359,12 @@ namespace ContestPark.Mobile.ViewModels
         {
             // Eğer bot ile oynuyorsa oyuna bot eklendi
 
-            if (DuelScreen.FounderUserId.Contains("-bot"))
+            if (DuelScreen.FounderUserId.EndsWith("-bot"))
             {
                 _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId);
             }
 
-            if (DuelScreen.OpponentUserId.Contains("-bot"))
+            if (DuelScreen.OpponentUserId.EndsWith("-bot"))
             {
                 _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId);
             }
@@ -628,14 +628,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Verilen cevabı sunucuya gönderir
         /// </summary>
-        private async Task SaveAnswer(SaveAnswerModel saveAnswer)
+        private void SaveAnswer(SaveAnswerModel saveAnswer)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await _duelSignalRService.SaveAnswer(new UserAnswer
+            _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
                 QuestionId = CurrentQuestion.QuestionId,
@@ -653,12 +653,12 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Botun verdiği cevapları sunucuya gönderir
         /// </summary>
-        private async Task BotSaveAnswer(SaveAnswerModel saveAnswer)
+        private void BotSaveAnswer(SaveAnswerModel saveAnswer)
         {
             if (IsExit)
                 return;
 
-            await _duelSignalRService.SaveAnswer(new UserAnswer
+            _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
                 QuestionId = CurrentQuestion.QuestionId,
@@ -761,8 +761,8 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand _saveAnswerCommand;
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>((answerModel) => ExecuteAnswerCommandCommand(answerModel)));
-        private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(async (answerModel) => await SaveAnswer(answerModel)));
-        private ICommand BotSaveAnswerCommand => _botAnswerCommand ?? (_botAnswerCommand = new Command<SaveAnswerModel>(async (answerModel) => await BotSaveAnswer(answerModel)));
+        private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(SaveAnswer));
+        private ICommand BotSaveAnswerCommand => _botAnswerCommand ?? (_botAnswerCommand = new Command<SaveAnswerModel>(BotSaveAnswer));
 
         /// <summary>
         /// Soru ekranı kapatır

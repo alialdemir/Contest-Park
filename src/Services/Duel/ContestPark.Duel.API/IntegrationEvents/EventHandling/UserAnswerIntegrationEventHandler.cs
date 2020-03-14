@@ -65,6 +65,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 @event.QuestionId,
                 @event.UserId,
                 @event.Stylish,
+                @event.BalanceType,
                 @event.Time);
 
             List<UserAnswerModel> userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
@@ -107,7 +108,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (@event.UserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
-                _logger.LogInformation("Altın ile düello oynanıyor...");
 
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
@@ -134,6 +134,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             #endregion Cevaplama
 
             #region Para
+
+            _logger.LogInformation("Düello bakiye tipi {BalanceType}", @event.BalanceType);
 
             if (@event.BalanceType == BalanceTypes.Money && @event.UserId.EndsWith("-bot"))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
             {
