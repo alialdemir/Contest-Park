@@ -9,13 +9,15 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
                                           string userId,
                                           int questionId,
                                           Stylish stylish,
-                                          byte time)
+                                          byte time,
+                                          BalanceTypes balanceType)
         {
             DuelId = duelId;
             UserId = userId;
             QuestionId = questionId;
             Stylish = stylish;
             Time = time;
+            BalanceType = balanceType;
         }
 
         public Stylish Stylish { get; set; }

@@ -9,13 +9,15 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
                                           string userId,
                                           int questionId,
                                           Stylish stylish,
-                                          byte time)
+                                          byte time,
+                                          BalanceTypes balanceType)
         {
             DuelId = duelId;
             UserId = userId;
             QuestionId = questionId;
             Stylish = stylish;
             Time = time;
+            BalanceType = balanceType;
         }
 
         public Stylish Stylish { get; set; }
@@ -27,5 +29,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
         public byte Time { get; set; }
 
         public int QuestionId { get; set; }
+
+        public BalanceTypes BalanceType { get; set; }
     }
 }

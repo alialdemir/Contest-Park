@@ -63,7 +63,8 @@ namespace ContestPark.Signalr.API
                                                         userAnswer.UserId,
                                                         userAnswer.QuestionId,
                                                         userAnswer.Stylish,
-                                                        userAnswer.Time);
+                                                        userAnswer.Time,
+                                                        userAnswer.BalanceType);
 
             _eventBus.Publish(@event);
         }

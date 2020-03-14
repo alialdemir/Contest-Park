@@ -13,5 +13,7 @@ namespace ContestPark.Signalr.API.Models
         public byte Time { get; set; }
 
         public int QuestionId { get; set; }
+
+        public BalanceTypes BalanceType { get; set; }
     }
 }
