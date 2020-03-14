@@ -117,14 +117,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 if (botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
                 {
-                    currentRound.FounderScore = @event.Time;
+                    currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
                 else if (botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
                 {
-                    currentRound.OpponentScore = @event.Time;
+                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, @event.Time);
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
@@ -150,18 +150,18 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+                if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
-                    byte scoreDiff = (byte)(opponentTotalScore - founderTotalScore);
-                    currentRound.FounderScore = (byte)(scoreDiff + 5);// Rakip ile kurucu arasındaki puan farkının +5
+                    currentRound.FounderScore = 10;
+                    currentRound.FounderTime = 10;
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
-                else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+                else if (withdrawalStatus && botUserId == currentRound.OpponentUserId)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                 {
-                    byte scoreDiff = (byte)(founderTotalScore - opponentTotalScore);
-                    currentRound.OpponentScore = (byte)(scoreDiff + 5);// Kurucu ile rakip arasındaki puan farkının +5
+                    currentRound.OpponentScore = 10;
+                    currentRound.OpponentTime = 10;
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
