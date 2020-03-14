@@ -279,6 +279,8 @@ namespace ContestPark.Mobile.ViewModels
                    await RemoveFirstPopupAsync();
 
                    _eventAggregator.GetEvent<PostRefreshEvent>();
+
+                   _eventAggregator.GetEvent<GoldUpdatedEvent>();
                });
             }
         }

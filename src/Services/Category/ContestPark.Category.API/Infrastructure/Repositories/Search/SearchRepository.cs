@@ -132,39 +132,39 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// <returns>Takip edilen kategoriler</returns>
         public async Task<ServiceModel<SearchModel>> SearchFollowedSubCategoriesAsync(string searchText, string userId, Languages language, PagingModel pagingModel)
         {
-            var serviceModel = new ServiceModel<SearchModel>
-            {
-                PageNumber = pagingModel.PageNumber,
-                PageSize = pagingModel.PageSize
-            };
+            //var serviceModel = new ServiceModel<SearchModel>
+            //{
+            //    PageNumber = pagingModel.PageNumber,
+            //    PageSize = pagingModel.PageSize
+            //};
 
-            IEnumerable<short> followedSubCategories = _followSubCategoryRepository.FollowedSubCategoryIds(userId);
-            if (followedSubCategories == null || followedSubCategories.Count() == 0)
-            {
-                return serviceModel;
-            }
+            return _followSubCategoryRepository.FollowedSubCategoryIds(searchText, userId, language, pagingModel);
+            //if (followedSubCategories == null || followedSubCategories.Count() == 0)
+            //{
+            //    return serviceModel;
+            //}
 
-            var searchFollowedCategories = await DynamicSearchAsync(searchText, language, userId, pagingModel, SearchFilters.SubCategoryId, followedSubCategories.ToArray());
+            //var searchFollowedCategories = await DynamicSearchAsync(searchText, language, userId, pagingModel, SearchFilters.SubCategoryId, followedSubCategories.ToArray());
 
-            searchFollowedCategories.Items = serviceModel// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
-                .Items
-                .Select(sc => new SearchModel
-                {
-                    CategoryName = sc.CategoryName,
-                    Price = 0,
-                    DisplayPrice = "0",
-                    FullName = sc.FullName,
-                    IsFollowing = sc.IsFollowing,
-                    PicturePath = sc.PicturePath,
-                    SearchType = sc.SearchType,
-                    SubCategoryId = sc.SubCategoryId,
-                    SubCategoryName = sc.SubCategoryName,
-                    UserId = sc.UserId,
-                    UserName = sc.UserName,
-                })
-                .ToList();
+            //searchFollowedCategories.Items = serviceModel// takip ettiği kkategorilerde fiyat sıfır(0) ve gösterilecek fiyat sıfır(0) olmalı
+            //    .Items
+            //    .Select(sc => new SearchModel
+            //    {
+            //        CategoryName = sc.CategoryName,
+            //        Price = 0,
+            //        DisplayPrice = "0",
+            //        FullName = sc.FullName,
+            //        IsFollowing = sc.IsFollowing,
+            //        PicturePath = sc.PicturePath,
+            //        SearchType = sc.SearchType,
+            //        SubCategoryId = sc.SubCategoryId,
+            //        SubCategoryName = sc.SubCategoryName,
+            //        UserId = sc.UserId,
+            //        UserName = sc.UserName,
+            //    })
+            //    .ToList();
 
-            return searchFollowedCategories;
+            //return searchFollowedCategories;
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ContestPark.Category.API.Models;
+using ContestPark.Core.Database.Models;
+using ContestPark.Core.Enums;
 using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
@@ -11,6 +13,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
 
         Task<bool> FollowSubCategoryAsync(string userId, short subCategoryId);
 
-        IEnumerable<short> FollowedSubCategoryIds(string userId);
+        ServiceModel<SearchModel> FollowedSubCategoryIds(string searchText, string userId, Languages language, PagingModel pagingModel);
     }
 }
