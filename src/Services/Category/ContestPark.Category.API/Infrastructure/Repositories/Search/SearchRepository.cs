@@ -189,7 +189,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             #region Kullanıcı arama
 
-            if (!filterIds.Any())
+            if (filterIds.FirstOrDefault() == 0)
             {
                 string sql1 = $@"SELECT
                             a.FullName,
@@ -214,7 +214,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             #region Alt kategori arama
 
-            if (!filterIds.Any())
+            if (searchFilters == SearchFilters.SubCategoryId || filterIds.FirstOrDefault() == 0)
             {
                 string sqlSubCategory = $@"SELECT
                                       scl.SubCategoryName,
@@ -278,7 +278,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             #region Kategori arama
 
-            if (searchFilters != SearchFilters.SubCategoryId)
+            if (searchFilters == SearchFilters.CategoryId || filterIds.FirstOrDefault() == 0)
             {
                 string sql3 = $@"SELECT
                             scl.SubCategoryName,
