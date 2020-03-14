@@ -135,7 +135,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #region Para
 
-            if (@event.BalanceType == BalanceTypes.Money && (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot")))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
+            if (@event.BalanceType == BalanceTypes.Money && @event.UserId.EndsWith("-bot"))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
             {
                 _logger.LogInformation("Para ile düello oynanıyor...");
 
@@ -149,7 +149,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                bool withdrawalStatus = balance.Amount >= 80.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
+                bool withdrawalStatus = balance.Amount >= 70.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
                     currentRound.FounderScore = _scoreCalculator.Calculator(round, 10);

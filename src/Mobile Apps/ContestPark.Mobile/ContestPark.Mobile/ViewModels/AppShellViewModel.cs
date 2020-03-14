@@ -154,7 +154,6 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Kullanıcı altın miktarı
         /// </summary>
-        /// <returns></returns>
         private async Task SetUserGoldAsync()
         {
             var balance = await _cpService.GetBalanceAsync();
