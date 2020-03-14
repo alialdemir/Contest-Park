@@ -53,7 +53,7 @@ namespace ContestPark.Category.API.Controllers
                                                                                                                              CurrentUserLanguage,
                                                                                                                              pagingModel);
 
-            if (followedSearchSubCategories == null || followedSearchSubCategories.Items == null || followedSearchSubCategories.Items.Count() == 0)
+            if (followedSearchSubCategories == null || followedSearchSubCategories.Items == null || !followedSearchSubCategories.Items.Any())
             {
                 Logger.LogInformation($"{nameof(followedSearchSubCategories)} list returned empty.", searchText);
 

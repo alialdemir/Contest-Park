@@ -90,7 +90,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Alt kategori id</returns>
         public ServiceModel<SearchModel> FollowedSubCategoryIds(string searchText, string userId, Languages language, PagingModel pagingModel)
         {
-            string sql = @"SELECT
+            string sql = $@"SELECT
                                       scl.SubCategoryName,
                                       sc.SubCategoryId,
                                       2 AS SearchType,
@@ -140,7 +140,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
             return _followSubCategoryRepository.ToServiceModel<SearchModel>(sql, new
             {
                 userId,
-                searchText,
                 language,
                 picturePath = DefaultImages.DefaultLock,
             }, pagingModel: pagingModel);
