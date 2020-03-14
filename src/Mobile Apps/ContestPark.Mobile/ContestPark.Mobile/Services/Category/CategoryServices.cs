@@ -43,20 +43,6 @@ namespace ContestPark.Mobile.Services.Category
         #region Methods
 
         /// <summary>
-        /// Takip ettiği kategorileri search sayfasında listeleme
-        /// </summary>
-        /// <param name="pagingModel">Sayfalama</param>
-        /// <returns>Alt kategori listesi</returns>
-        public async Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search/Followed{pagingModel.ToString()}&q={searchText}");
-
-            var result = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
-
-            return result.Data;
-        }
-
-        /// <summary>
         /// Alt kategori takip et
         /// </summary>
         /// <param name="subCategoryId">Alt kategori Id</param>
@@ -166,6 +152,32 @@ namespace ContestPark.Mobile.Services.Category
         }
 
         /// <summary>
+        /// Takip ettiği kategorileri search sayfasında listeleme
+        /// </summary>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Alt kategori listesi</returns>
+        public async Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search/Followed{pagingModel.ToString()}&q={searchText}");
+
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<SearchModel>>(uri);
+            }
+
+            var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+            if (response.Data != null && response.IsSuccess)
+            {
+                if (_cacheService.IsExpired(uri))
+                    _cacheService.Empty(uri);
+
+                _cacheService.Add(uri, response.Data);
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
         /// Kategori Id'ye göre kategori listesi getirir 0 ise tüm kategorileri getirir
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
@@ -173,7 +185,19 @@ namespace ContestPark.Mobile.Services.Category
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q=");
 
+            if (!_cacheService.IsExpired(key: uri))
+            {
+                return await _cacheService.Get<ServiceModel<SearchModel>>(uri);
+            }
+
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
+            if (response.Data != null && response.IsSuccess)
+            {
+                if (_cacheService.IsExpired(uri))
+                    _cacheService.Empty(uri);
+
+                _cacheService.Add(uri, response.Data);
+            }
 
             return response.Data;
         }

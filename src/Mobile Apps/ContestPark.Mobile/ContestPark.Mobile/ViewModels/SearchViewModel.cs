@@ -33,8 +33,9 @@ namespace ContestPark.Mobile.ViewModels
 
         public SearchViewModel(ICategoryService categoryServices,
                                IEventAggregator eventAggregator,
+                               INavigationService navigationService,
                                IFollowService followService,
-                               IGameService gameService)
+                               IGameService gameService) : base(navigationService)
         {
             Title = ContestParkResources.SearchPlayersOrCategories;
             _categoryService = categoryServices;
@@ -56,7 +57,7 @@ namespace ContestPark.Mobile.ViewModels
             get { return _search; }
             set
             {
-                _search = value;
+                _search = value.Trim();
                 RaisePropertyChanged(() => Search);
             }
         }
@@ -126,14 +127,14 @@ namespace ContestPark.Mobile.ViewModels
         /// Profile sayfasına git
         /// </summary>
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommandAsync(string userName)
+        private void ExecuteGotoProfilePageCommandAsync(string userName)
         {
             if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -145,7 +146,7 @@ namespace ContestPark.Mobile.ViewModels
         /// Alt kategori için action sheet açar
         /// </summary>
         /// <param name="subCategoryId">Alt kategori id</param>
-        private async Task ExecuteSubCategoriesDisplayActionSheetCommand(short subCategoryId)
+        private void ExecuteSubCategoriesDisplayActionSheetCommand(short subCategoryId)
         {
             if (IsActionSheetBusy)
                 return;
@@ -155,7 +156,7 @@ namespace ContestPark.Mobile.ViewModels
             SearchModel selectedModel = Items?.FirstOrDefault(P => P.SubCategoryId == subCategoryId);
             if (selectedModel != null)
             {
-                await _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
+                _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
                 {
                     SubcategoryId = selectedModel.SubCategoryId,
                     SubcategoryName = selectedModel.CategoryName,
@@ -287,7 +288,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommandAsync(userName)));
+                return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommandAsync));
             }
         }
 
@@ -330,8 +331,7 @@ namespace ContestPark.Mobile.ViewModels
             get => new Command(() => Search = string.Empty);
         }
 
-        public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(async (CategoryId) =>
-                        await ExecuteSubCategoriesDisplayActionSheetCommand(CategoryId)));
+        public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(ExecuteSubCategoriesDisplayActionSheetCommand));
 
         #endregion Commands
 

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Helpers;
 using Newtonsoft.Json;
 
 namespace ContestPark.Mobile.Models.Categories
@@ -44,7 +45,10 @@ namespace ContestPark.Mobile.Models.Categories
 
         public string PicturePath
         {
-            get { return picturePath; }
+            get
+            {
+                return picturePath;
+            }
             set
             {
                 picturePath = value;
@@ -56,12 +60,13 @@ namespace ContestPark.Mobile.Models.Categories
         [JsonIgnore]
         public string ProfilePicturePath
         {
-            get { return PicturePath; }
+            get { return !string.IsNullOrEmpty(PicturePath) ? PicturePath : DefaultImages.DefaultProfilePicture; }
         }
 
         public decimal Price { get; set; }
 
         public SearchTypes SearchType { get; set; }
+
         public short SubCategoryId { get; set; }
         public string SubCategoryName { get; set; } = "";
 

@@ -58,13 +58,18 @@ namespace ContestPark.Mobile.Components.Search
                 case Enums.SearchTypes.Player:
                     Content = new UserFollowListItem()
                     {
+                        Margin = new Thickness(8),
                         GotoProfilePageCommand = GotoProfilePageCommand,
                         RightButtonCommand = FollowCommand,
                     };
                     break;
 
                 case Enums.SearchTypes.Category:
-                    Content = new CategorySearchView() { PushCategoryDetailCommand = PushCategoryDetailCommand };
+                    Content = new CategorySearchView()
+                    {
+                        PushCategoryDetailCommand = PushCategoryDetailCommand,
+                        BindingContext = searchModel
+                    };
                     break;
             }
         }

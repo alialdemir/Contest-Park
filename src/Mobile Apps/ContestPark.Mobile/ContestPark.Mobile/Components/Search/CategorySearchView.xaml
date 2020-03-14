@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="categorySearchView">
     <ContentView.Resources>
         <ResourceDictionary>
             <Converter:NegativeBooleanConverter x:Key="not" />
@@ -22,7 +23,6 @@
             HeightRequest="80"
             IsClippedToBounds="True">
             <Grid
-                x:Name="thumListItem"
                 Margin="14,15,14,15"
                 ColumnSpacing="0"
                 RowSpacing="0">
@@ -37,14 +37,22 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailCommand, Source={x:Reference categorySearchView}}" CommandParameter="{Binding SubCategoryId}" />
+                </Grid.GestureRecognizers>
+
                 <components:CachedImage
-                    x:Name="imgCategory"
                     Grid.RowSpan="2"
                     Grid.Column="0"
                     HeightRequest="50"
                     Source="{Binding Path=PicturePath}"
                     VerticalOptions="Center"
-                    WidthRequest="50" />
+                    WidthRequest="50">
+
+                    <components:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailCommand, Source={x:Reference categorySearchView}}" CommandParameter="{Binding SubCategoryId}" />
+                    </components:CachedImage.GestureRecognizers>
+                </components:CachedImage>
 
                 <Label
                     Grid.Row="0"

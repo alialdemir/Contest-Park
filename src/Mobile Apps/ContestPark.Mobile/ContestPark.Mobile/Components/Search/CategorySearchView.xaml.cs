@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Models.Categories;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,23 +18,15 @@ namespace ContestPark.Mobile.Components.Search
 
         #region Properties
 
+        public static readonly BindableProperty PushCategoryDetailCommandProperty = BindableProperty.Create(propertyName: nameof(PushCategoryDetailCommand),
+                                                                                                            returnType: typeof(ICommand),
+                                                                                                            declaringType: typeof(CategorySearchView),
+                                                                                                            defaultValue: null);
+
         public ICommand PushCategoryDetailCommand
         {
-            set
-            {
-                if (BindingContext == null || !(BindingContext is SearchModel))
-                    return;
-
-                TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer
-                {
-                    Command = value,
-                    CommandParameter = ((SearchModel)BindingContext).SubCategoryId
-                };
-
-                thumListItem.GestureRecognizers.Add(tapGestureRecognizer);
-
-                imgCategory.GestureRecognizers.Add(tapGestureRecognizer);
-            }
+            get { return (ICommand)GetValue(PushCategoryDetailCommandProperty); }
+            set { SetValue(PushCategoryDetailCommandProperty, value); }
         }
 
         #endregion Properties

@@ -187,30 +187,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             List<SearchModel> searches = new List<SearchModel>();
 
-            #region Kullanıcı arama
-
-            if (filterIds.FirstOrDefault() == 0)
-            {
-                string sql1 = $@"SELECT
-                            a.FullName,
-                            a.UserName,
-                            a.ProfilePicturePath AS PicturePath,
-                            a.Id AS UserId,
-                            FNC_IsFollow(@userId, a.Id) AS IsFollowing
-                            FROM AspNetUsers a
-                            WHERE a.FullName LIKE '%{searchText}%' OR a.UserName LIKE '%{searchText}%'";
-                var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
-                {
-                    userId,
-                    searchText,
-                    language
-                }, pagingModel: pagingModel);
-
-                if (searchUsers != null && searchUsers.Items.Any())
-                    searches.AddRange(searchUsers.Items);
-            }
-
-            #endregion Kullanıcı arama
 
             #region Alt kategori arama
 
@@ -341,6 +317,31 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
             }
 
             #endregion Kategori arama
+
+            #region Kullanıcı arama
+
+            if (filterIds.FirstOrDefault() == 0)
+            {
+                string sql1 = $@"SELECT
+                            a.FullName,
+                            a.UserName,
+                            a.ProfilePicturePath AS PicturePath,
+                            a.Id AS UserId,
+                            FNC_IsFollow(@userId, a.Id) AS IsFollowing
+                            FROM AspNetUsers a
+                            WHERE a.FullName LIKE '%{searchText}%' OR a.UserName LIKE '%{searchText}%'";
+                var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
+                {
+                    userId,
+                    searchText,
+                    language
+                }, pagingModel: pagingModel);
+
+                if (searchUsers != null && searchUsers.Items.Any())
+                    searches.AddRange(searchUsers.Items);
+            }
+
+            #endregion Kullanıcı arama
 
             return Task.FromResult(new ServiceModel<SearchModel>
             {
