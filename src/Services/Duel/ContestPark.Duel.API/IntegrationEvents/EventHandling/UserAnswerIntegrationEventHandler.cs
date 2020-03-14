@@ -115,14 +115,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
                 string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
-                if (botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
+                if (botUserId == currentRound.FounderUserId && (opponentTotalScore > founderTotalScore || round == 0))
                 {
                     currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
-                else if (botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
+                else if (botUserId == currentRound.OpponentUserId && (founderTotalScore > opponentTotalScore || round == 0))
                 {
                     currentRound.OpponentScore = _scoreCalculator.Calculator(round, @event.Time);
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
@@ -146,13 +146,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
                 BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Money);// bot olmayan kullanıcının para miktarını aldık
-                bool withdrawalStatus = balance.Amount >= 80.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
 
                 _logger.LogInformation("Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
+                bool withdrawalStatus = balance.Amount >= 80.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
-                    currentRound.FounderScore = 10;
+                    currentRound.FounderScore = _scoreCalculator.Calculator(round, 10);
                     currentRound.FounderTime = 10;
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
@@ -160,7 +160,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
                 else if (withdrawalStatus && botUserId == currentRound.OpponentUserId)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                 {
-                    currentRound.OpponentScore = 10;
+                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, 10);
                     currentRound.OpponentTime = 10;
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
