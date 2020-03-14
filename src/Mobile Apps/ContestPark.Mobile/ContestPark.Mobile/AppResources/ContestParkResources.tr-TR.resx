@@ -126,6 +126,9 @@
   <data name="AdvertiseWatchPlayGames" xml:space="preserve">
     <value>Reklam izle, oyun oyna!</value>
   </data>
+  <data name="And" xml:space="preserve">
+    <value> ve </value>
+  </data>
   <data name="AnErrorOccurredDuringThePrizeAwardingProcess" xml:space="preserve">
     <value>Ödül verme işlemi sırasında hata oluştu.</value>
   </data>
@@ -493,6 +496,9 @@
   <data name="PostLikes" xml:space="preserve">
     <value>Beğeniler</value>
   </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Aydınlatma Metni</value>
+  </data>
   <data name="PrivateProfile" xml:space="preserve">
     <value>Profil Gizle</value>
   </data>
@@ -636,6 +642,9 @@
   <data name="TapToOpen" xml:space="preserve">
     <value>AÇMAK İÇİN DOKUNUN</value>
   </data>
+  <data name="TermsofUse" xml:space="preserve">
+    <value>Kullanım Şartlarını</value>
+  </data>
   <data name="TheOpponentDidNotAcceptTheDuel" xml:space="preserve">
     <value>Rakip oyuncu düelloyu kabul etmedi.</value>
   </data>
@@ -723,6 +732,9 @@
   <data name="WhatYouGetYourUsername" xml:space="preserve">
     <value>Kullanıcı adınızı ne olsun?</value>
   </data>
+  <data name="WhenYouClickTheSignInButton" xml:space="preserve">
+    <value>Giriş yap düğmesine tıkladığınızda </value>
+  </data>
   <data name="Winning" xml:space="preserve">
     <value>Kazanan</value>
   </data>
@@ -731,6 +743,9 @@
   </data>
   <data name="WriteYourUserNameOrEmailAddress" xml:space="preserve">
     <value>Kullanıcı adı veya eposta adresi yazınız.</value>
+  </data>
+  <data name="YouApprove" xml:space="preserve">
+    <value> onaylıyorsunuz.</value>
   </data>
   <data name="YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory" xml:space="preserve">
     <value>Bu kategoriyi açmak için yeterli miktarda altınınız yok. Altın satın almak ister misiniz?</value>

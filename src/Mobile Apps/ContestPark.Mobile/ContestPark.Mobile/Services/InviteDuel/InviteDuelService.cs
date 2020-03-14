@@ -157,6 +157,8 @@ namespace ContestPark.Mobile.Services.InviteDuel
         private async Task<decimal> GetRandomBet(BalanceTypes balanceType)
         {
             var balance = await _balanceService.GetBalanceAsync();
+            if (balance == null)
+                return 0;
 
             decimal[] bets;
             int index = 0;

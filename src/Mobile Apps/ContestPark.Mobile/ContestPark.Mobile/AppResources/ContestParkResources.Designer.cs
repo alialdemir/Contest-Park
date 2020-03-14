@@ -88,6 +88,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  and .
+        /// </summary>
+        public static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred during the prize-awarding process..
         /// </summary>
         public static string AnErrorOccurredDuringThePrizeAwardingProcess {
@@ -1178,6 +1187,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Privacy Policy.
+        /// </summary>
+        public static string PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Private Profile.
         /// </summary>
         public static string PrivateProfile {
@@ -1601,6 +1619,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terms of Use .
+        /// </summary>
+        public static string TermsofUse {
+            get {
+                return ResourceManager.GetString("TermsofUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The opponent did not accept the duel..
         /// </summary>
         public static string TheOpponentDidNotAcceptTheDuel {
@@ -1853,6 +1880,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When you sign up, you approve the .
+        /// </summary>
+        public static string WhenYouClickTheSignInButton {
+            get {
+                return ResourceManager.GetString("WhenYouClickTheSignInButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Winning.
         /// </summary>
         public static string Winning {
@@ -1876,6 +1912,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string WriteYourUserNameOrEmailAddress {
             get {
                 return ResourceManager.GetString("WriteYourUserNameOrEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ..
+        /// </summary>
+        public static string YouApprove {
+            get {
+                return ResourceManager.GetString("YouApprove", resourceCulture);
             }
         }
         

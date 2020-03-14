@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid
-                HorizontalOptions="Center"
+                HorizontalOptions="FillAndExpand"
                 RowSpacing="15"
                 VerticalOptions="Center">
                 <Grid.RowDefinitions>
@@ -137,17 +137,67 @@
                     </custom:LinearGradientButton.CornerRadius>
                 </custom:LinearGradientButton>
 
-                <custom:HtmlLabel
+                <Grid
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
-                    FontFamily="{DynamicResource SofiaProMedium}"
-                    HorizontalTextAlignment="Center"
-                    LineBreakMode="WordWrap"
-                    Text="When you sig up, you approve the Privacy Policy, Terms of use and Competition Rules">
-                    <custom:HtmlLabel.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PrivacyPolicyCommand}" />
-                    </custom:HtmlLabel.GestureRecognizers>
-                </custom:HtmlLabel>
+                    ColumnSpacing="0"
+                    HorizontalOptions="Center"
+                    RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <custom:HtmlLabel
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        HorizontalTextAlignment="Center"
+                        LineBreakMode="WordWrap"
+                        Text="{i18n:Translate WhenYouClickTheSignInButton}" />
+                    <custom:HtmlLabel
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        HorizontalTextAlignment="Center"
+                        LineBreakMode="WordWrap"
+                        Text="{i18n:Translate PrivacyPolicy}"
+                        TextDecorations="Underline">
+                        <custom:HtmlLabel.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://contestpark.com/kvkk.html" />
+                        </custom:HtmlLabel.GestureRecognizers>
+                    </custom:HtmlLabel>
+                    <custom:HtmlLabel
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        HorizontalTextAlignment="Center"
+                        Text="{i18n:Translate And}" />
+                    <custom:HtmlLabel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        HorizontalTextAlignment="End"
+                        LineBreakMode="WordWrap"
+                        Text="{i18n:Translate TermsofUse}"
+                        TextDecorations="Underline">
+                        <custom:HtmlLabel.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://contestpark.com/privacy-policy.html" />
+                        </custom:HtmlLabel.GestureRecognizers>
+                    </custom:HtmlLabel>
+                    <custom:HtmlLabel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        HorizontalTextAlignment="Start"
+                        LineBreakMode="WordWrap"
+                        Text="{i18n:Translate YouApprove}" />
+                </Grid>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

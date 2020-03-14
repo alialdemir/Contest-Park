@@ -210,11 +210,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand PrivacyPolicyCommand
+        public ICommand OpenLinkCommand
         {
             get
             {
-                return new Command(() => Launcher.OpenAsync(new Uri("http://contestpark.com/privacy-policy.html")));
+                return new Command<string>((url) => Launcher.OpenAsync(new Uri(url)));
             }
         }
 

@@ -779,4 +779,19 @@
   <data name="IsLookingForAnOpponent" xml:space="preserve">
     <value>{0} is looking for an opponent.</value>
   </data>
+  <data name="And" xml:space="preserve">
+    <value> and </value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="TermsofUse" xml:space="preserve">
+    <value>Terms of Use </value>
+  </data>
+  <data name="WhenYouClickTheSignInButton" xml:space="preserve">
+    <value>When you sign up, you approve the </value>
+  </data>
+  <data name="YouApprove" xml:space="preserve">
+    <value>.</value>
+  </data>
 </root>
