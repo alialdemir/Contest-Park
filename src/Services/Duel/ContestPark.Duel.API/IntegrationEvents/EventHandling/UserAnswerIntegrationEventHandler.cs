@@ -102,13 +102,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 currentRound.OpponentScore = score;
             }
 
-            #region Bot kazanma ayarları
+            #region Kazanma ayarları
 
             #region Cevaplama
 
             if (@event.UserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
-
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
 
@@ -154,16 +153,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 bool withdrawalStatus = balance.Amount >= 70.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
-                    currentRound.FounderScore = _scoreCalculator.Calculator(round, 10);
                     currentRound.FounderTime = 10;
+                    currentRound.FounderScore = _scoreCalculator.Calculator(round, currentRound.FounderTime);
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
                 else if (withdrawalStatus && botUserId == currentRound.OpponentUserId)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                 {
-                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, 10);
                     currentRound.OpponentTime = 10;
+                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, currentRound.OpponentTime);
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
                     _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
@@ -172,7 +171,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #endregion Para
 
-            #endregion Bot kazanma ayarları
+            #endregion Kazanma ayarları
 
             userAnswers[round - 1] = currentRound;// Şuandaki round bilgileri aynı indexe set edildi
 

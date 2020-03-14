@@ -180,9 +180,18 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
         /// <returns>Aranan veri listesi</returns>
         public Task<ServiceModel<SearchModel>> DynamicSearchAsync(string searchText, Languages language, string userId, PagingModel pagingModel, SearchFilters searchFilters, params short[] filterIds)
         {
+            if (searchText == "'")
+                searchText = string.Empty;
+
             #region Geçici olarak mysql üzerinden search ekledim
 
-            string sql1 = $@"SELECT
+            List<SearchModel> searches = new List<SearchModel>();
+
+            #region Kullanıcı arama
+
+            if (!filterIds.Any())
+            {
+                string sql1 = $@"SELECT
                             a.FullName,
                             a.UserName,
                             a.ProfilePicturePath AS PicturePath,
@@ -190,8 +199,24 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                             FNC_IsFollow(@userId, a.Id) AS IsFollowing
                             FROM AspNetUsers a
                             WHERE a.FullName LIKE '%{searchText}%' OR a.UserName LIKE '%{searchText}%'";
+                var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
+                {
+                    userId,
+                    searchText,
+                    language
+                }, pagingModel: pagingModel);
 
-            string sqlSubCategory = $@"SELECT
+                if (searchUsers != null && searchUsers.Items.Any())
+                    searches.AddRange(searchUsers.Items);
+            }
+
+            #endregion Kullanıcı arama
+
+            #region Alt kategori arama
+
+            if (!filterIds.Any())
+            {
+                string sqlSubCategory = $@"SELECT
                                       scl.SubCategoryName,
                                       sc.SubCategoryId,
                                       2 AS SearchType,
@@ -237,7 +262,25 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                       INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = scr.CategoryId AND cl.`Language` = @language
                                       WHERE scl.SubCategoryName LIKE '%{searchText}%' AND scl.`Language` = @language AND sc.Visibility = 1";
 
-            string sql3 = $@"SELECT
+                var searchSubCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sqlSubCategory, new
+                {
+                    userId,
+                    searchText,
+                    language,
+                    picturePath = DefaultImages.DefaultLock,
+                }, pagingModel: pagingModel);
+
+                if (searchSubCategories != null && searchSubCategories.Items.Any())
+                    searches.AddRange(searchSubCategories.Items);
+            }
+
+            #endregion Alt kategori arama
+
+            #region Kategori arama
+
+            if (searchFilters != SearchFilters.SubCategoryId)
+            {
+                string sql3 = $@"SELECT
                             scl.SubCategoryName,
                             sc.SubCategoryId,
                             cl.TEXT AS CategoryName,
@@ -282,51 +325,30 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                             INNER JOIN SubCategoryRls scr ON c.CategoryId = scr.CategoryId
                             INNER JOIN SubCategories sc ON sc.SubCategoryId = scr.SubCategoryId
                             INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = @language
-							WHERE cl.Text LIKE '%{searchText}%' AND cl.`Language` = @language AND c.Visibility = 1";
+							WHERE cl.Text LIKE '%{searchText}%' AND cl.`Language` = @language AND c.Visibility = 1 AND (@categoryId = 0 OR cl.CategoryId = @categoryId )";
 
-            var searchUsers = _subCategoryRepository.ToServiceModel<SearchModel>(sql1, new
-            {
-                userId,
-                searchText,
-                language
-            }, pagingModel: pagingModel);
+                var searchCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sql3, new
+                {
+                    userId,
+                    searchText,
+                    language,
+                    picturePath = DefaultImages.DefaultLock,
+                    categoryId = searchFilters == SearchFilters.CategoryId ? filterIds.FirstOrDefault() : 0
+                }, pagingModel: pagingModel);
 
-            var searchSubCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sqlSubCategory, new
-            {
-                userId,
-                searchText,
-                language,
-                picturePath = DefaultImages.DefaultLock,
-            }, pagingModel: pagingModel);
+                if (searchCategories != null && searchCategories.Items.Any())
+                    searches.AddRange(searchCategories.Items);
+            }
 
-            var searchCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sql3, new
-            {
-                userId,
-                searchText,
-                language,
-                picturePath = DefaultImages.DefaultLock,
-            }, pagingModel: pagingModel);
+            #endregion Kategori arama
 
-            List<SearchModel> searches = new List<SearchModel>();
-
-            if (searchUsers != null && searchUsers.Items.Any())
-                searches.AddRange(searchUsers.Items);
-
-            if (searchSubCategories != null && searchSubCategories.Items.Any())
-                searches.AddRange(searchSubCategories.Items);
-
-            if (searchCategories != null && searchCategories.Items.Any())
-                searches.AddRange(searchCategories.Items);
-
-            ServiceModel<SearchModel> result = new ServiceModel<SearchModel>
+            return Task.FromResult(new ServiceModel<SearchModel>
             {
                 Items = searches,
                 PageNumber = pagingModel.PageNumber,
                 PageSize = pagingModel.PageSize,
-                HasNextPage = searchUsers.HasNextPage && searchSubCategories.HasNextPage && searchCategories.HasNextPage,
-            };
-
-            return Task.FromResult(result);
+                //  HasNextPage = searchUsers.HasNextPage && searchSubCategories.HasNextPage && searchCategories.HasNextPage,
+            });
 
             #endregion Geçici olarak mysql üzerinden search ekledim
 
