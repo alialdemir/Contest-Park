@@ -25,7 +25,6 @@
     </ContentView.Effects>
     <ContentView.Content>
         <Grid
-            extension:Skeleton.Animation="Fade"
             extension:Skeleton.IsBusy="{Binding IsBusy}"
             extension:Skeleton.IsParent="True"
             WidthRequest="105">

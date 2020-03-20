@@ -20,7 +20,6 @@
         <Frame
             Margin="0,0,0,8"
             Padding="16,16,0,16"
-            extension:Skeleton.Animation="Fade"
             extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
             extension:Skeleton.IsParent="True"
             CornerRadius="8"

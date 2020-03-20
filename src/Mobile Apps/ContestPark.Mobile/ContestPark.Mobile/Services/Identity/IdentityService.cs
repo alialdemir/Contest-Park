@@ -391,6 +391,8 @@ namespace ContestPark.Mobile.Services.Identity
             _settingsService.AuthAccessToken = string.Empty;
             _settingsService.SignalRConnectionId = string.Empty;
 
+            _settingsService.RefreshToken = string.Empty;
+
             _settingsService.RemoveCurrentUser();
 
             _cacheService.EmptyAll();

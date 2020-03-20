@@ -32,7 +32,7 @@ namespace ContestPark.Mobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 #if !DEBUG
-                        CheckJailBreak();
+            CheckJailBreak();
 #endif
 
             if (CheckNetworkAsync())

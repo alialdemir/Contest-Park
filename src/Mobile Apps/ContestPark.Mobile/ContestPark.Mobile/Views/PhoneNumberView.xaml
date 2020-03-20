@@ -142,7 +142,8 @@
                     Grid.ColumnSpan="2"
                     ColumnSpacing="0"
                     HorizontalOptions="Center"
-                    RowSpacing="0">
+                    RowSpacing="0"
+                    VerticalOptions="Start">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -172,16 +173,18 @@
                         </custom:HtmlLabel.GestureRecognizers>
                     </custom:HtmlLabel>
                     <custom:HtmlLabel
-                        Grid.Row="0"
-                        Grid.Column="2"
+                        Grid.Row="1"
+                        Grid.Column="0"
                         FontFamily="{DynamicResource SofiaProMedium}"
+                        HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
                         Text="{i18n:Translate And}" />
                     <custom:HtmlLabel
                         Grid.Row="1"
-                        Grid.Column="0"
+                        Grid.Column="1"
                         FontFamily="{DynamicResource SofiaProMedium}"
-                        HorizontalTextAlignment="End"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
                         LineBreakMode="WordWrap"
                         Text="{i18n:Translate TermsofUse}"
                         TextDecorations="Underline">

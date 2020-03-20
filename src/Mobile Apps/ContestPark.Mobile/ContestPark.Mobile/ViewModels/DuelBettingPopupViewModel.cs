@@ -16,7 +16,6 @@ using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -97,11 +96,9 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            InitBets();
-
             Balance = await _cpService.GetBalanceAsync();
 
-            AddFreeLoader();
+            InitBets();
 
             IsBusy = false;
         }
@@ -112,6 +109,10 @@ namespace ContestPark.Mobile.ViewModels
 
             if (BalanceType == BalanceTypes.Gold)
             {
+                BetModel freeBet = AddFreeLoader();
+                if (freeBet != null)
+                    Bets.Add(freeBet);
+
                 Bets.AddRange(
            new List<BetModel> {
                                 new BetModel
@@ -249,14 +250,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Eğer kullanıcının altın miktarı sıfır ise altınsız oynaması için bahis miktari eklenir
         /// </summary>
-        private void AddFreeLoader()
+        private BetModel AddFreeLoader()
         {
-            // TODO: eğer hiç altını yoksa video izle oyna özelliği eklenmeli
-            if (BalanceType == BalanceTypes.Gold && Balance != null && Balance.Gold < Bets?.FirstOrDefault().EntryFee)// Altını hiç yoksa 0 altınla oynayabilir
+            decimal minEntryFee = 40.00m;
+            if (BalanceType == BalanceTypes.Gold && Balance != null && Balance.Gold < minEntryFee)// Altını hiç yoksa 0 altınla oynayabilir
             {
                 _adMobService.OnRewardedVideoAdClosed += OnRewardedVideoAdClosed;
 
-                Bets.Insert(0, new BetModel
+                return new BetModel
                 {
                     Image = "prizeicon1.png",
                     Title = ContestParkResources.Freeloader,
@@ -264,10 +265,10 @@ namespace ContestPark.Mobile.ViewModels
                     Description = ContestParkResources.AdvertiseWatchPlayGames,
                     EntryFee = 0,
                     Prize = 80.00m,
-                });
-
-                SelectedIndex = 0;
+                };
             }
+
+            return null;
         }
 
         /// <summary>

@@ -35,12 +35,14 @@
                     </Image.Source>
                 </Image>
                 <Entry
+                    BackgroundColor="#F8F8F8"
                     FontFamily="{StaticResource SofiaProLight}"
                     FontSize="15"
                     HorizontalOptions="FillAndExpand"
                     Placeholder="{i18n:Translate SearchPlayersOrCategories}"
                     PlaceholderColor="#505050"
                     Text="{Binding Search}"
+                    TextColor="{StaticResource Black}"
                     VerticalOptions="Center">
                     <Entry.Behaviors>
                         <behaviors:EventToCommandBehavior Command="{Binding SearchTextCommand}" EventName="TextChanged" />
