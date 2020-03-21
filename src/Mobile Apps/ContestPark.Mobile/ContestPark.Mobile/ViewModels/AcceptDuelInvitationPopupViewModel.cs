@@ -45,6 +45,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
+        public bool IsExit { get; set; }
+
         private double _timer = 10;
 
         public double Timer
@@ -80,6 +82,9 @@ namespace ContestPark.Mobile.ViewModels
         {
             Device.StartTimer(new TimeSpan(0, 0, 0, 0, 100), () =>
                {
+                   if (IsExit)
+                       return false;
+
                    Timer -= 0.100;
 
                    if (Timer <= 0)
@@ -100,6 +105,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
+
+            IsExit = true;
 
             await RemoveFirstPopupAsync();
 
