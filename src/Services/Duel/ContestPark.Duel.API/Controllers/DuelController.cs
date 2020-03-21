@@ -161,7 +161,11 @@ namespace ContestPark.Duel.API.Controllers
                 return BadRequest(DuelResource.YourBalanceIsInsufficient);
             }
 
-            var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: acceptInvite.SubCategoryId,
+            Task.Factory.StartNew(async () =>
+            {
+                await Task.Delay(5000);// geçici olarak ekledim
+
+                var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: acceptInvite.SubCategoryId,
                                                                bet: acceptInvite.Bet,
                                                                balanceType: acceptInvite.BalanceType,
 
@@ -173,7 +177,8 @@ namespace ContestPark.Duel.API.Controllers
                                                                opponentConnectionId: acceptInvite.OpponentConnectionId,
                                                                opponentLanguage: CurrentUserLanguage);
 
-            _eventBus.Publish(eventDuelStart);
+                _eventBus.Publish(eventDuelStart);
+            });
 
             return Ok();
         }

@@ -64,7 +64,7 @@
     <OptimizePNGs>true</OptimizePNGs>
     <MtouchFloat32>true</MtouchFloat32>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <CodesignKey>iPhone Developer: ali aldemir (V6854F4555)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
