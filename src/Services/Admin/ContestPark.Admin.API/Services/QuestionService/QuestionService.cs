@@ -57,14 +57,25 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
             _logger.LogInformation("Soru oluşturma servisi çağrıldı");
 
-            _logger.LogInformation("File.Length {Length}", configModel.File.Length);
+            var filePath = Path.Combine(Path.GetTempPath(), configModel.File.FileName);
 
-            StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
-            string jsonQuestion = reader.ReadToEnd();
+            _logger.LogInformation("filePath {filePath}", filePath);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                configModel.File.CopyTo(fileStream);
+            }
+
+            if (!File.Exists(filePath))
+            {
+                _logger.LogError("Json dosya yolu bulunamadı.", filePath);
+
+                return null;
+            }
+
+            string jsonQuestion = File.ReadAllText(filePath);
 
             _logger.LogInformation("jsonQuestion {jsonQuestion}", jsonQuestion);
-
-            //  reader.Dispose();
 
             if (string.IsNullOrEmpty(jsonQuestion))
             {
