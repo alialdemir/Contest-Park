@@ -1,10 +1,11 @@
 ﻿using ContestPark.Admin.API.Model.Question;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Services.QuestionService
 {
     public interface IQuestionService
     {
-        List<QuestionSaveModel> GenerateQuestion(QuestionConfigModel configModel);
+        Task<List<QuestionSaveModel>> GenerateQuestion(QuestionConfigModel configModel);
     }
 }

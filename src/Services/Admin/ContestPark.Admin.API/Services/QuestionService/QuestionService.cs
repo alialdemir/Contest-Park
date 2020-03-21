@@ -12,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Services.QuestionService
 {
@@ -46,10 +47,10 @@ namespace ContestPark.Admin.API.Services.QuestionService
         /// </summary>
         /// <param name="file">Json file</param>
         /// <returns>Json string</returns>
-        private string ConvertFileToJsonArraay(IFormFile file)
+        private async Task<string> ConvertFileToJsonArraay(IFormFile file)
         {
             StreamReader reader = new StreamReader(file.OpenReadStream());
-            string jsonQuestion = reader.ReadToEnd();
+            string jsonQuestion = await reader.ReadToEndAsync();
 
             return jsonQuestion;
         }
@@ -59,7 +60,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
         /// </summary>
         /// <param name="configModel">Soru hazırlama ayarları ve soru json</param>
         /// <returns>Sorular</returns>
-        public List<QuestionSaveModel> GenerateQuestion(QuestionConfigModel configModel)
+        public async Task<List<QuestionSaveModel>> GenerateQuestion(QuestionConfigModel configModel)
         {
             if (configModel == null
                 || configModel.SubCategoryId <= 0
@@ -71,7 +72,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
             _logger.LogInformation("Soru oluşturma servisi çağrıldı");
 
-            string jsonQuestion = ConvertFileToJsonArraay(configModel.File);
+            string jsonQuestion = await ConvertFileToJsonArraay(configModel.File);
             if (string.IsNullOrEmpty(jsonQuestion))
                 return null;
 

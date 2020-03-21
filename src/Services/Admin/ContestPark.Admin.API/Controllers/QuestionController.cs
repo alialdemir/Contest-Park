@@ -64,7 +64,7 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Consumes("multipart/form-data")]
-        public IActionResult AddQuestion([FromForm]QuestionConfigModel configModel)// Oyunucunun karşısına rakip ekler
+        public async Task<IActionResult> AddQuestion([FromForm]QuestionConfigModel configModel)// Oyunucunun karşısına rakip ekler
         {
             if (configModel == null
                 || configModel.SubCategoryId <= 0
@@ -74,24 +74,21 @@ namespace ContestPark.Duel.API.Controllers
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return BadRequest();
 
-            Task.Factory.StartNew(() =>
-          {
-              Logger.LogInformation("Json ile soru oluşturuluyor");
+            Logger.LogInformation("Json ile soru oluşturuluyor");
 
-              var questions = _questionService.GenerateQuestion(configModel);
-              if (questions == null || !questions.Any())
-              {
-                  Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
+            var questions = await _questionService.GenerateQuestion(configModel);
+            if (questions == null || !questions.Any())
+            {
+                Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
 
-                  return;
-              }
+                return BadRequest();
+            }
 
-              var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
+            var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
 
-              _eventBus.Publish(@eventQuestion);
+            _eventBus.Publish(@eventQuestion);
 
-              Logger.LogInformation("Json ile {count} adet soru oluşturuldu", questions.Count);
-          });
+            Logger.LogInformation("Json ile {count} adet soru oluşturuldu", questions.Count);
 
             return Ok();
         }
