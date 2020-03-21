@@ -66,7 +66,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
 
             var userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
-            if (userAnswers != null && userAnswers.Count > 0)
+            if (!@event.IsDuelCancel && userAnswers != null && userAnswers.Count > 0)
             {
                 // Oyuncuların düellodan kaçma durumunda yenilmiş olma durumunu buradan ayarladık
                 duel.FounderTotalScore = isEscaperUserFounder ? (byte)0 : (byte)userAnswers.Sum(x => x.FounderScore);
@@ -79,11 +79,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #region Kazanma bonusu verilecek mi belirler
 
-            if (@event.EscaperUserId != duel.FounderUserId && duel.FounderTotalScore > duel.OpponentTotalScore)
+            if (!@event.IsDuelCancel && @event.EscaperUserId != duel.FounderUserId && duel.FounderTotalScore > duel.OpponentTotalScore)
             {
                 isFounderFinishedTheGame = true;
             }
-            else if (@event.EscaperUserId != duel.OpponentUserId && duel.OpponentTotalScore > duel.FounderTotalScore)
+            else if (!@event.IsDuelCancel && @event.EscaperUserId != duel.OpponentUserId && duel.OpponentTotalScore > duel.FounderTotalScore)
             {
                 isOpponentFinishedTheGame = true;
             }
@@ -101,7 +101,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                   duel.FounderTotalScore ?? 0,
                                                                   duel.OpponentTotalScore ?? 0,
                                                                   isFounderFinishedTheGame,
-                                                                  isOpponentFinishedTheGame);
+                                                                  isOpponentFinishedTheGame,
+                                                                  @event.IsDuelCancel);
 
             _eventBus.Publish(duelFinishEvent);
 

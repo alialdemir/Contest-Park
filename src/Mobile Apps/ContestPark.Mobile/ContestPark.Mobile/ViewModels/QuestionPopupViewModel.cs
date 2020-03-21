@@ -251,7 +251,7 @@ namespace ContestPark.Mobile.ViewModels
             NextQuestion questionModel = (NextQuestion)sender;
             if (questionModel == null)
             {
-                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+                _duelService.DuelCancel(DuelCreated.DuelId);
 
                 IsExit = true;
                 DuelCloseCommand.Execute(null);
@@ -279,9 +279,10 @@ namespace ContestPark.Mobile.ViewModels
 
             _analyticsService.SendEvent("Düello", $"{questionModel.Round}. Raund Oynandı", SubcategoryName);
 
-            if (questionModel.IsGameEnd || Round >= 7)
+            if (questionModel.IsGameEnd || Round >= 7)// Düello sona erdi
             {
                 GameEnd();
+
                 return;
             }
 
@@ -322,7 +323,11 @@ namespace ContestPark.Mobile.ViewModels
         private void SetCurrentQuestion()
         {
             if (DuelCreated == null || DuelCreated.Questions == null || Round > DuelCreated.Questions.Count())
-                return;
+            {
+                IsExit = true;
+
+                DuelCloseCommand.Execute(null);
+            }
 
             Languages currentLanguage = _settingsService.CurrentUser.Language;
 
@@ -331,7 +336,14 @@ namespace ContestPark.Mobile.ViewModels
                 || currentQuestion.Answers == null
                 || !currentQuestion.Answers.Any(x => x.Language == currentLanguage)
                 || !currentQuestion.Questions.Any(x => x.Language == currentLanguage))
+            {
+                _duelService.DuelCancel(DuelCreated.DuelId);
+
+                IsExit = true;
+                DuelCloseCommand.Execute(null);
+
                 return;
+            }
 
             CurrentQuestion = new Question
             {
@@ -357,6 +369,17 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void BotActive()
         {
+            if (DuelScreen == null || string.IsNullOrEmpty(DuelScreen.FounderUserId) || string.IsNullOrEmpty(DuelScreen.OpponentUserId))
+            {
+                _duelService.DuelCancel(DuelCreated.DuelId);
+
+                IsExit = true;
+
+                DuelCloseCommand.Execute(null);
+
+                return;
+            }
+
             // Eğer bot ile oynuyorsa oyuna bot eklendi
 
             if (DuelScreen.FounderUserId.EndsWith("-bot"))

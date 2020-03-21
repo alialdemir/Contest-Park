@@ -282,6 +282,9 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult DuelEscape([FromRoute]int duelId)
         {
+            if (duelId <= 0)
+                return BadRequest();
+
             Logger.LogInformation("Düelodan çıkma isteği geldi. {duelId} {userId}", duelId, UserId);
 
             if (!_duelRepository.IsDuelFinish(duelId))
@@ -290,7 +293,36 @@ namespace ContestPark.Duel.API.Controllers
             }
 
             var @event = new DuelEscapeIntegrationEvent(duelId,
-                                                        UserId);
+                                                        UserId,
+                                                        isDuelCancel: false);
+
+            _eventBus.Publish(@event);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Düello iptal eder
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        [HttpPost("{duelId}/DuelCancel")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult DuelCancel([FromRoute]int duelId)
+        {
+            if (duelId <= 0)
+                return BadRequest();
+
+            Logger.LogInformation("Düello iptal ediliyor. {duelId} {userId}", duelId, UserId);
+
+            if (!_duelRepository.IsDuelFinish(duelId))
+            {
+                return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
+            }
+
+            var @event = new DuelEscapeIntegrationEvent(duelId,
+                                                        UserId,
+                                                        isDuelCancel: true);
 
             _eventBus.Publish(@event);
 

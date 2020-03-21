@@ -142,7 +142,7 @@ namespace ContestPark.Mobile.ViewModels
 
             bool isTokenExits = token != null;
 
-            _analyticsService.SendEvent("Login", "Login", isTokenExits ? "Success" : "Fail");
+            _analyticsService.SendEvent("Login", "Üye ol", isTokenExits ? "Success" : "Fail");
 
             if (isTokenExits)
             {

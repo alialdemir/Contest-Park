@@ -244,7 +244,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                       founderTotalScore,
                                                                       opponentTotalScore,
                                                                       isFounderFinishedTheGame,
-                                                                      isOpponentFinishedTheGame);
+                                                                      isOpponentFinishedTheGame,
+                                                                      isDuelCancel: false);
 
                 _eventBus.Publish(@duelFinishEvent);
 

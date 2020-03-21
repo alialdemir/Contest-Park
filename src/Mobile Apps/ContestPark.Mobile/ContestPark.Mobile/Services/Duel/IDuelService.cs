@@ -25,5 +25,6 @@ namespace ContestPark.Mobile.Services.Duel
 
         Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel);
         Task<bool> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite);
+        Task<bool> DuelCancel(int duelId);
     }
 }

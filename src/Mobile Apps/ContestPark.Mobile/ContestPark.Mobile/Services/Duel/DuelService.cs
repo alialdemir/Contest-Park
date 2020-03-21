@@ -72,7 +72,27 @@ namespace ContestPark.Mobile.Services.Duel
         /// <returns>Başarılı ise true değilse false</returns>
         public async Task<bool> DuelEscape(int duelId)
         {
+            if (duelId <= 0)
+                return false;
+
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{duelId}/DuelEscape");
+
+            var result = await _requestProvider.PostAsync<string>(uri);
+
+            return result.IsSuccess;
+        }
+
+        /// <summary>
+        /// Düello iptal eder
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<bool> DuelCancel(int duelId)
+        {
+            if (duelId <= 0)
+                return false;
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{duelId}/DuelCancel");
 
             var result = await _requestProvider.PostAsync<string>(uri);
 

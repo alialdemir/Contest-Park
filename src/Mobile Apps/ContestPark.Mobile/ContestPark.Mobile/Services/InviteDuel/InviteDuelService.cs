@@ -28,8 +28,8 @@ namespace ContestPark.Mobile.Services.InviteDuel
         private readonly ISettingsService _settingsService;
         private readonly IPopupNavigation _popupNavigation;
 
-        private readonly decimal[] _goldBets = new decimal[] { 0, 80.00m, 600.00m, 2000.00m, 6000.00m, 9200.00m, 20000.00m };
-        private readonly decimal[] _moneyBets = new decimal[] { 2.00m, 6.00m, 8.00m, 10.00m, 12.00m, 20.00m };
+        private readonly decimal[] _goldBets = new decimal[] { 0, 40.00m, 300.00m, 1000.00m, 3000.00m, 4600.00m, 10000.00m };
+        private readonly decimal[] _moneyBets = new decimal[] { 1.00m, 3.00m, 4.00m, 5.00m, 6.00m, 10.00m };
 
         #endregion Private variables
 
@@ -145,7 +145,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
                     SubCategoryName = subCategory.SubCategoryName,
                     SubCategoryPicture = subCategory.PicturePath,
                     Description = string.Format(ContestParkResources.IsLookingForAnOpponent, randomBotUser.FullName),
-                }
+                },
             });
 
             await Task.Delay(5000);
@@ -177,21 +177,23 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 {
                     return _moneyBets
                                 .OrderBy(x => Guid.NewGuid())
-                                .FirstOrDefault();
+                                .FirstOrDefault() * 2;
                 }
 
                 index = new Random().Next(0, bets.Length - 1);
 
-                return bets[index];
+                return bets[index] * 2;
             }
 
-            bets = _goldBets
-                          .Where(bet => bet <= balance.Gold)
-                          .ToArray();
+            if (balance.Gold < 40.00m)
+                return _goldBets.FirstOrDefault();
 
-            index = new Random().Next(0, bets.Length - 1);
+            var randomBet = _goldBets
+                          .Where(bet => bet != 0 && bet <= balance.Gold)
+                          .OrderBy(x => Guid.NewGuid())
+                          .FirstOrDefault();
 
-            return bets[index];
+            return randomBet * 2;
         }
 
         /// <summary>

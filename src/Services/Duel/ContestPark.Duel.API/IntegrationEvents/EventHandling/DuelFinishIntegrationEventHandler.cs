@@ -2,6 +2,7 @@
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.Events;
+using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -84,7 +85,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             byte opponentVictoryScore = 0;
 
             DuelTypes duelType;
-            if (@event.FounderScore > @event.OpponentScore) // Kurucu kazandıysa rakibe +70 puan
+            if (@event.IsDuelCancel)// Düello herhangi bir hatadan iptal olmuştur
+            {
+                duelType = DuelTypes.Cancel;
+            }
+            else if (@event.FounderScore > @event.OpponentScore) // Kurucu kazandıysa rakibe +70 puan
             {
                 founderVictoryScore = victoryBonus;
                 duelType = DuelTypes.WinnerFounder;
@@ -94,7 +99,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 opponentVictoryScore = victoryBonus;
                 duelType = DuelTypes.WinnerOpponent;
             }
-            else
+            else// Berabere ise kazanma bonusu paylaştırılıyor
             {
                 founderVictoryScore = opponentVictoryScore = (byte)(victoryBonus / 2);
                 duelType = DuelTypes.Draw;
@@ -126,29 +131,38 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #region Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
 
-            // TODO: Kurucu ve rakip bakiyelerini ayrı ayrı düşmek yerine tek event de hallolucak şekilde yazılmalı rabbitmq da daha az event oluşur
-
             // TODO total skor kadar level xp'si eklensin
-
-            if (@event.FounderScore == @event.OpponentScore)// Düello beraber bitmiş
+            if (@event.IsDuelCancel || @event.FounderScore == @event.OpponentScore)// Düello iptal edilmiş veya düello beraber bitmiş
             {
-                ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType, BalanceHistoryTypes.Draw);
+                var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
 
-                ChangeBalance(@event.OpponentUserId, @event.Bet, @event.BalanceType, BalanceHistoryTypes.Draw);
+                @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
+                {
+                    BalanceType = @event.BalanceType,
+                    BalanceHistoryType = BalanceHistoryTypes.Draw,
+                    UserId = @event.FounderUserId,
+                    Amount = @event.Bet
+                });
+
+                @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
+                {
+                    BalanceType = @event.BalanceType,
+                    BalanceHistoryType = BalanceHistoryTypes.Draw,
+                    UserId = @event.OpponentUserId,
+                    Amount = @event.Bet
+                });
+
+                _eventBus.Publish(@changeBalancesEvent);
             }
             else if (@event.FounderScore > @event.OpponentScore)// Kurucu düelloyu kazanmış
             {
                 decimal founderBet = CaltulatorBetComission(@event.Bet, @event.BetCommission);
 
                 ChangeBalance(@event.FounderUserId, founderBet, @event.BalanceType, BalanceHistoryTypes.Win);
-
-                //  ChangeBalance(@event.OpponentUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
             }
             else if (@event.OpponentScore > @event.FounderScore)// Rakip düelloyu kazanmış
             {
                 decimal opponentBet = CaltulatorBetComission(@event.Bet, @event.BetCommission);
-
-                // ChangeBalance(@event.FounderUserId, 0, @event.BalanceType, BalanceHistoryTypes.Defeat);
 
                 ChangeBalance(@event.OpponentUserId, opponentBet, @event.BalanceType, BalanceHistoryTypes.Win);
             }

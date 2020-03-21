@@ -5,6 +5,7 @@
         Created = 1,
         Draw = 2,
         WinnerFounder = 3,
-        WinnerOpponent = 4
+        WinnerOpponent = 4,
+        Cancel = 5
     }
 }

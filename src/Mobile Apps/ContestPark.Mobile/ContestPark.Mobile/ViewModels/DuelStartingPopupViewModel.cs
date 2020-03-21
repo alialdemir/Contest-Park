@@ -332,7 +332,9 @@ namespace ContestPark.Mobile.ViewModels
         private void OnDuelStarting(object sender, DuelStartingModel e)
         {
             DuelStartingModel duelEnterScreenModel = (DuelStartingModel)sender;
-            if (duelEnterScreenModel != null)
+            if (duelEnterScreenModel != null
+                && !string.IsNullOrEmpty(duelEnterScreenModel.FounderUserId)
+                && !string.IsNullOrEmpty(duelEnterScreenModel.OpponentUserId))
             {
                 RandomPicturStatus = false;
 
@@ -352,9 +354,12 @@ namespace ContestPark.Mobile.ViewModels
         private async void OnDuelCreated(object sender, DuelCreated e)
         {
             DuelCreated duelCreated = (DuelCreated)sender;
-            if (duelCreated == null)
+            if (duelCreated == null
+                || string.IsNullOrEmpty(DuelStarting.FounderUserId)
+                || string.IsNullOrEmpty(DuelStarting.OpponentUserId))
             {
-                // TODO: Server tarafına düello iptali için istek gönder bahis miktarı geri kullanıcıya eklensin.
+                NotStartingDuel().Wait();
+
                 return;
             }
 
@@ -414,6 +419,8 @@ namespace ContestPark.Mobile.ViewModels
           ContestParkResources.Error,
           ContestParkResources.ErrorStartingDuelPleaseTryAgain,
           ContestParkResources.Okay);
+
+            await _duelService.DuelCancel(DuelStarting.DuelId);
 
             DuelCloseCommand.Execute(null);
         }

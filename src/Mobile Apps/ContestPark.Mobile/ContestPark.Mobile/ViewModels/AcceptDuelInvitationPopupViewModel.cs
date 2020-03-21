@@ -18,9 +18,9 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class AcceptDuelInvitationPopupViewModel : ViewModelBase
     {
-        private readonly IEventAggregator _eventAggregator;
-
         #region Private varaibles
+
+        private readonly IEventAggregator _eventAggregator;
 
         private readonly ISettingsService _settingsService;
 
@@ -101,34 +101,36 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            await RemoveFirstPopupAsync();
+
+            await PushPopupPageAsync(new DuelStartingPopupView
+            {
+                SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
+                {
+                    SubcategoryId = InviteModel.SubCategoryId,
+                    SubcategoryName = InviteModel.SubCategoryName,
+                    SubCategoryPicturePath = InviteModel.SubCategoryPicture,
+                },
+                Bet = InviteModel.Bet,
+                OpponentUserId = _settingsService.CurrentUser.UserId,
+                BalanceType = InviteModel.BalanceType,
+                StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited
+            });
+
             bool isSuccess = await _duelService.AcceptInviteDuel(new AcceptInviteDuelModel
             {
                 BalanceType = InviteModel.BalanceType,
-                Bet = InviteModel.Bet,
+                Bet = InviteModel.EntryFee,
                 SubCategoryId = InviteModel.SubCategoryId,
                 FounderConnectionId = InviteModel.FounderConnectionId,
                 FounderLanguage = InviteModel.FounderLanguage,
                 FounderUserId = InviteModel.FounderUserId,
                 OpponentConnectionId = _settingsService.SignalRConnectionId,
             });
-            if (isSuccess)
+            if (!isSuccess)
             {
-                await PushPopupPageAsync(new DuelStartingPopupView
-                {
-                    SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
-                    {
-                        SubcategoryId = InviteModel.SubCategoryId,
-                        SubcategoryName = InviteModel.SubCategoryName,
-                        SubCategoryPicturePath = InviteModel.SubCategoryPicture,
-                    },
-                    Bet = InviteModel.Bet,
-                    OpponentUserId = _settingsService.CurrentUser.UserId,
-                    BalanceType = InviteModel.BalanceType,
-                    StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited
-                });
-            }
-            else
-            {
+                await RemoveFirstPopupAsync();
+
                 bool isBuy = await DisplayAlertAsync(
                     ContestParkResources.NoGold,
                     ContestParkResources.YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory,
@@ -140,8 +142,6 @@ namespace ContestPark.Mobile.ViewModels
                                 .GetEvent<TabPageNavigationEvent>()
                                 .Publish(new PageNavigation(nameof(ContestStoreView)));
                 }
-
-                await RemoveFirstPopupAsync();
             }
 
             IsBusy = false;

@@ -15,7 +15,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
                                           byte founderScore,
                                           byte opponentScore,
                                           bool isFounderFinishedTheGame,
-                                          bool isOpponentFinishedTheGame)
+                                          bool isOpponentFinishedTheGame,
+                                          bool isDuelCancel)
         {
             DuelId = duelId;
             BalanceType = balanceType;
@@ -28,6 +29,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             OpponentScore = opponentScore;
             IsFounderFinishedTheGame = isFounderFinishedTheGame;
             IsOpponentFinishedTheGame = isOpponentFinishedTheGame;
+            IsDuelCancel = isDuelCancel;
         }
 
         public int DuelId { get; }
@@ -46,5 +48,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public byte OpponentScore { get; }
         public bool IsFounderFinishedTheGame { get; }
         public bool IsOpponentFinishedTheGame { get; }
+        public bool IsDuelCancel { get; }
     }
 }
