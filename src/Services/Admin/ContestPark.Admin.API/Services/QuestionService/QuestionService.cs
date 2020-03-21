@@ -3,6 +3,7 @@ using ContestPark.Admin.API.Model.Question;
 using ContestPark.Admin.API.Model.Translate;
 using ContestPark.Core.Enums;
 using ContestPark.Core.Services.RequestProvider;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using System;
@@ -41,6 +42,37 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
         #region Methods
 
+        private async Task<string> ConvertFileToJsonArraay(IFormFile file)
+        {
+            var filePath = Path.Combine(Path.GetTempPath(), file.FileName);
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            if (!File.Exists(filePath))
+            {
+                _logger.LogError("Json dosya yolu bulunamadı.", filePath);
+
+                return null;
+            }
+
+            string jsonQuestion = File.ReadAllText(filePath);
+
+            if (string.IsNullOrEmpty(jsonQuestion))
+            {
+                _logger.LogError("Json soruları parse edilemedi.");
+
+                return null;
+            }
+
+            return jsonQuestion;
+        }
+
         /// <summary>
         /// Json sorularını bizim database modeline göre hazırlar
         /// </summary>
@@ -58,40 +90,13 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
             _logger.LogInformation("Soru oluşturma servisi çağrıldı");
 
-            var filePath = Path.Combine(Path.GetTempPath(), configModel.File.FileName);
-
-            _logger.LogInformation("filePath {filePath}", filePath);
-
-            using (var fileStream = new FileStream(filePath, FileMode.CreateNew))
-            {
-                _logger.LogInformation("Copy start");
-
-                await configModel.File.CopyToAsync(fileStream);
-
-                _logger.LogInformation("Copy done");
-            }
-
-            if (!File.Exists(filePath))
-            {
-                _logger.LogError("Json dosya yolu bulunamadı.", filePath);
-
-                return null;
-            }
-
-            string jsonQuestion = File.ReadAllText(filePath);
-
-            _logger.LogInformation("jsonQuestion {jsonQuestion}", jsonQuestion);
-
+            string jsonQuestion = await ConvertFileToJsonArraay(configModel.File);
             if (string.IsNullOrEmpty(jsonQuestion))
-            {
-                _logger.LogError("Json soruları parse edilemedi.");
-
                 return null;
-            }
-
-            IEnumerable<KeyValuePair<string, string>> questions = JsonKeyValue(jsonQuestion);
 
             JArray jsonArray = JArray.Parse(jsonQuestion);
+
+            IEnumerable<KeyValuePair<string, string>> questions = JsonKeyValue(jsonQuestion);
 
             _logger.LogInformation("Json convert success");
 
