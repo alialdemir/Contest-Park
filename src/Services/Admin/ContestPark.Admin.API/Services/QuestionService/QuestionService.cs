@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Services.QuestionService
 {
@@ -45,7 +46,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
         /// </summary>
         /// <param name="configModel">Soru hazırlama ayarları ve soru json</param>
         /// <returns>Sorular</returns>
-        public List<QuestionSaveModel> GenerateQuestion(QuestionConfigModel configModel)
+        public async Task<List<QuestionSaveModel>> GenerateQuestion(QuestionConfigModel configModel)
         {
             if (configModel == null
                 || configModel.SubCategoryId <= 0
@@ -61,9 +62,13 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
             _logger.LogInformation("filePath {filePath}", filePath);
 
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            using (var fileStream = new FileStream(filePath, FileMode.CreateNew))
             {
-                configModel.File.CopyTo(fileStream);
+                _logger.LogInformation("Copy start");
+
+                await configModel.File.CopyToAsync(fileStream);
+
+                _logger.LogInformation("Copy done");
             }
 
             if (!File.Exists(filePath))
