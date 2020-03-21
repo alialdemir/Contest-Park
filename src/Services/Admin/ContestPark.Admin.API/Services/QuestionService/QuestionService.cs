@@ -8,7 +8,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -49,18 +48,18 @@ namespace ContestPark.Admin.API.Services.QuestionService
         {
             if (configModel == null
                 || configModel.SubCategoryId <= 0
-                || configModel.File == null
-                || configModel.File.Length == 0
+                //|| configModel.File == null
+                //|| configModel.File.Length == 0
                 || string.IsNullOrEmpty(configModel.Question)
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return null;
 
             _logger.LogInformation("Soru oluşturma servisi çağrıldı");
 
-            StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
-            string jsonQuestion = reader.ReadToEnd();
+            //StreamReader reader = new StreamReader(configModel.File.OpenReadStream());
+            string jsonQuestion = configModel.Json; // reader.ReadToEnd();
 
-            reader.Dispose();
+            //    reader.Dispose();
 
             if (string.IsNullOrEmpty(jsonQuestion))
             {
