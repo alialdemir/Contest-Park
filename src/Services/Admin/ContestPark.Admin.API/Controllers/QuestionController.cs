@@ -74,24 +74,24 @@ namespace ContestPark.Duel.API.Controllers
                 || string.IsNullOrEmpty(configModel.AnswerKey))
                 return BadRequest();
 
-            Task.Factory.StartNew(async () =>
-            {
-                Logger.LogInformation("Json ile soru oluşturuluyor");
+            Task.Factory.StartNew(() =>
+          {
+              Logger.LogInformation("Json ile soru oluşturuluyor");
 
-                var questions = await _questionService.GenerateQuestion(configModel);
-                if (questions == null || !questions.Any())
-                {
-                    Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
+              var questions = _questionService.GenerateQuestion(configModel);
+              if (questions == null || !questions.Any())
+              {
+                  Logger.LogError("Json ile soru oluşturulurken sorular boş geldi");
 
-                    return;
-                }
+                  return;
+              }
 
-                var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
+              var @eventQuestion = new CreateQuestionIntegrationEvent(questions);
 
-                _eventBus.Publish(@eventQuestion);
+              _eventBus.Publish(@eventQuestion);
 
-                Logger.LogInformation("Json ile {count} adet soru oluşturuldu", questions.Count);
-            });
+              Logger.LogInformation("Json ile {count} adet soru oluşturuldu", questions.Count);
+          });
 
             return Ok();
         }

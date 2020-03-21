@@ -12,7 +12,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Services.QuestionService
 {
@@ -42,33 +41,15 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
         #region Methods
 
-        private async Task<string> ConvertFileToJsonArraay(IFormFile file)
+        /// <summary>
+        /// IFormFile json dosyasını alır string olarak döndürür
+        /// </summary>
+        /// <param name="file">Json file</param>
+        /// <returns>Json string</returns>
+        private string ConvertFileToJsonArraay(IFormFile file)
         {
-            var filePath = Path.Combine(Path.GetTempPath(), file.FileName);
-
-            if (File.Exists(filePath))
-                File.Delete(filePath);
-
-            using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
-            {
-                await file.CopyToAsync(fileStream);
-            }
-
-            if (!File.Exists(filePath))
-            {
-                _logger.LogError("Json dosya yolu bulunamadı.", filePath);
-
-                return null;
-            }
-
-            string jsonQuestion = File.ReadAllText(filePath);
-
-            if (string.IsNullOrEmpty(jsonQuestion))
-            {
-                _logger.LogError("Json soruları parse edilemedi.");
-
-                return null;
-            }
+            StreamReader reader = new StreamReader(file.OpenReadStream());
+            string jsonQuestion = reader.ReadToEnd();
 
             return jsonQuestion;
         }
@@ -78,7 +59,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
         /// </summary>
         /// <param name="configModel">Soru hazırlama ayarları ve soru json</param>
         /// <returns>Sorular</returns>
-        public async Task<List<QuestionSaveModel>> GenerateQuestion(QuestionConfigModel configModel)
+        public List<QuestionSaveModel> GenerateQuestion(QuestionConfigModel configModel)
         {
             if (configModel == null
                 || configModel.SubCategoryId <= 0
@@ -90,7 +71,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
             _logger.LogInformation("Soru oluşturma servisi çağrıldı");
 
-            string jsonQuestion = await ConvertFileToJsonArraay(configModel.File);
+            string jsonQuestion = ConvertFileToJsonArraay(configModel.File);
             if (string.IsNullOrEmpty(jsonQuestion))
                 return null;
 
