@@ -1,10 +1,11 @@
 ﻿using ContestPark.Admin.API.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace ContestPark.Admin.API.Model.Question
 {
     public class QuestionConfigModel
     {
-        public string Json { get; set; }
+        public IFormFile File { get; set; }
 
         public short SubCategoryId { get; set; }
 
