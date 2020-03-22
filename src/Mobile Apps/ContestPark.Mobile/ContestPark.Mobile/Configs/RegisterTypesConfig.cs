@@ -75,7 +75,7 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<ChatView, ChatViewModel>();
 
-            containerRegistry.RegisterForNavigation<CheckSmsView, CheckSmsViewModel>();
+            containerRegistry.RegisterForNavigation<SignUpVerificationView, SignUpVerificationViewModel>();
 
             containerRegistry.RegisterForNavigation<ContestStoreView, ContestStoreViewModel>();
 

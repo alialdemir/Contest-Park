@@ -7,6 +7,7 @@ using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
 using ContestPark.Notification.API.IntegrationEvents.EventHandling;
 using ContestPark.Notification.API.IntegrationEvents.Events;
 using ContestPark.Notification.API.Resources;
+using ContestPark.Notification.API.Services.Sms;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,7 @@ namespace ContestPark.Notification.API
                     .AddCorsConfigure();
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
+            services.AddTransient<ISmsService, AwsSmsService>();
 
             services.AddTransient<AddNotificationIntegrationEventHandler>();
 

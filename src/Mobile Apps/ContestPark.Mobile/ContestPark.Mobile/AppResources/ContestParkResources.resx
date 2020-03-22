@@ -794,4 +794,28 @@
   <data name="YouApprove" xml:space="preserve">
     <value>.</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ConfirmationCode" xml:space="preserve">
+    <value>Confirmation Code</value>
+  </data>
+  <data name="EnterTheVerificationCodeWeSendViaSMSInTheFieldsBelow" xml:space="preserve">
+    <value>Enter the verification code we send via SMS in the fields below</value>
+  </data>
+  <data name="IncorrectSMSCode" xml:space="preserve">
+    <value>Incorrect SMS code.</value>
+  </data>
+  <data name="Wait30SecondsToRequestSMSAgain" xml:space="preserve">
+    <value>Wait {0} seconds to request SMS again.</value>
+  </data>
+  <data name="RemainingTimeSec" xml:space="preserve">
+    <value>Remaining Time 0{0}:{1} sec</value>
+  </data>
+  <data name="HaveNotReceivedTheConfirmationCode" xml:space="preserve">
+    <value>Have not received the confirmation code?</value>
+  </data>
+  <data name="SendAgain" xml:space="preserve">
+    <value>Send Again</value>
+  </data>
 </root>

@@ -198,6 +198,12 @@
   <data name="Comments" xml:space="preserve">
     <value>Yorum</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="ConfirmationCode" xml:space="preserve">
+    <value>Onay Kodu</value>
+  </data>
   <data name="ConnectionToTheServerForTheDuelWasNotEstablished" xml:space="preserve">
     <value>Düello için sunucu ile bağlantı kurulamadı.</value>
   </data>
@@ -272,6 +278,9 @@
   <data name="EnterTheCodeFromSms" xml:space="preserve">
     <value>Sms ile gelen kodu giriniz</value>
   </data>
+  <data name="EnterTheVerificationCodeWeSendViaSMSInTheFieldsBelow" xml:space="preserve">
+    <value>SMS ile gönderdiğimiz doğrulama kodunu aşağıdaki alanlara giriniz</value>
+  </data>
   <data name="EntryFee" xml:space="preserve">
     <value>GİRİŞ ÜCRETİ</value>
   </data>
@@ -344,6 +353,9 @@
   <data name="Gold" xml:space="preserve">
     <value>Altın</value>
   </data>
+  <data name="HaveNotReceivedTheConfirmationCode" xml:space="preserve">
+    <value>Onay kodu size ulaşmadı mı?</value>
+  </data>
   <data name="Hour" xml:space="preserve">
     <value> Saat </value>
     <comment>Sıralama için saat baş harfi</comment>
@@ -353,6 +365,9 @@
   </data>
   <data name="IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone" xml:space="preserve">
     <value>Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz.</value>
+  </data>
+  <data name="IncorrectSMSCode" xml:space="preserve">
+    <value>Hatalı SMS kodu.</value>
   </data>
   <data name="InvalidPhoneNumber" xml:space="preserve">
     <value>Geçersiz telefon numarası.</value>
@@ -557,6 +572,9 @@
   <data name="ReferenceCode" xml:space="preserve">
     <value>Referans kodu</value>
   </data>
+  <data name="RemainingTimeSec" xml:space="preserve">
+    <value>Kalan Süre 0{0}:{1} sn</value>
+  </data>
   <data name="RemoveBlock" xml:space="preserve">
     <value>Engelli kaldır</value>
   </data>
@@ -602,6 +620,9 @@
   </data>
   <data name="Send" xml:space="preserve">
     <value>Gönder</value>
+  </data>
+  <data name="SendAgain" xml:space="preserve">
+    <value>Tekrar Gönder</value>
   </data>
   <data name="SendMoney" xml:space="preserve">
     <value>Kazancı Hesabına Aktar</value>
@@ -714,6 +735,9 @@
   </data>
   <data name="VictoryBonus" xml:space="preserve">
     <value>KAZANMA BONUSU</value>
+  </data>
+  <data name="Wait30SecondsToRequestSMSAgain" xml:space="preserve">
+    <value>Tekrar SMS istemek için {0} saniye bekleyiniz.</value>
   </data>
   <data name="Was" xml:space="preserve">
     <value />

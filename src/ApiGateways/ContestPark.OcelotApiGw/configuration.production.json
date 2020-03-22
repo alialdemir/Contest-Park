@@ -770,6 +770,18 @@
       "UpstreamPathTemplate": "/api/{version}/Notification",
       "UpstreamHttpMethod": [ "Get" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Notification/Sms",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "notification-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Notification/Sms",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
     // Signalr
     {
       "DownstreamPathTemplate": "/{catchAll}",

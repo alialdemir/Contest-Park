@@ -530,3 +530,7 @@ spec:
               value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: AwsSmsKeyId
+              value: $(CONTESTPARK_AWS_SMS_KEY_ID)
+            - name: AwsSmsSecret
+              value: $(CONTESTPARK_AWS_SMS_SECRET)

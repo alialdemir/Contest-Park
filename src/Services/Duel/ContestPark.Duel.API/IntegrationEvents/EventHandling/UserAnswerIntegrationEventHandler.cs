@@ -114,19 +114,25 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
                 string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
-                if (botUserId == currentRound.FounderUserId && (opponentTotalScore > founderTotalScore || round == 0))
+                if (botUserId == currentRound.FounderUserId)
                 {
-                    currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
-                    currentRound.FounderAnswer = currentRound.CorrectAnswer;
+                    if (founderTotalScore == 0 || opponentTotalScore > founderTotalScore)
+                    {
+                        currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
+                        currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
-                    _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
+                        _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
+                    }
                 }
-                else if (botUserId == currentRound.OpponentUserId && (founderTotalScore > opponentTotalScore || round == 0))
+                else if (botUserId == currentRound.OpponentUserId)
                 {
-                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, @event.Time);
-                    currentRound.OpponentAnswer = currentRound.CorrectAnswer;
+                    if (opponentTotalScore == 0 || founderTotalScore > opponentTotalScore)
+                    {
+                        currentRound.OpponentScore = _scoreCalculator.Calculator(round, @event.Time);
+                        currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
-                    _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
+                        _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
+                    }
                 }
             }
 
@@ -178,7 +184,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _userAnswerRepository.AddRangeAsync(userAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
             if (currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.NotSeeQuestion)
+            {
+                _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", currentRound);
+
                 return;
+            }
 
             bool isGameEnd = round == MAX_ANSWER_COUNT;
 

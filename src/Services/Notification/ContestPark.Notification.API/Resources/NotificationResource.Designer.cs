@@ -59,5 +59,23 @@ namespace ContestPark.Notification.API.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContestPark access code: .
+        /// </summary>
+        public static string ContestParkAccessCode {
+            get {
+                return ResourceManager.GetString("ContestParkAccessCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid phone number..
+        /// </summary>
+        public static string InvalidPhoneNumber {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumber", resourceCulture);
+            }
+        }
     }
 }

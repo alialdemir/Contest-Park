@@ -304,6 +304,24 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation Code.
+        /// </summary>
+        public static string ConfirmationCode {
+            get {
+                return ResourceManager.GetString("ConfirmationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to connect with server for duel..
         /// </summary>
         public static string ConnectionToTheServerForTheDuelWasNotEstablished {
@@ -517,6 +535,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string EnterTheCodeFromSms {
             get {
                 return ResourceManager.GetString("EnterTheCodeFromSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the verification code we send via SMS in the fields below.
+        /// </summary>
+        public static string EnterTheVerificationCodeWeSendViaSMSInTheFieldsBelow {
+            get {
+                return ResourceManager.GetString("EnterTheVerificationCodeWeSendViaSMSInTheFieldsBelow", resourceCulture);
             }
         }
         
@@ -737,6 +764,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have not received the confirmation code?.
+        /// </summary>
+        public static string HaveNotReceivedTheConfirmationCode {
+            get {
+                return ResourceManager.GetString("HaveNotReceivedTheConfirmationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hour.
         /// </summary>
         public static string Hour {
@@ -760,6 +796,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {
             get {
                 return ResourceManager.GetString("IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect SMS code..
+        /// </summary>
+        public static string IncorrectSMSCode {
+            get {
+                return ResourceManager.GetString("IncorrectSMSCode", resourceCulture);
             }
         }
         
@@ -1367,6 +1412,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remaining Time 0{0}:{1} sec.
+        /// </summary>
+        public static string RemainingTimeSec {
+            get {
+                return ResourceManager.GetString("RemainingTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove block.
         /// </summary>
         public static string RemoveBlock {
@@ -1498,6 +1552,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Again.
+        /// </summary>
+        public static string SendAgain {
+            get {
+                return ResourceManager.GetString("SendAgain", resourceCulture);
             }
         }
         
@@ -1831,6 +1894,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string VictoryBonus {
             get {
                 return ResourceManager.GetString("VictoryBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait {0} seconds to request SMS again..
+        /// </summary>
+        public static string Wait30SecondsToRequestSMSAgain {
+            get {
+                return ResourceManager.GetString("Wait30SecondsToRequestSMSAgain", resourceCulture);
             }
         }
         

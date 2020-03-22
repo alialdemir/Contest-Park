@@ -242,6 +242,8 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+      - AwsSmsKeyId=${CONTESTPARK_AWS_SMS_KEY_ID}
+      - AwsSmsSecret=${CONTESTPARK_AWS_SMS_SECRET}
     ports:
       - "5112:80"
     volumes:

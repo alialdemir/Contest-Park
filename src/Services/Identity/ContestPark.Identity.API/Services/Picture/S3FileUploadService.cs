@@ -18,6 +18,8 @@ namespace ContestPark.Identity.API.Services.Picture
 {
     public class S3FileUploadService : IFileUploadService
     {
+        #region Private variables
+
         private readonly string bucketName = "contestpark";
         private readonly string clouldFrontUrl;
 
@@ -26,11 +28,15 @@ namespace ContestPark.Identity.API.Services.Picture
         private readonly ILogger<S3FileUploadService> _logger;
         private readonly IPictureRepository _pictureRepository;
 
+        #endregion Private variables
+
+        #region Methods
+
         public S3FileUploadService(ILogger<S3FileUploadService> logger,
-                                   IPictureRepository pictureRepository,
-                                   IEventBus eventBus,
-                                   IOptions<IdentitySettings> identitySettings,
-                                   IAmazonS3 amazonS3)
+                                 IPictureRepository pictureRepository,
+                                 IEventBus eventBus,
+                                 IOptions<IdentitySettings> identitySettings,
+                                 IAmazonS3 amazonS3)
         {
             _eventBus = eventBus;
             clouldFrontUrl = identitySettings.Value.ClouldFrontUrl;
@@ -38,6 +44,10 @@ namespace ContestPark.Identity.API.Services.Picture
             _pictureRepository = pictureRepository;
             _amazonS3 = amazonS3;
         }
+
+        #endregion Methods
+
+        #region Methods
 
         /// <summary>
         /// Resim url'sini alıp user id ile birlikte pictures tablosuna ekler
@@ -201,5 +211,7 @@ namespace ContestPark.Identity.API.Services.Picture
 
             return false;
         }
+
+        #endregion Methods
     }
 }

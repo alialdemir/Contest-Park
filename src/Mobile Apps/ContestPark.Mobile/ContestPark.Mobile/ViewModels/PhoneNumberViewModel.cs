@@ -1,17 +1,12 @@
-﻿using Acr.UserDialogs;
-using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Models;
+﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models.Country;
-using ContestPark.Mobile.Models.Token;
-using ContestPark.Mobile.Services.Identity;
+using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
-using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -21,18 +16,20 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class PhoneNumberViewModel : ViewModelBase
     {
+        #region Private variables
+
+        private readonly ISettingsService _settingsService;
+
+        #endregion Private variables
+
         #region Constructor
 
         public PhoneNumberViewModel(IPopupNavigation popupNavigation,
-                                    INavigationService navigationService,
                                     ISettingsService settingsService,
-                                    IIdentityService identityService,
-                                    IPageDialogService dialogService) : base(navigationService: navigationService,
-                                                                             dialogService: dialogService,
+                                    IPageDialogService dialogService) : base(dialogService: dialogService,
                                                                              popupNavigation: popupNavigation)
         {
             this._settingsService = settingsService;
-            this._identityService = identityService;
 #if DEBUG
             PhoneNumber = "5444261154";
 #endif
@@ -62,9 +59,6 @@ namespace ContestPark.Mobile.ViewModels
             PhoneCode = "+90"
         };
 
-        private readonly ISettingsService _settingsService;
-        private readonly IIdentityService _identityService;
-
         public CountryModel Country
         {
             get { return _country; }
@@ -75,7 +69,17 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public string PhoneNumberNoRegex { get; set; }
+        private string PhoneNumberNoRegex
+        {
+            get
+            {
+                return PhoneNumber
+                            .Replace("(", "")
+                            .Replace(")", "")
+                            .Replace(" ", "")
+                            .Replace("-", "");
+            }
+        }
 
         #endregion Properties
 
@@ -121,12 +125,6 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            PhoneNumberNoRegex = PhoneNumber
-            .Replace("(", "")
-            .Replace(")", "")
-            .Replace(" ", "")
-            .Replace("-", "");
-
             var match = Regex.Match(PhoneNumberNoRegex, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);
             if (!match.Success)
             {
@@ -139,38 +137,14 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            // TODO: send sms
-            UserDialogs.Instance.ShowLoading("", MaskType.Black);
-
-            // TODO: check sms
-
-            string userName = await _identityService.GetUserNameByPhoneNumber(PhoneNumberNoRegex);
-            if (!string.IsNullOrEmpty(userName))
+            await PushPopupPageAsync(new SignUpVerificationView
             {
-                await SignInAsync(userName);
-
-                UserDialogs.Instance.HideLoading();
-
-                IsBusy = false;
-
-                return;
-            }
-
-            UserDialogs.Instance.HideLoading();
-
-            //    await RemoveFirstPopupAsync();
-
-            await PushPopupPageAsync(new SignUpFullNameView()
-            {
-                PhoneNumber = PhoneNumberNoRegex
+                SmsInfo = new SmsInfoModel
+                {
+                    PhoneNumber = PhoneNumberNoRegex,
+                    CountryCode = Country.PhoneCode
+                }
             });
-            //int smsCode = new Random().Next(100000, 999999);
-
-            //await PushPopupPageAsync(new CheckSmsView
-            //{
-            //    PhoneNumber = phoneNumber,
-            //    SmsCode = smsCode,
-            //});
 
             IsBusy = false;
         }
@@ -184,26 +158,6 @@ namespace ContestPark.Mobile.ViewModels
             selectCountryView.CountryEventHandler += OnCountry;
 
             await PushPopupPageAsync(selectCountryView);
-        }
-
-        /// <summary>
-        /// Giriş yap
-        /// </summary>
-        private async Task SignInAsync(string userName)// sms login gelince sil
-        {
-            UserToken token = await _identityService.GetTokenAsync(new LoginModel
-            {
-                Password = PhoneNumberNoRegex,
-                UserName = userName
-            });
-            if (token != null)
-            {
-                _settingsService.SetTokenInfo(token);
-
-                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
-            }
-
-            UserDialogs.Instance.HideLoading();
         }
 
         #endregion Methods

@@ -60,6 +60,20 @@ namespace ContestPark.Mobile.Services.Notification
             return result.Data;
         }
 
+        /// <summary>
+        /// Login olurken sms şifresi gönderir
+        /// </summary>
+        /// <param name="smsInfo">Telefon numarası bilgisi</param>
+        /// <returns>Sms ile gönderilen şifre</returns>
+        public async Task<SmsModel> LogInSms(SmsInfoModel smsInfo)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Sms");
+
+            var result = await _requestProvider.PostAsync<SmsModel>(uri, smsInfo);
+
+            return result.Data;
+        }
+
         #endregion Methods
     }
 }
