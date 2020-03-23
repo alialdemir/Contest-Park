@@ -100,11 +100,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            PublishDuelStartingEvent(duelId,
-                                     @event.FounderUserId,
-                                     @event.FounderConnectionId,
-                                     @event.OpponentUserId,
-                                     @event.OpponentConnectionId);
+            await PublishDuelStartingEvent(duelId,
+                                           @event.FounderUserId,
+                                           @event.FounderConnectionId,
+                                           @event.OpponentUserId,
+                                           @event.OpponentConnectionId);
 
             var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
@@ -125,8 +125,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }).ToList());
 
             // Bakiyeler düşüldü
-            ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType);
-            ChangeBalance(@event.OpponentUserId, @event.Bet, @event.BalanceType);
+            ChangeBalance(@event.FounderUserId, @event.OpponentUserId, @event.Bet, @event.BalanceType);
 
             PublishDuelCreatedEvent(duelId,
                                     @event.FounderUserId,
@@ -178,46 +177,44 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="founderConnectionId">Kurucu connection id</param>
         /// <param name="opponentUserId">Rakip kullanıcı id</param>
         /// <param name="opponentConnectionId">Rakip connection id</param>
-        private void PublishDuelStartingEvent(int duelId,
+        private async Task PublishDuelStartingEvent(int duelId,
                                                     string founderUserId,
                                                     string founderConnectionId,
                                                     string opponentUserId,
                                                     string opponentConnectionId)
         {
             // TODO: #issue 213
-            Task.Factory.StartNew(async () =>
-           {
-               // Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
-               List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
+
+            // Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
+            List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
                 {
-                founderUserId,
-                opponentUserId
+                    founderUserId,
+                    opponentUserId
            }, includeCoverPicturePath: true)).ToList();
 
-               UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
-               UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
+            UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
+            UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
 
-               if (founderUserModel == null || opponentUserModel == null)
-               {
-                   _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
+            if (founderUserModel == null || opponentUserModel == null)
+            {
+                _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
 
-                   return;
-               }
+                return;
+            }
 
-               var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
-                                                                            founderUserModel.CoverPicturePath,
-                                                                            founderUserModel.ProfilePicturePath,
-                                                                            founderUserModel.UserId,
-                                                                            founderConnectionId,
-                                                                            founderUserModel.FullName,
-                                                                            opponentUserModel.CoverPicturePath,
-                                                                            opponentUserModel.FullName,
-                                                                            opponentUserModel.ProfilePicturePath,
-                                                                            opponentUserModel.UserId,
-                                                                            opponentConnectionId);
+            var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
+                                                                         founderUserModel.CoverPicturePath,
+                                                                         founderUserModel.ProfilePicturePath,
+                                                                         founderUserModel.UserId,
+                                                                         founderConnectionId,
+                                                                         founderUserModel.FullName,
+                                                                         opponentUserModel.CoverPicturePath,
+                                                                         opponentUserModel.FullName,
+                                                                         opponentUserModel.ProfilePicturePath,
+                                                                         opponentUserModel.UserId,
+                                                                         opponentConnectionId);
 
-               _eventBus.Publish(@duelScreenEvent);
-           });
+            _eventBus.Publish(@duelScreenEvent);
         }
 
         /// <summary>
@@ -238,16 +235,32 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="bet">Bakiye</param>
         /// <param name="balanceType">Bakiye tipi</param>
-        private void ChangeBalance(string userId, decimal bet, BalanceTypes balanceType)
+        private void ChangeBalance(string founderUserId, string opponentUserId, decimal bet, BalanceTypes balanceType)
         {
             if (bet <= 0)
                 return;
 
             bet = -bet;
 
-            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
+            var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
 
-            _eventBus.Publish(@event);
+            @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
+            {
+                BalanceType = balanceType,
+                BalanceHistoryType = BalanceHistoryTypes.Duel,
+                UserId = founderUserId,
+                Amount = bet
+            });
+
+            @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
+            {
+                BalanceType = balanceType,
+                BalanceHistoryType = BalanceHistoryTypes.Duel,
+                UserId = opponentUserId,
+                Amount = bet
+            });
+
+            _eventBus.Publish(@changeBalancesEvent);
         }
 
         #endregion Methods

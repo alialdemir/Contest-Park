@@ -127,7 +127,7 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             var match = Regex.Match(PhoneNumberNoRegex, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);
-            if (!match.Success)
+            if (!match.Success && !PhoneNumber.StartsWith("1993"))// özel durumlar için 1993 ekledim
             {
                 await DisplayAlertAsync(ContestParkResources.Error,
                                         ContestParkResources.InvalidPhoneNumber,
