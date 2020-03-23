@@ -37,11 +37,11 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {
-                _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);
-
                 await _hubContext.Clients
                                  .Group(GetDuelGroupName(@event.DuelId))
                                  .SendAsync("NextQuestion", @event);
+
+                _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);
             }
         }
 
@@ -52,7 +52,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// <returns>Düello grup adı</returns>
         private string GetDuelGroupName(int duelId)
         {
-            return $"Duel{duelId.ToString()}";
+            return $"Duel{duelId}";
         }
 
         #endregion Methods
