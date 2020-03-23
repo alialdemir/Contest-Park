@@ -22,6 +22,7 @@ namespace ContestPark.Post.API.Models.Post
         public string OwnerUserId { get; set; }
         public int PostId { get; set; }
 
+        public bool IsCommentOpen { get; set; }
         public PostTypes PostType { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.Components.Search
                 case Enums.SearchTypes.Player:
                     Content = new UserFollowListItem()
                     {
-                        Margin = new Thickness(8, 0, 8, 8),
+                        Margin = new Thickness(8, 0, 8, 0),
                         GotoProfilePageCommand = GotoProfilePageCommand,
                         RightButtonCommand = FollowCommand,
                     };

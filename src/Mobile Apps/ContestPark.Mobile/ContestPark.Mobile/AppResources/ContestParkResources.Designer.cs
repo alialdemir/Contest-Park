@@ -115,6 +115,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        public static string Archive {
+            get {
+                return ResourceManager.GetString("Archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A request to transfer your earnings to your account has been created..
         /// </summary>
         public static string ARequestToTransferYourEarningsToYourAccountHasBeenCreated {
@@ -1430,6 +1439,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please fill in the required fields..
         /// </summary>
         public static string RequiredFields {
@@ -1777,6 +1795,24 @@ namespace ContestPark.Mobile.AppResources {
         public static string TurkishLira {
             get {
                 return ResourceManager.GetString("TurkishLira", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn Off Comment.
+        /// </summary>
+        public static string TurnOffComment {
+            get {
+                return ResourceManager.GetString("TurnOffComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn On Comment.
+        /// </summary>
+        public static string TurnOnComment {
+            get {
+                return ResourceManager.GetString("TurnOnComment", resourceCulture);
             }
         }
         

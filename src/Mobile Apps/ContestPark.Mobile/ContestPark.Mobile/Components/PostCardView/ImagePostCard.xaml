@@ -3,13 +3,13 @@
     x:Class="ContestPark.Mobile.Components.PostCardView.ImagePostCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     x:Name="imagePostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Converter:DateTimeMomentConverter x:Key="moment" />
+            <converter:DateTimeMomentConverter x:Key="moment" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
@@ -26,9 +26,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="16" />
                 </Grid.ColumnDefinitions>
 
-                <Components:CircleImage
+                <components:CircleImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
                     Margin="0,0,11,0"
@@ -47,6 +48,7 @@
                     Text="{Binding OwnerFullName}"
                     TextColor="#181C2F"
                     VerticalTextAlignment="Start" />
+
                 <StackLayout
                     Grid.Row="1"
                     Grid.Column="1"
@@ -70,9 +72,22 @@
                         TranslationY="-5"
                         VerticalTextAlignment="Center" />
                 </StackLayout>
+
+                <Image Grid.Row="0" Grid.Column="2">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{x:Static icons:ContestParkIcon.Options}"
+                            Size="16"
+                            Color="#6C7B8A" />
+                    </Image.Source>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=OptionsCommand, Source={x:Reference imagePostCardPage}}" />
+                    </Image.GestureRecognizers>
+                </Image>
             </Grid>
 
-            <Components:HtmlLabel
+            <components:HtmlLabel
                 x:Name="lblDescription"
                 Margin="0,13,0,0"
                 FontFamily="{StaticResource MontserratMedium}"

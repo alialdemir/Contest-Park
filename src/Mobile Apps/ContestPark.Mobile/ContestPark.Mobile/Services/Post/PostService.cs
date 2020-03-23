@@ -185,6 +185,34 @@ namespace ContestPark.Mobile.Services.Post
             return result.IsSuccess;
         }
 
+        /// <summary>
+        /// Postu arşive ekler
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilsa falase</returns>
+        public async Task<bool> ArchiveAsync(int postId)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Archive");
+
+            var result = await _requestProvider.PostAsync<string>(uri);
+
+            return result.IsSuccess;
+        }
+
+        /// <summary>
+        /// Posta yorum yapılmasını kapatır
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilsa falase</returns>
+        public async Task<bool> TurnOffToggleCommentAsync(int postId)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/TurnOffComment");
+
+            var result = await _requestProvider.PostAsync<string>(uri);
+
+            return result.IsSuccess;
+        }
+
         #endregion Methods
     }
 }

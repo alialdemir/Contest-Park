@@ -11,6 +11,11 @@ namespace ContestPark.Mobile.Services.Post
 {
     public class PostMockService : IPostService
     {
+        public Task<bool> ArchiveAsync(int postId)
+        {
+            return Task.FromResult(true);
+        }
+
         public async Task<bool> DisLikeAsync(int postId)
         {
             await Task.Delay(300);
@@ -288,6 +293,11 @@ namespace ContestPark.Mobile.Services.Post
         }
 
         public Task<bool> SendCommentAsync(int postId, string comment)
+        {
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> TurnOffToggleCommentAsync(int postId)
         {
             return Task.FromResult(true);
         }

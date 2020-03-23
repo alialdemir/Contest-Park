@@ -746,9 +746,6 @@
     <BundleResource Include="Resources\money_bag.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\options.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\prizeicon1.png" />
   </ItemGroup>
   <ItemGroup>

@@ -818,4 +818,16 @@
   <data name="SendAgain" xml:space="preserve">
     <value>Send Again</value>
   </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="TurnOffComment" xml:space="preserve">
+    <value>Turn Off Comment</value>
+  </data>
+  <data name="TurnOnComment" xml:space="preserve">
+    <value>Turn On Comment</value>
+  </data>
 </root>

@@ -33,6 +33,13 @@ namespace ContestPark.Post.API.Migrations
                 .AsString(255)
                 .NotNullable()
 
+                .WithColumn("IsCommentOpen")
+                .AsBoolean()
+                .WithDefaultValue(true)
+
+                .WithColumn("IsArchive")
+                .AsBoolean()
+
                 .WithColumn("PostType")
                 .AsByte()
                 .NotNullable()

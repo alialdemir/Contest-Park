@@ -163,7 +163,7 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (StandbyModes.Invited == StandbyMode)
             {
-                DuelSignalrListener();// SignalR listener load
+                DuelSignalrListener();
 
                 OnSleepEventListener();
             }
@@ -171,11 +171,11 @@ namespace ContestPark.Mobile.ViewModels
             {
                 if (!string.IsNullOrEmpty(OpponentUserId))
                 {
-                    await DuelStartWithInvite();
-
-                    DuelSignalrListener();// SignalR listener load
+                    DuelSignalrListener();
 
                     OnSleepEventListener();
+
+                    await DuelStartWithInvite();
                 }
             }
             else
@@ -358,6 +358,9 @@ namespace ContestPark.Mobile.ViewModels
                 || string.IsNullOrEmpty(DuelStarting.FounderUserId)
                 || string.IsNullOrEmpty(DuelStarting.OpponentUserId))
             {
+                if (duelCreated != null)
+                    DuelStarting.DuelId = duelCreated.DuelId;
+
                 NotStartingDuel().Wait();
 
                 return;
@@ -416,9 +419,9 @@ namespace ContestPark.Mobile.ViewModels
         private async Task NotStartingDuel()
         {
             await DisplayAlertAsync(
-          ContestParkResources.Error,
-          ContestParkResources.ErrorStartingDuelPleaseTryAgain,
-          ContestParkResources.Okay);
+                              ContestParkResources.Error,
+                              ContestParkResources.ErrorStartingDuelPleaseTryAgain,
+                              ContestParkResources.Okay);
 
             await _duelService.DuelCancel(DuelStarting.DuelId);
 

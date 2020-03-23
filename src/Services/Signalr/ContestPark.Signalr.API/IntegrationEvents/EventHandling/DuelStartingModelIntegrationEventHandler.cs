@@ -33,29 +33,45 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// Server tarafından client'lere hata mesajı gibi mesajları gönderir
         /// </summary>
         /// <param name="event">Mesaj bilgisi</param>
-        public async Task Handle(DuelStartingModelIntegrationEvent @event)
+        public Task Handle(DuelStartingModelIntegrationEvent @event)
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {
                 string duelGroupName = GetDuelGroupName(@event.DuelId);
 
                 // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                if (!@event.FounderUserId.EndsWith("bot"))
+                if (!@event.FounderUserId.EndsWith("-bot"))
                 {
-                    await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
+                    _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
                 }
 
                 // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                if (!@event.OpponentUserId.EndsWith("bot"))
+                if (!@event.OpponentUserId.EndsWith("-bot"))
                 {
-                    await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
+                    _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
                 }
 
-                _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);
+                _hubContext.Clients
+                                   .Group(duelGroupName)
+                                   .SendAsync("DuelStarting", @event);
 
-                await _hubContext.Clients
-                                    .Group(duelGroupName)
-                                    .SendAsync("DuelStarting", @event);
+                _logger.LogInformation(
+                    "----- Handling integration event: {IntegrationEventId} at {AppName}",
+                    @event.Id,
+                    Program.AppName,
+                    @event.DuelId,
+                    @event.FounderCoverPicturePath,
+                    @event.FounderProfilePicturePath,
+                    @event.FounderUserId,
+                    @event.FounderConnectionId,
+                    @event.FounderFullName,
+                    @event.OpponentCoverPicturePath,
+                    @event.OpponentFullName,
+                    @event.OpponentProfilePicturePath,
+                    @event.OpponentUserId,
+                    @event.OpponentConnectionId);
+
+                return Task.CompletedTask;
             }
         }
 

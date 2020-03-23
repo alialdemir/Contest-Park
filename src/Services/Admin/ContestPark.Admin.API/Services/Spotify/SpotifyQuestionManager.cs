@@ -191,7 +191,7 @@ namespace ContestPark.Admin.API.Services.Spotify
         }
 
         /// <summary>
-        /// "Yeni ay" albümü hangi yılda çıkmıştır?
+        /// Sıla'nın "Yeni ay" albümü hangi yılda çıkmıştır?
         /// </summary>
         /// <param name="albums">Albümler</param>
         private void Question4(List<AlbumModel> albums)
@@ -223,12 +223,12 @@ namespace ContestPark.Admin.API.Services.Spotify
                                                                                     new QuestionLocalized
                                                                                     {
                                                                                          Language= Languages.Turkish,
-                                                                                         Question =  $"\"{track.AlbumName}\" albümü hangi yılda çıkmıştır?"
+                                                                                         Question =  $"{track.ArtistName} \"{track.AlbumName}\" albümü hangi yılda çıkmıştır?"
                                                                                     },
                                                                                     new QuestionLocalized
                                                                                     {
                                                                                         Language = Languages.English,
-                                                                                        Question = $"What year did the album \"{track.AlbumName}\" come out?"
+                                                                                        Question = $"In which year was {track.ArtistName}'s \"{track.AlbumName}\" album released?"
                                                                                     }
                                                                            }
                                 }).ToList();

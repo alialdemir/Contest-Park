@@ -17,10 +17,6 @@ namespace ContestPark.Mobile.Components
                                                                                             declaringType: typeof(PostCardFactoryView),
                                                                                             defaultValue: null);
 
-        public PostCardFactoryView()
-        {
-        }
-
         public INavigationService NavigationService
         {
             get { return (INavigationService)GetValue(NavigationServiceProperty); }

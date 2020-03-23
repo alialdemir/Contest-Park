@@ -474,9 +474,6 @@
     <AndroidResource Include="Resources\drawable\contest_store_money_5.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\options.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\send_message.svg" />
   </ItemGroup>
   <ItemGroup>

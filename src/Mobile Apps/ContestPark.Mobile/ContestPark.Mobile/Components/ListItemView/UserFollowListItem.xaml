@@ -18,6 +18,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <yummy:PancakeView
+            Margin="0,0,0,8"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"

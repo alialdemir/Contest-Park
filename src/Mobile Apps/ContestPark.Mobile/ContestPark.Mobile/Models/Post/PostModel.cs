@@ -58,6 +58,19 @@ namespace ContestPark.Mobile.Models.Post
             }
         }
 
+        private bool _isCommentOpen;
+
+        public bool IsCommentOpen
+        {
+            get { return _isCommentOpen; }
+            set
+            {
+                _isCommentOpen = value;
+
+                RaisePropertyChanged(() => IsCommentOpen);
+            }
+        }
+
         public string OwnerFullName { get; set; }
         public string OwnerProfilePicturePath { get; set; }
         public string OwnerUserName { get; set; }

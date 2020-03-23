@@ -2,7 +2,7 @@
 {
     public enum SpotifyQuestionTypes : byte
     {
-        Playlist,
-        Artist
+        Playlist = 1,
+        Artist = 2
     }
 }

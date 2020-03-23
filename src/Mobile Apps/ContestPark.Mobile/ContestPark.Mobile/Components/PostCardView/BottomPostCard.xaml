@@ -69,6 +69,7 @@
                 <Image
                     Margin="8,0,0,0"
                     HorizontalOptions="Start"
+                    IsVisible="{Binding IsCommentOpen}"
                     VerticalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToPosPostCommentViewCommand, Source={x:Reference bottomPostCard}}" />
@@ -87,6 +88,7 @@
                     FontFamily="{StaticResource SofiaProRegular}"
                     FontSize="16"
                     HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding IsCommentOpen}"
                     Text="{Binding CommentCount}"
                     TextColor="#6C7B8A"
                     VerticalOptions="CenterAndExpand">
@@ -100,6 +102,7 @@
                     FontFamily="{StaticResource SofiaProLight}"
                     FontSize="16"
                     HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding IsCommentOpen}"
                     Text="{i18n:Translate Comments}"
                     TextColor="#6C7B8A"
                     VerticalOptions="CenterAndExpand">

@@ -135,6 +135,9 @@
   <data name="AppSettings" xml:space="preserve">
     <value>Uygulama Ayarları</value>
   </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Arşivle</value>
+  </data>
   <data name="ARequestToTransferYourEarningsToYourAccountHasBeenCreated" xml:space="preserve">
     <value>Kazancınız hesabınıza aktarma isteği oluşturuldu.</value>
   </data>
@@ -578,6 +581,9 @@
   <data name="RemoveBlock" xml:space="preserve">
     <value>Engelli kaldır</value>
   </data>
+  <data name="Report" xml:space="preserve">
+    <value>Şikayet Et</value>
+  </data>
   <data name="RequiredFields" xml:space="preserve">
     <value>Gerekli alanları doldurunuz.</value>
   </data>
@@ -696,6 +702,12 @@
   </data>
   <data name="TurkishLira" xml:space="preserve">
     <value>Türk Lirası</value>
+  </data>
+  <data name="TurnOffComment" xml:space="preserve">
+    <value>Yorum Yapmayı Kapat</value>
+  </data>
+  <data name="TurnOnComment" xml:space="preserve">
+    <value>Yorum Yapmayı Aç</value>
   </data>
   <data name="UnableToAccessTheProductList" xml:space="preserve">
     <value>Ürün listesine erişilemedi.</value>

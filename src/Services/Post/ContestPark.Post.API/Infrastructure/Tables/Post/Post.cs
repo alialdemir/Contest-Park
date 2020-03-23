@@ -35,6 +35,10 @@ namespace ContestPark.Post.API.Infrastructure.Tables.Post
             }
         }
 
+        public bool IsCommentOpen { get; set; }
+
+        public bool IsArchive { get; set; }
+
         public string OwnerUserId { get; set; }
 
         public PostTypes PostType { get; set; }

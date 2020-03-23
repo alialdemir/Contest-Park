@@ -140,34 +140,35 @@ namespace ContestPark.Mobile.ViewModels
                 Token = purchaseInfo.PurchaseToken,
                 Platform = GetCurrentPlatform()
             });
-            //if (isSuccessGoldPurchase)
-            //{
-            await DisplayAlertAsync(
-                       ContestParkResources.Success,
-                       ContestParkResources.ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount,
-                       ContestParkResources.Okay);
+            if (isSuccessGoldPurchase)
+            {
+                await DisplayAlertAsync(
+                           ContestParkResources.Success,
+                           ContestParkResources.ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount,
+                           ContestParkResources.Okay);
 
-            // Left menü'deki  altın miktarını güncelledik
-            _eventAggregator
-                 .GetEvent<GoldUpdatedEvent>()
-                 .Publish();
+                // Left menü'deki  altın miktarını güncelledik
+                _eventAggregator
+                     .GetEvent<GoldUpdatedEvent>()
+                     .Publish();
 
-            SendProductEvent(purchaseInfo, "Purchase", productName);
-            //}
-            //else
-            //{
-            //    /*
-            //     Satın alma işlemi başarısız. Altınlarınız hesabınıza yüklenemedi. Lütfen support@contestpark.com adresine mail atın.
-            //     Purchase failed. Your gold could not be uploaded to your account. Please send an email to support@contestpark.com address.
-            //     */
+                SendProductEvent(purchaseInfo, "Purchase", productName);
+            }
+            else
+            {
+                /*
+                 Satın alma işlemi başarısız. Altınlarınız hesabınıza yüklenemedi. Lütfen support@contestpark.com adresine mail atın.
+                 Purchase failed. Your gold could not be uploaded to your account. Please send an email to support@contestpark.com address.
+                 */
 
-            //    await DisplayAlertAsync(
-            //                     ContestParkResources.Error,
-            //                     ContestParkResources.PurchaseFail,
-            //                     ContestParkResources.Okay);
+                await DisplayAlertAsync(
+                                 ContestParkResources.Error,
+                                 ContestParkResources.PurchaseFail,
+                                 ContestParkResources.Okay);
 
-            //    //  SendProductEvent(purchaseInfo, "Remove From Cart", productName);
-            //}
+                SendProductEvent(purchaseInfo, "Remove From Cart", productName);
+            }
+
             IsBusy = false;
         }
 

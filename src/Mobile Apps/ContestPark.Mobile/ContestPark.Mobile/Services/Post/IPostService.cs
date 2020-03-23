@@ -8,6 +8,8 @@ namespace ContestPark.Mobile.Services.Post
 {
     public interface IPostService
     {
+        Task<bool> ArchiveAsync(int postId);
+
         Task<bool> DisLikeAsync(int postId);
 
         Task<PostDetailModel> GetPostByPostIdAsync(int postId, PagingModel pagingModel);
@@ -21,5 +23,7 @@ namespace ContestPark.Mobile.Services.Post
         Task<ServiceModel<PostLikeModel>> PostLikesAsync(int postId, PagingModel pagingModel);
 
         Task<bool> SendCommentAsync(int postId, string comment);
+
+        Task<bool> TurnOffToggleCommentAsync(int postId);
     }
 }

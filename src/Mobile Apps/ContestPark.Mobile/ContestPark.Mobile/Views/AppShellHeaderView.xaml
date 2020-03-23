@@ -19,6 +19,7 @@
         <Grid>
             <components:CachedImage
                 Aspect="AspectFill"
+                HeightRequest="250"
                 HorizontalOptions="FillAndExpand"
                 Source="{Binding Path=BindingContext.CoverPicture, Source={x:Reference appShellHeaderView}}"
                 VerticalOptions="FillAndExpand" />
