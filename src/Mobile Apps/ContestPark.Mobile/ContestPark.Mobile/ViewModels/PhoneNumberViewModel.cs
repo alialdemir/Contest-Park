@@ -7,6 +7,7 @@ using ContestPark.Mobile.Views;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;

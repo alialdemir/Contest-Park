@@ -93,6 +93,7 @@
                         </Grid>
                     </yummy:PancakeView>
                     <yummy:PancakeView
+                        Margin="0,8,0,0"
                         Padding="5"
                         BackgroundGradientEndColor="#FFCC33"
                         BackgroundGradientStartColor="#FFB347"

@@ -129,7 +129,12 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
+#if !DEBUG
             SendSmsCommand.Execute(null);
+#else
+            SmsCode = new SmsModel { Code = 0 };
+
+#endif
 
             UserName = await _identityService.GetUserNameByPhoneNumber(SmsInfo.PhoneNumber);
 

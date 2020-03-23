@@ -114,25 +114,19 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
                 string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
-                if (botUserId == currentRound.FounderUserId)
+                if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
                 {
-                    if (founderTotalScore == 0 || opponentTotalScore > founderTotalScore)
-                    {
-                        currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
-                        currentRound.FounderAnswer = currentRound.CorrectAnswer;
+                    currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
+                    currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
-                        _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                    }
+                    _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
-                else if (botUserId == currentRound.OpponentUserId)
+                else if (botUserId == currentRound.OpponentUserId && (opponentTotalScore == 0 || founderTotalScore > opponentTotalScore))
                 {
-                    if (opponentTotalScore == 0 || founderTotalScore > opponentTotalScore)
-                    {
-                        currentRound.OpponentScore = _scoreCalculator.Calculator(round, @event.Time);
-                        currentRound.OpponentAnswer = currentRound.CorrectAnswer;
+                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, @event.Time);
+                    currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
-                        _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                    }
+                    _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
             }
 
