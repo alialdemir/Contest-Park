@@ -177,12 +177,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             _userAnswerRepository.AddRangeAsync(userAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
-            if (currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.NotSeeQuestion)
-            {
-                _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", currentRound);
+            // NOTE: soru görülmediğinde düello bugda kalıyor o yüzden kapattım
+            //////if (currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.NotSeeQuestion)
+            //////{
+            //////    _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", currentRound);
 
-                return;
-            }
+            //////    return;
+            //////}
 
             bool isGameEnd = round == MAX_ANSWER_COUNT;
 
