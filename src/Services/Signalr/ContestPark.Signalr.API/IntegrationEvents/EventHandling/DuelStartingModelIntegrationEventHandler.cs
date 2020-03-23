@@ -33,7 +33,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// Server tarafından client'lere hata mesajı gibi mesajları gönderir
         /// </summary>
         /// <param name="event">Mesaj bilgisi</param>
-        public Task Handle(DuelStartingModelIntegrationEvent @event)
+        public async Task Handle(DuelStartingModelIntegrationEvent @event)
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {
@@ -42,36 +42,26 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                 // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
                 if (!@event.FounderUserId.EndsWith("-bot"))
                 {
-                    _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
+                    await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
                 }
 
                 // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
                 if (!@event.OpponentUserId.EndsWith("-bot"))
                 {
-                    _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
+                    await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
                 }
 
-                _hubContext.Clients
-                                   .Group(duelGroupName)
-                                   .SendAsync("DuelStarting", @event);
+                await _hubContext.Clients
+                                     .Group(duelGroupName)
+                                     .SendAsync("DuelStarting", @event);
 
                 _logger.LogInformation(
-                    "----- Handling integration event: {IntegrationEventId} at {AppName}",
+                    "----- Handling integration event: {IntegrationEventId} at {AppName} {DuelId} {FounderUserId} {OpponentUserId}",
                     @event.Id,
                     Program.AppName,
                     @event.DuelId,
-                    @event.FounderCoverPicturePath,
-                    @event.FounderProfilePicturePath,
                     @event.FounderUserId,
-                    @event.FounderConnectionId,
-                    @event.FounderFullName,
-                    @event.OpponentCoverPicturePath,
-                    @event.OpponentFullName,
-                    @event.OpponentProfilePicturePath,
-                    @event.OpponentUserId,
-                    @event.OpponentConnectionId);
-
-                return Task.CompletedTask;
+                    @event.OpponentUserId);
             }
         }
 
@@ -82,7 +72,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// <returns>Düello grup adı</returns>
         private string GetDuelGroupName(int duelId)
         {
-            return $"Duel{duelId.ToString()}";
+            return $"Duel{duelId}";
         }
 
         #endregion Methods
