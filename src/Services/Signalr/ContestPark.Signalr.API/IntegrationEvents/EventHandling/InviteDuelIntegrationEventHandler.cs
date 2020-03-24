@@ -35,6 +35,13 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
             {
                 _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);
 
+                if (string.IsNullOrEmpty(@event.OpponentUserId) || @event.OpponentUserId.EndsWith("-bot"))
+                {
+                    _logger.LogInformation("Bota düello daveti gönderildi {userId}", @event.OpponentUserId);
+
+                    return;
+                }
+
                 await _hubContext.Clients
                                     .Group(@event.OpponentUserId)
                                     .SendAsync("InviteDuel", new

@@ -95,7 +95,7 @@ namespace ContestPark.Duel.API.Controllers
                                                                        founderConnectionId: inviteDuel.FounderConnectionId,
                                                                        founderLanguage: CurrentUserLanguage,
                                                                        opponentUserId: inviteDuel.OpponentUserId,
-                                                                       opponentConnectionId: string.Empty,
+                                                                       opponentConnectionId: "rnsadjge4",// fake signalr id
                                                                        opponentLanguage: CurrentUserLanguage);
                     await Task.Delay(3000);
 
@@ -161,24 +161,19 @@ namespace ContestPark.Duel.API.Controllers
                 return BadRequest(DuelResource.YourBalanceIsInsufficient);
             }
 
-            Task.Factory.StartNew(async () =>
-            {
-                await Task.Delay(5000);// geçici olarak ekledim
+            var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: acceptInvite.SubCategoryId,
+                                                           bet: acceptInvite.Bet,
+                                                           balanceType: acceptInvite.BalanceType,
 
-                var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: acceptInvite.SubCategoryId,
-                                                               bet: acceptInvite.Bet,
-                                                               balanceType: acceptInvite.BalanceType,
+                                                           founderUserId: acceptInvite.FounderUserId,
+                                                           founderConnectionId: acceptInvite.FounderConnectionId,
+                                                           founderLanguage: acceptInvite.FounderLanguage,
 
-                                                               founderUserId: acceptInvite.FounderUserId,
-                                                               founderConnectionId: acceptInvite.FounderConnectionId,
-                                                               founderLanguage: acceptInvite.FounderLanguage,
+                                                           opponentUserId: UserId,
+                                                           opponentConnectionId: acceptInvite.OpponentConnectionId,
+                                                           opponentLanguage: CurrentUserLanguage);
 
-                                                               opponentUserId: UserId,
-                                                               opponentConnectionId: acceptInvite.OpponentConnectionId,
-                                                               opponentLanguage: CurrentUserLanguage);
-
-                _eventBus.Publish(eventDuelStart);
-            });
+            _eventBus.Publish(eventDuelStart);
 
             return Ok();
         }
