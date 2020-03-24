@@ -111,14 +111,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #region Cevaplama
 
+            byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
+            byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
+
+            string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
+            string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
+
             if (@event.UserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
-                byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
-                byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
-
-                string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
-                string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
-
                 if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
                 {
                     currentRound.FounderScore = _scoreCalculator.Calculator(round, @event.Time);
@@ -143,12 +143,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (@event.BalanceType == BalanceTypes.Money && (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot")))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
             {
-                byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
-                byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
-
-                string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
-                string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
-
                 BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Money);// bot olmayan kullanıcının para miktarını aldık
 
                 _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
@@ -157,12 +151,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı 70'den fazla ise parayı her an çekebilir
 
-                if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+                if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
                     int rndScore = new Random().Next(1, 5);
 
-                    currentRound.FounderTime = currentRound.OpponentTime > 0 ?
-                        (byte)(currentRound.OpponentTime + rndScore)
+                    currentRound.FounderTime = currentRound.OpponentTime > 0
+                        ? (byte)(currentRound.OpponentTime + rndScore)
                         : (byte)10;
 
                     if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
@@ -173,12 +167,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                 }
-                else if (withdrawalStatus && botUserId == currentRound.OpponentUserId)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+                else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                 {
                     int rndScore = new Random().Next(2, 6);
 
-                    currentRound.OpponentTime = currentRound.FounderTime > 0 ?
-                        (byte)(currentRound.FounderTime + rndScore)
+                    currentRound.OpponentTime = currentRound.FounderTime > 0
+                        ? (byte)(currentRound.FounderTime + rndScore)
                         : (byte)10;
 
                     if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
