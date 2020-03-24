@@ -115,9 +115,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
             {
-                string userId = @event.FounderUserId.EndsWith("-bot") ? @event.OpponentUserId : @event.FounderUserId;
+                try
+                {
+                    string userId = @event.FounderUserId.EndsWith("-bot") ? @event.OpponentUserId : @event.FounderUserId;
 
-                isWinStatus = _duelRepository.WinStatus(userId);
+                    isWinStatus = _duelRepository.WinStatus(userId);
+                }
+                catch (System.Exception ex)
+                {
+                    _logger.LogError("WinStatus {message}", ex.Message);
+                }
             }
 
             // Sorulara cevap verildiğinde kontrol edebilmek için redise eklendi
@@ -266,14 +273,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (bet <= 0)
                 return;
 
-            Task.Factory.StartNew(() =>
-            {
-                bet = -bet;
+            bet = -bet;
 
-                var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
+            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
 
-                _eventBus.Publish(@event);
-            });
+            _eventBus.Publish(@event);
         }
 
         #endregion Methods

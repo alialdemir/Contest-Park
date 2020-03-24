@@ -153,7 +153,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                bool withdrawalStatus = balance.Amount >= 20.00m;// Oyunun para miktarı 70'den fazla ise parayı her an çekebilir
+                decimal maxMoney = Convert.ToDecimal(new Random().Next(50, 70));
+
+                bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı 70'den fazla ise parayı her an çekebilir
+
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
                     int rndScore = new Random().Next(1, 5);

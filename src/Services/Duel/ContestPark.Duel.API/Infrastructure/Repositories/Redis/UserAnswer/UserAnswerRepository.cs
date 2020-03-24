@@ -46,7 +46,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 
         public void AddRangeAsync(List<UserAnswerModel> userAnswers)
         {
-            if (userAnswers == null || userAnswers.Count == 0)
+            if (userAnswers == null || !userAnswers.Any())
                 return;
 
             int duelId = userAnswers.FirstOrDefault().DuelId;
