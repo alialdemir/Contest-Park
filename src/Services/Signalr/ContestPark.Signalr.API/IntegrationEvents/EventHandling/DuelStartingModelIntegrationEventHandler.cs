@@ -12,16 +12,20 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         #region Private Variables
 
         private readonly ILogger<DuelStartingModelIntegrationEventHandler> _logger;
+        private readonly IEventBus _eventBus;
         private readonly IHubContext<ContestParkHub> _hubContext;
+        private byte COUNT = 0;
 
         #endregion Private Variables
 
         #region Constructor
 
         public DuelStartingModelIntegrationEventHandler(ILogger<DuelStartingModelIntegrationEventHandler> logger,
-                                                                  IHubContext<ContestParkHub> hubContext)
+                                                        IEventBus eventBus,
+                                                        IHubContext<ContestParkHub> hubContext)
         {
             _logger = logger;
+            _eventBus = eventBus;
             _hubContext = hubContext;
         }
 
@@ -35,33 +39,55 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// <param name="event">Mesaj bilgisi</param>
         public async Task Handle(DuelStartingModelIntegrationEvent @event)
         {
-            using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
+            try
             {
-                string duelGroupName = GetDuelGroupName(@event.DuelId);
-
-                // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                if (!@event.FounderUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.FounderConnectionId))
+                using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
                 {
-                    await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
+                    string duelGroupName = GetDuelGroupName(@event.DuelId);
+
+                    // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
+                    if (!@event.FounderUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.FounderConnectionId))
+                    {
+                        await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
+                    }
+
+                    // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
+                    if (!@event.OpponentUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.OpponentConnectionId))
+                    {
+                        await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
+                    }
+
+                    await _hubContext.Clients
+                                         .Group(duelGroupName)
+                                         .SendAsync("DuelStarting", @event);
+
+                    _logger.LogInformation(
+                        "----- Handling integration event: {IntegrationEventId} at {AppName} {DuelId} {FounderUserId} {OpponentUserId}",
+                        @event.Id,
+                        Program.AppName,
+                        @event.DuelId,
+                        @event.FounderUserId,
+                        @event.OpponentUserId);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError("Düello başlatılırken exception oluştu. {message} ", ex.Message);
+
+                COUNT += 1;
+
+                if (COUNT >= 3)// 3 kere denesin daha fazla hata olursa düelloyu iptal etsin
+                {
+                    var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
+                                                                          @event.FounderUserId,
+                                                                          isDuelCancel: true);
+
+                    _eventBus.Publish(@eventDuelEscape);
+
+                    return;
                 }
 
-                // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                if (!@event.OpponentUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.OpponentConnectionId))
-                {
-                    await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
-                }
-
-                await _hubContext.Clients
-                                     .Group(duelGroupName)
-                                     .SendAsync("DuelStarting", @event);
-
-                _logger.LogInformation(
-                    "----- Handling integration event: {IntegrationEventId} at {AppName} {DuelId} {FounderUserId} {OpponentUserId}",
-                    @event.Id,
-                    Program.AppName,
-                    @event.DuelId,
-                    @event.FounderUserId,
-                    @event.OpponentUserId);
+                await Handle(@event);
             }
         }
 
