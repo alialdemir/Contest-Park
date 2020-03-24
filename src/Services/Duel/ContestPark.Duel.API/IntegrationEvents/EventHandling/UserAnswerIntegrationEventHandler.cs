@@ -149,7 +149,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 decimal maxMoney = Convert.ToDecimal(new Random().Next(20, 30));
 
-                bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı 70'den fazla ise parayı her an çekebilir
+                bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
