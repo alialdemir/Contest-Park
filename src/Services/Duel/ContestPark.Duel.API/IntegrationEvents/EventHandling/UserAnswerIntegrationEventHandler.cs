@@ -154,7 +154,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                bool withdrawalStatus = balance.Amount >= 70.00m;// Oyunun para miktarı 80'den fazla ise parayı her an çekebilir
+                bool withdrawalStatus = balance.Amount >= 20.00m;// Oyunun para miktarı 70'den fazla ise parayı her an çekebilir
                 if (withdrawalStatus && botUserId == currentRound.FounderUserId)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                 {
                     currentRound.FounderTime = 10;

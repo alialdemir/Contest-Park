@@ -111,6 +111,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                     @event.OpponentUserId,
                                                                     @event.FounderLanguage,
                                                                     @event.OpponentLanguage);
+            bool? isWinStatus = null;
+
+            if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
+            {
+                try
+                {
+                    string userId = @event.FounderUserId.EndsWith("-bot") ? @event.OpponentUserId : @event.FounderUserId;
+
+                    isWinStatus = _duelRepository.WinStatus(userId);
+                }
+                catch (System.Exception ex)
+                {
+                }
+            }
 
             // Sorulara cevap verildiğinde kontrol edebilmek için redise eklendi
             _userAnswerRepository.AddRangeAsync(questions.Select(x => new UserAnswerModel
@@ -121,7 +135,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 OpponentUserId = @event.OpponentUserId,
                 CorrectAnswer = (Stylish)(x.Answers.FindIndex(a => a.IsCorrectAnswer) + 1),
                 FounderAnswer = Stylish.NotSeeQuestion,
-                OpponentAnswer = Stylish.NotSeeQuestion
+                OpponentAnswer = Stylish.NotSeeQuestion,
+                IsWinStatus = isWinStatus,
             }).ToList());
 
             // Bakiyeler düşüldü

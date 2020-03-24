@@ -162,12 +162,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="balanceType">Bakiyee tipi</param>
-        public bool WinStatus(string userId, BalanceTypes balanceType)
+        public bool WinStatus(string userId)
         {
             return _duelRepository.QuerySingleOrDefault<bool>("FNC_WinStatus", new
             {
                 userId,
-                balanceType
             }, System.Data.CommandType.StoredProcedure);
         }
 

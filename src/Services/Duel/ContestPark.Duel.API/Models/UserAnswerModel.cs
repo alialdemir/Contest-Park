@@ -30,5 +30,6 @@ namespace ContestPark.Duel.API.Models
         public string FounderUserId { get; set; }
         public string OpponentUserId { get; set; }
         public Stylish CorrectAnswer { get; set; }
+        public bool? IsWinStatus { get; set; }
     }
 }
