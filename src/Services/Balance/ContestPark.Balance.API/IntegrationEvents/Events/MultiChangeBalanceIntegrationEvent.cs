@@ -11,6 +11,6 @@ namespace ContestPark.Balance.API.IntegrationEvents.Events
             ChangeBalances = changeBalances;
         }
 
-        public List<ChangeBalanceModel> ChangeBalances { get; }
+        public List<ChangeBalanceModel> ChangeBalances { get; set; }
     }
 }
