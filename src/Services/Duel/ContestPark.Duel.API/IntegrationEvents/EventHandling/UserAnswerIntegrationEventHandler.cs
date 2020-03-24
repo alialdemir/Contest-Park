@@ -136,7 +136,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             _logger.LogInformation("Düello bakiye tipi {BalanceType}", @event.BalanceType);
 
-            if (@event.BalanceType == BalanceTypes.Money && @event.UserId.EndsWith("-bot"))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
+            if (@event.BalanceType == BalanceTypes.Money && (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot")))// Eğer para ile oynanıyorsa ve bot cevaplamış ise
             {
                 _logger.LogInformation("Para ile düello oynanıyor...");
 

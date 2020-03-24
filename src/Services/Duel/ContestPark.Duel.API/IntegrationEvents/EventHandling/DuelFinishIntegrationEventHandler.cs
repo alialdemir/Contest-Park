@@ -2,7 +2,6 @@
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
 using ContestPark.Duel.API.Infrastructure.Repositories.ScoreRankingRepository;
 using ContestPark.Duel.API.IntegrationEvents.Events;
-using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -134,46 +133,54 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             // TODO total skor kadar level xp'si eklensin
             if (@event.IsDuelCancel || @event.FounderScore == @event.OpponentScore)// Düello iptal edilmiş veya düello beraber bitmiş
             {
-                var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
-
-                @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
-                {
-                    BalanceType = @event.BalanceType,
-                    BalanceHistoryType = BalanceHistoryTypes.Draw,
-                    UserId = @event.FounderUserId,
-                    Amount = @event.Bet
-                });
-
-                @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
-                {
-                    BalanceType = @event.BalanceType,
-                    BalanceHistoryType = BalanceHistoryTypes.Draw,
-                    UserId = @event.OpponentUserId,
-                    Amount = @event.Bet
-                });
-
-                _eventBus.Publish(@changeBalancesEvent);
+                ChangeBalance(
+                    @event.Bet,
+                    @event.BalanceType,
+                    BalanceHistoryTypes.Draw,
+                    @event.FounderUserId,
+                    @event.OpponentUserId);
             }
             else if (@event.FounderScore > @event.OpponentScore)// Kurucu düelloyu kazanmış
             {
                 decimal founderBet = CaltulatorBetComission(@event.Bet, @event.BetCommission);
 
-                ChangeBalance(@event.FounderUserId, founderBet, @event.BalanceType, BalanceHistoryTypes.Win);
+                ChangeBalance(founderBet, @event.BalanceType, BalanceHistoryTypes.Win, @event.FounderUserId);
             }
             else if (@event.OpponentScore > @event.FounderScore)// Rakip düelloyu kazanmış
             {
                 decimal opponentBet = CaltulatorBetComission(@event.Bet, @event.BetCommission);
 
-                ChangeBalance(@event.OpponentUserId, opponentBet, @event.BalanceType, BalanceHistoryTypes.Win);
+                ChangeBalance(opponentBet, @event.BalanceType, BalanceHistoryTypes.Win, @event.OpponentUserId);
             }
 
             #endregion Kazanan kaybeden veya beraberlik belirleme(Düellolarda kazanılan bahisler buradan ayarlanıyor)
 
-            ChangedGameCount(@event.OpponentUserId);
+            if (!@event.IsDuelCancel)// Eğer düello iptal edilmemişse oyun sayısı ve post ekleniyor
+            {
+                ChangedGameCount(@event.OpponentUserId);
 
-            ChangedGameCount(@event.FounderUserId);
+                ChangedGameCount(@event.FounderUserId);
 
-            AddPost(@event);
+                AddPost(@event);
+            }
+        }
+
+        /// <summary>
+        /// Kullanıcının bakiyesini değiştirme eventi publish eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="bet">Bakiye</param>
+        /// <param name="balanceType">Bakiye tipi</param>
+        public void ChangeBalance(decimal bet, BalanceTypes balanceType, BalanceHistoryTypes balanceHistoryType, params string[] userIds)
+        {
+            if (bet <= 0)
+                return;
+
+            var @event = new MultiChangeBalanceIntegrationEvent();
+
+            @event.AddChangeBalance(bet, balanceType, balanceHistoryType, userIds);
+
+            _eventBus.Publish(@event);
         }
 
         /// <summary>
@@ -217,22 +224,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private void ChangedGameCount(string userId)
         {
             var @event = new ChangedGameCountIntegrationEvent(userId);
-
-            _eventBus.Publish(@event);
-        }
-
-        /// <summary>
-        /// Kullanıcının bakiyesini değiştirme eventi publish eder
-        /// </summary>
-        /// <param name="userId">Kullanıcı id</param>
-        /// <param name="bet">Bakiye</param>
-        /// <param name="balanceType">Bakiye tipi</param>
-        private void ChangeBalance(string userId, decimal bet, BalanceTypes balanceType, BalanceHistoryTypes balanceHistoryType)
-        {
-            if (bet <= 0)
-                return;
-
-            var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, balanceHistoryType);
 
             _eventBus.Publish(@event);
         }

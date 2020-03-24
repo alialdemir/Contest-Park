@@ -244,21 +244,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
 
-            @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
-            {
-                BalanceType = balanceType,
-                BalanceHistoryType = BalanceHistoryTypes.Duel,
-                UserId = founderUserId,
-                Amount = bet
-            });
-
-            @changeBalancesEvent.AddChangeBalance(new ChangeBalanceModel
-            {
-                BalanceType = balanceType,
-                BalanceHistoryType = BalanceHistoryTypes.Duel,
-                UserId = opponentUserId,
-                Amount = bet
-            });
+            changeBalancesEvent.AddChangeBalance(bet, balanceType, BalanceHistoryTypes.Duel, founderUserId, opponentUserId);
 
             _eventBus.Publish(@changeBalancesEvent);
         }
