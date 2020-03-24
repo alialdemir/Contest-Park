@@ -63,15 +63,21 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (!(isEscaperUserFounder || @event.EscaperUserId == duel.OpponentUserId))
             {
                 SendErrorMessage(@event.EscaperUserId, "Bu düello size ait değil");
+
+                return Task.CompletedTask;
             }
 
             var userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
             if (!@event.IsDuelCancel && userAnswers != null && userAnswers.Count > 0)
             {
-                // Oyuncuların düellodan kaçma durumunda yenilmiş olma durumunu buradan ayarladık
-                duel.FounderTotalScore = isEscaperUserFounder ? (byte)0 : (byte)userAnswers.Sum(x => x.FounderScore);
+                /*
+                 * Oyuncuların düellodan kaçma durumunda yenilmiş olma durumunu buradan ayarladık
+                 * Eğer puanlar sıfır olursa berabere bitiyordu bu yüzden düelloden kaçmayan oyuncunun puanını +1 yaptık
+                 */
 
-                duel.OpponentTotalScore = !isEscaperUserFounder ? (byte)0 : (byte)userAnswers.Sum(x => x.OpponentScore);
+                duel.FounderTotalScore = isEscaperUserFounder ? (byte)0 : (byte)(userAnswers.Sum(x => x.FounderScore) + 1);
+
+                duel.OpponentTotalScore = !isEscaperUserFounder ? (byte)0 : (byte)(userAnswers.Sum(x => x.OpponentScore) + 1);
             }
 
             bool isFounderFinishedTheGame = false;
