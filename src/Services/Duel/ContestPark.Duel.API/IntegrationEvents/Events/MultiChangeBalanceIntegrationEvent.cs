@@ -8,22 +8,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
 {
     public class MultiChangeBalanceIntegrationEvent : IntegrationEvent
     {
-        public List<ChangeBalanceModel> ChangeBalances { get; } = new List<ChangeBalanceModel>();
+        public List<ChangeBalanceModel> ChangeBalances { get; private set; } = new List<ChangeBalanceModel>();
 
-        public MultiChangeBalanceIntegrationEvent AddChangeBalance(ChangeBalanceModel changeBalance)
+        public void AddChangeBalance(ChangeBalanceModel changeBalance)
         {
             if (changeBalance != null)
             {
                 this.ChangeBalances.Add(changeBalance);
             }
-
-            return this;
         }
 
-        public MultiChangeBalanceIntegrationEvent AddChangeBalance(decimal bet, BalanceTypes balanceType, BalanceHistoryTypes balanceHistoryType, params string[] userIds)
+        public void AddChangeBalance(decimal bet, BalanceTypes balanceType, BalanceHistoryTypes balanceHistoryType, params string[] userIds)
         {
             if (!userIds.Any() || bet <= 0)
-                return this;
+                return;
 
             foreach (var userId in userIds)
             {
@@ -38,8 +36,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
                     });
                 }
             }
-
-            return this;
         }
     }
 }
