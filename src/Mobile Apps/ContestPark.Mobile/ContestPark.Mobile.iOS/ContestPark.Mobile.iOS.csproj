@@ -13,7 +13,7 @@
     <AssemblyName>ContestPark.Mobile.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +64,7 @@
     <OptimizePNGs>true</OptimizePNGs>
     <MtouchFloat32>true</MtouchFloat32>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: ali aldemir (V6854F4555)</CodesignKey>
     <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />

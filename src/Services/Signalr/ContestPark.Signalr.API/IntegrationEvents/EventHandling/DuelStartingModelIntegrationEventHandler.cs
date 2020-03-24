@@ -40,13 +40,13 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                 string duelGroupName = GetDuelGroupName(@event.DuelId);
 
                 // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                if (!@event.FounderUserId.EndsWith("-bot"))
+                if (!@event.FounderUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.FounderConnectionId))
                 {
                     await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
                 }
 
                 // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                if (!@event.OpponentUserId.EndsWith("-bot"))
+                if (!@event.OpponentUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.OpponentConnectionId))
                 {
                     await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
                 }

@@ -129,12 +129,21 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-#if !DEBUG
-            SendSmsCommand.Execute(null);
-#else
-            SmsCode = new SmsModel { Code = 0 };
-
+#if DEBUG
+            Code1 = 5;
+            Code2 = 4;
+            Code3 = 5;
+            Code4 = 4;
 #endif
+            if (!SmsInfo.PhoneNumber.StartsWith("5454"))// Eğer özel durum yoksa direk sms göndersin
+            {
+                SendSmsCommand.Execute(null);
+            }
+            else// ÖZEL DURUMSA 5454 ile giriş yapılsın
+            {
+                SmsInfo.PhoneNumber = SmsInfo.PhoneNumber.Substring(4, SmsInfo.PhoneNumber.Length - 4);
+                SmsCode = new SmsModel { Code = 5454 };
+            }
 
             UserName = await _identityService.GetUserNameByPhoneNumber(SmsInfo.PhoneNumber);
 

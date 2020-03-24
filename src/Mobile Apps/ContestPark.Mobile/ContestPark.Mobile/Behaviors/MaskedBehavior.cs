@@ -56,7 +56,7 @@ namespace ContestPark.Mobile.Behaviors
             if (string.IsNullOrWhiteSpace(text) || _positions == null)
                 return;
 
-            if (text.StartsWith("1993"))// ÖZEL DURUMLAR İÇİN EKLEDİM :)
+            if (text.StartsWith("(545) 4"))// ÖZEL DURUMLAR İÇİN EKLEDİM :)
                 return;
 
             if (text.Length > _mask.Length)
