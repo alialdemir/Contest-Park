@@ -83,6 +83,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
+            if (!(currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.FounderAnswer == Stylish.UnableToReply)
+                && !(currentRound.OpponentAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.UnableToReply))
+                return;
+
             int round = userAnswers.FindIndex(x => x.QuestionId == @event.QuestionId) + 1;// Question id'ye ait index bulukduğu roundu verir
 
             bool isFounder = @event.UserId == currentRound.FounderUserId;
