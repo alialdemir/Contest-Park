@@ -115,15 +115,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
             {
-                try
-                {
-                    string userId = @event.FounderUserId.EndsWith("-bot") ? @event.OpponentUserId : @event.FounderUserId;
+                string userId = @event.FounderUserId.EndsWith("-bot") ? @event.OpponentUserId : @event.FounderUserId;
 
-                    isWinStatus = _duelRepository.WinStatus(userId);
-                }
-                catch (System.Exception ex)
-                {
-                }
+                isWinStatus = _duelRepository.WinStatus(userId);
             }
 
             // Sorulara cevap verildiğinde kontrol edebilmek için redise eklendi
