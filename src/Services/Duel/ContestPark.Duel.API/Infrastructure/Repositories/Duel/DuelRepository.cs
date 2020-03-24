@@ -157,6 +157,20 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
             });
         }
 
+        /// <summary>
+        /// Kazamma durumunu verir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="balanceType">Bakiyee tipi</param>
+        public bool WinStatus(string userId, BalanceTypes balanceType)
+        {
+            return _duelRepository.QuerySingleOrDefault<bool>("FNC_WinStatus", new
+            {
+                userId,
+                balanceType
+            }, System.Data.CommandType.StoredProcedure);
+        }
+
         #endregion Methods
     }
 }

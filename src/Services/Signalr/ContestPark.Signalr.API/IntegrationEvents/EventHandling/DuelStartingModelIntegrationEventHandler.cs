@@ -72,7 +72,12 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
             }
             catch (System.Exception ex)
             {
-                _logger.LogError("Düello başlatılırken exception oluştu. {message} ", ex.Message);
+                _logger.LogError(
+                    "Düello başlatılırken exception oluştu. {message} {duelId} {FounderUserId} {OpponentUserId}",
+                    ex.Message,
+                    @event.DuelId,
+                    @event.FounderUserId,
+                    @event.OpponentUserId);
 
                 COUNT += 1;
 

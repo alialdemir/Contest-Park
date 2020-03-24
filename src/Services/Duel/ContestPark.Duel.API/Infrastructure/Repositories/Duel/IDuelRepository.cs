@@ -17,5 +17,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         bool IsDuelFinish(int duelId);
 
         Task<bool> UpdateDuelScores(int duelId, DuelTypes duelType, byte founderTotalScore, byte opponentTotalScore, byte founderFinishScore, byte opponentFinishScore, byte founderVictoryScore, byte opponentVictoryScore);
+        bool WinStatus(string userId, BalanceTypes balanceType);
     }
 }

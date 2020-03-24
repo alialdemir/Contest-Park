@@ -125,7 +125,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }).ToList());
 
             // Bakiyeler düşüldü
-            ChangeBalance(@event.FounderUserId, @event.OpponentUserId, @event.Bet, @event.BalanceType);
+            //  ChangeBalance(@event.FounderUserId, @event.OpponentUserId, @event.Bet, @event.BalanceType);
+
+            // Bakiyeler düşüldü
+            ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType);
+            ChangeBalance(@event.OpponentUserId, @event.Bet, @event.BalanceType);
 
             PublishDuelCreatedEvent(duelId,
                                     @event.FounderUserId,
@@ -235,18 +239,32 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="bet">Bakiye</param>
         /// <param name="balanceType">Bakiye tipi</param>
-        private void ChangeBalance(string founderUserId, string opponentUserId, decimal bet, BalanceTypes balanceType)
+        //private void ChangeBalance(string founderUserId, string opponentUserId, decimal bet, BalanceTypes balanceType)
+        //{
+        //    if (bet <= 0)
+        //        return;
+
+        //    bet = -bet;
+
+        //    var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
+
+        //    @changeBalancesEvent.AddChangeBalance(bet, balanceType, BalanceHistoryTypes.Duel, founderUserId, opponentUserId);
+
+        //    _eventBus.Publish(@changeBalancesEvent);
+        //}
+        private void ChangeBalance(string userId, decimal bet, BalanceTypes balanceType)
         {
             if (bet <= 0)
                 return;
 
-            bet = -bet;
+            Task.Factory.StartNew(() =>
+            {
+                bet = -bet;
 
-            var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
+                var @event = new ChangeBalanceIntegrationEvent(bet, userId, balanceType, BalanceHistoryTypes.Duel);
 
-            @changeBalancesEvent.AddChangeBalance(bet, balanceType, BalanceHistoryTypes.Duel, founderUserId, opponentUserId);
-
-            _eventBus.Publish(@changeBalancesEvent);
+                _eventBus.Publish(@event);
+            });
         }
 
         #endregion Methods
