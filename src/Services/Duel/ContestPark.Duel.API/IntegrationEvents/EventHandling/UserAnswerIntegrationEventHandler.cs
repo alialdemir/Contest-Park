@@ -113,6 +113,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
+                if (currentRound.FounderUserId.EndsWith("-bot"))
+                    currentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
+                else if (currentRound.OpponentUserId.EndsWith("-bot"))
+                    currentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
+
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
 
@@ -123,9 +128,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
                 {
-                    currentRound.FounderTime = currentRound.OpponentTime > 0
-                        ? (byte)(currentRound.OpponentTime + rndScore)
-                        : (byte)10;
+                    currentRound.FounderTime = (byte)(@event.Time + rndScore);
                     currentRound.FounderScore = _scoreCalculator.Calculator(round, currentRound.FounderTime);
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
@@ -133,10 +136,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
                 else if (botUserId == currentRound.OpponentUserId && (opponentTotalScore == 0 || founderTotalScore > opponentTotalScore))
                 {
-                    currentRound.OpponentTime = currentRound.FounderTime > 0
-                        ? (byte)(currentRound.FounderTime + rndScore)
-                        : (byte)10;
-
+                    currentRound.OpponentTime = (byte)(@event.Time + rndScore);
                     currentRound.OpponentScore = _scoreCalculator.Calculator(round, currentRound.OpponentTime);
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
