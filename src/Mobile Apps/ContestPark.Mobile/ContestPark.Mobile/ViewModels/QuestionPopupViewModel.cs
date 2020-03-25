@@ -6,7 +6,6 @@ using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
-using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
@@ -29,7 +28,6 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IAudioService _audioService;
-        private readonly IBotService _botService;
         private readonly IDuelService _duelService;
         private readonly IAdMobService _adMobService;
         private readonly IDuelSignalRService _duelSignalRService;
@@ -50,8 +48,7 @@ namespace ContestPark.Mobile.ViewModels
                                       IDuelService duelService,
                                       IAdMobService adMobService,
                                       ISettingsService settingsService,
-                                      IAudioService audioService,
-                                      IBotService botService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
+                                      IAudioService audioService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
         {
             _duelSignalRService = duelSignalRService;
             _analyticsService = analyticsService;
@@ -60,7 +57,6 @@ namespace ContestPark.Mobile.ViewModels
             _adMobService = adMobService;
             _settingsService = settingsService;
             _audioService = audioService;
-            _botService = botService;
 
             FounderImageBorderColor = PrimaryColor;
             OpponentImageBorderColor = PrimaryColor;
@@ -365,35 +361,6 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Botu aktif eder
-        /// </summary>
-        private void BotActive()
-        {
-            if (DuelScreen == null || string.IsNullOrEmpty(DuelScreen.FounderUserId) || string.IsNullOrEmpty(DuelScreen.OpponentUserId))
-            {
-                _duelService.DuelCancel(DuelCreated.DuelId);
-
-                IsExit = true;
-
-                DuelCloseCommand.Execute(null);
-
-                return;
-            }
-
-            // Eğer bot ile oynuyorsa oyuna bot eklendi
-
-            //if (DuelScreen.FounderUserId.EndsWith("-bot"))
-            //{
-            //    _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId, BalanceType);
-            //}
-
-            //if (DuelScreen.OpponentUserId.EndsWith("-bot"))
-            //{
-            //    _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId, BalanceType);
-            //}
-        }
-
-        /// <summary>
         /// Verilen cevaplara göre resimlerin border color değiştirir
         /// </summary>
         private void ChangeImageBorderColor(Stylish founderStylish, Stylish opponentStylish, Stylish correctAnswer)
@@ -674,25 +641,6 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Botun verdiği cevapları sunucuya gönderir
-        /// </summary>
-        private void BotSaveAnswer(SaveAnswerModel saveAnswer)
-        {
-            if (IsExit)
-                return;
-
-            _duelSignalRService.SaveAnswer(new UserAnswer
-            {
-                Time = Time,
-                QuestionId = CurrentQuestion.QuestionId,
-                DuelId = DuelScreen.DuelId,
-                Stylish = saveAnswer.Stylish,
-                UserId = saveAnswer.UserId,
-                BalanceType = BalanceType,
-            });
-        }
-
-        /// <summary>
         /// Oyunu başlatır
         /// </summary>
         private void StartGame(PopupPage popupPage)
@@ -714,7 +662,6 @@ namespace ContestPark.Mobile.ViewModels
                     if (!IsExit)
                     {
                         IsTimerEnable = true;
-                        BotActive();
                     }
 
                     return false;
@@ -780,12 +727,10 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand AnimateStylishCommand;
 
         private ICommand _answerCommand;
-        private ICommand _botAnswerCommand;
         private ICommand _saveAnswerCommand;
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>((answerModel) => ExecuteAnswerCommandCommand(answerModel)));
         private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(SaveAnswer));
-        private ICommand BotSaveAnswerCommand => _botAnswerCommand ?? (_botAnswerCommand = new Command<SaveAnswerModel>(BotSaveAnswer));
 
         /// <summary>
         /// Soru ekranı kapatır

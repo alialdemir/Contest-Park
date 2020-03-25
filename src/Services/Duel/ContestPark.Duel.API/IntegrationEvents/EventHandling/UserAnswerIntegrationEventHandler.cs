@@ -127,10 +127,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     currentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
                     currentRound.FounderScore = currentRound.CorrectAnswer == currentRound.FounderAnswer ? _scoreCalculator.Calculator(round, currentRound.FounderTime) : (byte)0;
+
+                    int diff = @event.Time - currentRound.FounderTime;
+                    if (diff > 0)
+                        await Task.Delay(diff);
                 }
                 else if (isOpponentBot)
                 {
-
                     currentRound.OpponentTime = (byte)rndScore;
 
                     if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
@@ -138,6 +141,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     currentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
                     currentRound.OpponentScore = currentRound.CorrectAnswer == currentRound.OpponentAnswer ? _scoreCalculator.Calculator(round, currentRound.OpponentTime) : (byte)0;
+
+                    int diff = @event.Time - currentRound.OpponentTime;
+                    if (diff > 0)
+                        await Task.Delay(diff);
                 }
 
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
@@ -183,7 +190,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                    decimal maxMoney = 35.00m;// Convert.ToDecimal(new Random().Next(50, 70));
+                    decimal maxMoney = 70.00m;// Convert.ToDecimal(new Random().Next(50, 70));
 
                     bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 

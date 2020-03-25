@@ -2,7 +2,6 @@
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Blocking;
-using ContestPark.Mobile.Services.Bot;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Chat;
@@ -216,8 +215,6 @@ namespace ContestPark.Mobile.Configs
             }
 
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
-
-            containerRegistry.RegisterSingleton<IBotService, BotService>();
 
             containerRegistry.RegisterSingleton<IGameService, GameService>();
 
