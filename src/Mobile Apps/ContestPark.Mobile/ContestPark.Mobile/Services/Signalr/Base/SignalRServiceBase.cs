@@ -73,6 +73,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                 }).Build();
 
                 HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
+                HubConnection.HandshakeTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
 
                 GetConnection();
 

@@ -92,7 +92,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             bool isFounder = @event.UserId == currentRound.FounderUserId;
 
-            byte score = currentRound.CorrectAnswer == @event.Stylish ? _scoreCalculator.Calculator(round, @event.Time) : (byte)0;
+            bool isCorrectAnswer = currentRound.CorrectAnswer == @event.Stylish;
+
+            byte score = isCorrectAnswer ? _scoreCalculator.Calculator(round, @event.Time) : (byte)0;
 
             if (isFounder)//  Kurucu ise kurucuya puan verildi
             {
@@ -129,7 +131,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     currentRound.FounderScore = currentRound.CorrectAnswer == currentRound.FounderAnswer ? _scoreCalculator.Calculator(round, currentRound.FounderTime) : (byte)0;
 
                     int diff = @event.Time - currentRound.FounderTime;
-                    if (diff > 0)
+                    if (diff > 0 && currentRound.FounderAnswer != currentRound.CorrectAnswer)
                         await Task.Delay(diff * 1000);
                 }
                 else if (isOpponentBot)
@@ -143,7 +145,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     currentRound.OpponentScore = currentRound.CorrectAnswer == currentRound.OpponentAnswer ? _scoreCalculator.Calculator(round, currentRound.OpponentTime) : (byte)0;
 
                     int diff = @event.Time - currentRound.OpponentTime;
-                    if (diff > 0)
+                    if (diff > 0 && currentRound.OpponentAnswer != currentRound.CorrectAnswer)
                         await Task.Delay(diff * 1000);
                 }
 

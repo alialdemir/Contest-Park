@@ -31,8 +31,8 @@ namespace ContestPark.Signalr.API
             {
                 services.AddSignalR(hubOptions =>
                 {
-                    hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(15);
-                    hubOptions.HandshakeTimeout = TimeSpan.FromMinutes(15);
+                    hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(60);
+                    hubOptions.HandshakeTimeout = TimeSpan.FromMinutes(60);
                 })
                     .AddRedis(signalrStoreConnectionString);
             }
