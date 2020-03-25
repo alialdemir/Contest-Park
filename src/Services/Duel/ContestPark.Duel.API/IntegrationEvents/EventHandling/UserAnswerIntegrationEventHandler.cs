@@ -147,7 +147,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                decimal maxMoney = Convert.ToDecimal(new Random().Next(50, 70));
+                decimal maxMoney = 35.00m;// Convert.ToDecimal(new Random().Next(50, 70));
 
                 bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 
