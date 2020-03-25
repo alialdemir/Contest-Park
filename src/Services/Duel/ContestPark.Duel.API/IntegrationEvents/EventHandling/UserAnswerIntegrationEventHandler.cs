@@ -130,7 +130,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     int diff = @event.Time - currentRound.FounderTime;
                     if (diff > 0)
-                        await Task.Delay(diff);
+                        await Task.Delay(diff * 1000);
                 }
                 else if (isOpponentBot)
                 {
@@ -144,7 +144,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     int diff = @event.Time - currentRound.OpponentTime;
                     if (diff > 0)
-                        await Task.Delay(diff);
+                        await Task.Delay(diff * 1000);
                 }
 
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
