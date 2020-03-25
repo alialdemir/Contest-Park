@@ -119,7 +119,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
                 string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
-                int rndScore = new Random().Next(1, 5);
+                int rndScore = new Random().Next(2, 6);
 
                 if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
                 {
@@ -161,8 +161,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                     {
-                        int rndScore = new Random().Next(1, 5);
-
                         currentRound.FounderTime = currentRound.OpponentTime > 0
                             ? (byte)(currentRound.OpponentTime + rndScore)
                             : (byte)10;
@@ -177,8 +175,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     }
                     else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                     {
-                        int rndScore = new Random().Next(2, 6);
-
                         currentRound.OpponentTime = currentRound.FounderTime > 0
                             ? (byte)(currentRound.FounderTime + rndScore)
                             : (byte)10;
