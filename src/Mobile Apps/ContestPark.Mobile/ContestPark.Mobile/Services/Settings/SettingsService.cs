@@ -3,6 +3,7 @@ using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -30,6 +31,7 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly byte SignUpCountDefault = 0;
 
         private readonly string LastUpdatedScopeNameDefault = string.Empty;
+        private readonly string LastSelectedBetDefault = string.Empty;
 
         #endregion Setting Constants
 
@@ -124,6 +126,31 @@ namespace ContestPark.Mobile.Services.Settings
         {
             get => GetValueOrDefault(LastUpdatedScopeNameDefault);
             set => AddOrUpdateValue(value);
+        }
+
+        private BetModel _lastSelectedBet;
+
+        public BetModel LastSelectedBet
+        {
+            get
+            {
+                if (_lastSelectedBet == null)
+                {
+                    string jsonLastSelectedBalanceType = GetValueOrDefault(LastSelectedBetDefault);
+                    if (!string.IsNullOrEmpty(jsonLastSelectedBalanceType))
+                        _lastSelectedBet = JsonConvert.DeserializeObject<BetModel>(jsonLastSelectedBalanceType);
+                }
+
+                return _lastSelectedBet;
+            }
+
+            set
+            {
+                _lastSelectedBet = value;
+
+                string jsonLastSelectedBalanceType = JsonConvert.SerializeObject(value);
+                AddOrUpdateValue(jsonLastSelectedBalanceType);
+            }
         }
 
         #endregion Settings Properties

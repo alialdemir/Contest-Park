@@ -8,6 +8,7 @@ using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
+using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using MvvmHelpers;
@@ -16,6 +17,7 @@ using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -27,7 +29,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IEventAggregator _eventAggregator;
-
+        private readonly ISettingsService _settingsService;
         private readonly IBalanceService _cpService;
         private readonly IAdMobService _adMobService;
         private readonly IAnalyticsService _analyticsService;
@@ -38,6 +40,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public DuelBettingPopupViewModel(INavigationService navigationService,
                                          IEventAggregator eventAggregator,
+                                         ISettingsService settingsService,
                                          IBalanceService cpService,
                                          IAdMobService adMobService,
                                          IPageDialogService pageDialogService,
@@ -45,6 +48,7 @@ namespace ContestPark.Mobile.ViewModels
                                          IPopupNavigation popupNavigation) : base(navigationService, pageDialogService, popupNavigation)
         {
             _eventAggregator = eventAggregator;
+            _settingsService = settingsService;
             _cpService = cpService;
             _adMobService = adMobService;
             _analyticsService = analyticsService;
@@ -98,7 +102,24 @@ namespace ContestPark.Mobile.ViewModels
 
             Balance = await _cpService.GetBalanceAsync();
 
+            BetModel lastSelectedBet = _settingsService.LastSelectedBet;
+            if (lastSelectedBet != null)// En son oynadığı bakiye tipini seçili olarak getiriyoruz
+                BalanceType = lastSelectedBet.BalanceType;
+
             InitBets();
+
+            if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
+            {
+                BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
+                if (appropriateBet.EntryFee == lastSelectedBet.EntryFee)
+                {
+                    SelectedIndex = lastSelectedBet.CurrentIndex - 1;
+                }
+                else if (appropriateBet != null)
+                {
+                    SelectedIndex = appropriateBet.CurrentIndex - 1;
+                }
+            }
 
             IsBusy = false;
         }
@@ -257,18 +278,24 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _adMobService.OnRewardedVideoAdClosed += OnRewardedVideoAdClosed;
 
-                return new BetModel
-                {
-                    Image = "prizeicon1.png",
-                    Title = ContestParkResources.Freeloader,
-                    BalanceType = BalanceTypes.Gold,
-                    Description = ContestParkResources.AdvertiseWatchPlayGames,
-                    EntryFee = 0,
-                    Prize = 80.00m,
-                };
+                return GetFreeBet();
             }
 
             return null;
+        }
+
+        private BetModel GetFreeBet()
+        {
+            return new BetModel
+            {
+                Image = "prizeicon1.png",
+                Title = ContestParkResources.Freeloader,
+                BalanceType = BalanceTypes.Gold,
+                Description = ContestParkResources.AdvertiseWatchPlayGames,
+                EntryFee = 0,
+                Prize = 80.00m,
+                CurrentIndex = 1
+            };
         }
 
         /// <summary>
@@ -282,21 +309,21 @@ namespace ContestPark.Mobile.ViewModels
 
             _analyticsService.SendEvent("Düello", "Oyna", "Video İzle Oyna");
 
-            await ExecuteDuelStartCommandAsync(0, true);
+            await ExecuteDuelStartCommandAsync(GetFreeBet(), true);
         }
 
         /// <summary>
         /// Seçilen altın miktarı kadar altını varsa düello başlatır yoksa mesaj verir
         /// </summary>
         /// <param name="bet">Seçilen bahis miktarı</param>
-        private async Task ExecuteDuelStartCommandAsync(decimal bet, bool isRewarded = false)
+        private async Task ExecuteDuelStartCommandAsync(BetModel bet, bool isRewarded = false)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            if (bet == 0 && !isRewarded)
+            if (bet.EntryFee == 0 && !isRewarded)
             {
                 _adMobService.ShowOrLoadRewardedVideo();
 
@@ -305,19 +332,65 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            var balance = await _cpService.GetBalanceAsync();
-            if (balance != null && ((BalanceType == BalanceTypes.Gold && bet <= balance.Gold) || (BalanceType == BalanceTypes.Money && bet <= balance.Money)))
+            BetModel betModel = AppropriateBet(bet.EntryFee);
+            if (bet.EntryFee != betModel.EntryFee)
+            {
+                await DisplayAlertAsync(string.Empty,
+                    $"Minimum bakiyenizin on katından az veya eşit olan giriş ücterleri ile oynayabilirsiniz. Size uygun \"{betModel.Title}\" seçeneği.",
+                    ContestParkResources.Okay);
+
+                SelectedIndex = betModel.CurrentIndex - 1;
+
+                IsBusy = false;
+
+                return;
+            }
+
+            if (Balance != null && ((BalanceType == BalanceTypes.Gold && bet.EntryFee <= Balance.Gold) || (BalanceType == BalanceTypes.Money && bet.EntryFee <= Balance.Money)))
             {
                 _analyticsService.SendEvent("Düello", "Oyna", "Success");
 
-                PushDuelStartingPopupPageAsync(bet);
+                _settingsService.LastSelectedBet = bet;// en son oynan bakiye tipi kayıt edildi
+                //    PushDuelStartingPopupPageAsync(bet);
             }
             else
             {
-                await NoGoldDisplayAlertAsync();
+                //await NoGoldDisplayAlertAsync();
             }
 
             IsBusy = false;
+        }
+
+        private BetModel AppropriateBet(decimal bet)
+        {
+            decimal minBet = (decimal)(bet * 10);
+
+            int lastCurrentIndex = Bets.LastOrDefault().CurrentIndex;
+
+            if (BalanceType == BalanceTypes.Money)
+            {
+                if (Balance.Money <= minBet)
+                {
+                    return Bets.FirstOrDefault(x => x.EntryFee == bet);
+                }
+
+                return Bets
+                    .Where(x => Balance.Money <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
+                    .FirstOrDefault();
+            }
+            else if (BalanceType == BalanceTypes.Gold)
+            {
+                if (Balance.Gold <= minBet)
+                {
+                    return Bets.FirstOrDefault(x => x.EntryFee == bet);
+                }
+
+                return Bets
+                    .Where(x => Balance.Gold <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
+                    .FirstOrDefault();
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -371,7 +444,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
 
-        public ICommand DuelStartCommand => new Command<decimal>(async (bet) => await ExecuteDuelStartCommandAsync(bet));
+        public ICommand DuelStartCommand => new Command<BetModel>(async (bet) => await ExecuteDuelStartCommandAsync(bet));
 
         private ICommand _changeBalanceTypeCommand;
 

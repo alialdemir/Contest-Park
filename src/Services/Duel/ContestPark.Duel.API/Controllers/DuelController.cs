@@ -67,6 +67,15 @@ namespace ContestPark.Duel.API.Controllers
 
             Logger.LogInformation("Düello daveti gönderiliyor. {founderUserId} - {opponentUserId}", UserId, inviteDuel.OpponentUserId);
 
+            #region Para ile düelloya davet iptal
+
+            if (inviteDuel.BalanceType == Enums.BalanceTypes.Money && !(UserId.EndsWith("-bot") || inviteDuel.OpponentUserId.EndsWith("-bot")))
+            {
+                return BadRequest();
+            }
+
+            #endregion Para ile düelloya davet iptal
+
             BalanceModel balance = await _balanceService.GetBalance(UserId, inviteDuel.BalanceType);
             if (inviteDuel.Bet > balance.Amount)
             {

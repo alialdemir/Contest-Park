@@ -384,12 +384,12 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelScreen.FounderUserId.EndsWith("-bot"))
             {
-                _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId);
+                _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId, BalanceType);
             }
 
             if (DuelScreen.OpponentUserId.EndsWith("-bot"))
             {
-                _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId);
+                _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId, BalanceType);
             }
         }
 

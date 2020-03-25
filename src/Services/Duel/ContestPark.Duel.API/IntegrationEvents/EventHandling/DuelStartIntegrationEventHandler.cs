@@ -63,6 +63,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="event">Düello bilgileri</param>
         public async Task Handle(DuelStartIntegrationEvent @event)
         {
+            if (@event.BalanceType == BalanceTypes.Money && !(@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot")))
+            {
+                _logger.LogInformation("İki oyuncu para ile düello yapıyor. {FounderUserId} {OpponentUserId}", @event.FounderUserId, @event.OpponentUserId);
+
+                return;
+            }
+
             ContestDateModel contestDate = _contestDateRepository.ActiveContestDate();
             if (contestDate == null)
             {

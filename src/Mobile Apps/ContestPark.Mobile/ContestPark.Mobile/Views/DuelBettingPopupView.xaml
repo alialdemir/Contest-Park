@@ -108,7 +108,7 @@
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
-                                CommandParameter="{Binding EntryFee}"
+                                CommandParameter="{Binding .}"
                                 EndColor="#47E476"
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
@@ -172,7 +172,6 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-
 
                                     <Image
                                         Grid.Row="0"

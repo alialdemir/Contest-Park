@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.Token;
+﻿using ContestPark.Mobile.Models.Duel.Bet;
+using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -50,6 +51,11 @@ namespace ContestPark.Mobile.Services.Settings
         bool IsTutorialDisplayed { get; set; }
 
         string LastUpdatedScopeName { get; set; }
+
+        /// <summary>
+        /// En son oynanan bakiye tipi
+        /// </summary>
+        BetModel LastSelectedBet { get; set; }
 
         #endregion Properties
 
