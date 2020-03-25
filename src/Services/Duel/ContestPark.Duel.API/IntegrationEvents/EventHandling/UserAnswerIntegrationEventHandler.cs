@@ -111,24 +111,48 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             #region Cevaplama
 
-            if (currentRound.FounderUserId.EndsWith("-bot") || currentRound.OpponentUserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
+            bool isFounderBot = currentRound.FounderUserId.EndsWith("-bot");
+            bool isOpponentBot = currentRound.OpponentUserId.EndsWith("-bot");
+
+            if (isFounderBot || isOpponentBot)// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
-                if (currentRound.FounderUserId.EndsWith("-bot"))
+                int rndScore = new Random().Next(5, 10);
+
+                if (isFounderBot)
+                {
+                    currentRound.FounderTime = (byte)rndScore;
+
+                    if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
+                        currentRound.FounderTime = 10;
+
                     currentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
-                else if (currentRound.OpponentUserId.EndsWith("-bot"))
+                    currentRound.FounderScore = currentRound.CorrectAnswer == currentRound.FounderAnswer ? _scoreCalculator.Calculator(round, currentRound.FounderTime) : (byte)0;
+                }
+                else if (isOpponentBot)
+                {
+
+                    currentRound.OpponentTime = (byte)rndScore;
+
+                    if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
+                        currentRound.OpponentTime = 10;
+
                     currentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
+                    currentRound.OpponentScore = currentRound.CorrectAnswer == currentRound.OpponentAnswer ? _scoreCalculator.Calculator(round, currentRound.OpponentTime) : (byte)0;
+                }
 
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
 
-                string realUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
-                string botUserId = currentRound.FounderUserId.EndsWith("-bot") ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
-
-                int rndScore = new Random().Next(2, 6);
+                string realUserId = isFounderBot ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
+                string botUserId = isFounderBot ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
                 if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
                 {
-                    currentRound.FounderTime = (byte)(@event.Time + rndScore);
+                    currentRound.FounderTime = (byte)rndScore;
+
+                    if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
+                        currentRound.FounderTime = 10;
+
                     currentRound.FounderScore = _scoreCalculator.Calculator(round, currentRound.FounderTime);
                     currentRound.FounderAnswer = currentRound.CorrectAnswer;
 
@@ -136,7 +160,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
                 else if (botUserId == currentRound.OpponentUserId && (opponentTotalScore == 0 || founderTotalScore > opponentTotalScore))
                 {
-                    currentRound.OpponentTime = (byte)(@event.Time + rndScore);
+                    currentRound.OpponentTime = (byte)rndScore;
+
+                    if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
+                        currentRound.OpponentTime = 10;
+
                     currentRound.OpponentScore = _scoreCalculator.Calculator(round, currentRound.OpponentTime);
                     currentRound.OpponentAnswer = currentRound.CorrectAnswer;
 
@@ -196,14 +224,14 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             userAnswers[round - 1] = currentRound;// Şuandaki round bilgileri aynı indexe set edildi
 
-            _userAnswerRepository.AddRangeAsync(userAnswers);// Redisdeki duello bilgileri tekrar update edildi
-
             if (currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.NotSeeQuestion)
             {
                 _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", currentRound);
 
                 return;
             }
+
+            _userAnswerRepository.AddRangeAsync(userAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
             bool isGameEnd = round == MAX_ANSWER_COUNT;
 
