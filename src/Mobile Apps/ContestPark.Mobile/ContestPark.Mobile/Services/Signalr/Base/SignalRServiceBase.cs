@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,8 +21,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         private readonly ISettingsService _settingsService;
 
-        private readonly IEventAggregator _eventAggregator;
-
         private Dictionary<string, IDisposable> DisposableOns { get; } = new Dictionary<string, IDisposable>();
 
         public bool IsConnect
@@ -38,11 +35,9 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         #region Constructor
 
-        public SignalRServiceBase(ISettingsService settingsService,
-                                  IEventAggregator eventAggregator)
+        public SignalRServiceBase(ISettingsService settingsService)
         {
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
-            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
         }
 
         #endregion Constructor
