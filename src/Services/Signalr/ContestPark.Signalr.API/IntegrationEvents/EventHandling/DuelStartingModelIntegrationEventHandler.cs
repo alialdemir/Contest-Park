@@ -14,7 +14,6 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         private readonly ILogger<DuelStartingModelIntegrationEventHandler> _logger;
         private readonly IEventBus _eventBus;
         private readonly IHubContext<ContestParkHub> _hubContext;
-        private byte COUNT = 0;
 
         #endregion Private Variables
 
@@ -79,21 +78,45 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                     @event.FounderUserId,
                     @event.OpponentUserId);
 
-                COUNT += 1;
+                await Task.Factory.StartNew(() =>
+                 {
+                     var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
+                                                                     @event.FounderUserId,
+                                                                     isDuelCancel: true);
 
-                if (COUNT >= 3)// 3 kere denesin daha fazla hata olursa düelloyu iptal etsin
+                     _eventBus.Publish(@eventDuelEscape);
+                 });
+
+                await Task.Factory.StartNew(() =>
                 {
-                    var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
-                                                                          @event.FounderUserId,
-                                                                          isDuelCancel: true);
+                    if (!@event.FounderUserId.EndsWith("-bot"))
+                    {
+                        SendErrorMessage(@event.FounderUserId);
+                    }
 
-                    _eventBus.Publish(@eventDuelEscape);
-
-                    return;
-                }
-
-                await Handle(@event);
+                    if (!@event.OpponentUserId.EndsWith("-bot"))
+                    {
+                        SendErrorMessage(@event.OpponentUserId);
+                    }
+                });
             }
+        }
+
+        /// <summary>
+        /// Hata mesajı gönderme
+        /// </summary>
+        /// <param name="userId">Mesajı alan kullanıcı id</param>
+        private void SendErrorMessage(string userId)
+        {
+            Task.Factory.StartNew(() =>
+           {
+               if (!userId.EndsWith("-bot"))
+               {
+                   var @eventSendErrorMessage = new SendErrorMessageWithSignalrIntegrationEvent(userId, "Rakip bulunamadı. Lütfen tekrar deneyiniz.");
+
+                   _eventBus.Publish(@eventSendErrorMessage);
+               }
+           });
         }
 
         /// <summary>
