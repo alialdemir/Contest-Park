@@ -224,7 +224,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                         _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                     }
-                    else if (balance.Amount <= 20.00m && realUserId == currentRound.OpponentUserId)
+                    else if (balance.Amount <= 20.00m && realUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
                     {
                         currentRound.FounderTime = (byte)(@event.Time - 3);
                         currentRound.FounderScore = 0;
@@ -251,7 +251,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                 break;
                         }
                     }
-                    else if (balance.Amount <= 20.00m && realUserId == currentRound.FounderUserId)
+                    else if (balance.Amount <= 20.00m && realUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
                     {
                         currentRound.OpponentTime = (byte)(@event.Time - 3);
                         currentRound.OpponentScore = 0;
