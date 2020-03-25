@@ -2024,6 +2024,16 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can play with less than or equal to ten times the entry fee from your minimum balance. We adhere to the &quot;{0}&quot; option..
+        /// </summary>
+        public static string YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereToTheOption {
+            get {
+                return ResourceManager.GetString("YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereTo" +
+                        "TheOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ..
         /// </summary>
         public static string YouApprove {

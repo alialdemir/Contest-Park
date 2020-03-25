@@ -780,6 +780,9 @@
   <data name="WriteYourUserNameOrEmailAddress" xml:space="preserve">
     <value>Kullanıcı adı veya eposta adresi yazınız.</value>
   </data>
+  <data name="YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereToTheOption" xml:space="preserve">
+    <value>Minimum bakiyenizin on katından az veya eşit olan giriş ücretleri ile oynayabilirsiniz. Size uygun "{0}" seçeneği.</value>
+  </data>
   <data name="YouApprove" xml:space="preserve">
     <value> onaylıyorsunuz.</value>
   </data>

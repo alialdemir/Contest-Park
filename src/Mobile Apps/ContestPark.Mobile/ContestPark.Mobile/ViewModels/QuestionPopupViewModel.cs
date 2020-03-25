@@ -382,15 +382,15 @@ namespace ContestPark.Mobile.ViewModels
 
             // Eğer bot ile oynuyorsa oyuna bot eklendi
 
-            if (DuelScreen.FounderUserId.EndsWith("-bot"))
-            {
-                _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId, BalanceType);
-            }
+            //if (DuelScreen.FounderUserId.EndsWith("-bot"))
+            //{
+            //    _botService.Init(BotSaveAnswerCommand, DuelScreen.FounderUserId, BalanceType);
+            //}
 
-            if (DuelScreen.OpponentUserId.EndsWith("-bot"))
-            {
-                _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId, BalanceType);
-            }
+            //if (DuelScreen.OpponentUserId.EndsWith("-bot"))
+            //{
+            //    _botService.Init(BotSaveAnswerCommand, DuelScreen.OpponentUserId, BalanceType);
+            //}
         }
 
         /// <summary>
@@ -709,7 +709,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 IsStylishClick = true;
 
-                Device.StartTimer(new TimeSpan(0, 0, 0, 0, 2500), () => // Soru gözükünce hemen süre başlamasın
+                Device.StartTimer(new TimeSpan(0, 0, 0, 0, 500), () => // Soru gözükünce hemen süre başlamasın
                 {
                     if (!IsExit)
                     {

@@ -830,4 +830,7 @@
   <data name="TurnOnComment" xml:space="preserve">
     <value>Turn On Comment</value>
   </data>
+  <data name="YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereToTheOption" xml:space="preserve">
+    <value>You can play with less than or equal to ten times the entry fee from your minimum balance. We adhere to the "{0}" option.</value>
+  </data>
 </root>

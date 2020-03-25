@@ -111,7 +111,7 @@ namespace ContestPark.Mobile.ViewModels
             if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
             {
                 BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
-                if (appropriateBet.EntryFee == lastSelectedBet.EntryFee)
+                if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
                 {
                     SelectedIndex = lastSelectedBet.CurrentIndex - 1;
                 }
@@ -332,14 +332,14 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            BetModel betModel = AppropriateBet(bet.EntryFee);
-            if (bet.EntryFee != betModel.EntryFee)
+            BetModel appropriateBet = AppropriateBet(bet.EntryFee);
+            if (appropriateBet != null && bet.EntryFee != appropriateBet.EntryFee)
             {
                 await DisplayAlertAsync(string.Empty,
-                    $"Minimum bakiyenizin on katından az veya eşit olan giriş ücterleri ile oynayabilirsiniz. Size uygun \"{betModel.Title}\" seçeneği.",
+                    string.Format(ContestParkResources.YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereToTheOption, appropriateBet.Title),
                     ContestParkResources.Okay);
 
-                SelectedIndex = betModel.CurrentIndex - 1;
+                SelectedIndex = appropriateBet.CurrentIndex - 1;
 
                 IsBusy = false;
 
@@ -351,11 +351,12 @@ namespace ContestPark.Mobile.ViewModels
                 _analyticsService.SendEvent("Düello", "Oyna", "Success");
 
                 _settingsService.LastSelectedBet = bet;// en son oynan bakiye tipi kayıt edildi
-                //    PushDuelStartingPopupPageAsync(bet);
+
+                PushDuelStartingPopupPageAsync(bet.EntryFee);
             }
             else
             {
-                //await NoGoldDisplayAlertAsync();
+                await NoGoldDisplayAlertAsync();
             }
 
             IsBusy = false;
