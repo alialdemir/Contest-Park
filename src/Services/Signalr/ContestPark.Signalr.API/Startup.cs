@@ -29,7 +29,11 @@ namespace ContestPark.Signalr.API
             string signalrStoreConnectionString = Configuration.GetValue<string>("Redis");
             if (!string.IsNullOrEmpty(signalrStoreConnectionString))
             {
-                services.AddSignalR()
+                services.AddSignalR(hubOptions =>
+                {
+                    hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(15);
+                    hubOptions.HandshakeTimeout = TimeSpan.FromMinutes(15);
+                })
                     .AddRedis(signalrStoreConnectionString);
             }
             else
