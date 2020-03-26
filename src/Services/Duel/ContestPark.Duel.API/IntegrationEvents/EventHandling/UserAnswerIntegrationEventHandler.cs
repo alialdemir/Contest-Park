@@ -259,11 +259,13 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                    decimal maxMoney = 50.00m;// Convert.ToDecimal(new Random().Next(50, 70));
+                    decimal maxMoney = 70.00m;
+
+                    bool winStatus = _duelRepository.WinStatus(realUserId);
 
                     bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 
-                    if (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+                    if (winStatus || (withdrawalStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore))// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                     {
                         currentRound.FounderTime = currentRound.OpponentTime > 0
                             ? (byte)(currentRound.OpponentTime + rndScore)
@@ -277,7 +279,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                         _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                     }
-                    else if (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+                    else if (winStatus || (withdrawalStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore))// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                     {
                         currentRound.OpponentTime = currentRound.FounderTime > 0
                             ? (byte)(currentRound.FounderTime + rndScore)
