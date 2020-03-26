@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Dependencies;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Analytics
 {

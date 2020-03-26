@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
+using ContestPark.Mobile.Models.Error;
 using System;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
         public EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
-        public EventHandler<string> SendErrorMessagetHandler { get; set; }
+        public EventHandler<ErrorMessageModel> SendErrorMessagetHandler { get; set; }
 
         public void DuelStarting()
         {

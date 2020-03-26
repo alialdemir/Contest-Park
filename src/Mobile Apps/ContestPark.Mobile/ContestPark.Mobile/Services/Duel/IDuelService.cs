@@ -13,10 +13,6 @@ namespace ContestPark.Mobile.Services.Duel
 
         Task<DuelResultModel> DuelResult(int duelId);
 
-        //   Task<bool> DuelStartWithDuelId(string duelId);
-
-        ///   Task<bool> DuelStartWithUserId(string userId);
-
         Task ExitStandMode(StandbyModeModel standbyModeModel);
 
         Task<string[]> RandomUserProfilePictures();
@@ -24,7 +20,9 @@ namespace ContestPark.Mobile.Services.Duel
         Task<bool> StandbyMode(StandbyModeModel standbyModeModel);
 
         Task<OpponentUserModel> InviteDuel(InviteDuelModel inviteDuel);
+
         Task<bool> AcceptInviteDuel(AcceptInviteDuelModel acceptInvite);
-        Task<bool> DuelCancel(int duelId);
+
+        Task<bool> DuelCancel();
     }
 }

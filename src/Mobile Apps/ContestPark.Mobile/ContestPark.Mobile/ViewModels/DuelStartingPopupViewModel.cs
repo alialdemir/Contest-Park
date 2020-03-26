@@ -3,6 +3,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
+using ContestPark.Mobile.Models.Error;
 using ContestPark.Mobile.Services.Audio;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
@@ -364,9 +365,6 @@ namespace ContestPark.Mobile.ViewModels
                 || string.IsNullOrEmpty(DuelStarting.FounderUserId)
                 || string.IsNullOrEmpty(DuelStarting.OpponentUserId))
             {
-                if (duelCreated != null)
-                    DuelStarting.DuelId = duelCreated.DuelId;
-
                 NotStartingDuel().Wait();
 
                 return;
@@ -429,7 +427,7 @@ namespace ContestPark.Mobile.ViewModels
                               ContestParkResources.ErrorStartingDuelPleaseTryAgain,
                               ContestParkResources.Okay);
 
-            await _duelService.DuelCancel(DuelStarting.DuelId);
+            await _duelService.DuelCancel();
 
             DuelCloseCommand.Execute(null);
         }
@@ -518,18 +516,22 @@ namespace ContestPark.Mobile.ViewModels
         /// Düello sırasında hata oluşursa mesaj göstersin ve bekleme modundan çıksın
         /// </summary>
         /// <param name="sender">Hata mesajı</param>
-        private async void OnSendErrorMessage(object sender, string e)
+        private void OnSendErrorMessage(object sender, ErrorMessageModel e)
         {
-            if (string.IsNullOrEmpty(sender.ToString()))
+            ErrorMessageModel error = (ErrorMessageModel)sender;
+            if (error == null || string.IsNullOrEmpty(error.Message))
                 return;
 
-            await DisplayAlertAsync("",
-                                    sender.ToString(),
-                                    ContestParkResources.Okay);
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await DisplayAlertAsync(string.Empty,
+                                  error.Message,
+                                  ContestParkResources.Okay);
 
-            await _duelService.DuelCancel(DuelStarting.DuelId);
+                await _duelService.DuelCancel();
 
-            DuelCloseCommand.Execute(null);
+                DuelCloseCommand.Execute(null);
+            });
         }
 
         #endregion Methods

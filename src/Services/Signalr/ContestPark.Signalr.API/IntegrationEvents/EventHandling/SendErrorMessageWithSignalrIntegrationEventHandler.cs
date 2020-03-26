@@ -1,5 +1,6 @@
 ﻿using ContestPark.EventBus.Abstractions;
 using ContestPark.Signalr.API.IntegrationEvents.Events;
+using ContestPark.Signalr.API.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
@@ -41,9 +42,9 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
 
                 await _hubContext.Clients
                                     .Group(@event.UserId)
-                                    .SendAsync("SendErrorMessage", new
+                                    .SendAsync("SendErrorMessage", new ErrorMessageModel
                                     {
-                                        @event.Message
+                                        Message = @event.Message
                                     });
             }
         }

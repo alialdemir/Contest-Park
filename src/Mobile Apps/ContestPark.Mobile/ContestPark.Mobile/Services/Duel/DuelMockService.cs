@@ -18,7 +18,7 @@ namespace ContestPark.Mobile.Services.Duel
             return Task.CompletedTask;
         }
 
-        public Task<bool> DuelCancel(int duelId)
+        public Task<bool> DuelCancel()
         {
             return Task.FromResult(true);
         }

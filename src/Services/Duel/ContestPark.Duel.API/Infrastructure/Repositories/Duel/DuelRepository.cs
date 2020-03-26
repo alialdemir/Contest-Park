@@ -170,6 +170,26 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
             }, System.Data.CommandType.StoredProcedure);
         }
 
+        /// <summary>
+        /// Kullanıcının oynanıyor durumundaki son duellosunu getirir
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Duello id</returns>
+        public int LastPlayingDuel(string userId)
+        {
+            string sql = @"SELECT d.DuelId FROM Duels d
+                           WHERE
+                           (d.FounderUserId = @userId OR d.OpponentUserId = @userId)
+                           AND d.FounderTotalScore IS NULL AND d.OpponentTotalScore  IS NULL
+                           ORDER BY d.CreatedDate DESC
+                           LIMIT 1";
+
+            return _duelRepository.QuerySingleOrDefault<int>(sql, new
+            {
+                userId
+            });
+        }
+
         #endregion Methods
     }
 }

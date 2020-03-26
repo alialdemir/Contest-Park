@@ -3,6 +3,7 @@ using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
+using ContestPark.Mobile.Models.Error;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
@@ -212,6 +213,21 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService.NextQuestionEventHandler += NextQuestion;
 
             _duelSignalRService.NextQuestion();
+
+            _duelSignalRService.SendErrorMessagetHandler += OnSendErrorMessage;
+            _duelSignalRService.SendErrorMessage();
+        }
+
+        /// <summary>
+        /// Eventleri dinlemeyi bırakır
+        /// </summary>
+        private void OffSignalr()
+        {
+            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
+            _duelSignalRService.OffNextQuestion();
+
+            _duelSignalRService.SendErrorMessagetHandler -= OnSendErrorMessage;
+            _duelSignalRService.OffSendErrorMessage();
         }
 
         #endregion SignalR
@@ -247,7 +263,7 @@ namespace ContestPark.Mobile.ViewModels
             NextQuestion questionModel = (NextQuestion)sender;
             if (questionModel == null)
             {
-                _duelService.DuelCancel(DuelCreated.DuelId);
+                _duelService.DuelCancel();
 
                 IsExit = true;
                 DuelCloseCommand.Execute(null);
@@ -333,7 +349,7 @@ namespace ContestPark.Mobile.ViewModels
                 || !currentQuestion.Answers.Any(x => x.Language == currentLanguage)
                 || !currentQuestion.Questions.Any(x => x.Language == currentLanguage))
             {
-                _duelService.DuelCancel(DuelCreated.DuelId);
+                _duelService.DuelCancel();
 
                 IsExit = true;
                 DuelCloseCommand.Execute(null);
@@ -504,8 +520,7 @@ namespace ContestPark.Mobile.ViewModels
                 }).Wait();
             }
 
-            _duelSignalRService.NextQuestionEventHandler -= NextQuestion;
-            _duelSignalRService.OffNextQuestion();
+            OffSignalr();
 
             _audioService.Stop();
 
@@ -717,6 +732,30 @@ namespace ContestPark.Mobile.ViewModels
                 DisplayAlertAsync("",
                                   ContestParkResources.YouLeftTheGameDuringTheDuelYouAreDefeated,
                                   ContestParkResources.Okay);
+            });
+        }
+
+        /// <summary>
+        /// Düello sırasında hata oluşursa mesaj göstersin ve bekleme modundan çıksın
+        /// </summary>
+        /// <param name="sender">Hata mesajı</param>
+        private void OnSendErrorMessage(object sender, ErrorMessageModel e)
+        {
+            ErrorMessageModel error = (ErrorMessageModel)sender;
+            if (error == null || string.IsNullOrEmpty(error.Message))
+                return;
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await DisplayAlertAsync(string.Empty,
+                                        error.Message,
+                                        ContestParkResources.Okay);
+
+                await _duelService.DuelCancel();
+
+                IsGameEnd = true;
+
+                DuelCloseCommand.Execute(false);
             });
         }
 

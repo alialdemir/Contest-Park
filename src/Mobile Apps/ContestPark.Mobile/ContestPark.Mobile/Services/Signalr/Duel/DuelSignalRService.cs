@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
+using ContestPark.Mobile.Models.Error;
 using ContestPark.Mobile.Services.Signalr.Base;
 using System;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
 
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
-        public EventHandler<string> SendErrorMessagetHandler { get; set; }
+        public EventHandler<ErrorMessageModel> SendErrorMessagetHandler { get; set; }
 
         #endregion Events
 
@@ -67,7 +68,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         /// </summary>
         public void SendErrorMessage()
         {
-            _signalRService?.On<string>("SendErrorMessage", (data) => SendErrorMessagetHandler?.Invoke(data, null));
+            _signalRService?.On<ErrorMessageModel>("SendErrorMessage", (data) => SendErrorMessagetHandler?.Invoke(data, null));
         }
 
         /// <summary>
