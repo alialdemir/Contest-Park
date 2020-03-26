@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using System;
+using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Signalr.Duel
 {
@@ -18,9 +19,16 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         void OffDuelCreated();
 
         void OffNextQuestion();
-        System.Threading.Tasks.Task SaveAnswer(UserAnswer userAnswer);
-        System.Threading.Tasks.Task LeaveGroup(int duelId);
+
+        void OffSendErrorMessage();
+
+        Task SaveAnswer(UserAnswer userAnswer);
+
+        Task LeaveGroup(int duelId);
+
         void InviteDuel();
+
+        void SendErrorMessage();
 
         EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
 
@@ -28,5 +36,6 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
         EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
+        EventHandler<string> SendErrorMessagetHandler { get; set; }
     }
 }

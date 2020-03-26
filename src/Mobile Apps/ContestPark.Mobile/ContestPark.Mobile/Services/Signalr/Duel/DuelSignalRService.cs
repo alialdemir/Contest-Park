@@ -32,6 +32,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
 
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
+        public EventHandler<string> SendErrorMessagetHandler { get; set; }
 
         #endregion Events
 
@@ -59,6 +60,22 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public void InviteDuel()
         {
             _signalRService?.On<InviteModel>("InviteDuel", (data) => InviteDuelEventHandler?.Invoke(data, null));
+        }
+
+        /// <summary>
+        /// Düello sırasında hata olursa bu event tetiklenir
+        /// </summary>
+        public void SendErrorMessage()
+        {
+            _signalRService?.On<string>("SendErrorMessage", (data) => SendErrorMessagetHandler?.Invoke(data, null));
+        }
+
+        /// <summary>
+        /// On SendErrorMessage kısmını kapatır
+        /// </summary>
+        public void OffSendErrorMessage()
+        {
+            _signalRService?.Off("SendErrorMessage");
         }
 
         /// <summary>

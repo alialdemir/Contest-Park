@@ -117,6 +117,9 @@ namespace ContestPark.Mobile.ViewModels
 
             _duelSignalRService.DuelCreatedEventHandler += OnDuelCreated;
             _duelSignalRService.DuelCreated();
+
+            _duelSignalRService.SendErrorMessagetHandler += OnSendErrorMessage;
+            _duelSignalRService.SendErrorMessage();
         }
 
         /// <summary>
@@ -129,6 +132,9 @@ namespace ContestPark.Mobile.ViewModels
 
             _duelSignalRService.DuelCreatedEventHandler -= OnDuelCreated;
             _duelSignalRService.OffDuelCreated();
+
+            _duelSignalRService.SendErrorMessagetHandler -= OnSendErrorMessage;
+            _duelSignalRService.OffSendErrorMessage();
         }
 
         #endregion SignalR
@@ -506,6 +512,24 @@ namespace ContestPark.Mobile.ViewModels
                                         ContestParkResources.Okay);
                 }
             });
+        }
+
+        /// <summary>
+        /// Düello sırasında hata oluşursa mesaj göstersin ve bekleme modundan çıksın
+        /// </summary>
+        /// <param name="sender">Hata mesajı</param>
+        private async void OnSendErrorMessage(object sender, string e)
+        {
+            if (string.IsNullOrEmpty(sender.ToString()))
+                return;
+
+            await DisplayAlertAsync("",
+                                    sender.ToString(),
+                                    ContestParkResources.Okay);
+
+            await _duelService.DuelCancel(DuelStarting.DuelId);
+
+            DuelCloseCommand.Execute(null);
         }
 
         #endregion Methods

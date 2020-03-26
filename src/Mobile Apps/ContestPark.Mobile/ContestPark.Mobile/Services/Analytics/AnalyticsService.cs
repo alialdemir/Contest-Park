@@ -1,6 +1,5 @@
 ﻿using ContestPark.Mobile.Dependencies;
 using System.Collections.Generic;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Analytics
 {
@@ -16,7 +15,9 @@ namespace ContestPark.Mobile.Services.Analytics
 
         public AnalyticsService()
         {
+#if !DEBUG
             _analytics = DependencyService.Get<IAnalytics>();
+#endif
         }
 
         #endregion Constructor
@@ -32,7 +33,7 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="eventValue"></param>
         public void SendEvent(string eventCategory, string eventAction, string eventLabel, long? eventValue = null)
         {
-            _analytics.SendEvent(eventCategory, eventAction, eventLabel, eventValue);
+            _analytics?.SendEvent(eventCategory, eventAction, eventLabel, eventValue);
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="parameters"></param>
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
-            _analytics.SendEvent(eventId, parameters);
+            _analytics?.SendEvent(eventId, parameters);
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="userId"></param>
         public void SetUserId(string userId)
         {
-            _analytics.SetUserId(userId);
+            _analytics?.SetUserId(userId);
         }
 
         #endregion Methods

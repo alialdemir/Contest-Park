@@ -12,7 +12,8 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
         public EventHandler<NextQuestion> NextQuestionEventHandler { get; set; }
-        public EventHandler<InviteModel> InviteDuelEventHandler { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
+        public EventHandler<string> SendErrorMessagetHandler { get; set; }
 
         public void DuelStarting()
         {
@@ -49,6 +50,14 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         }
 
         public void InviteDuel()
+        {
+        }
+
+        public void OffSendErrorMessage()
+        {
+        }
+
+        public void SendErrorMessage()
         {
         }
     }

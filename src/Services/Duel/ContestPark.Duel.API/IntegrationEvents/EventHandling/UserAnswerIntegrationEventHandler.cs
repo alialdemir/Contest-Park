@@ -196,7 +196,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     bool withdrawalStatus = balance.Amount <= maxGold;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 
-                    if ((winStatus || withdrawalStatus) && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+                    if (winStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
                     {
                         currentRound.FounderTime = currentRound.OpponentTime > 0
                             ? (byte)(currentRound.OpponentTime + rndScore)
@@ -210,7 +210,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                         _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                     }
-                    else if ((winStatus || withdrawalStatus) && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+                    else if (winStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
                     {
                         currentRound.OpponentTime = currentRound.FounderTime > 0
                             ? (byte)(currentRound.FounderTime + rndScore)

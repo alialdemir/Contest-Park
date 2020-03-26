@@ -48,6 +48,18 @@ namespace ContestPark.Duel.API.Controllers
 
         #region Methods
 
+        [HttpPost("Test")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult Test([FromQuery]string message)
+        {
+            var @event = new SendErrorMessageWithSignalrIntegrationEvent(UserId, message);
+
+            _eventBus.Publish(@event);
+
+            return Ok(@event.Id);
+        }
+
         /// <summary>
         /// Düelloya davet et
         /// </summary>
