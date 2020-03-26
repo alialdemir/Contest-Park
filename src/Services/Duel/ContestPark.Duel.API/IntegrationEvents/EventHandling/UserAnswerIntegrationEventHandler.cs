@@ -182,6 +182,73 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 #endregion Cevaplama
 
+                #region Altın
+
+                if (@event.BalanceType == BalanceTypes.Gold)
+                {
+                    BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Gold);// bot olmayan kullanıcının para miktarını aldık
+
+                    _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
+
+                    decimal maxGold = 1000.00m;
+
+                    bool withdrawalStatus = balance.Amount <= maxGold;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
+
+                    if (withdrawalStatus && realUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
+                    {
+                        currentRound.FounderTime = (byte)(@event.Time - 3);
+                        currentRound.FounderScore = 0;
+
+                        switch (currentRound.CorrectAnswer)
+                        {
+                            case Stylish.A:
+
+                                currentRound.FounderAnswer = Stylish.B;
+                                break;
+
+                            case Stylish.B:
+
+                                currentRound.FounderAnswer = Stylish.A;
+                                break;
+
+                            case Stylish.C:
+
+                                currentRound.FounderAnswer = Stylish.D;
+                                break;
+
+                            case Stylish.D:
+                                currentRound.FounderAnswer = Stylish.B;
+                                break;
+                        }
+                    }
+                    else if (withdrawalStatus && realUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
+                    {
+                        currentRound.OpponentTime = (byte)(@event.Time - 3);
+                        currentRound.OpponentScore = 0;
+
+                        switch (currentRound.CorrectAnswer)
+                        {
+                            case Stylish.A:
+                                currentRound.OpponentAnswer = Stylish.B;
+                                break;
+
+                            case Stylish.B:
+                                currentRound.OpponentAnswer = Stylish.A;
+                                break;
+
+                            case Stylish.C:
+                                currentRound.OpponentAnswer = Stylish.D;
+                                break;
+
+                            case Stylish.D:
+                                currentRound.OpponentAnswer = Stylish.B;
+                                break;
+                        }
+                    }
+                }
+
+                #endregion Altın
+
                 #region Para
 
                 _logger.LogInformation("Düello bakiye tipi {BalanceType}", @event.BalanceType);
@@ -192,7 +259,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
 
-                    decimal maxMoney = 70.00m;// Convert.ToDecimal(new Random().Next(50, 70));
+                    decimal maxMoney = 50.00m;// Convert.ToDecimal(new Random().Next(50, 70));
 
                     bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 

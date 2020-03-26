@@ -81,8 +81,8 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                 await Task.Factory.StartNew(() =>
                  {
                      var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
-                                                                     @event.FounderUserId,
-                                                                     isDuelCancel: true);
+                                                                           @event.FounderUserId,
+                                                                           isDuelCancel: true);
 
                      _eventBus.Publish(@eventDuelEscape);
                  });
