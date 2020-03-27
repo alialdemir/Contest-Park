@@ -81,6 +81,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
+            if (@event.Bet <= 0 && @event.BalanceType == BalanceTypes.Gold)
+                @event.Bet = 40.00m;
+
             int duelId = await _duelRepository.Insert(new Infrastructure.Tables.Duel
             {
                 BalanceType = @event.BalanceType,

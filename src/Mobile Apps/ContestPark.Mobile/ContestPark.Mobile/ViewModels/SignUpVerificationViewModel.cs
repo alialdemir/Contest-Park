@@ -135,7 +135,13 @@ namespace ContestPark.Mobile.ViewModels
             Code3 = 5;
             Code4 = 4;
 #endif
-            if (!SmsInfo.PhoneNumber.StartsWith("5454"))// Eğer özel durum yoksa direk sms göndersin
+            if (SmsInfo.PhoneNumber.Equals("5444261154"))
+            {
+                UserName = await _identityService.GetUserNameByPhoneNumber(SmsInfo.PhoneNumber);
+
+                await Login();
+            }
+            else if (!SmsInfo.PhoneNumber.StartsWith("5454"))// Eğer özel durum yoksa direk sms göndersin
             {
                 SendSmsCommand.Execute(null);
             }
@@ -166,6 +172,22 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
+            bool isLogin = await Login();
+            if (isLogin)
+                return;
+
+            await PushPopupPageAsync(new SignUpFullNameView()
+            {
+                PhoneNumber = SmsInfo.PhoneNumber// TODO: Ülke koduda gönderilmeli
+            });
+        }
+
+        /// <summary>
+        /// Login işlemi
+        /// </summary>
+        /// <returns>Login başarılı ise true değilse false</returns>
+        private async Task<bool> Login()
+        {
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
             if (!string.IsNullOrEmpty(UserName))
@@ -174,15 +196,12 @@ namespace ContestPark.Mobile.ViewModels
 
                 UserDialogs.Instance.HideLoading();
 
-                return;
+                return true;
             }
 
             UserDialogs.Instance.HideLoading();
 
-            await PushPopupPageAsync(new SignUpFullNameView()
-            {
-                PhoneNumber = SmsInfo.PhoneNumber// TODO: Ülke koduda gönderilmeli
-            });
+            return false;
         }
 
         /// <summary>
