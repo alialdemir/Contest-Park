@@ -391,7 +391,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
 
-            if ((WinStatus || withdrawalStatus) && BotUserId == CurrentRound.FounderUserId && OpponentTotalScore > FounderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+            if (true)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
             {
                 CurrentRound.FounderTime = CurrentRound.OpponentTime > 0
                     ? (byte)(CurrentRound.OpponentTime + RndScore)
