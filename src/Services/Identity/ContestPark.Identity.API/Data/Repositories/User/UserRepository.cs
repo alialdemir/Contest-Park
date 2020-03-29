@@ -45,6 +45,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                     IsPrivateProfile = u.IsPrivateProfile,
                     Language = u.Language,
                     UserId = u.Id,
+                    Roles = String.Join(", ", _applicationDbContext.UserRoles.Where(r => r.UserId == u.Id).ToList())
                 })
                 .FirstOrDefault();
         }
@@ -180,7 +181,6 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                     ProfilePicturePath = u.ProfilePicturePath,
                     UserName = u.UserName,
                     CoverPicturePath = includeCoverPicturePath ? u.CoverPicturePath : string.Empty,
-                    Roles = String.Join(", ", _applicationDbContext.UserRoles.Where(r => r.UserId == u.Id).ToList())
                 }).ToList();
         }
 
