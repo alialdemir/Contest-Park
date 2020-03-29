@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Enums;
 using ContestPark.Core.Models;
+using System.Collections.Generic;
 
 namespace ContestPark.Identity.API.Models
 {
@@ -39,6 +40,6 @@ namespace ContestPark.Identity.API.Models
         public bool IsPrivateProfile { get; set; }
         public string UserName { get; set; }
         public string UserId { get; set; }
-        public string Roles { get; set; }
+        public List<string> Roles { get; set; }
     }
 }
