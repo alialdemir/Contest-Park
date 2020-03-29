@@ -33,6 +33,8 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         /// <returns>Kullanıcı bilgileri</returns>
         public UserInfoModel UserInfo(string userId)
         {
+            string roles = string.Join(", ", _applicationDbContext.UserRoles.Where(r => r.UserId == userId).ToList());
+
             return _applicationDbContext
                 .Users
                 .Where(u => u.Id == userId)
@@ -45,7 +47,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                     IsPrivateProfile = u.IsPrivateProfile,
                     Language = u.Language,
                     UserId = u.Id,
-                    Roles = String.Join(", ", _applicationDbContext.UserRoles.Where(r => r.UserId == u.Id).ToList())
+                    Roles = roles
                 })
                 .FirstOrDefault();
         }

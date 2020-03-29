@@ -6,6 +6,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
 using Newtonsoft.Json;
 using System;
@@ -39,14 +40,17 @@ namespace ContestPark.Mobile.Services.Settings
 
         private const string ApiUrlBase = "api/v1/account";
         private readonly IRequestProvider _requestProvider;
+        private readonly ICacheService _cacheService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public SettingsService(IRequestProvider requestProvider)
+        public SettingsService(IRequestProvider requestProvider,
+                               ICacheService cacheService)
         {
             _requestProvider = requestProvider;
+            _cacheService = cacheService;
         }
 
         #endregion Constructor
@@ -269,9 +273,22 @@ namespace ContestPark.Mobile.Services.Settings
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UserInfo");
 
-            var result = await _requestProvider.GetAsync<UserInfoModel>(uri);
+            bool isExpired = _cacheService.IsExpired(key: uri);
+            if (!isExpired)
+            {
+                return await _cacheService.Get<UserInfoModel>(uri);
+            }
 
-            return result.Data;
+            var response = await _requestProvider.GetAsync<UserInfoModel>(uri);
+            if (response.Data != null && response.IsSuccess)
+            {
+                if (isExpired)
+                    _cacheService.Empty(uri);
+
+                _cacheService.Add(uri, response.Data);
+            }
+
+            return response.Data;
         }
 
         #endregion Setting Service
