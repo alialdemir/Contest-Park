@@ -53,7 +53,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer
 
             string key = GetKey(duelId);
 
-            _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresIn: TimeSpan.FromMinutes(10));// 10 dk sonra redis üzerinden otomatik siler
+            _redisClient.Set<List<UserAnswerModel>>(key, userAnswers, expiresIn: TimeSpan.FromMinutes(5));// 5 dk sonra redis üzerinden otomatik siler
         }
 
         /// <summary>

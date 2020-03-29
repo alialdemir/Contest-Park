@@ -94,12 +94,17 @@
                         </Grid>
                     </yummy:PancakeView>
                     <yummy:PancakeView
-                        Margin="0,8,0,0"
                         Padding="5"
                         BackgroundGradientEndColor="#FFCC33"
                         BackgroundGradientStartColor="#FFB347"
                         CornerRadius="24"
                         MinimumWidthRequest="50">
+                        <yummy:PancakeView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="0" />
+                                <On Platform="iOS" Value="0,8,0,0" />
+                            </OnPlatform>
+                        </yummy:PancakeView.Margin>
                         <Grid ColumnSpacing="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="25" />

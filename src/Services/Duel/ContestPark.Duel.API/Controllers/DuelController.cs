@@ -9,6 +9,7 @@ using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -97,6 +98,11 @@ namespace ContestPark.Duel.API.Controllers
                 {
                     Logger.LogInformation("Bot kullanıcısına düellod daveti geldi.", UserId, inviteDuel.OpponentUserId);
 
+                    if (_duelRepository.PlaysInTheLastHour(UserId, inviteDuel.OpponentUserId))
+                    {
+                        return;
+                    }
+
                     var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: inviteDuel.SubCategoryId,
                                                                        bet: inviteDuel.Bet,
                                                                        balanceType: inviteDuel.BalanceType,
@@ -106,7 +112,7 @@ namespace ContestPark.Duel.API.Controllers
                                                                        opponentUserId: inviteDuel.OpponentUserId,
                                                                        opponentConnectionId: "rnsadjge4",// fake signalr id
                                                                        opponentLanguage: CurrentUserLanguage);
-                    await Task.Delay(3000);
+                    await Task.Delay(new Random().Next(1, 3) * 1000);
 
                     _eventBus.Publish(eventDuelStart);
 

@@ -321,57 +321,57 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                         _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
                     }
-                    //else if (balance.Amount <= 20.00m && realUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
-                    //{
-                    //    currentRound.FounderTime = (byte)(@event.Time - 3);
-                    //    currentRound.FounderScore = 0;
+                    else if (balance.Amount <= 20.00m && realUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
+                    {
+                        currentRound.FounderTime = (byte)(@event.Time - 3);
+                        currentRound.FounderScore = 0;
 
-                    //    switch (currentRound.CorrectAnswer)
-                    //    {
-                    //        case Stylish.A:
+                        switch (currentRound.CorrectAnswer)
+                        {
+                            case Stylish.A:
 
-                    //            currentRound.FounderAnswer = Stylish.B;
-                    //            break;
+                                currentRound.FounderAnswer = Stylish.B;
+                                break;
 
-                    //        case Stylish.B:
+                            case Stylish.B:
 
-                    //            currentRound.FounderAnswer = Stylish.A;
-                    //            break;
+                                currentRound.FounderAnswer = Stylish.A;
+                                break;
 
-                    //        case Stylish.C:
+                            case Stylish.C:
 
-                    //            currentRound.FounderAnswer = Stylish.D;
-                    //            break;
+                                currentRound.FounderAnswer = Stylish.D;
+                                break;
 
-                    //        case Stylish.D:
-                    //            currentRound.FounderAnswer = Stylish.B;
-                    //            break;
-                    //    }
-                    //}
-                    //else if (balance.Amount <= 20.00m && realUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
-                    //{
-                    //    currentRound.OpponentTime = (byte)(@event.Time - 3);
-                    //    currentRound.OpponentScore = 0;
+                            case Stylish.D:
+                                currentRound.FounderAnswer = Stylish.B;
+                                break;
+                        }
+                    }
+                    else if (balance.Amount <= 20.00m && realUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
+                    {
+                        currentRound.OpponentTime = (byte)(@event.Time - 3);
+                        currentRound.OpponentScore = 0;
 
-                    //    switch (currentRound.CorrectAnswer)
-                    //    {
-                    //        case Stylish.A:
-                    //            currentRound.OpponentAnswer = Stylish.B;
-                    //            break;
+                        switch (currentRound.CorrectAnswer)
+                        {
+                            case Stylish.A:
+                                currentRound.OpponentAnswer = Stylish.B;
+                                break;
 
-                    //        case Stylish.B:
-                    //            currentRound.OpponentAnswer = Stylish.A;
-                    //            break;
+                            case Stylish.B:
+                                currentRound.OpponentAnswer = Stylish.A;
+                                break;
 
-                    //        case Stylish.C:
-                    //            currentRound.OpponentAnswer = Stylish.D;
-                    //            break;
+                            case Stylish.C:
+                                currentRound.OpponentAnswer = Stylish.D;
+                                break;
 
-                    //        case Stylish.D:
-                    //            currentRound.OpponentAnswer = Stylish.B;
-                    //            break;
-                    //    }
-                    //}
+                            case Stylish.D:
+                                currentRound.OpponentAnswer = Stylish.B;
+                                break;
+                        }
+                    }
                 }
 
                 #endregion Para

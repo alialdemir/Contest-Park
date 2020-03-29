@@ -1,6 +1,7 @@
 ﻿using ContestPark.Core.Database.Interfaces;
 using ContestPark.Duel.API.Enums;
 using ContestPark.Duel.API.Models;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
@@ -167,7 +168,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
             return _duelRepository.QuerySingleOrDefault<bool>("SP_WinStatus", new
             {
                 userId,
-            }, System.Data.CommandType.StoredProcedure);
+            }, CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -187,6 +188,34 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
             return _duelRepository.QuerySingleOrDefault<int>(sql, new
             {
                 userId
+            });
+        }
+
+        /// <summary>
+        /// Son bir iki içinde iki oyuncu ikiden fazla düello yaptımı kontrol eder
+        /// </summary>
+        /// <param name="founderUserId">Kurucu kullanıcı id</param>
+        /// <param name="opponentUserId">Rakip kullanıcı id</param>
+        /// <returns>True ise 2 den fazla oynamış false ise oynamamıştır</returns>
+        public bool PlaysInTheLastHour(string founderUserId, string opponentUserId)
+        {
+            string sql = @"SELECT
+                           CASE
+                           WHEN COUNT(d.DuelId) >= 1 THEN 1
+                           ELSE 0
+                           END
+                           FROM Duels d
+                           WHERE
+                           d.CreatedDate >= DATE_SUB(NOW(), INTERVAL 1 HOUR) AND
+                           ((d.FounderUserId = @founderUserId AND d.OpponentUserId = @opponentUserId)
+                           OR (d.FounderUserId = @opponentUserId AND d.OpponentUserId = @founderUserId))
+                           ORDER BY d.CreatedDate DESC
+                           LIMIT 1";
+
+            return _duelRepository.QuerySingleOrDefault<bool>(sql, new
+            {
+                founderUserId,
+                opponentUserId
             });
         }
 

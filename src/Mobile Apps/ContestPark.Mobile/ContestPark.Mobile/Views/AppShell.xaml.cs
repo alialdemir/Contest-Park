@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.Views
 
                 ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
-                if (settingsService.CurrentUser.UserId == "1111-1111-1111-1111" || IsLoadedMenuItems)
+                if (settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot" || IsLoadedMenuItems)
                     return;
 
                 MenuItem winningsViewMenu = new MenuItem

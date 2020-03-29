@@ -179,7 +179,8 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                     FullName = u.FullName,
                     ProfilePicturePath = u.ProfilePicturePath,
                     UserName = u.UserName,
-                    CoverPicturePath = includeCoverPicturePath ? u.CoverPicturePath : string.Empty
+                    CoverPicturePath = includeCoverPicturePath ? u.CoverPicturePath : string.Empty,
+                    Roles = String.Join(", ", _applicationDbContext.UserRoles.Where(r => r.UserId == u.Id).ToList())
                 }).ToList();
         }
 

@@ -115,7 +115,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 return;
             }
 
-            if (string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+            if (string.IsNullOrEmpty(_settingsService.AuthAccessToken) || _settingsService.CurrentUser.UserId.EndsWith("-bot"))
                 return;
 
             BalanceTypes balanceType = BalanceTypes.Gold;

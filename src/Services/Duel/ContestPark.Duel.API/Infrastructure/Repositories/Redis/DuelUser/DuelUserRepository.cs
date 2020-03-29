@@ -79,7 +79,7 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser
             {
                 string key = GetKey(duelUser);
 
-                return _redisClient.Set<DuelUserModel>(key, duelUser, expiresIn: TimeSpan.FromMinutes(1));// 40 sn sonra redis üzerinden otomatik siler
+                return _redisClient.Set<DuelUserModel>(key, duelUser, expiresIn: TimeSpan.FromMinutes(5));// 5 dk sonra redis üzerinden otomatik siler
             }
             catch (Exception ex)
             {

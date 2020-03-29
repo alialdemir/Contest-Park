@@ -374,7 +374,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     break;
 
                 case PurchaseError.GeneralError:
-                    message = "GeneralError";
+                    //      message = "GeneralError";
                     break;
 
                 case PurchaseError.UserCancelled:

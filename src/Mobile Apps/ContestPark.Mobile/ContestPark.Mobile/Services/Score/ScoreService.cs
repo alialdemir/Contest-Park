@@ -41,7 +41,7 @@ namespace ContestPark.Mobile.Services.Score
         /// <returns>Takip ettiklerinin sıralama listesi</returns>
         public async Task<RankModel> FollowingRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/Following{pagingModel.ToString()}&balanceType={balanceType}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}/Following{pagingModel}&balanceType={balanceType}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -65,7 +65,7 @@ namespace ContestPark.Mobile.Services.Score
         /// <returns>Sıralama listesi</returns>
         public async Task<RankModel> SubCategoryRankingAsync(short subCategoryId, BalanceTypes balanceType, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}{pagingModel.ToString()}&balanceType={balanceType}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{subCategoryId}{pagingModel}&balanceType={balanceType}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -88,7 +88,7 @@ namespace ContestPark.Mobile.Services.Score
         /// <returns>Para kazananların sıralaması</returns>
         public async Task<RankModel> AllTimesAsync(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Ranking/AllTimes{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Ranking/AllTimes{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {

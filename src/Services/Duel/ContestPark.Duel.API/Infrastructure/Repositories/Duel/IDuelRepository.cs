@@ -20,5 +20,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
 
         bool WinStatus(string userId);
         int LastPlayingDuel(string userId);
+        bool PlaysInTheLastHour(string founderUserId, string opponentUserId);
     }
 }

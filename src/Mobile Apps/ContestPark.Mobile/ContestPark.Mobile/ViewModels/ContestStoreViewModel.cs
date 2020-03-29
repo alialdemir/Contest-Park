@@ -65,22 +65,20 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override Task InitializeAsync()
         {
             if (IsBusy)
-                return;
+                return Task.CompletedTask;
 
             IsBusy = true;
 
             _adMobService.OnRewardedVideoAdClosed += OnRewardedVideoAdClosed;
 
-            Products = await _inAppBillingService.GetProductInfoAsync();
-            if (Products != null)
-                Items.AddRange(Products.Where(x => x.BalanceTypes == BalanceType).ToList());
-
-            // await base.InitializeAsync();
+            GetProductCommand.Execute(null);
 
             IsBusy = false;
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -230,24 +228,38 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        private ICommand purchaseCommand;
-        private ICommand changeBalanceType;
+        private ICommand _purchaseCommand;
+        private ICommand _changeBalanceType;
 
-        private ICommand watchAdsVideoCommand;
+        private ICommand _watchAdsVideoCommand;
 
         public ICommand PurchaseCommand
         {
-            get { return purchaseCommand ?? (purchaseCommand = new Command<string>(async (productId) => await ExecutePurchaseCommandAsync(productId))); }
+            get { return _purchaseCommand ?? (_purchaseCommand = new Command<string>(async (productId) => await ExecutePurchaseCommandAsync(productId))); }
         }
 
         public ICommand WatchAdsVideoCommand
         {
-            get { return watchAdsVideoCommand ?? (watchAdsVideoCommand = new Command(() => ExecuteWatchAdsVideoCommand())); }
+            get { return _watchAdsVideoCommand ?? (_watchAdsVideoCommand = new Command(() => ExecuteWatchAdsVideoCommand())); }
         }
 
         public ICommand ChangeBalanceType
         {
-            get { return changeBalanceType ?? (changeBalanceType = new Command<string>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)Convert.ToByte(balanceType)))); }
+            get { return _changeBalanceType ?? (_changeBalanceType = new Command<string>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)Convert.ToByte(balanceType)))); }
+        }
+
+        private ICommand GetProductCommand
+        {
+            get => new Command(async () =>
+            {
+                Products = await _inAppBillingService.GetProductInfoAsync();
+                if (Products != null && Products.Any())
+                    Items.AddRange(Products.Where(x => x.BalanceTypes == BalanceType).ToList());
+                else
+                {
+                    GetProductCommand.Execute(null);
+                }
+            });
         }
 
         public ICommand RemoveOnRewardedVideoAdClosed
