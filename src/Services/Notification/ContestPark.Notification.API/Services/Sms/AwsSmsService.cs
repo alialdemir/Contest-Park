@@ -118,6 +118,9 @@ namespace ContestPark.Notification.API.Services.Sms
             {
                 string key = userId;
 
+                if (_redisClient.ContainsKey(key))// Eğer redisde başka sms kodu kayıtlı ise önce onu siliyoruz
+                    Delete(key);
+
                 return _redisClient.Set<int>(key, code, expiresIn: TimeSpan.FromMinutes(5));// 5 dk sonra redis üzerinden otomatik siler
             }
             catch (Exception ex)
