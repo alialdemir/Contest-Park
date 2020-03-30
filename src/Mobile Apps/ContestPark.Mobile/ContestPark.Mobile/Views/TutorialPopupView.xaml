@@ -13,14 +13,15 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="tutorialPopupView"
-    Padding="0"
+    Padding="0,0,0,-89"
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
     <pages:PopupPage.Content>
         <cards:CoverFlowView
             IsCyclical="false"
             ItemsSource="{Binding Items}"
-            SelectedIndex="{Binding SelectedIndex}">
+            SelectedIndex="{Binding SelectedIndex}"
+            VerticalOptions="FillAndExpand">
             <controls:IndicatorsControl />
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
@@ -63,7 +64,7 @@
                                 <Label
                                     Grid.Row="2"
                                     Margin="0,0,0,36"
-                                    FontFamily="{DynamicResource SofiaProSemiBold}"
+                                    FontFamily="{DynamicResource SofiaProSemi}"
                                     FontSize="22"
                                     HorizontalTextAlignment="Center"
                                     Text="{Binding Description}"

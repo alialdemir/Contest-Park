@@ -19,7 +19,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="154" />
                     <RowDefinition Height="41" />
-                    <RowDefinition Height="48.9" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="48.9" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -93,7 +93,7 @@
                     BorderColor="#666372"
                     FontFamily="{DynamicResource SofiaProMedium}"
                     FontSize="16"
-                    HeightRequest="40"
+                    HeightRequest="56"
                     HorizontalOptions="FillAndExpand"
                     Keyboard="Numeric"
                     Placeholder="{i18n:Translate PhoneNumber}"

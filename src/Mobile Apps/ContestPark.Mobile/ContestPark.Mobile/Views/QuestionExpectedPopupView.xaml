@@ -7,9 +7,9 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Padding="0"
+    Padding="0,0,0,-89"
     prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="Transparent">
+    BackgroundColor="#645AFF">
     <pages:PopupPage.Content>
         <yummy:PancakeView
             Margin="0,70,0,0"
