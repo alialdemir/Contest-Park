@@ -63,7 +63,6 @@ namespace ContestPark.Mobile.ViewModels
 
         public SmsInfoModel SmsInfo { get; set; }
 
-        private SmsModel SmsCode { get; set; }
         private string UserName { get; set; }
 
         private byte? _code1;
@@ -157,9 +156,11 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteCheckSmsCodeCommand()
         {
-            string strCode = $"{Code1}{Code2}{Code3}{Code4}";
-
-            if (SmsCode == null || string.IsNullOrEmpty(strCode) || strCode != SmsCode.Code.ToString())
+            bool isCodeSuccess = await _notificationService.CheckSmsCode(new SmsModel
+            {
+                Code = Convert.ToInt32($"{Code1}{Code2}{Code3}{Code4}")
+            });
+            if (!isCodeSuccess)
             {
                 await DisplayAlertAsync(string.Empty,
                                         ContestParkResources.IncorrectSMSCode,
@@ -263,7 +264,7 @@ namespace ContestPark.Mobile.ViewModels
 
             TimeLeftCommand.Execute(null);
 
-            SmsCode = await _notificationService.LogInSms(SmsInfo);
+            await _notificationService.LogInSms(SmsInfo);
         });
 
         public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }

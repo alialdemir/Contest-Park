@@ -7,6 +7,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
+using Microsoft.AppCenter.Crashes;
 using Plugin.CurrentActivity;
 using Plugin.Iconize;
 using Plugin.InAppBilling;
@@ -61,43 +62,49 @@ namespace ContestPark.Mobile.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            try
+            {
+                TabLayoutResource = Resource.Layout.Tabbar;
+                ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
+                base.OnCreate(bundle);
 
-            // Check if running in sim
+                // Check if running in sim
 
-            CrossCurrentActivity.Current.Init(this, bundle);
+                CrossCurrentActivity.Current.Init(this, bundle);
 
-            CrossCurrentActivity.Current.Activity = this;
+                CrossCurrentActivity.Current.Activity = this;
 
-            UserDialogs.Init(this);
+                UserDialogs.Init(this);
 
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+                FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
-            Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
+                Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
 
-            Xamarin.Essentials.Platform.Init(this, bundle);
+                Xamarin.Essentials.Platform.Init(this, bundle);
 
-            global::Rg.Plugins.Popup.Popup.Init(this, bundle);
+                global::Rg.Plugins.Popup.Popup.Init(this, bundle);
 
-            global::Xamarin.Forms.Forms.SetFlags("Visual_Experimental"); // ONLY if using a pre-release of Xamarin.Forms
+                global::Xamarin.Forms.Forms.SetFlags("Visual_Experimental"); // ONLY if using a pre-release of Xamarin.Forms
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+                global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+                Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
-            global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
+                global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
-            AnimationViewRenderer.Init();
+                AnimationViewRenderer.Init();
 
-            LoadApplication(new ContestParkApp(new AndroidInitializer()));
+                LoadApplication(new ContestParkApp(new AndroidInitializer()));
 
+                PancakeViewRenderer.Init();
 
-            PancakeViewRenderer.Init();
-
-            Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim
+                Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim
+            }
+            catch (System.Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
     }
 }

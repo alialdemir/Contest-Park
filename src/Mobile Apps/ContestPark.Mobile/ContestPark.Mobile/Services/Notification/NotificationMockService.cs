@@ -9,12 +9,14 @@ namespace ContestPark.Mobile.Services.Notification
 {
     public class NotificationMockService : INotificationService
     {
-        public Task<SmsModel> LogInSms(SmsInfoModel smsInfo)
+        public Task<bool> CheckSmsCode(SmsModel smsModel)
         {
-            return Task.FromResult(new SmsModel
-            {
-                Code = new Random().Next(100000, 999999)
-            });
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> LogInSms(SmsInfoModel smsInfo)
+        {
+            return Task.FromResult(true);
         }
 
         public Task<ServiceModel<NotificationModel>> NotificationsAsync(PagingModel pagingModel)

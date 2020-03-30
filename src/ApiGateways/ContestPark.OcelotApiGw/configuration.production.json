@@ -794,6 +794,30 @@
       "UpstreamPathTemplate": "/api/{version}/Notification/Sms",
       "UpstreamHttpMethod": [ "Post" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Notification/Sms1",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "notification-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Notification/Sms1",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Notification/CheckSmsCode",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "notification-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Notification/CheckSmsCode",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
     // Signalr
     {
       "DownstreamPathTemplate": "/{catchAll}",

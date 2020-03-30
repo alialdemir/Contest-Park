@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Base;
 using ContestPark.Mobile.Models.ServiceModel;
+using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using Prism.Navigation;
 using Prism.Services;
@@ -178,7 +179,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public Task RemoveFirstPopupAsync()
         {
-            if (_popupNavigation == null || _popupNavigation.PopupStack.Count == 0)
+            if (_popupNavigation == null || _popupNavigation.PopupStack.Any())
                 return Task.CompletedTask;
 
             PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();
@@ -191,7 +192,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public string CurrentPopupName()
         {
-            if (_popupNavigation == null || _popupNavigation.PopupStack.Count == 0)
+            if (_popupNavigation == null || _popupNavigation.PopupStack.Any())
                 return string.Empty;
 
             PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();
@@ -203,10 +204,19 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public Task RemovePopupPageAsync(PopupPage popupPage)
         {
-            if (popupPage == null)
-                return Task.CompletedTask;
+            try
+            {
+                if (popupPage == null)
+                    return Task.CompletedTask;
 
-            return _popupNavigation?.RemovePageAsync(popupPage);
+                return _popupNavigation?.RemovePageAsync(popupPage);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
+
+            return Task.CompletedTask;
         }
 
         #endregion Navigations

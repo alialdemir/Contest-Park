@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using ContestPark.Mobile.AppResources;
+using Microsoft.AppCenter.Crashes;
 using System;
 using Xamarin.Essentials;
 
@@ -12,16 +13,23 @@ namespace ContestPark.Mobile.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            try
+            {
+                base.OnCreate(bundle);
 
 #if !DEBUG
-            //  CheckForRoot();
+                CheckForRoot();
 #endif
 
-            if (CheckNetworkAsync())
-                return;
+                if (CheckNetworkAsync())
+                    return;
 
-            this.StartActivity(typeof(MainActivity));
+                this.StartActivity(typeof(MainActivity));
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         #region Security

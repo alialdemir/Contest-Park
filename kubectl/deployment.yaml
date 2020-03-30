@@ -454,7 +454,7 @@ spec:
   selector:
     matchLabels:
       run: signalr-api
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:

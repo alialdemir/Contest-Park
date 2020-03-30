@@ -65,13 +65,29 @@ namespace ContestPark.Mobile.Services.Notification
         /// </summary>
         /// <param name="smsInfo">Telefon numarası bilgisi</param>
         /// <returns>Sms ile gönderilen şifre</returns>
-        public async Task<SmsModel> LogInSms(SmsInfoModel smsInfo)
+        public async Task<bool> LogInSms(SmsInfoModel smsInfo)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Sms");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Sms1");
 
-            var result = await _requestProvider.PostAsync<SmsModel>(uri, smsInfo);
+            var result = await _requestProvider.PostAsync<string>(uri, smsInfo);
 
-            return result.Data;
+            return result.IsSuccess;
+        }
+
+        /// <summary>
+        /// Sms ile gönderilen kod doğru girilmiş mi kontrol eder
+        /// </summary>
+        /// <param name="smsModel">Sms ile girilen kod</param>
+        public async Task<bool> CheckSmsCode(SmsModel smsModel)
+        {
+            if (smsModel.Code < 1000 || smsModel.Code > 9999)
+                return false;
+
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/CheckSmsCode");
+
+            var result = await _requestProvider.PostAsync<string>(uri, smsModel);
+
+            return result.IsSuccess;
         }
 
         #endregion Methods

@@ -7,7 +7,9 @@ namespace ContestPark.Mobile.Services.Notification
 {
     public interface INotificationService
     {
-        Task<SmsModel> LogInSms(SmsInfoModel smsInfo);
+        Task<bool> CheckSmsCode(SmsModel smsModel);
+        Task<bool> LogInSms(SmsInfoModel smsInfo);
+
         Task<ServiceModel<NotificationModel>> NotificationsAsync(PagingModel pagingModel);
     }
 }

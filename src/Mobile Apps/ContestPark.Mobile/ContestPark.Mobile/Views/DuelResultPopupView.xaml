@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:iconButton="clr-namespace:ContestPark.Mobile.Components.IconButton"
@@ -14,7 +15,8 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="duelResultPopupViewPage"
     Padding="0"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#645AFF">
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="700"
@@ -24,6 +26,11 @@
             ScaleIn="1"
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DoubleCoinsDuelResultConverter x:Key="dcdrc" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <pages:PopupPage.Content>
         <ScrollView>
             <yummy:PancakeView
@@ -39,7 +46,8 @@
                         Grid.Row="0"
                         Margin="0,0,0,22"
                         ColumnSpacing="0"
-                        RowSpacing="0">
+                        RowSpacing="0"
+                        VerticalOptions="Center">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="40" />
@@ -99,7 +107,7 @@
                             Grid.ColumnSpan="5"
                             BalanceType="{Binding DuelResult.BalanceType}"
                             CoinSize="Small"
-                            Coins="Positive"
+                            Coins="{Binding Path=DuelResult.IsShowFireworks, Converter={StaticResource dcdrc}}"
                             DisplayCoins="{Binding DuelResult.Gold}"
                             HorizontalOptions="Center" />
 
