@@ -87,14 +87,15 @@ namespace ContestPark.Notification.API.Controllers
         }
 
         /// <summary>
-        /// Sms ile login olma için kod üretip sms gönderir
+        /// Ülke kodu ve telefon numarasına sms ile doğrulama kodu gönderir
+        /// Kodu doğrulamak için "CheckSmsCode" api'sini kullanın
         /// </summary>
         /// <param name="smsInfo">Telefon numarası bilgisi</param>
         /// <returns>Sms ile gönderilen kod</returns>
-        [HttpPost("Sms1")]
+        [HttpPost("SendSms")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(SmsModel), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> LogInSms1([FromBody]SmsInfoModel smsInfo)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> SendSms([FromBody]SmsInfoModel smsInfo)
         {
             if (smsInfo == null
                 || string.IsNullOrEmpty(smsInfo.PhoneNumber)
@@ -108,15 +109,40 @@ namespace ContestPark.Notification.API.Controllers
                 return BadRequest(NotificationResource.InvalidPhoneNumber);
             }
 
-            int code = new Random().Next(1000, 9999);
+            bool isSmsSend = !smsInfo.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
+            if (!isSmsSend)
+            {
+                smsInfo.PhoneNumber = smsInfo.PhoneNumber.Substring(4, smsInfo.PhoneNumber.Length - 4);
+            }
+
+            int code = isSmsSend
+                ? new Random().Next(1000, 9999)
+                : 5454;// 5454 özel durum için
 
             string message = $"{NotificationResource.ContestParkAccessCode}{code}";
 
-            bool isSmsSuccess = await _smsService.SendSms(message, smsInfo.PhoneNumberWithCountryCode);
-            if (!isSmsSuccess)
-                return BadRequest();
+            if (isSmsSend)
+            {
+                bool isSuccess = await _smsService.SendSms(message, smsInfo.PhoneNumberWithCountryCode);
+                if (!isSuccess)
+                {
+                    Logger.LogError(
+                        "{phoneNumber} numaralı telefona {code} doğrulama kodu gönderilemedi!",
+                        smsInfo.PhoneNumberWithCountryCode, code);
 
-            isSmsSuccess = _smsService.Insert(UserId, code);
+                    return BadRequest();
+                }
+            }
+
+            Logger.LogInformation(
+                "{phoneNumber} numaralı telefona {code} doğrulama kodu gönderildi.", smsInfo.PhoneNumberWithCountryCode,
+                code);
+
+            bool isSmsSuccess = _smsService.Insert(new SmsRedisModel
+            {
+                Code = code,
+                PhoneNumber = smsInfo.PhoneNumber
+            });
             if (!isSmsSuccess)
                 return BadRequest();
 
@@ -125,23 +151,39 @@ namespace ContestPark.Notification.API.Controllers
 
         /// <summary>
         /// Sms ile gönderilen kod doğru girilmiş mi kontrol eder
+        /// Sms ile gelen kod ve telefon numarası doğru ise kullanıcı adı döner eğer kullanıcı kayıtlı değilse kullanıcı adı boş gelir
         /// </summary>
         /// <param name="smsModel">Sms ile girilen kod</param>
         [HttpPost("CheckSmsCode")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(SmsModel), (int)HttpStatusCode.OK)]
-        public IActionResult CheckSmsCode([FromBody]SmsModel smsModel)
+        [ProducesResponseType(typeof(SmsRedisModel), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> CheckSmsCode([FromBody]SmsModel smsModel)
         {
-            if (smsModel == null || smsModel.Code < 1000)// code 1000 den büyük olmalı
+            if (smsModel == null
+                || string.IsNullOrEmpty(smsModel.PhoneNumber)
+                || smsModel.Code < 1000// code 1000 den büyük olmalı
+                || smsModel.Code > 9999// code 9999 küçük olmalı
+                )
                 return BadRequest();
 
-            int redisCode = _smsService.GetSmsCode(UserId);
-            if (redisCode != smsModel.Code)
+            SmsRedisModel redisCode = _smsService.GetSmsCode(smsModel.PhoneNumber);
+            if (redisCode == null || redisCode.Code != smsModel.Code)
                 return BadRequest();
 
-            _smsService.Delete(UserId);
+            _smsService.Delete(smsModel.PhoneNumber);
 
-            return Ok();
+            string userName = await _identityService.GetUserNameByPhoneNumber(redisCode.PhoneNumber);
+
+            Logger.LogInformation(
+                "{phoneNumber} telefon numarası ile {code} doğrulama kodu doğru girildi ve {userName} kullanıcı adı ile eşleşti.",
+                smsModel.PhoneNumber,
+                smsModel.Code,
+                userName);
+
+            return Ok(new
+            {
+                userName,
+            });
         }
 
         #region Eski sms login
@@ -154,6 +196,7 @@ namespace ContestPark.Notification.API.Controllers
         [HttpPost("Sms")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(SmsModel), (int)HttpStatusCode.OK)]
+        [System.Obsolete]
         public async Task<IActionResult> LogInSms([FromBody]SmsInfoModel smsInfo)
         {
             if (smsInfo == null

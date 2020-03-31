@@ -91,6 +91,19 @@ namespace ContestPark.Core.Services.Identity
         }
 
         /// <summary>
+        /// Telefon numarasından kullanıcı adı alma
+        /// </summary>
+        /// <param name="phoneNumber">Telefon numarası</param>
+        /// <returns>Kullanıcı adı</returns>
+        public Task<string> GetUserNameByPhoneNumber(string phoneNumber)
+        {
+            if (string.IsNullOrEmpty(phoneNumber))
+                return Task.FromResult(string.Empty);
+
+            return _requestProvider.PostAsync<string>($"{baseUrl}/GetUserName?phoneNumber={phoneNumber}");
+        }
+
+        /// <summary>
         /// Redise kullanıcı listesi set eder
         /// 30 dakkika işlem yapılmazsa siler
         /// 60 dakkika da bir tümünü siler

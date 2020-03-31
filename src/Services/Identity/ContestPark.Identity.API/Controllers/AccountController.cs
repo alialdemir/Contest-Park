@@ -408,6 +408,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [Route("GetUserName")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [System.Obsolete]
         public IActionResult GetUserNameByPhoneNumber([FromQuery]string phoneNumber)
         {
             string userName = _userRepository.GetUserNameByPhoneNumber(phoneNumber);

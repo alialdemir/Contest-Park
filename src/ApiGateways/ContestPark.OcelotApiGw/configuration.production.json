@@ -795,7 +795,7 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/Notification/Sms1",
+      "DownstreamPathTemplate": "/api/{version}/Notification/SendSms",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -803,7 +803,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/Notification/Sms1",
+      "UpstreamPathTemplate": "/api/{version}/Notification/SendSms",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {

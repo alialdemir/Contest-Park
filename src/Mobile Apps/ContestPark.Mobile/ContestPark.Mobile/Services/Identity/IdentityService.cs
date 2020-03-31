@@ -147,24 +147,6 @@ namespace ContestPark.Mobile.Services.Identity
         }
 
         /// <summary>
-        /// Telefon numarasına ait kullanıcı adını verir
-        /// </summary>
-        /// <param name="phoneNumber">Telefon numarası</param>
-        /// <returns>Eğer telefon numarası kayıtlı ise kullanıcı adı değilse null döner</returns>
-        public async Task<string> GetUserNameByPhoneNumber(string phoneNumber)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/GetUserName?phoneNumber={phoneNumber}");
-
-            var response = await _requestProvider.GetAsync<UserNameModel>(uri);
-            if (response.IsSuccess)
-            {
-                return response.Data.UserName;
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Şifre değiştir
         /// </summary>
         /// <param name="changePasswordModel">Kullanıcı şifre bilgileri</param>

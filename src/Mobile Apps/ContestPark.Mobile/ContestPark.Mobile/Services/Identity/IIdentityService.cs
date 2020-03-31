@@ -23,8 +23,6 @@ namespace ContestPark.Mobile.Services.Identity
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);
 
-        Task<string> GetUserNameByPhoneNumber(string phoneNumber);
-
         Task RefreshTokenAsync();
 
         Task<bool> SignUpAsync(SignUpModel signUpModel);

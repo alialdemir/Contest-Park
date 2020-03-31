@@ -1,6 +1,8 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
+using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Notification;
@@ -62,8 +64,6 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         public SmsInfoModel SmsInfo { get; set; }
-
-        private string UserName { get; set; }
 
         private byte? _code1;
         private byte? _code2;
@@ -130,22 +130,13 @@ namespace ContestPark.Mobile.ViewModels
         {
             if (SmsInfo.PhoneNumber.StartsWith("5454"))
             {
-                SmsInfo.PhoneNumber = SmsInfo.PhoneNumber.Substring(4, SmsInfo.PhoneNumber.Length - 4);
-                UserName = await _identityService.GetUserNameByPhoneNumber(SmsInfo.PhoneNumber);
-
-                await Login();
+                Code1 = 5;
+                Code2 = 4;
+                Code3 = 5;
+                Code4 = 4;
             }
-            else if (!SmsInfo.PhoneNumber.StartsWith("5454"))// Eğer özel durum yoksa direk sms göndersin
-            {
-                SendSmsCommand.Execute(null);
-            }
-            //else// ÖZEL DURUMSA 5454 ile giriş yapılsın
-            //{
-            //    SmsInfo.PhoneNumber = SmsInfo.PhoneNumber.Substring(4, SmsInfo.PhoneNumber.Length - 4);
-            //    SmsCode = new SmsModel { Code = 5454 };
-            //}
 
-            UserName = await _identityService.GetUserNameByPhoneNumber(SmsInfo.PhoneNumber);
+            SendSmsCommand.Execute(null);
 
             await base.InitializeAsync();
         }
@@ -156,11 +147,13 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteCheckSmsCodeCommand()
         {
-            bool isCodeSuccess = await _notificationService.CheckSmsCode(new SmsModel
+            ResponseModel<UserNameModel> response = await _notificationService.CheckSmsCode(new SmsModel
             {
-                Code = Convert.ToInt32($"{Code1}{Code2}{Code3}{Code4}")
+                Code = Convert.ToInt32($"{Code1}{Code2}{Code3}{Code4}"),
+                PhoneNumber = SmsInfo.PhoneNumber
             });
-            if (!isCodeSuccess)
+
+            if (!response.IsSuccess)// Sms kodunu yanlış girmiştir
             {
                 await DisplayAlertAsync(string.Empty,
                                         ContestParkResources.IncorrectSMSCode,
@@ -168,10 +161,17 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            bool isLogin = await Login();
-            if (isLogin)
-                return;
+            if (response.IsSuccess && !string.IsNullOrEmpty(response.Data.UserName))// Sms kodu doğru ve kullanıcı kayıtlı
+            {
+                bool isLogin = await Login(response.Data.UserName);
+                if (isLogin)
+                    return;
+            }
 
+            /*
+             *  response içindeki kullanıcı adı boş ise sms doğrulama yapılmıştır
+             *  ancak telefon numarasına ait kullanıcı yoktur o yüzden üye olma adımlarına yönlendirdik
+             */
             await PushPopupPageAsync(new SignUpFullNameView()
             {
                 PhoneNumber = SmsInfo.PhoneNumber// TODO: Ülke koduda gönderilmeli
@@ -182,13 +182,13 @@ namespace ContestPark.Mobile.ViewModels
         /// Login işlemi
         /// </summary>
         /// <returns>Login başarılı ise true değilse false</returns>
-        private async Task<bool> Login()
+        private async Task<bool> Login(string userName)
         {
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            if (!string.IsNullOrEmpty(UserName))
+            if (!string.IsNullOrEmpty(userName))
             {
-                await SignInAsync(UserName);
+                await SignInAsync(userName);
 
                 UserDialogs.Instance.HideLoading();
 

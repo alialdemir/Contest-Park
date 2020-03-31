@@ -1,7 +1,9 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.PagingModel;
+using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -40,7 +42,7 @@ namespace ContestPark.Mobile.Services.Notification
         /// <returns>Kullanıcının bildirimleri</returns>
         public async Task<ServiceModel<NotificationModel>> NotificationsAsync(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -67,7 +69,7 @@ namespace ContestPark.Mobile.Services.Notification
         /// <returns>Sms ile gönderilen şifre</returns>
         public async Task<bool> LogInSms(SmsInfoModel smsInfo)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Sms1");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/SendSms");
 
             var result = await _requestProvider.PostAsync<string>(uri, smsInfo);
 
@@ -78,16 +80,14 @@ namespace ContestPark.Mobile.Services.Notification
         /// Sms ile gönderilen kod doğru girilmiş mi kontrol eder
         /// </summary>
         /// <param name="smsModel">Sms ile girilen kod</param>
-        public async Task<bool> CheckSmsCode(SmsModel smsModel)
+        public Task<ResponseModel<UserNameModel>> CheckSmsCode(SmsModel smsModel)
         {
             if (smsModel.Code < 1000 || smsModel.Code > 9999)
-                return false;
+                return Task.FromResult(new ResponseModel<UserNameModel>());
 
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/CheckSmsCode");
 
-            var result = await _requestProvider.PostAsync<string>(uri, smsModel);
-
-            return result.IsSuccess;
+            return _requestProvider.PostAsync<UserNameModel>(uri, smsModel);
         }
 
         #endregion Methods

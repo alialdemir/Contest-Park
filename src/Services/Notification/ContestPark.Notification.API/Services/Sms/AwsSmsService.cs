@@ -2,6 +2,7 @@
 using Amazon.SimpleNotificationService;
 using Amazon.SimpleNotificationService.Model;
 using ContestPark.Core.Dapper.Abctract;
+using ContestPark.Notification.API.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ServiceStack.Redis;
@@ -79,22 +80,20 @@ namespace ContestPark.Notification.API.Services.Sms
         /// <summary>
         /// Sms kodunu döndürür
         /// </summary>
-        /// <param name="userId">User id</param>
+        /// <param name="key">User id</param>
         /// <returns>Sms kodu</returns>
-        public int GetSmsCode(string userId)
+        public SmsRedisModel GetSmsCode(string key)
         {
             try
             {
-                if (string.IsNullOrEmpty(userId))
-                    return 0;
-
-                string key = userId;
+                if (string.IsNullOrEmpty(key))
+                    return null;
 
                 var items = _redisClient.GetAllKeys();
                 if (items == null || items.Count == 0)
-                    return 0;
+                    return null;
 
-                var code = _redisClient.Get<int>(key);
+                var code = _redisClient.Get<SmsRedisModel>(key);
 
                 return code;
             }
@@ -102,7 +101,7 @@ namespace ContestPark.Notification.API.Services.Sms
             {
                 _logger.LogError(ex, "Sms ile gönderilen kod alma işleminde hata oluştu.");
 
-                return 0;
+                return null;
             }
         }
 
@@ -112,38 +111,36 @@ namespace ContestPark.Notification.API.Services.Sms
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="code">Sms kodu</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public bool Insert(string userId, int code)
+        public bool Insert(SmsRedisModel sms)
         {
             try
             {
-                string key = userId;
+                string key = sms.PhoneNumber;
 
                 if (_redisClient.ContainsKey(key))// Eğer redisde başka sms kodu kayıtlı ise önce onu siliyoruz
                     Delete(key);
 
-                return _redisClient.Set<int>(key, code, expiresIn: TimeSpan.FromMinutes(5));// 5 dk sonra redis üzerinden otomatik siler
+                return _redisClient.Set<SmsRedisModel>(key, sms, expiresIn: TimeSpan.FromMinutes(5));// 5 dk sonra redis üzerinden otomatik siler
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Sms ile gönderilen kod ekleme işleminde hata oluştu.");
 
-                return true;
+                return false;
             }
         }
 
         /// <summary>
         /// Redis üzerindeki sms kodunu siler
         /// </summary>
-        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="key">Kullanıcı id</param>
         /// <returns>Başarılı ise true değilse false</returns>
-        public bool Delete(string userId)
+        public bool Delete(string key)
         {
             try
             {
-                if (string.IsNullOrEmpty(userId))
+                if (string.IsNullOrEmpty(key))
                     return false;
-
-                string key = userId;
 
                 if (!_redisClient.ContainsKey(key))
                     return false;

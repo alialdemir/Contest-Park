@@ -1,9 +1,8 @@
 ﻿namespace ContestPark.Notification.API.Models
 {
-    public class SmsModel
+    public class SmsRedisModel
     {
-        public string PhoneNumber { get; set; }
-
         public int Code { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
