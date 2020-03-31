@@ -95,12 +95,12 @@ namespace ContestPark.Core.Services.Identity
         /// </summary>
         /// <param name="phoneNumber">Telefon numarası</param>
         /// <returns>Kullanıcı adı</returns>
-        public Task<string> GetUserNameByPhoneNumber(string phoneNumber)
+        public Task<UserNameModel> GetUserNameByPhoneNumber(string phoneNumber)
         {
             if (string.IsNullOrEmpty(phoneNumber))
-                return Task.FromResult(string.Empty);
+                return Task.FromResult(new UserNameModel());
 
-            return _requestProvider.PostAsync<string>($"{baseUrl}/GetUserName?phoneNumber={phoneNumber}");
+            return _requestProvider.PostAsync<UserNameModel>($"{baseUrl}/GetUserName?phoneNumber={phoneNumber}");
         }
 
         /// <summary>

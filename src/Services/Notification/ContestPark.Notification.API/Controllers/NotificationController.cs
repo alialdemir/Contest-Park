@@ -172,18 +172,15 @@ namespace ContestPark.Notification.API.Controllers
 
             _smsService.Delete(smsModel.PhoneNumber);
 
-            string userName = await _identityService.GetUserNameByPhoneNumber(redisCode.PhoneNumber);
+            UserNameModel userNameModell = await _identityService.GetUserNameByPhoneNumber(redisCode.PhoneNumber);
 
             Logger.LogInformation(
                 "{phoneNumber} telefon numarası ile {code} doğrulama kodu doğru girildi ve {userName} kullanıcı adı ile eşleşti.",
                 smsModel.PhoneNumber,
                 smsModel.Code,
-                userName);
+                userNameModell.UserName);
 
-            return Ok(new
-            {
-                userName,
-            });
+            return Ok(userNameModell);
         }
 
         #region Eski sms login

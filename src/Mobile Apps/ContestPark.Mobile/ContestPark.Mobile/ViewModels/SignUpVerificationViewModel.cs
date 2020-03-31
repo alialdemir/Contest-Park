@@ -172,6 +172,9 @@ namespace ContestPark.Mobile.ViewModels
              *  response içindeki kullanıcı adı boş ise sms doğrulama yapılmıştır
              *  ancak telefon numarasına ait kullanıcı yoktur o yüzden üye olma adımlarına yönlendirdik
              */
+
+            await RemoveFirstPopupAsync();
+
             await PushPopupPageAsync(new SignUpFullNameView()
             {
                 PhoneNumber = SmsInfo.PhoneNumber// TODO: Ülke koduda gönderilmeli
