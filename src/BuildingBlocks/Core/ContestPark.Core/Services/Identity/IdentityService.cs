@@ -100,7 +100,7 @@ namespace ContestPark.Core.Services.Identity
             if (string.IsNullOrEmpty(phoneNumber))
                 return Task.FromResult(new UserNameModel());
 
-            return _requestProvider.PostAsync<UserNameModel>($"{baseUrl}/GetUserName?phoneNumber={phoneNumber}");
+            return _requestProvider.GetAsync<UserNameModel>($"{baseUrl}/GetUserName?phoneNumber={phoneNumber}");
         }
 
         /// <summary>
