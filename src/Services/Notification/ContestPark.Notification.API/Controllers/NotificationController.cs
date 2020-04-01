@@ -103,16 +103,16 @@ namespace ContestPark.Notification.API.Controllers
                 || string.IsNullOrEmpty(smsInfo.PhoneNumberWithCountryCode))
                 return BadRequest();
 
-            var match = Regex.Match(smsInfo.PhoneNumber, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);// Globale çıkınca burayı kaldıralım
-            if (!match.Success)
-            {
-                return BadRequest(NotificationResource.InvalidPhoneNumber);
-            }
-
             bool isSmsSend = !smsInfo.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
             if (!isSmsSend)
             {
                 smsInfo.PhoneNumber = smsInfo.PhoneNumber.Substring(4, smsInfo.PhoneNumber.Length - 4);
+            }
+
+            var match = Regex.Match(smsInfo.PhoneNumber, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);// Globale çıkınca burayı kaldıralım
+            if (!match.Success)
+            {
+                return BadRequest(NotificationResource.InvalidPhoneNumber);
             }
 
             int code = isSmsSend
@@ -165,6 +165,12 @@ namespace ContestPark.Notification.API.Controllers
                 || smsModel.Code > 9999// code 9999 küçük olmalı
                 )
                 return BadRequest();
+
+            bool isSmsSend = !smsModel.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
+            if (!isSmsSend)
+            {
+                smsModel.PhoneNumber = smsModel.PhoneNumber.Substring(4, smsModel.PhoneNumber.Length - 4);
+            }
 
             SmsRedisModel redisCode = _smsService.GetSmsCode(smsModel.PhoneNumber);
             if (redisCode == null || redisCode.Code != smsModel.Code)

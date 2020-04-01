@@ -151,6 +151,8 @@ namespace ContestPark.Mobile.ViewModels
                      .Publish();
 
                 SendProductEvent(purchaseInfo, "Purchase", productName);
+
+                await _inAppBillingService.ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.PurchaseToken);
             }
             else
             {

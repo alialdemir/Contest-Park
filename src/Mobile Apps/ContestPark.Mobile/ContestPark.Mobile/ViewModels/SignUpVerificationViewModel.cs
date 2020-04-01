@@ -147,6 +147,14 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteCheckSmsCodeCommand()
         {
+            if (!Code1.HasValue || !Code2.HasValue || !Code3.HasValue || !Code4.HasValue)
+            {
+                await DisplayAlertAsync(string.Empty,
+                                        ContestParkResources.IncorrectSMSCode,
+                                        ContestParkResources.Okay);
+                return;
+            }
+
             ResponseModel<UserNameModel> response = await _notificationService.CheckSmsCode(new SmsModel
             {
                 Code = Convert.ToInt32($"{Code1}{Code2}{Code3}{Code4}"),

@@ -1,5 +1,7 @@
-﻿using ContestPark.Mobile.Models.Notification;
+﻿using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.PagingModel;
+using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.ServiceModel;
 using System;
 using System.Collections.Generic;
@@ -9,9 +11,9 @@ namespace ContestPark.Mobile.Services.Notification
 {
     public class NotificationMockService : INotificationService
     {
-        public Task<bool> CheckSmsCode(SmsModel smsModel)
+        public Task<ResponseModel<UserNameModel>> CheckSmsCode(SmsModel smsModel)
         {
-            return Task.FromResult(true);
+            return Task.FromResult(new ResponseModel<UserNameModel>());
         }
 
         public Task<bool> LogInSms(SmsInfoModel smsInfo)

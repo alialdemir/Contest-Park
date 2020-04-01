@@ -179,7 +179,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public Task RemoveFirstPopupAsync()
         {
-            if (_popupNavigation == null || _popupNavigation.PopupStack.Any())
+            if (_popupNavigation == null || !_popupNavigation.PopupStack.Any())
                 return Task.CompletedTask;
 
             PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();
@@ -192,7 +192,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         public string CurrentPopupName()
         {
-            if (_popupNavigation == null || _popupNavigation.PopupStack.Any())
+            if (_popupNavigation == null || !_popupNavigation.PopupStack.Any())
                 return string.Empty;
 
             PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();

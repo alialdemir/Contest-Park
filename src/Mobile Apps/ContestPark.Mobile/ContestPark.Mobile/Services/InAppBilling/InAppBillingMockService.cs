@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.InAppBillingProduct;
+using Plugin.InAppBilling.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,11 @@ namespace ContestPark.Mobile.Services.InAppBilling
 {
     public class InAppBillingMockService : IInAppBillingService
     {
+        public Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string purchaseToken)
+        {
+            return Task.FromResult(new InAppBillingPurchase());
+        }
+
         public Task<List<InAppBillingProductModel>> GetProductInfoAsync()
         {
             List<InAppBillingProductModel> list = new List<InAppBillingProductModel>

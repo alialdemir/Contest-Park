@@ -305,9 +305,6 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 else
                 {
                     //Purchased, save this information
-                    var id = purchase.Id;
-                    var token = purchase.PurchaseToken;
-                    var state = purchase.State;
 
                     Debug.WriteLine($@"Satın alma işlemi gerçekleşti!\n
                                        Product Id: {purchase.ProductId}
@@ -346,6 +343,24 @@ namespace ContestPark.Mobile.Services.InAppBilling
             {
                 //Disconnect, it is okay if we never connected
                 //      await billing.DisconnectAsync();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Android tarafında satın alınan öğeyi tüketildi yapar
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="purchaseToken"></param>
+        /// <returns></returns>
+        public Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string purchaseToken)
+        {
+            if (Device.RuntimePlatform == Device.Android
+                && !string.IsNullOrEmpty(productId)
+                && !string.IsNullOrEmpty(purchaseToken))
+            {
+                return CrossInAppBilling.Current.ConsumePurchaseAsync(productId, purchaseToken);
             }
 
             return null;
