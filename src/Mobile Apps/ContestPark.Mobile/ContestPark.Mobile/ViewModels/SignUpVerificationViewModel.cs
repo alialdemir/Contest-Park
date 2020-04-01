@@ -216,6 +216,11 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task SignInAsync(string userName)
         {
+            if (SmsInfo.PhoneNumber.StartsWith("5454"))// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
+            {
+                SmsInfo.PhoneNumber = SmsInfo.PhoneNumber.Substring(4, SmsInfo.PhoneNumber.Length - 4);
+            }
+
             UserToken token = await _identityService.GetTokenAsync(new Models.LoginModel
             {
                 Password = SmsInfo.PhoneNumber,

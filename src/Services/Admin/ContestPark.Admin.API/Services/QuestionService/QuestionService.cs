@@ -109,7 +109,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
                         {
                             AnswerTypes= configModel.AnswerType,
                             QuestionType = configModel.QuestionType,
-                            Link = !string.IsNullOrEmpty(configModel.LinkKey) && item.SelectToken(configModel.LinkKey).HasValues
+                            Link = !string.IsNullOrEmpty(configModel.LinkKey)
                             ? item[configModel.LinkKey].ToString()
                             : string.Empty,
                             SubCategoryId = configModel.SubCategoryId,

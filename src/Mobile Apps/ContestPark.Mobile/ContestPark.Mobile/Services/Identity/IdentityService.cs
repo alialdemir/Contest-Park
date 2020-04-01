@@ -245,7 +245,7 @@ namespace ContestPark.Mobile.Services.Identity
                 };
 
                 var result = await _requestProvider.PostAsync<UserToken>(GlobalSetting.Instance.TokenEndpoint, from);
-                if (!result.IsSuccess)
+                if (!result.IsSuccess && result.Error != null && !string.IsNullOrEmpty(result.Error.ErrorMessage))
                 {
                     string translateMessage = TranslateExtension.resmgr.Value.GetString(result.Error.ErrorMessage);
                     await ShowErrorMessage(translateMessage);
