@@ -268,7 +268,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         public async Task Handle(UserAnswerIntegrationEvent @event)
         {
             _logger.LogInformation(
-                "Soru cevaplandı. {DuelId} {QuestionId} {UserId} {Stylish} {Time}",
+                "Soru cevaplandı. {DuelId} {QuestionId} {UserId} {Stylish} {BalanceType} {Time}",
                 @event.DuelId,
                 @event.QuestionId,
                 @event.UserId,
@@ -318,7 +318,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (IsFounderBot || IsOpponentBot)// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
                 Answer();
-                //botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore
+
                 if (
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
                     //   &&
@@ -330,10 +330,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     )// Player yenildiği durumlar
                 {
-                    if ((IsFounderBot && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
-                        ||
-                        IsOpponentBot && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore)
-                        )
+                    if ((IsFounderBot && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore)) || (IsOpponentBot && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore)))
+
                     {
                         PlayerLose();
                     }
@@ -411,6 +409,31 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void Answer()
         {
+            #region Her zaman random bir cevap veriyor
+
+            if (IsFounderBot)
+            {
+                CurrentRound.FounderTime = (byte)RandomScore;
+
+                if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
+                    CurrentRound.FounderTime = 10;
+
+                CurrentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
+                CurrentRound.FounderScore = CurrentRound.CorrectAnswer == CurrentRound.FounderAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.FounderTime) : (byte)0;
+            }
+            else if (IsOpponentBot)
+            {
+                CurrentRound.OpponentTime = (byte)RandomScore;
+
+                if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
+                    CurrentRound.OpponentTime = 10;
+
+                CurrentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
+                CurrentRound.OpponentScore = CurrentRound.CorrectAnswer == CurrentRound.OpponentAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime) : (byte)0;
+            }
+
+            #endregion Her zaman random bir cevap veriyor
+
             if (IsFounderBot && (FounderTotalScore == 0 || (OpponentTotalScore + CurrentRound.OpponentScore) > (FounderTotalScore + CurrentRound.FounderScore)))
             {
                 CurrentRound.FounderTime = (byte)RandomScore;
@@ -420,8 +443,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 CurrentRound.FounderScore = _scoreCalculator.Calculator(Round, CurrentRound.FounderTime);
                 CurrentRound.FounderAnswer = CurrentRound.CorrectAnswer;
-
-                _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
             }
             else if (IsOpponentBot && (OpponentTotalScore == 0 || (FounderTotalScore + CurrentRound.FounderScore) > (OpponentTotalScore + CurrentRound.OpponentScore)))
             {
@@ -432,8 +453,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 CurrentRound.OpponentScore = _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime);
                 CurrentRound.OpponentAnswer = CurrentRound.CorrectAnswer;
-
-                _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
             }
         }
 
