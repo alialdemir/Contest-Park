@@ -13,7 +13,6 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -56,8 +55,7 @@ namespace ContestPark.Mobile.ViewModels
                                           IDuelSignalRService duelSignalRService,
                                           INavigationService navigationService,
                                           IPageDialogService pageDialogService,
-                                          ISettingsService settingsService,
-                                          IPopupNavigation popupNavigation) : base(navigationService, pageDialogService, popupNavigation)
+                                          ISettingsService settingsService) : base(navigationService)
         {
             _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
 
@@ -90,19 +88,16 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        public SelectedBetModel SelectedBet { get; set; }
+
         /// <summary>
         /// Eğer sorular gelmişse quiz view geçerken true ise alert çıkmasın
         /// </summary>
-        public bool IsNextQuestionExit { get; set; } = false;
+        private bool IsNextQuestionExit { get; set; } = false;
 
-        public string OpponentUserId { get; set; }
-        public SelectedSubCategoryModel SelectedSubCategory { get; set; } = new SelectedSubCategoryModel();
-        public StandbyModes StandbyMode { get; set; }
-
-        public StandbyModeModel StandbyModeModel { get; private set; } = new StandbyModeModel();
         private bool RandomPicturStatus { get; set; } = true;
 
-        public bool IsExit { get; set; }
+        private bool IsExit { get; set; }
 
         #endregion Properties
 
@@ -166,17 +161,17 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.ConnectionToTheServerForTheDuelWasNotEstablished,
                     ContestParkResources.Okay);
 
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(null);
             }
-            else if (StandbyModes.Invited == StandbyMode)
+            else if (StandbyModes.Invited == SelectedBet.StandbyMode)
             {
                 DuelSignalrListener();
 
                 OnSleepEventListener();
             }
-            else if (StandbyModes.Off == StandbyMode)
+            else if (StandbyModes.Off == SelectedBet.StandbyMode)
             {
-                if (!string.IsNullOrEmpty(OpponentUserId))
+                if (!string.IsNullOrEmpty(SelectedBet.OpponentUserId))
                 {
                     DuelSignalrListener();
 
@@ -202,10 +197,10 @@ namespace ContestPark.Mobile.ViewModels
         {
             var opponentUserInfo = await _duelService.InviteDuel(new InviteDuelModel
             {
-                Bet = StandbyModeModel.Bet,
-                SubCategoryId = StandbyModeModel.SubCategoryId,
-                BalanceType = StandbyModeModel.BalanceType,
-                OpponentUserId = OpponentUserId,
+                Bet = SelectedBet.Bet,
+                SubCategoryId = SelectedBet.SubcategoryId,
+                BalanceType = SelectedBet.BalanceType,
+                OpponentUserId = SelectedBet.OpponentUserId,
                 FounderConnectionId = _settingsService.SignalRConnectionId
             });
             if (opponentUserInfo != null)
@@ -229,7 +224,7 @@ namespace ContestPark.Mobile.ViewModels
                                ContestParkResources.YourOpponentDidNotAcceptYourDuelInvitation,
                                ContestParkResources.Okay);
 
-                            DuelCloseCommand.Execute(null);
+                            GotoBackCommand.Execute(null);
                         });
                     }
 
@@ -243,7 +238,7 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.TheOpponentDidNotAcceptTheDuel,
                     ContestParkResources.Okay);
 
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(null);
             }
         }
 
@@ -261,9 +256,9 @@ namespace ContestPark.Mobile.ViewModels
 
                 _duelService.AddOpponent(new StandbyModeModel
                 {
-                    Bet = StandbyModeModel.Bet,
-                    SubCategoryId = StandbyModeModel.SubCategoryId,
-                    BalanceType = StandbyModeModel.BalanceType,
+                    Bet = SelectedBet.Bet,
+                    SubCategoryId = SelectedBet.SubcategoryId,
+                    BalanceType = SelectedBet.BalanceType,
                 });
 
                 return false;
@@ -280,9 +275,9 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Bekleme ekranı kapatır
+        /// Düello başlıyor ekranını kapatır
         /// </summary>
-        private async Task ExecuteDuelCloseCommandAsync()
+        public override async Task GoBackAsync(bool? useModalNavigation = false)
         {
             if (DuelStarting.DuelId != 0 && !IsNextQuestionExit)// Duel id 0 değilse düello başlamıştır
             {
@@ -311,11 +306,17 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
-            await RemoveFirstPopupAsync();
+            await base.GoBackAsync(true);
 
-            if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId) && StandbyMode == StandbyModes.On)
+            if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId) && SelectedBet.StandbyMode == StandbyModes.On)
             {
-                await _duelService.ExitStandMode(StandbyModeModel);
+                await _duelService.ExitStandMode(new StandbyModeModel
+                {
+                    BalanceType = SelectedBet.BalanceType,
+                    Bet = SelectedBet.Bet,
+                    ConnectionId = _settingsService.SignalRConnectionId,
+                    SubCategoryId = SelectedBet.SubcategoryId,
+                });
             }
         }
 
@@ -324,9 +325,13 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteDuelOpenRandomAsync()
         {
-            StandbyModeModel.ConnectionId = _settingsService.SignalRConnectionId;
-
-            bool isSuccess = await _duelService.StandbyMode(StandbyModeModel);// TODO: success kontrol et hata oluşursa mesaj çıksın
+            bool isSuccess = await _duelService.StandbyMode(new StandbyModeModel
+            {
+                BalanceType = SelectedBet.BalanceType,
+                Bet = SelectedBet.Bet,
+                ConnectionId = _settingsService.SignalRConnectionId,
+                SubCategoryId = SelectedBet.SubcategoryId,
+            });// TODO: success kontrol et hata oluşursa mesaj çıksın
             if (!isSuccess)
                 await NotStartingDuel();
 
@@ -374,24 +379,13 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelStarting.OpponentFullName != ContestParkResources.AwaitingOpponent && !IsNextQuestionExit)
             {
-                var questionPopupView = new QuestionPopupView
+                var question = new Models.Duel.QuestionModel
                 {
+                    DuelStarting = DuelStarting,
                     DuelCreated = duelCreated,
-                    DuelStarting = new DuelStartingModel
-                    {
-                        FounderProfilePicturePath = DuelStarting.FounderProfilePicturePath,
-                        OpponentProfilePicturePath = DuelStarting.OpponentProfilePicturePath,
-                        DuelId = DuelStarting.DuelId,
-                        FounderCoverPicturePath = DuelStarting.FounderCoverPicturePath,
-                        FounderFullName = DuelStarting.FounderFullName,
-                        FounderUserId = DuelStarting.FounderUserId,
-                        OpponentCoverPicturePath = DuelStarting.OpponentCoverPicturePath,
-                        OpponentFullName = DuelStarting.OpponentFullName,
-                        OpponentUserId = DuelStarting.OpponentUserId,
-                    },
-                    BalanceType = StandbyModeModel.BalanceType,
-                    SubcategoryName = SelectedSubCategory.SubcategoryName,
-                    SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath
+                    BalanceType = SelectedBet.BalanceType,
+                    SubCategoryName = SelectedBet.SubCategoryName,
+                    SubCategoryPicturePath = SelectedBet.SubCategoryPicturePath
                 };
 
                 AudioStop();
@@ -403,9 +397,12 @@ namespace ContestPark.Mobile.ViewModels
                 if (IsExit)
                     return;
 
-                await PushPopupPageAsync(questionPopupView);
+                GotoBackCommand.Execute(null);
 
-                DuelCloseCommand.Execute(null);
+                await PushModalAsync(nameof(QuestionPopupView), new NavigationParameters
+                {
+                    { "Question", question }
+                });
 
                 OffSignalr();
             }
@@ -429,7 +426,7 @@ namespace ContestPark.Mobile.ViewModels
 
             await _duelService.DuelCancel();
 
-            DuelCloseCommand.Execute(null);
+            GotoBackCommand.Execute(null);
         }
 
         /// <summary>
@@ -499,7 +496,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 IsNextQuestionExit = true;
 
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(null);
 
                 if (DuelStarting.DuelId > 0)
                 {
@@ -530,7 +527,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 await _duelService.DuelCancel();
 
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(null);
             });
         }
 
@@ -540,9 +537,20 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand AnimationCommand;
 
-        public ICommand DuelCloseCommand => new Command(async () => await ExecuteDuelCloseCommandAsync());
         private ICommand DuelOpenCommand => new Command(async () => await ExecuteDuelOpenRandomAsync());
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SelectedDuelInfo"))
+                SelectedBet = parameters.GetValue<SelectedBetModel>("SelectedDuelInfo");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

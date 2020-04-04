@@ -55,7 +55,7 @@
                             <FormattedString>
                                 <Span FontSize="16" Text="ContestPark, olarak reklam bütçesi için ayırdığımız paranın bir kısmıyla siz değerli kullanıcılarımıza dağıtmaya karar verdik. " />
                                 <Span FontSize="16" Text="&#x0a;Bu parayı kazanmak için yapmanız gereken aşağıdaki &quot;Paylaş&quot; buttonuna basarak sosyal medyada paylaşmak. " />
-                                <Span FontSize="16" Text="Arkadaşlarınız sizin kullanıcı adınızla üye olmalarını sağlayarak hem siz hemde arkadaşınız para kazanabilirsiniz." />
+                                <Span FontSize="16" Text="Arkadaşlarınızın sizin kullanıcı adınızla üye olmalarını sağlayarak hem siz hemde arkadaşınız para kazanabilirsiniz." />
                                 <Span />
                                 <Span
                                     FontAttributes="Bold"

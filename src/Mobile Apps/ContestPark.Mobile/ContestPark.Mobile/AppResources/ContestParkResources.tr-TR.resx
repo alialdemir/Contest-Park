@@ -153,6 +153,9 @@
   <data name="Beginner" xml:space="preserve">
     <value>Acemi</value>
   </data>
+  <data name="BestSeller" xml:space="preserve">
+    <value>En Çok Satılan</value>
+  </data>
   <data name="Bet" xml:space="preserve">
     <value>Bahis</value>
   </data>
@@ -380,9 +383,6 @@
   </data>
   <data name="invalid_username_or_password" xml:space="preserve">
     <value>Kullanıcı adı veya şifre yanlış.</value>
-  </data>
-  <data name="Invite" xml:space="preserve">
-    <value>Davet Et</value>
   </data>
   <data name="InvitedYouToADuel" xml:space="preserve">
     <value>{0} adlı oyuncu sizi düelloya davet etti.</value>
@@ -726,6 +726,12 @@
   </data>
   <data name="UpdateSuccessful" xml:space="preserve">
     <value>Güncelleme Başarılı!</value>
+  </data>
+  <data name="UploadBalance" xml:space="preserve">
+    <value>Bakiye Yükle</value>
+  </data>
+  <data name="UploadGold" xml:space="preserve">
+    <value>Altın Yükle</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Kullanıcı adı</value>

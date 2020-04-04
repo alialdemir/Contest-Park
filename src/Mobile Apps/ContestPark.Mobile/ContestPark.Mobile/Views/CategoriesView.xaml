@@ -6,15 +6,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
+    Title="{i18n:Translate Categories}"
     Padding="0,8,0,8"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}"
     mc:Ignorable="d">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding Path=BindingContext.InviteCommand, Source={x:Reference categoriesPage}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Share}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
         <ToolbarItem Command="{Binding Path=BindingContext.GotoNotificationsCommand, Source={x:Reference categoriesPage}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{x:Static icons:ContestParkIcon.Notification}" />

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.Duel;
@@ -7,8 +8,8 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
+using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -30,11 +31,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public AcceptDuelInvitationPopupViewModel(IPopupNavigation popupNavigation,
+        public AcceptDuelInvitationPopupViewModel(INavigationService navigationService,
                                                   IEventAggregator eventAggregator,
                                                   ISettingsService settingsService,
                                                   IPageDialogService pageDialogService,
-                                                  IDuelService duelService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
+                                                  IDuelService duelService) : base(navigationService: navigationService, dialogService: pageDialogService)
         {
             _eventAggregator = eventAggregator;
             _settingsService = settingsService;
@@ -88,7 +89,7 @@ namespace ContestPark.Mobile.ViewModels
                    Timer -= 0.100;
 
                    if (Timer <= 0)
-                       ClosePopupCommand.Execute(null);
+                       GotoBackCommand.Execute(true);
 
                    return Timer > 0;
                });
@@ -108,20 +109,22 @@ namespace ContestPark.Mobile.ViewModels
 
             IsExit = true;
 
-            await RemoveFirstPopupAsync();
+            GotoBackCommand.Execute(true);
 
-            await PushPopupPageAsync(new DuelStartingPopupView
+            SelectedBetModel selectedBet = new SelectedBetModel
             {
-                SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
-                {
-                    SubcategoryId = InviteModel.SubCategoryId,
-                    SubcategoryName = InviteModel.SubCategoryName,
-                    SubCategoryPicturePath = InviteModel.SubCategoryPicture,
-                },
+                SubcategoryId = InviteModel.SubCategoryId,
+                SubCategoryPicturePath = InviteModel.SubCategoryPicture,
+                SubCategoryName = InviteModel.SubCategoryName,
+                OpponentUserId = InviteModel.OpponentUserId,
                 Bet = InviteModel.Bet,
-                OpponentUserId = _settingsService.CurrentUser.UserId,
                 BalanceType = InviteModel.BalanceType,
-                StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited
+                StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited,
+            };
+
+            await PushModalAsync(nameof(DuelStartingPopupView), new NavigationParameters
+            {
+                { "SelectedDuelInfo", selectedBet }
             });
 
             bool isSuccess = await _duelService.AcceptInviteDuel(new AcceptInviteDuelModel
@@ -136,7 +139,7 @@ namespace ContestPark.Mobile.ViewModels
             });
             if (!isSuccess)
             {
-                await RemoveFirstPopupAsync();
+                await GoBackAsync();
 
                 bool isBuy = await DisplayAlertAsync(
                     ContestParkResources.NoGold,
@@ -158,9 +161,20 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
         public ICommand AcceptDuelInviteCommand { get { return new Command(async () => await ExecuteAcceptDuelInviteCommand()); } }
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("InviteModel"))
+                InviteModel = parameters.GetValue<InviteModel>("InviteModel");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

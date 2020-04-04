@@ -8,7 +8,6 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -21,7 +20,6 @@ namespace ContestPark.Mobile.Services.Game
         private readonly ICategoryService _categoryServices;
         private readonly IEventAggregator _eventAggregator;
         private readonly IPageDialogService _pageDialogService;
-        private readonly IPopupNavigation _popupNavigation;
         private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
@@ -31,13 +29,11 @@ namespace ContestPark.Mobile.Services.Game
         public GameService(
             IPageDialogService pageDialogService,
             IEventAggregator eventAggregator,
-            IPopupNavigation popupNavigation,
             IAnalyticsService analyticsService,
             ICategoryService categoryServices)
         {
             _pageDialogService = pageDialogService;
             _eventAggregator = eventAggregator;
-            _popupNavigation = popupNavigation;
             _analyticsService = analyticsService;
             _categoryServices = categoryServices;
         }
@@ -109,7 +105,7 @@ namespace ContestPark.Mobile.Services.Game
                                                                                    ContestParkResources.Share);
                 if (string.Equals(selected, ContestParkResources.FindOpponent))
                 {
-                    await OpenBetPopup(selectedSubCategory);
+                    OpenBetPopup(selectedSubCategory);
                 }
                 else if (string.Equals(selected, ContestParkResources.Ranking))
                 {
@@ -121,7 +117,7 @@ namespace ContestPark.Mobile.Services.Game
                 }
                 else if (string.Equals(selected, ContestParkResources.Share))
                 {
-                    SubCategoryShare(selectedSubCategory.SubcategoryName);
+                    SubCategoryShare(selectedSubCategory.SubCategoryName);
                 }
             }
             else
@@ -142,7 +138,7 @@ namespace ContestPark.Mobile.Services.Game
         {
             Share.RequestAsync(new ShareTextRequest
             {
-                Text = "Social competition platform.",
+                Text = "İlgi alanlarınıza göre soru sorarak yarıştırıp, para kazandıran bilgi yarışması. Hemen İndir!",
                 Title = "ContestPark",
                 Uri = "http://indir.contestpark.com",
             });
@@ -205,17 +201,17 @@ namespace ContestPark.Mobile.Services.Game
         /// <summary>
         /// Düello bahis panelini aç
         /// </summary>
-        private async Task OpenBetPopup(SelectedSubCategoryModel selectedSubCategory)
+        private void OpenBetPopup(SelectedSubCategoryModel selectedSubCategory)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            await _popupNavigation.PushAsync(new DuelBettingPopupView()
+            NavigationService?.NavigateAsync(nameof(DuelBettingPopupView), new NavigationParameters
             {
-                SelectedSubCategory = selectedSubCategory
-            });
+                { "SelectedSubCategory", selectedSubCategory }
+            }, useModalNavigation: true);
 
             IsBusy = false;
         }

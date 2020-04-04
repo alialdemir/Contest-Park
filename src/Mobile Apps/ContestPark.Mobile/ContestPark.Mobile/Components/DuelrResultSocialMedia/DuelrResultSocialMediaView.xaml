@@ -1,17 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage x:Class="ContestPark.Mobile.Components.DuelResultSocialMedia.DuelResultSocialMediaView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-             xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-             BackgroundColor="Black"
-             NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content>
-        <Grid x:Name="gridPage"
-              ColumnSpacing="0"
-              RowSpacing="0"
-              VerticalOptions="CenterAndExpand">
+<pages:PopupPage
+    x:Class="ContestPark.Mobile.Components.DuelResultSocialMedia.DuelResultSocialMediaView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="False">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <converter:DoubleCoinsDuelResultConverter x:Key="dcdrc" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Content>
+        <Grid
+            x:Name="gridPage"
+            ColumnSpacing="0"
+            HorizontalOptions="Center"
+            RowSpacing="0"
+            VerticalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70" />
                 <RowDefinition Height="20" />
@@ -33,168 +42,174 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label x:Name="WinnerOrLoseText1"
-                   Grid.Row="0"
-                   Grid.ColumnSpan="5"
-                   FontAttributes="Bold"
-                   FontSize="Medium"
-                   HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource White}"
-                   VerticalTextAlignment="End" />
+            <Label
+                x:Name="WinnerOrLoseText1"
+                Grid.Row="0"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"
+                TextColor="{StaticResource White}"
+                VerticalTextAlignment="End" />
 
-            <Label x:Name="WinnerOrLoseText2"
-                   Grid.Row="1"
-                   Grid.ColumnSpan="5"
-                   FontAttributes="Bold"
-                   FontSize="Small"
-                   HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource Gray}" />
+            <Label
+                x:Name="WinnerOrLoseText2"
+                Grid.Row="1"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalTextAlignment="Center"
+                TextColor="{StaticResource Gray}" />
 
-            <Label x:Name="WinnerOrLoseText3"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="5"
-                   FontAttributes="Bold"
-                   FontSize="40"
-                   HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource Green}" />
+            <Label
+                x:Name="WinnerOrLoseText3"
+                Grid.Row="2"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                TextColor="{StaticResource Green}" />
 
-            <StackLayout Grid.Row="3"
-                         Grid.ColumnSpan="5"
-                         HorizontalOptions="CenterAndExpand"
-                         Orientation="Horizontal"
-                         Spacing="0">
-
-                <iconize:IconButton BackgroundColor="Transparent"
-                                    FontSize="18"
-                                    Text="far-gem"
-                                    TextColor="{StaticResource Primary}"
-                                    VerticalOptions="Center" />
-
-                <Label x:Name="Gold"
-                       FontAttributes="Bold"
-                       FontSize="14"
-                       HorizontalOptions="Start"
-                       HorizontalTextAlignment="Start"
-                       TextColor="{StaticResource Primary}"
-                       VerticalOptions="Center"
-                       VerticalTextAlignment="Center" />
-            </StackLayout>
+            <components:DobleCoinsView
+                x:Name="doubleCoins"
+                Grid.Row="3"
+                Grid.ColumnSpan="5"
+                CoinSize="Small"
+                Coins="{Binding Path=IsShowFireworks, Converter={StaticResource dcdrc}}"
+                HorizontalOptions="Center" />
 
             <!--  Founder image  -->
-            <components:CircleImage x:Name="FounderImage"
-                                    Grid.Row="4"
-                                    Grid.Column="1"
-                                    HeightRequest="100"
-                                    WidthRequest="100" />
-            <Label Grid.Row="4"
-                   Grid.Column="2"
-                   FontAttributes="Bold"
-                   FontSize="Large"
-                   HorizontalTextAlignment="Center"
-                   Text="VS"
-                   TextColor="{StaticResource White}"
-                   VerticalTextAlignment="Center" />
+            <components:CircleImage
+                x:Name="FounderImage"
+                Grid.Row="4"
+                Grid.Column="1"
+                HeightRequest="100"
+                WidthRequest="100" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="2"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="VS"
+                TextColor="{StaticResource White}"
+                VerticalTextAlignment="Center" />
 
             <!--  Opponent image  -->
-            <components:CircleImage x:Name="OpponentImage"
-                                    Grid.Row="4"
-                                    Grid.Column="3"
-                                    HeightRequest="100"
-                                    WidthRequest="100" />
+            <components:CircleImage
+                x:Name="OpponentImage"
+                Grid.Row="4"
+                Grid.Column="3"
+                HeightRequest="100"
+                WidthRequest="100" />
 
-            <Label x:Name="FounderScore"
-                   Grid.Row="5"
-                   Grid.Column="1"
-                   FontAttributes="Bold"
-                   FontSize="40"
-                   HorizontalTextAlignment="End"
-                   TextColor="{StaticResource Green}" />
+            <Label
+                x:Name="FounderScore"
+                Grid.Row="5"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalTextAlignment="End"
+                TextColor="{StaticResource Green}" />
 
-            <Image x:Name="SubCategoryPicturePath"
-                   Grid.Row="5"
-                   Grid.Column="2"
-                   HeightRequest="70"
-                   WidthRequest="70" />
+            <Image
+                x:Name="SubCategoryPicturePath"
+                Grid.Row="5"
+                Grid.Column="2"
+                HeightRequest="70"
+                WidthRequest="70" />
 
-            <Label x:Name="OpponentScore"
-                   Grid.Row="5"
-                   Grid.Column="3"
-                   FontAttributes="Bold"
-                   FontSize="40"
-                   HorizontalTextAlignment="Start"
-                   TextColor="{StaticResource Red}" />
+            <Label
+                x:Name="OpponentScore"
+                Grid.Row="5"
+                Grid.Column="3"
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalTextAlignment="Start"
+                TextColor="{StaticResource Red}" />
 
-            <Label x:Name="FounderFullName"
-                   Grid.Row="6"
-                   Grid.Column="1"
-                   FontAttributes="Bold"
-                   FontSize="Small"
-                   HorizontalTextAlignment="End" />
+            <Label
+                x:Name="FounderFullName"
+                Grid.Row="6"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalTextAlignment="End" />
 
-            <Label x:Name="OpponentFullName"
-                   Grid.Row="6"
-                   Grid.Column="3"
-                   FontAttributes="Bold"
-                   FontSize="Small"
-                   HorizontalTextAlignment="Start" />
+            <Label
+                x:Name="OpponentFullName"
+                Grid.Row="6"
+                Grid.Column="3"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalTextAlignment="Start" />
 
-            <Label Grid.Row="7"
-                   Grid.ColumnSpan="5"
-                   FontAttributes="Bold"
-                   FontSize="Medium"
-                   HorizontalTextAlignment="Center"
-                   Text="{i18n:Translate Playing}"
-                   TextColor="{StaticResource Gray}" />
+            <Label
+                Grid.Row="7"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"
+                Text="{i18n:Translate Playing}"
+                TextColor="{StaticResource Gray}" />
 
-            <Label x:Name="SubCategoryName"
-                   Grid.Row="8"
-                   Grid.ColumnSpan="5"
-                   FontAttributes="Bold"
-                   FontSize="30"
-                   HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource White}" />
+            <Label
+                x:Name="SubCategoryName"
+                Grid.Row="8"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                TextColor="{StaticResource White}" />
 
-            <Label x:Name="Date"
-                   Grid.Row="9"
-                   Grid.ColumnSpan="5"
-                   FontAttributes="Bold"
-                   FontSize="Small"
-                   HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource Gray}" />
+            <Label
+                x:Name="Date"
+                Grid.Row="9"
+                Grid.ColumnSpan="5"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalTextAlignment="Center"
+                TextColor="{StaticResource Gray}" />
 
-            <Grid Grid.Row="10"
-                  Grid.ColumnSpan="5"
-                  Margin="20,0,20,0"
-                  ColumnSpacing="0"
-                  RowSpacing="0">
+            <Grid
+                Grid.Row="10"
+                Grid.ColumnSpan="5"
+                Margin="20,0,20,0"
+                ColumnSpacing="0"
+                RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="200" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0"
-                       Grid.Column="0"
-                       HeightRequest="40"
-                       Source="assets/images/logo.png"
-                       WidthRequest="40" />
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="40"
+                    HorizontalOptions="End"
+                    Source="logo.png"
+                    WidthRequest="40" />
 
-                <Label Grid.Row="0"
-                       Grid.Column="1"
-                       FontAttributes="Bold"
-                       FontSize="Medium"
-                       HorizontalTextAlignment="Start"
-                       Text="ContestPark"
-                       TextColor="{StaticResource White}"
-                       VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Start"
+                    Text="ContestPark"
+                    TextColor="{StaticResource White}"
+                    VerticalTextAlignment="Center" />
 
-                <Image Grid.Row="0"
-                       Grid.Column="2"
-                       Source="assets/images/appstoreandgoogleplay.png" />
+                <Image
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Source="appstoreandgoogleplay.png" />
             </Grid>
         </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

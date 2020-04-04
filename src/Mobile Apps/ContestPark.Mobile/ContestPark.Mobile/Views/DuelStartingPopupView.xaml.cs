@@ -1,10 +1,7 @@
-﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Models.Duel;
-using ContestPark.Mobile.ViewModels;
+﻿using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static ContestPark.Mobile.ViewModels.DuelStartingPopupViewModel;
 
 namespace ContestPark.Mobile.Views
 {
@@ -20,43 +17,22 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
-        #region Properties
-
-        public decimal Bet { get; set; }
-        public string OpponentUserId { get; set; }
-        public BalanceTypes BalanceType { get; set; }
-        public SelectedSubCategoryModel SelectedSubCategory { get; set; }
-        public StandbyModes StandbyMode { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            var viewModel = ((DuelStartingPopupViewModel)BindingContext);
 
+            var viewModel = ((DuelStartingPopupViewModel)BindingContext);
             if (viewModel == null || viewModel.IsInitialized)
                 return;
 
-            viewModel.StandbyModeModel.SubCategoryId = viewModel.SelectedSubCategory.SubcategoryId = SelectedSubCategory.SubcategoryId;
-            viewModel.StandbyModeModel.Bet = Bet;
-            viewModel.StandbyModeModel.BalanceType = BalanceType;
-            viewModel.SelectedSubCategory.SubcategoryName = SelectedSubCategory.SubcategoryName;
-            viewModel.SelectedSubCategory.SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath;
-
-            viewModel.StandbyMode = StandbyMode;
-            viewModel.OpponentUserId = OpponentUserId;
-
-            viewModel.InitializeCommand.Execute(null);
             viewModel.AnimationCommand = new Command(Animate);
-            viewModel.IsInitialized = true;
         }
 
         protected override bool OnBackButtonPressed()
         {
-            ((DuelStartingPopupViewModel)BindingContext).DuelCloseCommand.Execute(null);
+            ((DuelStartingPopupViewModel)BindingContext).GotoBackCommand.Execute(null);
             return true;
         }
 

@@ -20,7 +20,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public InviteViewModel(ISettingsService settingsService)
         {
-            Title = ContestParkResources.Invite;
+            Title = ContestParkResources.InviteSaveMoney;
 
             _settingsService = settingsService;
         }

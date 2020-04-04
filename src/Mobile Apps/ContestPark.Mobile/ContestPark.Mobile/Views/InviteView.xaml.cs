@@ -11,7 +11,7 @@ namespace ContestPark.Mobile.Views
         public InviteView()
         {
             InitializeComponent();
-            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = ImageSource.FromFile("menuicon.png") });
+            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
         #endregion Constructor

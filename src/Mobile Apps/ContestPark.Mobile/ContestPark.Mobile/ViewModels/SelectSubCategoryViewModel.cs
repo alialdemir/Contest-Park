@@ -1,9 +1,10 @@
 ﻿using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
-using Rg.Plugins.Popup.Contracts;
+using Prism.Navigation;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,7 +22,10 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public SelectSubCategoryViewModel(ICategoryService categoryService, IGameService gameService, IPopupNavigation popupNavigation) : base(popupNavigation: popupNavigation)
+        public SelectSubCategoryViewModel(ICategoryService categoryService,
+                                          IGameService gameService,
+
+                                          INavigationService navigationService) : base(navigationService: navigationService)
         {
             _categoryService = categoryService;
             _gameService = gameService;
@@ -66,16 +70,18 @@ namespace ContestPark.Mobile.ViewModels
 
             if (subCategory.IsCategoryOpen)
             {
-                PushPopupPageAsync(new DuelBettingPopupView()
+                var selectedSubCategory = new SelectedSubCategoryModel
                 {
-                    SelectedSubCategory = new Models.Duel.SelectedSubCategoryModel
-                    {
-                        SubcategoryId = subCategory.SubCategoryId,
-                        SubcategoryName = subCategory.SubCategoryName,
-                        SubCategoryPicturePath = subCategory.PicturePath,
-                    },
-                    OpponentUserId = OpponentUserId,
-                });
+                    SubcategoryId = subCategory.SubCategoryId,
+                    SubCategoryName = subCategory.SubCategoryName,
+                    SubCategoryPicturePath = subCategory.PicturePath,
+                    OpponentUserId = OpponentUserId
+                };
+
+                PushModalAsync(nameof(DuelBettingPopupView), new NavigationParameters
+                        {
+                            { "SelectedSubCategory", selectedSubCategory },
+                        });
             }
             else
             {

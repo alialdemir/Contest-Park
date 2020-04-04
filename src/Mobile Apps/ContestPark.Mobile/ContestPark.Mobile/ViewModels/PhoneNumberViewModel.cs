@@ -4,6 +4,7 @@ using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
@@ -26,8 +27,10 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public PhoneNumberViewModel(IPopupNavigation popupNavigation,
+                                    INavigationService navigationService,
                                     ISettingsService settingsService,
-                                    IPageDialogService dialogService) : base(dialogService: dialogService,
+                                    IPageDialogService dialogService) : base(navigationService: navigationService,
+                                                                             dialogService: dialogService,
                                                                              popupNavigation: popupNavigation)
         {
             this._settingsService = settingsService;
@@ -90,7 +93,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             if (!_settingsService.IsTutorialDisplayed && Device.RuntimePlatform == Device.Android)
             {
-                PushPopupPageAsync(new TutorialPopupView());
+                PushModalAsync(nameof(TutorialPopupView));
 
                 _settingsService.IsTutorialDisplayed = true;
             }

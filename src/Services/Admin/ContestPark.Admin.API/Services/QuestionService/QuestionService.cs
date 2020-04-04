@@ -260,7 +260,10 @@ namespace ContestPark.Admin.API.Services.QuestionService
 
             _translates.Add(text, translateText);
 
-            return translateText;
+            return translateText
+                .Replace("&Quot;", "\"")
+                .Replace("&quot;", "\"")
+                .Replace("&#39;", "'");
         }
 
         #endregion Methods

@@ -107,14 +107,16 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushPopupPageAsync(new DuelBettingPopupView()
+            var selectedSubCategory = new SelectedSubCategoryModel
             {
-                SelectedSubCategory = new SelectedSubCategoryModel
-                {
-                    SubcategoryId = _subCategoryId,
-                    SubcategoryName = CategoryDetail.SubCategoryName,
-                    SubCategoryPicturePath = CategoryDetail.PicturePath,
-                }
+                SubcategoryId = _subCategoryId,
+                SubCategoryName = CategoryDetail.SubCategoryName,
+                SubCategoryPicturePath = CategoryDetail.PicturePath,
+            };
+
+            PushModalAsync(nameof(DuelBettingPopupView), new NavigationParameters
+            {
+                { "SelectedSubCategory", selectedSubCategory }
             });
 
             _analyticsService.SendEvent("Kategori Detay", "Rakip Bul", CategoryDetail.SubCategoryName);
@@ -250,6 +252,8 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command<bool>(async (isForceCache) =>
                 {
+                    ServiceModel.PageSize = 3;
+
                     ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel, isForceCache: isForceCache);
 
                     await base.InitializeAsync();

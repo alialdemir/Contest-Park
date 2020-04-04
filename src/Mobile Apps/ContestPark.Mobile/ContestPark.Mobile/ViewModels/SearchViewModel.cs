@@ -159,7 +159,7 @@ namespace ContestPark.Mobile.ViewModels
                 _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
                 {
                     SubcategoryId = selectedModel.SubCategoryId,
-                    SubcategoryName = selectedModel.CategoryName,
+                    SubCategoryName = selectedModel.CategoryName,
                     SubCategoryPicturePath = selectedModel.PicturePath
                 }, selectedModel.IsCategoryOpen);
             }

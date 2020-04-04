@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -43,5 +44,23 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Properties
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SubcategoryName"))
+                SubcategoryName = parameters.GetValue<string>("SubcategoryName");
+
+            if (parameters.ContainsKey("SubCategoryPicturePath"))
+                SubCategoryPicturePath = parameters.GetValue<string>("SubCategoryPicturePath");
+
+            if (parameters.ContainsKey("RoundCount"))
+                RoundCount = parameters.GetValue<byte>("RoundCount");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

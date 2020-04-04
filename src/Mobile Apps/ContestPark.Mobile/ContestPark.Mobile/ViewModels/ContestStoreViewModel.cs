@@ -58,7 +58,19 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public BalanceTypes BalanceType { get; set; } = BalanceTypes.Money;
+        private BalanceTypes _balanceType = BalanceTypes.Money;
+
+        public BalanceTypes BalanceType
+        {
+            get { return _balanceType; }
+            set
+            {
+                _balanceType = value;
+
+                RaisePropertyChanged(() => BalanceType);
+            }
+        }
+
         public List<InAppBillingProductModel> Products { get; set; }
 
         #endregion Properties

@@ -42,6 +42,11 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
                 endColor
             };
 
+            if (stack.IsUpperCase)
+            {
+                this.Element.Text = stack.Text.ToUpper();
+            }
+
             NativeView.Layer.InsertSublayer(gradientLayer, 0);
         }
     }

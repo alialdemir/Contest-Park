@@ -27,5 +27,17 @@ namespace ContestPark.Mobile.Components
             get { return (Color)GetValue(EndColorProperty); }
             set { SetValue(EndColorProperty, value); }
         }
+
+        public static readonly BindableProperty IsUpperCaseProperty = BindableProperty.Create(nameof(IsUpperCase),
+                                                                                           typeof(bool),
+                                                                                           typeof(LinearGradientButton),
+                                                                                           defaultValue: false);
+
+        // Gets or sets IsUpperCase value
+        public bool IsUpperCase
+        {
+            get { return (bool)GetValue(IsUpperCaseProperty); }
+            set { SetValue(IsUpperCaseProperty, value); }
+        }
     }
 }

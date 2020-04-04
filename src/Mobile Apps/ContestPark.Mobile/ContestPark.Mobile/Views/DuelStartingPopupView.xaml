@@ -6,7 +6,7 @@
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    Padding="0"
+    Padding="0,0,0,-80"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource Black}">
     <pages:PopupPage.Content>
@@ -174,7 +174,7 @@
                 VerticalOptions="Center">
 
                 <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding DuelCloseCommand}" />
+                    <TapGestureRecognizer Command="{Binding GotoBackCommand}" />
                 </Image.GestureRecognizers>
             </Image>
 

@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using FFImageLoading.Transformations;
+using Rg.Plugins.Popup.Pages;
 using System;
 using Xamarin.Forms;
 
@@ -10,7 +11,7 @@ namespace ContestPark.Mobile.Components.DuelResultSocialMedia
     /// <summary>
     /// Sadece sosyal medyada resim paylaşmaK için yazıldı her hangi biryerde kullanmayınız
     /// </summary>
-    public partial class DuelResultSocialMediaView : ContentPage
+    public partial class DuelResultSocialMediaView : PopupPage
     {
         #region Constructor
 
@@ -43,7 +44,9 @@ namespace ContestPark.Mobile.Components.DuelResultSocialMedia
                     FounderImage.Transformations.Add(new CircleTransformation(20, viewModel.FounderColor));
                     OpponentImage.Transformations.Add(new CircleTransformation(20, viewModel.OpponentColor));
 
-                    Gold.Text = viewModel.Gold.ToString("##,#").Replace(",", ".");
+                    //Gold.Text = viewModel.Gold.ToString("##,#").Replace(",", ".");
+                    doubleCoins.BalanceType = viewModel.BalanceType;
+                    doubleCoins.DisplayCoins = viewModel.Gold.ToString("##,#").Replace(",", ".");
 
                     WinnerOrLoseText2.Text = ContestParkResources.Was;
                     WinnerOrLoseText3.Text = ContestParkResources.Victorious;

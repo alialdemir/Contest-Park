@@ -15,7 +15,6 @@ using MvvmHelpers;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,8 +43,7 @@ namespace ContestPark.Mobile.ViewModels
                                          IBalanceService cpService,
                                          IAdMobService adMobService,
                                          IPageDialogService pageDialogService,
-                                         IAnalyticsService analyticsService,
-                                         IPopupNavigation popupNavigation) : base(navigationService, pageDialogService, popupNavigation)
+                                         IAnalyticsService analyticsService) : base(navigationService: navigationService, dialogService: pageDialogService)
         {
             _eventAggregator = eventAggregator;
             _settingsService = settingsService;
@@ -58,22 +56,25 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Düello davetleri penceresi gelsin mi
+        /// </summary>
+
         private int _selectedIndex = 0;
-        private BalanceTypes balanceType = BalanceTypes.Gold;
+        private BalanceTypes _balanceType = BalanceTypes.Gold;
 
         public BalanceTypes BalanceType
         {
-            get { return balanceType; }
+            get { return _balanceType; }
             set
             {
-                balanceType = value;
+                _balanceType = value;
 
                 RaisePropertyChanged(() => BalanceType);
             }
         }
 
         public ObservableRangeCollection<BetModel> Bets { get; set; } = new ObservableRangeCollection<BetModel>();
-        public string OpponentUserId { get; set; }
 
         public int SelectedIndex
         {
@@ -400,16 +401,23 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="bet">Bahis miktarı</param>
         private void PushDuelStartingPopupPageAsync(decimal bet)
         {
-            PushPopupPageAsync(new DuelStartingPopupView()
-            {
-                SelectedSubCategory = SelectedSubCategory,
-                Bet = bet,
-                OpponentUserId = OpponentUserId,
-                BalanceType = BalanceType,
-                StandbyMode = string.IsNullOrEmpty(OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
-            });
+            GotoBackCommand.Execute(null);
 
-            ClosePopupCommand.Execute(null);
+            SelectedBetModel selectedBet = new SelectedBetModel
+            {
+                SubcategoryId = SelectedSubCategory.SubcategoryId,
+                SubCategoryPicturePath = SelectedSubCategory.SubCategoryPicturePath,
+                SubCategoryName = SelectedSubCategory.SubCategoryName,
+                OpponentUserId = SelectedSubCategory.OpponentUserId,
+                Bet = bet,
+                BalanceType = _balanceType,
+                StandbyMode = string.IsNullOrEmpty(SelectedSubCategory.OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
+            };
+
+            PushModalAsync(nameof(DuelStartingPopupView), new NavigationParameters
+            {
+                { "SelectedDuelInfo", selectedBet }
+            });
         }
 
         /// <summary>
@@ -429,7 +437,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (isBuy)
             {
-                await RemoveFirstPopupAsync();
+                GotoBackCommand.Execute(null);
 
                 _analyticsService.SendEvent("Düello", "Oyna", "Contest store");
 
@@ -442,8 +450,6 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
-
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
 
         public ICommand DuelStartCommand => new Command<BetModel>(async (bet) => await ExecuteDuelStartCommandAsync(bet));
 
@@ -470,5 +476,17 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SelectedSubCategory"))
+                SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

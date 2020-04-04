@@ -169,6 +169,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Best seller.
+        /// </summary>
+        public static string BestSeller {
+            get {
+                return ResourceManager.GetString("BestSeller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet.
         /// </summary>
         public static string Bet {
@@ -841,15 +850,6 @@ namespace ContestPark.Mobile.AppResources {
         public static string InvalidProductId {
             get {
                 return ResourceManager.GetString("InvalidProductId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invite.
-        /// </summary>
-        public static string Invite {
-            get {
-                return ResourceManager.GetString("Invite", resourceCulture);
             }
         }
         
@@ -1867,6 +1867,24 @@ namespace ContestPark.Mobile.AppResources {
         public static string UpdateSuccessful {
             get {
                 return ResourceManager.GetString("UpdateSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Balance.
+        /// </summary>
+        public static string UploadBalance {
+            get {
+                return ResourceManager.GetString("UploadBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Gold.
+        /// </summary>
+        public static string UploadGold {
+            get {
+                return ResourceManager.GetString("UploadGold", resourceCulture);
             }
         }
         

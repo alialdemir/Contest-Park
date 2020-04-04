@@ -56,33 +56,17 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private int DuelId { get; set; }
         private int QuestionId { get; set; }
 
-        private UserAnswerModel _currentRound;
-
         private UserAnswerModel CurrentRound
         {
             get
             {
-                if (_currentRound == null)
-                    _currentRound = UserAnswers.FirstOrDefault(x => x.QuestionId == QuestionId);
-
-                return _currentRound;
+                return UserAnswers.FirstOrDefault(x => x.QuestionId == QuestionId);
             }
         }
 
         private byte Round { get; set; }
 
-        private List<UserAnswerModel> _userAnswers;
-
-        private List<UserAnswerModel> UserAnswers
-        {
-            get
-            {
-                if (_userAnswers == null)
-                    _userAnswers = _userAnswerRepository.GetAnswers(DuelId);
-
-                return _userAnswers;
-            }
-        }
+        private List<UserAnswerModel> UserAnswers { get; set; }
 
         private byte FounderTotalScore
         {
@@ -138,18 +122,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
         }
 
-        private bool? _winStatus;
-
-        private bool WinStatus
-        {
-            get
-            {
-                if (!_winStatus.HasValue)
-                    _winStatus = _duelRepository.WinStatus(RealUserId);
-
-                return _winStatus.Value;
-            }
-        }
+        private bool WinStatus { get; set; }
 
         private int RandomScore
         {
@@ -180,6 +153,25 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             DuelId = @event.DuelId;
             QuestionId = @event.QuestionId;
+
+            UserAnswers = _userAnswerRepository.GetAnswers(DuelId);
+
+            WinStatus = _duelRepository.WinStatus(RealUserId);
+
+            _logger.LogInformation("Properties logger..",
+                                   DuelId,
+                                   QuestionId,
+                                   CurrentRound,
+                                   Round,
+                                   UserAnswers,
+                                   FounderTotalScore,
+                                   OpponentTotalScore,
+                                   IsFounderBot,
+                                   IsOpponentBot,
+                                   RealUserId,
+                                   BotUserId,
+                                   WinStatus,
+                                   RandomScore);
 
             if (UserAnswers == null || UserAnswers.Count == 0)
             {

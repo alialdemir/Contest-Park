@@ -21,12 +21,12 @@
                 Padding="0,50,0,0"
                 BackgroundColor="Transparent"
                 BorderRadius="48"
-                Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference acceptDuelInvitationPopupView}}"
-                CommandParameter="2"
+                Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference acceptDuelInvitationPopupView}}"
                 EndColor="#D03548"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource GothamRoundedBold}"
                 FontSize="23"
+                IsUpperCase="True"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                        Property=Height,
                                                                        Factor=.2,
@@ -131,7 +131,7 @@
                         HorizontalOptions="End"
                         VerticalOptions="Start">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference acceptDuelInvitationPopupView}}" />
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference acceptDuelInvitationPopupView}}" />
                         </Image.GestureRecognizers>
                         <Image.Source>
                             <FontImageSource

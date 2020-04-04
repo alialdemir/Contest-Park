@@ -1,4 +1,6 @@
-﻿namespace ContestPark.Mobile.Models.Duel.DuelResultSocialMedia
+﻿using ContestPark.Mobile.Enums;
+
+namespace ContestPark.Mobile.Models.Duel.DuelResultSocialMedia
 {
     public class DuelResultSocialMediaModel
     {
@@ -14,5 +16,7 @@
         public byte OpponentScore { get; set; }
         public string SubCategoryName { get; set; }
         public string SubCategoryPicturePath { get; set; }
+        public BalanceTypes BalanceType { get; set; }
+        public bool IsShowFireworks { get; set; }
     }
 }

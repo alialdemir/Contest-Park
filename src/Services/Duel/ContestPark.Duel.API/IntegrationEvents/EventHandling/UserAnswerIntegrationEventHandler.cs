@@ -51,12 +51,118 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         #endregion Constructor
 
+        #region Properties
+
+        private int DuelId { get; set; }
+        private int QuestionId { get; set; }
+
+        private UserAnswerModel CurrentRound
+        {
+            get
+            {
+                return UserAnswers.FirstOrDefault(x => x.QuestionId == QuestionId);
+            }
+        }
+
+        /// <summary>
+        /// Kaçıncı raounda oldukları
+        /// </summary>
+        private int Round { get; set; }
+
+        /// <summary>
+        /// Oyuncuların cevapları
+        /// </summary>
+        private List<UserAnswerModel> UserAnswers { get; set; }
+
+        /// <summary>
+        /// Kurucu toplam skor
+        /// </summary>
+        private byte FounderTotalScore
+        {
+            get
+            {
+                return (byte)UserAnswers.Sum(x => x.FounderScore);
+            }
+        }
+
+        /// <summary>
+        /// Rakip toplam skor
+        /// </summary>
+        private byte OpponentTotalScore
+        {
+            get
+            {
+                return (byte)UserAnswers.Sum(x => x.OpponentScore);
+            }
+        }
+
+        /// <summary>
+        /// Kurucu kullanıcı id içinde -bot geçiyorsa true geçmiyorsa false
+        /// </summary>
+        private bool IsFounderBot
+        {
+            get
+            {
+                return CurrentRound.FounderUserId.EndsWith("-bot");
+            }
+        }
+
+        /// <summary>
+        /// Rakip kullanıcı id içinde -bot geçiyorsa true geçmiyorsa false
+        /// </summary>
+        private bool IsOpponentBot
+        {
+            get
+            {
+                return CurrentRound.OpponentUserId.EndsWith("-bot");
+            }
+        }
+
+        /// <summary>
+        /// Bot olmayan kullanıcının user id
+        /// </summary>
+        private string RealUserId
+        {
+            get
+            {
+                return IsFounderBot ? CurrentRound.OpponentUserId : CurrentRound.FounderUserId;
+            }
+        }
+
+        /// <summary>
+        /// Bot kullanıcın id'si
+        /// </summary>
+        private string BotUserId
+        {
+            get
+            {
+                return IsFounderBot ? CurrentRound.FounderUserId : CurrentRound.OpponentUserId;
+            }
+        }
+
+        /// <summary>
+        /// Kazanma Kaybetme durumu
+        /// </summary>
+        private bool WinStatus { get; set; }
+
+        /// <summary>
+        /// Random skor verir
+        /// </summary>
+        private int RandomScore
+        {
+            get
+            {
+                return new Random().Next(5, 10);
+            }
+        }
+
+        #endregion Properties
+
         #region Methods
 
         /// <summary>
         /// Kullanıcının verdiği cevap doğru mu kontrol eder puanlayıp redise yazar
         /// iki kullanıcıda soruyu cevapladıysa ikisinede cevapları gönderir
-        ///
         /// </summary>
         public async Task Handle(UserAnswerIntegrationEvent @event)
         {
@@ -69,336 +175,314 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 @event.BalanceType,
                 @event.Time);
 
-            List<UserAnswerModel> userAnswers = _userAnswerRepository.GetAnswers(@event.DuelId);
-            if (userAnswers == null || userAnswers.Count == 0)
+            DuelId = @event.DuelId;
+            QuestionId = @event.QuestionId;
+
+            UserAnswers = _userAnswerRepository.GetAnswers(DuelId);
+
+            WinStatus = _duelRepository.WinStatus(RealUserId);
+
+            _logger.LogInformation("Properties logger..",
+                                   DuelId,
+                                   QuestionId,
+                                   CurrentRound,
+                                   Round,
+                                   UserAnswers,
+                                   FounderTotalScore,
+                                   OpponentTotalScore,
+                                   IsFounderBot,
+                                   IsOpponentBot,
+                                   RealUserId,
+                                   BotUserId,
+                                   WinStatus,
+                                   RandomScore);
+
+            if (UserAnswers == null || UserAnswers.Count == 0)
             {
                 _logger.LogWarning("Düello cevapları rediste bulunamadı...");
                 return;
             }
 
-            UserAnswerModel currentRound = userAnswers.FirstOrDefault(x => x.QuestionId == @event.QuestionId);
-            if (currentRound == null)
+            if (CurrentRound == null)
             {
                 _logger.LogError("Round soru bilgisi boş geldi. {QuestionId}", @event.QuestionId);
                 // TODO: Düelloda hata oluştu iptal et paraları geri ver
                 return;
             }
 
-            if (!(currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.FounderAnswer == Stylish.UnableToReply)
-                && !(currentRound.OpponentAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.UnableToReply))
+            if (!(CurrentRound.FounderAnswer == Stylish.NotSeeQuestion || CurrentRound.FounderAnswer == Stylish.UnableToReply)
+                && !(CurrentRound.OpponentAnswer == Stylish.NotSeeQuestion || CurrentRound.OpponentAnswer == Stylish.UnableToReply))
                 return;
 
-            int round = userAnswers.FindIndex(x => x.QuestionId == @event.QuestionId) + 1;// Question id'ye ait index bulukduğu roundu verir
+            Round = UserAnswers.FindIndex(x => x.QuestionId == @event.QuestionId) + 1;// Question id'ye ait index bulukduğu roundu verir
 
-            bool isFounder = @event.UserId == currentRound.FounderUserId;
+            bool isFounder = @event.UserId == CurrentRound.FounderUserId;
 
-            bool isCorrectAnswer = currentRound.CorrectAnswer == @event.Stylish;
+            bool isCorrectAnswer = CurrentRound.CorrectAnswer == @event.Stylish;
 
-            byte score = isCorrectAnswer ? _scoreCalculator.Calculator(round, @event.Time) : (byte)0;
+            byte score = isCorrectAnswer ? _scoreCalculator.Calculator(Round, @event.Time) : (byte)0;
 
             if (isFounder)//  Kurucu ise kurucuya puan verildi
             {
-                currentRound.FounderAnswer = @event.Stylish;
-                currentRound.FounderTime = @event.Time;
-                currentRound.FounderScore = score;
+                CurrentRound.FounderAnswer = @event.Stylish;
+                CurrentRound.FounderTime = @event.Time;
+                CurrentRound.FounderScore = score;
             }
             else// Rakip ise rakibe puan verildi
             {
-                currentRound.OpponentAnswer = @event.Stylish;
-                currentRound.OpponentTime = @event.Time;
-                currentRound.OpponentScore = score;
+                CurrentRound.OpponentAnswer = @event.Stylish;
+                CurrentRound.OpponentTime = @event.Time;
+                CurrentRound.OpponentScore = score;
             }
 
-            #region Kazanma ayarları
+            #region Oyun ayarları
 
-            #region Cevaplama
-
-            bool isFounderBot = currentRound.FounderUserId.EndsWith("-bot");
-            bool isOpponentBot = currentRound.OpponentUserId.EndsWith("-bot");
-
-            if (isFounderBot || isOpponentBot)// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
+            if (CurrentRound.FounderUserId.EndsWith("-bot") || CurrentRound.OpponentUserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
-                int rndScore = new Random().Next(5, 10);
-
-                if (isFounderBot)
-                {
-                    currentRound.FounderTime = (byte)rndScore;
-
-                    if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
-                        currentRound.FounderTime = 10;
-
-                    currentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
-                    currentRound.FounderScore = currentRound.CorrectAnswer == currentRound.FounderAnswer ? _scoreCalculator.Calculator(round, currentRound.FounderTime) : (byte)0;
-
-                    int diff = @event.Time - currentRound.FounderTime;
-                    if (diff > 0 && currentRound.FounderAnswer != currentRound.CorrectAnswer)
-                        await Task.Delay(diff * 1000);
-                }
-                else if (isOpponentBot)
-                {
-                    currentRound.OpponentTime = (byte)rndScore;
-
-                    if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
-                        currentRound.OpponentTime = 10;
-
-                    currentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
-                    currentRound.OpponentScore = currentRound.CorrectAnswer == currentRound.OpponentAnswer ? _scoreCalculator.Calculator(round, currentRound.OpponentTime) : (byte)0;
-
-                    int diff = @event.Time - currentRound.OpponentTime;
-                    if (diff > 0 && currentRound.OpponentAnswer != currentRound.CorrectAnswer)
-                        await Task.Delay(diff * 1000);
-                }
-
-                byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
-                byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
-
-                string realUserId = isFounderBot ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
-                string botUserId = isFounderBot ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
-
-                bool winStatus = _duelRepository.WinStatus(realUserId);
-
-                if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
-                {
-                    currentRound.FounderTime = (byte)rndScore;
-
-                    if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
-                        currentRound.FounderTime = 10;
-
-                    currentRound.FounderScore = _scoreCalculator.Calculator(round, currentRound.FounderTime);
-                    currentRound.FounderAnswer = currentRound.CorrectAnswer;
-
-                    _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                }
-                else if (botUserId == currentRound.OpponentUserId && (opponentTotalScore == 0 || founderTotalScore > opponentTotalScore))
-                {
-                    currentRound.OpponentTime = (byte)rndScore;
-
-                    if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
-                        currentRound.OpponentTime = 10;
-
-                    currentRound.OpponentScore = _scoreCalculator.Calculator(round, currentRound.OpponentTime);
-                    currentRound.OpponentAnswer = currentRound.CorrectAnswer;
-
-                    _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                }
-
-                #endregion Cevaplama
-
-                #region Altın
+                await Answer(@event.Time);
 
                 if (@event.BalanceType == BalanceTypes.Gold)
-                {
-                    BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Gold);// bot olmayan kullanıcının para miktarını aldık
-
-                    _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
-
-                    decimal maxGold = 1000.00m;
-
-                    bool withdrawalStatus = balance.Amount <= maxGold;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
-
-                    if (winStatus && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
-                    {
-                        currentRound.FounderTime = currentRound.OpponentTime > 0
-                            ? (byte)(currentRound.OpponentTime + rndScore)
-                            : (byte)10;
-
-                        if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
-                            currentRound.FounderTime = 10;
-
-                        currentRound.FounderScore = _scoreCalculator.Calculator(round, currentRound.FounderTime);
-                        currentRound.FounderAnswer = currentRound.CorrectAnswer;
-
-                        _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                    }
-                    else if (winStatus && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
-                    {
-                        currentRound.OpponentTime = currentRound.FounderTime > 0
-                            ? (byte)(currentRound.FounderTime + rndScore)
-                            : (byte)10;
-
-                        if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
-                            currentRound.OpponentTime = 10;
-
-                        currentRound.OpponentScore = _scoreCalculator.Calculator(round, currentRound.OpponentTime);
-                        currentRound.OpponentAnswer = currentRound.CorrectAnswer;
-
-                        _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                    }
-                    else if (withdrawalStatus && realUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
-                    {
-                        currentRound.FounderTime = (byte)(@event.Time - 3);
-                        currentRound.FounderScore = 0;
-
-                        switch (currentRound.CorrectAnswer)
-                        {
-                            case Stylish.A:
-
-                                currentRound.FounderAnswer = Stylish.B;
-                                break;
-
-                            case Stylish.B:
-
-                                currentRound.FounderAnswer = Stylish.A;
-                                break;
-
-                            case Stylish.C:
-
-                                currentRound.FounderAnswer = Stylish.D;
-                                break;
-
-                            case Stylish.D:
-                                currentRound.FounderAnswer = Stylish.B;
-                                break;
-                        }
-                    }
-                    else if (withdrawalStatus && realUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
-                    {
-                        currentRound.OpponentTime = (byte)(@event.Time - 3);
-                        currentRound.OpponentScore = 0;
-
-                        switch (currentRound.CorrectAnswer)
-                        {
-                            case Stylish.A:
-                                currentRound.OpponentAnswer = Stylish.B;
-                                break;
-
-                            case Stylish.B:
-                                currentRound.OpponentAnswer = Stylish.A;
-                                break;
-
-                            case Stylish.C:
-                                currentRound.OpponentAnswer = Stylish.D;
-                                break;
-
-                            case Stylish.D:
-                                currentRound.OpponentAnswer = Stylish.B;
-                                break;
-                        }
-                    }
-                }
-
-                #endregion Altın
-
-                #region Para
-
-                _logger.LogInformation("Düello bakiye tipi {BalanceType}", @event.BalanceType);
-
-                if (@event.BalanceType == BalanceTypes.Money)// Eğer para ile oynanıyorsa ve bot cevaplamış ise
-                {
-                    BalanceModel balance = await _balanceService.GetBalance(realUserId, BalanceTypes.Money);// bot olmayan kullanıcının para miktarını aldık
-
-                    _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, realUserId);
-
-                    decimal maxMoney = 70.00m;
-
-                    bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
-
-                    if ((winStatus || withdrawalStatus) && botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
-                    {
-                        currentRound.FounderTime = currentRound.OpponentTime > 0
-                            ? (byte)(currentRound.OpponentTime + rndScore)
-                            : (byte)10;
-
-                        if (currentRound.FounderTime > 10 || currentRound.FounderTime <= 0)
-                            currentRound.FounderTime = 10;
-
-                        currentRound.FounderScore = _scoreCalculator.Calculator(round, currentRound.FounderTime);
-                        currentRound.FounderAnswer = currentRound.CorrectAnswer;
-
-                        _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                    }
-                    else if ((winStatus || withdrawalStatus) && botUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
-                    {
-                        currentRound.OpponentTime = currentRound.FounderTime > 0
-                            ? (byte)(currentRound.FounderTime + rndScore)
-                            : (byte)10;
-
-                        if (currentRound.OpponentTime > 10 || currentRound.OpponentTime <= 0)
-                            currentRound.OpponentTime = 10;
-
-                        currentRound.OpponentScore = _scoreCalculator.Calculator(round, currentRound.OpponentTime);
-                        currentRound.OpponentAnswer = currentRound.CorrectAnswer;
-
-                        _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", currentRound.FounderScore, currentRound.OpponentScore);
-                    }
-                    else if (balance.Amount <= 20.00m && realUserId == currentRound.OpponentUserId && founderTotalScore > opponentTotalScore)
-                    {
-                        currentRound.FounderTime = (byte)(@event.Time - 3);
-                        currentRound.FounderScore = 0;
-
-                        switch (currentRound.CorrectAnswer)
-                        {
-                            case Stylish.A:
-
-                                currentRound.FounderAnswer = Stylish.B;
-                                break;
-
-                            case Stylish.B:
-
-                                currentRound.FounderAnswer = Stylish.A;
-                                break;
-
-                            case Stylish.C:
-
-                                currentRound.FounderAnswer = Stylish.D;
-                                break;
-
-                            case Stylish.D:
-                                currentRound.FounderAnswer = Stylish.B;
-                                break;
-                        }
-                    }
-                    else if (balance.Amount <= 20.00m && realUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore)
-                    {
-                        currentRound.OpponentTime = (byte)(@event.Time - 3);
-                        currentRound.OpponentScore = 0;
-
-                        switch (currentRound.CorrectAnswer)
-                        {
-                            case Stylish.A:
-                                currentRound.OpponentAnswer = Stylish.B;
-                                break;
-
-                            case Stylish.B:
-                                currentRound.OpponentAnswer = Stylish.A;
-                                break;
-
-                            case Stylish.C:
-                                currentRound.OpponentAnswer = Stylish.D;
-                                break;
-
-                            case Stylish.D:
-                                currentRound.OpponentAnswer = Stylish.B;
-                                break;
-                        }
-                    }
-                }
-
-                #endregion Para
+                    await GoldGame(@event.Time);
+                else if (@event.BalanceType == BalanceTypes.Money)
+                    await MoneyGame();
             }
 
-            #endregion Kazanma ayarları
+            #endregion Oyun ayarları
 
-            userAnswers[round - 1] = currentRound;// Şuandaki round bilgileri aynı indexe set edildi
+            UserAnswers[Round - 1] = CurrentRound;// Şuandaki round bilgileri aynı indexe set edildi
 
-            if (currentRound.FounderAnswer == Stylish.NotSeeQuestion || currentRound.OpponentAnswer == Stylish.NotSeeQuestion)
+            if (CurrentRound.FounderAnswer == Stylish.NotSeeQuestion || CurrentRound.OpponentAnswer == Stylish.NotSeeQuestion)
             {
-                _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", currentRound);
+                _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", CurrentRound);
 
                 return;
             }
 
-            _userAnswerRepository.AddRangeAsync(userAnswers);// Redisdeki duello bilgileri tekrar update edildi
+            _userAnswerRepository.AddRangeAsync(UserAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
-            bool isGameEnd = round == MAX_ANSWER_COUNT;
+            bool isGameEnd = Round == MAX_ANSWER_COUNT;
 
-            byte nextRound = (byte)(round + 1);// Sonraki raunda geçiildi
+            byte nextRound = (byte)(Round + 1);// Sonraki raunda geçiildi
 
-            PublishNextQuestionEvent(currentRound, @event.DuelId, isGameEnd, nextRound);
+            PublishNextQuestionEvent(CurrentRound, @event.DuelId, isGameEnd, nextRound);
 
             if (isGameEnd)
             {
-                await SaveDuelDetailTable(@event.DuelId, userAnswers);
+                await SaveDuelDetailTable(@event.DuelId, UserAnswers);
+            }
+        }
+
+        /// <summary>
+        /// Oynama ayarlamaları
+        /// </summary>
+        /// <param name="time">Süre</param>
+        private async Task Answer(byte time)
+        {
+            if (IsFounderBot)
+            {
+                CurrentRound.FounderTime = (byte)RandomScore;
+
+                if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
+                    CurrentRound.FounderTime = 10;
+
+                CurrentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
+                CurrentRound.FounderScore = CurrentRound.CorrectAnswer == CurrentRound.FounderAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.FounderTime) : (byte)0;
+
+                int diff = time - CurrentRound.FounderTime;
+                if (diff > 0 && CurrentRound.FounderAnswer != CurrentRound.CorrectAnswer)
+                    await Task.Delay(diff * 1000);
+            }
+            else if (IsOpponentBot)
+            {
+                CurrentRound.OpponentTime = (byte)RandomScore;
+
+                if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
+                    CurrentRound.OpponentTime = 10;
+
+                CurrentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
+                CurrentRound.OpponentScore = CurrentRound.CorrectAnswer == CurrentRound.OpponentAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime) : (byte)0;
+
+                int diff = time - CurrentRound.OpponentTime;
+                if (diff > 0 && CurrentRound.OpponentAnswer != CurrentRound.CorrectAnswer)
+                    await Task.Delay(diff * 1000);
+            }
+
+            if (BotUserId == CurrentRound.FounderUserId && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
+            {
+                CurrentRound.FounderTime = (byte)RandomScore;
+
+                if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
+                    CurrentRound.FounderTime = 10;
+
+                CurrentRound.FounderScore = _scoreCalculator.Calculator(Round, CurrentRound.FounderTime);
+                CurrentRound.FounderAnswer = CurrentRound.CorrectAnswer;
+
+                _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
+            }
+            else if (BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore))
+            {
+                CurrentRound.OpponentTime = (byte)RandomScore;
+
+                if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
+                    CurrentRound.OpponentTime = 10;
+
+                CurrentRound.OpponentScore = _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime);
+                CurrentRound.OpponentAnswer = CurrentRound.CorrectAnswer;
+
+                _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
+            }
+        }
+
+        /// <summary>
+        /// Altın ile oynama oyun ayarları
+        /// </summary>
+        /// <param name="time">Süre</param>
+        private async Task GoldGame(byte time)
+        {
+            BalanceModel balance = await _balanceService.GetBalance(RealUserId, BalanceTypes.Gold);// bot olmayan kullanıcının para miktarını aldık
+
+            _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, RealUserId);
+
+            decimal maxGold = 1000.00m;
+
+            bool withdrawalStatus = balance.Amount <= maxGold;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
+
+            if (!WinStatus && withdrawalStatus && RealUserId == CurrentRound.OpponentUserId && FounderTotalScore >= OpponentTotalScore)
+            {
+                FalseAnswer(true, time);
+            }
+            else if (!WinStatus && withdrawalStatus && RealUserId == CurrentRound.FounderUserId && OpponentTotalScore >= FounderTotalScore)
+            {
+                FalseAnswer(false, time);
+            }
+            else if (WinStatus && BotUserId == CurrentRound.FounderUserId && OpponentTotalScore > FounderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+            {
+                CurrentRound.FounderTime = CurrentRound.OpponentTime > 0
+                    ? (byte)(CurrentRound.OpponentTime + RandomScore)
+                    : (byte)10;
+
+                if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
+                    CurrentRound.FounderTime = 10;
+
+                CurrentRound.FounderScore = _scoreCalculator.Calculator(Round, CurrentRound.FounderTime);
+                CurrentRound.FounderAnswer = CurrentRound.CorrectAnswer;
+
+                _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
+            }
+            else if (WinStatus && BotUserId == CurrentRound.OpponentUserId && FounderTotalScore > OpponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+            {
+                CurrentRound.OpponentTime = CurrentRound.FounderTime > 0
+                    ? (byte)(CurrentRound.FounderTime + RandomScore)
+                    : (byte)10;
+
+                if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
+                    CurrentRound.OpponentTime = 10;
+
+                CurrentRound.OpponentScore = _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime);
+                CurrentRound.OpponentAnswer = CurrentRound.CorrectAnswer;
+
+                _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
+            }
+        }
+
+        /// <summary>
+        /// Para ile oynama oyun ayarları
+        /// </summary>
+        /// <param name="time">Süre</param>
+        private async Task MoneyGame()
+        {
+            BalanceModel balance = await _balanceService.GetBalance(RealUserId, BalanceTypes.Money);// bot olmayan kullanıcının para miktarını aldık
+
+            _logger.LogInformation("Para ile düello oynanıyor. Oyuncunun şuanki para miktarı {balance} {realUserId}", balance.Amount, RealUserId);
+
+            decimal maxMoney = 70.00m;
+
+            bool withdrawalStatus = balance.Amount >= maxMoney;// Oyunun para miktarı maxMoney'den fazla ise parayı her an çekebilir
+
+            if ((WinStatus || withdrawalStatus) && BotUserId == CurrentRound.FounderUserId && OpponentTotalScore > FounderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
+            {
+                CurrentRound.FounderTime = CurrentRound.OpponentTime > 0
+                    ? (byte)(CurrentRound.OpponentTime + RandomScore)
+                    : (byte)10;
+
+                if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
+                    CurrentRound.FounderTime = 10;
+
+                CurrentRound.FounderScore = _scoreCalculator.Calculator(Round, CurrentRound.FounderTime);
+                CurrentRound.FounderAnswer = CurrentRound.CorrectAnswer;
+
+                _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
+            }
+            else if ((WinStatus || withdrawalStatus) && BotUserId == CurrentRound.OpponentUserId && FounderTotalScore > OpponentTotalScore)// Eğer bot rakip ise kurucu kazanıyorsa ve para çekmeye yakın ise
+            {
+                CurrentRound.OpponentTime = CurrentRound.FounderTime > 0
+                    ? (byte)(CurrentRound.FounderTime + RandomScore)
+                    : (byte)10;
+
+                if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
+                    CurrentRound.OpponentTime = 10;
+
+                CurrentRound.OpponentScore = _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime);
+                CurrentRound.OpponentAnswer = CurrentRound.CorrectAnswer;
+
+                _logger.LogInformation("Bot rakip ve kurucu kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
+            }
+        }
+
+        /// <summary>
+        /// Soruyu mutlaka yanlış cevaplar
+        /// </summary>
+        /// <param name="isFounder">Kurucunun cevabı mı yanlış olacak yoksa rakibin mi/param>
+        /// <param name="time">Süre</param>
+        private void FalseAnswer(bool isFounder, byte time)
+        {
+            if (isFounder)
+            {
+                CurrentRound.FounderTime = (byte)(time - 3);
+                CurrentRound.FounderScore = 0;
+
+                switch (CurrentRound.CorrectAnswer)
+                {
+                    case Stylish.A:
+                        CurrentRound.FounderAnswer = Stylish.B;
+                        break;
+
+                    case Stylish.B:
+                        CurrentRound.FounderAnswer = Stylish.A;
+                        break;
+
+                    case Stylish.C:
+                        CurrentRound.FounderAnswer = Stylish.D;
+                        break;
+
+                    case Stylish.D:
+                        CurrentRound.FounderAnswer = Stylish.B;
+                        break;
+                }
+            }
+            else
+            {
+                CurrentRound.OpponentTime = (byte)(time - 3);
+                CurrentRound.OpponentScore = 0;
+
+                switch (CurrentRound.CorrectAnswer)
+                {
+                    case Stylish.A:
+                        CurrentRound.OpponentAnswer = Stylish.B;
+                        break;
+
+                    case Stylish.B:
+                        CurrentRound.OpponentAnswer = Stylish.A;
+                        break;
+
+                    case Stylish.C:
+                        CurrentRound.OpponentAnswer = Stylish.D;
+                        break;
+
+                    case Stylish.D:
+                        CurrentRound.OpponentAnswer = Stylish.B;
+                        break;
+                }
             }
         }
 
@@ -429,8 +513,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
                 byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
 
-                bool isFounderFinishedTheGame = userAnswers.Count(x => x.FounderAnswer != Enums.Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
-                bool isOpponentFinishedTheGame = userAnswers.Count(x => x.OpponentAnswer != Enums.Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
+                bool isFounderFinishedTheGame = userAnswers.Count(x => x.FounderAnswer != Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
+                bool isOpponentFinishedTheGame = userAnswers.Count(x => x.OpponentAnswer != Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
 
                 DuelBalanceInfoModel duelBalanceInfo = _duelRepository.GetDuelBalanceInfoByDuelId(duelId);
 
@@ -470,18 +554,18 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <summary>
         /// Kullanıcıların sorala verdikleri cevapları birbirine göndermek için event publish eder
         /// </summary>
-        /// <param name="currentRound"></param>
+        /// <param name="CurrentRound"></param>
         /// <param name="duelId"></param>
         /// <param name="isGameEnd"></param>
         /// <param name="nextRound"></param>
-        private void PublishNextQuestionEvent(UserAnswerModel currentRound, int duelId, bool isGameEnd, byte nextRound)
+        private void PublishNextQuestionEvent(UserAnswerModel CurrentRound, int duelId, bool isGameEnd, byte nextRound)
         {
             var @nextQuestionEvent = new NextQuestionIntegrationEvent(duelId,
-                                                                      currentRound.FounderAnswer,
-                                                                      currentRound.OpponentAnswer,
-                                                                      currentRound.CorrectAnswer,
-                                                                      currentRound.FounderScore,
-                                                                      currentRound.OpponentScore,
+                                                                      CurrentRound.FounderAnswer,
+                                                                      CurrentRound.OpponentAnswer,
+                                                                      CurrentRound.CorrectAnswer,
+                                                                      CurrentRound.FounderScore,
+                                                                      CurrentRound.OpponentScore,
                                                                       nextRound,
                                                                       isGameEnd);
 

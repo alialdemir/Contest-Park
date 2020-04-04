@@ -13,9 +13,9 @@ using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
+using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using Rg.Plugins.Popup.Pages;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,6 +42,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public QuestionPopupViewModel(IPopupNavigation popupNavigation,
+                                      INavigationService navigationService,
                                       IDuelSignalRService duelSignalRService,
                                       IPageDialogService pageDialogService,
                                       IEventAggregator eventAggregator,
@@ -49,7 +50,7 @@ namespace ContestPark.Mobile.ViewModels
                                       IDuelService duelService,
                                       IAdMobService adMobService,
                                       ISettingsService settingsService,
-                                      IAudioService audioService) : base(dialogService: pageDialogService, popupNavigation: popupNavigation)
+                                      IAudioService audioService) : base(navigationService: navigationService, dialogService: pageDialogService, popupNavigation: popupNavigation)
         {
             _duelSignalRService = duelSignalRService;
             _analyticsService = analyticsService;
@@ -69,8 +70,6 @@ namespace ContestPark.Mobile.ViewModels
 
         private AnswerPair _answers;
 
-        private DuelStartingModel _duelStarting;
-
         private string _founderImageBorderColor;
 
         private byte _founderScore;
@@ -79,10 +78,19 @@ namespace ContestPark.Mobile.ViewModels
 
         private byte _opponentScore;
 
-        private DuelCreated _duelCreadted;
-
         private byte _time = 10;
-        public BalanceTypes BalanceType { get; set; }
+
+        private Models.Duel.QuestionModel _question;
+
+        public Models.Duel.QuestionModel Question
+        {
+            get { return _question; }
+            set
+            {
+                _question = value;
+                RaisePropertyChanged(() => Question);
+            }
+        }
 
         public AnswerPair Answers
         {
@@ -91,16 +99,6 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _answers = value;
                 RaisePropertyChanged(() => Answers);
-            }
-        }
-
-        public DuelStartingModel DuelScreen
-        {
-            get => _duelStarting;
-            set
-            {
-                _duelStarting = value;
-                RaisePropertyChanged(() => DuelScreen);
             }
         }
 
@@ -154,24 +152,12 @@ namespace ContestPark.Mobile.ViewModels
             get { return "#DD3448"; }
         }
 
-        public DuelCreated DuelCreated
-        {
-            get => _duelCreadted;
-            set
-            {
-                _duelCreadted = value;
-                RaisePropertyChanged(() => DuelCreated);
-            }
-        }
-
         public string RedColor
         {
             get { return "#993232"; }
         }
 
         public byte Round { get; set; } = 1;
-        public string SubcategoryName { get; set; }
-        public string SubCategoryPicturePath { get; set; }
 
         public byte Time
         {
@@ -184,7 +170,7 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         private bool IsExit { get; set; }
-        private bool IsFounder => _settingsService.CurrentUser.UserId == DuelScreen.FounderUserId;
+        private bool IsFounder => _settingsService.CurrentUser.UserId == Question.DuelStarting.FounderUserId;
 
         private bool IsStylishClick { get; set; }
         private bool IsTimerEnable { get; set; }
@@ -289,7 +275,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ChangeImageBorderColor(questionModel.FounderStylish, questionModel.OpponentStylish, questionModel.CorrectStylish);
 
-            _analyticsService.SendEvent("Düello", $"{questionModel.Round}. Raund Oynandı", SubcategoryName);
+            _analyticsService.SendEvent("Düello", $"{questionModel.Round}. Raund Oynandı", Question.SubCategoryName);
 
             if (questionModel.IsGameEnd || Round >= 7)// Düello sona erdi
             {
@@ -334,7 +320,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private void SetCurrentQuestion()
         {
-            if (DuelCreated == null || DuelCreated.Questions == null || Round > DuelCreated.Questions.Count())
+            if (Question == null || Question.DuelCreated == null || Question.DuelCreated.Questions == null || Round > Question.DuelCreated.Questions.Count())
             {
                 IsExit = true;
 
@@ -343,7 +329,7 @@ namespace ContestPark.Mobile.ViewModels
 
             Languages currentLanguage = _settingsService.CurrentUser.Language;
 
-            var currentQuestion = DuelCreated.Questions.ToList()[Round - 1];
+            var currentQuestion = Question.DuelCreated.Questions.ToList()[Round - 1];
             if (currentQuestion == null
                 || currentQuestion.Answers == null
                 || !currentQuestion.Answers.Any(x => x.Language == currentLanguage)
@@ -447,7 +433,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Bekleme ekranı gösterir belirli süre sonra gizler
         /// </summary>
-        private async void DisplayQuestionExpectedPopup()
+        private void DisplayQuestionExpectedPopup()
         {
             if (IsBusy)
                 return;
@@ -460,9 +446,9 @@ namespace ContestPark.Mobile.ViewModels
 
             ResetStylishColor();
 
-            PopupPage popupPage = await QuestionExpectedPopup();
+            QuestionExpectedPopup();
 
-            StartGame(popupPage);
+            StartGame();
 
             IsBusy = false;
         }
@@ -507,15 +493,15 @@ namespace ContestPark.Mobile.ViewModels
 
             IsStylishClick = false;
 
-            if (DuelScreen.DuelId > 0)
+            if (Question.DuelCreated.DuelId > 0)
             {
                 Task.Factory.StartNew(async () =>
                 {
-                    await _duelSignalRService.LeaveGroup(DuelScreen.DuelId);
+                    await _duelSignalRService.LeaveGroup(Question.DuelCreated.DuelId);
 
                     if (!IsGameEnd)// Oyun sonlanmadan çıkmış ise düellodan kaçtı olarak bildirdik
                     {
-                        await _duelService.DuelEscape(DuelScreen.DuelId);
+                        await _duelService.DuelEscape(Question.DuelCreated.DuelId);
                     }
                 }).Wait();
             }
@@ -526,12 +512,12 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
+            GotoBackCommand.Execute(true);
+
             await PushPopupPageAsync(new DuelResultPopupView()
             {
-                DuelId = DuelScreen.DuelId
+                DuelId = Question.DuelCreated.DuelId
             });
-
-            await RemoveFirstPopupAsync();
         }
 
         /// <summary>
@@ -560,8 +546,8 @@ namespace ContestPark.Mobile.ViewModels
         private Stylish GetAnswerByUserAnswer(string answer)
         {
             return (Stylish)CurrentQuestion
-                .Answers
-                .FindIndex(x => x.Answers == answer) + 1;
+                                    .Answers
+                                    .FindIndex(x => x.Answers == answer) + 1;
         }
 
         /// <summary>
@@ -595,18 +581,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Bekleme ekranı göster
         /// </summary>
-        private async Task<PopupPage> QuestionExpectedPopup()
+        private void QuestionExpectedPopup()
         {
-            PopupPage popupPage = new QuestionExpectedPopupView()
+            PushModalAsync(nameof(QuestionExpectedPopupView), new NavigationParameters
             {
-                SubcategoryName = SubcategoryName,
-                SubCategoryPicturePath = SubCategoryPicturePath,
-                RoundCount = Round
-            };
-
-            await PushPopupPageAsync(popupPage);
-
-            return popupPage;
+                { "SubcategoryName", Question.SubCategoryName },
+                { "SubCategoryPicturePath", Question.SubCategoryPicturePath },
+                { "RoundCount",  Round },
+            });
         }
 
         /// <summary>
@@ -640,17 +622,19 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            ShowStylishArrow(saveAnswer.Stylish, IsFounder, true);
+
             _duelSignalRService.SaveAnswer(new UserAnswer
             {
                 Time = Time,
                 QuestionId = CurrentQuestion.QuestionId,
-                DuelId = DuelScreen.DuelId,
+                DuelId = Question.DuelCreated.DuelId,
                 Stylish = saveAnswer.Stylish,
                 UserId = saveAnswer.UserId,
-                BalanceType = BalanceType,
+                BalanceType = Question.BalanceType,
             });
 
-            _analyticsService.SendEvent("Düello", saveAnswer.Stylish.ToString(), SubcategoryName);
+            _analyticsService.SendEvent("Düello", saveAnswer.Stylish.ToString(), Question.SubCategoryName);
 
             IsBusy = false;
         }
@@ -658,14 +642,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Oyunu başlatır
         /// </summary>
-        private void StartGame(PopupPage popupPage)
+        private void StartGame()
         {
             Device.StartTimer(new TimeSpan(0, 0, 0, 3, 0), () =>
             {
                 if (IsExit)
                     return false;
 
-                RemovePopupPageAsync(popupPage);
+                base.GoBackAsync(true);
 
                 // Şıkları animasyonlu şekilde gösterir
                 AnimateStylishCommand?.Execute(null);
@@ -777,5 +761,17 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand DuelCloseCommand => new Command<bool>((showAlert) => ExecuteDuelCloseCommand(showAlert));
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("Question"))
+                Question = parameters.GetValue<Models.Duel.QuestionModel>("Question");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

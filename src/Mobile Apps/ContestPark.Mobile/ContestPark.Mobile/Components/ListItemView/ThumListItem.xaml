@@ -38,7 +38,7 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25" />
-                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
@@ -64,7 +64,7 @@
                     Margin="16,0,0,0"
                     FontAttributes="Bold"
                     FontFamily="{StaticResource SofiaProSemiBold}"
-                    FontSize="18"
+                    FontSize="16"
                     LineBreakMode="TailTruncation"
                     Text="{Binding Path=Text, Source={x:Reference thumListItemPage}}"
                     TextColor="#430856" />
@@ -72,13 +72,25 @@
                 <Components:HtmlLabel
                     Grid.Row="1"
                     Grid.Column="1"
-                    Grid.ColumnSpan="2"
                     Margin="16,0,0,0"
                     FontFamily="{StaticResource SofiaProLight}"
                     FontSize="14"
-                    LineBreakMode="TailTruncation"
+                    LineBreakMode="WordWrap"
                     Text="{Binding Path=Detail, Source={x:Reference thumListItemPage}}"
                     TextColor="#181C2F" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource GothamRoundedBold}"
+                    FontSize="16"
+                    HorizontalTextAlignment="End"
+                    IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
+                    Text="{Binding Path=RightText2, Source={x:Reference thumListItemPage}}"
+                    TextColor="{Binding Path=RightText2TextColor, Source={x:Reference thumListItemPage}}"
+                    TextDecorations="{Binding Path=RightText2TextDecorations, Source={x:Reference thumListItemPage}}"
+                    VerticalOptions="Center" />
 
                 <Label
                     Grid.RowSpan="2"
@@ -90,7 +102,7 @@
                     IsVisible="{Binding Path=IsShowRightText, Source={x:Reference thumListItemPage}}"
                     Text="{Binding Path=RightText, Source={x:Reference thumListItemPage}}"
                     TextColor="{Binding Path=RightIconTextColor, Source={x:Reference thumListItemPage}}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="CenterAndExpand" />
 
                 <!--<icon:IconImage
                     Grid.RowSpan="2"

@@ -611,9 +611,6 @@
     <value>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "{0}" to the reference when sign up.</value>
     <comment>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.</comment>
   </data>
-  <data name="Invite" xml:space="preserve">
-    <value>Invite</value>
-  </data>
   <data name="ConvertToCash" xml:space="preserve">
     <value>Convert to cash</value>
   </data>
@@ -832,5 +829,14 @@
   </data>
   <data name="YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereToTheOption" xml:space="preserve">
     <value>You can play with less than or equal to ten times the entry fee from your minimum balance. We adhere to the "{0}" option.</value>
+  </data>
+  <data name="UploadBalance" xml:space="preserve">
+    <value>Upload Balance</value>
+  </data>
+  <data name="UploadGold" xml:space="preserve">
+    <value>Upload Gold</value>
+  </data>
+  <data name="BestSeller" xml:space="preserve">
+    <value>Best seller</value>
   </data>
 </root>

@@ -54,6 +54,12 @@ namespace ContestPark.Mobile.Components
                 Margin = new Thickness(8, 0, 8, 8),
                 Children =
                 {
+                    new AdMobView
+                         {
+                              AdUnitId = GlobalSetting.BannerAdUnitId,
+                              UserPersonalizedAds = false,
+                              HeightRequest=60
+                         },
                     new StackLayout
                                 {
                                     Children =
@@ -79,13 +85,6 @@ namespace ContestPark.Mobile.Components
                                         }
                                     }
                                 },
-
-                                new AdMobView
-                                {
-                                    AdUnitId = GlobalSetting.BannerAdUnitId,
-                                    UserPersonalizedAds = false,
-                                    HeightRequest=60
-                                }
                 }
             };
         }

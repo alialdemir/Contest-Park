@@ -55,6 +55,21 @@ namespace ContestPark.Mobile.Components
                                                                                             declaringType: typeof(ThumListItem),
                                                                                             defaultValue: String.Empty);
 
+        public static readonly BindableProperty RightText2Property = BindableProperty.Create(propertyName: nameof(RightText2),
+                                                                                            returnType: typeof(string),
+                                                                                            declaringType: typeof(ThumListItem),
+                                                                                            defaultValue: String.Empty);
+
+        public static readonly BindableProperty RightText2TextColorProperty = BindableProperty.Create(propertyName: nameof(RightText2TextColor),
+                                                                                                      returnType: typeof(Color),
+                                                                                                      declaringType: typeof(ThumListItem),
+                                                                                                      defaultValue: Color.Black);
+
+        public static readonly BindableProperty RightText2TextDecorationsProperty = BindableProperty.Create(propertyName: nameof(RightText2TextDecorations),
+                                                                                                      returnType: typeof(TextDecorations),
+                                                                                                      declaringType: typeof(ThumListItem),
+                                                                                                      defaultValue: TextDecorations.None);
+
         public static readonly BindableProperty SingleTapProperty = BindableProperty.Create(propertyName: nameof(SingleTap),
                                                                                             returnType: typeof(ICommand),
                                                                                             declaringType: typeof(ThumListItem),
@@ -124,6 +139,33 @@ namespace ContestPark.Mobile.Components
             set
             {
                 SetValue(RightTextProperty, value);
+            }
+        }
+
+        public string RightText2
+        {
+            get { return (string)GetValue(RightText2Property); }
+            set
+            {
+                SetValue(RightText2Property, value);
+            }
+        }
+
+        public TextDecorations RightText2TextDecorations
+        {
+            get { return (TextDecorations)GetValue(RightText2TextDecorationsProperty); }
+            set
+            {
+                SetValue(RightText2TextDecorationsProperty, value);
+            }
+        }
+
+        public Color RightText2TextColor
+        {
+            get { return (Color)GetValue(RightText2TextColorProperty); }
+            set
+            {
+                SetValue(RightText2TextColorProperty, value);
             }
         }
 

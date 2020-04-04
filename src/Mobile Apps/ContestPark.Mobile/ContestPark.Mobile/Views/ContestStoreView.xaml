@@ -3,17 +3,18 @@
     x:Class="ContestPark.Mobile.Views.ContestStoreView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="pageContestStore"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}">
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Converter:NegativeBooleanConverter x:Key="not" />
+            <converter:TabBorderColorConverter x:Key="tbc" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -25,20 +26,23 @@
                             HorizontalOptions="FillAndExpand"
                             Source="contest_store_header.png"
                             VerticalOptions="FillAndExpand" />
+                        <Grid>
 
-                        <yummy:PancakeView
-                            Margin="0,0,0,5"
-                            BackgroundColor="{StaticResource White}"
-                            CornerRadius="8"
-                            Elevation="6"
-                            HasShadow="True"
-                            IsClippedToBounds="True"
-                            Visual="Material">
-
-                            <StackLayout
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal"
-                                Spacing="30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <yummy:PancakeView
+                                Grid.Column="0"
+                                Margin="0,0,0,5"
+                                BackgroundColor="{StaticResource White}"
+                                BorderColor="{Binding Path=BindingContext.BalanceType, Source={x:Reference pageContestStore}, Converter={StaticResource tbc}, ConverterParameter=1}"
+                                BorderThickness="3"
+                                CornerRadius="8"
+                                Elevation="6"
+                                HasShadow="True"
+                                IsClippedToBounds="True"
+                                Visual="Material">
 
                                 <Grid
                                     Margin="0"
@@ -59,7 +63,7 @@
                                         FontFamily="{StaticResource GothamRoundedMedium}"
                                         HorizontalOptions="End"
                                         HorizontalTextAlignment="End"
-                                        Text="Altın Yükle"
+                                        Text="{i18n:Translate UploadGold}"
                                         TextColor="Black"
                                         VerticalTextAlignment="Center" />
 
@@ -70,8 +74,22 @@
                                         Source="doublecoins.png"
                                         WidthRequest="50" />
                                 </Grid>
+                            </yummy:PancakeView>
+
+                            <yummy:PancakeView
+                                Grid.Column="1"
+                                Margin="0,0,0,5"
+                                BackgroundColor="{StaticResource White}"
+                                BorderColor="{Binding Path=BindingContext.BalanceType, Source={x:Reference pageContestStore}, Converter={StaticResource tbc}, ConverterParameter=2}"
+                                BorderThickness="3"
+                                CornerRadius="8"
+                                Elevation="6"
+                                HasShadow="True"
+                                IsClippedToBounds="True"
+                                Visual="Material">
+
                                 <Grid
-                                    Margin="0"
+                                    Margin="10,0,0,0"
                                     Padding="0"
                                     ColumnSpacing="0"
                                     HorizontalOptions="CenterAndExpand"
@@ -89,7 +107,7 @@
                                         FontFamily="{StaticResource GothamRoundedMedium}"
                                         HorizontalOptions="End"
                                         HorizontalTextAlignment="End"
-                                        Text="Bakiye Yükle"
+                                        Text="{i18n:Translate UploadBalance}"
                                         TextColor="Black"
                                         VerticalTextAlignment="Center" />
 
@@ -100,8 +118,8 @@
                                         Source="doublecoinstl.png"
                                         WidthRequest="50" />
                                 </Grid>
-                            </StackLayout>
-                        </yummy:PancakeView>
+                            </yummy:PancakeView>
+                        </Grid>
                     </StackLayout>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.HeaderTemplate>
@@ -115,6 +133,9 @@
                             IsShowRightText="True"
                             RightIconTextColor="#F7416E"
                             RightText="{Binding DisplayPrice}"
+                            RightText2="{Binding DiscountPrice}"
+                            RightText2TextColor="{Binding RightText2TextColor}"
+                            RightText2TextDecorations="{Binding RightText2TextDecorations}"
                             SingleTap="{Binding Path=BindingContext.PurchaseCommand, Source={x:Reference lstView}}"
                             Source="{Binding Image}"
                             Text="{Binding ProductName}" />

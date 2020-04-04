@@ -35,6 +35,11 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
             gd.SetCornerRadius(button.CornerRadius);
 
+            if (button.IsUpperCase)
+            {
+                e.NewElement.Text = button.Text.ToUpper();
+            }
+
             //apply the button background to newly created drawable gradient
             Control.SetBackground(gd);
         }

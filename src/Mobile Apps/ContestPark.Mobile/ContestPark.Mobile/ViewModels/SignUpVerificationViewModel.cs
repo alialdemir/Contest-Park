@@ -4,6 +4,7 @@ using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.RequestProvider;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Settings;
@@ -229,6 +230,12 @@ namespace ContestPark.Mobile.ViewModels
             if (token != null)
             {
                 _settingsService.SetTokenInfo(token);
+
+                UserInfoModel currentUser = await _settingsService.GetUserInfo();
+                if (currentUser != null)
+                {
+                    _settingsService.RefreshCurrentUser(currentUser);
+                }
 
                 await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
             }

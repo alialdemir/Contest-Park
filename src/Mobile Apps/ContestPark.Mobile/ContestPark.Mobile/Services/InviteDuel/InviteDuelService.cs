@@ -1,12 +1,12 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Categories;
-using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
+using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System;
@@ -25,9 +25,9 @@ namespace ContestPark.Mobile.Services.InviteDuel
         private readonly IIdentityService _identityService;
         private readonly IBalanceService _balanceService;
         private readonly ICategoryService _categoryService;
-        private readonly ISettingsService _settingsService;
         private readonly IPopupNavigation _popupNavigation;
-
+        private readonly ISettingsService _settingsService;
+        private readonly INavigationService _navigationService;
         private readonly decimal[] _goldBets = new decimal[] { 0, 40.00m, 300.00m, 1000.00m, 3000.00m, 4600.00m, 10000.00m };
         private readonly decimal[] _moneyBets = new decimal[] { 1.00m, 3.00m, 4.00m, 5.00m, 6.00m, 10.00m };
 
@@ -38,14 +38,16 @@ namespace ContestPark.Mobile.Services.InviteDuel
         public InviteDuelService(IIdentityService identityService,
                                  IBalanceService balanceService,
                                  ICategoryService categoryService,
+                                 IPopupNavigation popupNavigation,
                                  ISettingsService settingsService,
-                                 IPopupNavigation _popupNavigation)
+                                 INavigationService navigationService)
         {
             _identityService = identityService;
             _balanceService = balanceService;
             _categoryService = categoryService;
+            _popupNavigation = popupNavigation;
             _settingsService = settingsService;
-            this._popupNavigation = _popupNavigation;
+            _navigationService = navigationService;
         }
 
         #endregion Constructor
@@ -89,7 +91,6 @@ namespace ContestPark.Mobile.Services.InviteDuel
         private async Task InviteDuel(IEnumerable<CategoryModel> categories)
         {
             string popupName = CurrentPopupName();
-
             if (popupName.EndsWith("PopupView"))// Eğer düellodaysa davet göndermesin
             {
                 StartTimer(categories);
@@ -128,25 +129,27 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 balanceType = BalanceTypes.Money;
             }
 
-            await _popupNavigation.PushAsync(new AcceptDuelInvitationPopupView
+            var InviteModel = new Models.Duel.InviteDuel.InviteModel
             {
-                InviteModel = new InviteModel
-                {
-                    BalanceType = balanceType,
-                    Bet = await GetRandomBet(balanceType),
-                    FounderConnectionId = "rnsadjge4",
-                    FounderFullname = randomBotUser.FullName,
-                    FounderUserId = randomBotUser.UserId,
-                    FounderProfilePicturePath = randomBotUser.ProfilePicturePath,
-                    FounderLanguage = _settingsService.CurrentUser.Language,
-                    OpponentUserId = _settingsService.CurrentUser.UserId,
-                    IsOpponentOpenSubCategory = subCategory.IsCategoryOpen,
-                    SubCategoryId = subCategory.SubCategoryId,
-                    SubCategoryName = subCategory.SubCategoryName,
-                    SubCategoryPicture = subCategory.PicturePath,
-                    Description = string.Format(ContestParkResources.IsLookingForAnOpponent, randomBotUser.FullName),
-                },
-            });
+                BalanceType = balanceType,
+                Bet = await GetRandomBet(balanceType),
+                FounderConnectionId = "rnsadjge4",
+                FounderFullname = randomBotUser.FullName,
+                FounderUserId = randomBotUser.UserId,
+                FounderProfilePicturePath = randomBotUser.ProfilePicturePath,
+                FounderLanguage = _settingsService.CurrentUser.Language,
+                OpponentUserId = _settingsService.CurrentUser.UserId,
+                IsOpponentOpenSubCategory = subCategory.IsCategoryOpen,
+                SubCategoryId = subCategory.SubCategoryId,
+                SubCategoryName = subCategory.SubCategoryName,
+                SubCategoryPicture = subCategory.PicturePath,
+                Description = string.Format(ContestParkResources.IsLookingForAnOpponent, randomBotUser.FullName),
+            };
+
+            await _navigationService.NavigateAsync(nameof(AcceptDuelInvitationPopupView), new NavigationParameters
+            {
+                { "InviteModel", InviteModel }
+            }, useModalNavigation: true);
 
             await Task.Delay(5000);
 
@@ -189,9 +192,9 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 return _goldBets.FirstOrDefault();
 
             var randomBet = _goldBets
-                          .Where(bet => bet != 0 && bet <= balance.Gold)
-                          .OrderBy(x => Guid.NewGuid())
-                          .FirstOrDefault();
+                                  .Where(bet => bet != 0 && bet <= balance.Gold)
+                                  .OrderBy(x => Guid.NewGuid())
+                                  .FirstOrDefault();
 
             return randomBet * 2;
         }
@@ -210,9 +213,9 @@ namespace ContestPark.Mobile.Services.InviteDuel
                         .FirstOrDefault();
         }
 
-        private string CurrentPopupName()
+        public string CurrentPopupName()
         {
-            if (_popupNavigation == null || _popupNavigation.PopupStack.Count == 0)
+            if (_popupNavigation == null || !_popupNavigation.PopupStack.Any())
                 return string.Empty;
 
             PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();

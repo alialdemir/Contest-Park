@@ -1,7 +1,4 @@
-﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Models.Duel;
-using ContestPark.Mobile.Models.Duel.Quiz;
-using ContestPark.Mobile.ViewModels;
+﻿using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
@@ -19,19 +16,6 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
-        #region Properties
-
-        public DuelCreated DuelCreated { get; set; }
-
-        public DuelStartingModel DuelStarting { get; set; }
-
-        public string SubcategoryName { get; set; }
-
-        public string SubCategoryPicturePath { get; set; }
-        public BalanceTypes BalanceType { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         protected override void OnAppearing()
@@ -42,16 +26,7 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null || viewModel.IsInitialized)
                 return;
 
-            viewModel.IsInitialized = true;
-
-            viewModel.DuelCreated = DuelCreated;
-            viewModel.DuelScreen = DuelStarting;
-            viewModel.BalanceType = BalanceType;
-            viewModel.SubcategoryName = SubcategoryName;
-            viewModel.SubCategoryPicturePath = SubCategoryPicturePath;
             //viewModel.AnimateStylishCommand = new Command(Stylishs.AnimateStylish);
-
-            viewModel.InitializeCommand.Execute(null);
         }
 
         protected override bool OnBackButtonPressed()

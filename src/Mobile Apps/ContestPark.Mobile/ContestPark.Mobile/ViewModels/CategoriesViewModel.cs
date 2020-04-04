@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
+﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Categories;
@@ -64,8 +63,6 @@ namespace ContestPark.Mobile.ViewModels
                                    IEventAggregator eventAggregator
             ) : base(navigationService, pageDialogService, popupNavigation: popupNavigation)
         {
-            Title = ContestParkResources.Categories;
-
             _categoryServices = categoryServices;
 
             gameService.NavigationService = navigationService;
@@ -186,7 +183,7 @@ namespace ContestPark.Mobile.ViewModels
             await _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
             {
                 SubcategoryId = subCategory.SubCategoryId,
-                SubcategoryName = subCategory.SubCategoryName,
+                SubCategoryName = subCategory.SubCategoryName,
                 SubCategoryPicturePath = subCategory.PicturePath
             }, subCategory.IsCategoryOpen);
 
@@ -226,9 +223,9 @@ namespace ContestPark.Mobile.ViewModels
                 && popupName != nameof(QuestionExpectedPopupView)
                 && popupName != nameof(AcceptDuelInvitationPopupView))
             {
-                PushPopupPageAsync(new AcceptDuelInvitationPopupView
+                PushModalAsync(nameof(AcceptDuelInvitationPopupView), new NavigationParameters
                 {
-                    InviteModel = (InviteModel)sender
+                    { "InviteModel", (InviteModel)sender }
                 });
             }
 
@@ -254,6 +251,24 @@ namespace ContestPark.Mobile.ViewModels
                     IsBusy = true;
 
                     PushNavigationPageAsync(nameof(NotificationView));
+
+                    IsBusy = false;
+                });
+            }
+        }
+
+        public ICommand InviteCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    if (IsBusy || _settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
+                        return;
+
+                    IsBusy = true;
+
+                    PushNavigationPageAsync(nameof(InviteView));
 
                     IsBusy = false;
                 });

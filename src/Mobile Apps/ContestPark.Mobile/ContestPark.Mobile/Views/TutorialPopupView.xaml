@@ -13,7 +13,7 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="tutorialPopupView"
-    Padding="0,0,0,-89"
+    Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
     mc:Ignorable="d">
     <pages:PopupPage.Content>

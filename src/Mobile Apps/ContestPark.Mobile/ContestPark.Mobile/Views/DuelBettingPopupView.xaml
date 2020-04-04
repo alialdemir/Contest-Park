@@ -179,7 +179,7 @@
                                         HorizontalOptions="End"
                                         VerticalOptions="Start">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference duelBettingPopupView}}" />
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference duelBettingPopupView}}" />
                                         </Image.GestureRecognizers>
                                         <Image.Source>
                                             <FontImageSource

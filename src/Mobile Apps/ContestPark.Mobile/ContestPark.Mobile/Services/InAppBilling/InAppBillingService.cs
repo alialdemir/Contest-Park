@@ -209,7 +209,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 {
                     Debug.WriteLine("Uygulama için satın alma bağlantısı sağlanamadı.");
 
-                    await ShowErrorDisplayAlertAsync(ContestParkResources.UnableToConnectToTheStore);
+                    ///////////  await ShowErrorDisplayAlertAsync(ContestParkResources.UnableToConnectToTheStore);
 
                     return new List<InAppBillingProductModel>();
                 }

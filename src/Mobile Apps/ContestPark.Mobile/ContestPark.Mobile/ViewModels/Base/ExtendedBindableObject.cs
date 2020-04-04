@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -8,8 +9,15 @@ namespace ContestPark.Mobile.ViewModels.Base
     {
         public void RaisePropertyChanged<T>(Expression<Func<T>> property)
         {
-            var name = GetMemberInfo(property).Name;
-            OnPropertyChanged(name);
+            try
+            {
+                var name = GetMemberInfo(property).Name;
+                OnPropertyChanged(name);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         private MemberInfo GetMemberInfo(Expression expression)
