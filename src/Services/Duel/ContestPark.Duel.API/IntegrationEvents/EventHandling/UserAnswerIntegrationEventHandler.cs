@@ -330,6 +330,22 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 Answer();
 
+                bool TEST = (
+                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore > FounderTotalScore ||
+                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore > OpponentTotalScore
+                    );
+
+                bool T1 = (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3);
+
+                _logger.LogInformation(
+                    "check status {Check1} {Check3} {Check3} {Check4} {TEST} {T1}",
+                    WinStatus.Check1,
+                    WinStatus.Check2,
+                    WinStatus.Check3,
+                    WinStatus.Check4,
+                    TEST,
+                    T1);
+
                 if (
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
                     &&
