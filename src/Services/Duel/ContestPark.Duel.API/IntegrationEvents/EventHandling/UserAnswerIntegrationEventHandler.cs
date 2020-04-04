@@ -329,14 +329,15 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (IsFounderBot || IsOpponentBot)// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
                 Answer();
-
+                //botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore
                 if (
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
-                    //&&
-                    //(
-                    //RealUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
-                    //RealUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
-                    //)
+                    &&
+                    (
+                    (IsFounderBot && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore))
+                    ||
+                    (IsOpponentBot && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore))
+                    )
 
                     )// Player yenildiği durumlar
                 {
@@ -344,11 +345,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
                 else if (
                     (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))
-                    //      &&
-                    //(
-                    //BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
-                    //BotUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
-                    //)
+                          &&
+                    (
+                    IsOpponentBot && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
+                    IsFounderBot && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
+                    )
                     )// Player yendiği durumlar
                 {
                     PlayerWin();
@@ -415,7 +416,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void Answer()
         {
-            if (BotUserId == CurrentRound.FounderUserId && (FounderTotalScore == 0 || (OpponentTotalScore + CurrentRound.OpponentScore) > (FounderTotalScore + CurrentRound.FounderScore)))
+            if (IsFounderBot && (FounderTotalScore == 0 || (OpponentTotalScore + CurrentRound.OpponentScore) > (FounderTotalScore + CurrentRound.FounderScore)))
             {
                 CurrentRound.FounderTime = (byte)RandomScore;
 
@@ -427,7 +428,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
             }
-            else if (BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore == 0 || (FounderTotalScore + CurrentRound.FounderScore) > (OpponentTotalScore + CurrentRound.OpponentScore)))
+            else if (IsOpponentBot && (OpponentTotalScore == 0 || (FounderTotalScore + CurrentRound.FounderScore) > (OpponentTotalScore + CurrentRound.OpponentScore)))
             {
                 CurrentRound.OpponentTime = (byte)RandomScore;
 
@@ -446,10 +447,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void PlayerLose()
         {
-            if (BotUserId == CurrentRound.FounderUserId)
+            if (IsFounderBot)
             {
                 CurrentRound.FounderTime = CurrentRound.OpponentTime > 0
-                    ? (byte)(CurrentRound.OpponentTime + RandomScore)
+                    ? (byte)(CurrentRound.OpponentTime + new Random().Next(7, 10))
                     : (byte)10;
 
                 if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
@@ -460,10 +461,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
             }
-            else if (BotUserId == CurrentRound.OpponentUserId)
+            else if (IsOpponentBot)
             {
                 CurrentRound.OpponentTime = CurrentRound.FounderTime > 0
-                    ? (byte)(CurrentRound.FounderTime + RandomScore)
+                    ? (byte)(CurrentRound.FounderTime + new Random().Next(7, 10))
                     : (byte)10;
 
                 if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
@@ -481,53 +482,25 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void PlayerWin()
         {
-            if (BotUserId == CurrentRound.FounderUserId)
+            byte[] answers = new byte[4] { 1, 2, 3, 4 };
+
+            if (IsFounderBot)
             {
                 CurrentRound.FounderTime = (byte)(Event.Time - 3);
                 CurrentRound.FounderScore = 0;
-
-                switch (CurrentRound.CorrectAnswer)
-                {
-                    case Stylish.A:
-                        CurrentRound.FounderAnswer = Stylish.B;
-                        break;
-
-                    case Stylish.B:
-                        CurrentRound.FounderAnswer = Stylish.A;
-                        break;
-
-                    case Stylish.C:
-                        CurrentRound.FounderAnswer = Stylish.D;
-                        break;
-
-                    case Stylish.D:
-                        CurrentRound.FounderAnswer = Stylish.B;
-                        break;
-                }
+                CurrentRound.FounderAnswer = (Stylish)answers// Random yanlış cevap verdik
+                                                        .Where(stylish => stylish != (byte)CurrentRound.CorrectAnswer)
+                                                        .OrderBy(x => Guid.NewGuid())
+                                                        .FirstOrDefault();
             }
-            else if (BotUserId == CurrentRound.OpponentUserId)
+            else if (IsOpponentBot)
             {
                 CurrentRound.OpponentTime = (byte)(Event.Time - 3);
                 CurrentRound.OpponentScore = 0;
-
-                switch (CurrentRound.CorrectAnswer)
-                {
-                    case Stylish.A:
-                        CurrentRound.OpponentAnswer = Stylish.B;
-                        break;
-
-                    case Stylish.B:
-                        CurrentRound.OpponentAnswer = Stylish.A;
-                        break;
-
-                    case Stylish.C:
-                        CurrentRound.OpponentAnswer = Stylish.D;
-                        break;
-
-                    case Stylish.D:
-                        CurrentRound.OpponentAnswer = Stylish.B;
-                        break;
-                }
+                CurrentRound.OpponentAnswer = (Stylish)answers// Random yanlış cevap verdik
+                                                        .Where(stylish => stylish != (byte)CurrentRound.CorrectAnswer)
+                                                        .OrderBy(x => Guid.NewGuid())
+                                                        .FirstOrDefault();
             }
         }
 
