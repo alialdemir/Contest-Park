@@ -330,11 +330,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 Answer();
 
-                if (WinStatus.Status1 || (WinStatus.Status4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Status3))
+                if (WinStatus.Status1 || (WinStatus.Status4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Status3))// Player yenildiği durumlar
                 {
                     PlayerLose();
                 }
-                else if (WinStatus.Status3 || (WinStatus.Status2 && Event.BalanceType == BalanceTypes.Gold))
+                else if (WinStatus.Status3 || (WinStatus.Status2 && Event.BalanceType == BalanceTypes.Gold))// Player yendiği durumlar
                 {
                     PlayerWin();
                 }

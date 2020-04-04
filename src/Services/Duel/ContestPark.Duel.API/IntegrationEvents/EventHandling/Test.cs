@@ -156,7 +156,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             UserAnswers = _userAnswerRepository.GetAnswers(DuelId);
 
-            WinStatus = _duelRepository.WinStatus(RealUserId);
+            ///////  WinStatus = _duelRepository.WinStatus(RealUserId);
 
             _logger.LogInformation("Properties logger..",
                                    DuelId,

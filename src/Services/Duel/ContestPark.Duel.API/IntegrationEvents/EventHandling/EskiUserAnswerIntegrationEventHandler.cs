@@ -155,7 +155,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 string realUserId = isFounderBot ? currentRound.OpponentUserId : currentRound.FounderUserId;// Bot olmayan kullanıcının user id
                 string botUserId = isFounderBot ? currentRound.FounderUserId : currentRound.OpponentUserId;// bot kullanıcın id'si
 
-                bool winStatus = _duelRepository.WinStatus(realUserId);
+                bool winStatus = false;//_duelRepository.WinStatus(realUserId);
 
                 if (botUserId == currentRound.FounderUserId && (founderTotalScore == 0 || opponentTotalScore > founderTotalScore))
                 {
