@@ -134,7 +134,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             get
             {
-                return (byte)UserAnswers.Sum(x => x.FounderScore);
+                return (byte)(UserAnswers.Sum(x => x.FounderScore) + CurrentRound.FounderScore);
             }
         }
 
@@ -145,7 +145,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             get
             {
-                return (byte)UserAnswers.Sum(x => x.OpponentScore);
+                return (byte)(UserAnswers.Sum(x => x.OpponentScore) + CurrentRound.OpponentScore);
             }
         }
 
@@ -350,8 +350,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
                     &&
                     (
-                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore > FounderTotalScore ||
-                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore > OpponentTotalScore
+                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
+                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore >= OpponentTotalScore
                     )
 
                     )// Player yenildiği durumlar

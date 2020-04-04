@@ -67,6 +67,8 @@ namespace ContestPark.Mobile.Services.Cp
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             var result = await _requestProvider.GetAsync<BalanceModel>(uri);
+            if (!result.IsSuccess)
+                return new BalanceModel();
 
             return result.Data;
         }
