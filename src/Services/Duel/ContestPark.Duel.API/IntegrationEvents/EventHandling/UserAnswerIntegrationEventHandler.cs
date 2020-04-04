@@ -332,11 +332,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 if (
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
-                    &&
-                    (
-                    RealUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
-                    RealUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
-                    )
+                    //&&
+                    //(
+                    //RealUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
+                    //RealUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
+                    //)
 
                     )// Player yenildiği durumlar
                 {
@@ -344,11 +344,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 }
                 else if (
                     (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))
-                          &&
-                    (
-                    BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
-                    BotUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
-                    )
+                    //      &&
+                    //(
+                    //BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
+                    //BotUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
+                    //)
                     )// Player yendiği durumlar
                 {
                     PlayerWin();
