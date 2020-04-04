@@ -134,7 +134,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             get
             {
-                return (byte)(UserAnswers.Sum(x => x.FounderScore) + CurrentRound.FounderScore);
+                return (byte)UserAnswers.Sum(x => x.FounderScore);
             }
         }
 
@@ -145,7 +145,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         {
             get
             {
-                return (byte)(UserAnswers.Sum(x => x.OpponentScore) + CurrentRound.OpponentScore);
+                return (byte)UserAnswers.Sum(x => x.OpponentScore);
             }
         }
 
@@ -330,28 +330,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 Answer();
 
-                bool TEST = (
-                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore > FounderTotalScore ||
-                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore > OpponentTotalScore
-                    );
-
-                bool T1 = (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3));
-
-                _logger.LogInformation(
-                    "check status {Check1} {Check3} {Check3} {Check4} {TEST} {T1}",
-                    WinStatus.Check1,
-                    WinStatus.Check2,
-                    WinStatus.Check3,
-                    WinStatus.Check4,
-                    TEST,
-                    T1);
-
                 if (
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
                     &&
                     (
-                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
-                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore >= OpponentTotalScore
+                    RealUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
+                    RealUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
                     )
 
                     )// Player yenildiği durumlar
@@ -362,8 +346,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))
                           &&
                     (
-                    BotUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
-                    BotUserId == CurrentRound.FounderUserId && FounderTotalScore >= OpponentTotalScore
+                    BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
+                    BotUserId == CurrentRound.FounderUserId && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
                     )
                     )// Player yendiği durumlar
                 {
@@ -431,7 +415,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         private void Answer()
         {
-            if (BotUserId == CurrentRound.FounderUserId && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
+            if (BotUserId == CurrentRound.FounderUserId && (FounderTotalScore == 0 || (OpponentTotalScore + CurrentRound.OpponentScore) > (FounderTotalScore + CurrentRound.FounderScore)))
             {
                 CurrentRound.FounderTime = (byte)RandomScore;
 
@@ -443,7 +427,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 _logger.LogInformation("Bot kurucu ve rakip kazanıyor. {FounderScore} {OpponentScore}", CurrentRound.FounderScore, CurrentRound.OpponentScore);
             }
-            else if (BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore))
+            else if (BotUserId == CurrentRound.OpponentUserId && (OpponentTotalScore == 0 || (FounderTotalScore + CurrentRound.FounderScore) > (OpponentTotalScore + CurrentRound.OpponentScore)))
             {
                 CurrentRound.OpponentTime = (byte)RandomScore;
 
