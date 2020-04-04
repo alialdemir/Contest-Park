@@ -330,11 +330,26 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 Answer();
 
-                if (WinStatus.Status1 || (WinStatus.Status4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Status3))// Player yenildiği durumlar
+                if (
+                    (WinStatus.Status1 || (WinStatus.Status4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Status3))
+                    &&
+                    (
+                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
+                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore >= FounderTotalScore
+                    )
+
+                    )// Player yenildiği durumlar
                 {
                     PlayerLose();
                 }
-                else if (WinStatus.Status3 || (WinStatus.Status2 && Event.BalanceType == BalanceTypes.Gold))// Player yendiği durumlar
+                else if (
+                    (WinStatus.Status3 || (WinStatus.Status2 && Event.BalanceType == BalanceTypes.Gold))
+                          &&
+                    (
+                    BotUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
+                    BotUserId == CurrentRound.FounderUserId && FounderTotalScore >= FounderTotalScore
+                    )
+                    )// Player yendiği durumlar
                 {
                     PlayerWin();
                 }
@@ -401,27 +416,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="time">Süre</param>
         private void Answer()
         {
-            if (IsFounderBot)
-            {
-                CurrentRound.FounderTime = (byte)RandomScore;
-
-                if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
-                    CurrentRound.FounderTime = 10;
-
-                CurrentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
-                CurrentRound.FounderScore = CurrentRound.CorrectAnswer == CurrentRound.FounderAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.FounderTime) : (byte)0;
-            }
-            else if (IsOpponentBot)
-            {
-                CurrentRound.OpponentTime = (byte)RandomScore;
-
-                if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
-                    CurrentRound.OpponentTime = 10;
-
-                CurrentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
-                CurrentRound.OpponentScore = CurrentRound.CorrectAnswer == CurrentRound.OpponentAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime) : (byte)0;
-            }
-
             if (BotUserId == CurrentRound.FounderUserId && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
             {
                 CurrentRound.FounderTime = (byte)RandomScore;
