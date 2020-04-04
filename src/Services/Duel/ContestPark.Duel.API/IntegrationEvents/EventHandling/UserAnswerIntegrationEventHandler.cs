@@ -335,7 +335,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     &&
                     (
                     RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
-                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore >= FounderTotalScore
+                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore >= OpponentTotalScore
                     )
 
                     )// Player yenildiği durumlar
@@ -347,7 +347,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                           &&
                     (
                     BotUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
-                    BotUserId == CurrentRound.FounderUserId && FounderTotalScore >= FounderTotalScore
+                    BotUserId == CurrentRound.FounderUserId && FounderTotalScore >= OpponentTotalScore
                     )
                     )// Player yendiği durumlar
                 {
@@ -413,7 +413,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <summary>
         /// Oynama ayarlamaları
         /// </summary>
-        /// <param name="time">Süre</param>
         private void Answer()
         {
             if (BotUserId == CurrentRound.FounderUserId && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
@@ -443,7 +442,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         }
 
         /// <summary>
-        /// Oyuncu mutlaka kaybetmeli
+        /// Bot'un mutlaka oyuncudan daha yüksek puanla doğru cevaplamasını sağlar
         /// </summary>
         private void PlayerLose()
         {
@@ -478,9 +477,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         }
 
         /// <summary>
-        /// Oyuncu mutlaka kazanmalı
+        /// Bot'un mutlaka yanlış cevaplamasını sağlar
         /// </summary>
-        /// <param name="isFounder"></param>
         private void PlayerWin()
         {
             if (BotUserId == CurrentRound.FounderUserId)
