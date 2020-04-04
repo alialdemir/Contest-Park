@@ -335,7 +335,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     RealUserId == CurrentRound.FounderUserId && FounderTotalScore > OpponentTotalScore
                     );
 
-                bool T1 = (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3);
+                bool T1 = (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3));
 
                 _logger.LogInformation(
                     "check status {Check1} {Check3} {Check3} {Check4} {TEST} {T1}",
