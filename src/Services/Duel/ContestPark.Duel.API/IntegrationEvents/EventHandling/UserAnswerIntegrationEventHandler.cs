@@ -321,23 +321,29 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 //botUserId == currentRound.FounderUserId && opponentTotalScore > founderTotalScore
                 if (
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
-                    &&
-                    (
-                    (IsFounderBot && (FounderTotalScore + CurrentRound.FounderScore) <= (OpponentTotalScore + CurrentRound.OpponentScore))
-                    ||
-                    (IsOpponentBot && (OpponentTotalScore + CurrentRound.OpponentScore) <= (FounderTotalScore + CurrentRound.FounderScore))
-                    )
+                    //   &&
+                    //     (
+                    //(IsFounderBot && (FounderTotalScore + CurrentRound.FounderScore) <= (OpponentTotalScore + CurrentRound.OpponentScore))
+                    //||
+                    //(IsOpponentBot && (OpponentTotalScore + CurrentRound.OpponentScore) <= (FounderTotalScore + CurrentRound.FounderScore))
+                    //     )
 
                     )// Player yenildiği durumlar
                 {
-                    PlayerLose();
+                    if ((IsFounderBot && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
+                        ||
+                        IsOpponentBot && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore)
+                        )
+                    {
+                        PlayerLose();
+                    }
                 }
                 else if (
                     (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))
                           &&
                     (
-                    IsOpponentBot && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore) ||
-                    IsFounderBot && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore)
+                    (IsOpponentBot && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore)) ||
+                    (IsFounderBot && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore))
                     )
                     )// Player yendiği durumlar
                 {
