@@ -182,17 +182,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
         }
 
-        /// <summary>
-        /// Bot kullanıcın id'si
-        /// </summary>
-        private string BotUserId
-        {
-            get
-            {
-                return IsFounderBot ? CurrentRound.FounderUserId : CurrentRound.OpponentUserId;
-            }
-        }
-
         private DuelWinStatusModel _winStatus;
 
         /// <summary>
@@ -334,9 +323,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
                     &&
                     (
-                    (IsFounderBot && (OpponentTotalScore + CurrentRound.OpponentScore) >= (FounderTotalScore + CurrentRound.FounderScore))
+                    (IsFounderBot && (FounderTotalScore + CurrentRound.FounderScore) <= (OpponentTotalScore + CurrentRound.OpponentScore))
                     ||
-                    (IsOpponentBot && (FounderTotalScore + CurrentRound.FounderScore) >= (OpponentTotalScore + CurrentRound.OpponentScore))
+                    (IsOpponentBot && (OpponentTotalScore + CurrentRound.OpponentScore) <= (FounderTotalScore + CurrentRound.FounderScore))
                     )
 
                     )// Player yenildiği durumlar
@@ -450,7 +439,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             if (IsFounderBot)
             {
                 CurrentRound.FounderTime = CurrentRound.OpponentTime > 0
-                    ? (byte)(CurrentRound.OpponentTime + new Random().Next(7, 10))
+                    ? (byte)(CurrentRound.OpponentTime + RandomScore)
                     : (byte)10;
 
                 if (CurrentRound.FounderTime > 10 || CurrentRound.FounderTime <= 0)
@@ -464,7 +453,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             else if (IsOpponentBot)
             {
                 CurrentRound.OpponentTime = CurrentRound.FounderTime > 0
-                    ? (byte)(CurrentRound.FounderTime + new Random().Next(7, 10))
+                    ? (byte)(CurrentRound.FounderTime + RandomScore)
                     : (byte)10;
 
                 if (CurrentRound.OpponentTime > 10 || CurrentRound.OpponentTime <= 0)
