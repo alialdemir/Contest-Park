@@ -331,11 +331,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 Answer();
 
                 if (
-                    (WinStatus.Status1 || (WinStatus.Status4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Status3))
+                    (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
                     &&
                     (
-                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
-                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore >= OpponentTotalScore
+                    RealUserId == CurrentRound.OpponentUserId && OpponentTotalScore > FounderTotalScore ||
+                    RealUserId == CurrentRound.FounderUserId && FounderTotalScore > OpponentTotalScore
                     )
 
                     )// Player yenildiği durumlar
@@ -343,7 +343,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                     PlayerLose();
                 }
                 else if (
-                    (WinStatus.Status3 || (WinStatus.Status2 && Event.BalanceType == BalanceTypes.Gold))
+                    (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))
                           &&
                     (
                     BotUserId == CurrentRound.OpponentUserId && OpponentTotalScore >= FounderTotalScore ||
