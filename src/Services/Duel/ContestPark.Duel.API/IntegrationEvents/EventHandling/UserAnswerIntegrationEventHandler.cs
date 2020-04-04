@@ -53,9 +53,37 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         #region Properties
 
-        private int DuelId { get; set; }
-        private int QuestionId { get; set; }
+        /// <summary>
+        /// Soruyu cevaplayanın bilgileri
+        /// </summary>
+        private UserAnswerIntegrationEvent Event { get; set; }
 
+        /// <summary>
+        /// Düello id
+        /// </summary>
+
+        private int DuelId
+        {
+            get
+            {
+                return Event.DuelId;
+            }
+        }
+
+        /// <summary>
+        /// Şuanki raundun soru id
+        /// </summary>
+        private int QuestionId
+        {
+            get
+            {
+                return Event.QuestionId;
+            }
+        }
+
+        /// <summary>
+        /// Şuanki Raund bilgisi
+        /// </summary>
         private UserAnswerModel CurrentRound
         {
             get
@@ -65,14 +93,43 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         }
 
         /// <summary>
-        /// Kaçıncı raounda oldukları
+        /// Question id'ye ait index'in bir fazlası bulukduğu roundu verir
         /// </summary>
-        private int Round { get; set; }
+
+        private int Round
+        {
+            get
+            {
+                return UserAnswers.FindIndex(x => x.QuestionId == QuestionId) + 1;
+            }
+        }
+
+        /// <summary>
+        /// Sonraki raunda sayısı
+        /// </summary>
+        private byte NextRound
+        {
+            get
+            {
+                return (byte)(Round + 1);
+            }
+        }
+
+        private List<UserAnswerModel> _userAnswers;
 
         /// <summary>
         /// Oyuncuların cevapları
         /// </summary>
-        private List<UserAnswerModel> UserAnswers { get; set; }
+        private List<UserAnswerModel> UserAnswers
+        {
+            get
+            {
+                if (_userAnswers == null)
+                    _userAnswers = _userAnswerRepository.GetAnswers(DuelId);
+
+                return _userAnswers;
+            }
+        }
 
         /// <summary>
         /// Kurucu toplam skor
@@ -140,10 +197,22 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
         }
 
+        private bool? _winStatus = null;
+
         /// <summary>
         /// Kazanma Kaybetme durumu
         /// </summary>
-        private bool WinStatus { get; set; }
+        private bool WinStatus
+        {
+            get
+
+            {
+                if (!_winStatus.HasValue)
+                    _winStatus = _duelRepository.WinStatus(RealUserId);
+
+                return _winStatus.Value;
+            }
+        }
 
         /// <summary>
         /// Random skor verir
@@ -153,6 +222,53 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             get
             {
                 return new Random().Next(5, 10);
+            }
+        }
+
+        /// <summary>
+        /// Soruya cevap verenin cevabı doğru mu
+        /// </summary>
+        private bool IsCorrectAnswer
+        {
+            get
+            {
+                return CurrentRound.CorrectAnswer == Event.Stylish;
+            }
+        }
+
+        /// <summary>
+        /// Soruyu cevaplayan kurucu ise true değilse false
+        /// </summary>
+        private bool IsFounder
+        {
+            get
+            {
+                return Event.UserId == CurrentRound.FounderUserId;
+            }
+        }
+
+        /// <summary>
+        /// Düello bitti mi bilgisini verir true ise bitti false ise devam ediyor
+        /// Maksimum MAX_ANSWER_COUNT kadar olabilir
+        /// </summary>
+        private bool IsGameEnd
+        {
+            get
+            {
+                return Round == MAX_ANSWER_COUNT;
+            }
+        }
+
+        /// <summary>
+        /// Soruya cevap verenin aldığı puan
+        /// </summary>
+        private byte CurrentAnswerScore
+        {
+            get
+            {
+                return IsCorrectAnswer
+                    ? _scoreCalculator.Calculator(Round, Event.Time)
+                    : (byte)0;
             }
         }
 
@@ -175,38 +291,23 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 @event.BalanceType,
                 @event.Time);
 
-            DuelId = @event.DuelId;
-            QuestionId = @event.QuestionId;
-
-            UserAnswers = _userAnswerRepository.GetAnswers(DuelId);
-
-            WinStatus = _duelRepository.WinStatus(RealUserId);
-
-            _logger.LogInformation("Properties logger..",
-                                   DuelId,
-                                   QuestionId,
-                                   CurrentRound,
-                                   Round,
-                                   UserAnswers,
-                                   FounderTotalScore,
-                                   OpponentTotalScore,
-                                   IsFounderBot,
-                                   IsOpponentBot,
-                                   RealUserId,
-                                   BotUserId,
-                                   WinStatus,
-                                   RandomScore);
+            Event = @event;
 
             if (UserAnswers == null || UserAnswers.Count == 0)
             {
                 _logger.LogWarning("Düello cevapları rediste bulunamadı...");
+
+                CancelDuel();
+
                 return;
             }
 
             if (CurrentRound == null)
             {
                 _logger.LogError("Round soru bilgisi boş geldi. {QuestionId}", @event.QuestionId);
-                // TODO: Düelloda hata oluştu iptal et paraları geri ver
+
+                CancelDuel();
+
                 return;
             }
 
@@ -214,35 +315,27 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 && !(CurrentRound.OpponentAnswer == Stylish.NotSeeQuestion || CurrentRound.OpponentAnswer == Stylish.UnableToReply))
                 return;
 
-            Round = UserAnswers.FindIndex(x => x.QuestionId == @event.QuestionId) + 1;// Question id'ye ait index bulukduğu roundu verir
-
-            bool isFounder = @event.UserId == CurrentRound.FounderUserId;
-
-            bool isCorrectAnswer = CurrentRound.CorrectAnswer == @event.Stylish;
-
-            byte score = isCorrectAnswer ? _scoreCalculator.Calculator(Round, @event.Time) : (byte)0;
-
-            if (isFounder)//  Kurucu ise kurucuya puan verildi
+            if (IsFounder)//  Kurucu ise kurucuya puan verildi
             {
                 CurrentRound.FounderAnswer = @event.Stylish;
                 CurrentRound.FounderTime = @event.Time;
-                CurrentRound.FounderScore = score;
+                CurrentRound.FounderScore = CurrentAnswerScore;
             }
             else// Rakip ise rakibe puan verildi
             {
                 CurrentRound.OpponentAnswer = @event.Stylish;
                 CurrentRound.OpponentTime = @event.Time;
-                CurrentRound.OpponentScore = score;
+                CurrentRound.OpponentScore = CurrentAnswerScore;
             }
 
             #region Oyun ayarları
 
-            if (CurrentRound.FounderUserId.EndsWith("-bot") || CurrentRound.OpponentUserId.EndsWith("-bot"))// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
+            if (IsFounderBot || IsOpponentBot)// Eğer bot ile oynanıyorsa ve bot cevaplamış ise
             {
-                await Answer(@event.Time);
+                await Answer();
 
                 if (@event.BalanceType == BalanceTypes.Gold)
-                    await GoldGame(@event.Time);
+                    await GoldGame();
                 else if (@event.BalanceType == BalanceTypes.Money)
                     await MoneyGame();
             }
@@ -251,7 +344,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             UserAnswers[Round - 1] = CurrentRound;// Şuandaki round bilgileri aynı indexe set edildi
 
-            if (CurrentRound.FounderAnswer == Stylish.NotSeeQuestion || CurrentRound.OpponentAnswer == Stylish.NotSeeQuestion)
+            if (CurrentRound.FounderAnswer == Stylish.NotSeeQuestion
+                || CurrentRound.OpponentAnswer == Stylish.NotSeeQuestion)
             {
                 _logger.LogError("Kullanıcı soruyu cevaplamamış gözüküyor", CurrentRound);
 
@@ -260,23 +354,31 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             _userAnswerRepository.AddRangeAsync(UserAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
-            bool isGameEnd = Round == MAX_ANSWER_COUNT;
+            PublishNextQuestionEvent();
 
-            byte nextRound = (byte)(Round + 1);// Sonraki raunda geçiildi
-
-            PublishNextQuestionEvent(CurrentRound, @event.DuelId, isGameEnd, nextRound);
-
-            if (isGameEnd)
+            if (IsGameEnd)
             {
-                await SaveDuelDetailTable(@event.DuelId, UserAnswers);
+                await SaveDuelDetailTable();
             }
+        }
+
+        /// <summary>
+        /// Düelloyu iptal eder
+        /// </summary>
+        private void CancelDuel()
+        {
+            var @event = new DuelEscapeIntegrationEvent(DuelId,
+                                                        RealUserId,
+                                                        isDuelCancel: true);
+
+            _eventBus.Publish(@event);
         }
 
         /// <summary>
         /// Oynama ayarlamaları
         /// </summary>
         /// <param name="time">Süre</param>
-        private async Task Answer(byte time)
+        private async Task Answer()
         {
             if (IsFounderBot)
             {
@@ -288,7 +390,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 CurrentRound.FounderAnswer = (Stylish)new Random().Next(1, 4);
                 CurrentRound.FounderScore = CurrentRound.CorrectAnswer == CurrentRound.FounderAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.FounderTime) : (byte)0;
 
-                int diff = time - CurrentRound.FounderTime;
+                int diff = Event.Time - CurrentRound.FounderTime;
                 if (diff > 0 && CurrentRound.FounderAnswer != CurrentRound.CorrectAnswer)
                     await Task.Delay(diff * 1000);
             }
@@ -302,7 +404,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 CurrentRound.OpponentAnswer = (Stylish)new Random().Next(1, 4);
                 CurrentRound.OpponentScore = CurrentRound.CorrectAnswer == CurrentRound.OpponentAnswer ? _scoreCalculator.Calculator(Round, CurrentRound.OpponentTime) : (byte)0;
 
-                int diff = time - CurrentRound.OpponentTime;
+                int diff = Event.Time - CurrentRound.OpponentTime;
                 if (diff > 0 && CurrentRound.OpponentAnswer != CurrentRound.CorrectAnswer)
                     await Task.Delay(diff * 1000);
             }
@@ -337,7 +439,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// Altın ile oynama oyun ayarları
         /// </summary>
         /// <param name="time">Süre</param>
-        private async Task GoldGame(byte time)
+        private async Task GoldGame()
         {
             BalanceModel balance = await _balanceService.GetBalance(RealUserId, BalanceTypes.Gold);// bot olmayan kullanıcının para miktarını aldık
 
@@ -349,11 +451,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (!WinStatus && withdrawalStatus && RealUserId == CurrentRound.OpponentUserId && FounderTotalScore >= OpponentTotalScore)
             {
-                FalseAnswer(true, time);
+                FalseAnswer(true);
             }
             else if (!WinStatus && withdrawalStatus && RealUserId == CurrentRound.FounderUserId && OpponentTotalScore >= FounderTotalScore)
             {
-                FalseAnswer(false, time);
+                FalseAnswer(false);
             }
             else if (WinStatus && BotUserId == CurrentRound.FounderUserId && OpponentTotalScore > FounderTotalScore)// Eğer bot kurucu ise rakip kazanıyorsa ve para çekmeye yakın ise
             {
@@ -434,11 +536,11 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// </summary>
         /// <param name="isFounder">Kurucunun cevabı mı yanlış olacak yoksa rakibin mi/param>
         /// <param name="time">Süre</param>
-        private void FalseAnswer(bool isFounder, byte time)
+        private void FalseAnswer(bool isFounder)
         {
             if (isFounder)
             {
-                CurrentRound.FounderTime = (byte)(time - 3);
+                CurrentRound.FounderTime = (byte)(Event.Time - 3);
                 CurrentRound.FounderScore = 0;
 
                 switch (CurrentRound.CorrectAnswer)
@@ -462,7 +564,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             else
             {
-                CurrentRound.OpponentTime = (byte)(time - 3);
+                CurrentRound.OpponentTime = (byte)(Event.Time - 3);
                 CurrentRound.OpponentScore = 0;
 
                 switch (CurrentRound.CorrectAnswer)
@@ -489,11 +591,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <summary>
         /// Redisdeki duello bilgisini tekrar ekleyerek güncelelr(aynı key'de ekleme yapınca güncellemiş oluyoruz)
         /// </summary>
-        /// <param name="duelId">Duel id</param>
-        /// <param name="userAnswers">Duello soru ve cevap bilgileri</param>
-        private async Task SaveDuelDetailTable(int duelId, List<UserAnswerModel> userAnswers)
+        private async Task SaveDuelDetailTable()
         {
-            bool isSuccess = await _duelDetailRepository.AddRangeAsync(userAnswers.Select(x => new Infrastructure.Tables.DuelDetail
+            _logger.LogInformation("Duello sona erdi. {duelId} {FounderUserId} {OpponentUserId} {FounderTotalScore} {OpponentTotalScore}",
+                                   DuelId,
+                                   CurrentRound.FounderUserId,
+                                   CurrentRound.OpponentUserId,
+                                   FounderTotalScore,
+                                   OpponentTotalScore);
+
+            bool isSuccess = await _duelDetailRepository.AddRangeAsync(UserAnswers.Select(x => new Infrastructure.Tables.DuelDetail
             {
                 DuelId = x.DuelId,
                 QuestionId = x.QuestionId,
@@ -506,68 +613,52 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 OpponentTime = x.OpponentTime,
             }).ToList());
 
-            if (isSuccess)
+            if (!isSuccess)
             {
-                UserAnswerModel firstItem = userAnswers.FirstOrDefault();// Kullanıcı idlerini alabilmek için ilk itemi aldım
+                _logger.LogCritical("CRITICAL: Duello bilgileri kayıt edilirken hata oluştu. {DuelId}", DuelId);
 
-                byte founderTotalScore = (byte)userAnswers.Sum(x => x.FounderScore);
-                byte opponentTotalScore = (byte)userAnswers.Sum(x => x.OpponentScore);
+                CancelDuel();
 
-                bool isFounderFinishedTheGame = userAnswers.Count(x => x.FounderAnswer != Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
-                bool isOpponentFinishedTheGame = userAnswers.Count(x => x.OpponentAnswer != Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
-
-                DuelBalanceInfoModel duelBalanceInfo = _duelRepository.GetDuelBalanceInfoByDuelId(duelId);
-
-                _logger.LogInformation(
-                    "Duello sona erdi. {duelId} {@duelBalanceInfo} {FounderUserId} {OpponentUserId} {founderTotalScore} {opponentTotalScore}",
-                    duelId,
-                    duelBalanceInfo,
-                    firstItem.FounderUserId,
-                    firstItem.OpponentUserId,
-                    founderTotalScore,
-                    opponentTotalScore);
-
-                // İki oyuncuda soruyu cevaplamışsa ikisinede verdikleri cevapları ve puanları gönderiyoruz
-                var @duelFinishEvent = new DuelFinishIntegrationEvent(duelId,
-                                                                      duelBalanceInfo.BalanceType,
-                                                                      duelBalanceInfo.Bet,
-                                                                      duelBalanceInfo.BetCommission,
-                                                                      duelBalanceInfo.SubCategoryId,
-                                                                      firstItem.FounderUserId,
-                                                                      firstItem.OpponentUserId,
-                                                                      founderTotalScore,
-                                                                      opponentTotalScore,
-                                                                      isFounderFinishedTheGame,
-                                                                      isOpponentFinishedTheGame,
-                                                                      isDuelCancel: false);
-
-                _eventBus.Publish(@duelFinishEvent);
-
-                _userAnswerRepository.Remove(duelId);// redisdeki duello bilgileri silindi.
+                return;
             }
-            else
-            {
-                _logger.LogCritical("CRITICAL: Duello bilgileri kayıt edilirken hata oluştu. {@userAnswers}", userAnswers);
-            }
+
+            bool isFounderFinishedTheGame = UserAnswers.Count(x => x.FounderAnswer != Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
+            bool isOpponentFinishedTheGame = UserAnswers.Count(x => x.OpponentAnswer != Stylish.NotSeeQuestion) == MAX_ANSWER_COUNT;
+
+            DuelBalanceInfoModel duelBalanceInfo = _duelRepository.GetDuelBalanceInfoByDuelId(DuelId);
+
+            // İki oyuncuda soruyu cevaplamışsa ikisinede verdikleri cevapları ve puanları gönderiyoruz
+            var @duelFinishEvent = new DuelFinishIntegrationEvent(DuelId,
+                                                                  duelBalanceInfo.BalanceType,
+                                                                  duelBalanceInfo.Bet,
+                                                                  duelBalanceInfo.BetCommission,
+                                                                  duelBalanceInfo.SubCategoryId,
+                                                                  CurrentRound.FounderUserId,
+                                                                  CurrentRound.OpponentUserId,
+                                                                  FounderTotalScore,
+                                                                  OpponentTotalScore,
+                                                                  isFounderFinishedTheGame,
+                                                                  isOpponentFinishedTheGame,
+                                                                  isDuelCancel: false);
+
+            _eventBus.Publish(@duelFinishEvent);
+
+            _userAnswerRepository.Remove(DuelId);// redisdeki duello bilgileri silindi.
         }
 
         /// <summary>
         /// Kullanıcıların sorala verdikleri cevapları birbirine göndermek için event publish eder
         /// </summary>
-        /// <param name="CurrentRound"></param>
-        /// <param name="duelId"></param>
-        /// <param name="isGameEnd"></param>
-        /// <param name="nextRound"></param>
-        private void PublishNextQuestionEvent(UserAnswerModel CurrentRound, int duelId, bool isGameEnd, byte nextRound)
+        private void PublishNextQuestionEvent()
         {
-            var @nextQuestionEvent = new NextQuestionIntegrationEvent(duelId,
+            var @nextQuestionEvent = new NextQuestionIntegrationEvent(DuelId,
                                                                       CurrentRound.FounderAnswer,
                                                                       CurrentRound.OpponentAnswer,
                                                                       CurrentRound.CorrectAnswer,
                                                                       CurrentRound.FounderScore,
                                                                       CurrentRound.OpponentScore,
-                                                                      nextRound,
-                                                                      isGameEnd);
+                                                                      NextRound,
+                                                                      IsGameEnd);
 
             _eventBus.Publish(@nextQuestionEvent);
         }

@@ -78,27 +78,21 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                     @event.FounderUserId,
                     @event.OpponentUserId);
 
-                await Task.Factory.StartNew(() =>
-                 {
-                     var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
-                                                                           @event.FounderUserId,
-                                                                           isDuelCancel: true);
+                var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
+                                                                      @event.FounderUserId,
+                                                                      isDuelCancel: true);
 
-                     _eventBus.Publish(@eventDuelEscape);
-                 });
+                _eventBus.Publish(@eventDuelEscape);
 
-                await Task.Factory.StartNew(() =>
+                if (!@event.FounderUserId.EndsWith("-bot"))
                 {
-                    if (!@event.FounderUserId.EndsWith("-bot"))
-                    {
-                        SendErrorMessage(@event.FounderUserId);
-                    }
+                    SendErrorMessage(@event.FounderUserId);
+                }
 
-                    if (!@event.OpponentUserId.EndsWith("-bot"))
-                    {
-                        SendErrorMessage(@event.OpponentUserId);
-                    }
-                });
+                if (!@event.OpponentUserId.EndsWith("-bot"))
+                {
+                    SendErrorMessage(@event.OpponentUserId);
+                }
             }
         }
 
@@ -108,15 +102,9 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// <param name="userId">Mesajı alan kullanıcı id</param>
         private void SendErrorMessage(string userId)
         {
-            Task.Factory.StartNew(() =>
-           {
-               if (!userId.EndsWith("-bot"))
-               {
-                   var @eventSendErrorMessage = new SendErrorMessageWithSignalrIntegrationEvent(userId, "Rakip bulunamadı. Lütfen tekrar deneyiniz.");
+            var @eventSendErrorMessage = new SendErrorMessageWithSignalrIntegrationEvent(userId, "Rakip bulunamadı. Lütfen tekrar deneyiniz.");
 
-                   _eventBus.Publish(@eventSendErrorMessage);
-               }
-           });
+            _eventBus.Publish(@eventSendErrorMessage);
         }
 
         /// <summary>
