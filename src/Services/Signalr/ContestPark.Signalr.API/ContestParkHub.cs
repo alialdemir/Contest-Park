@@ -53,6 +53,13 @@ namespace ContestPark.Signalr.API
             await base.OnDisconnectedAsync(ex);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            Clients.All.SendAsync("RemoveConnectionId", string.Empty);// bağlantı kopmalarındaki sorun için test amaçlı ekledim
+
+            base.Dispose(disposing);
+        }
+
         /// <summary>
         /// Oyuncunun verdiği cevabı yakalar
         /// </summary>

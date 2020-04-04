@@ -319,27 +319,21 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 Answer();
 
-                if (
-                    (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))
-                   &&
-                      (
-                           (IsFounderBot && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
-                        || (IsOpponentBot && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore))
-                        )
-                    )// Player yenildiği durumlar
+                if (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))// Player yenildiği durumlar
                 {
-                    PlayerLose();
+                    if ((IsFounderBot && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
+                        || (IsOpponentBot && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore)))// Sürekli soruyu doğru cevaplamasın diye puan farkı varsa doğru cevaplasın
+                    {
+                        PlayerLose();
+                    }
                 }
-                else if (
-                    (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))
-                  &&
-                      (
-                           (IsOpponentBot && OpponentTotalScore > FounderTotalScore)
-                        || (IsFounderBot && FounderTotalScore > OpponentTotalScore)
-                        )
-                    )// Player yendiği durumlar
+                else if (WinStatus.Check3 || (WinStatus.Check2 && Event.BalanceType == BalanceTypes.Gold))// Player yendiği durumlar
                 {
-                    PlayerWin();
+                    if ((IsOpponentBot && OpponentTotalScore > FounderTotalScore)// Sürekli
+                        || (IsFounderBot && FounderTotalScore > OpponentTotalScore))
+                    {
+                        PlayerWin();
+                    }
                 }
 
                 await Delay();
