@@ -570,6 +570,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private void PublishNextQuestionEvent()
         {
             var @nextQuestionEvent = new NextQuestionIntegrationEvent(DuelId,
+                                                                      CurrentRound.FounderUserId,
+                                                                      CurrentRound.OpponentUserId,
                                                                       CurrentRound.FounderAnswer,
                                                                       CurrentRound.OpponentAnswer,
                                                                       CurrentRound.CorrectAnswer,

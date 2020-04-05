@@ -6,6 +6,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
     public class NextQuestionIntegrationEvent : IntegrationEvent
     {
         public NextQuestionIntegrationEvent(int duelId,
+                                            string founderUserId,
+                                            string opponentUserId,
                                             Stylish founderStylish,
                                             Stylish opponentStylish,
                                             Stylish correctStylish,
@@ -22,6 +24,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             OpponentScore = opponentScore;
             Round = round;
             IsGameEnd = isGameEnd;
+            FounderUserId = founderUserId;
+            OpponentUserId = opponentUserId;
         }
 
         public int DuelId { get; }
@@ -36,5 +40,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public byte OpponentScore { get; set; }
         public byte Round { get; }
         public bool IsGameEnd { get; set; }
+        public string FounderUserId { get; }
+        public string OpponentUserId { get; }
     }
 }

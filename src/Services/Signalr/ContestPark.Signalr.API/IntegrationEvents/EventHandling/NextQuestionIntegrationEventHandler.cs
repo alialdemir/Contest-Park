@@ -37,8 +37,19 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {
+                string duelGroupName = GetDuelGroupName(@event.DuelId);
+
+                if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
+                {
+                    string realUserId = @event.FounderUserId.EndsWith("-bot")
+                        ? @event.OpponentUserId
+                        : @event.FounderUserId;
+
+                    duelGroupName = realUserId;
+                }
+
                 await _hubContext.Clients
-                                 .Group(GetDuelGroupName(@event.DuelId))
+                                 .Group(duelGroupName)
                                  .SendAsync("NextQuestion", @event);
 
                 _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);

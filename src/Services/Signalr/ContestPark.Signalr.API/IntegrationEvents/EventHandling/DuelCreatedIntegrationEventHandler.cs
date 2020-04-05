@@ -39,8 +39,19 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
             {
                 _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);
 
+                string duelGroupName = GetDuelGroupName(@event.DuelId);
+
+                if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
+                {
+                    string realUserId = @event.FounderUserId.EndsWith("-bot")
+                        ? @event.OpponentUserId
+                        : @event.FounderUserId;
+
+                    duelGroupName = realUserId;
+                }
+
                 await _hubContext.Clients
-                                 .Group(GetDuelGroupName(@event.DuelId))
+                                 .Group(duelGroupName)
                                  .SendAsync("DuelCreated", @event);
             }
         }
@@ -52,7 +63,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         /// <returns>Düello grup adı</returns>
         private string GetDuelGroupName(int duelId)
         {
-            return $"Duel{duelId.ToString()}";
+            return $"Duel{duelId}";
         }
 
         #endregion Methods

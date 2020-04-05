@@ -44,16 +44,27 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
                 {
                     string duelGroupName = GetDuelGroupName(@event.DuelId);
 
-                    // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                    if (!@event.FounderUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.FounderConnectionId))
+                    if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
                     {
-                        await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
-                    }
+                        string realUserId = @event.FounderUserId.EndsWith("-bot")
+                            ? @event.OpponentUserId
+                            : @event.FounderUserId;
 
-                    // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
-                    if (!@event.OpponentUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.OpponentConnectionId))
+                        duelGroupName = realUserId;
+                    }
+                    else if (!@event.FounderUserId.EndsWith("-bot") || !@event.OpponentUserId.EndsWith("-bot"))
                     {
-                        await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
+                        // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
+                        if (!@event.FounderUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.FounderConnectionId))
+                        {
+                            await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
+                        }
+
+                        // Eğer bot değilse tek seferde gönderebilemk için İki kullanıcıyı duello id ile bir gruba aldık
+                        if (!@event.OpponentUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.OpponentConnectionId))
+                        {
+                            await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
+                        }
                     }
 
                     await _hubContext.Clients
@@ -71,18 +82,18 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
             }
             catch (System.Exception ex)
             {
+                var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
+                                                                      @event.FounderUserId,
+                                                                      isDuelCancel: true);
+
+                _eventBus.Publish(@eventDuelEscape);
+
                 _logger.LogError(
                     "Düello başlatılırken exception oluştu. {message} {duelId} {FounderUserId} {OpponentUserId}",
                     ex.Message,
                     @event.DuelId,
                     @event.FounderUserId,
                     @event.OpponentUserId);
-
-                var @eventDuelEscape = new DuelEscapeIntegrationEvent(@event.DuelId,
-                                                                      @event.FounderUserId,
-                                                                      isDuelCancel: true);
-
-                _eventBus.Publish(@eventDuelEscape);
 
                 if (!@event.FounderUserId.EndsWith("-bot"))
                 {
