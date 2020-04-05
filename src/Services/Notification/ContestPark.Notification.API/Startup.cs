@@ -4,6 +4,7 @@ using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
+using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
 using ContestPark.Notification.API.IntegrationEvents.EventHandling;
 using ContestPark.Notification.API.IntegrationEvents.Events;
 using ContestPark.Notification.API.Resources;
@@ -55,6 +56,8 @@ namespace ContestPark.Notification.API
                     .AddCorsConfigure();
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
+            services.AddTransient<IPushNotificationRepository, PushNotificationRepository>();
+
             services.AddTransient<ISmsService, AwsSmsService>();
 
             services.AddTransient<AddNotificationIntegrationEventHandler>();

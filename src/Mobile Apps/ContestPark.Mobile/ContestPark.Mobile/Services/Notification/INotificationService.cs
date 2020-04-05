@@ -14,5 +14,6 @@ namespace ContestPark.Mobile.Services.Notification
         Task<bool> LogInSms(SmsInfoModel smsInfo);
 
         Task<ServiceModel<NotificationModel>> NotificationsAsync(PagingModel pagingModel);
+        Task<bool> UpdatePushTokenAsync(PushNotificationTokenModel tokenModel);
     }
 }

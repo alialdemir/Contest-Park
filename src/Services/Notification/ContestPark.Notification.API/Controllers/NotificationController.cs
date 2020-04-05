@@ -2,6 +2,7 @@
 using ContestPark.Core.Models;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
+using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
 using ContestPark.Notification.API.Models;
 using ContestPark.Notification.API.Resources;
 using ContestPark.Notification.API.Services.Sms;
@@ -23,6 +24,7 @@ namespace ContestPark.Notification.API.Controllers
 
         private readonly INotificationRepository _notificationRepository;
         private readonly ISmsService _smsService;
+        private readonly IPushNotificationRepository _pushNotificationRepository;
         private readonly IIdentityService _identityService;
 
         #endregion Private variables
@@ -31,10 +33,12 @@ namespace ContestPark.Notification.API.Controllers
 
         public NotificationController(ILogger<NotificationController> logger,
                                       ISmsService smsService,
+                                      IPushNotificationRepository pushNotificationRepository,
                                       IIdentityService identityService,
                                       INotificationRepository notificationRepository) : base(logger)
         {
             _smsService = smsService;
+            _pushNotificationRepository = pushNotificationRepository;
             _identityService = identityService;
             _notificationRepository = notificationRepository;
         }
@@ -42,6 +46,28 @@ namespace ContestPark.Notification.API.Controllers
         #endregion Constructor
 
         #region Methods
+
+        /// <summary>
+        /// Firebase push notification token güncelle
+        /// </summary>
+        /// <param name="tokenModel">Token</param>
+        [HttpPost("Push/Token")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdatePushToken([FromBody]PushNotificationTokenModel tokenModel)
+        {
+            if (tokenModel == null || string.IsNullOrEmpty(tokenModel.Token))
+                return BadRequest();
+
+            // TODO: Burayı queue alınalı
+
+            tokenModel.UserId = UserId;
+
+            bool isSuccess = await _pushNotificationRepository.UpdateTokenByUserIdAsync(tokenModel);
+            if (!isSuccess)
+                BadRequest();
+
+            return Ok();
+        }
 
         /// <summary>
         /// Kullanıcının bildirim listesi

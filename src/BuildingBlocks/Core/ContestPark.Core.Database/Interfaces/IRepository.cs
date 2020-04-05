@@ -32,5 +32,6 @@ namespace ContestPark.Core.Database.Interfaces
         Task<bool> RemoveAsync(Expression<Func<TEntity, bool>> predicate);
 
         Task<int?> AddAndGetIdAsync(TEntity entity);
+        Task<Key> AddAsync<Key>(TEntity entity);
     }
 }

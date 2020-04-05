@@ -36,6 +36,29 @@ namespace ContestPark.Core.Dapper
         /// </summary>
         /// <param name="entity">Eklenen entity</param>
         /// <returns>Başarılı ise true değilse false</returns>
+        public async Task<Key> AddAsync<Key>(TEntity entity)
+        {
+            try
+            {
+                return await _databaseConnection.Connection.InsertAsync<Key, TEntity>(entity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Collection eklenirken hata oluştu. table Name: {TableName}");
+
+                return default(Key);
+            }
+            finally
+            {
+                ((Disposable)_databaseConnection)?.DisposeCore();
+            }
+        }
+
+        /// <summary>
+        /// Entity ekler
+        /// </summary>
+        /// <param name="entity">Eklenen entity</param>
+        /// <returns>Başarılı ise true değilse false</returns>
         public async Task<int?> AddAsync(TEntity entity)
         {
             try

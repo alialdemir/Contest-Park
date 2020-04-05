@@ -9,6 +9,7 @@ using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
 using Microsoft.AppCenter.Crashes;
 using Plugin.CurrentActivity;
+using Plugin.FirebasePushNotification;
 using Plugin.Iconize;
 using Plugin.InAppBilling;
 using Prism;
@@ -60,6 +61,12 @@ namespace ContestPark.Mobile.Droid
             InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
         }
 
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            FirebasePushNotificationManager.ProcessIntent(this, intent);
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             try
@@ -96,6 +103,8 @@ namespace ContestPark.Mobile.Droid
                 AnimationViewRenderer.Init();
 
                 LoadApplication(new ContestParkApp(new AndroidInitializer()));
+
+                FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
                 PancakeViewRenderer.Init();
 
