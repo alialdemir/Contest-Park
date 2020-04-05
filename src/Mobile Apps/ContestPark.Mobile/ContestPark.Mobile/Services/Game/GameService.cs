@@ -117,7 +117,7 @@ namespace ContestPark.Mobile.Services.Game
                 }
                 else if (string.Equals(selected, ContestParkResources.Share))
                 {
-                    SubCategoryShare(selectedSubCategory.SubCategoryName);
+                    SubCategoryShare();
                 }
             }
             else
@@ -134,7 +134,7 @@ namespace ContestPark.Mobile.Services.Game
         /// Alt kategoriyi sosyal medyada paylaş
         /// </summary>
         /// <param name="Title">Alt kategori adı</param>
-        public void SubCategoryShare(string Title)
+        public void SubCategoryShare()
         {
             Share.RequestAsync(new ShareTextRequest
             {

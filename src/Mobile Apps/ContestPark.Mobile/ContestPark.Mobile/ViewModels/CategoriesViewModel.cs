@@ -263,12 +263,15 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command(() =>
                 {
-                    if (IsBusy || _settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
+                    if (IsBusy)
                         return;
 
                     IsBusy = true;
 
-                    PushNavigationPageAsync(nameof(InviteView));
+                    if (_settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
+                        _gameService.SubCategoryShare();
+                    else
+                        PushNavigationPageAsync(nameof(InviteView));
 
                     IsBusy = false;
                 });

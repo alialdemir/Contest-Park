@@ -77,7 +77,7 @@ namespace ContestPark.Signalr.API
         {
             if (duelId > 0)
             {
-                Groups.RemoveFromGroupAsync(Context.ConnectionId, $"Duel{duelId.ToString()}");
+                Groups.RemoveFromGroupAsync(Context.ConnectionId, $"Duel{duelId}");
             }
         }
     }

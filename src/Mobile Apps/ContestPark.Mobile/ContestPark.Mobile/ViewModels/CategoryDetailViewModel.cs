@@ -222,7 +222,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand ShareCommand
         {
-            get { return _shareCommand ?? (_shareCommand = new Command(() => _gameService?.SubCategoryShare(CategoryDetail.SubCategoryName))); }
+            get { return _shareCommand ?? (_shareCommand = new Command(() => _gameService?.SubCategoryShare())); }
         }
 
         public ICommand SubCategoryDetailCommand
