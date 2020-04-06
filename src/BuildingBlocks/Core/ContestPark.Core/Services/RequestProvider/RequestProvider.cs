@@ -55,7 +55,7 @@ namespace ContestPark.Core.Services.RequestProvider
 
             if (!string.IsNullOrEmpty(authorization))
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", authorization);
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", authorization);
             }
 
             return httpClient;
