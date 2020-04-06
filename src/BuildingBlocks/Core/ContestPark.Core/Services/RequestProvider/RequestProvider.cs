@@ -55,7 +55,7 @@ namespace ContestPark.Core.Services.RequestProvider
 
             if (!string.IsNullOrEmpty(authorization))
             {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(authorization);
+                httpClient.DefaultRequestHeaders.Add("Authorization", authorization);
             }
 
             return httpClient;
@@ -87,7 +87,10 @@ namespace ContestPark.Core.Services.RequestProvider
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Request isteği atılırken hata oluştu Http Method: {httpMethod.Method} Url{url}", ex);
+                _logger.LogError("Request isteği atılırken hata oluştu Http Method: {Method} Url {url} {ex.Message}",
+                                 httpMethod.Method,
+                                 url,
+                                 ex.Message);
             }
 
             return default;
