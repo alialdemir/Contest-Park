@@ -1,4 +1,6 @@
-﻿using ContestPark.Core.Models;
+﻿using ContestPark.Core.Enums;
+using ContestPark.Core.Extensions;
+using ContestPark.Core.Models;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Notification.API.Enums;
 using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
@@ -7,6 +9,7 @@ using ContestPark.Notification.API.Models;
 using ContestPark.Notification.API.Resources;
 using ContestPark.Notification.API.Services.FirebasePushNotification;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -55,7 +58,7 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
             switch (@event.PushNotificationType)
             {
                 case PushNotificationTypes.Reward:
-                    notification = RewardAsync();
+                    notification = RewardAsync(@event.CurrentUserLanguage);
                     break;
             }
             if (notification == null)
@@ -84,12 +87,15 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="currentUserLanguage">Bildirimin gidece dil seçeneği</param>
-        private PushNotificationMessageModel RewardAsync()
+        private PushNotificationMessageModel RewardAsync(Languages currentLanguages)
         {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture(currentLanguages.ToLanguageCode());
+            string text = NotificationResource.ResourceManager.GetString(nameof(NotificationResource.CollectDailyGoldRewards), culture);
+
             return new PushNotificationMessageModel
             {
                 Title = "ContestPark",
-                Text = NotificationResource.CollectDailyGoldRewards,// TODO: burada localizasyon dilini değiştirmek gerekebilir
+                Text = text,
                 Icon = DefaultImages.Logo
             };
         }
