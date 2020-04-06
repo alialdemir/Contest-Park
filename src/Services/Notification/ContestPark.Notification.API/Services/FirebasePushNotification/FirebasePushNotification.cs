@@ -38,14 +38,6 @@ namespace ContestPark.Notification.API.Services.FirebasePushNotification
         /// <returns>Firebase response</returns>
         public Task<PushNotificationResponseModel> SendPushAsync(PushNotificationModel pushNotification)
         {
-            _logger.LogInformation("Firebasw notification gidiyor {FirebaseServerKey} {FirebaseUrl} {To} {Title} {Text} {Icon}",
-                _notificationSettings.FirebaseServerKey,
-                _notificationSettings.FirebaseUrl,
-                pushNotification.To,
-                pushNotification.Notification.Title,
-                pushNotification.Notification.Text,
-                pushNotification.Notification.Icon);
-
             return _requestProvider.PostAsync<PushNotificationResponseModel>(
                 _notificationSettings.FirebaseUrl,
                 pushNotification,

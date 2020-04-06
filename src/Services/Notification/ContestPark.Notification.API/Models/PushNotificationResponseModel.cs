@@ -8,10 +8,10 @@ namespace ContestPark.Notification.API.Models
         [JsonProperty("multicast_id")]
         public long MulticastId { get; set; }
 
-        [JsonProperty("Success")]
+        [JsonProperty("success")]
         public bool Success { get; set; }
 
-        [JsonProperty("Failure")]
+        [JsonProperty("failure")]
         public bool Failure { get; set; }
 
         [JsonProperty("canonical_ids")]
