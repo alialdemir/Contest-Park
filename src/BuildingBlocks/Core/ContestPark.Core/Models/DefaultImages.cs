@@ -16,5 +16,10 @@
         {
             get { return "https://d2blqp3orvbj09.cloudfront.net/DefaultCoverPicture.jpg"; }
         }
+
+        public static string Logo
+        {
+            get { return "https://contestpark.com/assets/images/favicon.png"; }
+        }
     }
 }

@@ -60,6 +60,8 @@ phases:
       - sed -i 's/$(CONTESTPARK_SPOTIFY_SECRETID)/'"\""$CONTESTPARK_SPOTIFY_SECRETID"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_AWS_SMS_KEY_ID)/'"\""$CONTESTPARK_AWS_SMS_KEY_ID"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_AWS_SMS_SECRET)/'"\""$CONTESTPARK_AWS_SMS_SECRET"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_FIREBASE_URL)/'"\""$CONTESTPARK_FIREBASE_URL"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_FIREBASE_SERVER_KEY)/'"\""$CONTESTPARK_FIREBASE_SERVER_KEY"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(IMAGE_TAG)/'""$IMAGE_TAG""'/g' kubectl/deployment.yaml
       - sed -i 's/$(REPOSITORY_URI)/'""$REPOSITORY_URI""'/g' kubectl/deployment.yaml
       - echo update kubectl config

@@ -7,6 +7,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
+using Matcha.BackgroundService.Droid;
 using Microsoft.AppCenter.Crashes;
 using Plugin.CurrentActivity;
 using Plugin.FirebasePushNotification;
@@ -73,6 +74,8 @@ namespace ContestPark.Mobile.Droid
             {
                 TabLayoutResource = Resource.Layout.Tabbar;
                 ToolbarResource = Resource.Layout.Toolbar;
+
+                BackgroundAggregator.Init(this);
 
                 base.OnCreate(bundle);
 

@@ -1,4 +1,7 @@
-﻿using ContestPark.Mobile.ViewModels.Base;
+﻿using ContestPark.Mobile.Models.Balance;
+using ContestPark.Mobile.Services.BackgroundAggregator;
+using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -8,10 +11,18 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class GiftGoldPopupViewModel : ViewModelBase
     {
+        #region Private variables
+
+        private readonly IBackgroundAggregatorService _backgroundAggregatorService;
+
+        #endregion Private variables
+
         #region Constructor
 
-        public GiftGoldPopupViewModel(IPopupNavigation popupNavigation) : base(popupNavigation: popupNavigation)
+        public GiftGoldPopupViewModel(IPopupNavigation popupNavigation,
+                                      IBackgroundAggregatorService backgroundAggregatorService) : base(popupNavigation: popupNavigation)
         {
+            _backgroundAggregatorService = backgroundAggregatorService;
         }
 
         #endregion Constructor
@@ -20,9 +31,9 @@ namespace ContestPark.Mobile.ViewModels
 
         private string _gift = "gift1.gif";
 
-        private decimal _giftGold;
+        private RewardModel _giftGold;
 
-        public decimal GiftGold
+        public RewardModel GiftGold
         {
             get { return _giftGold; }
             set
@@ -51,11 +62,17 @@ namespace ContestPark.Mobile.ViewModels
             return base.InitializeAsync();
         }
 
+        public override Task GoBackAsync(bool? useModalNavigation = false)
+        {
+            // Bir sonraki ödül için push notification göndermesi için background job başlattık
+            _backgroundAggregatorService.StartRewardJob(GiftGold.NextRewardTime);
+
+            return base.GoBackAsync(useModalNavigation);
+        }
+
         #endregion Methods
 
         #region Command
-
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
 
         public ICommand ClickGiftCommand
         {
@@ -69,5 +86,17 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Command
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("RewardModel"))
+                GiftGold = parameters.GetValue<RewardModel>("RewardModel");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

@@ -70,5 +70,10 @@ namespace ContestPark.Mobile.Services.Notification
                 }
             });
         }
+
+        public Task<bool> UpdatePushTokenAsync(PushNotificationTokenModel tokenModel)
+        {
+            return Task.FromResult(true);
+        }
     }
 }

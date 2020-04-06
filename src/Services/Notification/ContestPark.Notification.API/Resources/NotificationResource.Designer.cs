@@ -61,6 +61,15 @@ namespace ContestPark.Notification.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collect daily gold rewards!.
+        /// </summary>
+        public static string CollectDailyGoldRewards {
+            get {
+                return ResourceManager.GetString("CollectDailyGoldRewards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ContestPark access code: .
         /// </summary>
         public static string ContestParkAccessCode {

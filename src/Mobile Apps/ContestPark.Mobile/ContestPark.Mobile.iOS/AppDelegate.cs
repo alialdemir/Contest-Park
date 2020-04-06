@@ -3,6 +3,7 @@ using ContestPark.Mobile.Configs;
 using FFImageLoading.Forms.Platform;
 using Firebase.Core;
 using Foundation;
+using Matcha.BackgroundService.iOS;
 using Plugin.Segmented.Control.iOS;
 using Prism;
 using Prism.Ioc;
@@ -37,6 +38,8 @@ namespace ContestPark.Mobile.iOS
 
             if (CheckNetworkAsync())
                 return false;
+
+            BackgroundAggregator.Init(this);
 
             CachedImageRenderer.Init();
 

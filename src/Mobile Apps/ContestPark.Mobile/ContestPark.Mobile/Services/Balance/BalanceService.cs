@@ -47,15 +47,15 @@ namespace ContestPark.Mobile.Services.Cp
         /// <summary>
         /// Günlük altın kazanma hakkı
         /// </summary>
-        public async Task<decimal> RewardAsync()
+        public async Task<RewardModel> RewardAsync()
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Reward");
 
             var result = await _requestProvider.PostAsync<RewardModel>(uri);
-            if (!result.IsSuccess)
-                return 0;
+            if (!result.IsSuccess || result.Data == null)
+                return new RewardModel();
 
-            return result.Data.Amount;
+            return result.Data;
         }
 
         /// <summary>

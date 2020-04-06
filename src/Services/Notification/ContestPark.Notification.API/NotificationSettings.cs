@@ -8,5 +8,8 @@
 
         public string AwsSmsKeyId { get; set; }
         public string AwsSmsSecret { get; set; }
+
+        public string FirebaseUrl { get; set; }
+        public string FirebaseServerKey { get; set; }
     }
 }

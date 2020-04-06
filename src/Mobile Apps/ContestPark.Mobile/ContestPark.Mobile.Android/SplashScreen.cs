@@ -17,9 +17,9 @@ namespace ContestPark.Mobile.Droid
             {
                 base.OnCreate(bundle);
 
-#if !DEBUG
-                CheckForRoot();
-#endif
+                //#if !DEBUG burası sanırım arm7a işlemcilerde hataya sebep oluyor
+                //                CheckForRoot();
+                //#endif
 
                 if (CheckNetworkAsync())
                     return;

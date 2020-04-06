@@ -42,25 +42,30 @@ namespace ContestPark.Core.Services.RequestProvider
             return SendAsync<TResult>(HttpMethod.Get, url);
         }
 
-        public Task<TResult> PostAsync<TResult>(string url, object data = null)
+        public Task<TResult> PostAsync<TResult>(string url, object data = null, string authorization = "")
         {
             return SendAsync<TResult>(HttpMethod.Post, url, data);
         }
 
-        private HttpClient CreateHttpClient()
+        private HttpClient CreateHttpClient(string authorization)
         {
             HttpClient httpClient = new HttpClient();
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            if (!string.IsNullOrEmpty(authorization))
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(authorization);
+            }
+
             return httpClient;
         }
 
-        private async Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
+        private async Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null, string authorization = "")
         {
             try
             {
-                HttpClient httpClient = CreateHttpClient();
+                HttpClient httpClient = CreateHttpClient(authorization);
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
 
                 if (data != null)

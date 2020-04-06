@@ -5,6 +5,10 @@ namespace ContestPark.Notification.API.Infrastructure.Repositories.PushNotificat
 {
     public interface IPushNotificationRepository
     {
+        string GetTokenByUserId(string userId);
+
+        void RemoveAsync(string userId);
+
         Task<bool> UpdateTokenByUserIdAsync(PushNotificationTokenModel tokenModel);
     }
 }

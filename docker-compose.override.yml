@@ -244,6 +244,8 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
       - AwsSmsKeyId=${CONTESTPARK_AWS_SMS_KEY_ID}
       - AwsSmsSecret=${CONTESTPARK_AWS_SMS_SECRET}
+      - FirebaseUrl=${CONTESTPARK_FIREBASE_URL}
+      - FirebaseServerKey=${CONTESTPARK_FIREBASE_SERVER_KEY}
     ports:
       - "5112:80"
     volumes:

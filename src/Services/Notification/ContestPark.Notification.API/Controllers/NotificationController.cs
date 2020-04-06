@@ -1,8 +1,11 @@
 ﻿using ContestPark.Core.Database.Models;
 using ContestPark.Core.Models;
 using ContestPark.Core.Services.Identity;
+using ContestPark.EventBus.Abstractions;
+using ContestPark.Notification.API.Enums;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
 using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
+using ContestPark.Notification.API.IntegrationEvents.Events;
 using ContestPark.Notification.API.Models;
 using ContestPark.Notification.API.Resources;
 using ContestPark.Notification.API.Services.Sms;
@@ -24,6 +27,7 @@ namespace ContestPark.Notification.API.Controllers
 
         private readonly INotificationRepository _notificationRepository;
         private readonly ISmsService _smsService;
+        private readonly IEventBus _eventBus;
         private readonly IPushNotificationRepository _pushNotificationRepository;
         private readonly IIdentityService _identityService;
 
@@ -33,11 +37,13 @@ namespace ContestPark.Notification.API.Controllers
 
         public NotificationController(ILogger<NotificationController> logger,
                                       ISmsService smsService,
+                                      IEventBus eventBus,
                                       IPushNotificationRepository pushNotificationRepository,
                                       IIdentityService identityService,
                                       INotificationRepository notificationRepository) : base(logger)
         {
             _smsService = smsService;
+            _eventBus = eventBus;
             _pushNotificationRepository = pushNotificationRepository;
             _identityService = identityService;
             _notificationRepository = notificationRepository;
@@ -65,6 +71,23 @@ namespace ContestPark.Notification.API.Controllers
             bool isSuccess = await _pushNotificationRepository.UpdateTokenByUserIdAsync(tokenModel);
             if (!isSuccess)
                 BadRequest();
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Push notification gönderir
+        /// </summary>
+        /// <param name="pushNotificationType">Gönderilecek push notification tipi</param>
+        [HttpPost("Push/Send")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public IActionResult PushSend([FromQuery]PushNotificationTypes pushNotificationType)
+        {
+            var @event = new SendPushNotificationIntegrationEvent(pushNotificationType,
+                                                                  CurrentUserLanguage,
+                                                                  UserId);
+
+            _eventBus.Publish(@event);
 
             return Ok();
         }

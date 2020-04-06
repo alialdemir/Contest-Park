@@ -46,11 +46,6 @@ namespace ContestPark.Mobile.Droid
                 new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
             })
         }, Debugger.IsAttached);
-
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-            {
-                System.Diagnostics.Debug.WriteLine("NOTIFICATION RECEIVED", p.Data);
-            };
         }
     }
 }

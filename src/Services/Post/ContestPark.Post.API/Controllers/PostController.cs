@@ -277,6 +277,7 @@ namespace ContestPark.Post.API.Controllers
                             IsLike = post.IsLike,
                             PostId = post.PostId,
                             PostType = post.PostType,
+                            IsCommentOpen = post.IsCommentOpen,
 
                             // Düello bilgileri
                             Bet = post.Bet,

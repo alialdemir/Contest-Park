@@ -8,6 +8,7 @@ using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
 using ContestPark.Notification.API.IntegrationEvents.EventHandling;
 using ContestPark.Notification.API.IntegrationEvents.Events;
 using ContestPark.Notification.API.Resources;
+using ContestPark.Notification.API.Services.FirebasePushNotification;
 using ContestPark.Notification.API.Services.Sms;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace ContestPark.Notification.API
         {
             services.Configure<NotificationSettings>(Configuration);
 
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+
             services.AddAuth(Configuration)
                     .AddMySql()
                     .AddMvc()
@@ -59,8 +62,10 @@ namespace ContestPark.Notification.API
             services.AddTransient<IPushNotificationRepository, PushNotificationRepository>();
 
             services.AddTransient<ISmsService, AwsSmsService>();
+            services.AddTransient<IFirebasePushNotification, FirebasePushNotification>();
 
             services.AddTransient<AddNotificationIntegrationEventHandler>();
+            services.AddTransient<SendPushNotificationIntegrationEventHandler>();
 
             ConfigureIdentityService(services);
 
@@ -111,6 +116,7 @@ namespace ContestPark.Notification.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<AddNotificationIntegrationEvent, AddNotificationIntegrationEventHandler>();
+            eventBus.Subscribe<SendPushNotificationIntegrationEvent, SendPushNotificationIntegrationEventHandler>();
         }
     }
 }

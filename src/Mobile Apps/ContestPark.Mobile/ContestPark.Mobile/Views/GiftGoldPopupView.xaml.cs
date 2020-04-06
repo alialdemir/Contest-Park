@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.ViewModels;
-using Rg.Plugins.Popup.Pages;
+﻿using Rg.Plugins.Popup.Pages;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,26 +17,7 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
-        #region Properties
-
-        public decimal GiftGold { get; set; }
-
-        #endregion Properties
-
         #region Methods
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            var viewModel = (GiftGoldPopupViewModel)BindingContext;
-            if (viewModel == null)
-                return;
-
-            viewModel.GiftGold = GiftGold;
-            viewModel.InitializeCommand.Execute(null);
-            viewModel.IsInitialized = true;
-        }
 
         private void CachedImage_Finish(object sender, FFImageLoading.Forms.CachedImageEvents.FinishEventArgs e)
         {

@@ -534,3 +534,7 @@ spec:
               value: $(CONTESTPARK_AWS_SMS_KEY_ID)
             - name: AwsSmsSecret
               value: $(CONTESTPARK_AWS_SMS_SECRET)
+            - name: FirebaseUrl
+              value: $(CONTESTPARK_FIREBASE_URL)
+            - name: FirebaseServerKey
+              value: $(CONTESTPARK_FIREBASE_SERVER_KEY)

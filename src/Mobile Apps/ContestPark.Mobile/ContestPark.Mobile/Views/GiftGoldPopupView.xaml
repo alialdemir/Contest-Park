@@ -70,7 +70,7 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference giftGoldPopupView}}" />
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference giftGoldPopupView}}" />
                         </Image.GestureRecognizers>
                         <Image.Source>
                             <FontImageSource
@@ -101,7 +101,7 @@
                         BalanceType="Gold"
                         CoinSize="Large"
                         Coins="Positive"
-                        DisplayCoins="{Binding GiftGold}"
+                        DisplayCoins="{Binding GiftGold.Amount}"
                         HorizontalOptions="Center"
                         IsVisible="False"
                         Opacity="0" />
@@ -111,7 +111,7 @@
                         Grid.Row="3"
                         Margin="16,8,16,0"
                         BackgroundColor="Transparent"
-                        Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference giftGoldPopupView}}"
+                        Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference giftGoldPopupView}}"
                         EndColor="#EB3349"
                         IsVisible="False"
                         Opacity="0"

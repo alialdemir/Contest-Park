@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models;
+using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
@@ -20,7 +21,6 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -53,7 +53,6 @@ namespace ContestPark.Mobile.ViewModels
                                    IPageDialogService pageDialogService,
                                    IGameService gameService,
                                    IAdMobService adMobService,
-                                   IPopupNavigation popupNavigation,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
                                    IInviteDuelService inviteDuelService,
@@ -61,7 +60,7 @@ namespace ContestPark.Mobile.ViewModels
                                    ISettingsService settingsService,
                                    IDuelSignalRService duelSignalRService,
                                    IEventAggregator eventAggregator
-            ) : base(navigationService, pageDialogService, popupNavigation: popupNavigation)
+            ) : base(navigationService, pageDialogService)
         {
             _categoryServices = categoryServices;
 
@@ -323,12 +322,13 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command(async () =>
                 {
-                    decimal giftGold = await _balanceService.RewardAsync();
-                    if (giftGold > 0)
+                    RewardModel giftGold = await _balanceService.RewardAsync();
+                    if (giftGold.Amount > 0)
+
                     {
-                        await PushPopupPageAsync(new GiftGoldPopupView
+                        await PushModalAsync(nameof(GiftGoldPopupView), new NavigationParameters
                         {
-                            GiftGold = giftGold
+                            { "RewardModel", giftGold }
                         });
                     }
                 });

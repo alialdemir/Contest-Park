@@ -46,6 +46,7 @@ namespace ContestPark.Mobile
                        .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
                 Barrel.ApplicationId = "ContestPark";
+
                 ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
                 if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
@@ -56,13 +57,17 @@ namespace ContestPark.Mobile
 
                 CrossFirebasePushNotification.Current.OnTokenRefresh += (sender, e) =>
                 {
-                    if (e == null || string.IsNullOrEmpty(e.Token))
+                    if (e == null || string.IsNullOrEmpty(e.Token) || string.IsNullOrEmpty(settingsService.AuthAccessToken))
                         return;
 
                     NotificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
                     {
                         Token = e.Token
                     });
+                };
+                CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+                {
+                    AnalyticsService?.SendEvent("PushNotification", "Received", "Success");
                 };
 
                 #endregion Push notification token update to server
