@@ -115,6 +115,7 @@ namespace ContestPark.Mobile
                     .GetEvent<OnResumeEvent>()
                     .Publish();
 
+
             base.OnResume();
         }
 
@@ -124,6 +125,7 @@ namespace ContestPark.Mobile
                     .Resolve<IEventAggregator>()
                     .GetEvent<OnSleepEvent>()
                     .Publish();
+
 
             base.OnSleep();
         }

@@ -1,13 +1,9 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Extensions;
-using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
-using ContestPark.Mobile.Services.Cache;
-using ContestPark.Mobile.Services.RequestProvider;
 using Newtonsoft.Json;
 using System;
 using System.Globalization;
@@ -35,25 +31,6 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly string LastSelectedBetDefault = string.Empty;
 
         #endregion Setting Constants
-
-        #region Private variables
-
-        private const string ApiUrlBase = "api/v1/account";
-        private readonly IRequestProvider _requestProvider;
-        private readonly ICacheService _cacheService;
-
-        #endregion Private variables
-
-        #region Constructor
-
-        public SettingsService(IRequestProvider requestProvider,
-                               ICacheService cacheService)
-        {
-            _requestProvider = requestProvider;
-            _cacheService = cacheService;
-        }
-
-        #endregion Constructor
 
         #region Settings Properties
 
@@ -263,32 +240,6 @@ namespace ContestPark.Mobile.Services.Settings
             AuthAccessToken = userToken.AccessToken;
             RefreshToken = userToken.RefreshToken;
             TokenType = userToken.TokenType;
-        }
-
-        /// <summary>
-        /// Şuanki kullanıcı bilgileri
-        /// </summary>
-        /// <returns>Login olan kullanıcı bilgileri</returns>
-        public async Task<UserInfoModel> GetUserInfo()
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase}/UserInfo");
-
-            bool isExpired = _cacheService.IsExpired(key: uri);
-            if (!isExpired)
-            {
-                return await _cacheService.Get<UserInfoModel>(uri);
-            }
-
-            var response = await _requestProvider.GetAsync<UserInfoModel>(uri);
-            if (response.Data != null && response.IsSuccess)
-            {
-                if (isExpired)
-                    _cacheService.Empty(uri);
-
-                _cacheService.Add(uri, response.Data);
-            }
-
-            return response.Data;
         }
 
         #endregion Setting Service

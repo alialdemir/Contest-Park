@@ -83,9 +83,11 @@ namespace ContestPark.Notification.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public IActionResult PushSend([FromQuery]PushNotificationTypes pushNotificationType)
         {
+            Logger.LogInformation("Push isteği geldi {push} {UserId}", pushNotificationType, UserId);
+
             var @event = new SendPushNotificationIntegrationEvent(pushNotificationType,
-                                                                  CurrentUserLanguage,
-                                                                  UserId);
+                                                              CurrentUserLanguage,
+                                                              UserId);
 
             _eventBus.Publish(@event);
 

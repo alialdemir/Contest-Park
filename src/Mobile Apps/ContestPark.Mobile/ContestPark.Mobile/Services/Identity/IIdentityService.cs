@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Models.User;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Identity
@@ -22,7 +23,7 @@ namespace ContestPark.Mobile.Services.Identity
         Task<RandomUserModel> GetRandomBotUser();
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);
-
+        Task<UserInfoModel> GetUserInfo();
         Task RefreshTokenAsync();
 
         Task<bool> SignUpAsync(SignUpModel signUpModel);

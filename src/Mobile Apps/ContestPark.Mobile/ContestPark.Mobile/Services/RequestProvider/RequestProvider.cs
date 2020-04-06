@@ -11,7 +11,6 @@ using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Polly;
 using Polly.Wrap;
 using Prism.Ioc;
 using Prism.Services;
@@ -31,8 +30,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
     {
         #region Private variable
 
-        private readonly Func<string, IEnumerable<AsyncPolicy>> _policyCreator;
         private readonly IAnalyticsService _analyticsService;
+        private readonly ISettingsService _settingsService;
         private readonly ConcurrentDictionary<string, AsyncPolicyWrap> _policyWrappers;
 
         private readonly JsonSerializerSettings _serializerSettings;
@@ -41,11 +40,11 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         #region Constructor
 
-        public RequestProvider(Func<string, IEnumerable<AsyncPolicy>> policyCreator,
-                               IAnalyticsService analyticsService)
+        public RequestProvider(IAnalyticsService analyticsService,
+                               ISettingsService settingsService)
         {
-            _policyCreator = policyCreator;
             _analyticsService = analyticsService;
+            _settingsService = settingsService;
             _policyWrappers = new ConcurrentDictionary<string, AsyncPolicyWrap>();
 
             _serializerSettings = new JsonSerializerSettings
@@ -201,15 +200,14 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
-            if (settingsService != null)
+            if (_settingsService != null)
             {
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(settingsService.CurrentUser.Language.ToLanguageCode()));
+                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(_settingsService.CurrentUser.Language.ToLanguageCode()));
 
-                string token = settingsService.AuthAccessToken;
+                string token = _settingsService.AuthAccessToken;
                 if (!string.IsNullOrEmpty(token))
                 {
-                    string tokenType = settingsService.TokenType ?? "Bearer";
+                    string tokenType = _settingsService.TokenType ?? "Bearer";
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, token);
                 }
             }

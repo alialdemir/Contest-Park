@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using ContestPark.Mobile.ViewModels;
+using Rg.Plugins.Popup.Pages;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -48,11 +49,15 @@ namespace ContestPark.Mobile.Views
 
         protected override bool OnBackButtonPressed()
         {
+            ((GiftGoldPopupViewModel)BindingContext).GotoBackCommand.Execute(true);
+
             return false;
         }
 
         protected override bool OnBackgroundClicked()
         {
+            ((GiftGoldPopupViewModel)BindingContext).GotoBackCommand.Execute(true);
+
             return false;
         }
 

@@ -4,6 +4,7 @@ using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
+using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
@@ -19,6 +20,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IBalanceService _cpService;
+        private readonly IIdentityService _identityService;
         private readonly IAnalyticsService _analyticsService;
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
@@ -30,11 +32,13 @@ namespace ContestPark.Mobile.ViewModels
         public AppShellViewModel(INavigationService navigationService,
                                  IEventAggregator eventAggregator,
                                  IBalanceService cpService,
+                                 IIdentityService identityService,
                                  IAnalyticsService analyticsService,
                                  ISettingsService settingsService) : base(navigationService)
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
+            _identityService = identityService;
             _analyticsService = analyticsService;
             _settingsService = settingsService;
 
@@ -110,7 +114,7 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            UserInfoModel currentUser = await _settingsService.GetUserInfo();
+            UserInfoModel currentUser = await _identityService.GetUserInfo();
             if (currentUser != null)
             {
                 _settingsService.RefreshCurrentUser(currentUser);

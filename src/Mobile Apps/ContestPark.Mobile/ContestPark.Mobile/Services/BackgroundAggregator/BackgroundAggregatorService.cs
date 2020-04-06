@@ -29,7 +29,7 @@ namespace ContestPark.Mobile.Services.BackgroundAggregator
         /// <param name="nextRewardTime">Job çalışma zamanı</param>
         public void StartRewardJob(TimeSpan nextRewardTime)
         {
-            Matcha.BackgroundService.BackgroundAggregatorService.Add(() => new RewardJob(nextRewardTime, _notificationService));
+            Matcha.BackgroundService.BackgroundAggregatorService.Add(() => new RewardJob(nextRewardTime));
             Matcha.BackgroundService.BackgroundAggregatorService.StartBackgroundService();
         }
 

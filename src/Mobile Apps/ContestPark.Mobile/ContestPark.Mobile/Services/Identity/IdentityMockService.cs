@@ -8,6 +8,7 @@ using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
+using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Settings;
 using Prism.Services;
 using System.Threading.Tasks;
@@ -87,6 +88,11 @@ namespace ContestPark.Mobile.Services.Identity
                 RefreshToken = "fake_refresh_token",
                 TokenType = "bearer"
             };
+        }
+
+        public Task<UserInfoModel> GetUserInfo()
+        {
+            return Task.FromResult(new UserInfoModel());
         }
 
         public Task<string> GetUserNameByPhoneNumber(string phoneNumber)

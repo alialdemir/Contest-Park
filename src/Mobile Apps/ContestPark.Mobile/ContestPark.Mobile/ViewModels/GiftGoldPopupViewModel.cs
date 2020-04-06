@@ -20,7 +20,8 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public GiftGoldPopupViewModel(IPopupNavigation popupNavigation,
-                                      IBackgroundAggregatorService backgroundAggregatorService) : base(popupNavigation: popupNavigation)
+                                      INavigationService navigationService,
+                                      IBackgroundAggregatorService backgroundAggregatorService) : base(navigationService, popupNavigation: popupNavigation)
         {
             _backgroundAggregatorService = backgroundAggregatorService;
         }
@@ -67,7 +68,7 @@ namespace ContestPark.Mobile.ViewModels
             // Bir sonraki ödül için push notification göndermesi için background job başlattık
             _backgroundAggregatorService.StartRewardJob(GiftGold.NextRewardTime);
 
-            return base.GoBackAsync(useModalNavigation);
+            return base.GoBackAsync(true);
         }
 
         #endregion Methods

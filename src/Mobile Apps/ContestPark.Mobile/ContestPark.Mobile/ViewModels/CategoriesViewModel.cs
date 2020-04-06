@@ -126,20 +126,22 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ConnectToSignalr.Execute(null);
+            if (!IsRefreshing)
+            {
+                ConnectToSignalr.Execute(null);
 
-            CheckRewardCommand.Execute(null);
+                CheckRewardCommand.Execute(null);
 
-            ScopeRefleshCommand.Execute(null);
+                ScopeRefleshCommand.Execute(null);
 
-            ListenerFirebaseToken.Execute(null);
+                ListenerFirebaseToken.Execute(null);
+                _inviteDuelService.InviteDuelCommand.Execute(Items);
+            }
 
             //TODO: Kategorileri sayfala
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
 
             await base.InitializeAsync();
-
-            _inviteDuelService.InviteDuelCommand.Execute(Items);
 
             IsBusy = false;
         }
@@ -254,7 +256,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     CrossFirebasePushNotification.Current.OnTokenRefresh += (sender, e) =>
                     {
-                        if (e == null || string.IsNullOrEmpty(e.Token) || string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+                        if (e == null || string.IsNullOrEmpty(e.Token))
                             return;
 
                         _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
@@ -359,14 +361,14 @@ namespace ContestPark.Mobile.ViewModels
                 return new Command(async () =>
                 {
                     RewardModel giftGold = await _balanceService.RewardAsync();
-                    if (giftGold.Amount > 0)
+                    //  if (giftGold.Amount > 0)
 
-                    {
-                        await PushModalAsync(nameof(GiftGoldPopupView), new NavigationParameters
+                    //       {
+                    await PushModalAsync(nameof(GiftGoldPopupView), new NavigationParameters
                         {
                             { "RewardModel", giftGold }
                         });
-                    }
+                    //       }
                 });
             }
         }

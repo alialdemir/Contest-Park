@@ -149,7 +149,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _settingsService.SetTokenInfo(token);
 
-                UserInfoModel currentUser = await _settingsService.GetUserInfo();
+                UserInfoModel currentUser = await _identityService.GetUserInfo();
                 if (currentUser != null)
                 {
                     _settingsService.RefreshCurrentUser(currentUser);

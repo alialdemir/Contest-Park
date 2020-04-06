@@ -71,6 +71,32 @@ namespace ContestPark.Mobile.Services.Identity
         #region Methods
 
         /// <summary>
+        /// Şuanki kullanıcı bilgileri
+        /// </summary>
+        /// <returns>Login olan kullanıcı bilgileri</returns>
+        public async Task<UserInfoModel> GetUserInfo()
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/UserInfo");
+
+            bool isExpired = _cacheService.IsExpired(key: uri);
+            if (!isExpired)
+            {
+                return await _cacheService.Get<UserInfoModel>(uri);
+            }
+
+            var response = await _requestProvider.GetAsync<UserInfoModel>(uri);
+            if (response.Data != null && response.IsSuccess)
+            {
+                if (isExpired)
+                    _cacheService.Empty(uri);
+
+                _cacheService.Add(uri, response.Data);
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
         /// Rastgele bot kullanıcı bilgileri verir
         /// </summary>
         /// <returns>Kullanıcı bilgileri</returns>
