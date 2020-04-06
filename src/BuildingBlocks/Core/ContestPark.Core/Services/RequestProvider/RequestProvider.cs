@@ -44,7 +44,7 @@ namespace ContestPark.Core.Services.RequestProvider
 
         public Task<TResult> PostAsync<TResult>(string url, object data = null, string authorization = "")
         {
-            return SendAsync<TResult>(HttpMethod.Post, url, data);
+            return SendAsync<TResult>(HttpMethod.Post, url, data, authorization);
         }
 
         private HttpClient CreateHttpClient(string authorization)
