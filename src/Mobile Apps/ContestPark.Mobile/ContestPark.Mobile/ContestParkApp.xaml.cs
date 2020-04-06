@@ -106,6 +106,8 @@ namespace ContestPark.Mobile
             base.OnStart();
 
             AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Analytics), typeof(Crashes));
+
+            Matcha.BackgroundService.BackgroundAggregatorService.StopBackgroundService();
         }
 
         protected override void OnResume()
@@ -115,6 +117,7 @@ namespace ContestPark.Mobile
                     .GetEvent<OnResumeEvent>()
                     .Publish();
 
+            Matcha.BackgroundService.BackgroundAggregatorService.StartBackgroundService();
 
             base.OnResume();
         }
@@ -126,6 +129,7 @@ namespace ContestPark.Mobile
                     .GetEvent<OnSleepEvent>()
                     .Publish();
 
+            Matcha.BackgroundService.BackgroundAggregatorService.StartBackgroundService();
 
             base.OnSleep();
         }

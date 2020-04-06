@@ -114,6 +114,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
                     lookup.Add(invoiceEntry.CategoryId, invoiceEntry);
                 }
                 invoiceEntry.SubCategories.Add(subCategory);
+
+                invoiceEntry.SubCategories = invoiceEntry.SubCategories.OrderBy(x => x.Price).ToList();
+
                 return invoiceEntry;
             }, param, splitOn: "ContestCategoryId,SubCategoryId", CommandType.StoredProcedure).ToList();
 

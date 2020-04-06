@@ -42,7 +42,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Post detayı</returns>
         public async Task<PostDetailModel> GetPostByPostIdAsync(int postId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}{pagingModel}");
 
             var result = await _requestProvider.GetAsync<PostDetailModel>(uri);
             if (result.Data != null && result.IsSuccess)
@@ -60,7 +60,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Alt kategori postları</returns>
         public async Task<ServiceModel<PostModel>> GetPostsBySubCategoryIdAsync(short subCategoryId, PagingModel pagingModel, bool isForceCache = false)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/Subcategory/{subCategoryId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/Subcategory/{subCategoryId}{pagingModel}");
 
             if (isForceCache)
                 _cacheService.Empty(uri);
@@ -87,7 +87,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Posts listesi</returns>
         public async Task<ServiceModel<PostModel>> GetPostsByUserIdAsync(string userId, PagingModel pagingModel, bool isForceCache = false)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/User/{userId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/User/{userId}{pagingModel}");
 
             if (isForceCache)
                 _cacheService.Empty(uri);
@@ -154,7 +154,7 @@ namespace ContestPark.Mobile.Services.Post
         /// <returns>Postu beğenen kullanıcı listesi</returns>
         public async Task<ServiceModel<PostLikeModel>> PostLikesAsync(int postId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Like{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{ApiUrlBase1}/{postId}/Like{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {

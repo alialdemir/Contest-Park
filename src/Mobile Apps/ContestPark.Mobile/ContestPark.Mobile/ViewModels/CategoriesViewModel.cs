@@ -361,14 +361,13 @@ namespace ContestPark.Mobile.ViewModels
                 return new Command(async () =>
                 {
                     RewardModel giftGold = await _balanceService.RewardAsync();
-                    //  if (giftGold.Amount > 0)
-
-                    //       {
-                    await PushModalAsync(nameof(GiftGoldPopupView), new NavigationParameters
+                    if (giftGold.Amount > 0)
+                    {
+                        await PushModalAsync(nameof(GiftGoldPopupView), new NavigationParameters
                         {
                             { "RewardModel", giftGold }
                         });
-                    //       }
+                    }
                 });
             }
         }

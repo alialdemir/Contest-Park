@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.Models.Post
             }
         }
 
-        private bool _isCommentOpen;
+        private bool _isCommentOpen = true;
 
         public bool IsCommentOpen
         {
