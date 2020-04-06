@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Models.Balance;
+using System;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Cp
@@ -34,9 +35,13 @@ namespace ContestPark.Mobile.Services.Cp
             return Task.FromResult(true);
         }
 
-        public Task<decimal> RewardAsync()
+        public Task<RewardModel> RewardAsync()
         {
-            return Task.FromResult(555.00m);
+            return Task.FromResult(new RewardModel
+            {
+                Amount = 555.00m,
+                NextRewardTime = TimeSpan.FromDays(365)
+            });
         }
     }
 }

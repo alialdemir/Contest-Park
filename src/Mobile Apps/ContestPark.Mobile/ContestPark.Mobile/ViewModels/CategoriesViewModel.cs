@@ -5,6 +5,7 @@ using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
+using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
@@ -13,11 +14,13 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InviteDuel;
+using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Plugin.FirebasePushNotification;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
@@ -33,6 +36,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly ISignalRServiceBase _baseSignalRService;
+        private readonly INotificationService _notificationService;
         private readonly IGameService _gameService;
         private readonly IAdMobService _adMobService;
         private readonly IBalanceService _balanceService;
@@ -51,6 +55,7 @@ namespace ContestPark.Mobile.ViewModels
                                    ISignalRServiceBase baseSignalRService,// signalr bağlantısı başlatılması için ekledim
                                    INavigationService navigationService,
                                    IPageDialogService pageDialogService,
+                                   INotificationService notificationService,
                                    IGameService gameService,
                                    IAdMobService adMobService,
                                    IBalanceService balanceService,
@@ -70,6 +75,7 @@ namespace ContestPark.Mobile.ViewModels
             ServiceModel.PageSize = 9999;// Şimdilik 9999 verdim kategorilerde safyalama yok
 
             _baseSignalRService = baseSignalRService;
+            _notificationService = notificationService;
             _gameService = gameService;
             _adMobService = adMobService;
             _balanceService = balanceService;
@@ -125,6 +131,8 @@ namespace ContestPark.Mobile.ViewModels
             CheckRewardCommand.Execute(null);
 
             ScopeRefleshCommand.Execute(null);
+
+            ListenerFirebaseToken.Execute(null);
 
             //TODO: Kategorileri sayfala
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
@@ -234,6 +242,34 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        /// <summary>
+        /// Firebase token değişince sunucuya bildirir
+        /// </summary>
+        public ICommand ListenerFirebaseToken
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    CrossFirebasePushNotification.Current.OnTokenRefresh += (sender, e) =>
+                    {
+                        if (e == null || string.IsNullOrEmpty(e.Token) || string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+                            return;
+
+                        _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
+                        {
+                            Token = e.Token
+                        });
+                    };
+
+                    CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+                    {
+                        _analyticsService?.SendEvent("PushNotification", "Received", "Success");
+                    };
+                });
+            }
+        }
 
         private ICommand _goToCategorySearchPageCommand;
         public ICommand GoToCategorySearchPageCommand => _goToCategorySearchPageCommand ?? (_goToCategorySearchPageCommand = new Command<short>(ExecutGoToCategorySearchPageCommand));

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Services.RequestProvider;
 using ContestPark.Notification.API.Models;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace ContestPark.Notification.API.Services.FirebasePushNotification
         #region Private variables
 
         private readonly IRequestProvider _requestProvider;
-
+        private readonly ILogger<FirebasePushNotification> _logger;
         private readonly NotificationSettings _notificationSettings;
 
         #endregion Private variables
@@ -19,9 +20,11 @@ namespace ContestPark.Notification.API.Services.FirebasePushNotification
         #region Constructor
 
         public FirebasePushNotification(IRequestProvider requestProvider,
+                                        ILogger<FirebasePushNotification> logger,
                                         IOptions<NotificationSettings> settings)
         {
             _requestProvider = requestProvider ?? throw new ArgumentNullException(nameof(requestProvider));
+            _logger = logger;
             _notificationSettings = settings.Value;
         }
 
@@ -35,6 +38,14 @@ namespace ContestPark.Notification.API.Services.FirebasePushNotification
         /// <returns>Firebase response</returns>
         public Task<PushNotificationResponseModel> SendPushAsync(PushNotificationModel pushNotification)
         {
+            _logger.LogInformation("Firebasw notification gidiyor {FirebaseServerKey} {FirebaseUrl} {To} {Title} {Text} {Icon}",
+                _notificationSettings.FirebaseServerKey,
+                _notificationSettings.FirebaseUrl,
+                pushNotification.To,
+                pushNotification.Notification.Title,
+                pushNotification.Notification.Text,
+                pushNotification.Notification.Icon);
+
             return _requestProvider.PostAsync<PushNotificationResponseModel>(
                 _notificationSettings.FirebaseUrl,
                 pushNotification,

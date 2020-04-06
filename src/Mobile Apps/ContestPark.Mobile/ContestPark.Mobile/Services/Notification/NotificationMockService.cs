@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.Login;
+﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.RequestProvider;
@@ -69,6 +70,11 @@ namespace ContestPark.Mobile.Services.Notification
                     },
                 }
             });
+        }
+
+        public Task<bool> PushSendAsync(PushNotificationTypes pushNotificationType)
+        {
+            return Task.FromResult(true);
         }
 
         public Task<bool> UpdatePushTokenAsync(PushNotificationTokenModel tokenModel)

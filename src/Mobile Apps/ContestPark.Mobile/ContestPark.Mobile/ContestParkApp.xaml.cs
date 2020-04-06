@@ -1,15 +1,12 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Analytics;
-using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MonkeyCache.SQLite;
-using Plugin.FirebasePushNotification;
 using Plugin.Iconize;
 using Prism;
 using Prism.DryIoc;
@@ -52,25 +49,6 @@ namespace ContestPark.Mobile
                 if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
                     NavigationService.NavigateAsync(nameof(AppShell));
                 else NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
-
-                #region Push notification token update to server
-
-                CrossFirebasePushNotification.Current.OnTokenRefresh += (sender, e) =>
-                {
-                    if (e == null || string.IsNullOrEmpty(e.Token) || string.IsNullOrEmpty(settingsService.AuthAccessToken))
-                        return;
-
-                    NotificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
-                    {
-                        Token = e.Token
-                    });
-                };
-                CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-                {
-                    AnalyticsService?.SendEvent("PushNotification", "Received", "Success");
-                };
-
-                #endregion Push notification token update to server
             }
             catch (System.Exception ex)
             {
@@ -91,21 +69,6 @@ namespace ContestPark.Mobile
         #endregion OnInitialized
 
         #region Properties
-
-        private INotificationService _notificationService;
-
-        public INotificationService NotificationService
-        {
-            get
-            {
-                if (_notificationService == null)
-                {
-                    _notificationService = RegisterTypesConfig.Container.Resolve<INotificationService>();
-                }
-
-                return _notificationService;
-            }
-        }
 
         private IAnalyticsService _analyticsService;
 
