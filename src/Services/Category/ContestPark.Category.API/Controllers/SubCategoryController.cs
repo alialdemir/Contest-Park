@@ -103,7 +103,7 @@ namespace ContestPark.Category.API.Controllers
                     CategoryName = CategoryResource.TheLastCategoriesIPlayed
                 };
 
-                categoryModel.SubCategories.AddRange(lastCategoriesPlayed);
+                categoryModel.SubCategories.AddRange(lastCategoriesPlayed.OrderBy(x => x.Price));
 
                 categoryList.Add(categoryModel);
             }
@@ -121,7 +121,7 @@ namespace ContestPark.Category.API.Controllers
                     CategoryName = CategoryResource.RecommendedSubcategories
                 };
 
-                categoryModel.SubCategories.AddRange(recommendedSubcategories);
+                categoryModel.SubCategories.AddRange(recommendedSubcategories.OrderBy(x => x.Price));
 
                 categoryList.Add(categoryModel);
             }
@@ -151,29 +151,6 @@ namespace ContestPark.Category.API.Controllers
 
             return Ok(result);
         }
-
-        /// <summary>
-        /// Takip ettiğin alt kategoriler
-        /// </summary>
-        /// <returns>Tüm kategorileri döndürür.</returns>
-        ////////[HttpGet("Followed")]
-        ////////[ProducesResponseType(typeof(ServiceModel<SubCategoryModel>), (int)HttpStatusCode.OK)]
-        ////////[ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        ////////public IActionResult FollowedSubCategories([FromQuery]PagingModel pagingModel) kategoriler içerisinde takip ettiği kategorilerde döndürürdü
-        ////////{
-        ////////    ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
-        ////////                                                                                                        CurrentUserLanguage,
-        ////////                                                                                                        pagingModel);
-
-        ////////    if (followedSubCategories == null || followedSubCategories.Items == null || followedSubCategories.Items.Count() == 0)
-        ////////    {
-        ////////        Logger.LogInformation($"{nameof(followedSubCategories)} list returned empty.");
-
-        ////////        return NotFound();
-        ////////    }
-
-        ////////    return Ok(followedSubCategories);
-        ////////}
 
         /// <summary>
         /// Alt kategori takip et
