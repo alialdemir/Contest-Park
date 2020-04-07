@@ -101,7 +101,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
                 UserId = userId,
                 LangId = (int)language,
                 PicturePath = DefaultImages.DefaultLock,
-                isAllOpen,
+                IsAllOpen = isAllOpen,
                 pagingModel.Offset,
                 pagingModel.PageSize
             };
