@@ -7,7 +7,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
 {
     public interface ISubCategoryRepository
     {
-        ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel);
+        ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel, bool isAllOpen = false);
 
         ServiceModel<SubCategoryModel> GetFollowedSubCategories(string userId, Languages language, PagingModel pagingModel);
 
@@ -20,7 +20,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         SubCategoryDetailInfoModel GetSubCategoryDetail(short subCategoryId, Languages language, string userId);
 
         decimal GetSubCategoryPrice(short subCategoryId);
+
         IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language);
+
         IEnumerable<SubCategoryModel> RecommendedSubcategories(string userId, Languages language);
     }
 }

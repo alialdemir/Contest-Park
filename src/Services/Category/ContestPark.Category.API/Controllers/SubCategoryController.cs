@@ -60,7 +60,7 @@ namespace ContestPark.Category.API.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult Get([FromQuery]PagingModel pagingModel)
+        public IActionResult Get([FromQuery]PagingModel pagingModel, [FromQuery]bool isAllOpen = false)
         {
             ServiceModel<CategoryModel> result = new ServiceModel<CategoryModel>()
             {
@@ -132,7 +132,8 @@ namespace ContestPark.Category.API.Controllers
 
             ServiceModel<CategoryModel> categories = _categoryRepository.GetCategories(UserId,
                                                                                   CurrentUserLanguage,
-                                                                                  pagingModel);
+                                                                                  pagingModel,
+                                                                                  isAllOpen);
 
             categoryList.AddRange(categories.Items);
 

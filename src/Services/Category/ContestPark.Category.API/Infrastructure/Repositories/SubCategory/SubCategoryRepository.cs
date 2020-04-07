@@ -94,13 +94,14 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         /// <param name="language">Dil</param>
         /// <param name="pagingModel">Hem kategorileri hemde alt kategorileri sayfalar</param>
         /// <returns>Kategori ve alt kategorileri döndürür</returns>
-        public ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel)
+        public ServiceModel<CategoryModel> GetCategories(string userId, Languages language, PagingModel pagingModel, bool isAllOpen = false)
         {
             var param = new
             {
                 UserId = userId,
                 LangId = (int)language,
                 PicturePath = DefaultImages.DefaultLock,
+                isAllOpen,
                 pagingModel.Offset,
                 pagingModel.PageSize
             };
