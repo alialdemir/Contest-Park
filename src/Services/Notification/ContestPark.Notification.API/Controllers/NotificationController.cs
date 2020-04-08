@@ -238,7 +238,7 @@ namespace ContestPark.Notification.API.Controllers
 
             UserNameModel userNameModel = await _identityService.GetUserNameByPhoneNumber(smsModel.PhoneNumber);
             if (userNameModel == null)
-                return BadRequest();
+                userNameModel = new UserNameModel();
 
             Logger.LogInformation(
                 "{phoneNumber} telefon numarası ile {code} doğrulama kodu doğru girildi ve {userName} kullanıcı adı ile eşleşti.",
