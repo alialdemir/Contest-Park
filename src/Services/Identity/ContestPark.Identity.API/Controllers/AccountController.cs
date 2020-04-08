@@ -9,7 +9,6 @@ using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Resources;
-using ContestPark.Identity.API.Services;
 using ContestPark.Identity.API.Services.BlobStorage;
 using ContestPark.Identity.API.Services.Block;
 using ContestPark.Identity.API.Services.Follow;
@@ -34,7 +33,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
     {
         #region Private variables
 
-        private readonly IEmailService _emailService;
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IBlockService _blockService;
@@ -51,8 +49,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
         #region Constructor
 
-        public AccountController(IEmailService emailService,
-                                 ILogger<AccountController> logger,
+        public AccountController(ILogger<AccountController> logger,
                                  UserManager<ApplicationUser> userManager,
                                  IBlockService blockService,
                                  IReferenceCodeRepostory referenceCodeRepostory,
@@ -64,7 +61,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                                  IIdentityIntegrationEventService identityIntegrationEventService,
                                  IFileUploadService fileUploadService) : base(logger)
         {
-            _emailService = emailService;
             _logger = logger;
             _userManager = userManager;
             _blockService = blockService;
@@ -457,7 +453,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 return BadRequest(IdentityResultErrors(result.Errors));
 
             // Kullanıcı yeni login olduğu için  belirli bir miktar altın ekledim
-            PublishChangeBalanceIntegrationEvent(120.00m, BalanceTypes.Gold, user.Id);
+            PublishChangeBalanceIntegrationEvent(120.00m, BalanceTypes.Gold, user.Id, BalanceHistoryTypes.DailyChip);
 
             try
             {
@@ -510,9 +506,9 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 string referenceUserId = _userRepository.GetUserIdByUserName(referenceCode);
                 if (!string.IsNullOrEmpty(referenceUserId))// Kullanıcı adı ile referans kodu var mı diye kontrol ettik
                 {
-                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, userId);
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, userId, BalanceHistoryTypes.ReferenceCode);
 
-                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId);
+                    PublishChangeBalanceIntegrationEvent(_identitySettings.GiftMoneyAmount, BalanceTypes.Money, referenceUserId, BalanceHistoryTypes.ReferenceCode);
 
                     _referenceCodeRepostory.Insert(referenceCode, referenceUserId, userId);
                 }
@@ -521,7 +517,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                     ReferenceModel referenceModel = _referenceRepository.IsCodeActive(referenceCode);
                     if (referenceModel != null)// Eğer bizim tanımlaadığımız referans kodu ile geliyorsa referans kodundaki para biriminde ve para değeri kadar bakiye ekledik
                     {
-                        PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, userId);
+                        PublishChangeBalanceIntegrationEvent(referenceModel.Amount, referenceModel.BalanceType, userId, BalanceHistoryTypes.ReferenceCode);
 
                         _referenceCodeRepostory.Insert(referenceCode, null, userId);
                     }
@@ -532,11 +528,11 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// <summary>
         /// Eğer referans kodu ile üye oluyorsa belirli birr miktar para verdik
         /// </summary>
-        private void PublishChangeBalanceIntegrationEvent(decimal amount, BalanceTypes balanceType, string userId)
+        private void PublishChangeBalanceIntegrationEvent(decimal amount, BalanceTypes balanceType, string userId, BalanceHistoryTypes balanceHistoryType)
         {
             Task.Factory.StartNew(() =>
           {
-              var @eventBalanceMoney = new ChangeBalanceIntegrationEvent(amount, userId, balanceType, BalanceHistoryTypes.DailyChip);
+              var @eventBalanceMoney = new ChangeBalanceIntegrationEvent(amount, userId, balanceType, balanceHistoryType);
 
               _identityIntegrationEventService.PublishEvent(@eventBalanceMoney);
           });

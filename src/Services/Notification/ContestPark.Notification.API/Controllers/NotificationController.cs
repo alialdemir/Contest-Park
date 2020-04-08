@@ -190,6 +190,8 @@ namespace ContestPark.Notification.API.Controllers
                 code,
               smsInfo.PhoneNumber);
 
+            Logger.LogInformation("redis key set {key}", smsInfo.PhoneNumber);
+
             bool isSmsSuccess = _smsService.Insert(new SmsRedisModel
             {
                 Code = code,
@@ -218,8 +220,6 @@ namespace ContestPark.Notification.API.Controllers
                 )
                 return BadRequest();
 
-            Logger.LogInformation("Sms test {PhoneNumber} {Code}", smsModel.PhoneNumber, smsModel.Code);
-
             bool isSmsSend = smsModel.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
             if (isSmsSend)
             {
@@ -227,6 +227,8 @@ namespace ContestPark.Notification.API.Controllers
             }
 
             Logger.LogInformation("Sms kodu doğrulama isteği geldi {PhoneNumber} {Code}", smsModel.PhoneNumber, smsModel.Code);
+
+            Logger.LogInformation("redis key get {key}", smsModel.PhoneNumber);
 
             SmsRedisModel redisCode = _smsService.GetSmsCode(smsModel.PhoneNumber);
             if (redisCode == null || redisCode.Code != smsModel.Code)
