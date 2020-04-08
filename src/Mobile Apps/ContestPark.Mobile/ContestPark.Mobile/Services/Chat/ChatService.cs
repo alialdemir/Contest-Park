@@ -44,7 +44,7 @@ namespace ContestPark.Mobile.Services.Chat
         /// <returns>Sohbet geçmiþinin listesi</returns>
         public async Task<ServiceModel<ChatDetailModel>> ChatDetailAsync(string senderUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{senderUserId}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{senderUserId}{pagingModel}");
 
             var result = await _requestProvider.GetAsync<ServiceModel<ChatDetailModel>>(uri);
 
@@ -116,7 +116,7 @@ namespace ContestPark.Mobile.Services.Chat
         /// <returns>Mesaj listesi.</returns>
         public async Task<ServiceModel<ChatModel>> UserChatList(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {

@@ -102,7 +102,7 @@ namespace ContestPark.Mobile.ViewModels
               if (SelectedIndex < 3)
                   SelectedIndex += 1;
               else
-                  RemoveFirstPopupAsync();
+                  GotoBackCommand.Execute(true);
           }));
             }
         }

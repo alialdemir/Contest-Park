@@ -3,6 +3,7 @@
     public class DeviceInfo
     {
         public int DeviceInfoId { get; set; }
+        public string UserId { get; set; }
         public string DeviceIdentifier { get; set; }
     }
 }

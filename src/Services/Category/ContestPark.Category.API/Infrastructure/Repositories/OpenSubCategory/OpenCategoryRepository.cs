@@ -27,13 +27,34 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory
         /// <summary>
         /// Kategori kilidi aç
         /// </summary>
-        /// <param name="openSubCategory"></param>
-        /// <returns></returns>
-        public async Task<bool> UnLockSubCategory(Tables.OpenSubCategory openSubCategory)
+        /// <param name="openSubCategory">Kilidi açılan alt kategori</param>
+        /// <returns>Kilit açılmış ise true açılmamış ise false döner</returns>
+        public async Task<bool> UnLockSubCategory(string userId, short subCategoryId)
         {
-            int? openSubCategoryId = await _openSubCategoryreRepository.AddAsync(openSubCategory);
+            int? openSubCategoryId = await _openSubCategoryreRepository.AddAsync(new Tables.OpenSubCategory
+            {
+                UserId = userId,
+                SubCategoryId = subCategoryId
+            });
 
             return openSubCategoryId.HasValue;
+        }
+
+        /// <summary>
+        /// Kategori kilidi aç
+        /// </summary>
+        /// <param name="openSubCategory">Kilidi açılan alt kategoriler</param>
+        /// <returns>Kilit açılmış ise true açılmamış ise false döner</returns>
+        public Task<bool> UnLockSubCategory(string userId, IEnumerable<short> subCategoryIds)
+        {
+            if (string.IsNullOrEmpty(userId) || !subCategoryIds.Any())
+                return Task.FromResult(false);
+
+            return _openSubCategoryreRepository.AddRangeAsync(subCategoryIds.Select(subCategoryId => new Tables.OpenSubCategory
+            {
+                UserId = userId,
+                SubCategoryId = subCategoryId,
+            }));
         }
 
         /// <summary>

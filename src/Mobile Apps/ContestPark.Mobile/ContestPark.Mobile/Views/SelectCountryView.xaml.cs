@@ -1,7 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.ViewModels;
+using Prism.Navigation;
 using Rg.Plugins.Popup.Pages;
-using System;
 using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
@@ -18,20 +18,26 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
-        #region Events
-
-        public EventHandler<CountryModel> CountryEventHandler { get; set; }
+        #region Methods
 
         private void ListView_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem is CountryModel countryModel)
-            {
-                CountryEventHandler.Invoke(countryModel, countryModel);
-            }
+            CountryModel countryModel = e.SelectedItem is CountryModel
+                ? (CountryModel)e.SelectedItem
+                : null;
 
-           ((SelectCountryViewModel)BindingContext).CloseCommand.Execute(null);
+            ((SelectCountryViewModel)BindingContext).GoBackAsync(new NavigationParameters
+           {
+               { "SelectedCountry", countryModel }
+           }, true);
         }
 
-        #endregion Events
+        protected override bool OnBackButtonPressed()
+        {
+            ((SelectCountryViewModel)BindingContext).GotoBackCommand.Execute(true);
+            return true;
+        }
+
+        #endregion Methods
     }
 }

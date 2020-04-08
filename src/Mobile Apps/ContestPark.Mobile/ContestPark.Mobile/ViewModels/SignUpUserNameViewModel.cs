@@ -11,7 +11,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -30,14 +29,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public SignUpUserNameViewModel(IPopupNavigation popupNavigation,
-                                       INavigationService navigationService,
+        public SignUpUserNameViewModel(INavigationService navigationService,
                                        ISettingsService settingsService,
                                        IAnalyticsService analyticsService,
                                        IPageDialogService dialogService,
                                        IIdentityService identityService) : base(navigationService: navigationService,
-                                                                                dialogService: dialogService,
-                                                                                popupNavigation: popupNavigation)
+                                                                                dialogService: dialogService)
         {
             _settingsService = settingsService;
             _analyticsService = analyticsService;
@@ -62,8 +59,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
-
-        private SignUpReferenceCodeView SignUpReferenceCodeView { get; set; }
+        public string ReferenceCode { get; set; }
 
         #endregion Properties
 
@@ -106,19 +102,12 @@ namespace ContestPark.Mobile.ViewModels
 
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            string referenceCode = string.Empty;
-
-            if (SignUpReferenceCodeView != null)
-            {
-                referenceCode = ((SignUpReferenceCodeViewModel)SignUpReferenceCodeView.BindingContext).ReferenceCode;
-            }
-
             bool isSuccess = await _identityService.SignUpAsync(new SignUpModel
             {
                 FullName = FullName,
                 Password = PhoneNumber,
                 UserName = UserName,
-                ReferenceCode = referenceCode
+                ReferenceCode = ReferenceCode
             });
 
             if (isSuccess)
@@ -179,21 +168,41 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            SignUpReferenceCodeView = new SignUpReferenceCodeView();
-
-            PushPopupPageAsync(SignUpReferenceCodeView);
+            PushModalAsync(nameof(SignUpReferenceCodeView));
 
             IsBusy = false;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            return base.GoBackAsync(parameters, useModalNavigation: true);
         }
 
         #endregion Methods
 
         #region Commands
 
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
         public ICommand UserNameCommand => new Command(async () => await ExecuteUserNameCommandAsync());
-        public ICommand GotoReferenceCodeCommand => new Command(() => ExecuteGotoReferenceCodeCommand());
+        public ICommand GotoReferenceCodeCommand => new Command(ExecuteGotoReferenceCodeCommand);
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("FullName"))
+                FullName = parameters.GetValue<string>("FullName");
+
+            if (parameters.ContainsKey("PhoneNumber"))
+                PhoneNumber = parameters.GetValue<string>("PhoneNumber");
+
+            if (parameters.ContainsKey("ReferenceCode"))
+                ReferenceCode = parameters.GetValue<string>("ReferenceCode");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

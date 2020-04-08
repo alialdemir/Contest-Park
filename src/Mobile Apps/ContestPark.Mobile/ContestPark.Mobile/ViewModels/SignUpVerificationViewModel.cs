@@ -12,7 +12,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -32,14 +31,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public SignUpVerificationViewModel(IPopupNavigation popupNavigation,
-                                           IIdentityService identityService,
+        public SignUpVerificationViewModel(IIdentityService identityService,
                                            INavigationService navigationService,
                                            INotificationService notificationService,
                                            IPageDialogService dialogService,
                                            ISettingsService settingsService) : base(navigationService: navigationService,
-                                                                                    dialogService: dialogService,
-                                                                                    popupNavigation: popupNavigation)
+                                                                                    dialogService: dialogService)
         {
             _identityService = identityService;
             _notificationService = notificationService;
@@ -146,7 +143,7 @@ namespace ContestPark.Mobile.ViewModels
         /// SMS ile gelen kodu kontrol eder ve telefon numarası kayıtlı mı diye kontrol eder eğer kayıtlı ise login yapar
         /// eğer kayıtlı değilse kayıt olma popupu başlangıcı olan
         /// </summary>
-        private async Task ExecuteCheckSmsCodeCommand()
+        private async void ExecuteCheckSmsCodeCommand()
         {
             if (!Code1.HasValue || !Code2.HasValue || !Code3.HasValue || !Code4.HasValue)
             {
@@ -182,11 +179,11 @@ namespace ContestPark.Mobile.ViewModels
              *  ancak telefon numarasına ait kullanıcı yoktur o yüzden üye olma adımlarına yönlendirdik
              */
 
-            await RemoveFirstPopupAsync();
+            GotoBackCommand.Execute(true);
 
-            await PushPopupPageAsync(new SignUpFullNameView()
+            await PushModalAsync(nameof(SignUpFullNameView), new NavigationParameters
             {
-                PhoneNumber = SmsInfo.PhoneNumber// TODO: Ülke koduda gönderilmeli
+                { "PhoneNumber", SmsInfo.PhoneNumber }
             });
         }
 
@@ -260,14 +257,15 @@ namespace ContestPark.Mobile.ViewModels
             });
         }
 
-        #endregion Methods
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            return base.GoBackAsync(parameters, useModalNavigation: true);
+        }
 
-        #region Commands
-
-        public ICommand TimeLeftCommand => new Command(() => ExecuteTimeLeftCommand());
-        public ICommand CheckSmsCodeCommand => new Command(async () => await ExecuteCheckSmsCodeCommand());
-
-        public ICommand SendSmsCommand => new Command(async () =>
+        /// <summary>
+        /// Tekrar sms gönder
+        /// </summary>
+        private async void ExecuteSendSmsCommand()
         {
             if (Time != DateTime.MinValue)
             {
@@ -288,10 +286,29 @@ namespace ContestPark.Mobile.ViewModels
             TimeLeftCommand.Execute(null);
 
             await _notificationService.LogInSms(SmsInfo);
-        });
+        }
 
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
+        #endregion Methods
+
+        #region Commands
+
+        private ICommand TimeLeftCommand => new Command(ExecuteTimeLeftCommand);
+        public ICommand CheckSmsCodeCommand => new Command(ExecuteCheckSmsCodeCommand);
+
+        public ICommand SendSmsCommand => new Command(ExecuteSendSmsCommand);
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SmsInfo"))
+                SmsInfo = parameters.GetValue<SmsInfoModel>("SmsInfo");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

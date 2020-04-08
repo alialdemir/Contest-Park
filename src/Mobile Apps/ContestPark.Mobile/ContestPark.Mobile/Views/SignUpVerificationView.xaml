@@ -78,7 +78,7 @@
 
                         <iconize:IconButton
                             BackgroundColor="Transparent"
-                            Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference signUpVerificationView}}"
+                            Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpVerificationView}}"
                             FontSize="23"
                             HorizontalOptions="End"
                             Opacity="0.45"

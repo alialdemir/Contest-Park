@@ -1,7 +1,6 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
-using ContestPark.Category.API.Infrastructure.Tables;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Models;
 using ContestPark.Category.API.Resources;
@@ -328,11 +327,7 @@ namespace ContestPark.Category.API.Controllers
             if (balance.Amount < subCategoryPrice)
                 return BadRequest(CategoryResource.YourBalanceIsInsufficient, ErrorStatuCodes.YouCanNotUnlockTheFreeCategory);
 
-            bool isSuccess = await _openCategoryRepository.UnLockSubCategory(new OpenSubCategory
-            {
-                UserId = UserId,
-                SubCategoryId = subCategoryId
-            });
+            bool isSuccess = await _openCategoryRepository.UnLockSubCategory(UserId, subCategoryId);
 
             if (!isSuccess)
                 return BadRequest(CategoryResource.CouldNotPpenSubcategoryLock);

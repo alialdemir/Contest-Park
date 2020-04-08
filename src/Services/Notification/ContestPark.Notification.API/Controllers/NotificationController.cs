@@ -154,8 +154,8 @@ namespace ContestPark.Notification.API.Controllers
                 || string.IsNullOrEmpty(smsInfo.PhoneNumberWithCountryCode))
                 return BadRequest();
 
-            bool isSmsSend = !smsInfo.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
-            if (!isSmsSend)
+            bool isSmsSend = smsInfo.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
+            if (isSmsSend)
             {
                 smsInfo.PhoneNumber = smsInfo.PhoneNumber.Substring(4, smsInfo.PhoneNumber.Length - 4);
             }
@@ -166,13 +166,13 @@ namespace ContestPark.Notification.API.Controllers
                 return BadRequest(NotificationResource.InvalidPhoneNumber);
             }
 
-            int code = isSmsSend
+            int code = !isSmsSend
                 ? new Random().Next(1000, 9999)
                 : 5454;// 5454 özel durum için
 
             string message = $"{NotificationResource.ContestParkAccessCode}{code}";
 
-            if (isSmsSend)
+            if (!isSmsSend)
             {
                 bool isSuccess = await _smsService.SendSms(message, smsInfo.PhoneNumberWithCountryCode);
                 if (!isSuccess)
@@ -217,8 +217,8 @@ namespace ContestPark.Notification.API.Controllers
                 )
                 return BadRequest();
 
-            bool isSmsSend = !smsModel.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
-            if (!isSmsSend)
+            bool isSmsSend = smsModel.PhoneNumber.StartsWith("5454");// Eğer numaranın başı 5454 ile başlıyorsa sms göndermeden login olmalı özel durumlar için ekledim
+            if (isSmsSend)
             {
                 smsModel.PhoneNumber = smsModel.PhoneNumber.Substring(4, smsModel.PhoneNumber.Length - 4);
             }

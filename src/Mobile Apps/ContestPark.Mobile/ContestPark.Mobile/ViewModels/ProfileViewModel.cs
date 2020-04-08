@@ -164,7 +164,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Profil eventleri unsubscribe yapıldı
         /// </summary>
-        public override Task GoBackAsync(bool? useModalNavigation = false)
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             _eventAggregator
                 .GetEvent<ChangeUserInfoEvent>()
@@ -178,7 +178,7 @@ namespace ContestPark.Mobile.ViewModels
                     .GetEvent<ChangedFollowCountEvent>()
                     .Unsubscribe(_changedFollowCountEventSubscriptionToken);
 
-            return base.GoBackAsync(useModalNavigation);
+            return base.GoBackAsync(parameters, useModalNavigation: true);
         }
 
         /// <summary>
@@ -457,9 +457,9 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushPopupPageAsync(new SelectSubCategoryView()
+            PushModalAsync(nameof(SelectSubCategoryView), new NavigationParameters()
             {
-                OpponentUserId = ProfileInfo.UserId
+                { "OpponentUserId", ProfileInfo.UserId }
             });
 
             _analyticsService.SendEvent("Profil", "Düello Daveti", _userName);

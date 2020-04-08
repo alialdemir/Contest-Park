@@ -125,12 +125,12 @@ namespace ContestPark.Mobile.ViewModels.Base
 
         #region Navigations
 
-        public virtual Task GoBackAsync(bool? useModalNavigation = false)
+        public virtual Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             if (_navigationService == null)
                 return Task.CompletedTask;
 
-            return _navigationService?.GoBackAsync(useModalNavigation: useModalNavigation);
+            return _navigationService?.GoBackAsync(parameters, useModalNavigation);
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
@@ -227,7 +227,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         {
             get
             {
-                return new Command<bool?>((useModalNavigation) => GoBackAsync(useModalNavigation));
+                return new Command<bool?>((useModalNavigation) => GoBackAsync(useModalNavigation: useModalNavigation));
             }
         }
 

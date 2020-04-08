@@ -126,9 +126,9 @@ namespace ContestPark.Mobile.Services.Category
         /// Kategorileri listeleme
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
-        public async Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel)
+        public async Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel, bool isAllOpen = false)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}&isAllOpen={isAllOpen}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -158,7 +158,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Alt kategori listesi</returns>
         public async Task<ServiceModel<SearchModel>> FollowedSubCategoriesAsync(string searchText, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search/Followed{pagingModel.ToString()}&q={searchText}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search/Followed{pagingModel}&q={searchText}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -183,7 +183,7 @@ namespace ContestPark.Mobile.Services.Category
         /// <returns>Tüm kategorileri döndürür.</returns>
         public async Task<ServiceModel<SearchModel>> CategorySearchAsync(short categoryId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q=");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel}&categoryId={categoryId}&q=");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -255,7 +255,7 @@ namespace ContestPark.Mobile.Services.Category
         {
             _analyticsService.SendEvent("Arama", "Kategori Kullanıcı ara", searchText);
 
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel.ToString()}&categoryId={categoryId}&q={searchText}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"api/v1/Search{pagingModel}&categoryId={categoryId}&q={searchText}");
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
 

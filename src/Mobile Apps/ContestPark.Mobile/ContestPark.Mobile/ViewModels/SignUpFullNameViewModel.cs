@@ -1,8 +1,8 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,9 +13,9 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Constructor
 
-        public SignUpFullNameViewModel(IPopupNavigation popupNavigation,
-                                       IPageDialogService dialogService) : base(dialogService: dialogService,
-                                                                                popupNavigation: popupNavigation)
+        public SignUpFullNameViewModel(INavigationService navigationService,
+                                       IPageDialogService dialogService) : base(navigationService: navigationService,
+                                                                                dialogService: dialogService)
         {
         }
 
@@ -80,24 +80,40 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            await RemoveFirstPopupAsync();
+            GotoBackCommand.Execute(true);
 
-            await PushPopupPageAsync(new SignUpUserNameView()
+            await PushModalAsync(nameof(SignUpUserNameView), new NavigationParameters
             {
-                FullName = FullName,
-                PhoneNumber = PhoneNumber
+                { "FullName", FullName },
+                { "PhoneNumber", PhoneNumber },
             });
 
             IsBusy = false;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            return base.GoBackAsync(parameters, useModalNavigation: true);
         }
 
         #endregion Methods
 
         #region Commands
 
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
         public ICommand FullNameCommand => new Command(async () => await ExecuteFullNameCommand());
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("PhoneNumber"))
+                PhoneNumber = parameters.GetValue<string>("PhoneNumber");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

@@ -36,7 +36,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public string OpponentUserId { get; set; }
+        private bool IsAllSubCategoriesOpen { get; set; }
+        private string OpponentUserId { get; set; }
 
         #endregion Properties
 
@@ -49,7 +50,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
+            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsAllSubCategoriesOpen);
 
             await base.InitializeAsync();
 
@@ -66,7 +67,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ClosePopupCommand.Execute(null);
+            GotoBackCommand.Execute(true);
 
             if (subCategory.IsCategoryOpen)
             {
@@ -91,6 +92,11 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            return base.GoBackAsync(parameters, useModalNavigation: true);
+        }
+
         #endregion Methods
 
         #region Commands
@@ -105,8 +111,21 @@ namespace ContestPark.Mobile.ViewModels
             get { return _duelOpenPanelCommand ?? (_duelOpenPanelCommand = new Command<SubCategoryModel>((subCategory) => ExecuteduelOpenPanelCommandAsync(subCategory))); }
         }
 
-        public ICommand ClosePopupCommand { get { return new Command(async () => await RemoveFirstPopupAsync()); } }
-
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("IsAllSubCategoriesOpen"))
+                IsAllSubCategoriesOpen = parameters.GetValue<bool>("IsAllSubCategoriesOpen");
+
+            if (parameters.ContainsKey("OpponentUserId"))
+                OpponentUserId = parameters.GetValue<string>("OpponentUserId");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

@@ -649,7 +649,7 @@ namespace ContestPark.Mobile.ViewModels
                 if (IsExit)
                     return false;
 
-                base.GoBackAsync(true);
+                base.GoBackAsync(null, true);
 
                 // Şıkları animasyonlu şekilde gösterir
                 AnimateStylishCommand?.Execute(null);

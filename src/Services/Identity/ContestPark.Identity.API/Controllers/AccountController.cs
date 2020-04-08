@@ -470,8 +470,19 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 if (!string.IsNullOrEmpty(signUpModel.DeviceIdentifier))
                 {
                     // Bu kısım üye olmayı etkilemesin diye try-catch bloklarına aldım
-                    _deviceInfoRepository.Insert(signUpModel.DeviceIdentifier);
+                    _deviceInfoRepository.Insert(user.Id, signUpModel.DeviceIdentifier);
                 }
+
+                #region Yeni üye olan kullanıcılar için parametreden gelen alt kategorilerin kilitleri ücret ödemeden açılır ve takip edilir
+
+                if (signUpModel.SubCategories != null && signUpModel.SubCategories.Any())
+                {
+                    var @openSubCategoryAndFollowEvent = new OpenSubCategoryAndFollowIntegrationEvent(user.Id, signUpModel.SubCategories);
+
+                    _identityIntegrationEventService.PublishEvent(@openSubCategoryAndFollowEvent);
+                }
+
+                #endregion Yeni üye olan kullanıcılar için parametreden gelen alt kategorilerin kilitleri ücret ödemeden açılır ve takip edilir
             }
             catch (Exception ex)
             {

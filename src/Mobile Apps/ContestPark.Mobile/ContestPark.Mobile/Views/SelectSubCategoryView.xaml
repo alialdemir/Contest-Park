@@ -48,6 +48,7 @@
                 <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
@@ -62,13 +63,16 @@
                         TextColor="#FDBC2E"
                         VerticalTextAlignment="Center" />
 
+
+
                     <Image
                         Grid.Row="0"
+                        Grid.RowSpan="2"
                         Margin="0,8,8,0"
                         HorizontalOptions="End"
                         VerticalOptions="Center">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference selectSubCategoryView}}" />
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference selectSubCategoryView}}" />
                         </Image.GestureRecognizers>
                         <Image.Source>
                             <FontImageSource
@@ -78,8 +82,30 @@
                                 Color="{StaticResource SettingsIconColor}" />
                         </Image.Source>
                     </Image>
+                    <Frame
+                        Grid.Row="1"
+                        Margin="0,0,0,8"
+                        Padding="16,16,0,16"
+                        CornerRadius="8"
+                        HasShadow="True"
+                        IsClippedToBounds="True">
+                        <Slider
+                            HeightRequest="10"
+                            Maximum="6"
+                            MaximumTrackColor="#72F7C5"
+                            MinimumTrackColor="#B0E881"
+                            ThumbColor="Transparent"
+                            Value="{Binding CurrentIndex}" />
+                        <Label
+                            FontFamily="{StaticResource MontserratRegular}"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="İlgi duyduğun üç kategorinin  kilitlerini aç"
+                            TextColor="{StaticResource Black}" />
+                    </Frame>
 
-                    <components:NonPersistentSelectedItemListView Grid.Row="1" Style="{StaticResource ListView}">
+
+                    <components:NonPersistentSelectedItemListView Grid.Row="2" Style="{StaticResource ListView}">
                         <components:NonPersistentSelectedItemListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

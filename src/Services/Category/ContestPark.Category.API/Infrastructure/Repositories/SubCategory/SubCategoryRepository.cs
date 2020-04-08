@@ -111,7 +111,10 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
                 if (!lookup.TryGetValue(category.CategoryId, out CategoryModel invoiceEntry))
                 {
                     invoiceEntry = category;
-                    if (invoiceEntry.SubCategories == null) invoiceEntry.SubCategories = new List<SubCategoryModel>();
+
+                    if (invoiceEntry.SubCategories == null)
+                        invoiceEntry.SubCategories = new List<SubCategoryModel>();
+
                     lookup.Add(invoiceEntry.CategoryId, invoiceEntry);
                 }
                 invoiceEntry.SubCategories.Add(subCategory);

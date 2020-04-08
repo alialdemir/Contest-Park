@@ -277,7 +277,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Düello başlıyor ekranını kapatır
         /// </summary>
-        public override async Task GoBackAsync(bool? useModalNavigation = false)
+        public override async Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             if (DuelStarting.DuelId != 0 && !IsNextQuestionExit)// Duel id 0 değilse düello başlamıştır
             {
@@ -306,7 +306,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
-            await base.GoBackAsync(true);
+            await base.GoBackAsync(parameters, useModalNavigation: true);
 
             if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId) && SelectedBet.StandbyMode == StandbyModes.On)
             {

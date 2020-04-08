@@ -51,7 +51,7 @@ namespace ContestPark.Mobile.Services.Blocking
 
         public async Task<ServiceModel<BlockModel>> BlockingList(PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {

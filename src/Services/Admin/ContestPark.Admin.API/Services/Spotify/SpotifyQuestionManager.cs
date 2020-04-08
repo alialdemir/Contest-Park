@@ -128,7 +128,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                             },
                                     },
                                     Answers = GetRandomAnswers(albums.Where(a => a.AlbumId != track.AlbulId && !string.IsNullOrEmpty(a.AlbumName)).Select(x => x.AlbumName),
-                                                               correctAnswer: albums.FirstOrDefault(a => a.AlbumId == track.AlbulId && !string.IsNullOrEmpty(a.AlbumName)).AlbumName),
+                                                               correctStylish: albums.FirstOrDefault(a => a.AlbumId == track.AlbulId && !string.IsNullOrEmpty(a.AlbumName)).AlbumName),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                     new QuestionLocalized
@@ -171,7 +171,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                             },
                                     },
                                     Answers = GetRandomAnswers(Genres.Where(a => !a.Contains(artis.Genres) && a != artis.Genres),
-                                                               correctAnswer: artis.Genres),
+                                                               correctStylish: artis.Genres),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                     new QuestionLocalized
@@ -217,7 +217,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                     .Where(a => a.ReleaseYear != track.ReleaseYear && a.ReleaseYear > 0)
                                     .Select(x => x.ReleaseYear.ToString())
                                     .ToList(),
-                                                               correctAnswer: track.ReleaseYear.ToString()),
+                                                               correctStylish: track.ReleaseYear.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                     new QuestionLocalized
@@ -262,7 +262,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                     .Where(a => a.AlbumName != album.AlbumName && !string.IsNullOrEmpty(a.AlbumName))
                                     .Select(x => x.AlbumName)
                                     .ToList(),
-                                                               correctAnswer: album.AlbumName.ToString()),
+                                                               correctStylish: album.AlbumName.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                     new QuestionLocalized
@@ -301,7 +301,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                                 },
                                     },
                                     Answers = GetRandomAnswers(tracks.Where(a => a.ArtisName != track.ArtisName && !string.IsNullOrEmpty(a.ArtisName)).Select(x => x.ArtisName).ToList(),
-                                                               correctAnswer: track.ArtisName.ToString()),
+                                                               correctStylish: track.ArtisName.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                         new QuestionLocalized
@@ -340,7 +340,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                                 },
                                     },
                                     Answers = GetRandomAnswers(albums.Where(a => a.ArtistName != album.ArtistName && !string.IsNullOrEmpty(a.ArtistName)).Select(x => x.ArtistName).ToList(),
-                                                               correctAnswer: album.ArtistName.ToString()),
+                                                               correctStylish: album.ArtistName.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                         new QuestionLocalized
@@ -379,7 +379,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                                 },
                                     },
                                     Answers = GetRandomAnswers(albums.Where(a => a.ArtistName != album.ArtistName && !string.IsNullOrEmpty(a.ArtistName)).Select(x => x.ArtistName).ToList(),
-                                                               correctAnswer: album.ArtistName.ToString()),
+                                                               correctStylish: album.ArtistName.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                         new QuestionLocalized
@@ -418,7 +418,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                                                 },
                                     },
                                     Answers = GetRandomAnswers(artis.Where(a => a.ArtistName != album.ArtistName && !string.IsNullOrEmpty(a.ArtistName)).Select(x => x.ArtistName).ToList(),
-                                                               correctAnswer: album.ArtistName.ToString()),
+                                                               correctStylish: album.ArtistName.ToString()),
                                     QuestionLocalized = new List<QuestionLocalized>
                                                                            {
                                                                                         new QuestionLocalized
@@ -444,26 +444,32 @@ namespace ContestPark.Admin.API.Services.Spotify
         /// <summary>
         /// Rastgele cevap listesi verir
         /// </summary>
-        /// <param name="correctAnswer">Doğru cevap</param>
-        /// <param name="correctAnswer">Doğru cevap</param>
+        /// <param name="correctStylish">Doğru cevap</param>
+        /// <param name="correctStylish">Doğru cevap</param>
         /// <returns>Cevap listesi</returns>
-        private List<AnswerSaveModel> GetRandomAnswers(IEnumerable<string> answers, string correctAnswer)
+        private List<AnswerSaveModel> GetRandomAnswers(IEnumerable<string> answers, string correctStylish)
         {
             var answersRandomSort = answers
-                             .Where(x => x != correctAnswer)
+                             .Where(x => !string.IsNullOrEmpty(x) && !x.ToUpper().Contains(correctStylish.ToUpper()))
                              .OrderBy(x => Guid.NewGuid())
                              .Take(3)
                              .ToList();
 
-            if (answersRandomSort == null || answersRandomSort.Count < 3)
+            if (answersRandomSort == null
+                || answersRandomSort.Count < 3)
                 return new List<AnswerSaveModel>();
+
+            if (answersRandomSort[0].ToUpper().Contains(answersRandomSort[1].ToUpper())
+                || answersRandomSort[0].ToUpper().Contains(answersRandomSort[2].ToUpper())
+                || answersRandomSort[1].ToUpper().Contains(answersRandomSort[2].ToUpper()))
+                return GetRandomAnswers(answers, correctStylish);
 
             return new List<AnswerSaveModel>
             {
                     new AnswerSaveModel
                 {
                     Language = Languages.Turkish,
-                    CorrectStylish = correctAnswer,
+                    CorrectStylish = correctStylish,
                     Stylish1 = answersRandomSort[0],
                     Stylish2 = answersRandomSort[1],
                     Stylish3 = answersRandomSort[2]
@@ -471,7 +477,7 @@ namespace ContestPark.Admin.API.Services.Spotify
                     new AnswerSaveModel
                 {
                     Language = Languages.English,
-                    CorrectStylish = correctAnswer,
+                    CorrectStylish = correctStylish,
                     Stylish1 = answersRandomSort[0],
                     Stylish2 = answersRandomSort[1],
                     Stylish3 = answersRandomSort[2]

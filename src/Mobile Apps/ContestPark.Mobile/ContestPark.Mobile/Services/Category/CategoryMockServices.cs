@@ -74,7 +74,7 @@ namespace ContestPark.Mobile.Services.Category
             return Task.FromResult(true);
         }
 
-        public Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel)
+        public Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel, bool isAllOpen = false)
         {
             return Task.FromResult(new ServiceModel<CategoryModel>
             {

@@ -77,6 +77,7 @@ namespace ContestPark.Category.API
             services.AddTransient<UserInfoChangedIntegrationEventHandler>();
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
             services.AddTransient<NewSubCategoryAddedIntegrationEventHandler>();
+            services.AddTransient<OpenSubCategoryAndFollowIntegrationEventHandler>();
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
@@ -129,6 +130,7 @@ namespace ContestPark.Category.API
             eventBus.Subscribe<UserInfoChangedIntegrationEvent, UserInfoChangedIntegrationEventHandler>();
             eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
             eventBus.Subscribe<NewSubCategoryAddedIntegrationEvent, NewSubCategoryAddedIntegrationEventHandler>();
+            eventBus.Subscribe<OpenSubCategoryAndFollowIntegrationEvent, OpenSubCategoryAndFollowIntegrationEventHandler>();
         }
     }
 }

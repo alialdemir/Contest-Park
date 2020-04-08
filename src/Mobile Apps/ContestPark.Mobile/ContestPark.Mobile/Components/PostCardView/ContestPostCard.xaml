@@ -35,7 +35,7 @@
                     FontFamily="{StaticResource SofiaProSemiBold}"
                     FontSize="23"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding BalanceType}"
+                    Text="{Binding SubCategoryName}"
                     TextColor="#000000" />
 
                 <Components:DobleCoinsView

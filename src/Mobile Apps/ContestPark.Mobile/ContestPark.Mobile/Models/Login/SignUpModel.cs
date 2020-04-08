@@ -1,4 +1,6 @@
-﻿namespace ContestPark.Mobile.Models.Login
+﻿using System.Collections.Generic;
+
+namespace ContestPark.Mobile.Models.Login
 {
     public class SignUpModel
     {
@@ -13,5 +15,7 @@
         public string ReferenceCode { get; set; }
 
         public string DeviceIdentifier { get; set; }
+
+        public IEnumerable<short> SubCategories { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace ContestPark.Mobile.Services.Category
 
         Task<bool> UnFollowSubCategoryAsync(short subCategoryId);
 
-        Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel);
+        Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel, bool isAllOpen = false);
 
         Task<CategoryDetailModel> GetSubCategoryDetail(short subCategoryId);
 

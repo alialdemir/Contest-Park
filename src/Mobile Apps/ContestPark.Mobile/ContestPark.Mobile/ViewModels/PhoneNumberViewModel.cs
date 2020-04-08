@@ -141,27 +141,18 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            await PushPopupPageAsync(new SignUpVerificationView
+            await PushModalAsync(nameof(SignUpVerificationView), new NavigationParameters
             {
-                SmsInfo = new SmsInfoModel
                 {
-                    PhoneNumber = PhoneNumberNoRegex,
-                    CountryCode = Country.PhoneCode
+                      "SmsInfo", new SmsInfoModel
+                                            {
+                                                PhoneNumber = PhoneNumberNoRegex,
+                                                CountryCode = Country.PhoneCode
+                                            }
                 }
             });
 
             IsBusy = false;
-        }
-
-        /// <summary>
-        /// Ülke seçme popup açar
-        /// </summary>
-        private async Task ExecuteSelectCountryCommandAsync()
-        {
-            var selectCountryView = new SelectCountryView();
-            selectCountryView.CountryEventHandler += OnCountry;
-
-            await PushPopupPageAsync(selectCountryView);
         }
 
         #endregion Methods
@@ -177,8 +168,29 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         public ICommand SendSmsCommand => new Command(async () => await ExecuteSendSmsCommandAsync());
-        public ICommand SelectCountryCommand => new Command(async () => await ExecuteSelectCountryCommandAsync());
+
+        /// <summary>
+        /// Ülke seçme popup açar
+        /// </summary>
+        public ICommand SelectCountryCommand => new Command(() => PushModalAsync(nameof(SelectCountryView)));
 
         #endregion Commands
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SelectedCountry"))
+            {
+                var selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");
+                if (selectedCountry != null)
+                {
+                    Country = selectedCountry;
+                }
+            }
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

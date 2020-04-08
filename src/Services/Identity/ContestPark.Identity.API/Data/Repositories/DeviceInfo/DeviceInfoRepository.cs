@@ -26,10 +26,11 @@ namespace ContestPark.Identity.API.Data.Repositories.DeviceInfo
         /// </summary>
         /// <param name="deviceIdentifier"></param>
         /// <returns></returns>
-        public bool Insert(string deviceIdentifier)
+        public bool Insert(string userId, string deviceIdentifier)
         {
             _applicationDbContext.DeviceInfos.Add(new Tables.DeviceInfo
             {
+                UserId = userId,
                 DeviceIdentifier = deviceIdentifier
             });
 

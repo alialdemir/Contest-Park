@@ -44,7 +44,7 @@ namespace ContestPark.Mobile.Services.Follow
         /// <returns>Takip edilen kullanıcı listesi</returns>
         public async Task<ServiceModel<FollowModel>> Followers(string followedUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{followedUserId}/Followers{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{followedUserId}/Followers{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -67,7 +67,7 @@ namespace ContestPark.Mobile.Services.Follow
         /// <returns>Takip eden kullanıcı listesi</returns>
         public async Task<ServiceModel<FollowModel>> Following(string followedUserId, PagingModel pagingModel)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{followedUserId}/Following{pagingModel.ToString()}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{followedUserId}/Following{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {

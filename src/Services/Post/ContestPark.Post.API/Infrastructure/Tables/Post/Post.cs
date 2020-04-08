@@ -35,7 +35,7 @@ namespace ContestPark.Post.API.Infrastructure.Tables.Post
             }
         }
 
-        public bool IsCommentOpen { get; set; }
+        public bool IsCommentOpen { get; set; } = true;
 
         public bool IsArchive { get; set; }
 

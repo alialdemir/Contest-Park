@@ -9,6 +9,8 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory
 
         List<short> IsSubCategoryOpen(string userId, IEnumerable<short> subCategoryIds);
 
-        Task<bool> UnLockSubCategory(Tables.OpenSubCategory openSubCategory);
+        Task<bool> UnLockSubCategory(string userId, short subCategoryId);
+
+        Task<bool> UnLockSubCategory(string userId, IEnumerable<short> subCategoryIds);
     }
 }

@@ -91,7 +91,7 @@
                         <iconize:IconButton
                             Grid.Row="0"
                             BackgroundColor="Transparent"
-                            Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference signUpFullNameView}}"
+                            Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpFullNameView}}"
                             FontSize="23"
                             HorizontalOptions="End"
                             Opacity="0.45"

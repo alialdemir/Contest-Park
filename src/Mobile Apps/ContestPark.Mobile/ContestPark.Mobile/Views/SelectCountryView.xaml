@@ -25,7 +25,7 @@
             IsGroupingEnabled="true"
             ItemSelected="ListView_ItemSelected"
             ItemsSource="{Binding Items}"
-            SelectionMode="None">
+            SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

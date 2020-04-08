@@ -1,11 +1,10 @@
 ﻿using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.ViewModels.Base;
-using Rg.Plugins.Popup.Contracts;
+using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
-using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -13,7 +12,15 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Constructor
 
-        public SelectCountryViewModel(IPopupNavigation popupNavigation) : base(popupNavigation: popupNavigation)
+        public SelectCountryViewModel(INavigationService navigationService) : base(navigationService: navigationService)
+        {
+        }
+
+        #endregion Constructor
+
+        #region Methods
+
+        protected override Task InitializeAsync()
         {
             var items = new List<CountryModel>
             {
@@ -1593,18 +1600,17 @@ namespace ContestPark.Mobile.ViewModels
                 //},
             };
 
-            Items.AddRange(items.OrderBy(p => p.Country)
-           .GroupBy(p => p.Country[0].ToString())
-           .Select(p => new ObservableGroupCollection<string, CountryModel>(p))
-           .ToList());
+            ServiceModel = new Models.ServiceModel.ServiceModel<ObservableGroupCollection<string, CountryModel>>
+            {
+                Items = items.OrderBy(p => p.Country)
+                   .GroupBy(p => p.Country[0].ToString())
+                   .Select(p => new ObservableGroupCollection<string, CountryModel>(p))
+                   .ToList()
+            };
+
+            return base.InitializeAsync();
         }
 
-        #endregion Constructor
-
-        #region Commands
-
-        public ICommand CloseCommand => new Command(async () => await RemoveFirstPopupAsync());
-
-        #endregion Commands
+        #endregion Methods
     }
 }

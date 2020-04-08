@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Pages;
 using System.Windows.Input;
@@ -30,8 +31,6 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public PopupPage ReferenceCodePopup { get; set; }
-
         #endregion Properties
 
         #region Methods
@@ -46,7 +45,10 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            RemovePopupPageAsync(ReferenceCodePopup);
+            GoBackAsync(new NavigationParameters
+            {
+                { "ReferenceCode", "ReferenceCode" }
+            }, true);
 
             IsBusy = false;
         }

@@ -2,6 +2,8 @@
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.Enums;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
@@ -40,6 +42,24 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
             });
 
             return followSubCategoryId.HasValue;
+        }
+
+        /// <summary>
+        /// Alt kategorilerin takip et
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <returns>Alt kategori takip ediyor ise true değilse false</returns>
+        public Task<bool> FollowSubCategoryAsync(string userId, IEnumerable<short> subCategoryIds)
+        {
+            if (string.IsNullOrEmpty(userId) || !subCategoryIds.Any())
+                return Task.FromResult(false);
+
+            return _followSubCategoryRepository.AddRangeAsync(subCategoryIds.Select(subCategoryId => new Tables.FollowSubCategory
+            {
+                UserId = userId,
+                SubCategoryId = subCategoryId,
+            }));
         }
 
         /// <summary>
@@ -89,7 +109,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
         /// <returns>Alt kategori id</returns>
         public ServiceModel<SearchModel> FollowedSubCategoryIds(string searchText, string userId, Languages language, PagingModel pagingModel)
         {
-            string sql = $@"SELECT 
+            string sql = $@"SELECT
                             scl.SubCategoryName,
                             sc.SubCategoryId,
                             2 AS SearchType,

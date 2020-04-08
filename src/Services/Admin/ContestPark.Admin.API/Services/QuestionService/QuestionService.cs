@@ -198,27 +198,37 @@ namespace ContestPark.Admin.API.Services.QuestionService
                          ? "" : p.Value.ToString()));
         }
 
+        /// <summary>
+        /// Doğru cevap haricidne rastgele 3 cevap döndürür
+        /// </summary>
+        /// <param name="answers">Cevap listesi</param>
+        /// <param name="correctStylish">Doğru cevap</param>
+        /// <param name="language">Diller</param>
+        /// <returns>Cevap modeli</returns>
         private AnswerSaveModel GetRandomAnswersFromArray(List<string> answers, string correctStylish, Languages language)
         {
             if (answers == null || !answers.Any() || string.IsNullOrEmpty(correctStylish))
                 return null;
 
-            answers = answers
-                       .Where(x => x != correctStylish && !string.IsNullOrEmpty(x))
-                       .OrderBy(x => Guid.NewGuid())
-                       .Take(3)
-                       .ToList();
+            var answersRandomSort = answers
+                                       .Where(x => !string.IsNullOrEmpty(x) && !x.ToUpper().Contains(correctStylish.ToUpper()))
+                                       .OrderBy(x => Guid.NewGuid())
+                                       .Take(3)
+                                       .ToList();
 
-            if (answers.GroupBy(x => x).Count() != 3)
+            if (answersRandomSort.GroupBy(x => x).Count() != 3
+                || answersRandomSort[0].ToUpper().Contains(answersRandomSort[1].ToUpper())
+                || answersRandomSort[0].ToUpper().Contains(answersRandomSort[2].ToUpper())
+                || answersRandomSort[1].ToUpper().Contains(answersRandomSort[2].ToUpper()))
                 return GetRandomAnswersFromArray(answers, correctStylish, language);
 
             return new AnswerSaveModel
             {
                 Language = language,
                 CorrectStylish = UppercaseFirstLetter(correctStylish),
-                Stylish1 = UppercaseFirstLetter(answers[0]),
-                Stylish2 = UppercaseFirstLetter(answers[1]),
-                Stylish3 = UppercaseFirstLetter(answers[2])
+                Stylish1 = UppercaseFirstLetter(answersRandomSort[0]),
+                Stylish2 = UppercaseFirstLetter(answersRandomSort[1]),
+                Stylish3 = UppercaseFirstLetter(answersRandomSort[2])
             };
         }
 
@@ -232,7 +242,15 @@ namespace ContestPark.Admin.API.Services.QuestionService
             if (string.IsNullOrEmpty(title))
                 return string.Empty;
 
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(title.ToLower()).Trim();
+            return CultureInfo
+                .CurrentCulture
+                .TextInfo
+                .ToTitleCase(title.ToLower())
+                .Replace("&Quot;", "\"")
+                .Replace("&quot;", "\"")
+                .Replace("&#34;", "\"")
+                .Replace("&#39;", "'")
+                .Trim();
         }
 
         /// <summary>
@@ -263,6 +281,7 @@ namespace ContestPark.Admin.API.Services.QuestionService
             return translateText
                 .Replace("&Quot;", "\"")
                 .Replace("&quot;", "\"")
+                .Replace("&#34;", "\"")
                 .Replace("&#39;", "'");
         }
 

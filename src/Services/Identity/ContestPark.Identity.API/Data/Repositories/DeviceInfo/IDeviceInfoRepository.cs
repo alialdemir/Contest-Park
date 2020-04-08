@@ -3,6 +3,7 @@
     public interface IDeviceInfoRepository
     {
         bool CheckDeviceIdentifier(string deviceIdentifier);
-        bool Insert(string deviceIdentifier);
+
+        bool Insert(string userId, string deviceIdentifier);
     }
 }

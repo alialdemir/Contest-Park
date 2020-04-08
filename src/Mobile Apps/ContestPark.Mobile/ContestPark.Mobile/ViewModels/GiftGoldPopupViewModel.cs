@@ -63,12 +63,12 @@ namespace ContestPark.Mobile.ViewModels
             return base.InitializeAsync();
         }
 
-        public override Task GoBackAsync(bool? useModalNavigation = false)
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             // Bir sonraki ödül için push notification göndermesi için background job başlattık
             _backgroundAggregatorService.StartRewardJob(GiftGold.NextRewardTime);
 
-            return base.GoBackAsync(true);
+            return base.GoBackAsync(parameters, useModalNavigation: true);
         }
 
         #endregion Methods
