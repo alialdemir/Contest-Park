@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
-using Rg.Plugins.Popup.Contracts;
-using Rg.Plugins.Popup.Pages;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -11,7 +10,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Constructor
 
-        public SignUpReferenceCodeViewModel(IPopupNavigation popupNavigation) : base(popupNavigation: popupNavigation)
+        public SignUpReferenceCodeViewModel(INavigationService navigationService) : base(navigationService: navigationService)
         {
         }
 
@@ -47,17 +46,21 @@ namespace ContestPark.Mobile.ViewModels
 
             GoBackAsync(new NavigationParameters
             {
-                { "ReferenceCode", "ReferenceCode" }
+                { "ReferenceCode", ReferenceCode }
             }, true);
 
             IsBusy = false;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            return base.GoBackAsync(parameters, true);
         }
 
         #endregion Methods
 
         #region Commands
 
-        public ICommand ClosePopupCommand { get { return new Command<PopupPage>(async (popupPage) => await RemovePopupPageAsync(popupPage)); } }
         public ICommand ReferenceCodeCommand => new Command(() => ExecuteReferenceCodeCommand());
 
         #endregion Commands

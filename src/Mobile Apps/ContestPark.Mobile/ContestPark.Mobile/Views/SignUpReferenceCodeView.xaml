@@ -92,7 +92,6 @@
                             Grid.Row="0"
                             BackgroundColor="Transparent"
                             Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpReferenceCodeView}}"
-                            CommandParameter="{x:Reference signUpReferenceCodeView}"
                             FontSize="23"
                             HorizontalOptions="End"
                             Opacity="0.45"

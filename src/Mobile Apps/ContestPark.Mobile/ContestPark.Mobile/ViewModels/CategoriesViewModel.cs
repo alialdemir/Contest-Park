@@ -135,11 +135,13 @@ namespace ContestPark.Mobile.ViewModels
                 ScopeRefleshCommand.Execute(null);
 
                 ListenerFirebaseToken.Execute(null);
+#if !DEBUG
                 _inviteDuelService.InviteDuelCommand.Execute(Items);
+#endif
             }
 
             //TODO: Kategorileri sayfala
-            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel);
+            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel, !IsInitialized);
 
             await base.InitializeAsync();
 

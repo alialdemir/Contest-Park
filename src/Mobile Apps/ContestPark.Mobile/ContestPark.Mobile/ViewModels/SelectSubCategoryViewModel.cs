@@ -36,7 +36,6 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private bool IsAllSubCategoriesOpen { get; set; }
         private string OpponentUserId { get; set; }
 
         #endregion Properties
@@ -50,7 +49,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsAllSubCategoriesOpen);
+            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
 
             await base.InitializeAsync();
 
@@ -117,9 +116,6 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("IsAllSubCategoriesOpen"))
-                IsAllSubCategoriesOpen = parameters.GetValue<bool>("IsAllSubCategoriesOpen");
-
             if (parameters.ContainsKey("OpponentUserId"))
                 OpponentUserId = parameters.GetValue<string>("OpponentUserId");
 

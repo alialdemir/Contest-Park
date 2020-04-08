@@ -8,16 +8,26 @@ namespace ContestPark.Identity.API.Services.Block
 {
     public class BlockService : IBlockService
     {
+        #region Private variables
+
         private readonly IRequestProvider _requestProvider;
 
         private readonly IdentitySettings _identitySettings;
 
+        #endregion Private variables
+
+        #region Constructor
+
         public BlockService(IRequestProvider requestProvider,
-                              IOptions<IdentitySettings> settings)
+                         IOptions<IdentitySettings> settings)
         {
             _requestProvider = requestProvider ?? throw new ArgumentNullException(nameof(requestProvider));
             _identitySettings = settings.Value;
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         /// <summary>
         /// İki kullanıcı arasındaki engelleme durumunu verir
@@ -33,5 +43,7 @@ namespace ContestPark.Identity.API.Services.Block
 
             return result != null && result.IsStatus;
         }
+
+        #endregion Methods
     }
 }

@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
-        public string ReferenceCode { get; set; }
+        private string ReferenceCode { get; set; }
 
         #endregion Properties
 

@@ -57,9 +57,10 @@ namespace ContestPark.Category.API.Controllers
         /// <returns>Tüm kategorileri döndürür.</returns>
         /// <param name="pagingModel">Hem kategorileri hemde alt kategorileri sayfalar</param>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult Get([FromQuery]PagingModel pagingModel, [FromQuery]bool isAllOpen = false)
+        public IActionResult Get([FromQuery]PagingModel pagingModel)
         {
             ServiceModel<CategoryModel> result = new ServiceModel<CategoryModel>()
             {
@@ -69,70 +70,75 @@ namespace ContestPark.Category.API.Controllers
             };
             List<CategoryModel> categoryList = new List<CategoryModel>();
 
-            #region Takip ettiğim kategoriler
+            bool isAllOpen = string.IsNullOrEmpty(UserId);// Eğer login olmadan istek gelirse user id boş olacaktır o zaman tüm kategorileri açık olarak döndürdük
 
-            ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
-                                                                                                           CurrentUserLanguage,
-                                                                                                           pagingModel);
-            if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Any())
+            if (!isAllOpen)
             {
-                CategoryModel categoryModel = new CategoryModel()
+                #region Takip ettiğim kategoriler
+
+                ServiceModel<SubCategoryModel> followedSubCategories = _categoryRepository.GetFollowedSubCategories(UserId,
+                                                                                                               CurrentUserLanguage,
+                                                                                                               pagingModel);
+                if (followedSubCategories != null && followedSubCategories.Items != null && followedSubCategories.Items.Any())
                 {
-                    CategoryId = -1,
-                    CategoryName = CategoryResource.FollowedCategories
-                };
+                    CategoryModel categoryModel = new CategoryModel()
+                    {
+                        CategoryId = -1,
+                        CategoryName = CategoryResource.FollowedCategories
+                    };
 
-                categoryModel.SubCategories.AddRange(followedSubCategories.Items);
+                    categoryModel.SubCategories.AddRange(followedSubCategories.Items);
 
-                categoryList.Add(categoryModel);
+                    categoryList.Add(categoryModel);
 
-                result.HasNextPage = followedSubCategories.HasNextPage;
-            }
+                    result.HasNextPage = followedSubCategories.HasNextPage;
+                }
 
-            #endregion Takip ettiğim kategoriler
+                #endregion Takip ettiğim kategoriler
 
-            #region En son oynadıklarım
+                #region En son oynadıklarım
 
-            IEnumerable<SubCategoryModel> lastCategoriesPlayed = _categoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage);
-            if (lastCategoriesPlayed != null && lastCategoriesPlayed.Any())
-            {
-                CategoryModel categoryModel = new CategoryModel()
+                IEnumerable<SubCategoryModel> lastCategoriesPlayed = _categoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage);
+                if (lastCategoriesPlayed != null && lastCategoriesPlayed.Any())
                 {
-                    CategoryId = -2,
-                    CategoryName = CategoryResource.TheLastCategoriesIPlayed
-                };
+                    CategoryModel categoryModel = new CategoryModel()
+                    {
+                        CategoryId = -2,
+                        CategoryName = CategoryResource.TheLastCategoriesIPlayed
+                    };
 
-                categoryModel.SubCategories.AddRange(lastCategoriesPlayed.OrderBy(x => x.Price));
+                    categoryModel.SubCategories.AddRange(lastCategoriesPlayed.OrderBy(x => x.Price));
 
-                categoryList.Add(categoryModel);
-            }
+                    categoryList.Add(categoryModel);
+                }
 
-            #endregion En son oynadıklarım
+                #endregion En son oynadıklarım
 
-            #region Önerilen kategoriler
+                #region Önerilen kategoriler
 
-            IEnumerable<SubCategoryModel> recommendedSubcategories = _categoryRepository.RecommendedSubcategories(UserId, CurrentUserLanguage);
-            if (recommendedSubcategories != null && recommendedSubcategories.Any())
-            {
-                CategoryModel categoryModel = new CategoryModel()
+                IEnumerable<SubCategoryModel> recommendedSubcategories = _categoryRepository.RecommendedSubcategories(UserId, CurrentUserLanguage);
+                if (recommendedSubcategories != null && recommendedSubcategories.Any())
                 {
-                    CategoryId = -3,
-                    CategoryName = CategoryResource.RecommendedSubcategories
-                };
+                    CategoryModel categoryModel = new CategoryModel()
+                    {
+                        CategoryId = -3,
+                        CategoryName = CategoryResource.RecommendedSubcategories
+                    };
 
-                categoryModel.SubCategories.AddRange(recommendedSubcategories.OrderBy(x => x.Price));
+                    categoryModel.SubCategories.AddRange(recommendedSubcategories.OrderBy(x => x.Price));
 
-                categoryList.Add(categoryModel);
+                    categoryList.Add(categoryModel);
+                }
+
+                #endregion Önerilen kategoriler
             }
-
-            #endregion Önerilen kategoriler
 
             #region Tüm kategoriler
 
             ServiceModel<CategoryModel> categories = _categoryRepository.GetCategories(UserId,
-                                                                                  CurrentUserLanguage,
-                                                                                  pagingModel,
-                                                                                  isAllOpen);
+                                                                                       CurrentUserLanguage,
+                                                                                       pagingModel,
+                                                                                       isAllOpen);
 
             categoryList.AddRange(categories.Items);
 

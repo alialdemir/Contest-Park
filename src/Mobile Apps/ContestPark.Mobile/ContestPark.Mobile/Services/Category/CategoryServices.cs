@@ -126,9 +126,12 @@ namespace ContestPark.Mobile.Services.Category
         /// Kategorileri listeleme
         /// </summary>
         /// <returns>Tüm kategorileri döndürür.</returns>
-        public async Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel, bool isAllOpen = false)
+        public async Task<ServiceModel<CategoryModel>> CategoryListAsync(PagingModel pagingModel, bool isForceCache = false)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}&isAllOpen={isAllOpen}");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");
+
+            if (isForceCache)
+                _cacheService.Empty(uri);
 
             if (!_cacheService.IsExpired(key: uri))
             {

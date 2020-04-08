@@ -517,17 +517,17 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand GotChatDetailCommand
         {
-            get { return new Command(() => GotoChatDetail()); }
+            get { return new Command(GotoChatDetail); }
         }
 
         public ICommand GotoFollowersCommand
         {
-            get { return new Command(() => ExecuteGotoFollowersCommand()); }
+            get { return new Command(ExecuteGotoFollowersCommand); }
         }
 
         public ICommand GotoFollowingCommand
         {
-            get { return new Command(() => ExecuteGotoFollowingCommand()); }
+            get { return new Command(ExecuteGotoFollowingCommand); }
         }
 
         public ICommand InfoCommand
@@ -537,7 +537,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand PlayDuelCommand
         {
-            get { return new Command(() => ExecutePlayDuelCommand()); }
+            get { return new Command(ExecutePlayDuelCommand); }
         }
 
         public ICommand RemoveEvents
