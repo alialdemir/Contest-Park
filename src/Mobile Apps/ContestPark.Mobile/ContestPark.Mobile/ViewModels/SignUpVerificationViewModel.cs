@@ -158,7 +158,6 @@ namespace ContestPark.Mobile.ViewModels
                 Code = Convert.ToInt32($"{Code1}{Code2}{Code3}{Code4}"),
                 PhoneNumber = SmsInfo.PhoneNumber
             });
-
             if (!response.IsSuccess)// Sms kodunu yanlış girmiştir
             {
                 await DisplayAlertAsync(string.Empty,

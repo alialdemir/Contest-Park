@@ -52,7 +52,7 @@
                                                                       Factor=1,
                                                                       Constant=340}"
                     StartColor="#5A7BEF"
-                    Text="{i18n:Translate Over}"
+                    Text="{i18n:Translate RightOn}"
                     TextColor="{StaticResource White}"
                     Visual="Material" />
 

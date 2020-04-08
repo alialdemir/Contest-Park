@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="ContestPark.Mobile.Views.SelectSubCategoryView"
+    x:Class="ContestPark.Mobile.Views.SignUpSelectSubCategoriesView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
@@ -10,7 +10,7 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:Name="selectSubCategoryView"
+    x:Name="signUpSelectSubCategoriesView"
     prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -48,6 +48,7 @@
                 <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
@@ -57,10 +58,12 @@
                         FontAttributes="Bold"
                         FontFamily="{StaticResource GothamRoundedBold}"
                         FontSize="24"
+                        HeightRequest="50"
                         HorizontalTextAlignment="Center"
                         Text="{i18n:Translate SelectCategory}"
                         TextColor="#FDBC2E"
-                        VerticalTextAlignment="Center" />
+                        VerticalTextAlignment="Center"
+                        WidthRequest="30" />
 
                     <Image
                         Grid.Row="0"
@@ -68,7 +71,7 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference selectSubCategoryView}}" />
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
                         </Image.GestureRecognizers>
                         <Image.Source>
                             <FontImageSource
@@ -79,11 +82,55 @@
                         </Image.Source>
                     </Image>
 
-                    <components:NonPersistentSelectedItemListView Grid.Row="1" Style="{StaticResource ListView}">
+                    <Grid
+                        Grid.Row="1"
+                        Margin="0,8,0,8"
+                        Padding="16"
+                        BackgroundColor="{StaticResource White}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Slider
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0"
+                            HeightRequest="10"
+                            IsEnabled="False"
+                            Maximum="3"
+                            MaximumTrackColor="#72F7C5"
+                            MinimumTrackColor="#B0E881"
+                            ThumbColor="Transparent"
+                            Value="0" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="16,0,0,0"
+                            FontFamily="{StaticResource MontserratSemiBold}"
+                            FontSize="12"
+                            Text="İlgi duyduğun üç kategorinin  kilitlerini aç"
+                            TextColor="{StaticResource Black}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0,0,16,0"
+                            FontFamily="{StaticResource MontserratSemiBold}"
+                            FontSize="12"
+                            Text="1/3"
+                            TextColor="{StaticResource Black}" />
+                    </Grid>
+
+                    <components:NonPersistentSelectedItemListView Grid.Row="2" Style="{StaticResource ListView}">
                         <components:NonPersistentSelectedItemListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference selectSubCategoryView}}" />
+                                    <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
                                 </ViewCell>
                             </DataTemplate>
                         </components:NonPersistentSelectedItemListView.ItemTemplate>

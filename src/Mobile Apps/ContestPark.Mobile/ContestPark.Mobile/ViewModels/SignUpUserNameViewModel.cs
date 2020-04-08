@@ -1,12 +1,5 @@
-﻿using Acr.UserDialogs;
-using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Models;
+﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models.Login;
-using ContestPark.Mobile.Models.Token;
-using ContestPark.Mobile.Models.User;
-using ContestPark.Mobile.Services.Analytics;
-using ContestPark.Mobile.Services.Identity;
-using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
@@ -19,26 +12,12 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class SignUpUserNameViewModel : ViewModelBase
     {
-        #region Private variables
-
-        private readonly ISettingsService _settingsService;
-        private readonly IAnalyticsService _analyticsService;
-        private readonly IIdentityService _identityService;
-
-        #endregion Private variables
-
         #region Constructor
 
         public SignUpUserNameViewModel(INavigationService navigationService,
-                                       ISettingsService settingsService,
-                                       IAnalyticsService analyticsService,
-                                       IPageDialogService dialogService,
-                                       IIdentityService identityService) : base(navigationService: navigationService,
+                                       IPageDialogService dialogService) : base(navigationService: navigationService,
                                                                                 dialogService: dialogService)
         {
-            _settingsService = settingsService;
-            _analyticsService = analyticsService;
-            _identityService = identityService;
         }
 
         #endregion Constructor
@@ -57,8 +36,8 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public string PhoneNumber { get; set; }
-        public string FullName { get; set; }
+        private string PhoneNumber { get; set; }
+        private string FullName { get; set; }
         private string ReferenceCode { get; set; }
 
         #endregion Properties
@@ -100,62 +79,20 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            UserDialogs.Instance.ShowLoading("", MaskType.Black);
-
-            bool isSuccess = await _identityService.SignUpAsync(new SignUpModel
+            await PushModalAsync(nameof(SignUpSelectSubCategoriesView), new NavigationParameters
             {
-                FullName = FullName,
-                Password = PhoneNumber,
-                UserName = UserName,
-                ReferenceCode = ReferenceCode
+                {
+                    "SignUp", new SignUpModel
+                                        {
+                                            FullName = FullName,
+                                            Password = PhoneNumber,
+                                            UserName = UserName,
+                                            ReferenceCode = ReferenceCode
+                                        }
+                }
             });
-
-            if (isSuccess)
-            {
-                await LoginProcessAsync();
-            }
-            UserDialogs.Instance.HideLoading();
 
             IsBusy = false;
-        }
-
-        /// <summary>
-        /// Üye olduktan sonra login olmakk için
-        /// </summary>
-        private async Task LoginProcessAsync()
-        {
-            UserToken token = await _identityService.GetTokenAsync(new LoginModel
-            {
-                UserName = UserName,
-                Password = PhoneNumber
-            });
-
-            bool isTokenExits = token != null;
-
-            _analyticsService.SendEvent("Login", "Üye ol", isTokenExits ? "Success" : "Fail");
-
-            if (isTokenExits)
-            {
-                _settingsService.SetTokenInfo(token);
-
-                UserInfoModel currentUser = await _identityService.GetUserInfo();
-                if (currentUser != null)
-                {
-                    _settingsService.RefreshCurrentUser(currentUser);
-                }
-
-                _settingsService.SignUpCount += 1;
-
-                _analyticsService.SetUserId(_settingsService.CurrentUser.UserId);
-
-                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
-            }
-            else
-            {
-                await DisplayAlertAsync("",
-                    ContestParkResources.MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage,
-                    ContestParkResources.Okay);
-            }
         }
 
         /// <summary>
