@@ -190,8 +190,6 @@ namespace ContestPark.Notification.API.Controllers
                 code,
               smsInfo.PhoneNumber);
 
-            Logger.LogInformation("redis key set {key}", smsInfo.PhoneNumber);
-
             bool isSmsSuccess = _smsService.Insert(new SmsRedisModel
             {
                 Code = code,
@@ -227,8 +225,6 @@ namespace ContestPark.Notification.API.Controllers
             }
 
             Logger.LogInformation("Sms kodu doğrulama isteği geldi {PhoneNumber} {Code}", smsModel.PhoneNumber, smsModel.Code);
-
-            Logger.LogInformation("redis key get {key}", smsModel.PhoneNumber);
 
             SmsRedisModel redisCode = _smsService.GetSmsCode(smsModel.PhoneNumber);
             if (redisCode == null || redisCode.Code != smsModel.Code)
