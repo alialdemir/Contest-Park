@@ -110,9 +110,9 @@ namespace ContestPark.Mobile.ViewModels
                 .FirstOrDefault(c => c.SubCategories.Any(sc => sc.SubCategoryId == selectedSubCategory.SubCategoryId))
                 .SubCategories
                 .FirstOrDefault(x => x.SubCategoryId == selectedSubCategory.SubCategoryId)
-                .IsCategoryOpen = !selectedSubCategory.IsCategoryOpen;
+                .IsSubCategoryOpen = !selectedSubCategory.IsSubCategoryOpen;
 
-            if (selectedSubCategory.IsCategoryOpen)
+            if (selectedSubCategory.IsSubCategoryOpen)
             {
                 SignUp.SubCategories.Add(selectedSubCategory.SubCategoryId);
 

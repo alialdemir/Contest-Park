@@ -68,7 +68,7 @@ namespace ContestPark.Mobile.ViewModels
 
             GotoBackCommand.Execute(true);
 
-            if (subCategory.IsCategoryOpen)
+            if (subCategory.IsSubCategoryOpen)
             {
                 var selectedSubCategory = new SelectedSubCategoryModel
                 {

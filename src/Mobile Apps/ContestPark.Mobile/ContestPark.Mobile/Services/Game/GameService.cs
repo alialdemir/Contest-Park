@@ -54,9 +54,9 @@ namespace ContestPark.Mobile.Services.Game
         /// </summary>
         /// <param name="subCategoryModel"></param>
         /// <returns>Kilitli ise kilidi açsınmı isteğini sorar açsın derse true döndürür</returns>
-        public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isCategoryOpen, string subCategoryName)
+        public async Task<bool> PushCategoryDetailViewAsync(short subCategoryId, bool isSubCategoryOpen, string subCategoryName)
         {
-            if (isCategoryOpen)
+            if (isSubCategoryOpen)
                 GoToCategoryDetailViewAsync(subCategoryId, subCategoryName);
             else
             {

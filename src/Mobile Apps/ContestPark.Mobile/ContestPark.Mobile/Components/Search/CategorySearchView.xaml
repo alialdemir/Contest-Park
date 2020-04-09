@@ -84,7 +84,7 @@
                     Coins="Positive"
                     DisplayCoins="{Binding DisplayPrice}"
                     HorizontalOptions="Center"
-                    IsVisible="{Binding IsCategoryOpen, Converter={StaticResource not}}" />
+                    IsVisible="{Binding IsSubCategoryOpen, Converter={StaticResource not}}" />
             </Grid>
         </yummy:PancakeView>
     </ContentView.Content>

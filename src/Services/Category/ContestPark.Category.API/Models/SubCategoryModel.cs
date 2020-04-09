@@ -9,6 +9,6 @@
 
         public string SubCategoryName { get; set; }
 
-        public bool IsCategoryOpen { get; set; }
+        public bool IsSubCategoryOpen { get; set; }
     }
 }

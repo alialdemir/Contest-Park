@@ -139,7 +139,6 @@ namespace ContestPark.Mobile.Services.Category
             }
 
             var response = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
-
             if (response.Data == null)
                 response.Data = new ServiceModel<CategoryModel>();
 

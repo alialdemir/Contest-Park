@@ -71,7 +71,7 @@ namespace ContestPark.Mobile.Components
             if (subCategory == null || (e != null && e.PropertyName != "IsCategoryOpen"))
                 return;
 
-            if (subCategory.IsCategoryOpen)
+            if (subCategory.IsSubCategoryOpen)
             {
                 imgSubCategory.Transformations.RemoveAll(x => x.GetType() == typeof(BlurredTransformation));
             }

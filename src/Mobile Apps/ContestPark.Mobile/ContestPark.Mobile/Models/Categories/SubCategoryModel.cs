@@ -18,15 +18,15 @@ namespace ContestPark.Mobile.Models.Categories
             }
         }
 
-        private bool _isCategoryOpen = false;
+        private bool _isSubCategoryOpen = false;
 
-        public bool IsCategoryOpen
+        public bool IsSubCategoryOpen
         {
-            get { return _isCategoryOpen; }
+            get { return _isSubCategoryOpen; }
             set
             {
-                _isCategoryOpen = value;
-                RaisePropertyChanged(() => IsCategoryOpen);
+                _isSubCategoryOpen = value;
+                RaisePropertyChanged(() => IsSubCategoryOpen);
             }
         }
 

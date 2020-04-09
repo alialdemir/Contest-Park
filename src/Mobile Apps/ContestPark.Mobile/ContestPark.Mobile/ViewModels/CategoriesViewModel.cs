@@ -196,7 +196,7 @@ namespace ContestPark.Mobile.ViewModels
                 SubcategoryId = subCategory.SubCategoryId,
                 SubCategoryName = subCategory.SubCategoryName,
                 SubCategoryPicturePath = subCategory.PicturePath
-            }, subCategory.IsCategoryOpen);
+            }, subCategory.IsSubCategoryOpen);
 
             IsBusy = false;
         }
@@ -212,7 +212,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             await _gameService?.PushCategoryDetailViewAsync(subCategory.SubCategoryId,
-                                                            subCategory.IsCategoryOpen,
+                                                            subCategory.IsSubCategoryOpen,
                                                             subCategory.SubCategoryName);
 
             IsBusy = false;

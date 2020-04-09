@@ -64,7 +64,7 @@
                 CacheDuration="365"
                 DownsampleToViewSize="true"
                 HeightRequest="100"
-                IsVisible="{Binding Path=IsCategoryOpen, Converter={StaticResource nbc}}"
+                IsVisible="{Binding Path=IsSubCategoryOpen, Converter={StaticResource nbc}}"
                 Source="{Binding DefaultLock}"
                 WidthRequest="100">
                 <components:CachedImage.GestureRecognizers>
@@ -87,7 +87,7 @@
             <ffimageloadingsvg:SvgCachedImage
                 HeightRequest="42"
                 HorizontalOptions="End"
-                IsVisible="{Binding Path=IsCategoryOpen, Converter={StaticResource nbc}}"
+                IsVisible="{Binding Path=IsSubCategoryOpen, Converter={StaticResource nbc}}"
                 Source="ContestSingleCoin.svg"
                 TranslationX="0"
                 TranslationY="6"
@@ -100,7 +100,7 @@
                 FontSize="14"
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
-                IsVisible="{Binding Path=IsCategoryOpen, Converter={StaticResource nbc}}"
+                IsVisible="{Binding Path=IsSubCategoryOpen, Converter={StaticResource nbc}}"
                 Text="{Binding DisplayPrice}"
                 TextColor="Black"
                 TranslationX="30"

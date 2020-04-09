@@ -139,7 +139,7 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 FounderProfilePicturePath = randomBotUser.ProfilePicturePath,
                 FounderLanguage = _settingsService.CurrentUser.Language,
                 OpponentUserId = _settingsService.CurrentUser.UserId,
-                IsOpponentOpenSubCategory = subCategory.IsCategoryOpen,
+                IsOpponentOpenSubCategory = subCategory.IsSubCategoryOpen,
                 SubCategoryId = subCategory.SubCategoryId,
                 SubCategoryName = subCategory.SubCategoryName,
                 SubCategoryPicture = subCategory.PicturePath,
@@ -207,9 +207,9 @@ namespace ContestPark.Mobile.Services.InviteDuel
         private SubCategoryModel GetRandomSubCategory(IEnumerable<CategoryModel> categories)
         {
             return categories
-                        .Where(x => x.SubCategories.Any(sc => sc.IsCategoryOpen))
+                        .Where(x => x.SubCategories.Any(sc => sc.IsSubCategoryOpen))
                         .OrderBy(x => Guid.NewGuid())
-                        .Select(c => c.SubCategories.Where(x => x.IsCategoryOpen).OrderBy(x => Guid.NewGuid()).FirstOrDefault())
+                        .Select(c => c.SubCategories.Where(x => x.IsSubCategoryOpen).OrderBy(x => Guid.NewGuid()).FirstOrDefault())
                         .FirstOrDefault();
         }
 
