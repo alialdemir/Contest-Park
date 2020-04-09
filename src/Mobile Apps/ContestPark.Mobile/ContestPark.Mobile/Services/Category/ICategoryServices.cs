@@ -27,5 +27,6 @@ namespace ContestPark.Mobile.Services.Category
         Task<ResponseModel<string>> OpenCategoryAsync(short subCategoryId, BalanceTypes balanceType = BalanceTypes.Gold);
 
         Task<ServiceModel<SearchModel>> SearchAsync(string searchText, short categoryId, PagingModel pagingModel);
+        void RemoveCategoryListCache(PagingModel pagingModel);
     }
 }

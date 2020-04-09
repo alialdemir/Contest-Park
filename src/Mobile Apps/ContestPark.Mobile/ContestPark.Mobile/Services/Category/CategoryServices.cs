@@ -144,13 +144,24 @@ namespace ContestPark.Mobile.Services.Category
 
             if (response.Data != null && response.IsSuccess)
             {
-                if (_cacheService.IsExpired(uri))
+                if (!_cacheService.IsExpired(uri))
                     _cacheService.Empty(uri);
 
                 _cacheService.Add(uri, response.Data);
             }
 
             return response.Data;
+        }
+
+        /// <summary>
+        /// Kategori listesinin cache siler
+        /// </summary>
+        /// <param name="pagingModel"></param>
+        public void RemoveCategoryListCache(PagingModel pagingModel)
+        {
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");
+            if (!_cacheService.IsExpired(uri))
+                _cacheService.Empty(uri);
         }
 
         /// <summary>

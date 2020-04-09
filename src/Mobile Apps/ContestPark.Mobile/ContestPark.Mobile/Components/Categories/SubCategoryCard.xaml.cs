@@ -68,7 +68,7 @@ namespace ContestPark.Mobile.Components
         private void SubCategory_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             SubCategoryModel subCategory = (SubCategoryModel)sender;
-            if (subCategory == null || (e != null && e.PropertyName != "IsCategoryOpen"))
+            if (subCategory == null || (e != null && e.PropertyName != nameof(subCategory.IsSubCategoryOpen)))
                 return;
 
             if (subCategory.IsSubCategoryOpen)

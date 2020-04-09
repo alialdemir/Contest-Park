@@ -3,6 +3,7 @@ using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Login;
+using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Analytics;
@@ -77,7 +78,15 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
+            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsRefreshing);
+
+            if (ServiceModel.Items != null && ServiceModel.Items.Any())
+            {
+                ServiceModel
+                        .Items
+                        .ToList()
+                        .ForEach(c => c.SubCategories?.ForEach(sc => sc.IsSubCategoryOpen = false));
+            }
 
             SelectedSubCategoryCount = 0;
 
@@ -88,6 +97,10 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Seçilen alt kategorinin kilidini açar
+        /// </summary>
+        /// <param name="selectedSubCategory">Seçilen alt kategori bilgisi</param>
         private async Task ExecuteClickSubCategoryCommand(SubCategoryModel selectedSubCategory)
         {
             if (IsBusy)
@@ -131,7 +144,6 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Üye olma isteği atıp sonra login olur
         /// </summary>
-        /// <returns></returns>
         private async Task ExecuteSignUpCommand()
         {
             if (IsBusy)
@@ -141,7 +153,7 @@ namespace ContestPark.Mobile.ViewModels
             if (SelectedSubCategoryCount < 3)
             {
                 await DisplayAlertAsync(string.Empty,
-                                        ContestParkResources.YouCanChooseaMaximumOfThreeCategories,
+                                        ContestParkResources.YouMustChooseAtLeastThreeCategories,
                                         ContestParkResources.Okay);
 
                 IsBusy = false;
@@ -151,12 +163,12 @@ namespace ContestPark.Mobile.ViewModels
 
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            //bool isSuccess = await _identityService.SignUpAsync(SignUp);
+            bool isSuccess = await _identityService.SignUpAsync(SignUp);
+            if (isSuccess)
+            {
+                await LoginProcessAsync();
+            }
 
-            //if (isSuccess)
-            //{
-            //    await LoginProcessAsync();
-            //}
             UserDialogs.Instance.HideLoading();
 
             IsBusy = false;
@@ -179,6 +191,8 @@ namespace ContestPark.Mobile.ViewModels
 
             if (isTokenExits)
             {
+                _categoryService.RemoveCategoryListCache(new PagingModel { PageSize = 9999 });// Kategori sayfasında tekrar yeniden kategorileri çekmesi için cache temizledim
+
                 _settingsService.SetTokenInfo(token);
 
                 UserInfoModel currentUser = await _identityService.GetUserInfo();
@@ -211,5 +225,17 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand SignUpCommand => new Command(async () => await ExecuteSignUpCommand());
 
         #endregion Command
+
+        #region Navgation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SignUp"))
+                SignUp = parameters.GetValue<SignUpModel>("SignUp");
+
+            base.OnNavigatedTo(parameters);
+        }
+
+        #endregion Navgation
     }
 }

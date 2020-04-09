@@ -409,5 +409,9 @@ namespace ContestPark.Mobile.Services.Category
                 SubCategoryName = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10)
             };
         }
+
+        public void RemoveCategoryListCache(PagingModel pagingModel)
+        {
+        }
     }
 }

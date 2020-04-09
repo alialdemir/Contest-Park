@@ -141,7 +141,7 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             //TODO: Kategorileri sayfala
-            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel, !IsInitialized);
+            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel, IsRefreshing);
 
             await base.InitializeAsync();
 
@@ -184,14 +184,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Alt kategoriye uzun basınca ActionSheet gösterir
         /// </summary>
-        private async Task AddLongPressed(SubCategoryModel subCategory)
+        private void AddLongPressed(SubCategoryModel subCategory)
         {
             if (IsBusy || subCategory == null)
                 return;
 
             IsBusy = true;
 
-            await _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
+            _gameService?.SubCategoriesDisplayActionSheetAsync(new SelectedSubCategoryModel
             {
                 SubcategoryId = subCategory.SubCategoryId,
                 SubCategoryName = subCategory.SubCategoryName,
@@ -204,16 +204,16 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Alt kategoriye tıklanınca kategori detaya gider
         /// </summary>
-        private async Task AddSingleTap(SubCategoryModel subCategory)
+        private void AddSingleTap(SubCategoryModel subCategory)
         {
             if (IsBusy || subCategory == null)
                 return;
 
             IsBusy = true;
 
-            await _gameService?.PushCategoryDetailViewAsync(subCategory.SubCategoryId,
-                                                            subCategory.IsSubCategoryOpen,
-                                                            subCategory.SubCategoryName);
+            _gameService?.PushCategoryDetailViewAsync(subCategory.SubCategoryId,
+                                                      subCategory.IsSubCategoryOpen,
+                                                      subCategory.SubCategoryName);
 
             IsBusy = false;
         }
@@ -307,10 +307,10 @@ namespace ContestPark.Mobile.ViewModels
 
                     IsBusy = true;
 
-                    if (_settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
-                        _gameService.SubCategoryShare();
-                    else
+                    if (_settingsService.CurrentUser.UserId != "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
                         PushNavigationPageAsync(nameof(InviteView));
+                    else
+                        _gameService.SubCategoryShare();
 
                     IsBusy = false;
                 });
@@ -336,7 +336,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return _pushCategoryDetailViewCommand ?? (_pushCategoryDetailViewCommand = new Command<SubCategoryModel>(async (subCategory) => await AddSingleTap(subCategory)));
+                return _pushCategoryDetailViewCommand ?? (_pushCategoryDetailViewCommand = new Command<SubCategoryModel>(AddSingleTap));
             }
         }
 
@@ -349,7 +349,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return _subCategoriesDisplayActionSheetCommand ?? (_subCategoriesDisplayActionSheetCommand = new Command<SubCategoryModel>(async (subCategory) => await AddLongPressed(subCategory)));
+                return _subCategoriesDisplayActionSheetCommand ?? (_subCategoriesDisplayActionSheetCommand = new Command<SubCategoryModel>(AddLongPressed));
             }
         }
 
