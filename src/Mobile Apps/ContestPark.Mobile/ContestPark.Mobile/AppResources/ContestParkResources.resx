@@ -839,4 +839,10 @@
   <data name="BestSeller" xml:space="preserve">
     <value>Best seller</value>
   </data>
+  <data name="YouCanChooseaMaximumOfThreeCategories" xml:space="preserve">
+    <value>You can choose a maximum of three categories.</value>
+  </data>
+  <data name="YouMustChooseAtLeastThreeCategories" xml:space="preserve">
+    <value>You must choose at least three categories.</value>
+  </data>
 </root>

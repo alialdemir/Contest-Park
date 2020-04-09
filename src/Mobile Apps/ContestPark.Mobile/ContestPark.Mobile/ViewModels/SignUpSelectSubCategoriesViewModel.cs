@@ -12,7 +12,12 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
+using Prism.Services;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -32,8 +37,9 @@ namespace ContestPark.Mobile.ViewModels
         public SignUpSelectSubCategoriesViewModel(ICategoryService categoryService,
                                                   ISettingsService settingsService,
                                                   IAnalyticsService analyticsService,
+                                                  IPageDialogService pageDialogService,
                                                   IIdentityService identityService,
-                                                  INavigationService navigationService) : base(navigationService: navigationService)
+                                                  INavigationService navigationService) : base(navigationService, pageDialogService)
         {
             _categoryService = categoryService;
             _settingsService = settingsService;
@@ -44,7 +50,23 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Constructor
 
-        public SignUpModel SignUp { get; set; }
+        #region Properties
+
+        public SignUpModel SignUp { get; set; } = new SignUpModel();
+
+        private byte _selectedSubCategoryCount;
+
+        public byte SelectedSubCategoryCount
+        {
+            get { return _selectedSubCategoryCount; }
+            set
+            {
+                _selectedSubCategoryCount = value;
+                RaisePropertyChanged(() => SelectedSubCategoryCount);
+            }
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -57,22 +79,87 @@ namespace ContestPark.Mobile.ViewModels
 
             ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
 
+            SelectedSubCategoryCount = 0;
+
+            SignUp.SubCategories = new List<short>();
+
             await base.InitializeAsync();
 
             IsBusy = false;
         }
 
-        private async Task SelectSubCategories()
+        private async Task ExecuteClickSubCategoryCommand(SubCategoryModel selectedSubCategory)
         {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            if (!SignUp.SubCategories.Any(subCategoryId => selectedSubCategory.SubCategoryId == subCategoryId) && SelectedSubCategoryCount >= 3)
+            {
+                await DisplayAlertAsync(string.Empty,
+                                        ContestParkResources.YouCanChooseaMaximumOfThreeCategories,
+                                        ContestParkResources.Okay);
+
+                IsBusy = false;
+
+                return;
+            }
+
+            Items
+                .FirstOrDefault(c => c.SubCategories.Any(sc => sc.SubCategoryId == selectedSubCategory.SubCategoryId))
+                .SubCategories
+                .FirstOrDefault(x => x.SubCategoryId == selectedSubCategory.SubCategoryId)
+                .IsCategoryOpen = !selectedSubCategory.IsCategoryOpen;
+
+            if (selectedSubCategory.IsCategoryOpen)
+            {
+                SignUp.SubCategories.Add(selectedSubCategory.SubCategoryId);
+
+                SelectedSubCategoryCount += 1;
+            }
+            else
+            {
+                SignUp.SubCategories.Remove(selectedSubCategory.SubCategoryId);
+
+                SelectedSubCategoryCount -= 1;
+            }
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Üye olma isteği atıp sonra login olur
+        /// </summary>
+        /// <returns></returns>
+        private async Task ExecuteSignUpCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+            if (SelectedSubCategoryCount < 3)
+            {
+                await DisplayAlertAsync(string.Empty,
+                                        ContestParkResources.YouCanChooseaMaximumOfThreeCategories,
+                                        ContestParkResources.Okay);
+
+                IsBusy = false;
+
+                return;
+            }
+
             UserDialogs.Instance.ShowLoading("", MaskType.Black);
 
-            bool isSuccess = await _identityService.SignUpAsync(SignUp);
+            //bool isSuccess = await _identityService.SignUpAsync(SignUp);
 
-            if (isSuccess)
-            {
-                await LoginProcessAsync();
-            }
+            //if (isSuccess)
+            //{
+            //    await LoginProcessAsync();
+            //}
             UserDialogs.Instance.HideLoading();
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -109,11 +196,20 @@ namespace ContestPark.Mobile.ViewModels
             else
             {
                 await DisplayAlertAsync("",
-                    ContestParkResources.MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage,
-                    ContestParkResources.Okay);
+                                        ContestParkResources.MembershipWasSuccessfulButTheLoginFailedPleaseLoginFromTheLoginPage,
+                                        ContestParkResources.Okay);
             }
         }
 
         #endregion Methods
+
+        #region Command
+
+        private ICommand _clickSubCategoryCommand;
+
+        public ICommand ClickSubCategoryCommand => _clickSubCategoryCommand ?? (_clickSubCategoryCommand = new Command<SubCategoryModel>(async (selectedSubCategory) => await ExecuteClickSubCategoryCommand(selectedSubCategory)));
+        public ICommand SignUpCommand => new Command(async () => await ExecuteSignUpCommand());
+
+        #endregion Command
     }
 }

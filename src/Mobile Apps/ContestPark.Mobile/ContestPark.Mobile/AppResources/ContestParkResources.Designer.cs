@@ -2061,6 +2061,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can choose a maximum of three categories..
+        /// </summary>
+        public static string YouCanChooseaMaximumOfThreeCategories {
+            get {
+                return ResourceManager.GetString("YouCanChooseaMaximumOfThreeCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You do not have an adequate amount of gold to open this category. Want to buy gold?.
         /// </summary>
         public static string YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory {
@@ -2120,6 +2129,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string YouLose {
             get {
                 return ResourceManager.GetString("YouLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must choose at least three categories..
+        /// </summary>
+        public static string YouMustChooseAtLeastThreeCategories {
+            get {
+                return ResourceManager.GetString("YouMustChooseAtLeastThreeCategories", resourceCulture);
             }
         }
         

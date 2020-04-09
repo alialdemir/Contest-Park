@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using ContestPark.Mobile.Models.Categories;
+using FFImageLoading.Transformations;
+using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -44,5 +47,42 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Properties
+
+        #region Methods
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            SubCategoryModel subCategory = (SubCategoryModel)BindingContext;
+            if (subCategory == null)
+                return;
+
+            subCategory.PropertyChanged += SubCategory_PropertyChanged;
+
+            SubCategory_PropertyChanged(subCategory, null);
+        }
+
+        /// <summary>
+        /// Alt kategori resmindeki blur kaldır göster
+        /// </summary>
+        private void SubCategory_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            SubCategoryModel subCategory = (SubCategoryModel)sender;
+            if (subCategory == null || (e != null && e.PropertyName != "IsCategoryOpen"))
+                return;
+
+            if (subCategory.IsCategoryOpen)
+            {
+                imgSubCategory.Transformations.RemoveAll(x => x.GetType() == typeof(BlurredTransformation));
+            }
+            else if (!imgSubCategory.Transformations.Any(x => x.GetType() == typeof(BlurredTransformation)))
+            {
+                imgSubCategory.Transformations.Add(new BlurredTransformation(40));
+            }
+
+            imgSubCategory.ReloadImage();
+        }
+
+        #endregion Methods
     }
 }

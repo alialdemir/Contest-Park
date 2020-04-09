@@ -10,6 +10,7 @@
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     x:Name="subCategoryCard"
     effects:LongPressedEffect.CommandParameter="{Binding .}"
     effects:LongPressedEffect.LongPressed="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}"
@@ -38,6 +39,7 @@
             </Grid.ColumnDefinitions>
 
             <components:CachedImage
+                x:Name="imgSubCategory"
                 Grid.Row="0"
                 Grid.Column="0"
                 extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
@@ -48,6 +50,23 @@
                 HeightRequest="70"
                 Source="{Binding PicturePath}"
                 WidthRequest="85">
+                <components:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}" CommandParameter="{Binding .}" />
+                </components:CachedImage.GestureRecognizers>
+            </components:CachedImage>
+
+            <components:CachedImage
+                Grid.Row="0"
+                Grid.Column="0"
+                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                extension:Skeleton.IsBusy="{Binding IsBusy}"
+                Aspect="AspectFill"
+                CacheDuration="365"
+                DownsampleToViewSize="true"
+                HeightRequest="100"
+                IsVisible="{Binding Path=IsCategoryOpen, Converter={StaticResource nbc}}"
+                Source="{Binding DefaultLock}"
+                WidthRequest="100">
                 <components:CachedImage.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference subCategoryCard}}" CommandParameter="{Binding .}" />
                 </components:CachedImage.GestureRecognizers>

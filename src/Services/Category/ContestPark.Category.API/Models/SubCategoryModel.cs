@@ -8,5 +8,7 @@
         public string DisplayPrice { get; set; }
 
         public string SubCategoryName { get; set; }
+
+        public bool IsCategoryOpen { get; set; }
     }
 }

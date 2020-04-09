@@ -792,6 +792,9 @@
   <data name="YouApprove" xml:space="preserve">
     <value> onaylıyorsunuz.</value>
   </data>
+  <data name="YouCanChooseaMaximumOfThreeCategories" xml:space="preserve">
+    <value>Maksimum üç kategori seçebilirsiniz.</value>
+  </data>
   <data name="YouDoNotHaveASufficientAmountOfGoldToOpenThisCategory" xml:space="preserve">
     <value>Bu kategoriyi açmak için yeterli miktarda altınınız yok. Altın satın almak ister misiniz?</value>
   </data>
@@ -812,6 +815,9 @@
   </data>
   <data name="YouLose" xml:space="preserve">
     <value>KAYBETTİN!</value>
+  </data>
+  <data name="YouMustChooseAtLeastThreeCategories" xml:space="preserve">
+    <value>En az üç kategori seçmelisin.</value>
   </data>
   <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
     <value>Kazancını çekebilmek için minimum 100 TL kazanmış olman gerekmektedir.</value>

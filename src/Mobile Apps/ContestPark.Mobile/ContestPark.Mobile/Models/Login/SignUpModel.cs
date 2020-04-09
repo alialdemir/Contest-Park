@@ -16,6 +16,6 @@ namespace ContestPark.Mobile.Models.Login
 
         public string DeviceIdentifier { get; set; }
 
-        public IEnumerable<short> SubCategories { get; set; }
+        public List<short> SubCategories { get; set; } = new List<short>();
     }
 }

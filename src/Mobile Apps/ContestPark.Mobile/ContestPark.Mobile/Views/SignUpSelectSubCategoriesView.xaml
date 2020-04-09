@@ -21,122 +21,160 @@
             ScaleIn="1"
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
+
     <pages:PopupPage.Content>
+        <ScrollView>
 
-        <RelativeLayout>
+            <RelativeLayout>
+                <components:LinearGradientButton
+                    Padding="0,0,0,-55"
+                    BackgroundColor="Transparent"
+                    BorderRadius="48"
+                    Command="{Binding Path=BindingContext.SignUpCommand, Source={x:Reference signUpSelectSubCategoriesView}}"
+                    EndColor="#4048EF"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource GothamRoundedBold}"
+                    FontSize="23"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=.2,
+                                                                           Constant=0}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=0,
+                                                                          Constant=380}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=0.5,
+                                                                      Constant=-190}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=pvkView,
+                                                                      Property=Y,
+                                                                      Factor=1,
+                                                                      Constant=480}"
+                    StartColor="#5A7BEF"
+                    Text="{i18n:Translate Over}"
+                    TextColor="{StaticResource White}"
+                    Visual="Material" />
 
-            <yummy:PancakeView
-                x:Name="pvkView"
-                Padding="0"
-                BackgroundColor="{StaticResource GlobalBackgroundColor}"
-                BorderColor="Transparent"
-                CornerRadius="10"
-                Elevation="6"
-                HasShadow="True"
-                HeightRequest="500"
-                IsClippedToBounds="True"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Width,
-                                                                  Factor=0.5,
-                                                                  Constant=-175}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Height,
-                                                                  Factor=0.5,
-                                                                  Constant=-260}"
-                WidthRequest="350">
-
-                <Grid ColumnSpacing="0" RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Label
-                        Grid.Row="0"
-                        BackgroundColor="{StaticResource White}"
-                        FontAttributes="Bold"
-                        FontFamily="{StaticResource GothamRoundedBold}"
-                        FontSize="24"
-                        HeightRequest="50"
-                        HorizontalTextAlignment="Center"
-                        Text="{i18n:Translate SelectCategory}"
-                        TextColor="#FDBC2E"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="30" />
-
-                    <Image
-                        Grid.Row="0"
-                        Margin="0,8,8,0"
-                        HorizontalOptions="End"
-                        VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
-                        </Image.GestureRecognizers>
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="{StaticResource icomoon}"
-                                Glyph="{x:Static icons:ContestParkIcon.Close}"
-                                Size="32"
-                                Color="{StaticResource SettingsIconColor}" />
-                        </Image.Source>
-                    </Image>
+                <yummy:PancakeView
+                    x:Name="pvkView"
+                    Padding="0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="10"
+                    Elevation="6"
+                    HasShadow="True"
+                    HeightRequest="550"
+                    IsClippedToBounds="True"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=0.5,
+                                                                      Constant=-190}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Height,
+                                                                      Factor=0.5,
+                                                                      Constant=-320}"
+                    WidthRequest="380">
 
                     <Grid
-                        Grid.Row="1"
-                        Margin="0,8,0,8"
-                        Padding="16"
-                        BackgroundColor="{StaticResource White}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                        Grid.Row="0"
+                        ColumnSpacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="0"
+                        VerticalOptions="FillAndExpand">
+
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Slider
+                        <Label
                             Grid.Row="0"
-                            Grid.ColumnSpan="2"
-                            Margin="0"
-                            HeightRequest="10"
-                            IsEnabled="False"
-                            Maximum="3"
-                            MaximumTrackColor="#72F7C5"
-                            MinimumTrackColor="#B0E881"
-                            ThumbColor="Transparent"
-                            Value="0" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="16,0,0,0"
-                            FontFamily="{StaticResource MontserratSemiBold}"
-                            FontSize="12"
-                            Text="İlgi duyduğun üç kategorinin  kilitlerini aç"
-                            TextColor="{StaticResource Black}" />
+                            BackgroundColor="{StaticResource White}"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource GothamRoundedBold}"
+                            FontSize="24"
+                            HeightRequest="50"
+                            HorizontalTextAlignment="Center"
+                            Text="{i18n:Translate SelectCategory}"
+                            TextColor="#FDBC2E"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="30" />
 
-                        <Label
+                        <Image
+                            Grid.Row="0"
+                            Margin="0,8,8,0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="{StaticResource icomoon}"
+                                    Glyph="{x:Static icons:ContestParkIcon.Close}"
+                                    Size="32"
+                                    Color="{StaticResource SettingsIconColor}" />
+                            </Image.Source>
+                        </Image>
+
+                        <Grid
                             Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="0,0,16,0"
-                            FontFamily="{StaticResource MontserratSemiBold}"
-                            FontSize="12"
-                            Text="1/3"
-                            TextColor="{StaticResource Black}" />
+                            Margin="0,8,0,8"
+                            Padding="16,0,16,0"
+                            BackgroundColor="{StaticResource White}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Slider
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Margin="0"
+                                HeightRequest="10"
+                                IsEnabled="False"
+                                Maximum="3"
+                                MaximumTrackColor="#72F7C5"
+                                MinimumTrackColor="#B0E881"
+                                ThumbColor="Transparent"
+                                Value="0" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="16,0,0,0"
+                                FontFamily="{StaticResource MontserratSemiBold}"
+                                FontSize="12"
+                                Text="İlgi duyduğun üç kategorinin  kilitlerini aç"
+                                TextColor="{StaticResource Black}" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,0,16,0"
+                                FontFamily="{StaticResource MontserratSemiBold}"
+                                FontSize="12"
+                                Text="{Binding Path=BindingContext.SelectedSubCategoryCount, Source={x:Reference signUpSelectSubCategoriesView}, StringFormat='{0}/3'}"
+                                TextColor="{StaticResource Black}" />
+                        </Grid>
+
+                        <components:NonPersistentSelectedItemListView Grid.Row="2" Style="{StaticResource ListView}">
+                            <components:NonPersistentSelectedItemListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.ClickSubCategoryCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </components:NonPersistentSelectedItemListView.ItemTemplate>
+                        </components:NonPersistentSelectedItemListView>
                     </Grid>
-
-                    <components:NonPersistentSelectedItemListView Grid.Row="2" Style="{StaticResource ListView}">
-                        <components:NonPersistentSelectedItemListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
-                                </ViewCell>
-                            </DataTemplate>
-                        </components:NonPersistentSelectedItemListView.ItemTemplate>
-                    </components:NonPersistentSelectedItemListView>
-                </Grid>
-            </yummy:PancakeView>
-        </RelativeLayout>
+                </yummy:PancakeView>
+            </RelativeLayout>
+        </ScrollView>
     </pages:PopupPage.Content>
 </pages:PopupPage>

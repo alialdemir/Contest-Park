@@ -79,6 +79,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
+            GotoBackCommand.Execute(true);
+
             await PushModalAsync(nameof(SignUpSelectSubCategoriesView), new NavigationParameters
             {
                 {

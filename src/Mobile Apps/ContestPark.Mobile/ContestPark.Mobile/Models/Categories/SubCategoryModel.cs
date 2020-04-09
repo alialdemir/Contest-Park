@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using ContestPark.Mobile.Helpers;
 
 namespace ContestPark.Mobile.Models.Categories
 {
@@ -6,7 +6,6 @@ namespace ContestPark.Mobile.Models.Categories
     {
         private string displayPrice = "0";
         private string picturePath = "";
-        private decimal price;
 
         public string DisplayPrice
         {
@@ -16,15 +15,22 @@ namespace ContestPark.Mobile.Models.Categories
                 displayPrice = value;
 
                 RaisePropertyChanged(() => DisplayPrice);
+            }
+        }
+
+        private bool _isCategoryOpen = false;
+
+        public bool IsCategoryOpen
+        {
+            get { return _isCategoryOpen; }
+            set
+            {
+                _isCategoryOpen = value;
                 RaisePropertyChanged(() => IsCategoryOpen);
             }
         }
 
-        [JsonIgnore]
-        public bool IsCategoryOpen
-        {
-            get { return DisplayPrice.Equals("0"); }
-        }
+        public string DefaultLock { get => DefaultImages.DefaultLock; }
 
         public string PicturePath
         {
@@ -37,14 +43,7 @@ namespace ContestPark.Mobile.Models.Categories
             }
         }
 
-        public decimal Price
-        {
-            get { return price; }
-            set
-            {
-                price = value;
-            }
-        }
+        public decimal Price { get; set; }
 
         public short SubCategoryId { get; set; }
         public string SubCategoryName { get; set; }
