@@ -319,7 +319,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             {
                 Answer();
 
-                if (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3))// Player yenildiği durumlar
+                if (WinStatus.Check1 || (WinStatus.Check4 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check3) || WinStatus.Check5)// Player yenildiği durumlar
                 {
                     if ((IsFounderBot && (FounderTotalScore == 0 || OpponentTotalScore > FounderTotalScore))
                         || (IsOpponentBot && (OpponentTotalScore == 0 || FounderTotalScore > OpponentTotalScore)))// Sürekli soruyu doğru cevaplamasın diye puan farkı varsa doğru cevaplasın

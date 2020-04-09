@@ -22,5 +22,11 @@
         /// Bakiyesi iki defa 70 tl geçmişse true döner ve yenilmesi gerekir ama oynadığı düello para ve  Check2 false ise
         /// </summary>
         public bool Check4 { get; set; }
+
+        /// <summary>
+        /// Kazandığı düello sayısı kaybettiğiığı düello sayısından büyük ise true döner
+        /// True dönerse oyuncu yenilmeli
+        /// </summary>
+        public bool Check5 { get; set; }
     }
 }
