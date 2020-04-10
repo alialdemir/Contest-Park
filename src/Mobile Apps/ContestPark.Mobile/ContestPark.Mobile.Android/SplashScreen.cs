@@ -2,7 +2,6 @@
 using Android.Content.PM;
 using Android.OS;
 using ContestPark.Mobile.AppResources;
-using Microsoft.AppCenter.Crashes;
 using System;
 using Xamarin.Essentials;
 
@@ -13,23 +12,16 @@ namespace ContestPark.Mobile.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            try
-            {
-                base.OnCreate(bundle);
+            base.OnCreate(bundle);
 
-                //#if !DEBUG burası sanırım arm7a işlemcilerde hataya sebep oluyor
-                //                CheckForRoot();
-                //#endif
+            //#if !DEBUG burası sanırım arm7a işlemcilerde hataya sebep oluyor
+            //                CheckForRoot();
+            //#endif
 
-                if (CheckNetworkAsync())
-                    return;
+            if (CheckNetworkAsync())
+                return;
 
-                this.StartActivity(typeof(MainActivity));
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
+            this.StartActivity(typeof(MainActivity));
         }
 
         #region Security

@@ -178,7 +178,7 @@ namespace ContestPark.Mobile.ViewModels
                     .GetEvent<ChangedFollowCountEvent>()
                     .Unsubscribe(_changedFollowCountEventSubscriptionToken);
 
-            return base.GoBackAsync(parameters, useModalNavigation: true);
+            return base.GoBackAsync(parameters, useModalNavigation: false);
         }
 
         /// <summary>

@@ -8,7 +8,7 @@
     xmlns:converter1="clr-namespace:ContestPark.Mobile.Converters.Follow"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="profilePage"
@@ -52,17 +52,23 @@
                         </components:CachedImage>
 
                         <!--  Back button  -->
-                        <iconize:IconButton
+                        <Image
                             Margin="16,16,0,0"
                             BackgroundColor="Transparent"
-                            Command="{Binding GotoBackCommand}"
-                            CommandParameter="{StaticResource False}"
-                            FontSize="24"
                             HorizontalOptions="Start"
                             IsVisible="{Binding IsVisibleBackArrow}"
-                            Text="fas-arrow-left"
-                            TextColor="White"
-                            VerticalOptions="Start" />
+                            VerticalOptions="Start">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GotoBackCommand}" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="{StaticResource icomoon}"
+                                    Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
+                                    Size="24"
+                                    Color="{StaticResource White}" />
+                            </Image.Source>
+                        </Image>
 
                         <!--  profile picture  -->
                         <components:CircleImage

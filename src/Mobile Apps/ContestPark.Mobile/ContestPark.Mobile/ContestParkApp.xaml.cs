@@ -7,7 +7,6 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MonkeyCache.SQLite;
-using Plugin.Iconize;
 using Prism;
 using Prism.DryIoc;
 using Prism.Events;
@@ -37,10 +36,6 @@ namespace ContestPark.Mobile
                 Crashes.SentErrorReport += Crashes_SentErrorReport;
 
                 InitializeComponent();
-
-                Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
-                       .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
-                       .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
                 Barrel.ApplicationId = "ContestPark";
 

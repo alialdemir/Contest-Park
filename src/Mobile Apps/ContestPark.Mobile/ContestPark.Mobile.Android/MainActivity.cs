@@ -8,10 +8,8 @@ using Android.Views;
 using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
 using Matcha.BackgroundService.Droid;
-using Microsoft.AppCenter.Crashes;
 using Plugin.CurrentActivity;
 using Plugin.FirebasePushNotification;
-using Plugin.Iconize;
 using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
@@ -70,53 +68,44 @@ namespace ContestPark.Mobile.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
-            try
-            {
-                TabLayoutResource = Resource.Layout.Tabbar;
-                ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
 
-                BackgroundAggregator.Init(this);
+            BackgroundAggregator.Init(this);
 
-                base.OnCreate(bundle);
+            base.OnCreate(bundle);
 
-                // Check if running in sim
+            // Check if running in sim
 
-                CrossCurrentActivity.Current.Init(this, bundle);
+            CrossCurrentActivity.Current.Init(this, bundle);
 
-                CrossCurrentActivity.Current.Activity = this;
+            CrossCurrentActivity.Current.Activity = this;
 
-                UserDialogs.Init(this);
+            UserDialogs.Init(this);
 
-                FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
-                Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
+            Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
 
-                Xamarin.Essentials.Platform.Init(this, bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
-                global::Rg.Plugins.Popup.Popup.Init(this, bundle);
+            global::Rg.Plugins.Popup.Popup.Init(this, bundle);
 
-                global::Xamarin.Forms.Forms.SetFlags("Visual_Experimental"); // ONLY if using a pre-release of Xamarin.Forms
+            global::Xamarin.Forms.Forms.SetFlags("Visual_Experimental"); // ONLY if using a pre-release of Xamarin.Forms
 
-                global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.Forms.Forms.Init(this, bundle);
 
-                Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+            global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
 
-                global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
+            AnimationViewRenderer.Init();
 
-                AnimationViewRenderer.Init();
+            LoadApplication(new ContestParkApp(new AndroidInitializer()));
 
-                LoadApplication(new ContestParkApp(new AndroidInitializer()));
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
-                FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            PancakeViewRenderer.Init();
 
-                PancakeViewRenderer.Init();
-
-                Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim
-            }
-            catch (System.Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
+            Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim
         }
     }
 }

@@ -119,18 +119,6 @@
                             <TapGestureRecognizer Command="{Binding SendMessageCommand}" />
                         </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                     </ffimageloadingsvg:SvgCachedImage>
-                    <!--<iconize:IconButton
-                        x:Name="btnBtnSendMessage"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Margin="0,0,10,0"
-                        AutomationId="btnBtnSendMessage"
-                        BackgroundColor="Transparent"
-                        Command="{Binding SendMessageCommand}"
-                        FontSize="32"
-                        HorizontalOptions="End"
-                        Opacity="0.20"
-                        Text="fas-paper-plane" />-->
                 </Grid>
             </yummy:PancakeView>
         </StackLayout>
