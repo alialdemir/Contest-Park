@@ -1,8 +1,11 @@
-﻿using Plugin.SimpleAudioPlayer;
+﻿using ContestPark.Mobile.AppResources;
+using Plugin.SimpleAudioPlayer;
+using Prism.Services;
 using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.Audio
 {
@@ -11,14 +14,16 @@ namespace ContestPark.Mobile.Services.Audio
         #region Private variables
 
         private readonly ISimpleAudioPlayer _simpleAudioPlayer;
+        private readonly IPageDialogService _pageDialogService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public AudioService()
+        public AudioService(IPageDialogService pageDialogService)
         {
             _simpleAudioPlayer = CrossSimpleAudioPlayer.Current;
+            _pageDialogService = pageDialogService;
         }
 
         #endregion Constructor
@@ -73,7 +78,7 @@ namespace ContestPark.Mobile.Services.Audio
         /// <param name="mp3Url">Mp3 url</param>
         private void Play(string mp3Url)
         {
-            if (_simpleAudioPlayer == null || string.IsNullOrEmpty(mp3Url))
+            if (_simpleAudioPlayer == null || string.IsNullOrEmpty(mp3Url) || CheckNetworkAsync())
                 return;
 
             if (mp3Url.StartsWith("https://") || mp3Url.StartsWith("http://"))
@@ -85,6 +90,20 @@ namespace ContestPark.Mobile.Services.Audio
 
                 _simpleAudioPlayer.Play();
             }
+        }
+
+        private bool CheckNetworkAsync()
+        {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                _pageDialogService.DisplayAlertAsync(string.Empty,
+                                                     ContestParkResources.NoInternet,
+                                                     ContestParkResources.Okay);
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
