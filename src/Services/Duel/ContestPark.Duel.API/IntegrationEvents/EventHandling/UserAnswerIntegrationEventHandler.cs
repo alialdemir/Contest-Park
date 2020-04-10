@@ -322,7 +322,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 if (
                     WinStatus.Check1
                     || (WinStatus.Check3 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check2)
-                    || (WinStatus.Check4 && !WinStatus.Check2)
+                    || (WinStatus.Check4)
 
                     )// Player yenildiği durumlar
                 {
