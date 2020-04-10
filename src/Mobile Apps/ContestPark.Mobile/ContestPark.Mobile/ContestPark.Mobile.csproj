@@ -31,7 +31,6 @@
     <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.6" />
     <PackageReference Include="Plugin.InAppBilling" Version="2.0.0" />
     <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="4.2.0" />
-    <PackageReference Include="Polly" Version="7.1.0" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
     <PackageReference Include="Prism.Forms" Version="7.2.0.1422" />
     <PackageReference Include="Prism.Plugin.Popups" Version="7.2.0.759" />

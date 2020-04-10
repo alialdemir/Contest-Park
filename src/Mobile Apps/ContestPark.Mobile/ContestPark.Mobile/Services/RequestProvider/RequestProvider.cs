@@ -11,11 +11,9 @@ using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Polly.Wrap;
 using Prism.Ioc;
 using Prism.Services;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -32,7 +30,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private readonly IAnalyticsService _analyticsService;
         private readonly ISettingsService _settingsService;
-        private readonly ConcurrentDictionary<string, AsyncPolicyWrap> _policyWrappers;
 
         private readonly JsonSerializerSettings _serializerSettings;
 
@@ -45,7 +42,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
         {
             _analyticsService = analyticsService;
             _settingsService = settingsService;
-            _policyWrappers = new ConcurrentDictionary<string, AsyncPolicyWrap>();
 
             _serializerSettings = new JsonSerializerSettings
             {
