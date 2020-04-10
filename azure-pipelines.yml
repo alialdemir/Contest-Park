@@ -26,8 +26,14 @@ steps:
 
 - task: AndroidSigning@3
   inputs:
+    apkFiles: '$(outputDirectory)'
     apksign: true
-    zipalign: false
+    apksignerKeystoreFile: 'myRelease.keystore'
+    apksignerKeystorePassword: '$(APPCENTER_KEYSTORE_PASSWORD)'
+    apksignerKeystoreAlias: '$(APPCENTER_KEY_ALIAS)'
+    apksignerKeyPassword: '$(APPCENTER_KEY_PASSWORD)'
+    zipalign: true
+    zipalignFile: true
 
 - task: PublishBuildArtifacts@1
   inputs:
