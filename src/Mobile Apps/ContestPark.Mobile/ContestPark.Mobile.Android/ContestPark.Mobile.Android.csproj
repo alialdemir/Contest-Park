@@ -72,7 +72,7 @@
     <MandroidI18n />
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>Full</AndroidLinkMode>
     <AndroidKeyStore>false</AndroidKeyStore>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
@@ -132,11 +132,6 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
       <Version>
         1.0.4
-      </Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Bcl">
-      <Version>
-        1.1.10
       </Version>
     </PackageReference>
     <PackageReference Include="modernhttpclient-updated">

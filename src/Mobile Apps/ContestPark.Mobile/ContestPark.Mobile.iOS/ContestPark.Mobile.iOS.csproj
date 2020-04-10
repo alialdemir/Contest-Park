@@ -334,9 +334,6 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
       <Version>1.0.4</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Bcl">
-      <Version>1.1.10</Version>
-    </PackageReference>
     <PackageReference Include="modernhttpclient-updated">
       <Version>3.4.3</Version>
     </PackageReference>
