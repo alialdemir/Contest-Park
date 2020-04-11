@@ -322,7 +322,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 if (
                     WinStatus.Check1
                     || (WinStatus.Check3 && Event.BalanceType == BalanceTypes.Money && !WinStatus.Check2)
-                    || (WinStatus.Check4)
+                    || WinStatus.Check4
 
                     )// Player yenildiği durumlar
                 {
@@ -337,8 +337,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     )// Player yendiği durumlar
                 {
-                    if ((IsOpponentBot && FounderTotalScore > OpponentTotalScore)// Sürekli soruyu doğru cevaplamasın diye puan farkı varsa doğru cevaplasın
-                        || (IsFounderBot && OpponentTotalScore > FounderTotalScore))
+                    if ((IsOpponentBot && (OpponentTotalScore - FounderTotalScore) >= 0)// Sürekli soruyu doğru cevaplamasın diye puan farkı varsa doğru cevaplasın
+                        || (IsFounderBot && (FounderTotalScore - OpponentTotalScore) >= 0))
                     {
                         PlayerWin();
                     }
@@ -496,7 +496,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             if (IsFounderBot)
             {
-                CurrentRound.FounderTime = (byte)(Event.Time - 3);
+                CurrentRound.FounderTime = (byte)(Event.Time - 2);
                 CurrentRound.FounderScore = 0;
                 CurrentRound.FounderAnswer = (Stylish)answers// Random yanlış cevap verdik
                                                         .Where(stylish => stylish != (byte)CurrentRound.CorrectAnswer)
@@ -505,7 +505,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             else if (IsOpponentBot)
             {
-                CurrentRound.OpponentTime = (byte)(Event.Time - 3);
+                CurrentRound.OpponentTime = (byte)(Event.Time - 2);
                 CurrentRound.OpponentScore = 0;
                 CurrentRound.OpponentAnswer = (Stylish)answers// Random yanlış cevap verdik
                                                         .Where(stylish => stylish != (byte)CurrentRound.CorrectAnswer)
