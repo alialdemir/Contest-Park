@@ -19,9 +19,13 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
-
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(build.binariesdirectory)/$(buildConfiguration)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 - task: XamarinAndroid@1
   inputs:
-    projectFile: '**/*droid*.csproj'
-    outputDirectory: '$(outputDirectory)'
+    projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
+    outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
     configuration: '$(buildConfiguration)'
