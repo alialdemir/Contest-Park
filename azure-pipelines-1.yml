@@ -31,7 +31,7 @@ steps:
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
     apksignerKeyPassword: '$(KeyStorePassword)'
-    apksignerArguments: '--verbose -sigalg MD5withRSA -digestalg SHA1'
+    apksignerArguments: '--verbose'
 
 - task: PublishBuildArtifacts@1
   inputs:
