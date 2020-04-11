@@ -337,8 +337,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                     )// Player yendiği durumlar
                 {
-                    if ((IsOpponentBot && OpponentTotalScore > FounderTotalScore)// Sürekli soruyu doğru cevaplamasın diye puan farkı varsa doğru cevaplasın
-                        || (IsFounderBot && FounderTotalScore > OpponentTotalScore))
+                    if ((IsOpponentBot && FounderTotalScore > OpponentTotalScore)// Sürekli soruyu doğru cevaplamasın diye puan farkı varsa doğru cevaplasın
+                        || (IsFounderBot && OpponentTotalScore > FounderTotalScore))
                     {
                         PlayerWin();
                     }
