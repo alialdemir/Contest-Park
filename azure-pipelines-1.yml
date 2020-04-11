@@ -18,7 +18,7 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '**/*.sln'
+    restoreSolution: '**/ContestPark.Mobile.sln'
 
 - task: XamarinAndroid@1
   inputs:
