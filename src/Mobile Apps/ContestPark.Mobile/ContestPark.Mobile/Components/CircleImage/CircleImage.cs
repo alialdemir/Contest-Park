@@ -33,7 +33,12 @@ namespace ContestPark.Mobile.Components
             if (HeightRequest < 0)
                 HeightRequest = 50;
 
-            Transformations.Add(new CircleTransformation(10, BorderColor));
+            if (!Transformations.Any(x => x.GetType() == typeof(CircleTransformation)))
+            {
+                Transformations.Add(new CircleTransformation(10, BorderColor));
+
+                ReloadImage();
+            }
 
             base.OnBindingContextChanged();
         }

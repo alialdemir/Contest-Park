@@ -15,6 +15,7 @@ using MvvmHelpers;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using Rg.Plugins.Popup.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,10 +41,11 @@ namespace ContestPark.Mobile.ViewModels
         public DuelBettingPopupViewModel(INavigationService navigationService,
                                          IEventAggregator eventAggregator,
                                          ISettingsService settingsService,
+                                         IPopupNavigation popupNavigation,
                                          IBalanceService cpService,
                                          IAdMobService adMobService,
                                          IPageDialogService pageDialogService,
-                                         IAnalyticsService analyticsService) : base(navigationService: navigationService, dialogService: pageDialogService)
+                                         IAnalyticsService analyticsService) : base(navigationService, pageDialogService, popupNavigation)
         {
             _eventAggregator = eventAggregator;
             _settingsService = settingsService;
@@ -94,12 +96,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            if (parameters.ContainsKey("SelectedSubCategory"))
+                SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
 
             Balance = await _cpService.GetBalanceAsync();
 
@@ -401,8 +406,6 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="bet">Bahis miktarı</param>
         private void PushDuelStartingPopupPageAsync(decimal bet)
         {
-            GotoBackCommand.Execute(null);
-
             SelectedBetModel selectedBet = new SelectedBetModel
             {
                 SubcategoryId = SelectedSubCategory.SubcategoryId,
@@ -414,10 +417,12 @@ namespace ContestPark.Mobile.ViewModels
                 StandbyMode = string.IsNullOrEmpty(SelectedSubCategory.OpponentUserId) ? DuelStartingPopupViewModel.StandbyModes.On : DuelStartingPopupViewModel.StandbyModes.Off,
             };
 
-            PushModalAsync(nameof(DuelStartingPopupView), new NavigationParameters
+            NavigateToPopupAsync<DuelStartingPopupView>(new NavigationParameters
             {
                 { "SelectedDuelInfo", selectedBet }
             });
+
+            RemoveFirstPopupAsync<DuelBettingPopupView>();
         }
 
         /// <summary>
@@ -447,6 +452,20 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        private void ExecuteChangeBalanceTypeCommand(string balanceType)
+        {
+            if (IsBusy || balanceType == ((byte)BalanceType).ToString())
+                return;
+
+            IsBusy = true;
+
+            BalanceType = balanceType == "2" ? BalanceTypes.Money : BalanceTypes.Gold;
+
+            InitBets();
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
@@ -459,34 +478,10 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return _changeBalanceTypeCommand ?? (_changeBalanceTypeCommand = new Command<string>((balanceType) =>
-                {
-                    if (IsBusy || balanceType == ((byte)BalanceType).ToString())
-                        return;
-
-                    IsBusy = true;
-
-                    BalanceType = balanceType == "2" ? BalanceTypes.Money : BalanceTypes.Gold;
-
-                    InitBets();
-
-                    IsBusy = false;
-                }));
+                return _changeBalanceTypeCommand ?? (_changeBalanceTypeCommand = new Command<string>(ExecuteChangeBalanceTypeCommand));
             }
         }
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SelectedSubCategory"))
-                SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

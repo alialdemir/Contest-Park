@@ -18,63 +18,23 @@ namespace ContestPark.Mobile.Views
 
         #endregion Constructor
 
-        #region Properties
-
-        public DuelResultPopupViewModel ViewModel
-        {
-            get { return ((DuelResultPopupViewModel)BindingContext); }
-        }
-
-        public int DuelId { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (ViewModel != null)
+            DuelResultPopupViewModel viewModel = (DuelResultPopupViewModel)BindingContext;
+            if (viewModel != null)
             {
-                ViewModel.DuelId = DuelId;
-
-                ViewModel.ProfilePictureBorderColorCommand = new Command(() =>
+                viewModel.ProfilePictureBorderColorCommand = new Command(() =>
                 {
-                    if (ViewModel.DuelResult == null)
+                    if (viewModel.DuelResult == null)
                         return;
 
-                    FounderImage.Transformations.Add(new CircleTransformation(20, ViewModel.DuelResult.FounderColor));
-                    OpponentImage.Transformations.Add(new CircleTransformation(20, ViewModel.DuelResult.OpponentColor));
+                    FounderImage.Transformations.Add(new CircleTransformation(20, viewModel.DuelResult.FounderColor));
+                    OpponentImage.Transformations.Add(new CircleTransformation(20, viewModel.DuelResult.OpponentColor));
                 });
-
-                ViewModel.InitializeCommand.Execute(null);
-                ViewModel.IsInitialized = true;
             }
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            CloseAllPopup();
-            return true;
-        }
-
-        /// <summary>
-        /// Popupun
-        /// </summary>
-        /// <returns></returns>
-        protected override bool OnBackgroundClicked()
-        {
-            CloseAllPopup();
-            return false;
-        }
-
-        /// <summary>
-        /// Popup kapat
-        /// </summary>
-        private void CloseAllPopup()
-        {
-            ViewModel.ClosePopupCommand.Execute(null);
         }
 
         #endregion Methods

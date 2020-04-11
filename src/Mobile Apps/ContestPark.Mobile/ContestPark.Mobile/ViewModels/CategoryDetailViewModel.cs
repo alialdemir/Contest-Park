@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories.CategoryDetail;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Post;
@@ -75,10 +76,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return Task.CompletedTask;
+
+            if (parameters.ContainsKey("SubCategoryId"))
+                _subCategoryId = parameters.GetValue<short>("SubCategoryId");
 
             IsBusy = true;
 
@@ -94,13 +98,13 @@ namespace ContestPark.Mobile.ViewModels
                 SubscriptionToken = _onSleepEvent.Subscribe(() => SubCategoryPostsCommand.Execute(true));
             }
 
-            return Task.CompletedTask;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
         /// Düello bahis panelini aç
         /// </summary>
-        private void ExecuteduelOpenPanelCommandAsync()
+        private void ExecuteduelOpenPanelCommand()
         {
             if (IsBusy)
                 return;
@@ -114,7 +118,7 @@ namespace ContestPark.Mobile.ViewModels
                 SubCategoryPicturePath = CategoryDetail.PicturePath,
             };
 
-            PushModalAsync(nameof(DuelBettingPopupView), new NavigationParameters
+            NavigateToPopupAsync<DuelBettingPopupView>(new NavigationParameters
             {
                 { "SelectedSubCategory", selectedSubCategory }
             });
@@ -127,14 +131,14 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Sıralama sayfasına git
         /// </summary>
-        private void ExecuteGoToRankingPageCommandAsync()
+        private void ExecuteGoToRankingPageCommand()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(RankingView), new NavigationParameters
+            NavigateToAsync<RankingView>(new NavigationParameters
             {
                 {"SubCategoryId", _subCategoryId },
                 {"ListType", RankingViewModel.ListTypes.ScoreRanking },
@@ -201,7 +205,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand DuelOpenPanelCommand
         {
-            get { return _duelOpenPanelCommand ?? (_duelOpenPanelCommand = new Command(() => ExecuteduelOpenPanelCommandAsync())); }
+            get { return _duelOpenPanelCommand ?? (_duelOpenPanelCommand = new Command(ExecuteduelOpenPanelCommand)); }
         }
 
         /// <summary>
@@ -209,7 +213,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand GoToRankingPageCommand
         {
-            get { return _goToRankingPageCommand ?? (_goToRankingPageCommand = new Command(() => ExecuteGoToRankingPageCommandAsync())); }
+            get { return _goToRankingPageCommand ?? (_goToRankingPageCommand = new Command(ExecuteGoToRankingPageCommand)); }
         }
 
         /// <summary>
@@ -222,7 +226,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand ShareCommand
         {
-            get { return _shareCommand ?? (_shareCommand = new Command(() => _gameService?.SubCategoryShare())); }
+            get { return _shareCommand ?? (_shareCommand = new Command(_gameService.SubCategoryShare)); }
         }
 
         public ICommand SubCategoryDetailCommand
@@ -243,7 +247,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand SubCategoryFollowProgcessCommand
         {
-            get { return _subCategoryFollowProgcessCommand ?? (_subCategoryFollowProgcessCommand = new Command(async () => await ExecuteSubCategoryFollowProgcessCommandAsync())); }
+            get { return _subCategoryFollowProgcessCommand ?? (_subCategoryFollowProgcessCommand = new CommandAsync(ExecuteSubCategoryFollowProgcessCommandAsync)); }
         }
 
         private ICommand SubCategoryPostsCommand
@@ -256,7 +260,10 @@ namespace ContestPark.Mobile.ViewModels
 
                     ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel, isForceCache: isForceCache);
 
-                    await base.InitializeAsync();
+                    await base.InitializeAsync(new NavigationParameters
+                    {
+                        { "SubCategoryId", _subCategoryId }
+                    });
                 });
             }
         }
@@ -278,16 +285,5 @@ namespace ContestPark.Mobile.ViewModels
         public SubscriptionToken SubscriptionToken { get => _subscriptionToken; set => _subscriptionToken = value; }
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SubCategoryId")) _subCategoryId = parameters.GetValue<short>("SubCategoryId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

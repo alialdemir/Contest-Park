@@ -8,6 +8,15 @@ namespace ContestPark.Mobile.Components
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public class NotificationCardFactory : ContentView
     {
+        #region Constructor
+
+        public NotificationCardFactory()
+        {
+            Content = CreateContent(new UserFollowListItem());// Skeleton loading için eklendi
+        }
+
+        #endregion Constructor
+
         #region Properties
 
         public static readonly BindableProperty GotoProfilePageCommandProperty = BindableProperty.Create(propertyName: nameof(GotoProfilePageCommand),

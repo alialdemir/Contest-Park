@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
@@ -8,7 +9,6 @@ using Prism.Navigation;
 using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -99,7 +99,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand BalanceCommand
         {
-            get { return new Command(async () => await ExecuteBalanceCommand()); }
+            get { return new CommandAsync(ExecuteBalanceCommand); }
         }
 
         #endregion Commands

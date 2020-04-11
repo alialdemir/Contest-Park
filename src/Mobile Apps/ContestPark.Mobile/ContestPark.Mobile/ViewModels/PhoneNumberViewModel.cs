@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
@@ -89,24 +90,25 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("SelectedCountry"))
+            {
+                var selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");
+                if (selectedCountry != null)
+                {
+                    Country = selectedCountry;
+                }
+            }
+
             if (!_settingsService.IsTutorialDisplayed && Device.RuntimePlatform == Device.Android)
             {
-                PushModalAsync(nameof(TutorialPopupView));
+                NavigateToPopupAsync<TutorialPopupView>();
 
                 _settingsService.IsTutorialDisplayed = true;
             }
 
-            return base.InitializeAsync();
-        }
-
-        private void OnCountry(object sender, CountryModel e)
-        {
-            if (e != null)
-            {
-                Country = e;
-            }
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -141,7 +143,7 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            await PushModalAsync(nameof(SignUpVerificationView), new NavigationParameters
+            await NavigateToPopupAsync<SignUpVerificationView>(new NavigationParameters
             {
                 {
                       "SmsInfo", new SmsInfoModel
@@ -167,30 +169,13 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public ICommand SendSmsCommand => new Command(async () => await ExecuteSendSmsCommandAsync());
+        public ICommand SendSmsCommand => new CommandAsync(ExecuteSendSmsCommandAsync);
 
         /// <summary>
         /// Ülke seçme popup açar
         /// </summary>
-        public ICommand SelectCountryCommand => new Command(() => PushModalAsync(nameof(SelectCountryView)));
+        public ICommand SelectCountryCommand => new Command(() => NavigateToPopupAsync<SelectCountryView>());
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SelectedCountry"))
-            {
-                var selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");
-                if (selectedCountry != null)
-                {
-                    Country = selectedCountry;
-                }
-            }
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

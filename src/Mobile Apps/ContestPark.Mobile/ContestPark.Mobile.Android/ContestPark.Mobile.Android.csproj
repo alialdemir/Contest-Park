@@ -72,9 +72,9 @@
     <MandroidI18n />
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidKeyStore>false</AndroidKeyStore>
-    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidDexTool>dx</AndroidDexTool>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidLinkTool>r8</AndroidLinkTool>

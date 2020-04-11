@@ -48,7 +48,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -89,7 +89,7 @@ namespace ContestPark.Mobile.ViewModels
                         ServiceModel = rank.Ranks;
                     }
 
-                    await base.InitializeAsync();
+                    await base.InitializeAsync(parameters);
 
                     if (rankCount <= 4 && rankCount != 0)
                         IsShowEmptyMessage = false;
@@ -98,7 +98,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     ServiceModel = rank.Ranks;
 
-                    await base.InitializeAsync();
+                    await base.InitializeAsync(parameters);
                 }
             }
 
@@ -116,7 +116,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -131,7 +131,7 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand _gotoProfilePageCommand;
 
         public ICommand GotoProfilePageCommand =>
-            _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName)));
+            _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand));
 
         #endregion Commands
     }

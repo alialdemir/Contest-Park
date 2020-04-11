@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -42,18 +41,13 @@ namespace ContestPark.Mobile.ViewModels
             });
         }
 
-        protected override Task InitializeAsync()
-        {
-            return base.InitializeAsync();
-        }
-
         #endregion Methods
 
         #region Commands
 
         public ICommand ShareCommand
         {
-            get => new Command(() => ExecuteShareCommand());
+            get => new Command(ExecuteShareCommand);
         }
 
         #endregion Commands

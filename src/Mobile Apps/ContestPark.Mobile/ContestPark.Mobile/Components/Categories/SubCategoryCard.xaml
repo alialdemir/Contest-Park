@@ -48,6 +48,7 @@
                 CacheDuration="365"
                 DownsampleToViewSize="true"
                 HeightRequest="70"
+                IsLoadingPlaceholder="False"
                 Source="{Binding PicturePath}"
                 WidthRequest="85">
                 <components:CachedImage.GestureRecognizers>

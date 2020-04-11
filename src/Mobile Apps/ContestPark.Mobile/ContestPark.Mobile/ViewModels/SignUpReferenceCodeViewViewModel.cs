@@ -61,7 +61,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand ReferenceCodeCommand => new Command(() => ExecuteReferenceCodeCommand());
+        public ICommand ReferenceCodeCommand => new Command(ExecuteReferenceCodeCommand);
 
         #endregion Commands
     }

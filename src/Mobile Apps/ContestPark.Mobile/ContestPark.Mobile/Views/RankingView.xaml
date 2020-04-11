@@ -33,97 +33,90 @@
             Style="{StaticResource ListViewHeaderAndFooter}">
             <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
+                    <yummy:PancakeView
+                        Grid.Row="0"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundGradientEndColor="#2E3742"
+                        BackgroundGradientStartColor="#424E5C"
+                        Elevation="6"
+                        HasShadow="True"
+                        HeightRequest="280"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            Padding="16"
+                            ColumnSpacing="16"
+                            RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                            <!--  Title  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.ColumnSpan="3"
+                                FontFamily="{DynamicResource SofiaProSemiBold}"
+                                FontSize="23"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Path=BindingContext.Title, Source={x:Reference rankingPage}}"
+                                TextColor="{StaticResource White}" />
 
-                        <yummy:PancakeView
-                            Grid.Row="0"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundGradientEndColor="#2E3742"
-                            BackgroundGradientStartColor="#424E5C"
-                            Elevation="6"
-                            HasShadow="True"
-                            HeightRequest="280"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
-                            <Grid
-                                Padding="16"
-                                ColumnSpacing="16"
-                                RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="32" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                            <!--  Back button  -->
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HeightRequest="32"
+                                HorizontalOptions="Start"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference rankingPage}}" CommandParameter="{StaticResource False}" />
+                                </Image.GestureRecognizers>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="{StaticResource icomoon}"
+                                        Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
+                                        Color="{StaticResource White}" />
+                                </Image.Source>
+                            </Image>
 
-                                <!--  Title  -->
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.ColumnSpan="3"
-                                    FontFamily="{DynamicResource SofiaProSemiBold}"
-                                    FontSize="23"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Path=BindingContext.Title, Source={x:Reference rankingPage}}"
-                                    TextColor="{StaticResource White}" />
+                            <components:RankTopView
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}"
+                                IsVisible="{Binding Path=BindingContext.Ranks.Secound, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
+                                Rank="Secound"
+                                Ranking="{Binding Path=BindingContext.Ranks.Secound, Source={x:Reference rankingPage}}"
+                                VerticalOptions="End" />
 
-                                <!--  Back button  -->
-                                <Image
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    HeightRequest="32"
-                                    HorizontalOptions="Start"
-                                    WidthRequest="32">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference rankingPage}}" CommandParameter="{StaticResource False}" />
-                                    </Image.GestureRecognizers>
-                                    <Image.Source>
-                                        <FontImageSource
-                                            FontFamily="{StaticResource icomoon}"
-                                            Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
-                                            Color="{StaticResource White}" />
-                                    </Image.Source>
-                                </Image>
+                            <components:RankTopView
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}"
+                                IsVisible="{Binding Path=BindingContext.Ranks.First, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
+                                Rank="First"
+                                Ranking="{Binding Path=BindingContext.Ranks.First, Source={x:Reference rankingPage}}" />
 
-                                <components:RankTopView
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}"
-                                    IsVisible="{Binding Path=BindingContext.Ranks.Secound, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
-                                    Rank="Secound"
-                                    Ranking="{Binding Path=BindingContext.Ranks.Secound, Source={x:Reference rankingPage}}"
-                                    VerticalOptions="End" />
+                            <components:RankTopView
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}"
+                                IsVisible="{Binding Path=BindingContext.Ranks.Third, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
+                                Rank="Third"
+                                Ranking="{Binding Path=BindingContext.Ranks.Third, Source={x:Reference rankingPage}}"
+                                VerticalOptions="End" />
 
-                                <components:RankTopView
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}"
-                                    IsVisible="{Binding Path=BindingContext.Ranks.First, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
-                                    Rank="First"
-                                    Ranking="{Binding Path=BindingContext.Ranks.First, Source={x:Reference rankingPage}}" />
-
-                                <components:RankTopView
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}"
-                                    IsVisible="{Binding Path=BindingContext.Ranks.Third, Source={x:Reference lstView}, Converter={StaticResource rankIsVisible}}"
-                                    Rank="Third"
-                                    Ranking="{Binding Path=BindingContext.Ranks.Third, Source={x:Reference rankingPage}}"
-                                    VerticalOptions="End" />
-
-                                <!--  TimeLeft  -->
-                                <!--<StackLayout
+                            <!--  TimeLeft  -->
+                            <!--<StackLayout
                                     Grid.Row="2"
                                     Grid.ColumnSpan="3"
                                     HorizontalOptions="Center"
@@ -143,9 +136,8 @@
                                         Text="{Binding Path=BindingContext.Ranks.TimeLeft, Source={x:Reference rankingPage}}"
                                         TextColor="{StaticResource White}" />
                                 </StackLayout>-->
-                            </Grid>
-                        </yummy:PancakeView>
-                    </Grid>
+                        </Grid>
+                    </yummy:PancakeView>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.HeaderTemplate>
             <components:NonPersistentSelectedItemListView.ItemTemplate>
@@ -154,7 +146,6 @@
                         <yummy:PancakeView
                             Padding="16,0,0,0"
                             BackgroundColor="{Binding ., Converter={StaticResource background}, ConverterParameter={x:Reference lstView}}"
-                            CornerRadius="{Binding CornerRadius}"
                             Elevation="6"
                             HasShadow="True"
                             HorizontalOptions="FillAndExpand"

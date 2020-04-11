@@ -112,7 +112,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             UserInfoModel currentUser = await _identityService.GetUserInfo();
             if (currentUser != null)
@@ -152,7 +152,7 @@ namespace ContestPark.Mobile.ViewModels
                     SetUserGoldCommand.Execute(null);
                 });
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace ContestPark.Mobile.ViewModels
             });
         }
 
-        private ICommand SetUserGoldCommand => new Command(async () => await SetUserGoldAsync());
+        private ICommand SetUserGoldCommand => new CommandAsync(SetUserGoldAsync);
 
         public ICommand MenuItems { get; set; }
 

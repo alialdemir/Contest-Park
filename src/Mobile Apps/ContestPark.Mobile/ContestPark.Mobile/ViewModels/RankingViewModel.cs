@@ -53,7 +53,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public bool IsTimerStop { get; set; } = true;
 
-        public ListTypes ListType { get; set; }
+        private ListTypes _listType;
 
         public string RankEmptyMessage
         {
@@ -75,31 +75,34 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        private short SubCategoryId { get; set; }
+        private short _subCategoryId;
 
         #endregion Properties
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
+            parameters.TryGetValue("SubCategoryId", out _subCategoryId);
+            parameters.TryGetValue("ListType", out _listType);
+
             BalanceTypes balanceType = BalanceTypes.Gold;
 
             RankModel rank = null;
 
-            switch (ListType)
+            switch (_listType)
             {
                 case ListTypes.ScoreRanking:
-                    rank = await _scoreService.SubCategoryRankingAsync(SubCategoryId, balanceType, ServiceModel);
+                    rank = await _scoreService.SubCategoryRankingAsync(_subCategoryId, balanceType, ServiceModel);
                     break;
 
                 case ListTypes.ScoreRankingFollowing:
-                    rank = await _scoreService.FollowingRankingAsync(SubCategoryId, balanceType, ServiceModel);
+                    rank = await _scoreService.FollowingRankingAsync(_subCategoryId, balanceType, ServiceModel);
                     break;
             }
 
@@ -135,7 +138,7 @@ namespace ContestPark.Mobile.ViewModels
                         ServiceModel = rank.Ranks;
                     }
 
-                    await base.InitializeAsync();
+                    await base.InitializeAsync(parameters);
 
                     if (rankCount <= 4 && rankCount != 0)
                         IsShowEmptyMessage = false;
@@ -146,7 +149,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     ServiceModel = rank.Ranks;
 
-                    await base.InitializeAsync();
+                    await base.InitializeAsync(parameters);
                 }
             }
 
@@ -166,7 +169,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -202,7 +205,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void LoadRankEmptyMessage()
         {
-            switch (ListType)
+            switch (_listType)
             {
                 case ListTypes.ScoreRankingFollowing: RankEmptyMessage = ContestParkResources.RankFollowingNull; break;
                 default: RankEmptyMessage = ContestParkResources.ThisCategoryRankNull; break;
@@ -220,8 +223,8 @@ namespace ContestPark.Mobile.ViewModels
 
             switch (selectedSegmentIndex)
             {
-                case 1: ListType = ListTypes.ScoreRankingFollowing; break;
-                default: ListType = ListTypes.ScoreRanking; break;
+                case 1: _listType = ListTypes.ScoreRankingFollowing; break;
+                default: _listType = ListTypes.ScoreRanking; break;
             }
 
             LoadRankEmptyMessage();
@@ -236,23 +239,11 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand _gotoProfilePageCommand;
 
         public ICommand GotoProfilePageCommand =>
-            _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName)));
+            _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand));
 
-        public ICommand SegmentValueChangedCommand => new Command<int>((selectedSegmentIndex) => SegmentValueChanged(selectedSegmentIndex));
-        private ICommand TimeLeftCommand => new Command(() => ExecuteTimeLeftCommand());
+        public ICommand SegmentValueChangedCommand => new Command<int>(SegmentValueChanged);
+        private ICommand TimeLeftCommand => new Command(ExecuteTimeLeftCommand);
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SubCategoryId")) SubCategoryId = parameters.GetValue<short>("SubCategoryId");
-            if (parameters.ContainsKey("ListType")) ListType = parameters.GetValue<ListTypes>("ListType");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

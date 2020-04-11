@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Follow;
@@ -24,13 +25,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Private variables
 
-        #region Notifications
+        #region Constructor
 
         public NotificationViewModel(INotificationService notificationService,
                                      INavigationService navigationService,
                                      IPageDialogService dialogService,
                                      IFollowService followService,
-                                     IAnalyticsService analyticsService) : base(navigationService, dialogService)
+                                     IAnalyticsService analyticsService) : base(navigationService, dialogService, isActiveSkeletonLoading: true)
         {
             Title = ContestParkResources.Notifications;
 
@@ -39,11 +40,11 @@ namespace ContestPark.Mobile.ViewModels
             _analyticsService = analyticsService;
         }
 
-        #endregion Notifications
+        #endregion Constructor
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -52,7 +53,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ServiceModel = await _notificationService.NotificationsAsync(ServiceModel);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -106,7 +107,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -124,7 +125,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(PostDetailView), new NavigationParameters
+            NavigateToAsync<PostDetailView>(new NavigationParameters
             {
                 { "PostId", postId }
             });
@@ -141,19 +142,19 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand FollowCommand
         {
-            get { return _followCommand ?? (_followCommand = new Command<string>(async (userId) => await ExecuteFollowCommand(userId))); }
+            get { return _followCommand ?? (_followCommand = new CommandAsync<string>(ExecuteFollowCommand)); }
         }
 
         public ICommand GotoProfilePageCommand
         {
-            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName))); }
+            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand)); }
         }
 
         public ICommand _gotoPostDetailCommand;
 
         public ICommand GotoPostDetailCommand
         {
-            get { return _gotoPostDetailCommand ?? (_gotoPostDetailCommand = new Command<int>((postId) => ExecuteGotoPostDetailCommand(postId))); }
+            get { return _gotoPostDetailCommand ?? (_gotoPostDetailCommand = new Command<int>(ExecuteGotoPostDetailCommand)); }
         }
 
         #endregion Commands

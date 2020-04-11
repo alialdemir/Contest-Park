@@ -10,7 +10,6 @@ using Prism.Events;
 using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -94,16 +93,18 @@ namespace ContestPark.Mobile.Components.PostCardView
                     IsBusy = true;
 
                     PostModel postModel = (PostModel)BindingContext;
-                    IPopupNavigation popupNavigation = RegisterTypesConfig.Container.Resolve<IPopupNavigation>();
+                    INavigationService navigationService = RegisterTypesConfig.Container.Resolve<INavigationService>();
 
-                    if (postModel != null && popupNavigation != null)
+                    if (postModel != null && navigationService != null)
                     {
-                        popupNavigation.PushAsync(new PhotoModalView()
+                        navigationService.NavigateAsync(nameof(PhotoModalView), new NavigationParameters
                         {
-                            Pictures = new MvvmHelpers.ObservableRangeCollection<PictureModel>(new List<PictureModel>
+                            {
+                                "Pictures", new List<PictureModel>
                             {
                                 new PictureModel { PicturePath = postModel.PicturePath }
-                            })
+                            }
+                            }
                         });
                     }
 

@@ -42,16 +42,19 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
+            if (parameters.ContainsKey("OpponentUserId"))
+                OpponentUserId = parameters.GetValue<string>("OpponentUserId");
+
             ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -78,7 +81,7 @@ namespace ContestPark.Mobile.ViewModels
                     OpponentUserId = OpponentUserId
                 };
 
-                PushModalAsync(nameof(DuelBettingPopupView), new NavigationParameters
+                NavigateToPopupAsync<DuelBettingPopupView>(new NavigationParameters
                         {
                             { "SelectedSubCategory", selectedSubCategory },
                         });
@@ -107,21 +110,9 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand DuelOpenPanelCommand
         {
-            get { return _duelOpenPanelCommand ?? (_duelOpenPanelCommand = new Command<SubCategoryModel>((subCategory) => ExecuteduelOpenPanelCommandAsync(subCategory))); }
+            get { return _duelOpenPanelCommand ?? (_duelOpenPanelCommand = new Command<SubCategoryModel>(ExecuteduelOpenPanelCommandAsync)); }
         }
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("OpponentUserId"))
-                OpponentUserId = parameters.GetValue<string>("OpponentUserId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

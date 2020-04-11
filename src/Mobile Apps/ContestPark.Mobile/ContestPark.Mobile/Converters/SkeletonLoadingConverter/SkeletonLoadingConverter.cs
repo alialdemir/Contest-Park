@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace ContestPark.Mobile.Converters.SkeletonLoadingConverter
+namespace ContestPark.Mobile.Converters
 {
     public class SkeletonLoadingConverter : IValueConverter
     {

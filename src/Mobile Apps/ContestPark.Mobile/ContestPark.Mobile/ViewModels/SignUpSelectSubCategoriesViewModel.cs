@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Login;
@@ -18,7 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -71,12 +71,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            if (parameters.ContainsKey("SignUp"))
+                SignUp = parameters.GetValue<SignUpModel>("SignUp");
 
             ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsRefreshing);
 
@@ -92,7 +95,7 @@ namespace ContestPark.Mobile.ViewModels
 
             SignUp.SubCategories = new List<short>();
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -205,7 +208,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 _analyticsService.SetUserId(_settingsService.CurrentUser.UserId);
 
-                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
+                await NavigateToInitialized<AppShell>();
             }
             else
             {
@@ -221,21 +224,9 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand _clickSubCategoryCommand;
 
-        public ICommand ClickSubCategoryCommand => _clickSubCategoryCommand ?? (_clickSubCategoryCommand = new Command<SubCategoryModel>(async (selectedSubCategory) => await ExecuteClickSubCategoryCommand(selectedSubCategory)));
-        public ICommand SignUpCommand => new Command(async () => await ExecuteSignUpCommand());
+        public ICommand ClickSubCategoryCommand => _clickSubCategoryCommand ?? (_clickSubCategoryCommand = new CommandAsync<SubCategoryModel>(ExecuteClickSubCategoryCommand));
+        public ICommand SignUpCommand => new CommandAsync(ExecuteSignUpCommand);
 
         #endregion Command
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SignUp"))
-                SignUp = parameters.GetValue<SignUpModel>("SignUp");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

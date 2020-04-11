@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Follow;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Follow;
@@ -41,11 +42,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("UserId")) userId = parameters.GetValue<string>("UserId");
+
             ServiceModel = await _followService.Followers(userId, ServiceModel);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -97,7 +100,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -114,25 +117,14 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand FollowCommand
         {
-            get { return _followCommand ?? (_followCommand = new Command<string>(async (userId) => await ExecuteFollowCommand(userId))); }
+            get { return _followCommand ?? (_followCommand = new CommandAsync<string>(ExecuteFollowCommand)); }
         }
 
         public ICommand GotoProfilePageCommand
         {
-            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName))); }
+            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand)); }
         }
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("UserId")) userId = parameters.GetValue<string>("UserId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

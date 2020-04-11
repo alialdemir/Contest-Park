@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
@@ -9,6 +10,7 @@ using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
+using Prism.Navigation;
 using Prism.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +60,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             ServiceModel.Items = new List<MenuItemList>()
             {
@@ -97,7 +99,7 @@ namespace ContestPark.Mobile.ViewModels
                                 },
             };
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -201,7 +203,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand _saveCommand;
 
-        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(async () => await ExecuteSaveCommandAsync()));
+        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new CommandAsync(ExecuteSaveCommandAsync));
 
         #endregion Commands
     }

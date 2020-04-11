@@ -58,9 +58,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            return base.InitializeAsync();
+            if (parameters.ContainsKey("RewardModel"))
+                GiftGold = parameters.GetValue<RewardModel>("RewardModel");
+
+            return base.InitializeAsync(parameters);
         }
 
         public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
@@ -87,17 +90,5 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Command
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("RewardModel"))
-                GiftGold = parameters.GetValue<RewardModel>("RewardModel");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

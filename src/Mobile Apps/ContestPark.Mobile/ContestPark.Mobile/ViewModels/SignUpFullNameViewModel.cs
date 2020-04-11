@@ -1,11 +1,11 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -40,6 +40,14 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Properties
 
         #region Methods
+
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
+        {
+            if (parameters.ContainsKey("PhoneNumber"))
+                PhoneNumber = parameters.GetValue<string>("PhoneNumber");
+
+            return base.InitializeAsync(parameters);
+        }
 
         /// <summary>
         /// Ad soyad bilgisini alır bir sonraki popupa yönlendirir
@@ -82,7 +90,7 @@ namespace ContestPark.Mobile.ViewModels
 
             GotoBackCommand.Execute(true);
 
-            await PushModalAsync(nameof(SignUpUserNameView), new NavigationParameters
+            await NavigateToPopupAsync<SignUpUserNameView>(new NavigationParameters
             {
                 { "FullName", FullName },
                 { "PhoneNumber", PhoneNumber },
@@ -100,20 +108,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand FullNameCommand => new Command(async () => await ExecuteFullNameCommand());
+        public ICommand FullNameCommand => new CommandAsync(ExecuteFullNameCommand);
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("PhoneNumber"))
-                PhoneNumber = parameters.GetValue<string>("PhoneNumber");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

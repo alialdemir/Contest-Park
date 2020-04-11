@@ -220,8 +220,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("Question"))
+                Question = parameters.GetValue<Models.Duel.QuestionModel>("Question");
+
             SetCurrentQuestion();
 
             ResetImageBorderColor();
@@ -232,7 +235,7 @@ namespace ContestPark.Mobile.ViewModels
 
             StartTimer();
 
-            base.InitializeAsync();
+            base.InitializeAsync(parameters);
 
             OnSleepEventListener();
 
@@ -495,15 +498,12 @@ namespace ContestPark.Mobile.ViewModels
 
             if (Question.DuelCreated.DuelId > 0)
             {
-                Task.Factory.StartNew(async () =>
-                {
-                    await _duelSignalRService.LeaveGroup(Question.DuelCreated.DuelId);
+                await _duelSignalRService.LeaveGroup(Question.DuelCreated.DuelId);
 
-                    if (!IsGameEnd)// Oyun sonlanmadan çıkmış ise düellodan kaçtı olarak bildirdik
-                    {
-                        await _duelService.DuelEscape(Question.DuelCreated.DuelId);
-                    }
-                }).Wait();
+                if (!IsGameEnd)// Oyun sonlanmadan çıkmış ise düellodan kaçtı olarak bildirdik
+                {
+                    await _duelService.DuelEscape(Question.DuelCreated.DuelId);
+                }
             }
 
             OffSignalr();
@@ -512,12 +512,12 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
-            GotoBackCommand.Execute(true);
-
-            await PushPopupPageAsync(new DuelResultPopupView()
+            await NavigateToPopupAsync<DuelResultPopupView>(new NavigationParameters
             {
-                DuelId = Question.DuelCreated.DuelId
+                { "DuelId", Question.DuelCreated.DuelId }
             });
+
+            await RemoveFirstPopupAsync<QuestionPopupView>();
         }
 
         /// <summary>
@@ -583,7 +583,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void QuestionExpectedPopup()
         {
-            PushModalAsync(nameof(QuestionExpectedPopupView), new NavigationParameters
+            NavigateToPopupAsync<QuestionExpectedPopupView>(new NavigationParameters
             {
                 { "SubcategoryName", Question.SubCategoryName },
                 { "SubCategoryPicturePath", Question.SubCategoryPicturePath },
@@ -752,26 +752,14 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand _answerCommand;
         private ICommand _saveAnswerCommand;
 
-        public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>((answerModel) => ExecuteAnswerCommandCommand(answerModel)));
+        public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>(ExecuteAnswerCommandCommand));
         private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(SaveAnswer));
 
         /// <summary>
         /// Soru ekranı kapatır
         /// </summary>
-        public ICommand DuelCloseCommand => new Command<bool>((showAlert) => ExecuteDuelCloseCommand(showAlert));
+        public ICommand DuelCloseCommand => new Command<bool>(ExecuteDuelCloseCommand);
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("Question"))
-                Question = parameters.GetValue<Models.Duel.QuestionModel>("Question");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

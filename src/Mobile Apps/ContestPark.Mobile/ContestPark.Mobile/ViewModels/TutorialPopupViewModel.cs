@@ -39,7 +39,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             ServiceModel = new Models.ServiceModel.ServiceModel<TutorialModel>
             {
@@ -84,7 +84,7 @@ namespace ContestPark.Mobile.ViewModels
                     }
             };
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         #endregion Methods

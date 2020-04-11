@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -44,6 +45,20 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
+        {
+            if (parameters.ContainsKey("FullName"))
+                FullName = parameters.GetValue<string>("FullName");
+
+            if (parameters.ContainsKey("PhoneNumber"))
+                PhoneNumber = parameters.GetValue<string>("PhoneNumber");
+
+            if (parameters.ContainsKey("ReferenceCode"))
+                ReferenceCode = parameters.GetValue<string>("ReferenceCode");
+
+            return base.InitializeAsync(parameters);
+        }
+
         private async Task ExecuteUserNameCommandAsync()
         {
             if (IsBusy)
@@ -81,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
 
             GotoBackCommand.Execute(true);
 
-            await PushModalAsync(nameof(SignUpSelectSubCategoriesView), new NavigationParameters
+            await NavigateToPopupAsync<SignUpSelectSubCategoriesView>(new NavigationParameters
             {
                 {
                     "SignUp", new SignUpModel
@@ -107,7 +122,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushModalAsync(nameof(SignUpReferenceCodeView));
+            NavigateToPopupAsync<SignUpReferenceCodeView>();
 
             IsBusy = false;
         }
@@ -121,27 +136,9 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand UserNameCommand => new Command(async () => await ExecuteUserNameCommandAsync());
+        public ICommand UserNameCommand => new CommandAsync(ExecuteUserNameCommandAsync);
         public ICommand GotoReferenceCodeCommand => new Command(ExecuteGotoReferenceCodeCommand);
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("FullName"))
-                FullName = parameters.GetValue<string>("FullName");
-
-            if (parameters.ContainsKey("PhoneNumber"))
-                PhoneNumber = parameters.GetValue<string>("PhoneNumber");
-
-            if (parameters.ContainsKey("ReferenceCode"))
-                ReferenceCode = parameters.GetValue<string>("ReferenceCode");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

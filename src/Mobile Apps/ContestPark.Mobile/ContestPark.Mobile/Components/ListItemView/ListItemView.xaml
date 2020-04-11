@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -49,6 +49,7 @@
                 </Grid.ColumnDefinitions>
 
                 <components:CircleImage
+                    x:Name="imgCircle"
                     Grid.RowSpan="2"
                     Grid.Column="0"
                     extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"

@@ -14,11 +14,11 @@ using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
-using MvvmHelpers;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -128,8 +128,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
+
+            if (parameters.ContainsKey("IsVisibleBackArrow")) IsVisibleBackArrow = parameters.GetValue<bool>("IsVisibleBackArrow");
+
             if (ProfileInfo == null)
             {
                 var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
@@ -148,7 +152,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
 
-                EventSubscription();
+                EventSubscription(parameters);
             }
 
             if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
@@ -156,7 +160,7 @@ namespace ContestPark.Mobile.ViewModels
                 ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
             }
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -184,7 +188,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Profil, kapak veya kullanıcı adı değişince profili günceller
         /// </summary>
-        private void EventSubscription()
+        private void EventSubscription(INavigationParameters parameters)
         {
             if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
             {
@@ -211,7 +215,7 @@ namespace ContestPark.Mobile.ViewModels
                                                                 {
                                                                     ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true);
 
-                                                                    await base.InitializeAsync();
+                                                                    await base.InitializeAsync(parameters);
                                                                 });
             }
 
@@ -246,7 +250,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+            NavigateToAsync<ChatDetailView>(new NavigationParameters
                 {
                     { "UserName", _userName},
                     { "FullName", ProfileInfo.FullName},
@@ -401,7 +405,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(FollowersView), new NavigationParameters
+            NavigateToAsync<FollowersView>(new NavigationParameters
                 {
                     {"UserId", ProfileInfo.UserId}
                 });
@@ -421,7 +425,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(FollowingView), new NavigationParameters
+            NavigateToAsync<FollowingView>(new NavigationParameters
                 {
                     {"UserId", ProfileInfo.UserId}
                 });
@@ -457,7 +461,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushModalAsync(nameof(SelectSubCategoryView), new NavigationParameters()
+            NavigateToPopupAsync<SelectSubCategoryView>(new NavigationParameters()
             {
                 { "OpponentUserId", ProfileInfo.UserId }
             });
@@ -476,7 +480,7 @@ namespace ContestPark.Mobile.ViewModels
             if (ProfileInfo == null || string.IsNullOrEmpty(modalName))
                 return;
 
-            ObservableRangeCollection<PictureModel> pictures = new ObservableRangeCollection<PictureModel>();
+            List<PictureModel> pictures = new List<PictureModel>();
 
             if (modalName == "Profile")
             {
@@ -497,9 +501,9 @@ namespace ContestPark.Mobile.ViewModels
 
             if (pictures.Count != 0)
             {
-                PushPopupPageAsync(new PhotoModalView()
+                NavigateToPopupAsync<PhotoModalView>(new NavigationParameters
                 {
-                    Pictures = pictures
+                    { "Pictures", pictures }
                 });
             }
         }
@@ -508,11 +512,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand ChangePhotoCommand => new Command<string>(async (listTypes) => await ChangePhotoAsync(listTypes));
+        public ICommand ChangePhotoCommand => new CommandAsync<string>(ChangePhotoAsync);
 
         public ICommand FollowProcessCommand
         {
-            get { return new Command(async () => await ExecuteFollowProcessCommand()); }
+            get { return new CommandAsync(ExecuteFollowProcessCommand); }
         }
 
         public ICommand GotChatDetailCommand
@@ -532,7 +536,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand InfoCommand
         {
-            get { return new Command(async () => await ExecuteInfoCommand()); }
+            get { return new CommandAsync(ExecuteInfoCommand); }
         }
 
         public ICommand PlayDuelCommand
@@ -557,23 +561,5 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
-
-            if (parameters.ContainsKey("IsVisibleBackArrow")) IsVisibleBackArrow = parameters.GetValue<bool>("IsVisibleBackArrow");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        public override void OnNavigatingTo(INavigationParameters parameters)
-        {
-            // tabs sayfalarında ilk açılışta tüm dataları çekmesin sayfaya gelirse çeksin diye base methodu ezdik
-        }
-
-        #endregion Navigation
     }
 }

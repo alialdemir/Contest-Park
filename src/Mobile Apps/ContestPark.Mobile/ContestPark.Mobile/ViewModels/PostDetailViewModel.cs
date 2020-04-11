@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.User;
 using ContestPark.Mobile.Services.Analytics;
@@ -81,12 +82,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
 
             PostModel = await _postService.GetPostByPostIdAsync(postId, ServiceModel);
             if (PostModel != null && PostModel.Comments != null)
@@ -94,7 +97,7 @@ namespace ContestPark.Mobile.ViewModels
                 ServiceModel = PostModel.Comments;
             }
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -103,14 +106,14 @@ namespace ContestPark.Mobile.ViewModels
         /// Profile sayfasına git
         /// </summary>
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommand(string userName)
+        private void ExecuteGotoProfilePageCommand(string userName)
         {
             if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -166,11 +169,11 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _gotoProfilePageCommand;
-        private ICommand sendCommentCommand;
+        private ICommand _sendCommentCommand;
         public ICommand EditorFocusCommand { get; set; }
 
         public ICommand GotoProfilePageCommand =>
-                    _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)));
+                    _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand));
 
         /// <summary>
         /// Listview scroll aşağıya çeker
@@ -184,20 +187,9 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand SendCommentCommand
         {
-            get { return sendCommentCommand ?? (sendCommentCommand = new Command(async () => await ExecuteSendCommentCommand())); }
+            get { return _sendCommentCommand ?? (_sendCommentCommand = new CommandAsync(ExecuteSendCommentCommand)); }
         }
 
         #endregion Commands
-
-        #region Navigations
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigations
     }
 }

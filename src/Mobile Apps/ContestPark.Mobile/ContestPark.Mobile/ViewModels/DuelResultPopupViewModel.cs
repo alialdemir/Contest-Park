@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public int DuelId { get; set; }
+        private int _duelId;
         private DuelResultModel _duelResult;
 
         public DuelResultModel DuelResult
@@ -76,18 +76,22 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             _adMobService.ShowInterstitial();// Düello sonucuna gelen kullanıcılara reklam gösterildi
 
-            DuelResult = await _duelService.DuelResult(DuelId);
+            parameters.TryGetValue("DuelId", out _duelId);
+            if (_duelId <= 0)
+                return;
+
+            DuelResult = await _duelService.DuelResult(_duelId);
 
             ProfilePictureBorderColorCommand?.Execute(null);
 
             if (DuelResult != null && _settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
                 _audioService.Play(Audio.Fireworks, true);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -100,7 +104,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ClosePopupCommand.Execute(null);
+            GotoBackCommand.Execute(true);
 
             var selectedSubCategory = new SelectedSubCategoryModel
             {
@@ -109,7 +113,7 @@ namespace ContestPark.Mobile.ViewModels
                 SubCategoryPicturePath = DuelResult.SubCategoryPicturePath,
             };
 
-            PushModalAsync(nameof(DuelBettingPopupView), new NavigationParameters
+            NavigateToPopupAsync<DuelBettingPopupView>(new NavigationParameters
             {
                 { "SelectedSubCategory",selectedSubCategory }
             });
@@ -129,7 +133,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ClosePopupCommand.Execute(null);
+            GotoBackCommand.Execute(true);
 
             bool isFounder = DuelResult.IsFounder;
             string userName = isFounder ? DuelResult.OpponentUserName : DuelResult.FounderUserName;
@@ -166,7 +170,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ClosePopupCommand.Execute(null);
+            GotoBackCommand.Execute(true);
 
             _eventAggregator
                 .GetEvent<TabPageNavigationEvent>()
@@ -193,7 +197,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            ClosePopupCommand.Execute(null);
+            GotoBackCommand.Execute(true);
 
             var selectedSubCategory = new SelectedSubCategoryModel
             {
@@ -203,7 +207,7 @@ namespace ContestPark.Mobile.ViewModels
                 OpponentUserId = DuelResult.IsFounder ? DuelResult.OpponentUserId : DuelResult.FounderUserId
             };
 
-            PushModalAsync(nameof(DuelBettingPopupView), new NavigationParameters
+            NavigateToPopupAsync<DuelBettingPopupView>(new NavigationParameters
             {
                 { "SelectedSubCategory",selectedSubCategory },
             });
@@ -268,33 +272,27 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            if (_settingsService.IsSoundEffectActive)
+                _audioService?.Stop();
+
+            _eventAggregator.GetEvent<PostRefreshEvent>();
+
+            _eventAggregator.GetEvent<GoldUpdatedEvent>();
+
+            return base.GoBackAsync(parameters, useModalNavigation);
+        }
+
         #endregion Methods
 
         #region Commands
 
-        public ICommand ClosePopupCommand
-        {
-            get
-            {
-                return new Command(() =>
-              {
-                  if (_settingsService.IsSoundEffectActive)
-                      _audioService?.Stop();
-
-                  GotoBackCommand.Execute(null);
-
-                  _eventAggregator.GetEvent<PostRefreshEvent>();
-
-                  _eventAggregator.GetEvent<GoldUpdatedEvent>();
-              });
-            }
-        }
-
-        public ICommand FindOpponentCommand { get { return new Command(() => ExecuteFindOpponentCommand()); } }
-        public ICommand GotoChatCommand { get { return new Command(() => ExecuteGotoChatCommand()); } }
-        public ICommand GotoProfilePageCommand { get { return new Command<string>((userName) => ExecuteGotoProfilePageCommand(userName)); } }
-        public ICommand RevengeCommand { get { return new Command(() => ExecuteRevengeCommand()); } }
-        public ICommand ShareCommand { get { return new Command(() => ExecuteShareCommand()); } }
+        public ICommand FindOpponentCommand { get { return new Command(ExecuteFindOpponentCommand); } }
+        public ICommand GotoChatCommand { get { return new Command(ExecuteGotoChatCommand); } }
+        public ICommand GotoProfilePageCommand { get { return new Command<string>(ExecuteGotoProfilePageCommand); } }
+        public ICommand RevengeCommand { get { return new Command(ExecuteRevengeCommand); } }
+        public ICommand ShareCommand { get { return new Command(ExecuteShareCommand); } }
 
         public ICommand ProfilePictureBorderColorCommand { get; set; }
 

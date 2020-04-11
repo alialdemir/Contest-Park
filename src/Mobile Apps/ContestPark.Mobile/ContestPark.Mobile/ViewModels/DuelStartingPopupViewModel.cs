@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
@@ -13,6 +14,7 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -53,9 +55,10 @@ namespace ContestPark.Mobile.ViewModels
                                           IEventAggregator eventAggregator,
                                           IDuelService duelService,
                                           IDuelSignalRService duelSignalRService,
+                                          IPopupNavigation popupNavigation,
                                           INavigationService navigationService,
                                           IPageDialogService pageDialogService,
-                                          ISettingsService settingsService) : base(navigationService)
+                                          ISettingsService settingsService) : base(navigationService, popupNavigation: popupNavigation)
         {
             _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
 
@@ -137,12 +140,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            if (parameters.ContainsKey("SelectedDuelInfo"))
+                SelectedBet = parameters.GetValue<SelectedBetModel>("SelectedDuelInfo");
 
             DuelStarting = new DuelStartingModel()
             {
@@ -185,7 +191,7 @@ namespace ContestPark.Mobile.ViewModels
                 await StandbyModeOff();
             }
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -306,7 +312,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
-            await base.GoBackAsync(parameters, useModalNavigation: true);
+            await RemoveFirstPopupAsync<DuelStartingPopupView>();
 
             if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId) && SelectedBet.StandbyMode == StandbyModes.On)
             {
@@ -397,12 +403,12 @@ namespace ContestPark.Mobile.ViewModels
                 if (IsExit)
                     return;
 
-                GotoBackCommand.Execute(null);
-
-                await PushModalAsync(nameof(QuestionPopupView), new NavigationParameters
+                await NavigateToPopupAsync<QuestionPopupView>(new NavigationParameters
                 {
                     { "Question", question }
                 });
+
+                GotoBackCommand.Execute(true);
 
                 OffSignalr();
             }
@@ -537,20 +543,8 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand AnimationCommand;
 
-        private ICommand DuelOpenCommand => new Command(async () => await ExecuteDuelOpenRandomAsync());
+        private ICommand DuelOpenCommand => new CommandAsync(ExecuteDuelOpenRandomAsync);
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SelectedDuelInfo"))
-                SelectedBet = parameters.GetValue<SelectedBetModel>("SelectedDuelInfo");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

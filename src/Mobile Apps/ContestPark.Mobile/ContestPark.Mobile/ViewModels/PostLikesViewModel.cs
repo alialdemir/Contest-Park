@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Post.PostLikes;
 using ContestPark.Mobile.Services.Follow;
 using ContestPark.Mobile.Services.Post;
@@ -41,11 +42,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
+
             ServiceModel = await _postService.PostLikesAsync(postId, ServiceModel);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -85,14 +88,14 @@ namespace ContestPark.Mobile.ViewModels
         /// Profil sayfasına yönlendirir
         /// </summary>
         /// <param name="userName">Kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommand(string userName)
+        private void ExecuteGotoProfilePageCommand(string userName)
         {
             if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -109,25 +112,14 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand FollowCommand
         {
-            get { return _followCommand ?? (_followCommand = new Command<string>(async (userId) => await ExecuteFollowCommand(userId))); }
+            get { return _followCommand ?? (_followCommand = new CommandAsync<string>(ExecuteFollowCommand)); }
         }
 
         public ICommand GotoProfilePageCommand
         {
-            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName))); }
+            get { return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand)); }
         }
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

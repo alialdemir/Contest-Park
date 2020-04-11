@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.PagingModel;
@@ -88,12 +89,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
+
+            if (parameters.ContainsKey("CategoryId")) _categoryId = parameters.GetValue<short>("CategoryId");
 
             if (IsFollowingCategory)
             {
@@ -108,7 +111,7 @@ namespace ContestPark.Mobile.ViewModels
                 IsSearchFocus = true;
             }
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -134,7 +137,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
                 });
@@ -235,7 +238,10 @@ namespace ContestPark.Mobile.ViewModels
 
             Items.Clear();
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(new NavigationParameters
+            {
+                { "CategoryId", _categoryId }
+            });
 
             IsBusy = false;
         }
@@ -277,18 +283,18 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        private ICommand _SubCategoriesDisplayActionSheetCommand;
-        private ICommand gotoProfilePageCommand;
-        private ICommand pushCategoryDetailCommand;
-        private ICommand pushEnterPageCommand;
+        private ICommand _subCategoriesDisplayActionSheetCommand;
+        private ICommand _gotoProfilePageCommand;
+        private ICommand _pushCategoryDetailCommand;
+        private ICommand _pushEnterPageCommand;
 
-        private ICommand searchTextCommand;
+        private ICommand _searchTextCommand;
 
         public ICommand GotoProfilePageCommand
         {
             get
             {
-                return gotoProfilePageCommand ?? (gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommandAsync));
+                return _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommandAsync));
             }
         }
 
@@ -298,7 +304,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return _followCommand ?? (_followCommand = new Command<string>(async (userId) => await ExecuteFollowCommandAsync(userId)));
+                return _followCommand ?? (_followCommand = new CommandAsync<string>(ExecuteFollowCommandAsync));
             }
         }
 
@@ -307,7 +313,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand PushCategoryDetailCommand
         {
-            get { return pushCategoryDetailCommand ?? (pushCategoryDetailCommand = new Command<short>(async (subCategoryId) => await ExecutPushCategoryDetailCommandAsync(subCategoryId))); }
+            get { return _pushCategoryDetailCommand ?? (_pushCategoryDetailCommand = new CommandAsync<short>(ExecutPushCategoryDetailCommandAsync)); }
         }
 
         /// <summary>
@@ -315,7 +321,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand PushEnterPageCommand
         {
-            get { return pushEnterPageCommand ?? (pushEnterPageCommand = new Command<short>((subCategoryId) => ExecutPushEnterPageCommandAsync(subCategoryId))); }
+            get { return _pushEnterPageCommand ?? (_pushEnterPageCommand = new Command<short>(ExecutPushEnterPageCommandAsync)); }
         }
 
         /// <summary>
@@ -323,7 +329,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand SearchTextCommand
         {
-            get { return searchTextCommand ?? (searchTextCommand = new Command<TextChangedEventArgs>(async (e) => await ExecutSearchTextCommandAsync(e))); }
+            get { return _searchTextCommand ?? (_searchTextCommand = new CommandAsync<TextChangedEventArgs>(ExecutSearchTextCommandAsync)); }
         }
 
         public ICommand ClearSearchCommand
@@ -331,19 +337,8 @@ namespace ContestPark.Mobile.ViewModels
             get => new Command(() => Search = string.Empty);
         }
 
-        public ICommand SubCategoriesDisplayActionSheetCommand => _SubCategoriesDisplayActionSheetCommand ?? (_SubCategoriesDisplayActionSheetCommand = new Command<short>(ExecuteSubCategoriesDisplayActionSheetCommand));
+        public ICommand SubCategoriesDisplayActionSheetCommand => _subCategoriesDisplayActionSheetCommand ?? (_subCategoriesDisplayActionSheetCommand = new Command<short>(ExecuteSubCategoriesDisplayActionSheetCommand));
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("CategoryId")) _categoryId = parameters.GetValue<short>("CategoryId");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigation
     }
 }

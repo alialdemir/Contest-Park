@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Chat;
@@ -65,7 +66,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -73,7 +74,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             ServiceModel = await _chatService.UserChatList(ServiceModel);
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             //////if (!string.IsNullOrEmpty(BadgeCount))
             //////{
@@ -138,7 +139,7 @@ namespace ContestPark.Mobile.ViewModels
         /// Mesaj detayına git
         /// </summary>
         /// <param name="receiverUserId">alıcının kullanıcı id</param>
-        public async Task GotoChatDetail(long conversationId)
+        public void GotoChatDetail(long conversationId)
         {
             if (IsBusy)
                 return;
@@ -148,13 +149,13 @@ namespace ContestPark.Mobile.ViewModels
             var selectedModel = Items.FirstOrDefault(i => i.ConversationId == conversationId);
             if (selectedModel != null)
             {
-                await PushNavigationPageAsync(nameof(ChatDetailView), new NavigationParameters
+                NavigateToAsync<ChatDetailView>(new NavigationParameters
                 {
                     { "UserName", selectedModel.UserName},
                     { "FullName", selectedModel.UserFullName},
                     { "SenderUserId", selectedModel.SenderUserId},
                     {"SenderProfilePicturePath", selectedModel.UserProfilePicturePath }
-                }, useModalNavigation: false);
+                });
             }
 
             IsBusy = false;
@@ -181,17 +182,17 @@ namespace ContestPark.Mobile.ViewModels
         /// Profile sayfasına git
         /// </summary>
         /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
-        private async Task ExecuteGotoProfilePageCommand(string userName)
+        private void ExecuteGotoProfilePageCommand(string userName)
         {
             if (IsBusy || string.IsNullOrEmpty(userName))
                 return;
 
             IsBusy = true;
 
-            await PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", userName }
-                }, useModalNavigation: false);
+                });
 
             IsBusy = false;
         }
@@ -216,45 +217,27 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand _gotoProfilePageCommand;
-        private ICommand deleteItemCommand;
+        private ICommand _deleteItemCommand;
         private ICommand gotoChatDetailCommand;
 
         public ICommand DeleteItemCommand
         {
             get
             {
-                return deleteItemCommand ?? (deleteItemCommand = new Command<long>(async (conversationId) => await ExecuteDeleteItemCommandAsync(conversationId)));
+                return _deleteItemCommand ?? (_deleteItemCommand = new CommandAsync<long>(ExecuteDeleteItemCommandAsync));
             }
         }
 
         public ICommand GotoChatDetailCommand
         {
-            get { return gotoChatDetailCommand ?? (gotoChatDetailCommand = new Command<long>(async (conversationId) => await GotoChatDetail(conversationId))); }
+            get { return gotoChatDetailCommand ?? (gotoChatDetailCommand = new Command<long>(GotoChatDetail)); }
         }
 
         public ICommand GotoProfilePageCommand =>
-            _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(async (userName) => await ExecuteGotoProfilePageCommand(userName)));
+            _gotoProfilePageCommand ?? (_gotoProfilePageCommand = new Command<string>(ExecuteGotoProfilePageCommand));
 
-        public ICommand UserChatVisibilityCountCommand => new Command(async () => await UserChatVisibilityCountCommandAsync());
+        public ICommand UserChatVisibilityCountCommand => new CommandAsync(UserChatVisibilityCountCommandAsync);
 
         #endregion Commands
-
-        #region Navigation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (IsInitialized)
-                return;
-
-            InitializeCommand.Execute(null);
-            IsInitialized = true;
-        }
-
-        public override void OnNavigatingTo(INavigationParameters parameters)
-        {
-            // tabs sayfalarında ilk açılışta tüm dataları çekmesin sayfaya gelirse çeksin diye base methodu ezdik
-        }
-
-        #endregion Navigation
     }
 }

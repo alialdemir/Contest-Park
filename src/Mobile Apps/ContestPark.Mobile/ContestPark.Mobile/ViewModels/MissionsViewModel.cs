@@ -1,12 +1,13 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Mission;
 using ContestPark.Mobile.Services.Mission;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -47,7 +48,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -64,7 +65,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ServiceModel = missionListModel;
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
             IsBusy = false;
         }
 
@@ -128,7 +129,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand TakesTaskGoldCommand
         {
-            get { return _takesTaskGoldCommand ?? (_takesTaskGoldCommand = new Command<short>(async (missionId) => { await ExecuteTakesTaskGoldCommandAsync(missionId); })); }
+            get { return _takesTaskGoldCommand ?? (_takesTaskGoldCommand = new CommandAsync<short>(ExecuteTakesTaskGoldCommandAsync)); }
         }
 
         #endregion Command

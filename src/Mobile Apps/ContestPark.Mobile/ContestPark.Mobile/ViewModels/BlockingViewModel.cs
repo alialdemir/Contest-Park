@@ -1,13 +1,14 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Blocking;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 using Prism.Services;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -35,7 +36,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -44,7 +45,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ServiceModel = await _blockingService.BlockingList(ServiceModel);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -94,7 +95,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return _blockingProgressCommand ?? (_blockingProgressCommand = new Command<string>(async (userId) => await ExecuteBlockingProgressCommand(userId)));
+                return _blockingProgressCommand ?? (_blockingProgressCommand = new CommandAsync<string>(ExecuteBlockingProgressCommand));
             }
         }
 

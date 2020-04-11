@@ -124,8 +124,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("SmsInfo"))
+                SmsInfo = parameters.GetValue<SmsInfoModel>("SmsInfo");
+
             if (SmsInfo.PhoneNumber.StartsWith("5454"))
             {
                 Code1 = 5;
@@ -136,7 +139,7 @@ namespace ContestPark.Mobile.ViewModels
 
             SendSmsCommand.Execute(null);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -153,6 +156,8 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
+
             ResponseModel<UserNameModel> response = await _notificationService.CheckSmsCode(new SmsModel
             {
                 Code = Convert.ToInt32($"{Code1}{Code2}{Code3}{Code4}"),
@@ -163,6 +168,9 @@ namespace ContestPark.Mobile.ViewModels
                 await DisplayAlertAsync(string.Empty,
                                         ContestParkResources.IncorrectSMSCode,
                                         ContestParkResources.Okay);
+
+                UserDialogs.Instance.HideLoading();
+
                 return;
             }
 
@@ -180,10 +188,12 @@ namespace ContestPark.Mobile.ViewModels
 
             GotoBackCommand.Execute(true);
 
-            await PushModalAsync(nameof(SignUpFullNameView), new NavigationParameters
+            await NavigateToPopupAsync<SignUpFullNameView>(new NavigationParameters
             {
                 { "PhoneNumber", SmsInfo.PhoneNumber }
             });
+
+            UserDialogs.Instance.HideLoading();
         }
 
         /// <summary>
@@ -192,8 +202,6 @@ namespace ContestPark.Mobile.ViewModels
         /// <returns>Login başarılı ise true değilse false</returns>
         private async Task<bool> Login(string userName)
         {
-            UserDialogs.Instance.ShowLoading("", MaskType.Black);
-
             if (!string.IsNullOrEmpty(userName))
             {
                 await SignInAsync(userName);
@@ -233,7 +241,7 @@ namespace ContestPark.Mobile.ViewModels
                     _settingsService.RefreshCurrentUser(currentUser);
                 }
 
-                await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
+                await NavigateToInitialized<AppShell>();
             }
 
             UserDialogs.Instance.HideLoading();
@@ -297,17 +305,5 @@ namespace ContestPark.Mobile.ViewModels
         public ICommand SendSmsCommand => new Command(ExecuteSendSmsCommand);
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("SmsInfo"))
-                SmsInfo = parameters.GetValue<SmsInfoModel>("SmsInfo");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

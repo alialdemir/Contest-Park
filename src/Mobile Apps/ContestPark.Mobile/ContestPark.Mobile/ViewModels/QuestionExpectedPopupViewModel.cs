@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
+using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -47,7 +48,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navgation
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SubcategoryName"))
                 SubcategoryName = parameters.GetValue<string>("SubcategoryName");
@@ -58,7 +59,7 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("RoundCount"))
                 RoundCount = parameters.GetValue<byte>("RoundCount");
 
-            base.OnNavigatedTo(parameters);
+            return base.InitializeAsync(parameters);
         }
 
         #endregion Navgation

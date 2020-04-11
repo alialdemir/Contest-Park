@@ -1,7 +1,7 @@
-﻿using ContestPark.Mobile.Models;
+﻿using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Base;
 using ContestPark.Mobile.Models.ServiceModel;
-using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using Prism.Navigation;
 using Prism.Services;
@@ -80,7 +80,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
         /// </summary>
         /// <returns></returns>
-        protected virtual Task InitializeAsync()
+        protected virtual Task InitializeAsync(INavigationParameters parameters = null)
         {
             return Task.CompletedTask;
         }
@@ -133,7 +133,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             return _navigationService?.GoBackAsync(parameters, useModalNavigation);
         }
 
-        public virtual void OnNavigatedFrom(INavigationParameters parameters)
+        public void OnNavigatedFrom(INavigationParameters parameters)
         {
         }
 
@@ -144,50 +144,44 @@ namespace ContestPark.Mobile.ViewModels.Base
 
             Device.BeginInvokeOnMainThread(() =>// UI thread kitlememesi için mainthread üzerinden initialize ettik
             {
-                InitializeCommand.Execute(null);
+                if (parameters == null)
+                    parameters = new NavigationParameters();
+
+                InitializeCommand.Execute(parameters);
                 IsInitialized = true;
             });
         }
 
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
+        public Task NavigateToPopupAsync<TViewModel>(INavigationParameters parameters = null)
         {
-        }
-
-        public Task PushModalAsync(string name, INavigationParameters parameters = null)
-        {
+            string name = typeof(TViewModel).Name;
             if (string.IsNullOrEmpty(name))
                 return Task.CompletedTask;
 
             return PushNavigationPageAsync(name, parameters, useModalNavigation: true);
         }
 
-        public Task PushNavigationPageAsync(string name, INavigationParameters parameters = null, bool? useModalNavigation = false)
+        public Task NavigateToAsync<TView>(INavigationParameters parameters = null) where TView : ContentPage
+        {
+            string name = typeof(TView).Name;
+            if (string.IsNullOrEmpty(name) || _navigationService == null)
+                return Task.CompletedTask;
+
+            return PushNavigationPageAsync(name, parameters, useModalNavigation: false);
+        }
+
+        public Task NavigateToInitialized<TView>()
+        {
+            string name = typeof(TView).Name;
+            return PushNavigationPageAsync($"app:///{name}?appModuleRefresh=OnInitialized");
+        }
+
+        private Task PushNavigationPageAsync(string name, INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             if (string.IsNullOrEmpty(name) || _navigationService == null)
                 return Task.CompletedTask;
 
             return _navigationService.NavigateAsync(name, parameters, useModalNavigation);
-        }
-
-        public Task PushPopupPageAsync(PopupPage page)
-        {
-            if (page == null || _popupNavigation == null)
-                return Task.CompletedTask;
-            // TODO: burada IPopupNavigation kullanmak yerine INavigationService ile popup açabiliyoruz ancak prism popup bug varmış o güncellendikten sonra IPopupNavigation iptal edilmeli: link: https://github.com/dansiegel/Prism.Plugin.Popups/pull/136
-            return _popupNavigation.PushAsync(page);
-        }
-
-        public Task RemoveFirstPopupAsync()
-        {
-            if (_popupNavigation == null || !_popupNavigation.PopupStack.Any())
-                return Task.CompletedTask;
-
-            PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault();
-
-            if (popupPage == null)
-                return Task.CompletedTask;
-
-            return RemovePopupPageAsync(popupPage);
         }
 
         public string CurrentPopupName()
@@ -202,21 +196,16 @@ namespace ContestPark.Mobile.ViewModels.Base
             return popupPage.GetType().Name;
         }
 
-        public Task RemovePopupPageAsync(PopupPage popupPage)
+        public Task RemoveFirstPopupAsync<TView>()
         {
-            try
-            {
-                if (popupPage == null)
-                    return Task.CompletedTask;
+            if (_popupNavigation == null || !_popupNavigation.PopupStack.Any(page => page.GetType() == typeof(TView)))
+                return Task.CompletedTask;
 
-                return _popupNavigation?.RemovePageAsync(popupPage);
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
+            PopupPage popupPage = _popupNavigation.PopupStack.FirstOrDefault(page => page.GetType() == typeof(TView));
+            if (popupPage == null)
+                return Task.CompletedTask;
 
-            return Task.CompletedTask;
+            return _popupNavigation?.RemovePageAsync(popupPage);
         }
 
         #endregion Navigations
@@ -234,7 +223,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <summary>
         /// Veri yükle command
         /// </summary>
-        public ICommand InitializeCommand => new Command(async () => await InitializeAsync());
+        public ICommand InitializeCommand => new CommandAsync<INavigationParameters>(InitializeAsync);
 
         #endregion Commands
     }
@@ -266,14 +255,14 @@ namespace ContestPark.Mobile.ViewModels.Base
         #region Virtual methods
 
         protected ServiceModel<TModel> _serviceModel;
-        private ObservableRangeCollection<TModel> items;
+        private ObservableRangeCollection<TModel> _items;
 
         /// <summary>
         /// Listview içerisine bind edilecek liste
         /// </summary>
         public ObservableRangeCollection<TModel> Items
         {
-            get { return items ?? (items = new ObservableRangeCollection<TModel>()); }
+            get { return _items ?? (_items = new ObservableRangeCollection<TModel>()); }
         }
 
         public ServiceModel<TModel> ServiceModel
@@ -295,7 +284,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
         /// </summary>
         /// <returns></returns>
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters)
         {
             if (ServiceModel.PageNumber == 1)
                 Items.Clear();// Skeleton dataları silindi
@@ -314,7 +303,7 @@ namespace ContestPark.Mobile.ViewModels.Base
 
             IsRefreshing = false;
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -334,7 +323,7 @@ namespace ContestPark.Mobile.ViewModels.Base
                 _serviceModel.PageNumber = 1;
             }
 
-            InitializeCommand.Execute(null);
+            InitializeCommand.Execute(new NavigationParameters());
         }
 
         #endregion Virtual methods
@@ -354,7 +343,7 @@ namespace ContestPark.Mobile.ViewModels.Base
                         return;
 
                     if (Items.LastOrDefault().Equals(currentItem))
-                        InitializeCommand.Execute(null);
+                        InitializeCommand.Execute(new NavigationParameters());
                 });
             }
         }

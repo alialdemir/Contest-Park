@@ -3,8 +3,8 @@
     x:Class="ContestPark.Mobile.Views.ChatView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
-    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -12,20 +12,20 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Converter:NegativeBooleanConverter x:Key="not" />
-            <Converter:DateTimeMomentConverter x:Key="moment" />
+            <converter:NegativeBooleanConverter x:Key="not" />
+            <converter:DateTimeMomentConverter x:Key="moment" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Components:NonPersistentSelectedItemListView
+        <components:NonPersistentSelectedItemListView
             x:Name="lstChat"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewOnlyFooter}">
-            <Components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Components:ListItemView
+                        <components:ListItemView
                             AutomationId="lstViewChat"
                             CommandParameter="{Binding ConversationId}"
                             Date="{Binding Date, Converter={StaticResource moment}}"
@@ -38,14 +38,14 @@
                             UserName="{Binding UserName}" />
                     </ViewCell>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.ItemTemplate>
-            <Components:NonPersistentSelectedItemListView.FooterTemplate>
+            </components:NonPersistentSelectedItemListView.ItemTemplate>
+            <components:NonPersistentSelectedItemListView.FooterTemplate>
                 <DataTemplate>
                     <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstChat}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
                         <Label Style="{StaticResource EmptyModel}" Text="{i18n:Translate MessageYourListIsEmpty}" />
                     </yummy:PancakeView>
                 </DataTemplate>
-            </Components:NonPersistentSelectedItemListView.FooterTemplate>
-        </Components:NonPersistentSelectedItemListView>
+            </components:NonPersistentSelectedItemListView.FooterTemplate>
+        </components:NonPersistentSelectedItemListView>
     </ContentPage.Content>
 </ContentPage>

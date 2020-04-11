@@ -33,7 +33,7 @@
                 HorizontalOptions="End"
                 VerticalOptions="Start">
                 <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ClosePopupCommand, Source={x:Reference photoModalViewPage}}" />
+                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference photoModalViewPage}}" CommandParameter="{StaticResource True}" />
                 </Image.GestureRecognizers>
                 <Image.Source>
                     <FontImageSource
@@ -45,10 +45,10 @@
             </Image>
 
             <cards:CoverFlowView
-                x:Name="listPictures"
                 Grid.Row="1"
                 HorizontalOptions="FillAndExpand"
                 IsCyclical="false"
+                ItemsSource="{Binding Items}"
                 PositionShiftValue="100"
                 SelectedIndex="{Binding SelectedIndex}"
                 VerticalOptions="FillAndExpand">

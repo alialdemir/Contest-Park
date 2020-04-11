@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.PageNavigation;
@@ -79,8 +80,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (parameters.ContainsKey("InviteModel"))
+                InviteModel = parameters.GetValue<InviteModel>("InviteModel");
+
             Device.StartTimer(new TimeSpan(0, 0, 0, 0, 100), () =>
                {
                    if (IsExit)
@@ -94,7 +98,7 @@ namespace ContestPark.Mobile.ViewModels
                    return Timer > 0;
                });
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -122,7 +126,7 @@ namespace ContestPark.Mobile.ViewModels
                 StandbyMode = DuelStartingPopupViewModel.StandbyModes.Invited,
             };
 
-            await PushModalAsync(nameof(DuelStartingPopupView), new NavigationParameters
+            await NavigateToPopupAsync<DuelStartingPopupView>(new NavigationParameters
             {
                 { "SelectedDuelInfo", selectedBet }
             });
@@ -161,20 +165,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        public ICommand AcceptDuelInviteCommand { get { return new Command(async () => await ExecuteAcceptDuelInviteCommand()); } }
+        public ICommand AcceptDuelInviteCommand { get { return new CommandAsync(ExecuteAcceptDuelInviteCommand); } }
 
         #endregion Commands
-
-        #region Navgation
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("InviteModel"))
-                InviteModel = parameters.GetValue<InviteModel>("InviteModel");
-
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navgation
     }
 }

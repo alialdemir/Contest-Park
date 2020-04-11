@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Blocking;
@@ -24,10 +25,10 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variable
 
         public readonly ISettingsService _settingsService;
-        private readonly IBlockingService _blockingService;
-        private readonly IEventAggregator _eventAggregator;
-        private readonly IChatService _chatService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IBlockingService _blockingService;
+        private readonly IChatService _chatService;
+        private readonly IEventAggregator _eventAggregator;
         private string _fullName, _userName;
         // private readonly IChatsSignalRService _chatsSignalRService;
 
@@ -129,16 +130,23 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
+            if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
+            if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");
+            if (parameters.ContainsKey("SenderUserId")) SenderUserId = parameters.GetValue<string>("SenderUserId");
+            if (parameters.ContainsKey("SenderProfilePicturePath")) SenderProfilePicturePath = parameters.GetValue<string>("SenderProfilePicturePath");
+
+            StartHub();
+
             ServiceModel = await _chatService.ChatDetailAsync(SenderUserId, ServiceModel);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             ListViewScrollToBottomCommand?.Execute(ServiceModel.PageNumber == 1 ? Items.Count - 1 : Items.Count / 3);
 
@@ -265,10 +273,10 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            PushNavigationPageAsync(nameof(ProfileView), new NavigationParameters
+            NavigateToAsync<ProfileView>(new NavigationParameters
                 {
                     {"UserName", _userName }
-                }, useModalNavigation: true);
+                });
 
             IsBusy = false;
         }
@@ -335,35 +343,35 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Commands
 
-        private ICommand blockingProgressCommand;
+        private ICommand _blockingProgressCommand;
 
         /// <summary>
         /// Sohbet ayaralrı toolbaritem command
         /// </summary>
-        private ICommand chatSettingsCommand;
+        private ICommand _chatSettingsCommand;
 
-        private ICommand deleteMessageCommand;
+        private ICommand _deleteMessageCommand;
 
-        private ICommand gotoProfileCommand;
+        private ICommand _gotoProfileCommand;
 
-        private ICommand sendMessageCommand;
+        private ICommand _sendMessageCommand;
 
         /// <summary>
         /// Engelleme işlemi command
         /// </summary>
         public ICommand BlockingProgressCommand
         {
-            get { return blockingProgressCommand ?? (blockingProgressCommand = new Command<bool>(async (isBlocking) => await ExecuteBlockingProgressCommandAsync(isBlocking))); }
+            get { return _blockingProgressCommand ?? (_blockingProgressCommand = new CommandAsync<bool>(ExecuteBlockingProgressCommandAsync)); }
         }
 
         public ICommand ChatSettingsCommand
         {
-            get { return chatSettingsCommand ?? (chatSettingsCommand = new Command(async () => await ExecuteChatSettingsCommandAsync())); }
+            get { return _chatSettingsCommand ?? (_chatSettingsCommand = new CommandAsync(ExecuteChatSettingsCommandAsync)); }
         }
 
         public ICommand DeleteMessageCommand
         {
-            get { return deleteMessageCommand ?? (deleteMessageCommand = new Command(async () => await ExecuteDeleteMessageCommandAsync())); }
+            get { return _deleteMessageCommand ?? (_deleteMessageCommand = new CommandAsync(ExecuteDeleteMessageCommandAsync)); }
         }
 
         public ICommand EditorFocusCommand { get; set; }
@@ -373,7 +381,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand GotoProfileCommand
         {
-            get { return gotoProfileCommand ?? (gotoProfileCommand = new Command(() => ExecuteGotoProfilePageCommand())); }
+            get { return _gotoProfileCommand ?? (_gotoProfileCommand = new Command(ExecuteGotoProfilePageCommand)); }
         }
 
         /// <summary>
@@ -386,24 +394,9 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public ICommand SendMessageCommand
         {
-            get { return sendMessageCommand ?? (sendMessageCommand = new Command(async () => await ExecuteSendMessageCommand())); }
+            get { return _sendMessageCommand ?? (_sendMessageCommand = new CommandAsync(ExecuteSendMessageCommand)); }
         }
 
         #endregion Commands
-
-        #region Navigations
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
-            if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");
-            if (parameters.ContainsKey("SenderUserId")) SenderUserId = parameters.GetValue<string>("SenderUserId");
-            if (parameters.ContainsKey("SenderProfilePicturePath")) SenderProfilePicturePath = parameters.GetValue<string>("SenderProfilePicturePath");
-
-            StartHub();
-            base.OnNavigatedTo(parameters);
-        }
-
-        #endregion Navigations
     }
 }

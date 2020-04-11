@@ -20,7 +20,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             var items = new List<CountryModel>
             {
@@ -1608,7 +1608,7 @@ namespace ContestPark.Mobile.ViewModels
                    .ToList()
             };
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         #endregion Methods

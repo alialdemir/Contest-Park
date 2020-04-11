@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -8,7 +9,6 @@ using Prism.Navigation;
 using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -57,7 +57,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Sayfa açılınca bakiye bilgisini getirir
         /// </summary>
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             await GetBalanceAsync();
 
@@ -92,7 +92,7 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            await PushNavigationPageAsync(nameof(IbanNoView));
+            await NavigateToAsync<IbanNoView>();
         }
 
         #endregion Methods
@@ -101,7 +101,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand BalanceCommand
         {
-            get { return new Command(async () => await ExecuteBalanceCommand()); }
+            get { return new CommandAsync(ExecuteBalanceCommand); }
         }
 
         #endregion Commands

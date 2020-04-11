@@ -119,7 +119,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync()
+        protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -143,7 +143,7 @@ namespace ContestPark.Mobile.ViewModels
             //TODO: Kategorileri sayfala
             ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel, IsRefreshing);
 
-            await base.InitializeAsync();
+            await base.InitializeAsync(parameters);
 
             IsBusy = false;
         }
@@ -173,10 +173,10 @@ namespace ContestPark.Mobile.ViewModels
                 _analyticsService.SendEvent("Kategori", "Tümünü Gör", subCategoryName);
             }
 
-            PushNavigationPageAsync($"{nameof(SearchView)}", new NavigationParameters
+            NavigateToAsync<SearchView>(new NavigationParameters
                                                 {
                                                     { "CategoryId", categoryId }
-                                                }, useModalNavigation: false);
+                                                });
 
             IsBusy = false;
         }
@@ -234,7 +234,7 @@ namespace ContestPark.Mobile.ViewModels
                 && popupName != nameof(QuestionExpectedPopupView)
                 && popupName != nameof(AcceptDuelInvitationPopupView))
             {
-                PushModalAsync(nameof(AcceptDuelInvitationPopupView), new NavigationParameters
+                NavigateToPopupAsync<AcceptDuelInvitationPopupView>(new NavigationParameters
                 {
                     { "InviteModel", (InviteModel)sender }
                 });
@@ -289,7 +289,7 @@ namespace ContestPark.Mobile.ViewModels
 
                     IsBusy = true;
 
-                    PushNavigationPageAsync(nameof(NotificationView));
+                    NavigateToAsync<NotificationView>();
 
                     IsBusy = false;
                 });
@@ -308,7 +308,7 @@ namespace ContestPark.Mobile.ViewModels
                     IsBusy = true;
 
                     if (_settingsService.CurrentUser.UserId != "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
-                        PushNavigationPageAsync(nameof(InviteView));
+                        NavigateToAsync<InviteView>();
                     else
                         _gameService.SubCategoryShare();
 
@@ -365,7 +365,7 @@ namespace ContestPark.Mobile.ViewModels
                     RewardModel giftGold = await _balanceService.RewardAsync();
                     if (giftGold.Amount > 0)
                     {
-                        await PushModalAsync(nameof(GiftGoldPopupView), new NavigationParameters
+                        await NavigateToPopupAsync<GiftGoldPopupView>(new NavigationParameters
                         {
                             { "RewardModel", giftGold }
                         });

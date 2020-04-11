@@ -25,13 +25,11 @@ namespace ContestPark.Mobile.Components
         public CachedImage()
         {
             RetryCount = 0;
-            //Aspect = Aspect.AspectFill;
             DownsampleToViewSize = false;
             DownsampleUseDipUnits = false;
             HorizontalOptions = LayoutOptions.Center;
             VerticalOptions = LayoutOptions.Center;
             CacheDuration = new TimeSpan(0, 1, 0, 0);
-            //CacheType = FFImageLoading.Cache.CacheType.Memory;
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) => Command?.Execute(CommandParameter);
             GestureRecognizers.Add(tapGestureRecognizer);
@@ -41,7 +39,7 @@ namespace ContestPark.Mobile.Components
         {
             if (IsLoadingPlaceholder)
             {
-                LoadingPlaceholder = ImageSource.FromFile(DefaultImages.DefaultProfilePicture);
+                LoadingPlaceholder = ImageSource.FromUri(new Uri(DefaultImages.DefaultProfilePicture));
             }
 
             base.OnBindingContextChanged();

@@ -12,7 +12,6 @@ using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -58,24 +57,22 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// The InitializeAsync
         /// </summary>
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return Task.CompletedTask;
 
             IsBusy = true;
 
-            ICommand pushPageCommand = new Command<string>(async (pageName) => await ExecutePushPageCommand(pageName));
             ServiceModel.Items = new List<MenuItemList>()
             {
                 new MenuItemList(ContestParkResources.AppSettings)
                                 {
                                     new TextMenuItem {
-                                        CommandParameter = nameof(LanguageView),
                                         Icon = ContestParkIcon.LanguageSettings,
                                         Title = ContestParkResources.Language,
                                         MenuType = MenuTypes.Label,
-                                        SingleTap = pushPageCommand
+                                        SingleTap = new Command(() =>  ExecutePushPageCommand<LanguageView>())
                                     },
                                     new SwitchMenuItem {
                                         Icon = ContestParkIcon.SoundSettings,
@@ -90,18 +87,16 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.AccountSettings)
                                     {
                                     new TextMenuItem {
-                                        CommandParameter = nameof(AccountSettingsView),
                                         Icon = ContestParkIcon.AccountSettings,
                                         Title = ContestParkResources.EditProfile,
                                         MenuType = MenuTypes.Label,
-                                        SingleTap = pushPageCommand
+                                        SingleTap = new Command(() =>  ExecutePushPageCommand<AccountSettingsView>())
                                     },
                                     new TextMenuItem {
-                                        CommandParameter = nameof(BlockingView),
                                         Icon = ContestParkIcon.BlockedSettings,
                                         Title = ContestParkResources.Blocking,
                                         MenuType = MenuTypes.Label,
-                                        SingleTap = pushPageCommand
+                                        SingleTap = new Command(() =>  ExecutePushPageCommand<BlockingView>())
                                     },
                                     new SwitchMenuItem {
                                         Icon = ContestParkIcon.PrivateProfileSettings,
@@ -127,7 +122,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = false;
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -172,16 +167,17 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="name"></param>
         /// <returns>The <see cref="Task"/></returns>
-        private async Task ExecutePushPageCommand(string name)
+        private void ExecutePushPageCommand<TViewModel>() where TViewModel : ContentPage
         {
-            if (string.IsNullOrEmpty(name) || IsBusy)
+            if (IsBusy)
                 return;
 
             IsBusy = true;
 
+            string name = typeof(TViewModel).Name;
             _analyticsService.SendEvent("Ayarlar", "Tıklama", name);
 
-            await PushNavigationPageAsync(name);
+            NavigateToAsync<TViewModel>();
 
             IsBusy = false;
         }
@@ -200,7 +196,7 @@ namespace ContestPark.Mobile.ViewModels
 
             await _identityService.Unauthorized();
 
-            await PushNavigationPageAsync($"app:///{nameof(PhoneNumberView)}?appModuleRefresh=OnInitialized");
+            await NavigateToInitialized<PhoneNumberView>();
 
             UserDialogs.Instance.HideLoading();
 

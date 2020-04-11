@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.SkeletonLoadingConverter"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"

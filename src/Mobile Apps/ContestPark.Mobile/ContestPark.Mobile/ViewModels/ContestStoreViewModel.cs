@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.InAppBillingProduct;
 using ContestPark.Mobile.Services.AdMob;
@@ -10,6 +11,7 @@ using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
+using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
@@ -77,7 +79,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return Task.CompletedTask;
@@ -90,7 +92,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = false;
 
-            return Task.CompletedTask;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -249,12 +251,12 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand PurchaseCommand
         {
-            get { return _purchaseCommand ?? (_purchaseCommand = new Command<string>(async (productId) => await ExecutePurchaseCommandAsync(productId))); }
+            get { return _purchaseCommand ?? (_purchaseCommand = new CommandAsync<string>(ExecutePurchaseCommandAsync)); }
         }
 
         public ICommand WatchAdsVideoCommand
         {
-            get { return _watchAdsVideoCommand ?? (_watchAdsVideoCommand = new Command(() => ExecuteWatchAdsVideoCommand())); }
+            get { return _watchAdsVideoCommand ?? (_watchAdsVideoCommand = new Command(ExecuteWatchAdsVideoCommand)); }
         }
 
         public ICommand ChangeBalanceType

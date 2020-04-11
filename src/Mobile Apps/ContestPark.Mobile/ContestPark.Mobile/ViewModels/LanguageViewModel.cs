@@ -3,6 +3,7 @@ using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Extensions;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Identity;
@@ -48,7 +49,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync()
+        protected override Task InitializeAsync(INavigationParameters parameters = null)
         {
             bool isTurkish = _settingsService.CurrentUser.Language == Languages.Turkish;
 
@@ -74,7 +75,7 @@ namespace ContestPark.Mobile.ViewModels
                                 },
             };
 
-            return base.InitializeAsync();
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -132,7 +133,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _cacheService.EmptyAll();
 
-            await PushNavigationPageAsync($"app:///{nameof(AppShell)}?appModuleRefresh=OnInitialized");
+            await NavigateToInitialized<AppShell>();
 
             UserDialogs.Instance.HideLoading();
 
@@ -160,7 +161,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand ChangeLanguageCommand
         {
-            get { return _changeLanguageCommand ?? (_changeLanguageCommand = new Command<Languages>(async (language) => await ExecuteChangeLanguageCommand(language))); }
+            get { return _changeLanguageCommand ?? (_changeLanguageCommand = new CommandAsync<Languages>(ExecuteChangeLanguageCommand)); }
         }
 
         #endregion Commands
