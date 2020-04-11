@@ -26,7 +26,7 @@ steps:
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: 'distribution.cer'
-    certPwd: '19931993**Ali'
+    certPwd: '1234'
     keychain: 'temp'
 
 - task: InstallAppleProvisioningProfile@1
