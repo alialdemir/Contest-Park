@@ -24,6 +24,14 @@ steps:
     projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
     outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
     configuration: '$(buildConfiguration)'
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
+    apksignerKeystoreFile: 'myRelease.keystore'
+    apksignerKeystorePassword: '$(KeyStorePassword)'
+    apksignerKeystoreAlias: '$(KeyStoreAlias)'
+    apksignerKeyPassword: '$(KeyStorePassword)'
+    apksignerArguments: '--verbose -sigalg MD5withRSA -digestalg SHA1'
 
 - task: PublishBuildArtifacts@1
   inputs:
