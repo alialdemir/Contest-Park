@@ -196,6 +196,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            httpClient.Timeout = TimeSpan.FromMinutes(10);// Ios in app purche token göndermesi uzun sürüyor bu yüzden ekledim
+
             if (_settingsService != null)
             {
                 httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(_settingsService.CurrentUser.Language.ToLanguageCode()));

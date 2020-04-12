@@ -83,12 +83,6 @@ namespace ContestPark.Mobile.Services.Cp
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Purchase");
 
             var result = await _requestProvider.PostAsync<string>(uri, purchase);
-            if (!result.IsSuccess && result.Error != null)
-            {
-                await _pageDialogService?.DisplayAlertAsync("",
-                                                            result.Error.ErrorMessage,
-                                                            ContestParkResources.Okay);
-            }
 
             return result.IsSuccess;
         }

@@ -336,6 +336,28 @@ namespace ContestPark.Balance.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Purchase([FromBody]PurchaseModel purchase)
         {
+            if (purchase == null)
+            {
+                Logger.LogInformation("Satın alma bilgileri boş geldi. {UserId}", UserId);
+
+                return BadRequest();
+            }
+
+            if (purchase == null
+                || string.IsNullOrEmpty(purchase.PackageName)
+                || string.IsNullOrEmpty(purchase.ProductId)
+                || string.IsNullOrEmpty(purchase.Token)
+                || (!purchase.Platform.HasFlag(Platforms.Android) || !purchase.Platform.HasFlag(Platforms.Ios)))
+            {
+                Logger.LogError($@"Paket satın alma bilgiler boş geldi... UserId: {UserId}
+                                                                          PackageName: {purchase.PackageName}
+                                                                          Platform: {purchase.Platform}
+                                                                          ProductId: {purchase.ProductId}
+                                                                          Token: {purchase.Token}");
+
+                return BadRequest();
+            }
+
             Logger.LogError($@"Paket yükleme isteği geldi... UserId: {UserId}
                                                              PackageName: {purchase.PackageName}
                                                              Platform: {purchase.Platform}

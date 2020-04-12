@@ -145,6 +145,14 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
+            Microsoft.AppCenter.Analytics
+            .Analytics.TrackEvent("Token", new Dictionary<string, string>
+            {
+                {"PurchaseToken", purchaseInfo.PurchaseToken },
+                {"ProductId", purchaseInfo.ProductId },
+                {"State", purchaseInfo.State.ToString() },
+            });
+
             bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
             {
                 ProductId = purchaseInfo.ProductId,
