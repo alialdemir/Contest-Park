@@ -2033,6 +2033,24 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Write a new comment.
+        /// </summary>
+        public static string WriteANewComment {
+            get {
+                return ResourceManager.GetString("WriteANewComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write a new message.
+        /// </summary>
+        public static string WriteANewMessage {
+            get {
+                return ResourceManager.GetString("WriteANewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter your username or e-mail address..
         /// </summary>
         public static string WriteYourUserNameOrEmailAddress {

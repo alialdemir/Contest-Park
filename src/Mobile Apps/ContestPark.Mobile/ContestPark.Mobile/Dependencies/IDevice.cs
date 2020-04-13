@@ -7,5 +7,7 @@ namespace ContestPark.Mobile.Dependencies
         DeviceHelper GeScreenSize();
 
         string GetIdentifier();
+
+        void DismissKeyboard();
     }
 }

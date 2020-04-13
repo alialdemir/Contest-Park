@@ -3,9 +3,11 @@
     x:Class="ContestPark.Mobile.Views.PostDetailView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="postDetailPage"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -61,14 +63,20 @@
                     Grid.Column="0"
                     AutoSize="TextChanges"
                     AutomationId="txtChatbox"
-                    Completed="txtChatbox_Completed"
+                    BackgroundColor="{StaticResource White}"
                     Focused="TxtChatbox_Focused"
                     HorizontalOptions="FillAndExpand"
                     Keyboard="Chat"
                     MaxLength="140"
+                    Placeholder="{i18n:Translate WriteANewComment}"
+                    PlaceholderColor="#181C2F"
                     Text="{Binding Message}"
                     TextColor="#7b7b7b"
-                    VerticalOptions="FillAndExpand" />
+                    VerticalOptions="FillAndExpand">
+                    <Editor.Behaviors>
+                        <behaviors:EventToCommandBehavior Command="{Binding SendCommentCommand}" EventName="Completed" />
+                    </Editor.Behaviors>
+                </Editor>
 
                 <ffimageloadingsvg:SvgCachedImage
                     x:Name="btnBtnSendMessage"

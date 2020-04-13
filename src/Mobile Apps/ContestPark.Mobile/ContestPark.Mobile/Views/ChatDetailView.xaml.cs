@@ -1,6 +1,5 @@
 ﻿using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.ViewModels;
-using System;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -58,18 +57,6 @@ namespace ContestPark.Mobile.Views
 
             if (ViewModel.Items.FirstOrDefault().Equals(currentItem))
                 ViewModel.InitializeCommand.Execute(null);
-        }
-
-        /// <summary>
-        /// Mesaj gönder
-        /// </summary>
-        /// <param name="sender">Entry objesi</param>
-        /// <param name="e">EventArgs</param>
-        private void txtChatbox_Completed(object sender, EventArgs e)
-        {
-            txtChatbox.Focus();
-
-            ViewModel.SendMessageCommand.Execute(null);
         }
 
         /// <summary>

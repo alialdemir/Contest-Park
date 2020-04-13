@@ -3,9 +3,11 @@
     x:Class="ContestPark.Mobile.Views.ChatDetailView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:chatDetail="clr-namespace:ContestPark.Mobile.Components.ChatDetail"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -93,18 +95,21 @@
                         AutoSize="TextChanges"
                         AutomationId="txtChatbox"
                         BackgroundColor="{StaticResource White}"
-                        Completed="txtChatbox_Completed"
                         Focused="TxtChatbox_Focused"
                         FontFamily="{StaticResource SofiaProRegular}"
                         FontSize="14"
                         HorizontalOptions="FillAndExpand"
                         Keyboard="Chat"
                         MaxLength="140"
-                        Placeholder="Write a new message"
+                        Placeholder="{i18n:Translate WriteANewMessage}"
                         PlaceholderColor="#181C2F"
                         Text="{Binding Message}"
                         TextColor="#7b7b7b"
-                        VerticalOptions="FillAndExpand" />
+                        VerticalOptions="FillAndExpand">
+                        <Editor.Behaviors>
+                            <behaviors:EventToCommandBehavior Command="{Binding SendMessageCommand}" EventName="Completed" />
+                        </Editor.Behaviors>
+                    </Editor>
 
                     <ffimageloadingsvg:SvgCachedImage
                         x:Name="btnBtnSendMessage"

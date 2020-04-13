@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.User;
@@ -162,6 +163,13 @@ namespace ContestPark.Mobile.ViewModels
             Message = string.Empty;
 
             IsBusy = false;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            Xamarin.Forms.DependencyService.Get<IDevice>().DismissKeyboard();
+
+            return base.GoBackAsync(parameters, useModalNavigation);
         }
 
         #endregion Methods

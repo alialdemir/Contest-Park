@@ -845,4 +845,10 @@
   <data name="YouMustChooseAtLeastThreeCategories" xml:space="preserve">
     <value>You must choose at least three categories.</value>
   </data>
+  <data name="WriteANewMessage" xml:space="preserve">
+    <value>Write a new message</value>
+  </data>
+  <data name="WriteANewComment" xml:space="preserve">
+    <value>Write a new comment</value>
+  </data>
 </root>

@@ -104,6 +104,9 @@
                     <Entry.Behaviors>
                         <behavior:MaskedBehavior Mask="(XXX) XXX-XX-XX" />
                     </Entry.Behaviors>
+                    <custom:CustomEntry.Behaviors>
+                        <behavior:EventToCommandBehavior Command="{Binding SendSmsCommand}" EventName="Completed" />
+                    </custom:CustomEntry.Behaviors>
                 </custom:CustomEntry>
 
                 <ffimageloadingsvg:SvgCachedImage

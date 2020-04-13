@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Chat;
@@ -337,6 +338,13 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             return IsBlocking;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            Xamarin.Forms.DependencyService.Get<IDevice>().DismissKeyboard();
+
+            return base.GoBackAsync(parameters, useModalNavigation);
         }
 
         #endregion Methods

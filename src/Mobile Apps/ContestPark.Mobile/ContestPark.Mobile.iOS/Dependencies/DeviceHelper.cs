@@ -18,5 +18,20 @@ namespace ContestPark.Mobile.iOS.Dependencies
         {
             return new Models.DeviceHelper.DeviceHelper();
         }
+
+        public void DismissKeyboard()
+        {
+            UIApplication.SharedApplication.InvokeOnMainThread(() =>
+            {
+                var window = UIApplication.SharedApplication.KeyWindow;
+                var vc = window.RootViewController;
+                while (vc.PresentedViewController != null)
+                {
+                    vc = vc.PresentedViewController;
+                }
+
+                vc.View.EndEditing(true);
+            });
+        }
     }
 }

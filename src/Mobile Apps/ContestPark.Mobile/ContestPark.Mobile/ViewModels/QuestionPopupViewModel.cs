@@ -255,7 +255,7 @@ namespace ContestPark.Mobile.ViewModels
                 _duelService.DuelCancel();
 
                 IsExit = true;
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(false);
 
                 return;
             }
@@ -327,7 +327,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 IsExit = true;
 
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(false);
             }
 
             Languages currentLanguage = _settingsService.CurrentUser.Language;
@@ -341,7 +341,7 @@ namespace ContestPark.Mobile.ViewModels
                 _duelService.DuelCancel();
 
                 IsExit = true;
-                DuelCloseCommand.Execute(null);
+                GotoBackCommand.Execute(false);
 
                 return;
             }
@@ -479,9 +479,9 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Soru ekranını kapatır düel result ekranı açar
         /// </summary>
-        private async void ExecuteDuelCloseCommand(bool showAlert = true)
+        public override async Task GoBackAsync(INavigationParameters parameters = null, bool? isShowAlert = false)
         {
-            if (showAlert)
+            if (isShowAlert.HasValue && isShowAlert.Value)// useModalNavigation parametresini alert gösterilsinmi gösterilmesin mi diye kullandım
             {
                 bool isOkay = await DisplayAlertAsync(ContestParkResources.Exit,
                                                   ContestParkResources.AreYouSureYouWantToLeave,
@@ -532,7 +532,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 IsGameEnd = true;
 
-                DuelCloseCommand.Execute(false);
+                GotoBackCommand.Execute(false);
 
                 return false;
             });
@@ -649,7 +649,7 @@ namespace ContestPark.Mobile.ViewModels
                 if (IsExit)
                     return false;
 
-                base.GoBackAsync(null, true);
+                RemoveFirstPopupAsync<QuestionExpectedPopupView>();
 
                 // Şıkları animasyonlu şekilde gösterir
                 AnimateStylishCommand?.Execute(null);
@@ -711,7 +711,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             _subscriptionToken = _onSleepEvent.Subscribe(() =>
             {
-                DuelCloseCommand.Execute(false);
+                GotoBackCommand.Execute(false);
 
                 DisplayAlertAsync("",
                                   ContestParkResources.YouLeftTheGameDuringTheDuelYouAreDefeated,
@@ -739,7 +739,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 IsGameEnd = true;
 
-                DuelCloseCommand.Execute(false);
+                GotoBackCommand.Execute(false);
             });
         }
 
@@ -754,11 +754,6 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>(ExecuteAnswerCommandCommand));
         private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(SaveAnswer));
-
-        /// <summary>
-        /// Soru ekranı kapatır
-        /// </summary>
-        public ICommand DuelCloseCommand => new Command<bool>(ExecuteDuelCloseCommand);
 
         #endregion Commands
     }

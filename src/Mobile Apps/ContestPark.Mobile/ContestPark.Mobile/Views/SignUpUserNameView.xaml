@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -136,7 +137,11 @@
                             Text="{Binding UserName}"
                             TextColor="#484848"
                             Visual="Material"
-                            WidthRequest="290" />
+                            WidthRequest="290">
+                            <Components:CustomEntry.Behaviors>
+                                <behaviors:EventToCommandBehavior Command="{Binding UserNameCommand}" EventName="Completed" />
+                            </Components:CustomEntry.Behaviors>
+                        </Components:CustomEntry>
 
                         <Label
                             Grid.Row="4"

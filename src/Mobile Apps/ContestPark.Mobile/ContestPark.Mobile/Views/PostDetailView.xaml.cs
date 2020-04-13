@@ -63,18 +63,6 @@ namespace ContestPark.Mobile.Views
         }
 
         /// <summary>
-        /// Mesaj gönder
-        /// </summary>
-        /// <param name="sender">Entry objesi</param>
-        /// <param name="e">EventArgs</param>
-        private void txtChatbox_Completed(object sender, EventArgs e)
-        {
-            txtChatbox.Focus();
-
-            ViewModel.SendCommentCommand?.Execute(null);
-        }
-
-        /// <summary>
         /// Enrty'e tıklanıncca scroll'u aşaya çeker
         /// </summary>
         /// <param name="sender"></param>

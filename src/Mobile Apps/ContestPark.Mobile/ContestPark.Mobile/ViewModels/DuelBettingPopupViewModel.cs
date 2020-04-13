@@ -339,7 +339,7 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             BetModel appropriateBet = AppropriateBet(bet.EntryFee);
-            if (appropriateBet != null && bet.EntryFee != appropriateBet.EntryFee)
+            if (appropriateBet != null && bet.EntryFee != 0 && bet.EntryFee != appropriateBet.EntryFee)
             {
                 await DisplayAlertAsync(string.Empty,
                     string.Format(ContestParkResources.YouAnPlaywithLessThanOrEqualToTenTimesTheEntryFeeFromYourMinimumBalanceWeAdhereToTheOption, appropriateBet.Title),
