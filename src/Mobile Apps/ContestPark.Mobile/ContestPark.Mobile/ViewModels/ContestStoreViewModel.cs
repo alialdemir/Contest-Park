@@ -162,36 +162,60 @@ namespace ContestPark.Mobile.ViewModels
             });
             if (isSuccessGoldPurchase)
             {
-                await DisplayAlertAsync(
-                           ContestParkResources.Success,
-                           ContestParkResources.ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount,
-                           ContestParkResources.Okay);
-
-                // Left menü'deki  altın miktarını güncelledik
-                _eventAggregator
-                     .GetEvent<GoldUpdatedEvent>()
-                     .Publish();
-
-                SendProductEvent(purchaseInfo, "Purchase", productName);
-
-                await _inAppBillingService.ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.PurchaseToken);
+                PurchaseSuccess(purchaseInfo, productName);
             }
             else
             {
                 /*
-                 Satın alma işlemi başarısız. Altınlarınız hesabınıza yüklenemedi. Lütfen support@contestpark.com adresine mail atın.
-                 Purchase failed. Your gold could not be uploaded to your account. Please send an email to support@contestpark.com address.
+                 IOS tarafında token çok uzun olduğu için hata oluyordu token uzunluğunu anlamak için böyle birşey ekledim
+                 sorun düzelince kaldırın
                  */
+                isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
+                {
+                    ProductId = purchaseInfo.ProductId,
+                    PackageName = purchaseInfo.ProductId,
+                    Token = purchaseInfo.PurchaseToken.Length.ToString(),
+                    Platform = GetCurrentPlatform()
+                });
 
-                await DisplayAlertAsync(
-                                 ContestParkResources.Error,
-                                 ContestParkResources.PurchaseFail,
-                                 ContestParkResources.Okay);
+                if (isSuccessGoldPurchase)
+                {
+                    PurchaseSuccess(purchaseInfo, productName);
+                }
+                else
+                {
+                    await DisplayAlertAsync(
+                                     ContestParkResources.Error,
+                                     ContestParkResources.PurchaseFail,
+                                     ContestParkResources.Okay);
 
-                SendProductEvent(purchaseInfo, "Remove From Cart", productName);
+                    SendProductEvent(purchaseInfo, "Remove From Cart", productName);
+                }
             }
 
             IsBusy = false;
+        }
+
+        /// <summary>
+        /// Satın alma işlemi başarılıysa yapılanlar
+        /// </summary>
+        /// <param name="purchaseInfo">Satılan paket bilgisi</param>
+        /// <param name="productName">Paket adı</param>
+        private void PurchaseSuccess(InAppBillingPurchaseModel purchaseInfo, string productName)
+        {
+            DisplayAlertAsync(
+                            ContestParkResources.Success,
+                            ContestParkResources.ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount,
+                            ContestParkResources.Okay);
+
+            // Left menü'deki  altın miktarını güncelledik
+            _eventAggregator
+                 .GetEvent<GoldUpdatedEvent>()
+                 .Publish();
+
+            SendProductEvent(purchaseInfo, "Purchase", productName);
+
+            _inAppBillingService.ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.PurchaseToken);
         }
 
         /// <summary>
