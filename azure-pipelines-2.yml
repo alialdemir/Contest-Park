@@ -23,12 +23,12 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
+
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: 'ContestParkDevCer.p12'
-    certPwd: '19931993**Ali'
+    certPwd: '$(IosKeyCerPassword)'
     keychain: 'temp'
-
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
