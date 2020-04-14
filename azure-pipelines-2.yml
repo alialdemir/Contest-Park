@@ -32,7 +32,7 @@ steps:
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ContestPark_Provisioning_Profile.mobileprovision'
+    provProfileSecureFile: 'VS_comcontestparkapp_Development.mobileprovision'
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/ContestPark.Mobile.sln'
