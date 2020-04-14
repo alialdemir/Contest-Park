@@ -114,6 +114,11 @@ namespace ContestPark.Mobile.ViewModels
 
         protected override async Task InitializeAsync(INavigationParameters parameters = null)
         {
+            if (IsInitialized)
+                return;
+
+            IsInitialized = true;
+
             UserInfoModel currentUser = await _identityService.GetUserInfo();
             if (currentUser != null)
             {
@@ -147,10 +152,7 @@ namespace ContestPark.Mobile.ViewModels
 
             _eventAggregator
                 .GetEvent<GoldUpdatedEvent>()
-                .Subscribe(() =>
-                {
-                    SetUserGoldCommand.Execute(null);
-                });
+                .Subscribe(() => SetUserGoldCommand.Execute(null));
 
             await base.InitializeAsync(parameters);
         }

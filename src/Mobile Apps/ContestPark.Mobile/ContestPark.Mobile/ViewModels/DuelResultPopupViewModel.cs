@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Components.DuelResultSocialMedia;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
@@ -277,9 +278,16 @@ namespace ContestPark.Mobile.ViewModels
             if (_settingsService.IsSoundEffectActive)
                 _audioService?.Stop();
 
-            _eventAggregator.GetEvent<PostRefreshEvent>();
+            _eventAggregator
+                .GetEvent<PostRefreshEvent>()
+                .Publish();
 
-            _eventAggregator.GetEvent<GoldUpdatedEvent>();
+            if (DuelResult != null && DuelResult.WinnerOrLoseText != ContestParkResources.Tie)
+            {
+                _eventAggregator
+                    .GetEvent<GoldUpdatedEvent>()
+                    .Publish();
+            }
 
             return base.GoBackAsync(parameters, useModalNavigation);
         }

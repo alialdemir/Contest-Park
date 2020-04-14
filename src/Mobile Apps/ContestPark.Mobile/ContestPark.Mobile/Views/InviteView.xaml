@@ -1,94 +1,149 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<pages:PopupPage
     x:Class="ContestPark.Mobile.Views.InviteView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="inviteView"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentPage.Content>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="700"
+            EasingIn="SpringIn"
+            PositionIn="Right"
+            PositionOut="Left"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
         <ScrollView>
-            <yummy:PancakeView
-                BackgroundColor="{StaticResource White}"
-                CornerRadius="8"
-                Elevation="6"
-                HasShadow="True"
-                HorizontalOptions="FillAndExpand"
-                IsClippedToBounds="True">
-                <Grid
-                    ColumnSpacing="0"
-                    RowSpacing="0"
-                    VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
 
-                    <Label
+            <RelativeLayout>
+                <Components:LinearGradientButton
+                    Padding="0,0,0,-55"
+                    BackgroundColor="Transparent"
+                    BorderRadius="48"
+                    Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference inviteView}}"
+                    EndColor="#47E476"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource GothamRoundedBold}"
+                    FontSize="23"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=.2,
+                                                                           Constant=0}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=0,
+                                                                          Constant=300}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=0.5,
+                                                                      Constant=-150}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=pvkView,
+                                                                      Property=Y,
+                                                                      Factor=1,
+                                                                      Constant=340}"
+                    StartColor="#2CCCD8"
+                    Text="{i18n:Translate Share}"
+                    TextColor="{StaticResource White}"
+                    Visual="Material" />
+
+                <yummy:PancakeView
+                    x:Name="pvkView"
+                    Padding="0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="10"
+                    Elevation="6"
+                    HasShadow="True"
+                    HeightRequest="400"
+                    IsClippedToBounds="True"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=0.5,
+                                                                      Constant=-150}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Height,
+                                                                      Factor=0.5,
+                                                                      Constant=-220}"
+                    WidthRequest="300">
+
+                    <Grid
                         Grid.Row="0"
-                        FontFamily="{StaticResource GothamRoundedBold}"
-                        FontSize="24"
-                        HorizontalTextAlignment="Center"
-                        Text="{i18n:Translate InviteSaveMoney}"
-                        TextColor="#14D2B8" />
+                        ColumnSpacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Margin="0,8,8,0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference inviteView}}" CommandParameter="{StaticResource True}" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="{StaticResource icomoon}"
+                                    Glyph="{x:Static icons:ContestParkIcon.Close}"
+                                    Size="32"
+                                    Color="{StaticResource SettingsIconColor}" />
+                            </Image.Source>
+                        </Image>
 
-                    <ffimageloadingsvg:SvgCachedImage
-                        Grid.Row="1"
-                        Margin="0,14,0,14"
-                        HeightRequest="95"
-                        Source="invite_friends.svg"
-                        VerticalOptions="Center"
-                        WidthRequest="150" />
-
-                    <Label
-                        Grid.Row="2"
-                        Margin="0,0,0,20"
-                        FontFamily="{StaticResource MontserratRegular}"
-                        FontSize="10"
-                        HorizontalTextAlignment="Center"
-                        TextColor="{StaticResource Black}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span FontSize="16" Text="ContestPark, olarak reklam bütçesi için ayırdığımız paranın bir kısmıyla siz değerli kullanıcılarımıza dağıtmaya karar verdik. " />
-                                <Span FontSize="16" Text="&#x0a;Bu parayı kazanmak için yapmanız gereken aşağıdaki &quot;Paylaş&quot; buttonuna basarak sosyal medyada paylaşmak. " />
-                                <Span FontSize="16" Text="Arkadaşlarınızın sizin kullanıcı adınızla üye olmalarını sağlayarak hem siz hemde arkadaşınız para kazanabilirsiniz." />
-                                <Span />
-                                <Span
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    Text="&#x0a;Unutmayın! topladığınız para 100TL üzerine geçince iban numaranızı göndererek paranızı çekebilirsiniz." />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-
-                    <yummy:PancakeView
-                        Grid.Row="3"
-                        Margin="8"
-                        Padding="8"
-                        BackgroundGradientEndColor="#4048EF"
-                        BackgroundGradientStartColor="#5A7BEF"
-                        CornerRadius="13"
-                        HeightRequest="20"
-                        VerticalOptions="Center"
-                        WidthRequest="70">
-                        <yummy:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ShareCommand}" />
-                        </yummy:PancakeView.GestureRecognizers>
                         <Label
+                            Grid.Row="1"
                             FontAttributes="Bold"
-                            FontFamily="{StaticResource SofiaProRegular}"
-                            FontSize="15"
+                            FontFamily="{StaticResource GothamRoundedBold}"
+                            FontSize="24"
                             HorizontalTextAlignment="Center"
-                            Text="{i18n:Translate Share}"
-                            TextColor="{StaticResource White}"
-                            VerticalTextAlignment="Center" />
-                    </yummy:PancakeView>
-                </Grid>
-            </yummy:PancakeView>
+                            Text="{i18n:Translate InviteSaveMoney}"
+                            TextColor="{StaticResource Primary}"
+                            VerticalOptions="Start" />
+
+                        <Label
+                            Grid.Row="2"
+                            Margin="10,0,10,0"
+                            BackgroundColor="Transparent"
+                            FontFamily="{DynamicResource SofiaProMedium}"
+                            FontSize="16"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            TextColor="#484848">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontSize="16" Text="Referans kodun ile üye olan her arkadaşın için hem sen hemde arkadaşın 1 tl kazanacaksınız." />
+
+                                    <Span FontSize="16" Text="&#x0a;&#x0a;Bu parayı kazanmak için arkadaşların  üye olurken referans kodu olarak senin kullanıcı adını girmesi ve en az 10 kere düello yapması yeterli gerekir." />
+
+                                    <Span FontSize="16" Text="&#x0a;&#x0a;Unutma! bakiyen 100 TL üzerine geçince iban numarası göndererek paranı çekebilirsin." />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                            Grid.Row="3"
+                            Margin="0,16,0,0"
+                            FontFamily="{DynamicResource GothamRoundedBold}"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="Hemen PAYLAŞMAYA BAŞLA!"
+                            TextColor="{StaticResource Black}" />
+                    </Grid>
+                </yummy:PancakeView>
+            </RelativeLayout>
         </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

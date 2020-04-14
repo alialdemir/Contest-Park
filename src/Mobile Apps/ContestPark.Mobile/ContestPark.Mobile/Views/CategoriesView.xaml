@@ -34,7 +34,10 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView Style="{StaticResource ListView}">
+        <components:NonPersistentSelectedItemListView Style="{StaticResource ListViewOnlyHeader}">
+            <components:NonPersistentSelectedItemListView.Header>
+                <components:NoticeView NoticeNavigateToCommand="{Binding Path=BindingContext.NoticeNavigateToCommand, Source={x:Reference categoriesPage}}" Notices="{Binding Path=BindingContext.Notices, Source={x:Reference categoriesPage}}" />
+            </components:NonPersistentSelectedItemListView.Header>
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

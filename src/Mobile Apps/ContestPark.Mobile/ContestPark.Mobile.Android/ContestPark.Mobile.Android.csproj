@@ -230,6 +230,7 @@
     <Compile Include="CustomRenderer\CircularProgressRenderer.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomWebViewRenderer.cs" />
     <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
     <Compile Include="Dependencies\AdMob.cs" />
     <Compile Include="Dependencies\Analytics.cs" />
@@ -539,6 +540,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\coins.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\socialmediashare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

@@ -169,7 +169,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             Xamarin.Forms.DependencyService.Get<IDevice>().DismissKeyboard();
 
-            return base.GoBackAsync(parameters, useModalNavigation);
+            return Task.CompletedTask;
         }
 
         #endregion Methods

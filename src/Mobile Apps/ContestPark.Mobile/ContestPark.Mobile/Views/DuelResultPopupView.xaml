@@ -115,7 +115,7 @@
                         Grid.ColumnSpan="5"
                         BalanceType="{Binding DuelResult.BalanceType}"
                         CoinSize="Small"
-                        Coins="{Binding Path=DuelResult.IsShowFireworks, Converter={StaticResource dcdrc}}"
+                        Coins="{Binding Path=DuelResult.Coins}"
                         DisplayCoins="{Binding DuelResult.Gold}"
                         HorizontalOptions="Center" />
 

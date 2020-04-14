@@ -15,9 +15,9 @@ namespace ContestPark.Mobile.iOS.Dependencies
     {
         public UIImage UiImage { get; set; }
 
-        public string GetImagePathByPage(ContentPage contentPage)
+        public string GetImagePathByPage(ContentView contentPage)
         {
-            var rect = new CGRect(0, 0, 400, 400);
+            var rect = new CGRect(0, 0, 1080, 1080);
             var iOSView = ConvertFormsToNative(contentPage.Content, rect);
 
             UiImage = ConvertViewToImage(iOSView);
@@ -45,9 +45,9 @@ namespace ContestPark.Mobile.iOS.Dependencies
             return pngFilename;
         }
 
-        public UIView ConvertFormsToNative(Xamarin.Forms.View view, CGRect size)
+        public UIView ConvertFormsToNative(View view, CGRect size)
         {
-            var renderer = Xamarin.Forms.Platform.iOS.Platform.CreateRenderer(view);
+            var renderer = Platform.CreateRenderer(view);
 
             renderer.NativeView.Frame = size;
 

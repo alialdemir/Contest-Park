@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<pages:PopupPage
+<ContentView
     x:Class="ContestPark.Mobile.Components.DuelResultSocialMedia.DuelResultSocialMediaView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     BackgroundColor="Black"
-    NavigationPage.HasNavigationBar="False">
-    <pages:PopupPage.Resources>
+    HeightRequest="1080"
+    NavigationPage.HasNavigationBar="False"
+    WidthRequest="1080">
+    <ContentView.Resources>
         <ResourceDictionary>
             <converter:DoubleCoinsDuelResultConverter x:Key="dcdrc" />
         </ResourceDictionary>
-    </pages:PopupPage.Resources>
-    <pages:PopupPage.Content>
+    </ContentView.Resources>
+    <ContentView.Content>
         <Grid
             x:Name="gridPage"
             ColumnSpacing="0"
@@ -211,5 +212,5 @@
                     Source="appstoreandgoogleplay.png" />
             </Grid>
         </Grid>
-    </pages:PopupPage.Content>
-</pages:PopupPage>
+    </ContentView.Content>
+</ContentView>

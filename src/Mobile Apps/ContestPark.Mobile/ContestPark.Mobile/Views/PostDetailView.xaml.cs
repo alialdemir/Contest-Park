@@ -1,6 +1,5 @@
 ﻿using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.ViewModels;
-using System;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,6 +32,13 @@ namespace ContestPark.Mobile.Views
         #endregion ViewModel
 
         #region Methods
+
+        protected override void OnDisappearing()
+        {
+            ViewModel.GotoBackCommand.Execute(false);
+
+            base.OnDisappearing();
+        }
 
         protected override void OnAppearing()
         {

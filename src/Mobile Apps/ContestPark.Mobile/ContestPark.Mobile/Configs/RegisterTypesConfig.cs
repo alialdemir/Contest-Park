@@ -15,6 +15,7 @@ using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.InviteDuel;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
+using ContestPark.Mobile.Services.Notice;
 using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.RequestProvider;
@@ -66,6 +67,8 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterForNavigation<BalanceCodeView, BalanceCodeViewModel>();
 
             containerRegistry.RegisterForNavigation<BlockingView, BlockingViewModel>();
+
+            containerRegistry.RegisterForNavigation<BrowserView, BrowserViewModel>();
 
             containerRegistry.RegisterForNavigation<CategoriesView, CategoriesViewModel>();
 
@@ -171,6 +174,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
                 containerRegistry.RegisterSingleton<IMissionService, MissionService>();
+
+                containerRegistry.RegisterSingleton<INoticeService, NoticeService>();
 
                 containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
 

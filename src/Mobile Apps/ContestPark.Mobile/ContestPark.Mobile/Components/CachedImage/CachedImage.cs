@@ -20,7 +20,7 @@ namespace ContestPark.Mobile.Components
         public static readonly BindableProperty IsLoadingPlaceholderProperty = BindableProperty.Create(propertyName: nameof(IsLoadingPlaceholder),
                                                                                            returnType: typeof(bool),
                                                                                            declaringType: typeof(CircleImage),
-                                                                                           defaultValue: true);
+                                                                                           defaultValue: false);
 
         public CachedImage()
         {

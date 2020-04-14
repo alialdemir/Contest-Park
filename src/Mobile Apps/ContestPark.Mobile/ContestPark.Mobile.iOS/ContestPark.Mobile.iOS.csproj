@@ -133,6 +133,7 @@
     <Compile Include="CustomRenderer\AdMobViewRenderer.cs" />
     <Compile Include="CustomRenderer\BackButtonRenderer.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomWebViewRenderer.cs" />
     <Compile Include="CustomRenderer\iOSLongPressedEffect.cs" />
     <Compile Include="CustomRenderer\CustomSwitchRenderer.cs" />
     <Compile Include="CustomRenderer\LinearGradientButtonRenderer.cs" />
@@ -858,6 +859,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\gift2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\socialmediashare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>

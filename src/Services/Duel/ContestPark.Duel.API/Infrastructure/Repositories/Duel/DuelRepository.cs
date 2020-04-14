@@ -95,25 +95,11 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         /// <returns>Düello sonuç ekranı</returns>
         public DuelResultModel DuelResultByDuelId(int duelId, string userId)
         {
-            string sql = @"SELECT
-                           d.FounderUserId,
-                           d.OpponentUserId,
-                           d.Bet * 2 AS Gold,
-                           d.SubCategoryId,
-                           d.BalanceType,
-                           d.FounderTotalScore AS FounderScore,
-                           d.OpponentTotalScore AS OpponentScore,
-                            CASE WHEN d.FounderUserId = @userId THEN d.FounderVictoryScore WHEN d.OpponentUserId = @userId THEN d.OpponentVictoryScore END AS VictoryBonus,
-                            CASE WHEN d.FounderUserId = @userId THEN d.FounderFinishScore WHEN d.OpponentUserId = @userId THEN d.OpponentFinishScore END AS FinishBonus
-                           FROM Duels d
-                           WHERE d.DuelId = @duelId
-                           LIMIT 1";
-
-            return _duelRepository.QuerySingleOrDefault<DuelResultModel>(sql, new
+            return _duelRepository.QuerySingleOrDefault<DuelResultModel>("SP_DuelResult", new
             {
                 duelId,
                 userId
-            });
+            }, CommandType.StoredProcedure);
         }
 
         /// <summary>

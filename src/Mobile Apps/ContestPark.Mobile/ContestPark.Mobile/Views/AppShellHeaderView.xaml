@@ -31,6 +31,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="50" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -57,78 +58,70 @@
                     Text="{Binding FullName}"
                     TextColor="{StaticResource White}" />
 
-                <FlexLayout
+                <yummy:PancakeView
                     Grid.Row="1"
                     Grid.Column="1"
-                    JustifyContent="SpaceAround"
-                    Wrap="Wrap">
+                    Padding="5"
+                    BackgroundGradientEndColor="#D03548"
+                    BackgroundGradientStartColor="#EB3349"
+                    CornerRadius="24"
+                    MinimumWidthRequest="50">
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <yummy:PancakeView
-                        Padding="5"
-                        BackgroundGradientEndColor="#D03548"
-                        BackgroundGradientStartColor="#EB3349"
-                        CornerRadius="24"
-                        MinimumWidthRequest="50">
-                        <Grid ColumnSpacing="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <ffimageloadingsvg:SvgCachedImage
+                            Grid.Column="0"
+                            HeightRequest="32"
+                            Source="SingleMoney.svg"
+                            WidthRequest="32" />
 
-                            <ffimageloadingsvg:SvgCachedImage
-                                Grid.Column="0"
-                                HeightRequest="32"
-                                Source="SingleMoney.svg"
-                                WidthRequest="32" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource GothamRoundedMedium}"
+                            FontSize="14"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Balance.Money, Converter={StaticResource bc}}"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </yummy:PancakeView>
+                <yummy:PancakeView
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Padding="5"
+                    BackgroundGradientEndColor="#FFCC33"
+                    BackgroundGradientStartColor="#FFB347"
+                    CornerRadius="24"
+                    MinimumWidthRequest="50">
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                            <Label
-                                Grid.Column="1"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource GothamRoundedMedium}"
-                                FontSize="14"
-                                HorizontalOptions="CenterAndExpand"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Balance.Money, Converter={StaticResource bc}}"
-                                TextColor="{StaticResource White}"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </yummy:PancakeView>
-                    <yummy:PancakeView
-                        Padding="5"
-                        BackgroundGradientEndColor="#FFCC33"
-                        BackgroundGradientStartColor="#FFB347"
-                        CornerRadius="24"
-                        MinimumWidthRequest="50">
-                        <yummy:PancakeView.Margin>
-                            <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="Android" Value="0" />
-                                <On Platform="iOS" Value="0,8,0,0" />
-                            </OnPlatform>
-                        </yummy:PancakeView.Margin>
-                        <Grid ColumnSpacing="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <ffimageloadingsvg:SvgCachedImage
-                                Grid.Column="0"
-                                HeightRequest="20"
-                                Source="ContestSingleCoin.svg"
-                                WidthRequest="25" />
+                        <ffimageloadingsvg:SvgCachedImage
+                            Grid.Column="0"
+                            HeightRequest="32"
+                            Source="ContestSingleCoin.svg"
+                            WidthRequest="32" />
 
-                            <Label
-                                Grid.Column="1"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource GothamRoundedMedium}"
-                                FontSize="14"
-                                HorizontalOptions="CenterAndExpand"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Balance.Gold, Converter={StaticResource bc}}"
-                                TextColor="{StaticResource White}"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </yummy:PancakeView>
-                </FlexLayout>
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource GothamRoundedMedium}"
+                            FontSize="14"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Balance.Gold, Converter={StaticResource bc}}"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </yummy:PancakeView>
             </Grid>
         </Grid>
     </ContentView.Content>

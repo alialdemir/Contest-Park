@@ -608,8 +608,7 @@
     <value>Invite a friend, earn money</value>
   </data>
   <data name="ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp" xml:space="preserve">
-    <value>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "{0}" to the reference when sign up.</value>
-    <comment>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.</comment>
+    <value>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "{0}" to the reference when sign up. http://indir.contestpark.com #contestpark</value>
   </data>
   <data name="ConvertToCash" xml:space="preserve">
     <value>Convert to cash</value>

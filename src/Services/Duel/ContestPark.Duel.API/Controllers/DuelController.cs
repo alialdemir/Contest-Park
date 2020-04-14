@@ -353,7 +353,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpGet("{duelId}")]
         [ProducesResponseType(typeof(DuelResultModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> DuelResult([FromRoute]int duelId)
+        public IActionResult DuelResult([FromRoute]int duelId)
         {
             if (duelId <= 0)
                 return NotFound();
@@ -362,13 +362,20 @@ namespace ContestPark.Duel.API.Controllers
             if (result == null)
                 return NotFound();
 
-            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(new List<string>
+            Task<IEnumerable<UserModel>> taskUsers = _identityService.GetUserInfosAsync(new List<string>
             {
                 result.FounderUserId,
                 result.OpponentUserId
             });
-            if (users == null || users.Count() < 2)
-                return NotFound();
+
+            Task<SubCategoryModel> taskSubCategory = _subCategoryService.GetSubCategoryInfo(result.SubCategoryId, CurrentUserLanguage, UserId);
+
+            taskUsers.Start();
+            taskSubCategory.Start();
+
+            Task.WaitAll(taskUsers, taskSubCategory);
+
+            var users = taskUsers.Result;
 
             UserModel founderUser = users.FirstOrDefault(x => x.UserId == result.FounderUserId);
             UserModel opponentUser = users.FirstOrDefault(x => x.UserId == result.OpponentUserId);
@@ -383,7 +390,7 @@ namespace ContestPark.Duel.API.Controllers
             result.OpponentProfilePicturePath = opponentUser.ProfilePicturePath;
             result.OpponentUserName = opponentUser.UserName;
 
-            SubCategoryModel subCategoryModel = await _subCategoryService.GetSubCategoryInfo(result.SubCategoryId, CurrentUserLanguage, UserId);
+            SubCategoryModel subCategoryModel = taskSubCategory.Result;
             if (subCategoryModel != null)
             {
                 result.SubCategoryName = subCategoryModel.SubCategoryName;

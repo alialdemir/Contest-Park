@@ -33,10 +33,12 @@ namespace ContestPark.Mobile.Droid.Dependencies
 
         public void DismissKeyboard()
         {
-            var inputMethodManager = InputMethodManager.FromContext(Android.App.Application.Context);
-
-            inputMethodManager.HideSoftInputFromWindow(
-                ((Activity)Xamarin.Forms.Forms.Context).Window.DecorView.WindowToken, HideSoftInputFlags.NotAlways);
+            var inputMethodManager = InputMethodManager.FromContext(Application.Context);
+            if (inputMethodManager != null)
+            {
+                inputMethodManager.HideSoftInputFromWindow(
+                    ((Activity)Xamarin.Forms.Forms.Context).Window.DecorView.WindowToken, HideSoftInputFlags.NotAlways);
+            }
         }
     }
 }

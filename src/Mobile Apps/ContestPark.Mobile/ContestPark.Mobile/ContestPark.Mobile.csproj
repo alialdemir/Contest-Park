@@ -58,6 +58,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ContestParkResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Components\Notice\NoticeView.xaml.cs">
+      <DependentUpon>NoticeView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Components\PostCardView\TextPostCard.xaml.cs">
       <DependentUpon>TextPostCard.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\IconButton\IconButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\InviteSocialMedia\InviteSocialMediaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\ListItemView\RightThumListItem.xaml">
@@ -184,6 +190,9 @@
     <EmbeddedResource Update="Components\Search\CategorySearchView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Components\Notice\NoticeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\AcceptDuelInvitationPopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -206,6 +215,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BlockingView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BrowserView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CategoriesView.xaml">

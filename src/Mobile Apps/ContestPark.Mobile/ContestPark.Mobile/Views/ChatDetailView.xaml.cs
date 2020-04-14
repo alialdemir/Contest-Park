@@ -34,6 +34,13 @@ namespace ContestPark.Mobile.Views
 
         #region Methods
 
+        protected override void OnDisappearing()
+        {
+            ViewModel.GotoBackCommand.Execute(false);
+
+            base.OnDisappearing();
+        }
+
         protected override void OnAppearing()
         {
             ViewModel.ListViewScrollToBottomCommand = new Command<int>((index) =>

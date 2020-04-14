@@ -2,7 +2,6 @@
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
 using FFImageLoading.Transformations;
-using Rg.Plugins.Popup.Pages;
 using System;
 using Xamarin.Forms;
 
@@ -11,7 +10,7 @@ namespace ContestPark.Mobile.Components.DuelResultSocialMedia
     /// <summary>
     /// Sadece sosyal medyada resim paylaşmaK için yazıldı her hangi biryerde kullanmayınız
     /// </summary>
-    public partial class DuelResultSocialMediaView : PopupPage
+    public partial class DuelResultSocialMediaView : ContentView
     {
         #region Constructor
 

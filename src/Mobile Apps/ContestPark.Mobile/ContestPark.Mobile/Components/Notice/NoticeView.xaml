@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.NoticeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="noticeView"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <cards:CoverFlowView
+            Margin="0,0,0,8"
+            IsCyclical="True"
+            ItemsSource="{Binding Notice}"
+            SlideShowDuration="3000">
+            <controls:IndicatorsControl TranslationY="20" />
+            <cards:CoverFlowView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <components:CachedImage
+                            Aspect="AspectFit"
+                            HeightRequest="150"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding PicturePath}">
+                            <components:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=NoticeNavigateToCommand, Source={x:Reference noticeView}}" CommandParameter="{Binding Link}" />
+                            </components:CachedImage.GestureRecognizers>
+                        </components:CachedImage>
+                    </ViewCell>
+                </DataTemplate>
+            </cards:CoverFlowView.ItemTemplate>
+        </cards:CoverFlowView>
+    </ContentView.Content>
+</ContentView>

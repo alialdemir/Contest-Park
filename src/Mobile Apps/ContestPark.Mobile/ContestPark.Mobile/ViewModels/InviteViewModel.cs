@@ -1,6 +1,11 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Components.InviteSocialMedia;
+using ContestPark.Mobile.Dependencies;
+using ContestPark.Mobile.Models.InviteSocialMedia;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using Prism.Navigation;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -12,16 +17,18 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly ISettingsService _settingsService;
+        private readonly IAnalyticsService _analyticsService;
 
         #endregion Private variables
 
         #region Constructor
 
-        public InviteViewModel(ISettingsService settingsService)
+        public InviteViewModel(ISettingsService settingsService,
+                               IAnalyticsService analyticsService,
+                               INavigationService navigationService) : base(navigationService)
         {
-            Title = ContestParkResources.InviteSaveMoney;
-
             _settingsService = settingsService;
+            _analyticsService = analyticsService;
         }
 
         #endregion Constructor
@@ -33,12 +40,42 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void ExecuteShareCommand()
         {
-            Share.RequestAsync(new ShareTextRequest
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            IConvertUIToImage convertUIToImage = DependencyService.Get<IConvertUIToImage>();
+            if (convertUIToImage == null)
             {
-                Text = string.Format(ContestParkResources.ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp, _settingsService.CurrentUser.UserName),
-                Title = "ContestPark",
-                Uri = "http://indir.contestpark.com",
+                IsBusy = false;
+                return;
+            }
+
+            string path = convertUIToImage.GetImagePathByPage(new InviteSocialMediaView
+            {
+                Data = new InviteSocialMediaModel
+                {
+                    ProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath,
+                    UserName = _settingsService.CurrentUser.UserName
+                }
             });
+
+            if (string.IsNullOrEmpty(path))
+            {
+                IsBusy = false;
+                return;
+            }
+
+            Share.RequestAsync(new ShareFileRequest
+            {
+                Title = string.Format(ContestParkResources.ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp, _settingsService.CurrentUser.UserName),
+                File = new ShareFile(path)
+            });
+
+            _analyticsService.SendEvent("Paylaşma", "Paylaş", _settingsService.CurrentUser.UserId);
+
+            IsBusy = false;
         }
 
         #endregion Methods

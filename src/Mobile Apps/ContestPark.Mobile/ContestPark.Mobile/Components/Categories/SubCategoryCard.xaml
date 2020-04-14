@@ -10,7 +10,6 @@
     xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     x:Name="subCategoryCard"
     effects:LongPressedEffect.CommandParameter="{Binding .}"
     effects:LongPressedEffect.LongPressed="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference subCategoryCard}}"

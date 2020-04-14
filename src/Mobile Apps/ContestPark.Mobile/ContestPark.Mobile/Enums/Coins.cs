@@ -2,6 +2,7 @@
 {
     public enum Coins : byte
     {
+        None,
         Negative,
         Positive
     }

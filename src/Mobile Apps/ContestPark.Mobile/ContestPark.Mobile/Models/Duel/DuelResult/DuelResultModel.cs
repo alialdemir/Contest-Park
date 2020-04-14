@@ -10,7 +10,26 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
 {
     public class DuelResultModel : ExtendedBindableObject
     {
-        private ISettingsService settingsService;
+        private ISettingsService _settingsService;
+
+        public Enums.Coins Coins
+        {
+            get
+            {
+                if (OpponentScore > FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == OpponentUserId ? Enums.Coins.Positive : Enums.Coins.Negative;
+                }
+                else if (OpponentScore < FounderScore)
+                {
+                    return SettingsService.CurrentUser.UserId == FounderUserId ? Enums.Coins.Positive : Enums.Coins.Negative;
+                }
+                else
+                {
+                    return Enums.Coins.None;
+                }
+            }
+        }
 
         public byte FinishBonus { get; set; }
 
@@ -69,6 +88,7 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         public string FounderUserId { get; set; }
         public string FounderUserName { get; set; }
         public decimal Gold { get; set; }
+
         public bool IsFounder { get; set; }
 
         [JsonIgnore]
@@ -197,12 +217,12 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
         {
             get
             {
-                if (settingsService == null)
+                if (_settingsService == null)
                 {
-                    settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                    _settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
                 }
 
-                return settingsService;
+                return _settingsService;
             }
         }
     }

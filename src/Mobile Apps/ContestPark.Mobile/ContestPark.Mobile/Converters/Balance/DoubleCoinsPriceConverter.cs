@@ -8,7 +8,14 @@ namespace ContestPark.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((Enums.Coins)value == Enums.Coins.Negative ? "-" : "+");
+            switch ((Enums.Coins)value)
+            {
+                case Enums.Coins.None: return "";
+                case Enums.Coins.Negative: return "-";
+                case Enums.Coins.Positive: return "+";
+            }
+
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

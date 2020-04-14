@@ -6,6 +6,11 @@ namespace ContestPark.Mobile.Components
 {
     public class CircleImage : CachedImage
     {
+        public CircleImage()
+        {
+            IsLoadingPlaceholder = true;
+        }
+
         public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(propertyName: nameof(BorderColor),
                                                                                                            returnType: typeof(string),
                                                                                                            declaringType: typeof(CircleImage),

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ContestPark.Mobile.Views.BrowserView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:prism="http://prismlibrary.com"
+    Padding="0"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Shell.TitleView>
+        <StackLayout Orientation="Vertical">
+
+            <Label
+                FontAttributes="Bold"
+                FontFamily="{StaticResource SofiaProSemiBold}"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="TailTruncation"
+                Text="{Binding Path=PageTitle, Source={x:Reference webView}}"
+                TextColor="#040404" />
+            <Label
+                FontAttributes="Bold"
+                FontFamily="{StaticResource SofiaProRegular}"
+                FontSize="12"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Link}"
+                TextColor="#040404" />
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <components:CustomWebView
+            x:Name="webView"
+            HorizontalOptions="FillAndExpand"
+            Source="{Binding Link}"
+            VerticalOptions="FillAndExpand" />
+    </ContentPage.Content>
+</ContentPage>

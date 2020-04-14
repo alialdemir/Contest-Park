@@ -14,14 +14,23 @@ namespace ContestPark.Mobile.Droid.Dependencies
 {
     public class ConvertUIToImage : IConvertUIToImage
     {
+        private double Height { get; set; } = 1080;
+        private double Width { get; set; } = 1080;
+
         [Obsolete]
-        public string GetImagePathByPage(ContentPage contentPage)
+        public string GetImagePathByPage(ContentView contentPage)
         {
             if (contentPage == null)
                 throw new ArgumentNullException(nameof(contentPage));
 
+            if (contentPage.HeightRequest > 0)
+                Height = contentPage.HeightRequest;
+
+            if (contentPage.WidthRequest > 0)
+                Width = contentPage.WidthRequest;
+
             //Converting forms page to native view
-            ViewGroup androidView = ConvertFormsToNative(contentPage.Content, new Rectangle(0, 0, 400, 800));
+            ViewGroup androidView = ConvertFormsToNative(contentPage.Content, new Rectangle(0, 0, Width, Height));
 
             // Converting View to BitMap
             var bitmap = ConvertViewToBitMap(androidView);
@@ -38,17 +47,17 @@ namespace ContestPark.Mobile.Droid.Dependencies
             var viewGroup = vRenderer.ViewGroup;
 
             vRenderer.Tracker.UpdateLayout();
-            var layoutParams = new ViewGroup.LayoutParams((int)size.Width, (int)size.Height);
+            var layoutParams = new ViewGroup.LayoutParams((int)Width, (int)Height);
             viewGroup.LayoutParameters = layoutParams;
             view.Layout(size);
-            viewGroup.Layout(0, 0, (int)view.WidthRequest, (int)view.HeightRequest);
+            viewGroup.Layout(0, 0, (int)Width, (int)Height);
 
             return viewGroup;
         }
 
         private Bitmap ConvertViewToBitMap(ViewGroup view)
         {
-            Bitmap bitmap = Bitmap.CreateBitmap(1000, 1600, Bitmap.Config.Argb8888);
+            Bitmap bitmap = Bitmap.CreateBitmap((int)Width, (int)Height, Bitmap.Config.Argb8888);
             Canvas canvas = new Canvas(bitmap);
             canvas.DrawColor(droid.Graphics.Color.Black);
             view.Draw(canvas);

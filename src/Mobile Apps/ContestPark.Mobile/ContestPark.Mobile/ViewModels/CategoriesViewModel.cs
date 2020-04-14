@@ -1,11 +1,14 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Notification;
+using ContestPark.Mobile.Models.PagingModel;
+using ContestPark.Mobile.Models.Slide;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
@@ -14,16 +17,20 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InviteDuel;
+using ContestPark.Mobile.Services.Notice;
 using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Microsoft.AppCenter.Crashes;
 using Plugin.FirebasePushNotification;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -38,6 +45,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly ISignalRServiceBase _baseSignalRService;
         private readonly INotificationService _notificationService;
         private readonly IGameService _gameService;
+        private readonly INoticeService _noticeService;
         private readonly IAdMobService _adMobService;
         private readonly IBalanceService _balanceService;
         private readonly IAnalyticsService _analyticsService;
@@ -57,6 +65,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IPageDialogService pageDialogService,
                                    INotificationService notificationService,
                                    IGameService gameService,
+                                   INoticeService noticeService,
                                    IAdMobService adMobService,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
@@ -77,6 +86,7 @@ namespace ContestPark.Mobile.ViewModels
             _baseSignalRService = baseSignalRService;
             _notificationService = notificationService;
             _gameService = gameService;
+            _noticeService = noticeService;
             _adMobService = adMobService;
             _balanceService = balanceService;
             _analyticsService = analyticsService;
@@ -115,6 +125,19 @@ namespace ContestPark.Mobile.ViewModels
 
         public short SeeAllSubCateogryId { get; set; } = 0;
 
+        private IEnumerable<NoticeModel> _notices;
+
+        public IEnumerable<NoticeModel> Notices
+        {
+            get { return _notices; }
+            set
+            {
+                _notices = value;
+
+                RaisePropertyChanged(() => Notices);
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -135,6 +158,8 @@ namespace ContestPark.Mobile.ViewModels
                 ScopeRefleshCommand.Execute(null);
 
                 ListenerFirebaseToken.Execute(null);
+
+                NoticeCommand.Execute(null);
 #if !DEBUG
                 _inviteDuelService.InviteDuelCommand.Execute(Items);
 #endif
@@ -243,9 +268,69 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Duyuruları getirir
+        /// </summary>
+        private async Task ExecuteNoticeCommand()
+        {
+            var notices = await _noticeService.NoticesAsync(new PagingModel());
+            Notices = notices.Items;
+        }
+
+        /// <summary>
+        /// Kategorilerin üst kısmındaki duyuru resimlerine tıklayınca sayfa yönlendirmesi yapar
+        /// </summary>
+        /// <param name="link">Web sitesi linki veya view linki</param>
+        private void ExecuteNoticeNavigateToCommand(string link)
+        {
+            if (IsBusy || string.IsNullOrEmpty(link))
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                if (link.StartsWith("http://") || link.StartsWith("https://"))
+                {
+                    NavigateToAsync<BrowserView>(new NavigationParameters
+                                                        {
+                                                            { "Link", link }
+                                                        });
+                }
+                else
+                    NavigateToAsync(link);
+
+                _analyticsService.SendEvent("Kategori", "Slider tıklaması", link);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand NoticeCommand
+        {
+            get
+            {
+                return new CommandAsync(ExecuteNoticeCommand);
+            }
+        }
+
+        private ICommand _noticeNavigateToCommand;
+
+        public ICommand NoticeNavigateToCommand
+        {
+            get
+            {
+                return _noticeNavigateToCommand ?? (_noticeNavigateToCommand = new Command<string>(ExecuteNoticeNavigateToCommand));
+            }
+        }
 
         /// <summary>
         /// Firebase token değişince sunucuya bildirir
@@ -308,7 +393,7 @@ namespace ContestPark.Mobile.ViewModels
                     IsBusy = true;
 
                     if (_settingsService.CurrentUser.UserId != "34873f81-dfee-4d78-bc17-97d9b9bb-bot")
-                        NavigateToAsync<InviteView>();
+                        NavigateToPopupAsync<InviteView>();
                     else
                         _gameService.SubCategoryShare();
 

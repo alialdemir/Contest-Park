@@ -4,6 +4,6 @@ namespace ContestPark.Mobile.Dependencies
 {
     public interface IConvertUIToImage
     {
-        string GetImagePathByPage(ContentPage contentPage);
+        string GetImagePathByPage(ContentView contentPage);
     }
 }
