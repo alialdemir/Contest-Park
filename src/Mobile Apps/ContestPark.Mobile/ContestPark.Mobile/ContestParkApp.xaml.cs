@@ -58,7 +58,7 @@ namespace ContestPark.Mobile
         /// <param name="e"></param>
         private void Crashes_SentErrorReport(object sender, SentErrorReportEventArgs e)
         {
-            AnalyticsService?.SendEvent("Hata", "Uygulama Hatalari ", e.Report.Exception.Message);
+            AnalyticsService?.SendEvent("Hata", "Uygulama Hatalari ", e.Report.StackTrace);
         }
 
         #endregion OnInitialized

@@ -96,7 +96,7 @@ namespace ContestPark.Mobile.Services.Chat
 
             var result = await _requestProvider.PostAsync<string>($"{uri}", messageModel);
 
-            if (!result.IsSuccess)
+            if (!result.IsSuccess && result.Error != null && !string.IsNullOrEmpty(result.Error.ErrorMessage))
             {
                 await _pageDialogService.DisplayAlertAsync("",
                                                            result.Error.ErrorMessage,

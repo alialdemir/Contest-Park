@@ -287,7 +287,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private async Task ExecuteSendMessageCommand()
         {
-            if (IsBusy || string.IsNullOrEmpty(_message))
+            if (IsBusy || string.IsNullOrEmpty(Message))
                 return;
 
             IsBusy = true;
@@ -297,7 +297,7 @@ namespace ContestPark.Mobile.ViewModels
             var lastMessage = new ChatDetailModel
             {
                 Date = DateTime.Now,
-                Message = _message,
+                Message = Message,
                 IsIncoming = true,
                 SenderId = _settingsService.CurrentUser.UserId
             };
@@ -306,7 +306,7 @@ namespace ContestPark.Mobile.ViewModels
 
             bool isSuccess = await _chatService.SendMessage(new MessageModel
             {
-                Text = _message.Trim(),
+                Text = Message.Trim(),
                 ReceiverUserId = SenderUserId,
             });
 

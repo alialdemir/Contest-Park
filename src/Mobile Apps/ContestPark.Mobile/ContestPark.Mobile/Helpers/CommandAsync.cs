@@ -39,6 +39,13 @@ namespace ContestPark.Mobile.Helpers
                 _execute.Invoke(parameter is T
                                 ? (T)parameter
                                 : default);
+
+                if (CanExecuteChanged != null)
+                {
+                    CanExecuteChanged.Invoke(parameter is T
+                                ? (T)parameter
+                                : default, null);
+                }
             }
         }
     }
