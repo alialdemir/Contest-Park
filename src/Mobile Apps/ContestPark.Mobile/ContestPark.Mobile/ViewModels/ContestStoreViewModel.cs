@@ -177,7 +177,6 @@ namespace ContestPark.Mobile.ViewModels
                     Token = purchaseInfo.PurchaseToken.Length.ToString(),
                     Platform = GetCurrentPlatform()
                 });
-
                 if (isSuccessGoldPurchase)
                 {
                     PurchaseSuccess(purchaseInfo, productName);
