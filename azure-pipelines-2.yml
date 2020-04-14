@@ -25,14 +25,14 @@ steps:
     restoreSolution: '**/ContestPark.Mobile.sln'
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'distribution.cer'
-    certPwd: '1234'
+    certSecureFile: 'ContestParkCer.p12'
+    certPwd: '19931993**Ali'
     keychain: 'temp'
 
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ContestPark_App_Store.mobileprovision'
+    provProfileSecureFile: 'ContestPark_Provisioning_Profile.mobileprovision'
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/ContestPark.Mobile.sln'
