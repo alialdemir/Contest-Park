@@ -25,7 +25,7 @@ steps:
     restoreSolution: '**/ContestPark.Mobile.sln'
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'ContestParkCer.p12'
+    certSecureFile: 'ContestParkDevCer.p12'
     certPwd: '19931993**Ali'
     keychain: 'temp'
 
