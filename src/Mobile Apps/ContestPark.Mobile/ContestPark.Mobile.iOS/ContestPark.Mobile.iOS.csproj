@@ -55,18 +55,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>Full</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <CodesignProvision>
     </CodesignProvision>
     <MtouchFloat32>true</MtouchFloat32>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchExtraArgs>
-    </MtouchExtraArgs>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchExtraArgs>--linkskip=Plugin.InAppBilling</MtouchExtraArgs>
+    <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
     <OptimizePNGs>false</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -390,6 +389,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>4.6.0.379-pre1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.iOS.MobileAds">
+      <Version>7.27.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

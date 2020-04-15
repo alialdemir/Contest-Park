@@ -61,9 +61,9 @@ namespace ContestPark.Mobile.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-#if !DEBUG
-            CheckJailBreak();
-#endif
+            ////#if !DEBUG
+            ////            CheckJailBreak();
+            ////#endif
 
             if (CheckNetworkAsync())
                 return false;
@@ -153,7 +153,7 @@ namespace ContestPark.Mobile.iOS
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -166,7 +166,7 @@ namespace ContestPark.Mobile.iOS
                 return UIApplication.SharedApplication.OpenUrl(
                 new NSUrl(@"cydia://package/com.example.package"));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
