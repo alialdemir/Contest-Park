@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Behaviors
 {
-    public class EventToCommandBehavior : BindableBehavior<View>
+    public class EventToCommandBehavior : BindableBehavior<View>//
     {
         public static BindableProperty CommandParameterProperty =
             BindableProperty.CreateAttached("CommandParameter", typeof(object), typeof(EventToCommandBehavior), null,
