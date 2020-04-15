@@ -2,10 +2,7 @@
 using ContestPark.Mobile.Models.Media;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using Prism.Services;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -44,7 +41,7 @@ namespace ContestPark.Mobile.Services.Media
         {
             if (string.Equals(type, ContestParkResources.ChooseFromLibrary))
             {
-                bool permissionStatus = await CheckPermissionStatusAsync(Permission.Storage);
+                bool permissionStatus = await CrossMedia.Current.Initialize();// await CheckPermissionStatusAsync(Permission.Storage);
                 if (!permissionStatus)
                 {
                     await ShowErrorMessage();
@@ -55,7 +52,7 @@ namespace ContestPark.Mobile.Services.Media
             }
             else if (string.Equals(type, ContestParkResources.TakeAPhoto))
             {
-                bool permissionStatus = await CheckPermissionStatusAsync(Permission.Camera);
+                bool permissionStatus = await CrossMedia.Current.Initialize();// await CheckPermissionStatusAsync(Permission.Camera);
                 if (!permissionStatus)
                 {
                     await ShowErrorMessage();
@@ -88,18 +85,20 @@ namespace ContestPark.Mobile.Services.Media
         /// </summary>
         /// <param name="permission"></param>
         /// <returns>Erişim izni verilmiş ise true aksi halde false</returns>
-        private async Task<bool> CheckPermissionStatusAsync(Permission permission)
-        {
-            PermissionStatus status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
+        //////////private async Task<bool> CheckPermissionStatusAsync(Permission permission)
+        //////////{
+        //////////    CrossMedia
 
-            if (status != PermissionStatus.Granted)
-            {
-                Dictionary<Permission, PermissionStatus> results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { permission });
-                status = results[permission];
-            }
+        //////////    PermissionStatus status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
 
-            return status == PermissionStatus.Granted;
-        }
+        //////////    if (status != PermissionStatus.Granted)
+        //////////    {
+        //////////        Dictionary<Permission, PermissionStatus> results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { permission });
+        //////////        status = results[permission];
+        //////////    }
+
+        //////////    return status == PermissionStatus.Granted;
+        //////////}
 
         /// <summary>
         /// Galleryden fotoğraf seçtirir

@@ -34,8 +34,20 @@ namespace ContestPark.Mobile.Views
 
             if (Device.RuntimePlatform == Device.Android)
             {
-                Navigated += (e, o) => Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
-                Navigating += (e, o) => Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
+                Navigated += (e, o) =>
+                {
+                    if (Current != null)
+                    {
+                        Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
+                    }
+                };
+                Navigating += (e, o) =>
+                {
+                    if (Current != null)
+                    {
+                        Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
+                    }
+                };
             }
         }
 

@@ -25,6 +25,7 @@ using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter.Crashes;
+
 using Plugin.FirebasePushNotification;
 using Prism.Events;
 using Prism.Navigation;

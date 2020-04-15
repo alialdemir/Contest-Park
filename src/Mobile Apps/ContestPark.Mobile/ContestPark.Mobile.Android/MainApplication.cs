@@ -2,8 +2,8 @@
 using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
+
 using Plugin.FirebasePushNotification;
-using Plugin.FirebasePushNotification.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,14 +37,14 @@ namespace ContestPark.Mobile.Droid
 
             FirebasePushNotificationManager.Initialize(this, new NotificationUserCategory[]
         {
-            new NotificationUserCategory("message",new List<NotificationUserAction> {
-                new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
-                new NotificationUserAction("Forward","Forward",NotificationActionType.Foreground)
-            }),
-            new NotificationUserCategory("request",new List<NotificationUserAction> {
-                new NotificationUserAction("Accept","Accept",NotificationActionType.Default,"check"),
-                new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
-            })
+                new NotificationUserCategory("message",new List<NotificationUserAction> {
+                    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
+                    new NotificationUserAction("Forward","Forward",NotificationActionType.Foreground)
+                }),
+                new NotificationUserCategory("request",new List<NotificationUserAction> {
+                    new NotificationUserAction("Accept","Accept",NotificationActionType.Default,"check"),
+                    new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
+                })
         }, Debugger.IsAttached);
         }
     }

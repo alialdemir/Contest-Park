@@ -9,6 +9,7 @@ using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
 using Matcha.BackgroundService.Droid;
 using Plugin.CurrentActivity;
+
 using Plugin.FirebasePushNotification;
 using Plugin.InAppBilling;
 using Prism;
@@ -51,7 +52,7 @@ namespace ContestPark.Mobile.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
