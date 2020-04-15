@@ -86,6 +86,7 @@ namespace ContestPark.Mobile.iOS
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
             App.Configure();
+            var foo = Firebase.Core.Configuration.SharedInstance;
 
             return base.FinishedLaunching(app, options);
         }

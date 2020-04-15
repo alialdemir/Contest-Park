@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.iOS.Dependencies
             if (string.IsNullOrEmpty(userId))
                 return;
 
-            Firebase.Analytics.Analytics.SetUserID(userId);
+            Firebase.Analytics.Analytics.SetUserId(userId);
         }
     }
 }
