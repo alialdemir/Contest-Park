@@ -225,11 +225,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
                     if (data != null)
                     {
-                        if (data.GetType() == typeof(MediaModel))
-                        {
-                            httpClient.Timeout = TimeSpan.FromMinutes(1);
-                        }
-
                         httpRequestMessage.Content = GetContent(data);
                     }
 

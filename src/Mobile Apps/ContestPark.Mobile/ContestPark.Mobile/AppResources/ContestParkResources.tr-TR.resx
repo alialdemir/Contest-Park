@@ -448,6 +448,9 @@
   <data name="NewPassword" xml:space="preserve">
     <value>Yeni Şifre</value>
   </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>NewVersion</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>İleri</value>
   </data>
@@ -677,6 +680,9 @@
   </data>
   <data name="ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount" xml:space="preserve">
     <value>Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi.</value>
+  </data>
+  <data name="ThereIsaNewVersionOfThisAppAvailableWouldYouLikeToUpdateNow" xml:space="preserve">
+    <value>There is a new version of this app available. Would you like to update now?</value>
   </data>
   <data name="ThisCategoryRankNull" xml:space="preserve">
     <value>Bu kategoride daha önce yarışan olmamış. İlk sırayı sen kapabilirsin!</value>

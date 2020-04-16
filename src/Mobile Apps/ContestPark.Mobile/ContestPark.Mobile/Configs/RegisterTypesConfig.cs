@@ -13,6 +13,7 @@ using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.Services.InviteDuel;
+using ContestPark.Mobile.Services.LatestVersion;
 using ContestPark.Mobile.Services.Media;
 using ContestPark.Mobile.Services.Mission;
 using ContestPark.Mobile.Services.Notice;
@@ -190,6 +191,8 @@ namespace ContestPark.Mobile.Configs
                 containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
                 containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
+
+                containerRegistry.RegisterSingleton<ILatestVersionService, LatestVersionService>();
             }
             else
             {

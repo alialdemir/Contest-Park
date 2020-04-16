@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Analytics;
+using ContestPark.Mobile.Services.LatestVersion;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
@@ -38,6 +39,11 @@ namespace ContestPark.Mobile
                 InitializeComponent();
 
                 Barrel.ApplicationId = "ContestPark";
+
+                RegisterTypesConfig
+                    .Container
+                    .Resolve<ILatestVersionService>()
+                    .IfNotUsingLatestVersionOpenInStore();
 
                 ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 

@@ -850,4 +850,10 @@
   <data name="WriteANewComment" xml:space="preserve">
     <value>Write a new comment</value>
   </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>NewVersion</value>
+  </data>
+  <data name="ThereIsaNewVersionOfThisAppAvailableWouldYouLikeToUpdateNow" xml:space="preserve">
+    <value>There is a new version of this app available. Would you like to update now?</value>
+  </data>
 </root>

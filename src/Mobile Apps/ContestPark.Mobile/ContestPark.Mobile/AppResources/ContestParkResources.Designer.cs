@@ -1043,6 +1043,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewVersion.
+        /// </summary>
+        public static string NewVersion {
+            get {
+                return ResourceManager.GetString("NewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string Next {
@@ -1723,6 +1732,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount {
             get {
                 return ResourceManager.GetString("ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a new version of this app available. Would you like to update now?.
+        /// </summary>
+        public static string ThereIsaNewVersionOfThisAppAvailableWouldYouLikeToUpdateNow {
+            get {
+                return ResourceManager.GetString("ThereIsaNewVersionOfThisAppAvailableWouldYouLikeToUpdateNow", resourceCulture);
             }
         }
         
