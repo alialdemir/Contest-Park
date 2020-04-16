@@ -32,7 +32,7 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
             _adView = new BannerView(AdSizeCons.SmartBannerPortrait,
                 new CGPoint(0, UIScreen.MainScreen.Bounds.Size.Height - AdSizeCons.Banner.Size.Height))
             {
-                AdUnitID = _adUnitId,
+                AdUnitId = _adUnitId,
                 RootViewController = controller
             };
 
