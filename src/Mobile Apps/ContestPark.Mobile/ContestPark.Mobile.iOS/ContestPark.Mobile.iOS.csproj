@@ -64,7 +64,8 @@
     </CodesignProvision>
     <MtouchFloat32>true</MtouchFloat32>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
     <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
     <OptimizePNGs>false</OptimizePNGs>
   </PropertyGroup>
@@ -81,7 +82,8 @@
     <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;ENABLE_TEST_CLOUD;</DefineConstants>
     <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
     <OptimizePNGs>true</OptimizePNGs>
-    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
