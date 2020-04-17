@@ -15,6 +15,7 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -59,6 +60,11 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Constructors
 
         #region Properties
+
+        private string PurchaseTokenFilePath
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "cp.txt"); }
+        }
 
         private BalanceTypes _balanceType = BalanceTypes.Money;
 
@@ -145,12 +151,21 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
+            #region Ios purchase token çok uzun olduğu için text dosyasına yazıp gönderiyoruz
+
+            File.WriteAllText(PurchaseTokenFilePath, purchaseInfo.PurchaseToken);
+            byte[] purchaseTokenByte = File.ReadAllBytes(PurchaseTokenFilePath);
+            Stream purchaseTokenStream = new MemoryStream(purchaseTokenByte);
+
+            #endregion Ios purchase token çok uzun olduğu için text dosyasına yazıp gönderiyoruz
+
             bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
             {
                 ProductId = purchaseInfo.ProductId,
                 PackageName = purchaseInfo.ProductId,
-                Token = purchaseInfo.PurchaseToken,
-                Platform = GetCurrentPlatform()
+                Platform = GetCurrentPlatform(),
+                File = purchaseTokenStream,
+                FileName = "cp.txt"
             });
             if (isSuccessGoldPurchase)
             {
@@ -162,6 +177,9 @@ namespace ContestPark.Mobile.ViewModels
                                  ContestParkResources.Error,
                                  ContestParkResources.PurchaseFail,
                                  ContestParkResources.Okay);
+
+                if (File.Exists(PurchaseTokenFilePath))
+                    File.Delete(PurchaseTokenFilePath);
 
                 SendProductEvent(purchaseInfo, "Remove From Cart", productName);
             }
@@ -187,6 +205,9 @@ namespace ContestPark.Mobile.ViewModels
                  .Publish();
 
             SendProductEvent(purchaseInfo, "Purchase", productName);
+
+            if (File.Exists(PurchaseTokenFilePath))
+                File.Delete(PurchaseTokenFilePath);
 
             _inAppBillingService.ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.PurchaseToken);
         }

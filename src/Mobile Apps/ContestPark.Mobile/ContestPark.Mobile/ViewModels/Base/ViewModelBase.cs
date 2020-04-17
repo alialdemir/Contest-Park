@@ -173,6 +173,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         public Task NavigateToInitialized<TView>()
         {
             string name = typeof(TView).Name;
+
             return NavigateToAsync($"app:///{name}?appModuleRefresh=OnInitialized");
         }
 

@@ -1,8 +1,9 @@
 ﻿using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Models.Media;
 
 namespace ContestPark.Mobile.Models.Balance
 {
-    public class PurchaseModel
+    public class PurchaseModel : MediaModel
     {
         /// <summary>
         /// App store package name
@@ -13,11 +14,6 @@ namespace ContestPark.Mobile.Models.Balance
         ///  App store product id
         /// </summary>
         public string ProductId { get; set; }
-
-        /// <summary>
-        /// App store token
-        /// </summary>
-        public string Token { get; set; }
 
         /// <summary>
         /// Platform

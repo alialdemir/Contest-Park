@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Extensions;
+using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.ErrorModel;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Media;
@@ -269,17 +270,22 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             if (data.GetType() == typeof(MediaModel))
             {
-                MediaModel media = (MediaModel)data;
-                if (media == null || media.File == null || string.IsNullOrEmpty(media.FileName))
-                    return null;
+                MultipartFormDataContent multipartFormData = GetMultipartFormData((MediaModel)data);
 
-                StreamContent streamContent = new StreamContent(media.File);
-                streamContent.Headers.ContentType = new MediaTypeHeaderValue(GetImageContentType(media.FileName));
+                #region Satın alma için eklendi
 
-                return new MultipartFormDataContent
-                        {
-                            { streamContent, "files", media.FileName }
-                        };
+                if (data.GetType() == typeof(PurchaseModel))
+                {
+                    PurchaseModel purchase = (PurchaseModel)data;
+
+                    multipartFormData.Add(new StringContent(purchase.ProductId), nameof(purchase.ProductId));
+                    multipartFormData.Add(new StringContent(purchase.PackageName), nameof(purchase.PackageName));
+                    multipartFormData.Add(new StringContent(purchase.Platform.ToString()), nameof(purchase.Platform));
+                }
+
+                #endregion Satın alma için eklendi
+
+                return multipartFormData;
             }
             else if (data != null)
             {
@@ -288,6 +294,25 @@ namespace ContestPark.Mobile.Services.RequestProvider
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Media model tipindeki datayı MultipartFormDataContent modeline çevirir
+        /// </summary>
+        /// <param name="media">File</param>
+        /// <returns>MultipartFormDataContent</returns>
+        private MultipartFormDataContent GetMultipartFormData(MediaModel media)
+        {
+            if (media == null || media.File == null || string.IsNullOrEmpty(media.FileName))
+                return null;
+
+            StreamContent streamContent = new StreamContent(media.File);
+            streamContent.Headers.ContentType = new MediaTypeHeaderValue(GetImageContentType(media.FileName));
+
+            return new MultipartFormDataContent
+                        {
+                            { streamContent, "files", media.FileName }
+                        };
         }
 
         /// <summary>
@@ -302,6 +327,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             {
                 case ".jpg": return "image/jpeg";
                 case ".png": return "image/png";
+                case ".txt": return "text/plain";
             }
 
             return string.Empty;

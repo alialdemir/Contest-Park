@@ -71,16 +71,17 @@ namespace ContestPark.Mobile.Components
             if (subCategory == null || (e != null && e.PropertyName != nameof(subCategory.IsSubCategoryOpen)))
                 return;
 
-            if (subCategory.IsSubCategoryOpen)
+            bool isAnyBlurredTransformation = imgSubCategory.Transformations.Any(x => x.GetType() == typeof(BlurredTransformation));
+            if (subCategory.IsSubCategoryOpen && isAnyBlurredTransformation)
             {
                 imgSubCategory.Transformations.RemoveAll(x => x.GetType() == typeof(BlurredTransformation));
+                imgSubCategory.ReloadImage();
             }
-            else if (!imgSubCategory.Transformations.Any(x => x.GetType() == typeof(BlurredTransformation)))
+            else if (!isAnyBlurredTransformation)
             {
                 imgSubCategory.Transformations.Add(new BlurredTransformation(40));
+                imgSubCategory.ReloadImage();
             }
-
-            imgSubCategory.ReloadImage();
         }
 
         #endregion Methods

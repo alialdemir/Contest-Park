@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
+using System.IO;
 
 namespace ContestPark.Mobile.Models.Media
 {
@@ -7,6 +8,8 @@ namespace ContestPark.Mobile.Models.Media
         public Stream File { get; set; }
 
         public string FileName { get; set; }
+
+        [JsonIgnore]
         public string AnalyticsEventLabel { get; internal set; }
     }
 }

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -331,10 +332,13 @@ namespace ContestPark.Balance.API.Controllers
         /// Bakiye satın aldığında hesaba yükleme işlemi yapar
         /// </summary>
         /// <param name="purchase">Satın alma bilgileri</param>
-        [HttpPost("Purchase")]
+        [HttpPost]
+        [Route("Purchase")]
+        [Route("api/v2/[controller]/Purchase")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [Consumes("multipart/form-data")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Purchase([FromBody]PurchaseModel purchase)
+        public async Task<IActionResult> Purchase([FromForm]PurchaseModel purchase)
         {
             if (purchase == null)
             {
@@ -343,19 +347,43 @@ namespace ContestPark.Balance.API.Controllers
                 return BadRequest();
             }
 
+            #region Yeni versiyon ile token bilgisi files içerisinde geliyor
+
+            if (purchase.File != null && purchase.File.Length > 0)
+            {
+                using (var reader = new StreamReader(purchase.File.OpenReadStream()))
+                {
+                    purchase.Token = await reader.ReadToEndAsync();
+                }
+            }
+
+            #endregion Yeni versiyon ile token bilgisi files içerisinde geliyor
+
             if (string.IsNullOrEmpty(purchase.PackageName)
                 || string.IsNullOrEmpty(purchase.ProductId)
                 || string.IsNullOrEmpty(purchase.Token)
                  || !(purchase.Platform == Platforms.Android || purchase.Platform == Platforms.Ios))
             {
-                string productId = purchase.ProductId;
                 Logger.LogError("Paket satın alma bilgiler boş geldi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
                                 UserId,
                                 purchase.PackageName,
                                 purchase.Platform,
                                 purchase.PackageName,
-                                productId,
+                                purchase.ProductId,
                                 purchase.Token);
+
+                return BadRequest();
+            }
+
+            if (_purchaseHistoryRepository.IsExistsToken(purchase.Token))
+            {
+                Logger.LogWarning("Kayıtlı olan purchase token bilgisi ile tekrar satın alınma işlemi gereçekleşti... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
+                             UserId,
+                             purchase.PackageName,
+                             purchase.Platform,
+                             purchase.PackageName,
+                             purchase.ProductId,
+                             purchase.Token);
 
                 return BadRequest();
             }

@@ -296,7 +296,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return null;
                 }
 
-                var purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, Guid.NewGuid().ToString());
+                var purchase = await _billing.PurchaseAsync(productId, ItemType.InAppPurchase, Guid.NewGuid().ToString());
                 if (purchase == null)
                 {
                     //Not purchased, alert the user
@@ -312,7 +312,6 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                        Auto renewing: {purchase.AutoRenewing}
                                        Payload: {purchase.Payload}
                                        Purchase token: {purchase.PurchaseToken}
-                                       Transaction date utc: {purchase.TransactionDateUtc}
                                        State: {purchase.State.ToString()}
                                        Consumption state: {purchase.ConsumptionState.ToString()} ");
 
@@ -360,7 +359,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 && !string.IsNullOrEmpty(productId)
                 && !string.IsNullOrEmpty(purchaseToken))
             {
-                return CrossInAppBilling.Current.ConsumePurchaseAsync(productId, purchaseToken);
+                return _billing.ConsumePurchaseAsync(productId, purchaseToken);
             }
 
             return null;

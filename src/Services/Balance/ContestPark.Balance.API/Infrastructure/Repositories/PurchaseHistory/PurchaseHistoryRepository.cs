@@ -50,6 +50,22 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory
             return issuccsess.HasValue;
         }
 
+        /// <summary>
+        /// Token daha önceden eklenmiş mi kontrol eder
+        /// </summary>
+        /// <param name="token">Purchase token</param>
+        /// <returns>Eklenmiş ise true eklenmemiş ise false döner</returns>
+        public bool IsExistsToken(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+                return true;
+
+            return _purchaseHistoryRepository.QuerySingleOrDefault<bool>("SP_IsExistsToken", new
+            {
+                token
+            }, System.Data.CommandType.StoredProcedure);
+        }
+
         #endregion Methods
     }
 }
