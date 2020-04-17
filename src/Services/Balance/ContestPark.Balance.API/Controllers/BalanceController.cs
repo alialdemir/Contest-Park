@@ -332,8 +332,7 @@ namespace ContestPark.Balance.API.Controllers
         /// Bakiye satın aldığında hesaba yükleme işlemi yapar
         /// </summary>
         /// <param name="purchase">Satın alma bilgileri</param>
-        [HttpPost]
-        [Route("api/v2/[controller]/Purchase")]
+        [HttpPost("Purchase/v2")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Consumes("multipart/form-data")]
