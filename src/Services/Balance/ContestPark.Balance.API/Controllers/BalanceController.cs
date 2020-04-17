@@ -345,7 +345,8 @@ namespace ContestPark.Balance.API.Controllers
 
             if (string.IsNullOrEmpty(purchase.PackageName)
                 || string.IsNullOrEmpty(purchase.ProductId)
-                || string.IsNullOrEmpty(purchase.Token))
+                || string.IsNullOrEmpty(purchase.Token)
+                 || !(purchase.Platform == Platforms.Android || purchase.Platform == Platforms.Ios))
             {
                 string productId = purchase.ProductId;
                 Logger.LogError("Paket satın alma bilgiler boş geldi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
