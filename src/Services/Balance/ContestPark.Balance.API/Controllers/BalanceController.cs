@@ -333,11 +333,11 @@ namespace ContestPark.Balance.API.Controllers
         /// </summary>
         /// <param name="purchase">Satın alma bilgileri</param>
         [HttpPost]
-        [Route("Purchase")]
+        [Route("api/v2/[controller]/Purchase")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [Consumes("multipart/form-data", "application/json")]
-        public async Task<IActionResult> Purchase([FromForm]PurchaseModel purchase)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> PurchaseV2([FromBody]PurchaseModel purchase)
         {
             if (purchase == null)
             {
@@ -357,6 +357,27 @@ namespace ContestPark.Balance.API.Controllers
             }
 
             #endregion Yeni versiyon ile token bilgisi files içerisinde geliyor
+
+            return await Purchase(purchase);
+        }
+
+        /// <summary>
+        /// Bakiye satın aldığında hesaba yükleme işlemi yapar
+        /// </summary>
+        /// <param name="purchase">Satın alma bilgileri</param>
+        [HttpPost]
+        [Route("Purchase")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [Consumes("application/json")]
+        public async Task<IActionResult> Purchase([FromForm]PurchaseModel purchase)
+        {
+            if (purchase == null)
+            {
+                Logger.LogInformation("Satın alma bilgileri boş geldi. {UserId}", UserId);
+
+                return BadRequest();
+            }
 
             if (string.IsNullOrEmpty(purchase.PackageName)
                 || string.IsNullOrEmpty(purchase.ProductId)
