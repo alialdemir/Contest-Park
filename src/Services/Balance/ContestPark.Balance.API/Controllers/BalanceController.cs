@@ -337,7 +337,7 @@ namespace ContestPark.Balance.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> PurchaseV2([FromBody]PurchaseModel purchase)
+        public async Task<IActionResult> PurchaseV2([FromForm]PurchaseModel purchase)
         {
             if (purchase == null)
             {
@@ -365,12 +365,10 @@ namespace ContestPark.Balance.API.Controllers
         /// Bakiye satın aldığında hesaba yükleme işlemi yapar
         /// </summary>
         /// <param name="purchase">Satın alma bilgileri</param>
-        [HttpPost]
-        [Route("Purchase")]
+        [HttpPost("Purchase")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [Consumes("application/json")]
-        public async Task<IActionResult> Purchase([FromForm]PurchaseModel purchase)
+        public async Task<IActionResult> Purchase([FromBody]PurchaseModel purchase)
         {
             if (purchase == null)
             {
