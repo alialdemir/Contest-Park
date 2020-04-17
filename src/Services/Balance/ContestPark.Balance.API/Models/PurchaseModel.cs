@@ -30,6 +30,6 @@ namespace ContestPark.Balance.API.Models
         //[EnumDataType(typeof(Platforms), ErrorMessageResourceType = typeof(BalanceResource), ErrorMessageResourceName = "InvalidPlatformType")]
         public Platforms Platform { get; set; }
 
-        public IFormFile File { get; set; }
+        public IFormFile Files { get; set; }
     }
 }
