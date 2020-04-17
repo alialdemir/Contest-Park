@@ -336,7 +336,7 @@ namespace ContestPark.Balance.API.Controllers
         [Route("Purchase")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [Consumes("multipart/form-data")]
+        [Consumes("multipart/form-data", "application/json")]
         public async Task<IActionResult> Purchase([FromForm]PurchaseModel purchase)
         {
             if (purchase == null)
@@ -347,9 +347,6 @@ namespace ContestPark.Balance.API.Controllers
             }
 
             #region Yeni versiyon ile token bilgisi files içerisinde geliyor
-
-            Logger.LogInformation("is null {check} ", purchase.File == null);
-            Logger.LogInformation("length {length}", purchase.File.Length.ToString());
 
             if (purchase.File != null && purchase.File.Length > 0)
             {
