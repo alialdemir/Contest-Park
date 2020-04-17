@@ -347,9 +347,9 @@ namespace ContestPark.Balance.API.Controllers
 
             #region Yeni versiyon ile token bilgisi files içerisinde geliyor
 
-            if (purchase.File != null && purchase.File.Length > 0)
+            if (purchase.Files != null && purchase.Files.Length > 0)
             {
-                using (var reader = new StreamReader(purchase.File.OpenReadStream()))
+                using (var reader = new StreamReader(purchase.Files.OpenReadStream()))
                 {
                     purchase.Token = await reader.ReadToEndAsync();
                 }
