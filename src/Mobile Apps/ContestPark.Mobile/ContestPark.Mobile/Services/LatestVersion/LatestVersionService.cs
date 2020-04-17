@@ -188,12 +188,12 @@ namespace ContestPark.Mobile.Services.LatestVersion
         {
             try
             {
-                var response = await _requestProvider.GetAsync<VersionIosModel>($"http://itunes.apple.com/lookup?bundleId={_packageName}");
-                if (response.IsSuccess && response.Data != null)
+                var response = await _requestProvider.GetAsync<VersionIosModel>($"https://itunes.apple.com/lookup?bundleId={_packageName}&country=tr");
+                if (response.IsSuccess && response.Data != null && response.Data.Results != null && response.Data.Results.Any())
                 {
                     return new App
                     {
-                        Version = response.Data.Results.FirstOrDefault().Version,
+                        Version = response.Data.Results.FirstOrDefault().Version.Replace("Version ", ""),
                     };
                 }
             }

@@ -343,17 +343,18 @@ namespace ContestPark.Balance.API.Controllers
                 return BadRequest();
             }
 
-            if (purchase == null
-                || string.IsNullOrEmpty(purchase.PackageName)
+            if (string.IsNullOrEmpty(purchase.PackageName)
                 || string.IsNullOrEmpty(purchase.ProductId)
-                || string.IsNullOrEmpty(purchase.Token)
-                || (!purchase.Platform.HasFlag(Platforms.Android) || !purchase.Platform.HasFlag(Platforms.Ios)))
+                || string.IsNullOrEmpty(purchase.Token))
             {
-                Logger.LogError($@"Paket satın alma bilgiler boş geldi... UserId: {UserId}
-                                                                          PackageName: {purchase.PackageName}
-                                                                          Platform: {purchase.Platform}
-                                                                          ProductId: {purchase.ProductId}
-                                                                          Token: {purchase.Token}");
+                string productId = purchase.ProductId;
+                Logger.LogError("Paket satın alma bilgiler boş geldi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
+                                UserId,
+                                purchase.PackageName,
+                                purchase.Platform,
+                                purchase.PackageName,
+                                productId,
+                                purchase.Token);
 
                 return BadRequest();
             }

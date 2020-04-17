@@ -7,12 +7,9 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
-using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -27,12 +24,9 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Constructor
 
-        public PhoneNumberViewModel(IPopupNavigation popupNavigation,
-                                    INavigationService navigationService,
-                                    ISettingsService settingsService,
-                                    IPageDialogService dialogService) : base(navigationService: navigationService,
-                                                                             dialogService: dialogService,
-                                                                             popupNavigation: popupNavigation)
+        public PhoneNumberViewModel(INavigationService navigationService,
+                                    IPageDialogService dialogService,
+                                    ISettingsService settingsService) : base(navigationService, dialogService)
         {
             this._settingsService = settingsService;
 #if DEBUG
@@ -165,7 +159,13 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command<string>((url) => Launcher.OpenAsync(new Uri(url)));
+                return new Command<string>((url) =>
+                {
+                    NavigateToAsync<BrowserView>(new NavigationParameters
+                                                        {
+                                                            { "Link", url }
+                                                        });
+                });
             }
         }
 

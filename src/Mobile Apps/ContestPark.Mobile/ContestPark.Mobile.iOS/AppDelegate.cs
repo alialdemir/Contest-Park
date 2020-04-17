@@ -1,8 +1,8 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
-using FFImageLoading.Forms.Platform;
+﻿using FFImageLoading.Forms.Platform;
 using Firebase.Core;
 using Foundation;
+
+//using Google.MobileAds;
 using Matcha.BackgroundService.iOS;
 using Plugin.FirebasePushNotification;
 using Plugin.Segmented.Control.iOS;
@@ -10,11 +10,10 @@ using Prism;
 using Prism.Ioc;
 using Rg.Plugins.Popup;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Threading;
 using UIKit;
-using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.iOS
 {
@@ -61,14 +60,9 @@ namespace ContestPark.Mobile.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            ////#if !DEBUG
-            ////            CheckJailBreak();
-            ////#endif
-
-            if (CheckNetworkAsync())
-                return false;
-
-            FirebasePushNotificationManager.Initialize(options, true);
+#if !DEBUG
+                        CheckJailBreak();
+#endif
 
             BackgroundAggregator.Init(this);
 
@@ -76,7 +70,15 @@ namespace ContestPark.Mobile.iOS
 
             Popup.Init();
 
-            Google.MobileAds.MobileAds.Configure(GlobalSetting.AppUnitId);
+            App.Configure();
+
+            //MobileAds.SharedInstance.Start(status =>
+            //{
+            //    // Requests test ads on devices you specify. Your test device ID is printed to the console when
+            //    // an ad request is made. Ads automatically returns test ads when running on a
+            //    // simulator. After you get your device ID, add it here
+            //    MobileAds.SharedInstance.RequestConfiguration.TestDeviceIdentifiers = new[] { Request.SimulatorId.ToString() };
+            //});
 
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
@@ -85,41 +87,19 @@ namespace ContestPark.Mobile.iOS
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
-            App.Configure();
-            var foo = Firebase.Core.Configuration.SharedInstance;
+            FirebasePushNotificationManager.Initialize(options, new NotificationUserCategory[]
+         {
+                new NotificationUserCategory("message",new List<NotificationUserAction> {
+                    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground)
+                }),
+                new NotificationUserCategory("request",new List<NotificationUserAction> {
+                    new NotificationUserAction("Accept","Accept"),
+                    new NotificationUserAction("Reject","Reject",NotificationActionType.Destructive)
+                })
+         });
 
             return base.FinishedLaunching(app, options);
         }
-
-        /// <summary>
-        /// Uygulama ilk açıldığında internet var mı diye kontrol eder
-        /// </summary>
-        /// <returns>İnternet yoksa false varsa true</returns>
-        private bool CheckNetworkAsync()
-        {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                var alert = UIAlertController.Create("", ContestParkResources.NoInternet, UIAlertControllerStyle.Alert);
-
-                alert.AddAction(UIAlertAction.Create(ContestParkResources.Okay, UIAlertActionStyle.Default,
-                action =>
-                {
-                    Thread.CurrentThread.Abort();
-                }
-                ));
-                var rootVC = UIApplication.SharedApplication.Windows[0].RootViewController;
-                rootVC.PresentViewController(alert, true, null);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Admob için eklendi
-        /// </summary>
-        //private void CompletionHandler(InitializationStatus status) { }
 
         private bool CheckCydia()
         {

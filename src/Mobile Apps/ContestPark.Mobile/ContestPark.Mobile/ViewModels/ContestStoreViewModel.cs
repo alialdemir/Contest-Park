@@ -145,14 +145,6 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            Microsoft.AppCenter.Analytics
-            .Analytics.TrackEvent("Token", new Dictionary<string, string>
-            {
-                {"PurchaseToken", purchaseInfo.PurchaseToken },
-                {"ProductId", purchaseInfo.ProductId },
-                {"State", purchaseInfo.State.ToString() },
-            });
-
             bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
             {
                 ProductId = purchaseInfo.ProductId,
@@ -166,30 +158,12 @@ namespace ContestPark.Mobile.ViewModels
             }
             else
             {
-                /*
-                 IOS tarafında token çok uzun olduğu için hata oluyordu token uzunluğunu anlamak için böyle birşey ekledim
-                 sorun düzelince kaldırın
-                 */
-                isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
-                {
-                    ProductId = purchaseInfo.ProductId,
-                    PackageName = purchaseInfo.ProductId,
-                    Token = purchaseInfo.PurchaseToken.Length.ToString(),
-                    Platform = GetCurrentPlatform()
-                });
-                if (isSuccessGoldPurchase)
-                {
-                    PurchaseSuccess(purchaseInfo, productName);
-                }
-                else
-                {
-                    await DisplayAlertAsync(
-                                     ContestParkResources.Error,
-                                     ContestParkResources.PurchaseFail,
-                                     ContestParkResources.Okay);
+                await DisplayAlertAsync(
+                                 ContestParkResources.Error,
+                                 ContestParkResources.PurchaseFail,
+                                 ContestParkResources.Okay);
 
-                    SendProductEvent(purchaseInfo, "Remove From Cart", productName);
-                }
+                SendProductEvent(purchaseInfo, "Remove From Cart", productName);
             }
 
             IsBusy = false;
@@ -233,7 +207,7 @@ namespace ContestPark.Mobile.ViewModels
                     { "Id", purchaseInfo.Id },
                     { "AutoRenewing", purchaseInfo.AutoRenewing.ToString() },
                     { "Payload", purchaseInfo.Payload },
-                    { "PurchaseToken", purchaseInfo.PurchaseToken },
+                    //{ "PurchaseToken", purchaseInfo.PurchaseToken },
                     { "TransactionDateUtc", purchaseInfo.TransactionDateUtc.ToLongDateString()},
                     { "State", purchaseInfo.State.ToString() },
                     { "ConsumptionState", purchaseInfo.ConsumptionState.ToString() },

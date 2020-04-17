@@ -342,7 +342,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
             finally
             {
                 //Disconnect, it is okay if we never connected
-                //      await billing.DisconnectAsync();
+                await _billing.DisconnectAsync();
             }
 
             return null;

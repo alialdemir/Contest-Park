@@ -517,6 +517,8 @@ namespace ContestPark.Mobile.ViewModels
                 { "DuelId", Question.DuelCreated.DuelId }
             });
 
+            await RemoveFirstPopupAsync<QuestionExpectedPopupView>();
+
             await RemoveFirstPopupAsync<QuestionPopupView>();
         }
 
@@ -565,6 +567,9 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="opponentStylish">Rakip oyuncunun verdiği cevap</param>
         private void PlaySound(Stylish founderStylish, Stylish opponentStylish, Stylish correctAnswer)
         {
+            if (!_settingsService.IsSoundEffectActive)
+                return;
+
             if (IsFounder)
             {
                 bool isCorrectFounder = correctAnswer == founderStylish;

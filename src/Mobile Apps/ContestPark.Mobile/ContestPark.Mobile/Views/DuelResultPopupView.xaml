@@ -15,7 +15,8 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="duelResultPopupViewPage"
     Padding="0,0,0,-80"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#A573FF">
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="700"

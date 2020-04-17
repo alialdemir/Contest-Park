@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:788456912839:ios:701fef54389797a8488be2</string>
+	<string>1:788456912839:ios:8dd16141299d4e58488be2</string>
 	<key>DATABASE_URL</key>
 	<string>https://contestpark-4bef1.firebaseio.com</string>
 </dict>
