@@ -334,10 +334,9 @@ namespace ContestPark.Balance.API.Controllers
         /// <param name="purchase">Satın alma bilgileri</param>
         [HttpPost]
         [Route("Purchase")]
-        [Route("api/v2/[controller]/Purchase")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [Consumes("multipart/form-data")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [Consumes("multipart/form-data", "application/json")]
         public async Task<IActionResult> Purchase([FromForm]PurchaseModel purchase)
         {
             if (purchase == null)
