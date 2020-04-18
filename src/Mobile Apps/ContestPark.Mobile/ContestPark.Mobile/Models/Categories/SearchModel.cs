@@ -26,10 +26,16 @@ namespace ContestPark.Mobile.Models.Categories
 
         public string FullName { get; set; } = "";
 
-        [JsonIgnore]
-        public bool IsCategoryOpen
+        private bool _isSubCategoryOpen = false;
+
+        public bool IsSubCategoryOpen
         {
-            get { return DisplayPrice.Equals("0"); }
+            get { return _isSubCategoryOpen; }
+            set
+            {
+                _isSubCategoryOpen = value;
+                RaisePropertyChanged(() => IsSubCategoryOpen);
+            }
         }
 
         public bool IsFollowing

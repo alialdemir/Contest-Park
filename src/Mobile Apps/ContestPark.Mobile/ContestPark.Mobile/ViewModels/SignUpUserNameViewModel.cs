@@ -101,10 +101,10 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     "SignUp", new SignUpModel
                                         {
-                                            FullName = FullName,
+                                            FullName = FullName.Trim(),
                                             Password = PhoneNumber,
-                                            UserName = UserName,
-                                            ReferenceCode = ReferenceCode
+                                            UserName = UserName.Trim(),
+                                            ReferenceCode = ReferenceCode.Trim()
                                         }
                 }
             });

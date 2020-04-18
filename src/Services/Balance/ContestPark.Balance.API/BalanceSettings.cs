@@ -4,5 +4,6 @@
     {
         public bool IsMigrateDatabase { get; set; }
         public string ConnectionString { get; set; }
+        public string AppSpecificSharedSecret { get; set; }
     }
 }

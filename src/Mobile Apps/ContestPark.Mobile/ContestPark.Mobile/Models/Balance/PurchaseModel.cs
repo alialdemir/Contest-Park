@@ -22,6 +22,7 @@ namespace ContestPark.Mobile.Models.Balance
         public Platforms Platform { get; set; }
 
         public PurchaseState State { get; set; }
+
         public string TransactionId { get; set; }
     }
 }

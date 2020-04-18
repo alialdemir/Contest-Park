@@ -1,10 +1,12 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System.Text.RegularExpressions;
@@ -18,7 +20,10 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
+        private readonly IEventAggregator _eventAggregator;
+
         private readonly ISettingsService _settingsService;
+        private SubscriptionToken _subscriptionToken;
 
         #endregion Private variables
 
@@ -26,8 +31,10 @@ namespace ContestPark.Mobile.ViewModels
 
         public PhoneNumberViewModel(INavigationService navigationService,
                                     IPageDialogService dialogService,
+                                    IEventAggregator eventAggregator,
                                     ISettingsService settingsService) : base(navigationService, dialogService)
         {
+            _eventAggregator = eventAggregator;
             this._settingsService = settingsService;
 #if DEBUG
             PhoneNumber = "54545444261154";
@@ -102,6 +109,14 @@ namespace ContestPark.Mobile.ViewModels
                 _settingsService.IsTutorialDisplayed = true;
             }
 
+            _subscriptionToken = _eventAggregator
+                                         .GetEvent<NavigateToInitializedEvent>()
+                                         .Subscribe(async () =>
+                                         {
+                                             await GoBackAsync();
+                                             await NavigateToInitialized<AppShell>();
+                                         });
+
             return base.InitializeAsync(parameters);
         }
 
@@ -149,6 +164,15 @@ namespace ContestPark.Mobile.ViewModels
             });
 
             IsBusy = false;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            _eventAggregator
+                .GetEvent<NavigateToInitializedEvent>()
+                .Unsubscribe(_subscriptionToken);
+
+            return base.GoBackAsync(parameters, useModalNavigation);
         }
 
         #endregion Methods

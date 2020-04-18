@@ -68,7 +68,7 @@ namespace ContestPark.Mobile.Components
         public static readonly BindableProperty RightText2TextDecorationsProperty = BindableProperty.Create(propertyName: nameof(RightText2TextDecorations),
                                                                                                       returnType: typeof(TextDecorations),
                                                                                                       declaringType: typeof(ThumListItem),
-                                                                                                      defaultValue: TextDecorations.None);
+                                                                                                      defaultValue: TextDecorations.Strikethrough);
 
         public static readonly BindableProperty SingleTapProperty = BindableProperty.Create(propertyName: nameof(SingleTap),
                                                                                             returnType: typeof(ICommand),

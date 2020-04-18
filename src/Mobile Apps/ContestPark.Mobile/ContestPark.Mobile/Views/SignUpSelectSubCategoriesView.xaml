@@ -108,7 +108,7 @@
                             HorizontalOptions="End"
                             VerticalOptions="Center">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpSelectSubCategoriesView}}" CommandParameter="{StaticResource True}" />
                             </Image.GestureRecognizers>
                             <Image.Source>
                                 <FontImageSource
@@ -143,7 +143,7 @@
                                 MaximumTrackColor="#72F7C5"
                                 MinimumTrackColor="#B0E881"
                                 ThumbColor="Transparent"
-                                Value="0" />
+                                Value="{Binding Path=BindingContext.SelectedSubCategoryCount, Source={x:Reference signUpSelectSubCategoriesView}}" />
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="0"
@@ -167,7 +167,7 @@
                             <components:NonPersistentSelectedItemListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.ClickSubCategoryCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
+                                        <components:CategoryCard IsBlurredTransformation="True" PushCategoryDetailViewCommand="{Binding Path=BindingContext.ClickSubCategoryCommand, Source={x:Reference signUpSelectSubCategoriesView}}" />
                                     </ViewCell>
                                 </DataTemplate>
                             </components:NonPersistentSelectedItemListView.ItemTemplate>

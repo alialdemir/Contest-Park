@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Categories;
@@ -12,7 +13,7 @@ using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
-using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly ICategoryService _categoryService;
         private readonly ISettingsService _settingsService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IEventAggregator _eventAggregator;
         private readonly IIdentityService _identityService;
 
         #endregion Private variables
@@ -38,13 +40,15 @@ namespace ContestPark.Mobile.ViewModels
         public SignUpSelectSubCategoriesViewModel(ICategoryService categoryService,
                                                   ISettingsService settingsService,
                                                   IAnalyticsService analyticsService,
+                                                  INavigationService navigationService,
+                                                  IEventAggregator eventAggregator,
                                                   IPageDialogService pageDialogService,
-                                                  IIdentityService identityService,
-                                                  INavigationService navigationService) : base(navigationService, pageDialogService)
+                                                  IIdentityService identityService) : base(navigationService, pageDialogService)
         {
             _categoryService = categoryService;
             _settingsService = settingsService;
             _analyticsService = analyticsService;
+            _eventAggregator = eventAggregator;
             _identityService = identityService;
             ServiceModel.PageSize = 9999;// Şimdilik 9999 verdim kategorilerde safyalama yok
         }
@@ -202,13 +206,14 @@ namespace ContestPark.Mobile.ViewModels
                 if (currentUser != null)
                 {
                     _settingsService.RefreshCurrentUser(currentUser);
+                    _analyticsService.SetUserId(currentUser.UserId);
                 }
 
                 _settingsService.SignUpCount += 1;
 
-                _analyticsService.SetUserId(_settingsService.CurrentUser.UserId);
-
-                await NavigateToInitialized<AppShell>();
+                _eventAggregator
+                    .GetEvent<NavigateToInitializedEvent>()
+                    .Publish();
             }
             else
             {

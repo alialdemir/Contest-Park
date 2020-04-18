@@ -31,5 +31,9 @@ namespace ContestPark.Balance.API.Models
         public Platforms Platform { get; set; }
 
         public IFormFile Files { get; set; }
+
+        public PurchaseState State { get; set; }
+
+        public string TransactionId { get; set; }
     }
 }

@@ -187,7 +187,6 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
 
             List<SearchModel> searches = new List<SearchModel>();
 
-
             #region Alt kategori arama
 
             if (searchFilters == SearchFilters.SubCategoryId || filterIds.FirstOrDefault() == 0)
@@ -231,7 +230,21 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                       ELSE 0
                                       END) ) = 1 then sc.PicturePath
                                       ELSE @picturePath
-                                      end) as PicturePath
+                                      end) as PicturePath,
+
+                                      (case
+                                      when sc.Price = 0 then 1
+                                      when (SELECT
+                                      (CASE
+                                      WHEN EXISTS(
+                                      SELECT NULL AS emp
+                                      FROM OpenSubCategories AS osc  where osc.UserId =@userId and osc.SubCategoryId = sc.SubCategoryId
+                                      ) THEN 1
+                                      ELSE 0
+                                      END) ) = 1 then 1
+                                      ELSE 0
+                                      end) as IsSubCategoryOpen
+
                                       FROM SubCategoryLangs scl
                                       INNER JOIN SubCategories sc ON sc.SubCategoryId = scl.SubCategoryId
                                       INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = sc.SubCategoryId

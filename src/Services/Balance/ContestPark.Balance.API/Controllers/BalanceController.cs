@@ -9,6 +9,7 @@ using ContestPark.Balance.API.Infrastructure.Tables;
 using ContestPark.Balance.API.IntegrationEvents.Events;
 using ContestPark.Balance.API.Models;
 using ContestPark.Balance.API.Resources;
+using ContestPark.Balance.API.Services.VerifyReceiptIos;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace ContestPark.Balance.API.Controllers
         private readonly IBalanceHistoryRepository _balanceHistoryRepository;
         private readonly IReferenceCodeRepostory _referenceCodeRepostory;
         private readonly IEventBus _eventBus;
+        private readonly IVerifyReceiptIos _verifyReceiptIos;
         private readonly IMoneyWithdrawRequestRepository _moneyWithdrawRequestRepository;
         private readonly IPurchaseHistoryRepository _purchaseHistoryRepository;
 
@@ -42,6 +44,7 @@ namespace ContestPark.Balance.API.Controllers
                                  IBalanceHistoryRepository balanceHistoryRepository,
                                  IReferenceCodeRepostory referenceCodeRepostory,
                                  IEventBus eventBus,
+                                 IVerifyReceiptIos verifyReceiptIos,
                                  IMoneyWithdrawRequestRepository moneyWithdrawRequestRepository,
                                  ILogger<BalanceController> logger,
                                  IPurchaseHistoryRepository purchaseHistoryRepository) : base(logger)
@@ -51,6 +54,7 @@ namespace ContestPark.Balance.API.Controllers
             _balanceHistoryRepository = balanceHistoryRepository;
             _referenceCodeRepostory = referenceCodeRepostory;
             _eventBus = eventBus;
+            _verifyReceiptIos = verifyReceiptIos;
             _moneyWithdrawRequestRepository = moneyWithdrawRequestRepository;
             _purchaseHistoryRepository = purchaseHistoryRepository ?? throw new ArgumentNullException(nameof(purchaseHistoryRepository));
         }
@@ -404,6 +408,27 @@ namespace ContestPark.Balance.API.Controllers
                 return BadRequest();
             }
 
+            if (purchase.Platform == Platforms.Ios)
+            {
+                bool isVetify = await _verifyReceiptIos.Veriftasync(purchase.Token, new ReceiptModel
+                {
+                    ProductId = purchase.ProductId,
+                    TransactionId = purchase.TransactionId
+                });
+                if (!isVetify)
+                {
+                    Logger.LogWarning("Geçersiz ödeme bilgisi girildi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
+                         UserId,
+                         purchase.PackageName,
+                         purchase.Platform,
+                         purchase.PackageName,
+                         purchase.ProductId,
+                         purchase.Token);
+
+                    return BadRequest("Invalid payment information.");
+                }
+            }
+
             Logger.LogError($@"Paket yükleme isteği geldi... UserId: {UserId}
                                                              PackageName: {purchase.PackageName}
                                                              Platform: {purchase.Platform}
@@ -459,7 +484,9 @@ namespace ContestPark.Balance.API.Controllers
                 ProductId = purchase.ProductId,
                 PackageName = purchase.PackageName,
                 Token = purchase.Token,
-                Platform = purchase.Platform
+                Platform = purchase.Platform,
+                TransactionId = purchase.TransactionId,
+                State = purchase.State
             });
         }
 

@@ -92,6 +92,7 @@ namespace ContestPark.Category.API.Controllers
                                             SubCategoryId = x.SubCategoryId,
                                             SubCategoryName = x.SubCategoryName,
                                             SearchType = SearchTypes.Category,
+                                            IsSubCategoryOpen = x.IsSubCategoryOpen,
                                             DisplayPrice = x.DisplayPrice,
                                             PicturePath = x.PicturePath,
                                             Price = x.Price,
@@ -118,6 +119,7 @@ namespace ContestPark.Category.API.Controllers
                                         {
                                             SubCategoryId = x.SubCategoryId,
                                             SubCategoryName = x.SubCategoryName,
+                                            IsSubCategoryOpen = x.IsSubCategoryOpen,
                                             SearchType = SearchTypes.Category,
                                             DisplayPrice = x.DisplayPrice,
                                             PicturePath = x.PicturePath,

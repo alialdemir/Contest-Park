@@ -35,5 +35,8 @@ namespace ContestPark.Category.API.Models
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SubCategoryName { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool IsSubCategoryOpen { get; set; }
     }
 }

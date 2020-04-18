@@ -36,23 +36,21 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
 
         public string ProductName { get; set; }
 
-        private BalanceTypes _balanceType;
+        private BalanceTypes _balanceTypes;
 
-        public BalanceTypes BalanceType
+        public BalanceTypes BalanceTypes
         {
-            get { return _balanceType; }
+            get { return _balanceTypes; }
             set
             {
-                _balanceType = value;
+                _balanceTypes = value;
 
-                RaisePropertyChanged(() => BalanceType);
+                RaisePropertyChanged(() => BalanceTypes);
                 RaisePropertyChanged(() => RightText2TextDecorations);
                 RaisePropertyChanged(() => RightText2TextColor);
                 RaisePropertyChanged(() => DiscountPrice);
             }
         }
-
-        public BalanceTypes BalanceTypes { get; set; }
 
         public string DiscountPrice
         {

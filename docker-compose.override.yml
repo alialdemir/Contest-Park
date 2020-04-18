@@ -94,6 +94,7 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
+      - AppSpecificSharedSecret=${CONTESTPARK_APP_SPECIFIC_SHARED_SECRET}
     ports:
       - "5104:80"
     volumes:

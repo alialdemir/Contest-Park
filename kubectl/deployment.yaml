@@ -163,6 +163,8 @@ spec:
               value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
+            - name: AppSpecificSharedSecret
+              value: $(CONTESTPARK_APP_SPECIFIC_SHARED_SECRET)
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment

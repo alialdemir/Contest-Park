@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.RequestProvider;
@@ -10,6 +11,7 @@ using ContestPark.Mobile.Services.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -24,6 +26,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IIdentityService _identityService;
+        private readonly IEventAggregator _eventAggregator;
         private readonly INotificationService _notificationService;
         private readonly ISettingsService _settingsService;
 
@@ -33,12 +36,14 @@ namespace ContestPark.Mobile.ViewModels
 
         public SignUpVerificationViewModel(IIdentityService identityService,
                                            INavigationService navigationService,
+                                           IEventAggregator eventAggregator,
                                            INotificationService notificationService,
                                            IPageDialogService dialogService,
                                            ISettingsService settingsService) : base(navigationService: navigationService,
                                                                                     dialogService: dialogService)
         {
             _identityService = identityService;
+            _eventAggregator = eventAggregator;
             _notificationService = notificationService;
             _settingsService = settingsService;
         }
@@ -241,7 +246,9 @@ namespace ContestPark.Mobile.ViewModels
                     _settingsService.RefreshCurrentUser(currentUser);
                 }
 
-                await NavigateToInitialized<AppShell>();
+                _eventAggregator
+                    .GetEvent<NavigateToInitializedEvent>()
+                    .Publish();
             }
 
             UserDialogs.Instance.HideLoading();

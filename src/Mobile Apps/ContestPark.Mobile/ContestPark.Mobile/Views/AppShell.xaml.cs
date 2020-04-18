@@ -106,7 +106,7 @@ namespace ContestPark.Mobile.Views
         /// </summary>
         private void MenuItem_Clicked(object sender, System.EventArgs e)
         {
-            if (IsBusy || !(sender is MenuItem))
+            if (IsBusy || !(sender is MenuItem) || Current == null)
                 return;
 
             IsBusy = true;

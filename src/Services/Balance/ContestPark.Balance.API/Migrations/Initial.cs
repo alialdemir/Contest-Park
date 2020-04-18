@@ -111,6 +111,15 @@ namespace ContestPark.Balance.API.Migrations
                 .AsByte()
                 .NotNullable()
 
+                .WithColumn("State")
+                .AsByte()
+                .WithDefaultValue(0)
+                .NotNullable()
+
+                 .WithColumn("TransactionId")
+                 .AsString(255)
+                 .NotNullable()
+
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()

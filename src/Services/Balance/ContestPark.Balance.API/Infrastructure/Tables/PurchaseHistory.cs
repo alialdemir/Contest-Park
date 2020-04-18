@@ -22,5 +22,8 @@ namespace ContestPark.Balance.API.Infrastructure.Tables
 
         public decimal Amount { get; set; }
         public Platforms Platform { get; set; }
+        public PurchaseState State { get; set; }
+
+        public string TransactionId { get; set; }
     }
 }

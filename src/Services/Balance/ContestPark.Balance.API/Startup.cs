@@ -9,7 +9,9 @@ using ContestPark.Balance.API.Infrastructure.Repositories.ReferenceCode;
 using ContestPark.Balance.API.IntegrationEvents.EventHandling;
 using ContestPark.Balance.API.IntegrationEvents.Events;
 using ContestPark.Balance.API.Resources;
+using ContestPark.Balance.API.Services.VerifyReceiptIos;
 using ContestPark.Core.Middlewares;
+using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +37,8 @@ namespace ContestPark.Balance.API
         {
             services.Configure<BalanceSettings>(Configuration);
 
+            services.AddSingleton<IRequestProvider, RequestProvider>();
+
             services.AddAuth(Configuration)
                     .AddMySql()
                     .AddMvc()
@@ -55,6 +59,8 @@ namespace ContestPark.Balance.API
             services.AddTransient<IBalanceHistoryRepository, BalanceHistoryRepository>();
 
             services.AddTransient<IMoneyWithdrawRequestRepository, MoneyWithdrawRequestRepository>();
+
+            services.AddTransient<IVerifyReceiptIos, VerifyReceiptIos>();
 
             services.AddTransient<ChangeBalanceIntegrationEventHandler>();
             services.AddTransient<MultiChangeBalanceIntegrationEventHandler>();
