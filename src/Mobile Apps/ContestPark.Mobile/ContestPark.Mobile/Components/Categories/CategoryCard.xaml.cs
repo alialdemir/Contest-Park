@@ -18,6 +18,20 @@ namespace ContestPark.Mobile.Components
 
         #region Properties
 
+        public static readonly BindableProperty IsBlurredTransformationProperty = BindableProperty.Create(propertyName: nameof(IsBlurredTransformation),
+                                                                                                                  returnType: typeof(bool),
+                                                                                                                  declaringType: typeof(SubCategoryCard),
+                                                                                                                  defaultValue: false);
+
+        /// <summary>
+        /// Alt kategori display alert command
+        /// </summary>
+        public bool IsBlurredTransformation
+        {
+            get { return (bool)GetValue(IsBlurredTransformationProperty); }
+            set { SetValue(IsBlurredTransformationProperty, value); }
+        }
+
         public static readonly BindableProperty GoToCategorySearchPageCommandProperty = BindableProperty.Create(propertyName: nameof(GoToCategorySearchPageCommand),
                                                                                                                         returnType: typeof(ICommand),
                                                                                                                         declaringType: typeof(CategoryCard),

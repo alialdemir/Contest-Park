@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Media;
+using Plugin.InAppBilling.Abstractions;
 
 namespace ContestPark.Mobile.Models.Balance
 {
@@ -19,5 +20,8 @@ namespace ContestPark.Mobile.Models.Balance
         /// Platform
         /// </summary>
         public Platforms Platform { get; set; }
+
+        public PurchaseState State { get; set; }
+        public string TransactionId { get; set; }
     }
 }

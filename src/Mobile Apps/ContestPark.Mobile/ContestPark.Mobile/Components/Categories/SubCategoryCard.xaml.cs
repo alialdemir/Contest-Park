@@ -21,6 +21,20 @@ namespace ContestPark.Mobile.Components
 
         #region Properties
 
+        public static readonly BindableProperty IsBlurredTransformationProperty = BindableProperty.Create(propertyName: nameof(IsBlurredTransformation),
+                                                                                                                  returnType: typeof(bool),
+                                                                                                                  declaringType: typeof(SubCategoryCard),
+                                                                                                                  defaultValue: false);
+
+        /// <summary>
+        /// Alt kategori display alert command
+        /// </summary>
+        public bool IsBlurredTransformation
+        {
+            get { return (bool)GetValue(IsBlurredTransformationProperty); }
+            set { SetValue(IsBlurredTransformationProperty, value); }
+        }
+
         public static readonly BindableProperty SubCategoriesDisplayActionSheetCommandProperty = BindableProperty.Create(propertyName: nameof(SubCategoriesDisplayActionSheetCommand),
                                                                                                                         returnType: typeof(ICommand),
                                                                                                                         declaringType: typeof(SubCategoryCard),
@@ -54,7 +68,7 @@ namespace ContestPark.Mobile.Components
         {
             base.OnBindingContextChanged();
             SubCategoryModel subCategory = (SubCategoryModel)BindingContext;
-            if (subCategory == null)
+            if (subCategory == null || !IsBlurredTransformation)
                 return;
 
             subCategory.PropertyChanged += SubCategory_PropertyChanged;

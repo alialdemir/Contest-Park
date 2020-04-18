@@ -80,7 +80,7 @@ namespace ContestPark.Mobile.Services.Cp
         /// <returns>Altın miktarı eklendi ise true eklenemedi ise false döner</returns>
         public async Task<bool> PurchaseAsync(PurchaseModel purchase)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Purchase");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Purchase/v2");
 
             var result = await _requestProvider.PostAsync<string>(uri, purchase);
 

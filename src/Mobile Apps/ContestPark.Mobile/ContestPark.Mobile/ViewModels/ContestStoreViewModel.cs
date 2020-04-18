@@ -8,7 +8,6 @@ using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.InAppBilling;
-using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Navigation;
@@ -32,7 +31,6 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAnalyticsService _analyticsService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IInAppBillingService _inAppBillingService;
-        private readonly ISettingsService _settingsService;
 
         #endregion Private variables
 
@@ -44,7 +42,6 @@ namespace ContestPark.Mobile.ViewModels
             IBalanceService balanceService,
             IAdMobService adMobService,
             IAnalyticsService analyticsService,
-            ISettingsService settingsService,
             IEventAggregator eventAggregator
             ) : base(dialogService: pageDialogService)
         {
@@ -53,7 +50,6 @@ namespace ContestPark.Mobile.ViewModels
             _balanceService = balanceService;
             _adMobService = adMobService;
             _analyticsService = analyticsService;
-            _settingsService = settingsService;
             _eventAggregator = eventAggregator;
         }
 
@@ -163,9 +159,11 @@ namespace ContestPark.Mobile.ViewModels
             {
                 ProductId = purchaseInfo.ProductId,
                 PackageName = purchaseInfo.ProductId,
+                State = purchaseInfo.State,
+                TransactionId = purchaseInfo.Id,
                 Platform = GetCurrentPlatform(),
                 File = purchaseTokenStream,
-                FileName = "cp.txt"
+                FileName = "cp.conteststore"
             });
             if (isSuccessGoldPurchase)
             {

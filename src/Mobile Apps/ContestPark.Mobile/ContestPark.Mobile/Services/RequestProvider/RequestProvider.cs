@@ -184,7 +184,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         #region Private methods
 
-        private HttpClient CreateHttpClient()
+        private HttpClient CreateHttpClient(string contentType = "application/json")
         {
             //   ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //   ServicePointManager.ServerCertificateValidationCallback +=
@@ -195,7 +195,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             HttpClient httpClient = new HttpClient();
 
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(contentType));
 
             httpClient.Timeout = TimeSpan.FromMinutes(10);// Ios in app purche token göndermesi uzun sürüyor bu yüzden ekledim
 
@@ -216,7 +216,11 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private async Task<ResponseModel<TResult>> SendAsync<TResult>(HttpMethod httpMethod, string url, object data = null)
         {
-            using (HttpClient httpClient = CreateHttpClient())
+            string contentType = "application/json";
+            if (data != null && (data.GetType() == typeof(MediaModel) || data.GetType() == typeof(PurchaseModel)))
+                contentType = "multipart/form-data";
+
+            using (HttpClient httpClient = CreateHttpClient(contentType))
             {
                 try
                 {
@@ -235,7 +239,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 }
                 catch (Exception ex)
                 {
-                    Crashes.TrackError(ex);
+                    Crashes.TrackError(ex, new Dictionary<string, string>
+                    {
+                        { "url", url }
+                    });
 
                     _analyticsService.SendEvent("Hata", "Servis Hatalari", ex.Message);
 
@@ -268,7 +275,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             if (data == null)
                 return null;
 
-            if (data.GetType() == typeof(MediaModel))
+            if (data.GetType() == typeof(MediaModel) || data.GetType() == typeof(PurchaseModel))
             {
                 MultipartFormDataContent multipartFormData = GetMultipartFormData((MediaModel)data);
 
@@ -278,9 +285,9 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 {
                     PurchaseModel purchase = (PurchaseModel)data;
 
-                    multipartFormData.Add(new StringContent(purchase.ProductId), nameof(purchase.ProductId));
-                    multipartFormData.Add(new StringContent(purchase.PackageName), nameof(purchase.PackageName));
-                    multipartFormData.Add(new StringContent(purchase.Platform.ToString()), nameof(purchase.Platform));
+                    multipartFormData.Add(new StringContent(purchase.ProductId), "productId");
+                    multipartFormData.Add(new StringContent(purchase.PackageName), "packageName");
+                    multipartFormData.Add(new StringContent(((byte)purchase.Platform).ToString()), "platform");
                 }
 
                 #endregion Satın alma için eklendi
@@ -327,7 +334,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
             {
                 case ".jpg": return "image/jpeg";
                 case ".png": return "image/png";
-                case ".txt": return "text/plain";
+                case ".conteststore":
+                    return "text/plain";
             }
 
             return string.Empty;

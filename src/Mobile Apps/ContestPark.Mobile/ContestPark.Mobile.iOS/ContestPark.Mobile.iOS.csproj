@@ -13,7 +13,7 @@
     <AssemblyName>ContestPark.Mobile.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,12 +59,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: ali aldemir (V6854F4555)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <CodesignProvision>
-    </CodesignProvision>
+    <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
     <MtouchFloat32>false</MtouchFloat32>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
@@ -74,6 +73,7 @@
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchInterpreter>
     </MtouchInterpreter>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>

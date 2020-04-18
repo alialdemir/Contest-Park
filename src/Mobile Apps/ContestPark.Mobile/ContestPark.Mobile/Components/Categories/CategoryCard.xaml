@@ -74,7 +74,10 @@
                     ItemsSource="{Binding SubCategories}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <components:SubCategoryCard PushCategoryDetailViewCommand="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference categoryCard}}" SubCategoriesDisplayActionSheetCommand="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference categoryCard}}" />
+                            <components:SubCategoryCard
+                                IsBlurredTransformation="{Binding Path=IsBlurredTransformation, Source={x:Reference categoryCard}}"
+                                PushCategoryDetailViewCommand="{Binding Path=PushCategoryDetailViewCommand, Source={x:Reference categoryCard}}"
+                                SubCategoriesDisplayActionSheetCommand="{Binding Path=SubCategoriesDisplayActionSheetCommand, Source={x:Reference categoryCard}}" />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

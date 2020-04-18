@@ -83,7 +83,7 @@
                         <components:NonPersistentSelectedItemListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference selectSubCategoryView}}" />
+                                    <components:CategoryCard IsBlurredTransformation="True" PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference selectSubCategoryView}}" />
                                 </ViewCell>
                             </DataTemplate>
                         </components:NonPersistentSelectedItemListView.ItemTemplate>

@@ -385,7 +385,6 @@ namespace ContestPark.Balance.API.Controllers
                                 UserId,
                                 purchase.PackageName,
                                 purchase.Platform,
-                                purchase.PackageName,
                                 purchase.ProductId,
                                 purchase.Token);
 
