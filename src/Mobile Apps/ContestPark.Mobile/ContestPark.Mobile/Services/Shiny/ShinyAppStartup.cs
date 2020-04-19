@@ -26,9 +26,14 @@ using ContestPark.Mobile.Services.Signalr.Base;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using Microsoft.Extensions.DependencyInjection;
 using Shiny;
+using Shiny.IO;
+using Shiny.Notifications;
 using Shiny.Prism;
 using Shiny.Push;
+using SQLite;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Shiny
@@ -99,10 +104,12 @@ namespace ContestPark.Mobile.Services.Shiny
 
     public class PushDelegate : IPushDelegate
     {
+        private readonly CoreDelegateServices services;
         private readonly IPushManager pushManager;
 
-        public PushDelegate(IPushManager pushManager)
+        public PushDelegate(CoreDelegateServices services, IPushManager pushManager)
         {
+            this.services = services;
             this.pushManager = pushManager;
         }
 
@@ -113,18 +120,55 @@ namespace ContestPark.Mobile.Services.Shiny
             => this.Insert("PUSH RECEIVED");
 
         public Task OnTokenChanged(string token)
-            => this.Insert(token);
+            => this.Insert("PUSH TOKEN CHANGE");
 
-        private Task Insert(string info)
+        private Task Insert(string info) => this.services.Connection.InsertAsync(new PushEvent
         {
-            //this.services.Connection.InsertAsync(new PushEvent
-            //{
-            //    Payload = info,
-            //    Token = this.pushManager.CurrentRegistrationToken,
-            //    Timestamp = DateTime.UtcNow
-            //});
+            Payload = info,
+            Token = this.pushManager.CurrentRegistrationToken,
+            Timestamp = DateTime.UtcNow
+        });
+    }
 
-            return Task.CompletedTask;
+    public class PushEvent
+    {
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
+
+        public string Token { get; set; }
+        public string Payload { get; set; }
+        public DateTime Timestamp { get; set; }
+    }
+
+    public class CoreDelegateServices
+    {
+        public CoreDelegateServices(SampleSqliteConnection conn,
+                                    INotificationManager notifications)
+        {
+            this.Connection = conn;
+            this.Notifications = notifications;
         }
+
+        public SampleSqliteConnection Connection { get; }
+        public INotificationManager Notifications { get; }
+
+        public async Task SendNotification(string title, string message)
+        {
+            var notify = true;
+            if (notify)
+                await this.Notifications.Send(title, message);
+        }
+    }
+
+    public class SampleSqliteConnection : SQLiteAsyncConnection
+    {
+        public SampleSqliteConnection(IFileSystem fileSystem) : base(Path.Combine(fileSystem.AppData.FullName, "ContestPark.db"))
+        {
+            var conn = this.GetConnection();
+            conn.CreateTable<PushEvent>();
+        }
+
+        public AsyncTableQuery<PushEvent> PushEvents => this.Table<PushEvent>();
     }
 }

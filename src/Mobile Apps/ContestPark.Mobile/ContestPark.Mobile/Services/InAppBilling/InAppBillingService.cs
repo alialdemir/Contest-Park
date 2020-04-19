@@ -274,13 +274,13 @@ namespace ContestPark.Mobile.Services.InAppBilling
         {
             var myProduct = Products.FirstOrDefault(x => x.ProductId == product.ProductId);
 
-            if (myProduct.BalanceTypes == BalanceTypes.Money && product.LocalizedPrice.Equals("₺12,99"))//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
+            if (product.ProductId == "com.contestpark.app.12money")//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
                 return ContestParkResources.BestSeller;
 
             if (string.IsNullOrEmpty(product.LocalizedPrice) || myProduct.BalanceTypes == BalanceTypes.Money)
                 return string.Empty;
 
-            decimal price = Convert.ToDecimal(product.LocalizedPrice.Replace("₺", "").Replace("$", ""));// Farklı para birimlerinde burası patlar
+            decimal price = Convert.ToDecimal(product.LocalizedPrice.Replace("₺", "").Replace("$", "").Replace("TRY", "").Trim());// Farklı para birimlerinde burası patlar
 
             price = ((price * 20 / 100) + price);
 

@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Gms.Ads;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -89,7 +90,7 @@ namespace ContestPark.Mobile.Droid
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
-            Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
+            MobileAds.Initialize(ApplicationContext, GlobalSetting.AppUnitId);
 
             Xamarin.Essentials.Platform.Init(this, bundle);
 
