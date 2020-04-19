@@ -1,8 +1,6 @@
-﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Enums;
+﻿using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Base;
 using ContestPark.Mobile.ViewModels.Base;
-using System;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.InAppBillingProduct
@@ -22,70 +20,14 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
 
         public string Image { get; set; }
         public string LocalizedPrice { get; set; }
-        private string _productId;
-
-        public string ProductId
-        {
-            get { return _productId; }
-            set
-            {
-                _productId = value;
-                RaisePropertyChanged(() => ProductId);
-            }
-        }
-
+        public string ProductId { get; set; }
         public string ProductName { get; set; }
 
-        private BalanceTypes _balanceTypes;
+        public BalanceTypes BalanceTypes { get; set; }
 
-        public BalanceTypes BalanceTypes
-        {
-            get { return _balanceTypes; }
-            set
-            {
-                _balanceTypes = value;
+        public string DiscountPrice { get; set; }
 
-                RaisePropertyChanged(() => BalanceTypes);
-                RaisePropertyChanged(() => RightText2TextDecorations);
-                RaisePropertyChanged(() => RightText2TextColor);
-                RaisePropertyChanged(() => DiscountPrice);
-            }
-        }
-
-        public string DiscountPrice
-        {
-            get
-            {
-                if (BalanceTypes == BalanceTypes.Money && LocalizedPrice.Equals("₺12,99"))//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
-                    return ContestParkResources.BestSeller;
-
-                if (string.IsNullOrEmpty(LocalizedPrice) || BalanceTypes == BalanceTypes.Money)
-                    return string.Empty;
-
-                decimal price = Convert.ToDecimal(LocalizedPrice.Replace("₺", "").Replace("$", ""));// Farklı para birimlerinde burası patlar
-
-                return "₺" + ((price * 20 / 100) + price).ToString("N2");// Fiyatın %20 fazlası
-            }
-        }
-
-        public Color RightText2TextColor
-        {
-            get
-            {
-                return BalanceTypes == BalanceTypes.Money
-                    ? Color.FromHex("#ff8800")
-                    : Color.Black;
-            }
-        }
-
-        public TextDecorations RightText2TextDecorations
-        {
-            get
-            {
-                return BalanceTypes == BalanceTypes.Money
-                    ? TextDecorations.None
-                    : TextDecorations.Strikethrough;
-            }
-        }
+        public Color RightText2TextColor { get; set; }
+        public TextDecorations RightText2TextDecorations { get; set; }
     }
 }

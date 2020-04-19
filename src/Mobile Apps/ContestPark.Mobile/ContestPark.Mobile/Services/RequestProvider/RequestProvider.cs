@@ -287,6 +287,8 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                     multipartFormData.Add(new StringContent(purchase.ProductId), "productId");
                     multipartFormData.Add(new StringContent(purchase.PackageName), "packageName");
+                    multipartFormData.Add(new StringContent(purchase.TransactionId), "TransactionId");
+                    multipartFormData.Add(new StringContent(((byte)purchase.State).ToString()), "State");
                     multipartFormData.Add(new StringContent(((byte)purchase.Platform).ToString()), "platform");
                 }
 

@@ -94,7 +94,7 @@ namespace ContestPark.Mobile.Components.DuelResultSocialMedia
             if (string.IsNullOrEmpty(subCategoryPicturePath))
                 return FileImageSource.FromFile(DefaultImages.DefaultProfilePicture);
 
-            return subCategoryPicturePath.StartsWith("http") ?
+            return subCategoryPicturePath.StartsWith("http://") || subCategoryPicturePath.StartsWith("https://") ?
                 FileImageSource.FromUri(new Uri(subCategoryPicturePath)) :
                 FileImageSource.FromFile(subCategoryPicturePath);
         }

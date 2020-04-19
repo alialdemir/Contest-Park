@@ -44,7 +44,6 @@
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="Auto" />
-                    <!--<ColumnDefinition Width="16" />-->
                 </Grid.ColumnDefinitions>
 
                 <Grid.Effects>

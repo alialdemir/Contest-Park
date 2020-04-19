@@ -44,38 +44,39 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
-
-            IConvertUIToImage convertUIToImage = DependencyService.Get<IConvertUIToImage>();
-            if (convertUIToImage == null)
+            Device.BeginInvokeOnMainThread(() =>
             {
-                IsBusy = false;
-                return;
-            }
-
-            string path = convertUIToImage.GetImagePathByPage(new InviteSocialMediaView
-            {
-                Data = new InviteSocialMediaModel
+                IConvertUIToImage convertUIToImage = DependencyService.Get<IConvertUIToImage>();
+                if (convertUIToImage == null)
                 {
-                    ProfilePicturePath = _settingsService.CurrentUser.ProfilePicturePath,
-                    UserName = _settingsService.CurrentUser.UserName
+                    IsBusy = false;
+                    return;
                 }
-            });
 
-            if (string.IsNullOrEmpty(path))
-            {
+                string path = convertUIToImage.GetImagePathByPage(new InviteSocialMediaView
+                {
+                    Data = new InviteSocialMediaModel
+                    {
+                        UserName = _settingsService.CurrentUser.UserName
+                    }
+                });
+
+                if (string.IsNullOrEmpty(path))
+                {
+                    IsBusy = false;
+                    return;
+                }
+
+                Share.RequestAsync(new ShareFileRequest
+                {
+                    Title = string.Format(ContestParkResources.ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp, _settingsService.CurrentUser.UserName),
+                    File = new ShareFile(path)
+                });
+
+                _analyticsService.SendEvent("Paylaşma", "Paylaş", _settingsService.CurrentUser.UserId);
+
                 IsBusy = false;
-                return;
-            }
-
-            Share.RequestAsync(new ShareFileRequest
-            {
-                Title = string.Format(ContestParkResources.ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp, _settingsService.CurrentUser.UserName),
-                File = new ShareFile(path)
             });
-
-            _analyticsService.SendEvent("Paylaşma", "Paylaş", _settingsService.CurrentUser.UserId);
-
-            IsBusy = false;
         }
 
         #endregion Methods

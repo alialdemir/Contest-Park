@@ -17,13 +17,15 @@ namespace ContestPark.Mobile.iOS.Dependencies
 
         public string GetImagePathByPage(ContentView contentPage)
         {
-            var rect = new CGRect(0, 0, 1080, 1080);
+            var rect = new CGRect(0, 0, 400, 400);
             var iOSView = ConvertFormsToNative(contentPage.Content, rect);
 
             UiImage = ConvertViewToImage(iOSView);
 
             var filePath = SaveImage(UiImage);
             UIGraphics.EndImageContext();
+
+            UiImage.Dispose();
 
             return filePath;
         }
@@ -41,8 +43,18 @@ namespace ContestPark.Mobile.iOS.Dependencies
             var documentsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string pngFilename = System.IO.Path.Combine(documentsDirectory, DateTime.Now.ToFileTime() + ".png");
             NSData imgData = image.AsPNG();
+            NSError err = null;
+            if (imgData.Save(pngFilename, false, out err))
+            {
+                imgData.Dispose();
+                image.Dispose();
 
-            return pngFilename;
+                return pngFilename;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         public UIView ConvertFormsToNative(View view, CGRect size)

@@ -7,9 +7,7 @@
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     BackgroundColor="Black"
-    HeightRequest="1080"
-    NavigationPage.HasNavigationBar="False"
-    WidthRequest="1080">
+    NavigationPage.HasNavigationBar="False">
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DoubleCoinsDuelResultConverter x:Key="dcdrc" />

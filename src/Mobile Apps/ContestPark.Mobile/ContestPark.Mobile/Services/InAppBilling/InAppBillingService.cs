@@ -233,6 +233,13 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     ProductName = Products.FirstOrDefault(x => x.ProductId == product.ProductId).ProductName,
                     Image = Products.FirstOrDefault(x => x.ProductId == product.ProductId).Image,
                     BalanceTypes = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes,
+                    RightText2TextDecorations = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes == BalanceTypes.Money
+                    ? TextDecorations.None
+                    : TextDecorations.Strikethrough,
+                    RightText2TextColor = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes == BalanceTypes.Money
+                                       ? Color.FromHex("#ff8800")
+                                       : Color.Black,
+                    DiscountPrice = CalculatorDiscountPrice(product)
                 }).OrderBy(x => x.Image).ToList();
 
                 _cacheService.Add(_productCacheKey, products);
@@ -256,6 +263,28 @@ namespace ContestPark.Mobile.Services.InAppBilling
             }
 
             return new List<InAppBillingProductModel>();
+        }
+
+        /// <summary>
+        /// Ürünlerin indirimli fiyatını hesaplar
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        private string CalculatorDiscountPrice(InAppBillingProduct product)
+        {
+            var myProduct = Products.FirstOrDefault(x => x.ProductId == product.ProductId);
+
+            if (myProduct.BalanceTypes == BalanceTypes.Money && product.LocalizedPrice.Equals("₺12,99"))//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
+                return ContestParkResources.BestSeller;
+
+            if (string.IsNullOrEmpty(product.LocalizedPrice) || myProduct.BalanceTypes == BalanceTypes.Money)
+                return string.Empty;
+
+            decimal price = Convert.ToDecimal(product.LocalizedPrice.Replace("₺", "").Replace("$", ""));// Farklı para birimlerinde burası patlar
+
+            price = ((price * 20 / 100) + price);
+
+            return string.Format("₺{0:##.##}", price);// Fiyatın %20 fazlası
         }
 
         /// <summary>

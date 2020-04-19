@@ -81,5 +81,12 @@
     <false />
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-9252497061180957~5333090995</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+      <string>en</string>
+      <string>tr-TR</string>
+    </array>
   </dict>
 </plist>
