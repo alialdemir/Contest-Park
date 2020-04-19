@@ -19,6 +19,12 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
+- task: android-manifest-version@1
+  inputs:
+    sourcePath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/Properties/AndroidManifest.xml'
+    versionCodeOption: 'buildid'
+    versionCode: '$(Build.BuildId)'
+    printFile: true
 - task: XamarinAndroid@1
   inputs:
     projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
