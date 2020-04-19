@@ -1,11 +1,11 @@
 ﻿using ContestPark.Mobile.Services.Notification;
-using Matcha.BackgroundService;
-using System;
+using Shiny.Jobs;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Jobs
 {
-    public class RewardJob : IPeriodicTask
+    public class RewardJob : IJob
     {
         #region Private variables
 
@@ -15,10 +15,8 @@ namespace ContestPark.Mobile.Jobs
 
         #region Constructor
 
-        public RewardJob(TimeSpan nextRewardTime,
-                         INotificationService notificationService)
+        public RewardJob(INotificationService notificationService)
         {
-            Interval = nextRewardTime;
             _notificationService = notificationService;
         }
 
@@ -26,8 +24,7 @@ namespace ContestPark.Mobile.Jobs
 
         #region Properties
 
-        public TimeSpan Interval { get; set; }
-        public bool IsInitialize { get; set; }
+        private bool IsInitialize { get; set; }
 
         #endregion Properties
 
@@ -36,18 +33,18 @@ namespace ContestPark.Mobile.Jobs
         /// <summary>
         /// En son aldığı günlük ödülden birsonraki ödülün süresi gelince push notification göndermesi için servere istek atar
         /// </summary>
-        public async Task<bool> StartJob()
+
+        public async Task<bool> Run(JobInfo jobInfo, CancellationToken cancelToken)
         {
             if (IsInitialize)
             {
-                IsInitialize = false;
-
                 await _notificationService.PushSendAsync(Enums.PushNotificationTypes.Reward);
             }
 
+            //   await _notificationManager.Send("WELCOME", "Houston welcomes you the first ever Xamarin Developer Summit"); // yes, you can see where this was used :)
             IsInitialize = true;
 
-            return IsInitialize; //return false when you want to stop or trigger only once
+            return true;
         }
 
         #endregion Methods

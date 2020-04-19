@@ -1,30 +1,4 @@
-﻿using ContestPark.Mobile.Services.AdMob;
-using ContestPark.Mobile.Services.Analytics;
-using ContestPark.Mobile.Services.Audio;
-using ContestPark.Mobile.Services.BackgroundAggregator;
-using ContestPark.Mobile.Services.Blocking;
-using ContestPark.Mobile.Services.Cache;
-using ContestPark.Mobile.Services.Category;
-using ContestPark.Mobile.Services.Chat;
-using ContestPark.Mobile.Services.Cp;
-using ContestPark.Mobile.Services.Duel;
-using ContestPark.Mobile.Services.Follow;
-using ContestPark.Mobile.Services.Game;
-using ContestPark.Mobile.Services.Identity;
-using ContestPark.Mobile.Services.InAppBilling;
-using ContestPark.Mobile.Services.InviteDuel;
-using ContestPark.Mobile.Services.LatestVersion;
-using ContestPark.Mobile.Services.Media;
-using ContestPark.Mobile.Services.Mission;
-using ContestPark.Mobile.Services.Notice;
-using ContestPark.Mobile.Services.Notification;
-using ContestPark.Mobile.Services.Post;
-using ContestPark.Mobile.Services.RequestProvider;
-using ContestPark.Mobile.Services.Score;
-using ContestPark.Mobile.Services.Settings;
-using ContestPark.Mobile.Services.Signalr.Base;
-using ContestPark.Mobile.Services.Signalr.Duel;
-using ContestPark.Mobile.ViewModels;
+﻿using ContestPark.Mobile.ViewModels;
 using ContestPark.Mobile.Views;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
@@ -47,7 +21,8 @@ namespace ContestPark.Mobile.Configs
 
             RegisterTypesConfig config = new RegisterTypesConfig();
 
-            config.RegisterTypeInstance(containerRegistry);
+            containerRegistry.RegisterPopupNavigationService();
+
             config.RegisterTypeForNavigation(containerRegistry);
         }
 
@@ -149,103 +124,5 @@ namespace ContestPark.Mobile.Configs
         }
 
         #endregion Navigation
-
-        #region Register Instance
-
-        private void RegisterTypeInstance(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterPopupNavigationService();
-
-            if (!GlobalSetting.Instance.IsMockData)
-            {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
-
-                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
-
-                containerRegistry.RegisterSingleton<IBackgroundAggregatorService, BackgroundAggregatorService>();
-
-                containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
-
-                containerRegistry.RegisterSingleton<IPostService, PostService>();
-
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
-
-                containerRegistry.RegisterSingleton<IChatService, ChatService>();
-
-                containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
-
-                containerRegistry.RegisterSingleton<IMissionService, MissionService>();
-
-                containerRegistry.RegisterSingleton<INoticeService, NoticeService>();
-
-                containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
-
-                containerRegistry.RegisterSingleton<IDuelService, DuelService>();
-
-                containerRegistry.RegisterSingleton<IFollowService, FollowService>();
-
-                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
-
-                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
-
-                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
-
-                containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
-
-                containerRegistry.RegisterSingleton<ILatestVersionService, LatestVersionService>();
-            }
-            else
-            {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
-
-                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
-
-                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
-
-                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
-
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
-
-                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
-
-                containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
-
-                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
-
-                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
-
-                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
-
-                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
-
-                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
-
-                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
-
-                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
-
-                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
-            }
-
-            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
-
-            containerRegistry.RegisterSingleton<IGameService, GameService>();
-
-            containerRegistry.RegisterSingleton<ICacheService, CacheService>();
-
-            containerRegistry.RegisterSingleton<IAudioService, AudioService>();
-
-            containerRegistry.RegisterSingleton<IMediaService, MediaService>();
-
-            containerRegistry.RegisterSingleton<IAdMobService, AdMobService>();
-
-            containerRegistry.RegisterSingleton<IAnalyticsService, AnalyticsService>();
-
-            containerRegistry.RegisterSingleton<IInviteDuelService, InviteDuelService>();
-
-            //containerRegistry.RegisterInstance<IRequestProvider>(new RequestProviderFactory().CreateResilientHttpClient());
-        }
-
-        #endregion Register Instance
     }
 }

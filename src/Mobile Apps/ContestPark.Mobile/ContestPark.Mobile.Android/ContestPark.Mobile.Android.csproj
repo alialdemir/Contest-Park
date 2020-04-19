@@ -131,8 +131,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Plugin.FirebasePushNotification">
-      <Version>3.2.9-beta</Version>
+    <PackageReference Include="Xamarin.Firebase.Common" Version="71.1610.0" />
+    <PackageReference Include="Xamarin.Firebase.Messaging" Version="71.1740.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="71.1610.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="71.1620.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0" />
+    <PackageReference Include="Shiny.Push.FirebaseMessaging">
+      <Version>1.1.0.1473-beta</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.1.0" />
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.0.0" />
@@ -147,9 +152,6 @@
     </PackageReference>
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
       <Version>3.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Matcha.BackgroundService">
-      <Version>1.0.5478</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>3.1.0</Version>

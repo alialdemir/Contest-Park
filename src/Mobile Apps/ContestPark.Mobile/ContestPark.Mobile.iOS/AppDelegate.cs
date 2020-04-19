@@ -1,16 +1,15 @@
-﻿using FFImageLoading.Forms.Platform;
+﻿using ContestPark.Mobile.Services.Shiny;
+using FFImageLoading.Forms.Platform;
 using Firebase.Core;
 using Foundation;
 
 //using Google.MobileAds;
-using Matcha.BackgroundService.iOS;
-using Plugin.FirebasePushNotification;
 using Plugin.Segmented.Control.iOS;
 using Prism;
 using Prism.Ioc;
 using Rg.Plugins.Popup;
+using Shiny;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UIKit;
@@ -23,48 +22,25 @@ namespace ContestPark.Mobile.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        //
-        // This method is invoked when the application has loaded and is ready to run. In this"
-        // method you should instantiate the window, load the UI into it and then make the window
-        // visible.
-        //
-        // You have 17 seconds to return from this method, or iOS will terminate your application.
-        //
+        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            Shiny.Jobs.JobManager.OnBackgroundFetch(completionHandler);
+        }
+
+        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+            => this.ShinyDidReceiveRemoteNotification(userInfo, completionHandler);
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
-        {
-            FirebasePushNotificationManager.DidRegisterRemoteNotifications(deviceToken);
-        }
+            => this.ShinyRegisteredForRemoteNotifications(deviceToken);
 
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
-        {
-            FirebasePushNotificationManager.RemoteNotificationRegistrationFailed(error);
-        }
-
-        // To receive notifications in foregroung on iOS 9 and below.
-        // To receive notifications in background in any iOS version
-        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
-        {
-            // If you are receiving a notification message while your app is in the background,
-            // this callback will not be fired 'till the user taps on the notification launching the application.
-
-            // If you disable method swizzling, you'll need to call this method.
-            // This lets FCM track message delivery and analytics, which is performed
-            // automatically with method swizzling enabled.
-            FirebasePushNotificationManager.DidReceiveMessage(userInfo);
-            // Do your magic to handle the notification data
-            System.Console.WriteLine(userInfo);
-
-            completionHandler(UIBackgroundFetchResult.NewData);
-        }
+            => this.ShinyFailedToRegisterForRemoteNotifications(error);
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 #if !DEBUG
                         CheckJailBreak();
 #endif
-
-            BackgroundAggregator.Init(this);
 
             CachedImageRenderer.Init();
 
@@ -80,23 +56,14 @@ namespace ContestPark.Mobile.iOS
             //    MobileAds.SharedInstance.RequestConfiguration.TestDeviceIdentifiers = new[] { Request.SimulatorId.ToString() };
             //});
 
+            iOSShinyHost.Init(new ShinyAppStartup());
+
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
 
             SegmentedControlRenderer.Initialize();
 
             LoadApplication(new ContestParkApp(new IOSInitializer()));
-
-            FirebasePushNotificationManager.Initialize(options, new NotificationUserCategory[]
-         {
-                new NotificationUserCategory("message",new List<NotificationUserAction> {
-                    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground)
-                }),
-                new NotificationUserCategory("request",new List<NotificationUserAction> {
-                    new NotificationUserAction("Accept","Accept"),
-                    new NotificationUserAction("Reject","Reject",NotificationActionType.Destructive)
-                })
-         });
 
             return base.FinishedLaunching(app, options);
         }

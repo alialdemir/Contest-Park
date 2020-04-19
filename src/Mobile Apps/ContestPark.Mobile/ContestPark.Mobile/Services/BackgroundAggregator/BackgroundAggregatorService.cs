@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Jobs;
 using ContestPark.Mobile.Services.Notification;
+using Shiny.Jobs;
 using System;
 
 namespace ContestPark.Mobile.Services.BackgroundAggregator
@@ -9,14 +10,17 @@ namespace ContestPark.Mobile.Services.BackgroundAggregator
         #region Private variables
 
         private readonly INotificationService _notificationService;
+        private readonly IJobManager _jobManager;
 
         #endregion Private variables
 
         #region Constructor
 
-        public BackgroundAggregatorService(INotificationService notificationService)
+        public BackgroundAggregatorService(INotificationService notificationService,
+                                           IJobManager jobManager)
         {
             _notificationService = notificationService;
+            _jobManager = jobManager;
         }
 
         #endregion Constructor
@@ -29,7 +33,15 @@ namespace ContestPark.Mobile.Services.BackgroundAggregator
         /// <param name="nextRewardTime">Job çalışma zamanı</param>
         public void StartRewardJob(TimeSpan nextRewardTime)
         {
-            Matcha.BackgroundService.BackgroundAggregatorService.Add(() => new RewardJob(nextRewardTime, _notificationService));
+            JobInfo job = new JobInfo(typeof(RewardJob), nameof(RewardJob))
+            {
+                PeriodicTime = nextRewardTime,
+                BatteryNotLow = false,
+                DeviceCharging = false,
+                RequiredInternetAccess = InternetAccess.Any,
+            };
+
+            _jobManager.Schedule(job);
         }
 
         #endregion Methods

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Balance;
@@ -25,11 +26,10 @@ using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter.Crashes;
-
-using Plugin.FirebasePushNotification;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using Shiny.Push;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +50,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAdMobService _adMobService;
         private readonly IBalanceService _balanceService;
         private readonly IAnalyticsService _analyticsService;
+        private readonly IPushManager _pushManager;
         private readonly IInviteDuelService _inviteDuelService;
         private readonly IIdentityService _identityService;
         private readonly ISettingsService _settingsService;
@@ -70,6 +71,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IAdMobService adMobService,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
+                                   IPushManager pushManager,
                                    IInviteDuelService inviteDuelService,
                                    IIdentityService identityService,
                                    ISettingsService settingsService,
@@ -91,6 +93,7 @@ namespace ContestPark.Mobile.ViewModels
             _adMobService = adMobService;
             _balanceService = balanceService;
             _analyticsService = analyticsService;
+            _pushManager = pushManager;
             _inviteDuelService = inviteDuelService;
             _identityService = identityService;
             _settingsService = settingsService;
@@ -291,7 +294,7 @@ namespace ContestPark.Mobile.ViewModels
 
             try
             {
-                if (link.StartsWith("http://") || link.StartsWith("https://"))
+                if (link.IsUrl())
                 {
                     NavigateToAsync<BrowserView>(new NavigationParameters
                                                         {
@@ -340,23 +343,16 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
-                    CrossFirebasePushNotification.Current.OnTokenRefresh += (sender, e) =>
+                    PushAccessState token = await _pushManager.RequestAccess();
+                    if (token.Status == Shiny.AccessState.Available && !string.IsNullOrEmpty(token.RegistrationToken))
                     {
-                        if (e == null || string.IsNullOrEmpty(e.Token))
-                            return;
-
                         _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
                         {
-                            Token = e.Token
+                            Token = token.RegistrationToken
                         });
-                    };
-
-                    CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-                    {
-                        _analyticsService?.SendEvent("PushNotification", "Received", "Success");
-                    };
+                    }
                 });
             }
         }

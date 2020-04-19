@@ -18,7 +18,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile
 {
-    public partial class ContestParkApp : PrismApplication
+    public partial class ContestParkApp : Prism.DryIoc.PrismApplication
     {
         #region Constructor
 
@@ -71,6 +71,8 @@ namespace ContestPark.Mobile
 
         #region Properties
 
+        protected override IContainerExtension CreateContainerExtension() => PrismContainerExtension.Current;
+
         private IAnalyticsService _analyticsService;
 
         public IAnalyticsService AnalyticsService
@@ -107,8 +109,6 @@ namespace ContestPark.Mobile
             base.OnStart();
 
             AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Analytics), typeof(Crashes));
-
-            Matcha.BackgroundService.BackgroundAggregatorService.StopBackgroundService();
         }
 
         protected override void OnResume()
@@ -117,8 +117,6 @@ namespace ContestPark.Mobile
                     .Resolve<IEventAggregator>()
                     .GetEvent<OnResumeEvent>()
                     .Publish();
-
-            Matcha.BackgroundService.BackgroundAggregatorService.StartBackgroundService();
 
             base.OnResume();
         }
@@ -129,8 +127,6 @@ namespace ContestPark.Mobile
                     .Resolve<IEventAggregator>()
                     .GetEvent<OnSleepEvent>()
                     .Publish();
-
-            Matcha.BackgroundService.BackgroundAggregatorService.StartBackgroundService();
 
             base.OnSleep();
         }

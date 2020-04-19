@@ -7,13 +7,11 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using ContestPark.Mobile.Configs;
 using Lottie.Forms.Droid;
-using Matcha.BackgroundService.Droid;
 using Plugin.CurrentActivity;
-
-using Plugin.FirebasePushNotification;
 using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
+using Shiny;
 using Xamarin.Forms.PancakeView.Droid;
 
 namespace ContestPark.Mobile.Droid
@@ -43,6 +41,12 @@ namespace ContestPark.Mobile.Droid
             }
         }
 
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            this.ShinyOnNewIntent(intent);
+        }
+
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             ToolBar = FindViewById<Toolbar>(Resource.Id.toolbar);
@@ -52,7 +56,9 @@ namespace ContestPark.Mobile.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -61,18 +67,15 @@ namespace ContestPark.Mobile.Droid
             InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
         }
 
-        protected override void OnNewIntent(Intent intent)
-        {
-            base.OnNewIntent(intent);
-            FirebasePushNotificationManager.ProcessIntent(this, intent);
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            BackgroundAggregator.Init(this);
+            this.ShinyOnCreate();
+
+            Shiny.Notifications.AndroidOptions.DefaultLargeIconResourceName = "logo.png";
+            Shiny.Notifications.AndroidOptions.DefaultSmallIconResourceName = "logo.png";
 
             base.OnCreate(bundle);
 
@@ -92,8 +95,6 @@ namespace ContestPark.Mobile.Droid
 
             global::Rg.Plugins.Popup.Popup.Init(this, bundle);
 
-            global::Xamarin.Forms.Forms.SetFlags("Visual_Experimental"); // ONLY if using a pre-release of Xamarin.Forms
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             global::Xamarin.Forms.FormsMaterial.Init(this, bundle);
@@ -101,8 +102,6 @@ namespace ContestPark.Mobile.Droid
             AnimationViewRenderer.Init();
 
             LoadApplication(new ContestParkApp(new AndroidInitializer()));
-
-            FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
             PancakeViewRenderer.Init();
 
