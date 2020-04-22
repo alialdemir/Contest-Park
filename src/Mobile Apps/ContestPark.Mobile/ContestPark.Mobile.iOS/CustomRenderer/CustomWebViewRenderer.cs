@@ -8,6 +8,7 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace ContestPark.Mobile.iOS.CustomRenderer
 {
+    [Obsolete]
     public class CustomWebViewRenderer : WebViewRenderer
     {
         public CustomWebViewRenderer()

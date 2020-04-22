@@ -856,4 +856,7 @@
   <data name="ThereIsaNewVersionOfThisAppAvailableWouldYouLikeToUpdateNow" xml:space="preserve">
     <value>There is a new version of this app available. Would you like to update now?</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

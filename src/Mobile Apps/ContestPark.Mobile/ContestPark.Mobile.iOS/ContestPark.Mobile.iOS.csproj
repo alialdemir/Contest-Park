@@ -62,7 +62,7 @@
     <CodesignKey>Apple Development: ali aldemir (V6854F4555)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
     <MtouchFloat32>false</MtouchFloat32>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
@@ -83,7 +83,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: ali aldemir (V6854F4555)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;ENABLE_TEST_CLOUD;</DefineConstants>
     <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
@@ -113,8 +113,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>VS: com.contestpark.app Development</CodesignProvision>
+    <CodesignKey>Apple Development: ali aldemir (V6854F4555)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -362,9 +362,6 @@
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer">
       <Version>1.4.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Build.Download">
-      <Version>0.10.0</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.5.2</Version>
     </PackageReference>
@@ -379,9 +376,6 @@
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
       <Version>2.4.11.982</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Firebase.iOS.Analytics">
-      <Version>6.4.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.379-pre1" />
     <PackageReference Include="Xamarin.Forms.PancakeView">

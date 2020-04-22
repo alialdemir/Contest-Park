@@ -57,7 +57,7 @@ namespace ContestPark.Mobile.iOS.Dependencies
             }
         }
 
-        public UIView ConvertFormsToNative(View view, CGRect size)
+        private UIView ConvertFormsToNative(View view, CGRect size)
         {
             var renderer = Platform.CreateRenderer(view);
 

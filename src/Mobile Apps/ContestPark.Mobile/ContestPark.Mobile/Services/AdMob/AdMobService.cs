@@ -13,8 +13,10 @@ namespace ContestPark.Mobile.Services.AdMob
 
         public AdMobService()
         {
-            Admob.UserPersonalizedAds = true;
-
+            if (Admob != null)
+            {
+                Admob.UserPersonalizedAds = true;
+            }
             LoadEvents();
         }
 
@@ -38,6 +40,9 @@ namespace ContestPark.Mobile.Services.AdMob
 
         private void LoadEvents()
         {
+            if (Admob == null)
+                return;
+
             Admob.OnRewarded += (o, e) =>
               {
                   Debug.WriteLine("OnRewarded");
@@ -69,6 +74,9 @@ namespace ContestPark.Mobile.Services.AdMob
         /// </summary>
         public void ShowOrLoadRewardedVideo()
         {
+            if (Admob == null)
+                return;
+
             if (!Admob.IsRewardedVideoLoaded())
                 Admob.LoadRewardedVideo(GlobalSetting.RewardedVideoUnitId);
             else
@@ -80,6 +88,9 @@ namespace ContestPark.Mobile.Services.AdMob
         /// </summary>
         public void LoadInterstitialVideo()
         {
+            if (Admob == null)
+                return;
+
             if (!Admob.IsInterstitialLoaded())
                 Admob.LoadInterstitial(GlobalSetting.InterstitialUnitId);
         }
@@ -89,6 +100,9 @@ namespace ContestPark.Mobile.Services.AdMob
         /// </summary>
         public void ShowInterstitial()
         {
+            if (Admob == null)
+                return;
+
             Admob.ShowInterstitial();
         }
 

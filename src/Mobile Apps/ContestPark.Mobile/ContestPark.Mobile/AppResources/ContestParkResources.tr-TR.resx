@@ -682,7 +682,7 @@
     <value>Satın alma işlemi başarılı. Altınlarınız hesabınıza yüklendi.</value>
   </data>
   <data name="ThereIsaNewVersionOfThisAppAvailableWouldYouLikeToUpdateNow" xml:space="preserve">
-    <value>There is a new version of this app available. Would you like to update now?</value>
+    <value>Bu uygulamanın yeni bir sürümü mevcut. Şimdi güncellemek ister misiniz?</value>
   </data>
   <data name="ThisCategoryRankNull" xml:space="preserve">
     <value>Bu kategoride daha önce yarışan olmamış. İlk sırayı sen kapabilirsin!</value>
@@ -729,6 +729,9 @@
   </data>
   <data name="UnLock" xml:space="preserve">
     <value>Kilidi Aç</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Güncelle</value>
   </data>
   <data name="UpdateSuccessful" xml:space="preserve">
     <value>Güncelleme Başarılı!</value>

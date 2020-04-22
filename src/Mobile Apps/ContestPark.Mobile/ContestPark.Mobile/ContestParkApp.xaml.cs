@@ -30,7 +30,7 @@ namespace ContestPark.Mobile
 
         #region OnInitialized
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
             try
             {
@@ -40,16 +40,16 @@ namespace ContestPark.Mobile
 
                 Barrel.ApplicationId = "ContestPark";
 
-                RegisterTypesConfig
-                    .Container
-                    .Resolve<ILatestVersionService>()
-                    .IfNotUsingLatestVersionOpenInStore();
+                await RegisterTypesConfig
+                                   .Container
+                                   .Resolve<ILatestVersionService>()
+                                   .IfNotUsingLatestVersionOpenInStore();
 
                 ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
 
                 if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                    NavigationService.NavigateAsync(nameof(AppShell));
-                else NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
+                    await NavigationService.NavigateAsync(nameof(AppShell));
+                else await NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
             }
             catch (System.Exception ex)
             {
