@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
+using ContestPark.Notification.API.Infrastructure.Repositories.Notice;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
 using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
 using ContestPark.Notification.API.IntegrationEvents.EventHandling;
@@ -60,6 +61,7 @@ namespace ContestPark.Notification.API
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
             services.AddTransient<IPushNotificationRepository, PushNotificationRepository>();
+            services.AddTransient<INoticeRepository, NoticeRepository>();
 
             services.AddTransient<ISmsService, AwsSmsService>();
             services.AddTransient<IFirebasePushNotification, FirebasePushNotification>();

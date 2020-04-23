@@ -9,6 +9,7 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
 
+            <!--  Fonts  -->
             <OnPlatform x:Key="icomoon" x:TypeArguments="x:String">
                 <On Platform="Android" Value="icomoon.ttf#icomoon" />
                 <On Platform="iOS" Value="icomoon" />
@@ -69,60 +70,71 @@
                 <On Platform="iOS" Value="Sofia Pro Black Az" />
             </OnPlatform>
 
-            <!--  Yeni başlangıç  -->
-
-            <Color x:Key="SkeletonLoading">#e8e8e8</Color>
-
-            <Color x:Key="SettingsIconColor">#ABABAB</Color>
-
-            <Color x:Key="White">#FFFFFF</Color>
-
-            <Color x:Key="BarTextColor">#211414</Color>
-
-            <Color x:Key="GlobalBackgroundColor">#F0F0F0</Color>
-
-            <Color x:Key="CategoryDetailTextColor">#303030</Color>
-
-            <Color x:Key="Black">#211414</Color>
-
-            <!--  Yeni başlangıç  -->
-
             <!--  Colors  -->
-
-            <!--  Dark gray  -->
+            <Color x:Key="SkeletonLoading">#e8e8e8</Color>
+            <Color x:Key="SettingsIconColor">#ABABAB</Color>
+            <Color x:Key="White">#FFFFFF</Color>
+            <Color x:Key="BarTextColor">#211414</Color>
+            <Color x:Key="GlobalBackgroundColor">#F0F0F0</Color>
+            <Color x:Key="CategoryDetailTextColor">#303030</Color>
+            <Color x:Key="Black">#211414</Color>
             <Color x:Key="ListBackgroundColor">#171717</Color>
-
-            <!--  Black  -->
-
             <Color x:Key="Orange">#ff8800</Color>
-
-            <!--  Amber  -->
             <Color x:Key="Primary">#ffc107</Color>
             <Color x:Key="Primary100">#FFECB3</Color>
-
-            <!--  Black  -->
-
-            <!--  Green  -->
             <Color x:Key="Green">#017d46</Color>
-
-            <!--  Red  -->
             <Color x:Key="Red">#993232</Color>
-
-            <!--  Mavi  -->
             <Color x:Key="Accent">#536dfe</Color>
-
-            <!--  Blue  -->
             <Color x:Key="Blue">#4080FF</Color>
-
-            <!--  Gray  -->
             <Color x:Key="Gray">#F1F0F0</Color>
-
-            <!--  Dark Gray  -->
             <Color x:Key="DarkGray">#65686E</Color>
-
-            <!--  Beyaz  -->
             <Color x:Key="PrimaryText">#212121</Color>
 
+            <!--  Icons  -->
+            <x:String x:Key="TabChat">\ue90b</x:String>
+            <x:String x:Key="TabInvite">\ue917</x:String>
+            <x:String x:Key="TabProfile">\ue90e</x:String>
+            <x:String x:Key="TabCategories">\ue911</x:String>
+            <x:String x:Key="TabRanking">\ue92a</x:String>
+            <x:String x:Key="Save">\ue922</x:String>
+            <x:String x:Key="Share">\ue916</x:String>
+            <x:String x:Key="UnCategoryFollow">\ue929</x:String>
+            <x:String x:Key="CategoryFollow">\ue926</x:String>
+            <x:String x:Key="ContestStore">\ue905</x:String>
+            <x:String x:Key="BackArrow">\ue92b</x:String>
+            <x:String x:Key="Instagram">\ue90f</x:String>
+            <x:String x:Key="Facebook">\ue91d</x:String>
+            <x:String x:Key="Twitter">\ue91c</x:String>
+            <x:String x:Key="BalanceCode">\ue901</x:String>
+            <x:String x:Key="Settings">\ue924</x:String>
+            <x:String x:Key="Missions">\ue91b</x:String>
+            <x:String x:Key="MoneyBag">\ue910</x:String>
+            <x:String x:Key="LanguageSettings">\ue918</x:String>
+            <x:String x:Key="Exit">\ue909</x:String>
+            <x:String x:Key="FullNameSettings">\ue90a</x:String>
+            <x:String x:Key="PrivateProfileSettings">\ue91f</x:String>
+            <x:String x:Key="ProfilePictureSettings">\ue920</x:String>
+            <x:String x:Key="SoundSettings">\ue925</x:String>
+            <x:String x:Key="UsernameSettings">\ue928</x:String>
+            <x:String x:Key="AccountSettings">\ue900</x:String>
+            <x:String x:Key="BlockedSettings">\ue904</x:String>
+            <x:String x:Key="CoverPictureSettings">\ue906</x:String>
+            <x:String x:Key="Edit">\ue907</x:String>
+            <x:String x:Key="EmailSettings">\ue908</x:String>
+            <x:String x:Key="Close">\ue912</x:String>
+            <x:String x:Key="Check">\ue913</x:String>
+            <x:String x:Key="Clock">\ue914</x:String>
+            <x:String x:Key="Like">\ue919</x:String>
+            <x:String x:Key="Comment">\ue91e</x:String>
+            <x:String x:Key="ChatThreeDot">\ue915</x:String>
+            <x:String x:Key="Options">\ue91a</x:String>
+            <x:String x:Key="FindOpponent">\ue902</x:String>
+            <x:String x:Key="Revenge">\ue921</x:String>
+            <x:String x:Key="HowToPlay">\ue927</x:String>
+            <x:String x:Key="Notification">\ue903</x:String>
+            <x:String x:Key="Search">\ue923</x:String>
+
+            <!--  Bool values  -->
             <s:Boolean x:Key="True">True</s:Boolean>
             <s:Boolean x:Key="False">False</s:Boolean>
 

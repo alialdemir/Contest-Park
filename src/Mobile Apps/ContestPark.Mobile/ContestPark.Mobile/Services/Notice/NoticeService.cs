@@ -33,6 +33,11 @@ namespace ContestPark.Mobile.Services.Notice
 
         #region Methods
 
+        /// <summary>
+        /// Aktif duyuruları döndürür
+        /// </summary>
+        /// <param name="pagingModel">Sayfalama</param>
+        /// <returns>Duyuru listesi</returns>
         public async Task<ServiceModel<NoticeModel>> NoticesAsync(PagingModel pagingModel)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");

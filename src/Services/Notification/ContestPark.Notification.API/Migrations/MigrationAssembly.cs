@@ -10,6 +10,7 @@ namespace ContestPark.Notification.API.Migrations
             {
                 typeof(Initial).Assembly,
                 typeof(PushNotificationMigration).Assembly,
+                typeof(NoticeMigration).Assembly,
             };
         }
     }
