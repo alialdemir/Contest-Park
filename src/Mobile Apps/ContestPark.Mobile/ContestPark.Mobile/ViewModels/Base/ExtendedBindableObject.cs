@@ -33,6 +33,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             {
                 operand = (MemberExpression)lambdaExpression.Body;
             }
+
             return operand.Member;
         }
     }

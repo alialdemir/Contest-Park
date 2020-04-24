@@ -220,7 +220,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("Question"))
                 Question = parameters.GetValue<Models.Duel.QuestionModel>("Question");
@@ -239,7 +239,7 @@ namespace ContestPark.Mobile.ViewModels
 
             OnSleepEventListener();
 
-            LoadInterstitialVideo();
+            LoadInterstitialVideoCommand.Execute(null);
 
             return Task.CompletedTask;
         }
@@ -311,14 +311,6 @@ namespace ContestPark.Mobile.ViewModels
 
                 return false;
             });
-        }
-
-        /// <summary>
-        /// Tam ekran reklma yükle
-        /// </summary>
-        private void LoadInterstitialVideo()
-        {
-            _adMobService.LoadInterstitialVideo();
         }
 
         private void SetCurrentQuestion()
@@ -756,6 +748,17 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand _answerCommand;
         private ICommand _saveAnswerCommand;
+
+        /// <summary>
+        /// Tam ekran reklma yükle
+        /// </summary>
+        private ICommand LoadInterstitialVideoCommand
+        {
+            get
+            {
+                return new Command(() => _adMobService.LoadInterstitialVideo());
+            }
+        }
 
         public ICommand AnswerCommand => _answerCommand ?? (_answerCommand = new Command<AnswerModel>(ExecuteAnswerCommandCommand));
         private ICommand SaveAnswerCommand => _saveAnswerCommand ?? (_saveAnswerCommand = new Command<SaveAnswerModel>(SaveAnswer));

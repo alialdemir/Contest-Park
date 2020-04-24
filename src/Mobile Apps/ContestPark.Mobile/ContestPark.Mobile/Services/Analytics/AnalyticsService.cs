@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Dependencies;
+using Microsoft.AppCenter.Crashes;
+using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Analytics
 {
@@ -34,7 +35,14 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="eventValue"></param>
         public void SendEvent(string eventCategory, string eventAction, string eventLabel, long? eventValue = null)
         {
-            _analytics?.SendEvent(eventCategory, eventAction, eventLabel, eventValue);
+            try
+            {
+                _analytics?.SendEvent(eventCategory, eventAction, eventLabel, eventValue);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         /// <summary>
@@ -44,7 +52,14 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="parameters"></param>
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
-            _analytics?.SendEvent(eventId, parameters);
+            try
+            {
+                _analytics?.SendEvent(eventId, parameters);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         /// <summary>
@@ -53,7 +68,14 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="userId"></param>
         public void SetUserId(string userId)
         {
-            _analytics?.SetUserId(userId);
+            try
+            {
+                _analytics?.SetUserId(userId);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         #endregion Methods

@@ -57,7 +57,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Sayfa açılınca bakiye bilgisini getirir
         /// </summary>
-        protected override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             await GetBalanceAsync();
 

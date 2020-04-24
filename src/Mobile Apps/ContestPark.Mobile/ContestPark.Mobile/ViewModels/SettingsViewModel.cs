@@ -56,7 +56,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// The InitializeAsync
         /// </summary>
-        protected override Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return Task.CompletedTask;

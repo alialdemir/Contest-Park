@@ -13,7 +13,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
-using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
@@ -57,7 +56,6 @@ namespace ContestPark.Mobile.ViewModels
                                           IDuelSignalRService duelSignalRService,
                                           IPopupNavigation popupNavigation,
                                           INavigationService navigationService,
-                                          IPageDialogService pageDialogService,
                                           ISettingsService settingsService) : base(navigationService, popupNavigation: popupNavigation)
         {
             _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
@@ -140,7 +138,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -408,7 +406,7 @@ namespace ContestPark.Mobile.ViewModels
                     { "Question", question }
                 });
 
-                GotoBackCommand.Execute(true);
+                await RemoveFirstPopupAsync<DuelStartingPopupView>();
 
                 OffSignalr();
             }

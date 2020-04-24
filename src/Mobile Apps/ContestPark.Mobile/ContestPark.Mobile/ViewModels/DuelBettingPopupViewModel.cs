@@ -96,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsBusy)
                 return;
@@ -112,22 +112,25 @@ namespace ContestPark.Mobile.ViewModels
             if (lastSelectedBet != null)// En son oynadığı bakiye tipini seçili olarak getiriyoruz
                 BalanceType = lastSelectedBet.BalanceType;
 
-            InitBets();
+            Device.BeginInvokeOnMainThread(() =>
+                          {
+                              InitBets();
 
-            if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
-            {
-                BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
-                if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
-                {
-                    SelectedIndex = lastSelectedBet.CurrentIndex - 1;
-                }
-                else if (appropriateBet != null)
-                {
-                    SelectedIndex = appropriateBet.CurrentIndex - 1;
-                }
-            }
+                              if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
+                              {
+                                  BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
+                                  if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
+                                  {
+                                      SelectedIndex = lastSelectedBet.CurrentIndex - 1;
+                                  }
+                                  else if (appropriateBet != null)
+                                  {
+                                      SelectedIndex = appropriateBet.CurrentIndex - 1;
+                                  }
+                              }
 
-            IsBusy = false;
+                              IsBusy = false;
+                          });
         }
 
         private void InitBets()
@@ -324,7 +327,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="bet">Seçilen bahis miktarı</param>
         private async Task ExecuteDuelStartCommandAsync(BetModel bet, bool isRewarded = false)
         {
-            if (IsBusy)
+            if (IsBusy || bet == null)
                 return;
 
             IsBusy = true;

@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Dependencies;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Diagnostics;
 using Xamarin.Forms;
@@ -76,11 +77,17 @@ namespace ContestPark.Mobile.Services.AdMob
         {
             if (Admob == null)
                 return;
-
-            if (!Admob.IsRewardedVideoLoaded())
-                Admob.LoadRewardedVideo(GlobalSetting.RewardedVideoUnitId);
-            else
-                Admob.ShowRewardedVideo();
+            try
+            {
+                if (!Admob.IsRewardedVideoLoaded())
+                    Admob.LoadRewardedVideo(GlobalSetting.RewardedVideoUnitId);
+                else
+                    Admob.ShowRewardedVideo();
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         /// <summary>
@@ -90,9 +97,15 @@ namespace ContestPark.Mobile.Services.AdMob
         {
             if (Admob == null)
                 return;
-
-            if (!Admob.IsInterstitialLoaded())
-                Admob.LoadInterstitial(GlobalSetting.InterstitialUnitId);
+            try
+            {
+                if (!Admob.IsInterstitialLoaded())
+                    Admob.LoadInterstitial(GlobalSetting.InterstitialUnitId);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         /// <summary>
@@ -102,8 +115,14 @@ namespace ContestPark.Mobile.Services.AdMob
         {
             if (Admob == null)
                 return;
-
-            Admob.ShowInterstitial();
+            try
+            {
+                Admob.ShowInterstitial();
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         #endregion Methods

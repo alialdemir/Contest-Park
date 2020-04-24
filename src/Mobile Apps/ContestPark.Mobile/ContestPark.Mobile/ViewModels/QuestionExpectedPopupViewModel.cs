@@ -48,7 +48,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navgation
 
-        protected override Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SubcategoryName"))
                 SubcategoryName = parameters.GetValue<string>("SubcategoryName");

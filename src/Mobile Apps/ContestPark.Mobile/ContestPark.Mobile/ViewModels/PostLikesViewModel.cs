@@ -42,7 +42,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        protected override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override async Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
 

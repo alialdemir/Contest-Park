@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels.Base
 {
-    public abstract class ViewModelBase : ExtendedBindableObject, INavigationAware, IInitializeAsync
+    public abstract class ViewModelBase : ExtendedBindableObject, IInitializeAsync
     {
         #region Private variables
 
@@ -79,7 +79,6 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <summary>
         /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
         /// </summary>
-        /// <returns></returns>
         public virtual Task InitializeAsync(INavigationParameters parameters = null)
         {
             return Task.CompletedTask;
@@ -130,26 +129,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (_navigationService == null)
                 return Task.CompletedTask;
 
-            return _navigationService?.GoBackAsync(parameters, useModalNavigation);
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public virtual void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (IsInitialized)
-                return;
-
-            //Device.BeginInvokeOnMainThread(() =>// UI thread kitlememesi için mainthread üzerinden initialize ettik
-            //{
-            //    if (parameters == null)
-            //        parameters = new NavigationParameters();
-
-            //    InitializeCommand.Execute(parameters);
-            //    IsInitialized = true;
-            //});
+            return _navigationService.GoBackAsync(parameters, useModalNavigation);
         }
 
         public Task NavigateToPopupAsync<TViewModel>(INavigationParameters parameters = null)
@@ -176,7 +156,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (string.IsNullOrEmpty(name))
                 return Task.CompletedTask;
 
-            return _navigationService.NavigateAsync($"app:///{name}?appModuleRefresh=OnInitialized", null, false);
+            return NavigateToAsync($"app:///{name}?appModuleRefresh=OnInitialized", null, false);
         }
 
         internal Task NavigateToAsync(string name, INavigationParameters parameters = null, bool? useModalNavigation = false)

@@ -35,7 +35,7 @@ namespace ContestPark.Mobile.Views
 
         #region Override
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -48,7 +48,7 @@ namespace ContestPark.Mobile.Views
             parameters.Add("UserName", viewModel._settingsService?.CurrentUser?.UserName);
             parameters.Add("IsVisibleBackArrow", false);
 
-            viewModel.OnNavigatedTo(parameters);
+            await viewModel.InitializeAsync(parameters);
             viewModel.IsInitialized = true;
         }
 
