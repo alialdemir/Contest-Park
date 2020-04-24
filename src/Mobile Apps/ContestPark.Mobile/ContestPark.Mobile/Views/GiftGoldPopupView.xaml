@@ -8,7 +8,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
@@ -75,7 +75,7 @@
                         <Image.Source>
                             <FontImageSource
                                 FontFamily="{StaticResource icomoon}"
-                                Glyph="{x:Static icons:ContestParkIcon.Close}"
+                                Glyph="{StaticResource Close}"
                                 Size="32"
                                 Color="{StaticResource SettingsIconColor}" />
                         </Image.Source>

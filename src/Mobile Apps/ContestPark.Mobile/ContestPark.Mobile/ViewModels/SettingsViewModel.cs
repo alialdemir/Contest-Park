@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
 using ContestPark.Mobile.Services.Analytics;
@@ -69,13 +68,13 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.AppSettings)
                                 {
                                     new TextMenuItem {
-                                        Icon = ContestParkIcon.LanguageSettings,
+                                        Icon =  ContestParkApp.Current.Resources["LanguageSettings"].ToString(),
                                         Title = ContestParkResources.Language,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = new Command(() =>  ExecutePushPageCommand<LanguageView>())
                                     },
                                     new SwitchMenuItem {
-                                        Icon = ContestParkIcon.SoundSettings,
+                                        Icon =  ContestParkApp.Current.Resources["SoundSettings"].ToString(),
                                         Title = ContestParkResources.Sounds,
                                         MenuType = MenuTypes.Switch,
                                         IsToggled = _settingsService.IsSoundEffectActive,
@@ -87,19 +86,19 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.AccountSettings)
                                     {
                                     new TextMenuItem {
-                                        Icon = ContestParkIcon.AccountSettings,
+                                        Icon = ContestParkApp.Current.Resources["AccountSettings"].ToString(),
                                         Title = ContestParkResources.EditProfile,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = new Command(() =>  ExecutePushPageCommand<AccountSettingsView>())
                                     },
                                     new TextMenuItem {
-                                        Icon = ContestParkIcon.BlockedSettings,
+                                        Icon = ContestParkApp.Current.Resources["BlockedSettings"].ToString(),
                                         Title = ContestParkResources.Blocking,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = new Command(() =>  ExecutePushPageCommand<BlockingView>())
                                     },
                                     new SwitchMenuItem {
-                                        Icon = ContestParkIcon.PrivateProfileSettings,
+                                        Icon = ContestParkApp.Current.Resources["PrivateProfileSettings"].ToString(),
                                         Title = ContestParkResources.PrivateProfile,
                                         MenuType = MenuTypes.Switch,
                                         IsToggled = _settingsService.CurrentUser.IsPrivateProfile,
@@ -111,7 +110,7 @@ namespace ContestPark.Mobile.ViewModels
                 new MenuItemList(ContestParkResources.Other)
                                 {
                                     new TextMenuItem {
-                                        Icon = ContestParkIcon.Exit,
+                                        Icon = ContestParkApp.Current.Resources["Exit"].ToString(),
                                         Title = ContestParkResources.LogOut,
                                         MenuType = MenuTypes.Label,
                                         SingleTap = new Command(async()=> await ExitAppAsync()),

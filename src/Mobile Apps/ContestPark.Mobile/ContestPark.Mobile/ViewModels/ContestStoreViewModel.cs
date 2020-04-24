@@ -288,6 +288,8 @@ namespace ContestPark.Mobile.ViewModels
             get { return _changeBalanceType ?? (_changeBalanceType = new Command<string>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)Convert.ToByte(balanceType)))); }
         }
 
+        private byte _getProductCount = 0;
+
         private ICommand GetProductCommand
         {
             get => new Command(async () =>
@@ -295,8 +297,10 @@ namespace ContestPark.Mobile.ViewModels
                 Products = await _inAppBillingService.GetProductInfoAsync();
                 if (Products != null && Products.Any())
                     Items.AddRange(Products.Where(x => x.BalanceTypes == BalanceType).ToList());
-                else
+                else if (_getProductCount <= 10)
                 {
+                    _getProductCount += 1;
+
                     GetProductCommand.Execute(null);
                 }
             });

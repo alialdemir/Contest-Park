@@ -32,6 +32,7 @@ using Prism.Services;
 using Shiny.Push;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -345,13 +346,20 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command(async () =>
                 {
-                    PushAccessState token = await _pushManager.RequestAccess();
-                    if (token.Status == Shiny.AccessState.Available && !string.IsNullOrEmpty(token.RegistrationToken))
+                    try
                     {
-                        _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
+                        PushAccessState token = await _pushManager.RequestAccess();
+                        if (token.Status == Shiny.AccessState.Available && !string.IsNullOrEmpty(token.RegistrationToken))
                         {
-                            Token = token.RegistrationToken
-                        });
+                            _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
+                            {
+                                Token = token.RegistrationToken
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
                     }
                 });
             }

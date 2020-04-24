@@ -9,7 +9,7 @@
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:iconButton="clr-namespace:ContestPark.Mobile.Components.IconButton"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -50,7 +50,7 @@
                     <Image.Source>
                         <FontImageSource
                             FontFamily="{StaticResource icomoon}"
-                            Glyph="{x:Static icons:ContestParkIcon.Close}"
+                            Glyph="{StaticResource Close}"
                             Size="32"
                             Color="{StaticResource White}" />
                     </Image.Source>
@@ -358,7 +358,7 @@
                             BackgroundGradientEndColor="#27DB94"
                             BackgroundGradientStartColor="#14D2B8"
                             Command="{Binding RevengeCommand}"
-                            Icon="{x:Static icons:ContestParkIcon.Revenge}"
+                            Icon="{StaticResource Revenge}"
                             Text="{i18n:Translate Revenge}" />
 
                         <iconButton:IconButton
@@ -367,7 +367,7 @@
                             BackgroundGradientEndColor="#F15887"
                             BackgroundGradientStartColor="#FE9B86"
                             Command="{Binding FindOpponentCommand}"
-                            Icon="{x:Static icons:ContestParkIcon.FindOpponent}"
+                            Icon="{StaticResource FindOpponent}"
                             Text="{i18n:Translate FindOpponent}" />
 
                         <!--<iconButton:IconButton
@@ -376,7 +376,7 @@
                                 BackgroundGradientEndColor="#424E5C"
                                 BackgroundGradientStartColor="#2E3742"
                                 Command="{Binding GotoChatCommand}"
-                                Icon="{x:Static icons:ContestParkIcon.ChatThreeDot}"
+                                Icon="{StaticResource ChatThreeDot}"
                                 Text="{i18n:Translate Message}" />-->
 
                         <iconButton:IconButton
@@ -385,7 +385,7 @@
                             BackgroundGradientEndColor="#FFB347"
                             BackgroundGradientStartColor="#FFCC33"
                             Command="{Binding ShareCommand}"
-                            Icon="{x:Static icons:ContestParkIcon.Share}"
+                            Icon="{StaticResource Share}"
                             Text="{i18n:Translate Share}" />
                     </Grid>
                 </Grid>

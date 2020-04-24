@@ -6,7 +6,7 @@
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="blockingViewPage"
@@ -66,7 +66,7 @@
                                     <Image.Source>
                                         <FontImageSource
                                             FontFamily="{StaticResource icomoon}"
-                                            Glyph="{x:Static icons:ContestParkIcon.Close}"
+                                            Glyph="{StaticResource Close}"
                                             Size="32"
                                             Color="{StaticResource Black}" />
                                     </Image.Source>

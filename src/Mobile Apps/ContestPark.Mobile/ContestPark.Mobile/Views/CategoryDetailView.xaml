@@ -6,7 +6,7 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
@@ -68,7 +68,7 @@
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="{StaticResource icomoon}"
-                                        Glyph="{x:Static icons:ContestParkIcon.BackArrow}"
+                                        Glyph="{StaticResource BackArrow}"
                                         Size="32"
                                         Color="{StaticResource White}" />
                                 </Image.Source>
@@ -102,7 +102,7 @@
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="{StaticResource icomoon}"
-                                        Glyph="{x:Static icons:ContestParkIcon.Share}"
+                                        Glyph="{StaticResource Share}"
                                         Size="32" />
                                 </Image.Source>
                             </Image>

@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="musicQuestion"
     mc:Ignorable="d">
@@ -38,7 +38,7 @@
                 <Image.Source>
                     <FontImageSource
                         FontFamily="{StaticResource icomoon}"
-                        Glyph="{x:Static icons:ContestParkIcon.WindBack}"
+                        Glyph="{StaticResource WindBack}"
                         Color="{StaticResource White}" />
                 </Image.Source>
             </Image>
@@ -50,7 +50,7 @@
                 <Image.Source>
                     <FontImageSource
                         FontFamily="{StaticResource icomoon}"
-                        Glyph="{x:Static icons:ContestParkIcon.Play}"
+                        Glyph="{StaticResource Play}"
                         Color="{StaticResource White}" />
                 </Image.Source>
             </Image>
@@ -62,7 +62,7 @@
                 <Image.Source>
                     <FontImageSource
                         FontFamily="{StaticResource icomoon}"
-                        Glyph="{x:Static icons:ContestParkIcon.FastForward}"
+                        Glyph="{StaticResource FastForward}"
                         Color="{StaticResource White}" />
                 </Image.Source>
             </Image>-->

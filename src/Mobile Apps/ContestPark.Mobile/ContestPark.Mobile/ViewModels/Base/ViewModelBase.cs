@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels.Base
 {
-    public abstract class ViewModelBase : ExtendedBindableObject, INavigationAware
+    public abstract class ViewModelBase : ExtendedBindableObject, INavigationAware, IInitializeAsync
     {
         #region Private variables
 
@@ -80,7 +80,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
         /// </summary>
         /// <returns></returns>
-        protected virtual Task InitializeAsync(INavigationParameters parameters = null)
+        public virtual Task InitializeAsync(INavigationParameters parameters = null)
         {
             return Task.CompletedTask;
         }
@@ -142,14 +142,14 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (IsInitialized)
                 return;
 
-            Device.BeginInvokeOnMainThread(() =>// UI thread kitlememesi için mainthread üzerinden initialize ettik
-            {
-                if (parameters == null)
-                    parameters = new NavigationParameters();
+            //Device.BeginInvokeOnMainThread(() =>// UI thread kitlememesi için mainthread üzerinden initialize ettik
+            //{
+            //    if (parameters == null)
+            //        parameters = new NavigationParameters();
 
-                InitializeCommand.Execute(parameters);
-                IsInitialized = true;
-            });
+            //    InitializeCommand.Execute(parameters);
+            //    IsInitialized = true;
+            //});
         }
 
         public Task NavigateToPopupAsync<TViewModel>(INavigationParameters parameters = null)
@@ -287,7 +287,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
         /// </summary>
         /// <returns></returns>
-        protected override Task InitializeAsync(INavigationParameters parameters)
+        public override Task InitializeAsync(INavigationParameters parameters)
         {
             if (ServiceModel.PageNumber == 1)
                 Items.Clear();// Skeleton dataları silindi

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
-    xmlns:icons="clr-namespace:ContestPark.Mobile.Icons"
+    
     x:Name="imagePostCardPage">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -59,7 +59,7 @@
                         <Image.Source>
                             <FontImageSource
                                 FontFamily="{StaticResource icomoon}"
-                                Glyph="{x:Static icons:ContestParkIcon.Clock}"
+                                Glyph="{StaticResource Clock}"
                                 Size="16"
                                 Color="#6C7B8A" />
                         </Image.Source>
@@ -77,7 +77,7 @@
                     <Image.Source>
                         <FontImageSource
                             FontFamily="{StaticResource icomoon}"
-                            Glyph="{x:Static icons:ContestParkIcon.Options}"
+                            Glyph="{StaticResource Options}"
                             Size="16"
                             Color="#6C7B8A" />
                     </Image.Source>

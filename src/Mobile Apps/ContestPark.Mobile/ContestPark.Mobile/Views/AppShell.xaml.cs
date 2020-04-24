@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Icons;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels;
@@ -76,7 +75,7 @@ namespace ContestPark.Mobile.Views
                 MenuItem winningsViewMenu = new MenuItem
                 {
                     CommandParameter = $"http://contestpark.com/balancecode.html?q={settingsService.AuthAccessToken}",
-                    IconImageSource = FontImageSource.FromFile(ContestParkIcon.MoneyBag),
+                    IconImageSource = ContestParkApp.Current.Resources["MoneyBag"].ToString(),
                     Text = ContestParkResources.ConvertToCash,
                 };
 
@@ -87,7 +86,7 @@ namespace ContestPark.Mobile.Views
                 MenuItem balanceCodeViewMenu = new MenuItem
                 {
                     CommandParameter = nameof(BalanceCodeView),
-                    IconImageSource = FontImageSource.FromFile(ContestParkIcon.BalanceCode),
+                    IconImageSource = FontImageSource.FromFile(ContestParkApp.Current.Resources["BalanceCode"].ToString()),
                     Text = ContestParkResources.BalanceCode,
                 };
 
