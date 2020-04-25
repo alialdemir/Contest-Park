@@ -32,7 +32,7 @@ metadata:
   name: ocelot-apigw
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:162939618331:certificate/c295d531-a1f2-46a6-864f-d1782e809673"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:162939618331:certificate/5b3696bf-9605-495f-a2ed-a80736686607"
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
   labels:
     run: ocelot-apigw
@@ -40,7 +40,7 @@ spec:
   ports:
     - name: ocelot-apigw-https
       port: 443
-      targetPort: 443
+      targetPort: 80
     - name: ocelot-apigw-http
       port: 80
       targetPort: 80
