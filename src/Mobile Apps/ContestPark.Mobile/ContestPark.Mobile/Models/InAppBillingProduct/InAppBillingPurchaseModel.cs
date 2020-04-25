@@ -39,5 +39,10 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
         // Summary:
         //     Trasaction date in UTC
         public DateTime TransactionDateUtc { get; set; }
+
+        /// <summary>
+        /// Purchase a specific product or subscription
+        /// </summary>
+        public string VerifyPurchase { get; set; }
     }
 }

@@ -25,5 +25,7 @@ namespace ContestPark.Balance.API.Infrastructure.Tables
         public PurchaseState State { get; set; }
 
         public string TransactionId { get; set; }
+
+        public string VerifyPurchase { get; set; }
     }
 }

@@ -64,6 +64,10 @@ namespace ContestPark.Balance.API.Migrations
                 .AsByte()
                 .NotNullable()
 
+                .WithColumn("VerifyPurchase")
+                .AsString(36)
+                .Nullable()
+
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()

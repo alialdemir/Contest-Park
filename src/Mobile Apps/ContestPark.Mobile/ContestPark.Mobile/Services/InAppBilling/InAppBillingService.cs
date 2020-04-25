@@ -324,8 +324,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
                     return null;
                 }
+                string verifyPurchase = Guid.NewGuid().ToString();
 
-                var purchase = await _billing.PurchaseAsync(productId, ItemType.InAppPurchase, Guid.NewGuid().ToString());
+                var purchase = await _billing.PurchaseAsync(productId, ItemType.InAppPurchase, verifyPurchase);
                 if (purchase == null)
                 {
                     //Not purchased, alert the user
@@ -353,7 +354,8 @@ namespace ContestPark.Mobile.Services.InAppBilling
                         PurchaseToken = purchase.PurchaseToken,
                         TransactionDateUtc = purchase.TransactionDateUtc,
                         State = purchase.State,
-                        ConsumptionState = purchase.ConsumptionState
+                        ConsumptionState = purchase.ConsumptionState,
+                        VerifyPurchase = verifyPurchase
                     };
                 }
             }

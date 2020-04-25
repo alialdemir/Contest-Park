@@ -383,13 +383,15 @@ namespace ContestPark.Balance.API.Controllers
             if (string.IsNullOrEmpty(purchase.PackageName)
                 || string.IsNullOrEmpty(purchase.ProductId)
                 || string.IsNullOrEmpty(purchase.Token)
+                || string.IsNullOrEmpty(purchase.VerifyPurchase)
                  || !(purchase.Platform == Platforms.Android || purchase.Platform == Platforms.Ios))
             {
-                Logger.LogError("Paket satın alma bilgiler boş geldi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
+                Logger.LogError("Paket satın alma bilgiler boş geldi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} VerifyPurchase: {VerifyPurchase} Token: {Token}",
                                 UserId,
                                 purchase.PackageName,
                                 purchase.Platform,
                                 purchase.ProductId,
+                                purchase.VerifyPurchase,
                                 purchase.Token);
 
                 return BadRequest();
@@ -397,12 +399,13 @@ namespace ContestPark.Balance.API.Controllers
 
             if (_purchaseHistoryRepository.IsExistsToken(purchase.Token))
             {
-                Logger.LogWarning("Kayıtlı olan purchase token bilgisi ile tekrar satın alınma işlemi gereçekleşti... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
+                Logger.LogWarning("Kayıtlı olan purchase token bilgisi ile tekrar satın alınma işlemi gereçekleşti... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} VerifyPurchase: {VerifyPurchase} Token: {Token}",
                              UserId,
                              purchase.PackageName,
                              purchase.Platform,
                              purchase.PackageName,
                              purchase.ProductId,
+                             purchase.VerifyPurchase,
                              purchase.Token);
 
                 return BadRequest();
@@ -417,12 +420,13 @@ namespace ContestPark.Balance.API.Controllers
                 });
                 if (!isVetify)
                 {
-                    Logger.LogWarning("Geçersiz ödeme bilgisi girildi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} Token: {Token}",
+                    Logger.LogWarning("Geçersiz ödeme bilgisi girildi... UserId: {UserId} PackageName: {PackageName} Platform: {Platform} ProductId: {ProductId} VerifyPurchase: {VerifyPurchase} Token: {Token}",
                          UserId,
                          purchase.PackageName,
                          purchase.Platform,
                          purchase.PackageName,
                          purchase.ProductId,
+                         purchase.VerifyPurchase,
                          purchase.Token);
 
                     return BadRequest("Invalid payment information.");
@@ -433,6 +437,7 @@ namespace ContestPark.Balance.API.Controllers
                                                              PackageName: {purchase.PackageName}
                                                              Platform: {purchase.Platform}
                                                              ProductId: {purchase.ProductId}
+                                                             VerifyPurchase: {purchase.VerifyPurchase}
                                                              Token: {purchase.Token}");
 
             #region Validations
@@ -444,6 +449,7 @@ namespace ContestPark.Balance.API.Controllers
                                                                                                               PackageName: {purchase.PackageName}
                                                                                                               Platform: {purchase.Platform}
                                                                                                               ProductId: {purchase.ProductId}
+                                                                                                              VerifyPurchase: {purchase.VerifyPurchase}
                                                                                                               Token: {purchase.Token}");
                 return BadRequest(BalanceResource.PackagenameIsIncorrect);
             }
@@ -486,7 +492,8 @@ namespace ContestPark.Balance.API.Controllers
                 Token = purchase.Token,
                 Platform = purchase.Platform,
                 TransactionId = purchase.TransactionId,
-                State = purchase.State
+                State = purchase.State,
+                VerifyPurchase = purchase.VerifyPurchase,
             });
         }
 
