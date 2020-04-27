@@ -5,7 +5,6 @@ using ContestPark.Mobile.Services.LatestVersion;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MonkeyCache.SQLite;
 using Prism;
@@ -110,8 +109,7 @@ namespace ContestPark.Mobile
         protected override void OnStart()
         {
             base.OnStart();
-
-            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes));
         }
 
         protected override void OnResume()

@@ -72,7 +72,7 @@ namespace ContestPark.Mobile.Services.Shiny
 
             services.AddSingleton<IFollowService, FollowService>();
 
-            services.AddSingleton<IRequestProvider, ContestPark.Mobile.Services.RequestProvider.RequestProvider>();
+            services.AddSingleton<IRequestProvider, RequestProvider.RequestProvider>();
 
             services.AddSingleton<ISignalRServiceBase, SignalRServiceBase>();
 

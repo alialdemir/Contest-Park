@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<linker>
+  <assembly fullname="Prism.DryIoc.Extensions">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Prism.DryIoc.Forms">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Prism.Forms">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Prism.Plugin.Popups">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Shiny.Core">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Shiny.Notifications">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Shiny.Prism">
+    <namespace fullname="*" />
+  </assembly>
+  <assembly fullname="Plugin.InAppBilling">
+    <namespace fullname="*" />
+  </assembly>
+</linker>
