@@ -22,6 +22,9 @@ namespace ContestPark.Mobile.Services.Settings
         private readonly string CurrentUserDefault = string.Empty;
 
         private readonly bool IsSoundEffectActiveDefault = true;
+
+        private readonly bool IsStoreReviewDefault = false;
+
         private readonly string RefleshTokenDefault = string.Empty;
 
         private readonly string TokenTypeDefault = "Bearer";
@@ -80,6 +83,12 @@ namespace ContestPark.Mobile.Services.Settings
         public bool IsSoundEffectActive
         {
             get => GetValueOrDefault(IsSoundEffectActiveDefault);
+            set => AddOrUpdateValue(value);
+        }
+
+        public bool IsStoreReview
+        {
+            get => GetValueOrDefault(IsStoreReviewDefault);
             set => AddOrUpdateValue(value);
         }
 

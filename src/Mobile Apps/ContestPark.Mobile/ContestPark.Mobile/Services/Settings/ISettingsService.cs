@@ -29,6 +29,11 @@ namespace ContestPark.Mobile.Services.Settings
         bool IsSoundEffectActive { get; }
 
         /// <summary>
+        /// Uygulamaya yızdız vermiş mi
+        /// </summary>
+        bool IsStoreReview { get; set; }
+
+        /// <summary>
         /// Gets or sets the RefleshToken
         /// </summary>
         string RefreshToken { get; set; }

@@ -580,11 +580,14 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void QuestionExpectedPopup()
         {
-            NavigateToPopupAsync<QuestionExpectedPopupView>(new NavigationParameters
+            Device.BeginInvokeOnMainThread(() =>
             {
-                { "SubcategoryName", Question.SubCategoryName },
-                { "SubCategoryPicturePath", Question.SubCategoryPicturePath },
-                { "RoundCount",  Round },
+                NavigateToPopupAsync<QuestionExpectedPopupView>(new NavigationParameters
+                    {
+                        { "SubcategoryName", Question.SubCategoryName },
+                        { "SubCategoryPicturePath", Question.SubCategoryPicturePath },
+                        { "RoundCount",  Round },
+                    });
             });
         }
 

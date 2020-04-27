@@ -13,8 +13,11 @@ using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Plugin.StoreReview;
+using Plugin.StoreReview.Abstractions;
 using Prism.Events;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -44,9 +47,10 @@ namespace ContestPark.Mobile.ViewModels
             IAudioService audioService,
             ISettingsService settingsService,
             INavigationService navigationService,
+            IPageDialogService dialogService,
             IAnalyticsService analyticsService,
             IDuelService duelService
-            ) : base(navigationService: navigationService)
+            ) : base(navigationService: navigationService, dialogService)
         {
             _eventAggregator = eventAggregator;
             _adMobService = adMobService;
@@ -228,7 +232,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            IConvertUIToImage convertUIToImage = DependencyService.Get<IConvertUIToImage>();
+            IConvertUIToImage convertUIToImage = Xamarin.Forms.DependencyService.Get<IConvertUIToImage>();
             if (convertUIToImage == null)
             {
                 IsBusy = false;
@@ -273,7 +277,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
-        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        public override async Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             if (_settingsService.IsSoundEffectActive)
                 _audioService?.Stop();
@@ -289,7 +293,29 @@ namespace ContestPark.Mobile.ViewModels
                     .Publish();
             }
 
-            return base.GoBackAsync(parameters, useModalNavigation);
+            if (DuelResult != null && DuelResult.IsShowFireworks && !_settingsService.IsStoreReview && CrossStoreReview.IsSupported)
+            {
+                IStoreReview storeReview = CrossStoreReview.Current;
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    bool isOk = await DisplayAlertAsync(string.Empty,
+                                                   ContestParkResources.WouldYouLikeToRateTheGameOnGooglePlay,
+                                                   ContestParkResources.Okay,
+                                                   ContestParkResources.Cancel);
+
+                    if (isOk)
+                    {
+                        storeReview.OpenStoreReviewPage(AppInfo.PackageName);
+                    }
+                }
+                else
+                    storeReview.RequestReview();
+
+                _settingsService.IsStoreReview = true;
+            }
+
+            await base.GoBackAsync(parameters, useModalNavigation);
         }
 
         #endregion Methods

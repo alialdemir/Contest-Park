@@ -792,6 +792,9 @@
   <data name="WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber" xml:space="preserve">
     <value>Para ödülünü uygulama içerisinden iban numarası göndererek çek.</value>
   </data>
+  <data name="WouldYouLikeToRateTheGameOnGooglePlay" xml:space="preserve">
+    <value>Oyunu google play de oylamak ister misiniz?</value>
+  </data>
   <data name="WriteANewComment" xml:space="preserve">
     <value>Yeni bir yorum yap</value>
   </data>

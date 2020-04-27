@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -448,7 +447,7 @@ namespace ContestPark.Mobile.ViewModels
 
             if (isBuy)
             {
-                GotoBackCommand.Execute(null);
+                GotoBackCommand.Execute(true);
 
                 _analyticsService.SendEvent("Düello", "Oyna", "Contest store");
 

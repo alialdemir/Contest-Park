@@ -859,4 +859,7 @@
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="WouldYouLikeToRateTheGameOnGooglePlay" xml:space="preserve">
+    <value>Would you like to rate the game on google play?</value>
+  </data>
 </root>

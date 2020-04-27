@@ -2060,6 +2060,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to rate the game on google play?.
+        /// </summary>
+        public static string WouldYouLikeToRateTheGameOnGooglePlay {
+            get {
+                return ResourceManager.GetString("WouldYouLikeToRateTheGameOnGooglePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Write a new comment.
         /// </summary>
         public static string WriteANewComment {

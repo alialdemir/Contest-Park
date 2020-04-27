@@ -167,7 +167,7 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.ConnectionToTheServerForTheDuelWasNotEstablished,
                     ContestParkResources.Okay);
 
-                GotoBackCommand.Execute(null);
+                Device.BeginInvokeOnMainThread(() => base.GoBackAsync(useModalNavigation: true));
             }
             else if (StandbyModes.Invited == SelectedBet.StandbyMode)
             {
@@ -230,7 +230,7 @@ namespace ContestPark.Mobile.ViewModels
                                ContestParkResources.YourOpponentDidNotAcceptYourDuelInvitation,
                                ContestParkResources.Okay);
 
-                            GotoBackCommand.Execute(null);
+                            await base.GoBackAsync(useModalNavigation: true);
                         });
                     }
 
@@ -244,7 +244,7 @@ namespace ContestPark.Mobile.ViewModels
                     ContestParkResources.TheOpponentDidNotAcceptTheDuel,
                     ContestParkResources.Okay);
 
-                GotoBackCommand.Execute(null);
+                await base.GoBackAsync(useModalNavigation: true);
             }
         }
 
@@ -432,7 +432,7 @@ namespace ContestPark.Mobile.ViewModels
 
             await _duelService.DuelCancel();
 
-            GotoBackCommand.Execute(null);
+            await base.GoBackAsync(useModalNavigation: true);
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 IsNextQuestionExit = true;
 
-                GotoBackCommand.Execute(null);
+                GotoBackCommand.Execute(true);
 
                 if (DuelStarting.DuelId > 0)
                 {
@@ -533,7 +533,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 await _duelService.DuelCancel();
 
-                GotoBackCommand.Execute(null);
+                await base.GoBackAsync(useModalNavigation: true);
             });
         }
 

@@ -75,8 +75,7 @@ namespace ContestPark.Mobile.Droid
 
             this.ShinyOnCreate();
 
-            Shiny.Notifications.AndroidOptions.DefaultLargeIconResourceName = "logo.png";
-            Shiny.Notifications.AndroidOptions.DefaultSmallIconResourceName = "logo.png";
+
 
             base.OnCreate(bundle);
 
