@@ -759,7 +759,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(() => _adMobService.LoadInterstitialVideo());
+                return new Command(() => Device.BeginInvokeOnMainThread(() => _adMobService.LoadInterstitialVideo()));
             }
         }
 
