@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -50,9 +49,6 @@ namespace ContestPark.Mobile.Services.LatestVersion
         /// </summary>
         public async Task IfNotUsingLatestVersionOpenInStore()
         {
-            if (Debugger.IsAttached)
-                return;
-
             var isLatest = await IsUsingLatestVersion();
 
             if (!isLatest)

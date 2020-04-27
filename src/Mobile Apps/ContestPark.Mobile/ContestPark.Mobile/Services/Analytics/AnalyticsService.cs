@@ -2,7 +2,6 @@
 using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Analytics
 {
@@ -19,7 +18,7 @@ namespace ContestPark.Mobile.Services.Analytics
         public AnalyticsService()
         {
 #if !DEBUG
-            _analytics = DependencyService.Get<IAnalytics>();
+            _analytics = Xamarin.Forms.DependencyService.Get<IAnalytics>();
 #endif
         }
 

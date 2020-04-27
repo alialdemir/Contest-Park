@@ -34,6 +34,7 @@ namespace ContestPark.Mobile
         {
             try
             {
+                Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
                 Crashes.SentErrorReport += Crashes_SentErrorReport;
 
                 InitializeComponent();
@@ -46,10 +47,12 @@ namespace ContestPark.Mobile
                     NavigationService.NavigateAsync(nameof(AppShell));
                 else NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
 
+#if !DEBUG
                 RegisterTypesConfig
-                                  .Container
-                                  .Resolve<ILatestVersionService>()
-                                  .IfNotUsingLatestVersionOpenInStore();
+                                .Container
+                                .Resolve<ILatestVersionService>()
+                                .IfNotUsingLatestVersionOpenInStore();
+#endif
             }
             catch (System.Exception ex)
             {
