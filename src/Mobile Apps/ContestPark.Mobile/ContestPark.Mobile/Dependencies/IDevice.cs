@@ -4,10 +4,10 @@ namespace ContestPark.Mobile.Dependencies
 {
     public interface IDevice
     {
-        DeviceHelper GeScreenSize();
-
         string GetIdentifier();
 
         void DismissKeyboard();
+
+        void CloseApp();
     }
 }

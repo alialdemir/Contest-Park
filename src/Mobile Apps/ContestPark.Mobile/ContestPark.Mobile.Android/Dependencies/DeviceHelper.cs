@@ -10,19 +10,9 @@ namespace ContestPark.Mobile.Droid.Dependencies
 {
     public class DeviceHelper : IDevice
     {
-        public Models.DeviceHelper.DeviceHelper GeScreenSize()
+        public void CloseApp()
         {
-            var metrics = Resources.System.DisplayMetrics;
-            return new Models.DeviceHelper.DeviceHelper
-            {
-                ScreenHeight = ConvertToPixelsToDp(metrics.HeightPixels),
-                ScreenWidth = ConvertToPixelsToDp(metrics.WidthPixels)
-            };
-        }
-
-        private int ConvertToPixelsToDp(int pixelValue)
-        {
-            return (int)(((int)pixelValue) / Resources.System.DisplayMetrics.Density);
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
 
         public string GetIdentifier()

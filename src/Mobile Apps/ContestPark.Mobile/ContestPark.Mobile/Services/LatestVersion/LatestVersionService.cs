@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Models.LatestVersion;
 using ContestPark.Mobile.Services.RequestProvider;
 using Microsoft.AppCenter.Crashes;
@@ -6,10 +7,10 @@ using Newtonsoft.Json;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -36,7 +37,7 @@ namespace ContestPark.Mobile.Services.LatestVersion
         {
             _requestProvider = requestProvider;
             _pageDialogService = pageDialogService;
-            _currentVersion = VersionTracking.CurrentVersion;
+            _currentVersion = AppInfo.BuildString;
             _packageName = AppInfo.PackageName;
         }
 
@@ -49,7 +50,9 @@ namespace ContestPark.Mobile.Services.LatestVersion
         /// </summary>
         public async Task IfNotUsingLatestVersionOpenInStore()
         {
-#if !DEBUG
+            if (Debugger.IsAttached)
+                return;
+
             var isLatest = await IsUsingLatestVersion();
 
             if (!isLatest)
@@ -66,7 +69,6 @@ namespace ContestPark.Mobile.Services.LatestVersion
 
                 CloseApp();
             }
-#endif
         }
 
         /// <summary>
@@ -81,7 +83,9 @@ namespace ContestPark.Mobile.Services.LatestVersion
             {
                 latestVersion = await GetLatestVersionNumber();
 
-                return Version.Parse(latestVersion).CompareTo(Version.Parse(_currentVersion)) <= 0;
+                return Convert.ToInt16(_currentVersion) >= Convert.ToInt16(latestVersion);
+
+                //return Version.Parse(latestVersion).CompareTo(Version.Parse(_currentVersion)) <= 0;
             }
             catch (Exception ex)
             {
@@ -133,7 +137,7 @@ namespace ContestPark.Mobile.Services.LatestVersion
         /// </summary>
         private void CloseApp()
         {
-            Thread.CurrentThread.Abort();
+            Xamarin.Forms.DependencyService.Resolve<IDevice>().CloseApp();
         }
 
         /// <summary>
