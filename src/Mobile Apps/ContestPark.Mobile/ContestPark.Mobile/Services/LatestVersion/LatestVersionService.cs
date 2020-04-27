@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.Models.LatestVersion;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.LatestVersion;
 using ContestPark.Mobile.Services.RequestProvider;
 using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
@@ -64,7 +65,7 @@ namespace ContestPark.Mobile.Services.LatestVersion
                 }
 
                 CloseApp();
-            }   
+            }
 #endif
         }
 

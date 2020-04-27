@@ -161,6 +161,7 @@ namespace ContestPark.Mobile.ViewModels
                 PackageName = purchaseInfo.ProductId,
                 State = purchaseInfo.State,
                 TransactionId = purchaseInfo.Id,
+                Token = "none",
                 VerifyPurchase = purchaseInfo.VerifyPurchase,
                 Platform = GetCurrentPlatform(),
                 File = purchaseTokenStream,

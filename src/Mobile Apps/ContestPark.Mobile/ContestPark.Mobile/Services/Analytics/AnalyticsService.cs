@@ -2,6 +2,7 @@
 using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Analytics
 {

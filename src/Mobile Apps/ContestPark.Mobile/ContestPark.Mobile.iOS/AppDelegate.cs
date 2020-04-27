@@ -1,6 +1,10 @@
-﻿using ContestPark.Mobile.Services.Shiny;
+﻿//using ContestPark.Mobile.Services.Shiny;
+using ContestPark.Mobile.Services.Shiny;
 using FFImageLoading.Forms.Platform;
-using Firebase.Core;
+
+//using Firebase.Core;
+
+//using Firebase.Core;
 using Foundation;
 
 //using Google.MobileAds;
@@ -39,14 +43,14 @@ namespace ContestPark.Mobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 #if !DEBUG
-                        CheckJailBreak();
+            CheckJailBreak();
 #endif
 
             CachedImageRenderer.Init();
 
             Popup.Init();
 
-            App.Configure();
+            //App.Configure();
 
             //MobileAds.SharedInstance.Start(status =>
             //{

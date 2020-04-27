@@ -29,10 +29,12 @@ using Shiny;
 using Shiny.IO;
 using Shiny.Notifications;
 using Shiny.Prism;
-using Shiny.Push;
+
+//using Shiny.Push;
 using SQLite;
 using System;
-using System.Collections.Generic;
+
+//using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -96,39 +98,99 @@ namespace ContestPark.Mobile.Services.Shiny
 
             services.AddSingleton<IInviteDuelService, InviteDuelService>();
 
-            services.UseFirebaseMessaging<PushDelegate>();
-
-            services.UseNotifications(true);
+            // services.UseFirebaseMessaging<PushDelegate>();
+            services.UseNotifications<NotificationDelegate>(
+          true,
+          new NotificationCategory(
+              "Test",
+              new NotificationAction("Reply", "Reply", NotificationActionType.TextReply),
+              new NotificationAction("Yes", "Yes", NotificationActionType.None),
+              new NotificationAction("No", "No", NotificationActionType.Destructive)
+          )
+      );
         }
     }
 
-    public class PushDelegate : IPushDelegate
+    public class NotificationEvent
     {
-        private readonly CoreDelegateServices services;
-        private readonly IPushManager pushManager;
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
 
-        public PushDelegate(CoreDelegateServices services, IPushManager pushManager)
+        public int NotificationId { get; set; }
+        public string NotificationTitle { get; set; }
+        public string Action { get; set; }
+        public string ReplyText { get; set; }
+        public string Payload { get; set; }
+        public bool IsEntry { get; set; }
+        public DateTime Timestamp { get; set; }
+    }
+
+    public class NotificationDelegate : INotificationDelegate
+    {
+        private readonly SampleSqliteConnection conn;
+        private readonly IMessageBus messageBus;
+        private readonly INotificationManager notifications;
+
+        public NotificationDelegate(SampleSqliteConnection conn, IMessageBus messageBus, INotificationManager notifications)
         {
-            this.services = services;
-            this.pushManager = pushManager;
+            this.conn = conn;
+            this.messageBus = messageBus;
+            this.notifications = notifications;
         }
 
-        public Task OnEntry(PushEntryArgs args)
-            => this.Insert("PUSH ENTRY");
-
-        public Task OnReceived(IDictionary<string, string> data)
-            => this.Insert("PUSH RECEIVED");
-
-        public Task OnTokenChanged(string token)
-            => this.Insert("PUSH TOKEN CHANGE");
-
-        private Task Insert(string info) => this.services.Connection.InsertAsync(new PushEvent
+        public Task OnEntry(NotificationResponse response) => this.Store(new NotificationEvent
         {
-            Payload = info,
-            Token = this.pushManager.CurrentRegistrationToken,
-            Timestamp = DateTime.UtcNow
+            NotificationId = response.Notification.Id,
+            NotificationTitle = response.Notification.Title ?? response.Notification.Message,
+            Action = response.ActionIdentifier,
+            ReplyText = response.Text,
+            IsEntry = true,
+            Timestamp = DateTime.Now
         });
+
+        public Task OnReceived(global::Shiny.Notifications.Notification notification) => this.Store(new NotificationEvent
+        {
+            NotificationId = notification.Id,
+            NotificationTitle = notification.Title ?? notification.Message,
+            IsEntry = false,
+            Timestamp = DateTime.Now
+        });
+
+        private async Task Store(NotificationEvent @event)
+        {
+            await this.conn.InsertAsync(@event);
+            this.messageBus.Publish(@event);
+        }
     }
+
+    //public class PushDelegate : IPushDelegate
+    //{
+    //    private readonly CoreDelegateServices services;
+    //    private readonly IPushManager pushManager;
+
+    //    public PushDelegate(CoreDelegateServices services, IPushManager pushManager)
+    //    {
+    //        this.services = services;
+    //        this.pushManager = pushManager;
+    //    }
+
+    //    public Task OnEntry(PushEntryArgs args)
+    //        => this.Insert("PUSH ENTRY");
+
+    //    public Task OnReceived(IDictionary<string, string> data)
+    //        => this.Insert("PUSH RECEIVED");
+
+    //    public Task OnTokenChanged(string token)
+    //        => this.Insert("PUSH TOKEN CHANGE");
+
+    //    private Task Insert(string info) => this.services.Connection.InsertAsync(new PushEvent
+    //    {
+    //        Payload = info,
+    //        Token = this.pushManager.CurrentRegistrationToken,
+    //        Timestamp = DateTime.UtcNow
+    //    });
+    //}
 
     public class PushEvent
     {

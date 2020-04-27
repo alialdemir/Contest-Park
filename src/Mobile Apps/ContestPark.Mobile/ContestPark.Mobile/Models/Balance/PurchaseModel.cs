@@ -25,5 +25,6 @@ namespace ContestPark.Mobile.Models.Balance
 
         public string TransactionId { get; set; }
         public string VerifyPurchase { get; set; }
+        public string Token { get; set; }
     }
 }

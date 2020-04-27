@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -112,25 +113,27 @@ namespace ContestPark.Mobile.ViewModels
             if (lastSelectedBet != null)// En son oynadığı bakiye tipini seçili olarak getiriyoruz
                 BalanceType = lastSelectedBet.BalanceType;
 
-            Device.BeginInvokeOnMainThread(() =>
-                          {
-                              InitBets();
+            InitBets();
 
-                              if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
-                              {
-                                  BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
-                                  if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
-                                  {
-                                      SelectedIndex = lastSelectedBet.CurrentIndex - 1;
-                                  }
-                                  else if (appropriateBet != null)
-                                  {
-                                      SelectedIndex = appropriateBet.CurrentIndex - 1;
-                                  }
-                              }
+            await Task.Factory.StartNew(async () =>
+             {
+                 await Task.Delay(1000);
 
-                              IsBusy = false;
-                          });
+                 if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
+                 {
+                     BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
+                     if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
+                     {
+                         SelectedIndex = lastSelectedBet.CurrentIndex - 1;
+                     }
+                     else if (appropriateBet != null)
+                     {
+                         SelectedIndex = appropriateBet.CurrentIndex - 1;
+                     }
+                 }
+             });
+
+            IsBusy = false;
         }
 
         private void InitBets()

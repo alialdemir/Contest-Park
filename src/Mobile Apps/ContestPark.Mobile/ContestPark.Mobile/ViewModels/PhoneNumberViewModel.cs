@@ -104,9 +104,12 @@ namespace ContestPark.Mobile.ViewModels
 
             if (!_settingsService.IsTutorialDisplayed && Device.RuntimePlatform == Device.Android)
             {
-                NavigateToPopupAsync<TutorialPopupView>();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    NavigateToAsync<TutorialPopupView>();
 
-                _settingsService.IsTutorialDisplayed = true;
+                    _settingsService.IsTutorialDisplayed = true;
+                });
             }
 
             _subscriptionToken = _eventAggregator

@@ -13,6 +13,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
+using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
@@ -55,8 +56,9 @@ namespace ContestPark.Mobile.ViewModels
                                           IDuelService duelService,
                                           IDuelSignalRService duelSignalRService,
                                           IPopupNavigation popupNavigation,
+                                          IPageDialogService dialogService,
                                           INavigationService navigationService,
-                                          ISettingsService settingsService) : base(navigationService, popupNavigation: popupNavigation)
+                                          ISettingsService settingsService) : base(navigationService, dialogService, popupNavigation)
         {
             _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
 

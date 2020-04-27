@@ -334,7 +334,6 @@
       <Link>.editorconfig</Link>
     </None>
     <GoogleServicesJson Include="google-services.json" />
-    <LinkDescription Include="linker.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

@@ -7,7 +7,6 @@ using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.InviteDuel;
-using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.Slide;
 using ContestPark.Mobile.Models.Token;
@@ -29,7 +28,8 @@ using Microsoft.AppCenter.Crashes;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using Shiny.Push;
+
+//using Shiny.Push;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -51,8 +51,10 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IAdMobService _adMobService;
         private readonly IBalanceService _balanceService;
         private readonly IAnalyticsService _analyticsService;
-        private readonly IPushManager _pushManager;
+
+        //private readonly IPushManager _pushManager;
         private readonly IInviteDuelService _inviteDuelService;
+
         private readonly IIdentityService _identityService;
         private readonly ISettingsService _settingsService;
         private readonly IDuelSignalRService _duelSignalRService;
@@ -72,7 +74,7 @@ namespace ContestPark.Mobile.ViewModels
                                    IAdMobService adMobService,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
-                                   IPushManager pushManager,
+                                   // IPushManager pushManager,
                                    IInviteDuelService inviteDuelService,
                                    IIdentityService identityService,
                                    ISettingsService settingsService,
@@ -94,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
             _adMobService = adMobService;
             _balanceService = balanceService;
             _analyticsService = analyticsService;
-            _pushManager = pushManager;
+            //   _pushManager = pushManager;
             _inviteDuelService = inviteDuelService;
             _identityService = identityService;
             _settingsService = settingsService;
@@ -344,24 +346,24 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command(async () =>
-                {
-                    try
-                    {
-                        PushAccessState token = await _pushManager.RequestAccess();
-                        if (token.Status == Shiny.AccessState.Available && !string.IsNullOrEmpty(token.RegistrationToken))
-                        {
-                            _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
-                            {
-                                Token = token.RegistrationToken
-                            });
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-                });
+                return new Command(() =>
+               {
+                   try
+                   {
+                       //PushAccessState token = await _pushManager.RequestAccess();
+                       //if (token.Status == Shiny.AccessState.Available && !string.IsNullOrEmpty(token.RegistrationToken))
+                       //{
+                       //    _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
+                       //    {
+                       //        Token = token.RegistrationToken
+                       //    });
+                       //}
+                   }
+                   catch (Exception ex)
+                   {
+                       Debug.WriteLine(ex.Message);
+                   }
+               });
             }
         }
 
