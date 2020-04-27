@@ -167,9 +167,8 @@ namespace ContestPark.Mobile.ViewModels
                 ListenerFirebaseToken.Execute(null);
 
                 NoticeCommand.Execute(null);
-#if !DEBUG
+
                 _inviteDuelService.InviteDuelCommand.Execute(Items);
-#endif
             }
 
             //TODO: Kategorileri sayfala

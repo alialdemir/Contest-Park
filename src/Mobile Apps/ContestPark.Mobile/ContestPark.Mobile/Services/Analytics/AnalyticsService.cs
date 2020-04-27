@@ -35,6 +35,9 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="eventValue"></param>
         public void SendEvent(string eventCategory, string eventAction, string eventLabel, long? eventValue = null)
         {
+            if (_analytics == null)
+                return;
+
             try
             {
                 _analytics?.SendEvent(eventCategory, eventAction, eventLabel, eventValue);
@@ -52,6 +55,9 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="parameters"></param>
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
+            if (_analytics == null)
+                return;
+
             try
             {
                 _analytics?.SendEvent(eventId, parameters);
@@ -68,6 +74,9 @@ namespace ContestPark.Mobile.Services.Analytics
         /// <param name="userId"></param>
         public void SetUserId(string userId)
         {
+            if (_analytics == null)
+                return;
+
             try
             {
                 _analytics?.SetUserId(userId);
