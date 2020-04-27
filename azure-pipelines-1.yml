@@ -23,7 +23,7 @@ steps:
   inputs:
     sourcePath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/Properties/AndroidManifest.xml'
     versionCodeOption: 'buildid'
-    versionCode: '233'
+    versionCode: '234'
     printFile: true
 - task: XamarinAndroid@1
   inputs:
