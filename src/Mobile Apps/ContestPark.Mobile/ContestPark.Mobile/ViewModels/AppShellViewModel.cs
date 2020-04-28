@@ -7,6 +7,7 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using Microsoft.AppCenter;
 using Prism.Events;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -127,6 +128,8 @@ namespace ContestPark.Mobile.ViewModels
                 FullName = currentUser.FullName;
                 ProfilePicture = currentUser.ProfilePicturePath;
                 CoverPicture = currentUser.CoverPicturePath;
+
+                AppCenter.SetUserId(currentUser.UserId);
             }
 
             SetUserGoldCommand.Execute(null);

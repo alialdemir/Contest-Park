@@ -19,10 +19,6 @@
             <Converter:RankIsVisibleConverter x:Key="rankIsVisible" />
             <Converter:RankBackgroundColorConverter x:Key="background" />
         </ResourceDictionary>
-        <!--<OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
-            <On Platform="Android" Value="Serif" />
-            <On Platform="iOS" Value="Helvetica" />
-        </OnPlatform>-->
     </ContentPage.Resources>
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView

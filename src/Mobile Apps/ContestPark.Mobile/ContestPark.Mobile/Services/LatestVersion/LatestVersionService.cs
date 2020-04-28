@@ -3,13 +3,12 @@ using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Models.LatestVersion;
 using ContestPark.Mobile.Services.RequestProvider;
 using Microsoft.AppCenter.Crashes;
-using Newtonsoft.Json;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -36,7 +35,7 @@ namespace ContestPark.Mobile.Services.LatestVersion
         {
             _requestProvider = requestProvider;
             _pageDialogService = pageDialogService;
-            _currentVersion = AppInfo.BuildString;
+            _currentVersion = AppInfo.VersionString;
             _packageName = AppInfo.PackageName;
         }
 
@@ -79,9 +78,7 @@ namespace ContestPark.Mobile.Services.LatestVersion
             {
                 latestVersion = await GetLatestVersionNumber();
 
-                return Convert.ToInt16(_currentVersion) >= Convert.ToInt16(latestVersion);
-
-                //return Version.Parse(latestVersion).CompareTo(Version.Parse(_currentVersion)) <= 0;
+                return Version.Parse(latestVersion).CompareTo(Version.Parse(_currentVersion)) <= 0;
             }
             catch (Exception ex)
             {
@@ -140,46 +137,47 @@ namespace ContestPark.Mobile.Services.LatestVersion
         /// App center üzerinden google play de en son yayınlanmış uygulamanın versiyon kodunu verir
         /// </summary>
         /// <returns>Uygulamanın play store'daki güncel versiyon bilgileri</returns>
-        private async Task<App> LookupAppAndroid()
+        public async Task<App> LookupAppAndroid()
         {
-            try
+            App result = new App() { Version = _currentVersion };
+            var url = $"https://play.google.com/store/apps/details?id={_packageName}&hl=tr";
+
+            using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {
-                using (HttpClient httpClient = new HttpClient())
+                using (var handler = new HttpClientHandler())
                 {
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-API-Token", "1c28069611cd1557592593235cbb76ffff5709b6");
-
-                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.appcenter.ms/v0.1/apps/ContestPark/ContestPark/recent_releases");
-
-                    HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
-
-                    string serialized = await response.Content.ReadAsStringAsync();
-                    if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(serialized))
+                    using (var client = new HttpClient(handler))
                     {
-                        List<VersionResult> versions = JsonConvert.DeserializeObject<List<VersionResult>>(serialized);
-                        if (versions != null && versions.Any())
+                        using (var responseMsg = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead))
                         {
-                            return new App
+                            if (!responseMsg.IsSuccessStatusCode)
                             {
-                                Version = versions.OrderByDescending(x => x.Version).FirstOrDefault().Version,
-                            };
+                                return result;
+                            }
+
+                            try
+                            {
+                                var content = responseMsg.Content == null ? null : await responseMsg.Content.ReadAsStringAsync();
+
+                                var versionMatch = Regex.Match(content, "<div[^>]*>Mevcut Sürüm</div><span[^>]*><div[^>]*><span[^>]*>(.*?)<").Groups[1];
+
+                                if (versionMatch.Success)
+                                {
+                                    result.Version = versionMatch.Value.Trim();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Crashes.TrackError(ex);
+
+                                return result;
+                            }
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex, new Dictionary<string, string>
-                {
-                    { "BundleIdentifier", _packageName },
-                });
-            }
 
-            return new App
-            {
-                Version = _currentVersion
-            };
+            return result;
         }
 
         /// <summary>

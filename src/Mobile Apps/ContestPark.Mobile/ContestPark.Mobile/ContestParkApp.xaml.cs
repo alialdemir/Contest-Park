@@ -31,32 +31,24 @@ namespace ContestPark.Mobile
 
         protected override void OnInitialized()
         {
-            try
-            {
-                Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
-                Crashes.SentErrorReport += Crashes_SentErrorReport;
+            InitializeComponent();
 
-                InitializeComponent();
+            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes));
+            Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
+            Crashes.SentErrorReport += Crashes_SentErrorReport;
 
-                Barrel.ApplicationId = "ContestPark";
+            ISettingsService settingsService = Container.Resolve<ISettingsService>();
 
-                ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
-
-                if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                    NavigationService.NavigateAsync(nameof(AppShell));
-                else NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
+            if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
+                NavigationService.NavigateAsync(nameof(AppShell));
+            else
+                NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
 
 #if !DEBUG
-                RegisterTypesConfig
-                                .Container
-                                .Resolve<ILatestVersionService>()
-                                .IfNotUsingLatestVersionOpenInStore();
+            Container
+                   .Resolve<ILatestVersionService>()
+                   .IfNotUsingLatestVersionOpenInStore();
 #endif
-            }
-            catch (System.Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
         }
 
         /// <summary>
@@ -105,12 +97,6 @@ namespace ContestPark.Mobile
         #endregion Register Types
 
         #region OnResume, OnSleep and OnStart
-
-        protected override void OnStart()
-        {
-            base.OnStart();
-            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes));
-        }
 
         protected override void OnResume()
         {

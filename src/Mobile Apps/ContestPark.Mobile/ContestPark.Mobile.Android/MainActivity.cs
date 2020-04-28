@@ -75,8 +75,6 @@ namespace ContestPark.Mobile.Droid
 
             this.ShinyOnCreate();
 
-
-
             base.OnCreate(bundle);
 
             // Check if running in sim

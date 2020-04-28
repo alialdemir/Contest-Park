@@ -8,6 +8,11 @@ namespace ContestPark.Mobile.Services.Cache
 {
     public class CacheService : ICacheService
     {
+        public CacheService()
+        {
+            Barrel.ApplicationId = "ContestPark";
+        }
+
         /// <summary>
         /// Adds an entry to the barrel default 30 minutes on expires time
         /// </summary>
