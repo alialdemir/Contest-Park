@@ -43,6 +43,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    PathtoPublish: '/Users/runner/runners/2.166.4/work/1/s/src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/obj/Release/android/bin'
     ArtifactName: 'drop'
     publishLocation: 'Container'
