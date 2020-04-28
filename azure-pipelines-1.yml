@@ -19,6 +19,11 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/ContestPark.Mobile.sln'
+    feedsToUse: 'select'
 - task: MSBuild@1
   inputs:
     solution: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
