@@ -31,7 +31,7 @@ steps:
     msbuildArchitecture: 'x64'
     platform: 'AnyCPU'
     configuration: '$(BuildConfiguration)'
-    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration) -p:OutputPath=Users/runner/runners/2.166.4/work/1/b/Release'
+    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration)'
 - task: AndroidSigning@3
   inputs:
     apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.aab'
