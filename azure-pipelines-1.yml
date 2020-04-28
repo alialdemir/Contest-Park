@@ -31,10 +31,10 @@ steps:
     msbuildArchitecture: 'x64'
     platform: 'AnyCPU'
     configuration: '$(BuildConfiguration)'
-    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration)'
+    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration) /p:OutputPath=$(OutputDirectory)'
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '/Users/runner/runners/2.166.4/work/1/s/src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/obj/Release/android/bin/com.contestparkapp.app.aab'
+    apkFiles: '$(OutputDirectory)/*.aab'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
@@ -43,6 +43,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '/Users/runner/runners/2.166.4/work/1/s/src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/obj/Release/android/bin'
+    PathtoPublish: '$(OutputDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
