@@ -39,6 +39,7 @@ steps:
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
     apksignerKeyPassword: '$(KeyStorePassword)'
+    apksignerArguments: '--verbose --min-sdk-version=19'
 
 - task: PublishBuildArtifacts@1
   inputs:
