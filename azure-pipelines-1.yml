@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'macos-latest'
 
 variables:
   buildConfiguration: 'Release'
@@ -40,11 +40,9 @@ steps:
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
     apksignerKeyPassword: '$(KeyStorePassword)'
     apksignerArguments: '--verbose --min-sdk-version=19'
-- task: publishPlaystore@1
+
+- task: PublishBuildArtifacts@1
   inputs:
-    jsonFile: 'api-8335129295739007429-631248-f33eaf66865d.json'
-    apkPath: '$(OutputDirectory)/com.contestparkapp.app-Signed.aab'
-    packageName: 'com.contestparkapp.app'
-    locale: 'tr-TR'
-    message: '-'
-    track: 'beta'
+    PathtoPublish: '$(OutputDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
