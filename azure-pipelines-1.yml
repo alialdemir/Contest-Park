@@ -34,12 +34,11 @@ steps:
     msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration)'
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
+    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.aab'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
     apksignerKeyPassword: '$(KeyStorePassword)'
-    apksignerArguments: '--verbose'
 
 - task: PublishBuildArtifacts@1
   inputs:
