@@ -27,7 +27,7 @@ steps:
     printFile: true
 - task: MSBuild@1
   inputs:
-    solution: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
+    solution: '**/ContestPark.Mobile.sln'
     msbuildArchitecture: 'x64'
     msbuildArguments: '-t:SignAndroidPackage-p:Configuration=Release-p:AndroidKeyStore=True-p:AndroidSigningKeyStore=myRelease.keystore-p:AndroidSigningStorePass=$(KeyStorePassword)-p:AndroidSigningKeyAlias=$(KeyStoreAlias)-p:AndroidSigningKeyPass=$(KeyStorePassword)'
 - task: AndroidSigning@3
