@@ -40,9 +40,13 @@ steps:
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
     apksignerKeyPassword: '$(KeyStorePassword)'
     apksignerArguments: '--verbose --min-sdk-version=19'
-
-- task: PublishBuildArtifacts@1
+- task: AppCenterDistribute@3
   inputs:
-    PathtoPublish: '$(OutputDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    serverEndpoint: 'ContestPark app center connection'
+    appSlug: 'ContestPark/ContestPark'
+    appFile: '$(OutputDirectory)/com.contestparkapp.app-Signed.aab'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: '-'
+    destinationType: 'groups'
+    distributionGroupId: 'c21c63f6-5c0a-4126-a721-4ca0bedfd2e4'
