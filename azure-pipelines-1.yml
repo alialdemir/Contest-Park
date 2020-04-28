@@ -34,7 +34,7 @@ steps:
     msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration)'
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '$(build.binariesdirectory)/work/1/s/src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/obj/Release/android/bin/com.contestparkapp.app.aab'
+    apkFiles: '/Users/runner/runners/2.166.4/work/1/s/src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/obj/Release/android/bin/com.contestparkapp.app.aab'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
