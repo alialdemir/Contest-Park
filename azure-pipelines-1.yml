@@ -32,7 +32,7 @@ steps:
     configuration: '$(buildConfiguration)'
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*-Signed.aab'
+    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.aab'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
