@@ -31,7 +31,7 @@ steps:
     msbuildArchitecture: 'x64'
     platform: 'AnyCPU'
     configuration: '$(BuildConfiguration)'
-    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration) -p:AndroidKeyStore=True -p:AndroidSigningKeyStore=myRelease.keystore -p:AndroidSigningStorePass=$(KeyStorePassword) -p:AndroidSigningKeyAlias=$(KeyStoreAlias) -p:AndroidSigningKeyPass=$(KeyStorePassword)'
+    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration) -p:AndroidKeyStore=True -p:AndroidSigningKeyStore=$(myRelease.keystore.secureFilePath) -p:AndroidSigningStorePass=$(KeyStorePassword) -p:AndroidSigningKeyAlias=$(KeyStoreAlias) -p:AndroidSigningKeyPass=$(KeyStorePassword)'
 - task: AndroidSigning@3
   inputs:
     apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
