@@ -42,7 +42,7 @@ steps:
     apksignerArguments: '--verbose --min-sdk-version=19'
 - task: publishPlaystore@1
   inputs:
-    jsonFile: 'contestparkgoogleplay.json'
+    jsonFile: 'api-8335129295739007429-631248-f33eaf66865d.json'
     apkPath: '$(OutputDirectory)/com.contestparkapp.app-Signed.aab'
     packageName: 'com.contestparkapp.app'
     locale: 'tr-TR'
