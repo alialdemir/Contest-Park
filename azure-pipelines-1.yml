@@ -25,11 +25,11 @@ steps:
     versionCodeOption: 'buildid'
     versionCode: '$(Build.BuildId)'
     printFile: true
-- task: XamarinAndroid@1
+- task: MSBuild@1
   inputs:
-    projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
-    outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
-    configuration: '$(buildConfiguration)'
+    solution: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
+    msbuildArchitecture: 'x64'
+    msbuildArguments: '-t:SignAndroidPackage-p:Configuration=Release-p:AndroidKeyStore=True-p:AndroidSigningKeyStore=myRelease.keystore-p:AndroidSigningStorePass=$(KeyStorePassword)-p:AndroidSigningKeyAlias=$(KeyStoreAlias)-p:AndroidSigningKeyPass=$(KeyStorePassword)'
 - task: AndroidSigning@3
   inputs:
     apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
