@@ -29,7 +29,7 @@ steps:
   inputs:
     solution: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
     msbuildArchitecture: 'x64'
-    platform: 'Release|AnyCPU'
+    platform: '$(Platform)'
     configuration: '$(BuildConfiguration)'
     msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration) -p:AndroidKeyStore=True -p:AndroidSigningKeyStore=$(KeyStoreFileName) -p:AndroidSigningStorePass=$(KeyStorePassword) -p:AndroidSigningKeyAlias=$(KeyStoreAlias) -p:AndroidSigningKeyPass=$(KeyStorePassword)'
 - task: AndroidSigning@3
