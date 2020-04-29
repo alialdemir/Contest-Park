@@ -3,6 +3,7 @@ using ContestPark.EventBus;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.EventBus.RabbitMQ;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 

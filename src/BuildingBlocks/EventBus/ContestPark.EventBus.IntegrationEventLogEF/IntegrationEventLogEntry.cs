@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace ContestPark.EventBus.IntegrationEventLogEF
 {
+    [Table("IntegrationEventLog")]
     public class IntegrationEventLogEntry
     {
         private IntegrationEventLogEntry()
