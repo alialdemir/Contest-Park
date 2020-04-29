@@ -219,7 +219,7 @@ namespace ContestPark.Mobile.Models.Duel.DuelResult
             {
                 if (_settingsService == null)
                 {
-                    _settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                    _settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
                 }
 
                 return _settingsService;

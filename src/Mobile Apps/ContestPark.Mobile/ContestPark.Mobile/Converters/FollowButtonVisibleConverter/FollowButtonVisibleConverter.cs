@@ -11,7 +11,7 @@ namespace ContestPark.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+            ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
 
             return value != null && value.ToString() != settingsService.CurrentUser.UserId;
         }

@@ -49,7 +49,7 @@ namespace ContestPark.Mobile.Components
         //    {
         //        return new Command(() =>
         //        {
-        //            IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
+        //            IAudioService audioService = ContestParkApp.Current.Container.Resolve<IAudioService>();
         //            if (audioService == null)
         //                return;
 
@@ -64,7 +64,7 @@ namespace ContestPark.Mobile.Components
         //    {
         //        return new Command(() =>
         //        {
-        //            IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
+        //            IAudioService audioService = ContestParkApp.Current.Container.Resolve<IAudioService>();
         //            if (audioService == null || string.IsNullOrEmpty(Link))
         //                return;
 
@@ -79,7 +79,7 @@ namespace ContestPark.Mobile.Components
         //    {
         //        return new Command(() =>
         //        {
-        //            IAudioService audioService = RegisterTypesConfig.Container.Resolve<IAudioService>();
+        //            IAudioService audioService = ContestParkApp.Current.Container.Resolve<IAudioService>();
         //            if (audioService == null)
         //                return;
 

@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Models.Post;
+﻿using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Views;
@@ -88,7 +87,7 @@ namespace ContestPark.Mobile.Components.PostCardView
 
             IsBusy = true;
 
-            IPostService postService = RegisterTypesConfig.Container.Resolve<IPostService>();
+            IPostService postService = ContestParkApp.Current.Container.Resolve<IPostService>();
             PostModel postModel = (PostModel)BindingContext;
 
             if (postService == null || postModel == null)
@@ -119,7 +118,7 @@ namespace ContestPark.Mobile.Components.PostCardView
             }
             else
             {
-                IAnalyticsService analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
+                IAnalyticsService analyticsService = ContestParkApp.Current.Container.Resolve<IAnalyticsService>();
 
                 analyticsService.SendEvent(
                     "Post",

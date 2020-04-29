@@ -31,34 +31,11 @@ using Prism.Plugin.Popups;
 
 namespace ContestPark.Mobile.Configs
 {
-    public class RegisterTypesConfig
+    public static class RegisterTypesConfig
     {
-        #region Container
-
-        public static IContainerProvider Container { get; set; }
-
-        #endregion Container
-
-        #region Init
-
-        public static void Init(IContainerProvider container, IContainerRegistry containerRegistry)
-        {
-            Container = container;
-
-            RegisterTypesConfig config = new RegisterTypesConfig();
-
-            containerRegistry.RegisterPopupNavigationService();
-
-            config.RegisterTypeForNavigation(containerRegistry);
-
-            config.RegisterTypeInstance(containerRegistry);
-        }
-
-        #endregion Init
-
         #region Navigation
 
-        private void RegisterTypeForNavigation(IContainerRegistry containerRegistry)
+        public static void RegisterTypeForNavigation(this IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<BaseNavigationPage>();
 
@@ -155,7 +132,7 @@ namespace ContestPark.Mobile.Configs
 
         #region Register Instance
 
-        private void RegisterTypeInstance(IContainerRegistry containerRegistry)
+        public static void RegisterTypeInstance(this IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterPopupNavigationService();
 

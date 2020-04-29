@@ -255,7 +255,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                IPageDialogService pageDialogService = RegisterTypesConfig.Container.Resolve<IPageDialogService>();
+                IPageDialogService pageDialogService = ContestParkApp.Current.Container.Resolve<IPageDialogService>();
 
                 await pageDialogService?.DisplayAlertAsync(ContestParkResources.NoInternet, "", ContestParkResources.Okay);
 

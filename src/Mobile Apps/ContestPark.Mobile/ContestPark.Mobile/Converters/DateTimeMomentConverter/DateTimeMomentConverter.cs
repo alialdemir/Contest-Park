@@ -23,7 +23,7 @@ namespace ContestPark.Mobile.Converters
             int dayDiff = (int)s.TotalDays;
             int secDiff = (int)s.TotalSeconds;
 
-            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+            ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
 
             Languages language = settingsService.CurrentUser.Language;
 

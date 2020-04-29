@@ -67,7 +67,7 @@ namespace ContestPark.Mobile.Views
             {
                 #region Menu items
 
-                ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
 
                 if (settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot" || IsLoadedMenuItems)
                     return;
@@ -112,7 +112,7 @@ namespace ContestPark.Mobile.Views
 
             string name = ((MenuItem)sender).CommandParameter.ToString();
 
-            IAnalyticsService analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
+            IAnalyticsService analyticsService = ContestParkApp.Current.Container.Resolve<IAnalyticsService>();
 
             if (name.StartsWith("https://") || name.StartsWith("http://"))
             {

@@ -18,7 +18,7 @@ namespace ContestPark.Mobile.Converters
 
             int rank = ((ListView)parameter).ItemsSource.Cast<object>().ToList().IndexOf(value);
 
-            ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+            ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
 
             return settingsService.CurrentUser.UserName == ((RankingModel)value).UserName ?
                 (Color)Color.FromHex("#F46F48") : rank % 2 == 0 ?

@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Analytics;
-using ContestPark.Mobile.Services.LatestVersion;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
@@ -80,7 +79,7 @@ namespace ContestPark.Mobile
             {
                 if (_analyticsService == null)
                 {
-                    _analyticsService = RegisterTypesConfig.Container.Resolve<IAnalyticsService>();
+                    _analyticsService = Container.Resolve<IAnalyticsService>();
                 }
 
                 return _analyticsService;
@@ -96,7 +95,9 @@ namespace ContestPark.Mobile
 #if DEBUG
             GlobalSetting.Instance.IsMockData = false;
 #endif
-            RegisterTypesConfig.Init(Container, containerRegistry);
+
+            containerRegistry.RegisterTypeForNavigation();
+            containerRegistry.RegisterTypeInstance();
         }
 
         #endregion Register Types

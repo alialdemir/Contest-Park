@@ -1,5 +1,4 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Picture;
 using ContestPark.Mobile.Models.Post;
@@ -50,7 +49,7 @@ namespace ContestPark.Mobile.Components.PostCardView
             get
             {
                 if (_postService == null)
-                    _postService = RegisterTypesConfig.Container.Resolve<IPostService>();
+                    _postService = ContestParkApp.Current.Container.Resolve<IPostService>();
 
                 return _postService;
             }
@@ -61,7 +60,7 @@ namespace ContestPark.Mobile.Components.PostCardView
             get
             {
                 if (_settingsService == null)
-                    _settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                    _settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
 
                 return _settingsService;
             }
@@ -72,7 +71,7 @@ namespace ContestPark.Mobile.Components.PostCardView
             get
             {
                 if (_pageDialogService == null)
-                    _pageDialogService = RegisterTypesConfig.Container.Resolve<IPageDialogService>();
+                    _pageDialogService = ContestParkApp.Current.Container.Resolve<IPageDialogService>();
 
                 return _pageDialogService;
             }
@@ -93,7 +92,7 @@ namespace ContestPark.Mobile.Components.PostCardView
                     IsBusy = true;
 
                     PostModel postModel = (PostModel)BindingContext;
-                    INavigationService navigationService = RegisterTypesConfig.Container.Resolve<INavigationService>();
+                    INavigationService navigationService = ContestParkApp.Current.Container.Resolve<INavigationService>();
 
                     if (postModel != null && navigationService != null)
                     {
@@ -105,7 +104,7 @@ namespace ContestPark.Mobile.Components.PostCardView
                                 new PictureModel { PicturePath = postModel.PicturePath }
                             }
                             }
-                        });
+                        }, useModalNavigation: true);
                     }
 
                     IsBusy = false;
@@ -170,7 +169,7 @@ namespace ContestPark.Mobile.Components.PostCardView
                         isSuccess = await PostService.ArchiveAsync(post.PostId);
                         if (isSuccess)
                         {
-                            IEventAggregator eventAggregator = RegisterTypesConfig.Container.Resolve<IEventAggregator>();
+                            IEventAggregator eventAggregator = ContestParkApp.Current.Container.Resolve<IEventAggregator>();
                             eventAggregator
                                 .GetEvent<PostRefreshEvent>()
                                 .Publish();

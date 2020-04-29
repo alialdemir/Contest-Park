@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Extensions;
+﻿using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Services.Settings;
 using Prism.Ioc;
 using System;
@@ -24,7 +23,7 @@ namespace ContestPark.Mobile.AppResources
             {
                 if (_cultureInfo == null)
                 {
-                    ISettingsService settingsService = RegisterTypesConfig.Container.Resolve<ISettingsService>();
+                    ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
                     if (settingsService != null && settingsService.CurrentUser != null)
                     {
                         _cultureInfo = new CultureInfo(settingsService.CurrentUser.Language.ToLanguageCode());
