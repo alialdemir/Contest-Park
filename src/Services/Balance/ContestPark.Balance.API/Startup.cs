@@ -42,7 +42,7 @@ namespace ContestPark.Balance.API
 
             services.AddAuth(Configuration)
                     .AddMySql()
-                    .AddMvc(options=> options.EnableEndpointRouting=false)
+                    .AddMvc(options => options.EnableEndpointRouting = false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(BalanceResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
