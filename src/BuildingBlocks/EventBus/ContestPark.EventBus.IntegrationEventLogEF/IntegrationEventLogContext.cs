@@ -18,7 +18,7 @@ namespace ContestPark.EventBus.IntegrationEventLogEF
 
         private void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<IntegrationEventLogEntry> builder)
         {
-            //builder.ToTable("IntegrationEventLog");
+            // builder.ToTable("IntegrationEventLog");
 
             builder.HasKey(e => e.EventId);
 
