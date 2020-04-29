@@ -33,17 +33,18 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch.BusinessEngines
 
         public List<T> Execute<T>() where T : class
         {
-            var response = _elasticContext.Search<T>(new SearchRequest(_indexName, typeof(T))
-            {
-                Size = _size,
-                From = _from,
-                Query = (QueryContainer)_queryContainer
-            });
+            //   SearchRequest hata vardı kapattım
+            ////////var response = _elasticContext.Search<T>(new SearchRequest(_indexName, typeof(T))
+            ////////{
+            ////////    Size = _size,
+            ////////    From = _from,
+            ////////    Query = (QueryContainer)_queryContainer
+            ////////});
 
-            if (response.IsValid)
-            {
-                return response.Documents.ToList();
-            }
+            ////////if (response.IsValid)
+            ////////{
+            ////////    return response.Documents.ToList();
+            ////////}
 
             return null;
         }
