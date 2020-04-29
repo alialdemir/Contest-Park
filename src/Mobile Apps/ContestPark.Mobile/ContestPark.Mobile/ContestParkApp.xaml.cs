@@ -6,9 +6,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
-using MonkeyCache.SQLite;
 using Prism;
-using Prism.DryIoc;
 using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Forms.Xaml;
@@ -31,24 +29,31 @@ namespace ContestPark.Mobile
 
         protected override void OnInitialized()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes));
-            Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
-            Crashes.SentErrorReport += Crashes_SentErrorReport;
+                AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes));
+                Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
+                Crashes.SentErrorReport += Crashes_SentErrorReport;
 
-            ISettingsService settingsService = Container.Resolve<ISettingsService>();
+                ISettingsService settingsService = Container.Resolve<ISettingsService>();
 
-            if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                NavigationService.NavigateAsync(nameof(AppShell));
-            else
-                NavigationService.NavigateAsync($"{nameof(BaseNavigationPage)}/{nameof(PhoneNumberView)}");
+                if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
+                    NavigationService.NavigateAsync(nameof(AppShell));
+                else
+                    NavigationService.NavigateAsync($"{nameof(PhoneNumberView)}");
 
 #if !DEBUG
-            Container
-                   .Resolve<ILatestVersionService>()
-                   .IfNotUsingLatestVersionOpenInStore();
+                Container
+                       .Resolve<ILatestVersionService>()
+                       .IfNotUsingLatestVersionOpenInStore();
 #endif
+            }
+            catch (System.Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         /// <summary>
@@ -65,7 +70,7 @@ namespace ContestPark.Mobile
 
         #region Properties
 
-        protected override IContainerExtension CreateContainerExtension() => PrismContainerExtension.Current;
+        //protected override IContainerExtension CreateContainerExtension() => PrismContainerExtension.Current;
 
         private IAnalyticsService _analyticsService;
 

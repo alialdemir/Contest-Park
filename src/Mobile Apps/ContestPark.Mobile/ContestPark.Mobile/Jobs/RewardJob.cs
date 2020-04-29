@@ -1,52 +1,52 @@
-﻿using ContestPark.Mobile.Services.Notification;
-using Shiny.Jobs;
-using System.Threading;
-using System.Threading.Tasks;
+﻿//using ContestPark.Mobile.Services.Notification;
+//using Shiny.Jobs;
+//using System.Threading;
+//using System.Threading.Tasks;
 
-namespace ContestPark.Mobile.Jobs
-{
-    public class RewardJob : IJob
-    {
-        #region Private variables
+//namespace ContestPark.Mobile.Jobs
+//{
+//    public class RewardJob : IJob
+//    {
+//        #region Private variables
 
-        private readonly INotificationService _notificationService;
+//        private readonly INotificationService _notificationService;
 
-        #endregion Private variables
+//        #endregion Private variables
 
-        #region Constructor
+//        #region Constructor
 
-        public RewardJob(INotificationService notificationService)
-        {
-            _notificationService = notificationService;
-        }
+//        public RewardJob(INotificationService notificationService)
+//        {
+//            _notificationService = notificationService;
+//        }
 
-        #endregion Constructor
+//        #endregion Constructor
 
-        #region Properties
+//        #region Properties
 
-        private bool IsInitialize { get; set; }
+//        private bool IsInitialize { get; set; }
 
-        #endregion Properties
+//        #endregion Properties
 
-        #region Methods
+//        #region Methods
 
-        /// <summary>
-        /// En son aldığı günlük ödülden birsonraki ödülün süresi gelince push notification göndermesi için servere istek atar
-        /// </summary>
+//        /// <summary>
+//        /// En son aldığı günlük ödülden birsonraki ödülün süresi gelince push notification göndermesi için servere istek atar
+//        /// </summary>
 
-        public async Task<bool> Run(JobInfo jobInfo, CancellationToken cancelToken)
-        {
-            if (IsInitialize)
-            {
-                await _notificationService.PushSendAsync(Enums.PushNotificationTypes.Reward);
-            }
+//        public async Task<bool> Run(JobInfo jobInfo, CancellationToken cancelToken)
+//        {
+//            if (IsInitialize)
+//            {
+//                await _notificationService.PushSendAsync(Enums.PushNotificationTypes.Reward);
+//            }
 
-            //   await _notificationManager.Send("WELCOME", "Houston welcomes you the first ever Xamarin Developer Summit"); // yes, you can see where this was used :)
-            IsInitialize = true;
+//            //   await _notificationManager.Send("WELCOME", "Houston welcomes you the first ever Xamarin Developer Summit"); // yes, you can see where this was used :)
+//            IsInitialize = true;
 
-            return true;
-        }
+//            return true;
+//        }
 
-        #endregion Methods
-    }
-}
+//        #endregion Methods
+//    }
+//}

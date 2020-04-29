@@ -93,6 +93,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
         {
+            Microsoft.AppCenter.Crashes.Crashes.TrackError(new System.Exception("phone number"));
             if (parameters.ContainsKey("SelectedCountry"))
             {
                 var selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");

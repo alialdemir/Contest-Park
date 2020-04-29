@@ -12,7 +12,8 @@ using Plugin.CurrentActivity;
 using Plugin.InAppBilling;
 using Prism;
 using Prism.Ioc;
-using Shiny;
+
+//using Shiny;
 using Xamarin.Forms.PancakeView.Droid;
 
 namespace ContestPark.Mobile.Droid
@@ -45,7 +46,7 @@ namespace ContestPark.Mobile.Droid
         protected override void OnNewIntent(Intent intent)
         {
             base.OnNewIntent(intent);
-            this.ShinyOnNewIntent(intent);
+            //      this.ShinyOnNewIntent(intent);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -59,7 +60,7 @@ namespace ContestPark.Mobile.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
+            //    this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -73,7 +74,7 @@ namespace ContestPark.Mobile.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            this.ShinyOnCreate();
+            // this.ShinyOnCreate();
 
             base.OnCreate(bundle);
 

@@ -1,5 +1,5 @@
 ﻿//using ContestPark.Mobile.Services.Shiny;
-using ContestPark.Mobile.Services.Shiny;
+//using ContestPark.Mobile.Services.Shiny;
 using FFImageLoading.Forms.Platform;
 
 //using Firebase.Core;
@@ -12,7 +12,8 @@ using Plugin.Segmented.Control.iOS;
 using Prism;
 using Prism.Ioc;
 using Rg.Plugins.Popup;
-using Shiny;
+
+//using Shiny;
 using System;
 using System.IO;
 using System.Text;
@@ -26,19 +27,19 @@ namespace ContestPark.Mobile.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
-        {
-            Shiny.Jobs.JobManager.OnBackgroundFetch(completionHandler);
-        }
+        //public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+        //{
+        //    Shiny.Jobs.JobManager.OnBackgroundFetch(completionHandler);
+        //}
 
-        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
-            => this.ShinyDidReceiveRemoteNotification(userInfo, completionHandler);
+        //public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        //    => this.ShinyDidReceiveRemoteNotification(userInfo, completionHandler);
 
-        public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
-            => this.ShinyRegisteredForRemoteNotifications(deviceToken);
+        //public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
+        //    => this.ShinyRegisteredForRemoteNotifications(deviceToken);
 
-        public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
-            => this.ShinyFailedToRegisterForRemoteNotifications(error);
+        //public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
+        //    => this.ShinyFailedToRegisterForRemoteNotifications(error);
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
@@ -60,7 +61,7 @@ namespace ContestPark.Mobile.iOS
             //    MobileAds.SharedInstance.RequestConfiguration.TestDeviceIdentifiers = new[] { Request.SimulatorId.ToString() };
             //});
 
-            iOSShinyHost.Init(new ShinyAppStartup());
+            //   iOSShinyHost.Init(new ShinyAppStartup());
 
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
