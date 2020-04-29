@@ -44,22 +44,24 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
         /// <returns></returns>
         public bool CreateIndex<T>(string indexName, string aliasName) where T : class, ISearchBase
         {
-            if (_elasticClient.IndexExists(indexName.ToLowerInvariant()).Exists)
-                return true;
 
-            var createIndexDescriptor = new CreateIndexDescriptor(indexName)
-        .Mappings(ms => ms
-                  .Map<T>(m => m
-                        .AutoMap()
-                        .Properties(ps => ps
-                            .Completion(c => c
-                                .Name(p => p.Suggest))))
+            return false; // hata vardı kapattım
+        ////////    if (_elasticClient.IndexExists(indexName.ToLowerInvariant()).Exists)
+        ////////        return true;
 
-                 );//.Aliases(a => a.Alias(aliasName));
+        ////////    var createIndexDescriptor = new CreateIndexDescriptor(indexName)
+        ////////.Mappings(ms => ms
+        ////////          .Map<T>(m => m
+        ////////                .AutoMap()
+        ////////                .Properties(ps => ps
+        ////////                    .Completion(c => c
+        ////////                        .Name(p => p.Suggest))))
 
-            var response = _elasticClient.CreateIndex(createIndexDescriptor);
+        ////////         );//.Aliases(a => a.Alias(aliasName));
 
-            return response.IsValid;
+        ////////    var response = _elasticClient.CreateIndex(createIndexDescriptor);
+
+        ////////    return response.IsValid;
         }
 
         /// <summary>
@@ -69,10 +71,12 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
         /// <returns>Başarılı ise true değilse false</returns>
         public bool DeleteIndex(string indexName)
         {
-            if (!_elasticClient.IndexExists(indexName).IsValid)
-                return false;
+            return false; // hata vardı kapattım
 
-            return _elasticClient.DeleteIndex(indexName).IsValid;
+            //if (!_elasticClient.IndexExists(indexName).IsValid)
+            //    return false;
+
+            //return _elasticClient.DeleteIndex(indexName).IsValid;
         }
 
         /// <summary>
@@ -84,11 +88,13 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
         /// <returns></returns>
         public bool Index<T>(string indexName, T document) where T : class
         {
-            var response = _elasticClient.Index(document, i => i
-                           .Index(indexName)
-                           .Type<T>());
+            return false; // hata vardı kapattım
+            
+            //var response = _elasticClient.Index(document, i => i
+            //               .Index(indexName)
+            //               .Type<T>());
 
-            return response.IsValid;
+            //return response.IsValid;
         }
 
         /// <summary>
@@ -136,7 +142,7 @@ namespace ContestPark.Category.API.Infrastructure.ElasticSearch
             {
                 ISearchResponse<T> searchResponse = await _elasticClient.SearchAsync<T>(s => s
                                      .Index(indexName)
-                                     .Type<T>()
+                                     //  .Type<T>()  // hata vardı kapattım
                                      .Size(pagingModel.PageSize)
                                      .From(pagingModel.PageSize * (pagingModel.PageNumber - 1))
                                      .Suggest(su => su

@@ -1,8 +1,8 @@
 ﻿using ContestPark.EventBus.Abstractions;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
 using ContestPark.Notification.API.IntegrationEvents.Events;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
+using ServiceStack;
 using System.Linq;
 using System.Threading.Tasks;
 

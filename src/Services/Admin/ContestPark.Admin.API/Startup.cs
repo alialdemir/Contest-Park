@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -53,12 +54,13 @@ namespace ContestPark.Admin.API
                     .AddMySql()
                     .AddMvc(options =>
                     {
+                        options.EnableEndpointRouting = false;
                         // add custom model binders to beginning of collection
                         options.ModelBinderProviders.Insert(0, new FormDataJsonBinderProvider());
                     })
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(AdminResource).Name)
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddLocalizationCustom();
 
@@ -113,7 +115,7 @@ namespace ContestPark.Admin.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {

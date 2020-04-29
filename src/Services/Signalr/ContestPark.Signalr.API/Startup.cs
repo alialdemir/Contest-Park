@@ -34,7 +34,7 @@ namespace ContestPark.Signalr.API
                     hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(60);
                     hubOptions.HandshakeTimeout = TimeSpan.FromMinutes(60);
                 })
-                    .AddRedis(signalrStoreConnectionString);
+                    .AddStackExchangeRedis(signalrStoreConnectionString);
             }
             else
             {
@@ -74,7 +74,7 @@ namespace ContestPark.Signalr.API
             return new AutofacServiceProvider(container.Build());
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             var pathBase = Configuration["PATH_BASE"];
             if (!string.IsNullOrEmpty(pathBase))
@@ -88,9 +88,13 @@ namespace ContestPark.Signalr.API
 
             ConfigureAuth(app);
 
-            app.UseSignalR(routes =>
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<ContestParkHub>("/contestparkhub", options =>
+                endpoints.MapHub<ContestParkHub>("/contestparkhub", options =>
                     options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
             });
 

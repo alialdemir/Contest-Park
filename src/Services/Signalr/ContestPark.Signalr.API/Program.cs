@@ -3,6 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using Serilog.Events;
 using System;
 using System.IO;
 
@@ -15,12 +16,12 @@ namespace ContestPark.Signalr.API
 
         public static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .CaptureStartupErrors(false)
-                .UseStartup<Startup>()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(configuration)
-                .UseSerilog()
-                .Build();
+                   .CaptureStartupErrors(false)
+                   .UseStartup<Startup>()
+                   .UseContentRoot(Directory.GetCurrentDirectory())
+                   .UseConfiguration(configuration)
+                   .UseSerilog()
+                   .Build();
 
         public static int Main(string[] args)
         {
@@ -53,7 +54,7 @@ namespace ContestPark.Signalr.API
         {
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                //     .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.WithProperty("ApplicationContext", AppName)
                 .Enrich.FromLogContext()
                 .ReadFrom.Configuration(configuration)
@@ -65,6 +66,7 @@ namespace ContestPark.Signalr.API
         private static IConfiguration GetConfiguration()
         {
             var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddEnvironmentVariables();
 

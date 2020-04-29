@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IMvcBuilder AddJsonOptions(this IMvcBuilder mvcBuilder)
         {
-            mvcBuilder.AddJsonOptions(options =>
+            mvcBuilder.AddNewtonsoftJson(options =>
              {
                  options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                  options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;

@@ -30,6 +30,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Data.Common;
@@ -46,7 +47,7 @@ namespace ContestPark.Identity.API
 
         public IConfiguration Configuration { get; }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -113,8 +114,6 @@ namespace ContestPark.Identity.API
 
             services.AddTransient<IReferenceCodeRepostory, ReferenceCodeRepostory>();
 
-            services.AddTransient<IEmailService, EmailService>();
-
             services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddTransient<IPictureRepository, PictureRepository>();
@@ -145,10 +144,10 @@ namespace ContestPark.Identity.API
             services.AddLocalizationCustom();
 
             services.AddCustomIdentityServer(Configuration, connectionString)
-                    .AddMvc()
+                    .AddMvc(options=> options.EnableEndpointRouting=false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(IdentityResource).Name)
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services
                 .AddIntegrationEventLogEFDbContext(connectionString)

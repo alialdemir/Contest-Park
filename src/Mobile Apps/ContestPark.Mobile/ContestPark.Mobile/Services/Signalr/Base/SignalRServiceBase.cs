@@ -7,6 +7,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Signalr.Base
@@ -52,16 +53,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             if (!string.IsNullOrEmpty(_settingsService.AuthAccessToken))
             {
                 HubConnection = new HubConnectionBuilder()
-                   .AddJsonProtocol(options =>
-                   {
-                       JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
-                       {
-                           NullValueHandling = NullValueHandling.Ignore
-                       };
-                       jsonSerializerSettings.Converters.Add(new StringEnumConverter());
-
-                       options.PayloadSerializerSettings = jsonSerializerSettings;
-                   })
                     .WithUrl(GlobalSetting.Instance.SignalREndpoint, (options) =>
                 {
                     options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
@@ -83,31 +74,34 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// </summary>
         public async Task ConnectAsync()
         {
-            await HubConnection
-                .StartAsync()
-                .ContinueWith(async (task) =>
-                {
-                    if (!task.IsFaulted && ConnectionRetryCount != 0)
-                    {
-                        ConnectionRetryCount = 0;
-                    }
-#if DEBUG
-                    else
-                    {
-                        ConnectionRetryCount++;
-                        Debug.WriteLine($"Signalr bağlanmaya çalışılıyor. Retry count: {ConnectionRetryCount}");
-                        await Task.Delay(5000);
-                        await ConnectAsync();
-                    }
-#else
-                     else if (task.IsFaulted && ConnectionRetryCount < 10)
-                    {
-                        ConnectionRetryCount++;
-                        await Task.Delay(8000);
-                        await ConnectAsync();
-                    }
-#endif
-                });
+            if (HubConnection.State == HubConnectionState.Disconnected)
+            {
+                await HubConnection
+                       .StartAsync();
+            }
+            //                .ContinueWith(async (task) =>
+            //                {
+            //                    if (!task.IsFaulted && ConnectionRetryCount != 0)
+            //                    {
+            //                        ConnectionRetryCount = 0;
+            //                    }
+            //#if DEBUG
+            //                    else if (HubConnection.State == HubConnectionState.Disconnected)
+            //                    {
+            //                        ConnectionRetryCount++;
+            //                        Debug.WriteLine($"Signalr bağlanmaya çalışılıyor. Retry count: {ConnectionRetryCount}");
+            //                        await Task.Delay(500);
+            //                        await ConnectAsync();
+            //                    }
+            //#else
+            //                     else if (task.IsFaulted && ConnectionRetryCount < 10 && HubConnection.State == HubConnectionState.Disconnected)
+            //                    {
+            //                        ConnectionRetryCount++;
+            //                        await Task.Delay(8000);
+            //                        await ConnectAsync();
+            //                    }
+            //#endif
+            //                });
         }
 
         /// <summary>
