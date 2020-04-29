@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/Services/Identity/ContestPark.Identity.API/ContestPark.Identity.API.csproj", "src/Services/Identity/ContestPark.Identity.API/"]
 COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus.IntegrationEventLogEF/ContestPark.EventBus.IntegrationEventLogEF.csproj", "src/BuildingBlocks/EventBus/ContestPark.EventBus.IntegrationEventLogEF/"]

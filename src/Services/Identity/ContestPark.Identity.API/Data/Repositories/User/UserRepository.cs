@@ -89,7 +89,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
 
             return _applicationDbContext
                 .Users
-                .FromSql(sql)
+                .FromSqlRaw(sql)
                 .Select(u => u.ProfilePicturePath)
                 .ToList();
         }
@@ -221,7 +221,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
 
             return _applicationDbContext
                                 .Users
-                                .FromSql(sql)
+                                .FromSqlRaw(sql)
                                 .Select(u => new RandomUserModel
                                 {
                                     UserId = u.Id,
