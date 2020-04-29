@@ -74,7 +74,7 @@ namespace ContestPark.Signalr.API
             return new AutofacServiceProvider(container.Build());
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             var pathBase = Configuration["PATH_BASE"];
             if (!string.IsNullOrEmpty(pathBase))
@@ -87,6 +87,8 @@ namespace ContestPark.Signalr.API
                .AddCors();
 
             ConfigureAuth(app);
+
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
