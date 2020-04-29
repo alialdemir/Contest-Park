@@ -160,9 +160,12 @@ namespace ContestPark.Mobile.Components.PostCardView
 
                     buttons.Add(ContestParkResources.Report);
 
-                    string selectedItem = await PageDialogService?.DisplayActionSheetAsync(string.Empty,
+                   
+
+                    string selectedItem = await PageDialogService?.DisplayActionSheetAsync(ContestParkResources.SelectProcess,
                                                                                            ContestParkResources.Cancel,
-                                                                                           string.Empty,
+                                                                                           null,
+                                                                                           //buttons
                                                                                            buttons.ToArray());
                     if (selectedItem == ContestParkResources.Archive)
                     {
