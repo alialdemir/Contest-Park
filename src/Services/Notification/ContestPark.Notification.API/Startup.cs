@@ -41,10 +41,10 @@ namespace ContestPark.Notification.API
 
             services.AddAuth(Configuration)
                     .AddMySql()
-                    .AddMvc()
+                    .AddMvc(options => options.EnableEndpointRouting=false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(NotificationResource).Name)
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddSingleton<IRedisClient>(sp =>
             {
