@@ -45,7 +45,7 @@ namespace ContestPark.Mobile
 
 #if !DEBUG
                 Container
-                       .Resolve<ILatestVersionService>()
+                       .Resolve<ContestPark.Mobile.Services.LatestVersion.ILatestVersionService>()
                        .IfNotUsingLatestVersionOpenInStore();
 #endif
             }
