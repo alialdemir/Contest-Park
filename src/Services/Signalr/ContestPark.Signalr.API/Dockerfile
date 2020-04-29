@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/Services/Signalr/ContestPark.Signalr.API/ContestPark.Signalr.API.csproj", "src/Services/Signalr/ContestPark.Signalr.API/"]
 COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus/ContestPark.EventBus.csproj", "src/BuildingBlocks/EventBus/ContestPark.EventBus/"]
