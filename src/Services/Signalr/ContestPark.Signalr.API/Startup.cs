@@ -90,6 +90,8 @@ namespace ContestPark.Signalr.API
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ContestParkHub>("/contestparkhub", options =>
