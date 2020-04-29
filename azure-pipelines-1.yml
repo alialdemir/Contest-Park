@@ -25,24 +25,22 @@ steps:
     versionCodeOption: 'buildid'
     versionCode: '$(Build.BuildId)'
     printFile: true
-- task: MSBuild@1
+- task: XamarinAndroid@1
   inputs:
-    solution: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
-    msbuildArchitecture: 'x64'
-    platform: 'AnyCPU'
-    configuration: '$(BuildConfiguration)'
-    msbuildArguments: '-t:SignAndroidPackage -p:AndroidPackageFormat=aab -p:Configuration=$(BuildConfiguration) /p:OutputPath=$(OutputDirectory)'
+    projectFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
+    outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    configuration: '$(buildConfiguration)'
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '$(OutputDirectory)/*.aab'
+    apkFiles: '$(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
     apksignerKeystoreFile: 'myRelease.keystore'
     apksignerKeystorePassword: '$(KeyStorePassword)'
     apksignerKeystoreAlias: '$(KeyStoreAlias)'
     apksignerKeyPassword: '$(KeyStorePassword)'
-    apksignerArguments: '--verbose --min-sdk-version=19'
+    apksignerArguments: '--verbose'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(OutputDirectory)'
+    PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
