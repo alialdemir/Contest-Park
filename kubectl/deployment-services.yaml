@@ -40,10 +40,10 @@ spec:
   ports:
     - name: ocelot-apigw-https
       port: 443
-      targetPort: 5005
+      targetPort: 443
     - name: ocelot-apigw-http
       port: 80
-      targetPort: 5006
+      targetPort: 80
   selector:
     run: ocelot-apigw
   type: LoadBalancer
