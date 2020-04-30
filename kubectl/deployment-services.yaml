@@ -40,7 +40,7 @@ spec:
   ports:
     - name: ocelot-apigw-https
       port: 443
-      targetPort: 80
+      targetPort: 443
     - name: ocelot-apigw-http
       port: 80
       targetPort: 80
