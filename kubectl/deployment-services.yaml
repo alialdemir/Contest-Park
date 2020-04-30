@@ -10,7 +10,6 @@ spec:
       protocol: TCP
   selector:
     run: identity-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -24,7 +23,6 @@ spec:
       protocol: TCP
   selector:
     run: follow-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -40,13 +38,13 @@ spec:
   ports:
     - name: ocelot-apigw-https
       port: 443
-      targetPort: 443
+      targetPort: 80
     - name: ocelot-apigw-http
       port: 80
       targetPort: 80
   selector:
     run: ocelot-apigw
-  type: LoadBalancer
+    type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -60,7 +58,6 @@ spec:
       protocol: TCP
   selector:
     run: balance-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -74,7 +71,6 @@ spec:
       protocol: TCP
   selector:
     run: category-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -88,7 +84,6 @@ spec:
       protocol: TCP
   selector:
     run: chat-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -102,7 +97,6 @@ spec:
       protocol: TCP
   selector:
     run: duel-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -116,7 +110,6 @@ spec:
       protocol: TCP
   selector:
     run: post-api
-  type: LoadBalancer
 
 ---
 apiVersion: v1
@@ -131,7 +124,6 @@ spec:
       protocol: TCP
   selector:
     run: admin-api
-  type: LoadBalancer
 
 ---
 apiVersion: v1
@@ -146,7 +138,6 @@ spec:
       protocol: TCP
   selector:
     run: backgroundtasks
-  type: LoadBalancer
   
 ---
 apiVersion: v1
@@ -161,7 +152,6 @@ spec:
       protocol: TCP
   selector:
     run: signalr-api
-  type: LoadBalancer
   
 ---
 apiVersion: v1
@@ -176,4 +166,3 @@ spec:
       protocol: TCP
   selector:
     run: notification-api
-  type: LoadBalancer
