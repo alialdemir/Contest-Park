@@ -36,5 +36,5 @@ steps:
     configuration: 'Release'
     packageApp: true
     runNugetRestore: true
-    signingIdentity: 'ali aldemir'
+    signingIdentity: 'Apple Development: ali aldemir (V6854F4555)'
     signingProvisioningProfileID: 'ContestPark Provisioning'
