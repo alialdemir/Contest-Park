@@ -26,10 +26,10 @@ steps:
     restoreSolution: '**/ContestPark.Mobile.sln'
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'ContestParkDevCer.p12'
+    secureFile: 'Certificates.p12'
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'VS_comcontestparkapp_Development.mobileprovision'
+    secureFile: 'ContestPark_Provisioning.mobileprovision'
 - task: AppStoreRelease@1
   inputs:
     serviceEndpoint: 'Apple Store Service'
