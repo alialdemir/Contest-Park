@@ -37,8 +37,7 @@ steps:
 - task: XamariniOS@2
   inputs:
     solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
-    configuration: '$(BuildConfiguration)'
-    buildForSimulator: false
+    configuration: 'Release'
     packageApp: true
     runNugetRestore: true
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
