@@ -30,6 +30,13 @@ steps:
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'ContestPark_Provisioning.mobileprovision'
+- task: IpaResign@1
+  inputs:
+    ipaPath: '**/*.ipa'
+    signFileP12Path: 'Certificates.p12'
+    signFileP12Password: '$(IosKeyCerPassword)'
+    provFileProfilePath: 'ContestPark_Provisioning.mobileprovision'
+    provFileRemoveProfile: true
 - task: XamariniOS@2
   inputs:
     solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
