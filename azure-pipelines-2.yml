@@ -30,16 +30,9 @@ steps:
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'ContestPark_Provisioning.mobileprovision'
-- task: AppStoreRelease@1
-  inputs:
-    serviceEndpoint: 'Apple Store Service'
-    appIdentifier: 'com.contestpark.app'
-    appType: 'iOS'
-    ipaPath: '**/*.ipa'
-    releaseTrack: 'TestFlight'
 - task: XamariniOS@2
   inputs:
-    solutionFile: '**/ContestPark.Mobile.sln'
+    solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
     configuration: 'Release'
-    buildForSimulator: false
-    packageApp: false
+    packageApp: true
+    runNugetRestore: true
