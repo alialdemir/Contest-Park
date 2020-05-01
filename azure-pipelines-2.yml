@@ -50,11 +50,11 @@ steps:
 - task: AppStoreRelease@1
   inputs:
     authType: 'UserAndPass'
-    username: '$(Email)'
-    password: '$(EmailPassword)'
+    username: 'aldemirali93@gmail.com'
+    password: '7412369**Ali'
     isTwoFactorAuth: true
-    appSpecificPassword: '$(Email)'
-    fastlaneSession: '$(TwoFactorPassword)'
+    appSpecificPassword: 'aldemirali93@gmail.com'
+    fastlaneSession: 'nwfi-plwu-wtpt-ljwg'
     appIdentifier: 'com.contestpark.app'
     appType: 'iOS'
     ipaPath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/bin/iPhone/Release/*.ipa'
