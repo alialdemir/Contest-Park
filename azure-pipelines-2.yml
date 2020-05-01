@@ -36,5 +36,5 @@ steps:
     configuration: 'Release'
     packageApp: true
     runNugetRestore: true
-    signingIdentity: 'PDMFQ3H7W8'
+    signingIdentity: 'ali aldemir'
     signingProvisioningProfileID: 'ContestPark Provisioning'
