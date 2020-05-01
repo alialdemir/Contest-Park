@@ -40,5 +40,5 @@ steps:
     configuration: 'Release'
     packageApp: true
     runNugetRestore: true
-    signingIdentity: '$(APPLE_SIGNING_PROFILE_NAME)'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
