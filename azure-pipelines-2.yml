@@ -32,7 +32,7 @@ steps:
     secureFile: 'ContestPark_Provisioning.mobileprovision'
 - task: XamariniOS@2
   inputs:
-    solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.Android/ContestPark.Mobile.Android.csproj'
+    solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
     configuration: 'Release'
     packageApp: true
     runNugetRestore: true
