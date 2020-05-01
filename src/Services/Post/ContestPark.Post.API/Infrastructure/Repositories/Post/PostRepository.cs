@@ -113,6 +113,40 @@ namespace ContestPark.Post.API.Infrastructure.MySql
             });
         }
 
+        /// <summary>
+        /// Post arşivleme
+        /// </summary>
+        /// <param name="userId">Postun sahibi olan kullanıcı id</param>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilse false</returns>
+        public Task<bool> ArchiveAsync(string userId, int postId)
+        {
+            Tables.Post.Post post = _postRepository.FindById(postId);
+            if (post == null || post.OwnerUserId != userId)
+                return Task.FromResult(false);
+
+            post.IsArchive = true;
+
+            return _postRepository.UpdateAsync(post);
+        }
+
+        /// <summary>
+        /// Posta yorum yapılmasını kapatır
+        /// </summary>
+        /// <param name="userId">Postun sahibi olan kullanıcı id</param>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilsa falase</returns>
+        public Task<bool> TurnOffToggleCommentAsync(string userId, int postId)
+        {
+            Tables.Post.Post post = _postRepository.FindById(postId);
+            if (post == null || post.OwnerUserId != userId)
+                return Task.FromResult(false);
+
+            post.IsCommentOpen = !post.IsCommentOpen;
+
+            return _postRepository.UpdateAsync(post);
+        }
+
         #endregion Methods
     }
 }

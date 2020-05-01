@@ -200,7 +200,7 @@ namespace ContestPark.Mobile.Services.Post
         }
 
         /// <summary>
-        /// Posta yorum yapılmasını kapatır
+        /// Posta yorum yapılmasını kapatıp açar
         /// </summary>
         /// <param name="postId">Post id</param>
         /// <returns>Başarılı ise true değilsa falase</returns>

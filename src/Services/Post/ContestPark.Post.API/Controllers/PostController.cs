@@ -52,6 +52,46 @@ namespace ContestPark.Post.API.Controllers
         #region Methods
 
         /// <summary>
+        /// Postu arşive ekler
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilsa falase</returns>
+        [HttpPost("{postId}/Archive")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> ArchiveAsync([FromRoute]int postId)
+        {
+            if (postId <= 0)
+                return BadRequest();
+
+            bool isSuccess = await _postRepository.ArchiveAsync(UserId, postId);
+            if (isSuccess)
+                return Ok();
+
+            return BadRequest();
+        }
+
+        /// <summary>
+        /// Posta yorum yapılmasını kapatıp açar
+        /// </summary>
+        /// <param name="postId">Post id</param>
+        /// <returns>Başarılı ise true değilsa falase</returns>
+        [HttpPost("{postId}/TurnOffComment")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> TurnOffToggleCommentAsync([FromRoute]int postId)
+        {
+            if (postId <= 0)
+                return BadRequest();
+
+            bool isSuccess = await _postRepository.TurnOffToggleCommentAsync(UserId, postId);
+            if (isSuccess)
+                return Ok();
+
+            return BadRequest();
+        }
+
+        /// <summary>
         ///  Post id'nin postunu ve yorumlarını döndürür
         /// </summary>
         /// <param name="postId">Post id</param>
@@ -102,7 +142,7 @@ namespace ContestPark.Post.API.Controllers
 
             IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
-            return Ok(GetPostModel(posts, postUserIds, postUsers));
+            return Ok(GetPostModel(posts, postUsers));
         }
 
         /// <summary>
@@ -128,7 +168,7 @@ namespace ContestPark.Post.API.Controllers
 
             IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
-            return Ok(GetPostModel(posts, postUserIds, postUsers));
+            return Ok(GetPostModel(posts, postUsers));
         }
 
         /// <summary>
@@ -254,7 +294,6 @@ namespace ContestPark.Post.API.Controllers
         /// <param name="likedPosts"></param>
         /// <returns></returns>
         private ServiceModel<PostModel> GetPostModel(ServiceModel<PostModel> posts,
-                                                     IEnumerable<string> postUserIds,
                                                      IEnumerable<UserModel> postUsers)
         {
             return new ServiceModel<PostModel>
