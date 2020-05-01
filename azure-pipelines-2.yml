@@ -30,18 +30,16 @@ steps:
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'ContestPark_Provisioning.mobileprovision'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'ContestPark_Provisioning.mobileprovision'
 - task: XamariniOS@2
   inputs:
-    solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
-    configuration: 'Release'
+    solutionFile: '$(SolutionFile)'
+    configuration: '$(BuildConfiguration)'
+    buildForSimulator: false
     packageApp: true
     runNugetRestore: true
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
-- task: IpaResign@1
-  inputs:
-    ipaPath: '**/*.ipa'
-    signFileP12Path: 'Certificates.p12'
-    signFileP12Password: '$(IosKeyCerPassword)'
-    provFileProfilePath: 'ContestPark_Provisioning.mobileprovision'
-    provFileRemoveProfile: true
