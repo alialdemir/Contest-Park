@@ -36,7 +36,7 @@ steps:
     provProfileSecureFile: 'ContestPark_Provisioning.mobileprovision'
 - task: XamariniOS@2
   inputs:
-    solutionFile: '$(SolutionFile)'
+    solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
     configuration: '$(BuildConfiguration)'
     buildForSimulator: false
     packageApp: true
