@@ -131,27 +131,18 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
             if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");
             if (parameters.ContainsKey("SenderUserId")) SenderUserId = parameters.GetValue<string>("SenderUserId");
             if (parameters.ContainsKey("SenderProfilePicturePath")) SenderProfilePicturePath = parameters.GetValue<string>("SenderProfilePicturePath");
 
-            StartHub();
+            //StartHub();
 
-            ServiceModel = await _chatService.ChatDetailAsync(SenderUserId, ServiceModel);
+            ChatDetailCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
-
-            ListViewScrollToBottomCommand?.Execute(ServiceModel.PageNumber == 1 ? Items.Count - 1 : Items.Count / 3);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -347,9 +338,21 @@ namespace ContestPark.Mobile.ViewModels
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Mesajlaşma detayını getirir
+        /// </summary>
+        private async Task ExecuteChatDetailCommand()
+        {
+            ServiceModel = await _chatService.ChatDetailAsync(SenderUserId, ServiceModel);
+
+            ListViewScrollToBottomCommand?.Execute(ServiceModel.PageNumber == 1 ? Items.Count - 1 : Items.Count / 3);
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand ChatDetailCommand => new CommandAsync(ExecuteChatDetailCommand);
 
         private ICommand _blockingProgressCommand;
 

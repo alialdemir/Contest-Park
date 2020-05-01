@@ -9,6 +9,7 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -93,7 +94,15 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            Microsoft.AppCenter.Crashes.Crashes.TrackError(new System.Exception("phone number"));
+            ShowTutorialCommand.Execute(null);
+
+            EventListenerCommand.Execute(null);
+
+            return base.InitializeAsync(parameters);
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
             if (parameters.ContainsKey("SelectedCountry"))
             {
                 var selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");
@@ -103,25 +112,7 @@ namespace ContestPark.Mobile.ViewModels
                 }
             }
 
-            if (!_settingsService.IsTutorialDisplayed && Device.RuntimePlatform == Device.Android)
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                 {
-                     NavigateToPopupAsync<TutorialPopupView>();
-
-                     _settingsService.IsTutorialDisplayed = true;
-                 });
-            }
-
-            _subscriptionToken = _eventAggregator
-                                         .GetEvent<NavigateToInitializedEvent>()
-                                         .Subscribe(async () =>
-                                         {
-                                             await GoBackAsync();
-                                             await NavigateToInitialized<AppShell>();
-                                         });
-
-            return base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
         }
 
         /// <summary>
@@ -179,9 +170,43 @@ namespace ContestPark.Mobile.ViewModels
             return base.GoBackAsync(parameters, useModalNavigation);
         }
 
+        /// <summary>
+        /// NavigateToInitializedEvent event listenre
+        /// </summary>
+        private void ExecuteEventListenerCommand()
+        {
+            _subscriptionToken = _eventAggregator
+                                         .GetEvent<NavigateToInitializedEvent>()
+                                         .Subscribe(async () =>
+                                         {
+                                             await GoBackAsync();
+                                             await NavigateToInitialized<AppShell>();
+                                         });
+        }
+
+        /// <summary>
+        /// Daha önce gösterilmediyse tutorial ekranını gösterir
+        /// </summary>
+        private void ExecuteShowTutorialCommand()
+        {
+            if (!_settingsService.IsTutorialDisplayed && Device.RuntimePlatform == Device.Android)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    NavigateToPopupAsync<TutorialPopupView>();
+
+                    _settingsService.IsTutorialDisplayed = true;
+                });
+            }
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand ShowTutorialCommand => new Command(ExecuteShowTutorialCommand);
+
+        private ICommand EventListenerCommand => new Command(ExecuteEventListenerCommand);
 
         public ICommand OpenLinkCommand
         {

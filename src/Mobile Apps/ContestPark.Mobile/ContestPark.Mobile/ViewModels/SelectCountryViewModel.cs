@@ -2,9 +2,12 @@
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
@@ -21,6 +24,16 @@ namespace ContestPark.Mobile.ViewModels
         #region Methods
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
+        {
+            LoadCountryListCommand.Execute(null);
+
+            return base.InitializeAsync(parameters);
+        }
+
+        /// <summary>
+        /// Ülke kodlarını yükler
+        /// </summary>
+        private void ExecuteLoadCountryListCommand()
         {
             var items = new List<CountryModel>
             {
@@ -1607,10 +1620,14 @@ namespace ContestPark.Mobile.ViewModels
                    .Select(p => new ObservableGroupCollection<string, CountryModel>(p))
                    .ToList()
             };
-
-            return base.InitializeAsync(parameters);
         }
 
         #endregion Methods
+
+        #region Commands
+
+        private ICommand LoadCountryListCommand => new Command(ExecuteLoadCountryListCommand);
+
+        #endregion Commands
     }
 }

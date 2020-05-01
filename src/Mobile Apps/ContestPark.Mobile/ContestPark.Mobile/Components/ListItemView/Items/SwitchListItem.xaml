@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components.CustomSwitch"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
         <yummy:PancakeView
@@ -11,7 +12,6 @@
             CornerRadius="{Binding CornerRadius}"
             Elevation="6"
             HasShadow="True"
-            IsClippedToBounds="True"
             VerticalOptions="Start">
             <Grid Padding="16" ColumnSpacing="16">
                 <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                     TextColor="#040404"
                     VerticalOptions="Center" />
 
-                <Switch
+                <components:CustomSwitch
                     x:Name="switchIcon"
                     Grid.Row="0"
                     Grid.Column="2"
@@ -50,13 +50,13 @@
                     IsToggled="{Binding IsToggled}"
                     OnColor="{StaticResource Primary}"
                     VerticalOptions="CenterAndExpand">
-                    <Switch.Behaviors>
+                    <components:CustomSwitch.Behaviors>
                         <behaviors:EventToCommandBehavior
                             Command="{Binding SingleTap}"
                             CommandParameter="{Binding CommandParameter}"
                             EventName="Toggled" />
-                    </Switch.Behaviors>
-                </Switch>
+                    </components:CustomSwitch.Behaviors>
+                </components:CustomSwitch>
             </Grid>
         </yummy:PancakeView>
     </ContentView.Content>

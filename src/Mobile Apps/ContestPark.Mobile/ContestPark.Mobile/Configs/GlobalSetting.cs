@@ -119,11 +119,6 @@ namespace ContestPark.Mobile.Configs
         public string GatewaEndpoint { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether IsMockData
-        /// </summary>
-        public bool IsMockData { get; set; }
-
-        /// <summary>
         /// Gets or sets the LogoutCallback
         /// </summary>
         public string LogoutCallback { get; set; }
@@ -177,7 +172,7 @@ namespace ContestPark.Mobile.Configs
             TokenEndpoint = $"{connectBaseEndpoint}/token";
             LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
 
-            SignalREndpoint = $"{DefaultEndpoint.Replace("https://", "http://")}/contestparkhub";
+            SignalREndpoint = $"{DefaultEndpoint}/contestparkhub";
         }
 
         /// <summary>

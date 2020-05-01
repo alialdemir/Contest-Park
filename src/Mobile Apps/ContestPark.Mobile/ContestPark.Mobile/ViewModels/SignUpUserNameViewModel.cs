@@ -53,10 +53,15 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("PhoneNumber"))
                 PhoneNumber = parameters.GetValue<string>("PhoneNumber");
 
+            return base.InitializeAsync(parameters);
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
             if (parameters.ContainsKey("ReferenceCode"))
                 ReferenceCode = parameters.GetValue<string>("ReferenceCode");
 
-            return base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
         }
 
         private async Task ExecuteUserNameCommandAsync()

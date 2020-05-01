@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Gms.Ads;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -52,6 +53,7 @@ namespace ContestPark.Mobile.Droid
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             ToolBar = FindViewById<Toolbar>(Resource.Id.toolbar);
+
             return base.OnCreateOptionsMenu(menu);
         }
 

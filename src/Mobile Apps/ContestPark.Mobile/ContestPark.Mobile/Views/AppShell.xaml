@@ -5,13 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:local="clr-namespace:ContestPark.Mobile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:ContestPark.Mobile.Views"
     x:Name="appShell"
-    FlyoutBackgroundImage="left_menu_background.png"
+    FlyoutBackgroundImage="{local:ImageResource left_menu_background.png}"
     FlyoutBackgroundImageAspect="AspectFill"
     FlyoutHeaderBehavior="Fixed"
-    FlyoutIcon="menuicon.png"
     mc:Ignorable="d">
     <Shell.Resources>
         <ResourceDictionary>
@@ -28,17 +28,142 @@
                 <Setter Property="Shell.TabBarTitleColor" Value="Black" />
             </Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellContent" />
+
+            <x:Double x:Key="SizeLeftMenuIcon">32</x:Double>
+
+            <!--  Tabs  -->
+
+            <FontImageSource
+                x:Key="IconLeftTabCategories"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource TabCategories}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconTabChat"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource TabChat}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconTabProfile"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource TabProfile}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconTabRanking"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource TabRanking}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconContestStore"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource ContestStore}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <!--  Left menü  -->
+
+            <FontImageSource
+                x:Key="IconHowToPlay"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource HowToPlay}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconConvertToCash"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource MoneyBag}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconBalanceCode"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource BalanceCode}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconTabCategories"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource TabCategories}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource Black}" />
+
+            <FontImageSource
+                x:Key="IconSettings"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource Settings}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconInstagram"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource Instagram}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconFacebook"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource Facebook}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
+                x:Key="IconTwitter"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource Twitter}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <Style
+                ApplyToDerivedTypes="True"
+                Class="FlyoutItemLayoutStyle"
+                TargetType="Layout">
+                <Setter Property="HeightRequest" Value="44" />
+                <Setter TargetName="FlyoutItemLabel" Property="Label.FontFamily" Value="{StaticResource SofiaProMedium}" />
+                <Setter TargetName="FlyoutItemLabel" Property="Label.FontSize" Value="15" />
+                <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource White}" />
+                <Setter TargetName="FlyoutItemLabel" Property="Label.HeightRequest" Value="44" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters />
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8265FF" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Shell.Resources>
 
     <!--  Left menu header  -->
-    <Shell.FlyoutHeader>
+    <!--<Shell.FlyoutHeader>
         <views:AppShellHeaderView />
     </Shell.FlyoutHeader>
 
     <FlyoutItem Title="Menu" FlyoutDisplayOptions="AsSingleItem">
 
-        <!--  tabbar  -->
+    -->
+    <!--  tabbar  -->
+    <!--
         <ShellContent Title="{i18n:Translate Categories}" ContentTemplate="{DataTemplate views:CategoriesView}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource TabCategories}" />
@@ -50,11 +175,13 @@
             </ShellContent.Icon>
         </ShellContent>
 
-        <!--<ShellContent Title="{i18n:Translate Invite}" ContentTemplate="{DataTemplate views:InviteView}">
+    -->
+    <!--<ShellContent Title="{i18n:Translate Invite}" ContentTemplate="{DataTemplate views:InviteView}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource TabInvite}" />
             </ShellContent.Icon>
         </ShellContent>-->
+    <!--
 
         <ShellContent Title="{i18n:Translate LeaderBoard}" ContentTemplate="{DataTemplate views:LeaderBoardView}">
             <ShellContent.Icon>
@@ -73,9 +200,40 @@
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource TabProfile}" />
             </ShellContent.Icon>
         </ShellContent>
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <!--  left menü item list  -->
+
+    <!--<FlyoutItem Title="{i18n:Translate HowToPlay}" Icon="{StaticResource IconHowToPlay}">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsView}" />
+    </FlyoutItem>-->
+
+    <Shell.FlyoutHeader>
+        <views:AppShellHeaderView />
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem FlyoutDisplayOptions="AsSingleItem">
+
+        <Tab Title="{i18n:Translate Categories}" Icon="{StaticResource IconTabCategories}">
+            <ShellContent Title="{i18n:Translate Categories}" ContentTemplate="{DataTemplate views:CategoriesView}" />
+        </Tab>
+
+        <Tab Title="{i18n:Translate ContestStore}" Icon="{StaticResource IconContestStore}">
+            <ShellContent Title="{i18n:Translate ContestStore}" ContentTemplate="{DataTemplate views:ContestStoreView}" />
+        </Tab>
+
+        <Tab Title="{i18n:Translate LeaderBoard}" Icon="{StaticResource IconTabRanking}">
+            <ShellContent Title="{i18n:Translate LeaderBoard}" ContentTemplate="{DataTemplate views:LeaderBoardView}" />
+        </Tab>
+
+        <Tab Title="{i18n:Translate Chat}" Icon="{StaticResource IconTabChat}">
+            <ShellContent Title="{i18n:Translate Chat}" ContentTemplate="{DataTemplate views:ChatView}" />
+        </Tab>
+
+        <Tab Title="{i18n:Translate Profile}" Icon="{StaticResource IconTabProfile}">
+            <ShellContent Title="{i18n:Translate Profile}" ContentTemplate="{DataTemplate views:MyProfileView}" />
+        </Tab>
+    </FlyoutItem>
     <!--<MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="ContestStoreView"
@@ -103,36 +261,49 @@
     <MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="http://contestpark.com/#why"
-        IconImageSource="{StaticResource HowToPlay}"
+        IconImageSource="{StaticResource IconHowToPlay}"
         Text="{i18n:Translate HowToPlay}" />
+
+    <MenuItem
+        x:Name="menuConvertToCash"
+        Clicked="MenuItem_Clicked"
+        CommandParameter="http://contestpark.com/balancecode.html?q={0}"
+        IconImageSource="{StaticResource IconConvertToCash}"
+        Text="{i18n:Translate ConvertToCash}" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
+        CommandParameter="BalanceCodeView"
+        IconImageSource="{StaticResource IconBalanceCode}"
+        Text="{i18n:Translate BalanceCode}" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="SettingsView"
-        IconImageSource="{StaticResource Settings}"
+        IconImageSource="{StaticResource IconSettings}"
         Text="{i18n:Translate Settings}" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
+        CommandParameter="https://www.instagram.com/contestpark"
+        IconImageSource="{StaticResource IconInstagram}"
+        Text="Instagram" />
+
+    <MenuItem
+        Clicked="MenuItem_Clicked"
         CommandParameter="https://www.facebook.com/contestpark"
-        IconImageSource="{StaticResource Facebook}"
+        IconImageSource="{StaticResource IconFacebook}"
         Text="Facebook" />
 
     <MenuItem
         Clicked="MenuItem_Clicked"
         CommandParameter="https://www.twitter.com/contestpark"
-        IconImageSource="{StaticResource Twitter}"
+        IconImageSource="{StaticResource IconTwitter}"
         Text="Twitter" />
 
-    <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="https://www.instagram.com/contestpark"
-        IconImageSource="{StaticResource Instagram}"
-        Text="Instagram" />
-
-    <Shell.MenuItemTemplate>
+    <!--<Shell.MenuItemTemplate>
         <DataTemplate>
             <views:AppShellListItemView />
         </DataTemplate>
-    </Shell.MenuItemTemplate>
+    </Shell.MenuItemTemplate>-->
 </Shell>

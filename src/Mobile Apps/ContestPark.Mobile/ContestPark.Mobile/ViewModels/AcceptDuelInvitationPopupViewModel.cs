@@ -85,18 +85,7 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("InviteModel"))
                 InviteModel = parameters.GetValue<InviteModel>("InviteModel");
 
-            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 100), () =>
-               {
-                   if (IsExit)
-                       return false;
-
-                   Timer -= 0.100;
-
-                   if (Timer <= 0)
-                       GotoBackCommand.Execute(true);
-
-                   return Timer > 0;
-               });
+            TimerCommand.Execute(null);
 
             return base.InitializeAsync(parameters);
         }
@@ -161,9 +150,30 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Düello davetini kabul etmesi için kalan sürenin geri sayımını yapar
+        /// </summary>
+        private void ExecuteTimerCommand()
+        {
+            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 100), () =>
+            {
+                if (IsExit)
+                    return false;
+
+                Timer -= 0.100;
+
+                if (Timer <= 0)
+                    GotoBackCommand.Execute(true);
+
+                return Timer > 0;
+            });
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand TimerCommand => new Command(ExecuteTimerCommand);
 
         public ICommand AcceptDuelInviteCommand { get { return new CommandAsync(ExecuteAcceptDuelInviteCommand); } }
 

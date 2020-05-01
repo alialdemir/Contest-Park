@@ -48,25 +48,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
+            MissionListCommandAsync.Execute(null);
 
-            IsBusy = true;
-
-            MissionListModel missionListModel = await _missionService.MissionListAsync(ServiceModel);
-            if (missionListModel.Items != null)
-            {
-                Items.AddRange(missionListModel.Items);
-
-                SetListViewHeader(missionListModel.CompleteMissionCount);
-            }
-
-            ServiceModel = missionListModel;
-
-            await base.InitializeAsync(parameters);
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         protected override void Reflesh()
@@ -121,9 +107,34 @@ namespace ContestPark.Mobile.ViewModels
             ListViewHeader = Items.Count.ToString() + "/" + completeMissionCount;
         }
 
+        /// <summary>
+        /// Görev listesini getirir
+        /// </summary>
+        private async Task ExecuteMissionListCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            MissionListModel missionListModel = await _missionService.MissionListAsync(ServiceModel);
+            if (missionListModel.Items != null)
+            {
+                Items.AddRange(missionListModel.Items);
+
+                SetListViewHeader(missionListModel.CompleteMissionCount);
+            }
+
+            ServiceModel = missionListModel;
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Command
+
+        private ICommand MissionListCommandAsync => new CommandAsync(ExecuteMissionListCommandAsync);
 
         private ICommand _takesTaskGoldCommand;
 

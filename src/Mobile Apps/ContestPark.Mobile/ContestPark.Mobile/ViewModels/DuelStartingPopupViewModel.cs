@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
@@ -140,15 +141,25 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
+        {
+            if (parameters.ContainsKey("SelectedDuelInfo"))
+                SelectedBet = parameters.GetValue<SelectedBetModel>("SelectedDuelInfo");
+
+            DuelStartingCommand.Execute(null);
+
+            return base.InitializeAsync(parameters);
+        }
+
+        /// <summary>
+        /// Düello başlatma işlemleri
+        /// </summary>
+        private void ExecuteDuelStartingCommand()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
-
-            if (parameters.ContainsKey("SelectedDuelInfo"))
-                SelectedBet = parameters.GetValue<SelectedBetModel>("SelectedDuelInfo");
 
             DuelStarting = new DuelStartingModel()
             {
@@ -158,16 +169,11 @@ namespace ContestPark.Mobile.ViewModels
             };
 
             if (_settingsService.IsSoundEffectActive)
-                _audioService.Play(Audio.AwaitingOpponent, true);
+                _audioService.Play(AudioTypes.AwaitingOpponent, true);
 
             if (string.IsNullOrEmpty(_settingsService.SignalRConnectionId))
             {
-                await DisplayAlertAsync(
-                    ContestParkResources.Error,
-                    ContestParkResources.ConnectionToTheServerForTheDuelWasNotEstablished,
-                    ContestParkResources.Okay);
-
-                Device.BeginInvokeOnMainThread(() => base.GoBackAsync(useModalNavigation: true));
+                NoConnection();
             }
             else if (StandbyModes.Invited == SelectedBet.StandbyMode)
             {
@@ -183,23 +189,34 @@ namespace ContestPark.Mobile.ViewModels
 
                     OnSleepEventListener();
 
-                    await DuelStartWithInvite();
+                    DuelStartWithInvite();
                 }
             }
             else
             {
-                await StandbyModeOff();
+                StandbyModeOff();
             }
 
-            await base.InitializeAsync(parameters);
-
             IsBusy = false;
+        }
+
+        private void NoConnection()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+          {
+              DisplayAlertAsync(
+                 ContestParkResources.Error,
+                 ContestParkResources.ConnectionToTheServerForTheDuelWasNotEstablished,
+                 ContestParkResources.Okay);
+
+              base.GoBackAsync(useModalNavigation: true);
+          });
         }
 
         /// <summary>
         /// Düello daveti ile düello başlama adımlarını gerçekleştirir
         /// </summary>
-        private async Task DuelStartWithInvite()
+        private async void DuelStartWithInvite()
         {
             var opponentUserInfo = await _duelService.InviteDuel(new InviteDuelModel
             {
@@ -339,7 +356,7 @@ namespace ContestPark.Mobile.ViewModels
                 SubCategoryId = SelectedBet.SubcategoryId,
             });// TODO: success kontrol et hata oluşursa mesaj çıksın
             if (!isSuccess)
-                await NotStartingDuel();
+                NotStartingDuel();
 
             AddToBot();
         }
@@ -362,7 +379,7 @@ namespace ContestPark.Mobile.ViewModels
             }
             else
             {
-                NotStartingDuel().Wait();
+                NotStartingDuel();
             }
         }
 
@@ -376,7 +393,7 @@ namespace ContestPark.Mobile.ViewModels
                 || string.IsNullOrEmpty(DuelStarting.FounderUserId)
                 || string.IsNullOrEmpty(DuelStarting.OpponentUserId))
             {
-                NotStartingDuel().Wait();
+                NotStartingDuel();
 
                 return;
             }
@@ -423,22 +440,21 @@ namespace ContestPark.Mobile.ViewModels
         /// Düello başlatılırken hata oluşurse mesaj gösterip duello başlama ekranını kapatır
         /// </summary>
         /// <returns></returns>
-        private async Task NotStartingDuel()
+        private void NotStartingDuel()
         {
-            await DisplayAlertAsync(
-                              ContestParkResources.Error,
+            DisplayAlertAsync(ContestParkResources.Error,
                               ContestParkResources.ErrorStartingDuelPleaseTryAgain,
                               ContestParkResources.Okay);
 
-            await _duelService.DuelCancel();
+            _duelService.DuelCancel();
 
-            await base.GoBackAsync(useModalNavigation: true);
+            base.GoBackAsync(useModalNavigation: true);
         }
 
         /// <summary>
         /// Bekleme modundayken rakip profil resmini değiştir
         /// </summary>
-        private async Task RandomPicturesAsync()
+        private async void RandomPicturesAsync()
         {
             string[] pictures = await _duelService.RandomUserProfilePictures();
 
@@ -470,23 +486,23 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Rakip araken bekleme ekranı için gerekli işlemler
         /// </summary>
-        private async Task RandomUserProfilePicturesAsync()
+        private void RandomUserProfilePicturesAsync()
         {
             DuelStarting.OpponentFullName = ContestParkResources.AwaitingOpponent;
 
-            await RandomPicturesAsync();
+            RandomPicturesAsync();
         }
 
         /// <summary>
         /// Bekleme modundayken yapılan işlemler
         /// </summary>
-        private async Task StandbyModeOff()
+        private void StandbyModeOff()
         {
             DuelSignalrListener();// SignalR listener load
 
             OnSleepEventListener();
 
-            await RandomUserProfilePicturesAsync();
+            RandomUserProfilePicturesAsync();
 
             DuelOpenCommand.Execute(null);
         }
@@ -540,6 +556,8 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        private ICommand DuelStartingCommand => new Command(ExecuteDuelStartingCommand);
 
         public ICommand AnimationCommand;
 

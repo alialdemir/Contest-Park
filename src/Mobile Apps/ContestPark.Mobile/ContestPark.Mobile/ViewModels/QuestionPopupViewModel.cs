@@ -235,13 +235,11 @@ namespace ContestPark.Mobile.ViewModels
 
             StartTimer();
 
-            base.InitializeAsync(parameters);
-
             OnSleepEventListener();
 
             LoadInterstitialVideoCommand.Execute(null);
 
-            return Task.CompletedTask;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -566,12 +564,12 @@ namespace ContestPark.Mobile.ViewModels
             {
                 bool isCorrectFounder = correctAnswer == founderStylish;
 
-                _audioService?.Play(isCorrectFounder ? Audio.Success : Audio.Fail);
+                _audioService?.Play(isCorrectFounder ? AudioTypes.Success : AudioTypes.Fail);
             }
             else
             {
                 bool isCorrectOpponent = correctAnswer == opponentStylish;
-                _audioService?.Play(isCorrectOpponent ? Audio.Success : Audio.Fail);
+                _audioService?.Play(isCorrectOpponent ? AudioTypes.Success : AudioTypes.Fail);
             }
         }
 

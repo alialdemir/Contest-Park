@@ -16,6 +16,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -77,31 +78,12 @@ namespace ContestPark.Mobile.ViewModels
 
         public override async Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             if (parameters.ContainsKey("SignUp"))
                 SignUp = parameters.GetValue<SignUpModel>("SignUp");
 
-            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsRefreshing);
-
-            if (ServiceModel.Items != null && ServiceModel.Items.Any())
-            {
-                ServiceModel
-                        .Items
-                        .ToList()
-                        .ForEach(c => c.SubCategories?.ForEach(sc => sc.IsSubCategoryOpen = false));
-            }
-
-            SelectedSubCategoryCount = 0;
-
-            SignUp.SubCategories = new List<short>();
+            CategoryListCommand.Execute(null);
 
             await base.InitializeAsync(parameters);
-
-            IsBusy = false;
         }
 
         /// <summary>
@@ -223,9 +205,38 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Kategori listesi getirir
+        /// </summary>
+        private async Task ExecuteCategoryListCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsRefreshing);
+
+            if (ServiceModel.Items != null && ServiceModel.Items.Any())
+            {
+                ServiceModel
+                        .Items
+                        .ToList()
+                        .ForEach(c => c.SubCategories?.ForEach(sc => sc.IsSubCategoryOpen = false));
+            }
+
+            SelectedSubCategoryCount = 0;
+
+            SignUp.SubCategories = new List<short>();
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Command
+
+        private ICommand CategoryListCommand => new CommandAsync(ExecuteCategoryListCommandAsync);
 
         private ICommand _clickSubCategoryCommand;
 

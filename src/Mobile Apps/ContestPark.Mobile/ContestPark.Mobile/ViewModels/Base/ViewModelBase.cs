@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels.Base
 {
-    public abstract class ViewModelBase : ExtendedBindableObject, IInitializeAsync
+    public abstract class ViewModelBase : ExtendedBindableObject, IInitializeAsync, INavigatedAware
     {
         #region Private variables
 
@@ -191,6 +191,14 @@ namespace ContestPark.Mobile.ViewModels.Base
             return _popupNavigation?.RemovePageAsync(popupPage);
         }
 
+        public virtual void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
+
+        public virtual void OnNavigatedTo(INavigationParameters parameters)
+        {
+        }
+
         #endregion Navigations
 
         #region Commands
@@ -248,6 +256,9 @@ namespace ContestPark.Mobile.ViewModels.Base
             get { return _items ?? (_items = new ObservableRangeCollection<TModel>()); }
         }
 
+        /// <summary>
+        /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
+        /// </summary>
         public ServiceModel<TModel> ServiceModel
         {
             get
@@ -259,33 +270,29 @@ namespace ContestPark.Mobile.ViewModels.Base
                 if (value != null)
                 {
                     _serviceModel = value;
+
+                    if (ServiceModel.PageNumber == 1)
+                        Items.Clear();// Skeleton dataları silindi
+
+                    if (ServiceModel != null && ServiceModel.Items != null && ServiceModel.Items.Any())
+                    {
+                        IsShowEmptyMessage = false;
+                        Items.AddRange(ServiceModel.Items);
+                    }
+                    else IsShowEmptyMessage = true;
+
+                    if (ServiceModel != null && ServiceModel.HasNextPage)
+                        ServiceModel.PageNumber++;
+
+                    ServiceModel.Items = null;
+
+                    IsRefreshing = false;
                 }
             }
         }
 
-        /// <summary>
-        /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
-        /// </summary>
-        /// <returns></returns>
         public override Task InitializeAsync(INavigationParameters parameters)
         {
-            if (ServiceModel.PageNumber == 1)
-                Items.Clear();// Skeleton dataları silindi
-
-            if (ServiceModel != null && ServiceModel.Items != null && ServiceModel.Items.Any())
-            {
-                IsShowEmptyMessage = false;
-                Items.AddRange(ServiceModel.Items);
-            }
-            else IsShowEmptyMessage = true;
-
-            if (ServiceModel != null && ServiceModel.HasNextPage)
-                ServiceModel.PageNumber++;
-
-            ServiceModel.Items = null;
-
-            IsRefreshing = false;
-
             return base.InitializeAsync(parameters);
         }
 

@@ -6,6 +6,7 @@ using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -36,18 +37,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
+            BlockingListCommand.Execute(null);
 
-            IsBusy = true;
-
-            ServiceModel = await _blockingService.BlockingList(ServiceModel);
-
-            await base.InitializeAsync(parameters);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -85,9 +79,26 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Engellediği kullanıcı listesini getirir
+        /// </summary>
+        private async Task ExecuteBlockingListCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _blockingService.BlockingList(ServiceModel);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand BlockingListCommand => new CommandAsync(ExecuteBlockingListCommand);
 
         private ICommand _blockingProgressCommand;
 

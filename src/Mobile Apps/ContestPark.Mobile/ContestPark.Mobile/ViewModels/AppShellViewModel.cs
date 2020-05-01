@@ -10,6 +10,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using Microsoft.AppCenter;
 using Prism.Events;
 using Prism.Navigation;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -113,13 +114,38 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (IsInitialized)
-                return;
+                return Task.CompletedTask;
 
             IsInitialized = true;
 
+            SetUserInfoCommand.Execute(null);
+            SetUserGoldCommand.Execute(null);
+
+            ListenerEventsCommand.Execute(null);
+
+            return base.InitializeAsync(parameters);
+        }
+
+        /// <summary>
+        /// Kullanıcı altın miktarı
+        /// </summary>
+        private async Task SetUserGoldAsync()
+        {
+            var balance = await _cpService.GetBalanceAsync();
+            if (balance != null)
+            {
+                Balance = balance;
+            }
+        }
+
+        /// <summary>
+        /// Sol menüdeki kullanıcı bilgilerini getirir ve appcenter user id ekler
+        /// </summary>
+        private async Task ExecuteSetUserInfoCommand()
+        {
             UserInfoModel currentUser = await _identityService.GetUserInfo();
             if (currentUser != null)
             {
@@ -131,11 +157,13 @@ namespace ContestPark.Mobile.ViewModels
 
                 AppCenter.SetUserId(currentUser.UserId);
             }
+        }
 
-            SetUserGoldCommand.Execute(null);
-
-            MenuItems?.Execute(null);
-
+        /// <summary>
+        /// Kullanıcı bilgileri değiştir ve bakiye değişme eventlerini dinler
+        /// </summary>
+        private void ExecuteListenerEventsCommand()
+        {
             _eventAggregator
                 .GetEvent<ChangeUserInfoEvent>()
                 .Subscribe((userInfo) =>
@@ -156,20 +184,6 @@ namespace ContestPark.Mobile.ViewModels
             _eventAggregator
                 .GetEvent<GoldUpdatedEvent>()
                 .Subscribe(() => SetUserGoldCommand.Execute(null));
-
-            await base.InitializeAsync(parameters);
-        }
-
-        /// <summary>
-        /// Kullanıcı altın miktarı
-        /// </summary>
-        private async Task SetUserGoldAsync()
-        {
-            var balance = await _cpService.GetBalanceAsync();
-            if (balance != null)
-            {
-                Balance = balance;
-            }
         }
 
         #endregion Methods
@@ -198,7 +212,9 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand SetUserGoldCommand => new CommandAsync(SetUserGoldAsync);
 
-        public ICommand MenuItems { get; set; }
+        private ICommand SetUserInfoCommand => new CommandAsync(ExecuteSetUserInfoCommand);
+
+        private ICommand ListenerEventsCommand => new Command(ExecuteListenerEventsCommand);
 
         #endregion Commands
     }

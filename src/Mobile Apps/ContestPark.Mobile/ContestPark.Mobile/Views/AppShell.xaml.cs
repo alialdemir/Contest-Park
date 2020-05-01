@@ -6,6 +6,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels;
 using Prism.Events;
 using Prism.Ioc;
+using Prism.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -30,75 +31,11 @@ namespace ContestPark.Mobile.Views
             eventAggregator?// left menu navigation için
                         .GetEvent<TabPageNavigationEvent>()
                         .Subscribe((page) => Current.GoToAsync(page.PageName));
-
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                Navigated += (e, o) =>
-                {
-                    if (Current != null)
-                    {
-                        Current.FlyoutIcon = ImageSource.FromFile("menuicon.png");
-                    }
-                };
-                Navigating += (e, o) =>
-                {
-                    if (Current != null)
-                    {
-                        Current.FlyoutIcon = ImageSource.FromFile("left_arrow.png");
-                    }
-                };
-            }
         }
 
         #endregion Constructor
 
         #region Events
-
-        public bool IsLoadedMenuItems { get; set; }
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            if (BindingContext == null)
-                return;
-
-            ((AppShellViewModel)BindingContext).MenuItems = new Command(() =>
-            {
-                #region Menu items
-
-                ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
-
-                if (settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot" || IsLoadedMenuItems)
-                    return;
-
-                MenuItem winningsViewMenu = new MenuItem
-                {
-                    CommandParameter = $"http://contestpark.com/balancecode.html?q={settingsService.AuthAccessToken}",
-                    IconImageSource = ContestParkApp.Current.Resources["MoneyBag"].ToString(),
-                    Text = ContestParkResources.ConvertToCash,
-                };
-
-                winningsViewMenu.Clicked += MenuItem_Clicked;
-
-                Items.Insert(1, winningsViewMenu);
-
-                MenuItem balanceCodeViewMenu = new MenuItem
-                {
-                    CommandParameter = nameof(BalanceCodeView),
-                    IconImageSource = FontImageSource.FromFile(ContestParkApp.Current.Resources["BalanceCode"].ToString()),
-                    Text = ContestParkResources.BalanceCode,
-                };
-
-                balanceCodeViewMenu.Clicked += MenuItem_Clicked;
-
-                Items.Insert(2, balanceCodeViewMenu);
-
-                IsLoadedMenuItems = true;
-
-                #endregion Menu items
-            });
-        }
 
         /// <summary>
         /// Parametreden gelen view adına göre yönlendirme yapar ve sol menuyu kapatır
@@ -112,11 +49,34 @@ namespace ContestPark.Mobile.Views
 
             string name = ((MenuItem)sender).CommandParameter.ToString();
 
+            ISettingsService settingsService = ContestParkApp.Current.Container.Resolve<ISettingsService>();
+
+            if (settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot"
+                && (name.StartsWith("http://contestpark.com/balancecode.html") || name.StartsWith("BalanceCodeView")))
+            {
+                ContestParkApp
+                      .Current
+                      .Container
+                      .Resolve<IPageDialogService>()
+                      .DisplayAlertAsync(string.Empty,
+                                         ContestParkResources.ComingSoon,
+                                         ContestParkResources.Okay);
+
+                IsBusy = false;
+
+                return;
+            }
+
             IAnalyticsService analyticsService = ContestParkApp.Current.Container.Resolve<IAnalyticsService>();
 
             if (name.StartsWith("https://") || name.StartsWith("http://"))
             {
                 analyticsService.SendEvent("Sol Menü", "Link", name);
+
+                if (name.StartsWith("http://contestpark.com/balancecode.html"))
+                {
+                    name = string.Format(name, settingsService.AuthAccessToken);
+                }
 
                 OpenUri(name);
 

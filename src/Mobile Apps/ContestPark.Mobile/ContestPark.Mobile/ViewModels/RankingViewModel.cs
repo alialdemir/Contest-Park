@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Ranking;
 using ContestPark.Mobile.Services.Score;
 using ContestPark.Mobile.ViewModels.Base;
@@ -81,81 +82,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             parameters.TryGetValue("SubCategoryId", out _subCategoryId);
             parameters.TryGetValue("ListType", out _listType);
 
-            BalanceTypes balanceType = BalanceTypes.Gold;
+            GetRankingCommand.Execute(null);
 
-            RankModel rank = null;
-
-            switch (_listType)
-            {
-                case ListTypes.ScoreRanking:
-                    rank = await _scoreService.SubCategoryRankingAsync(_subCategoryId, balanceType, ServiceModel);
-                    break;
-
-                case ListTypes.ScoreRankingFollowing:
-                    rank = await _scoreService.FollowingRankingAsync(_subCategoryId, balanceType, ServiceModel);
-                    break;
-            }
-
-            if (rank != null)
-            {
-                if (Ranks == null || Ranks.ContestFinishDate == null || !Items.Any())
-                {
-                    Ranks = new RankModel
-                    {
-                        ContestFinishDate = rank.ContestFinishDate
-                    };
-
-                    int rankCount = rank.Ranks.Items.Count();
-                    if (rankCount >= 1)
-                    {
-                        Ranks.First = rank.Ranks.Items.ToList()[0];
-                    }
-
-                    if (rankCount >= 2)
-                    {
-                        Ranks.Secound = rank.Ranks.Items.ToList()[1];
-                    }
-
-                    if (rankCount >= 3)
-                    {
-                        Ranks.Third = rank.Ranks.Items.ToList()[2];
-                    }
-
-                    if (rankCount >= 4)
-                    {
-                        rank.Ranks.Items = rank.Ranks.Items.Skip(3).ToList();
-
-                        ServiceModel = rank.Ranks;
-                    }
-
-                    await base.InitializeAsync(parameters);
-
-                    if (rankCount <= 4 && rankCount != 0)
-                        IsShowEmptyMessage = false;
-
-                    TimeLeftCommand.Execute(null);
-                }
-                else
-                {
-                    ServiceModel = rank.Ranks;
-
-                    await base.InitializeAsync(parameters);
-                }
-            }
-
-            LoadRankEmptyMessage();
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -232,9 +166,86 @@ namespace ContestPark.Mobile.ViewModels
             RefreshCommand.Execute(null);
         }
 
+        /// <summary>
+        /// Sıralama listesini getirir
+        /// </summary>
+        private async Task ExecuteGetRankingCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            BalanceTypes balanceType = BalanceTypes.Gold;
+
+            RankModel rank = null;
+
+            switch (_listType)
+            {
+                case ListTypes.ScoreRanking:
+                    rank = await _scoreService.SubCategoryRankingAsync(_subCategoryId, balanceType, ServiceModel);
+                    break;
+
+                case ListTypes.ScoreRankingFollowing:
+                    rank = await _scoreService.FollowingRankingAsync(_subCategoryId, balanceType, ServiceModel);
+                    break;
+            }
+
+            if (rank != null)
+            {
+                if (Ranks == null || Ranks.ContestFinishDate == null || !Items.Any())
+                {
+                    Ranks = new RankModel
+                    {
+                        ContestFinishDate = rank.ContestFinishDate
+                    };
+
+                    int rankCount = rank.Ranks.Items.Count();
+                    if (rankCount >= 1)
+                    {
+                        Ranks.First = rank.Ranks.Items.ToList()[0];
+                    }
+
+                    if (rankCount >= 2)
+                    {
+                        Ranks.Secound = rank.Ranks.Items.ToList()[1];
+                    }
+
+                    if (rankCount >= 3)
+                    {
+                        Ranks.Third = rank.Ranks.Items.ToList()[2];
+                    }
+
+                    if (rankCount >= 4)
+                    {
+                        rank.Ranks.Items = rank.Ranks.Items.Skip(3).ToList();
+
+                        ServiceModel = rank.Ranks;
+                    }
+
+                    if (rankCount <= 4 && rankCount != 0)
+                        IsShowEmptyMessage = false;
+
+                    TimeLeftCommand.Execute(null);
+                }
+                else
+                {
+                    ServiceModel = rank.Ranks;
+                }
+            }
+
+            LoadRankEmptyMessage();
+
+            IsBusy = false;
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand GetRankingCommand => new CommandAsync(ExecuteGetRankingCommandAsync);
 
         private ICommand _gotoProfilePageCommand;
 

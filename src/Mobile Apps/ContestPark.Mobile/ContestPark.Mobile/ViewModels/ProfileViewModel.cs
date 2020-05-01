@@ -18,6 +18,7 @@ using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -128,41 +129,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
 
             if (parameters.ContainsKey("IsVisibleBackArrow")) IsVisibleBackArrow = parameters.GetValue<bool>("IsVisibleBackArrow");
 
-            if (ProfileInfo == null)
-            {
-                var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
-                if (profileInfo == null)
-                {
-                    await DisplayAlertAsync("",
-                        ContestParkResources.UserNotFound,
-                        ContestParkResources.Okay);
+            GetProfileInfoByUserNameCommand.Execute(null);
 
-                    IsBusy = false;
-
-                    return;
-                }
-
-                ProfileInfo = profileInfo;
-
-                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
-
-                EventSubscription(parameters);
-            }
-
-            if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
-            {
-                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
-            }
-
-            await base.InitializeAsync(parameters);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -170,17 +145,26 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
-            _eventAggregator
-                .GetEvent<ChangeUserInfoEvent>()
-                .Unsubscribe(_changeUserInfoEventSubscriptionToken);
+            if (_changeUserInfoEventSubscriptionToken != null)
+            {
+                _eventAggregator
+                    .GetEvent<ChangeUserInfoEvent>()
+                    .Unsubscribe(_changeUserInfoEventSubscriptionToken);
+            }
 
-            _eventAggregator
-                .GetEvent<PostRefreshEvent>()
-                    .Unsubscribe(_postRefreshEventSubscriptionToken);
+            if (_postRefreshEventSubscriptionToken != null)
+            {
+                _eventAggregator
+                    .GetEvent<PostRefreshEvent>()
+                        .Unsubscribe(_postRefreshEventSubscriptionToken);
+            }
 
-            _eventAggregator
-                    .GetEvent<ChangedFollowCountEvent>()
-                    .Unsubscribe(_changedFollowCountEventSubscriptionToken);
+            if (_changedFollowCountEventSubscriptionToken != null)
+            {
+                _eventAggregator
+                        .GetEvent<ChangedFollowCountEvent>()
+                        .Unsubscribe(_changedFollowCountEventSubscriptionToken);
+            }
 
             return base.GoBackAsync(parameters, useModalNavigation: false);
         }
@@ -188,7 +172,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Profil, kapak veya kullanıcı adı değişince profili günceller
         /// </summary>
-        private void EventSubscription(INavigationParameters parameters)
+        private void EventSubscription()
         {
             if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
             {
@@ -211,12 +195,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 _postRefreshEventSubscriptionToken = _eventAggregator
                                                                 .GetEvent<PostRefreshEvent>()
-                                                                .Subscribe(async () =>
-                                                                {
-                                                                    ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true);
-
-                                                                    await base.InitializeAsync(parameters);
-                                                                });
+                                                                .Subscribe(async () => ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true));
             }
 
             _changedFollowCountEventSubscriptionToken = _eventAggregator
@@ -508,9 +487,52 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Kullanıcı profilini getirir
+        /// </summary>
+        private async Task ExecuteGetProfileInfoByUserNameCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+            if (ProfileInfo == null)
+            {
+                var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
+                if (profileInfo == null)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        DisplayAlertAsync("",
+                                                            ContestParkResources.UserNotFound,
+                                                            ContestParkResources.Okay);
+                    });
+
+                    IsBusy = false;
+
+                    return;
+                }
+
+                ProfileInfo = profileInfo;
+
+                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
+
+                EventSubscription();
+            }
+
+            if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
+            {
+                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+            }
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand GetProfileInfoByUserNameCommand => new CommandAsync(ExecuteGetProfileInfoByUserNameCommand);
 
         public ICommand ChangePhotoCommand => new CommandAsync<string>(ChangePhotoAsync);
 

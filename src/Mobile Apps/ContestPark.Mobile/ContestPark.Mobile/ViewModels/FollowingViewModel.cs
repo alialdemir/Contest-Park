@@ -7,6 +7,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -42,13 +43,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("UserId")) userId = parameters.GetValue<string>("UserId");
 
-            ServiceModel = await _followService.Following(userId, ServiceModel);
+            FollowingCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -108,12 +109,22 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Get followings
+        /// </summary>
+        private async Task ExecuteFollowingCommandAsync()
+        {
+            ServiceModel = await _followService.Following(userId, ServiceModel);
+        }
+
         #endregion Methods
 
         #region Commands
 
-        public ICommand _followCommand { get; set; }
-        public ICommand _gotoProfilePageCommand { get; set; }
+        private ICommand FollowingCommand => new CommandAsync(ExecuteFollowingCommandAsync);
+
+        private ICommand _followCommand;
+        private ICommand _gotoProfilePageCommand;
 
         public ICommand FollowCommand
         {

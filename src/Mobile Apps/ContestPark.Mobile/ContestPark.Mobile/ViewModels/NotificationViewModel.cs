@@ -8,6 +8,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -44,18 +45,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
+            NotificationsCommandAsync.Execute(null);
 
-            IsBusy = true;
-
-            ServiceModel = await _notificationService.NotificationsAsync(ServiceModel);
-
-            await base.InitializeAsync(parameters);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -133,9 +127,26 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Bildirim listesini getirir
+        /// </summary>
+        private async Task ExecuteNotificationsCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _notificationService.NotificationsAsync(ServiceModel);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand NotificationsCommandAsync => new CommandAsync(ExecuteNotificationsCommandAsync);
 
         public ICommand _followCommand;
         public ICommand _gotoProfilePageCommand;

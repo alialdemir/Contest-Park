@@ -78,20 +78,13 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return Task.CompletedTask;
-
             if (parameters.ContainsKey("SubCategoryId"))
                 _subCategoryId = parameters.GetValue<short>("SubCategoryId");
-
-            IsBusy = true;
 
             if (CategoryDetail.SubCategoryId == 0)
                 SubCategoryDetailCommand.Execute(null);
 
             SubCategoryPostsCommand.Execute(false);
-
-            IsBusy = false;
 
             if (SubscriptionToken == null)
             {

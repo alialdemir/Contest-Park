@@ -129,22 +129,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SmsInfo"))
                 SmsInfo = parameters.GetValue<SmsInfoModel>("SmsInfo");
 
-            if (SmsInfo.PhoneNumber.StartsWith("5454"))
-            {
-                Code1 = 5;
-                Code2 = 4;
-                Code3 = 5;
-                Code4 = 4;
-            }
-
             SendSmsCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>

@@ -151,11 +151,6 @@ namespace ContestPark.Mobile.ViewModels
 
         public override async Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             if (!IsRefreshing)
             {
                 ConnectToSignalr.Execute(null);
@@ -167,16 +162,14 @@ namespace ContestPark.Mobile.ViewModels
                 ListenerFirebaseToken.Execute(null);
 
                 NoticeCommand.Execute(null);
-
+#if !DEBUG
                 _inviteDuelService.InviteDuelCommand.Execute(Items);
+#endif
             }
 
-            //TODO: Kategorileri sayfala
-            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel, IsRefreshing);
+            CategoryListCommand.Execute(null);
 
             await base.InitializeAsync(parameters);
-
-            IsBusy = false;
         }
 
         /// <summary>
@@ -316,9 +309,21 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Kategori listesini getirir
+        /// </summary>
+        /// <returns></returns>
+        private async Task ExecuteCategoryListCommandAsync()
+        {
+            //TODO: Kategorileri sayfala
+            ServiceModel = await _categoryServices.CategoryListAsync(ServiceModel, IsRefreshing);
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand CategoryListCommand => new CommandAsync(ExecuteCategoryListCommandAsync);
 
         private ICommand NoticeCommand
         {

@@ -6,16 +6,172 @@
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Audios\AwaitingOpponent.mp3" />
-    <None Remove="Audios\Fail.mp3" />
-    <None Remove="Audios\Fireworks.mp3" />
-    <None Remove="Audios\Success.mp3" />
+    <None Remove="Common\Audios\AwaitingOpponent.mp3" />
+    <None Remove="Common\Audios\Fail.mp3" />
+    <None Remove="Common\Audios\Fireworks.mp3" />
+    <None Remove="Common\Audios\Success.mp3" />
+    <None Remove="Common\Fonts\GothamRounded-Bold.otf" />
+    <None Remove="Common\Fonts\GothamRounded-Medium.otf" />
+    <None Remove="Common\Fonts\Montserrat-Medium.ttf" />
+    <None Remove="Common\Fonts\Montserrat-Regular.ttf" />
+    <None Remove="Common\Fonts\Montserrat-SemiBold.ttf" />
+    <None Remove="Common\Fonts\Sofia Pro Black Az.otf" />
+    <None Remove="Common\Fonts\Sofia Pro Bold Az.otf" />
+    <None Remove="Common\Fonts\Sofia Pro Light Az.otf" />
+    <None Remove="Common\Fonts\Sofia Pro Medium Az.otf" />
+    <None Remove="Common\Fonts\Sofia Pro Regular Az.otf" />
+    <None Remove="Common\Fonts\Sofia Pro Semi Bold Az.otf" />
+    <None Remove="Common\Images\appstoreandgoogleplay.png" />
+    <None Remove="Common\Images\balance.svg" />
+    <None Remove="Common\Images\balancecode.png" />
+    <None Remove="Common\Images\choose_prize.svg" />
+    <None Remove="Common\Images\coins.gif" />
+    <None Remove="Common\Images\ContestSingleCoin.svg" />
+    <None Remove="Common\Images\conteststore.svg" />
+    <None Remove="Common\Images\contest_store_gold_1.svg" />
+    <None Remove="Common\Images\contest_store_gold_2.svg" />
+    <None Remove="Common\Images\contest_store_gold_3.svg" />
+    <None Remove="Common\Images\contest_store_gold_4.svg" />
+    <None Remove="Common\Images\contest_store_header.png" />
+    <None Remove="Common\Images\contest_store_money_5.svg" />
+    <None Remove="Common\Images\contest_store_money_6.svg" />
+    <None Remove="Common\Images\contest_store_money_7.svg" />
+    <None Remove="Common\Images\contest_store_money_8.svg" />
+    <None Remove="Common\Images\doublecoins.png" />
+    <None Remove="Common\Images\doublecoinstl.png" />
+    <None Remove="Common\Images\earn_money.svg" />
+    <None Remove="Common\Images\find_opponent.png" />
+    <None Remove="Common\Images\fullname.jpg" />
+    <None Remove="Common\Images\gift1.gif" />
+    <None Remove="Common\Images\gift2.gif" />
+    <None Remove="Common\Images\invite.png" />
+    <None Remove="Common\Images\invite_friends.svg" />
+    <None Remove="Common\Images\LeftArrow.png" />
+    <None Remove="Common\Images\left_arrow.png" />
+    <None Remove="Common\Images\left_menu_background.png" />
+    <None Remove="Common\Images\liked.svg" />
+    <None Remove="Common\Images\likes.svg" />
+    <None Remove="Common\Images\logo.png" />
+    <None Remove="Common\Images\menuicon.png" />
+    <None Remove="Common\Images\money.png" />
+    <None Remove="Common\Images\money_bag.svg" />
+    <None Remove="Common\Images\next_tutorial.svg" />
+    <None Remove="Common\Images\prizeicon1.png" />
+    <None Remove="Common\Images\prizeicon2.png" />
+    <None Remove="Common\Images\prizeicon3.png" />
+    <None Remove="Common\Images\prizeicon4.png" />
+    <None Remove="Common\Images\prizeicon5.png" />
+    <None Remove="Common\Images\prizeicon6.png" />
+    <None Remove="Common\Images\profile_chat.svg" />
+    <None Remove="Common\Images\profile_follow.svg" />
+    <None Remove="Common\Images\profile_play.svg" />
+    <None Remove="Common\Images\profile_unfollow.svg" />
+    <None Remove="Common\Images\question-answer.svg" />
+    <None Remove="Common\Images\questioncenter.png" />
+    <None Remove="Common\Images\question_answer.svg" />
+    <None Remove="Common\Images\rank1.gif" />
+    <None Remove="Common\Images\rank2.gif" />
+    <None Remove="Common\Images\rank3.gif" />
+    <None Remove="Common\Images\ranking_header.png" />
+    <None Remove="Common\Images\revenge.png" />
+    <None Remove="Common\Images\RightArrow.png" />
+    <None Remove="Common\Images\search_cancel.png" />
+    <None Remove="Common\Images\search_result.svg" />
+    <None Remove="Common\Images\select_categories.svg" />
+    <None Remove="Common\Images\send_message.svg" />
+    <None Remove="Common\Images\SingleMoney.svg" />
+    <None Remove="Common\Images\sms.png" />
+    <None Remove="Common\Images\socialmediashare.png" />
+    <None Remove="Common\Images\TUR_s.png" />
+    <None Remove="Common\Images\tutorial_next.svg" />
+    <None Remove="Common\Images\username.png" />
+    <None Remove="Common\Images\verify.svg" />
+    <None Remove="Common\Images\vs.png" />
+    <None Remove="Helpers\icomoon.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Audios\AwaitingOpponent.mp3" />
-    <EmbeddedResource Include="Audios\Fail.mp3" />
-    <EmbeddedResource Include="Audios\Fireworks.mp3" />
-    <EmbeddedResource Include="Audios\Success.mp3" />
+    <EmbeddedResource Include="Common\Audios\AwaitingOpponent.mp3" />
+    <EmbeddedResource Include="Common\Audios\Fail.mp3" />
+    <EmbeddedResource Include="Common\Audios\Fireworks.mp3" />
+    <EmbeddedResource Include="Common\Audios\Success.mp3" />
+    <EmbeddedResource Include="Common\Fonts\GothamRounded-Bold.otf" />
+    <EmbeddedResource Include="Common\Fonts\GothamRounded-Medium.otf" />
+    <EmbeddedResource Include="Common\Fonts\icomoon.ttf" />
+    <EmbeddedResource Include="Common\Fonts\Montserrat-Medium.ttf" />
+    <EmbeddedResource Include="Common\Fonts\Montserrat-Regular.ttf" />
+    <EmbeddedResource Include="Common\Fonts\Montserrat-SemiBold.ttf" />
+    <EmbeddedResource Include="Common\Fonts\Sofia Pro Black Az.otf" />
+    <EmbeddedResource Include="Common\Fonts\Sofia Pro Bold Az.otf" />
+    <EmbeddedResource Include="Common\Fonts\Sofia Pro Light Az.otf" />
+    <EmbeddedResource Include="Common\Fonts\Sofia Pro Medium Az.otf" />
+    <EmbeddedResource Include="Common\Fonts\Sofia Pro Regular Az.otf" />
+    <EmbeddedResource Include="Common\Fonts\Sofia Pro Semi Bold Az.otf" />
+    <EmbeddedResource Include="Common\Images\appstoreandgoogleplay.png" />
+    <EmbeddedResource Include="Common\Images\balance.svg" />
+    <EmbeddedResource Include="Common\Images\balancecode.png" />
+    <EmbeddedResource Include="Common\Images\choose_prize.svg" />
+    <EmbeddedResource Include="Common\Images\coins.gif" />
+    <EmbeddedResource Include="Common\Images\ContestSingleCoin.svg" />
+    <EmbeddedResource Include="Common\Images\conteststore.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_gold_1.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_gold_2.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_gold_3.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_gold_4.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_header.png" />
+    <EmbeddedResource Include="Common\Images\contest_store_money_5.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_money_6.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_money_7.svg" />
+    <EmbeddedResource Include="Common\Images\contest_store_money_8.svg" />
+    <EmbeddedResource Include="Common\Images\doublecoins.png" />
+    <EmbeddedResource Include="Common\Images\doublecoinstl.png" />
+    <EmbeddedResource Include="Common\Images\earn_money.svg" />
+    <EmbeddedResource Include="Common\Images\find_opponent.png" />
+    <EmbeddedResource Include="Common\Images\fullname.jpg" />
+    <EmbeddedResource Include="Common\Images\gift1.gif" />
+    <EmbeddedResource Include="Common\Images\gift2.gif" />
+    <EmbeddedResource Include="Common\Images\invite.png" />
+    <EmbeddedResource Include="Common\Images\invite_friends.svg" />
+    <EmbeddedResource Include="Common\Images\LeftArrow.png" />
+    <EmbeddedResource Include="Common\Images\left_arrow.png" />
+    <EmbeddedResource Include="Common\Images\left_menu_background.png" />
+    <EmbeddedResource Include="Common\Images\liked.svg" />
+    <EmbeddedResource Include="Common\Images\likes.svg" />
+    <EmbeddedResource Include="Common\Images\logo.png" />
+    <EmbeddedResource Include="Common\Images\menuicon.png" />
+    <EmbeddedResource Include="Common\Images\money.png" />
+    <EmbeddedResource Include="Common\Images\money_bag.svg" />
+    <EmbeddedResource Include="Common\Images\next_tutorial.svg" />
+    <EmbeddedResource Include="Common\Images\prizeicon1.png" />
+    <EmbeddedResource Include="Common\Images\prizeicon2.png" />
+    <EmbeddedResource Include="Common\Images\prizeicon3.png" />
+    <EmbeddedResource Include="Common\Images\prizeicon4.png" />
+    <EmbeddedResource Include="Common\Images\prizeicon5.png" />
+    <EmbeddedResource Include="Common\Images\prizeicon6.png" />
+    <EmbeddedResource Include="Common\Images\profile_chat.svg" />
+    <EmbeddedResource Include="Common\Images\profile_follow.svg" />
+    <EmbeddedResource Include="Common\Images\profile_play.svg" />
+    <EmbeddedResource Include="Common\Images\profile_unfollow.svg" />
+    <EmbeddedResource Include="Common\Images\question-answer.svg" />
+    <EmbeddedResource Include="Common\Images\questioncenter.png" />
+    <EmbeddedResource Include="Common\Images\question_answer.svg" />
+    <EmbeddedResource Include="Common\Images\rank1.gif" />
+    <EmbeddedResource Include="Common\Images\rank2.gif" />
+    <EmbeddedResource Include="Common\Images\rank3.gif" />
+    <EmbeddedResource Include="Common\Images\ranking_header.png" />
+    <EmbeddedResource Include="Common\Images\revenge.png" />
+    <EmbeddedResource Include="Common\Images\RightArrow.png" />
+    <EmbeddedResource Include="Common\Images\search_cancel.png" />
+    <EmbeddedResource Include="Common\Images\search_result.svg" />
+    <EmbeddedResource Include="Common\Images\select_categories.svg" />
+    <EmbeddedResource Include="Common\Images\send_message.svg" />
+    <EmbeddedResource Include="Common\Images\SingleMoney.svg" />
+    <EmbeddedResource Include="Common\Images\sms.png" />
+    <EmbeddedResource Include="Common\Images\socialmediashare.png" />
+    <EmbeddedResource Include="Common\Images\TUR_s.png" />
+    <EmbeddedResource Include="Common\Images\tutorial_next.svg" />
+    <EmbeddedResource Include="Common\Images\username.png" />
+    <EmbeddedResource Include="Common\Images\verify.svg" />
+    <EmbeddedResource Include="Common\Images\vs.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
@@ -39,10 +195,10 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.657" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
     <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.5.0.657" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.6.0.726" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppResources\ContestParkResources.Designer.cs">

@@ -11,6 +11,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -89,31 +90,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             if (parameters.ContainsKey("CategoryId")) _categoryId = parameters.GetValue<short>("CategoryId");
 
-            if (IsFollowingCategory)
-            {
-                ServiceModel = await _categoryService.FollowedSubCategoriesAsync("'", ServiceModel);
-            }
-            else if (_categoryId > 0 || _categoryId == -3 || _categoryId == -2)
-            {
-                ServiceModel = await _categoryService.SearchAsync("'", _categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
-            }
-            else
-            {
-                IsSearchFocus = true;
-            }
+            SearchCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -279,9 +262,37 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Arama listesini getirir
+        /// </summary>
+        private async Task ExecuteSearchCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            if (IsFollowingCategory)
+            {
+                ServiceModel = await _categoryService.FollowedSubCategoriesAsync("'", ServiceModel);
+            }
+            else if (_categoryId > 0 || _categoryId == -3 || _categoryId == -2)
+            {
+                ServiceModel = await _categoryService.SearchAsync("'", _categoryId, ServiceModel);//0 gelirse tüm kategoriler demek 0 dan büyük ise ilgili kategoriyi getirir
+            }
+            else
+            {
+                IsSearchFocus = true;
+            }
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand SearchCommand => new CommandAsync(ExecuteSearchCommandAsync);
 
         private ICommand _subCategoriesDisplayActionSheetCommand;
         private ICommand _gotoProfilePageCommand;

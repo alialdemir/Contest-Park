@@ -1,8 +1,10 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Models.Tutorial;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -41,7 +43,17 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            ServiceModel = new Models.ServiceModel.ServiceModel<TutorialModel>
+            LoadToturialsCommand.Execute(null);
+
+            return base.InitializeAsync(parameters);
+        }
+
+        /// <summary>
+        /// Tutorial listesini yükler
+        /// </summary>
+        private void ExecuteLoadToturialsCommand()
+        {
+            ServiceModel = new ServiceModel<TutorialModel>
             {
                 Items = new List<TutorialModel>
                 {
@@ -83,13 +95,13 @@ namespace ContestPark.Mobile.ViewModels
                                     },
                     }
             };
-
-            return base.InitializeAsync(parameters);
         }
 
         #endregion Methods
 
         #region Commands
+
+        private ICommand LoadToturialsCommand => new Command(ExecuteLoadToturialsCommand);
 
         private ICommand _nextTutorialCommand;
 

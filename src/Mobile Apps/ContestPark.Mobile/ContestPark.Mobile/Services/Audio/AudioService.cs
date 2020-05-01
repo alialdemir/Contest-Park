@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using ContestPark.Mobile.Enums;
 using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.Audio
@@ -35,13 +36,13 @@ namespace ContestPark.Mobile.Services.Audio
         /// </summary>
         /// <param name="audio">Bu enumun içindeki enumlar ses dosyalarının adları ile aynı olmalı</param>
         /// <param name="loop">Ses tekrar tekrar çalmasını sağlar</param>
-        public void Play(Audio audio, bool loop = false)
+        public void Play(AudioTypes audio, bool loop = false)
         {
             if (_simpleAudioPlayer == null)
                 return;
 
             var assembly = typeof(ContestParkApp).GetTypeInfo().Assembly;
-            Stream audioStream = assembly.GetManifestResourceStream("ContestPark.Mobile." + $"Audios.{audio.ToString()}.mp3");
+            Stream audioStream = assembly.GetManifestResourceStream("ContestPark.Mobile." + $"Audios.{audio}.mp3");
             if (audioStream != null)
             {
                 _simpleAudioPlayer.Load(audioStream);

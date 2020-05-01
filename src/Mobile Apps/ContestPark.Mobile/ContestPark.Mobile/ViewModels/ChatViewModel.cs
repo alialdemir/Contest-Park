@@ -9,6 +9,7 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -66,16 +67,8 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            ServiceModel = await _chatService.UserChatList(ServiceModel);
-            await base.InitializeAsync(parameters);
-
             //////if (!string.IsNullOrEmpty(BadgeCount))
             //////{
             //////    bool isSuccess = await _chatService.ChatSeenAsync();
@@ -83,9 +76,11 @@ namespace ContestPark.Mobile.ViewModels
             //////        BadgeCount = string.Empty;
             //////}
 
-            SubscriptionReflesh();
+            SubscriptionRefleshCommand.Execute(null);
 
-            IsBusy = false;
+            UserListCommand.Execute(null);
+
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -165,7 +160,7 @@ namespace ContestPark.Mobile.ViewModels
         /// Mesaj silme eventini dinler
         /// örneğin mesaj detayından tüm mesajlar silinirse buradaki sayfadanda silmesi için event tanımladık
         /// </summary>
-        private void SubscriptionReflesh()
+        private void ExecuteSubscriptionRefleshCommand()
         {
             _eventAggregator.GetEvent<MessageRefleshEvent>()
                 .Subscribe((conversationId) =>
@@ -212,9 +207,28 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Kullanıcı mesaj listesini getirir
+        /// </summary>
+        private async Task ExecuteUserListCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _chatService.UserChatList(ServiceModel);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand UserListCommand => new CommandAsync(ExecuteUserListCommandAsync);
+
+        private ICommand SubscriptionRefleshCommand => new Command(ExecuteSubscriptionRefleshCommand);
 
         private ICommand _gotoProfilePageCommand;
         private ICommand _deleteItemCommand;

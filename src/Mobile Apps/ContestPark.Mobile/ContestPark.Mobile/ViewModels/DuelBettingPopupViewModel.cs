@@ -16,6 +16,7 @@ using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -108,29 +109,9 @@ namespace ContestPark.Mobile.ViewModels
 
             Balance = await _cpService.GetBalanceAsync();
 
-            BetModel lastSelectedBet = _settingsService.LastSelectedBet;
-            if (lastSelectedBet != null)// En son oynadığı bakiye tipini seçili olarak getiriyoruz
-                BalanceType = lastSelectedBet.BalanceType;
-
             InitBets();
 
-            await Task.Factory.StartNew(async () =>
-             {
-                 await Task.Delay(1000);
-
-                 if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
-                 {
-                     BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
-                     if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
-                     {
-                         SelectedIndex = lastSelectedBet.CurrentIndex - 1;
-                     }
-                     else if (appropriateBet != null)
-                     {
-                         SelectedIndex = appropriateBet.CurrentIndex - 1;
-                     }
-                 }
-             });
+            LastPlayedBetCommand.Execute(null);
 
             IsBusy = false;
         }
@@ -471,9 +452,37 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// En son oynadığı bakiye miktarını seçili hale getirir
+        /// </summary>
+        private void ExecuteLastPlayedBetCommand()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                BetModel lastSelectedBet = _settingsService.LastSelectedBet;
+                if (lastSelectedBet != null)// En son oynadığı bakiye tipini seçili olarak getiriyoruz
+                    BalanceType = lastSelectedBet.BalanceType;
+
+                if (lastSelectedBet != null)// En son oynadığı bahisi seçili olarak getiriyoruz
+                {
+                    BetModel appropriateBet = AppropriateBet(0);// Oyuncunun bakiyesine en uygun bahis seçeği
+                    if (appropriateBet != null && appropriateBet.EntryFee == lastSelectedBet.EntryFee)
+                    {
+                        SelectedIndex = lastSelectedBet.CurrentIndex - 1;
+                    }
+                    else if (appropriateBet != null)
+                    {
+                        SelectedIndex = appropriateBet.CurrentIndex - 1;
+                    }
+                }
+            });
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand LastPlayedBetCommand => new Command(ExecuteLastPlayedBetCommand);
 
         public ICommand DuelStartCommand => new Command<BetModel>(async (bet) => await ExecuteDuelStartCommandAsync(bet));
 

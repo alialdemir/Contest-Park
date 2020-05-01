@@ -1,10 +1,12 @@
-﻿using ContestPark.Mobile.Models.Categories;
+﻿using ContestPark.Mobile.Helpers;
+using ContestPark.Mobile.Models.Categories;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Game;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -42,21 +44,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             if (parameters.ContainsKey("OpponentUserId"))
                 OpponentUserId = parameters.GetValue<string>("OpponentUserId");
 
-            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
+            CategoryListCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -99,9 +94,26 @@ namespace ContestPark.Mobile.ViewModels
             return base.GoBackAsync(parameters, useModalNavigation: true);
         }
 
+        /// <summary>
+        /// Kategori listesini getirir
+        /// </summary>
+        private async Task ExecuteCategoryListCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _categoryService.CategoryListAsync(ServiceModel);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand CategoryListCommand => new CommandAsync(ExecuteCategoryListCommand);
 
         private ICommand _duelOpenPanelCommand;
 

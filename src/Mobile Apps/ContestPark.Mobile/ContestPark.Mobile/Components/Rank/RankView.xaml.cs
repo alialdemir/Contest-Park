@@ -67,11 +67,11 @@ namespace ContestPark.Mobile.Components
             switch (BalanceType)
             {
                 case BalanceTypes.Money:
-                    imgCoins.Source = ImageSource.FromFile("doublecoinstl.png");
+                    imgCoins.Source = ImageSource.FromResource("doublecoinstl.png");
                     break;
 
                 case BalanceTypes.Gold:
-                    imgCoins.Source = ImageSource.FromFile("doublecoins.png");
+                    imgCoins.Source = ImageSource.FromResource("doublecoins.png");
                     break;
 
                 default:

@@ -29,6 +29,25 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Private variable
 
+        #region Constructors
+
+        public PostDetailViewModel(
+            INavigationService navigationService,
+            IPageDialogService dialogService,
+            IPostService postService,
+            IAnalyticsService analyticsService,
+            ISettingsService settingsService
+            ) : base(navigationService, dialogService)
+        {
+            _postService = postService;
+            _analyticsService = analyticsService;
+            _settingsService = settingsService;
+            NavigationService = navigationService;
+            Title = ContestParkResources.Comment;
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         private string _message = string.Empty;
@@ -62,45 +81,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #endregion Properties
 
-        #region Constructors
-
-        public PostDetailViewModel(
-            INavigationService navigationService,
-            IPageDialogService dialogService,
-            IPostService postService,
-            IAnalyticsService analyticsService,
-            ISettingsService settingsService
-            ) : base(navigationService, dialogService)
-        {
-            _postService = postService;
-            _analyticsService = analyticsService;
-            _settingsService = settingsService;
-            NavigationService = navigationService;
-            Title = ContestParkResources.Comment;
-        }
-
-        #endregion Constructors
-
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
             if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
 
-            PostModel = await _postService.GetPostByPostIdAsync(postId, ServiceModel);
-            if (PostModel != null && PostModel.Comments != null)
-            {
-                ServiceModel = PostModel.Comments;
-            }
+            GetPostByPostIdCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
-
-            IsBusy = false;
+            return base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -172,9 +161,24 @@ namespace ContestPark.Mobile.ViewModels
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Post listesini getirir
+        /// </summary>
+        /// <returns></returns>
+        private async Task ExecuteGetPostByPostIdCommandAsync()
+        {
+            PostModel = await _postService.GetPostByPostIdAsync(postId, ServiceModel);
+            if (PostModel != null && PostModel.Comments != null)
+            {
+                ServiceModel = PostModel.Comments;
+            }
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand GetPostByPostIdCommand => new CommandAsync(ExecuteGetPostByPostIdCommandAsync);
 
         private ICommand _gotoProfilePageCommand;
         private ICommand _sendCommentCommand;

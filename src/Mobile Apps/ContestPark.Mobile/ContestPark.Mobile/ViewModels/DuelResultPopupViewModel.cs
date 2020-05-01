@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Dependencies;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
@@ -94,7 +95,7 @@ namespace ContestPark.Mobile.ViewModels
             ProfilePictureBorderColorCommand?.Execute(null);
 
             if (DuelResult != null && _settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
-                _audioService.Play(Audio.Fireworks, true);
+                _audioService.Play(AudioTypes.Fireworks, true);
 
             await base.InitializeAsync(parameters);
         }

@@ -7,6 +7,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -46,7 +47,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
 
-            ServiceModel = await _postService.PostLikesAsync(postId, ServiceModel);
+            PostLikesCommand.Execute(null);
 
             await base.InitializeAsync(parameters);
         }
@@ -103,9 +104,26 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Postu beğenenlerin listesini verir
+        /// </summary>
+        private async Task ExecutePostLikesCommandAsync()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            ServiceModel = await _postService.PostLikesAsync(postId, ServiceModel);
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand PostLikesCommand => new CommandAsync(ExecutePostLikesCommandAsync);
 
         public ICommand _followCommand { get; set; }
         public ICommand _gotoProfilePageCommand { get; set; }

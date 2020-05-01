@@ -10,65 +10,65 @@
         <ResourceDictionary>
 
             <!--  Fonts  -->
-            <OnPlatform x:Key="icomoon" x:TypeArguments="x:String">
-                <On Platform="Android" Value="icomoon.ttf#icomoon" />
-                <On Platform="iOS" Value="icomoon" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="GothamRoundedBold"
+                x:TypeArguments="x:String"
+                Default="GothamRounded-Bold.otf" />
 
-            <OnPlatform x:Key="SofiaProRegular" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Sofia Pro Regular Az.otf#Sofia Pro Regular Az" />
-                <On Platform="iOS" Value="Sofia Pro Regular Az" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="GothamRoundedMedium"
+                x:TypeArguments="x:String"
+                Default="GothamRounded-Medium.otf" />
 
-            <OnPlatform x:Key="SofiaProLight" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Sofia Pro Light Az.otf#Sofia Pro Light Az" />
-                <On Platform="iOS" Value="Sofia Pro Light Az" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="icomoon"
+                x:TypeArguments="x:String"
+                Default="icomoon.ttf" />
 
-            <OnPlatform x:Key="SofiaProSemiBold" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Sofia Pro Semi Bold Az.otf#Sofia Pro Semi Bold Az" />
-                <On Platform="iOS" Value="Sofia Pro Semi Bold Az" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="MontserratMedium"
+                x:TypeArguments="x:String"
+                Default="Montserrat-Medium.ttf" />
 
-            <OnPlatform x:Key="SofiaProBold" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Sofia Pro Bold Az.otf#Sofia Pro Bold Az" />
-                <On Platform="iOS" Value="Sofia Pro Bold Az" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="MontserratRegular"
+                x:TypeArguments="x:String"
+                Default="Montserrat-Regular.ttf" />
 
-            <OnPlatform x:Key="SofiaProMedium" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Sofia Pro Medium Az.otf#Sofia Pro Medium Az" />
-                <On Platform="iOS" Value="Sofia Pro Medium Az" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="MontserratSemiBold"
+                x:TypeArguments="x:String"
+                Default="Montserrat-SemiBold.ttf" />
 
-            <OnPlatform x:Key="GothamRoundedBold" x:TypeArguments="x:String">
-                <On Platform="Android" Value="GothamRounded-Bold.otf#GothamRounded-Bold" />
-                <On Platform="iOS" Value="GothamRounded-Bold" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="SofiaProBlack"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Black Az.otf" />
 
-            <OnPlatform x:Key="GothamRoundedMedium" x:TypeArguments="x:String">
-                <On Platform="Android" Value="GothamRounded-Medium.otf#GothamRounded-Medium" />
-                <On Platform="iOS" Value="GothamRounded-Medium" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="SofiaProBold"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Bold Az.otf" />
 
-            <OnPlatform x:Key="MontserratRegular" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Montserrat-Regular.ttf#Montserrat-Regular" />
-                <On Platform="iOS" Value="Montserrat-Regular" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="SofiaProLight"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Light Az.otf" />
 
-            <OnPlatform x:Key="MontserratMedium" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat-Medium" />
-                <On Platform="iOS" Value="Montserrat-Medium" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="SofiaProMedium"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Medium Az.otf" />
 
-            <OnPlatform x:Key="MontserratSemiBold" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold" />
-                <On Platform="iOS" Value="Montserrat-SemiBold" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="SofiaProRegular"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Regular Az.otf" />
 
-            <OnPlatform x:Key="SofiaProBlack" x:TypeArguments="x:String">
-                <On Platform="Android" Value="Sofia Pro Black Az.otf#Sofia Pro Black Az" />
-                <On Platform="iOS" Value="Sofia Pro Black Az" />
-            </OnPlatform>
+            <OnPlatform
+                x:Key="SofiaProSemiBold"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Semi Bold Az.otf" />
 
             <!--  Colors  -->
             <Color x:Key="SkeletonLoading">#e8e8e8</Color>
@@ -146,6 +146,11 @@
                 </Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
                 <Setter Property="Title" Value="{Binding Title}" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="True" TargetType="ContentView">
+                <Setter Property="Visual" Value="Material" />
             </Style>
 
             <Style x:Key="ContentParkLabel" TargetType="Label">

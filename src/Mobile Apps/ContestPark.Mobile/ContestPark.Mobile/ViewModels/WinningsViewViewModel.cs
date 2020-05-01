@@ -7,6 +7,7 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -57,19 +58,21 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Sayfa açılınca bakiye bilgisini getirir
         /// </summary>
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            await GetBalanceAsync();
+            GetBalanceCommand.Execute(null);
 
             _eventAggregator
                 .GetEvent<GoldUpdatedEvent>()
-                .Subscribe(async () => await GetBalanceAsync());
+                .Subscribe(() => GetBalanceCommand.Execute(null));
+
+            return base.InitializeAsync(null);
         }
 
         /// <summary>
         /// Sayfada gösterilen bakiye bilgisini yükler
         /// </summary>
-        private async Task GetBalanceAsync()
+        private async Task GetBalanceCommandAsync()
         {
             var balance = await _balanceService.GetBalanceAsync();
             if (balance != null)
@@ -98,6 +101,8 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        private ICommand GetBalanceCommand => new CommandAsync(GetBalanceCommandAsync);
 
         public ICommand BalanceCommand
         {

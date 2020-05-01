@@ -163,7 +163,7 @@
     <PackageReference Include="Xamarin.Firebase.Ads">
       <Version>71.1501.0-preview2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.657" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
@@ -178,7 +178,7 @@
       <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.5.0.657</Version>
+      <Version>4.6.0.726</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -202,51 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fireworks.json" />
-    <AndroidAsset Include="Assets\Helvetica.ttf" />
-    <AndroidAsset Include="Assets\Helvetica-Bold.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Black.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-BlackItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Bold.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-BoldItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-ExtraBold.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-ExtraBoldItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-ExtraLight.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-ExtraLightItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Italic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Light.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-LightItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Medium.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-MediumItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Regular.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-SemiBold.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-SemiBoldItalic.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Thin.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-ThinItalic.ttf" />
-    <AndroidAsset Include="Assets\Sofia Pro Black Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Black Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Bold Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Bold Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro ExtraLight Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro ExtraLight Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Light Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Light Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Medium Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Medium Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Regular Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Regular Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Semi Bold Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro Semi Bold Italic Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro UltraLight Az.otf" />
-    <AndroidAsset Include="Assets\Sofia Pro UltraLight Italic Az.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-Bold.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-BoldItalic.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-Book.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-BookItalic.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-Light.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-LightItalic.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-Medium.otf" />
-    <AndroidAsset Include="Assets\GothamRounded-MediumItalic.otf" />
-    <AndroidAsset Include="Assets\icomoon.ttf" />
     <None Include="..\..\..\..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -281,13 +236,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -309,199 +258,19 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\appstoreandgoogleplay.png" />
+    <None Include="Linker.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\verify.svg" />
+    <AndroidResource Include="Resources\drawable\splash.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\menuicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\left_arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prizeicon1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prizeicon6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prizeicon2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prizeicon3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prizeicon4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prizeicon5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\doublecoins.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\doublecoinstl.png" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\switchactive.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\switchpassive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\vs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\questioncenter.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\RightArrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\LeftArrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ContestSingleCoin.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\SingleMoney.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\conteststore.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_header.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_gold_1.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_gold_2.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_gold_3.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_gold_4.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_8.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_7.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_6.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contest_store_money_5.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\send_message.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ranking_header.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\likes.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\liked.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\profile_chat.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\profile_follow.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\profile_play.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\profile_unfollow.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\search_cancel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\search_result.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\invite_friends.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\money_bag.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\fullname.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\sms.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\TUR_s.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\find_opponent.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\left_menu_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\invite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\money.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\balancecode.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\balance.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\username.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\rank1.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\rank2.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\rank3.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\earn_money.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\select_categories.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\choose_prize.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\question_answer.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\next_tutorial.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\gift1.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\gift2.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\coins.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\socialmediashare.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Linker.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

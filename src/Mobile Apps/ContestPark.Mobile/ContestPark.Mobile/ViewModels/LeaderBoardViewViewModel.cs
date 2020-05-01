@@ -1,9 +1,11 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Ranking;
 using ContestPark.Mobile.Services.Score;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -48,7 +50,36 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override Task InitializeAsync(INavigationParameters parameters = null)
+        {
+            AllTimesCommandAsync.Execute(null);
+
+            return base.InitializeAsync(parameters);
+        }
+
+        /// <summary>
+        /// Profile sayfasına git
+        /// </summary>
+        /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
+        private void ExecuteGotoProfilePageCommand(string userName)
+        {
+            if (IsBusy || string.IsNullOrEmpty(userName))
+                return;
+
+            IsBusy = true;
+
+            NavigateToAsync<ProfileView>(new NavigationParameters
+                {
+                    {"UserName", userName }
+                });
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Liderler listesini yükler
+        /// </summary>
+        private async Task ExecuteAllTimesCommandAsync()
         {
             if (IsBusy)
                 return;
@@ -56,7 +87,6 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             var rank = await _scoreService.AllTimesAsync(ServiceModel);
-
             if (rank != null)
             {
                 if (Ranks == null || Ranks.ContestFinishDate == null || !Items.Any())
@@ -89,37 +119,14 @@ namespace ContestPark.Mobile.ViewModels
                         ServiceModel = rank.Ranks;
                     }
 
-                    await base.InitializeAsync(parameters);
-
                     if (rankCount <= 4 && rankCount != 0)
                         IsShowEmptyMessage = false;
                 }
                 else
                 {
                     ServiceModel = rank.Ranks;
-
-                    await base.InitializeAsync(parameters);
                 }
             }
-
-            IsBusy = false;
-        }
-
-        /// <summary>
-        /// Profile sayfasına git
-        /// </summary>
-        /// <param name="userName">Profili açılacak kullanıcının kullanıcı adı</param>
-        private void ExecuteGotoProfilePageCommand(string userName)
-        {
-            if (IsBusy || string.IsNullOrEmpty(userName))
-                return;
-
-            IsBusy = true;
-
-            NavigateToAsync<ProfileView>(new NavigationParameters
-                {
-                    {"UserName", userName }
-                });
 
             IsBusy = false;
         }
@@ -127,6 +134,8 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        private ICommand AllTimesCommandAsync => new CommandAsync(ExecuteAllTimesCommandAsync);
 
         private ICommand _gotoProfilePageCommand;
 

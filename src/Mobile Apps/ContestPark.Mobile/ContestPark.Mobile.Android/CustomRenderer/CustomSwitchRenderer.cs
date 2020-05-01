@@ -1,10 +1,11 @@
 ﻿using Android.Content;
 using Android.Graphics;
+using ContestPark.Mobile.Components.CustomSwitch;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Xamarin.Forms.Switch), typeof(CustomSwitchRendererd))]
+[assembly: ExportRenderer(typeof(CustomSwitch), typeof(CustomSwitchRendererd))]
 
 namespace ContestPark.Mobile.Droid.CustomRenderer
 {
@@ -15,7 +16,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
         {
         }
 
-        private Xamarin.Forms.Switch view;
+        private CustomSwitch view;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Switch> e)
         {
@@ -23,7 +24,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             if (e.OldElement != null || e.NewElement == null)
                 return;
 
-            view = Element;
+            view = (CustomSwitch)Element;
 
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.JellyBean)
             {
@@ -57,7 +58,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             UpdateSwitchThumbImage(view);
         }
 
-        private void UpdateSwitchThumbImage(Xamarin.Forms.Switch view)
+        private void UpdateSwitchThumbImage(CustomSwitch view)
         {
             if (this.Control.Checked)
             {

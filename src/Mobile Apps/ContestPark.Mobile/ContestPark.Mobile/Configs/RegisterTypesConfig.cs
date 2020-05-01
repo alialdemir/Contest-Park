@@ -136,76 +136,41 @@ namespace ContestPark.Mobile.Configs
         {
             containerRegistry.RegisterPopupNavigationService();
 
-            if (!GlobalSetting.Instance.IsMockData)
-            {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
+            containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
-                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
+            containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
 
-                containerRegistry.RegisterSingleton<IBackgroundAggregatorService, BackgroundAggregatorService>();
+            containerRegistry.RegisterSingleton<IBackgroundAggregatorService, BackgroundAggregatorService>();
 
-                containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
+            containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 
-                containerRegistry.RegisterSingleton<IPostService, PostService>();
+            containerRegistry.RegisterSingleton<IPostService, PostService>();
 
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
+            containerRegistry.RegisterSingleton<ICategoryService, CategoryServices>();
 
-                containerRegistry.RegisterSingleton<IChatService, ChatService>();
+            containerRegistry.RegisterSingleton<IChatService, ChatService>();
 
-                containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
+            containerRegistry.RegisterSingleton<IBalanceService, BalanceService>();
 
-                containerRegistry.RegisterSingleton<IMissionService, MissionService>();
+            containerRegistry.RegisterSingleton<IMissionService, MissionService>();
 
-                containerRegistry.RegisterSingleton<INoticeService, NoticeService>();
+            containerRegistry.RegisterSingleton<INoticeService, NoticeService>();
 
-                containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
+            containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
 
-                containerRegistry.RegisterSingleton<IDuelService, DuelService>();
+            containerRegistry.RegisterSingleton<IDuelService, DuelService>();
 
-                containerRegistry.RegisterSingleton<IFollowService, FollowService>();
+            containerRegistry.RegisterSingleton<IFollowService, FollowService>();
 
-                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
+            containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
 
-                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
+            containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRServiceBase>();
 
-                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
+            containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRService>();
 
-                containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
+            containerRegistry.RegisterSingleton<IScoreService, ScoreService>();
 
-                containerRegistry.RegisterSingleton<ILatestVersionService, LatestVersionService>();
-            }
-            else
-            {
-                containerRegistry.RegisterSingleton<IIdentityService, IdentityMockService>();
-
-                containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingMockService>();
-
-                containerRegistry.RegisterSingleton<IBlockingService, BlockingMockService>();
-
-                containerRegistry.RegisterSingleton<IPostService, PostMockService>();
-
-                containerRegistry.RegisterSingleton<ICategoryService, CategoryMockServices>();
-
-                containerRegistry.RegisterSingleton<IChatService, ChatMockService>();
-
-                containerRegistry.RegisterSingleton<IBalanceService, BalanceMockService>();
-
-                containerRegistry.RegisterSingleton<IMissionService, MissionMockService>();
-
-                containerRegistry.RegisterSingleton<INotificationService, NotificationMockService>();
-
-                containerRegistry.RegisterSingleton<IDuelService, DuelMockService>();
-
-                containerRegistry.RegisterSingleton<IFollowService, FollowMockService>();
-
-                containerRegistry.RegisterSingleton<IRequestProvider, RequestProvider>();
-
-                containerRegistry.RegisterSingleton<ISignalRServiceBase, SignalRMockServiceBase>();
-
-                containerRegistry.RegisterSingleton<IDuelSignalRService, DuelSignalRMockService>();
-
-                containerRegistry.RegisterSingleton<IScoreService, ScoreMockService>();
-            }
+            containerRegistry.RegisterSingleton<ILatestVersionService, LatestVersionService>();
 
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
 

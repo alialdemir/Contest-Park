@@ -6,12 +6,12 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="categoryDetailPage"
     Padding="0"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:SubCategoryFollowConverter x:Key="scfb" />
@@ -229,6 +229,7 @@
                                     </OnPlatform>
                                 </components:LinearGradientButton.CornerRadius>
                             </components:LinearGradientButton>
+
                             <components:LinearGradientButton
                                 Grid.Row="3"
                                 Grid.ColumnSpan="2"

@@ -198,6 +198,9 @@
   <data name="Collect" xml:space="preserve">
     <value>Topla</value>
   </data>
+  <data name="ComingSoon" xml:space="preserve">
+    <value>Çok yakında!</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>Yorumlar</value>
   </data>

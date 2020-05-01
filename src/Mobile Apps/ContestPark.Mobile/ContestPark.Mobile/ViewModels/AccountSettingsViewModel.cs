@@ -3,6 +3,7 @@ using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Identity;
 using ContestPark.Mobile.Models.MenuItem;
+using ContestPark.Mobile.Models.ServiceModel;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Media;
@@ -11,6 +12,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,42 +63,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            ServiceModel.Items = new List<MenuItemList>()
-            {
-                new MenuItemList(ContestParkResources.AccountSettings)
-                                {
-                                    new InputMenuItem {
-                                        Icon = ContestParkApp.Current.Resources["FullNameSettings"].ToString(),
-                                        MenuType = Enums.MenuTypes.Input,
-                                        Placeholder = ContestParkResources.Fullname,
-                                        Text = _settingsService.CurrentUser.FullName,
-                                    },
-                                    new InputMenuItem {
-                                        Icon = ContestParkApp.Current.Resources["UsernameSettings"].ToString(),
-                                        MenuType = Enums.MenuTypes.Input,
-                                        Placeholder = ContestParkResources.UserName,
-                                        Text = _settingsService.CurrentUser.UserName,
-                                        CornerRadius = new CornerRadius(0,0,8,8)
-                                    },
-                                },
-
-                new MenuItemList(ContestParkResources.PictureSettings)
-                                {
-                                    new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Label,
-                                        Title = ContestParkResources.ChangeProfilePicture,
-                                        Icon = ContestParkApp.Current.Resources["ProfilePictureSettings"].ToString(),
-                                        SingleTap = new Command(async () => await ChangeProfilePictureAsync())
-        },
-                                    new TextMenuItem {
-                                        MenuType = Enums.MenuTypes.Label,
-                                        Title = ContestParkResources.ChangeCoverPicture,
-                                        Icon =  ContestParkApp.Current.Resources["CoverPictureSettings"].ToString(),
-                                        SingleTap = new Command(async () => await ChangeCoverPicture()),
-                                        CornerRadius = new CornerRadius(0,0,8,8)
-                                    },
-                                },
-            };
+            LoadAccountSettingsCommand.Execute(null);
 
             return base.InitializeAsync(parameters);
         }
@@ -196,9 +163,57 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Hesap ayarlarını yükler
+        /// </summary>
+        private void ExecuteLoadAccountSettingsCommand()
+        {
+            ServiceModel = new ServiceModel<MenuItemList>
+            {
+                Items = new List<MenuItemList>()
+            {
+                new MenuItemList(ContestParkResources.AccountSettings)
+                                {
+                                    new InputMenuItem {
+                                        Icon = ContestParkApp.Current.Resources["FullNameSettings"].ToString(),
+                                        MenuType = Enums.MenuTypes.Input,
+                                        Placeholder = ContestParkResources.Fullname,
+                                        Text = _settingsService.CurrentUser.FullName,
+                                    },
+                                    new InputMenuItem {
+                                        Icon = ContestParkApp.Current.Resources["UsernameSettings"].ToString(),
+                                        MenuType = Enums.MenuTypes.Input,
+                                        Placeholder = ContestParkResources.UserName,
+                                        Text = _settingsService.CurrentUser.UserName,
+                                        CornerRadius = new CornerRadius(0,0,8,8)
+                                    },
+                                },
+
+                new MenuItemList(ContestParkResources.PictureSettings)
+                                {
+                                    new TextMenuItem {
+                                        MenuType = Enums.MenuTypes.Label,
+                                        Title = ContestParkResources.ChangeProfilePicture,
+                                        Icon = ContestParkApp.Current.Resources["ProfilePictureSettings"].ToString(),
+                                        SingleTap = new Command(async () => await ChangeProfilePictureAsync())
+        },
+                                    new TextMenuItem {
+                                        MenuType = Enums.MenuTypes.Label,
+                                        Title = ContestParkResources.ChangeCoverPicture,
+                                        Icon =  ContestParkApp.Current.Resources["CoverPictureSettings"].ToString(),
+                                        SingleTap = new Command(async () => await ChangeCoverPicture()),
+                                        CornerRadius = new CornerRadius(0,0,8,8)
+                                    },
+                                },
+            }
+            };
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand LoadAccountSettingsCommand => new Command(ExecuteLoadAccountSettingsCommand);
 
         private ICommand _saveCommand;
 

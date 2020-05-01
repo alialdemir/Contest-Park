@@ -12,6 +12,7 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -51,29 +52,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task InitializeAsync(INavigationParameters parameters = null)
         {
-            bool isTurkish = _settingsService.CurrentUser.Language == Languages.Turkish;
-
-            ServiceModel.Items = new List<MenuItemList>()
-            {
-                new MenuItemList(ContestParkResources.SelectLanguage)
-                                {
-                                    new SwitchMenuItem {
-                                        CommandParameter = Languages.Turkish,
-                                        Title = ContestParkResources.Turkish,
-                                        MenuType = MenuTypes.Switch,
-                                        SingleTap = ChangeLanguageCommand,
-                                        IsToggled = isTurkish
-                                    },
-                                    new SwitchMenuItem {
-                                        CommandParameter = Languages.English,
-                                        Title = ContestParkResources.English,
-                                        MenuType = MenuTypes.Switch,
-                                        SingleTap = ChangeLanguageCommand,
-                                        IsToggled = !isTurkish,
-                                        CornerRadius = new CornerRadius(0,0,8,8)
-                                    },
-                                },
-            };
+            SetLanguageCommand.Execute(null);
 
             return base.InitializeAsync(parameters);
         }
@@ -153,9 +132,48 @@ namespace ContestPark.Mobile.ViewModels
                  .ForEach(p => ((SwitchMenuItem)p).IsToggled = false);
         }
 
+        /// <summary>
+        /// Dilleri items olarak ekler
+        /// </summary>
+        private void ExecuteSetLanguageCommand()
+        {
+            bool isTurkish = _settingsService.CurrentUser.Language == Languages.Turkish;
+
+            ServiceModel = new Models.ServiceModel.ServiceModel<MenuItemList>
+            {
+                Items = new List<MenuItemList>()
+                                            {
+                                                new MenuItemList(ContestParkResources.SelectLanguage)
+                                                                {
+                                                                    new SwitchMenuItem {
+                                                                        CommandParameter = Languages.Turkish,
+                                                                        Title = ContestParkResources.Turkish,
+                                                                        MenuType = MenuTypes.Switch,
+                                                                        SingleTap = ChangeLanguageCommand,
+                                                                        IsToggled = isTurkish
+                                                                    },
+                                                                    new SwitchMenuItem {
+                                                                        CommandParameter = Languages.English,
+                                                                        Title = ContestParkResources.English,
+                                                                        MenuType = MenuTypes.Switch,
+                                                                        SingleTap = ChangeLanguageCommand,
+                                                                        IsToggled = !isTurkish,
+                                                                        CornerRadius = new CornerRadius(0,0,8,8)
+                                                                    },
+                                                                },
+                                            },
+                Count = 2,
+                HasNextPage = false,
+                PageSize = 2,
+                PageNumber = 1
+            };
+        }
+
         #endregion Methods
 
         #region Commands
+
+        private ICommand SetLanguageCommand => new Command(ExecuteSetLanguageCommand);
 
         private ICommand _changeLanguageCommand;
 

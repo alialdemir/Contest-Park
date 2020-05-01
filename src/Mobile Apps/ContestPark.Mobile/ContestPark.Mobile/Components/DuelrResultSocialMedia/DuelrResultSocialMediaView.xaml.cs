@@ -34,8 +34,8 @@ namespace ContestPark.Mobile.Components.DuelResultSocialMedia
 
                 if (viewModel != null)
                 {
-                    FounderImage.Source = GetImage(viewModel.FounderProfilePicturePath);
-                    OpponentImage.Source = GetImage(viewModel.OpponentProfilePicturePath);
+                    FounderImage.Source = FileImageSource.FromUri(new Uri(viewModel.FounderProfilePicturePath));
+                    OpponentImage.Source = FileImageSource.FromUri(new Uri(viewModel.OpponentProfilePicturePath));
 
                     if (FounderImage.Transformations.Count == 1) FounderImage.Transformations.RemoveAt(0);
                     if (OpponentImage.Transformations.Count == 1) OpponentImage.Transformations.RemoveAt(0);
@@ -79,24 +79,9 @@ namespace ContestPark.Mobile.Components.DuelResultSocialMedia
 
                     Date.Text = viewModel.Date;
 
-                    SubCategoryPicturePath.Source = GetImage(viewModel.SubCategoryPicturePath);
+                    SubCategoryPicturePath.Source = FileImageSource.FromUri(new Uri(viewModel.SubCategoryPicturePath));
                 }
             }
-        }
-
-        /// <summary>
-        /// Eğer url ise fromUrl değilse fromFile ile resmi yükler
-        /// </summary>
-        /// <param name="subCategoryPicturePath"></param>
-        /// <returns></returns>
-        private ImageSource GetImage(string subCategoryPicturePath)
-        {
-            if (string.IsNullOrEmpty(subCategoryPicturePath))
-                return FileImageSource.FromFile(DefaultImages.DefaultProfilePicture);
-
-            return subCategoryPicturePath.StartsWith("http://") || subCategoryPicturePath.StartsWith("https://") ?
-                FileImageSource.FromUri(new Uri(subCategoryPicturePath)) :
-                FileImageSource.FromFile(subCategoryPicturePath);
         }
 
         #endregion Properties

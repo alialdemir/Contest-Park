@@ -8,9 +8,9 @@ using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Events;
 using Prism.Ioc;
+using System.Reflection;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace ContestPark.Mobile
 {
@@ -92,10 +92,6 @@ namespace ContestPark.Mobile
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-#if DEBUG
-            GlobalSetting.Instance.IsMockData = false;
-#endif
-
             containerRegistry.RegisterTypeForNavigation();
             containerRegistry.RegisterTypeInstance();
         }

@@ -1,10 +1,12 @@
-﻿namespace ContestPark.Mobile.Services.Audio
+﻿using ContestPark.Mobile.Enums;
+
+namespace ContestPark.Mobile.Services.Audio
 {
     public interface IAudioService
     {
         void FastForward();
 
-        void Play(Audio audio, bool loop = false);
+        void Play(AudioTypes audio, bool loop = false);
 
         void Stop();
 
