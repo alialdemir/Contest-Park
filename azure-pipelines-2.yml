@@ -24,7 +24,12 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
-
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'ContestParkDevCer.p12'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'VS_comcontestparkapp_Development.mobileprovision'
 - task: AppStoreRelease@1
   inputs:
     serviceEndpoint: 'Apple Store Service'
