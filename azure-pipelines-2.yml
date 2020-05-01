@@ -53,8 +53,8 @@ steps:
     username: 'aldemirali93@gmail.com'
     password: '7412369**Ali'
     isTwoFactorAuth: true
-    appSpecificPassword: 'aldemirali93@gmail.com'
-    fastlaneSession: 'nwfi-plwu-wtpt-ljwg'
+    appSpecificPassword: 'tnwn-sykx-pgxk-noof'
+    fastlaneSession: 'aldemirali93@gmail.com'
     appIdentifier: 'com.contestpark.app'
     appType: 'iOS'
     ipaPath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/bin/iPhone/Release/*.ipa'
