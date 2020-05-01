@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+
 steps:
 # To manually select a Xamarin SDK version on the Microsoft-hosted macOS agent,
 # configure this task with the *Mono* version that is associated with the
@@ -23,19 +24,21 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
-
-- task: InstallAppleCertificate@2
+- task: DownloadSecureFile@1
   inputs:
-    certSecureFile: 'ContestParkDevCer.p12'
-    certPwd: '$(IosKeyCerPassword)'
-    keychain: 'temp'
+    secureFile: 'Certificates.p12'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'ContestPark_Provisioning.mobileprovision'
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'VS_comcontestparkapp_Development.mobileprovision'
+    provProfileSecureFile: 'ContestPark_Provisioning.mobileprovision'
 - task: XamariniOS@2
   inputs:
-    solutionFile: '**/ContestPark.Mobile.sln'
+    solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
     configuration: 'Release'
-    buildForSimulator: false
-    packageApp: false
+    packageApp: true
+    runNugetRestore: true
+    signingIdentity: 'Apple Development: ali aldemir (V6854F4555)'
+    signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
