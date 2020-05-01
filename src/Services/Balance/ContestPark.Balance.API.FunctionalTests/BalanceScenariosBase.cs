@@ -1,14 +1,7 @@
 ﻿using ContestPark.Balance.API.Enums;
-using ContestPark.Balance.API.Infrastructure;
-using ContestPark.Balance.API.Migrations;
-using ContestPark.Core.Dapper.Extensions;
-using ContestPark.Core.Database.Extensions;
 using ContestPark.Core.Database.Models;
 using ContestPark.Core.FunctionalTests;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace ContestPark.Balance.API.FunctionalTests
@@ -18,22 +11,22 @@ namespace ContestPark.Balance.API.FunctionalTests
     {
         public override void Seed(IWebHost host)
         {
-            host.MigrateDatabase((services, updateDatabase) =>
-            {
-                var settings = services.GetService<IOptions<BalanceSettings>>();
+            //host.MigrateDatabase((services, updateDatabase) =>
+            //{
+            //    var settings = services.GetService<IOptions<BalanceSettings>>();
 
-                var logger = services.GetService<ILogger<BalanceApiSeed>>();
+            //    var logger = services.GetService<ILogger<BalanceApiSeed>>();
 
-                updateDatabase(
-                    settings.Value.ConnectionString,
-                    MigrationAssembly.GetAssemblies(),
-                    () =>
-                    {
-                        new BalanceApiSeed()
-                         .SeedAsync(services, logger)
-                         .Wait();
-                    });
-            });
+            //    updateDatabase(
+            //        settings.Value.ConnectionString,
+            //        MigrationAssembly.GetAssemblies(),
+            //        () =>
+            //        {
+            //            new BalanceApiSeed()
+            //             .SeedAsync(services, logger)
+            //             .Wait();
+            //        });
+            //});
         }
 
         public static class Entpoints
