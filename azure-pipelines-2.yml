@@ -43,6 +43,7 @@ steps:
     sourcePath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/Info.plist'
     versionCodeOption: 'buildid'
     versionCode: '$(Build.BuildId)'
+    versionName: '3.11.$(Build.BuildId)'
     printFile: false
 - task: XamariniOS@2
   inputs:
