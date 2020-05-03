@@ -201,11 +201,11 @@
     <Compile Include="SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\fireworks.json" />
     <None Include="..\..\..\..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
     <GoogleServicesJson Include="google-services.json" />
+    <AndroidAsset Include="Assets\fireworks.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

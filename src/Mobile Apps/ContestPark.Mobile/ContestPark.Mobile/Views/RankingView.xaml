@@ -10,6 +10,7 @@
     x:Name="rankingPage"
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#424E5C"
     Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -21,6 +22,7 @@
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             x:Name="lstView"
+            BackgroundColor="{StaticResource GlobalBackgroundColor}"
             Footer="{Binding RankEmptyMessage}"
             InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
