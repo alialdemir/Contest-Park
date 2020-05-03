@@ -111,7 +111,7 @@
                                 VerticalOptions="End">
                                 <Components:LinearGradientButton.WidthRequest>
                                     <OnPlatform x:TypeArguments="x:Double">
-                                        <On Platform="iOS" Value="335" />
+                                        <On Platform="iOS" Value="334" />
                                         <On Platform="Android" Value="330" />
                                     </OnPlatform>
                                 </Components:LinearGradientButton.WidthRequest>

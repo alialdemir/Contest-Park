@@ -25,10 +25,13 @@
             </Grid.RowDefinitions>
 
             <Image
+                HeightRequest="55"
                 HorizontalOptions="Start"
                 IsVisible="{Binding Path=Answer.IsLeftArrowVisible, Source={x:Reference stylishFrame}}"
                 Source="{image:ImageResource RightArrow.png}"
-                VerticalOptions="Center" />
+                TranslationX="-10"
+                VerticalOptions="Center"
+                WidthRequest="55" />
 
             <Label
                 Grid.Row="0"
@@ -42,10 +45,13 @@
                 VerticalOptions="CenterAndExpand" />
 
             <Image
+                HeightRequest="55"
                 HorizontalOptions="End"
                 IsVisible="{Binding Path=Answer.IsRightArrowVisible, Source={x:Reference stylishFrame}}"
                 Source="{image:ImageResource LeftArrow.png}}"
-                VerticalOptions="Center" />
+                TranslationX="10"
+                VerticalOptions="Center"
+                WidthRequest="55" />
         </Grid>
     </yummy:PancakeView.Content>
 </yummy:PancakeView>

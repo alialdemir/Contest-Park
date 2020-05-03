@@ -180,6 +180,8 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _settingsService.SetTokenInfo(token);
 
+                _categoryService.RemoveCategoryListCache(new PagingModel { PageSize = 9999 });// Kategori sayfasında tekrar yeniden kategorileri çekmesi için cache temizledim
+
                 UserInfoModel currentUser = await _identityService.GetUserInfo();
                 if (currentUser != null)
                 {
@@ -203,9 +205,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
-
             _categoryService.RemoveCategoryListCache(new PagingModel { PageSize = 9999 });// Kategori sayfasında tekrar yeniden kategorileri çekmesi için cache temizledim
-
 
             return base.GoBackAsync(parameters, useModalNavigation);
         }
