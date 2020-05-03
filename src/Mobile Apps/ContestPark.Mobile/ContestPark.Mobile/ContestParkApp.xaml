@@ -8,73 +8,12 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
 
-            <!--  Fonts  -->
-            <OnPlatform
-                x:Key="GothamRoundedBold"
-                x:TypeArguments="x:String"
-                Default="GothamRounded-Bold.otf" />
-
-            <OnPlatform
-                x:Key="GothamRoundedMedium"
-                x:TypeArguments="x:String"
-                Default="GothamRounded-Medium.otf" />
-
-            <OnPlatform
-                x:Key="icomoon"
-                x:TypeArguments="x:String"
-                Default="icomoon.ttf" />
-
-            <OnPlatform
-                x:Key="MontserratMedium"
-                x:TypeArguments="x:String"
-                Default="Montserrat-Medium.ttf" />
-
-            <OnPlatform
-                x:Key="MontserratRegular"
-                x:TypeArguments="x:String"
-                Default="Montserrat-Regular.ttf" />
-
-            <OnPlatform
-                x:Key="MontserratSemiBold"
-                x:TypeArguments="x:String"
-                Default="Montserrat-SemiBold.ttf" />
-
-            <OnPlatform
-                x:Key="SofiaProBlack"
-                x:TypeArguments="x:String"
-                Default="Sofia Pro Black Az.otf" />
-
-            <OnPlatform
-                x:Key="SofiaProBold"
-                x:TypeArguments="x:String"
-                Default="Sofia Pro Bold Az.otf" />
-
-            <OnPlatform
-                x:Key="SofiaProLight"
-                x:TypeArguments="x:String"
-                Default="Sofia Pro Light Az.otf" />
-
-            <OnPlatform
-                x:Key="SofiaProMedium"
-                x:TypeArguments="x:String"
-                Default="Sofia Pro Medium Az.otf" />
-
-            <OnPlatform
-                x:Key="SofiaProRegular"
-                x:TypeArguments="x:String"
-                Default="Sofia Pro Regular Az.otf" />
-
-            <OnPlatform
-                x:Key="SofiaProSemiBold"
-                x:TypeArguments="x:String"
-                Default="Sofia Pro Semi Bold Az.otf" />
-
             <!--  Colors  -->
+            <Color x:Key="GlobalBackgroundColor">#F0F0F0</Color>
             <Color x:Key="SkeletonLoading">#e8e8e8</Color>
             <Color x:Key="SettingsIconColor">#ABABAB</Color>
             <Color x:Key="White">#FFFFFF</Color>
             <Color x:Key="BarTextColor">#211414</Color>
-            <Color x:Key="GlobalBackgroundColor">#F0F0F0</Color>
             <Color x:Key="CategoryDetailTextColor">#303030</Color>
             <Color x:Key="Black">#211414</Color>
             <Color x:Key="ListBackgroundColor">#171717</Color>
@@ -137,6 +76,67 @@
             <!--  Bool values  -->
             <x:Boolean x:Key="True">True</x:Boolean>
             <x:Boolean x:Key="False">False</x:Boolean>
+
+            <!--  Fonts  -->
+            <OnPlatform
+                x:Key="GothamRoundedBold"
+                x:TypeArguments="x:String"
+                Default="GothamRounded-Bold.otf" />
+
+            <OnPlatform
+                x:Key="GothamRoundedMedium"
+                x:TypeArguments="x:String"
+                Default="GothamRounded-Medium.otf" />
+
+            <OnPlatform
+                x:Key="icomoon"
+                x:TypeArguments="x:String"
+                Default="icomoon.ttf" />
+
+            <OnPlatform
+                x:Key="MontserratMedium"
+                x:TypeArguments="x:String"
+                Default="Montserrat-Medium.ttf" />
+
+            <OnPlatform
+                x:Key="MontserratRegular"
+                x:TypeArguments="x:String"
+                Default="Montserrat-Regular.ttf" />
+
+            <OnPlatform
+                x:Key="MontserratSemiBold"
+                x:TypeArguments="x:String"
+                Default="Montserrat-SemiBold.ttf" />
+
+            <OnPlatform
+                x:Key="SofiaProBlack"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Black Az.otf" />
+
+            <OnPlatform
+                x:Key="SofiaProBold"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Bold Az.otf" />
+
+            <OnPlatform
+                x:Key="SofiaProLight"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Light Az.otf" />
+
+            <OnPlatform
+                x:Key="SofiaProMedium"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Medium Az.otf" />
+
+            <OnPlatform
+                x:Key="SofiaProRegular"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Regular Az.otf" />
+
+            <OnPlatform
+                x:Key="SofiaProSemiBold"
+                x:TypeArguments="x:String"
+                Default="Sofia Pro Semi Bold Az.otf" />
 
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
                 <Setter Property="Padding">

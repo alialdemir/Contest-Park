@@ -16,6 +16,7 @@ namespace ContestPark.Mobile.Components
         /// </summary>
         public ListItemFactory()
         {
+            BackgroundColor = (Color)ContestParkApp.Current.Resources["GlobalBackgroundColor"];
         }
 
         #endregion Constructors

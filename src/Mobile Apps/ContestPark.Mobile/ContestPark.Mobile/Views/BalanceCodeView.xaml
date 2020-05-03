@@ -13,12 +13,17 @@
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView
-                Padding="16"
+                Margin="0,16,0,0"
                 BackgroundColor="{StaticResource White}"
                 CornerRadius="8"
                 Elevation="6"
                 HasShadow="True"
                 VerticalOptions="Start">
+                <yummy:PancakeView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,30,0,0" />
+                    </OnPlatform>
+                </yummy:PancakeView.Margin>
                 <Grid
                     HorizontalOptions="FillAndExpand"
                     RowSpacing="15"
