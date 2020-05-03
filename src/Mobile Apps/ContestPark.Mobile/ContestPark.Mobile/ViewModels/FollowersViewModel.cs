@@ -7,7 +7,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -32,7 +31,7 @@ namespace ContestPark.Mobile.ViewModels
                 IPageDialogService dialogService,
                 IFollowService followService,
                 IAnalyticsService analyticsService
-            ) : base(navigationService, dialogService)
+            ) : base(navigationService, dialogService, isActiveSkeletonLoading: true)
         {
             _followService = followService;
             _analyticsService = analyticsService;

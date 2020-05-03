@@ -19,6 +19,8 @@
             x:Name="pncView"
             Margin="0,0,0,8"
             Padding="0"
+            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+            extension:Skeleton.IsParent="True"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
@@ -30,9 +32,6 @@
                 effects:LongPressedEffect.CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}"
                 effects:LongPressedEffect.LongPressed="{Binding Path=LongPressed, Source={x:Reference listItemView}}"
                 effects:LongPressedEffect.SingleTap="{Binding Path=SingleTap, Source={x:Reference listItemView}}"
-                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
-                extension:Skeleton.IsParent="True"
                 ColumnSpacing="0"
                 RowSpacing="0">
                 <Grid.Effects>
