@@ -49,7 +49,7 @@ steps:
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
 - task: AppStoreRelease@1
   inputs:
-    serviceEndpoint: 'ContestPark Apple Store'
+    serviceEndpoint: 'Apple Store'
     appIdentifier: 'com.contestpark.app'
     appType: 'iOS'
     ipaPath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/bin/iPhone/Release/*.ipa'
