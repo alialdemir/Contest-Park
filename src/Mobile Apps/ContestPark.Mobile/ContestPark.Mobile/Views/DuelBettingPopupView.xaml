@@ -51,7 +51,7 @@
 
                             <!--  Para ile oyna  -->
                             <Components:LinearGradientButton
-                                Padding="0,-30,0,0"
+                                Padding="0,-90,0,0"
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
@@ -60,7 +60,7 @@
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
                                 FontSize="23"
-                                HeightRequest="80"
+                                HeightRequest="150"
                                 HorizontalOptions="Start"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Money}"
@@ -72,7 +72,7 @@
 
                             <!--  Altınla oyna  -->
                             <Components:LinearGradientButton
-                                Padding="0,-30,0,0"
+                                Padding="0,-90,0,0"
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
@@ -81,7 +81,7 @@
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
                                 FontSize="23"
-                                HeightRequest="80"
+                                HeightRequest="150"
                                 HorizontalOptions="End"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Gold}"
@@ -93,7 +93,7 @@
 
                             <!--  Play  -->
                             <Components:LinearGradientButton
-                                Padding="0,30,0,0"
+                                Padding="0,90,0,0"
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
@@ -102,7 +102,7 @@
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
                                 FontSize="23"
-                                HeightRequest="80"
+                                HeightRequest="150"
                                 HorizontalOptions="CenterAndExpand"
                                 StartColor="#2CCCD8"
                                 Text="{i18n:Translate Play}"

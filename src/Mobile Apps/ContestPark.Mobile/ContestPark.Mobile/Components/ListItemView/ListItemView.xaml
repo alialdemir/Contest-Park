@@ -30,6 +30,7 @@
                 effects:LongPressedEffect.CommandParameter="{Binding Path=CommandParameter, Source={x:Reference listItemView}}"
                 effects:LongPressedEffect.LongPressed="{Binding Path=LongPressed, Source={x:Reference listItemView}}"
                 effects:LongPressedEffect.SingleTap="{Binding Path=SingleTap, Source={x:Reference listItemView}}"
+                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
                 extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                 extension:Skeleton.IsParent="True"
                 ColumnSpacing="0"

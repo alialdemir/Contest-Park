@@ -9,11 +9,7 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     prism:ViewModelLocator.AutowireViewModel="True">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="0,30,0,0" />
-        </OnPlatform>
-    </ContentPage.Padding>
+
     <ContentPage.Content>
         <ScrollView>
             <yummy:PancakeView

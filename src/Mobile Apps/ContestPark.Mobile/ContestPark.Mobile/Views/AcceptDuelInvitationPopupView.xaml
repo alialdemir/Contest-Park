@@ -6,7 +6,6 @@
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -85,7 +84,7 @@
                 Padding="0"
                 BackgroundColor="{StaticResource White}"
                 BorderColor="Transparent"
-                CornerRadius="10"
+                CornerRadius="10,10,0,0"
                 Elevation="6"
                 HasShadow="True"
                 HeightRequest="435"

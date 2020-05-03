@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>UIDeviceFamily</key>
-	<array>
-		<integer>1</integer>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>MinimumOSVersion</key>
-	<string>8.0</string>
-	<key>CFBundleDisplayName</key>
-	<string>ContestPark</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.contestpark.app</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Fonts/Sofia Pro Regular Az.otf</string>
-		<string>Fonts/Sofia Pro Light Az.otf</string>
-		<string>Fonts/Sofia Pro Semi Bold Az.otf</string>
-		<string>Fonts/Sofia Pro Bold Az.otf</string>
-		<string>Fonts/Sofia Pro Medium Az.otf</string>
-		<string>Fonts/GothamRounded-Bold.otf</string>
-		<string>Fonts/GothamRounded-Medium.otf</string>
-		<string>Fonts/Montserrat-Regular.ttf</string>
-		<string>Fonts/Montserrat-Medium.ttf</string>
-		<string>Fonts/Sofia Pro Black Az.otf</string>
-		<string>Fonts/iconize-fontawesome-regular.ttf</string>
-		<string>Fonts/iconize-fontawesome-solid.ttf</string>
-		<string>Fonts/iconize-fontawesome-brands.ttf</string>
-		<string>Fonts/icomoon.ttf</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>UIMainStoryboardFile</key>
-	<string>LaunchScreen</string>
-	<key>XSAppIconAssets</key>
-	<string>Media.xcassets/AppIcon.appiconset</string>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-9252497061180957~5333090995</string>
-	<key>GADIsAdManagerApp</key>
-	<true/>
-	<key>UIStatusBarHidden</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Yarışmaları takminize eklemek izin vermelisiniz.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>CFBundleShortVersionString</key>
-	<string>3.11</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleLocalizations</key>
-	<array>
+		<key>UIDeviceFamily</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>MinimumOSVersion</key>
+		<string>8.0</string>
+		<key>CFBundleDisplayName</key>
+		<string>ContestPark</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.contestpark.app</string>
+		<key>UIAppFonts</key>
+		<array>
+			<string>Fonts/Sofia Pro Regular Az.otf</string>
+			<string>Fonts/Sofia Pro Light Az.otf</string>
+			<string>Fonts/Sofia Pro Semi Bold Az.otf</string>
+			<string>Fonts/Sofia Pro Bold Az.otf</string>
+			<string>Fonts/Sofia Pro Medium Az.otf</string>
+			<string>Fonts/GothamRounded-Bold.otf</string>
+			<string>Fonts/GothamRounded-Medium.otf</string>
+			<string>Fonts/Montserrat-Regular.ttf</string>
+			<string>Fonts/Montserrat-Medium.ttf</string>
+			<string>Fonts/Sofia Pro Black Az.otf</string>
+			<string>Fonts/iconize-fontawesome-regular.ttf</string>
+			<string>Fonts/iconize-fontawesome-solid.ttf</string>
+			<string>Fonts/iconize-fontawesome-brands.ttf</string>
+			<string>Fonts/icomoon.ttf</string>
+		</array>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true />
+		</dict>
+		<key>UIMainStoryboardFile</key>
+		<string>LaunchScreen</string>
+		<key>XSAppIconAssets</key>
+		<string>Media.xcassets/AppIcon.appiconset</string>
+		<key>GADApplicationIdentifier</key>
+		<string>ca-app-pub-9252497061180957~5333090995</string>
+		<key>GADIsAdManagerApp</key>
+		<true />
+		<key>UIStatusBarHidden</key>
+		<true />
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
+		<key>NSCalendarsUsageDescription</key>
+		<string>Yarışmaları takminize eklemek izin vermelisiniz.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>Profil resminizi, duvar kağıdınızı değiştirmenize ve yayınlarınıza fotoğraf eklemenize izin vermek için kameranıza erişim gerekir. İstediğiniz zaman kapatabilirsiniz.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Bulunduğunuz lokasyona özel rakipler ile oynayabilmeniz için izin vermelisiniz.</string>
+		<key>CFBundleVersion</key>
+		<string>1</string>
+		<key>CFBundleShortVersionString</key>
+		<string>3.11</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+		</array>
+		<key>FirebaseAppDelegateProxyEnabled</key>
+		<false />
+		<key>CFBundleDevelopmentRegion</key>
 		<string>en</string>
-		<string>tr-TR</string>
-	</array>
-</dict>
+		<key>CFBundleLocalizations</key>
+		<array>
+			<string>en</string>
+			<string>tr-TR</string>
+		</array>
+	</dict>
 </plist>

@@ -8,7 +8,7 @@
     Padding="8,0,8,0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <components:NonPersistentSelectedItemListView BackgroundColor="{StaticResource GlobalBackgroundColor}" Style="{StaticResource ListViewGroup}">
+        <components:NonPersistentSelectedItemListView Style="{StaticResource ListViewGroup}">
             <components:NonPersistentSelectedItemListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
