@@ -1,10 +1,8 @@
 ﻿using ContestPark.Mobile.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class CategoryDetailView : ContentPage
     {
         #region Constructor

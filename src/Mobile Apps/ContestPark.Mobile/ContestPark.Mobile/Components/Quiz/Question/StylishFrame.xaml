@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Quiz.StylishFrameTextColor"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="stylishFrame"
     BackgroundColor="{Binding Path=Answer.Color, Source={x:Reference stylishFrame}}"
@@ -26,7 +27,7 @@
             <Image
                 HorizontalOptions="Start"
                 IsVisible="{Binding Path=Answer.IsLeftArrowVisible, Source={x:Reference stylishFrame}}"
-                Source="RightArrow.png"
+                Source="{image:ImageResource RightArrow.png}"
                 VerticalOptions="Center" />
 
             <Label
@@ -43,7 +44,7 @@
             <Image
                 HorizontalOptions="End"
                 IsVisible="{Binding Path=Answer.IsRightArrowVisible, Source={x:Reference stylishFrame}}"
-                Source="LeftArrow.png"
+                Source="{image:ImageResource LeftArrow.png}}"
                 VerticalOptions="Center" />
         </Grid>
     </yummy:PancakeView.Content>

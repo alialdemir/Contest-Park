@@ -1,9 +1,7 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class BalanceCodeView : ContentPage
     {
         #region Constructor
@@ -11,7 +9,6 @@ namespace ContestPark.Mobile.Views
         public BalanceCodeView()
         {
             InitializeComponent();
-            
         }
 
         #endregion Constructor

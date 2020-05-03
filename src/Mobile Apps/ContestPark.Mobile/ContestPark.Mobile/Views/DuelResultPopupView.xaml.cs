@@ -2,11 +2,9 @@
 using FFImageLoading.Transformations;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class DuelResultPopupView : PopupPage
     {
         #region Constructor

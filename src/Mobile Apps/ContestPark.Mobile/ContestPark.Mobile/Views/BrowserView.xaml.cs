@@ -1,9 +1,7 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class BrowserView : ContentPage
     {
         #region Constructor
@@ -11,8 +9,6 @@ namespace ContestPark.Mobile.Views
         public BrowserView()
         {
             InitializeComponent();
-
-            
         }
 
         #endregion Constructor

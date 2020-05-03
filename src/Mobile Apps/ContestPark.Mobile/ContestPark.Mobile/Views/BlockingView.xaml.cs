@@ -1,9 +1,7 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class BlockingView : ContentPage
     {
         #region Consturctor
@@ -11,7 +9,6 @@ namespace ContestPark.Mobile.Views
         public BlockingView()
         {
             InitializeComponent();
-            
         }
 
         #endregion Consturctor

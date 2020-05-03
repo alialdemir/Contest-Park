@@ -108,11 +108,16 @@
                                 Text="{i18n:Translate Play}"
                                 TextColor="{StaticResource White}"
                                 TranslationY="15"
-                                VerticalOptions="End"
-                                WidthRequest="335" />
+                                VerticalOptions="End">
+                                <Components:LinearGradientButton.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS" Value="335" />
+                                        <On Platform="Android" Value="330" />
+                                    </OnPlatform>
+                                </Components:LinearGradientButton.WidthRequest>
+                            </Components:LinearGradientButton>
 
                             <yummy:PancakeView
-                                x:Name="pvkView"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Margin="40"
@@ -125,10 +130,7 @@
                                 HorizontalOptions="Fill"
                                 IsClippedToBounds="True"
                                 WidthRequest="350">
-                                <Grid
-                                    Grid.Row="0"
-                                    ColumnSpacing="0"
-                                    RowSpacing="0">
+                                <Grid ColumnSpacing="0" RowSpacing="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />

@@ -13,4 +13,4 @@ using Xamarin.Forms.Xaml;
 [assembly: ExportFont("Sofia Pro Medium Az.otf")]
 [assembly: ExportFont("Sofia Pro Regular Az.otf")]
 [assembly: ExportFont("Sofia Pro Semi Bold Az.otf")]
-[assembly: XamlCompilation(XamlCompilationOptions.Skip)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]

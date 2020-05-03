@@ -1,19 +1,15 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Settings;
-using ContestPark.Mobile.ViewModels;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class AppShell : Shell
     {
         #region Constructor

@@ -1,11 +1,9 @@
 ﻿using ContestPark.Mobile.ViewModels;
 using Prism.Navigation;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class ProfileView : ContentPage
     {
         #region Constructor

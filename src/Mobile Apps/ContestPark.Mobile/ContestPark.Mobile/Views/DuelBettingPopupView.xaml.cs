@@ -1,11 +1,9 @@
 ﻿using ContestPark.Mobile.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using System;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class DuelBettingPopupView : PopupPage
     {
         #region Constructor

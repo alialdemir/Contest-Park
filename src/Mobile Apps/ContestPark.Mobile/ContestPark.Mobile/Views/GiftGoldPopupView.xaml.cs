@@ -2,11 +2,9 @@
 using Rg.Plugins.Popup.Pages;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class GiftGoldPopupView : PopupPage
     {
         #region Constructor

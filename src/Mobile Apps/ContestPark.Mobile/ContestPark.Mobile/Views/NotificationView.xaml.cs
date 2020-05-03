@@ -9,8 +9,6 @@ namespace ContestPark.Mobile.Views
         public NotificationView()
         {
             InitializeComponent();
-
-            
         }
 
         #endregion Constructor

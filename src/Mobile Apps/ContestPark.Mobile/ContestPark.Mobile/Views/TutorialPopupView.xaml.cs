@@ -1,5 +1,4 @@
 ﻿using Rg.Plugins.Popup.Pages;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {

@@ -1,9 +1,7 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class SearchView : ContentPage
     {
         #region Constructors
@@ -11,7 +9,6 @@ namespace ContestPark.Mobile.Views
         public SearchView()
         {
             InitializeComponent();
-            
         }
 
         #endregion Constructors

@@ -2,11 +2,9 @@
 using ContestPark.Mobile.ViewModels;
 using System.Linq;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class PostDetailView : ContentPage
     {
         #region Constructor
@@ -14,7 +12,6 @@ namespace ContestPark.Mobile.Views
         public PostDetailView()
         {
             InitializeComponent();
-            
         }
 
         #endregion Constructor

@@ -2,11 +2,9 @@
 using ContestPark.Mobile.ViewModels;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Pages;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class SelectCountryView : PopupPage
     {
         #region Constructor

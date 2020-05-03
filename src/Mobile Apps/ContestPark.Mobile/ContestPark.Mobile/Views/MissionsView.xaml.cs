@@ -1,10 +1,8 @@
 ﻿using ContestPark.Mobile.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Views
 {
-    
     public partial class MissionsView : ContentPage
     {
         #region Constructor
@@ -12,7 +10,6 @@ namespace ContestPark.Mobile.Views
         public MissionsView()
         {
             InitializeComponent();
-            
         }
 
         #endregion Constructor
