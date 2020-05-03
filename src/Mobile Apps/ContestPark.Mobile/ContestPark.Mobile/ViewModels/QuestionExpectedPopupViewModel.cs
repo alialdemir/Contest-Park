@@ -48,7 +48,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Navgation
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SubcategoryName"))
                 SubcategoryName = parameters.GetValue<string>("SubcategoryName");
@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("RoundCount"))
                 RoundCount = parameters.GetValue<byte>("RoundCount");
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         #endregion Navgation

@@ -37,10 +37,6 @@ namespace ContestPark.Mobile.Configs
 
         public static void RegisterTypeForNavigation(this IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<BaseNavigationPage>();
-
-            containerRegistry.RegisterForNavigation<Xamarin.Forms.NavigationPage>();
-
             containerRegistry.RegisterForNavigation<AccountSettingsView, AccountSettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<AppShell, AppShellViewModel>();

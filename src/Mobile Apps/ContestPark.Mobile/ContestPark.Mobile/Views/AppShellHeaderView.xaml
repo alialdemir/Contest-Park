@@ -75,7 +75,7 @@
                         <ffimageloadingsvg:SvgCachedImage
                             Grid.Column="0"
                             HeightRequest="32"
-                            Source="SingleMoney.svg"
+                            Source="resource://ContestPark.Mobile.Common.Images.SingleMoney.svg?assembly=ContestPark.Mobile"
                             WidthRequest="32" />
 
                         <Label
@@ -107,7 +107,7 @@
                         <ffimageloadingsvg:SvgCachedImage
                             Grid.Column="0"
                             HeightRequest="32"
-                            Source="ContestSingleCoin.svg"
+                            Source="resource://ContestPark.Mobile.Common.Images.ContestSingleCoin.svg?assembly=ContestPark.Mobile"
                             WidthRequest="32" />
 
                         <Label

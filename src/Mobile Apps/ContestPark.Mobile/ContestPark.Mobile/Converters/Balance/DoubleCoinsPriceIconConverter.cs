@@ -9,7 +9,9 @@ namespace ContestPark.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (BalanceTypes)value == BalanceTypes.Gold ? "doublecoins.png" : "doublecoinstl.png";
+            return (BalanceTypes)value == BalanceTypes.Gold
+                ? "doublecoins.png".ToResourceImage()
+                : "doublecoinstl.png".ToResourceImage();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

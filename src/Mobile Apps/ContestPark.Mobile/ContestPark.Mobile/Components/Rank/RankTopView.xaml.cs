@@ -60,13 +60,13 @@ namespace ContestPark.Mobile.Components
         }
 
         public static readonly BindableProperty RankGifProperty = BindableProperty.Create(propertyName: nameof(RankGif),
-                                                                                        returnType: typeof(string),
+                                                                                        returnType: typeof(Xamarin.Forms.ImageSource),
                                                                                         declaringType: typeof(RankTopView),
-                                                                                        defaultValue: string.Empty);
+                                                                                        defaultValue: null);
 
-        public string RankGif
+        public Xamarin.Forms.ImageSource RankGif
         {
-            get { return GetValue(RankGifProperty).ToString(); }
+            get { return (Xamarin.Forms.ImageSource)GetValue(RankGifProperty); }
             set
             {
                 SetValue(RankGifProperty, value);
@@ -98,19 +98,19 @@ namespace ContestPark.Mobile.Components
             switch (Rank)
             {
                 case Ranks.First:
-                    RankGif = "rank1.gif";
+                    RankGif = "rank1.gif".ToResourceImage();
                     profilePicture.BorderColor = "#FEB833";
                     profilePicture.HeightRequest = profilePicture.WidthRequest = 100;
                     break;
 
                 case Ranks.Secound:
-                    RankGif = "rank2.gif";
+                    RankGif = "rank2.gif".ToResourceImage();
                     profilePicture.BorderColor = "#ACACAC";
                     profilePicture.HeightRequest = profilePicture.WidthRequest = 70;
                     break;
 
                 case Ranks.Third:
-                    RankGif = "rank3.gif";
+                    RankGif = "rank3.gif".ToResourceImage();
                     profilePicture.BorderColor = "#C38651";
                     profilePicture.HeightRequest = profilePicture.WidthRequest = 70;
                     break;
@@ -119,12 +119,12 @@ namespace ContestPark.Mobile.Components
             switch (BalanceType)
             {
                 case BalanceTypes.Money:
-                    imgCoins.Source = ImageSource.FromResource("doublecoinstl.png");
+                    imgCoins.Source = "doublecoinstl.png".ToResourceImage();
                     Grid.SetColumn(lblScore, 0);
                     break;
 
                 case BalanceTypes.Gold:
-                    imgCoins.Source = ImageSource.FromResource("doublecoins.png");
+                    imgCoins.Source = "doublecoins.png".ToResourceImage();
                     Grid.SetColumn(lblScore, 0);
                     break;
 

@@ -16,7 +16,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,14 +75,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SignUp"))
                 SignUp = parameters.GetValue<SignUpModel>("SignUp");
 
             CategoryListCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>
@@ -97,7 +96,8 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            if (!SignUp.SubCategories.Any(subCategoryId => selectedSubCategory.SubCategoryId == subCategoryId) && SelectedSubCategoryCount >= 3)
+            bool isExistsSubCategory = SignUp.SubCategories.Any(subCategoryId => selectedSubCategory.SubCategoryId == subCategoryId);
+            if (!isExistsSubCategory && SelectedSubCategoryCount >= 3)
             {
                 await DisplayAlertAsync(string.Empty,
                                         ContestParkResources.YouCanChooseaMaximumOfThreeCategories,
@@ -114,18 +114,16 @@ namespace ContestPark.Mobile.ViewModels
                 .FirstOrDefault(x => x.SubCategoryId == selectedSubCategory.SubCategoryId)
                 .IsSubCategoryOpen = !selectedSubCategory.IsSubCategoryOpen;
 
-            if (selectedSubCategory.IsSubCategoryOpen)
+            if (isExistsSubCategory)
             {
-                SignUp.SubCategories.Add(selectedSubCategory.SubCategoryId);
-
-                SelectedSubCategoryCount += 1;
+                SignUp.SubCategories.Remove(selectedSubCategory.SubCategoryId);
             }
             else
             {
-                SignUp.SubCategories.Remove(selectedSubCategory.SubCategoryId);
-
-                SelectedSubCategoryCount -= 1;
+                SignUp.SubCategories.Add(selectedSubCategory.SubCategoryId);
             }
+
+            SelectedSubCategoryCount = (byte)SignUp.SubCategories.Count();
 
             IsBusy = false;
         }
@@ -180,8 +178,6 @@ namespace ContestPark.Mobile.ViewModels
 
             if (isTokenExits)
             {
-                _categoryService.RemoveCategoryListCache(new PagingModel { PageSize = 9999 });// Kategori sayfasında tekrar yeniden kategorileri çekmesi için cache temizledim
-
                 _settingsService.SetTokenInfo(token);
 
                 UserInfoModel currentUser = await _identityService.GetUserInfo();
@@ -205,6 +201,15 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+
+            _categoryService.RemoveCategoryListCache(new PagingModel { PageSize = 9999 });// Kategori sayfasında tekrar yeniden kategorileri çekmesi için cache temizledim
+
+
+            return base.GoBackAsync(parameters, useModalNavigation);
+        }
+
         /// <summary>
         /// Kategori listesi getirir
         /// </summary>
@@ -217,12 +222,11 @@ namespace ContestPark.Mobile.ViewModels
 
             ServiceModel = await _categoryService.CategoryListAsync(ServiceModel, IsRefreshing);
 
-            if (ServiceModel.Items != null && ServiceModel.Items.Any())
+            if (Items != null && Items.Any())
             {
-                ServiceModel
-                        .Items
-                        .ToList()
-                        .ForEach(c => c.SubCategories?.ForEach(sc => sc.IsSubCategoryOpen = false));
+                Items
+               .ToList()
+               .ForEach(c => c.SubCategories?.ForEach(sc => sc.IsSubCategoryOpen = false));
             }
 
             SelectedSubCategoryCount = 0;

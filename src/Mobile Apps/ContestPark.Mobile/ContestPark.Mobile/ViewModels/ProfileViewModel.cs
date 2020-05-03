@@ -129,7 +129,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
 
@@ -137,7 +137,7 @@ namespace ContestPark.Mobile.ViewModels
 
             GetProfileInfoByUserNameCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
-    xmlns:s="clr-namespace:System;assembly=mscorlib"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
@@ -135,8 +134,8 @@
             <x:String x:Key="Search">&#xe923;</x:String>
 
             <!--  Bool values  -->
-            <s:Boolean x:Key="True">True</s:Boolean>
-            <s:Boolean x:Key="False">False</s:Boolean>
+            <x:Boolean x:Key="True">True</x:Boolean>
+            <x:Boolean x:Key="False">False</x:Boolean>
 
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
                 <Setter Property="Padding">
@@ -147,6 +146,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource GlobalBackgroundColor}" />
                 <Setter Property="Title" Value="{Binding Title}" />
                 <Setter Property="Visual" Value="Material" />
+                <Setter Property="Shell.TabBarIsVisible" Value="False" />
             </Style>
 
             <Style ApplyToDerivedTypes="True" TargetType="ContentView">

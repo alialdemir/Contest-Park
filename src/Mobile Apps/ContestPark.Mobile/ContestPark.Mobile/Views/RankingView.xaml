@@ -5,14 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:control="clr-namespace:Plugin.Segmented.Control;assembly=Plugin.Segmented"
-    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="rankingPage"
     Padding="0"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:RankConverter x:Key="rank" />
@@ -160,99 +158,5 @@
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>
         </components:NonPersistentSelectedItemListView>
-        <!--<components:NonPersistentSelectedItemListView
-            x:Name="lstView"
-            Footer="{Binding RankEmptyMessage}"
-            InfiniteScroll="{Binding InfiniteScroll}"
-            IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
-            Style="{StaticResource ListViewHeaderAndFooter}">
-            <components:NonPersistentSelectedItemListView.HeaderTemplate>
-                <DataTemplate>
-                    <Grid ColumnSpacing="0" RowSpacing="0">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="80" />
-                        </Grid.RowDefinitions>
-                        <control:SegmentedControl
-                            x:Name="SegmentedControl"
-                            Grid.Row="0"
-                            FontFamily="{StaticResource PlatformFontName}"
-                            FontSize="16"
-                            SegmentSelectedCommand="{Binding Path=BindingContext.SegmentValueChangedCommand, Source={x:Reference rankingPage}}"
-                            SelectedTextColor="White"
-                            TintColor="#FFCC33">
-                            <control:SegmentedControl.Children>
-                                <control:SegmentedControlOption Text="{i18n:Translate Global}" />
-                                <control:SegmentedControlOption Text="{i18n:Translate Following}" />
-                            </control:SegmentedControl.Children>
-                        </control:SegmentedControl>
-
-                        <Grid Grid.Row="1" RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image
-                                Grid.RowSpan="2"
-                                Grid.ColumnSpan="2"
-                                Aspect="AspectFill"
-                                HorizontalOptions="FillAndExpand"
-                                Source="ranking_header.png"
-                                VerticalOptions="FillAndExpand" />
-
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Margin="15,0,0,0"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource SofiaProMedium}"
-                                FontSize="16.8"
-                                Text="{i18n:Translate TimeLeft}"
-                                TextColor="#FFF476"
-                                VerticalTextAlignment="End" />
-
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Margin="15,0,0,0"
-                                FontAttributes="Bold"
-                                FontFamily="{StaticResource SofiaProMedium}"
-                                FontSize="14"
-                                Text="{Binding Path=BindingContext.Ranks.TimeLeft, Source={x:Reference rankingPage}}"
-                                TextColor="{StaticResource White}" />
-                        </Grid>
-                    </Grid>
-                </DataTemplate>
-            </components:NonPersistentSelectedItemListView.HeaderTemplate>
-            <components:NonPersistentSelectedItemListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <yummy:PancakeView
-                            Padding="16,0,0,0"
-                            BackgroundColor="{Binding ., Converter={StaticResource background}, ConverterParameter={x:Reference lstView}}"
-                            CornerRadius="{Binding CornerRadius}"
-                            Elevation="6"
-                            HasShadow="True"
-                            HorizontalOptions="FillAndExpand"
-                            IsClippedToBounds="True"
-                            VerticalOptions="FillAndExpand">
-                            <components:RankView GotoProfilePageCommand="{Binding Path=BindingContext.GotoProfilePageCommand, Source={x:Reference rankingPage}}" Rank="{Binding ., Converter={StaticResource rank}, ConverterParameter={x:Reference lstView}}" />
-                        </yummy:PancakeView>
-                    </ViewCell>
-                </DataTemplate>
-            </components:NonPersistentSelectedItemListView.ItemTemplate>
-            <components:NonPersistentSelectedItemListView.FooterTemplate>
-                <DataTemplate>
-                    <yummy:PancakeView IsVisible="{Binding Source={x:Reference lstView}, Path=IsShowEmptyMessage}" Style="{StaticResource EmptyModelCard}">
-                        <Label Style="{StaticResource EmptyModel}" Text="{Binding .}" />
-                    </yummy:PancakeView>
-                </DataTemplate>
-            </components:NonPersistentSelectedItemListView.FooterTemplate>
-        </components:NonPersistentSelectedItemListView>-->
     </ContentPage.Content>
 </ContentPage>

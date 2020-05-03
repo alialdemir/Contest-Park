@@ -3,7 +3,6 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Components
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DobleCoinsView : ContentView
     {
         #region Constructor

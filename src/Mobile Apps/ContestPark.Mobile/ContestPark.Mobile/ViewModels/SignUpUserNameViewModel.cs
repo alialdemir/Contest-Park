@@ -45,7 +45,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("FullName"))
                 FullName = parameters.GetValue<string>("FullName");
@@ -53,7 +53,7 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("PhoneNumber"))
                 PhoneNumber = parameters.GetValue<string>("PhoneNumber");
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

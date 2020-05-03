@@ -96,7 +96,7 @@
                                     Grid.Row="4"
                                     HeightRequest="32"
                                     HorizontalOptions="End"
-                                    Source="next_tutorial.svg"
+                                    Source="resource://ContestPark.Mobile.Common.Images.next_tutorial.svg?assembly=ContestPark.Mobile"
                                     TranslationX="-32"
                                     WidthRequest="32">
                                     <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>

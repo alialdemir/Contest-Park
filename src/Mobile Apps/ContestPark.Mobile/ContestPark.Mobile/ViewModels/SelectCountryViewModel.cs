@@ -2,7 +2,6 @@
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,11 +22,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             LoadCountryListCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>
@@ -1488,8 +1487,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 new CountryModel
                 {
-                  Flag = "assets/images/TUR_s.png",
-                  Country = "Turkey",
+                  Flag = "TUR_s.png".ToResourceImage(),
+                  Country = "Türkiye",
                   PhoneCode = "+90"
                 },
 

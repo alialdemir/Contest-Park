@@ -26,7 +26,7 @@ namespace ContestPark.Mobile.Views
 
         public MyProfileView()
         {
-            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = ImageSource.FromResource("menuicon.png") });
+            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = "menuicon.png".ToResourceImage() });
             Shell.SetNavBarIsVisible(this, true);
             Shell.SetTabBarIsVisible(this, true);// Altta tabbar gözükmemesi için ekledim
         }
@@ -35,7 +35,7 @@ namespace ContestPark.Mobile.Views
 
         #region Override
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -43,12 +43,13 @@ namespace ContestPark.Mobile.Views
             if (viewModel == null || viewModel.IsInitialized)
                 return;
 
-            NavigationParameters parameters = new NavigationParameters();
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "UserName", viewModel._settingsService?.CurrentUser?.UserName },
+                { "IsVisibleBackArrow", false }
+            };
 
-            parameters.Add("UserName", viewModel._settingsService?.CurrentUser?.UserName);
-            parameters.Add("IsVisibleBackArrow", false);
-
-            await viewModel.InitializeAsync(parameters);
+            viewModel.Initialize(parameters);
             viewModel.IsInitialized = true;
         }
 

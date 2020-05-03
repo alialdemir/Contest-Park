@@ -23,9 +23,9 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
             if (_version > new Version(6, 0))
             {
                 //n iOS 6 and earlier, the image displayed when the switch is in the on position.
-                Control.OnImage = UIImage.FromFile(view.SwitchThumbImageActive.ToString());
+                Control.OnImage = UIImage.FromResource(typeof(AppDelegate).Assembly, view.SwitchThumbImageActive.ToString());
                 //n iOS 6 and earlier, the image displayed when the switch is in the off position.
-                Control.OffImage = UIImage.FromFile(view.SwitchThumbImagePassive.ToString());
+                Control.OffImage = UIImage.FromResource(typeof(AppDelegate).Assembly, view.SwitchThumbImagePassive.ToString());
             }
             else
             {

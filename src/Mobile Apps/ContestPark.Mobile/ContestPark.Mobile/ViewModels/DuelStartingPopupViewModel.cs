@@ -141,14 +141,14 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SelectedDuelInfo"))
                 SelectedBet = parameters.GetValue<SelectedBetModel>("SelectedDuelInfo");
 
             DuelStartingCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

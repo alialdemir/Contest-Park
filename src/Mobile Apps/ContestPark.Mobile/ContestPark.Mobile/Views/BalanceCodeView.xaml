@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -18,7 +19,7 @@
                 HasShadow="True"
                 VerticalOptions="Start">
                 <Grid
-                    HorizontalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
                     RowSpacing="15"
                     VerticalOptions="Center">
                     <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
                     <Image
                         Grid.Row="0"
                         Grid.Column="0"
-                        Source="balancecode.png" />
+                        Source="{image:ImageResource balancecode.png}" />
 
                     <custom:CustomEntry
                         Grid.Row="1"
@@ -49,8 +50,7 @@
                         Placeholder="{i18n:Translate EnterBalanceCode}"
                         PlaceholderColor="#484848"
                         Text="{Binding BalanceCode.Code}"
-                        TextColor="#484848"
-                        Visual="Material" />
+                        TextColor="#484848" />
 
                     <custom:LinearGradientButton
                         Grid.Row="2"
@@ -58,11 +58,11 @@
                         BackgroundColor="Transparent"
                         Command="{Binding BalanceCodeCommand}"
                         EndColor="#1CD881"
+                        HorizontalOptions="FillAndExpand"
                         StartColor="#18A263"
                         Style="{DynamicResource ButtonStyle}"
                         Text="{i18n:Translate Send}"
-                        TextColor="{StaticResource White}"
-                        Visual="Material">
+                        TextColor="{StaticResource White}">
                         <custom:LinearGradientButton.CornerRadius>
                             <OnPlatform x:TypeArguments="x:Int32">
                                 <On Platform="Android" Value="124" />

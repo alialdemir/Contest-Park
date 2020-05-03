@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Helpers;
-using ContestPark.Mobile.Models;
+﻿using ContestPark.Mobile.Models;
 using ContestPark.Mobile.Models.Base;
 using ContestPark.Mobile.Models.ServiceModel;
 using MvvmHelpers;
@@ -15,7 +14,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels.Base
 {
-    public abstract class ViewModelBase : ExtendedBindableObject, IInitializeAsync, INavigatedAware
+    public abstract class ViewModelBase : ExtendedBindableObject, IInitialize, INavigatedAware
     {
         #region Private variables
 
@@ -79,9 +78,8 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <summary>
         /// Sayfalarda ortak load işlemleri burada yapılmalı ve refleshs olunca da bu çağrılır
         /// </summary>
-        public virtual Task InitializeAsync(INavigationParameters parameters = null)
+        public virtual void Initialize(INavigationParameters parameters = null)
         {
-            return Task.CompletedTask;
         }
 
         #endregion Virtoal methods
@@ -214,7 +212,7 @@ namespace ContestPark.Mobile.ViewModels.Base
         /// <summary>
         /// Veri yükle command
         /// </summary>
-        public ICommand InitializeCommand => new CommandAsync<INavigationParameters>(InitializeAsync);
+        public ICommand InitializeCommand => new Command<INavigationParameters>(Initialize);
 
         #endregion Commands
     }
@@ -291,9 +289,9 @@ namespace ContestPark.Mobile.ViewModels.Base
             }
         }
 
-        public override Task InitializeAsync(INavigationParameters parameters)
+        public override void Initialize(INavigationParameters parameters)
         {
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>
@@ -332,7 +330,11 @@ namespace ContestPark.Mobile.ViewModels.Base
                     if (!ServiceModel.HasNextPage || !(currentItem is BaseModel))
                         return;
 
-                    if (Items.LastOrDefault().Equals(currentItem))
+                    if (Items.Count > 4 && Items[Items.Count - 2].Equals(currentItem))
+                    {
+                        InitializeCommand.Execute(new NavigationParameters());
+                    }
+                    else if (Items.LastOrDefault().Equals(currentItem))
                         InitializeCommand.Execute(new NavigationParameters());
                 });
             }

@@ -17,7 +17,7 @@ namespace ContestPark.Mobile
             }
 
             // Do your translation lookup here, using whatever method you require
-            var imageSource = ImageSource.FromResource(Source);
+            var imageSource = Source.ToResourceImage();
 
             return imageSource;
         }

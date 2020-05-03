@@ -11,7 +11,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -90,13 +89,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("CategoryId")) _categoryId = parameters.GetValue<short>("CategoryId");
 
             SearchCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>
@@ -218,13 +217,6 @@ namespace ContestPark.Mobile.ViewModels
             {
                 ServiceModel = await _categoryService.SearchAsync(Search, _categoryId, new PagingModel { });
             }
-
-            Items.Clear();
-
-            await base.InitializeAsync(new NavigationParameters
-            {
-                { "CategoryId", _categoryId }
-            });
 
             IsBusy = false;
         }

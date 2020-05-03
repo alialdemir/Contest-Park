@@ -6,7 +6,7 @@
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
+
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -46,8 +46,7 @@
                                                                   Constant=375}"
                 StartColor="#EB3349"
                 Text="{i18n:Translate Cancel}"
-                TextColor="{StaticResource White}"
-                Visual="Material" />
+                TextColor="{StaticResource White}" />
 
             <!--  Play  -->
             <Components:LinearGradientButton
@@ -79,8 +78,7 @@
                                                                   Constant=375}"
                 StartColor="#2CCCD8"
                 Text="{i18n:Translate Play}"
-                TextColor="{StaticResource White}"
-                Visual="Material" />
+                TextColor="{StaticResource White}" />
 
             <yummy:PancakeView
                 x:Name="pvkView"

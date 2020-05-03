@@ -11,7 +11,6 @@ namespace ContestPark.Mobile.Views
         public PhoneNumberView()
         {
             InitializeComponent();
-            BaseNavigationPage.SetHasNavigationBar(this, false);
         }
 
         #endregion Constructor

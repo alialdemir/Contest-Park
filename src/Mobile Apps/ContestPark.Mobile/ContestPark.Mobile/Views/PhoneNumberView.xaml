@@ -9,7 +9,8 @@
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="{StaticResource White}">
+    BackgroundColor="{StaticResource White}"
+    Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <ScrollView>
             <Grid
@@ -117,7 +118,7 @@
                     HorizontalOptions="EndAndExpand"
                     MinimumHeightRequest="26.52"
                     MinimumWidthRequest="26.52"
-                    Source="verify.svg"
+                    Source="resource://ContestPark.Mobile.Common.Images.verify.svg?assembly=ContestPark.Mobile"
                     VerticalOptions="Center"
                     WidthRequest="26.52" />
 

@@ -7,7 +7,7 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
@@ -15,7 +15,12 @@
     Padding="0,8,0,8"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}"
+    Shell.TabBarIsVisible="True"
     mc:Ignorable="d">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{image:ImageResource menuicon.png}" />
+    </Shell.BackButtonBehavior>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding Path=BindingContext.InviteCommand, Source={x:Reference categoriesPage}}">
             <ToolbarItem.IconImageSource>

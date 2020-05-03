@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -71,7 +72,7 @@
                     Grid.RowSpan="3"
                     HeightRequest="20"
                     HorizontalOptions="FillAndExpand"
-                    Source="questioncenter.png"
+                    Source="{image:ImageResource questioncenter.png}"
                     TranslationY="-10" />
 
                 <!--  Center End  -->

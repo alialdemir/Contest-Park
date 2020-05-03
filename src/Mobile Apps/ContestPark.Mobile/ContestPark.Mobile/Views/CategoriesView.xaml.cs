@@ -12,8 +12,6 @@ namespace ContestPark.Mobile.Views
         public CategoriesView()
         {
             InitializeComponent();
-
-            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = ImageSource.FromResource("menuicon.png") });
         }
 
         #endregion Constructor

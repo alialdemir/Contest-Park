@@ -6,13 +6,13 @@
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
-    xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Bet"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="duelBettingPopupView"
+    Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -23,22 +23,35 @@
             ScaleIn="1"
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
+
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <converter:BetIconConverter x:Key="bic" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
     <pages:PopupPage.Content>
+        <StackLayout>
+            <cards:CoverFlowView
+                IsCyclical="false"
+                ItemsSource="{Binding Bets}"
+                PositionShiftValue="60"
+                SelectedIndex="{Binding SelectedIndex}"
+                VerticalOptions="FillAndExpand">
 
-        <cards:CoverFlowView
-            x:Name="cfv"
-            IsCyclical="false"
-            ItemsSource="{Binding Bets}"
-            SelectedIndex="{Binding SelectedIndex}">
-            <controls:IndicatorsControl TranslationY="20" />
+                <cards:CoverFlowView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid VerticalOptions="CenterAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-            <cards:CoverFlowView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <RelativeLayout>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
                             <!--  Para ile oyna  -->
                             <Components:LinearGradientButton
-                                Padding="0,-70,0,0"
+                                Padding="0,-30,0,0"
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
@@ -47,31 +60,19 @@
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
                                 FontSize="23"
-                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                       Property=Height,
-                                                                                       Factor=.2,
-                                                                                       Constant=0}"
-                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                      Property=Width,
-                                                                                      Factor=0,
-                                                                                      Constant=175}"
-                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Width,
-                                                                                  Factor=0.5,
-                                                                                  Constant=-175}"
-                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                                  ElementName=pvkView,
-                                                                                  Property=Y,
-                                                                                  Factor=0,
-                                                                                  Constant=0}"
+                                HeightRequest="80"
+                                HorizontalOptions="Start"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Money}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material" />
+                                TranslationX="40"
+                                TranslationY="-15"
+                                VerticalOptions="Start"
+                                WidthRequest="165" />
 
                             <!--  Altınla oyna  -->
                             <Components:LinearGradientButton
-                                Padding="0,-70,0,0"
+                                Padding="0,-30,0,0"
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
@@ -80,31 +81,19 @@
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
                                 FontSize="23"
-                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                       Property=Height,
-                                                                                       Factor=.2,
-                                                                                       Constant=0}"
-                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                      Property=Width,
-                                                                                      Factor=0,
-                                                                                      Constant=175}"
-                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Width,
-                                                                                  Factor=0.5,
-                                                                                  Constant=0}"
-                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                                  ElementName=pvkView,
-                                                                                  Property=Y,
-                                                                                  Factor=0,
-                                                                                  Constant=0}"
+                                HeightRequest="80"
+                                HorizontalOptions="End"
                                 StartColor="#FFB347"
                                 Text="{i18n:Translate Gold}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material" />
+                                TranslationX="-40"
+                                TranslationY="-15"
+                                VerticalOptions="Start"
+                                WidthRequest="165" />
 
                             <!--  Play  -->
                             <Components:LinearGradientButton
-                                Padding="0,0,0,-60"
+                                Padding="0,30,0,0"
                                 BackgroundColor="Transparent"
                                 BorderRadius="48"
                                 Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
@@ -113,49 +102,29 @@
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
                                 FontSize="23"
-                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                       Property=Height,
-                                                                                       Factor=.2,
-                                                                                       Constant=0}"
-                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                      Property=Width,
-                                                                                      Factor=0,
-                                                                                      Constant=350}"
-                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Width,
-                                                                                  Factor=0.5,
-                                                                                  Constant=-175}"
-                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                                  ElementName=pvkView,
-                                                                                  Property=Y,
-                                                                                  Factor=1,
-                                                                                  Constant=370}"
+                                HeightRequest="80"
+                                HorizontalOptions="CenterAndExpand"
                                 StartColor="#2CCCD8"
                                 Text="{i18n:Translate Play}"
                                 TextColor="{StaticResource White}"
-                                Visual="Material"
-                                WidthRequest="350" />
+                                TranslationY="15"
+                                VerticalOptions="End"
+                                WidthRequest="330" />
 
                             <yummy:PancakeView
                                 x:Name="pvkView"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="40"
                                 Padding="0"
                                 BackgroundColor="{StaticResource White}"
                                 BorderColor="Transparent"
-                                CornerRadius="10"
                                 Elevation="6"
                                 HasShadow="True"
                                 HeightRequest="430"
+                                HorizontalOptions="Fill"
                                 IsClippedToBounds="True"
-                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Width,
-                                                                                  Factor=0.5,
-                                                                                  Constant=-175}"
-                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                                  Property=Height,
-                                                                                  Factor=0.5,
-                                                                                  Constant=-225}"
                                 WidthRequest="350">
-
                                 <Grid
                                     Grid.Row="0"
                                     ColumnSpacing="0"
@@ -198,6 +167,7 @@
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Title}"
                                         TextColor="#FDBC2E" />
+
                                     <Label
                                         Grid.Row="2"
                                         FontFamily="{StaticResource MontserratRegular}"
@@ -211,7 +181,7 @@
                                         Margin="0,14,0,14"
                                         HeightRequest="110"
                                         HorizontalOptions="Center"
-                                        Source="{Binding Image}"
+                                        Source="{Binding Path=Image, Converter={StaticResource bic}}"
                                         WidthRequest="110" />
 
                                     <Components:DobleCoinsView
@@ -275,10 +245,10 @@
                                         VerticalTextAlignment="Start" />
                                 </Grid>
                             </yummy:PancakeView>
-                        </RelativeLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </cards:CoverFlowView.ItemTemplate>
-        </cards:CoverFlowView>
+                        </Grid>
+                    </DataTemplate>
+                </cards:CoverFlowView.ItemTemplate>
+            </cards:CoverFlowView>
+        </StackLayout>
     </pages:PopupPage.Content>
 </pages:PopupPage>

@@ -5,11 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="leaderBoardView"
     Padding="0"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Shell.TabBarIsVisible="True">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{image:ImageResource menuicon.png}" />
+    </Shell.BackButtonBehavior>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BalanceConverter x:Key="bc" />

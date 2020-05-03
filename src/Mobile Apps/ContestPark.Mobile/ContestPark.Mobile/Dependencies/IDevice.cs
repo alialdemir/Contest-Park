@@ -1,6 +1,4 @@
-﻿using ContestPark.Mobile.Models.DeviceHelper;
-
-namespace ContestPark.Mobile.Dependencies
+﻿namespace ContestPark.Mobile.Dependencies
 {
     public interface IDevice
     {

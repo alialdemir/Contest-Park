@@ -12,9 +12,6 @@ namespace ContestPark.Mobile.Views
         public RankingView()
         {
             InitializeComponent();
-
-            Shell.SetNavBarIsVisible(this, false);
-            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
         }
 
         #endregion Constructors

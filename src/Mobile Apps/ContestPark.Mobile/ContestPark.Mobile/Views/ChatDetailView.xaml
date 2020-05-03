@@ -31,11 +31,13 @@
             HorizontalOptions="StartAndExpand"
             Orientation="Horizontal"
             VerticalOptions="Center">
+
             <components:CircleImage
                 Command="{Binding GotoProfileCommand}"
                 HeightRequest="36"
                 Source="{Binding SenderProfilePicturePath}"
                 WidthRequest="36" />
+
             <Label
                 FontAttributes="Bold"
                 FontFamily="{StaticResource SofiaProRegular}"
@@ -124,7 +126,7 @@
                         Grid.Column="1"
                         HeightRequest="40"
                         HorizontalOptions="End"
-                        Source="send_message.svg"
+                        Source="resource://ContestPark.Mobile.Common.Images.send_message.svg?assembly=ContestPark.Mobile"
                         VerticalOptions="Center"
                         WidthRequest="40">
                         <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>

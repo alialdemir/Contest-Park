@@ -2,16 +2,16 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace ContestPark.Mobile.Converters.Follow
+namespace ContestPark.Mobile.Converters.Bet
 {
-    public class FollowIconConverter : IValueConverter
+    public class BetIconConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string svgResourcePath = "resource://ContestPark.Mobile.Common.Images.{0}?assembly=ContestPark.Mobile";
-            return (bool)value
-                ? string.Format(svgResourcePath, "profile_unfollow.svg")
-                : string.Format(svgResourcePath, "profile_follow.svg");
+            if (value == null)
+                return null;
+
+            return value.ToString().ToResourceImage();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

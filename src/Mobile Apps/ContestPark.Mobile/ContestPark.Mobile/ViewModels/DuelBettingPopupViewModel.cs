@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Bet;
@@ -16,7 +17,6 @@ using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -97,15 +97,24 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
+        {
+            if (parameters.ContainsKey("SelectedSubCategory"))
+                SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
+
+            InitBetsCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// Bakiye çekip bahisleri yükler
+        /// </summary>
+        /// <returns></returns>
+        private async Task ExecuteInitBetsCommand()
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
-
-            if (parameters.ContainsKey("SelectedSubCategory"))
-                SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
 
             Balance = await _cpService.GetBalanceAsync();
 
@@ -481,6 +490,8 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        private ICommand InitBetsCommand => new CommandAsync(ExecuteInitBetsCommand);
 
         private ICommand LastPlayedBetCommand => new Command(ExecuteLastPlayedBetCommand);
 

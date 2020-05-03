@@ -76,7 +76,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SubCategoryId"))
                 _subCategoryId = parameters.GetValue<short>("SubCategoryId");
@@ -91,7 +91,7 @@ namespace ContestPark.Mobile.ViewModels
                 SubscriptionToken = _onSleepEvent.Subscribe(() => SubCategoryPostsCommand.Execute(true));
             }
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace ContestPark.Mobile.ViewModels
 
                     ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel, isForceCache: isForceCache);
 
-                    await base.InitializeAsync(new NavigationParameters
+                    base.Initialize(new NavigationParameters
                     {
                         { "SubCategoryId", _subCategoryId }
                     });

@@ -1,5 +1,4 @@
 ﻿using Android.App;
-using Android.Content.Res;
 using Android.Provider;
 using Android.Views.InputMethods;
 using ContestPark.Mobile.Dependencies;

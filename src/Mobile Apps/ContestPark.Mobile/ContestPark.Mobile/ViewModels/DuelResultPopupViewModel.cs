@@ -3,6 +3,7 @@ using ContestPark.Mobile.Components.DuelResultSocialMedia;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.DuelResult;
 using ContestPark.Mobile.Models.Duel.DuelResultSocialMedia;
@@ -82,11 +83,22 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             _adMobService.ShowInterstitial();// Düello sonucuna gelen kullanıcılara reklam gösterildi
 
             parameters.TryGetValue("DuelId", out _duelId);
+
+            InitDuelResultCommand.Execute(null);
+
+            base.Initialize(parameters);
+        }
+
+        /// <summary>
+        /// Düello sonucunu getirir
+        /// </summary>
+        private async Task ExecuteInitDuelResultCommand()
+        {
             if (_duelId <= 0)
                 return;
 
@@ -96,8 +108,6 @@ namespace ContestPark.Mobile.ViewModels
 
             if (DuelResult != null && _settingsService.IsSoundEffectActive && DuelResult.IsShowFireworks)
                 _audioService.Play(AudioTypes.Fireworks, true);
-
-            await base.InitializeAsync(parameters);
         }
 
         /// <summary>
@@ -322,6 +332,8 @@ namespace ContestPark.Mobile.ViewModels
         #endregion Methods
 
         #region Commands
+
+        private ICommand InitDuelResultCommand => new CommandAsync(ExecuteInitDuelResultCommand);
 
         public ICommand FindOpponentCommand { get { return new Command(ExecuteFindOpponentCommand); } }
         public ICommand GotoChatCommand { get { return new Command(ExecuteGotoChatCommand); } }

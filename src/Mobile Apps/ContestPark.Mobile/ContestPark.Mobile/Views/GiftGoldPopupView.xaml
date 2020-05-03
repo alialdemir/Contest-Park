@@ -8,7 +8,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
@@ -63,7 +63,8 @@
                         Grid.RowSpan="5"
                         HeightRequest="500"
                         IsVisible="False"
-                        Source="coins.gif" />
+                        Source="{image:ImageResource coins.gif}" />
+
                     <Image
                         Grid.Row="0"
                         Margin="0,8,8,0"

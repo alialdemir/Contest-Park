@@ -149,7 +149,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override async Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (!IsRefreshing)
             {
@@ -169,7 +169,7 @@ namespace ContestPark.Mobile.ViewModels
 
             CategoryListCommand.Execute(null);
 
-            await base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

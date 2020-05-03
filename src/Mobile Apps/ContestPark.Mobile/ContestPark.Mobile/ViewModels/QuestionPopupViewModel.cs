@@ -220,7 +220,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("Question"))
                 Question = parameters.GetValue<Models.Duel.QuestionModel>("Question");
@@ -239,7 +239,7 @@ namespace ContestPark.Mobile.ViewModels
 
             LoadInterstitialVideoCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

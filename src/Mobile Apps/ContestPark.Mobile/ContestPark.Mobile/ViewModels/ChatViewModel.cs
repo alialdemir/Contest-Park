@@ -67,7 +67,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             //////if (!string.IsNullOrEmpty(BadgeCount))
             //////{
@@ -80,7 +80,7 @@ namespace ContestPark.Mobile.ViewModels
 
             UserListCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

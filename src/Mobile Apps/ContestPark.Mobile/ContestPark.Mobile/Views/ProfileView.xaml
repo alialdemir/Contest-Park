@@ -8,14 +8,13 @@
     xmlns:converter1="clr-namespace:ContestPark.Mobile.Converters.Follow"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="profilePage"
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
-    Icon="fas-user-circle"
-    NavigationPage.HasNavigationBar="False">
+    Icon="fas-user-circle">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:NegativeBooleanConverter x:Key="not" />
@@ -121,7 +120,7 @@
                             <ffimageloadingsvg:SvgCachedImage
                                 Grid.Column="1"
                                 HeightRequest="65"
-                                Source="profile_play.svg"
+                                Source="resource://ContestPark.Mobile.Common.Images.profile_play.svg?assembly=ContestPark.Mobile"
                                 WidthRequest="65">
                                 <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding PlayDuelCommand}" />
@@ -132,7 +131,7 @@
                             <ffimageloadingsvg:SvgCachedImage
                                 Grid.Column="2"
                                 HeightRequest="65"
-                                Source="profile_chat.svg"
+                                Source="resource://ContestPark.Mobile.Common.Images.profile_chat.svg?assembly=ContestPark.Mobile"
                                 WidthRequest="65">
                                 <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding GotChatDetailCommand}" />

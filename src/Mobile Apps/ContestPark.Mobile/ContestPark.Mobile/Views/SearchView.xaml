@@ -7,7 +7,7 @@
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:search="clr-namespace:ContestPark.Mobile.Components.Search"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -22,6 +22,7 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
             <StackLayout Margin="5" Orientation="Horizontal">
+
                 <Image
                     Margin="19,0,0,0"
                     HorizontalOptions="Start"
@@ -30,14 +31,16 @@
                         <FontImageSource
                             FontFamily="{StaticResource icomoon}"
                             Glyph="{StaticResource Search}"
-                            Size="16"
+                            Size="22"
                             Color="Black" />
                     </Image.Source>
                 </Image>
+
                 <Entry
                     BackgroundColor="#F8F8F8"
                     FontFamily="{StaticResource SofiaProLight}"
                     FontSize="15"
+                    HeightRequest="55"
                     HorizontalOptions="FillAndExpand"
                     Placeholder="{i18n:Translate SearchPlayersOrCategories}"
                     PlaceholderColor="#505050"
@@ -48,11 +51,14 @@
                         <behaviors:EventToCommandBehavior Command="{Binding SearchTextCommand}" EventName="TextChanged" />
                     </Entry.Behaviors>
                 </Entry>
+
                 <Image
                     Margin="0,0,19,0"
+                    HeightRequest="16"
                     HorizontalOptions="Start"
-                    Source="search_cancel.png"
-                    VerticalOptions="Center">
+                    Source="{image:ImageResource search_cancel.png}"
+                    VerticalOptions="Center"
+                    WidthRequest="16">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ClearSearchCommand}" />
                     </Image.GestureRecognizers>
@@ -61,7 +67,6 @@
         </yummy:PancakeView>
     </Shell.TitleView>
     <ContentPage.Content>
-
         <Components:NonPersistentSelectedItemListView InfiniteScroll="{Binding InfiniteScroll}" Style="{StaticResource ListViewOnlyFooter}">
             <Components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
@@ -80,7 +85,7 @@
                             Margin="0,71,0,23"
                             HeightRequest="95"
                             HorizontalOptions="Center"
-                            Source="search_result.svg"
+                            Source="resource://ContestPark.Mobile.Common.Images.search_result.svg?assembly=ContestPark.Mobile"
                             VerticalOptions="Center"
                             WidthRequest="135" />
                         <Label

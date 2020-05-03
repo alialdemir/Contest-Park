@@ -10,7 +10,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using Microsoft.AppCenter;
 using Prism.Events;
 using Prism.Navigation;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -114,10 +113,10 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (IsInitialized)
-                return Task.CompletedTask;
+                return;
 
             IsInitialized = true;
 
@@ -126,7 +125,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ListenerEventsCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

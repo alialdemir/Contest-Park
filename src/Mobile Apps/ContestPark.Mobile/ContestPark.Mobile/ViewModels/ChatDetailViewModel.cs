@@ -131,7 +131,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("UserName")) _userName = parameters.GetValue<string>("UserName");
             if (parameters.ContainsKey("FullName")) _fullName = Title = parameters.GetValue<string>("FullName");
@@ -142,7 +142,7 @@ namespace ContestPark.Mobile.ViewModels
 
             ChatDetailCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>

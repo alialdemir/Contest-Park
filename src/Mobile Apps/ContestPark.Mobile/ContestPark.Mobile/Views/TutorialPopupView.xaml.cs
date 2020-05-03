@@ -11,7 +11,6 @@ namespace ContestPark.Mobile.Views
         public TutorialPopupView()
         {
             InitializeComponent();
-            BaseNavigationPage.SetHasNavigationBar(this, false);
         }
 
         #endregion Constructor

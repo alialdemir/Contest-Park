@@ -1,19 +1,12 @@
-﻿using System;
-using System.Reflection;
-using Xamarin.Forms;
+﻿using System.Reflection;
 
 namespace ContestPark.Mobile
 {
-    public abstract class ImageSource : Element
+    public static class ImageSourceExtension
     {
-        public static Xamarin.Forms.ImageSource FromResource(string resource)
+        public static Xamarin.Forms.ImageSource ToResourceImage(this string resource)
         {
-            return Xamarin.Forms.ImageSource.FromResource($"ContestPark.Mobile.Common.Images.{resource}", typeof(ImageSource).GetTypeInfo().Assembly);
-        }
-
-        public static Xamarin.Forms.ImageSource FromUri(Uri uri)
-        {
-            return Xamarin.Forms.ImageSource.FromUri(uri);
+            return Xamarin.Forms.ImageSource.FromResource($"ContestPark.Mobile.Common.Images.{resource}", typeof(ImageSourceExtension).GetTypeInfo().Assembly);
         }
     }
 }

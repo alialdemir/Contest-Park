@@ -30,7 +30,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private string _gift = "gift1.gif";
+        private ImageSource _gift = "gift1.gif".ToResourceImage();
 
         private RewardModel _giftGold;
 
@@ -44,7 +44,7 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public string Gift
+        public ImageSource Gift
         {
             get { return _gift; }
             set
@@ -58,12 +58,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("RewardModel"))
                 GiftGold = parameters.GetValue<RewardModel>("RewardModel");
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
@@ -84,7 +84,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 return new Command(() =>
                 {
-                    Gift = "gift2.gif";
+                    Gift = "gift2.gif".ToResourceImage();
                 });
             }
         }

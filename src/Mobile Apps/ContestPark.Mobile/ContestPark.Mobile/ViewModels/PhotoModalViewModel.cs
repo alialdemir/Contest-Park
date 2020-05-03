@@ -36,7 +36,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Nethods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SelectedIndex"))
                 SelectedIndex = parameters.GetValue<int>("SelectedIndex");
@@ -49,7 +49,7 @@ namespace ContestPark.Mobile.ViewModels
                 };
             }
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         #endregion Nethods

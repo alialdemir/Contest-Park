@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     Padding="0,0,0,-80"
@@ -94,6 +95,7 @@
                 HeightRequest="0.1"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="CenterAndExpand" />
+
             <!--  Opponent  -->
             <Grid
                 x:Name="gridOpponent"
@@ -169,9 +171,11 @@
             <Image
                 Grid.RowSpan="3"
                 Aspect="AspectFill"
+                HeightRequest="70"
                 HorizontalOptions="Center"
-                Source="vs.png"
-                VerticalOptions="Center">
+                Source="{image:ImageResource vs.png}"
+                VerticalOptions="Center"
+                WidthRequest="70">
 
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GotoBackCommand}" />

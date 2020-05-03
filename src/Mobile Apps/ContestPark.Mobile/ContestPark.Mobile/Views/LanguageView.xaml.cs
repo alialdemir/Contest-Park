@@ -11,7 +11,7 @@ namespace ContestPark.Mobile.Views
         public LanguageView()
         {
             InitializeComponent();
-            Shell.SetTabBarIsVisible(this, false);// Altta tabbar gözükmemesi için ekledim
+            
         }
 
         #endregion Constructor

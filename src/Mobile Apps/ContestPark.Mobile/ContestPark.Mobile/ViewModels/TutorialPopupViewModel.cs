@@ -4,7 +4,6 @@ using ContestPark.Mobile.Models.Tutorial;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -41,11 +40,11 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             LoadToturialsCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace ContestPark.Mobile.ViewModels
                                         Description = ContestParkResources.SelectTheCategoryYouWantToPlayByTheAreaYouAreInterestedIn,
                                         BackgroundGradientEndColor = "#F22E63",
                                         BackgroundGradientStartColor = "#FF6480",
-                                        Icon = "select_categories.svg",
+                                        Icon = "resource://ContestPark.Mobile.Common.Images.select_categories.svg?assembly=ContestPark.Mobile",
                                         ButtonText = ContestParkResources.Next,
                                     },
                     new TutorialModel
@@ -72,7 +71,7 @@ namespace ContestPark.Mobile.ViewModels
                                         Description = ContestParkResources.PayAnEntranceFeeOfHalfThePrizeYouWantToWin,
                                         BackgroundGradientEndColor = "#D596F6",
                                         BackgroundGradientStartColor = "#6BA4F9",
-                                        Icon = "choose_prize.svg",
+                                        Icon = "resource://ContestPark.Mobile.Common.Images.choose_prize.svg?assembly=ContestPark.Mobile",
                                         ButtonText = ContestParkResources.Next,
                                     },
                     new TutorialModel
@@ -81,7 +80,7 @@ namespace ContestPark.Mobile.ViewModels
                                         Description = ContestParkResources.DefeatYourOpponentByGivingTheFastestAndCorrectAnswersToTheQuestions,
                                         BackgroundGradientEndColor = "#FF7569",
                                         BackgroundGradientStartColor = "#FF4E54",
-                                        Icon = "question_answer.svg",
+                                        Icon = "resource://ContestPark.Mobile.Common.Images.question_answer.svg?assembly=ContestPark.Mobile",
                                         ButtonText = ContestParkResources.Next,
                                     },
                     new TutorialModel
@@ -90,7 +89,7 @@ namespace ContestPark.Mobile.ViewModels
                                         Description = ContestParkResources.WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber,
                                         BackgroundGradientEndColor = "#FFB347",
                                         BackgroundGradientStartColor = "#FFCC33",
-                                        Icon = "earn_money.svg",
+                                        Icon = "resource://ContestPark.Mobile.Common.Images.earn_money.svg?assembly=ContestPark.Mobile",
                                         ButtonText = ContestParkResources.LetsStart,
                                     },
                     }

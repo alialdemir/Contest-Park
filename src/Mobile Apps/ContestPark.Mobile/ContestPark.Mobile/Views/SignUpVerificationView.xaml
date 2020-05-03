@@ -7,7 +7,6 @@
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"

@@ -85,7 +85,7 @@
                     HeightRequest="40"
                     HorizontalOptions="End"
                     Opacity="0.20"
-                    Source="send_message.svg"
+                    Source="resource://ContestPark.Mobile.Common.Images.send_message.svg?assembly=ContestPark.Mobile"
                     VerticalOptions="Center"
                     WidthRequest="40">
                     <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>

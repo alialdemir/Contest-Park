@@ -9,7 +9,6 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -62,7 +61,7 @@ namespace ContestPark.Mobile.ViewModels
         private CountryModel _country = new CountryModel()
         {
             Country = "Türkiye",
-            Flag = Device.RuntimePlatform == Device.Android ? "assets/images/TUR_s.png" : "TUR_s.png",
+            Flag = "TUR_s.png".ToResourceImage(),
             PhoneCode = "+90"
         };
 
@@ -92,13 +91,13 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             ShowTutorialCommand.Execute(null);
 
             EventListenerCommand.Execute(null);
 
-            return base.InitializeAsync(parameters);
+            base.Initialize(parameters);
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

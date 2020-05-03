@@ -6,6 +6,7 @@
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     prism:ViewModelLocator.AutowireViewModel="True">
@@ -41,7 +42,7 @@
                     <Image
                         Grid.Row="0"
                         Grid.Column="0"
-                        Source="money.png" />
+                        Source="{image:ImageResource money.png}" />
 
                     <Label
                         Grid.Row="1"
@@ -72,8 +73,7 @@
                         StartColor="#18A263"
                         Style="{DynamicResource ButtonStyle}"
                         Text="{i18n:Translate TransferToBankAccount}"
-                        TextColor="{StaticResource White}"
-                        Visual="Material">
+                        TextColor="{StaticResource White}">
                         <custom:LinearGradientButton.CornerRadius>
                             <OnPlatform x:TypeArguments="x:Int32">
                                 <On Platform="Android" Value="124" />

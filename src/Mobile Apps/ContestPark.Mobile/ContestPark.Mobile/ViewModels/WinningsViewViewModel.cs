@@ -58,7 +58,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Sayfa açılınca bakiye bilgisini getirir
         /// </summary>
-        public override Task InitializeAsync(INavigationParameters parameters = null)
+        public override void Initialize(INavigationParameters parameters = null)
         {
             GetBalanceCommand.Execute(null);
 
@@ -66,7 +66,7 @@ namespace ContestPark.Mobile.ViewModels
                 .GetEvent<GoldUpdatedEvent>()
                 .Subscribe(() => GetBalanceCommand.Execute(null));
 
-            return base.InitializeAsync(null);
+            base.Initialize(null);
         }
 
         /// <summary>

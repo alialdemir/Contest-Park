@@ -6,11 +6,16 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="pageContestStore"
     prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="{StaticResource GlobalBackgroundColor}">
+    BackgroundColor="{StaticResource GlobalBackgroundColor}"
+    Shell.TabBarIsVisible="True">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{image:ImageResource menuicon.png}" />
+    </Shell.BackButtonBehavior>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,8 +28,10 @@
                 <DataTemplate>
                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
                         <Image
+                            Aspect="AspectFill"
+                            HeightRequest="100"
                             HorizontalOptions="FillAndExpand"
-                            Source="contest_store_header.png"
+                            Source="{image:ImageResource contest_store_header.png}"
                             VerticalOptions="FillAndExpand" />
                         <Grid>
 
@@ -71,7 +78,7 @@
                                         Grid.Column="1"
                                         Aspect="AspectFit"
                                         HeightRequest="40"
-                                        Source="doublecoins.png"
+                                        Source="{image:ImageResource doublecoins.png}"
                                         WidthRequest="50" />
                                 </Grid>
                             </yummy:PancakeView>
@@ -115,7 +122,7 @@
                                         Grid.Column="1"
                                         Aspect="AspectFit"
                                         HeightRequest="40"
-                                        Source="doublecoinstl.png"
+                                        Source="{image:ImageResource doublecoinstl.png}"
                                         WidthRequest="50" />
                                 </Grid>
                             </yummy:PancakeView>
