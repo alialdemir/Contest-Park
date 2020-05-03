@@ -6,7 +6,6 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components;assembly=ContestPark.Mobile"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters;assembly=ContestPark.Mobile"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="chatPage"
@@ -14,7 +13,11 @@
     Shell.TabBarIsVisible="True">
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IconOverride="{image:ImageResource menuicon.png}" />
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource HamburgerMenu}" />
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
     </Shell.BackButtonBehavior>
 
     <ContentPage.Resources>

@@ -7,7 +7,6 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     x:Name="categoriesPage"
@@ -18,7 +17,11 @@
     Shell.TabBarIsVisible="True"
     mc:Ignorable="d">
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IconOverride="{image:ImageResource menuicon.png}" />
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource HamburgerMenu}" />
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
     </Shell.BackButtonBehavior>
 
     <ContentPage.ToolbarItems>

@@ -13,8 +13,13 @@
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{StaticResource GlobalBackgroundColor}"
     Shell.TabBarIsVisible="True">
+
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IconOverride="{image:ImageResource menuicon.png}" />
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource HamburgerMenu}" />
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
     </Shell.BackButtonBehavior>
 
     <ContentPage.Resources>
@@ -158,7 +163,7 @@
                         RightIconTextColor="{StaticResource Primary}"
                         RightText="+40 coins"
                         SingleTap="{Binding Path=BindingContext.WatchAdsVideoCommand, Source={x:Reference pageContestStore}}"
-                        Source="ContestSingleCoin.svg"
+                        Source="resource://ContestPark.Mobile.Common.Images.ContestSingleCoin.svg?assembly=ContestPark.Mobile"
                         Text="{i18n:Translate FreeCoins}" />
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.FooterTemplate>

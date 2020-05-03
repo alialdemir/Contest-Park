@@ -26,7 +26,6 @@ namespace ContestPark.Mobile.Views
 
         public MyProfileView()
         {
-            Shell.SetBackButtonBehavior(this, new BackButtonBehavior() { IconOverride = "menuicon.png".ToResourceImage() });
             Shell.SetNavBarIsVisible(this, true);
             Shell.SetTabBarIsVisible(this, true);// Altta tabbar gözükmemesi için ekledim
         }

@@ -14,6 +14,13 @@
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
     Icon="fas-user-circle">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource HamburgerMenu}" />
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
 
     <ContentPage.Resources>
         <ResourceDictionary>

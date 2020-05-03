@@ -275,7 +275,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionContestParkMobileAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarContestParkMobileAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarContestParkMobileAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionContestParkMobileAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

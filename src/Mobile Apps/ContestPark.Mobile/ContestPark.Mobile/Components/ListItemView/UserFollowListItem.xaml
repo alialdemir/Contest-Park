@@ -21,8 +21,6 @@
     <ContentView.Content>
         <yummy:PancakeView
             Margin="0,0,0,8"
-            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
-            extension:Skeleton.IsParent="True"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
@@ -32,6 +30,8 @@
             <Grid
                 x:Name="cstmGrid"
                 Padding="16"
+                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+                extension:Skeleton.IsParent="True"
                 ColumnSpacing="0"
                 RowSpacing="0">
 

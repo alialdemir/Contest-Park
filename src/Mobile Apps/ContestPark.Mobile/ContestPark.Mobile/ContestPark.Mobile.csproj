@@ -12,6 +12,7 @@
     <None Remove="Common\Audios\Success.mp3" />
     <None Remove="Common\Fonts\GothamRounded-Bold.otf" />
     <None Remove="Common\Fonts\GothamRounded-Medium.otf" />
+    <None Remove="Common\Fonts\icomoon.ttf" />
     <None Remove="Common\Fonts\Montserrat-Medium.ttf" />
     <None Remove="Common\Fonts\Montserrat-Regular.ttf" />
     <None Remove="Common\Fonts\Montserrat-SemiBold.ttf" />

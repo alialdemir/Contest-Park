@@ -59,7 +59,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Money,
                                             ProductName = ContestParkResources.ProductMoney6,
                                             Description = ContestParkResources.ProductMoney6,
-                                            Image =  "contest_store_money_5.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_5.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -67,7 +67,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Money,
                                             ProductName = ContestParkResources.ProductMoney12,
                                             Description = ContestParkResources.ProductMoney12,
-                                            Image =  "contest_store_money_6.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_6.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -75,7 +75,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Money,
                                             ProductName = ContestParkResources.ProductMoney19,
                                             Description = ContestParkResources.ProductMoney19,
-                                            Image =  "contest_store_money_7.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_7.svg?assembly=ContestPark.Mobile"
                                         },
                                         // Gold
                                         new InAppBillingProductModel
@@ -84,7 +84,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold250Name,
                                             Description = ContestParkResources.ProductGold250Description,
-                                            Image =  "contest_store_gold_1.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_1.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -92,7 +92,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold1500Name,
                                             Description = ContestParkResources.ProductGold1500Description,
-                                            Image =  "contest_store_gold_2.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_2.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -100,7 +100,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold7000Name,
                                             Description = ContestParkResources.ProductGold7000Description,
-                                            Image =  "contest_store_gold_3.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_3.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -108,7 +108,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold20000Name,
                                             Description = ContestParkResources.ProductGold20000Description,
-                                            Image =  "contest_store_gold_4.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_4.svg?assembly=ContestPark.Mobile"
                                         },
                                     };
                 }
@@ -122,7 +122,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Money,
                                             ProductName = ContestParkResources.ProductMoney6,
                                             Description = ContestParkResources.ProductMoney6,
-                                            Image =  "contest_store_money_5.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_5.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -130,7 +130,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Money,
                                             ProductName = ContestParkResources.ProductMoney12,
                                             Description = ContestParkResources.ProductMoney12,
-                                            Image =  "contest_store_money_6.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_6.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -138,7 +138,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Money,
                                             ProductName = ContestParkResources.ProductMoney19,
                                             Description = ContestParkResources.ProductMoney19,
-                                            Image =  "contest_store_money_7.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_7.svg?assembly=ContestPark.Mobile"
                                         },
 
                                         // Gold
@@ -148,7 +148,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold250Name,
                                             Description = ContestParkResources.ProductGold250Description,
-                                            Image =  "contest_store_gold_1.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_1.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -156,7 +156,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold1500Name,
                                             Description = ContestParkResources.ProductGold1500Description,
-                                            Image =  "contest_store_gold_2.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_2.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -164,7 +164,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold7000Name,
                                             Description = ContestParkResources.ProductGold7000Description,
-                                            Image =  "contest_store_gold_3.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_3.svg?assembly=ContestPark.Mobile"
                                         },
                                         new InAppBillingProductModel
                                         {
@@ -172,7 +172,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             BalanceTypes=    BalanceTypes.Gold,
                                             ProductName = ContestParkResources.ProductGold20000Name,
                                             Description = ContestParkResources.ProductGold20000Description,
-                                            Image =  "contest_store_gold_4.svg"
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_gold_4.svg?assembly=ContestPark.Mobile"
                                         },
                                     };
             }
