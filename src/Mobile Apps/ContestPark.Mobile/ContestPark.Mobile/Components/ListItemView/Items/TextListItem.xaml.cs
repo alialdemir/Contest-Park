@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Components
     /// <summary>
     /// Defines the <see cref="TextListItem"/>
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class TextListItem : ContentView
     {
         #region Constructors

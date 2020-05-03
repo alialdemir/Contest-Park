@@ -11,7 +11,6 @@
     x:Name="categoryDetailPage"
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="#27DB94"
     Shell.NavBarIsVisible="False"
     Visual="Material">
     <ContentPage.Resources>
@@ -22,8 +21,7 @@
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
-            BackgroundColor="{StaticResource GlobalBackgroundColor}"
-            InfiniteScroll="{Binding InfiniteScroll}"
+            InfiniteScroll="{Binding InfiniteScroll}" 
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
             <components:NonPersistentSelectedItemListView.Header>

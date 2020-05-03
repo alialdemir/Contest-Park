@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components.IconButton
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class IconButton : ContentView
     {
         #region Constructor

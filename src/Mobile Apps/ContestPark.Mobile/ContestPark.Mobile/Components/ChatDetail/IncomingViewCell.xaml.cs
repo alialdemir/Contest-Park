@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components.ChatDetail
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class IncomingViewCell : ViewCell
     {
         public IncomingViewCell()

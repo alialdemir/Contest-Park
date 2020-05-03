@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public class PostCardFactoryView : ContentView
     {
         public static readonly BindableProperty NavigationServiceProperty = BindableProperty.Create(propertyName: nameof(NavigationService),

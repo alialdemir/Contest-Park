@@ -3,7 +3,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class UsersInfo : ContentView
     {
         #region Constructor

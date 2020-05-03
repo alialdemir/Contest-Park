@@ -9,7 +9,6 @@ using ContestPark.Mobile.Views;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,7 +32,7 @@ namespace ContestPark.Mobile.ViewModels
                              INavigationService navigationService,
                              IEventAggregator eventAggregator,
                              IAnalyticsService analyticsService,
-                             IPageDialogService pageDialogService) : base(navigationService, pageDialogService, isActiveSkeletonLoading: true)
+                             IPageDialogService pageDialogService) : base(navigationService, pageDialogService, isActiveSkeletonLoading: false)
         {
             _chatService = chatService;
             _eventAggregator = eventAggregator;

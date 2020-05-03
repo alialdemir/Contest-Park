@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Components
     /// <summary>
     /// Defines the <see cref="InputListItem"/>
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class InputListItem : ContentView
     {
         #region Constructors

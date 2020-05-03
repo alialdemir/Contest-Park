@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Components
     /// <summary>
     /// Defines the <see cref="ListItemFactory"/>
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public class ListItemFactory : ContentView
     {
         #region Constructors

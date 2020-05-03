@@ -8,7 +8,6 @@ using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
 using Prism.Services;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -32,7 +31,7 @@ namespace ContestPark.Mobile.ViewModels
                                      INavigationService navigationService,
                                      IPageDialogService dialogService,
                                      IFollowService followService,
-                                     IAnalyticsService analyticsService) : base(navigationService, dialogService, isActiveSkeletonLoading: true)
+                                     IAnalyticsService analyticsService) : base(navigationService, dialogService, isActiveSkeletonLoading: false)
         {
             Title = ContestParkResources.Notifications;
 

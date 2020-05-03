@@ -15,7 +15,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components.PostCardView
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class ImagePostCard : ContentView
     {
         #region Private

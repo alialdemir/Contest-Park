@@ -6,7 +6,7 @@ namespace ContestPark.Mobile.Components
     /// <summary>
     /// Defines the <see cref="SwitchListItem"/>
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class SwitchListItem : ContentView
     {
         #region Constructors

@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components.InviteSocialMedia
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class InviteSocialMediaView : ContentView
     {
         #region Constructor

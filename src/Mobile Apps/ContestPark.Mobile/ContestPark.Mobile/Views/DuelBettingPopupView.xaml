@@ -109,7 +109,7 @@
                                 TextColor="{StaticResource White}"
                                 TranslationY="15"
                                 VerticalOptions="End"
-                                WidthRequest="330" />
+                                WidthRequest="335" />
 
                             <yummy:PancakeView
                                 x:Name="pvkView"

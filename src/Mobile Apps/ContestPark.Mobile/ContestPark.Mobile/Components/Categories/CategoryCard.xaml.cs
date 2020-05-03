@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class CategoryCard : ContentView
     {
         #region Methods
