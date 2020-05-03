@@ -20,12 +20,6 @@ steps:
   enabled: false
 
 - task: NuGetToolInstaller@1
-- task: ios-bundle-version@1
-  inputs:
-    sourcePath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/Info.plist'
-    versionCodeOption: 'buildid'
-    versionCode: '$(Build.BuildId)'
-    printFile: true
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/ContestPark.Mobile.sln'
@@ -44,7 +38,13 @@ steps:
     certSecureFile: 'Certificates.p12'
     certPwd: '$(IosKeyCerPassword)'
     keychain: 'temp'
-
+- task: ios-bundle-version@1
+  inputs:
+    sourcePath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/Info.plist'
+    versionCodeOption: 'buildid'
+    versionCode: '$(Build.BuildId)'
+    versionName: '3.11.$(Build.BuildId)'
+    printFile: false
 - task: XamariniOS@2
   inputs:
     solutionFile: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/ContestPark.Mobile.iOS.csproj'
@@ -63,7 +63,5 @@ steps:
     releaseNotes: 'CD/CI test'
     shouldSkipWaitingForProcessing: true
     shouldSkipSubmission: true
-    distributedToExternalTesters: true
-    externalTestersGroups: 'ContestPark Test Group'
     installFastlane: false
 
