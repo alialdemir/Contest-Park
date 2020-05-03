@@ -53,7 +53,6 @@
     <None Remove="Common\Images\liked.svg" />
     <None Remove="Common\Images\likes.svg" />
     <None Remove="Common\Images\logo.png" />
-    <None Remove="Common\Images\menuicon.png" />
     <None Remove="Common\Images\money.png" />
     <None Remove="Common\Images\money_bag.svg" />
     <None Remove="Common\Images\next_tutorial.svg" />
@@ -138,7 +137,6 @@
     <EmbeddedResource Include="Common\Images\liked.svg" />
     <EmbeddedResource Include="Common\Images\likes.svg" />
     <EmbeddedResource Include="Common\Images\logo.png" />
-    <EmbeddedResource Include="Common\Images\menuicon.png" />
     <EmbeddedResource Include="Common\Images\money.png" />
     <EmbeddedResource Include="Common\Images\money_bag.svg" />
     <EmbeddedResource Include="Common\Images\next_tutorial.svg" />
