@@ -55,4 +55,9 @@ steps:
     ipaPath: 'src/Mobile Apps/ContestPark.Mobile/ContestPark.Mobile.iOS/bin/iPhone/Release/*.ipa'
     releaseTrack: 'TestFlight'
     releaseNotes: 'CD/CI test'
+    shouldSkipWaitingForProcessing: true
+    shouldSkipSubmission: true
+    distributedToExternalTesters: true
+    externalTestersGroups: 'ContestPark Test Group'
+    installFastlane: false
 
