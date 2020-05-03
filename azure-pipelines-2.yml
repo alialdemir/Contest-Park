@@ -62,6 +62,5 @@ steps:
     releaseNotes: 'CD/CI test'
     shouldSkipWaitingForProcessing: true
     shouldSkipSubmission: true
-    distributedToExternalTesters: true
     installFastlane: false
 
