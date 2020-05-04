@@ -41,6 +41,7 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView Style="{StaticResource ListViewOnlyHeader}">
             <components:NonPersistentSelectedItemListView.Header>

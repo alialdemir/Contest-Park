@@ -48,7 +48,7 @@
                         Grid.Column="0"
                         BackgroundColor="Transparent"
                         BorderColor="#666372"
-                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontFamily="{StaticResource SofiaProMedium}"
                         FontSize="16"
                         HeightRequest="40"
                         HorizontalOptions="FillAndExpand"

@@ -12,7 +12,6 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
-using MvvmHelpers;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
@@ -25,7 +24,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    public class DuelBettingPopupViewModel : ViewModelBase
+    public class DuelBettingPopupViewModel : ViewModelBase<BetModel>
     {
         #region Private variables
 
@@ -77,8 +76,6 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public ObservableRangeCollection<BetModel> Bets { get; set; } = new ObservableRangeCollection<BetModel>();
-
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -127,15 +124,15 @@ namespace ContestPark.Mobile.ViewModels
 
         private void InitBets()
         {
-            Bets.Clear();
+            Items.Clear();
 
             if (BalanceType == BalanceTypes.Gold)
             {
                 BetModel freeBet = AddFreeLoader();
                 if (freeBet != null)
-                    Bets.Add(freeBet);
+                    Items.Add(freeBet);
 
-                Bets.AddRange(
+                Items.AddRange(
            new List<BetModel> {
                                 new BetModel
                                 {
@@ -202,7 +199,7 @@ namespace ContestPark.Mobile.ViewModels
             }
             else if (BalanceType == BalanceTypes.Money)
             {
-                Bets.AddRange(
+                Items.AddRange(
            new List<BetModel> {
                                 new BetModel
                                 {
@@ -367,29 +364,29 @@ namespace ContestPark.Mobile.ViewModels
         {
             decimal minBet = (decimal)(bet * 10);
 
-            int lastCurrentIndex = Bets.LastOrDefault().CurrentIndex;
+            int lastCurrentIndex = Items.LastOrDefault().CurrentIndex;
 
             if (BalanceType == BalanceTypes.Money)
             {
                 if (Balance.Money <= minBet)
                 {
-                    return Bets.FirstOrDefault(x => x.EntryFee == bet);
+                    return Items.FirstOrDefault(x => x.EntryFee == bet);
                 }
 
-                return Bets
-                    .Where(x => Balance.Money <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
-                    .FirstOrDefault();
+                return Items
+                        .Where(x => Balance.Money <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
+                        .FirstOrDefault();
             }
             else if (BalanceType == BalanceTypes.Gold)
             {
                 if (Balance.Gold <= minBet)
                 {
-                    return Bets.FirstOrDefault(x => x.EntryFee == bet);
+                    return Items.FirstOrDefault(x => x.EntryFee == bet);
                 }
 
-                return Bets
-                    .Where(x => Balance.Gold <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
-                    .FirstOrDefault();
+                return Items
+                        .Where(x => Balance.Gold <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
+                        .FirstOrDefault();
             }
 
             return null;

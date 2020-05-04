@@ -3,6 +3,9 @@
     x:Class="ContestPark.Mobile.ContestParkApp"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Bet"
     xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <prism:PrismApplication.Resources>
@@ -77,6 +80,9 @@
             <x:Boolean x:Key="True">True</x:Boolean>
             <x:Boolean x:Key="False">False</x:Boolean>
 
+            <!--  Converter  -->
+            <converter:BetIconConverter x:Key="BetIconConverter" />
+
             <!--  Fonts  -->
             <OnPlatform
                 x:Key="GothamRoundedBold"
@@ -138,6 +144,7 @@
                 x:TypeArguments="x:String"
                 Default="Sofia Pro Semi Bold Az.otf" />
 
+            <!--  styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
                 <Setter Property="Padding">
                     <Setter.Value>
@@ -216,34 +223,6 @@
                 <Setter Property="HeightRequest" Value="36" />
             </Style>
 
-            <Style
-                x:Key="DangerButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#b71c1c" />
-            </Style>
-
-            <Style
-                x:Key="FacebookButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#3b5998" />
-            </Style>
-
-            <Style
-                x:Key="TwitterButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#1da1f2" />
-            </Style>
-
-            <Style
-                x:Key="GoolgePlusButton"
-                BasedOn="{StaticResource Button}"
-                TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#dd4b39" />
-            </Style>
-
             <!--  List empty message  -->
             <Style x:Key="EmptyModel" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Black}" />
@@ -260,6 +239,120 @@
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="WidthRequest" Value="367" />
+            </Style>
+
+            <!--  Bet popup top buttons  -->
+            <Style x:Key="PopupTopButton" TargetType="components:LinearGradientButton">
+                <Setter Property="Padding" Value="0,-90,0,0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderRadius" Value="48" />
+                <Setter Property="EndColor" Value="#FFCC33" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="{StaticResource GothamRoundedBold}" />
+                <Setter Property="FontSize" Value="23" />
+                <Setter Property="HeightRequest" Value="150" />
+                <Setter Property="StartColor" Value="#FFB347" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="165" />
+            </Style>
+
+            <Style
+                x:Key="PopupTopLeftButton"
+                BasedOn="{StaticResource PopupTopButton}"
+                TargetType="components:LinearGradientButton">
+                <Setter Property="TranslationX" Value="40" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="TranslationY" Value="-15" />
+            </Style>
+
+            <Style
+                x:Key="PopupTopRightButton"
+                BasedOn="{StaticResource PopupTopButton}"
+                TargetType="components:LinearGradientButton">
+                <Setter Property="TranslationX" Value="-40" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="TranslationY" Value="-15" />
+            </Style>
+
+            <!--  Popup bottom buttons  -->
+            <Style x:Key="PopupBottomButton" TargetType="components:LinearGradientButton">
+                <Setter Property="Padding" Value="0,90,0,0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderRadius" Value="48" />
+                <Setter Property="EndColor" Value="#47E476" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="{StaticResource GothamRoundedBold}" />
+                <Setter Property="FontSize" Value="23" />
+                <Setter Property="HeightRequest" Value="150" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="StartColor" Value="#2CCCD8" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="TranslationY" Value="15" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="WidthRequest">
+                    <Setter.Value>
+                        <OnPlatform Android="330" iOS="334" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--  Popup card  -->
+            <Style x:Key="PopupCard" TargetType="yummy:PancakeView">
+                <Setter Property="Margin" Value="40" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="Elevation" Value="61" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="HeightRequest" Value="430" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="WidthRequest" Value="350" />
+            </Style>
+
+            <!--  Popup Listveiw  -->
+            <Style x:Key="ListViewPopup" TargetType="cards:CoverFlowView">
+                <Setter Property="IsCyclical" Value="False" />
+                <Setter Property="ItemsSource" Value="{Binding Items}" />
+                <Setter Property="PositionShiftValue" Value="60" />
+                <Setter Property="SelectedIndex" Value="{Binding SelectedIndex}" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <!--  Popup Title  -->
+            <Style x:Key="PopupTitle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="{StaticResource GothamRoundedBold}" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Text" Value="{Binding Title}" />
+                <Setter Property="TextColor" Value="#FDBC2E" />
+            </Style>
+
+            <!--  Popup Sub title  -->
+            <Style x:Key="PopupSubtitle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource MontserratRegular}" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Text" Value="{Binding Description}" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+            </Style>
+
+            <!--  Close button  -->
+            <Style x:Key="CloseButton" TargetType="Image">
+                <Setter Property="Margin" Value="0,8,8,0" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Source">
+                    <Setter.Value>
+                        <FontImageSource
+                            FontFamily="{StaticResource icomoon}"
+                            Glyph="{StaticResource Close}"
+                            Size="32"
+                            Color="{StaticResource SettingsIconColor}" />
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

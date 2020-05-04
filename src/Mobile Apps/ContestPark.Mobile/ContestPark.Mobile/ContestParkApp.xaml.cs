@@ -8,9 +8,6 @@ using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Events;
 using Prism.Ioc;
-using System.Reflection;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile
 {
