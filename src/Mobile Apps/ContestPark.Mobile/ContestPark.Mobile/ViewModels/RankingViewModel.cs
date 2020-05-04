@@ -36,7 +36,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public RankingViewModel(INavigationService navigationService,
-                                IScoreService scoreService) : base(navigationService)
+                                IScoreService scoreService) : base(navigationService, isActiveSkeletonLoading: true)
         {
             _scoreService = scoreService;
             Title = ContestParkResources.Ranking;

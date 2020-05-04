@@ -31,7 +31,7 @@ namespace ContestPark.Mobile.ViewModels
                 IPageDialogService dialogService,
                 IFollowService followService,
                 IAnalyticsService analyticsService
-            ) : base(navigationService, dialogService, isActiveSkeletonLoading: false)
+            ) : base(navigationService, dialogService, isActiveSkeletonLoading: true)
         {
             _followService = followService;
             _analyticsService = analyticsService;

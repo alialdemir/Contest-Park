@@ -19,12 +19,10 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <!--
-            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
-            extension:Skeleton.IsParent="True"
-        -->
         <yummy:PancakeView
             Margin="0,0,0,8"
+            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+            extension:Skeleton.IsParent="True"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
@@ -50,6 +48,8 @@
                 <components:CircleImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}"
                     CommandParameter="{Binding UserName}"
                     HeightRequest="50"
@@ -61,6 +61,8 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="14,0,0,0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontAttributes="Bold"
                     FontFamily="{DynamicResource SofiaProSemiBold}"
                     FontSize="18"
@@ -72,6 +74,8 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="14,4,0,0"
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontFamily="{DynamicResource SofiaProLight}"
                     FontSize="14"
                     LineBreakMode="WordWrap"
@@ -79,10 +83,6 @@
                     TextColor="#181C2F"
                     VerticalOptions="FillAndExpand" />
 
-                <!--
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
-                -->
                 <yummy:PancakeView
                     Grid.RowSpan="2"
                     Grid.Column="2"

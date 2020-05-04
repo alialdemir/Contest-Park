@@ -5,7 +5,6 @@ using ContestPark.Mobile.Services.Score;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -24,7 +23,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public LeaderBoardViewViewModel(INavigationService navigationService,
-                                        IScoreService scoreService) : base(navigationService)
+                                        IScoreService scoreService) : base(navigationService, isActiveSkeletonLoading: true)
         {
             _scoreService = scoreService;
             Title = ContestParkResources.LeaderBoard;

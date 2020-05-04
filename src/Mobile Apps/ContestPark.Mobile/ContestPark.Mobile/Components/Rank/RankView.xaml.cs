@@ -2,11 +2,9 @@
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    
     public partial class RankView : ContentView
     {
         #region Constructors

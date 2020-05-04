@@ -21,7 +21,7 @@
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView
             x:Name="lstCategoryPosts"
-            InfiniteScroll="{Binding InfiniteScroll}" 
+            InfiniteScroll="{Binding InfiniteScroll}"
             IsShowEmptyMessage="{Binding IsShowEmptyMessage}"
             Style="{StaticResource ListViewHeaderAndFooter}">
             <components:NonPersistentSelectedItemListView.Header>
@@ -143,6 +143,7 @@
                     </yummy:PancakeView>
 
                     <yummy:PancakeView
+                        x:Name="pnkStats"
                         Grid.Row="1"
                         Margin="24,0,24,0"
                         BackgroundColor="{StaticResource White}"
@@ -151,7 +152,6 @@
                         HasShadow="True"
                         HeightRequest="200"
                         IsClippedToBounds="True"
-                        TranslationY="-50"
                         WidthRequest="367">
                         <Grid
                             Margin="30,20,30,0"

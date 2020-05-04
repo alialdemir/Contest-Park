@@ -35,7 +35,6 @@
             Style="{StaticResource ListViewOnlyHeader}">
             <components:NonPersistentSelectedItemListView.HeaderTemplate>
                 <DataTemplate>
-
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

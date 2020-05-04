@@ -10,7 +10,7 @@ namespace ContestPark.Mobile.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || parameter == null)
-                return 1;
+                return string.Empty;
 
             int rank = ((ListView)parameter).ItemsSource.Cast<object>().ToList().IndexOf(value) + 3;
 

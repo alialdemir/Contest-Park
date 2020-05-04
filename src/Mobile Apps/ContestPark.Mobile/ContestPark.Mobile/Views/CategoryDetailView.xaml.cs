@@ -16,6 +16,13 @@ namespace ContestPark.Mobile.Views
 
         #region Overrides
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            pnkStats.TranslateTo(0, -50, 1500, Easing.SinInOut);
+        }
+
         protected override void OnDisappearing()
         {
             if (BindingContext != null)

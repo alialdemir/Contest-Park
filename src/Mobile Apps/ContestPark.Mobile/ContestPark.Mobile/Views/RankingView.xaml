@@ -10,7 +10,6 @@
     x:Name="rankingPage"
     Padding="0"
     prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="#424E5C"
     Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
