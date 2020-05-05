@@ -110,6 +110,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
+            // NOTE: bu eventi göndermeye gerek yok artık soruları ve kullanıcı bilgilerini tek eventte gönderiyoruz ilerleyen versiyonlarda silinmeli
             await PublishDuelStartingEvent(duelId,
                                            @event.FounderUserId,
                                            @event.FounderConnectionId,
@@ -157,12 +158,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType);
             ChangeBalance(@event.OpponentUserId, @event.Bet, @event.BalanceType);
 
-            PublishDuelCreatedEvent(duelId,
-                                    @event.FounderUserId,
-                                    @event.FounderConnectionId,
-                                    @event.OpponentUserId,
-                                    @event.OpponentConnectionId,
-                                    questions);
+            await PublishDuelCreatedEvent(duelId,
+                                      @event.FounderUserId,
+                                      @event.FounderConnectionId,
+                                      @event.OpponentUserId,
+                                      @event.OpponentConnectionId,
+                                      questions);
 
             _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
                                    duelId,
@@ -182,19 +183,44 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="opponentUserId">Rakip kullanıcı id</param>
         /// <param name="opponentConnectionId">Rakip connection id</param>
         /// <param name="questions">Düelloda sorulacak sorular</param>
-        private void PublishDuelCreatedEvent(int duelId,
-                                             string founderUserId,
-                                             string founderConnectionId,
-                                             string opponentUserId,
-                                             string opponentConnectionId,
-                                             IEnumerable<QuestionModel> questions)
+        private async Task PublishDuelCreatedEvent(int duelId,
+                                                   string founderUserId,
+                                                   string founderConnectionId,
+                                                   string opponentUserId,
+                                                   string opponentConnectionId,
+                                                   IEnumerable<QuestionModel> questions)
         {
+            // TODO: #issue 213
+
+            // Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
+            List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
+                {
+                    founderUserId,
+                    opponentUserId
+           }, includeCoverPicturePath: true)).ToList();
+
+            UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
+            UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
+
+            if (founderUserModel == null || opponentUserModel == null)
+            {
+                _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
+
+                return;
+            }
+
             var @duelEvent = new DuelCreatedIntegrationEvent(duelId,
-                                                             founderUserId,
+                                                             questions,
+                                                             founderUserModel.CoverPicturePath,
+                                                             founderUserModel.ProfilePicturePath,
+                                                             founderUserModel.UserId,
                                                              founderConnectionId,
-                                                             opponentUserId,
-                                                             opponentConnectionId,
-                                                             questions);
+                                                             founderUserModel.FullName,
+                                                             opponentUserModel.CoverPicturePath,
+                                                             opponentUserModel.FullName,
+                                                             opponentUserModel.ProfilePicturePath,
+                                                             opponentUserModel.UserId,
+                                                             opponentConnectionId);
 
             _eventBus.Publish(duelEvent);
         }
@@ -207,6 +233,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <param name="founderConnectionId">Kurucu connection id</param>
         /// <param name="opponentUserId">Rakip kullanıcı id</param>
         /// <param name="opponentConnectionId">Rakip connection id</param>
+
+        [System.Obsolete]// Artık tek event üzerinden kullanıcı bilgileri ve soru bilgilerini gönderiyoruz
         private async Task PublishDuelStartingEvent(int duelId,
                                                     string founderUserId,
                                                     string founderConnectionId,
@@ -259,25 +287,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _eventBus.Publish(@event);
         }
 
-        /// <summary>
-        /// Kullanıcının bakiyesini değiştirme eventi publish eder
-        /// </summary>
-        /// <param name="userId">Kullanıcı id</param>
-        /// <param name="bet">Bakiye</param>
-        /// <param name="balanceType">Bakiye tipi</param>
-        //private void ChangeBalance(string founderUserId, string opponentUserId, decimal bet, BalanceTypes balanceType)
-        //{
-        //    if (bet <= 0)
-        //        return;
-
-        //    bet = -bet;
-
-        //    var @changeBalancesEvent = new MultiChangeBalanceIntegrationEvent();
-
-        //    @changeBalancesEvent.AddChangeBalance(bet, balanceType, BalanceHistoryTypes.Duel, founderUserId, opponentUserId);
-
-        //    _eventBus.Publish(@changeBalancesEvent);
-        //}
         private void ChangeBalance(string userId, decimal bet, BalanceTypes balanceType)
         {
             if (bet <= 0)

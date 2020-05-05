@@ -1,7 +1,9 @@
 ﻿using ContestPark.EventBus.Events;
+using System;
 
 namespace ContestPark.Duel.API.Models
 {
+    [Obsolete]
     public class DuelStartingModelIntegrationEvent : IntegrationEvent
     {
         public DuelStartingModelIntegrationEvent(int duelId,

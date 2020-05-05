@@ -1,5 +1,4 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.ErrorModel;
@@ -108,7 +107,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                 //return HttpInvoker(origin, async (context) =>
                 //{
-                if (await CheckNetworkAsync())
+                if (CheckNetworkAsync())
                     return new ResponseModel<TResult>();
 
                 HttpResponseMessage response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Post, url)
@@ -224,7 +223,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             {
                 try
                 {
-                    if (await CheckNetworkAsync())
+                    if (CheckNetworkAsync())
                         return new ResponseModel<TResult>();
 
                     HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, url);
@@ -251,13 +250,18 @@ namespace ContestPark.Mobile.Services.RequestProvider
             }
         }
 
-        private async Task<bool> CheckNetworkAsync()
+        private bool CheckNetworkAsync()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
+                if (ContestParkApp.Current.MainPage == null)
+                    return true;
+
                 IPageDialogService pageDialogService = ContestParkApp.Current.Container.Resolve<IPageDialogService>();
 
-                await pageDialogService?.DisplayAlertAsync(ContestParkResources.NoInternet, "", ContestParkResources.Okay);
+                pageDialogService?.DisplayAlertAsync(string.Empty,
+                                                     ContestParkResources.NoInternet,
+                                                     ContestParkResources.Okay);
 
                 return true;
             }

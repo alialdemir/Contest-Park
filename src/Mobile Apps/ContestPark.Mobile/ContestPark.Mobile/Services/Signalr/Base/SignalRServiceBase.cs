@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.Signalr.Base
 {
@@ -45,23 +46,23 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// </summary>
         public async Task Init()
         {
-            if (!string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet || string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+                return;
+
+            HubConnection = new HubConnectionBuilder()
+                .WithUrl(GlobalSetting.Instance.SignalREndpoint, (options) =>
             {
-                HubConnection = new HubConnectionBuilder()
-                    .WithUrl(GlobalSetting.Instance.SignalREndpoint, (options) =>
-                {
-                    options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
-                }).Build();
+                options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
+            }).Build();
 
-                HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
-                HubConnection.HandshakeTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
+            HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
+            HubConnection.HandshakeTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
 
-                GetConnection();
+            GetConnection();
 
-                RemoveConnectionId();
+            RemoveConnectionId();
 
-                await ConnectAsync();
-            }
+            await ConnectAsync();
         }
 
         /// <summary>

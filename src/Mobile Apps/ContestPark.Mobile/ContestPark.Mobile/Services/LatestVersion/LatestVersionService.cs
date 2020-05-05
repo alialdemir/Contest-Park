@@ -48,6 +48,9 @@ namespace ContestPark.Mobile.Services.LatestVersion
         /// </summary>
         public async Task IfNotUsingLatestVersionOpenInStore()
         {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                return;
+
             var isLatest = await IsUsingLatestVersion();
 
             if (!isLatest)

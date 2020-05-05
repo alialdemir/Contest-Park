@@ -320,12 +320,7 @@ namespace ContestPark.Mobile.ViewModels
 
             RandomPicturStatus = false;
 
-            // Signalr events remove
-            if (DuelStarting.DuelId == 0)
-                OffSignalr();
-
-            _duelSignalRService.DuelStartingEventHandler -= OnDuelStarting;
-            _duelSignalRService.OffDuelStarting();
+            OffSignalr();
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
@@ -389,9 +384,7 @@ namespace ContestPark.Mobile.ViewModels
         private async void OnDuelCreated(object sender, DuelCreated e)
         {
             DuelCreated duelCreated = (DuelCreated)sender;
-            if (duelCreated == null
-                || string.IsNullOrEmpty(DuelStarting.FounderUserId)
-                || string.IsNullOrEmpty(DuelStarting.OpponentUserId))
+            if (duelCreated == null)
             {
                 NotStartingDuel();
 
@@ -448,7 +441,9 @@ namespace ContestPark.Mobile.ViewModels
 
             _duelService.DuelCancel();
 
-            base.GoBackAsync(useModalNavigation: true);
+            IsNextQuestionExit = true;
+
+            GoBackAsync(useModalNavigation: true);
         }
 
         /// <summary>
