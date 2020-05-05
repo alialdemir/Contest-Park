@@ -2,6 +2,7 @@
 
 namespace ContestPark.Signalr.API.IntegrationEvents.Events
 {
+    [System.Obsolete]
     public class DuelStartingModelIntegrationEvent : IntegrationEvent
     {
         public DuelStartingModelIntegrationEvent(int duelId,

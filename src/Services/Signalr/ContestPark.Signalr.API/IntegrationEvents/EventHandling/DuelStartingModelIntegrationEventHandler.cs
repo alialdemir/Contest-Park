@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
 {
+    [System.Obsolete]
     public class DuelStartingModelIntegrationEventHandler : IIntegrationEventHandler<DuelStartingModelIntegrationEvent>
     {
         #region Private Variables

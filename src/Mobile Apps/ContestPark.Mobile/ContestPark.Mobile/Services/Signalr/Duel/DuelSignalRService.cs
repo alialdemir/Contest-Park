@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Models.Duel;
-using ContestPark.Mobile.Models.Duel.InviteDuel;
+﻿using ContestPark.Mobile.Models.Duel.InviteDuel;
 using ContestPark.Mobile.Models.Duel.Quiz;
 using ContestPark.Mobile.Models.Error;
 using ContestPark.Mobile.Services.Signalr.Base;
@@ -27,8 +26,6 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         #region Events
 
-        public EventHandler<DuelStartingModel> DuelStartingEventHandler { get; set; }
-
         public EventHandler<DuelCreated> DuelCreatedEventHandler { get; set; }
         public EventHandler<InviteModel> InviteDuelEventHandler { get; set; }
 
@@ -38,14 +35,6 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         #endregion Events
 
         #region Method
-
-        /// <summary>
-        /// Duello bekleme ekranındaki kullanıcı bilgilerini getirir
-        /// </summary>
-        public void DuelStarting()
-        {
-            _signalRService?.On<DuelStartingModel>("DuelStarting", (data) => DuelStartingEventHandler?.Invoke(data, null));
-        }
 
         /// <summary>
         /// Sıradaki soruyu almak için
@@ -77,14 +66,6 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
         public void OffSendErrorMessage()
         {
             _signalRService?.Off("SendErrorMessage");
-        }
-
-        /// <summary>
-        /// On DuelStarting kısmını kapatır
-        /// </summary>
-        public void OffDuelStarting()
-        {
-            _signalRService?.Off("DuelStarting");
         }
 
         /// <summary>

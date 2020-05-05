@@ -142,5 +142,7 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
+        public string FounderConnectionId { get; }
+        public string OpponentConnectionId { get; }
     }
 }

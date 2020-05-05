@@ -177,16 +177,14 @@ namespace ContestPark.Duel.API.Controllers
             }
 
             var eventDuelStart = new DuelStartIntegrationEvent(subCategoryId: acceptInvite.SubCategoryId,
-                                                           bet: acceptInvite.Bet,
-                                                           balanceType: acceptInvite.BalanceType,
-
-                                                           founderUserId: acceptInvite.FounderUserId,
-                                                           founderConnectionId: acceptInvite.FounderConnectionId,
-                                                           founderLanguage: acceptInvite.FounderLanguage,
-
-                                                           opponentUserId: UserId,
-                                                           opponentConnectionId: acceptInvite.OpponentConnectionId,
-                                                           opponentLanguage: CurrentUserLanguage);
+                                                               bet: acceptInvite.Bet,
+                                                               balanceType: acceptInvite.BalanceType,
+                                                               founderUserId: acceptInvite.FounderUserId,
+                                                               founderConnectionId: acceptInvite.FounderConnectionId,
+                                                               founderLanguage: acceptInvite.FounderLanguage,
+                                                               opponentUserId: UserId,
+                                                               opponentConnectionId: acceptInvite.OpponentConnectionId,
+                                                               opponentLanguage: CurrentUserLanguage);
 
             _eventBus.Publish(eventDuelStart);
 
