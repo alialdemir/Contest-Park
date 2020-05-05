@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
-    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     x:Name="rankView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -13,10 +12,13 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid
+        <!--
+            xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+
             extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
             extension:Skeleton.IsParent="True"
-            RowSpacing="0">
+        -->
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
@@ -28,12 +30,14 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
+            <!--
+                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+            -->
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="0,8,0,8"
-                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="15"
                 HorizontalTextAlignment="Center"
@@ -44,8 +48,6 @@
             <Components:CircleImage
                 Grid.Row="0"
                 Grid.Column="1"
-                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                 Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference rankView}}"
                 CommandParameter="{Binding UserName}"
                 HeightRequest="32"
@@ -56,8 +58,6 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="2"
-                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                 FontFamily="{StaticResource SofiaProRegular}"
                 FontSize="15"
                 LineBreakMode="TailTruncation"
@@ -69,8 +69,6 @@
                 x:Name="lblScore"
                 Grid.Row="0"
                 Grid.Column="3"
-                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource SofiaProSemiBold}"
                 FontSize="15"
@@ -84,8 +82,6 @@
                 x:Name="imgCoins"
                 Grid.Column="4"
                 Margin="0,8,16,0"
-                extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                 Aspect="AspectFit"
                 HeightRequest="32"
                 WidthRequest="32" />

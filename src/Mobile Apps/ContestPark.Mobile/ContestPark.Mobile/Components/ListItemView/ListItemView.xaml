@@ -6,7 +6,6 @@
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
-    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="listItemView">
     <ContentView.Resources>
@@ -15,12 +14,15 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
+        <!--
+            xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+            extension:Skeleton.IsParent="True"
+        -->
         <yummy:PancakeView
             x:Name="pncView"
             Margin="0,0,0,8"
             Padding="0"
-            extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
-            extension:Skeleton.IsParent="True"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
@@ -47,12 +49,14 @@
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
+                <!--
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+                -->
 
                 <components:CircleImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference listItemView}}"
                     CommandParameter="{Binding UserName}"
                     HeightRequest="50"
@@ -64,8 +68,6 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="14,0,0,0"
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontAttributes="Bold"
                     FontFamily="{DynamicResource SofiaProSemiBold}"
                     FontSize="18"
@@ -78,8 +80,6 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Margin="14,4,0,0"
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontFamily="{DynamicResource SofiaProLight}"
                     FontSize="14"
                     LineBreakMode="TailTruncation"

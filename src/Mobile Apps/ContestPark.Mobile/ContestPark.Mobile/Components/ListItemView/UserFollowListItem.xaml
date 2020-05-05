@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
-    xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="userFollowListItemPage">
     <ContentView.Resources>
@@ -19,10 +18,13 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <yummy:PancakeView
-            Margin="0,0,0,8"
+        <!--
+            xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
             extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
             extension:Skeleton.IsParent="True"
+        -->
+        <yummy:PancakeView
+            Margin="0,0,0,8"
             BackgroundColor="{StaticResource White}"
             CornerRadius="8"
             Elevation="6"
@@ -45,11 +47,13 @@
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
 
+                <!--
+                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
+                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
+                -->
                 <components:CircleImage
                     Grid.RowSpan="2"
                     Grid.Column="0"
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     Command="{Binding Path=GotoProfilePageCommand, Source={x:Reference userFollowListItemPage}}"
                     CommandParameter="{Binding UserName}"
                     HeightRequest="50"
@@ -61,8 +65,6 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="14,0,0,0"
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontAttributes="Bold"
                     FontFamily="{DynamicResource SofiaProSemiBold}"
                     FontSize="18"
@@ -74,8 +76,6 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="14,4,0,0"
-                    extension:Skeleton.BackgroundColor="{StaticResource SkeletonLoading}"
-                    extension:Skeleton.IsBusy="{Binding ., Converter={StaticResource slc}}"
                     FontFamily="{DynamicResource SofiaProLight}"
                     FontSize="14"
                     LineBreakMode="WordWrap"

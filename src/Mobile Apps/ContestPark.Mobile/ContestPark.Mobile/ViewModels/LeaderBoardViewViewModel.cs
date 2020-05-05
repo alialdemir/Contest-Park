@@ -23,7 +23,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructors
 
         public LeaderBoardViewViewModel(INavigationService navigationService,
-                                        IScoreService scoreService) : base(navigationService, isActiveSkeletonLoading: true)
+                                        IScoreService scoreService) : base(navigationService, isActiveSkeletonLoading: false)
         {
             _scoreService = scoreService;
             Title = ContestParkResources.LeaderBoard;

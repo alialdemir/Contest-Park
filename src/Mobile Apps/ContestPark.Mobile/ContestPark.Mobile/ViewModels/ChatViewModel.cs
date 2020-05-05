@@ -32,7 +32,7 @@ namespace ContestPark.Mobile.ViewModels
                              INavigationService navigationService,
                              IEventAggregator eventAggregator,
                              IAnalyticsService analyticsService,
-                             IPageDialogService pageDialogService) : base(navigationService, pageDialogService, isActiveSkeletonLoading: true)
+                             IPageDialogService pageDialogService) : base(navigationService, pageDialogService, isActiveSkeletonLoading: false)
         {
             _chatService = chatService;
             _eventAggregator = eventAggregator;

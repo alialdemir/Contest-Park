@@ -31,7 +31,7 @@ namespace ContestPark.Mobile.ViewModels
                                      INavigationService navigationService,
                                      IPageDialogService dialogService,
                                      IFollowService followService,
-                                     IAnalyticsService analyticsService) : base(navigationService, dialogService, isActiveSkeletonLoading: true)
+                                     IAnalyticsService analyticsService) : base(navigationService, dialogService, isActiveSkeletonLoading: false)
         {
             Title = ContestParkResources.Notifications;
 
