@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="ContestPark.Mobile.Components.SignUp.CategoriesViewCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="categoriesViewCell"
+    mc:Ignorable="d">
+    <ViewCell.View>
+        <Grid VerticalOptions="Center">
+
+
+            <components:LinearGradientButton
+                Command="{Binding Path=BindingContext.UserNameCommand, Source={x:Reference categoriesViewCell}}"
+                Style="{StaticResource PopupBlueBottomButton}"
+                Text="{i18n:Translate RightOn}" />
+
+            <yummy:PancakeView Style="{StaticResource PopupSignupCard}">
+                <Grid
+                    Padding="8"
+                    ColumnSpacing="0"
+                    RowSpacing="8"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="235" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+
+                    <Image Style="{StaticResource CloseButton}" VerticalOptions="StartAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference categoriesViewCell}}" CommandParameter="{StaticResource True}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </yummy:PancakeView>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

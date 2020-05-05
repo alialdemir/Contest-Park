@@ -161,7 +161,7 @@ namespace ContestPark.Notification.API.Controllers
             }
 
             var match = Regex.Match(smsInfo.PhoneNumber, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);// Globale çıkınca burayı kaldıralım
-            if (!match.Success)
+            if (!match.Success && !isSmsSend)
             {
                 return BadRequest(NotificationResource.InvalidPhoneNumber);
             }

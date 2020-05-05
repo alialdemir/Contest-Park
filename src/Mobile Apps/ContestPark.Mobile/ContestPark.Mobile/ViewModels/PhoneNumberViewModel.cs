@@ -1,8 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
-using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Country;
-using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -117,7 +115,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Random sms kodu oluşturup sms gönderir ve CheckSmsView'e yönlendirir
         /// </summary>
-        private async Task ExecuteSendSmsCommandAsync()
+        private void ExecuteSendSmsCommand()
         {
             if (IsBusy)
                 return;
@@ -126,9 +124,9 @@ namespace ContestPark.Mobile.ViewModels
 
             if (string.IsNullOrEmpty(PhoneNumber))// Kullanıcı adı boş ise
             {
-                await DisplayAlertAsync(ContestParkResources.Error,
-                                        ContestParkResources.PhoneNumberRequiredFields,
-                                        ContestParkResources.Okay);
+                DisplayAlertAsync(ContestParkResources.Error,
+                                       ContestParkResources.PhoneNumberRequiredFields,
+                                       ContestParkResources.Okay);
                 IsBusy = false;
 
                 return;
@@ -137,25 +135,27 @@ namespace ContestPark.Mobile.ViewModels
             var match = Regex.Match(PhoneNumberNoRegex, @"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$", RegexOptions.IgnoreCase);
             if (!match.Success && !PhoneNumberNoRegex.StartsWith("5454"))// özel durumlar için 1993 ekledim
             {
-                await DisplayAlertAsync(ContestParkResources.Error,
-                                        ContestParkResources.InvalidPhoneNumber,
-                                        ContestParkResources.Okay);
+                DisplayAlertAsync(ContestParkResources.Error,
+                                       ContestParkResources.InvalidPhoneNumber,
+                                       ContestParkResources.Okay);
 
                 IsBusy = false;
 
                 return;
             }
 
-            await NavigateToPopupAsync<SignUpVerificationView>(new NavigationParameters
-            {
-                {
-                      "SmsInfo", new SmsInfoModel
-                                            {
-                                                PhoneNumber = PhoneNumberNoRegex,
-                                                CountryCode = Country.PhoneCode
-                                            }
-                }
-            });
+            NavigateToPopupAsync<SignUpPopopView>();
+
+            //await NavigateToPopupAsync<SignUpVerificationView>(new NavigationParameters
+            //{
+            //    {
+            //          "SmsInfo", new SmsInfoModel
+            //                                {
+            //                                    PhoneNumber = PhoneNumberNoRegex,
+            //                                    CountryCode = Country.PhoneCode
+            //                                }
+            //    }
+            //});
 
             IsBusy = false;
         }
@@ -221,7 +221,7 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public ICommand SendSmsCommand => new CommandAsync(ExecuteSendSmsCommandAsync);
+        public ICommand SendSmsCommand => new Command(ExecuteSendSmsCommand);
 
         /// <summary>
         /// Ülke seçme popup açar

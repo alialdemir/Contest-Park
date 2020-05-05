@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 
-namespace ContestPark.Mobile.Components.ChatDetail
+namespace ContestPark.Mobile.Components.SignUp
 {
-    public partial class OutgoingViewCell : ViewCell
+    public partial class InputViewCell : ViewCell
     {
         #region Constructor
 
-        public OutgoingViewCell()
+        public InputViewCell()
         {
             InitializeComponent();
         }

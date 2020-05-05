@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Components.ChatDetail
 {
-    internal class ChatDataTemplateSelector : DataTemplateSelector
+    public class ChatDataTemplateSelector : DataTemplateSelector
 
     {
         public ChatDataTemplateSelector()

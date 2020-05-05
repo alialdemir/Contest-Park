@@ -117,6 +117,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<SignUpUserNameView, SignUpUserNameViewModel>();
 
+            containerRegistry.RegisterForNavigation<SignUpPopopView, SignUpPopopViewModel>();
+
             containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
 
             containerRegistry.RegisterForNavigation<TutorialPopupView, TutorialPopupViewModel>();

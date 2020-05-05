@@ -30,6 +30,9 @@
             <Color x:Key="Gray">#F1F0F0</Color>
             <Color x:Key="DarkGray">#65686E</Color>
             <Color x:Key="PrimaryText">#212121</Color>
+            <Color x:Key="SignupRightButtonEndColor">#4048EF</Color>
+            <Color x:Key="SignupRightButtonStartColor">#5A7BEF</Color>
+            <Color x:Key="Pink">#EB3349</Color>
 
             <!--  Icons  -->
             <x:String x:Key="TabChat">&#xe90b;</x:String>
@@ -297,6 +300,15 @@
                 </Setter>
             </Style>
 
+            <!--  Popup blue bottom buttons  -->
+            <Style
+                x:Key="PopupBlueBottomButton"
+                BasedOn="{StaticResource PopupBottomButton}"
+                TargetType="components:LinearGradientButton">
+                <Setter Property="EndColor" Value="{StaticResource SignupRightButtonEndColor}" />
+                <Setter Property="StartColor" Value="{StaticResource SignupRightButtonStartColor}" />
+            </Style>
+
             <!--  Popup card  -->
             <Style x:Key="PopupCard" TargetType="yummy:PancakeView">
                 <Setter Property="Margin" Value="40" />
@@ -309,6 +321,14 @@
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="WidthRequest" Value="350" />
+            </Style>
+
+            <!--  Popup card  -->
+            <Style
+                x:Key="PopupSignupCard"
+                BasedOn="{StaticResource PopupCard}"
+                TargetType="yummy:PancakeView">
+                <Setter Property="CornerRadius" Value="8,8,0,0" />
             </Style>
 
             <!--  Popup Listveiw  -->

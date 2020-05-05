@@ -30,7 +30,6 @@
                     BackgroundColor="Transparent"
                     BorderRadius="48"
                     Command="{Binding Path=BindingContext.UserNameCommand, Source={x:Reference signUpUserNameView}}"
-                    CommandParameter="{Binding EntryFee}"
                     EndColor="#4048EF"
                     FontAttributes="Bold"
                     FontFamily="{StaticResource GothamRoundedBold}"
