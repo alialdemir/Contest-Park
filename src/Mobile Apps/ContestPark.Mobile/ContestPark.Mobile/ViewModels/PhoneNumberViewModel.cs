@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Country;
+using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
@@ -144,18 +145,16 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            NavigateToPopupAsync<SignUpPopopView>();
-
-            //await NavigateToPopupAsync<SignUpVerificationView>(new NavigationParameters
-            //{
-            //    {
-            //          "SmsInfo", new SmsInfoModel
-            //                                {
-            //                                    PhoneNumber = PhoneNumberNoRegex,
-            //                                    CountryCode = Country.PhoneCode
-            //                                }
-            //    }
-            //});
+            NavigateToAsync<SignUpVerificationView>(new NavigationParameters
+            {
+                {
+                      "SmsInfo", new SmsInfoModel
+                                            {
+                                                PhoneNumber = PhoneNumberNoRegex,
+                                                CountryCode = Country.PhoneCode
+                                            }
+                }
+            });
 
             IsBusy = false;
         }
