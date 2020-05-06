@@ -1,23 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.contestparkapp.app" android:installLocation="preferExternal">
-  <uses-permission android:name="android.permission.INTERNET" />
-  <application android:label="ContestPark" android:icon="@drawable/logo" android:allowBackup="false" android:largeHeap="true">
-    <uses-library android:name="org.apache.http.legacy" android:required="false" />
-    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-9252497061180957~6594686426" />
-    <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent" />
-    <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.contestparkapp.app.fileprovider" android:exported="false" android:grantUriPermissions="true">
-      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
-    </provider>
-  </application>
-  <uses-feature android:name="android.hardware.camera" android:required="true" />
-  <uses-permission android:name="com.android.vending.BILLING" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.CAMERA" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-  <uses-permission android:name="android.permission.BATTERY_STATS" />
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<application android:label="ContestPark" android:icon="@drawable/logo" android:allowBackup="false" android:largeHeap="true">
+		<uses-library android:name="org.apache.http.legacy" android:required="false" />
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-9252497061180957~6594686426" />
+		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent" />
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.contestparkapp.app.fileprovider" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
+		</provider>
+
+		<meta-data android:name="onesignal_app_id" android:value="73ff61b8-1609-4c31-b2dd-29441db1d092" />
+		<meta-data android:name="onesignal_google_project_number" android:value="str:788456912839" />
+		<receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<category android:name="com.contestparkapp.app" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="com.onesignal.NotificationOpenedReceiver" />
+		<service android:name="com.onesignal.GcmIntentService" />
+		<service android:name="com.onesignal.SyncService" android:stopWithTask="false" />
+		<activity android:name="com.onesignal.PermissionsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+	</application>
+	<uses-feature android:name="android.hardware.camera" android:required="true" />
+	<uses-permission android:name="com.android.vending.BILLING" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.BATTERY_STATS" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
 </manifest>
