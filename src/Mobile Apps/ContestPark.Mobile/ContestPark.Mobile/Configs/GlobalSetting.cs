@@ -48,7 +48,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Push notification one signal app id
         /// </summary>
-        public const string OneSignalAppId = "73ff61b8-1609-4c31-b2dd-29441db1d092";
+        public const string OneSignalAppId = "d11fdec5-ead6-4348-9f5e-3859ac55bbfc";//"73ff61b8-1609-4c31-b2dd-29441db1d092";
 
         /// <summary>
         /// App center android and ios key
