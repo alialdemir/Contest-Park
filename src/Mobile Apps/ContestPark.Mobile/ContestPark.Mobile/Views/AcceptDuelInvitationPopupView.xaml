@@ -3,8 +3,7 @@
     x:Class="ContestPark.Mobile.Views.AcceptDuelInvitationPopupView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
@@ -12,231 +11,126 @@
     x:Name="acceptDuelInvitationPopupView"
     prism:ViewModelLocator.AutowireViewModel="True">
     <pages:PopupPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+            <Grid VerticalOptions="CenterAndExpand">
+                <!--  Cancel  -->
+                <components:LinearGradientButton
+                    Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference acceptDuelInvitationPopupView}}"
+                    IsUpperCase="True"
+                    Style="{StaticResource PopupBottomLeftButton}"
+                    Text="{i18n:Translate Cancel}" />
 
-        <RelativeLayout>
+                <!--  Play  -->
+                <components:LinearGradientButton
+                    Command="{Binding Path=BindingContext.AcceptDuelInviteCommand, Source={x:Reference acceptDuelInvitationPopupView}}"
+                    Style="{StaticResource PopupBottomRightButton}"
+                    Text="{i18n:Translate Play}" />
 
-            <!--  Cancel  -->
-            <Components:LinearGradientButton
-                Padding="0,50,0,0"
-                BackgroundColor="Transparent"
-                BorderRadius="48"
-                Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference acceptDuelInvitationPopupView}}"
-                EndColor="#D03548"
-                FontAttributes="Bold"
-                FontFamily="{StaticResource GothamRoundedBold}"
-                FontSize="23"
-                IsUpperCase="True"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                       Property=Height,
-                                                                       Factor=.2,
-                                                                       Constant=0}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=0,
-                                                                      Constant=175}"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Width,
-                                                                  Factor=0.5,
-                                                                  Constant=-175}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                  ElementName=pvkView,
-                                                                  Property=Y,
-                                                                  Factor=1,
-                                                                  Constant=375}"
-                StartColor="#EB3349"
-                Text="{i18n:Translate Cancel}"
-                TextColor="{StaticResource White}" />
+                <yummy:PancakeView CornerRadius="8,8,0,0" Style="{StaticResource PopupCard}">
+                    <Grid ColumnSpacing="0" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-            <!--  Play  -->
-            <Components:LinearGradientButton
-                Padding="0,50,0,0"
-                BackgroundColor="Transparent"
-                BorderRadius="48"
-                Command="{Binding Path=BindingContext.AcceptDuelInviteCommand, Source={x:Reference acceptDuelInvitationPopupView}}"
-                CommandParameter="1"
-                EndColor="#47E476"
-                FontAttributes="Bold"
-                FontFamily="{StaticResource GothamRoundedBold}"
-                FontSize="23"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                       Property=Height,
-                                                                       Factor=.2,
-                                                                       Constant=0}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=0,
-                                                                      Constant=175}"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Width,
-                                                                  Factor=0.5,
-                                                                  Constant=0}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                  ElementName=pvkView,
-                                                                  Property=Y,
-                                                                  Factor=1,
-                                                                  Constant=375}"
-                StartColor="#2CCCD8"
-                Text="{i18n:Translate Play}"
-                TextColor="{StaticResource White}" />
+                        <Image Grid.Row="0" Style="{StaticResource CloseButton}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference acceptDuelInvitationPopupView}}" />
+                            </Image.GestureRecognizers>
+                        </Image>
 
-            <yummy:PancakeView
-                x:Name="pvkView"
-                Padding="0"
-                BackgroundColor="{StaticResource White}"
-                BorderColor="Transparent"
-                CornerRadius="10,10,0,0"
-                Elevation="6"
-                HasShadow="True"
-                HeightRequest="435"
-                IsClippedToBounds="True"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Width,
-                                                                  Factor=0.5,
-                                                                  Constant=-175}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Height,
-                                                                  Factor=0.5,
-                                                                  Constant=-255}"
-                WidthRequest="350">
+                        <Label
+                            Grid.Row="1"
+                            Style="{StaticResource PopupTitle}"
+                            Text="{Binding InviteModel.SubCategoryName}" />
 
-                <Grid
-                    Grid.Row="0"
-                    ColumnSpacing="0"
-                    RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                        <StackLayout
+                            Grid.Row="2"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <components:CircleImage
+                                HeightRequest="32"
+                                HorizontalOptions="End"
+                                Source="{Binding InviteModel.FounderProfilePicturePath}"
+                                VerticalOptions="Center"
+                                WidthRequest="32" />
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                            <Label
+                                Style="{StaticResource PopupSubtitle}"
+                                Text="{Binding InviteModel.Description}"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
 
-                    <Image
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Margin="0,8,8,0"
-                        HorizontalOptions="End"
-                        VerticalOptions="Start">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference acceptDuelInvitationPopupView}}" />
-                        </Image.GestureRecognizers>
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="{StaticResource icomoon}"
-                                Glyph="{StaticResource Close}"
-                                Size="32"
-                                Color="{StaticResource SettingsIconColor}" />
-                        </Image.Source>
-                    </Image>
+                        <Image
+                            Grid.Row="3"
+                            Margin="0,14,0,14"
+                            HeightRequest="110"
+                            HorizontalOptions="Center"
+                            Source="{Binding InviteModel.SubCategoryPicture}"
+                            WidthRequest="110" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        FontAttributes="Bold"
-                        FontFamily="{StaticResource GothamRoundedBold}"
-                        FontSize="24"
-                        HorizontalTextAlignment="Center"
-                        Text="{Binding InviteModel.SubCategoryName}"
-                        TextColor="#FDBC2E" />
+                        <components:DobleCoinsView
+                            Grid.Row="4"
+                            BalanceType="{Binding InviteModel.BalanceType}"
+                            CoinSize="Large"
+                            Coins="Positive"
+                            DisplayCoins="{Binding InviteModel.Bet}"
+                            HorizontalOptions="Center" />
 
-                    <Components:CircleImage
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        HeightRequest="32"
-                        HorizontalOptions="End"
-                        Source="{Binding InviteModel.FounderProfilePicturePath}"
-                        VerticalOptions="Center"
-                        WidthRequest="32" />
+                        <Label
+                            Grid.Row="5"
+                            Margin="0,0,0,18.5"
+                            FontFamily="{StaticResource MontserratMedium}"
+                            FontSize="13"
+                            HorizontalTextAlignment="Center"
+                            Text="{i18n:Translate Prize}"
+                            TextColor="{StaticResource Black}" />
 
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        FontFamily="{StaticResource MontserratRegular}"
-                        FontSize="14"
-                        HorizontalTextAlignment="Center"
-                        Text="{Binding InviteModel.Description}"
-                        TextColor="{StaticResource Black}"
-                        VerticalTextAlignment="Center" />
+                        <BoxView
+                            Grid.Row="6"
+                            Margin="80,0,80,0"
+                            BackgroundColor="Red"
+                            HeightRequest="1"
+                            WidthRequest="50"
+                            Color="#DEDEDE" />
 
-                    <Image
-                        Grid.Row="3"
-                        Grid.ColumnSpan="2"
-                        Margin="0,14,0,14"
-                        HeightRequest="110"
-                        HorizontalOptions="Center"
-                        Source="{Binding InviteModel.SubCategoryPicture}"
-                        WidthRequest="110" />
+                        <components:DobleCoinsView
+                            Grid.Row="7"
+                            Margin="0,16.5,0,0"
+                            BalanceType="{Binding InviteModel.BalanceType}"
+                            CoinSize="Small"
+                            Coins="Negative"
+                            DisplayCoins="{Binding InviteModel.EntryFee}"
+                            HorizontalOptions="Center" />
 
-                    <Components:DobleCoinsView
-                        Grid.Row="4"
-                        Grid.ColumnSpan="2"
-                        BalanceType="{Binding InviteModel.BalanceType}"
-                        CoinSize="Large"
-                        Coins="Positive"
-                        DisplayCoins="{Binding InviteModel.Bet}"
-                        HorizontalOptions="Center" />
+                        <Label
+                            Grid.Row="8"
+                            FontFamily="{StaticResource MontserratMedium}"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="{i18n:Translate EntryFee}"
+                            TextColor="{StaticResource Black}" />
 
-                    <Label
-                        Grid.Row="5"
-                        Grid.ColumnSpan="2"
-                        Margin="0,0,0,18.5"
-                        FontFamily="{StaticResource MontserratMedium}"
-                        FontSize="13"
-                        HorizontalTextAlignment="Center"
-                        Text="{i18n:Translate Prize}"
-                        TextColor="{StaticResource Black}" />
-
-                    <BoxView
-                        Grid.Row="6"
-                        Grid.ColumnSpan="2"
-                        Margin="80,0,80,0"
-                        BackgroundColor="Red"
-                        HeightRequest="1"
-                        WidthRequest="50"
-                        Color="#DEDEDE" />
-
-                    <Components:DobleCoinsView
-                        Grid.Row="7"
-                        Grid.ColumnSpan="2"
-                        Margin="0,16.5,0,0"
-                        BalanceType="{Binding InviteModel.BalanceType}"
-                        CoinSize="Small"
-                        Coins="Negative"
-                        DisplayCoins="{Binding InviteModel.EntryFee}"
-                        HorizontalOptions="Center" />
-
-                    <Label
-                        Grid.Row="8"
-                        Grid.ColumnSpan="2"
-                        FontFamily="{StaticResource MontserratMedium}"
-                        FontSize="10"
-                        HorizontalTextAlignment="Center"
-                        Text="{i18n:Translate EntryFee}"
-                        TextColor="{StaticResource Black}" />
-
-                    <StackLayout
-                        Grid.Row="9"
-                        Grid.ColumnSpan="2"
-                        IsEnabled="False">
-                        <Slider
-                            Maximum="10"
-                            MaximumTrackColor="#72F7C5"
-                            MinimumTrackColor="#B0E881"
-                            ThumbColor="Transparent"
-                            Value="{Binding Timer}" />
-                    </StackLayout>
-                </Grid>
-            </yummy:PancakeView>
-        </RelativeLayout>
+                        <StackLayout Grid.Row="9" IsEnabled="False">
+                            <Slider
+                                Maximum="10"
+                                MaximumTrackColor="#72F7C5"
+                                MinimumTrackColor="#B0E881"
+                                ThumbColor="Transparent"
+                                Value="{Binding Timer}" />
+                        </StackLayout>
+                    </Grid>
+                </yummy:PancakeView>
+            </Grid>
+        </StackLayout>
     </pages:PopupPage.Content>
 </pages:PopupPage>

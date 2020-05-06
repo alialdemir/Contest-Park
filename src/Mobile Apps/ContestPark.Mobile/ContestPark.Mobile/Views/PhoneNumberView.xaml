@@ -13,199 +13,201 @@
     Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <ScrollView>
-            <Grid
-                HorizontalOptions="FillAndExpand"
-                RowSpacing="15"
-                VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="154" />
-                    <RowDefinition Height="41" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="48.9" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Image
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2"
-                    Source="logo.png" />
-
-                <Label
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    FontFamily="{DynamicResource SofiaProMedium}"
-                    FontSize="31"
-                    HorizontalTextAlignment="Center"
-                    Text="ContestPark"
-                    TextColor="#535353" />
-
-                <Frame
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Padding="0"
-                    BorderColor="#666372"
-                    HasShadow="False">
-                    <Frame.CornerRadius>
-                        <OnPlatform x:TypeArguments="x:Single">
-                            <On Platform="Android" Value="50" />
-                            <On Platform="iOS" Value="24" />
-                        </OnPlatform>
-                    </Frame.CornerRadius>
-                    <Frame.WidthRequest>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android" Value="80" />
-                            <On Platform="iOS" Value="80" />
-                        </OnPlatform>
-                    </Frame.WidthRequest>
-
-                    <StackLayout
-                        HorizontalOptions="Center"
-                        Orientation="Horizontal"
-                        Spacing="0"
-                        VerticalOptions="Center">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectCountryCommand}" />
-                        </StackLayout.GestureRecognizers>
-
-                        <Image
-                            Margin="5,0,0,0"
-                            HeightRequest="24"
-                            Source="{Binding Country.Flag}"
-                            WidthRequest="24" />
-
-                        <Label
-                            FontSize="Medium"
-                            HorizontalOptions="Center"
-                            Text="{Binding Country.PhoneCode}"
-                            TextColor="{StaticResource Black}"
-                            VerticalTextAlignment="Center" />
-                    </StackLayout>
-                </Frame>
-
-                <custom:CustomEntry
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    BackgroundColor="Transparent"
-                    BorderColor="#666372"
-                    FontFamily="{DynamicResource SofiaProMedium}"
-                    FontSize="16"
-                    HeightRequest="56"
-                    HorizontalOptions="FillAndExpand"
-                    Keyboard="Numeric"
-                    Placeholder="{i18n:Translate PhoneNumber}"
-                    PlaceholderColor="#484848"
-                    Text="{Binding PhoneNumber}"
-                    TextColor="#484848"
-                    Visual="Material">
-                    <Entry.Behaviors>
-                        <behavior:MaskedBehavior Mask="(XXX) XXX-XX-XX" />
-                    </Entry.Behaviors>
-                    <custom:CustomEntry.Behaviors>
-                        <behavior:EventToCommandBehavior Command="{Binding SendSmsCommand}" EventName="Completed" />
-                    </custom:CustomEntry.Behaviors>
-                </custom:CustomEntry>
-
-                <ffimageloadingsvg:SvgCachedImage
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="0,0,10,0"
-                    HeightRequest="26.52"
-                    HorizontalOptions="EndAndExpand"
-                    MinimumHeightRequest="26.52"
-                    MinimumWidthRequest="26.52"
-                    Source="resource://ContestPark.Mobile.Common.Images.verify.svg?assembly=ContestPark.Mobile"
-                    VerticalOptions="Center"
-                    WidthRequest="26.52" />
-
-                <custom:LinearGradientButton
-                    Grid.Row="3"
-                    Grid.ColumnSpan="2"
-                    BackgroundColor="Transparent"
-                    Command="{Binding SendSmsCommand}"
-                    EndColor="#A573FF"
-                    StartColor="#645AFF"
-                    Style="{DynamicResource ButtonStyle}"
-                    Text="{i18n:Translate SignIn}"
-                    TextColor="{StaticResource White}"
-                    Visual="Material">
-                    <custom:LinearGradientButton.CornerRadius>
-                        <OnPlatform x:TypeArguments="x:Int32">
-                            <On Platform="Android" Value="124" />
-                            <On Platform="iOS" Value="24" />
-                        </OnPlatform>
-                    </custom:LinearGradientButton.CornerRadius>
-                </custom:LinearGradientButton>
-
+            <StackLayout Orientation="Vertical">
                 <Grid
-                    Grid.Row="4"
-                    Grid.ColumnSpan="2"
-                    ColumnSpacing="0"
-                    HorizontalOptions="Center"
-                    RowSpacing="0"
-                    VerticalOptions="Start">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="15"
+                    VerticalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="154" />
+                        <RowDefinition Height="41" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="48.9" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <custom:HtmlLabel
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
                         Grid.Row="0"
-                        Grid.Column="0"
-                        FontFamily="{DynamicResource SofiaProMedium}"
-                        HorizontalTextAlignment="Center"
-                        LineBreakMode="WordWrap"
-                        Text="{i18n:Translate WhenYouClickTheSignInButton}" />
-                    <custom:HtmlLabel
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        FontFamily="{DynamicResource SofiaProMedium}"
-                        HorizontalTextAlignment="Center"
-                        LineBreakMode="WordWrap"
-                        Text="{i18n:Translate PrivacyPolicy}"
-                        TextDecorations="Underline">
-                        <custom:HtmlLabel.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://contestpark.com/kvkk.html" />
-                        </custom:HtmlLabel.GestureRecognizers>
-                    </custom:HtmlLabel>
-                    <custom:HtmlLabel
+                        Grid.ColumnSpan="2"
+                        Source="logo.png" />
+
+                    <Label
                         Grid.Row="1"
-                        Grid.Column="0"
-                        FontFamily="{DynamicResource SofiaProMedium}"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center"
-                        Text="{i18n:Translate And}" />
-                    <custom:HtmlLabel
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        FontFamily="{DynamicResource SofiaProMedium}"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        LineBreakMode="WordWrap"
-                        Text="{i18n:Translate TermsofUse}"
-                        TextDecorations="Underline">
-                        <custom:HtmlLabel.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://contestpark.com/privacy-policy.html" />
-                        </custom:HtmlLabel.GestureRecognizers>
-                    </custom:HtmlLabel>
-                    <custom:HtmlLabel
-                        Grid.Row="1"
-                        Grid.Column="1"
                         Grid.ColumnSpan="2"
                         FontFamily="{DynamicResource SofiaProMedium}"
-                        HorizontalTextAlignment="Start"
-                        LineBreakMode="WordWrap"
-                        Text="{i18n:Translate YouApprove}" />
+                        FontSize="31"
+                        HorizontalTextAlignment="Center"
+                        Text="ContestPark"
+                        TextColor="#535353" />
+
+                    <Frame
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Padding="0"
+                        BorderColor="#666372"
+                        HasShadow="False">
+                        <Frame.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Single">
+                                <On Platform="Android" Value="50" />
+                                <On Platform="iOS" Value="24" />
+                            </OnPlatform>
+                        </Frame.CornerRadius>
+                        <Frame.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android" Value="80" />
+                                <On Platform="iOS" Value="80" />
+                            </OnPlatform>
+                        </Frame.WidthRequest>
+
+                        <StackLayout
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            VerticalOptions="Center">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectCountryCommand}" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Image
+                                Margin="5,0,0,0"
+                                HeightRequest="24"
+                                Source="{Binding Country.Flag}"
+                                WidthRequest="24" />
+
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="Center"
+                                Text="{Binding Country.PhoneCode}"
+                                TextColor="{StaticResource Black}"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
+                    </Frame>
+
+                    <custom:CustomEntry
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        BorderColor="#666372"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="16"
+                        HeightRequest="56"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
+                        Placeholder="{i18n:Translate PhoneNumber}"
+                        PlaceholderColor="#484848"
+                        Text="{Binding PhoneNumber}"
+                        TextColor="#484848"
+                        Visual="Material">
+                        <Entry.Behaviors>
+                            <behavior:MaskedBehavior Mask="(XXX) XXX-XX-XX" />
+                        </Entry.Behaviors>
+                        <custom:CustomEntry.Behaviors>
+                            <behavior:EventToCommandBehavior Command="{Binding SendSmsCommand}" EventName="Completed" />
+                        </custom:CustomEntry.Behaviors>
+                    </custom:CustomEntry>
+
+                    <ffimageloadingsvg:SvgCachedImage
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0,0,10,0"
+                        HeightRequest="26.52"
+                        HorizontalOptions="EndAndExpand"
+                        MinimumHeightRequest="26.52"
+                        MinimumWidthRequest="26.52"
+                        Source="resource://ContestPark.Mobile.Common.Images.verify.svg?assembly=ContestPark.Mobile"
+                        VerticalOptions="Center"
+                        WidthRequest="26.52" />
+
+                    <custom:LinearGradientButton
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding SendSmsCommand}"
+                        EndColor="#A573FF"
+                        StartColor="#645AFF"
+                        Style="{DynamicResource ButtonStyle}"
+                        Text="{i18n:Translate SignIn}"
+                        TextColor="{StaticResource White}"
+                        Visual="Material">
+                        <custom:LinearGradientButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="Android" Value="124" />
+                                <On Platform="iOS" Value="24" />
+                            </OnPlatform>
+                        </custom:LinearGradientButton.CornerRadius>
+                    </custom:LinearGradientButton>
+
+                    <Grid
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        ColumnSpacing="0"
+                        HorizontalOptions="Center"
+                        RowSpacing="0"
+                        VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <custom:HtmlLabel
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontFamily="{DynamicResource SofiaProMedium}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="{i18n:Translate WhenYouClickTheSignInButton}" />
+                        <custom:HtmlLabel
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            FontFamily="{DynamicResource SofiaProMedium}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="{i18n:Translate PrivacyPolicy}"
+                            TextDecorations="Underline">
+                            <custom:HtmlLabel.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://contestpark.com/kvkk.html" />
+                            </custom:HtmlLabel.GestureRecognizers>
+                        </custom:HtmlLabel>
+                        <custom:HtmlLabel
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontFamily="{DynamicResource SofiaProMedium}"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{i18n:Translate And}" />
+                        <custom:HtmlLabel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontFamily="{DynamicResource SofiaProMedium}"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            Text="{i18n:Translate TermsofUse}"
+                            TextDecorations="Underline">
+                            <custom:HtmlLabel.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://contestpark.com/privacy-policy.html" />
+                            </custom:HtmlLabel.GestureRecognizers>
+                        </custom:HtmlLabel>
+                        <custom:HtmlLabel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            FontFamily="{DynamicResource SofiaProMedium}"
+                            HorizontalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            Text="{i18n:Translate YouApprove}" />
+                    </Grid>
                 </Grid>
-            </Grid>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

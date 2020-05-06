@@ -150,23 +150,30 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            IsExit = true;
+
+            return base.GoBackAsync(parameters, useModalNavigation);
+        }
+
         /// <summary>
         /// Düello davetini kabul etmesi için kalan sürenin geri sayımını yapar
         /// </summary>
         private void ExecuteTimerCommand()
         {
             Device.StartTimer(new TimeSpan(0, 0, 0, 0, 100), () =>
-            {
-                if (IsExit)
-                    return false;
+          {
+              if (IsExit)
+                  return false;
 
-                Timer -= 0.100;
+              Timer -= 0.100;
 
-                if (Timer <= 0)
-                    GotoBackCommand.Execute(true);
+              if (Timer <= 0)
+                  GotoBackCommand.Execute(true);
 
-                return Timer > 0;
-            });
+              return Timer > 0;
+          });
         }
 
         #endregion Methods

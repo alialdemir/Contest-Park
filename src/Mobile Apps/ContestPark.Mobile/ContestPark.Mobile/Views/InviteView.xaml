@@ -3,8 +3,8 @@
     x:Class="ContestPark.Mobile.Views.InviteView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
@@ -21,101 +21,38 @@
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <ScrollView>
-
-            <RelativeLayout>
-                <Components:LinearGradientButton
-                    Padding="0,0,0,-55"
-                    BackgroundColor="Transparent"
-                    BorderRadius="48"
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+            <Grid VerticalOptions="CenterAndExpand">
+                <!--  Share  -->
+                <components:LinearGradientButton
                     Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference inviteView}}"
-                    EndColor="#47E476"
-                    FontAttributes="Bold"
-                    FontFamily="{StaticResource GothamRoundedBold}"
-                    FontSize="23"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                           Property=Height,
-                                                                           Factor=.2,
-                                                                           Constant=0}"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                          Property=Width,
-                                                                          Factor=0,
-                                                                          Constant=350}"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=0.5,
-                                                                      Constant=-175}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                      ElementName=pvkView,
-                                                                      Property=Y,
-                                                                      Factor=1,
-                                                                      Constant=340}"
-                    StartColor="#2CCCD8"
-                    Text="{i18n:Translate Share}"
-                    TextColor="{StaticResource White}"
-                    Visual="Material" />
+                    Style="{StaticResource PopupBottomButton}"
+                    Text="{i18n:Translate Share}" />
 
-                <yummy:PancakeView
-                    x:Name="pvkView"
-                    Padding="0"
-                    BackgroundColor="{StaticResource White}"
-                    CornerRadius="10"
-                    Elevation="6"
-                    HasShadow="True"
-                    HeightRequest="400"
-                    IsClippedToBounds="True"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=0.5,
-                                                                      Constant=-175}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Height,
-                                                                      Factor=0.5,
-                                                                      Constant=-225}"
-                    WidthRequest="350">
+                <yummy:PancakeView CornerRadius="8,8,0,0" Style="{StaticResource PopupCard}">
 
-                    <Grid
-                        Grid.Row="0"
-                        ColumnSpacing="0"
-                        HorizontalOptions="FillAndExpand"
-                        RowSpacing="0"
-                        VerticalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="0" RowSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="45" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Image
-                            Margin="0,8,8,0"
-                            HorizontalOptions="End"
-                            VerticalOptions="Start">
+
+                        <Image Grid.Row="0" Style="{StaticResource CloseButton}">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference inviteView}}" CommandParameter="{StaticResource True}" />
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference inviteView}}" />
                             </Image.GestureRecognizers>
-                            <Image.Source>
-                                <FontImageSource
-                                    FontFamily="{StaticResource icomoon}"
-                                    Glyph="{StaticResource Close}"
-                                    Size="32"
-                                    Color="{StaticResource SettingsIconColor}" />
-                            </Image.Source>
                         </Image>
 
                         <Label
                             Grid.Row="1"
-                            Margin="0,24,0,0"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="24"
-                            HorizontalTextAlignment="Center"
-                            Text="{i18n:Translate InviteSaveMoney}"
-                            TextColor="{StaticResource Primary}"
-                            VerticalOptions="Start" />
+                            Style="{StaticResource PopupTitle}"
+                            Text="{i18n:Translate InviteSaveMoney}" />
 
                         <Label
                             Grid.Row="2"
-                            Margin="10,0,10,0"
+                            Margin="10,16,10,0"
                             BackgroundColor="Transparent"
                             FontFamily="{DynamicResource SofiaProMedium}"
                             FontSize="16"
@@ -143,7 +80,7 @@
                             TextColor="{StaticResource Black}" />
                     </Grid>
                 </yummy:PancakeView>
-            </RelativeLayout>
-        </ScrollView>
+            </Grid>
+        </StackLayout>
     </pages:PopupPage.Content>
 </pages:PopupPage>

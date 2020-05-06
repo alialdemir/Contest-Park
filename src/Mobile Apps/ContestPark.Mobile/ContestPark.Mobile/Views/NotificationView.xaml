@@ -8,7 +8,6 @@
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="notificationView"
-    Padding="0,8,0,0"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <components:NonPersistentSelectedItemListView

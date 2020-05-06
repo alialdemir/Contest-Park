@@ -1,11 +1,10 @@
 ﻿using ContestPark.Mobile.Models.Notification;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    
+
     public class NotificationCardFactory : ContentView
     {
         #region Constructor
@@ -106,7 +105,7 @@ namespace ContestPark.Mobile.Components
         {
             return new StackLayout
             {
-                Margin = new Thickness(8, 0, 8, 8),
+                Margin = new Thickness(0, 0, 0, 8),
                 Children =
                 {
                     new Frame
