@@ -25,10 +25,10 @@ steps:
     restoreSolution: '**/ContestPark.Mobile.sln'
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'Certificates.p12'
+    secureFile: 'ContestPark App Store.p12'
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'ContestPark_Apple_Store_Provisioning.mobileprovision'
+    secureFile: 'ContestPark_Apple_Store.mobileprovision'
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
