@@ -32,7 +32,7 @@ steps:
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ContestPark_Apple_Store_Provisioning.mobileprovision'
+    provProfileSecureFile: 'ContestPark_Apple_Store.mobileprovision'
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: 'Certificates.p12'
