@@ -1,5 +1,8 @@
 ﻿//using ContestPark.Mobile.Services.Shiny;
 //using ContestPark.Mobile.Services.Shiny;
+using Com.OneSignal;
+using Com.OneSignal.Abstractions;
+using ContestPark.Mobile.Configs;
 using FFImageLoading.Forms.Platform;
 
 //using Firebase.Core;
@@ -15,6 +18,7 @@ using Rg.Plugins.Popup;
 
 //using Shiny;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UIKit;
@@ -70,10 +74,28 @@ namespace ContestPark.Mobile.iOS
 
             UIApplication.SharedApplication.IdleTimerDisabled = true;
 
-
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
+            PushNotification();
+
             return base.FinishedLaunching(app, options);
+        }
+
+        private void PushNotification()
+        {
+            //Remove this method to stop OneSignal Debugging
+            OneSignal.Current.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.NONE);
+
+            OneSignal.Current.StartInit(GlobalSetting.OneSignalAppId)
+                             .Settings(new Dictionary<string, bool>()
+                             {
+                                 { IOSSettings.kOSSettingsKeyAutoPrompt, false },
+                                 { IOSSettings.kOSSettingsKeyInAppLaunchURL, false }
+                             })
+                            .EndInit();
+
+            // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
+            OneSignal.Current.RegisterForPushNotifications();
         }
 
         private bool CheckCydia()
