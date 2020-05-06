@@ -4,11 +4,5 @@
 	<dict>
 		<key>com.apple.developer.networking.wifi-info</key>
 		<true />
-		<key>aps-environment</key>
-		<string>development</string>
-		<key>com.apple.security.application-groups</key>
-		<array>
-			<string>group.com.contestpark.app.onesignal</string>
-		</array>
 	</dict>
 </plist>
