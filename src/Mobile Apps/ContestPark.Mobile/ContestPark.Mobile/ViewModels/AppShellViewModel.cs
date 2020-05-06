@@ -1,4 +1,6 @@
-﻿using ContestPark.Mobile.Events;
+﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.User;
@@ -7,9 +9,11 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
+using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
 using Prism.Events;
 using Prism.Navigation;
+using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -32,10 +36,11 @@ namespace ContestPark.Mobile.ViewModels
 
         public AppShellViewModel(INavigationService navigationService,
                                  IEventAggregator eventAggregator,
+                                 IPageDialogService pageDialogService,
                                  IBalanceService cpService,
                                  IIdentityService identityService,
                                  IAnalyticsService analyticsService,
-                                 ISettingsService settingsService) : base(navigationService)
+                                 ISettingsService settingsService) : base(navigationService, pageDialogService)
         {
             _eventAggregator = eventAggregator;
             _cpService = cpService;
@@ -185,6 +190,49 @@ namespace ContestPark.Mobile.ViewModels
                 .Subscribe(() => SetUserGoldCommand.Execute(null));
         }
 
+        /// <summary>
+        /// Sol menü item tıklamaları
+        /// </summary>
+        /// <param name="name">Yönlendirilecek view adı veya url</param>
+        private void ExecuteMenuItemClickCommand(string name)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            if (_settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot"
+                && (name.StartsWith("https://contestpark.com/balancecode.html") || name.StartsWith("BalanceCodeView")))
+            {
+                DisplayAlertAsync(string.Empty,
+                                  ContestParkResources.ComingSoon,
+                                  ContestParkResources.Okay);
+
+                IsBusy = false;
+
+                return;
+            }
+
+            if (name.IsUrl())
+            {
+                _analyticsService.SendEvent("Sol Menü", "Link", name);
+
+                Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
+
+                Shell.Current.FlyoutIsPresented = false;
+            }
+            else if (!string.IsNullOrEmpty(name))
+            {
+                _analyticsService.SendEvent("Sol Menü", "Menü link", name);
+
+                Shell.Current.FlyoutIsPresented = false;
+
+                Shell.Current.GoToAsync(name);
+            }
+
+            IsBusy = false;
+        }
+
         #endregion Methods
 
         #region Commands
@@ -214,6 +262,7 @@ namespace ContestPark.Mobile.ViewModels
         private ICommand SetUserInfoCommand => new CommandAsync(ExecuteSetUserInfoCommand);
 
         private ICommand ListenerEventsCommand => new Command(ExecuteListenerEventsCommand);
+        public ICommand MenuItemClickCommand => new Command<string>(ExecuteMenuItemClickCommand);
 
         #endregion Commands
     }

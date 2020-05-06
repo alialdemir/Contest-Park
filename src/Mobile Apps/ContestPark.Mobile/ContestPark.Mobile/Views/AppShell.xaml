@@ -175,44 +175,44 @@
     </FlyoutItem>
 
     <MenuItem
-        Clicked="MenuItem_Clicked"
-        CommandParameter="http://contestpark.com/#why"
+        Command="{Binding MenuItemClickCommand}"
+        CommandParameter="https://contestpark.com/#why"
         IconImageSource="{StaticResource IconHowToPlay}"
         Text="{i18n:Translate HowToPlay}" />
 
     <MenuItem
         x:Name="menuConvertToCash"
-        Clicked="MenuItem_Clicked"
-        CommandParameter="http://contestpark.com/balancecode.html?q={0}"
+        Command="{Binding MenuItemClickCommand}"
+        CommandParameter="https://contestpark.com/balancecode.html"
         IconImageSource="{StaticResource IconConvertToCash}"
         Text="{i18n:Translate ConvertToCash}" />
 
     <MenuItem
-        Clicked="MenuItem_Clicked"
+        Command="{Binding MenuItemClickCommand}"
         CommandParameter="BalanceCodeView"
         IconImageSource="{StaticResource IconBalanceCode}"
         Text="{i18n:Translate BalanceCode}" />
 
     <MenuItem
-        Clicked="MenuItem_Clicked"
+        Command="{Binding MenuItemClickCommand}"
         CommandParameter="SettingsView"
         IconImageSource="{StaticResource IconSettings}"
         Text="{i18n:Translate Settings}" />
 
     <MenuItem
-        Clicked="MenuItem_Clicked"
+        Command="{Binding MenuItemClickCommand}"
         CommandParameter="https://www.instagram.com/contestpark"
         IconImageSource="{StaticResource IconInstagram}"
         Text="Instagram" />
 
     <MenuItem
-        Clicked="MenuItem_Clicked"
+        Command="{Binding MenuItemClickCommand}"
         CommandParameter="https://www.facebook.com/contestpark"
         IconImageSource="{StaticResource IconFacebook}"
         Text="Facebook" />
 
     <MenuItem
-        Clicked="MenuItem_Clicked"
+        Command="{Binding MenuItemClickCommand}"
         CommandParameter="https://www.twitter.com/contestpark"
         IconImageSource="{StaticResource IconTwitter}"
         Text="Twitter" />

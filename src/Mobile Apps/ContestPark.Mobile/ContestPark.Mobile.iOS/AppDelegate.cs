@@ -68,6 +68,9 @@ namespace ContestPark.Mobile.iOS
 
             SegmentedControlRenderer.Initialize();
 
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
+
+
             LoadApplication(new ContestParkApp(new IOSInitializer()));
 
             return base.FinishedLaunching(app, options);
