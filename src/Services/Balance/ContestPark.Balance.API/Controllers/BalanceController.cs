@@ -133,7 +133,7 @@ namespace ContestPark.Balance.API.Controllers
 
             _eventBus.Publish(@event);
 
-            DateTime nextRewardDate = DateTime.Now.AddHours(12);
+            DateTime nextRewardDate = DateTime.Now.AddMinutes(10); // DateTime.Now.AddHours(12);
 
             var @eventNotification = new SendPushNotificationIntegrationEvent(PushNotificationTypes.Reward,
                                                                               CurrentUserLanguage,
