@@ -258,10 +258,12 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     return true;
 
                 IPageDialogService pageDialogService = ContestParkApp.Current.Container.Resolve<IPageDialogService>();
-
-                pageDialogService?.DisplayAlertAsync(string.Empty,
-                                                     ContestParkResources.NoInternet,
-                                                     ContestParkResources.Okay);
+                if (pageDialogService != null)
+                {
+                    pageDialogService.DisplayAlertAsync(string.Empty,
+                                                        ContestParkResources.NoInternet,
+                                                        ContestParkResources.Okay);
+                }
 
                 return true;
             }

@@ -14,7 +14,7 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
         {
             get
             {
-                return $"{LocalizedPrice.Replace("TRY", "").Trim()}{CurrencyCode.Replace("TRY", "₺")}";
+                return $"{LocalizedPrice.Replace("TRY", "").Replace("₺", "").Replace("$", "").Trim()}{CurrencyCode.Replace("TRY", "₺")}";
             }
         }
 
@@ -22,7 +22,7 @@ namespace ContestPark.Mobile.Models.InAppBillingProduct
         {
             get
             {
-                return LocalizedPrice.Replace("TRY", "").Trim();
+                return LocalizedPrice.Replace("TRY", "").Replace("₺", "").Replace("$", "").Trim();
             }
         }
 
