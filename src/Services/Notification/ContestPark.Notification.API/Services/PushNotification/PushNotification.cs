@@ -72,7 +72,7 @@ namespace ContestPark.Notification.API.Services.PushNotification
 
             PushNotificationResponseModel response = await _requestProvider.PostAsync<PushNotificationResponseModel>(_notificationSettings.OneSignalSendNotificationUrl,
                                                                                                                      data,
-                                                                                                                     _notificationSettings.OneSignalApiKey);
+                                                                                                                     $"Basic {_notificationSettings.OneSignalApiKey}");
 
             return response != null && response.Recipients > 0;
         }
