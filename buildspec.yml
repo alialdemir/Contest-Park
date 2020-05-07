@@ -60,8 +60,9 @@ phases:
       - sed -i 's/$(CONTESTPARK_SPOTIFY_SECRETID)/'"\""$CONTESTPARK_SPOTIFY_SECRETID"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_AWS_SMS_KEY_ID)/'"\""$CONTESTPARK_AWS_SMS_KEY_ID"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_AWS_SMS_SECRET)/'"\""$CONTESTPARK_AWS_SMS_SECRET"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_FIREBASE_URL)/'"\""$CONTESTPARK_FIREBASE_URL"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_FIREBASE_SERVER_KEY)/'"\""$CONTESTPARK_FIREBASE_SERVER_KEY"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_ONE_SIGNAL_SEND_NOTIFICATION_URL)/'"\""$CONTESTPARK_ONE_SIGNAL_SEND_NOTIFICATION_URL"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_ONE_SIGNAL_APP_ID)/'"\""$CONTESTPARK_ONE_SIGNAL_APP_ID"\""'/g' kubectl/deployment.yaml
+      - sed -i 's/$(CONTESTPARK_ONE_SIGNAL_API_KEY)/'"\""$CONTESTPARK_ONE_SIGNAL_API_KEY"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(CONTESTPARK_APP_SPECIFIC_SHARED_SECRET)/'"\""$CONTESTPARK_APP_SPECIFIC_SHARED_SECRET"\""'/g' kubectl/deployment.yaml
       - sed -i 's/$(IMAGE_TAG)/'""$IMAGE_TAG""'/g' kubectl/deployment.yaml
       - sed -i 's/$(REPOSITORY_URI)/'""$REPOSITORY_URI""'/g' kubectl/deployment.yaml

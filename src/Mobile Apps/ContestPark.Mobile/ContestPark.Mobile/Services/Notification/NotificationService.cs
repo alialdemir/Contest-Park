@@ -91,32 +91,6 @@ namespace ContestPark.Mobile.Services.Notification
             return _requestProvider.PostAsync<UserNameModel>(uri, smsModel);
         }
 
-        /// <summary>
-        /// Firebase push notification token güncelle
-        /// </summary>
-        /// <param name="tokenModel">Token</param>
-        public async Task<bool> UpdatePushTokenAsync(PushNotificationTokenModel tokenModel)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Push/Token");
-
-            var result = await _requestProvider.PostAsync<string>(uri, tokenModel);
-
-            return result.IsSuccess;
-        }
-
-        /// <summary>
-        /// Push notification gönderir
-        /// </summary>
-        /// <param name="pushNotificationType">Gönderilecek push notification tipi</param>
-        public async Task<bool> PushSendAsync(PushNotificationTypes pushNotificationType)
-        {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Push/Send?pushNotificationType={pushNotificationType}");
-
-            var result = await _requestProvider.PostAsync<string>(uri);
-
-            return result.IsSuccess;
-        }
-
         #endregion Methods
     }
 }

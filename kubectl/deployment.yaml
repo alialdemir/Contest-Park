@@ -536,7 +536,9 @@ spec:
               value: $(CONTESTPARK_AWS_SMS_KEY_ID)
             - name: AwsSmsSecret
               value: $(CONTESTPARK_AWS_SMS_SECRET)
-            - name: FirebaseUrl
-              value: $(CONTESTPARK_FIREBASE_URL)
-            - name: FirebaseServerKey
-              value: $(CONTESTPARK_FIREBASE_SERVER_KEY)
+            - name: OneSignalSendNotificationUrl
+              value: $(CONTESTPARK_ONE_SIGNAL_SEND_NOTIFICATION_URL)
+            - name: OneSignalAppId
+              value: $(CONTESTPARK_ONE_SIGNAL_APP_ID)
+            - name: OneSignalApiKey
+              value: $(CONTESTPARK_ONE_SIGNAL_API_KEY)

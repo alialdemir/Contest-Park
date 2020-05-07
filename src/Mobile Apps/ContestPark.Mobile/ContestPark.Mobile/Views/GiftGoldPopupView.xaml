@@ -71,7 +71,7 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference giftGoldPopupView}}" />
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference giftGoldPopupView}}" CommandParameter="{StaticResource True}" />
                         </Image.GestureRecognizers>
                         <Image.Source>
                             <FontImageSource

@@ -1,9 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Balance;
-using ContestPark.Mobile.Services.BackgroundAggregator;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Contracts;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -11,19 +9,11 @@ namespace ContestPark.Mobile.ViewModels
 {
     public class GiftGoldPopupViewModel : ViewModelBase
     {
-        #region Private variables
-
-        private readonly IBackgroundAggregatorService _backgroundAggregatorService;
-
-        #endregion Private variables
-
         #region Constructor
 
         public GiftGoldPopupViewModel(IPopupNavigation popupNavigation,
-                                      INavigationService navigationService,
-                                      IBackgroundAggregatorService backgroundAggregatorService) : base(navigationService, popupNavigation: popupNavigation)
+                                      INavigationService navigationService) : base(navigationService, popupNavigation: popupNavigation)
         {
-            _backgroundAggregatorService = backgroundAggregatorService;
         }
 
         #endregion Constructor
@@ -64,14 +54,6 @@ namespace ContestPark.Mobile.ViewModels
                 GiftGold = parameters.GetValue<RewardModel>("RewardModel");
 
             base.Initialize(parameters);
-        }
-
-        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
-        {
-            // Bir sonraki ödül için push notification göndermesi için background job başlattık
-            _backgroundAggregatorService.StartRewardJob(GiftGold.NextRewardTime);
-
-            return base.GoBackAsync(parameters, useModalNavigation: true);
         }
 
         #endregion Methods

@@ -1,4 +1,5 @@
-﻿using ContestPark.Mobile.AppResources;
+﻿using Com.OneSignal;
+using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Models.Duel.Bet;
@@ -227,6 +228,8 @@ namespace ContestPark.Mobile.Services.Settings
             ContestParkResources.Culture = culture;
 
             DependencyService.Get<ILocalize>().SetCultureInfo(culture);
+
+            OneSignal.Current.SendTag("UserId", currentUser.UserId);
 
             AddOrUpdateValue(currentUserJson, nameof(CurrentUser));
         }

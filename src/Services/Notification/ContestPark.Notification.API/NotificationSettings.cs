@@ -8,8 +8,8 @@
 
         public string AwsSmsKeyId { get; set; }
         public string AwsSmsSecret { get; set; }
-
-        public string FirebaseUrl { get; set; }
-        public string FirebaseServerKey { get; set; }
+        public string OneSignalSendNotificationUrl { get; set; }
+        public string OneSignalAppId { get; set; }
+        public string OneSignalApiKey { get; set; }
     }
 }

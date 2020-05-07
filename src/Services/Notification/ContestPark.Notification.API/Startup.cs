@@ -5,17 +5,17 @@ using ContestPark.Core.Services.RequestProvider;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notice;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
-using ContestPark.Notification.API.Infrastructure.Repositories.PushNotification;
 using ContestPark.Notification.API.IntegrationEvents.EventHandling;
 using ContestPark.Notification.API.IntegrationEvents.Events;
 using ContestPark.Notification.API.Resources;
-using ContestPark.Notification.API.Services.FirebasePushNotification;
+using ContestPark.Notification.API.Services.PushNotification;
 using ContestPark.Notification.API.Services.Sms;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ServiceStack.Redis;
@@ -41,7 +41,7 @@ namespace ContestPark.Notification.API
 
             services.AddAuth(Configuration)
                     .AddMySql()
-                    .AddMvc(options => options.EnableEndpointRouting=false)
+                    .AddMvc(options => options.EnableEndpointRouting = false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(NotificationResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
@@ -60,11 +60,11 @@ namespace ContestPark.Notification.API
                     .AddCorsConfigure();
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
-            services.AddTransient<IPushNotificationRepository, PushNotificationRepository>();
             services.AddTransient<INoticeRepository, NoticeRepository>();
 
             services.AddTransient<ISmsService, AwsSmsService>();
-            services.AddTransient<IFirebasePushNotification, FirebasePushNotification>();
+
+            services.AddTransient<IPushNotification, PushNotification>();
 
             services.AddTransient<AddNotificationIntegrationEventHandler>();
             services.AddTransient<SendPushNotificationIntegrationEventHandler>();
@@ -77,7 +77,7 @@ namespace ContestPark.Notification.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {

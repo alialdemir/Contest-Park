@@ -820,30 +820,6 @@
     },
     // Notification
     {
-      "DownstreamPathTemplate": "/api/{version}/Notification/Push/Send?pushNotificationType={pushNotificationType}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "notification-api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notification/Push/Send?pushNotificationType={pushNotificationType}",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Notification/Push/Token",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "notification-api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notification/Push/Token",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
       "DownstreamPathTemplate": "/api/{version}/Notification",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
