@@ -865,4 +865,7 @@
   <data name="ComingSoon" xml:space="preserve">
     <value>Coming soon!</value>
   </data>
+  <data name="ProductMoney26" xml:space="preserve">
+    <value>Special Offer</value>
+  </data>
 </root>

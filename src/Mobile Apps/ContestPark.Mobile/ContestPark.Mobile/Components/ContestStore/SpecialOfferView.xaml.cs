@@ -1,86 +1,85 @@
 ﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace ContestPark.Mobile.Components
+namespace ContestPark.Mobile.Components.ContestStore
 {
-    public partial class ThumListItem : ContentView
+    public partial class SpecialOfferView : ContentView
     {
-        #region Constructors
+        #region Constructor
 
-        public ThumListItem()
+        public SpecialOfferView()
         {
             InitializeComponent();
         }
 
-        #endregion Constructors
+        #endregion Constructor
 
         #region Properties
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(propertyName: nameof(CommandParameter),
                                                                                                    returnType: typeof(string),
-                                                                                                   declaringType: typeof(ThumListItem),
+                                                                                                   declaringType: typeof(SpecialOfferView),
                                                                                                    defaultValue: string.Empty);
 
         public static readonly BindableProperty DetailProperty = BindableProperty.Create(propertyName: nameof(Detail),
                                                                                          returnType: typeof(string),
-                                                                                         declaringType: typeof(ThumListItem),
+                                                                                         declaringType: typeof(SpecialOfferView),
                                                                                          defaultValue: String.Empty);
 
         public static readonly BindableProperty IsShowRightTextProperty = BindableProperty.Create(propertyName: nameof(IsShowRightText),
                                                                                                   returnType: typeof(bool),
-                                                                                                  declaringType: typeof(ThumListItem),
+                                                                                                  declaringType: typeof(SpecialOfferView),
                                                                                                   defaultValue: false);
 
         public static readonly BindableProperty LongPressedProperty = BindableProperty.Create(propertyName: nameof(LongPressed),
                                                                                               returnType: typeof(ICommand),
-                                                                                              declaringType: typeof(ThumListItem),
+                                                                                              declaringType: typeof(SpecialOfferView),
                                                                                               defaultValue: null);
 
         public static readonly BindableProperty RightIconSourceProperty = BindableProperty.Create(propertyName: nameof(RightIconSource),
                                                                                                   returnType: typeof(string),
-                                                                                                  declaringType: typeof(ThumListItem),
+                                                                                                  declaringType: typeof(SpecialOfferView),
                                                                                                   defaultValue: String.Empty);
 
         public static readonly BindableProperty RightIconTextColorProperty = BindableProperty.Create(propertyName: nameof(RightIconTextColor),
                                                                                                     returnType: typeof(Color),
-                                                                                                    declaringType: typeof(ThumListItem),
+                                                                                                    declaringType: typeof(SpecialOfferView),
                                                                                                     defaultValue: Color.FromHex("#dddddd"));
 
         public static readonly BindableProperty RightTextProperty = BindableProperty.Create(propertyName: nameof(RightText),
                                                                                             returnType: typeof(string),
-                                                                                            declaringType: typeof(ThumListItem),
+                                                                                            declaringType: typeof(SpecialOfferView),
                                                                                             defaultValue: String.Empty);
 
         public static readonly BindableProperty RightText2Property = BindableProperty.Create(propertyName: nameof(RightText2),
                                                                                             returnType: typeof(string),
-                                                                                            declaringType: typeof(ThumListItem),
+                                                                                            declaringType: typeof(SpecialOfferView),
                                                                                             defaultValue: String.Empty);
 
         public static readonly BindableProperty RightText2TextColorProperty = BindableProperty.Create(propertyName: nameof(RightText2TextColor),
                                                                                                       returnType: typeof(Color),
-                                                                                                      declaringType: typeof(ThumListItem),
+                                                                                                      declaringType: typeof(SpecialOfferView),
                                                                                                       defaultValue: Color.Black);
 
         public static readonly BindableProperty RightText2TextDecorationsProperty = BindableProperty.Create(propertyName: nameof(RightText2TextDecorations),
                                                                                                       returnType: typeof(TextDecorations),
-                                                                                                      declaringType: typeof(ThumListItem),
+                                                                                                      declaringType: typeof(SpecialOfferView),
                                                                                                       defaultValue: TextDecorations.Strikethrough);
 
         public static readonly BindableProperty SingleTapProperty = BindableProperty.Create(propertyName: nameof(SingleTap),
                                                                                             returnType: typeof(ICommand),
-                                                                                            declaringType: typeof(ThumListItem),
+                                                                                            declaringType: typeof(SpecialOfferView),
                                                                                             defaultValue: null);
 
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(propertyName: nameof(Source),
                                                                                          returnType: typeof(string),
-                                                                                         declaringType: typeof(ThumListItem),
+                                                                                         declaringType: typeof(SpecialOfferView),
                                                                                          defaultValue: String.Empty);
 
         public static readonly BindableProperty TextProperty = BindableProperty.Create(propertyName: nameof(Text),
                                                                                        returnType: typeof(string),
-                                                                                       declaringType: typeof(ThumListItem),
+                                                                                       declaringType: typeof(SpecialOfferView),
                                                                                        defaultValue: String.Empty);
 
         public string CommandParameter

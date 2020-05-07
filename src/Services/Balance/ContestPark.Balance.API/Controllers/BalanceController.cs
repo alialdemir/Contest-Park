@@ -87,6 +87,7 @@ namespace ContestPark.Balance.API.Controllers
                         {"com.contestparkapp.app.6",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.12",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.19",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestparkapp.app.26",  new PackageModel{ Amount = 26.99m , BalanceType= BalanceTypes.Money, IsSpecialOffer = true }},
 
                         // Ios
 
@@ -99,6 +100,7 @@ namespace ContestPark.Balance.API.Controllers
                         {"com.contestpark.app.6money",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestpark.app.12money",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestpark.app.19money",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
+                        {"com.contestpark.app.26money",  new PackageModel{ Amount = 26.99m , BalanceType= BalanceTypes.Money, IsSpecialOffer = true }},
                     };
                 }
                 return _googlePlayPackages;
@@ -462,20 +464,45 @@ namespace ContestPark.Balance.API.Controllers
 
             // TODO: google play istek atılıp token ve packet adı ile satın alım başarılı olmuşmu kontrol edilmeli
 
-            bool isSuccess = await _balanceRepository.UpdateBalanceAsync(new ChangeBalanceModel
-            {
-                UserId = UserId,
-                BalanceHistoryType = BalanceHistoryTypes.Buy,
-                BalanceType = package.BalanceType,
-                Amount = package.Amount
-            });
-
+            bool isSuccess = await UpdateBalanceAsync(package.Amount, package.BalanceType);
             if (!isSuccess)
                 return BadRequest(BalanceResource.ThePurchaseFailedPleaseEmailWithOurSupportTeam);
+
+            #region Eğer özel ürün alıyorsa hem altın hem para ekleneceği için durum farklı
+
+            if (package.IsSpecialOffer)
+            {
+                const decimal specialOfferGoldAmount = 10.000m;
+
+                isSuccess = await UpdateBalanceAsync(specialOfferGoldAmount, BalanceTypes.Gold);
+                if (!isSuccess)
+                {
+                    Logger.LogError("{UserId} kullanıcı özel teklif ürünü aldı. Para yüklendi ancak altınlar yüklenemedi", UserId);
+                }
+            }
+
+            #endregion Eğer özel ürün alıyorsa hem altın hem para ekleneceği için durum farklı
 
             AddPurchaseHistory(purchase, package);
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Bakiye güncelle
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="balanceType"></param>
+        /// <returns>İşlem başarılı ise true değilse false</returns>
+        private Task<bool> UpdateBalanceAsync(decimal amount, BalanceTypes balanceType)
+        {
+            return _balanceRepository.UpdateBalanceAsync(new ChangeBalanceModel
+            {
+                UserId = UserId,
+                BalanceHistoryType = BalanceHistoryTypes.Buy,
+                BalanceType = balanceType,
+                Amount = amount
+            });
         }
 
         /// <summary>

@@ -1376,6 +1376,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Special Offer.
+        /// </summary>
+        public static string ProductMoney26 {
+            get {
+                return ResourceManager.GetString("ProductMoney26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buy 6.99 Contest Lira.
         /// </summary>
         public static string ProductMoney6 {

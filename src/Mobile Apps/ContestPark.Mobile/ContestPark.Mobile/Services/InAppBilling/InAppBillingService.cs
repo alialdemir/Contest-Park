@@ -2,6 +2,7 @@
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.InAppBillingProduct;
 using ContestPark.Mobile.Services.Cache;
+using ImTools;
 using Plugin.InAppBilling;
 using Plugin.InAppBilling.Abstractions;
 using Prism.Services;
@@ -77,6 +78,16 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             Description = ContestParkResources.ProductMoney19,
                                             Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_7.svg?assembly=ContestPark.Mobile"
                                         },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestpark.app.26money",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney26,
+                                            Description = ContestParkResources.ProductMoney26,
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.specialoffer.svg?assembly=ContestPark.Mobile",
+                                            IsSpecialOffer = true,
+                                            DiscountBalanceAmount  = 10.000m
+                                        },
                                         // Gold
                                         new InAppBillingProductModel
                                         {
@@ -139,6 +150,16 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             ProductName = ContestParkResources.ProductMoney19,
                                             Description = ContestParkResources.ProductMoney19,
                                             Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_7.svg?assembly=ContestPark.Mobile"
+                                        },
+                                        new InAppBillingProductModel
+                                        {
+                                            ProductId = "com.contestparkapp.app.26",
+                                            BalanceTypes=    BalanceTypes.Money,
+                                            ProductName = ContestParkResources.ProductMoney26,
+                                            Description = ContestParkResources.ProductMoney26,
+                                            Image =  "resource://ContestPark.Mobile.Common.Images.specialoffer.svg?assembly=ContestPark.Mobile",
+                                            IsSpecialOffer = true,
+                                            DiscountBalanceAmount  =10.000m
                                         },
 
                                         // Gold
@@ -214,8 +235,8 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                IEnumerable<InAppBillingProduct> propductList = await _billing.GetProductInfoAsync(ItemType.InAppPurchase, Products.Select(x => x.ProductId).ToArray());
-                if (propductList == null || propductList.Count() <= 0)
+                IEnumerable<InAppBillingProduct> productList = await _billing.GetProductInfoAsync(ItemType.InAppPurchase, Products.Select(x => x.ProductId).ToArray());
+                if (productList == null || productList.Count() <= 0)
                 {
                     Debug.WriteLine("Uygulama içi satın alınacak ürün listesi gelmedi.");
 
@@ -224,23 +245,25 @@ namespace ContestPark.Mobile.Services.InAppBilling
                     return new List<InAppBillingProductModel>();
                 }
 
-                var products = propductList.Select(product => new InAppBillingProductModel
-                {
-                    CurrencyCode = product.CurrencyCode,
-                    LocalizedPrice = product.LocalizedPrice,
-                    Description = Products.FirstOrDefault(x => x.ProductId == product.ProductId).Description,
-                    ProductId = product.ProductId,
-                    ProductName = Products.FirstOrDefault(x => x.ProductId == product.ProductId).ProductName,
-                    Image = Products.FirstOrDefault(x => x.ProductId == product.ProductId).Image,
-                    BalanceTypes = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes,
-                    RightText2TextDecorations = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes == BalanceTypes.Money
-                    ? TextDecorations.None
-                    : TextDecorations.Strikethrough,
-                    RightText2TextColor = Products.FirstOrDefault(x => x.ProductId == product.ProductId).BalanceTypes == BalanceTypes.Money
-                                       ? Color.FromHex("#ff8800")
-                                       : Color.Black,
-                    DiscountPrice = CalculatorDiscountPrice(product)
-                }).OrderBy(x => x.Image).ToList();
+                var products = (from product in productList
+                                join p1 in Products on product.ProductId equals p1.ProductId
+                                orderby p1.Image
+                                let isDiscountPrice = p1.BalanceTypes == BalanceTypes.Money && !p1.IsSpecialOffer
+                                select new InAppBillingProductModel
+                                {
+                                    CurrencyCode = product.CurrencyCode,
+                                    LocalizedPrice = product.LocalizedPrice,
+                                    IsSpecialOffer = p1.IsSpecialOffer,
+                                    Description = p1.Description,
+                                    ProductId = product.ProductId,
+                                    ProductName = p1.ProductName,
+                                    Image = p1.Image,
+                                    BalanceTypes = p1.BalanceTypes,
+                                    DiscountBalanceAmount = p1.DiscountBalanceAmount,
+                                    RightText2TextDecorations = isDiscountPrice ? TextDecorations.None : TextDecorations.Strikethrough,
+                                    RightText2TextColor = isDiscountPrice ? Color.FromHex("#ff8800") : Color.Black,
+                                    DiscountPrice = CalculatorDiscountPrice(product)
+                                }).ToList();
 
                 _cacheService.Add(_productCacheKey, products);
 
@@ -277,14 +300,14 @@ namespace ContestPark.Mobile.Services.InAppBilling
             if (product.ProductId == "com.contestpark.app.12money")//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
                 return ContestParkResources.BestSeller;
 
-            if (string.IsNullOrEmpty(product.LocalizedPrice) || myProduct.BalanceTypes == BalanceTypes.Money)
+            if (string.IsNullOrEmpty(product.LocalizedPrice) || (myProduct.BalanceTypes == BalanceTypes.Money && !myProduct.IsSpecialOffer))
                 return string.Empty;
 
             decimal price = Convert.ToDecimal(product.LocalizedPrice.Replace("₺", "").Replace("$", "").Replace("TRY", "").Trim());// Farklı para birimlerinde burası patlar
 
-            price = ((price * 20 / 100) + price);
+            price = ((price * 50 / 100) + price);
 
-            return string.Format("₺{0:##.##}", price);// Fiyatın %20 fazlası
+            return string.Format("{0:##.##}₺", price);// Fiyatın %20 fazlası
         }
 
         /// <summary>

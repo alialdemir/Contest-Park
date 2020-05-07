@@ -82,6 +82,7 @@
     <None Remove="Common\Images\SingleMoney.svg" />
     <None Remove="Common\Images\sms.png" />
     <None Remove="Common\Images\socialmediashare.png" />
+    <None Remove="Common\Images\specialoffer.svg" />
     <None Remove="Common\Images\TUR_s.png" />
     <None Remove="Common\Images\tutorial_next.svg" />
     <None Remove="Common\Images\username.png" />
@@ -166,6 +167,7 @@
     <EmbeddedResource Include="Common\Images\SingleMoney.svg" />
     <EmbeddedResource Include="Common\Images\sms.png" />
     <EmbeddedResource Include="Common\Images\socialmediashare.png" />
+    <EmbeddedResource Include="Common\Images\specialoffer.svg" />
     <EmbeddedResource Include="Common\Images\TUR_s.png" />
     <EmbeddedResource Include="Common\Images\tutorial_next.svg" />
     <EmbeddedResource Include="Common\Images\username.png" />
@@ -252,6 +254,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\Coins\DobleCoinsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\ContestStore\SpecialOfferView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\DuelrResultSocialMedia\DuelrResultSocialMediaView.xaml">

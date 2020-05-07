@@ -138,8 +138,8 @@
             <components:NonPersistentSelectedItemListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:ThumListItem
-                            AutomationId="WatchAdGetCoins"
+                        <components:ContestStoreFactory SingleTap="{Binding Path=BindingContext.PurchaseCommand, Source={x:Reference lstView}}" />
+                        <!--<components:ThumListItem
                             CommandParameter="{Binding ProductId}"
                             Detail="{Binding Description}"
                             IsShowRightText="True"
@@ -150,7 +150,7 @@
                             RightText2TextDecorations="{Binding RightText2TextDecorations}"
                             SingleTap="{Binding Path=BindingContext.PurchaseCommand, Source={x:Reference lstView}}"
                             Source="{Binding Image}"
-                            Text="{Binding ProductName}" />
+                            Text="{Binding ProductName}" />-->
                     </ViewCell>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.ItemTemplate>

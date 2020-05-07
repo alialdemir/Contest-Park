@@ -6,5 +6,7 @@ namespace ContestPark.Balance.API.Models
     {
         public decimal Amount { get; set; }
         public BalanceTypes BalanceType { get; set; }
+
+        public bool IsSpecialOffer { get; set; }
     }
 }

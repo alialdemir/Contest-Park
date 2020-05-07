@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.ContestStore.SpecialOfferView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converter="clr-namespace:ContestPark.Mobile.Converters"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:effects="clr-namespace:ContestPark.Mobile.Components.LongPressedEffect"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="specialOfferView"
+    mc:Ignorable="d">
+    <ContentView.Content>
+
+        <yummy:PancakeView
+            Margin="0,0,0,8"
+            Padding="0"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="8"
+            Elevation="6"
+            HasShadow="True"
+            HeightRequest="80"
+            IsClippedToBounds="True"
+            Visual="Material">
+            <Grid
+                x:Name="cstmGrid"
+                Padding="16,0,16,0"
+                effects:LongPressedEffect.CommandParameter="{Binding Path=CommandParameter, Source={x:Reference specialOfferView}}"
+                effects:LongPressedEffect.LongPressed="{Binding Path=LongPressed, Source={x:Reference specialOfferView}}"
+                effects:LongPressedEffect.SingleTap="{Binding Path=SingleTap, Source={x:Reference specialOfferView}}"
+                ColumnSpacing="0"
+                RowSpacing="0"
+                VerticalOptions="Center">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.Effects>
+                    <effects:LongPressedEffect />
+                </Grid.Effects>
+
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    HeightRequest="50"
+                    Source="{Binding Path=Source, Source={x:Reference specialOfferView}}"
+                    WidthRequest="50" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="16,0,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource SofiaProSemiBold}"
+                    FontSize="16"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding Path=Text, Source={x:Reference specialOfferView}}"
+                    TextColor="#430856" />
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <components:HtmlLabel
+                        Grid.Column="0"
+                        Margin="16,0,0,0"
+                        FontFamily="{StaticResource SofiaProLight}"
+                        FontSize="14"
+                        Text="{Binding DisplaySpecialDescription}"
+                        TextColor="#8EF0A7"
+                        VerticalTextAlignment="Center" />
+
+                    <Image
+                        Grid.Column="1"
+                        Aspect="AspectFit"
+                        HeightRequest="40"
+                        Source="{image:ImageResource doublecoinstl.png}"
+                        WidthRequest="50" />
+
+                    <components:HtmlLabel
+                        Grid.Column="2"
+                        Margin="16,0,0,0"
+                        FontFamily="{StaticResource SofiaProLight}"
+                        FontSize="14"
+                        Text="{Binding DiscountBalanceAmount}"
+                        TextColor="#8EF0A7"
+                        VerticalTextAlignment="Center" />
+                    <Image
+                        Grid.Column="3"
+                        Aspect="AspectFit"
+                        HeightRequest="40"
+                        Source="{image:ImageResource doublecoins.png}"
+                        WidthRequest="50" />
+                </Grid>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource GothamRoundedBold}"
+                    FontSize="16"
+                    HorizontalTextAlignment="End"
+                    IsVisible="{Binding Path=IsShowRightText, Source={x:Reference specialOfferView}}"
+                    Text="{Binding Path=RightText2, Source={x:Reference specialOfferView}}"
+                    TextColor="{Binding Path=RightText2TextColor, Source={x:Reference specialOfferView}}"
+                    TextDecorations="{Binding Path=RightText2TextDecorations, Source={x:Reference specialOfferView}}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource GothamRoundedBold}"
+                    FontSize="16"
+                    HorizontalTextAlignment="End"
+                    IsVisible="{Binding Path=IsShowRightText, Source={x:Reference specialOfferView}}"
+                    Text="{Binding Path=RightText, Source={x:Reference specialOfferView}}"
+                    TextColor="{Binding Path=RightIconTextColor, Source={x:Reference specialOfferView}}"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>
+        </yummy:PancakeView>
+    </ContentView.Content>
+</ContentView>

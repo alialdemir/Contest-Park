@@ -559,6 +559,9 @@
   <data name="ProductMoney19" xml:space="preserve">
     <value>19.99 Contest Lira Satın Al</value>
   </data>
+  <data name="ProductMoney26" xml:space="preserve">
+    <value>Özel Teklif</value>
+  </data>
   <data name="ProductMoney6" xml:space="preserve">
     <value>6.99 Contest Lira Satın Al</value>
   </data>
