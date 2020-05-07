@@ -16,6 +16,7 @@ using Prism.Navigation;
 using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -217,7 +218,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _analyticsService.SendEvent("Sol Menü", "Link", name);
 
-                Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
+                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
+                    Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
+                else
+                    Browser.OpenAsync(name);
 
                 Shell.Current.FlyoutIsPresented = false;
             }
