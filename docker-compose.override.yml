@@ -245,8 +245,9 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
       - AwsSmsKeyId=${CONTESTPARK_AWS_SMS_KEY_ID}
       - AwsSmsSecret=${CONTESTPARK_AWS_SMS_SECRET}
-      - FirebaseUrl=${CONTESTPARK_FIREBASE_URL}
-      - FirebaseServerKey=${CONTESTPARK_FIREBASE_SERVER_KEY}
+      - OneSignalSendNotificationUrl=${CONTESTPARK_ONE_SIGNAL_SEND_NOTIFICATION_URL}
+      - OneSignalAppId=${CONTESTPARK_ONE_SIGNAL_APP_ID}
+      - OneSignalApiKey=${CONTESTPARK_ONE_SIGNAL_API_KEY}
     ports:
       - "5112:80"
     volumes:

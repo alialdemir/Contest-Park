@@ -1,7 +1,6 @@
 ﻿using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
-using ContestPark.Mobile.Services.BackgroundAggregator;
 using ContestPark.Mobile.Services.Blocking;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Category;
@@ -135,8 +134,6 @@ namespace ContestPark.Mobile.Configs
             containerRegistry.RegisterSingleton<IIdentityService, IdentityService>();
 
             containerRegistry.RegisterSingleton<IInAppBillingService, InAppBillingService>();
-
-            containerRegistry.RegisterSingleton<IBackgroundAggregatorService, BackgroundAggregatorService>();
 
             containerRegistry.RegisterSingleton<IBlockingService, BlockingService>();
 

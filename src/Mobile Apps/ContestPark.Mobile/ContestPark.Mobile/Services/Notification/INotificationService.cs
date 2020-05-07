@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Enums;
-using ContestPark.Mobile.Models.Login;
+﻿using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.PagingModel;
 using ContestPark.Mobile.Models.RequestProvider;
@@ -15,7 +14,5 @@ namespace ContestPark.Mobile.Services.Notification
         Task<bool> LogInSms(SmsInfoModel smsInfo);
 
         Task<ServiceModel<NotificationModel>> NotificationsAsync(PagingModel pagingModel);
-        Task<bool> PushSendAsync(PushNotificationTypes pushNotificationType);
-        Task<bool> UpdatePushTokenAsync(PushNotificationTokenModel tokenModel);
     }
 }

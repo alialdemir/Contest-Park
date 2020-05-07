@@ -9,6 +9,7 @@ using FFImageLoading.Forms.Platform;
 
 //using Firebase.Core;
 using Foundation;
+using Google.MobileAds;
 
 //using Google.MobileAds;
 using Plugin.Segmented.Control.iOS;
@@ -31,20 +32,6 @@ namespace ContestPark.Mobile.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        //public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
-        //{
-        //    Shiny.Jobs.JobManager.OnBackgroundFetch(completionHandler);
-        //}
-
-        //public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
-        //    => this.ShinyDidReceiveRemoteNotification(userInfo, completionHandler);
-
-        //public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
-        //    => this.ShinyRegisteredForRemoteNotifications(deviceToken);
-
-        //public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
-        //    => this.ShinyFailedToRegisterForRemoteNotifications(error);
-
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 #if !DEBUG
@@ -57,15 +44,13 @@ namespace ContestPark.Mobile.iOS
 
             //App.Configure();
 
-            //MobileAds.SharedInstance.Start(status =>
-            //{
-            //    // Requests test ads on devices you specify. Your test device ID is printed to the console when
-            //    // an ad request is made. Ads automatically returns test ads when running on a
-            //    // simulator. After you get your device ID, add it here
-            //    MobileAds.SharedInstance.RequestConfiguration.TestDeviceIdentifiers = new[] { Request.SimulatorId.ToString() };
-            //});
-
-            //   iOSShinyHost.Init(new ShinyAppStartup());
+            MobileAds.SharedInstance.Start(status =>
+            {
+                // Requests test ads on devices you specify. Your test device ID is printed to the console when
+                // an ad request is made. Ads automatically returns test ads when running on a
+                // simulator. After you get your device ID, add it here
+                MobileAds.SharedInstance.RequestConfiguration.TestDeviceIdentifiers = new[] { Request.SimulatorId.ToString() };
+            });
 
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();

@@ -133,14 +133,18 @@ namespace ContestPark.Balance.API.Controllers
 
             _eventBus.Publish(@event);
 
-            DateTime now = DateTime.Now;
+            DateTime nextRewardDate = DateTime.Now.AddMinutes(10); // DateTime.Now.AddHours(12);
 
-            TimeSpan nextRewardTime = now.AddHours(12).AddMinutes(10) - now;
+            var @eventNotification = new SendPushNotificationIntegrationEvent(PushNotificationTypes.Reward,
+                                                                              CurrentUserLanguage,
+                                                                              UserId,
+                                                                              nextRewardDate);
+
+            _eventBus.Publish(@eventNotification);
 
             return Ok(new
             {
                 Amount = reward,
-                NextRewardTime = nextRewardTime // Bir sonraki ödülü ne zaman alanağı saniye cinsinden verir
             });
         }
 
