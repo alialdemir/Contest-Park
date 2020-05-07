@@ -118,6 +118,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<WinningsView, WinningsViewModel>();
 
+            containerRegistry.RegisterForNavigation<SpecialOfferPopupView, SpecialOfferPopupViewModel>();
+
             containerRegistry.RegisterForNavigation<TutorialPopupView, TutorialPopupViewModel>();
 
             containerRegistry.RegisterForNavigation<AcceptDuelInvitationPopupView, AcceptDuelInvitationPopupViewModel>();

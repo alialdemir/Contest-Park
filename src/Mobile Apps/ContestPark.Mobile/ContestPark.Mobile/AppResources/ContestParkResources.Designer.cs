@@ -764,6 +764,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get your special discount package now!.
+        /// </summary>
+        public static string GetYourSpecialDiscountPackageNow {
+            get {
+                return ResourceManager.GetString("GetYourSpecialDiscountPackageNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Global.
         /// </summary>
         public static string Global {
@@ -1696,6 +1705,15 @@ namespace ContestPark.Mobile.AppResources {
         public static string Sounds {
             get {
                 return ResourceManager.GetString("Sounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SPECIAL OFFER.
+        /// </summary>
+        public static string SpecialOffer {
+            get {
+                return ResourceManager.GetString("SpecialOffer", resourceCulture);
             }
         }
         

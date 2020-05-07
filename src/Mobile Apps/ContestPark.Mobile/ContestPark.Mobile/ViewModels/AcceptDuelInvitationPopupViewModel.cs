@@ -47,7 +47,7 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        public bool IsExit { get; set; }
+        private bool IsExit { get; set; }
 
         private double _timer = 10;
 

@@ -66,7 +66,7 @@
                             <RowDefinition Height="100" />
                             <RowDefinition Height="20" />
                             <RowDefinition Height="20" />
-                            <RowDefinition Height="20" />
+                            <RowDefinition Height="50" />
                             <RowDefinition Height="110" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -239,7 +239,7 @@
                             RowSpacing="6"
                             VerticalOptions="StartAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="60" />
                                 <RowDefinition Height="70" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>

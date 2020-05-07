@@ -15,9 +15,8 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
         {
             this.LoadFinished += (object sender, EventArgs e) =>
             {
-                if (Element is CustomWebView)
+                if (Element != null)
                 {
-                    CustomWebView titleWebView = (CustomWebView)Element;
                     ((IElementController)Element).SetValueFromRenderer(CustomWebView.PageTitleProperty,
                         EvaluateJavascript("document.title"));
                 }

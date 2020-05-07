@@ -868,4 +868,10 @@
   <data name="ProductMoney26" xml:space="preserve">
     <value>Special Offer</value>
   </data>
+  <data name="GetYourSpecialDiscountPackageNow" xml:space="preserve">
+    <value>Get your special discount package now!</value>
+  </data>
+  <data name="SpecialOffer" xml:space="preserve">
+    <value>SPECIAL OFFER</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using MonkeyCache.SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,11 +21,14 @@ namespace ContestPark.Mobile.Services.Cache
         /// <param name="key">Unique identifier for the entry</param>
         /// <param name="data">Data object to store</param>
         /// <param name="expireIn">Time from UtcNow to expire entry in</param>
-        public void Add<T>(string key, T data)
+        public void Add<T>(string key, T data, TimeSpan? expireIn = null)
         {
             if (data != null)
             {
-                Barrel.Current.Add(key, data, GlobalSetting.Instance.CacheExpireIn);
+                if (expireIn == null || !expireIn.HasValue)
+                    expireIn = GlobalSetting.Instance.CacheExpireIn;
+
+                Barrel.Current.Add(key, data, expireIn.Value);
             }
         }
 

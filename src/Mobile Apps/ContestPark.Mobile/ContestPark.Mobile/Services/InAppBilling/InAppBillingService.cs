@@ -1,14 +1,20 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
+using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Models.InAppBillingProduct;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cache;
+using ContestPark.Mobile.Services.Cp;
 using ImTools;
 using Plugin.InAppBilling;
 using Plugin.InAppBilling.Abstractions;
+using Prism.Events;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -20,6 +26,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
         #region Private variables
 
         private readonly IPageDialogService _pageDialogService;
+        private readonly IBalanceService _balanceService;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IAnalyticsService _analyticsService;
         private readonly ICacheService _cacheService;
         private readonly IInAppBilling _billing;
         private const string _productCacheKey = "in-app-purche";
@@ -29,17 +38,36 @@ namespace ContestPark.Mobile.Services.InAppBilling
         #region Constructor
 
         public InAppBillingService(IPageDialogService pageDialogService,
+                                   IBalanceService balanceService,
+                                   IEventAggregator eventAggregator,
+                                   IAnalyticsService analyticsService,
                                    ICacheService cacheService)
         {
             _billing = CrossInAppBilling.Current;
 
             _pageDialogService = pageDialogService;
+            _balanceService = balanceService;
+            _eventAggregator = eventAggregator;
+            _analyticsService = analyticsService;
             _cacheService = cacheService;
         }
 
         #endregion Constructor
 
         #region Properties
+
+        /// <summary>
+        /// Özel ürün popupu için eklendi
+        /// </summary>
+        public string SpecialProductId
+        {
+            get
+            {
+                return Device.RuntimePlatform == Device.iOS
+                    ? "com.contestpark.app.26money"
+                    : "com.contestparkapp.app.26";
+            }
+        }
 
         /// <summary>
         /// Google play de tanımlı ürün id'leri
@@ -124,6 +152,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                     };
                 }
 
+                // Android
                 return new List<InAppBillingProductModel>
                                     {
                                         // Money
@@ -197,6 +226,13 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                         },
                                     };
             }
+        }
+
+        public bool IsBusy { get; set; }
+
+        private string PurchaseTokenFilePath
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "cp.txt"); }
         }
 
         #endregion Properties
@@ -308,6 +344,138 @@ namespace ContestPark.Mobile.Services.InAppBilling
             price = ((price * 50 / 100) + price);
 
             return string.Format("{0:##.##}₺", price);// Fiyatın %20 fazlası
+        }
+
+        /// <summary>
+        /// Ürün id'sine ait ürünü döndürür
+        /// </summary>
+        /// <param name="productId">Ürün id</param>
+        /// <returns>Ürün bilgisi</returns>
+        public async Task<InAppBillingProductModel> GetProductById(string productId)
+        {
+            return (await GetProductInfoAsync())
+                                    .Where(product => product.ProductId == productId)
+                                    .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Uygulama içi ürün satın al
+        /// </summary>
+        /// <param name="productId">Ürün id</param>
+        public async Task PurchaseProcessAsync(string productId)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            string productName = (await GetProductById(productId)).ProductName;
+
+            _analyticsService.SendEvent("Enhanced ECommerce", "Impression", productName);
+
+            InAppBillingPurchaseModel purchaseInfo = await PurchaseAsync(productId);
+            if (purchaseInfo == null)
+            {
+                IsBusy = false;
+
+                return;
+            }
+
+            #region Ios purchase token çok uzun olduğu için text dosyasına yazıp gönderiyoruz
+
+            File.WriteAllText(PurchaseTokenFilePath, purchaseInfo.PurchaseToken);
+            byte[] purchaseTokenByte = File.ReadAllBytes(PurchaseTokenFilePath);
+            Stream purchaseTokenStream = new MemoryStream(purchaseTokenByte);
+
+            #endregion Ios purchase token çok uzun olduğu için text dosyasına yazıp gönderiyoruz
+
+            bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
+            {
+                ProductId = purchaseInfo.ProductId,
+                PackageName = purchaseInfo.ProductId,
+                State = purchaseInfo.State,
+                TransactionId = purchaseInfo.Id,
+                Token = "none",
+                VerifyPurchase = purchaseInfo.VerifyPurchase,
+                Platform = GetCurrentPlatform(),
+                File = purchaseTokenStream,
+                FileName = "cp.conteststore"
+            });
+            if (isSuccessGoldPurchase)
+            {
+                PurchaseSuccess(purchaseInfo, productName);
+            }
+            else
+            {
+                await _pageDialogService.DisplayAlertAsync(ContestParkResources.Error,
+                                                           ContestParkResources.PurchaseFail,
+                                                           ContestParkResources.Okay);
+
+                if (File.Exists(PurchaseTokenFilePath))
+                    File.Delete(PurchaseTokenFilePath);
+
+                SendProductEvent(purchaseInfo, "Remove From Cart", productName);
+            }
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Satın alma işlemi başarılıysa yapılanlar
+        /// </summary>
+        /// <param name="purchaseInfo">Satılan paket bilgisi</param>
+        /// <param name="productName">Paket adı</param>
+        private void PurchaseSuccess(InAppBillingPurchaseModel purchaseInfo, string productName)
+        {
+            _pageDialogService.DisplayAlertAsync(ContestParkResources.Success,
+                                                 ContestParkResources.ThePurchaseIsSuccessfulYourGoldBasBeenUploadedToYourAccount,
+                                                 ContestParkResources.Okay);
+
+            // Left menü'deki  altın miktarını güncelledik
+            _eventAggregator
+                 .GetEvent<GoldUpdatedEvent>()
+                 .Publish();
+
+            SendProductEvent(purchaseInfo, "Purchase", productName);
+
+            if (File.Exists(PurchaseTokenFilePath))
+                File.Delete(PurchaseTokenFilePath);
+
+            ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.PurchaseToken);
+        }
+
+        /// <summary>
+        /// Product ga eventi gönderir
+        /// </summary>
+        /// <param name="purchaseInfo"></param>
+        /// <param name="eventAction"></param>
+        /// <param name="eventLabel"></param>
+        private void SendProductEvent(InAppBillingPurchaseModel purchaseInfo, string eventAction, string eventLabel)
+        {
+            _analyticsService.SendEvent("Enhanced ECommerce", new Dictionary<string, string>
+                {
+                    { "ea", eventAction },
+                    { "el", eventLabel },
+                    { "ProductId", purchaseInfo.ProductId },
+                    { "Id", purchaseInfo.Id },
+                    { "AutoRenewing", purchaseInfo.AutoRenewing.ToString() },
+                    { "Payload", purchaseInfo.Payload },
+                    //{ "PurchaseToken", purchaseInfo.PurchaseToken },
+                    { "TransactionDateUtc", purchaseInfo.TransactionDateUtc.ToLongDateString()},
+                    { "State", purchaseInfo.State.ToString() },
+                    { "ConsumptionState", purchaseInfo.ConsumptionState.ToString() },
+                });
+        }
+
+        private Platforms GetCurrentPlatform()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android: return Platforms.Android;
+                case Device.iOS: return Platforms.Ios;
+            }
+
+            return Platforms.Android;
         }
 
         /// <summary>

@@ -353,6 +353,9 @@
   <data name="GetTheMoneyAward" xml:space="preserve">
     <value>PARA ÖDÜLÜNÜ AL</value>
   </data>
+  <data name="GetYourSpecialDiscountPackageNow" xml:space="preserve">
+    <value>Sana özel indirimli paket hemen al</value>
+  </data>
   <data name="Global" xml:space="preserve">
     <value>Genel</value>
   </data>
@@ -668,6 +671,9 @@
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Ses Efektleri</value>
+  </data>
+  <data name="SpecialOffer" xml:space="preserve">
+    <value>ÖZEL TEKLİF</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Başarılı</value>

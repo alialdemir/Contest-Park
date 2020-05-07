@@ -11,6 +11,7 @@ using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Audio;
+using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
@@ -20,6 +21,7 @@ using Plugin.StoreReview.Abstractions;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,6 +35,7 @@ namespace ContestPark.Mobile.ViewModels
         #region Private variables
 
         private readonly IAudioService _audioService;
+        private readonly ICacheService _cacheService;
         private readonly IDuelService _duelService;
         private readonly IEventAggregator _eventAggregator;
         private readonly IAdMobService _adMobService;
@@ -47,16 +50,19 @@ namespace ContestPark.Mobile.ViewModels
             IEventAggregator eventAggregator,
             IAdMobService adMobService,
             IAudioService audioService,
+            ICacheService cacheService,
+            IPopupNavigation popupNavigation,
             ISettingsService settingsService,
             INavigationService navigationService,
             IPageDialogService dialogService,
             IAnalyticsService analyticsService,
             IDuelService duelService
-            ) : base(navigationService: navigationService, dialogService)
+            ) : base(navigationService, dialogService, popupNavigation)
         {
             _eventAggregator = eventAggregator;
             _adMobService = adMobService;
             _audioService = audioService;
+            _cacheService = cacheService;
             _settingsService = settingsService;
             _analyticsService = analyticsService;
             _duelService = duelService;
@@ -325,8 +331,14 @@ namespace ContestPark.Mobile.ViewModels
 
                 _settingsService.IsStoreReview = true;
             }
+            else if (!(await _cacheService.Get<bool>("SpecialOffer")))
+            {
+                await NavigateToPopupAsync<SpecialOfferPopupView>();
 
-            await base.GoBackAsync(parameters, useModalNavigation);
+                _cacheService.Add("SpecialOffer", true, TimeSpan.FromDays(1));
+            }
+
+            await base.RemoveFirstPopupAsync<DuelResultPopupView>();
         }
 
         #endregion Methods

@@ -32,7 +32,6 @@ using Prism.Services;
 //using Shiny.Push;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -158,8 +157,6 @@ namespace ContestPark.Mobile.ViewModels
                 CheckRewardCommand.Execute(null);
 
                 ScopeRefleshCommand.Execute(null);
-
-                ListenerFirebaseToken.Execute(null);
 
                 NoticeCommand.Execute(null);
 #if !DEBUG
@@ -340,34 +337,6 @@ namespace ContestPark.Mobile.ViewModels
             get
             {
                 return _noticeNavigateToCommand ?? (_noticeNavigateToCommand = new Command<string>(ExecuteNoticeNavigateToCommand));
-            }
-        }
-
-        /// <summary>
-        /// Firebase token değişince sunucuya bildirir
-        /// </summary>
-        public ICommand ListenerFirebaseToken
-        {
-            get
-            {
-                return new Command(() =>
-               {
-                   try
-                   {
-                       //PushAccessState token = await _pushManager.RequestAccess();
-                       //if (token.Status == Shiny.AccessState.Available && !string.IsNullOrEmpty(token.RegistrationToken))
-                       //{
-                       //    _notificationService?.UpdatePushTokenAsync(new PushNotificationTokenModel
-                       //    {
-                       //        Token = token.RegistrationToken
-                       //    });
-                       //}
-                   }
-                   catch (Exception ex)
-                   {
-                       Debug.WriteLine(ex.Message);
-                   }
-               });
             }
         }
 

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="ContestPark.Mobile.Views.SpecialOfferPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="specialOfferPopupView"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="700"
+            EasingIn="SpringIn"
+            PositionIn="Right"
+            PositionOut="Left"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </pages:PopupPage.Animation>
+
+    <pages:PopupPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+            <Grid VerticalOptions="Center">
+
+                <!--  Buy  -->
+                <components:LinearGradientButton
+                    Command="{Binding Path=BindingContext.BuyCommand, Source={x:Reference specialOfferPopupView}}"
+                    CommandParameter="{Binding .}"
+                    Style="{StaticResource PopupBottomButton}"
+                    Text="{Binding Product.DisplayPrice}" />
+
+                <yummy:PancakeView Style="{StaticResource RoundedCornersPopupCard}">
+                    <Grid ColumnSpacing="0" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Style="{StaticResource CloseButton}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference specialOfferPopupView}}" CommandParameter="{StaticResource True}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label
+                            Grid.Row="1"
+                            Style="{StaticResource PopupTitle}"
+                            Text="{Binding Product.Title}" />
+
+                        <Label
+                            Grid.Row="2"
+                            Style="{StaticResource PopupSubtitle}"
+                            Text="{Binding Product.Description}" />
+
+                        <ffimageloadingsvg:SvgCachedImage
+                            Grid.Row="3"
+                            Margin="0,14,0,14"
+                            HeightRequest="110"
+                            HorizontalOptions="Center"
+                            Source="{Binding Product.Image}"
+                            WidthRequest="110" />
+
+                        <components:DobleCoinsView
+                            Grid.Row="4"
+                            BalanceType="Money"
+                            CoinSize="Large"
+                            Coins="Positive"
+                            DisplayCoins="{Binding Product.DisplaySpecialDescription}"
+                            HorizontalOptions="Center" />
+
+                        <BoxView
+                            Grid.Row="5"
+                            Margin="80,0,80,0"
+                            HeightRequest="1"
+                            WidthRequest="50"
+                            Color="#DEDEDE" />
+
+                        <components:DobleCoinsView
+                            Grid.Row="6"
+                            Margin="0,18.5,0,0"
+                            BalanceType="Gold"
+                            CoinSize="Large"
+                            Coins="Positive"
+                            DisplayCoins="{Binding Product.DiscountBalanceAmount}"
+                            HorizontalOptions="Center" />
+
+                        <StackLayout Grid.Row="7" IsEnabled="False">
+                            <Slider
+                                Maximum="600"
+                                MaximumTrackColor="#72F7C5"
+                                MinimumTrackColor="#B0E881"
+                                ThumbColor="Transparent"
+                                Value="{Binding Timer}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="8"
+                            Margin="16,-5,0,0"
+                            FontFamily="{StaticResource MontserratRegular}"
+                            FontSize="10"
+                            HorizontalTextAlignment="Start"
+                            Text="{Binding TimeText}"
+                            TextColor="{StaticResource Black}"
+                            VerticalTextAlignment="Start" />
+                    </Grid>
+                </yummy:PancakeView>
+            </Grid>
+        </StackLayout>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

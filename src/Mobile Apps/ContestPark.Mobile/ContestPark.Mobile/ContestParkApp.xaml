@@ -367,7 +367,7 @@
 
             <!--  Popup card  -->
             <Style
-                x:Key="PopupSignupCard"
+                x:Key="RoundedCornersPopupCard"
                 BasedOn="{StaticResource PopupCard}"
                 TargetType="yummy:PancakeView">
                 <Setter Property="CornerRadius" Value="8,8,0,0" />
