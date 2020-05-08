@@ -111,9 +111,15 @@ namespace ContestPark.Post.API.Controllers
 
             var postUserIds = GetPostUserIds(new List<PostModel> { post });
 
+            Logger.LogInformation("Kullanıcı bilgileri alındı {count}", postUserIds.Count());
+
             IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
-            ServiceModel<PostCommentModel> postComments = await GetCommentByPostId(postId, pagingModel);
+            Logger.LogInformation("identity kullanıcı bilgileri {count}", postUsers.Count());
+
+            ServiceModel<PostCommentModel> postComments = GetCommentByPostId(postId, pagingModel);
+
+            Logger.LogInformation("postComments {count}", postComments.Count());
 
             return Ok(new
             {
@@ -372,30 +378,27 @@ namespace ContestPark.Post.API.Controllers
         /// <param name="postId">Post id</param>
         /// <param name="pagingModel">Sayfalama</param>
         /// <returns>Post yorumları</returns>
-        private Task<ServiceModel<PostCommentModel>> GetCommentByPostId(int postId, PagingModel pagingModel)
+        private ServiceModel<PostCommentModel> GetCommentByPostId(int postId, PagingModel pagingModel)
         {
-            return new Task<ServiceModel<PostCommentModel>>(() =>
-           {
-               ServiceModel<PostCommentModel> comments = _commentRepository.GetCommentByPostId(postId, pagingModel);
+            ServiceModel<PostCommentModel> comments = _commentRepository.GetCommentByPostId(postId, pagingModel);
 
-               if (comments.Items.Count() != 0)
-               {
-                   IEnumerable<UserModel> postUsers = _identityService.GetUserInfosAsync(comments.Items.Select(c => c.UserId).AsEnumerable()).Result;
+            if (comments.Items.Count() != 0)
+            {
+                IEnumerable<UserModel> postUsers = _identityService.GetUserInfosAsync(comments.Items.Select(c => c.UserId).AsEnumerable()).Result;
 
-                   if (postUsers != null && postUsers.Count() != 0)
-                   {
-                       comments.Items.ToList().ForEach(c =>
-                       {
-                           UserModel user = postUsers.FirstOrDefault(u => u.UserId == c.UserId);
-                           c.FullName = user.FullName;
-                           c.ProfilePicturePath = user.ProfilePicturePath;
-                           c.UserName = user.UserName;
-                       });
-                   }
-               }
+                if (postUsers != null && postUsers.Count() != 0)
+                {
+                    comments.Items.ToList().ForEach(c =>
+                    {
+                        UserModel user = postUsers.FirstOrDefault(u => u.UserId == c.UserId);
+                        c.FullName = user.FullName;
+                        c.ProfilePicturePath = user.ProfilePicturePath;
+                        c.UserName = user.UserName;
+                    });
+                }
+            }
 
-               return comments;
-           });
+            return comments;
         }
 
         #endregion Methods
