@@ -18,7 +18,6 @@ using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -195,7 +194,7 @@ namespace ContestPark.Mobile.ViewModels
 
                 _postRefreshEventSubscriptionToken = _eventAggregator
                                                                 .GetEvent<PostRefreshEvent>()
-                                                                .Subscribe(async () => ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, true));
+                                                                .Subscribe(() => RefreshCommand.Execute(null));
             }
 
             _changedFollowCountEventSubscriptionToken = _eventAggregator

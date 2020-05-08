@@ -1,17 +1,17 @@
-﻿using ContestPark.Mobile.Models.Post;
+﻿using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Navigation;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components.PostCardView
 {
-    
     public partial class BottomPostCard : ContentView
     {
         #region Private varaibles
@@ -118,12 +118,20 @@ namespace ContestPark.Mobile.Components.PostCardView
             }
             else
             {
-                IAnalyticsService analyticsService = ContestParkApp.Current.Container.Resolve<IAnalyticsService>();
+                ContestParkApp
+                    .Current
+                    .Container
+                    .Resolve<IEventAggregator>()
+                    .GetEvent<PostRefreshEvent>()
+                    .Publish();
 
-                analyticsService.SendEvent(
-                    "Post",
-                    postModel.IsLike ? "Post Beğenmekten Vazgeç" : "Post Beğen",
-                    postModel.PostType.ToString());
+                ContestParkApp
+                         .Current
+                         .Container
+                         .Resolve<IAnalyticsService>()
+                         .SendEvent("Post",
+                                    postModel.IsLike ? "Post Beğenmekten Vazgeç" : "Post Beğen",
+                                    postModel.PostType.ToString());
             }
 
             IsBusy = false;

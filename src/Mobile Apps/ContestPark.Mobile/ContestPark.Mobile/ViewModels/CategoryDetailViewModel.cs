@@ -28,9 +28,6 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IPostService _postService;
         private readonly IAnalyticsService _analyticsService;
         private short _subCategoryId = 0;
-        private readonly PostRefreshEvent _onSleepEvent;
-
-        private SubscriptionToken _subscriptionToken;
 
         #endregion Private variable
 
@@ -50,7 +47,6 @@ namespace ContestPark.Mobile.ViewModels
             _analyticsService = analyticsService;
             _gameService = gameService;
             _eventAggregator = eventAggregator;
-            _onSleepEvent = eventAggregator.GetEvent<PostRefreshEvent>();
         }
 
         #endregion Constructor
@@ -88,7 +84,9 @@ namespace ContestPark.Mobile.ViewModels
 
             if (SubscriptionToken == null)
             {
-                SubscriptionToken = _onSleepEvent.Subscribe(() => SubCategoryPostsCommand.Execute(true));
+                SubscriptionToken = _eventAggregator
+                                                .GetEvent<PostRefreshEvent>()
+                                                .Subscribe(() => RefreshCommand.Execute(null));
             }
 
             base.Initialize(parameters);
@@ -261,21 +259,7 @@ namespace ContestPark.Mobile.ViewModels
             }
         }
 
-        public ICommand OnSleepEventCommand
-        {
-            get
-            {
-                return new Command(() =>
-               {
-                   if (SubscriptionToken != null && _onSleepEvent != null)
-                   {
-                       _onSleepEvent.Unsubscribe(SubscriptionToken);
-                   }
-               });
-            }
-        }
-
-        public SubscriptionToken SubscriptionToken { get => _subscriptionToken; set => _subscriptionToken = value; }
+        public SubscriptionToken SubscriptionToken { get; set; }
 
         #endregion Commands
     }

@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Views
 {
@@ -21,14 +20,6 @@ namespace ContestPark.Mobile.Views
             base.OnAppearing();
 
             pnkStats.TranslateTo(0, -50, 1500, Easing.SinInOut);
-        }
-
-        protected override void OnDisappearing()
-        {
-            if (BindingContext != null)
-                ((CategoryDetailViewModel)BindingContext).OnSleepEventCommand?.Execute(null);
-
-            base.OnDisappearing();
         }
 
         #endregion Overrides
