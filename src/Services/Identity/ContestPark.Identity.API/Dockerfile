@@ -12,7 +12,7 @@ COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus.RabbitMQ/ContestPark.Eve
 COPY ["src/BuildingBlocks/Core/ContestPark.Core/ContestPark.Core.csproj", "src/BuildingBlocks/Core/ContestPark.Core/"]
 RUN dotnet restore "src/Services/Identity/ContestPark.Identity.API/ContestPark.Identity.API.csproj"
 COPY . .
-WORKDIR "/src/src/Services/Identity/ContestPark.Identity.API"
+WORKDIR "/src/Services/Identity/ContestPark.Identity.API"
 RUN dotnet build "ContestPark.Identity.API.csproj" -c Release -o /app
 
 FROM build AS publish

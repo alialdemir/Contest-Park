@@ -9,7 +9,7 @@ WORKDIR /src
 COPY ["src/Services/Notification/ContestPark.Notification.API/ContestPark.Notification.API.csproj", "src/Services/Notification/ContestPark.Notification.API/"]
 RUN dotnet restore "src/Services/Notification/ContestPark.Notification.API/ContestPark.Notification.API.csproj"
 COPY . .
-WORKDIR "/src/src/Services/Notification/ContestPark.Notification.API"
+WORKDIR "/src/Services/Notification/ContestPark.Notification.API"
 RUN dotnet build "ContestPark.Notification.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -119,7 +119,7 @@ namespace ContestPark.Post.API.Controllers
 
             ServiceModel<PostCommentModel> postComments = GetCommentByPostId(postId, pagingModel);
 
-            Logger.LogInformation("postComments {count}", postComments.Count());
+            Logger.LogInformation("postComments {count}", postComments.Items.Count());
 
             return Ok(new
             {

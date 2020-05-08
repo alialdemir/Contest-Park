@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["src/Services/Follow/ContestPark.Follow.API/ContestPark.Follow.API.csproj", "src/Services/Follow/ContestPark.Follow.API/"]
 RUN dotnet restore "src/Services/Follow/ContestPark.Follow.API/ContestPark.Follow.API.csproj"
 COPY . .
-WORKDIR "/src/src/Services/Follow/ContestPark.Follow.API"
+WORKDIR "/src/Services/Follow/ContestPark.Follow.API"
 RUN dotnet build "ContestPark.Follow.API.csproj" -c Release -o /app
 
 FROM build AS publish
