@@ -208,6 +208,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ContestParkResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Components\InviteSocialMedia\InviteSocialMediaViewIos.xaml.cs">
+      <DependentUpon>InviteSocialMediaViewIos.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Components\Notice\NoticeView.xaml.cs">
       <DependentUpon>NoticeView.xaml</DependentUpon>
     </Compile>
@@ -265,7 +268,10 @@
     <EmbeddedResource Update="Components\IconButton\IconButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\InviteSocialMedia\InviteSocialMediaView.xaml">
+    <EmbeddedResource Update="Components\InviteSocialMedia\InviteSocialMediaViewAndroid.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\InviteSocialMedia\InviteSocialMediaViewIos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\ListItemView\RightThumListItem.xaml">

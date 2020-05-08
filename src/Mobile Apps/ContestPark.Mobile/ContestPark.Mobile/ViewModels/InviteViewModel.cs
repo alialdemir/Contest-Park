@@ -52,15 +52,31 @@ namespace ContestPark.Mobile.ViewModels
                     IsBusy = false;
                     return;
                 }
-
-                string path = convertUIToImage.GetImagePathByPage(new InviteSocialMediaView
+                InviteSocialMediaModel inviteData = new InviteSocialMediaModel
                 {
-                    Data = new InviteSocialMediaModel
-                    {
-                        UserName = _settingsService.CurrentUser.UserName
-                    }
-                });
+                    UserName = _settingsService.CurrentUser.UserName
+                };
 
+                ContentView imageView = null;
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    imageView = new InviteSocialMediaViewIos
+                    {
+                        Data = inviteData
+                    };
+                }
+                else if (Device.RuntimePlatform == Device.Android)
+                {
+                    imageView = new InviteSocialMediaViewAndroid
+                    {
+                        Data = inviteData
+                    };
+                }
+
+                if (imageView == null)
+                    return;
+
+                string path = convertUIToImage.GetImagePathByPage(imageView);
                 if (string.IsNullOrEmpty(path))
                 {
                     IsBusy = false;
