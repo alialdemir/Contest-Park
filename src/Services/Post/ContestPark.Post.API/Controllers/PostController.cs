@@ -106,6 +106,8 @@ namespace ContestPark.Post.API.Controllers
                 return BadRequest();
 
             PostModel post = _postRepository.GetPostDetailByPostId(UserId, postId, CurrentUserLanguage);
+            if (post == null)
+                return NotFound();
 
             var postUserIds = GetPostUserIds(new List<PostModel> { post });
 
@@ -311,57 +313,57 @@ namespace ContestPark.Post.API.Controllers
         private IEnumerable<PostModel> GetPostModel(IEnumerable<PostModel> posts,
                                                      IEnumerable<UserModel> postUsers)
         {
-            return from post in posts
-                   join ownerUser in postUsers on post.OwnerUserId equals ownerUser.UserId
-                   join founderUser in postUsers on post.FounderUserId equals founderUser.UserId into founderUserData
-                   from founderUser in founderUserData.DefaultIfEmpty()
-                   join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId into competitorUserData
-                   from competitorUser in competitorUserData.DefaultIfEmpty()
-                   select new PostModel
-                   {
-                       // Post bilgileri
-                       Date = post.Date,
-                       CommentCount = post.CommentCount,
-                       LikeCount = post.LikeCount,
-                       IsLike = post.IsLike,
-                       PostId = post.PostId,
-                       PostType = post.PostType,
-                       IsCommentOpen = post.IsCommentOpen,
+            return (from post in posts
+                    join ownerUser in postUsers on post.OwnerUserId equals ownerUser.UserId
+                    join founderUser in postUsers on post.FounderUserId equals founderUser.UserId into founderUserData
+                    from founderUser in founderUserData.DefaultIfEmpty()
+                    join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId into competitorUserData
+                    from competitorUser in competitorUserData.DefaultIfEmpty()
+                    select new PostModel
+                    {
+                        // Post bilgileri
+                        Date = post.Date,
+                        CommentCount = post.CommentCount,
+                        LikeCount = post.LikeCount,
+                        IsLike = post.IsLike,
+                        PostId = post.PostId,
+                        PostType = post.PostType,
+                        IsCommentOpen = post.IsCommentOpen,
 
-                       // Düello bilgileri
-                       Bet = post.Bet,
-                       BalanceType = post.BalanceType,
-                       SubCategoryId = post.SubCategoryId,
-                       Description = post.Description,
-                       DuelId = post.DuelId,
+                        // Düello bilgileri
+                        Bet = post.Bet,
+                        BalanceType = post.BalanceType,
+                        SubCategoryId = post.SubCategoryId,
+                        Description = post.Description,
+                        DuelId = post.DuelId,
 
-                       // TODO:  subcategory resmi ve adı category servisinden alınmalı
-                       SubCategoryName = post.SubCategoryName,
-                       SubCategoryPicturePath = post.SubCategoryPicturePath,
+                        // TODO:  subcategory resmi ve adı category servisinden alınmalı
+                        SubCategoryName = post.SubCategoryName,
+                        SubCategoryPicturePath = post.SubCategoryPicturePath,
 
-                       // Post resim paylaşımı ise
-                       PicturePath = post.PicturePath,
+                        // Post resim paylaşımı ise
+                        PicturePath = post.PicturePath,
 
-                       // Postun sahibi eğer düello ise kurucu postun sahibi olur
-                       OwnerUserId = ownerUser.UserId,
-                       OwnerFullName = ownerUser.FullName,
-                       OwnerProfilePicturePath = ownerUser.ProfilePicturePath,
-                       OwnerUserName = ownerUser.UserName,
+                        // Postun sahibi eğer düello ise kurucu postun sahibi olur
+                        OwnerUserId = ownerUser.UserId,
+                        OwnerFullName = ownerUser.FullName,
+                        OwnerProfilePicturePath = ownerUser.ProfilePicturePath,
+                        OwnerUserName = ownerUser.UserName,
 
-                       // Düelloyu kuran
-                       FounderFullName = founderUser?.FullName,
-                       FounderProfilePicturePath = founderUser?.ProfilePicturePath,
-                       FounderUserName = founderUser?.UserName,
-                       FounderUserId = post.FounderUserId,
-                       FounderTrueAnswerCount = post.FounderTrueAnswerCount,
+                        // Düelloyu kuran
+                        FounderFullName = founderUser?.FullName,
+                        FounderProfilePicturePath = founderUser?.ProfilePicturePath,
+                        FounderUserName = founderUser?.UserName,
+                        FounderUserId = post.FounderUserId,
+                        FounderTrueAnswerCount = post.FounderTrueAnswerCount,
 
-                       // Rakip
-                       CompetitorFullName = competitorUser?.FullName,
-                       CompetitorProfilePicturePath = competitorUser?.ProfilePicturePath,
-                       CompetitorTrueAnswerCount = post.CompetitorTrueAnswerCount,
-                       CompetitorUserId = post.CompetitorUserId,
-                       CompetitorUserName = competitorUser?.UserName
-                   };
+                        // Rakip
+                        CompetitorFullName = competitorUser?.FullName,
+                        CompetitorProfilePicturePath = competitorUser?.ProfilePicturePath,
+                        CompetitorTrueAnswerCount = post.CompetitorTrueAnswerCount,
+                        CompetitorUserId = post.CompetitorUserId,
+                        CompetitorUserName = competitorUser?.UserName
+                    }).ToList();
         }
 
         /// <summary>
