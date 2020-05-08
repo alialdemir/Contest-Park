@@ -8,7 +8,7 @@ WORKDIR /src
 COPY ["src/Services/BackgroundTask/ContestPark.BackgroundTasks/ContestPark.BackgroundTasks.csproj", "src/Services/BackgroundTask/ContestPark.BackgroundTasks/"]
 RUN dotnet restore "src/Services/BackgroundTask/ContestPark.BackgroundTasks/ContestPark.BackgroundTasks.csproj"
 COPY . .
-WORKDIR "/src/Services/BackgroundTask/ContestPark.BackgroundTasks"
+WORKDIR "/src/src/Services/BackgroundTask/ContestPark.BackgroundTasks"
 RUN dotnet build "ContestPark.BackgroundTasks.csproj" -c Release -o /app/build
 
 FROM build AS publish
