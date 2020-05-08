@@ -10,7 +10,7 @@ COPY ["src/BuildingBlocks/EventBus/ContestPark.EventBus.RabbitMQ/ContestPark.Eve
 COPY ["src/BuildingBlocks/Core/ContestPark.Core/ContestPark.Core.csproj", "src/BuildingBlocks/Core/ContestPark.Core/"]
 RUN dotnet restore "src/Services/Signalr/ContestPark.Signalr.API/ContestPark.Signalr.API.csproj"
 COPY . .
-WORKDIR "/src/Services/Signalr/ContestPark.Signalr.API"
+WORKDIR "/src/src/Services/Signalr/ContestPark.Signalr.API"
 RUN dotnet build "ContestPark.Signalr.API.csproj" -c Release -o /app
 
 FROM build AS publish

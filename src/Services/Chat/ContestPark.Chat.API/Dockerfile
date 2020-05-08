@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["src/Services/Chat/ContestPark.Chat.API/ContestPark.Chat.API.csproj", "src/Services/Chat/ContestPark.Chat.API/"]
 RUN dotnet restore "src/Services/Chat/ContestPark.Chat.API/ContestPark.Chat.API.csproj"
 COPY . .
-WORKDIR "/src/Services/Chat/ContestPark.Chat.API"
+WORKDIR "/src/src/Services/Chat/ContestPark.Chat.API"
 RUN dotnet build "ContestPark.Chat.API.csproj" -c Release -o /app
 
 FROM build AS publish
