@@ -100,23 +100,23 @@ namespace ContestPark.Post.API.Controllers
         [HttpGet("{postId}")]
         [ProducesResponseType(typeof(PostDetailModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetPostDetail([FromRoute]int postId, [FromQuery]PagingModel pagingModel)
+        public async Task<IActionResult> GetPostDetail([FromRoute]int postId, [FromQuery]PagingModel pagingModel)
         {
             if (postId <= 0)
                 return BadRequest();
 
-            Task<PostModel> taskPost = GetPostDetailByPostId(postId);
-            Task<ServiceModel<PostCommentModel>> taskComment = GetCommentByPostId(postId, pagingModel);
+            PostModel post = _postRepository.GetPostDetailByPostId(UserId, postId, CurrentUserLanguage);
 
-            taskPost.Start();
-            taskComment.Start();
+            var postUserIds = GetPostUserIds(new List<PostModel> { post });
 
-            Task.WaitAll(taskPost, taskComment);
+            IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
-            return Ok(new PostDetailModel
+            ServiceModel<PostCommentModel> postComments = await GetCommentByPostId(postId, pagingModel);
+
+            return Ok(new
             {
-                Comments = taskComment.Result,
-                Post = taskPost.Result
+                Comments = postComments,
+                Post = GetPostModel(new List<PostModel> { post }, postUsers).FirstOrDefault()
             });
         }
 
@@ -265,7 +265,6 @@ namespace ContestPark.Post.API.Controllers
         /// </summary>
         /// <param name="posts">Posts</param>
         /// <returns>Postların içindeki kullanıcı idleri</returns>
-
         private IEnumerable<string> GetPostUserIds(IEnumerable<PostModel> posts)
         {
             List<string> postUserIds = new List<string>();
@@ -289,10 +288,8 @@ namespace ContestPark.Post.API.Controllers
         /// Post verilerini birleştirme
         /// </summary>
         /// <param name="posts"></param>
-        /// <param name="postUserIds"></param>
         /// <param name="postUsers"></param>
-        /// <param name="likedPosts"></param>
-        /// <returns></returns>
+        /// <returns>Post listesi</returns>
         private ServiceModel<PostModel> GetPostModel(ServiceModel<PostModel> posts,
                                                      IEnumerable<UserModel> postUsers)
         {
@@ -301,68 +298,70 @@ namespace ContestPark.Post.API.Controllers
                 HasNextPage = posts.HasNextPage,
                 PageNumber = posts.PageNumber,
                 PageSize = posts.PageSize,
-                Items = from post in posts.Items
-                        join ownerUser in postUsers on post.OwnerUserId equals ownerUser.UserId
-                        join founderUser in postUsers on post.FounderUserId equals founderUser.UserId into founderUserData
-                        from founderUser in founderUserData.DefaultIfEmpty()
-                        join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId into competitorUserData
-                        from competitorUser in competitorUserData.DefaultIfEmpty()
-                        select new PostModel
-                        {
-                            // Post bilgileri
-                            Date = post.Date,
-                            CommentCount = post.CommentCount,
-                            LikeCount = post.LikeCount,
-                            IsLike = post.IsLike,
-                            PostId = post.PostId,
-                            PostType = post.PostType,
-                            IsCommentOpen = post.IsCommentOpen,
-
-                            // Düello bilgileri
-                            Bet = post.Bet,
-                            BalanceType = post.BalanceType,
-                            SubCategoryId = post.SubCategoryId,
-                            Description = post.Description,
-                            DuelId = post.DuelId,
-
-                            // TODO:  subcategory resmi ve adı category servisinden alınmalı
-                            SubCategoryName = post.SubCategoryName,
-                            SubCategoryPicturePath = post.SubCategoryPicturePath,
-
-                            // Post resim paylaşımı ise
-                            PicturePath = post.PicturePath,
-
-                            // Postun sahibi eğer düello ise kurucu postun sahibi olur
-                            OwnerUserId = ownerUser.UserId,
-                            OwnerFullName = ownerUser.FullName,
-                            OwnerProfilePicturePath = ownerUser.ProfilePicturePath,
-                            OwnerUserName = ownerUser.UserName,
-
-                            // Düelloyu kuran
-                            FounderFullName = founderUser?.FullName,
-                            FounderProfilePicturePath = founderUser?.ProfilePicturePath,
-                            FounderUserName = founderUser?.UserName,
-                            FounderUserId = post.FounderUserId,
-                            FounderTrueAnswerCount = post.FounderTrueAnswerCount,
-
-                            // Rakip
-                            CompetitorFullName = competitorUser?.FullName,
-                            CompetitorProfilePicturePath = competitorUser?.ProfilePicturePath,
-                            CompetitorTrueAnswerCount = post.CompetitorTrueAnswerCount,
-                            CompetitorUserId = post.CompetitorUserId,
-                            CompetitorUserName = competitorUser?.UserName
-                        }
+                Items = GetPostModel(posts.Items, postUsers),
             };
         }
 
         /// <summary>
-        /// Post detay
+        /// Post verilerini birleştirme
         /// </summary>
-        /// <param name="postId">Post id</param>
-        /// <returns>Post detay</returns>
-        private Task<PostModel> GetPostDetailByPostId(int postId)
+        /// <param name="posts"></param>
+        /// <param name="postUsers"></param>
+        /// <returns>Post object</returns>
+        private IEnumerable<PostModel> GetPostModel(IEnumerable<PostModel> posts,
+                                                     IEnumerable<UserModel> postUsers)
         {
-            return new Task<PostModel>(() => _postRepository.GetPostDetailByPostId(UserId, postId, CurrentUserLanguage));
+            return from post in posts
+                   join ownerUser in postUsers on post.OwnerUserId equals ownerUser.UserId
+                   join founderUser in postUsers on post.FounderUserId equals founderUser.UserId into founderUserData
+                   from founderUser in founderUserData.DefaultIfEmpty()
+                   join competitorUser in postUsers on post.CompetitorUserId equals competitorUser.UserId into competitorUserData
+                   from competitorUser in competitorUserData.DefaultIfEmpty()
+                   select new PostModel
+                   {
+                       // Post bilgileri
+                       Date = post.Date,
+                       CommentCount = post.CommentCount,
+                       LikeCount = post.LikeCount,
+                       IsLike = post.IsLike,
+                       PostId = post.PostId,
+                       PostType = post.PostType,
+                       IsCommentOpen = post.IsCommentOpen,
+
+                       // Düello bilgileri
+                       Bet = post.Bet,
+                       BalanceType = post.BalanceType,
+                       SubCategoryId = post.SubCategoryId,
+                       Description = post.Description,
+                       DuelId = post.DuelId,
+
+                       // TODO:  subcategory resmi ve adı category servisinden alınmalı
+                       SubCategoryName = post.SubCategoryName,
+                       SubCategoryPicturePath = post.SubCategoryPicturePath,
+
+                       // Post resim paylaşımı ise
+                       PicturePath = post.PicturePath,
+
+                       // Postun sahibi eğer düello ise kurucu postun sahibi olur
+                       OwnerUserId = ownerUser.UserId,
+                       OwnerFullName = ownerUser.FullName,
+                       OwnerProfilePicturePath = ownerUser.ProfilePicturePath,
+                       OwnerUserName = ownerUser.UserName,
+
+                       // Düelloyu kuran
+                       FounderFullName = founderUser?.FullName,
+                       FounderProfilePicturePath = founderUser?.ProfilePicturePath,
+                       FounderUserName = founderUser?.UserName,
+                       FounderUserId = post.FounderUserId,
+                       FounderTrueAnswerCount = post.FounderTrueAnswerCount,
+
+                       // Rakip
+                       CompetitorFullName = competitorUser?.FullName,
+                       CompetitorProfilePicturePath = competitorUser?.ProfilePicturePath,
+                       CompetitorTrueAnswerCount = post.CompetitorTrueAnswerCount,
+                       CompetitorUserId = post.CompetitorUserId,
+                       CompetitorUserName = competitorUser?.UserName
+                   };
         }
 
         /// <summary>
