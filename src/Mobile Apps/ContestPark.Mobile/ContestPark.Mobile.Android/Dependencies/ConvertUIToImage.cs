@@ -14,8 +14,8 @@ namespace ContestPark.Mobile.Droid.Dependencies
 {
     public class ConvertUIToImage : IConvertUIToImage
     {
-        private double Height { get; set; } = 400;
-        private double Width { get; set; } = 400;
+        private double Height { get; set; } = 1080;
+        private double Width { get; set; } = 1080;
 
         [Obsolete]
         public string GetImagePathByPage(ContentView contentPage)

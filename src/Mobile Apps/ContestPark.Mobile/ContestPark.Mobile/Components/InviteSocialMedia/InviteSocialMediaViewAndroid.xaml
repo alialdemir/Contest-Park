@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.InviteSocialMedia.InviteSocialMediaViewAndroid"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:image="clr-namespace:ContestPark.Mobile"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    HeightRequest="1080"
+    WidthRequest="1080"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <Grid>
+
+            <components:LinearGradientButton
+                BackgroundColor="Transparent"
+                EndColor="#424E5C"
+                StartColor="#2E3742"
+                VerticalOptions="FillAndExpand" />
+
+            <Image
+                Aspect="AspectFill"
+                Opacity="0.3"
+                Source="{image:ImageResource socialmediashare.png}" />
+
+            <Grid
+                Margin="65,45,0,0"
+                ColumnSpacing="0"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1080" />
+                </Grid.ColumnDefinitions>
+
+
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="110,0,0,0"
+                    HeightRequest="100"
+                    HorizontalOptions="Start"
+                    Source="logo.png"
+                    WidthRequest="100" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="35,0,0,16"
+                    FontFamily="{DynamicResource SofiaProMedium}"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Center"
+                    TextColor="{StaticResource White}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontSize="16" Text="İlgi alanlarınıza göre soru sorarak" />
+                            <Span FontSize="16" Text="&#x0a;yarıştırıp, para kazandıran" />
+                            <Span FontSize="16" Text="&#x0a;bilgi yarışması" />
+                            <Span
+                                FontAttributes="Bold"
+                                FontFamily="{StaticResource SofiaProBold}"
+                                FontSize="16"
+                                Text="&#x0a;ContestPark"
+                                TextColor="#FDBC2E" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Grid
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <components:CircleImage
+                        x:Name="imgProfilePicture"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Margin="16,0,0,0"
+                        HeightRequest="40"
+                        HorizontalOptions="Start"
+                        Source="https://d2blqp3orvbj09.cloudfront.net/user.jpg"
+                        WidthRequest="40" />
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Benim kullanıcı adımı referans kullan:"
+                        TextColor="{StaticResource White}" />
+
+                    <Label
+                        x:Name="lblUserName"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontFamily="{DynamicResource SofiaProBold}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        TextColor="{StaticResource Black}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
