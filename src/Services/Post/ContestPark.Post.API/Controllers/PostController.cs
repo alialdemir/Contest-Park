@@ -111,15 +111,9 @@ namespace ContestPark.Post.API.Controllers
 
             var postUserIds = GetPostUserIds(new List<PostModel> { post });
 
-            Logger.LogInformation("Kullanıcı bilgileri alındı {count}", postUserIds.Count());
-
             IEnumerable<UserModel> postUsers = await _identityService.GetUserInfosAsync(postUserIds);
 
-            Logger.LogInformation("identity kullanıcı bilgileri {count}", postUsers.Count());
-
             ServiceModel<PostCommentModel> postComments = GetCommentByPostId(postId, pagingModel);
-
-            Logger.LogInformation("postComments {count}", postComments.Items.Count());
 
             return Ok(new
             {

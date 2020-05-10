@@ -219,3 +219,19 @@ services:
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  contestpark.mission.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - identityUrl=http://identity-api
+      - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
+      - Audience=mission
+      - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
+      - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${CONTESTPARK_SERVICE_BUS_PASSWORD}
+      - IsMigrateDatabase=false
+    ports:
+      - "80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

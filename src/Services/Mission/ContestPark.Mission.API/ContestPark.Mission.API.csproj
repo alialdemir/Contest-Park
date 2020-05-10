@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>dff4ac9d-258d-4443-ba9c-806330febad0</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Infrastructure\Repositories\" />
+		<Folder Include="IntegrationEvents\Events\" />
+		<Folder Include="IntegrationEvents\EventHandling\" />
+		<Folder Include="Migrations\Scripts\" />
+		<Folder Include="Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.Dapper\ContestPark.Core.Dapper.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core.Database\ContestPark.Core.Database.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\Core\ContestPark.Core\ContestPark.Core.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus.RabbitMQ\ContestPark.EventBus.RabbitMQ.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\ContestPark.EventBus\ContestPark.EventBus.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Resources\MissionResource.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>MissionResource.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\MissionResource.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>MissionResource.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>
