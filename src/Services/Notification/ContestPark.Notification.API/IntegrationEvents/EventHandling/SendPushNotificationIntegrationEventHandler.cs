@@ -58,6 +58,9 @@ namespace ContestPark.Notification.API.IntegrationEvents.EventHandling
 
             pushNotification.UserId = @event.UserId;
 
+            if (@event.ScheduleDate.HasValue)
+                pushNotification.ScheduleDate = @event.ScheduleDate;
+
             var isSuccess = await _pushNotification.SendPushAsync(pushNotification);
             if (!isSuccess)
             {
