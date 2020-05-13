@@ -26,8 +26,6 @@ namespace ContestPark.Mission.API.IntegrationEvents.EventHandling
 
         public Task Handle(CheckMissionIntegrationEvent @event)
         {
-            bool
-
             return Task.CompletedTask;
         }
 
