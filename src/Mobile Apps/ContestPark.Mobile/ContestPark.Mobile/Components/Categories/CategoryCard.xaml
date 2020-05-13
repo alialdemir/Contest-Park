@@ -59,6 +59,7 @@
                     FontFamily="{DynamicResource SofiaProBold}"
                     FontSize="14"
                     HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding Path=IsSeeAllShow, Source={x:Reference categoryCard}}"
                     Text="{i18n:Translate SeeAll}"
                     TextColor="#FFC575">
                     <Label.GestureRecognizers>

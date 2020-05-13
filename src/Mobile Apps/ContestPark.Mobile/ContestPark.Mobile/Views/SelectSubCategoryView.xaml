@@ -21,29 +21,15 @@
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-
-        <RelativeLayout>
+        <Grid Style="{StaticResource PopupContainer}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
             <yummy:PancakeView
-                x:Name="pvkView"
-                Padding="0"
-                BackgroundColor="{StaticResource GlobalBackgroundColor}"
-                BorderColor="Transparent"
+                Grid.Row="0"
                 CornerRadius="10"
-                Elevation="6"
-                HasShadow="True"
-                HeightRequest="500"
-                IsClippedToBounds="True"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Width,
-                                                                  Factor=0.5,
-                                                                  Constant=-175}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Height,
-                                                                  Factor=0.5,
-                                                                  Constant=-260}"
-                WidthRequest="350">
-
+                Style="{StaticResource RoundedCornersPopupCard}">
                 <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -52,43 +38,26 @@
 
                     <Label
                         Grid.Row="0"
-                        BackgroundColor="{StaticResource White}"
-                        FontAttributes="Bold"
-                        FontFamily="{StaticResource GothamRoundedBold}"
-                        FontSize="24"
-                        HorizontalTextAlignment="Center"
-                        Text="{i18n:Translate SelectCategory}"
-                        TextColor="#FDBC2E"
-                        VerticalTextAlignment="Center" />
+                        Style="{StaticResource PopupTitle}"
+                        Text="{i18n:Translate SelectCategory}" />
 
-                    <Image
-                        Grid.Row="0"
-                        Margin="0,8,8,0"
-                        HorizontalOptions="End"
-                        VerticalOptions="Center">
+                    <Image Grid.Row="0" Style="{StaticResource CloseButton}">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference selectSubCategoryView}}" />
                         </Image.GestureRecognizers>
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="{StaticResource icomoon}"
-                                Glyph="{StaticResource Close}"
-                                Size="32"
-                                Color="{StaticResource SettingsIconColor}" />
-                        </Image.Source>
                     </Image>
 
                     <components:NonPersistentSelectedItemListView Grid.Row="1" Style="{StaticResource ListView}">
                         <components:NonPersistentSelectedItemListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <components:CategoryCard PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference selectSubCategoryView}}" />
+                                    <components:CategoryCard IsSeeAllShow="False" PushCategoryDetailViewCommand="{Binding Path=BindingContext.DuelOpenPanelCommand, Source={x:Reference selectSubCategoryView}}" />
                                 </ViewCell>
                             </DataTemplate>
                         </components:NonPersistentSelectedItemListView.ItemTemplate>
                     </components:NonPersistentSelectedItemListView>
                 </Grid>
             </yummy:PancakeView>
-        </RelativeLayout>
+        </Grid>
     </pages:PopupPage.Content>
 </pages:PopupPage>

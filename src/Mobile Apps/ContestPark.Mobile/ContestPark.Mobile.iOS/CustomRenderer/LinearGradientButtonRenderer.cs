@@ -14,27 +14,26 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
         public override void Draw(CGRect rect)
         {
             base.Draw(rect);
-            LinearGradientButton stack = (LinearGradientButton)this.Element;
-            CGColor startColor = stack.StartColor.ToCGColor();
-            CGColor endColor = stack.EndColor.ToCGColor();
-
-            #region for Vertical Gradient
-
-            //var gradientLayer = new CAGradientLayer();
-
-            #endregion for Vertical Gradient
-
-            #region for Horizontal Gradient
+            LinearGradientButton button = (LinearGradientButton)this.Element;
+            CGColor startColor = button.StartColor.ToCGColor();
+            CGColor endColor = button.EndColor.ToCGColor();
 
             var gradientLayer = new CAGradientLayer()
             {
-                CornerRadius = stack.CornerRadius,
+                CornerRadius = button.CornerRadius,
 
                 StartPoint = new CGPoint(0, 0.5),
                 EndPoint = new CGPoint(1, 0.5)
             };
 
-            #endregion for Horizontal Gradient
+            if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.Bottom)
+            {
+                gradientLayer.MaskedCorners = CACornerMask.MinXMaxYCorner | CACornerMask.MinXMinYCorner;
+            }
+            else if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.Top)
+            {
+                gradientLayer.MaskedCorners = CACornerMask.MaxXMinYCorner | CACornerMask.MinXMaxYCorner;
+            }
 
             gradientLayer.Frame = rect;
             gradientLayer.Colors = new CGColor[] {
@@ -42,9 +41,9 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
                 endColor
             };
 
-            if (stack.IsUpperCase)
+            if (button.IsUpperCase)
             {
-                this.Element.Text = stack.Text.ToUpper();
+                this.Element.Text = button.Text.ToUpper();
             }
 
             NativeView.Layer.InsertSublayer(gradientLayer, 0);

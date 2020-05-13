@@ -26,30 +26,39 @@
         <cards:CoverFlowView Style="{StaticResource ListViewPopup}">
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
-                    <Grid VerticalOptions="Center">
+                    <Grid Style="{StaticResource PopupContainer}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
                         <!--  Para ile oyna  -->
                         <components:LinearGradientButton
+                            Grid.Row="0"
+                            Grid.Column="0"
                             Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
                             CommandParameter="2"
-                            Style="{StaticResource PopupTopLeftButton}"
+                            Style="{StaticResource PopupTopButton}"
                             Text="{i18n:Translate Money}" />
 
                         <!--  Altınla oyna  -->
                         <components:LinearGradientButton
+                            Grid.Row="0"
+                            Grid.Column="1"
                             Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
                             CommandParameter="1"
-                            Style="{StaticResource PopupTopRightButton}"
+                            Style="{StaticResource PopupTopButton}"
                             Text="{i18n:Translate Gold}" />
 
-                        <!--  Play  -->
-                        <components:LinearGradientButton
-                            Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
-                            CommandParameter="{Binding .}"
-                            Style="{StaticResource PopupBottomButton}"
-                            Text="{i18n:Translate Play}" />
-
-                        <yummy:PancakeView Style="{StaticResource PopupCard}">
+                        <yummy:PancakeView
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource PopupCard}">
                             <Grid ColumnSpacing="0" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -143,6 +152,15 @@
                                     VerticalTextAlignment="Start" />
                             </Grid>
                         </yummy:PancakeView>
+
+                        <!--  Play  -->
+                        <components:LinearGradientButton
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Command="{Binding Path=BindingContext.DuelStartCommand, Source={x:Reference duelBettingPopupView}}"
+                            CommandParameter="{Binding .}"
+                            Style="{StaticResource PopupGreentButton}"
+                            Text="{i18n:Translate Play}" />
                     </Grid>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>

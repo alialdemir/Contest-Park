@@ -28,8 +28,6 @@ using Microsoft.AppCenter.Crashes;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
-
-//using Shiny.Push;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -354,7 +352,7 @@ namespace ContestPark.Mobile.ViewModels
 
                     IsBusy = true;
 
-                    NavigateToAsync<NotificationView>();
+                   NavigateToAsync<NotificationView>();
 
                     IsBusy = false;
                 });

@@ -21,66 +21,72 @@
             ScaleOut="0.7" />
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
-            <Grid VerticalOptions="CenterAndExpand">
-                <!--  Share  -->
-                <components:LinearGradientButton
-                    Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference inviteView}}"
-                    Style="{StaticResource PopupBottomButton}"
-                    Text="{i18n:Translate Share}" />
+        <Grid Style="{StaticResource PopupContainer}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
 
-                <yummy:PancakeView CornerRadius="8,8,0,0" Style="{StaticResource PopupCard}">
+            <yummy:PancakeView Grid.Row="0" Style="{StaticResource RoundedCornersPopupCard}">
+                <Grid
+                    Margin="8"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                    <Grid ColumnSpacing="0" RowSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="45" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Style="{StaticResource CloseButton}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference inviteView}}" />
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                        <Image Grid.Row="0" Style="{StaticResource CloseButton}">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference inviteView}}" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                    <Label
+                        Grid.Row="1"
+                        Style="{StaticResource PopupTitle}"
+                        Text="{i18n:Translate InviteSaveMoney}" />
 
-                        <Label
-                            Grid.Row="1"
-                            Style="{StaticResource PopupTitle}"
-                            Text="{i18n:Translate InviteSaveMoney}" />
+                    <Label
+                        Grid.Row="2"
+                        Margin="10,16,10,0"
+                        BackgroundColor="Transparent"
+                        FontFamily="{DynamicResource SofiaProMedium}"
+                        FontSize="16"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        TextColor="#484848">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="16" Text="Referans kodun ile üye olan her arkadaşın için hem sen hemde arkadaşın 1 tl kazanacaksınız." />
 
-                        <Label
-                            Grid.Row="2"
-                            Margin="10,16,10,0"
-                            BackgroundColor="Transparent"
-                            FontFamily="{DynamicResource SofiaProMedium}"
-                            FontSize="16"
-                            HorizontalOptions="Fill"
-                            HorizontalTextAlignment="Center"
-                            TextColor="#484848">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span FontSize="16" Text="Referans kodun ile üye olan her arkadaşın için hem sen hemde arkadaşın 1 tl kazanacaksınız." />
+                                <Span FontSize="16" Text="&#x0a;&#x0a;Bu parayı kazanmak için arkadaşların  üye olurken referans kodu olarak senin kullanıcı adını girmesi ve en az 10 kere düello yapması yeterli." />
 
-                                    <Span FontSize="16" Text="&#x0a;&#x0a;Bu parayı kazanmak için arkadaşların  üye olurken referans kodu olarak senin kullanıcı adını girmesi ve en az 10 kere düello yapması yeterli." />
+                                <Span FontSize="16" Text="&#x0a;&#x0a;Unutma! bakiyen 100 TL üzerine geçince iban numarası göndererek paranı çekebilirsin." />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                                    <Span FontSize="16" Text="&#x0a;&#x0a;Unutma! bakiyen 100 TL üzerine geçince iban numarası göndererek paranı çekebilirsin." />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                    <Label
+                        Grid.Row="3"
+                        Margin="0,16,0,0"
+                        FontFamily="{DynamicResource GothamRoundedBold}"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Hemen PAYLAŞMAYA BAŞLA!"
+                        TextColor="{StaticResource Black}" />
 
-                        <Label
-                            Grid.Row="3"
-                            Margin="0,16,0,0"
-                            FontFamily="{DynamicResource GothamRoundedBold}"
-                            FontSize="16"
-                            HorizontalTextAlignment="Center"
-                            Text="Hemen PAYLAŞMAYA BAŞLA!"
-                            TextColor="{StaticResource Black}" />
-                    </Grid>
-                </yummy:PancakeView>
-            </Grid>
-        </StackLayout>
+                </Grid>
+            </yummy:PancakeView>
+
+            <components:LinearGradientButton
+                Grid.Row="1"
+                Command="{Binding Path=BindingContext.ShareCommand, Source={x:Reference inviteView}}"
+                Style="{StaticResource PopupGreentButton}"
+                Text="{i18n:Translate Share}" />
+        </Grid>
     </pages:PopupPage.Content>
 </pages:PopupPage>

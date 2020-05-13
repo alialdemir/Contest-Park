@@ -39,6 +39,10 @@ namespace ContestPark.Mission.API.Infrastructure.Repositories.CompletedMission
             });
         }
 
+        //public bool IsMissionCompleted(string userId, byte missionId)
+        //{
+        //}
+
         #endregion Methods
     }
 }

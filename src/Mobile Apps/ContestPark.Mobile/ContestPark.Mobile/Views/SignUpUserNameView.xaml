@@ -3,9 +3,9 @@
     x:Class="ContestPark.Mobile.Views.SignUpUserNameView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:image="clr-namespace:ContestPark.Mobile"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -24,107 +24,46 @@
     </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
         <ScrollView>
-            <RelativeLayout>
-                <Components:LinearGradientButton
-                    Padding="0,0,0,-55"
-                    BackgroundColor="Transparent"
-                    BorderRadius="48"
-                    Command="{Binding Path=BindingContext.UserNameCommand, Source={x:Reference signUpUserNameView}}"
-                    EndColor="#4048EF"
-                    FontAttributes="Bold"
-                    FontFamily="{StaticResource GothamRoundedBold}"
-                    FontSize="23"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                           Property=Height,
-                                                                           Factor=.2,
-                                                                           Constant=0}"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                          Property=Width,
-                                                                          Factor=0,
-                                                                          Constant=300}"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=0.5,
-                                                                      Constant=-150}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
-                                                                      ElementName=pvkView,
-                                                                      Property=Y,
-                                                                      Factor=1,
-                                                                      Constant=340}"
-                    StartColor="#5A7BEF"
-                    Text="{i18n:Translate RightOn}"
-                    TextColor="{StaticResource White}"
-                    Visual="Material" />
+            <Grid Style="{StaticResource PopupContainer}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
 
-                <yummy:PancakeView
-                    x:Name="pvkView"
-                    Padding="0"
-                    BackgroundColor="{StaticResource White}"
-                    CornerRadius="10"
-                    Elevation="6"
-                    HasShadow="True"
-                    HeightRequest="400"
-                    IsClippedToBounds="True"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=0.5,
-                                                                      Constant=-150}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Height,
-                                                                      Factor=0.5,
-                                                                      Constant=-220}"
-                    WidthRequest="300">
-
+                <yummy:PancakeView Grid.Row="0" Style="{StaticResource RoundedCornersPopupCard}">
                     <Grid
-                        Grid.Row="0"
+                        Margin="8"
                         ColumnSpacing="0"
-                        HorizontalOptions="FillAndExpand"
-                        RowSpacing="0"
-                        VerticalOptions="FillAndExpand">
+                        RowSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="45" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
 
-                        <Image
-                            Margin="0,8,8,0"
-                            HorizontalOptions="End"
-                            VerticalOptions="Start">
+                        <Image Grid.Row="0" Style="{StaticResource CloseButton}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpUserNameView}}" />
                             </Image.GestureRecognizers>
-                            <Image.Source>
-                                <FontImageSource
-                                    FontFamily="{StaticResource icomoon}"
-                                    Glyph="{StaticResource Close}"
-                                    Size="32"
-                                    Color="{StaticResource SettingsIconColor}" />
-                            </Image.Source>
                         </Image>
 
                         <Label
                             Grid.Row="1"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="24"
-                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource PopupTitle}"
                             Text="{i18n:Translate WhatYouGetYourUsername}"
                             TextColor="#EB3349" />
 
                         <Image
                             Grid.Row="2"
-                            Margin="0,14,0,14"
                             HeightRequest="200"
                             HorizontalOptions="Center"
                             Source="{image:ImageResource username.png}"
                             WidthRequest="200" />
 
-                        <Components:CustomEntry
+                        <components:CustomEntry
                             Grid.Row="3"
-                            Margin="10,0,10,0"
                             BackgroundColor="Transparent"
                             BorderColor="#666372"
                             FontFamily="{DynamicResource SofiaProMedium}"
@@ -137,10 +76,10 @@
                             TextColor="#484848"
                             Visual="Material"
                             WidthRequest="290">
-                            <Components:CustomEntry.Behaviors>
+                            <components:CustomEntry.Behaviors>
                                 <behaviors:EventToCommandBehavior Command="{Binding UserNameCommand}" EventName="Completed" />
-                            </Components:CustomEntry.Behaviors>
-                        </Components:CustomEntry>
+                            </components:CustomEntry.Behaviors>
+                        </components:CustomEntry>
 
                         <Label
                             Grid.Row="4"
@@ -157,7 +96,13 @@
                         </Label>
                     </Grid>
                 </yummy:PancakeView>
-            </RelativeLayout>
+
+                <components:LinearGradientButton
+                    Grid.Row="1"
+                    Command="{Binding Path=BindingContext.UserNameCommand, Source={x:Reference signUpUserNameView}}"
+                    Style="{StaticResource PopupBlueBottomButton}"
+                    Text="{i18n:Translate RightOn}" />
+            </Grid>
         </ScrollView>
     </pages:PopupPage.Content>
 </pages:PopupPage>

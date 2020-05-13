@@ -32,8 +32,38 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
             //create a new gradient color
             GradientDrawable gd = new GradientDrawable(
               GradientDrawable.Orientation.TopBottom, colors);
+            if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.Bottom)
+            {
+                float[] radius = new float[8];
+                radius[0] = 0;   //Top Left corner
+                radius[1] = 0;   //Top Left corner
+                radius[2] = 0;     //Top Right corner
+                radius[3] = 0;     //Top Right corner
+                radius[4] = button.CornerRadius;     //Bottom Right corner
+                radius[5] = button.CornerRadius;     //Bottom Right corner
+                radius[6] = button.CornerRadius;   //Bottom Left corner
+                radius[7] = button.CornerRadius;   //Bottom Left corner
+                gd.SetCornerRadii(radius);
+            }
+            else if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.Top)
+            {
+                float[] radius = new float[8];
+                radius[0] = button.CornerRadius;   //Top Left corner
+                radius[1] = button.CornerRadius;   //Top Left corner
+                radius[2] = button.CornerRadius;     //Top Right corner
+                radius[3] = button.CornerRadius;     //Top Right corner
+                radius[4] = 0;    //Bottom Right corner
+                radius[5] = 0;     //Bottom Right corner
+                radius[6] = 0;   //Bottom Left corner
+                radius[7] = 0;   //Bottom Left corner
+                gd.SetCornerRadii(radius);
+            }
+            else if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.None)
+            {
+                gd.SetCornerRadius(button.CornerRadius);
+            }
 
-            gd.SetCornerRadius(button.CornerRadius);
+            // gd.SetCornerRadius(button.CornerRadius);
 
             if (button.IsUpperCase)
             {

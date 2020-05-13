@@ -94,12 +94,15 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
+
+
         public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SelectedSubCategory"))
                 SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
 
             InitBetsCommand.Execute(null);
+
         }
 
         /// <summary>

@@ -47,7 +47,7 @@
                     HorizontalOptions="Center"
                     TextColor="#FFC72E" />
 
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="3" ColumnSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="30" />

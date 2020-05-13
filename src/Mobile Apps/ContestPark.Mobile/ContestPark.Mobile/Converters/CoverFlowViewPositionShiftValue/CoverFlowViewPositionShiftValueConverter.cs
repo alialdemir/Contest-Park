@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Globalization;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Converters
 {
-    public class BetIconConverter : IValueConverter
+    public class CoverFlowViewPositionShiftValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return null;
-
-            return value.ToString().ToResourceImage();
+            return DeviceDisplay.MainDisplayInfo.Width < 780 ? 0 : 60;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Convert(value, targetType, parameter, culture);
+            return ConvertBack(value, targetType, parameter, culture);
         }
     }
 }

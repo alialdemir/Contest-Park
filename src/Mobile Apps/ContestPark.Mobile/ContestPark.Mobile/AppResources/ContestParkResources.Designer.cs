@@ -2051,7 +2051,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İnsanlar sana ne diye hitap etsin?.
+        ///   Looks up a localized string similar to What should weople call you?.
         /// </summary>
         public static string WhatShouldWeopleCallYou {
             get {

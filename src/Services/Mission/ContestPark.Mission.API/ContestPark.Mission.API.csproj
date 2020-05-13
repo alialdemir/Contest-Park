@@ -13,11 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Infrastructure\Repositories\" />
-		<Folder Include="IntegrationEvents\Events\" />
-		<Folder Include="IntegrationEvents\EventHandling\" />
 		<Folder Include="Migrations\Scripts\" />
-		<Folder Include="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>

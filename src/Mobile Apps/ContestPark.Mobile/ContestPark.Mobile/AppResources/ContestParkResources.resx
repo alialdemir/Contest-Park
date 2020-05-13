@@ -635,7 +635,7 @@
     <value>Enter the SMS code</value>
   </data>
   <data name="WhatShouldWeopleCallYou" xml:space="preserve">
-    <value>İnsanlar sana ne diye hitap etsin?</value>
+    <value>What should weople call you?</value>
   </data>
   <data name="WhatYouGetYourUsername" xml:space="preserve">
     <value>What is your username?</value>

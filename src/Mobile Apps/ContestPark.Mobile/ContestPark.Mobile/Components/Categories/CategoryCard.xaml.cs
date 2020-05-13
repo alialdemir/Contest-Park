@@ -1,10 +1,8 @@
 ﻿using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    
     public partial class CategoryCard : ContentView
     {
         #region Methods
@@ -17,6 +15,20 @@ namespace ContestPark.Mobile.Components
         #endregion Methods
 
         #region Properties
+
+        public static readonly BindableProperty IsSeeAllShowProperty = BindableProperty.Create(propertyName: nameof(IsSeeAllShow),
+                                                                                                                  returnType: typeof(bool),
+                                                                                                                  declaringType: typeof(SubCategoryCard),
+                                                                                                                  defaultValue: true);
+
+        /// <summary>
+        /// Alt kategori display alert command
+        /// </summary>
+        public bool IsSeeAllShow
+        {
+            get { return (bool)GetValue(IsSeeAllShowProperty); }
+            set { SetValue(IsSeeAllShowProperty, value); }
+        }
 
         public static readonly BindableProperty IsBlurredTransformationProperty = BindableProperty.Create(propertyName: nameof(IsBlurredTransformation),
                                                                                                                   returnType: typeof(bool),

@@ -73,7 +73,7 @@
                     HeightRequest="20"
                     HorizontalOptions="FillAndExpand"
                     Source="{image:ImageResource questioncenter.png}"
-                    TranslationY="-10" />
+                    TranslationY="-9" />
 
                 <!--  Center End  -->
 

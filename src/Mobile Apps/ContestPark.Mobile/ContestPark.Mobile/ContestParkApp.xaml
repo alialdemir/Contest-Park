@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
-    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters.Bet"
+    xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
@@ -86,6 +86,7 @@
 
             <!--  Converter  -->
             <converter:BetIconConverter x:Key="BetIconConverter" />
+            <converter:CoverFlowViewPositionShiftValueConverter x:Key="CoverFlowViewPositionShiftValueConverter" />
 
             <!--  Fonts  -->
             <OnPlatform
@@ -252,36 +253,18 @@
 
             <!--  Bet popup top buttons  -->
             <Style x:Key="PopupTopButton" TargetType="components:LinearGradientButton">
-                <Setter Property="Padding" Value="0,-90,0,0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="BorderRadius" Value="48" />
                 <Setter Property="EndColor" Value="#FFCC33" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="{StaticResource GothamRoundedBold}" />
                 <Setter Property="FontSize" Value="23" />
-                <Setter Property="HeightRequest" Value="150" />
                 <Setter Property="StartColor" Value="#FFB347" />
                 <Setter Property="TextColor" Value="{StaticResource White}" />
                 <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="WidthRequest" Value="165" />
-            </Style>
-
-            <Style
-                x:Key="PopupTopLeftButton"
-                BasedOn="{StaticResource PopupTopButton}"
-                TargetType="components:LinearGradientButton">
-                <Setter Property="TranslationX" Value="40" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="TranslationY" Value="-15" />
-            </Style>
-
-            <Style
-                x:Key="PopupTopRightButton"
-                BasedOn="{StaticResource PopupTopButton}"
-                TargetType="components:LinearGradientButton">
-                <Setter Property="TranslationX" Value="-40" />
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="TranslationY" Value="-15" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="CornerRadiusPosition" Value="Top" />
+                <Setter Property="IsUpperCase" Value="True" />
             </Style>
 
             <!--  Popup green button  -->
@@ -291,6 +274,7 @@
                 TargetType="components:LinearGradientButton">
                 <Setter Property="EndColor" Value="#47E476" />
                 <Setter Property="StartColor" Value="#2CCCD8" />
+                <Setter Property="CornerRadiusPosition" Value="Bottom" />
             </Style>
 
             <!--  Popup left bottom red button  -->
@@ -298,13 +282,22 @@
                 x:Key="PopupBottomLeftButton"
                 BasedOn="{StaticResource PopupTopButton}"
                 TargetType="components:LinearGradientButton">
-                <Setter Property="Padding" Value="0,90,0,0" />
                 <Setter Property="TranslationX" Value="40" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="End" />
                 <Setter Property="TranslationY" Value="15" />
                 <Setter Property="EndColor" Value="#D03548" />
                 <Setter Property="StartColor" Value="#EB3349" />
+                <Setter Property="Margin" Value="10,20,10,0" />
+            </Style>
+
+            <Style
+                x:Key="PopupCancelButton"
+                BasedOn="{StaticResource PopupGreentButton}"
+                TargetType="components:LinearGradientButton">
+                <Setter Property="EndColor" Value="#D03548" />
+                <Setter Property="StartColor" Value="#EB3349" />
+
             </Style>
 
             <!--  Popup right bottom green button  -->
@@ -312,35 +305,27 @@
                 x:Key="PopupBottomRightButton"
                 BasedOn="{StaticResource PopupGreentButton}"
                 TargetType="components:LinearGradientButton">
-                <Setter Property="Padding" Value="0,90,0,0" />
-                <Setter Property="TranslationX" Value="-40" />
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="VerticalOptions" Value="End" />
-                <Setter Property="TranslationY" Value="15" />
-            </Style>
-
-            <!--  Popup bottom buttons  -->
-            <Style
-                x:Key="PopupBottomButton"
-                BasedOn="{StaticResource PopupGreentButton}"
-                TargetType="components:LinearGradientButton">
-                <Setter Property="Padding" Value="0,90,0,0" />
+                <Setter Property="CornerRadiusPosition" Value="Bottom" />
+                <!--<Setter Property="Padding" Value="0,90,0,0" />-->
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="BorderRadius" Value="48" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="{StaticResource GothamRoundedBold}" />
                 <Setter Property="FontSize" Value="23" />
-                <Setter Property="HeightRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="TextColor" Value="{StaticResource White}" />
                 <Setter Property="TranslationY" Value="15" />
                 <Setter Property="VerticalOptions" Value="End" />
-                <Setter Property="WidthRequest">
-                    <Setter.Value>
-                        <OnPlatform Android="330" iOS="334" />
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="10,0,10,0" />
             </Style>
+
+            <!--  Popup bottom buttons kullanmayabilir  -->
+            <Style
+                x:Key="PopupBottomButton"
+                BasedOn="{StaticResource PopupGreentButton}"
+                TargetType="components:LinearGradientButton" />
 
             <!--  Popup blue bottom buttons  -->
             <Style
@@ -353,16 +338,19 @@
 
             <!--  Popup card  -->
             <Style x:Key="PopupCard" TargetType="yummy:PancakeView">
-                <Setter Property="Margin" Value="40" />
-                <Setter Property="Padding" Value="0" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="BorderColor" Value="Transparent" />
                 <Setter Property="Elevation" Value="61" />
                 <Setter Property="HasShadow" Value="True" />
-                <Setter Property="HeightRequest" Value="430" />
-                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="IsClippedToBounds" Value="True" />
-                <Setter Property="WidthRequest" Value="350" />
+            </Style>
+
+            <!--  Popup grid  -->
+            <Style x:Key="PopupContainer" TargetType="Grid">
+                <Setter Property="RowSpacing" Value="0" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
             <!--  Popup card  -->
@@ -377,7 +365,6 @@
             <Style x:Key="ListViewPopup" TargetType="cards:CoverFlowView">
                 <Setter Property="IsCyclical" Value="False" />
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
-                <Setter Property="PositionShiftValue" Value="60" />
                 <Setter Property="SelectedIndex" Value="{Binding SelectedIndex}" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>

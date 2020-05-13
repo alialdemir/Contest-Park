@@ -39,5 +39,24 @@ namespace ContestPark.Mobile.Components
             get { return (bool)GetValue(IsUpperCaseProperty); }
             set { SetValue(IsUpperCaseProperty, value); }
         }
+
+        public enum CornerRadiusPositions
+        {
+            None,
+            Top,
+            Bottom,
+        }
+
+        public static readonly BindableProperty CornerRadiusPositionProperty = BindableProperty.Create(nameof(CornerRadiusPosition),
+                                                                                           typeof(CornerRadiusPositions),
+                                                                                           typeof(LinearGradientButton),
+                                                                                           defaultValue: CornerRadiusPositions.None);
+
+        // Gets or sets IsUpperCase value
+        public CornerRadiusPositions CornerRadiusPosition
+        {
+            get { return (CornerRadiusPositions)GetValue(CornerRadiusPositionProperty); }
+            set { SetValue(CornerRadiusPositionProperty, value); }
+        }
     }
 }
