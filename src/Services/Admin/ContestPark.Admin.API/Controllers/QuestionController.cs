@@ -49,6 +49,8 @@ namespace ContestPark.Duel.API.Controllers
             if (string.IsNullOrEmpty(spotifyId) || subCategoryId <= 0)
                 return BadRequest();
 
+            Logger.LogInformation("{spotifyId} id'li {spotifyQuestionType} soru oluşturma isteği geldi. subcategory id {subCategoryId}", spotifyId, spotifyQuestionType.ToString());
+
             var @event = new CreateSpotifyQuestionIntegrationEvent(subCategoryId, spotifyId, spotifyQuestionType);
 
             _eventBus.Publish(@event);

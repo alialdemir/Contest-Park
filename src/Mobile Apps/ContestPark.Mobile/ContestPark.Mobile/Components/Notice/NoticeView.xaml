@@ -14,21 +14,28 @@
         <cards:CoverFlowView
             Margin="0,0,0,8"
             IsCyclical="True"
-            ItemsSource="{Binding Notice}"
+            ItemsSource="{Binding Path=BindingContext.Notices, Source={x:Reference noticeView}}"
             SlideShowDuration="3000">
             <controls:IndicatorsControl TranslationY="20" />
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <components:CachedImage
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="100"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding PicturePath}"
+                            VerticalOptions="FillAndExpand" />
+                        <!--<components:CachedImage
                             Aspect="AspectFit"
                             HeightRequest="150"
                             HorizontalOptions="FillAndExpand"
-                            Source="{Binding PicturePath}">
+                            Source="{Binding PicturePath}"
+                            WidthRequest="150">
                             <components:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=NoticeNavigateToCommand, Source={x:Reference noticeView}}" CommandParameter="{Binding Link}" />
                             </components:CachedImage.GestureRecognizers>
-                        </components:CachedImage>
+                        </components:CachedImage>-->
                     </ViewCell>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>
