@@ -27,7 +27,7 @@ namespace ContestPark.Notification.API.Migrations
                 .AsByte()
                 .NotNullable()
 
-                .WithColumn("IsActice")
+                .WithColumn("IsActive")
                 .AsBoolean()
                 .WithDefaultValue(false)
 

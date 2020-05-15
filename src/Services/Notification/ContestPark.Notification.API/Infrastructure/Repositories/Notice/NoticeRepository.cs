@@ -30,7 +30,7 @@ namespace ContestPark.Notification.API.Infrastructure.Repositories.Notice
         /// <returns>Duyuru listesi</returns>
         public ServiceModel<NoticeModel> Notices(PagingModel pagingModel)
         {
-            string sql = @"SELECT n.PicturePath, n.Link FROM
+            string sql = @"SELECT n.PicturePath, n.Link FROM Notices n
                            WHERE n.IsActive = 1";
 
             return _noticeRepository.ToServiceModel<NoticeModel>(sql, pagingModel: pagingModel);

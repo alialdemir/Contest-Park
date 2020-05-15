@@ -9,7 +9,7 @@ using System.Net;
 namespace ContestPark.Notification.API.Controllers
 {
     public class NoticeController : Core.Controllers.ControllerBase
-    {
+    {   
         #region Private variables
 
         private readonly INoticeRepository _noticeRepository;
