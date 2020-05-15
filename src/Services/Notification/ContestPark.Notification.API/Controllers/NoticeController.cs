@@ -36,7 +36,7 @@ namespace ContestPark.Notification.API.Controllers
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ServiceModel<NoticeModel>), (int)HttpStatusCode.OK)]
-        public IActionResult Notice(PagingModel pagingModel)
+        public IActionResult Notice([FromQuery]PagingModel pagingModel)
         {
             ServiceModel<NoticeModel> notices = _noticeRepository.Notices(pagingModel);
             if (notices.Items == null || !notices.Items.Any())
