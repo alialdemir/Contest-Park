@@ -119,14 +119,14 @@ namespace ContestPark.Mobile.Services.InviteDuel
             if (string.IsNullOrEmpty(_settingsService.AuthAccessToken) || _settingsService.CurrentUser.UserId.EndsWith("-bot"))
                 return;
 
-            BalanceTypes balanceType = BalanceTypes.Gold;
+            BalanceTypes balanceType = BalanceTypes.Money;
 
             BalanceTypeIndex += 1;
 
             if (BalanceTypeIndex > 3)
             {
                 BalanceTypeIndex = 0;
-                balanceType = BalanceTypes.Money;
+                balanceType = BalanceTypes.Gold;
             }
 
             var InviteModel = new Models.Duel.InviteDuel.InviteModel

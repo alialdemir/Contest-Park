@@ -22,7 +22,7 @@
                     <ViewCell>
                         <Image
                             Aspect="AspectFill"
-                            HeightRequest="100"
+                            HeightRequest="132"
                             HorizontalOptions="FillAndExpand"
                             Source="{Binding PicturePath}"
                             VerticalOptions="FillAndExpand" />

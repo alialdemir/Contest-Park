@@ -79,6 +79,9 @@
                             <components:CustomEntry.Behaviors>
                                 <behaviors:EventToCommandBehavior Command="{Binding UserNameCommand}" EventName="Completed" />
                             </components:CustomEntry.Behaviors>
+                            <Entry.Behaviors>
+                                <behaviors:OnlyTurkishCharacterBehavior />
+                            </Entry.Behaviors>
                         </components:CustomEntry>
 
                         <Label
