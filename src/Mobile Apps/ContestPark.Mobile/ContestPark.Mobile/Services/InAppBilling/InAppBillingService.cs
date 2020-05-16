@@ -396,6 +396,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 State = purchaseInfo.State,
                 TransactionId = purchaseInfo.Id,
                 Token = "none",
+                Paylaod = purchaseInfo.Payload,
                 VerifyPurchase = purchaseInfo.VerifyPurchase,
                 Platform = GetCurrentPlatform(),
                 File = purchaseTokenStream,
@@ -441,7 +442,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
             if (File.Exists(PurchaseTokenFilePath))
                 File.Delete(PurchaseTokenFilePath);
 
-            ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.PurchaseToken);
+            ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.Payload);
         }
 
         /// <summary>
@@ -575,13 +576,11 @@ namespace ContestPark.Mobile.Services.InAppBilling
         /// <param name="productId"></param>
         /// <param name="purchaseToken"></param>
         /// <returns></returns>
-        public Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string purchaseToken)
+        public Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string payload)
         {
-            if (Device.RuntimePlatform == Device.Android
-                && !string.IsNullOrEmpty(productId)
-                && !string.IsNullOrEmpty(purchaseToken))
+            if (!string.IsNullOrEmpty(productId) && !string.IsNullOrEmpty(payload))
             {
-                return _billing.ConsumePurchaseAsync(productId, purchaseToken);
+                return _billing.ConsumePurchaseAsync(productId, ItemType.InAppPurchase, payload);
             }
 
             return null;

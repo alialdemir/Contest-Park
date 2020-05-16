@@ -9,13 +9,14 @@ namespace ContestPark.Mobile.Services.InAppBilling
     {
         string SpecialProductId { get; }
 
-        Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string purchaseToken);
+        Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string payload);
 
         Task<InAppBillingProductModel> GetProductById(string productId);
 
         Task<List<InAppBillingProductModel>> GetProductInfoAsync();
 
         Task<InAppBillingPurchaseModel> PurchaseAsync(string productId);
+
         Task PurchaseProcessAsync(string productId);
     }
 }
