@@ -145,7 +145,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 // TODO: burada üye olma validasyonunda standarta uygun gelmeli
                 result.Error = new ValidationResultModel
                 {
-                    MemberNames = JsonConvert.DeserializeObject<SignUpValidationModel>(serialized, _serializerSettings).Errors
+                    MemberNames = JsonConvert.DeserializeObject<SignUpValidationModel>(serialized, _serializerSettings).MemberNames.ToArray()
                 };
             }
             else if (!response.IsSuccessStatusCode)

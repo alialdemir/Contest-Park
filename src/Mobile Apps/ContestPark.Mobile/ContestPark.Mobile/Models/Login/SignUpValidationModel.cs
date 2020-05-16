@@ -1,32 +1,31 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ContestPark.Mobile.Models.Login
 {
     public class SignUpValidationModel
     {
-        public string[] UserName { get; set; }
-        public string[] FullName { get; set; }
+        public List<string> MemberNames { get; set; } = new List<string>();
 
-        private List<string> _errors = new List<string>();
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string[] Errors
+        public ErrorsModel Errors
         {
-            get
+            set
             {
-                if (UserName?.Length > 0)
+                if (value.UserName?.Length > 0)
                 {
-                    _errors.AddRange(UserName);
+                    MemberNames.AddRange(value.UserName);
                 }
 
-                if (FullName?.Length > 0)
+                if (value.FullName?.Length > 0)
                 {
-                    _errors.AddRange(FullName);
+                    MemberNames.AddRange(value.FullName);
                 }
-
-                return _errors.ToArray();
             }
         }
+    }
+
+    public class ErrorsModel
+    {
+        public string[] UserName { get; set; }
+        public string[] FullName { get; set; }
     }
 }
