@@ -108,6 +108,8 @@ namespace ContestPark.Mobile.ViewModels
             if (_duelId <= 0)
                 return;
 
+            _settingsService.RemovePendingDuelId(_duelId);
+
             DuelResult = await _duelService.DuelResult(_duelId);
 
             ProfilePictureBorderColorCommand?.Execute(null);
@@ -310,26 +312,10 @@ namespace ContestPark.Mobile.ViewModels
                     .Publish();
             }
 
-            if (DuelResult != null && DuelResult.IsShowFireworks && !_settingsService.IsStoreReview && CrossStoreReview.IsSupported)
+            bool isStoreReview = await _cacheService.Get<bool>("IsStoreReview");
+            if (DuelResult != null && DuelResult.IsShowFireworks && !isStoreReview && CrossStoreReview.IsSupported)
             {
-                IStoreReview storeReview = CrossStoreReview.Current;
-
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    bool isOk = await DisplayAlertAsync(string.Empty,
-                                                   ContestParkResources.WouldYouLikeToRateTheGameOnGooglePlay,
-                                                   ContestParkResources.Okay,
-                                                   ContestParkResources.Cancel);
-
-                    if (isOk)
-                    {
-                        storeReview.OpenStoreReviewPage(AppInfo.PackageName);
-                    }
-                }
-                else
-                    storeReview.RequestReview();
-
-                _settingsService.IsStoreReview = true;
+                await RequestReview();
             }
             else if (!(await _cacheService.Get<bool>("SpecialOffer")))
             {
@@ -339,6 +325,36 @@ namespace ContestPark.Mobile.ViewModels
             }
 
             await base.RemoveFirstPopupAsync<DuelResultPopupView>();
+        }
+
+        /// <summary>
+        /// Store üzerinden uygulamaya yıldız ver uyarısını gösterir
+        /// </summary>
+        private async Task RequestReview()
+        {
+            IStoreReview storeReview = CrossStoreReview.Current;
+
+            string message = Device.RuntimePlatform == Device.Android
+                                           ? ContestParkResources.WouldYouLikeToRateTheGameOnGooglePlay
+                                           : ContestParkResources.WouldYouLikeToRateTheGameOnAppStore;
+
+            bool isOk = await DisplayAlertAsync(string.Empty,
+                                              message,
+                                              ContestParkResources.Okay,
+                                              ContestParkResources.Cancel);
+            if (isOk)
+            {
+                if (Device.RuntimePlatform == Device.Android)
+                    storeReview.OpenStoreReviewPage(AppInfo.PackageName);
+                else if (Device.RuntimePlatform == Device.iOS)
+                    storeReview.RequestReview();
+
+                _cacheService.Add("IsStoreReview", true, TimeSpan.FromDays(30));
+            }
+            else
+            {
+                _cacheService.Add("IsStoreReview", false, TimeSpan.FromHours(1));
+            }
         }
 
         #endregion Methods

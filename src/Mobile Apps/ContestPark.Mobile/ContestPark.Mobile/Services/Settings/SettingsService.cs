@@ -7,7 +7,9 @@ using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -24,8 +26,6 @@ namespace ContestPark.Mobile.Services.Settings
 
         private readonly bool IsSoundEffectActiveDefault = true;
 
-        private readonly bool IsStoreReviewDefault = false;
-
         private readonly string RefleshTokenDefault = string.Empty;
 
         private readonly string TokenTypeDefault = "Bearer";
@@ -33,10 +33,48 @@ namespace ContestPark.Mobile.Services.Settings
 
         private readonly string LastUpdatedScopeNameDefault = string.Empty;
         private readonly string LastSelectedBetDefault = string.Empty;
+        private readonly List<int> PendingDuelIdsDefault = new List<int>();
 
         #endregion Setting Constants
 
         #region Settings Properties
+
+        /// <summary>
+        /// Tamamlanmamış düello id ekle
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        public void AddPendingDuelId(int duelId)
+        {
+            if (!PendingDuelIdsDefault.Any(x => x == duelId))
+            {
+                PendingDuelIdsDefault.Add(duelId);
+
+                AddOrUpdateValue(PendingDuelIdsDefault, nameof(PendingDuelIdsDefault));
+            }
+        }
+
+        /// <summary>
+        /// Tamamlanmamış bekleyen düello id varsa onu siler
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        public void RemovePendingDuelId(int duelId)
+        {
+            if (PendingDuelIdsDefault.Any(x => x == duelId))
+            {
+                PendingDuelIdsDefault.Remove(duelId);
+
+                AddOrUpdateValue(PendingDuelIdsDefault, nameof(PendingDuelIdsDefault));
+            }
+        }
+
+        /// <summary>
+        /// Tamamlanmamış düello id'leri
+        /// </summary>
+        /// <returns>Tamamlanmayan düello id'leri</returns>
+        public List<int> GetPendingDuelIds()
+        {
+            return GetValueOrDefault(PendingDuelIdsDefault, nameof(PendingDuelIdsDefault));
+        }
 
         private UserInfoModel _userInfo;
 
@@ -84,12 +122,6 @@ namespace ContestPark.Mobile.Services.Settings
         public bool IsSoundEffectActive
         {
             get => GetValueOrDefault(IsSoundEffectActiveDefault);
-            set => AddOrUpdateValue(value);
-        }
-
-        public bool IsStoreReview
-        {
-            get => GetValueOrDefault(IsStoreReviewDefault);
             set => AddOrUpdateValue(value);
         }
 
@@ -148,6 +180,8 @@ namespace ContestPark.Mobile.Services.Settings
 
         #region Public Methods
 
+        public Task AddOrUpdateValue(List<int> value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
+
         public Task AddOrUpdateValue(bool value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
 
         public Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
@@ -155,6 +189,8 @@ namespace ContestPark.Mobile.Services.Settings
         public Task AddOrUpdateValue(byte value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
 
         public bool GetValueOrDefault(bool defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
+
+        public List<int> GetValueOrDefault(List<int> defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 
         public string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
 

@@ -23,10 +23,10 @@
     </pages:PopupPage.Animation>
 
     <pages:PopupPage.Content>
-        <cards:CoverFlowView Style="{StaticResource ListViewPopup}">
+        <cards:CoverFlowView PositionShiftValue="30" Style="{StaticResource ListViewPopup}">
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Style="{StaticResource PopupContainer}">
+                    <Grid Margin="20,0,20,0" Style="{StaticResource PopupContainer}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                             <RowDefinition Height="Auto" />
@@ -44,7 +44,8 @@
                             Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
                             CommandParameter="2"
                             Style="{StaticResource PopupTopButton}"
-                            Text="{i18n:Translate Money}" />
+                            Text="{i18n:Translate Money}"
+                            TextColor="{Binding Path=BindingContext.BalanceType, Source={x:Reference duelBettingPopupView}, Converter={StaticResource BetTabTextColorConverter}, ConverterParameter=2}" />
 
                         <!--  Altınla oyna  -->
                         <components:LinearGradientButton
@@ -53,7 +54,8 @@
                             Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
                             CommandParameter="1"
                             Style="{StaticResource PopupTopButton}"
-                            Text="{i18n:Translate Gold}" />
+                            Text="{i18n:Translate Gold}"
+                            TextColor="{Binding Path=BindingContext.BalanceType, Source={x:Reference duelBettingPopupView}, Converter={StaticResource BetTabTextColorConverter}, ConverterParameter=1}" />
 
                         <yummy:PancakeView
                             Grid.Row="1"

@@ -9,9 +9,11 @@ using ContestPark.Mobile.Models.PageNavigation;
 using ContestPark.Mobile.Services.AdMob;
 using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cp;
+using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Microsoft.AppCenter.Crashes;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
@@ -30,6 +32,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
+        private readonly IDuelService _duelService;
         private readonly IBalanceService _cpService;
         private readonly IAdMobService _adMobService;
         private readonly IAnalyticsService _analyticsService;
@@ -42,6 +45,7 @@ namespace ContestPark.Mobile.ViewModels
                                          IEventAggregator eventAggregator,
                                          ISettingsService settingsService,
                                          IPopupNavigation popupNavigation,
+                                         IDuelService duelService,
                                          IBalanceService cpService,
                                          IAdMobService adMobService,
                                          IPageDialogService pageDialogService,
@@ -49,6 +53,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             _eventAggregator = eventAggregator;
             _settingsService = settingsService;
+            _duelService = duelService;
             _cpService = cpService;
             _adMobService = adMobService;
             _analyticsService = analyticsService;
@@ -94,15 +99,12 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Methods
 
-
-
         public override void Initialize(INavigationParameters parameters = null)
         {
             if (parameters.ContainsKey("SelectedSubCategory"))
                 SelectedSubCategory = parameters.GetValue<SelectedSubCategoryModel>("SelectedSubCategory");
 
             InitBetsCommand.Execute(null);
-
         }
 
         /// <summary>
@@ -121,6 +123,8 @@ namespace ContestPark.Mobile.ViewModels
             InitBets();
 
             LastPlayedBetCommand.Execute(null);
+
+            CheckPendingDuelIdsCommand.Execute(null);
 
             IsBusy = false;
         }
@@ -487,11 +491,38 @@ namespace ContestPark.Mobile.ViewModels
             });
         }
 
+        /// <summary>
+        /// Eğer düello başlatken hata oluşursa diye uygulama tarafında düello id'lerini listeye alıyoruz
+        /// Bir sonraki düello bahis ekranını açtığında bekleyen düello varsa onun parasını geri yükler
+        /// </summary>
+        private async Task ExecuteCheckPendingDuelIdsCommandAsync()
+        {
+            List<int> pendingDuelIds = _settingsService.GetPendingDuelIds();
+            if (!pendingDuelIds.Any())
+                return;
+
+            try
+            {
+                foreach (var duelId in pendingDuelIds)
+                {
+                    bool isSuccess = await _duelService.DuelCancel();
+
+                    if (isSuccess)
+                        _settingsService.RemovePendingDuelId(duelId);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
+        }
+
         #endregion Methods
 
         #region Commands
 
         private ICommand InitBetsCommand => new CommandAsync(ExecuteInitBetsCommand);
+        private ICommand CheckPendingDuelIdsCommand => new CommandAsync(ExecuteCheckPendingDuelIdsCommandAsync);
 
         private ICommand LastPlayedBetCommand => new Command(ExecuteLastPlayedBetCommand);
 

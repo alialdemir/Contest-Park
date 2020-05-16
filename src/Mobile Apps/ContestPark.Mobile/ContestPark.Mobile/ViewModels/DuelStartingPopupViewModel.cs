@@ -373,6 +373,8 @@ namespace ContestPark.Mobile.ViewModels
 
             Analytics.TrackEvent($"{duelCreated.DuelId} düello founder id {duelCreated.FounderUserId} opponent id {duelCreated.OpponentUserId} arasında başlıyor");
 
+            _settingsService.AddPendingDuelId(duelCreated.DuelId);
+
             RandomPicturStatus = false;
 
             RandomPicturStatus = false;

@@ -123,7 +123,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="balanceType">Bakiye tipi</param>
         private void ExecuteChangeBalanceTypeCommand(BalanceTypes balanceType)
         {
-            if (IsBusy || BalanceType == balanceType)
+            if (IsBusy || BalanceType == balanceType || Items == null || !Items.Any())
                 return;
 
             IsBusy = true;

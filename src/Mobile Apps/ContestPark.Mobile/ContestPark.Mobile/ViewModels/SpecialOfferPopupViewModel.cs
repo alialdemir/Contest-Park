@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.InAppBillingProduct;
+using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.InAppBilling;
 using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
@@ -15,6 +16,8 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
+        private readonly IAnalyticsService _analyticsService;
+
         private readonly IInAppBillingService _inAppBillingService;
 
         #endregion Private variables
@@ -22,8 +25,10 @@ namespace ContestPark.Mobile.ViewModels
         #region Constructor
 
         public SpecialOfferPopupViewModel(INavigationService navigationService,
+                                          IAnalyticsService analyticsService,
                                           IInAppBillingService inAppBillingService) : base(navigationService)
         {
+            _analyticsService = analyticsService;
             _inAppBillingService = inAppBillingService;
         }
 
@@ -139,6 +144,8 @@ namespace ContestPark.Mobile.ViewModels
         private void ExecuteBuyCommand()
         {
             _inAppBillingService.PurchaseProcessAsync(_inAppBillingService.SpecialProductId);
+
+            _analyticsService.SendEvent("ContestStore", "Özel ürün", "Düello sonuç ekranı");
 
             GotoBackCommand.Execute(true);
         }

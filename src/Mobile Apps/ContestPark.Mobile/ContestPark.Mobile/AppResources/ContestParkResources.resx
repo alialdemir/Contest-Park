@@ -877,4 +877,7 @@
   <data name="StartSharingNow" xml:space="preserve">
     <value>START SHARING NOW!</value>
   </data>
+  <data name="WouldYouLikeToRateTheGameOnAppStore" xml:space="preserve">
+    <value>Would you like to rate the game on app store?</value>
+  </data>
 </root>

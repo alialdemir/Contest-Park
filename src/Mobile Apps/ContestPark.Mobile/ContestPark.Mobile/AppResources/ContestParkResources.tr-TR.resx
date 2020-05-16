@@ -807,6 +807,9 @@
   <data name="WithdrawThePrizeMoneyFromTheApplicationBySendingAnIbanNumber" xml:space="preserve">
     <value>Para ödülünü uygulama içerisinden iban numarası göndererek çek.</value>
   </data>
+  <data name="WouldYouLikeToRateTheGameOnAppStore" xml:space="preserve">
+    <value>Oyunu app store da oylamak ister misiniz?</value>
+  </data>
   <data name="WouldYouLikeToRateTheGameOnGooglePlay" xml:space="preserve">
     <value>Oyunu google play de oylamak ister misiniz?</value>
   </data>

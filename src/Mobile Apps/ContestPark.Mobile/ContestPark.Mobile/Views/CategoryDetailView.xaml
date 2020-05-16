@@ -226,7 +226,7 @@
                                 <components:LinearGradientButton.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Int32">
                                         <On Platform="Android" Value="60" />
-                                        <On Platform="iOS" Value="24" />
+                                        <On Platform="iOS" Value="12" />
                                     </OnPlatform>
                                 </components:LinearGradientButton.CornerRadius>
                             </components:LinearGradientButton>
@@ -247,7 +247,7 @@
                                 <components:LinearGradientButton.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Int32">
                                         <On Platform="Android" Value="60" />
-                                        <On Platform="iOS" Value="24" />
+                                        <On Platform="iOS" Value="12" />
                                     </OnPlatform>
                                 </components:LinearGradientButton.CornerRadius>
                             </components:LinearGradientButton>

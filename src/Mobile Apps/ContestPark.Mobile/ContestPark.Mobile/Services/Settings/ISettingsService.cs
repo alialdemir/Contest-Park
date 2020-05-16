@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -29,9 +30,22 @@ namespace ContestPark.Mobile.Services.Settings
         bool IsSoundEffectActive { get; }
 
         /// <summary>
-        /// Uygulamaya yızdız vermiş mi
+        /// Tamamlanmamış düello id ekle
         /// </summary>
-        bool IsStoreReview { get; set; }
+        /// <param name="duelId">Düello id</param>
+        void AddPendingDuelId(int duelId);
+
+        /// <summary>
+        /// Tamamlanmamış bekleyen düello id varsa onu siler
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        void RemovePendingDuelId(int duelId);
+
+        /// <summary>
+        /// Tamamlanmamış düello id'leri
+        /// </summary>
+        /// <returns>Tamamlanmayan düello id'leri</returns>
+        List<int> GetPendingDuelIds();
 
         /// <summary>
         /// Gets or sets the RefleshToken

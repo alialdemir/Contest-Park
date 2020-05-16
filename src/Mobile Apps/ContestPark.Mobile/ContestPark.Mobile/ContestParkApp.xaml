@@ -86,6 +86,7 @@
 
             <!--  Converter  -->
             <converter:BetIconConverter x:Key="BetIconConverter" />
+            <converter:BetTabTextColorConverter x:Key="BetTabTextColorConverter" />
             <converter:CoverFlowViewPositionShiftValueConverter x:Key="CoverFlowViewPositionShiftValueConverter" />
 
             <!--  Fonts  -->
