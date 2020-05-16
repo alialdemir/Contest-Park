@@ -874,4 +874,7 @@
   <data name="SpecialOffer" xml:space="preserve">
     <value>SPECIAL OFFER</value>
   </data>
+  <data name="StartSharingNow" xml:space="preserve">
+    <value>START SHARING NOW!</value>
+  </data>
 </root>

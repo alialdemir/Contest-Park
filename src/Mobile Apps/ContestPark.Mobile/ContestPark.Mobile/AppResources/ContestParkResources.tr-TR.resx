@@ -675,6 +675,9 @@
   <data name="SpecialOffer" xml:space="preserve">
     <value>ÖZEL TEKLİF</value>
   </data>
+  <data name="StartSharingNow" xml:space="preserve">
+    <value>Hemen PAYLAŞMAYA BAŞLA!</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Başarılı</value>
   </data>

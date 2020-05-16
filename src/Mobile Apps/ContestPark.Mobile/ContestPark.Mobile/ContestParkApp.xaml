@@ -254,7 +254,6 @@
             <!--  Bet popup top buttons  -->
             <Style x:Key="PopupTopButton" TargetType="components:LinearGradientButton">
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="BorderRadius" Value="48" />
                 <Setter Property="EndColor" Value="#FFCC33" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="{StaticResource GothamRoundedBold}" />
@@ -265,6 +264,12 @@
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="CornerRadiusPosition" Value="Top" />
                 <Setter Property="IsUpperCase" Value="True" />
+                <Setter Property="CornerRadius">
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="Android" Value="48" />
+                        <On Platform="iOS" Value="24" />
+                    </OnPlatform>
+                </Setter>
             </Style>
 
             <!--  Popup green button  -->
@@ -297,7 +302,6 @@
                 TargetType="components:LinearGradientButton">
                 <Setter Property="EndColor" Value="#D03548" />
                 <Setter Property="StartColor" Value="#EB3349" />
-
             </Style>
 
             <!--  Popup right bottom green button  -->

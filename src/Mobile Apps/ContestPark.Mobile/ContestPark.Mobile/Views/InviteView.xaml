@@ -76,9 +76,8 @@
                         FontFamily="{DynamicResource GothamRoundedBold}"
                         FontSize="16"
                         HorizontalTextAlignment="Center"
-                        Text="Hemen PAYLAŞMAYA BAŞLA!"
+                        Text="{i18n:Translate StartSharingNow}"
                         TextColor="{StaticResource Black}" />
-
                 </Grid>
             </yummy:PancakeView>
 

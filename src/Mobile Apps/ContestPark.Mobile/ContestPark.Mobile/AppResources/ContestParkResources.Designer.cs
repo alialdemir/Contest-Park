@@ -1718,6 +1718,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to START SHARING NOW!.
+        /// </summary>
+        public static string StartSharingNow {
+            get {
+                return ResourceManager.GetString("StartSharingNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string Success {
