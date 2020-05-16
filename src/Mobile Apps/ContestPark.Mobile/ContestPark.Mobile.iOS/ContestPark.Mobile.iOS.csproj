@@ -178,6 +178,9 @@
     <PackageReference Include="Com.OneSignal">
       <Version>3.8.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>3.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
       <Version>3.2.1</Version>
     </PackageReference>

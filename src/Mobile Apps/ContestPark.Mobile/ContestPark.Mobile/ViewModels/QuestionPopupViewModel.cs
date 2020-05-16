@@ -12,6 +12,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Microsoft.AppCenter.Analytics;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
@@ -225,6 +226,8 @@ namespace ContestPark.Mobile.ViewModels
             if (parameters.ContainsKey("Question"))
                 Question = parameters.GetValue<Models.Duel.QuestionModel>("Question");
 
+            Analytics.TrackEvent($"{Question.DuelCreated.DuelId} düello founder id {Question.DuelCreated.FounderUserId} opponent id {Question.DuelCreated.OpponentUserId} arasında başladı!!");
+
             SetCurrentQuestion();
 
             ResetImageBorderColor();
@@ -250,6 +253,8 @@ namespace ContestPark.Mobile.ViewModels
             NextQuestion questionModel = (NextQuestion)sender;
             if (questionModel == null)
             {
+                Analytics.TrackEvent($"{Question.DuelCreated.DuelId} düello sonraki soruya geçme bilgisi boş geldi.");
+
                 _duelService.DuelCancel();
 
                 IsExit = true;
@@ -257,6 +262,8 @@ namespace ContestPark.Mobile.ViewModels
 
                 return;
             }
+
+            Analytics.TrackEvent($"{Question.DuelCreated.DuelId} düello {Round}. rounda geçildi.");
 
             IsTimerEnable = false;
 

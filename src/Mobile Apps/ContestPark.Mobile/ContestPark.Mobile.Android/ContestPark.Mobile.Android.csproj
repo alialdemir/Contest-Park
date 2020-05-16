@@ -82,6 +82,9 @@
     <PackageReference Include="Com.OneSignal">
       <Version>3.8.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>3.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.StoreReview">
       <Version>2.0.0.5</Version>
     </PackageReference>
@@ -280,7 +283,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionContestParkMobileAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarContestParkMobileAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarContestParkMobileAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionContestParkMobileAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

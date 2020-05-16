@@ -117,6 +117,10 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Bakiye tipine göre ürün listesini değiştir
+        /// </summary>
+        /// <param name="balanceType">Bakiye tipi</param>
         private void ExecuteChangeBalanceTypeCommand(BalanceTypes balanceType)
         {
             if (IsBusy || BalanceType == balanceType)
@@ -154,7 +158,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand ChangeBalanceType
         {
-            get { return _changeBalanceType ?? (_changeBalanceType = new Command<string>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)Convert.ToByte(balanceType)))); }
+            get { return _changeBalanceType ?? (_changeBalanceType = new Command<byte>((balanceType) => ExecuteChangeBalanceTypeCommand((BalanceTypes)balanceType))); }
         }
 
         private byte _getProductCount = 0;

@@ -6,6 +6,7 @@ using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Events;
@@ -32,7 +33,7 @@ namespace ContestPark.Mobile
             {
                 InitializeComponent();
 
-                AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes));
+                AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes), typeof(Analytics));
                 Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
                 Crashes.SentErrorReport += Crashes_SentErrorReport;
 

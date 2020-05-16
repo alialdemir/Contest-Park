@@ -12,6 +12,7 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Microsoft.AppCenter.Analytics;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
@@ -363,10 +364,14 @@ namespace ContestPark.Mobile.ViewModels
             DuelCreated duelCreated = (DuelCreated)sender;
             if (duelCreated == null)
             {
+                Analytics.TrackEvent($"Duello başlama ekranında bilgiler boş geldi userId {_settingsService.CurrentUser.UserId}");
+
                 NotStartingDuel();
 
                 return;
             }
+
+            Analytics.TrackEvent($"{duelCreated.DuelId} düello founder id {duelCreated.FounderUserId} opponent id {duelCreated.OpponentUserId} arasında başlıyor");
 
             RandomPicturStatus = false;
 

@@ -24,6 +24,9 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <x:Byte x:Key="BalanceTypeGold">1</x:Byte>
+            <x:Byte x:Key="BalanceTypeMoney">2</x:Byte>
+
             <converter:TabBorderColorConverter x:Key="tbc" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -63,7 +66,7 @@
                                     HorizontalOptions="CenterAndExpand"
                                     RowSpacing="0">
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.ChangeBalanceType, Source={x:Reference lstView}}" CommandParameter="1" />
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ChangeBalanceType, Source={x:Reference pageContestStore}}" CommandParameter="{StaticResource BalanceTypeGold}" />
                                     </Grid.GestureRecognizers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -107,7 +110,7 @@
                                     HorizontalOptions="CenterAndExpand"
                                     RowSpacing="0">
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.ChangeBalanceType, Source={x:Reference lstView}}" CommandParameter="2" />
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ChangeBalanceType, Source={x:Reference pageContestStore}}" CommandParameter="{StaticResource BalanceTypeMoney}" />
                                     </Grid.GestureRecognizers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />

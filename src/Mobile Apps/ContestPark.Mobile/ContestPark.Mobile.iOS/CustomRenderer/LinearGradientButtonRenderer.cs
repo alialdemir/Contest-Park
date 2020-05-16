@@ -28,11 +28,11 @@ namespace ContestPark.Mobile.iOS.CustomRenderer
 
             if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.Bottom)
             {
-                gradientLayer.MaskedCorners = CACornerMask.MinXMaxYCorner | CACornerMask.MinXMinYCorner;
+                gradientLayer.MaskedCorners = CACornerMask.MaxXMaxYCorner | CACornerMask.MinXMaxYCorner;
             }
             else if (button.CornerRadiusPosition == LinearGradientButton.CornerRadiusPositions.Top)
             {
-                gradientLayer.MaskedCorners = CACornerMask.MaxXMinYCorner | CACornerMask.MinXMaxYCorner;
+                gradientLayer.MaskedCorners = CACornerMask.MaxXMinYCorner | CACornerMask.MinXMinYCorner;
             }
 
             gradientLayer.Frame = rect;
