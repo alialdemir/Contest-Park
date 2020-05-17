@@ -65,7 +65,7 @@ namespace ContestPark.Mobile.Droid.CustomRenderer
 
             // gd.SetCornerRadius(button.CornerRadius);
 
-            if (button.IsUpperCase)
+            if (button.IsUpperCase && !string.IsNullOrEmpty(button.Text))
             {
                 e.NewElement.Text = button.Text.ToUpper();
             }

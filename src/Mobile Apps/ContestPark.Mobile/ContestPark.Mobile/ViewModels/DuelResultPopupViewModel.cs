@@ -16,6 +16,7 @@ using ContestPark.Mobile.Services.Duel;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Microsoft.AppCenter.Crashes;
 using Plugin.StoreReview;
 using Plugin.StoreReview.Abstractions;
 using Prism.Events;
@@ -312,12 +313,17 @@ namespace ContestPark.Mobile.ViewModels
                     .Publish();
             }
 
-            bool isStoreReview = _cacheService.Get<bool>("IsStoreReview");
-            if (DuelResult != null && DuelResult.IsShowFireworks && !isStoreReview && CrossStoreReview.IsSupported)
+            bool specialOffer = !_cacheService.IsExpired("SpecialOffer") && _cacheService.Get<bool>("SpecialOffer");
+            bool isStoreReview = !_cacheService.IsExpired("IsStoreReview") && _cacheService.Get<bool>("IsStoreReview");
+
+            if (DuelResult != null
+                && DuelResult.IsShowFireworks
+                && isStoreReview
+                && CrossStoreReview.IsSupported)
             {
                 RequestReview();
             }
-            else if (!(_cacheService.Get<bool>("SpecialOffer")))
+            else if (!specialOffer)
             {
                 NavigateToPopupAsync<SpecialOfferPopupView>();
 
@@ -344,10 +350,17 @@ namespace ContestPark.Mobile.ViewModels
                                                 ContestParkResources.Cancel);
             if (isOk)
             {
-                if (Device.RuntimePlatform == Device.Android)
-                    storeReview.OpenStoreReviewPage(AppInfo.PackageName);
-                else if (Device.RuntimePlatform == Device.iOS)
-                    storeReview.RequestReview();
+                try
+                {
+                    if (Device.RuntimePlatform == Device.Android)
+                        storeReview.OpenStoreReviewPage(AppInfo.PackageName);
+                    else if (Device.RuntimePlatform == Device.iOS)
+                        storeReview.RequestReview();
+                }
+                catch (Exception ex)
+                {
+                    Crashes.TrackError(ex);
+                }
 
                 _cacheService.Add("IsStoreReview", true, TimeSpan.FromDays(30));
             }

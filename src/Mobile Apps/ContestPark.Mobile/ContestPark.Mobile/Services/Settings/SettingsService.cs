@@ -6,12 +6,12 @@ using ContestPark.Mobile.Models.Duel.Bet;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using Newtonsoft.Json;
-using System;
+using Plugin.Settings;
+using Plugin.Settings.Abstractions;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.Settings
@@ -39,6 +39,8 @@ namespace ContestPark.Mobile.Services.Settings
 
         #region Settings Properties
 
+        private ISettings AppSettings => CrossSettings.Current;
+
         /// <summary>
         /// Tamamlanmamış düello id ekle
         /// </summary>
@@ -49,7 +51,7 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 PendingDuelIdsDefault.Add(duelId);
 
-                AddOrUpdateValue(PendingDuelIdsDefault, nameof(PendingDuelIdsDefault));
+                AppSettings.AddOrUpdateValue(nameof(PendingDuelIdsDefault), PendingDuelIdsDefault);
             }
         }
 
@@ -63,7 +65,7 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 PendingDuelIdsDefault.Remove(duelId);
 
-                AddOrUpdateValue(PendingDuelIdsDefault, nameof(PendingDuelIdsDefault));
+                AppSettings.AddOrUpdateValue(nameof(PendingDuelIdsDefault), PendingDuelIdsDefault);
             }
         }
 
@@ -73,15 +75,15 @@ namespace ContestPark.Mobile.Services.Settings
         /// <returns>Tamamlanmayan düello id'leri</returns>
         public List<int> GetPendingDuelIds()
         {
-            return GetValueOrDefault(PendingDuelIdsDefault, nameof(PendingDuelIdsDefault));
+            return AppSettings.GetValueOrDefault(nameof(PendingDuelIdsDefault), PendingDuelIdsDefault);
         }
 
         private UserInfoModel _userInfo;
 
         public string AuthAccessToken
         {
-            get => GetValueOrDefault(AccessTokenDefault);
-            set => AddOrUpdateValue(value);
+            get => SecureStorage.GetAsync(nameof(AuthAccessToken)).Result;
+            set => SecureStorage.SetAsync(nameof(AuthAccessToken), value);
         }
 
         /// <summary>
@@ -89,8 +91,8 @@ namespace ContestPark.Mobile.Services.Settings
         /// </summary>
         public byte SignUpCount
         {
-            get => GetValueOrDefault(SignUpCountDefault);
-            set => AddOrUpdateValue(value);
+            get => (byte)AppSettings.GetValueOrDefault(nameof(SignUpCount), SignUpCountDefault);
+            set => AppSettings.AddOrUpdateValue(nameof(SignUpCount), value);
         }
 
         public UserInfoModel CurrentUser
@@ -99,7 +101,7 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 if (_userInfo == null)
                 {
-                    string currentUserJson = GetValueOrDefault(CurrentUserDefault);
+                    string currentUserJson = AppSettings.GetValueOrDefault(nameof(CurrentUser), CurrentUserDefault);
                     if (!string.IsNullOrEmpty(currentUserJson))
                     {
                         _userInfo = JsonConvert.DeserializeObject<UserInfoModel>(currentUserJson);
@@ -121,34 +123,34 @@ namespace ContestPark.Mobile.Services.Settings
 
         public bool IsSoundEffectActive
         {
-            get => GetValueOrDefault(IsSoundEffectActiveDefault);
-            set => AddOrUpdateValue(value);
+            get => AppSettings.GetValueOrDefault(nameof(IsSoundEffectActive), IsSoundEffectActiveDefault);
+            set => AppSettings.AddOrUpdateValue(nameof(IsSoundEffectActive), value);
         }
 
         public bool IsTutorialDisplayed
         {
-            get => GetValueOrDefault(IsTutorialDisplayedDefault);
-            set => AddOrUpdateValue(value);
+            get => AppSettings.GetValueOrDefault(nameof(IsTutorialDisplayed), IsTutorialDisplayedDefault);
+            set => AppSettings.AddOrUpdateValue(nameof(IsTutorialDisplayed), value);
         }
 
         public string RefreshToken
         {
-            get => GetValueOrDefault(RefleshTokenDefault);
-            set => AddOrUpdateValue(value);
+            get => AppSettings.GetValueOrDefault(nameof(RefreshToken), RefleshTokenDefault);
+            set => AppSettings.AddOrUpdateValue(nameof(RefreshToken), value);
         }
 
         public string SignalRConnectionId { get; set; }
 
         public string TokenType
         {
-            get => GetValueOrDefault(TokenTypeDefault);
-            set => AddOrUpdateValue(value);
+            get => AppSettings.GetValueOrDefault(nameof(TokenType), TokenTypeDefault);
+            set => AppSettings.AddOrUpdateValue(nameof(TokenType), value);
         }
 
         public string LastUpdatedScopeName
         {
-            get => GetValueOrDefault(LastUpdatedScopeNameDefault);
-            set => AddOrUpdateValue(value);
+            get => AppSettings.GetValueOrDefault(nameof(LastUpdatedScopeName), LastUpdatedScopeNameDefault);
+            set => AppSettings.AddOrUpdateValue(nameof(LastUpdatedScopeName), value);
         }
 
         private BetModel _lastSelectedBet;
@@ -159,7 +161,7 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 if (_lastSelectedBet == null)
                 {
-                    string jsonLastSelectedBalanceType = GetValueOrDefault(LastSelectedBetDefault);
+                    string jsonLastSelectedBalanceType = AppSettings.GetValueOrDefault(nameof(LastSelectedBet), LastSelectedBetDefault);
                     if (!string.IsNullOrEmpty(jsonLastSelectedBalanceType))
                         _lastSelectedBet = JsonConvert.DeserializeObject<BetModel>(jsonLastSelectedBalanceType);
                 }
@@ -171,80 +173,11 @@ namespace ContestPark.Mobile.Services.Settings
             {
                 _lastSelectedBet = value;
 
-                string jsonLastSelectedBalanceType = JsonConvert.SerializeObject(value);
-                AddOrUpdateValue(jsonLastSelectedBalanceType);
+                AppSettings.AddOrUpdateValue(nameof(LastSelectedBet), value);
             }
         }
 
         #endregion Settings Properties
-
-        #region Public Methods
-
-        public Task AddOrUpdateValue(List<int> value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
-
-        public Task AddOrUpdateValue(bool value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
-
-        public Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
-
-        public Task AddOrUpdateValue(byte value, [CallerMemberName]string methodName = "") => AddOrUpdateValueInternal(methodName, value);
-
-        public bool GetValueOrDefault(bool defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
-
-        public List<int> GetValueOrDefault(List<int> defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
-
-        public string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
-
-        public byte GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "") => GetValueOrDefaultInternal(methodName, defaultValue);
-
-        #endregion Public Methods
-
-        #region Internal Implementation
-
-        private async Task AddOrUpdateValueInternal<T>(string key, T value)
-        {
-            if (value == null)
-            {
-                await Remove(key);
-            }
-
-            Application.Current.Properties[key] = value;
-            try
-            {
-                await Application.Current.SavePropertiesAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to save: " + key, " Message: " + ex.Message);
-            }
-        }
-
-        private T GetValueOrDefaultInternal<T>(string key, T defaultValue = default(T))
-        {
-            object value = null;
-            if (Application.Current.Properties.ContainsKey(key))
-            {
-                value = Application.Current.Properties[key];
-            }
-            return null != value ? (T)value : defaultValue;
-        }
-
-        private async Task Remove(string key)
-        {
-            try
-            {
-                if (Application.Current.Properties[key] != null)
-                {
-                    Application.Current.Properties.Remove(key);
-                    await Application.Current.SavePropertiesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to remove: " + key, " Message: " + ex.Message);
-            }
-        }
-
-        #endregion Internal Implementation
 
         #region CurrentUser methods
 
@@ -253,8 +186,6 @@ namespace ContestPark.Mobile.Services.Settings
         /// </summary>
         public void RefreshCurrentUser(UserInfoModel currentUser)
         {
-            string currentUserJson = JsonConvert.SerializeObject(currentUser);
-
             _userInfo = currentUser;
 
             TranslateExtension.CultureInfo = null;// i18n tekrar culture yüklemesi için null a çektik
@@ -267,7 +198,7 @@ namespace ContestPark.Mobile.Services.Settings
 
             OneSignal.Current.SendTag("UserId", currentUser.UserId);
 
-            AddOrUpdateValue(currentUserJson, nameof(CurrentUser));
+            AppSettings.AddOrUpdateValue(nameof(CurrentUser), currentUser);
         }
 
         public void RemoveCurrentUser()
@@ -291,5 +222,28 @@ namespace ContestPark.Mobile.Services.Settings
         }
 
         #endregion Setting Service
+    }
+
+    public static class CrossSettingsExtension
+    {
+        public static bool AddOrUpdateValue<T>(this ISettings settings, string key, T value, string fileName = null)
+        {
+            if (value == null || value.GetType() != typeof(object))
+                return false;
+
+            string json = JsonConvert.SerializeObject(value);
+
+            return settings.AddOrUpdateValue(key, json, fileName);
+        }
+
+        public static T GetValueOrDefault<T>(this ISettings settings, string key, T defaultValue, string fileName = null)
+        {
+            string json = settings.GetValueOrDefault(key, string.Empty, fileName);
+
+            if (string.IsNullOrEmpty(json))
+                return defaultValue;
+
+            return JsonConvert.DeserializeObject<T>(json);
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 {
     public interface ISignalRServiceBase
     {
-        bool IsConnect { get; }
+        bool IsConnected { get; }
 
         void On<T>(string methodName, Action<T> action);
 

@@ -2,8 +2,6 @@
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Settings
 {
@@ -27,7 +25,7 @@ namespace ContestPark.Mobile.Services.Settings
         /// <summary>
         /// Gets a value indicating whether IsSoundEffectActive
         /// </summary>
-        bool IsSoundEffectActive { get; }
+        bool IsSoundEffectActive { get; set; }
 
         /// <summary>
         /// Tamamlanmamış düello id ekle
@@ -79,54 +77,6 @@ namespace ContestPark.Mobile.Services.Settings
         #endregion Properties
 
         #region Methods
-
-        /// <summary>
-        /// The AddOrUpdateValue
-        /// </summary>
-        /// <param name="value">The value <see cref="bool"/></param>
-        /// <param name="methodName">The methodName <see cref="string"/></param>
-        /// <returns>The <see cref="Task"/></returns>
-        Task AddOrUpdateValue(bool value, [CallerMemberName]string methodName = "");
-
-        /// <summary>
-        /// The AddOrUpdateValue
-        /// </summary>
-        /// <param name="value">The value <see cref="byte"/></param>
-        /// <param name="methodName">The methodName <see cref="string"/></param>
-        /// <returns>The <see cref="Task"/></returns>
-        Task AddOrUpdateValue(byte value, [CallerMemberName]string methodName = "");
-
-        /// <summary>
-        /// The AddOrUpdateValue
-        /// </summary>
-        /// <param name="value">The value <see cref="string"/></param>
-        /// <param name="methodName">The methodName <see cref="string"/></param>
-        /// <returns>The <see cref="Task"/></returns>
-        Task AddOrUpdateValue(string value, [CallerMemberName]string methodName = "");
-
-        /// <summary>
-        /// The GetValueOrDefault
-        /// </summary>
-        /// <param name="defaultValue">The defaultValue <see cref="bool"/></param>
-        /// <param name="methodName">The methodName <see cref="string"/></param>
-        /// <returns>The <see cref="bool"/></returns>
-        bool GetValueOrDefault(bool defaultValue, [CallerMemberName]string methodName = "");
-
-        /// <summary>
-        /// The GetValueOrDefault
-        /// </summary>
-        /// <param name="defaultValue">The defaultValue <see cref="byte"/></param>
-        /// <param name="methodName">The methodName <see cref="string"/></param>
-        /// <returns>The <see cref="int"/></returns>
-        byte GetValueOrDefault(byte defaultValue, [CallerMemberName]string methodName = "");
-
-        /// <summary>
-        /// The GetValueOrDefault
-        /// </summary>
-        /// <param name="defaultValue">The defaultValue <see cref="string"/></param>
-        /// <param name="methodName">The methodName <see cref="string"/></param>
-        /// <returns>The <see cref="string"/></returns>
-        string GetValueOrDefault(string defaultValue, [CallerMemberName]string methodName = "");
 
         void RefreshCurrentUser(UserInfoModel currentUser);
 

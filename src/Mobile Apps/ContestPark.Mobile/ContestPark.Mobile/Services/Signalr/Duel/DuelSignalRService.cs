@@ -36,11 +36,11 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         #region Properties
 
-        public bool IsConnect
+        public bool IsConnected
         {
             get
             {
-                return _signalRService.IsConnect;
+                return _signalRService.IsConnected;
             }
         }
 

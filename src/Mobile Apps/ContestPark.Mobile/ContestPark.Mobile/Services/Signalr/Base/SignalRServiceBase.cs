@@ -1,6 +1,5 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Services.Settings;
-using DryIoc;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -21,11 +20,11 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         private Dictionary<string, IDisposable> DisposableOns { get; } = new Dictionary<string, IDisposable>();
 
-        public bool IsConnect
+        public bool IsConnected
         {
             get
             {
-                bool isConnect = HubConnection.State == HubConnectionState.Connected && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId);
+                bool isConnect = HubConnection != null && HubConnection.State == HubConnectionState.Connected && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId);
                 if (!isConnect)
                     Init();
 
@@ -68,6 +67,15 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             RemoveConnectionId();
 
             await ConnectAsync();
+
+            HubConnection.Closed += HubConnection_Closed;
+        }
+
+        private Task HubConnection_Closed(Exception arg)
+        {
+            _settingsService.SignalRConnectionId = string.Empty;
+
+            return Task.CompletedTask;
         }
 
         /// <summary>

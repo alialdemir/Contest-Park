@@ -10,7 +10,6 @@ using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -97,7 +96,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             _analyticsService.SendEvent("Ayarlar", "Tıklama", "Ses Ayarı");
 
-            _settingsService.AddOrUpdateValue(!_settingsService.IsSoundEffectActive, nameof(_settingsService.IsSoundEffectActive));
+            _settingsService.IsSoundEffectActive = !_settingsService.IsSoundEffectActive;
         }
 
         /// <summary>

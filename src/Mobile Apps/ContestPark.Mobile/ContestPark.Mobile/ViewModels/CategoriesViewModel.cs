@@ -387,15 +387,14 @@ namespace ContestPark.Mobile.ViewModels
 
         private ICommand ConnectToSignalr => new Command(() =>
        {
-           Device.BeginInvokeOnMainThread(async () =>
-           {
-               if (!_baseSignalRService.IsConnect)
-                   await _baseSignalRService.Init();
+           Device.BeginInvokeOnMainThread(() =>
+          {
+              bool isConnected = _baseSignalRService.IsConnected;// IsConnect çağrınca eğer bağlantı yoksa bağlanıyor
 
-               // Düello daveti dinleme
-               _duelSignalRService.InviteDuelEventHandler += OnInviteModel;
-               _duelSignalRService.InviteDuel();
-           });
+              // Düello daveti dinleme
+              _duelSignalRService.InviteDuelEventHandler += OnInviteModel;
+              _duelSignalRService.InviteDuel();
+          });
        });
 
         private ICommand _pushCategoryDetailViewCommand;

@@ -8,7 +8,7 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 {
     public interface IDuelSignalRService
     {
-        bool IsConnect { get; }
+        bool IsConnected { get; }
 
         void DuelCreated();
 

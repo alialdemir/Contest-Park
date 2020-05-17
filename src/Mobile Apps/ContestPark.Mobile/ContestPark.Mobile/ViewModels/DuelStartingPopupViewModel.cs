@@ -166,7 +166,7 @@ namespace ContestPark.Mobile.ViewModels
             if (_settingsService.IsSoundEffectActive)
                 _audioService.Play(AudioTypes.AwaitingOpponent, true);
 
-            if (!_duelSignalRService.IsConnect)
+            if (!_duelSignalRService.IsConnected)
             {
                 NoConnection();
             }
