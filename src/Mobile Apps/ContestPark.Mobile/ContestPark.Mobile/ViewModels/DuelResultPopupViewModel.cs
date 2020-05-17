@@ -296,7 +296,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
-        public override async Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
             if (_settingsService.IsSoundEffectActive)
                 _audioService?.Stop();
@@ -312,25 +312,25 @@ namespace ContestPark.Mobile.ViewModels
                     .Publish();
             }
 
-            bool isStoreReview = await _cacheService.Get<bool>("IsStoreReview");
+            bool isStoreReview = _cacheService.Get<bool>("IsStoreReview");
             if (DuelResult != null && DuelResult.IsShowFireworks && !isStoreReview && CrossStoreReview.IsSupported)
             {
-                await RequestReview();
+                RequestReview();
             }
-            else if (!(await _cacheService.Get<bool>("SpecialOffer")))
+            else if (!(_cacheService.Get<bool>("SpecialOffer")))
             {
-                await NavigateToPopupAsync<SpecialOfferPopupView>();
+                NavigateToPopupAsync<SpecialOfferPopupView>();
 
                 _cacheService.Add("SpecialOffer", true, TimeSpan.FromDays(1));
             }
 
-            await base.RemoveFirstPopupAsync<DuelResultPopupView>();
+            return base.RemoveFirstPopupAsync<DuelResultPopupView>();
         }
 
         /// <summary>
         /// Store üzerinden uygulamaya yıldız ver uyarısını gösterir
         /// </summary>
-        private async Task RequestReview()
+        private async void RequestReview()
         {
             IStoreReview storeReview = CrossStoreReview.Current;
 
@@ -339,9 +339,9 @@ namespace ContestPark.Mobile.ViewModels
                                            : ContestParkResources.WouldYouLikeToRateTheGameOnAppStore;
 
             bool isOk = await DisplayAlertAsync(string.Empty,
-                                              message,
-                                              ContestParkResources.Okay,
-                                              ContestParkResources.Cancel);
+                                                message,
+                                                ContestParkResources.Okay,
+                                                ContestParkResources.Cancel);
             if (isOk)
             {
                 if (Device.RuntimePlatform == Device.Android)

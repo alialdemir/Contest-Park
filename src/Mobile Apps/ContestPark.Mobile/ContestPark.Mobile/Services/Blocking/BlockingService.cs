@@ -55,7 +55,7 @@ namespace ContestPark.Mobile.Services.Blocking
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<BlockModel>>(uri);
+                return _cacheService.Get<ServiceModel<BlockModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<BlockModel>>(uri);

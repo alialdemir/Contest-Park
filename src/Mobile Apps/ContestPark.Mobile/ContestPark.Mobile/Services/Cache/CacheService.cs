@@ -57,12 +57,9 @@ namespace ContestPark.Mobile.Services.Cache
         /// </summary>
         /// <param name="key">Unique identifier for the entry to get</param>
         /// <returns>The data object that was stored if found, else default(T)</returns>
-        public Task<T> Get<T>(string key)
+        public T Get<T>(string key)
         {
-            return Task.Run<T>(() =>
-            {
-                return Barrel.Current.Get<T>(key: key);
-            });
+            return Barrel.Current.Get<T>(key: key);
         }
 
         /// <summary>

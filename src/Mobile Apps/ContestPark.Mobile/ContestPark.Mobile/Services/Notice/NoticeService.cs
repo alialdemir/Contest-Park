@@ -44,7 +44,7 @@ namespace ContestPark.Mobile.Services.Notice
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<NoticeModel>>(uri);
+                return _cacheService.Get<ServiceModel<NoticeModel>>(uri);
             }
 
             var response = await _requestProvider.GetAsync<ServiceModel<NoticeModel>>(uri);

@@ -247,7 +247,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
         {
             if (!_cacheService.IsExpired(key: _productCacheKey))
             {
-                return await _cacheService.Get<List<InAppBillingProductModel>>(_productCacheKey);
+                return _cacheService.Get<List<InAppBillingProductModel>>(_productCacheKey);
             }
 
             try

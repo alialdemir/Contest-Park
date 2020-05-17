@@ -121,7 +121,7 @@ namespace ContestPark.Mobile.Services.Duel
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<string[]>(uri);
+                return _cacheService.Get<string[]>(uri);
             }
 
             var response = await _requestProvider.GetAsync<string[]>(uri);

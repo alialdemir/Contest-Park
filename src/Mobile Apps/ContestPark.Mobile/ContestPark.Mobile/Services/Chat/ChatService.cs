@@ -120,7 +120,7 @@ namespace ContestPark.Mobile.Services.Chat
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<ChatModel>>(uri);
+                return _cacheService.Get<ServiceModel<ChatModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<ChatModel>>(uri);

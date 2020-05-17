@@ -34,6 +34,18 @@ namespace ContestPark.Mobile.Services.Signalr.Duel
 
         #endregion Events
 
+        #region Properties
+
+        public bool IsConnect
+        {
+            get
+            {
+                return _signalRService.IsConnect;
+            }
+        }
+
+        #endregion Properties
+
         #region Method
 
         /// <summary>

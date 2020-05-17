@@ -135,7 +135,7 @@ namespace ContestPark.Mobile.Services.Category
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<CategoryModel>>(uri);
+                return _cacheService.Get<ServiceModel<CategoryModel>>(uri);
             }
 
             var response = await _requestProvider.GetAsync<ServiceModel<CategoryModel>>(uri);
@@ -175,7 +175,7 @@ namespace ContestPark.Mobile.Services.Category
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<SearchModel>>(uri);
+                return _cacheService.Get<ServiceModel<SearchModel>>(uri);
             }
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
@@ -200,7 +200,7 @@ namespace ContestPark.Mobile.Services.Category
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<SearchModel>>(uri);
+                return _cacheService.Get<ServiceModel<SearchModel>>(uri);
             }
 
             var response = await _requestProvider.GetAsync<ServiceModel<SearchModel>>(uri);
@@ -228,7 +228,7 @@ namespace ContestPark.Mobile.Services.Category
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<CategoryDetailModel>(uri);
+                return _cacheService.Get<CategoryDetailModel>(uri);
             }
 
             var response = await _requestProvider.GetAsync<CategoryDetailModel>(uri);

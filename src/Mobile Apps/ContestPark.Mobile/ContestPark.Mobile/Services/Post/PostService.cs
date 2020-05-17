@@ -67,7 +67,7 @@ namespace ContestPark.Mobile.Services.Post
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<PostModel>>(uri);
+                return _cacheService.Get<ServiceModel<PostModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
@@ -94,7 +94,7 @@ namespace ContestPark.Mobile.Services.Post
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<PostModel>>(uri);
+                return _cacheService.Get<ServiceModel<PostModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostModel>>(uri);
@@ -158,7 +158,7 @@ namespace ContestPark.Mobile.Services.Post
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<PostLikeModel>>(uri);
+                return _cacheService.Get<ServiceModel<PostLikeModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<PostLikeModel>>(uri);

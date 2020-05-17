@@ -43,7 +43,7 @@ namespace ContestPark.Mobile.Services.Mission
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<MissionListModel>(uri);
+                return _cacheService.Get<MissionListModel>(uri);
             }
 
             var response = await _requestProvider.GetAsync<MissionListModel>(uri);

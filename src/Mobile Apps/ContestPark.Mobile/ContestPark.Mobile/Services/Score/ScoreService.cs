@@ -45,7 +45,7 @@ namespace ContestPark.Mobile.Services.Score
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<RankModel>(uri);
+                return _cacheService.Get<RankModel>(uri);
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);
@@ -69,7 +69,7 @@ namespace ContestPark.Mobile.Services.Score
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<RankModel>(uri);
+                return _cacheService.Get<RankModel>(uri);
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);
@@ -92,7 +92,7 @@ namespace ContestPark.Mobile.Services.Score
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<RankModel>(uri);
+                return _cacheService.Get<RankModel>(uri);
             }
 
             var result = await _requestProvider.GetAsync<RankModel>(uri);

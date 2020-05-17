@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Services.Settings;
+using DryIoc;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,11 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         {
             get
             {
-                return !string.IsNullOrEmpty(_settingsService.SignalRConnectionId);
+                bool isConnect = HubConnection.State == HubConnectionState.Connected && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId);
+                if (!isConnect)
+                    Init();
+
+                return isConnect;
             }
         }
 
@@ -46,7 +51,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// </summary>
         public async Task Init()
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || string.IsNullOrEmpty(_settingsService.AuthAccessToken))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 return;
 
             HubConnection = new HubConnectionBuilder()

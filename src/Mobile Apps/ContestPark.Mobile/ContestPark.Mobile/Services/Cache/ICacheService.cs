@@ -7,7 +7,7 @@ namespace ContestPark.Mobile.Services.Cache
     {
         bool IsExpired(string key);
 
-        Task<T> Get<T>(string key);
+        T Get<T>(string key);
 
         void Empty(string key);
 

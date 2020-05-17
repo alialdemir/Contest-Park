@@ -81,7 +81,7 @@ namespace ContestPark.Mobile.Services.Identity
             bool isExpired = _cacheService.IsExpired(key: uri);
             if (!isExpired)
             {
-                return await _cacheService.Get<UserInfoModel>(uri);
+                return _cacheService.Get<UserInfoModel>(uri);
             }
 
             var response = await _requestProvider.GetAsync<UserInfoModel>(uri);
@@ -240,7 +240,7 @@ namespace ContestPark.Mobile.Services.Identity
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ProfileInfoModel>(uri);
+                return _cacheService.Get<ProfileInfoModel>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ProfileInfoModel>(uri);

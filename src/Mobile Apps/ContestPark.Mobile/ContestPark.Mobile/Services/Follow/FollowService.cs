@@ -48,7 +48,7 @@ namespace ContestPark.Mobile.Services.Follow
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<FollowModel>>(uri);
+                return _cacheService.Get<ServiceModel<FollowModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);
@@ -71,7 +71,7 @@ namespace ContestPark.Mobile.Services.Follow
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<FollowModel>>(uri);
+                return _cacheService.Get<ServiceModel<FollowModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<FollowModel>>(uri);

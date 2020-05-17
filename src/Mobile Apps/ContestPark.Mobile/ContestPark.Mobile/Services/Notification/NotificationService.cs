@@ -1,5 +1,4 @@
 ﻿using ContestPark.Mobile.Configs;
-using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
@@ -47,7 +46,7 @@ namespace ContestPark.Mobile.Services.Notification
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return await _cacheService.Get<ServiceModel<NotificationModel>>(uri);
+                return _cacheService.Get<ServiceModel<NotificationModel>>(uri);
             }
 
             var result = await _requestProvider.GetAsync<ServiceModel<NotificationModel>>(uri);
