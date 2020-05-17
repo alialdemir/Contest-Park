@@ -41,7 +41,7 @@
             <x:String x:Key="TabProfile">&#xe90e;</x:String>
             <x:String x:Key="TabCategories">&#xe911;</x:String>
             <x:String x:Key="TabRanking">&#xe92a;</x:String>
-            <x:String x:Key="HamburgerMenu">&#xe92c;</x:String>
+            <x:String x:Key="HamburgerMenu">&#xe92d;</x:String>
             <x:String x:Key="Save">&#xe922;</x:String>
             <x:String x:Key="Share">&#xe916;</x:String>
             <x:String x:Key="UnCategoryFollow">&#xe929;</x:String>
@@ -79,6 +79,8 @@
             <x:String x:Key="HowToPlay">&#xe927;</x:String>
             <x:String x:Key="Notification">&#xe903;</x:String>
             <x:String x:Key="Search">&#xe923;</x:String>
+            <x:String x:Key="StylishRightArrow">&#xe92c;</x:String>
+            <x:String x:Key="StylishLeftArrow">&#xe92e;</x:String>
 
             <!--  Bool values  -->
             <x:Boolean x:Key="True">True</x:Boolean>

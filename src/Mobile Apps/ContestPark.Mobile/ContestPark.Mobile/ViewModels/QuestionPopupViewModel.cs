@@ -258,6 +258,7 @@ namespace ContestPark.Mobile.ViewModels
                 _duelService.DuelCancel();
 
                 IsExit = true;
+
                 GotoBackCommand.Execute(false);
 
                 return;

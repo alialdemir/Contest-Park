@@ -28,10 +28,17 @@
                 HeightRequest="55"
                 HorizontalOptions="Start"
                 IsVisible="{Binding Path=Answer.IsLeftArrowVisible, Source={x:Reference stylishFrame}}"
-                Source="{image:ImageResource RightArrow.png}"
                 TranslationX="-10"
                 VerticalOptions="Center"
-                WidthRequest="55" />
+                WidthRequest="55">
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="{StaticResource icomoon}"
+                        Glyph="{StaticResource StylishRightArrow}"
+                        Size="32"
+                        Color="{StaticResource Primary}" />
+                </Image.Source>
+            </Image>
 
             <Label
                 Grid.Row="0"
@@ -48,10 +55,17 @@
                 HeightRequest="55"
                 HorizontalOptions="End"
                 IsVisible="{Binding Path=Answer.IsRightArrowVisible, Source={x:Reference stylishFrame}}"
-                Source="{image:ImageResource LeftArrow.png}}"
                 TranslationX="10"
                 VerticalOptions="Center"
-                WidthRequest="55" />
+                WidthRequest="55">
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="{StaticResource icomoon}"
+                        Glyph="{StaticResource StylishLeftArrow}"
+                        Size="32"
+                        Color="{StaticResource Primary}" />
+                </Image.Source>
+            </Image>
         </Grid>
     </yummy:PancakeView.Content>
 </yummy:PancakeView>

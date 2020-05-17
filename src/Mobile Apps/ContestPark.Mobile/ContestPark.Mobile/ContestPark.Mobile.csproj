@@ -47,7 +47,6 @@
     <None Remove="Common\Images\gift2.gif" />
     <None Remove="Common\Images\invite.png" />
     <None Remove="Common\Images\invite_friends.svg" />
-    <None Remove="Common\Images\LeftArrow.png" />
     <None Remove="Common\Images\left_arrow.png" />
     <None Remove="Common\Images\left_menu_background.png" />
     <None Remove="Common\Images\liked.svg" />
@@ -74,7 +73,6 @@
     <None Remove="Common\Images\rank3.gif" />
     <None Remove="Common\Images\ranking_header.png" />
     <None Remove="Common\Images\revenge.png" />
-    <None Remove="Common\Images\RightArrow.png" />
     <None Remove="Common\Images\search_cancel.png" />
     <None Remove="Common\Images\search_result.svg" />
     <None Remove="Common\Images\select_categories.svg" />
@@ -132,7 +130,6 @@
     <EmbeddedResource Include="Common\Images\gift2.gif" />
     <EmbeddedResource Include="Common\Images\invite.png" />
     <EmbeddedResource Include="Common\Images\invite_friends.svg" />
-    <EmbeddedResource Include="Common\Images\LeftArrow.png" />
     <EmbeddedResource Include="Common\Images\left_arrow.png" />
     <EmbeddedResource Include="Common\Images\left_menu_background.png" />
     <EmbeddedResource Include="Common\Images\liked.svg" />
@@ -159,7 +156,6 @@
     <EmbeddedResource Include="Common\Images\rank3.gif" />
     <EmbeddedResource Include="Common\Images\ranking_header.png" />
     <EmbeddedResource Include="Common\Images\revenge.png" />
-    <EmbeddedResource Include="Common\Images\RightArrow.png" />
     <EmbeddedResource Include="Common\Images\search_cancel.png" />
     <EmbeddedResource Include="Common\Images\search_result.svg" />
     <EmbeddedResource Include="Common\Images\select_categories.svg" />
