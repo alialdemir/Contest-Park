@@ -351,6 +351,8 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             UserAnswers[Round - 1] = CurrentRound;// Şuandaki round bilgileri aynı indexe set edildi
 
+            _userAnswerRepository.AddRangeAsync(UserAnswers);// Redisdeki duello bilgileri tekrar update edildi
+
             if (CurrentRound.FounderAnswer == Stylish.NotSeeQuestion
                 || CurrentRound.OpponentAnswer == Stylish.NotSeeQuestion)
             {
@@ -358,8 +360,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
                 return;
             }
-
-            _userAnswerRepository.AddRangeAsync(UserAnswers);// Redisdeki duello bilgileri tekrar update edildi
 
             PublishNextQuestionEvent();
 
