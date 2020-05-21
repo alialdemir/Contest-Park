@@ -59,6 +59,8 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> InviteDuel([FromBody]InviteDuelModel inviteDuel)
         {
+            Logger.LogInformation("Düello davet isteği geldi.");
+
             if (inviteDuel == null
                 || string.IsNullOrEmpty(inviteDuel.OpponentUserId)
                 || inviteDuel.SubCategoryId <= 0

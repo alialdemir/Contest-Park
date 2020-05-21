@@ -352,10 +352,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 try
                 {
-                    if (Device.RuntimePlatform == Device.Android)
-                        storeReview.OpenStoreReviewPage(AppInfo.PackageName);
-                    else if (Device.RuntimePlatform == Device.iOS)
-                        storeReview.RequestReview();
+                    //if (Device.RuntimePlatform == Device.Android)
+                    storeReview.OpenStoreReviewPage(AppInfo.PackageName);
+                    //else if (Device.RuntimePlatform == Device.iOS)
+                    //    storeReview.RequestReview();
                 }
                 catch (Exception ex)
                 {

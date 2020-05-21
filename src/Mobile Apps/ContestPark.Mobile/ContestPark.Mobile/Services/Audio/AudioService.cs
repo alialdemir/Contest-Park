@@ -1,11 +1,11 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using Plugin.SimpleAudioPlayer;
 using Prism.Services;
 using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using ContestPark.Mobile.Enums;
 using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.Audio
@@ -42,7 +42,7 @@ namespace ContestPark.Mobile.Services.Audio
                 return;
 
             var assembly = typeof(ContestParkApp).GetTypeInfo().Assembly;
-            Stream audioStream = assembly.GetManifestResourceStream("ContestPark.Mobile." + $"Audios.{audio}.mp3");
+            Stream audioStream = assembly.GetManifestResourceStream($"ContestPark.Mobile.Common.Audios.{audio}.mp3");
             if (audioStream != null)
             {
                 _simpleAudioPlayer.Load(audioStream);
