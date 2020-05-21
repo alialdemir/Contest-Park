@@ -80,7 +80,7 @@ namespace ContestPark.Duel.API.Controllers
             #endregion Para ile düelloya davet iptal
 
             BalanceModel balance = await _balanceService.GetBalance(UserId, inviteDuel.BalanceType);
-            if (inviteDuel.Bet > balance.Amount)
+            if (balance == null || inviteDuel.Bet > balance.Amount)
             {
                 return BadRequest(DuelResource.YourBalanceIsInsufficient);
             }
