@@ -36,7 +36,7 @@ namespace ContestPark.Mission.API.Infrastructure.Repositories.Mission
             return _missionRepository.ToSpServiceModel<MissionModel>("SP_Missions", new
             {
                 userId,
-                language
+                langId = language
             }, pagingModel);
         }
 
