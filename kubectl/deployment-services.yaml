@@ -147,7 +147,7 @@ spec:
   selector:
     run: backgroundtasks
   type: LoadBalancer
-  
+
 ---
 apiVersion: v1
 kind: Service
@@ -162,7 +162,7 @@ spec:
   selector:
     run: signalr-api
   type: LoadBalancer
-  
+
 ---
 apiVersion: v1
 kind: Service
@@ -176,4 +176,18 @@ spec:
       protocol: TCP
   selector:
     run: notification-api
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mission-api
+  labels:
+    run: mission-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    run: mission-api
   type: LoadBalancer

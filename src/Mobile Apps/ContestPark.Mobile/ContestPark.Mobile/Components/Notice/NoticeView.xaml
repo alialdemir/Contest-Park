@@ -20,22 +20,16 @@
             <cards:CoverFlowView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Image
+                        <components:CachedImage
                             Aspect="AspectFill"
                             HeightRequest="132"
                             HorizontalOptions="FillAndExpand"
                             Source="{Binding PicturePath}"
-                            VerticalOptions="FillAndExpand" />
-                        <!--<components:CachedImage
-                            Aspect="AspectFit"
-                            HeightRequest="150"
-                            HorizontalOptions="FillAndExpand"
-                            Source="{Binding PicturePath}"
-                            WidthRequest="150">
+                            VerticalOptions="FillAndExpand">
                             <components:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=NoticeNavigateToCommand, Source={x:Reference noticeView}}" CommandParameter="{Binding Link}" />
                             </components:CachedImage.GestureRecognizers>
-                        </components:CachedImage>-->
+                        </components:CachedImage>
                     </ViewCell>
                 </DataTemplate>
             </cards:CoverFlowView.ItemTemplate>

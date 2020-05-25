@@ -23,6 +23,7 @@ namespace ContestPark.Identity.API.Configuration
                 new ApiResource("mobileshoppingagg", "Mobile Shopping Aggregator"),
                 new ApiResource("admin", "Admin Service"),
                 new ApiResource("notification", "Notification Service"),
+                new ApiResource("mission", "Mission Service"),
             };
         }
 
@@ -55,6 +56,7 @@ namespace ContestPark.Identity.API.Configuration
                                         "question",
                                         "identity",
                                         "notification",
+                                        "mission",
                                     },
                         },
                  new Client
@@ -82,6 +84,7 @@ namespace ContestPark.Identity.API.Configuration
                                         "identity",
                                         "admin",
                                         "notification",
+                                        "mission",
                                     },
                         },
             };

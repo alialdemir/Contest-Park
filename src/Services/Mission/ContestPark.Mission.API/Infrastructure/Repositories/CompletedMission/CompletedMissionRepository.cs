@@ -24,8 +24,8 @@ namespace ContestPark.Mission.API.Infrastructure.Repositories.CompletedMission
         /// <summary>
         /// Kullanıcının tamamlanmış görev sayısını verir
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>Tamamlanan görev sayısı</returns>
         public byte CompletedMissionCount(string userId)
         {
             string sql = @"SELECT
@@ -39,9 +39,19 @@ namespace ContestPark.Mission.API.Infrastructure.Repositories.CompletedMission
             });
         }
 
-        //public bool IsMissionCompleted(string userId, byte missionId)
-        //{
-        //}
+        /// <summary>
+        /// Görev tamamlandımı kontrol eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <param name="missionId">Görev id</param>
+        public void IsMissionCompleted(string userId, byte missionId)
+        {
+            _completedMissionRepository.QuerySingleOrDefault<bool>("SP_Check_Mission", new
+            {
+                userId,
+                missionId
+            });
+        }
 
         #endregion Methods
     }

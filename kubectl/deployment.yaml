@@ -445,8 +445,8 @@ spec:
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
             - name: DuelUrl
-              value:  "http://duel-api"
-              
+              value: "http://duel-api"
+
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -542,3 +542,47 @@ spec:
               value: $(CONTESTPARK_ONE_SIGNAL_APP_ID)
             - name: OneSignalApiKey
               value: $(CONTESTPARK_ONE_SIGNAL_API_KEY)
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mission-api
+spec:
+  selector:
+    matchLabels:
+      run: mission-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: mission-api
+    spec:
+      containers:
+        - name: mission-api
+          image: $(REPOSITORY_URI)/mission-api:$(IMAGE_TAG)
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: ConnectionString
+              value: $(CONTESTPARK_MYSQL_CONNECTIONSTRING)
+            - name: identityUrl
+              value: "http://identity-api"
+            - name: Redis
+              value: $(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)
+            - name: Audience
+              value: "mission"
+            - name: EventBusConnection
+              value: $(CONTESTPARK_AZURE_SERVICE_BUS)
+            - name: EventBusUserName
+              value: $(CONTESTPARK_SERVICE_BUS_USERNAME)
+            - name: EventBusPassword
+              value: $(CONTESTPARK_SERVICE_BUS_PASSWORD)
+            - name: AwsAccessKeyId
+              value: $(CONTESTPARK_AWS_ACCESS_KEY_Id)
+            - name: AwsSecretAccessKey
+              value: $(CONTESTPARK_AWS_SECRET_ACCESS_KEY)
+            - name: AwsLogGroupName
+              value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
