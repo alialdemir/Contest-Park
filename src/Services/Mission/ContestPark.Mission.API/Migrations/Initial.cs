@@ -16,7 +16,7 @@ namespace ContestPark.Mission.API.Migrations
               .Identity()
 
               .WithColumn("Reward")
-              .AsDecimal()
+              .AsDecimal(13, 2)
               .NotNullable()
 
               .WithColumn("RewardBalanceType")

@@ -1,13 +1,24 @@
-﻿using Xamarin.Forms;
+﻿using ContestPark.Mobile.Enums;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Models.Mission
 {
     public class MissionModel : BaseModel
     {
-        private bool _missionStatus;
-        public int Gold { get; set; }
-
         private bool _isCompleteMission;
+        //  private bool _isMissionCompleted;
+
+        public byte MissionId { get; set; }
+
+        public string Description { get; set; }
+
+        public decimal Reward { get; set; }
+
+        public BalanceTypes RewardBalanceType { get; set; }
+
+        public string PicturePath { get; set; }
+
+        public MissionTime MissionTime { get; set; }
 
         public bool IsCompleteMission
         {
@@ -16,25 +27,20 @@ namespace ContestPark.Mobile.Models.Mission
             {
                 _isCompleteMission = value;
                 RaisePropertyChanged(() => IsCompleteMission);
-                RaisePropertyChanged(() => MissionBorderColor);
+                //RaisePropertyChanged(() => MissionBorderColor);
             }
         }
 
-        public string MissionDescription { get; set; }
-        public short MissionId { get; set; }
-        public string MissionName { get; set; }
-        public string MissionPicturePath { get; set; }
+        //public bool IsMissionCompleted
+        //{
+        //    get { return _isMissionCompleted; }
+        //    set
+        //    {
+        //        _isMissionCompleted = value;
 
-        public bool MissionStatus
-        {
-            get { return _missionStatus; }
-            set
-            {
-                _missionStatus = value;
-
-                RaisePropertyChanged(() => MissionStatus);
-            }
-        }
+        //        RaisePropertyChanged(() => IsMissionCompleted);
+        //    }
+        //}
 
         public Color MissionBorderColor
         {

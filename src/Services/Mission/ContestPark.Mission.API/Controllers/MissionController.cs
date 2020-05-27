@@ -56,6 +56,23 @@ namespace ContestPark.Mission.API.Controllers
             });
         }
 
+        /// <summary>
+        /// Tamamlanan görevin altınlarını verir
+        /// </summary>
+        /// <param name="missionId">Görev id</param>
+        /// <returns>Görev altınları yüklenmiş ise true yüklenmemiş ise false</returns>
+        [HttpPost("{missionId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult TakesMissionReward([FromRoute] byte missionId)
+        {
+            bool isMissionCompleted = _completedMissionRepository.TakesMissionReward(UserId, missionId);
+            if (!isMissionCompleted)
+                return BadRequest();
+
+            return Ok();
+        }
+
         #endregion Methods
     }
 }

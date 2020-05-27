@@ -1,9 +1,15 @@
-﻿namespace ContestPark.Mission.API.Infrastructure.Repositories.CompletedMission
+﻿using System.Threading.Tasks;
+
+namespace ContestPark.Mission.API.Infrastructure.Repositories.CompletedMission
 {
     public interface ICompletedMissionRepository
     {
+        Task<bool> Add(string userId, byte missionId);
+
         byte CompletedMissionCount(string userId);
 
-        void IsMissionCompleted(string userId, byte missionId);
+        bool IsMissionCompleted(string userId, byte missionId);
+
+        bool TakesMissionReward(string userId, byte missionId);
     }
 }

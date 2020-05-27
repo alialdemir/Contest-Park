@@ -22,7 +22,7 @@
             ColumnSpacing="5"
             RowSpacing="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -47,7 +47,7 @@
                 x:Name="imgCoins"
                 Grid.Column="1"
                 Aspect="AspectFit"
-                HorizontalOptions="Start"
+                HorizontalOptions="End"
                 Source="{Binding BalanceType, Source={x:Reference dobleCoinsView}, Converter={StaticResource dcpic}}" />
         </Grid>
     </ContentView.Content>

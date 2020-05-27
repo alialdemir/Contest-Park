@@ -37,16 +37,16 @@ namespace ContestPark.Mobile.Services.Mission
         /// Görev listeleme
         /// </summary>
         /// <returns>Tüm görevleri döndürür.</returns>
-        public async Task<MissionListModel> MissionListAsync(PagingModel pagingModel)
+        public async Task<MissionServiceModel> MissionListAsync(PagingModel pagingModel)
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}{pagingModel}");
 
             if (!_cacheService.IsExpired(key: uri))
             {
-                return _cacheService.Get<MissionListModel>(uri);
+                return _cacheService.Get<MissionServiceModel>(uri);
             }
 
-            var response = await _requestProvider.GetAsync<MissionListModel>(uri);
+            var response = await _requestProvider.GetAsync<MissionServiceModel>(uri);
             if (response.Data != null && response.IsSuccess)
                 _cacheService.Add(uri, response.Data);
 
@@ -58,9 +58,9 @@ namespace ContestPark.Mobile.Services.Mission
         /// </summary>
         /// <param name="missionId">Görev Id</param>
         /// <returns>İşlem sonucu</returns>
-        public async Task<bool> TakesMissionGoldAsync(short missionId)
+        public async Task<bool> TakesMissionRewardAsync(byte missionId)
         {
-            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{missionId}/status");
+            string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/{missionId}");
 
             var response = await _requestProvider.PostAsync<string>(uri);
 

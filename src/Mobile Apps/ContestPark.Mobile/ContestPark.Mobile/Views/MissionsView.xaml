@@ -3,10 +3,9 @@
     x:Class="ContestPark.Mobile.Views.MissionsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
-    
+    xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="missionsViewPage"
@@ -32,24 +31,21 @@
                                 <RowDefinition Height="3" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
+                            <!--<Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                            </Grid.ColumnDefinitions>-->
 
-                            <StackLayout
-                                Grid.Row="0"
-                                Grid.ColumnSpan="2"
-                                IsEnabled="False">
+                            <StackLayout Grid.Row="0" IsEnabled="False">
                                 <Slider
                                     Maximum="99"
                                     MaximumTrackColor="#72F7C5"
                                     MinimumTrackColor="#B0E881"
                                     ThumbColor="Transparent"
-                                    Value="33" />
+                                    Value="{Binding Path=BindingContext.CompletedMissionCount, Source={x:Reference missionsViewPage}}" />
                             </StackLayout>
 
-                            <Label
+                            <!--<Label
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Padding="16,0,16,0"
@@ -57,14 +53,14 @@
                                 FontSize="11"
                                 Text="{i18n:Translate Beginner}"
                                 TextColor="{StaticResource Black}"
-                                VerticalOptions="CenterAndExpand" />
+                                VerticalOptions="CenterAndExpand" />-->
 
                             <Label
                                 Grid.Row="1"
-                                Grid.Column="1"
                                 Padding="16,0,16,0"
                                 FontAttributes="Bold"
                                 FontSize="11"
+                                HorizontalTextAlignment="End"
                                 Text="{Binding .}"
                                 TextColor="{StaticResource Black}"
                                 VerticalOptions="CenterAndExpand" />
@@ -96,33 +92,34 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <components:CircleImage
+                                <components:CachedImage
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
-                                    Source="{Binding MissionPicturePath}" />
+                                    Source="{Binding PicturePath}" />
 
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    Grid.ColumnSpan="2"
                                     FontAttributes="Bold"
                                     FontFamily="{StaticResource SofiaProSemiBold}"
                                     FontSize="18"
                                     LineBreakMode="TailTruncation"
-                                    Text="{Binding MissionName}"
+                                    Text="{Binding Title}"
                                     TextColor="#181C2F"
                                     VerticalTextAlignment="Center" />
 
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="1"
+                                    Grid.ColumnSpan="2"
                                     FontFamily="{StaticResource SofiaProLight}"
                                     FontSize="14"
                                     LineBreakMode="TailTruncation"
-                                    Text="{Binding MissionDescription}"
+                                    Text="{Binding Description}"
                                     TextColor="#181C2F"
                                     VerticalTextAlignment="Center" />
 
@@ -142,12 +139,12 @@
                                 <components:DobleCoinsView
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
-                                    BalanceType="Gold"
-                                    CoinSize="Large"
+                                    BalanceType="{Binding RewardBalanceType}"
+                                    CoinSize="Small"
                                     Coins="Positive"
-                                    DisplayCoins="{Binding Gold}"
-                                    HorizontalOptions="Center"
-                                    IsVisible="{Binding MissionStatus, Converter={StaticResource not}}">
+                                    DisplayCoins="{Binding Reward}"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding IsCompleteMission, Converter={StaticResource not}}">
                                     <components:DobleCoinsView.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.TakesTaskGoldCommand, Source={x:Reference missionsViewPage}}" CommandParameter="{Binding MissionId}" />
                                     </components:DobleCoinsView.GestureRecognizers>

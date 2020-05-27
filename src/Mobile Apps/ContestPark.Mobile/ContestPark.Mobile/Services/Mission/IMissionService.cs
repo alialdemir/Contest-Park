@@ -6,8 +6,8 @@ namespace ContestPark.Mobile.Services.Mission
 {
     public interface IMissionService
     {
-        Task<MissionListModel> MissionListAsync(PagingModel pagingModel);
+        Task<MissionServiceModel> MissionListAsync(PagingModel pagingModel);
 
-        Task<bool> TakesMissionGoldAsync(short missionId);
+        Task<bool> TakesMissionRewardAsync(byte missionId);
     }
 }

@@ -31,11 +31,15 @@ namespace ContestPark.Mission.API.IntegrationEvents.EventHandling
         /// <summary>
         /// Görev id göre görev tamamlanmış mı kontrol eder
         /// </summary>
-        public Task Handle(CheckMissionIntegrationEvent @event)
+        public async Task Handle(CheckMissionIntegrationEvent @event)
         {
-            _completedMissionRepository.IsMissionCompleted(@event.UserId, @event.MissionId);
-
-            return Task.CompletedTask;
+            bool isMissionCompleted = _completedMissionRepository.IsMissionCompleted(@event.UserId, @event.MissionId);
+            if (isMissionCompleted)
+            {
+                bool isSuccess = await _completedMissionRepository.Add(@event.UserId, @event.MissionId);
+                if (!isSuccess)
+                    _logger.LogError("Görev tamamlandı fakat tamamlanan görevler tablosuna ekleme işlemi gerçekleştirilemedi.");
+            }
         }
 
         #endregion Methods

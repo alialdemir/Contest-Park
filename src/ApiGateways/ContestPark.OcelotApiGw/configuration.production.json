@@ -892,6 +892,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/Mission",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/Mission/{missionId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mission-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/Mission/{missionId}",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ],
   "GlobalConfiguration": {

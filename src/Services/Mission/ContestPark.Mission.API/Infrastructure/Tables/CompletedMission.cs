@@ -13,6 +13,6 @@ namespace ContestPark.Mission.API.Infrastructure.Tables
 
         public string UserId { get; set; }
 
-        public bool MissionComplate { get; set; }
+        public bool IsMissionCompleted { get; set; }
     }
 }

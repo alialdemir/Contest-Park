@@ -92,6 +92,13 @@
                 Color="{StaticResource White}" />
 
             <FontImageSource
+                x:Key="IconMissions"
+                FontFamily="{StaticResource icomoon}"
+                Glyph="{StaticResource Missions}"
+                Size="{StaticResource SizeLeftMenuIcon}"
+                Color="{StaticResource White}" />
+
+            <FontImageSource
                 x:Key="IconSettings"
                 FontFamily="{StaticResource icomoon}"
                 Glyph="{StaticResource Settings}"
@@ -192,6 +199,12 @@
         CommandParameter="BalanceCodeView"
         IconImageSource="{StaticResource IconBalanceCode}"
         Text="{i18n:Translate BalanceCode}" />
+
+    <MenuItem
+        Command="{Binding MenuItemClickCommand}"
+        CommandParameter="MissionsView"
+        IconImageSource="{StaticResource IconMissions}"
+        Text="{i18n:Translate Missions}" />
 
     <MenuItem
         Command="{Binding MenuItemClickCommand}"

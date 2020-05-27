@@ -16,7 +16,7 @@ namespace ContestPark.Mission.API.Models
 
         public string PicturePath { get; set; }
 
-        public bool IsCompleteMission { get; set; }
+        public bool IsMissionCompleted { get; set; }
 
         public MissionTime MissionTime { get; set; }
     }

@@ -32,14 +32,26 @@ namespace ContestPark.Mobile.ViewModels
 
         #region Properties
 
-        private string _ListViewHeader;
+        private byte _completedMissionCount;
+
+        public byte CompletedMissionCount
+        {
+            get { return _completedMissionCount; }
+            set
+            {
+                _completedMissionCount = value;
+                RaisePropertyChanged(() => CompletedMissionCount);
+            }
+        }
+
+        private string _listViewHeader;
 
         public string ListViewHeader
         {
-            get { return _ListViewHeader; }
+            get { return _listViewHeader; }
             private set
             {
-                _ListViewHeader = value;
+                _listViewHeader = value;
                 RaisePropertyChanged(() => ListViewHeader);
             }
         }
@@ -67,20 +79,20 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         /// <param name="missionId">Görevin Id'si</param>
         /// <returns></returns>
-        private async Task ExecuteTakesTaskGoldCommandAsync(short missionId)
+        private async Task ExecuteTakesTaskGoldCommandAsync(byte missionId)
         {
             if (IsBusy)
                 return;
 
             IsBusy = true;
 
-            bool isSuccess = await _missionService.TakesMissionGoldAsync(missionId);
+            bool isSuccess = await _missionService.TakesMissionRewardAsync(missionId);
             if (isSuccess)
             {
-                Items
-                   .Where(p => p.MissionId == missionId)
-                   .FirstOrDefault()
-                   .MissionStatus = true;
+                //Items
+                //   .Where(p => p.MissionId == missionId)
+                //   .FirstOrDefault()
+                //   .IsMissionCompleted = true;
                 Items
                    .Where(p => p.MissionId == missionId)
                    .FirstOrDefault()
@@ -102,9 +114,10 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Tamamlanan görev sayısını header da günceller
         /// </summary>
-        private void SetListViewHeader(byte completeMissionCount)
+        private void SetListViewHeader(byte completedMissionCount)
         {
-            ListViewHeader = Items.Count.ToString() + "/" + completeMissionCount;
+            ListViewHeader = completedMissionCount + "/" + Items.Count.ToString();
+            CompletedMissionCount = completedMissionCount;
         }
 
         /// <summary>
@@ -117,15 +130,15 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
-            MissionListModel missionListModel = await _missionService.MissionListAsync(ServiceModel);
-            if (missionListModel.Items != null)
+            MissionServiceModel missions = await _missionService.MissionListAsync(ServiceModel);
+            if (missions != null && missions.Items != null)
             {
-                Items.AddRange(missionListModel.Items);
+                Items.AddRange(missions.Items);
 
-                SetListViewHeader(missionListModel.CompleteMissionCount);
+                SetListViewHeader(missions.CompletedMissionCount);
             }
 
-            ServiceModel = missionListModel;
+            ServiceModel = missions;
 
             IsBusy = false;
         }
@@ -140,7 +153,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand TakesTaskGoldCommand
         {
-            get { return _takesTaskGoldCommand ?? (_takesTaskGoldCommand = new CommandAsync<short>(ExecuteTakesTaskGoldCommandAsync)); }
+            get { return _takesTaskGoldCommand ?? (_takesTaskGoldCommand = new CommandAsync<byte>(ExecuteTakesTaskGoldCommandAsync)); }
         }
 
         #endregion Command

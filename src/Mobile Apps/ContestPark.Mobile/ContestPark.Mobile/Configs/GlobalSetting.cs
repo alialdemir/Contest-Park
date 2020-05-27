@@ -145,7 +145,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Gets or sets the Scope
         /// </summary>
-        public const string Scope = "category identity balance chat duel follow signalr post question offline_access notification";
+        public const string Scope = "category identity balance chat duel follow signalr post question offline_access notification mission";
 
         /// <summary>
         /// Gets or sets the SignalREndpoint
