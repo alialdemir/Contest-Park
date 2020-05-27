@@ -856,7 +856,18 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     // Signalr
-
+    {
+      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "contestpark.signalr.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/{catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+    },
     // Mission
     {
       "DownstreamPathTemplate": "/api/{version}/Mission",
