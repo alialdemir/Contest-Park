@@ -20,7 +20,7 @@ namespace ContestPark.OcelotApiGw
         {
             app.UseHttpsRedirection();
 
-            app.UseWebSockets();
+            //   app.UseWebSockets();
 
             app.UseOcelot().Wait();
         }
