@@ -126,6 +126,7 @@
                                 <Image
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding IsCompleteMission}">
                                     <Image.Source>
                                         <FontImageSource
