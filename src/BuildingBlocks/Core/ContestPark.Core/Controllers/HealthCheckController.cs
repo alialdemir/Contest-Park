@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace ContestPark.OcelotApiGw.Controllers
+namespace ContestPark.Core.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
     [Produces("application/json")]
-    public class HealthCheckController : ControllerBase
+    public class HealthCheckController : Microsoft.AspNetCore.Mvc.ControllerBase
     {
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
