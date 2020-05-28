@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: identity-api
@@ -53,7 +53,7 @@ spec:
             - name: ClouldFrontUrl
               value: $(CONTESTPARK_CLOUDFRONT_URL)
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: follow-api
@@ -98,7 +98,7 @@ spec:
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ocelot-apigw
@@ -121,7 +121,7 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: balance-api
@@ -166,7 +166,7 @@ spec:
             - name: AppSpecificSharedSecret
               value: $(CONTESTPARK_APP_SPECIFIC_SHARED_SECRET)
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: category-api
@@ -215,7 +215,7 @@ spec:
             - name: ElasticSearchIndexName
               value: "categorysearch"
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chat-api
@@ -260,7 +260,7 @@ spec:
             - name: AwsLogGroupName
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: duel-api
@@ -316,7 +316,7 @@ spec:
               value: $(CONTESTPARK_CLOUDFRONT_URL)
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: post-api
@@ -362,7 +362,7 @@ spec:
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: admin-api
@@ -410,7 +410,7 @@ spec:
               value: $(CONTESTPARK_SPOTIFY_SECRETID)
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backgroundtasks
@@ -448,7 +448,7 @@ spec:
               value: "http://duel-api"
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: signalr-api
@@ -490,7 +490,7 @@ spec:
               value: $(CONTESTPARK_AWS_LOG_GROUP_NAME)
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-api
@@ -544,7 +544,7 @@ spec:
               value: $(CONTESTPARK_ONE_SIGNAL_API_KEY)
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mission-api
