@@ -44,41 +44,20 @@ phases:
       - docker push $REPOSITORY_URI/signalr-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/mission-api:$IMAGE_TAG
-      - echo Pushing end...
-      - echo image path replace
-      - sed -i 's/$(CONTESTPARK_AZURE_SERVICE_BUS)/'"\""$CONTESTPARK_AZURE_SERVICE_BUS"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_AWS_LOG_GROUP_NAME)/'"\""$CONTESTPARK_AWS_LOG_GROUP_NAME"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_GIFT_MONEY_AMOUNT)/'"\""$CONTESTPARK_GIFT_MONEY_AMOUNT"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_BET_COMISSION)/'"\""$CONTESTPARK_BET_COMISSION"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_SERVICE_BUS_PASSWORD)/'"\""$CONTESTPARK_SERVICE_BUS_PASSWORD"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_AZURE_REDIS_SIGNALR_DB)/'"\""$CONTESTPARK_AZURE_REDIS_SIGNALR_DB"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_ELASTIC_SEARCH_URI)/'"\""$CONTESTPARK_ELASTIC_SEARCH_URI"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_AWS_ACCESS_KEY_Id)/'"\""$CONTESTPARK_AWS_ACCESS_KEY_Id"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_MYSQL_CONNECTIONSTRING)/'"\""$CONTESTPARK_MYSQL_CONNECTIONSTRING"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_CLOUDFRONT_URL)/'"\""$CONTESTPARK_CLOUDFRONT_URL"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_AWS_SECRET_ACCESS_KEY)/'"\""$CONTESTPARK_AWS_SECRET_ACCESS_KEY"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_SERVICE_BUS_USERNAME)/'"\""$CONTESTPARK_SERVICE_BUS_USERNAME"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_SPOTIFY_CLIENTID)/'"\""$CONTESTPARK_SPOTIFY_CLIENTID"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_SPOTIFY_SECRETID)/'"\""$CONTESTPARK_SPOTIFY_SECRETID"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_AWS_SMS_KEY_ID)/'"\""$CONTESTPARK_AWS_SMS_KEY_ID"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_AWS_SMS_SECRET)/'"\""$CONTESTPARK_AWS_SMS_SECRET"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_ONE_SIGNAL_SEND_NOTIFICATION_URL)/'"\""$CONTESTPARK_ONE_SIGNAL_SEND_NOTIFICATION_URL"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_ONE_SIGNAL_APP_ID)/'"\""$CONTESTPARK_ONE_SIGNAL_APP_ID"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_ONE_SIGNAL_API_KEY)/'"\""$CONTESTPARK_ONE_SIGNAL_API_KEY"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(CONTESTPARK_APP_SPECIFIC_SHARED_SECRET)/'"\""$CONTESTPARK_APP_SPECIFIC_SHARED_SECRET"\""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(IMAGE_TAG)/'""$IMAGE_TAG""'/g' kubectl/deployment.yaml
-      - sed -i 's/$(REPOSITORY_URI)/'""$REPOSITORY_URI""'/g' kubectl/deployment.yaml
-      - echo update kubectl config
-      - aws eks update-kubeconfig --name $CLUSTER_NAME
-      - echo Kubernetes apply started
-      - kubectl config current-context #make sure it's aws
-      - kubectl apply -f kubectl/deployment.yaml
-      - kubectl apply -f kubectl/deployment-services.yaml
       - echo Finish
-   
+      - printf '[{"name":"balance-api","imageUri":"%s"}]' $REPOSITORY_URI/balance-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"follow-api","imageUri":"%s"}]' $REPOSITORY_URI/follow-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"category-api","imageUri":"%s"}]' $REPOSITORY_URI/category-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"chat-api","imageUri":"%s"}]' $REPOSITORY_URI/chat-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"duel-api","imageUri":"%s"}]' $REPOSITORY_URI/duel-api:$IMAGE_TAG > imagedefinitions.json
       - printf '[{"name":"identity-api","imageUri":"%s"}]' $REPOSITORY_URI/identity-api:$IMAGE_TAG > imagedefinitions.json
-
-
+      - printf '[{"name":"ocelot-api","imageUri":"%s"}]' $REPOSITORY_URI/ocelot-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"post-api","imageUri":"%s"}]' $REPOSITORY_URI/post-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"admin-api","imageUri":"%s"}]' $REPOSITORY_URI/admin-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"backgroundtasks-api","imageUri":"%s"}]' $REPOSITORY_URI/backgroundtasks-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"signalr-api","imageUri":"%s"}]' $REPOSITORY_URI/signalr-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"notification-api","imageUri":"%s"}]' $REPOSITORY_URI/notification-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"mission-api","imageUri":"%s"}]' $REPOSITORY_URI/mission-api:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files:
         - imagedefinitions.json

@@ -6,7 +6,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -18,7 +18,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -30,7 +30,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -42,7 +42,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -54,7 +54,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -66,7 +66,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -78,7 +78,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -90,7 +90,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -102,7 +102,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -114,7 +114,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -126,7 +126,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -138,7 +138,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -150,7 +150,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -162,7 +162,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -174,7 +174,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -186,7 +186,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "identity-api-426110963.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -199,7 +199,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -218,7 +218,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -230,7 +230,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -242,7 +242,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -254,7 +254,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -266,7 +266,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -278,7 +278,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -291,7 +291,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -303,7 +303,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "category-api",
+          "Host": "category-api-760114186.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -316,7 +316,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-api",
+          "Host": "balance-api-468951319.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -328,7 +328,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-api",
+          "Host": "balance-api-468951319.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -340,7 +340,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-api",
+          "Host": "balance-api-468951319.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -352,7 +352,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-api",
+          "Host": "balance-api-468951319.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -364,7 +364,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-api",
+          "Host": "balance-api-468951319.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -376,7 +376,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "balance-api",
+          "Host": "balance-api-468951319.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -389,7 +389,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "follow-api",
+          "Host": "follow-api-371019251.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -401,7 +401,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "follow-api",
+          "Host": "follow-api-371019251.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -413,7 +413,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "follow-api",
+          "Host": "follow-api-371019251.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -426,7 +426,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -438,7 +438,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -450,7 +450,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -462,7 +462,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -474,7 +474,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -486,7 +486,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -498,7 +498,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -510,7 +510,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -522,7 +522,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -534,7 +534,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "chat-api",
+          "Host": "chat-api-1632081787.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -546,7 +546,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -558,7 +558,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -570,7 +570,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -582,7 +582,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -594,7 +594,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -606,7 +606,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -618,7 +618,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -630,7 +630,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -642,7 +642,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "post-api",
+          "Host": "post-api-1696053648.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -654,7 +654,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -666,7 +666,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -678,7 +678,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -690,7 +690,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -702,7 +702,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -714,7 +714,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -726,7 +726,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -738,7 +738,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -750,7 +750,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -762,7 +762,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -774,7 +774,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -786,7 +786,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -798,7 +798,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "duel-api",
+          "Host": "duel-api-618655310.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -811,7 +811,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "notification-api",
+          "Host": "notification-api-815360986.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -824,7 +824,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "notification-api",
+          "Host": "notification-api-815360986.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -836,7 +836,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "notification-api",
+          "Host": "notification-api-815360986.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -848,7 +848,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "notification-api",
+          "Host": "notification-api-815360986.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -860,7 +860,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "notification-api",
+          "Host": "notification-api-815360986.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -873,7 +873,7 @@
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
-          "Host": "signalr-api",
+          "Host": "signalr-api-659604261.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -886,7 +886,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "mission-api",
+          "Host": "mission-api-1217376471.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
@@ -898,7 +898,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "mission-api",
+          "Host": "mission-api-1217376471.eu-central-1.elb.amazonaws.com",
           "Port": 80
         }
       ],
