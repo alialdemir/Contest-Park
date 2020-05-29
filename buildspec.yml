@@ -45,7 +45,7 @@ phases:
       - docker push $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/mission-api:$IMAGE_TAG
       - echo Docker push finish
-      - printf '[ >> imagedefinitions.json
+      - printf '[ > imagedefinitions.json
       - printf {"name":"balance-api","imageUri":"%s"}, $REPOSITORY_URI/balance-api:$IMAGE_TAG >> imagedefinitions.json
       - printf {"name":"follow-api","imageUri":"%s"}, $REPOSITORY_URI/follow-api:$IMAGE_TAG >> imagedefinitions.json
       - printf {"name":"category-api","imageUri":"%s"}, $REPOSITORY_URI/category-api:$IMAGE_TAG >> imagedefinitions.json
