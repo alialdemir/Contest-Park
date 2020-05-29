@@ -60,7 +60,7 @@ phases:
       - printf {"name":"notification-api","imageUri":"%s"}, $REPOSITORY_URI/notification-api:$IMAGE_TAG >> imagedefinitions.json
       - printf {"name":"mission-api","imageUri":"%s"}, $REPOSITORY_URI/mission-api:$IMAGE_TAG >> imagedefinitions.json
       - printf ]' >> imagedefinitions.json
-      - cat > imagedefinitions.json
+      - cat imagedefinitions.json
       - echo Finish
 artifacts:
     files:
