@@ -57,7 +57,6 @@ phases:
       - printf '[{"name":"backgroundtasks-api","imageUri":"%s"}]' $REPOSITORY_URI/backgroundtasks-api:$IMAGE_TAG > imagedefinitions.json
       - printf '[{"name":"signalr-api","imageUri":"%s"}]' $REPOSITORY_URI/signalr-api:$IMAGE_TAG > imagedefinitions.json
       - printf '[{"name":"notification-api","imageUri":"%s"}]' $REPOSITORY_URI/notification-api:$IMAGE_TAG > imagedefinitions.json
-      - printf '[{"name":"mission-api","imageUri":"%s"}]' $REPOSITORY_URI/mission-api:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
     files:
