@@ -21,8 +21,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkIdentity;pwd=root;}
       - identityUrl=http://contestpark.identity.api
-      - ChatUrl=http://contestpark.chat.api
-      - FollowUrl=http://contestpark.follow.api
+      - chatUrl=http://contestpark.chat.api
+      - followUrl=http://contestpark.follow.api
       - Audience=identity
       - SendGridApiKey=Test
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS:-rabbitmq}
@@ -170,8 +170,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - identityUrl=http://contestpark.identity.api
-      - FollowUrl=http://contestpark.follow.api
-      - SubCategoryUrl=http://contestpark.category.api
+      - followUrl=http://contestpark.follow.api
+      - subCategoryUrl=http://contestpark.category.api
       - balanceUrl=http://contestpark.balance.api
       - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING:-server=mysql-data;uid=root;database=ContestParkDuel;pwd=root;}
@@ -222,7 +222,7 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
-      - DuelUrl=http://contestpark.duel.api
+      - duelUrl=http://contestpark.duel.api
     ports:
       - "5111:80"
     volumes:

@@ -5,9 +5,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
-      - identityUrl=http://identity-api
-      - ChatUrl=http://chat-api
-      - FollowUrl=http://follow-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
+      - chatUrl=${CONTESTPARK_CHAT_API}
+      - followUrl=${CONTESTPARK_FOLLOW_API}
       - Audience=identity
       - SendGridApiKey=Test
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
@@ -28,8 +28,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
-      - identityUrl=http://identity-api
-      - balanceUrl=http://balance-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
+      - balanceUrl=${CONTESTPARK_BALANCE_API}
       - Audience=category
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
@@ -49,7 +49,7 @@ services:
   contestpark.follow.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=follow
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
@@ -70,7 +70,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - Audience=balance
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
       - EventBusUserName=${CONTESTPARK_SERVICE_BUS_USERNAME}
@@ -98,7 +98,7 @@ services:
   contestpark.chat.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=chat
@@ -117,7 +117,7 @@ services:
   contestpark.post.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=post
@@ -137,10 +137,10 @@ services:
   contestpark.duel.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
-      - FollowUrl=http://follow-api
-      - SubCategoryUrl=http://category-api
-      - balanceUrl=http://balance-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
+      - followUrl=${CONTESTPARK_FOLLOW_API}
+      - subCategoryUrl=${CONTESTPARK_CATEGORY_API}
+      - balanceUrl=${CONTESTPARK_BALANCE_API}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=duel
@@ -157,11 +157,11 @@ services:
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-    
+
   contestpark.admin.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
       - Audience=admin
@@ -188,7 +188,7 @@ services:
       - AwsAccessKeyId=${CONTESTPARK_AWS_ACCESS_KEY_Id}
       - AwsSecretAccessKey=${CONTESTPARK_AWS_SECRET_ACCESS_KEY}
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
-      - DuelUrl=http://duel-api
+      - duelUrl=${CONTESTPARK_DUEL_API}
     ports:
       - "80"
     volumes:
@@ -198,7 +198,7 @@ services:
   contestpark.notification.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
       - Redis=${CONTESTPARK_AZURE_REDIS_SIGNALR_DB}
       - Audience=notification
@@ -223,7 +223,7 @@ services:
   contestpark.mission.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - identityUrl=http://identity-api
+      - identityUrl=${CONTESTPARK_IDENTITY_API}
       - ConnectionString=${CONTESTPARK_MYSQL_CONNECTIONSTRING}
       - Audience=mission
       - EventBusConnection=${CONTESTPARK_AZURE_SERVICE_BUS}
