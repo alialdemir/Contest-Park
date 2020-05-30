@@ -14,38 +14,47 @@ phases:
       - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
       - echo docker is build finish...
       - echo Started container tag...
+      - docker tag contestparkadmin.api:latest $REPOSITORY_URI/admin-api:$IMAGE_TAG
       - docker tag contestparkbalance.api:latest $REPOSITORY_URI/balance-api:$IMAGE_TAG
-      - docker tag contestparkfollow.api:latest $REPOSITORY_URI/follow-api:$IMAGE_TAG
       - docker tag contestparkcategory.api:latest $REPOSITORY_URI/category-api:$IMAGE_TAG
       - docker tag contestparkchat.api:latest $REPOSITORY_URI/chat-api:$IMAGE_TAG
       - docker tag contestparkduel.api:latest $REPOSITORY_URI/duel-api:$IMAGE_TAG
+      - docker tag contestparkfollow.api:latest $REPOSITORY_URI/follow-api:$IMAGE_TAG
       - docker tag contestparkidentity.api:latest $REPOSITORY_URI/identity-api:$IMAGE_TAG
-      - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
-      - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
-      - docker tag contestparkadmin.api:latest $REPOSITORY_URI/admin-api:$IMAGE_TAG
-      - docker tag contestparkbackgroundtasks:latest $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
-      - docker tag contestparksignalr.api:latest $REPOSITORY_URI/signalr-api:$IMAGE_TAG
-      - docker tag contestparknotification.api:latest $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker tag contestparkmission.api:latest $REPOSITORY_URI/mission-api:$IMAGE_TAG
+      - docker tag contestparknotification.api:latest $REPOSITORY_URI/notification-api:$IMAGE_TAG
+      - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
+      - docker tag contestparksignalr.api:latest $REPOSITORY_URI/signalr-api:$IMAGE_TAG
+      - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
   build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI/admin-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/balance-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/follow-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/category-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/chat-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/duel-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/follow-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/identity-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/admin-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/backgroundtasks:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/signalr-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/mission-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/notification-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/signalr-api:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - echo Docker push finish
-      - printf '[{"name":"balance-api","imageUri":"%s"}]' $REPOSITORY_URI/balance-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"admin-api","imageUri":"%s"}]' $REPOSITORY_URI/admin-api:$IMAGE_TAG > admin-api-imagedefinitions.json
+      - printf '[{"name":"balance-api","imageUri":"%s"}]' $REPOSITORY_URI/balance-api:$IMAGE_TAG > balance-api-imagedefinitions.json
+      - printf '[{"name":"category-api","imageUri":"%s"}]' $REPOSITORY_URI/category-api:$IMAGE_TAG > category-api-imagedefinitions.json
+      - printf '[{"name":"chat-api","imageUri":"%s"}]' $REPOSITORY_URI/chat-api:$IMAGE_TAG > chat-api-imagedefinitions.json
+      - printf '[{"name":"duel-api","imageUri":"%s"}]' $REPOSITORY_URI/duel-api:$IMAGE_TAG > duel-api-imagedefinitions.json
+      - printf '[{"name":"follow-api","imageUri":"%s"}]' $REPOSITORY_URI/follow-api:$IMAGE_TAG > follow-api-imagedefinitions.json
+      - printf '[{"name":"identity-api","imageUri":"%s"}]' $REPOSITORY_URI/identity-api:$IMAGE_TAG > identity-api-imagedefinitions.json
+      - printf '[{"name":"mission-api","imageUri":"%s"}]' $REPOSITORY_URI/mission-api:$IMAGE_TAG > mission-api-imagedefinitions.json
+      - printf '[{"name":"notification-api","imageUri":"%s"}]' $REPOSITORY_URI/notification-api:$IMAGE_TAG > notification-api-imagedefinitions.json
+      - printf '[{"name":"post-api","imageUri":"%s"}]' $REPOSITORY_URI/post-api:$IMAGE_TAG > post-api-imagedefinitions.json
+      - printf '[{"name":"signalr-api","imageUri":"%s"}]' $REPOSITORY_URI/signalr-api:$IMAGE_TAG > signalr-api-imagedefinitions.json
+      - printf '[{"name":"ocelot-apigw","imageUri":"%s"}]' $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG > ocelot-apigw-imagedefinitions.json
       - echo Finish
 artifacts:
     files:
