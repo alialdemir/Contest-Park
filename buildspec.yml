@@ -45,7 +45,7 @@ phases:
       - docker push $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/mission-api:$IMAGE_TAG
       - echo Docker push finish
-      - printf '[{"name":"balance-api","imageUri":"%s"}, {"name":"follow-api","imageUri":"%s"}, {"name":"category-api","imageUri":"%s"}, {"name":"chat-api","imageUri":"%s"}, {"name":"duel-api","imageUri":"%s"}, {"name":"identity-api","imageUri":"%s"}, {"name":"ocelot-api","imageUri":"%s"}, {"name":"post-api","imageUri":"%s"}, {"name":"admin-api","imageUri":"%s"}, {"name":"signalr-api","imageUri":"%s"}, {"name":"notification-api","imageUri":"%s"}, {"name":"mission-api","imageUri":"%s"}]' $REPOSITORY_URI/balance-api:$IMAGE_TAG $REPOSITORY_URI/follow-api:$IMAGE_TAG $REPOSITORY_URI/category-api:$IMAGE_TAG $REPOSITORY_URI/chat-api:$IMAGE_TAG $REPOSITORY_URI/duel-api:$IMAGE_TAG $REPOSITORY_URI/identity-api:$IMAGE_TAG $REPOSITORY_URI/ocelot-api:$IMAGE_TAG $REPOSITORY_URI/post-api:$IMAGE_TAG $REPOSITORY_URI/admin-api:$IMAGE_TAG $REPOSITORY_URI/backgroundtasks-api:$IMAGE_TAG $REPOSITORY_URI/signalr-api:$IMAGE_TAG $REPOSITORY_URI/notification-api:$IMAGE_TAG $REPOSITORY_URI/mission-api:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"balance-api","imageUri":"%s"}]' $REPOSITORY_URI/balance-api:$IMAGE_TAG > imagedefinitions.json
       - echo Finish
 artifacts:
     files:
