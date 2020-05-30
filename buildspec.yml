@@ -58,4 +58,15 @@ phases:
       - echo Finish
 artifacts:
     files:
-        - imagedefinitions.json
+        - admin-api-imagedefinitions.json
+        - balance-api-imagedefinitions.json
+        - category-api-imagedefinitions.json
+        - chat-api-imagedefinitions.json
+        - duel-api-imagedefinitions.json
+        - follow-api-imagedefinitions.json
+        - identity-api-imagedefinitions.json
+        - mission-api-imagedefinitions.json
+        - notification-api-imagedefinitions.json
+        - post-api-imagedefinitions.json
+        - signalr-api-imagedefinitions.json
+        - ocelot-apigw-imagedefinitions.json
