@@ -16,6 +16,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -148,7 +149,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     MemberNames = JsonConvert.DeserializeObject<SignUpValidationModel>(serialized, _serializerSettings).MemberNames.ToArray()
                 };
             }
-            else if (!response.IsSuccessStatusCode)
+            else if (!response.IsSuccessStatusCode && response.StatusCode != HttpStatusCode.BadGateway && response.StatusCode != HttpStatusCode.ServiceUnavailable)
             {
                 result.Error = JsonConvert.DeserializeObject<ValidationResultModel>(serialized, _serializerSettings);
             }

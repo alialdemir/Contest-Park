@@ -4,7 +4,6 @@ using ContestPark.EventBus.Abstractions;
 using ContestPark.Signalr.API.IntegrationEvents.EventHandling;
 using ContestPark.Signalr.API.IntegrationEvents.Events;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -95,7 +94,7 @@ namespace ContestPark.Signalr.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ContestParkHub>("/contestparkhub", options =>
-                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
+                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets);
             });
 
             ConfigureEventBus(app);

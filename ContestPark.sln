@@ -117,7 +117,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.BackgroundTasks
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Notification.API", "src\Services\Notification\ContestPark.Notification.API\ContestPark.Notification.API.csproj", "{019463E5-262E-47AD-8AE6-5678561FB167}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestPark.Mission.API", "src\Services\Mission\ContestPark.Mission.API\ContestPark.Mission.API.csproj", "{BA44A229-D891-4D9C-95D9-966D8EACA0E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContestPark.Mission.API", "src\Services\Mission\ContestPark.Mission.API\ContestPark.Mission.API.csproj", "{BA44A229-D891-4D9C-95D9-966D8EACA0E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
