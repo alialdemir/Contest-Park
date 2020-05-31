@@ -4,13 +4,12 @@ using System.Net;
 namespace ContestPark.OcelotApiGw.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("hc")]
     [Produces("application/json")]
     public class HealthCheckController : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult Get()
         {
             return Ok("ok");
