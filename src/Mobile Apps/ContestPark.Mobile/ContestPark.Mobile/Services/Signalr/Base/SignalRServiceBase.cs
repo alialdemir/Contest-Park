@@ -73,7 +73,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         private Task HubConnection_Closed(Exception arg)
         {
-            _settingsService.SignalRConnectionId = string.Empty;
+            //    _settingsService.SignalRConnectionId = string.Empty;
 
             return Task.CompletedTask;
         }

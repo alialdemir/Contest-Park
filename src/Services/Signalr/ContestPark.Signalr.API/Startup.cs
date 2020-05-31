@@ -25,6 +25,8 @@ namespace ContestPark.Signalr.API
         {
             services.AddAuth(Configuration);
 
+            services.AddMvc(x => x.EnableEndpointRouting = false);
+
             string signalrStoreConnectionString = Configuration.GetValue<string>("Redis");
             if (!string.IsNullOrEmpty(signalrStoreConnectionString))
             {
@@ -94,10 +96,12 @@ namespace ContestPark.Signalr.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ContestParkHub>("/contestparkhub", options =>
-                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets);
+                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
             });
 
             ConfigureEventBus(app);
+
+            app.UseMvc();
         }
 
         protected virtual void ConfigureAuth(IApplicationBuilder app)
