@@ -2241,7 +2241,7 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must earn a minimum of 100 turkish lira to withdraw your winnings..
+        ///   Looks up a localized string similar to You must earn a minimum of 20 turkish lira to withdraw your winnings..
         /// </summary>
         public static string YouMustearnAminimumOfToWithdrawYourwinnings {
             get {

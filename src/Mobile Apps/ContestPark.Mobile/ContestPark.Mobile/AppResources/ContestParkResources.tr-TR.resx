@@ -853,7 +853,7 @@
     <value>En az üç kategori seçmelisin.</value>
   </data>
   <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
-    <value>Kazancını çekebilmek için minimum 100 TL kazanmış olman gerekmektedir.</value>
+    <value>Kazancını çekebilmek için minimum 20 TL kazanmış olman gerekmektedir.</value>
   </data>
   <data name="YourBalanceHasBeenLoaded" xml:space="preserve">
     <value>Bakiyeniz yüklenmiştir.</value>

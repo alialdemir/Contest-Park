@@ -620,7 +620,7 @@
     <value>Transfer to Gain Account</value>
   </data>
   <data name="YouMustearnAminimumOfToWithdrawYourwinnings" xml:space="preserve">
-    <value>You must earn a minimum of 100 turkish lira to withdraw your winnings.</value>
+    <value>You must earn a minimum of 20 turkish lira to withdraw your winnings.</value>
   </data>
   <data name="RightOn" xml:space="preserve">
     <value>Right on</value>

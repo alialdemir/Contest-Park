@@ -61,7 +61,7 @@
                         FontFamily="{StaticResource MontserratRegular}"
                         FontSize="16"
                         HorizontalTextAlignment="Center"
-                        Text="Kazancını çekebilmen için minimum 100 TL kazanmış olman gerekmektedir."
+                        Text="Kazancını çekebilmen için minimum 20 TL kazanmış olman gerekmektedir."
                         TextColor="{StaticResource Black}" />
 
                     <custom:LinearGradientButton

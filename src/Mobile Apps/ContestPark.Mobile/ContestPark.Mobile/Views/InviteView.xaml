@@ -65,7 +65,7 @@
 
                                 <Span FontSize="16" Text="&#x0a;&#x0a;Bu parayı kazanmak için arkadaşların  üye olurken referans kodu olarak senin kullanıcı adını girmesi ve en az 10 kere düello yapması yeterli." />
 
-                                <Span FontSize="16" Text="&#x0a;&#x0a;Unutma! bakiyen 100 TL üzerine geçince iban numarası göndererek paranı çekebilirsin." />
+                                <Span FontSize="16" Text="&#x0a;&#x0a;Unutma! bakiyen 20 TL üzerine geçince iban numarası göndererek paranı çekebilirsin." />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
