@@ -40,14 +40,16 @@ namespace ContestPark.Mobile.ViewModels
         #region Private Variables
 
         private readonly OnSleepEvent _onSleepEvent;
+        private readonly SignalrConnectedEvent _signalrConnectedEvent;
         private SubscriptionToken _subscriptionToken;
         private readonly IAudioService _audioService;
-
         private readonly IDuelService _duelService;
 
         private readonly IDuelSignalRService _duelSignalRService;
 
         private readonly ISettingsService _settingsService;
+
+        private SubscriptionToken _signalrConnectedSubscriptionToken;
 
         #endregion Private Variables
 
@@ -63,7 +65,6 @@ namespace ContestPark.Mobile.ViewModels
                                           ISettingsService settingsService) : base(navigationService, dialogService, popupNavigation)
         {
             _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
-
             _duelService = duelService ?? throw new ArgumentNullException(nameof(duelService));
 
             _duelSignalRService = duelSignalRService ?? throw new ArgumentNullException(nameof(duelSignalRService));
@@ -71,6 +72,7 @@ namespace ContestPark.Mobile.ViewModels
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
 
             _onSleepEvent = eventAggregator.GetEvent<OnSleepEvent>();
+            _signalrConnectedEvent = eventAggregator.GetEvent<SignalrConnectedEvent>();
         }
 
         #endregion Constructor
@@ -169,6 +171,8 @@ namespace ContestPark.Mobile.ViewModels
             if (!_duelSignalRService.IsConnected)
             {
                 NoConnection();
+
+                RandomUserProfilePicturesAsync();
             }
             else if (StandbyModes.Invited == SelectedBet.StandbyMode)
             {
@@ -196,22 +200,20 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// İnternet yoksa dialog mesajı çıkarır
+        /// Signalr bağlantısı kurulmamışsa bağlandığında rakip arama işlemini tekrar başlatmak için gerekli eventi dinler
         /// </summary>
         private void NoConnection()
         {
-            Device.BeginInvokeOnMainThread(() =>
+            if (_signalrConnectedSubscriptionToken == null)
             {
-                AudioStop();
+                _signalrConnectedSubscriptionToken = _signalrConnectedEvent
+                                                                .Subscribe(() =>
+                                                                {
+                                                                    RandomPicturStatus = false;
 
-                DisplayAlertAsync(
-                 ContestParkResources.Error,
-                 ContestParkResources.ConnectionToTheServerForTheDuelWasNotEstablished,
-                 ContestParkResources.Okay);
-
-                // Burada daha signlar falan bağlanmamış oluyor o yüzden direk base sınıfdaki goback çağrıldı
-                base.GoBackAsync(useModalNavigation: true);
-            });
+                                                                    DuelStartingCommand.Execute(null);
+                                                                });
+            }
         }
 
         /// <summary>
@@ -327,6 +329,9 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
+            if (_signalrConnectedSubscriptionToken != null)
+                _signalrConnectedEvent.Unsubscribe(_signalrConnectedSubscriptionToken);
+
             await RemoveFirstPopupAsync<DuelStartingPopupView>();
 
             if (DuelStarting.DuelId == 0 && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId) && SelectedBet.StandbyMode == StandbyModes.On)
@@ -377,8 +382,6 @@ namespace ContestPark.Mobile.ViewModels
             Analytics.TrackEvent($"{duelCreated.DuelId} düello founder id {duelCreated.FounderUserId} opponent id {duelCreated.OpponentUserId} arasında başlıyor");
 
             _settingsService.AddPendingDuelId(duelCreated.DuelId);
-
-            RandomPicturStatus = false;
 
             RandomPicturStatus = false;
 

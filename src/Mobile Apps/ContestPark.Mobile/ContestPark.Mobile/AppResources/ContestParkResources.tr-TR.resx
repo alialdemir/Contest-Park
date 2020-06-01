@@ -213,9 +213,6 @@
   <data name="ConfirmationCode" xml:space="preserve">
     <value>Onay Kodu</value>
   </data>
-  <data name="ConnectionToTheServerForTheDuelWasNotEstablished" xml:space="preserve">
-    <value>Düello için sunucu ile bağlantı kurulamadı.</value>
-  </data>
   <data name="ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp" xml:space="preserve">
     <value>ContestPark, Bilgi Yarışması çok eğlenceli, sen de oynamalısın. Lütfen kayıt olurken kullanıcı adımı "{0}" referans kodu olarak yaz. Hem siz hemde ben para ödülü kazanmış olurum. http://indir.contestpark.com #contestpark</value>
     <comment>ContestPark, Knowledge Contest is fun, you should play too. Please write my user "witcher" to the reference when sign up.</comment>

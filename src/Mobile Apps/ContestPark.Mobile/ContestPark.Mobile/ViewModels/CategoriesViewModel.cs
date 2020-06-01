@@ -72,7 +72,6 @@ namespace ContestPark.Mobile.ViewModels
                                    IAdMobService adMobService,
                                    IBalanceService balanceService,
                                    IAnalyticsService analyticsService,
-                                   // IPushManager pushManager,
                                    IInviteDuelService inviteDuelService,
                                    IIdentityService identityService,
                                    ISettingsService settingsService,

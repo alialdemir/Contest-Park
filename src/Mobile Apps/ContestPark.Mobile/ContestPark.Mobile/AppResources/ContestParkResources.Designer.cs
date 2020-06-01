@@ -349,15 +349,6 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to connect with server for duel..
-        /// </summary>
-        public static string ConnectionToTheServerForTheDuelWasNotEstablished {
-            get {
-                return ResourceManager.GetString("ConnectionToTheServerForTheDuelWasNotEstablished", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ContestPark, Knowledge Contest is fun, you should play too. Please write my user &quot;{0}&quot; to the reference when sign up. http://indir.contestpark.com #contestpark.
         /// </summary>
         public static string ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp {

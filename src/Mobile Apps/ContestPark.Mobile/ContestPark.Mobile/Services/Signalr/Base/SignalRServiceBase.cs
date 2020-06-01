@@ -1,8 +1,11 @@
 ﻿using ContestPark.Mobile.Configs;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Services.Settings;
 using Microsoft.AspNetCore.SignalR.Client;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -15,6 +18,8 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         private HubConnection HubConnection { get; set; }
 
         private readonly ISettingsService _settingsService;
+        private readonly IEventAggregator _eventAggregator;
+        private int ConnectionRetryCount;
 
         private Dictionary<string, IDisposable> DisposableOns { get; } = new Dictionary<string, IDisposable>();
 
@@ -34,9 +39,11 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         #region Constructor
 
-        public SignalRServiceBase(ISettingsService settingsService)
+        public SignalRServiceBase(ISettingsService settingsService,
+                                  IEventAggregator eventAggregator)
         {
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+            _eventAggregator = eventAggregator;
         }
 
         #endregion Constructor
@@ -66,15 +73,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             RemoveConnectionId();
 
             await ConnectAsync();
-
-            //         HubConnection.Closed += HubConnection_Closed;
-        }
-
-        private Task HubConnection_Closed(Exception arg)
-        {
-            //    _settingsService.SignalRConnectionId = string.Empty;
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -82,34 +80,34 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// </summary>
         public async Task ConnectAsync()
         {
-            if (HubConnection.State == HubConnectionState.Disconnected)
-            {
-                await HubConnection
-                       .StartAsync();
-            }
-            //                .ContinueWith(async (task) =>
-            //                {
-            //                    if (!task.IsFaulted && ConnectionRetryCount != 0)
-            //                    {
-            //                        ConnectionRetryCount = 0;
-            //                    }
-            //#if DEBUG
-            //                    else if (HubConnection.State == HubConnectionState.Disconnected)
-            //                    {
-            //                        ConnectionRetryCount++;
-            //                        Debug.WriteLine($"Signalr bağlanmaya çalışılıyor. Retry count: {ConnectionRetryCount}");
-            //                        await Task.Delay(500);
-            //                        await ConnectAsync();
-            //                    }
-            //#else
-            //                     else if (task.IsFaulted && ConnectionRetryCount < 10 && HubConnection.State == HubConnectionState.Disconnected)
-            //                    {
-            //                        ConnectionRetryCount++;
-            //                        await Task.Delay(8000);
-            //                        await ConnectAsync();
-            //                    }
-            //#endif
-            //                });
+            if (HubConnection.State != HubConnectionState.Disconnected)
+                return;
+
+            await HubConnection
+                   .StartAsync()
+                    .ContinueWith(async (task) =>
+                        {
+                            if (!task.IsFaulted && ConnectionRetryCount != 0)
+                            {
+                                ConnectionRetryCount = 0;
+                            }
+#if DEBUG
+                            else if (HubConnection.State == HubConnectionState.Disconnected)
+                            {
+                                ConnectionRetryCount++;
+                                Debug.WriteLine($"Signalr bağlanmaya çalışılıyor. Retry count: {ConnectionRetryCount}");
+                                await Task.Delay(500);
+                                await ConnectAsync();
+                            }
+#else
+                                 else if (task.IsFaulted && ConnectionRetryCount < 10 && HubConnection.State == HubConnectionState.Disconnected)
+                                {
+                                    ConnectionRetryCount++;
+                                    await Task.Delay(8000);
+                                    await ConnectAsync();
+                                }
+#endif
+                        });
         }
 
         /// <summary>
@@ -170,6 +168,10 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             HubConnection?.On("GetConnectionId", (string connectionId) =>
                 {
                     _settingsService.SignalRConnectionId = connectionId;
+
+                    _eventAggregator
+                            .GetEvent<SignalrConnectedEvent>()
+                            .Publish();
                 });
         }
 

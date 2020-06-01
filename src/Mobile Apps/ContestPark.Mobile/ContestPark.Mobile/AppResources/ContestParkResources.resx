@@ -189,9 +189,6 @@
   <data name="AwaitingOpponent" xml:space="preserve">
     <value>Awaiting opponent</value>
   </data>
-  <data name="ConnectionToTheServerForTheDuelWasNotEstablished" xml:space="preserve">
-    <value>Failed to connect with server for duel.</value>
-  </data>
   <data name="AreYouSureYouWantToLeave" xml:space="preserve">
     <value>Are you sure you want to leave?</value>
   </data>
