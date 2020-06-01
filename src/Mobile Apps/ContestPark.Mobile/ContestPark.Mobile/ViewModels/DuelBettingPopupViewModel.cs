@@ -36,6 +36,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IBalanceService _cpService;
         private readonly IAdMobService _adMobService;
         private readonly IAnalyticsService _analyticsService;
+        private const int minimumBalanceCoefficient = 5;
 
         #endregion Private variables
 
@@ -369,7 +370,7 @@ namespace ContestPark.Mobile.ViewModels
 
         private BetModel AppropriateBet(decimal bet)
         {
-            decimal minBet = (decimal)(bet * 10);
+            decimal minBet = (decimal)(bet * minimumBalanceCoefficient);
 
             int lastCurrentIndex = Items.LastOrDefault().CurrentIndex;
 
@@ -381,7 +382,7 @@ namespace ContestPark.Mobile.ViewModels
                 }
 
                 return Items
-                        .Where(x => Balance.Money <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
+                        .Where(x => Balance.Money <= (x.EntryFee * minimumBalanceCoefficient) || x.CurrentIndex == lastCurrentIndex)
                         .FirstOrDefault();
             }
             else if (BalanceType == BalanceTypes.Gold)
@@ -392,7 +393,7 @@ namespace ContestPark.Mobile.ViewModels
                 }
 
                 return Items
-                        .Where(x => Balance.Gold <= (x.EntryFee * 10) || x.CurrentIndex == lastCurrentIndex)
+                        .Where(x => Balance.Gold <= (x.EntryFee * minimumBalanceCoefficient) || x.CurrentIndex == lastCurrentIndex)
                         .FirstOrDefault();
             }
 
