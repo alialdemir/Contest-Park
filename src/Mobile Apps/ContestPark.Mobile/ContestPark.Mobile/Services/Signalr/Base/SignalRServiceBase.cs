@@ -12,9 +12,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
     {
         #region Properties
 
-        private int ConnectionRetryCount { get; set; }
-
-        private HubConnection HubConnection;
+        private HubConnection HubConnection { get; set; }
 
         private readonly ISettingsService _settingsService;
 
@@ -24,11 +22,11 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         {
             get
             {
-                bool isConnect = HubConnection != null && HubConnection.State == HubConnectionState.Connected && !string.IsNullOrEmpty(_settingsService.SignalRConnectionId);
-                if (!isConnect)
+                bool isConnect = HubConnection == null || HubConnection.State == HubConnectionState.Disconnected;
+                if (isConnect)
                     Init();
 
-                return isConnect;
+                return !isConnect;
             }
         }
 
@@ -57,6 +55,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
                 .WithUrl(GlobalSetting.Instance.SignalREndpoint, (options) =>
             {
                 options.AccessTokenProvider = () => Task.Run(() => _settingsService.AuthAccessToken);
+                options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
             }).Build();
 
             HubConnection.ServerTimeout = TimeSpan.FromMinutes(60);// Signalr timeout süresi arıtrıldı
@@ -68,7 +67,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
             await ConnectAsync();
 
-            HubConnection.Closed += HubConnection_Closed;
+            //         HubConnection.Closed += HubConnection_Closed;
         }
 
         private Task HubConnection_Closed(Exception arg)

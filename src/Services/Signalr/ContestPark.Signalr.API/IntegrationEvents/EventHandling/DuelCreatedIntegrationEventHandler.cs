@@ -37,22 +37,48 @@ namespace ContestPark.Signalr.API.IntegrationEvents.EventHandling
         {
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}-{Program.AppName}"))
             {
-                _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, Program.AppName, @event);
+                _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})",
+                                       @event.Id,
+                                       Program.AppName,
+                                       @event);
 
                 string duelGroupName = GetDuelGroupName(@event.DuelId);
 
                 if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
                 {
+                    // Eğer bot ile oynuyorsa group id kullanıcı id olarak ayarlıyoruz.
+
                     string realUserId = @event.FounderUserId.EndsWith("-bot")
                         ? @event.OpponentUserId
                         : @event.FounderUserId;
 
                     duelGroupName = realUserId;
                 }
+                else if (!@event.FounderUserId.EndsWith("-bot") || !@event.OpponentUserId.EndsWith("-bot"))
+                {
+                    // Eğer bot değilse tek seferde gönderebilmek için İki kullanıcıyı duello id ile bir gruba aldık
+                    if (!@event.FounderUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.FounderConnectionId))
+                    {
+                        await _hubContext.Groups.AddToGroupAsync(@event.FounderConnectionId, duelGroupName);
+                    }
+
+                    // Eğer bot değilse tek seferde gönderebilmek için İki kullanıcıyı duello id ile bir gruba aldık
+                    if (!@event.OpponentUserId.EndsWith("-bot") && !string.IsNullOrEmpty(@event.OpponentConnectionId))
+                    {
+                        await _hubContext.Groups.AddToGroupAsync(@event.OpponentConnectionId, duelGroupName);
+                    }
+                }
 
                 await _hubContext.Clients
                                  .Group(duelGroupName)
                                  .SendAsync("DuelCreated", @event);
+
+                _logger.LogInformation("Düello oluşturuldu: {IntegrationEventId} at {AppName} {DuelId} {FounderUserId} {OpponentUserId}",
+                                       @event.Id,
+                                       Program.AppName,
+                                       @event.DuelId,
+                                       @event.FounderUserId,
+                                       @event.OpponentUserId);
             }
         }
 

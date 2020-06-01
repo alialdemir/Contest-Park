@@ -57,8 +57,6 @@ namespace ContestPark.Signalr.API
 
             services.AddTransient<DuelCreatedIntegrationEventHandler>();
 
-            services.AddTransient<DuelStartingModelIntegrationEventHandler>();
-
             services.AddTransient<NextQuestionIntegrationEventHandler>();
 
             services.AddTransient<SendErrorMessageWithSignalrIntegrationEventHandler>();
@@ -96,7 +94,8 @@ namespace ContestPark.Signalr.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ContestParkHub>("/contestparkhub", options =>
-                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
+               options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets);
+                //     options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
             });
 
             ConfigureEventBus(app);
@@ -114,8 +113,6 @@ namespace ContestPark.Signalr.API
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<DuelCreatedIntegrationEvent, DuelCreatedIntegrationEventHandler>();
-
-            eventBus.Subscribe<DuelStartingModelIntegrationEvent, DuelStartingModelIntegrationEventHandler>();
 
             eventBus.Subscribe<NextQuestionIntegrationEvent, NextQuestionIntegrationEventHandler>();
 

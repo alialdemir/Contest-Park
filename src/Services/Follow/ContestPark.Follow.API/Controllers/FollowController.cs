@@ -88,7 +88,11 @@ namespace ContestPark.Follow.API.Controllers
             _eventBus.Publish(@event);
 
             // Takip edildi bildirimi gönderildi
-            var @eventNotification = new AddNotificationIntegrationEvent(UserId, new string[1] { followedUserId }, NotificationTypes.Follow, null, string.Empty);
+            var @eventNotification = new AddNotificationIntegrationEvent(UserId,
+                                                                         new string[1] { followedUserId },
+                                                                         NotificationTypes.Follow,
+                                                                         null,
+                                                                         string.Empty);
             _eventBus.Publish(@eventNotification);
 
             return Ok();

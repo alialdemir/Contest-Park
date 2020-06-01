@@ -195,6 +195,9 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = false;
         }
 
+        /// <summary>
+        /// İnternet yoksa dialog mesajı çıkarır
+        /// </summary>
         private void NoConnection()
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -389,7 +392,11 @@ namespace ContestPark.Mobile.ViewModels
                 DuelCreated = duelCreated,
                 BalanceType = SelectedBet.BalanceType,
                 SubCategoryName = SelectedBet.SubCategoryName,
-                SubCategoryPicturePath = SelectedBet.SubCategoryPicturePath
+                SubCategoryPicturePath = SelectedBet.SubCategoryPicturePath,
+                Bet = SelectedBet.Bet,
+                SubcategoryId = SelectedBet.SubcategoryId,
+                StandbyMode = SelectedBet.StandbyMode,
+                OpponentUserId = SelectedBet.OpponentUserId,
             };
 
             AudioStop();

@@ -110,13 +110,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
-            // NOTE: bu eventi göndermeye gerek yok artık soruları ve kullanıcı bilgilerini tek eventte gönderiyoruz ilerleyen versiyonlarda silinmeli
-            await PublishDuelStartingEvent(duelId,
-                                           @event.FounderUserId,
-                                           @event.FounderConnectionId,
-                                           @event.OpponentUserId,
-                                           @event.OpponentConnectionId);
-
             var questions = await _questionRepository.DuelQuestions(@event.SubCategoryId,
                                                                     @event.FounderUserId,
                                                                     @event.OpponentUserId,
@@ -223,56 +216,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                              opponentConnectionId);
 
             _eventBus.Publish(duelEvent);
-        }
-
-        /// <summary>
-        /// DuelStarting ekranı için gerekli bilgileri singlar gönderir
-        /// </summary>
-        /// <param name="duelId">Düello id</param>
-        /// <param name="founderUserId">Kurucu kullanıcı id</param>
-        /// <param name="founderConnectionId">Kurucu connection id</param>
-        /// <param name="opponentUserId">Rakip kullanıcı id</param>
-        /// <param name="opponentConnectionId">Rakip connection id</param>
-
-        [System.Obsolete]// Artık tek event üzerinden kullanıcı bilgileri ve soru bilgilerini gönderiyoruz
-        private async Task PublishDuelStartingEvent(int duelId,
-                                                    string founderUserId,
-                                                    string founderConnectionId,
-                                                    string opponentUserId,
-                                                    string opponentConnectionId)
-        {
-            // TODO: #issue 213
-
-            // Eşleşen rakipler rakip bulubdu ekranı için event gönderildi
-            List<UserModel> userInfos = (await _identityService.GetUserInfosAsync(new List<string>// identity servisden kullanıcı bilgileri alındı
-                {
-                    founderUserId,
-                    opponentUserId
-           }, includeCoverPicturePath: true)).ToList();
-
-            UserModel founderUserModel = userInfos.FirstOrDefault(x => x.UserId == founderUserId);
-            UserModel opponentUserModel = userInfos.FirstOrDefault(x => x.UserId == opponentUserId);
-
-            if (founderUserModel == null || opponentUserModel == null)
-            {
-                _logger.LogCritical("CRITICAL: Düello oluştu fakat kullanıcı bilgilerine erişemedim ACİL bakın!");
-
-                return;
-            }
-
-            var @duelScreenEvent = new DuelStartingModelIntegrationEvent(duelId,
-                                                                         founderUserModel.CoverPicturePath,
-                                                                         founderUserModel.ProfilePicturePath,
-                                                                         founderUserModel.UserId,
-                                                                         founderConnectionId,
-                                                                         founderUserModel.FullName,
-                                                                         opponentUserModel.CoverPicturePath,
-                                                                         opponentUserModel.FullName,
-                                                                         opponentUserModel.ProfilePicturePath,
-                                                                         opponentUserModel.UserId,
-                                                                         opponentConnectionId);
-
-            _eventBus.Publish(@duelScreenEvent);
         }
 
         /// <summary>
