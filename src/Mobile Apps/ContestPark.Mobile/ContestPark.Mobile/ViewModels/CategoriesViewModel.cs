@@ -33,7 +33,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -286,14 +285,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 if (link.IsUrl())
                 {
-                    if (Device.RuntimePlatform == Device.Android)
-                    {
-                        NavigateToAsync<BrowserView>(new NavigationParameters
+                    NavigateToAsync<BrowserView>(new NavigationParameters
                                                         {
                                                             { "Link", link }
                                                         });
-                    }
-                    else Launcher.CanOpenAsync(new Uri(link));
                 }
                 else
                     NavigateToAsync(link);

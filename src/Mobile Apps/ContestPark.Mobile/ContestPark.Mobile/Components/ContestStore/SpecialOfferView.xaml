@@ -41,7 +41,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
@@ -67,7 +67,10 @@
                     Text="{Binding Path=Text, Source={x:Reference specialOfferView}}"
                     TextColor="#430856" />
 
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -81,7 +84,7 @@
                         FontFamily="{StaticResource SofiaProLight}"
                         FontSize="14"
                         Text="{Binding DisplaySpecialDescription}"
-                        TextColor="#8EF0A7"
+                        TextColor="{StaticResource PrimaryText}"
                         VerticalTextAlignment="Center" />
 
                     <Image
@@ -97,7 +100,7 @@
                         FontFamily="{StaticResource SofiaProLight}"
                         FontSize="14"
                         Text="{Binding DiscountBalanceAmount}"
-                        TextColor="#8EF0A7"
+                        TextColor="{StaticResource PrimaryText}"
                         VerticalTextAlignment="Center" />
                     <Image
                         Grid.Column="3"
@@ -122,7 +125,8 @@
 
                 <Label
                     Grid.RowSpan="2"
-                    Grid.Column="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
                     FontAttributes="Bold"
                     FontFamily="{StaticResource GothamRoundedBold}"
                     FontSize="16"

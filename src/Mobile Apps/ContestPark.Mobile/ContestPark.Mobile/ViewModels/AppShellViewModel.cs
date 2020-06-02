@@ -218,10 +218,10 @@ namespace ContestPark.Mobile.ViewModels
             {
                 _analyticsService.SendEvent("Sol Menü", "Link", name);
 
-                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
-                    Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
+                if (name.EndsWith("balancecode.html"))
+                    Launcher.OpenAsync($"{name}?q={_settingsService.AuthAccessToken}");
                 else
-                    Browser.OpenAsync(name);
+                    Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
 
                 Shell.Current.FlyoutIsPresented = false;
             }
