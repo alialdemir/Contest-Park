@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ContestPark.Mobile.Enums;
+using System.Collections.Generic;
 
 namespace ContestPark.Mobile.Models.Login
 {
@@ -17,5 +18,6 @@ namespace ContestPark.Mobile.Models.Login
         public string DeviceIdentifier { get; set; }
 
         public List<short> SubCategories { get; set; } = new List<short>();
+        public Platforms Platform { get; set; }
     }
 }

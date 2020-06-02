@@ -359,6 +359,10 @@ namespace ContestPark.Mobile.Services.Identity
 
             signUpModel.DeviceIdentifier = Xamarin.Forms.DependencyService.Get<IDevice>().GetIdentifier();// IMEI numarası alındı
 
+            signUpModel.Platform = Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS
+                ? Platforms.Ios
+                : Platforms.Android;
+
             var response = await _requestProvider.PostAsync<string>(uri, signUpModel);
 
             if (!string.IsNullOrEmpty(response.Error?.ErrorMessage))

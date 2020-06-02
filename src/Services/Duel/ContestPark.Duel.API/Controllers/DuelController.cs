@@ -235,7 +235,7 @@ namespace ContestPark.Duel.API.Controllers
             }
 
             BalanceModel balance = await _balanceService.GetBalance(UserId, standbyModeModel.BalanceType);
-            if (standbyModeModel.Bet > balance.Amount)
+            if (balance == null || standbyModeModel.Bet > balance.Amount)
             {
                 return BadRequest(DuelResource.YourBalanceIsInsufficient);
             }

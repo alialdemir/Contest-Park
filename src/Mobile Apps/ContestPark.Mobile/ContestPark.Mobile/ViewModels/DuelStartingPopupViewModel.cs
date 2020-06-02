@@ -13,11 +13,13 @@ using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -357,9 +359,19 @@ namespace ContestPark.Mobile.ViewModels
                 Bet = SelectedBet.Bet,
                 ConnectionId = _settingsService.SignalRConnectionId,
                 SubCategoryId = SelectedBet.SubcategoryId,
-            });// TODO: success kontrol et hata oluşursa mesaj çıksın
+            });
             if (!isSuccess)
+            {
+                Crashes.TrackError(new Exception("Oyuncu bekleme moduna alınırken hata oluştu"), new Dictionary<string, string>
+                {
+                    { "BalanceType", SelectedBet.BalanceType.ToString() },
+                    { "Bet", SelectedBet.Bet.ToString() },
+                    { "SignalRConnectionId", _settingsService.SignalRConnectionId },
+                    { "SubcategoryId", SelectedBet.SubcategoryId.ToString() },
+                });
+
                 NotStartingDuel();
+            }
 
             AddToBot();
         }
@@ -431,8 +443,8 @@ namespace ContestPark.Mobile.ViewModels
         private async void NotStartingDuel()
         {
             await DisplayAlertAsync(ContestParkResources.Error,
-                                 ContestParkResources.ErrorStartingDuelPleaseTryAgain,
-                                 ContestParkResources.Okay);
+                                    ContestParkResources.ErrorStartingDuelPleaseTryAgain,
+                                    ContestParkResources.Okay);
 
             await _duelService.DuelCancel();
 

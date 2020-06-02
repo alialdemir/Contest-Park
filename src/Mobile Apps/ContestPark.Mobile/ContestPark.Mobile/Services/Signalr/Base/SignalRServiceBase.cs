@@ -102,6 +102,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 #else
                                  else if (task.IsFaulted && ConnectionRetryCount < 10 && HubConnection.State == HubConnectionState.Disconnected)
                                 {
+                                    Analytics.TrackEvent($"Signalr bağlantısı kurulmaya çalışılıyor. ConnectionRetryCount: {ConnectionRetryCount}");
                                     ConnectionRetryCount++;
                                     await Task.Delay(8000);
                                     await ConnectAsync();
