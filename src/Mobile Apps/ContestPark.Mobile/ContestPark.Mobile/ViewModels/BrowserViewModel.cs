@@ -1,5 +1,4 @@
-﻿using ContestPark.Mobile.Services.Settings;
-using ContestPark.Mobile.ViewModels.Base;
+﻿using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
 using Xamarin.Forms;
 
@@ -8,21 +7,6 @@ namespace ContestPark.Mobile.ViewModels
     [QueryProperty(nameof(Link), nameof(Link))]
     public class BrowserViewModel : ViewModelBase
     {
-        #region Private variables
-
-        private readonly ISettingsService _settingsService;
-
-        #endregion Private variables
-
-        #region Constructor
-
-        public BrowserViewModel(ISettingsService settingsService)
-        {
-            _settingsService = settingsService;
-        }
-
-        #endregion Constructor
-
         #region Properties
 
         private string _link;
@@ -35,10 +19,7 @@ namespace ContestPark.Mobile.ViewModels
                 if (string.IsNullOrEmpty(value))
                     return;
 
-                if (value.EndsWith("balancecode.html"))
-                    _link = $"{value}?q={_settingsService.AuthAccessToken}";
-                else
-                    _link = value;
+                _link = value;
 
                 RaisePropertyChanged(() => Link);
             }

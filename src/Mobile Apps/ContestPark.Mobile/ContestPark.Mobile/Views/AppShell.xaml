@@ -71,13 +71,6 @@
             <!--  Left menü  -->
 
             <FontImageSource
-                x:Key="IconHowToPlay"
-                FontFamily="{StaticResource icomoon}"
-                Glyph="{StaticResource HowToPlay}"
-                Size="{StaticResource SizeLeftMenuIcon}"
-                Color="{StaticResource White}" />
-
-            <FontImageSource
                 x:Key="IconConvertToCash"
                 FontFamily="{StaticResource icomoon}"
                 Glyph="{StaticResource MoneyBag}"
@@ -180,12 +173,6 @@
             <ShellContent Title="{i18n:Translate Profile}" ContentTemplate="{DataTemplate views:MyProfileView}" />
         </Tab>
     </FlyoutItem>
-
-    <MenuItem
-        Command="{Binding MenuItemClickCommand}"
-        CommandParameter="https://contestpark.com/#why"
-        IconImageSource="{StaticResource IconHowToPlay}"
-        Text="{i18n:Translate HowToPlay}" />
 
     <MenuItem
         x:Name="menuConvertToCash"

@@ -809,15 +809,6 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to play?.
-        /// </summary>
-        public static string HowToPlay {
-            get {
-                return ResourceManager.GetString("HowToPlay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to If you delete your copy of this conversation, it cannot be undone..
         /// </summary>
         public static string IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone {

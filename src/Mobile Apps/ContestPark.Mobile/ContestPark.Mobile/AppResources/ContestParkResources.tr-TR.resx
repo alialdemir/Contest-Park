@@ -369,9 +369,6 @@
     <value> Saat </value>
     <comment>Sıralama için saat baş harfi</comment>
   </data>
-  <data name="HowToPlay" xml:space="preserve">
-    <value>Nasıl oynanır?</value>
-  </data>
   <data name="IfYouDeleteTheCopyOfThisSpeechThatCanNotBeUndone" xml:space="preserve">
     <value>Bu konuşmanın sendeki kopyasını silersen, bu işlem geri alınamaz.</value>
   </data>
