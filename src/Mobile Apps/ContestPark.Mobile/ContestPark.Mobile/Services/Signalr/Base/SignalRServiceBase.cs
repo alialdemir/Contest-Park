@@ -13,6 +13,17 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 {
     public class SignalRServiceBase : ISignalRServiceBase
     {
+        #region Constructor
+
+        public SignalRServiceBase(ISettingsService settingsService,
+                                  IEventAggregator eventAggregator)
+        {
+            _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+            _eventAggregator = eventAggregator;
+        }
+
+        #endregion Constructor
+
         #region Properties
 
         private HubConnection HubConnection { get; set; }
@@ -36,17 +47,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         }
 
         #endregion Properties
-
-        #region Constructor
-
-        public SignalRServiceBase(ISettingsService settingsService,
-                                  IEventAggregator eventAggregator)
-        {
-            _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
-            _eventAggregator = eventAggregator;
-        }
-
-        #endregion Constructor
 
         #region Methods
 
@@ -169,6 +169,8 @@ namespace ContestPark.Mobile.Services.Signalr.Base
             HubConnection?.On("GetConnectionId", (string connectionId) =>
                 {
                     _settingsService.SignalRConnectionId = connectionId;
+
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"Signalr bağlantısı kuruldu. ConnectionRetryCount: {ConnectionRetryCount}");
 
                     _eventAggregator
                             .GetEvent<SignalrConnectedEvent>()
