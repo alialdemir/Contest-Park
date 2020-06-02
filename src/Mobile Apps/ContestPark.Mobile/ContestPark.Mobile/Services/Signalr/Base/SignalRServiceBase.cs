@@ -172,7 +172,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
                     _eventAggregator
                             .GetEvent<SignalrConnectedEvent>()
-                            .Publish();
+                            .Publish(connectionId);
                 });
         }
 

@@ -209,8 +209,12 @@ namespace ContestPark.Mobile.ViewModels
             if (_signalrConnectedSubscriptionToken == null)
             {
                 _signalrConnectedSubscriptionToken = _signalrConnectedEvent
-                                                                .Subscribe(() =>
+                                                                .Subscribe((string connectionId) =>
                                                                 {
+                                                                    Analytics.TrackEvent($"Signalr connection id güncellendi. connectionId {connectionId}");
+
+                                                                    _settingsService.SignalRConnectionId = connectionId;
+
                                                                     RandomPicturStatus = false;
 
                                                                     DuelStartingCommand.Execute(null);

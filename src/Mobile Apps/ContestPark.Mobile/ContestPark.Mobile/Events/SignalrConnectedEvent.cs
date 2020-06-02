@@ -2,5 +2,5 @@
 
 namespace ContestPark.Mobile.Events
 {
-    public class SignalrConnectedEvent : PubSubEvent { }
+    public class SignalrConnectedEvent : PubSubEvent<string> { }
 }
