@@ -94,7 +94,7 @@ namespace ContestPark.Signalr.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ContestParkHub>("/contestparkhub", options =>
-               options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets);
+                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransports.All);
             });
 
             ConfigureEventBus(app);
