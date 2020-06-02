@@ -197,7 +197,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(contentType));
 
-            httpClient.Timeout = TimeSpan.FromMinutes(10);// Ios in app purche token göndermesi uzun sürüyor bu yüzden ekledim
+            httpClient.Timeout = TimeSpan.FromMinutes(30);// Ios in app purche token göndermesi uzun sürüyor bu yüzden ekledim
 
             if (_settingsService != null)
             {
