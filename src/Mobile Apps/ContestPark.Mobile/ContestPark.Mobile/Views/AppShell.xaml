@@ -201,19 +201,19 @@
 
     <MenuItem
         Command="{Binding MenuItemClickCommand}"
-        CommandParameter="https://www.instagram.com/contestpark"
+        CommandParameter="https://instagram.com/contestpark"
         IconImageSource="{StaticResource IconInstagram}"
         Text="Instagram" />
 
     <MenuItem
         Command="{Binding MenuItemClickCommand}"
-        CommandParameter="https://www.facebook.com/contestpark"
+        CommandParameter="https://facebook.com/contestpark"
         IconImageSource="{StaticResource IconFacebook}"
         Text="Facebook" />
 
     <MenuItem
         Command="{Binding MenuItemClickCommand}"
-        CommandParameter="https://www.twitter.com/contestpark"
+        CommandParameter="https://twitter.com/contestpark"
         IconImageSource="{StaticResource IconTwitter}"
         Text="Twitter" />
 </Shell>

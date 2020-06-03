@@ -861,7 +861,7 @@
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
-          "Host": "signalr-api.local-contestpark-cluster",
+          "Host": "http://signalr.contestpark.com",
           "Port": 80
         }
       ],

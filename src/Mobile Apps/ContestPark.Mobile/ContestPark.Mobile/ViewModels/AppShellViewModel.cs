@@ -14,6 +14,7 @@ using Microsoft.AppCenter;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -197,7 +198,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="name">Yönlendirilecek view adı veya url</param>
         private void ExecuteMenuItemClickCommand(string name)
         {
-            if (IsBusy)
+            if (IsBusy || string.IsNullOrEmpty(name))
                 return;
 
             IsBusy = true;
@@ -219,7 +220,7 @@ namespace ContestPark.Mobile.ViewModels
                 _analyticsService.SendEvent("Sol Menü", "Link", name);
 
                 if (name.EndsWith("balancecode.html"))
-                    Launcher.OpenAsync($"{name}?q={_settingsService.AuthAccessToken}");
+                    Launcher.TryOpenAsync(new Uri($"{name}?q={_settingsService.AuthAccessToken}"));
                 else
                     Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
 

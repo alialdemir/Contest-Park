@@ -54,6 +54,9 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 return;
             }
 
+            if (@event.UserId.EndsWith("-bot"))
+                return;
+
             try
             {
                 _logger.LogInformation("Rakip bekleme modundan çıktı. {UserId} {SubCategoryId} {Bet} {BalanceType}",
