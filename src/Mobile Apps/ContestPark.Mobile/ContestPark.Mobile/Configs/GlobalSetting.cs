@@ -181,7 +181,7 @@ namespace ContestPark.Mobile.Configs
             TokenEndpoint = $"{connectBaseEndpoint}/token";
             LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
 
-            SignalREndpoint = $"{DefaultEndpoint}/contestparkhub";
+            SignalREndpoint = $"http://signalr.contestpark.com/contestparkhub";
         }
 
         /// <summary>

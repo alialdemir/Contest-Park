@@ -13,13 +13,11 @@ using ContestPark.Mobile.Services.Signalr.Duel;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
 using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -366,14 +364,6 @@ namespace ContestPark.Mobile.ViewModels
             });
             if (!isSuccess)
             {
-                Crashes.TrackError(new Exception("Oyuncu bekleme moduna alınırken hata oluştu"), new Dictionary<string, string>
-                {
-                    { "BalanceType", SelectedBet.BalanceType.ToString() },
-                    { "Bet", SelectedBet.Bet.ToString() },
-                    { "SignalRConnectionId", _settingsService.SignalRConnectionId },
-                    { "SubcategoryId", SelectedBet.SubcategoryId.ToString() },
-                });
-
                 NotStartingDuel();
             }
 

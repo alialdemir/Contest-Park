@@ -24,7 +24,6 @@ phases:
       - docker tag contestparkmission.api:latest $REPOSITORY_URI/mission-api:$IMAGE_TAG
       - docker tag contestparknotification.api:latest $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker tag contestparkpost.api:latest $REPOSITORY_URI/post-api:$IMAGE_TAG
-      - docker tag contestparksignalr.api:latest $REPOSITORY_URI/signalr-api:$IMAGE_TAG
       - docker tag contestparkocelotapigw.api:latest $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
   build:
     commands:
@@ -40,7 +39,6 @@ phases:
       - docker push $REPOSITORY_URI/mission-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/notification-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/post-api:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/signalr-api:$IMAGE_TAG
       - docker push $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG
       - echo Docker push finish
       - printf '[{"name":"admin-api","imageUri":"%s"}]' $REPOSITORY_URI/admin-api:$IMAGE_TAG > admin-api-imagedefinitions.json
@@ -53,20 +51,18 @@ phases:
       - printf '[{"name":"mission-api","imageUri":"%s"}]' $REPOSITORY_URI/mission-api:$IMAGE_TAG > mission-api-imagedefinitions.json
       - printf '[{"name":"notification-api","imageUri":"%s"}]' $REPOSITORY_URI/notification-api:$IMAGE_TAG > notification-api-imagedefinitions.json
       - printf '[{"name":"post-api","imageUri":"%s"}]' $REPOSITORY_URI/post-api:$IMAGE_TAG > post-api-imagedefinitions.json
-      - printf '[{"name":"signalr-api","imageUri":"%s"}]' $REPOSITORY_URI/signalr-api:$IMAGE_TAG > signalr-api-imagedefinitions.json
       - printf '[{"name":"ocelot-apigw","imageUri":"%s"}]' $REPOSITORY_URI/ocelot-apigw:$IMAGE_TAG > ocelot-apigw-imagedefinitions.json
       - echo Finish
 artifacts:
-    files:
-        - admin-api-imagedefinitions.json
-        - balance-api-imagedefinitions.json
-        - category-api-imagedefinitions.json
-        - chat-api-imagedefinitions.json
-        - duel-api-imagedefinitions.json
-        - follow-api-imagedefinitions.json
-        - identity-api-imagedefinitions.json
-        - mission-api-imagedefinitions.json
-        - notification-api-imagedefinitions.json
-        - post-api-imagedefinitions.json
-        - signalr-api-imagedefinitions.json
-        - ocelot-apigw-imagedefinitions.json
+  files:
+    - admin-api-imagedefinitions.json
+    - balance-api-imagedefinitions.json
+    - category-api-imagedefinitions.json
+    - chat-api-imagedefinitions.json
+    - duel-api-imagedefinitions.json
+    - follow-api-imagedefinitions.json
+    - identity-api-imagedefinitions.json
+    - mission-api-imagedefinitions.json
+    - notification-api-imagedefinitions.json
+    - post-api-imagedefinitions.json
+    - ocelot-apigw-imagedefinitions.json
