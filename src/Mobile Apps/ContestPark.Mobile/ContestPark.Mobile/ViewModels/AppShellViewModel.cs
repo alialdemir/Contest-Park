@@ -9,7 +9,6 @@ using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Identity;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
-using ContestPark.Mobile.Views;
 using Microsoft.AppCenter;
 using Prism.Events;
 using Prism.Navigation;
@@ -220,9 +219,9 @@ namespace ContestPark.Mobile.ViewModels
                 _analyticsService.SendEvent("Sol Menü", "Link", name);
 
                 if (name.EndsWith("balancecode.html"))
-                    Launcher.TryOpenAsync(new Uri($"{name}?q={_settingsService.AuthAccessToken}"));
-                else
-                    Shell.Current.GoToAsync($"{nameof(BrowserView)}?Link={name}");
+                    name = $"{name}?q={_settingsService.AuthAccessToken}";
+
+                Launcher.TryOpenAsync(new Uri(name));
 
                 Shell.Current.FlyoutIsPresented = false;
             }

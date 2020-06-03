@@ -319,6 +319,7 @@ namespace ContestPark.Mobile.ViewModels
             if (DuelResult != null
                 && DuelResult.IsShowFireworks
                 && isStoreReview
+                && CrossStoreReview.Current != null
                 && CrossStoreReview.IsSupported)
             {
                 RequestReview();
@@ -339,6 +340,8 @@ namespace ContestPark.Mobile.ViewModels
         private async void RequestReview()
         {
             IStoreReview storeReview = CrossStoreReview.Current;
+            if (storeReview == null)
+                return;
 
             string message = Device.RuntimePlatform == Device.Android
                                            ? ContestParkResources.WouldYouLikeToRateTheGameOnGooglePlay

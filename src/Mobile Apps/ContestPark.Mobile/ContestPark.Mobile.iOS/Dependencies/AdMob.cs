@@ -78,18 +78,37 @@ namespace ContestPark.Mobile.iOS.Dependencies
             RewardBasedVideoAd.SharedInstance.LoadRequest(request, adUnit);
         }
 
+        private UIViewController GetVisibleViewController()
+        {
+            var rootController = UIApplication.SharedApplication.Delegate?.GetWindow()?.RootViewController;
+            if (rootController == null)
+                return null;
+
+            if (rootController.PresentedViewController == null)
+                return rootController;
+
+            if (rootController.PresentedViewController is UINavigationController controller)
+            {
+                return controller.VisibleViewController;
+            }
+
+            if (rootController.PresentedViewController is UITabBarController barController)
+            {
+                return barController.SelectedViewController;
+            }
+
+            return rootController.PresentedViewController;
+        }
+
         public void ShowInterstitial()
         {
             if (_adInterstitial != null && _adInterstitial.IsReady)
             {
-                var window = UIApplication.SharedApplication.KeyWindow;
-                var vc = UIApplication.SharedApplication.Delegate?.GetWindow()?.RootViewController;
-                while (vc.PresentedViewController != null)
+                var rootController = GetVisibleViewController();
+                if (rootController != null)
                 {
-                    vc = vc.PresentedViewController;
+                    _adInterstitial.Present(rootController);
                 }
-
-                _adInterstitial.PresentFromRootViewController(vc);
             }
         }
 
@@ -97,14 +116,11 @@ namespace ContestPark.Mobile.iOS.Dependencies
         {
             if (RewardBasedVideoAd.SharedInstance.IsReady)
             {
-                var window = UIApplication.SharedApplication.KeyWindow;
-                var vc = UIApplication.SharedApplication.Delegate?.GetWindow()?.RootViewController;
-                while (vc.PresentedViewController != null)
+                var rootController = GetVisibleViewController();
+                if (rootController != null)
                 {
-                    vc = vc.PresentedViewController;
+                    RewardBasedVideoAd.SharedInstance.Present(rootController);
                 }
-
-                RewardBasedVideoAd.SharedInstance.PresentFromRootViewController(vc);
             }
         }
 

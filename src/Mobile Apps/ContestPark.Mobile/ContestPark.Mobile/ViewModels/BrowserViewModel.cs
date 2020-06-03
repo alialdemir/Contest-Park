@@ -1,10 +1,8 @@
 ﻿using ContestPark.Mobile.ViewModels.Base;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    [QueryProperty(nameof(Link), nameof(Link))]
     public class BrowserViewModel : ViewModelBase
     {
         #region Properties
