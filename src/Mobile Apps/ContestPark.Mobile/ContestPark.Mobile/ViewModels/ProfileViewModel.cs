@@ -277,69 +277,6 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
-        /// Profil yada kapak resmine tıklayınca
-        /// eğer kendi profili ise resmi değiştir görüntüle gibi seçenek çıkar
-        /// başkasının profili ise direk görüntüler
-        /// </summary>
-        /// <param name="pictureType">Kapak resmi yada profil resmi hangisine tıklanarak geldi</param>
-        private async Task ChangePhotoAsync(string pictureType)
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            if (!IsMeProfile)
-            {
-                GotoPhotoModalPage(pictureType);
-                IsBusy = false;
-
-                return;
-            }
-
-            string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
-                                                            ContestParkResources.Cancel,
-                                                            null,
-                                                            //buttons
-                                                            ContestParkResources.ShowImage,
-                                                            ContestParkResources.ChooseFromLibrary,
-                                                            ContestParkResources.TakeAPhoto);
-
-            if (string.Equals(selected, ContestParkResources.ChooseFromLibrary) || string.Equals(selected, ContestParkResources.TakeAPhoto))
-            {
-                MediaModel media = await _mediaService.GetPictureStream(selected);
-                if (media == null)
-                {
-                    IsBusy = false;
-                    return;
-                }
-
-                switch (pictureType)
-                {
-                    case "Profile":
-                        await _identityService.ChangeProfilePictureAsync(media);
-
-                        _analyticsService.SendEvent("Profil", "Profil Resmi Değiştir", media.AnalyticsEventLabel);
-
-                        break;
-
-                    case "Cover":
-                        await _identityService.ChangeCoverPictureAsync(media);
-
-                        _analyticsService.SendEvent("Profil", "Kapak Resmi Değiştir", media.AnalyticsEventLabel);
-
-                        break;
-                }
-            }
-            else if (string.Equals(selected, ContestParkResources.ShowImage))
-            {
-                GotoPhotoModalPage(pictureType);
-            }
-
-            IsBusy = false;
-        }
-
-        /// <summary>
         /// Takip et takipten çıkar
         /// </summary>
         private async Task ExecuteFollowProcessCommand()
@@ -450,6 +387,77 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// Profil yada kapak resmine tıklayınca
+        /// eğer kendi profili ise resmi değiştir görüntüle gibi seçenek çıkar
+        /// başkasının profili ise direk görüntüler
+        /// </summary>
+        /// <param name="pictureType">Kapak resmi yada profil resmi hangisine tıklanarak geldi</param>
+        private async Task ChangePhotoAsync(string pictureType)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            if (!IsMeProfile)
+            {
+                GotoPhotoModalPage(pictureType);
+                IsBusy = false;
+
+                return;
+            }
+
+            string selected = await DisplayActionSheetAsync(ContestParkResources.ChooseAnAction,
+                                                            ContestParkResources.Cancel,
+                                                            null,
+                                                            //buttons
+                                                            ContestParkResources.ShowImage,
+                                                            ContestParkResources.ChooseFromLibrary,
+                                                            ContestParkResources.TakeAPhoto);
+
+            if (string.Equals(selected, ContestParkResources.ChooseFromLibrary) || string.Equals(selected, ContestParkResources.TakeAPhoto))
+            {
+                MediaModel media = await _mediaService.GetPictureStream(selected);
+                if (media == null)
+                {
+                    IsBusy = false;
+                    return;
+                }
+
+                switch (pictureType)
+                {
+                    case "Profile":
+                        await _identityService.ChangeProfilePictureAsync(media);
+
+                        _analyticsService.SendEvent("Profil", "Profil Resmi Değiştir", media.AnalyticsEventLabel);
+
+                        IsBusy = false;
+
+                        RefreshCommand.Execute(null);
+
+                        break;
+
+                    case "Cover":
+                        await _identityService.ChangeCoverPictureAsync(media);
+
+                        _analyticsService.SendEvent("Profil", "Kapak Resmi Değiştir", media.AnalyticsEventLabel);
+
+                        IsBusy = false;
+
+                        RefreshCommand.Execute(null);
+
+                        break;
+                }
+            }
+            else if (string.Equals(selected, ContestParkResources.ShowImage))
+            {
+                GotoPhotoModalPage(pictureType);
+            }
+
+            IsBusy = false;
+        }
+
+        /// <summary>
         /// modalName göre modal açar
         /// </summary>
         /// <param name="modalName">Açılacak modalda gösterilecek resim</param>
@@ -495,33 +503,34 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
+
+            var profileInfo = await _identityService.GetProfileInfoByUserName(_userName, IsRefreshing);
+            if (profileInfo == null)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    DisplayAlertAsync(string.Empty,
+                                      ContestParkResources.UserNotFound,
+                                      ContestParkResources.Okay);
+                });
+
+                IsBusy = false;
+
+                return;
+            }
+
+            ProfileInfo = profileInfo;
+
+            IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
+
             if (ProfileInfo == null)
             {
-                var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
-                if (profileInfo == null)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        DisplayAlertAsync("",
-                                                            ContestParkResources.UserNotFound,
-                                                            ContestParkResources.Okay);
-                    });
-
-                    IsBusy = false;
-
-                    return;
-                }
-
-                ProfileInfo = profileInfo;
-
-                IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
-
                 EventSubscription();
             }
 
             if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
             {
-                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel);
+                ServiceModel = await _postService.GetPostsByUserIdAsync(ProfileInfo.UserId, ServiceModel, IsRefreshing);
             }
 
             IsBusy = false;

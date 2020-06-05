@@ -418,7 +418,6 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// Üye ol
         /// </summary>
         /// <param name="signUpModel">Üye olunacak model</param>
-        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -465,8 +464,15 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
 
                 if (!string.IsNullOrEmpty(signUpModel.DeviceIdentifier))
                 {
+                    if (!signUpModel.NetworkAccess.HasValue)// Eğer internet bağlantısı null gelirse none  ekliyoruz
+                        signUpModel.NetworkAccess = Enums.NetworkAccess.None;
+
                     // Bu kısım üye olmayı etkilemesin diye try-catch bloklarına aldım
-                    _deviceInfoRepository.Insert(user.Id, signUpModel.DeviceIdentifier);
+                    _deviceInfoRepository.Insert(
+                        user.Id,
+                        signUpModel.DeviceIdentifier,
+                        signUpModel.Platform,
+                        signUpModel.NetworkAccess.Value);
                 }
 
                 #region Yeni üye olan kullanıcılar için parametreden gelen alt kategorilerin kilitleri ücret ödemeden açılır ve takip edilir

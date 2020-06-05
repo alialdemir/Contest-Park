@@ -21,6 +21,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -238,7 +239,7 @@ namespace ContestPark.Mobile.ViewModels
 
             StartTimer();
 
-            OnSleepEventListener();
+            OnEventListener();
 
             LoadInterstitialVideoCommand.Execute(null);
 
@@ -510,6 +511,8 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+
             await NavigateToPopupAsync<DuelResultPopupView>(new NavigationParameters
             {
                 { "DuelId", Question.DuelCreated.DuelId }
@@ -713,7 +716,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Eğer soru ekranındayken oyundan çıkarsa yenilmiş sayılsın
         /// </summary>
-        private void OnSleepEventListener()
+        private void OnEventListener()
         {
             _subscriptionToken = _onSleepEvent.Subscribe(() =>
             {
@@ -723,6 +726,24 @@ namespace ContestPark.Mobile.ViewModels
                                   ContestParkResources.YouLeftTheGameDuringTheDuelYouAreDefeated,
                                   ContestParkResources.Okay);
             });
+
+            // Rakip bekleme sırasında internet bağlantısı koparsa uyarı vermek için ekledik
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        }
+
+        /// <summary>
+        /// Network bağlantısı değişince tetiklenen event
+        /// </summary>
+        /// <param name="sender">Boş geliyor</param>
+        /// <param name="e">İnternet bağlantısı bilgisi gelir</param>
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (!e.ConnectionProfiles.Any(x => x == ConnectionProfile.WiFi))
+            {
+                DisplayAlertAsync(string.Empty,
+                    ContestParkResources.DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors,
+                    ContestParkResources.Okay);
+            }
         }
 
         /// <summary>

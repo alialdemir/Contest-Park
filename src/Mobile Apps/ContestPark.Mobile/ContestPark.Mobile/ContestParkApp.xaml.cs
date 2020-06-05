@@ -29,33 +29,26 @@ namespace ContestPark.Mobile
 
         protected override void OnInitialized()
         {
-            try
-            {
-                InitializeComponent();
+            InitializeComponent();
 
-                AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes), typeof(Analytics));
-                Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
-                Crashes.SentErrorReport += Crashes_SentErrorReport;
+            AppCenter.Start(GlobalSetting.AppCenterKey, typeof(Crashes), typeof(Analytics));
+            Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
+            Crashes.SentErrorReport += Crashes_SentErrorReport;
 
-                PushNotification();
+            PushNotification();
 
-                ISettingsService settingsService = Container.Resolve<ISettingsService>();
+            ISettingsService settingsService = Container.Resolve<ISettingsService>();
 
-                if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
-                    NavigationService.NavigateAsync(nameof(AppShell));
-                else
-                    NavigationService.NavigateAsync($"{nameof(PhoneNumberView)}");
+            if (!string.IsNullOrEmpty(settingsService?.AuthAccessToken))
+                NavigationService.NavigateAsync(nameof(AppShell));
+            else
+                NavigationService.NavigateAsync($"{nameof(PhoneNumberView)}");
 
 #if !DEBUG
                 Container
                        .Resolve<ContestPark.Mobile.Services.LatestVersion.ILatestVersionService>()
                        .IfNotUsingLatestVersionOpenInStore();
 #endif
-            }
-            catch (System.Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
         }
 
         private void PushNotification()

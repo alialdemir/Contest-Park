@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using ContestPark.Identity.API.Enums;
+using System.Linq;
 
 namespace ContestPark.Identity.API.Data.Repositories.DeviceInfo
 {
@@ -26,12 +27,14 @@ namespace ContestPark.Identity.API.Data.Repositories.DeviceInfo
         /// </summary>
         /// <param name="deviceIdentifier"></param>
         /// <returns></returns>
-        public bool Insert(string userId, string deviceIdentifier)
+        public bool Insert(string userId, string deviceIdentifier, Platforms platform, NetworkAccess networkAccess)
         {
             _applicationDbContext.DeviceInfos.Add(new Tables.DeviceInfo
             {
                 UserId = userId,
-                DeviceIdentifier = deviceIdentifier
+                DeviceIdentifier = deviceIdentifier,
+                Platform = platform,
+                NetworkAccess = networkAccess
             });
 
             return _applicationDbContext.SaveChanges() > 0;

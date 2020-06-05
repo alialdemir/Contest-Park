@@ -874,4 +874,10 @@
   <data name="WouldYouLikeToRateTheGameOnAppStore" xml:space="preserve">
     <value>Would you like to rate the game on app store?</value>
   </data>
+  <data name="DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors" xml:space="preserve">
+    <value>Due to the slow internet connection, you may experience the problem of not finding competitors.</value>
+  </data>
+  <data name="YourInternetConnectionMayExperienceDisconnectionsToTheLackOfWiFiWeRecommendThatYouUseAStrongWiFiConnectionForHookInOrderToAvoidProblemsDuringTheDuel" xml:space="preserve">
+    <value>Your internet connection may experience disconnections to the lack of WiFi. We recommend that you use a strong WiFi connection for hook in order to avoid problems during the duel.</value>
+  </data>
 </root>

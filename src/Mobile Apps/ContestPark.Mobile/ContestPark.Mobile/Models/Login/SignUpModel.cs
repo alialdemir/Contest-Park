@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.Enums;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Models.Login
 {
@@ -19,5 +20,6 @@ namespace ContestPark.Mobile.Models.Login
 
         public List<short> SubCategories { get; set; } = new List<short>();
         public Platforms Platform { get; set; }
+        public NetworkAccess NetworkAccess { get; set; }
     }
 }

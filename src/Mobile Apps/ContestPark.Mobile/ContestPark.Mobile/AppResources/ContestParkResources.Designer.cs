@@ -476,6 +476,15 @@ namespace ContestPark.Mobile.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due to the slow internet connection, you may experience the problem of not finding competitors..
+        /// </summary>
+        public static string DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors {
+            get {
+                return ResourceManager.GetString("DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Earn Coins.
         /// </summary>
         public static string EarnCoins {
@@ -2255,6 +2264,16 @@ namespace ContestPark.Mobile.AppResources {
         public static string YourInformationHasBeenUpdated {
             get {
                 return ResourceManager.GetString("YourInformationHasBeenUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your internet connection may experience disconnections to the lack of WiFi. We recommend that you use a strong WiFi connection for hook in order to avoid problems during the duel..
+        /// </summary>
+        public static string YourInternetConnectionMayExperienceDisconnectionsToTheLackOfWiFiWeRecommendThatYouUseAStrongWiFiConnectionForHookInOrderToAvoidProblemsDuringTheDuel {
+            get {
+                return ResourceManager.GetString("YourInternetConnectionMayExperienceDisconnectionsToTheLackOfWiFiWeRecommendThatYo" +
+                        "uUseAStrongWiFiConnectionForHookInOrderToAvoidProblemsDuringTheDuel", resourceCulture);
             }
         }
         

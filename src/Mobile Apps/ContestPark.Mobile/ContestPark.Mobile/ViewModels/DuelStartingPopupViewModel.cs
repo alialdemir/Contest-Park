@@ -18,8 +18,10 @@ using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
@@ -168,6 +170,13 @@ namespace ContestPark.Mobile.ViewModels
             if (_settingsService.IsSoundEffectActive)
                 _audioService.Play(AudioTypes.AwaitingOpponent, true);
 
+            if (!Xamarin.Essentials.Connectivity.ConnectionProfiles.Any(x => x == ConnectionProfile.WiFi))
+            {
+                DisplayAlertAsync(string.Empty,
+                                  ContestParkResources.YourInternetConnectionMayExperienceDisconnectionsToTheLackOfWiFiWeRecommendThatYouUseAStrongWiFiConnectionForHookInOrderToAvoidProblemsDuringTheDuel,
+                                  ContestParkResources.Okay);
+            }
+
             if (!_duelSignalRService.IsConnected)
             {
                 NoConnection();
@@ -178,7 +187,7 @@ namespace ContestPark.Mobile.ViewModels
             {
                 DuelSignalrListener();
 
-                OnSleepEventListener();
+                OnEventListener();
             }
             else if (StandbyModes.Off == SelectedBet.StandbyMode)
             {
@@ -186,7 +195,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     DuelSignalrListener();
 
-                    OnSleepEventListener();
+                    OnEventListener();
 
                     DuelStartWithInvite();
                 }
@@ -332,6 +341,8 @@ namespace ContestPark.Mobile.ViewModels
             OffSignalr();
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
+
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
 
             if (_signalrConnectedSubscriptionToken != null)
                 _signalrConnectedEvent.Unsubscribe(_signalrConnectedSubscriptionToken);
@@ -496,7 +507,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             DuelSignalrListener();// SignalR listener load
 
-            OnSleepEventListener();
+            OnEventListener();
 
             RandomUserProfilePicturesAsync();
 
@@ -506,7 +517,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Eğer düello başlamışsa ve oyundan çıkarsa yenilmiş sayılsın
         /// </summary>
-        private void OnSleepEventListener()
+        private void OnEventListener()
         {
             _subscriptionToken = _onSleepEvent.Subscribe(async () =>
             {
@@ -525,6 +536,24 @@ namespace ContestPark.Mobile.ViewModels
                                         ContestParkResources.Okay);
                 }
             });
+
+            // Rakip bekleme sırasında internet bağlantısı koparsa uyarı vermek için ekledik
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        }
+
+        /// <summary>
+        /// Network bağlantısı değişince tetiklenen event
+        /// </summary>
+        /// <param name="sender">Boş geliyor</param>
+        /// <param name="e">İnternet bağlantısı bilgisi gelir</param>
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (!e.ConnectionProfiles.Any(x => x == ConnectionProfile.WiFi))
+            {
+                DisplayAlertAsync(string.Empty,
+                    ContestParkResources.DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors,
+                    ContestParkResources.Okay);
+            }
         }
 
         /// <summary>
@@ -537,15 +566,15 @@ namespace ContestPark.Mobile.ViewModels
             if (error == null || string.IsNullOrEmpty(error.Message))
                 return;
 
-            Device.BeginInvokeOnMainThread(() =>
+            Device.BeginInvokeOnMainThread(async () =>
            {
-               DisplayAlertAsync(string.Empty,
-                                 error.Message,
-                                 ContestParkResources.Okay);
+               await DisplayAlertAsync(string.Empty,
+                                     error.Message,
+                                     ContestParkResources.Okay);
 
-               _duelService.DuelCancel();
+               await _duelService.DuelCancel();
 
-               GoBackAsync(useModalNavigation: true);
+               await GoBackAsync(useModalNavigation: true);
            });
         }
 

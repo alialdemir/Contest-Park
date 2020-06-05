@@ -257,6 +257,9 @@
   <data name="Duel" xml:space="preserve">
     <value>Düello</value>
   </data>
+  <data name="DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors" xml:space="preserve">
+    <value>İnternet bağlantısının yavaş olması sebebiyle rakip bulamama sorunu yaşayabilirsiniz.</value>
+  </data>
   <data name="EarnCoins" xml:space="preserve">
     <value>Altın Kazan</value>
   </data>
@@ -857,6 +860,9 @@
   </data>
   <data name="YourInformationHasBeenUpdated" xml:space="preserve">
     <value>Bilgileriniz güncellendi.</value>
+  </data>
+  <data name="YourInternetConnectionMayExperienceDisconnectionsToTheLackOfWiFiWeRecommendThatYouUseAStrongWiFiConnectionForHookInOrderToAvoidProblemsDuringTheDuel" xml:space="preserve">
+    <value>İnternet bağlantınız wifi olmadığı için bağlantı kesintileri yaşayabilirsiniz. Düello sırasında bağlatı problemi yaşamamanız için güçlü birr wifi bağlantısı kullanmanızı öneririz.</value>
   </data>
   <data name="YourLevel" xml:space="preserve">
     <value>Seviye</value>

@@ -1,4 +1,5 @@
-﻿using ContestPark.Identity.API.Resources;
+﻿using ContestPark.Identity.API.Enums;
+using ContestPark.Identity.API.Resources;
 using ContestPark.Identity.API.Validations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,5 +32,8 @@ namespace ContestPark.Identity.API.Models
         public string DeviceIdentifier { get; set; }
 
         public IEnumerable<short> SubCategories { get; set; }
+        public Platforms Platform { get; set; }
+
+        public NetworkAccess? NetworkAccess { get; set; }
     }
 }

@@ -18,12 +18,14 @@ namespace ContestPark.Mobile.Services.Identity
 
         Task<string> GetPhoneNumber();
 
-        Task<ProfileInfoModel> GetProfileInfoByUserName(string userName);
+        Task<ProfileInfoModel> GetProfileInfoByUserName(string userName, bool isForceCache = false);
 
         Task<RandomUserModel> GetRandomBotUser();
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);
+
         Task<UserInfoModel> GetUserInfo();
+
         Task RefreshTokenAsync();
 
         Task<bool> SignUpAsync(SignUpModel signUpModel);

@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ContestPark.Mobile.Services.Identity
 {
@@ -231,12 +232,15 @@ namespace ContestPark.Mobile.Services.Identity
         /// </summary>
         /// <param name="userName">Kullanıcı id</param>
         /// <returns>Profil sayfası görütülemek için gerekli bilgiler</returns>
-        public async Task<ProfileInfoModel> GetProfileInfoByUserName(string userName)
+        public async Task<ProfileInfoModel> GetProfileInfoByUserName(string userName, bool isForceCache = false)
         {
             if (string.IsNullOrEmpty(userName))
                 return null;
 
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Profile/{userName}");
+
+            if (isForceCache)
+                _cacheService.Empty(uri);
 
             if (!_cacheService.IsExpired(key: uri))
             {
@@ -362,6 +366,8 @@ namespace ContestPark.Mobile.Services.Identity
             signUpModel.Platform = Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS
                 ? Platforms.Ios
                 : Platforms.Android;
+
+            signUpModel.NetworkAccess = Connectivity.NetworkAccess;
 
             var response = await _requestProvider.PostAsync<string>(uri, signUpModel);
 
