@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Admin.API.Infrastructure.Repositories.AnswerLocalized;
+using ContestPark.Admin.API.Infrastructure.Repositories.Bet;
 using ContestPark.Admin.API.Infrastructure.Repositories.Category;
 using ContestPark.Admin.API.Infrastructure.Repositories.Question;
 using ContestPark.Admin.API.Infrastructure.Repositories.QuestionLocalized;
@@ -98,6 +99,8 @@ namespace ContestPark.Admin.API
             services.AddTransient<IQuestionOfQuestionLocalizedRepository, QuestionOfQuestionLocalizedRepository>();
 
             services.AddTransient<IAnswerLocalizedRepository, AnswerLocalizedRepository>();
+
+            services.AddTransient<IBetRepository, BetRepository>();
 
             #endregion Repositories
 
