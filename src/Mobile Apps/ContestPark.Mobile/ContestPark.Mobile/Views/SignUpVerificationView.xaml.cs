@@ -1,9 +1,9 @@
 ﻿using ContestPark.Mobile.Components;
-using Rg.Plugins.Popup.Pages;
+using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Views
 {
-    public partial class SignUpVerificationView : PopupPage
+    public partial class SignUpVerificationView : ContentPage
     {
         #region Constructor
 

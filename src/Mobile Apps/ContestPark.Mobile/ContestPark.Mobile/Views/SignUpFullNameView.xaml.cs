@@ -1,8 +1,8 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Views
 {
-    public partial class SignUpFullNameView : PopupPage
+    public partial class SignUpFullNameView : ContentPage
     {
         #region Constructor
 

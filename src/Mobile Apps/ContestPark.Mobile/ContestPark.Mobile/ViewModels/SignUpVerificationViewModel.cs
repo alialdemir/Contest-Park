@@ -1,6 +1,5 @@
 ﻿using Acr.UserDialogs;
 using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Login;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Models.RequestProvider;
@@ -238,9 +237,7 @@ namespace ContestPark.Mobile.ViewModels
                     _settingsService.RefreshCurrentUser(currentUser);
                 }
 
-                _eventAggregator
-                    .GetEvent<NavigateToInitializedEvent>()
-                    .Publish();
+                await NavigateToInitialized<AppShell>();
             }
 
             UserDialogs.Instance.HideLoading();

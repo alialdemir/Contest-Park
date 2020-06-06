@@ -1,11 +1,9 @@
 ﻿using ContestPark.Mobile.AppResources;
-using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Country;
 using ContestPark.Mobile.Models.Notification;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
-using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System.Text.RegularExpressions;
@@ -19,10 +17,7 @@ namespace ContestPark.Mobile.ViewModels
     {
         #region Private variables
 
-        private readonly IEventAggregator _eventAggregator;
-
         private readonly ISettingsService _settingsService;
-        private SubscriptionToken _subscriptionToken;
 
         #endregion Private variables
 
@@ -30,11 +25,9 @@ namespace ContestPark.Mobile.ViewModels
 
         public PhoneNumberViewModel(INavigationService navigationService,
                                     IPageDialogService dialogService,
-                                    IEventAggregator eventAggregator,
                                     ISettingsService settingsService) : base(navigationService, dialogService)
         {
-            _eventAggregator = eventAggregator;
-            this._settingsService = settingsService;
+            _settingsService = settingsService;
 #if DEBUG
             PhoneNumber = "54545444261154";
 #endif
@@ -94,8 +87,6 @@ namespace ContestPark.Mobile.ViewModels
         {
             ShowTutorialCommand.Execute(null);
 
-            EventListenerCommand.Execute(null);
-
             base.Initialize(parameters);
         }
 
@@ -103,7 +94,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             if (parameters.ContainsKey("SelectedCountry"))
             {
-                var selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");
+                CountryModel selectedCountry = parameters.GetValue<CountryModel>("SelectedCountry");
                 if (selectedCountry != null)
                 {
                     Country = selectedCountry;
@@ -145,7 +136,7 @@ namespace ContestPark.Mobile.ViewModels
                 return;
             }
 
-            NavigateToAsync<SignUpVerificationView>(new NavigationParameters
+            NavigateToPopupAsync<SignUpVerificationView>(new NavigationParameters
             {
                 {
                       "SmsInfo", new SmsInfoModel
@@ -161,25 +152,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
-            _eventAggregator
-                .GetEvent<NavigateToInitializedEvent>()
-                .Unsubscribe(_subscriptionToken);
-
             return base.GoBackAsync(parameters, useModalNavigation);
-        }
-
-        /// <summary>
-        /// NavigateToInitializedEvent event listenre
-        /// </summary>
-        private void ExecuteEventListenerCommand()
-        {
-            _subscriptionToken = _eventAggregator
-                                         .GetEvent<NavigateToInitializedEvent>()
-                                         .Subscribe(async () =>
-                                         {
-                                             await GoBackAsync();
-                                             await NavigateToInitialized<AppShell>();
-                                         });
         }
 
         /// <summary>
@@ -203,8 +176,6 @@ namespace ContestPark.Mobile.ViewModels
         #region Commands
 
         private ICommand ShowTutorialCommand => new Command(ExecuteShowTutorialCommand);
-
-        private ICommand EventListenerCommand => new Command(ExecuteEventListenerCommand);
 
         public ICommand OpenLinkCommand
         {

@@ -1,227 +1,220 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage
+<ContentPage
     x:Class="ContestPark.Mobile.Views.SignUpVerificationView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:behaviors="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:prism="http://prismlibrary.com"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="signUpVerificationView"
-    prism:ViewModelLocator.AutowireViewModel="True">
-    <pages:PopupPage.Animation>
-        <animations:ScaleAnimation
-            DurationIn="700"
-            EasingIn="SpringIn"
-            PositionIn="Right"
-            PositionOut="Left"
-            ScaleIn="1"
-            ScaleOut="0.7" />
-    </pages:PopupPage.Animation>
-    <pages:PopupPage.Content>
+    Padding="0"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="Transparent">
+    <ContentPage.Content>
         <ScrollView>
-            <Grid Style="{StaticResource PopupContainer}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
+            <Grid>
+                <Frame Style="{StaticResource PopupBackgroundFrame}" />
+                <Grid Style="{StaticResource PopupContainer}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <yummy:PancakeView Grid.Row="0" Style="{StaticResource RoundedCornersPopupCard}">
+                        <Grid
+                            Margin="8"
+                            ColumnSpacing="0"
+                            RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                <yummy:PancakeView Grid.Row="0" Style="{StaticResource RoundedCornersPopupCard}">
-                    <Grid
-                        Margin="8"
-                        ColumnSpacing="0"
-                        RowSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Image Grid.Row="0" Style="{StaticResource CloseButton}">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpVerificationView}}" />
-                            </Image.GestureRecognizers>
-                        </Image>
-
-                        <Label
-                            Grid.Row="1"
-                            Style="{StaticResource PopupTitle}"
-                            Text="{i18n:Translate ConfirmationCode}"
-                            TextColor="{StaticResource Black}" />
-
-                        <Label
-                            Grid.Row="2"
-                            FontFamily="{StaticResource GothamRoundedMedium}"
-                            Style="{StaticResource PopupSubtitle}"
-                            Text="{i18n:Translate EnterTheVerificationCodeWeSendViaSMSInTheFieldsBelow}" />
-
-                        <yummy:PancakeView
-                            Grid.Row="3"
-                            Margin="0,32,0,32"
-                            BackgroundGradientEndColor="#FFCC33"
-                            BackgroundGradientStartColor="#FFB347"
-                            CornerRadius="25"
-                            HeightRequest="25"
-                            MinimumWidthRequest="50">
+                            <Image Grid.Row="0" Style="{StaticResource CloseButton}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GotoBackCommand, Source={x:Reference signUpVerificationView}}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label
+                                Grid.Row="1"
+                                Style="{StaticResource PopupTitle}"
+                                Text="{i18n:Translate ConfirmationCode}"
+                                TextColor="{StaticResource Black}" />
+
+                            <Label
+                                Grid.Row="2"
+                                FontFamily="{StaticResource GothamRoundedMedium}"
+                                Style="{StaticResource PopupSubtitle}"
+                                Text="{i18n:Translate EnterTheVerificationCodeWeSendViaSMSInTheFieldsBelow}" />
+
+                            <yummy:PancakeView
+                                Grid.Row="3"
+                                Margin="0,32,0,32"
+                                BackgroundGradientEndColor="#FFCC33"
+                                BackgroundGradientStartColor="#FFB347"
+                                CornerRadius="25"
+                                HeightRequest="25"
+                                MinimumWidthRequest="50">
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="{StaticResource GothamRoundedBold}"
+                                    FontSize="14"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding TimeLeft}"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="Center" />
+                            </yummy:PancakeView>
+
+                            <Label
+                                Grid.Row="4"
+                                FontFamily="{StaticResource GothamRoundedBold}"
+                                FontSize="12"
+                                HorizontalTextAlignment="Start"
+                                Text="{i18n:Translate ConfirmationCode}"
+                                TextColor="{StaticResource DarkGray}" />
+
+                            <Grid
+                                Grid.Row="5"
+                                Margin="0,8,0,32"
+                                ColumnSpacing="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <components:CustomEntry
+                                    x:Name="code1"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#666372"
+                                    CornerRadius="10"
+                                    FontFamily="{DynamicResource SofiaProMedium}"
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Keyboard="Numeric"
+                                    MaxLength="1"
+                                    PlaceholderColor="#484848"
+                                    Text="{Binding Code1}"
+                                    TextChanged="Code_TextChanged"
+                                    TextColor="#484848"
+                                    VerticalTextAlignment="Center"
+                                    Visual="Material"
+                                    WidthRequest="50" />
+
+                                <components:CustomEntry
+                                    x:Name="code2"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#666372"
+                                    CornerRadius="10"
+                                    FontFamily="{DynamicResource SofiaProMedium}"
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Keyboard="Numeric"
+                                    MaxLength="1"
+                                    PlaceholderColor="#484848"
+                                    Text="{Binding Code2}"
+                                    TextChanged="Code_TextChanged"
+                                    TextColor="#484848"
+                                    VerticalTextAlignment="Center"
+                                    Visual="Material"
+                                    WidthRequest="50" />
+
+                                <components:CustomEntry
+                                    x:Name="code3"
+                                    Grid.Column="2"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#666372"
+                                    CornerRadius="10"
+                                    FontFamily="{DynamicResource SofiaProMedium}"
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Keyboard="Numeric"
+                                    MaxLength="1"
+                                    PlaceholderColor="#484848"
+                                    Text="{Binding Code3}"
+                                    TextChanged="Code_TextChanged"
+                                    TextColor="#484848"
+                                    VerticalTextAlignment="Center"
+                                    Visual="Material"
+                                    WidthRequest="50" />
+
+                                <components:CustomEntry
+                                    x:Name="code4"
+                                    Grid.Column="3"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#666372"
+                                    CornerRadius="10"
+                                    FontFamily="{DynamicResource SofiaProMedium}"
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Keyboard="Numeric"
+                                    MaxLength="1"
+                                    PlaceholderColor="#484848"
+                                    Text="{Binding Code4}"
+                                    TextChanged="Code_TextChanged"
+                                    TextColor="#484848"
+                                    VerticalTextAlignment="Center"
+                                    Visual="Material"
+                                    WidthRequest="50">
+                                    <components:CustomEntry.Behaviors>
+                                        <behaviors:EventToCommandBehavior Command="{Binding CheckSmsCodeCommand}" EventName="Completed" />
+                                    </components:CustomEntry.Behaviors>
+                                </components:CustomEntry>
+                            </Grid>
+
+                            <Label
+                                Grid.Row="6"
+                                FontFamily="{StaticResource GothamRoundedMedium}"
+                                FontSize="12"
+                                HorizontalTextAlignment="Center"
+                                Text="{i18n:Translate HaveNotReceivedTheConfirmationCode}"
+                                TextColor="{StaticResource Black}"
+                                VerticalTextAlignment="End" />
+
+                            <Label
+                                Grid.Row="7"
+                                Margin="0,0,0,32"
                                 FontAttributes="Bold"
                                 FontFamily="{StaticResource GothamRoundedBold}"
-                                FontSize="14"
+                                FontSize="16"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding TimeLeft}"
+                                Text="{i18n:Translate SendAgain}"
                                 TextColor="{StaticResource Black}"
-                                VerticalOptions="Center" />
-                        </yummy:PancakeView>
-
-                        <Label
-                            Grid.Row="4"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="12"
-                            HorizontalTextAlignment="Start"
-                            Text="{i18n:Translate ConfirmationCode}"
-                            TextColor="{StaticResource DarkGray}" />
-
-                        <Grid
-                            Grid.Row="5"
-                            Margin="0,8,0,32"
-                            ColumnSpacing="40">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <components:CustomEntry
-                                x:Name="code1"
-                                Grid.Column="0"
-                                BackgroundColor="Transparent"
-                                BorderColor="#666372"
-                                CornerRadius="10"
-                                FontFamily="{DynamicResource SofiaProMedium}"
-                                FontSize="16"
-                                HeightRequest="50"
-                                HorizontalOptions="Fill"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric"
-                                MaxLength="1"
-                                PlaceholderColor="#484848"
-                                Text="{Binding Code1}"
-                                TextChanged="Code_TextChanged"
-                                TextColor="#484848"
-                                VerticalTextAlignment="Center"
-                                Visual="Material"
-                                WidthRequest="50" />
-
-                            <components:CustomEntry
-                                x:Name="code2"
-                                Grid.Column="1"
-                                BackgroundColor="Transparent"
-                                BorderColor="#666372"
-                                CornerRadius="10"
-                                FontFamily="{DynamicResource SofiaProMedium}"
-                                FontSize="16"
-                                HeightRequest="50"
-                                HorizontalOptions="Fill"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric"
-                                MaxLength="1"
-                                PlaceholderColor="#484848"
-                                Text="{Binding Code2}"
-                                TextChanged="Code_TextChanged"
-                                TextColor="#484848"
-                                VerticalTextAlignment="Center"
-                                Visual="Material"
-                                WidthRequest="50" />
-
-                            <components:CustomEntry
-                                x:Name="code3"
-                                Grid.Column="2"
-                                BackgroundColor="Transparent"
-                                BorderColor="#666372"
-                                CornerRadius="10"
-                                FontFamily="{DynamicResource SofiaProMedium}"
-                                FontSize="16"
-                                HeightRequest="50"
-                                HorizontalOptions="Fill"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric"
-                                MaxLength="1"
-                                PlaceholderColor="#484848"
-                                Text="{Binding Code3}"
-                                TextChanged="Code_TextChanged"
-                                TextColor="#484848"
-                                VerticalTextAlignment="Center"
-                                Visual="Material"
-                                WidthRequest="50" />
-
-                            <components:CustomEntry
-                                x:Name="code4"
-                                Grid.Column="3"
-                                BackgroundColor="Transparent"
-                                BorderColor="#666372"
-                                CornerRadius="10"
-                                FontFamily="{DynamicResource SofiaProMedium}"
-                                FontSize="16"
-                                HeightRequest="50"
-                                HorizontalOptions="Fill"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric"
-                                MaxLength="1"
-                                PlaceholderColor="#484848"
-                                Text="{Binding Code4}"
-                                TextChanged="Code_TextChanged"
-                                TextColor="#484848"
-                                VerticalTextAlignment="Center"
-                                Visual="Material"
-                                WidthRequest="50">
-                                <components:CustomEntry.Behaviors>
-                                    <behaviors:EventToCommandBehavior Command="{Binding CheckSmsCodeCommand}" EventName="Completed" />
-                                </components:CustomEntry.Behaviors>
-                            </components:CustomEntry>
+                                TextDecorations="Underline">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SendSmsCommand, Source={x:Reference signUpVerificationView}}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
+                    </yummy:PancakeView>
 
-                        <Label
-                            Grid.Row="6"
-                            FontFamily="{StaticResource GothamRoundedMedium}"
-                            FontSize="12"
-                            HorizontalTextAlignment="Center"
-                            Text="{i18n:Translate HaveNotReceivedTheConfirmationCode}"
-                            TextColor="{StaticResource Black}"
-                            VerticalTextAlignment="End" />
-
-                        <Label
-                            Grid.Row="7"
-                            Margin="0,0,0,32"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource GothamRoundedBold}"
-                            FontSize="16"
-                            HorizontalTextAlignment="Center"
-                            Text="{i18n:Translate SendAgain}"
-                            TextColor="{StaticResource Black}"
-                            TextDecorations="Underline">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SendSmsCommand, Source={x:Reference signUpVerificationView}}" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Grid>
-                </yummy:PancakeView>
-
-                <components:LinearGradientButton
-                    Grid.Row="1"
-                    Command="{Binding Path=BindingContext.CheckSmsCodeCommand, Source={x:Reference signUpVerificationView}}"
-                    Style="{StaticResource PopupBlueBottomButton}"
-                    Text="{i18n:Translate Confirm}" />
+                    <components:LinearGradientButton
+                        Grid.Row="1"
+                        Command="{Binding Path=BindingContext.CheckSmsCodeCommand, Source={x:Reference signUpVerificationView}}"
+                        Style="{StaticResource PopupBlueBottomButton}"
+                        Text="{i18n:Translate Confirm}" />
+                </Grid>
             </Grid>
         </ScrollView>
-    </pages:PopupPage.Content>
-</pages:PopupPage>
+    </ContentPage.Content>
+</ContentPage>

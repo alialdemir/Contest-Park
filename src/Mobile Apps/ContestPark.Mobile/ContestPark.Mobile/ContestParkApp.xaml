@@ -353,6 +353,14 @@
                 <Setter Property="IsClippedToBounds" Value="True" />
             </Style>
 
+            <!--  Popup signup backgorund frame  -->
+            <Style x:Key="PopupBackgroundFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Gray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Opacity" Value="0.8" />
+            </Style>
+
             <!--  Popup grid  -->
             <Style x:Key="PopupContainer" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="0" />
