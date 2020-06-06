@@ -15,8 +15,6 @@ namespace ContestPark.Mobile.Services.Signalr.Base
 
         Task DisconnectAsync();
 
-        Task Init();
-
         Task SendMessage(string methodName, params object[] param);
     }
 }

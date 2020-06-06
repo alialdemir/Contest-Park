@@ -189,11 +189,9 @@ namespace ContestPark.Mobile.ViewModels
                     _analyticsService.SetUserId(currentUser.UserId);
                 }
 
-                _settingsService.SignUpCount += 1;
-
                 _eventAggregator
-                    .GetEvent<NavigateToInitializedEvent>()
-                    .Publish();
+                  .GetEvent<NavigateToInitializedEvent>()
+                  .Publish();
             }
             else
             {

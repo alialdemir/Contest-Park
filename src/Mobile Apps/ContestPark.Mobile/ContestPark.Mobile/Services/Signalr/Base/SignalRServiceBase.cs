@@ -53,7 +53,7 @@ namespace ContestPark.Mobile.Services.Signalr.Base
         /// <summary>
         /// SignalR servisini oluştur
         /// </summary>
-        public async Task Init()
+        public async void Init()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 return;

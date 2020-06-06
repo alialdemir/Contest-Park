@@ -86,15 +86,6 @@ namespace ContestPark.Mobile.Services.Settings
             set => SecureStorage.SetAsync(nameof(AuthAccessToken), value);
         }
 
-        /// <summary>
-        /// Üye olma sayısı
-        /// </summary>
-        public byte SignUpCount
-        {
-            get => (byte)AppSettings.GetValueOrDefault(nameof(SignUpCount), SignUpCountDefault);
-            set => AppSettings.AddOrUpdateValue(nameof(SignUpCount), value);
-        }
-
         public UserInfoModel CurrentUser
         {
             get

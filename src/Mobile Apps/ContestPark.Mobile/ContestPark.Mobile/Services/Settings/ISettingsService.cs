@@ -56,11 +56,6 @@ namespace ContestPark.Mobile.Services.Settings
         string SignalRConnectionId { get; set; }
 
         /// <summary>
-        /// Üye olma sayısı
-        /// </summary>
-        byte SignUpCount { get; set; }
-
-        /// <summary>
         /// Gets or sets the TokenType
         /// </summary>
         string TokenType { get; set; }

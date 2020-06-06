@@ -139,7 +139,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             return NavigateToAsync(name, parameters, useModalNavigation: true);
         }
 
-        public Task NavigateToAsync<TView>(INavigationParameters parameters = null) where TView : ContentPage
+        public Task NavigateToAsync<TView>(INavigationParameters parameters = null) //where TView : ContentPage
         {
             string name = typeof(TView).Name;
             if (string.IsNullOrEmpty(name) || _navigationService == null)
@@ -154,7 +154,7 @@ namespace ContestPark.Mobile.ViewModels.Base
             if (string.IsNullOrEmpty(name))
                 return Task.CompletedTask;
 
-            return NavigateToAsync($"app:///{name}?appModuleRefresh=OnInitialized", null, false);
+            return _navigationService.NavigateAsync($"app:///{name}?appModuleRefresh=OnInitialized");
         }
 
         internal Task NavigateToAsync(string name, INavigationParameters parameters = null, bool? useModalNavigation = false)

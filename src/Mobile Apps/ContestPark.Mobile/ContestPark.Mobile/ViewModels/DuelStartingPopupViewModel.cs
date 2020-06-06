@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
@@ -18,7 +19,6 @@ using Prism.Navigation;
 using Prism.Services;
 using Rg.Plugins.Popup.Contracts;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -160,6 +160,15 @@ namespace ContestPark.Mobile.ViewModels
 
             IsBusy = true;
 
+            if (!Xamarin.Forms.DependencyService.Get<IConnectivity>().IsConnectedFast)
+            {
+                IsConnectedFast();
+
+                IsBusy = false;
+
+                return;
+            }
+
             DuelStarting = new DuelStartingModel()
             {
                 FounderFullName = _settingsService.CurrentUser.FullName,
@@ -170,16 +179,9 @@ namespace ContestPark.Mobile.ViewModels
             if (_settingsService.IsSoundEffectActive)
                 _audioService.Play(AudioTypes.AwaitingOpponent, true);
 
-            if (!Xamarin.Essentials.Connectivity.ConnectionProfiles.Any(x => x == ConnectionProfile.WiFi))
-            {
-                DisplayAlertAsync(string.Empty,
-                                  ContestParkResources.YourInternetConnectionMayExperienceDisconnectionsToTheLackOfWiFiWeRecommendThatYouUseAStrongWiFiConnectionForHookInOrderToAvoidProblemsDuringTheDuel,
-                                  ContestParkResources.Okay);
-            }
-
             if (!_duelSignalRService.IsConnected)
             {
-                NoConnection();
+                SignalrConnectedEventListener();
 
                 RandomUserProfilePicturesAsync();
             }
@@ -209,9 +211,20 @@ namespace ContestPark.Mobile.ViewModels
         }
 
         /// <summary>
+        /// İnternet bağlantısı yavaş ise uyarı çıkarıp bekleme ekranını kapatır
+        /// </summary>
+        private async void IsConnectedFast()
+        {
+            await DisplayAlertAsync(string.Empty,
+                                    ContestParkResources.YourInternetConnectionSpeedIsTooLowWeRecommendUsinAStrongWifiConnectionSoThatYouDoNotHaveConnectionProblemsDuringDuel,
+                                    ContestParkResources.Okay);
+            await GoBackAsync();
+        }
+
+        /// <summary>
         /// Signalr bağlantısı kurulmamışsa bağlandığında rakip arama işlemini tekrar başlatmak için gerekli eventi dinler
         /// </summary>
-        private void NoConnection()
+        private void SignalrConnectedEventListener()
         {
             if (_signalrConnectedSubscriptionToken == null)
             {
@@ -342,10 +355,9 @@ namespace ContestPark.Mobile.ViewModels
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
 
-            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+            _signalrConnectedEvent.Unsubscribe(_signalrConnectedSubscriptionToken);
 
-            if (_signalrConnectedSubscriptionToken != null)
-                _signalrConnectedEvent.Unsubscribe(_signalrConnectedSubscriptionToken);
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
 
             await RemoveFirstPopupAsync<DuelStartingPopupView>();
 
@@ -433,7 +445,9 @@ namespace ContestPark.Mobile.ViewModels
                                                                 { "Question", question }
                                                         });
 
-                RemoveFirstPopupAsync<DuelStartingPopupView>();
+                GoBackAsync();
+
+                // RemoveFirstPopupAsync<DuelStartingPopupView>();
 
                 OffSignalr();
 
@@ -548,12 +562,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="e">İnternet bağlantısı bilgisi gelir</param>
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            if (!e.ConnectionProfiles.Any(x => x == ConnectionProfile.WiFi))
-            {
-                DisplayAlertAsync(string.Empty,
-                    ContestParkResources.DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors,
-                    ContestParkResources.Okay);
-            }
+            IsConnectedFast();
         }
 
         /// <summary>

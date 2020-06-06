@@ -348,13 +348,6 @@ namespace ContestPark.Mobile.Services.Identity
             if (signUpModel == null)
                 return false;
 
-            if (_settingsService.SignUpCount > 3)// Sürekli üye olup davetiye kodu ile para kasmasınlar diye bir cihazdan 3 kere üye olma hakkı verdik :)
-            {
-                await ShowErrorMessage(ContestParkResources.GlobalErrorMessage);
-
-                return false;
-            }
-
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, _apiUrlBase);
 
             // TODO: uygulama dili değişince nuradaki dil değişecek mi test edilmesi lazım

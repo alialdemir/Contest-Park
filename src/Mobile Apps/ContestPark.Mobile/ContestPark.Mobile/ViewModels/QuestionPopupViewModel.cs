@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Dependencies;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Models.Duel;
@@ -738,11 +739,11 @@ namespace ContestPark.Mobile.ViewModels
         /// <param name="e">İnternet bağlantısı bilgisi gelir</param>
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            if (!e.ConnectionProfiles.Any(x => x == ConnectionProfile.WiFi))
+            if (!Xamarin.Forms.DependencyService.Get<IConnectivity>().IsConnectedFast)
             {
                 DisplayAlertAsync(string.Empty,
-                    ContestParkResources.DueToTheSlowInternetConnectionYouMayExperienceTheProblemOfNotFindingCompetitors,
-                    ContestParkResources.Okay);
+                                  ContestParkResources.YourInternetConnectionSpeedIsTooLowWeRecommendUsinAStrongWifiConnectionSoThatYouDoNotHaveConnectionProblemsDuringDuel,
+                                  ContestParkResources.Okay);
             }
         }
 
