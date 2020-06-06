@@ -1,9 +1,6 @@
 ﻿using ContestPark.Admin.API.Model.Bet;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContestPark.Admin.API.Infrastructure.Repositories.Bet
