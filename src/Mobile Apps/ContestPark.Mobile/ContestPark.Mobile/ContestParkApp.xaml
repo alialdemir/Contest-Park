@@ -355,7 +355,7 @@
 
             <!--  Popup signup backgorund frame  -->
             <Style x:Key="PopupBackgroundFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="Gray" />
+                <Setter Property="BackgroundColor" Value="#80000000" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="Opacity" Value="0.8" />
