@@ -82,14 +82,14 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                     {
                         // IOS
                                         // Money
-                                        new InAppBillingProductModel
-                                        {
-                                            ProductId = "com.contestpark.app.6money",
-                                            BalanceTypes=    BalanceTypes.Money,
-                                            ProductName = ContestParkResources.ProductMoney6,
-                                            Description = ContestParkResources.ProductMoney6,
-                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_5.svg?assembly=ContestPark.Mobile"
-                                        },
+                                        //new InAppBillingProductModel
+                                        //{
+                                        //    ProductId = "com.contestpark.app.6money",
+                                        //    BalanceTypes=    BalanceTypes.Money,
+                                        //    ProductName = ContestParkResources.ProductMoney6,
+                                        //    Description = ContestParkResources.ProductMoney6,
+                                        //    Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_5.svg?assembly=ContestPark.Mobile"
+                                        //},
                                         new InAppBillingProductModel
                                         {
                                             ProductId = "com.contestpark.app.12money",
@@ -156,14 +156,14 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 return new List<InAppBillingProductModel>
                                     {
                                         // Money
-                                        new InAppBillingProductModel
-                                        {
-                                            ProductId = "com.contestparkapp.app.6",
-                                            BalanceTypes=    BalanceTypes.Money,
-                                            ProductName = ContestParkResources.ProductMoney6,
-                                            Description = ContestParkResources.ProductMoney6,
-                                            Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_5.svg?assembly=ContestPark.Mobile"
-                                        },
+                                        //new InAppBillingProductModel
+                                        //{
+                                        //    ProductId = "com.contestparkapp.app.6",
+                                        //    BalanceTypes=    BalanceTypes.Money,
+                                        //    ProductName = ContestParkResources.ProductMoney6,
+                                        //    Description = ContestParkResources.ProductMoney6,
+                                        //    Image =  "resource://ContestPark.Mobile.Common.Images.contest_store_money_5.svg?assembly=ContestPark.Mobile"
+                                        //},
                                         new InAppBillingProductModel
                                         {
                                             ProductId = "com.contestparkapp.app.12",

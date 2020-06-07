@@ -84,7 +84,7 @@ namespace ContestPark.Balance.API.Controllers
                         {"com.contestparkapp.app.7000coins",  new PackageModel{ Amount = 7.00m, BalanceType= BalanceTypes.Gold } },
                         {"com.contestparkapp.app.20000coins",  new PackageModel{ Amount = 20.000m , BalanceType= BalanceTypes.Gold }},
                         // Money
-                        {"com.contestparkapp.app.6",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
+                     //   {"com.contestparkapp.app.6",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.12",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.19",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestparkapp.app.26",  new PackageModel{ Amount = 26.99m , BalanceType= BalanceTypes.Money, IsSpecialOffer = true }},
@@ -97,7 +97,7 @@ namespace ContestPark.Balance.API.Controllers
                         {"com.contestpark.app.700Coins",  new PackageModel{ Amount = 7.00m, BalanceType= BalanceTypes.Gold } },
                         {"com.contestpark.app.20000Coins",  new PackageModel{ Amount = 20.000m , BalanceType= BalanceTypes.Gold }},
                         // Money
-                        {"com.contestpark.app.6money",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
+                  //      {"com.contestpark.app.6money",  new PackageModel{ Amount = 6.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestpark.app.12money",  new PackageModel{ Amount = 12.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestpark.app.19money",  new PackageModel{ Amount = 19.99m , BalanceType= BalanceTypes.Money }},
                         {"com.contestpark.app.26money",  new PackageModel{ Amount = 26.99m , BalanceType= BalanceTypes.Money, IsSpecialOffer = true }},
