@@ -96,7 +96,7 @@
                     LineBreakMode="TailTruncation"
                     Text="{Binding Path=OpponentFullname, Source={x:Reference userInfo}}"
                     TextColor="{StaticResource White}"
-                    VerticalTextAlignment="End" />
+                    VerticalTextAlignment="Start" />
 
                 <Label
                     FontAttributes="Bold"
