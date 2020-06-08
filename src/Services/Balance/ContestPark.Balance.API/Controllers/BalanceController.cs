@@ -472,7 +472,7 @@ namespace ContestPark.Balance.API.Controllers
 
             if (package.IsSpecialOffer)
             {
-                const decimal specialOfferGoldAmount = 10.000m;
+                const decimal specialOfferGoldAmount = 10000.00m;
 
                 isSuccess = await UpdateBalanceAsync(specialOfferGoldAmount, BalanceTypes.Gold);
                 if (!isSuccess)
@@ -491,8 +491,8 @@ namespace ContestPark.Balance.API.Controllers
         /// <summary>
         /// Bakiye güncelle
         /// </summary>
-        /// <param name="amount"></param>
-        /// <param name="balanceType"></param>
+        /// <param name="amount">Eklenen bakiye miktarı</param>
+        /// <param name="balanceType">Eklenecek bakiye tipi</param>
         /// <returns>İşlem başarılı ise true değilse false</returns>
         private Task<bool> UpdateBalanceAsync(decimal amount, BalanceTypes balanceType)
         {

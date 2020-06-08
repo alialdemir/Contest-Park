@@ -86,7 +86,7 @@ namespace ContestPark.Mobile.ViewModels
                 Share.RequestAsync(new ShareFileRequest
                 {
                     Title = string.Format(ContestParkResources.ContestParkKnowledgeContestIsFunYouShoulPlayTooPleaseWriteMyUserToTheReferenceWhenSignUp, _settingsService.CurrentUser.UserName),
-                    File = new ShareFile(path)
+                    File = new ShareFile(path),
                 });
 
                 _analyticsService.SendEvent("Paylaşma", "Paylaş", _settingsService.CurrentUser.UserId);

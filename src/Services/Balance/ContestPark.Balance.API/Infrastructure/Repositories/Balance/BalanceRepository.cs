@@ -1,6 +1,7 @@
 ﻿using ContestPark.Balance.API.Models;
 using ContestPark.Core.Database.Interfaces;
 using Microsoft.Extensions.Logging;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
@@ -35,13 +36,12 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
         /// <returns>Bakiye bilgileri</returns>
-
         public BalanceModel GetUserBalances(string userId)
         {
             return _balanceRepository.QuerySingleOrDefault<BalanceModel>("SP_GetBalance", new
             {
                 userId
-            }, System.Data.CommandType.StoredProcedure);
+            }, CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
                 BalanceType = (byte)changeBalance.BalanceType,
                 BalanceHistoryType = (byte)changeBalance.BalanceHistoryType,
                 changeBalance.UserId,
-            }, System.Data.CommandType.StoredProcedure);
+            }, CommandType.StoredProcedure);
         }
 
         #endregion Methods
