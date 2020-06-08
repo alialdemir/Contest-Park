@@ -1,4 +1,5 @@
-﻿using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
+﻿using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
+using ContestPark.Duel.API.Infrastructure.Repositories.Redis.DuelUser;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.EventBus.Abstractions;
@@ -14,6 +15,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         private readonly IDuelUserRepository _duelUserRepository;
         private readonly IEventBus _eventBus;
+        private readonly IDuelRepository _duelRepository;
         private readonly ILogger<WaitingOpponentIntegrationEventHandler> _logger;
 
         #endregion Private variables
@@ -22,10 +24,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
         public WaitingOpponentIntegrationEventHandler(IDuelUserRepository duelUserRepository,
                                                       IEventBus eventBus,
+                                                      IDuelRepository duelRepository,
                                                       ILogger<WaitingOpponentIntegrationEventHandler> logger)
         {
             _duelUserRepository = duelUserRepository;
             _eventBus = eventBus;
+            _duelRepository = duelRepository;
             _logger = logger;
         }
 
@@ -55,6 +59,18 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                    @event.Bet,
                                    @event.BalanceType);
 
+            int duelId = _duelRepository.LastPlayingDuel(@event.UserId);
+            if (duelId > 0)
+            {
+                _logger.LogInformation("Oyuncunun daha önceden tamamlanmamış düellosuna rastlandı. userId: {userId}", @event.UserId);
+
+                var @eventDuelEscape = new DuelEscapeIntegrationEvent(duelId,
+                                                                      @event.UserId,
+                                                                      isDuelCancel: true);
+
+                _eventBus.Publish(@eventDuelEscape);
+            }
+
             DuelUserModel waitingDuelUser = _duelUserRepository.GetDuelUser(new DuelUserModel
             {
                 BalanceType = @event.BalanceType,
@@ -63,7 +79,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 SubCategoryId = @event.SubCategoryId,
                 UserId = @event.UserId
             });
-
             if (waitingDuelUser != null)// eğer bekleyen rakip varsa onu alır
             {
                 await StartDuelAsync(@event, waitingDuelUser);

@@ -114,7 +114,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                             Description = ContestParkResources.ProductMoney26,
                                             Image =  "resource://ContestPark.Mobile.Common.Images.specialoffer.svg?assembly=ContestPark.Mobile",
                                             IsSpecialOffer = true,
-                                            DiscountBalanceAmount  = 10.000m
+                                            DiscountBalanceAmount  = 10000.00m
                                         },
                                         // Gold
                                         new InAppBillingProductModel

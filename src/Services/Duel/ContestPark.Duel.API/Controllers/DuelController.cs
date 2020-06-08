@@ -327,14 +327,9 @@ namespace ContestPark.Duel.API.Controllers
         {
             int duelId = _duelRepository.LastPlayingDuel(UserId);
             if (duelId <= 0)
-                return BadRequest();
+                return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
 
             Logger.LogInformation("Düello iptal ediliyor. {duelId} {userId}", duelId, UserId);
-
-            if (!_duelRepository.IsDuelFinish(duelId))
-            {
-                return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
-            }
 
             var @event = new DuelEscapeIntegrationEvent(duelId,
                                                         UserId,

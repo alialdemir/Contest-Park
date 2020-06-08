@@ -149,7 +149,7 @@
       </Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.5.3.1</Version>
+      <Version>1.5.3.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
       <Version>
@@ -287,7 +287,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionContestParkMobileAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarContestParkMobileAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarContestParkMobileAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionContestParkMobileAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

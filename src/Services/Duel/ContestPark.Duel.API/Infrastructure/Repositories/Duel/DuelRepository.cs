@@ -103,31 +103,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         }
 
         /// <summary>
-        /// Düello bitmiş mi kotnrol eder
-        /// </summary>
-        /// <param name="duelId">Düello id</param>
-        /// <returns>Deüllo devam ediyor ise true bitmiş ise false</returns>
-        public bool IsDuelFinish(int duelId)
-        {
-            if (duelId <= 0)
-                return false;
-
-            string sql = @"SELECT (CASE
-                           WHEN EXISTS(
-                           SELECT NULL
-                           FROM Duels d WHERE d.DuelType = @duelType AND d.DuelId = @duelId)
-                           THEN 1
-                           ELSE 0
-                           END)";
-
-            return _duelRepository.QuerySingleOrDefault<bool>(sql, new
-            {
-                duelId,
-                duelType = (byte)DuelTypes.Created
-            });
-        }
-
-        /// <summary>
         /// Duello id göre düellodaki bahis miktarını ve bakiye tipini verir
         /// </summary>
         /// <param name="duelId">Duello id</param>
@@ -157,6 +132,31 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         }
 
         /// <summary>
+        /// Düello bitmiş mi kotnrol eder
+        /// </summary>
+        /// <param name="duelId">Düello id</param>
+        /// <returns>Deüllo devam ediyor ise true bitmiş ise false</returns>
+        public bool IsDuelFinish(int duelId)
+        {
+            if (duelId <= 0)
+                return false;
+
+            string sql = @"SELECT (CASE
+                           WHEN EXISTS(
+                           SELECT NULL
+                           FROM Duels d WHERE d.DuelType = @duelType AND d.DuelId = @duelId)
+                           THEN 1
+                           ELSE 0
+                           END)";
+
+            return _duelRepository.QuerySingleOrDefault<bool>(sql, new
+            {
+                duelId,
+                duelType = (byte)DuelTypes.Created
+            });
+        }
+
+        /// <summary>
         /// Kullanıcının oynanıyor durumundaki son duellosunu getirir
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
@@ -167,12 +167,14 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
                            WHERE
                            (d.FounderUserId = @userId OR d.OpponentUserId = @userId)
                            AND d.FounderTotalScore IS NULL AND d.OpponentTotalScore  IS NULL
+                           AND d.DuelType = @duelType
                            ORDER BY d.CreatedDate DESC
                            LIMIT 1";
 
             return _duelRepository.QuerySingleOrDefault<int>(sql, new
             {
-                userId
+                userId,
+                duelType = (byte)DuelTypes.Created
             });
         }
 

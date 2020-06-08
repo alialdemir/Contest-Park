@@ -14,8 +14,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
 
         Task<int?> Insert(Tables.Duel duel);
 
-        bool IsDuelFinish(int duelId);
-
         Task<bool> UpdateDuelScores(int duelId, DuelTypes duelType, byte founderTotalScore, byte opponentTotalScore, byte founderFinishScore, byte opponentFinishScore, byte founderVictoryScore, byte opponentVictoryScore);
 
         DuelWinStatusModel WinStatus(string userId);
@@ -23,5 +21,6 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         int LastPlayingDuel(string userId);
 
         bool PlaysInTheLastHour(string founderUserId, string opponentUserId);
+        bool IsDuelFinish(int duelId);
     }
 }
