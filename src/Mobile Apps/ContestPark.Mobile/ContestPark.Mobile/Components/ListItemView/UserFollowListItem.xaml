@@ -79,7 +79,7 @@
                     FontFamily="{DynamicResource SofiaProLight}"
                     FontSize="14"
                     LineBreakMode="WordWrap"
-                    Text="{Binding Description}"
+                    Text="{Binding UserName, StringFormat='@{0}'}"
                     TextColor="#181C2F"
                     VerticalOptions="FillAndExpand" />
 

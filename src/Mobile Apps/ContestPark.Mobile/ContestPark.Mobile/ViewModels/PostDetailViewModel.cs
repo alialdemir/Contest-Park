@@ -1,5 +1,6 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Dependencies;
+using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Post;
 using ContestPark.Mobile.Models.User;
@@ -8,6 +9,7 @@ using ContestPark.Mobile.Services.Post;
 using ContestPark.Mobile.Services.Settings;
 using ContestPark.Mobile.ViewModels.Base;
 using ContestPark.Mobile.Views;
+using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -25,24 +27,25 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IPostService _postService;
         private readonly IAnalyticsService _analyticsService;
         private readonly ISettingsService _settingsService;
-        private int postId;
+        private int _postId;
+        private readonly IEventAggregator _eventAggregator;
 
         #endregion Private variable
 
         #region Constructors
 
-        public PostDetailViewModel(
-            INavigationService navigationService,
-            IPageDialogService dialogService,
-            IPostService postService,
-            IAnalyticsService analyticsService,
-            ISettingsService settingsService
-            ) : base(navigationService, dialogService)
+        public PostDetailViewModel(INavigationService navigationService,
+                                   IPageDialogService dialogService,
+                                   IEventAggregator eventAggregator,
+                                   IPostService postService,
+                                   IAnalyticsService analyticsService,
+                                   ISettingsService settingsService) : base(navigationService, dialogService)
         {
             _postService = postService;
             _analyticsService = analyticsService;
             _settingsService = settingsService;
             NavigationService = navigationService;
+            _eventAggregator = eventAggregator;
             Title = ContestParkResources.Comment;
         }
 
@@ -85,7 +88,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void Initialize(INavigationParameters parameters = null)
         {
-            if (parameters.ContainsKey("PostId")) postId = parameters.GetValue<int>("PostId");
+            if (parameters.ContainsKey("PostId")) _postId = parameters.GetValue<int>("PostId");
 
             GetPostByPostIdCommand.Execute(null);
 
@@ -134,15 +137,21 @@ namespace ContestPark.Mobile.ViewModels
             Items.Add(postComment);
             Items.OrderByDescending(x => x.Date);
 
-            bool isSuccess = await _postService.SendCommentAsync(postId, _message);
-            if (!isSuccess)
+            bool isSuccess = await _postService.SendCommentAsync(_postId, _message);
+            if (isSuccess)
             {
-                Items.Remove(postComment);
-                await DisplayAlertAsync("", ContestParkResources.GlobalErrorMessage, ContestParkResources.Okay);
+                PostModel.Post.CommentCount += 1;
+
+                _eventAggregator
+                    .GetEvent<PostCommentCountChangeEvent>()
+                    .Publish(PostModel.Post);
+
+                _analyticsService.SendEvent("Post", "Post Yorum", PostModel.Post.PostType.ToString());
             }
             else
             {
-                _analyticsService.SendEvent("Post", "Post Yorum", PostModel.Post.PostType.ToString());
+                Items.Remove(postComment);
+                await DisplayAlertAsync("", ContestParkResources.GlobalErrorMessage, ContestParkResources.Okay);
             }
 
             ListViewScrollToBottomCommand?.Execute(Items.Count - 1);
@@ -167,7 +176,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <returns></returns>
         private async Task ExecuteGetPostByPostIdCommandAsync()
         {
-            PostModel = await _postService.GetPostByPostIdAsync(postId, ServiceModel);
+            PostModel = await _postService.GetPostByPostIdAsync(_postId, ServiceModel);
             if (PostModel != null && PostModel.Comments != null)
             {
                 ServiceModel = PostModel.Comments;

@@ -87,15 +87,19 @@ namespace ContestPark.Mobile.Components.PostCardView
 
             IsBusy = true;
 
-            IPostService postService = ContestParkApp.Current.Container.Resolve<IPostService>();
-            PostModel postModel = (PostModel)BindingContext;
+            IPostService postService = ContestParkApp
+                                                .Current
+                                                .Container
+                                                .Resolve<IPostService>();
 
+            PostModel postModel = (PostModel)BindingContext;
             if (postService == null || postModel == null)
             {
                 IsBusy = false;
 
                 return;
             }
+
             if (postModel.IsLike)
                 postModel.LikeCount -= 1;
             else
@@ -103,27 +107,18 @@ namespace ContestPark.Mobile.Components.PostCardView
 
             postModel.IsLike = !postModel.IsLike;
 
-            bool isSuccess = await (postModel.IsLike ?
-                postService.LikeAsync(postModel.PostId) :
-                postService.DisLikeAsync(postModel.PostId));
+            bool isSuccess = await (postModel.IsLike
+                                    ? postService.LikeAsync(postModel.PostId)
+                                    : postService.DisLikeAsync(postModel.PostId));
 
-            if (!isSuccess)
-            {
-                if (postModel.IsLike)
-                    postModel.LikeCount -= 1;
-                else
-                    postModel.LikeCount += 1;
-
-                postModel.IsLike = !postModel.IsLike;
-            }
-            else
+            if (isSuccess)
             {
                 ContestParkApp
                     .Current
                     .Container
                     .Resolve<IEventAggregator>()
-                    .GetEvent<PostRefreshEvent>()
-                    .Publish();
+                    .GetEvent<PostLikeCountChangeEvent>()
+                    .Publish(postModel);
 
                 ContestParkApp
                          .Current
@@ -132,6 +127,15 @@ namespace ContestPark.Mobile.Components.PostCardView
                          .SendEvent("Post",
                                     postModel.IsLike ? "Post Beğenmekten Vazgeç" : "Post Beğen",
                                     postModel.PostType.ToString());
+            }
+            else
+            {
+                if (postModel.IsLike)
+                    postModel.LikeCount -= 1;
+                else
+                    postModel.LikeCount += 1;
+
+                postModel.IsLike = !postModel.IsLike;
             }
 
             IsBusy = false;

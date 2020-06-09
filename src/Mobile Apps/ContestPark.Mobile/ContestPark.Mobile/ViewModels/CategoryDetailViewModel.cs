@@ -28,6 +28,9 @@ namespace ContestPark.Mobile.ViewModels
         private readonly IPostService _postService;
         private readonly IAnalyticsService _analyticsService;
         private short _subCategoryId = 0;
+        private SubscriptionToken _postRefreshSubscriptionToken;
+        private SubscriptionToken _postLikeCountChangeSubscriptionToken;
+        private SubscriptionToken _postCommentCountChangeEventSubscriptionToken;
 
         #endregion Private variable
 
@@ -80,16 +83,37 @@ namespace ContestPark.Mobile.ViewModels
             if (CategoryDetail.SubCategoryId == 0)
                 SubCategoryDetailCommand.Execute(null);
 
-            SubCategoryPostsCommand.Execute(false);
+            SubCategoryPostsCommand.Execute(null);
 
-            if (SubscriptionToken == null)
-            {
-                SubscriptionToken = _eventAggregator
-                                                .GetEvent<PostRefreshEvent>()
-                                                .Subscribe(() => RefreshCommand.Execute(null));
-            }
+            OnEventListener();
 
             base.Initialize(parameters);
+        }
+
+        /// <summary>
+        /// Post refresh ve post beğenme sayısı değişme eventlerini dinler
+        /// </summary>
+        private void OnEventListener()
+        {
+            if (_postRefreshSubscriptionToken == null)
+            {
+                _postRefreshSubscriptionToken = _eventAggregator
+                                                        .GetEvent<PostRefreshEvent>()
+                                                        .Subscribe(() => RefreshCommand.Execute(null));
+            }
+
+            if (_postLikeCountChangeSubscriptionToken == null)
+            {
+                _postLikeCountChangeSubscriptionToken = _eventAggregator
+                                                                .GetEvent<PostLikeCountChangeEvent>()
+                                                                .Subscribe((postModel) => Items.Replace(postModel));
+            }
+            if (_postCommentCountChangeEventSubscriptionToken == null)
+            {
+                _postCommentCountChangeEventSubscriptionToken = _eventAggregator
+                                                                        .GetEvent<PostCommentCountChangeEvent>()
+                                                                        .Subscribe((postModel) => Items.Replace(postModel));
+            }
         }
 
         /// <summary>
@@ -117,6 +141,23 @@ namespace ContestPark.Mobile.ViewModels
             _analyticsService.SendEvent("Kategori Detay", "Rakip Bul", CategoryDetail.SubCategoryName);
 
             IsBusy = false;
+        }
+
+        public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
+        {
+            _eventAggregator
+                        .GetEvent<PostRefreshEvent>()
+                        .Unsubscribe(_postRefreshSubscriptionToken);
+
+            _eventAggregator
+                            .GetEvent<PostLikeCountChangeEvent>()
+                            .Unsubscribe(_postLikeCountChangeSubscriptionToken);
+
+            _eventAggregator
+                .GetEvent<PostCommentCountChangeEvent>()
+                .Unsubscribe(_postCommentCountChangeEventSubscriptionToken);
+
+            return base.GoBackAsync(parameters, useModalNavigation);
         }
 
         /// <summary>
@@ -245,21 +286,14 @@ namespace ContestPark.Mobile.ViewModels
         {
             get
             {
-                return new Command<bool>(async (isForceCache) =>
+                return new Command(async () =>
                 {
                     ServiceModel.PageSize = 3;
 
-                    ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel, isForceCache: isForceCache);
-
-                    base.Initialize(new NavigationParameters
-                    {
-                        { "SubCategoryId", _subCategoryId }
-                    });
+                    ServiceModel = await _postService.GetPostsBySubCategoryIdAsync(_subCategoryId, ServiceModel, IsRefreshing);
                 });
             }
         }
-
-        public SubscriptionToken SubscriptionToken { get; set; }
 
         #endregion Commands
     }

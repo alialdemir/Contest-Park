@@ -41,6 +41,8 @@ namespace ContestPark.Mobile.ViewModels
         private SubscriptionToken _changeUserInfoEventSubscriptionToken;
         private SubscriptionToken _postRefreshEventSubscriptionToken;
         private SubscriptionToken _changedFollowCountEventSubscriptionToken;
+        private SubscriptionToken _postLikeCountChangeSubscriptionToken;
+        private SubscriptionToken _postCommentCountChangeEventSubscriptionToken;
 
         #endregion Private variables
 
@@ -144,26 +146,25 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         public override Task GoBackAsync(INavigationParameters parameters = null, bool? useModalNavigation = false)
         {
-            if (_changeUserInfoEventSubscriptionToken != null)
-            {
-                _eventAggregator
-                    .GetEvent<ChangeUserInfoEvent>()
-                    .Unsubscribe(_changeUserInfoEventSubscriptionToken);
-            }
+            _eventAggregator
+                .GetEvent<ChangeUserInfoEvent>()
+                .Unsubscribe(_changeUserInfoEventSubscriptionToken);
 
-            if (_postRefreshEventSubscriptionToken != null)
-            {
-                _eventAggregator
-                    .GetEvent<PostRefreshEvent>()
-                        .Unsubscribe(_postRefreshEventSubscriptionToken);
-            }
+            _eventAggregator
+                .GetEvent<PostRefreshEvent>()
+                .Unsubscribe(_postRefreshEventSubscriptionToken);
 
-            if (_changedFollowCountEventSubscriptionToken != null)
-            {
-                _eventAggregator
-                        .GetEvent<ChangedFollowCountEvent>()
-                        .Unsubscribe(_changedFollowCountEventSubscriptionToken);
-            }
+            _eventAggregator
+                .GetEvent<ChangedFollowCountEvent>()
+                .Unsubscribe(_changedFollowCountEventSubscriptionToken);
+
+            _eventAggregator
+                .GetEvent<PostLikeCountChangeEvent>()
+                .Unsubscribe(_postLikeCountChangeSubscriptionToken);
+
+            _eventAggregator
+                .GetEvent<PostCommentCountChangeEvent>()
+                .Unsubscribe(_postCommentCountChangeEventSubscriptionToken);
 
             return base.GoBackAsync(parameters, useModalNavigation: false);
         }
@@ -173,7 +174,7 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void EventSubscription()
         {
-            if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
+            if (_changeUserInfoEventSubscriptionToken == null && _settingsService.CurrentUser.UserId == ProfileInfo.UserId)// eğer kendi profili ise profil, kapak veya kullanıcı bilgileri güncellenirse
             {
                 _changeUserInfoEventSubscriptionToken = _eventAggregator
                                                   .GetEvent<ChangeUserInfoEvent>()
@@ -197,24 +198,41 @@ namespace ContestPark.Mobile.ViewModels
                                                                 .Subscribe(() => RefreshCommand.Execute(null));
             }
 
-            _changedFollowCountEventSubscriptionToken = _eventAggregator
-                                                                .GetEvent<ChangedFollowCountEvent>()
-                                                                .Subscribe(async (userId) =>
-                                                                {
-                                                                    if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)
-                                                                    {
-                                                                        var currentUserProfileInfo = await _identityService.GetProfileInfoByUserName(_settingsService.CurrentUser.UserName);
-                                                                        if (currentUserProfileInfo != null)
-                                                                            ProfileInfo = currentUserProfileInfo;
-                                                                    }
+            if (_changedFollowCountEventSubscriptionToken == null)
+            {
+                _changedFollowCountEventSubscriptionToken = _eventAggregator
+                                                                     .GetEvent<ChangedFollowCountEvent>()
+                                                                     .Subscribe(async (userId) =>
+                                                                     {
+                                                                         if (_settingsService.CurrentUser.UserId == ProfileInfo.UserId)
+                                                                         {
+                                                                             var currentUserProfileInfo = await _identityService.GetProfileInfoByUserName(_settingsService.CurrentUser.UserName);
+                                                                             if (currentUserProfileInfo != null)
+                                                                                 ProfileInfo = currentUserProfileInfo;
+                                                                         }
 
-                                                                    if (userId != ProfileInfo.UserId)
-                                                                        return;
+                                                                         if (userId != ProfileInfo.UserId)
+                                                                             return;
 
-                                                                    var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
-                                                                    if (profileInfo != null)
-                                                                        ProfileInfo = profileInfo;
-                                                                });
+                                                                         var profileInfo = await _identityService.GetProfileInfoByUserName(_userName);
+                                                                         if (profileInfo != null)
+                                                                             ProfileInfo = profileInfo;
+                                                                     });
+            }
+
+            if (_postLikeCountChangeSubscriptionToken == null)
+            {
+                _postLikeCountChangeSubscriptionToken = _eventAggregator
+                                                               .GetEvent<PostLikeCountChangeEvent>()
+                                                               .Subscribe((postModel) => Items.Replace(postModel));
+            }
+
+            if (_postCommentCountChangeEventSubscriptionToken == null)
+            {
+                _postCommentCountChangeEventSubscriptionToken = _eventAggregator
+                                                                        .GetEvent<PostCommentCountChangeEvent>()
+                                                                        .Subscribe((postModel) => Items.Replace(postModel));
+            }
         }
 
         /// <summary>
@@ -523,10 +541,7 @@ namespace ContestPark.Mobile.ViewModels
 
             IsMeProfile = _settingsService.CurrentUser.UserId == ProfileInfo.UserId;
 
-            if (ProfileInfo == null)
-            {
-                EventSubscription();
-            }
+            EventSubscription();
 
             if (IsMeProfile || !ProfileInfo.IsPrivateProfile)
             {
