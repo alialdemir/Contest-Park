@@ -4,6 +4,7 @@ using ContestPark.Identity.API.Data.Repositories.DeviceInfo;
 using ContestPark.Identity.API.Data.Repositories.Reference;
 using ContestPark.Identity.API.Data.Repositories.ReferenceCode;
 using ContestPark.Identity.API.Data.Repositories.User;
+using ContestPark.Identity.API.Data.Tables;
 using ContestPark.Identity.API.Extensions;
 using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.Events;

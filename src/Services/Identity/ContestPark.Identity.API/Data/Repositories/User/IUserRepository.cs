@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Models;
+using ContestPark.Identity.API.Data.Tables;
 using ContestPark.Identity.API.Models;
 using System.Collections.Generic;
 

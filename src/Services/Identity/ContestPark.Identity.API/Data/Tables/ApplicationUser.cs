@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ContestPark.Identity.API.Models
+namespace ContestPark.Identity.API.Data.Tables
 {
     public class ApplicationUser : IdentityUser//, IEntity
     {
         public string CoverPicturePath { get; set; }
 
-        [Required]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; }
 
         public string FaceBookId { get; set; }
 
@@ -28,8 +27,7 @@ namespace ContestPark.Identity.API.Models
         [Required]
         public string LanguageCode { get; set; }
 
-        [Required]
-        public DateTime ModifiedDate { get; set; } = DateTime.Now;
+        public DateTime? ModifiedDate { get; set; }
 
         public string ProfilePicturePath { get; set; }
 

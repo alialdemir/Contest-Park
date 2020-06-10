@@ -94,7 +94,8 @@ namespace ContestPark.Mobile.ViewModels
         {
             _adMobService.ShowInterstitial();// Düello sonucuna gelen kullanıcılara reklam gösterildi
 
-            parameters.TryGetValue("DuelId", out _duelId);
+            if (parameters.ContainsKey("DuelId"))
+                _duelId = parameters.GetValue<int>("DuelId");
 
             InitDuelResultCommand.Execute(null);
 

@@ -84,8 +84,11 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void Initialize(INavigationParameters parameters = null)
         {
-            parameters.TryGetValue("SubCategoryId", out _subCategoryId);
-            parameters.TryGetValue("ListType", out _listType);
+            if (parameters.ContainsKey("SubCategoryId"))
+                _subCategoryId = parameters.GetValue<short>("SubCategoryId");
+
+            if (parameters.ContainsKey("ListType"))
+                _listType = parameters.GetValue<ListTypes>("ListType");
 
             GetRankingCommand.Execute(null);
 

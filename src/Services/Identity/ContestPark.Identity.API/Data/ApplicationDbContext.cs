@@ -1,5 +1,4 @@
 ﻿using ContestPark.Identity.API.Data.Tables;
-using ContestPark.Identity.API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

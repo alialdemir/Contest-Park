@@ -1,6 +1,6 @@
 ﻿using ContestPark.EventBus.Abstractions;
+using ContestPark.Identity.API.Data.Tables;
 using ContestPark.Identity.API.IntegrationEvents.Events;
-using ContestPark.Identity.API.Models;
 using ContestPark.Identity.API.Services.NumberFormat;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;

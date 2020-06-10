@@ -1,5 +1,5 @@
 ﻿using ContestPark.Core.Enums;
-using ContestPark.Identity.API.Models;
+using ContestPark.Identity.API.Data.Tables;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;

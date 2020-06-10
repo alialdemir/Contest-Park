@@ -1,4 +1,4 @@
-﻿using ContestPark.Identity.API.Models;
+﻿using ContestPark.Identity.API.Data.Tables;
 using ContestPark.Identity.API.Services;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;

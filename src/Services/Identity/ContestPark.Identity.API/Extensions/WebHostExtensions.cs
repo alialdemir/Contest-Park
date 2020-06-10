@@ -1,6 +1,6 @@
 ﻿using ContestPark.EventBus.IntegrationEventLogEF;
 using ContestPark.Identity.API.Data;
-using ContestPark.Identity.API.Models;
+using ContestPark.Identity.API.Data.Tables;
 using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
