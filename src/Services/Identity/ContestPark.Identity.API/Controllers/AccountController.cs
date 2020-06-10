@@ -445,6 +445,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
                 FullName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(signUpModel.FullName),
                 LanguageCode = signUpModel.LanguageCode.ToLower(),
                 Language = signUpModel.LanguageCode.ToLanguagesEnum(),
+                CreatedDate = DateTime.Now,
                 PhoneNumber = signUpModel.Password// Sms ile login olma sisteminde kullanıcıdan şifre almamak için şifresini telefon numarası yaptık
             };
 
