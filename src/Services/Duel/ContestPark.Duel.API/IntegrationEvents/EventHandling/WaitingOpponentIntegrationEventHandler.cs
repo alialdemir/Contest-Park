@@ -59,17 +59,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                    @event.Bet,
                                    @event.BalanceType);
 
-            int duelId = _duelRepository.LastPlayingDuel(@event.UserId);
-            if (duelId > 0)
-            {
-                _logger.LogInformation("Oyuncunun daha önceden tamamlanmamış düellosuna rastlandı. userId: {userId}", @event.UserId);
+            await Task.Factory.StartNew(() =>
+             {
+                 int duelId = _duelRepository.LastPlayingDuel(@event.UserId);
+                 if (duelId > 0)
+                 {
+                     _logger.LogInformation("Oyuncunun daha önceden tamamlanmamış düellosuna rastlandı. userId: {userId}", @event.UserId);
 
-                var @eventDuelEscape = new DuelEscapeIntegrationEvent(duelId,
-                                                                      @event.UserId,
-                                                                      isDuelCancel: true);
+                     var @eventDuelEscape = new DuelEscapeIntegrationEvent(duelId,
+                                                                           @event.UserId,
+                                                                           isDuelCancel: true);
 
-                _eventBus.Publish(@eventDuelEscape);
-            }
+                     _eventBus.Publish(@eventDuelEscape);
+                 }
+             });
 
             DuelUserModel waitingDuelUser = _duelUserRepository.GetDuelUser(new DuelUserModel
             {

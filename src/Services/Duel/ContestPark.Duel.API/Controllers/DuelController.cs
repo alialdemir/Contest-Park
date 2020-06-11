@@ -320,14 +320,17 @@ namespace ContestPark.Duel.API.Controllers
         /// Düello iptal eder
         /// </summary>
         /// <param name="duelId">Düello id</param>
-        [HttpPost("DuelCancel")]
+        [HttpPost("{duelId}/DuelCancel")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult DuelCancel()
+        public IActionResult DuelCancel([FromRoute]int duelId)
         {
-            int duelId = _duelRepository.LastPlayingDuel(UserId);
             if (duelId <= 0)
-                return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
+            {
+                duelId = _duelRepository.LastPlayingDuel(UserId);
+                if (duelId <= 0)
+                    return BadRequest(DuelResource.YouCantLeaveTheFinishedDuel);
+            }
 
             Logger.LogInformation("Düello iptal ediliyor. {duelId} {userId}", duelId, UserId);
 

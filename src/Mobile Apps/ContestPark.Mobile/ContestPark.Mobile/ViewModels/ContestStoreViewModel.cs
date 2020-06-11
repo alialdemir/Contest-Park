@@ -18,6 +18,7 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
+    [QueryProperty(nameof(BalanceTypeQuery), nameof(BalanceType))]
     public class ContestStoreViewModel : ViewModelBase<InAppBillingProductModel>
     {
         #region Private variables
@@ -63,6 +64,10 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => BalanceType);
             }
         }
+        /// <summary>
+        /// Sol menüdeki altın veya para bakiyelerine tıklanınca, tıklanan bakiye tipini seçili halde açtık
+        /// </summary>
+        public string BalanceTypeQuery { get; set; }
 
         public List<InAppBillingProductModel> Products { get; set; }
 
@@ -76,6 +81,12 @@ namespace ContestPark.Mobile.ViewModels
                 return;
 
             IsBusy = true;
+
+            if (parameters != null && parameters.ContainsKey("BalanceType"))
+                BalanceType = parameters.GetValue<BalanceTypes>("BalanceType");
+
+            if (!string.IsNullOrEmpty(BalanceTypeQuery))
+                BalanceType = (BalanceTypes)Convert.ToByte(BalanceTypeQuery);
 
             _adMobService.OnRewardedVideoAdClosed += OnRewardedVideoAdClosed;
 

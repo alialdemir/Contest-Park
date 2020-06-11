@@ -19,7 +19,6 @@ namespace ContestPark.Mobile.Views
         protected override void OnAppearing()
         {
             SettingsViewModel viewModel = ((SettingsViewModel)BindingContext);
-
             if (viewModel == null || viewModel.IsInitialized)
                 return;
 

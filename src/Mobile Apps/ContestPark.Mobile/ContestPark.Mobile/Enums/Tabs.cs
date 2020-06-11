@@ -3,8 +3,9 @@
     public enum Tabs
     {
         Categories = 0,
-        Chat = 1,
-        Notifications = 2,
-        Profile = 3
+        ContestStore = 1,
+        LiderBoards = 2,
+        Chats = 3,
+        Profile = 4
     }
 }

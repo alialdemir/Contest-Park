@@ -24,9 +24,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <x:Byte x:Key="BalanceTypeGold">1</x:Byte>
-            <x:Byte x:Key="BalanceTypeMoney">2</x:Byte>
-
             <converter:TabBorderColorConverter x:Key="tbc" />
         </ResourceDictionary>
     </ContentPage.Resources>

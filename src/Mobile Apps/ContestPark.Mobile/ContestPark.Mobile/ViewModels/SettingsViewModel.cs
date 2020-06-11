@@ -17,9 +17,6 @@ using Xamarin.Forms;
 
 namespace ContestPark.Mobile.ViewModels
 {
-    /// <summary>
-    /// Defines the <see cref="SettingsViewModel"/>
-    /// </summary>
     public class SettingsViewModel : ViewModelBase<MenuItemList>
     {
         #region Fields

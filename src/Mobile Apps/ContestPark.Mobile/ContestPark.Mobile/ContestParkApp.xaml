@@ -86,6 +86,10 @@
             <x:Boolean x:Key="True">True</x:Boolean>
             <x:Boolean x:Key="False">False</x:Boolean>
 
+            <!--  Balance types  -->
+            <x:Byte x:Key="BalanceTypeGold">1</x:Byte>
+            <x:Byte x:Key="BalanceTypeMoney">2</x:Byte>
+
             <!--  Converter  -->
             <converter:BetIconConverter x:Key="BetIconConverter" />
             <converter:BetTabTextColorConverter x:Key="BetTabTextColorConverter" />

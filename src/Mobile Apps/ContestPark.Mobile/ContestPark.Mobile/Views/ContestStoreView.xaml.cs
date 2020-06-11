@@ -55,4 +55,26 @@ namespace ContestPark.Mobile.Views
 
         #endregion Methods
     }
+
+    public partial class NoTabContestStoreView : ContestStoreView
+    {
+        #region Constructor
+
+        public NoTabContestStoreView()
+        {
+            Shell.SetTabBarIsVisible(this, false);
+            Shell.SetBackButtonBehavior(this, new BackButtonBehavior
+            {
+                IconOverride = new FontImageSource
+                {
+                    FontFamily = "icomoon",
+                    Glyph = ContestParkApp.Current.Resources["BackArrow"].ToString(),
+                    Size = 32,
+                    Color = Color.Black,
+                }
+            });
+        }
+
+        #endregion Constructor
+    }
 }

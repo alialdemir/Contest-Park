@@ -1,4 +1,5 @@
 ﻿using ContestPark.Mobile.AppResources;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Events;
 using ContestPark.Mobile.Extensions;
 using ContestPark.Mobile.Helpers;
@@ -127,6 +128,7 @@ namespace ContestPark.Mobile.ViewModels
             IsInitialized = true;
 
             SetUserInfoCommand.Execute(null);
+
             SetUserGoldCommand.Execute(null);
 
             ListenerEventsCommand.Execute(null);
@@ -203,7 +205,7 @@ namespace ContestPark.Mobile.ViewModels
             IsBusy = true;
 
             if (_settingsService.CurrentUser.UserId == "34873f81-dfee-4d78-bc17-97d9b9bb-bot"
-                && (name.StartsWith("https://contestpark.com/balancecode.html") || name.StartsWith("BalanceCodeView")))
+                && (name.StartsWith("IbanNoView") || name.StartsWith("BalanceCodeView")))
             {
                 DisplayAlertAsync(string.Empty,
                                   ContestParkResources.ComingSoon,
@@ -217,9 +219,6 @@ namespace ContestPark.Mobile.ViewModels
             if (name.IsUrl())
             {
                 _analyticsService.SendEvent("Sol Menü", "Link", name);
-
-                if (name.EndsWith("balancecode.html"))
-                    name = $"{name}?q={_settingsService.AuthAccessToken}";
 
                 Launcher.TryOpenAsync(new Uri(name));
 
@@ -252,7 +251,7 @@ namespace ContestPark.Mobile.ViewModels
                 {
                     _analyticsService.SendEvent("Sol Menü", "Sol menü profil fotoğrafı", _settingsService.CurrentUser.UserName);
 
-                    _eventAggregator.GetEvent<TabChangeEvent>().Publish(Enums.Tabs.Profile);
+                    _eventAggregator.GetEvent<TabChangeEvent>().Publish(Tabs.Profile);
 
                     _eventAggregator
                                 .GetEvent<MasterDetailPageIsPresentedEvent>()

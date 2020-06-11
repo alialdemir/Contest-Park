@@ -148,7 +148,7 @@
     </Shell.Resources>
 
     <Shell.FlyoutHeader>
-        <views:AppShellHeaderView />
+        <views:AppShellHeaderView MenuItemClickCommand="{Binding MenuItemClickCommand}" />
     </Shell.FlyoutHeader>
 
     <FlyoutItem FlyoutDisplayOptions="AsSingleItem">
@@ -157,7 +157,10 @@
             <ShellContent Title="{i18n:Translate Categories}" ContentTemplate="{DataTemplate views:CategoriesView}" />
         </Tab>
 
-        <Tab Title="{i18n:Translate ContestStore}" Icon="{StaticResource IconContestStore}">
+        <Tab
+            x:Name="ContestStore"
+            Title="{i18n:Translate ContestStore}"
+            Icon="{StaticResource IconContestStore}">
             <ShellContent Title="{i18n:Translate ContestStore}" ContentTemplate="{DataTemplate views:ContestStoreView}" />
         </Tab>
 
@@ -177,7 +180,7 @@
     <MenuItem
         x:Name="menuConvertToCash"
         Command="{Binding MenuItemClickCommand}"
-        CommandParameter="https://contestpark.com/balancecode.html"
+        CommandParameter="IbanNoView"
         IconImageSource="{StaticResource IconConvertToCash}"
         Text="{i18n:Translate ConvertToCash}" />
 

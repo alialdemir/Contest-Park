@@ -58,6 +58,8 @@ namespace ContestPark.Mobile.Configs
 
             containerRegistry.RegisterForNavigation<ContestStoreView, ContestStoreViewModel>();
 
+            containerRegistry.RegisterForNavigation<NoTabContestStoreView, ContestStoreViewModel>();
+
             containerRegistry.RegisterForNavigation<DuelBettingPopupView, DuelBettingPopupViewModel>();
 
             containerRegistry.RegisterForNavigation<DuelResultPopupView, DuelResultPopupViewModel>();

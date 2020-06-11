@@ -43,6 +43,7 @@
                         FontSize="16"
                         HeightRequest="40"
                         HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
                         Placeholder="IBAN NO"
                         PlaceholderColor="#484848"
                         Text="{Binding IbanNo.IbanNo}"
