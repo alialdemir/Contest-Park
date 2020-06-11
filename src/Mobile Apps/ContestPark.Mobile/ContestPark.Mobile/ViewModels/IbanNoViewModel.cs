@@ -69,7 +69,7 @@ namespace ContestPark.Mobile.ViewModels
 
             BalanceModel balance = await _balanceService.GetBalanceAsync();
 
-            decimal minBalanceAmount = 100.00m;
+            decimal minBalanceAmount = 20.00m;
             if (balance.Money < minBalanceAmount)
             {
                 await DisplayAlertAsync(string.Empty,

@@ -242,7 +242,7 @@ namespace ContestPark.Balance.API.Controllers
             }
 
             BalanceModel result = _balanceRepository.GetUserBalances(UserId);
-            if (result == null || result.Money < 100.00m)
+            if (result == null || result.Money < 20.00m)
             {
                 Logger.LogInformation($"Yetersiz bakiye ile para çekme talebi geldi.", UserId);
 
