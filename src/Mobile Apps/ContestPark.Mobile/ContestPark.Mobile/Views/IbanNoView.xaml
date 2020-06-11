@@ -3,6 +3,7 @@
     x:Class="ContestPark.Mobile.Views.IbanNoView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:ContestPark.Mobile.Behaviors"
     xmlns:custom="clr-namespace:ContestPark.Mobile.Components"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources;assembly=ContestPark.Mobile"
     xmlns:image="clr-namespace:ContestPark.Mobile"
@@ -49,7 +50,11 @@
                         PlaceholderColor="#484848"
                         Text="{Binding IbanNo.IbanNo}"
                         TextColor="#484848"
-                        Visual="Material" />
+                        Visual="Material">
+                        <custom:CustomEntry.Behaviors>
+                            <behavior:MaskedBehavior Mask="XX XXXX XXXX XXXX XXXX XXXX XX" />
+                        </custom:CustomEntry.Behaviors>
+                    </custom:CustomEntry>
 
                     <custom:CustomEntry
                         Grid.Row="2"
