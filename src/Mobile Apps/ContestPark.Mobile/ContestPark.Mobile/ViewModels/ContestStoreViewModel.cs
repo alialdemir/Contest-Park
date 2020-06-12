@@ -64,6 +64,7 @@ namespace ContestPark.Mobile.ViewModels
                 RaisePropertyChanged(() => BalanceType);
             }
         }
+
         /// <summary>
         /// Sol menüdeki altın veya para bakiyelerine tıklanınca, tıklanan bakiye tipini seçili halde açtık
         /// </summary>
@@ -159,7 +160,7 @@ namespace ContestPark.Mobile.ViewModels
 
         public ICommand PurchaseCommand
         {
-            get { return _purchaseCommand ?? (_purchaseCommand = new CommandAsync<string>(_inAppBillingService.PurchaseProcessAsync)); }
+            get { return _purchaseCommand ?? (_purchaseCommand = new CommandAsync<string>((productId) => _inAppBillingService.PurchaseProcessAsync(productId))); }
         }
 
         public ICommand WatchAdsVideoCommand

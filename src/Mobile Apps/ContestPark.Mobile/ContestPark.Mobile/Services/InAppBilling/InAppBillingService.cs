@@ -441,8 +441,6 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
             if (File.Exists(PurchaseTokenFilePath))
                 File.Delete(PurchaseTokenFilePath);
-
-            ConsumePurchaseAsync(purchaseInfo.ProductId, purchaseInfo.Payload);
         }
 
         /// <summary>
@@ -516,6 +514,9 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
                     return null;
                 }
+
+                await RestorePurchase(productId);// Eğer ürün daha önceden alınmısa onu tüketildi olarak bildiriyoruz ki ikinci defa satın alınabilsin
+
                 string verifyPurchase = Guid.NewGuid().ToString();
 
                 var purchase = await _billing.PurchaseAsync(productId, ItemType.InAppPurchase, verifyPurchase);
@@ -571,19 +572,23 @@ namespace ContestPark.Mobile.Services.InAppBilling
         }
 
         /// <summary>
-        /// Android tarafında satın alınan öğeyi tüketildi yapar
+        /// Parametreden gelen ürün id daha önce satın alınmışsa onu tüketildi yapar
         /// </summary>
-        /// <param name="productId"></param>
-        /// <param name="purchaseToken"></param>
-        /// <returns></returns>
-        public Task<InAppBillingPurchase> ConsumePurchaseAsync(string productId, string payload)
+        /// <param name="productId">Ürün id</param>
+        private async Task RestorePurchase(string productId)
         {
-            if (!string.IsNullOrEmpty(productId) && !string.IsNullOrEmpty(payload))
-            {
-                return _billing.ConsumePurchaseAsync(productId, ItemType.InAppPurchase, payload);
-            }
+            if (string.IsNullOrEmpty(productId))
+                return;
 
-            return null;
+            IEnumerable<InAppBillingPurchase> appBillingPurchases = await _billing.GetPurchasesAsync(ItemType.InAppPurchase);
+            if (appBillingPurchases == null || !appBillingPurchases.Any(x => x.ProductId == productId))
+                return;
+
+            InAppBillingPurchase inAppBillingPurchase = appBillingPurchases.FirstOrDefault(x => x.ProductId == productId);
+            if (inAppBillingPurchase != null)
+            {
+                await _billing.ConsumePurchaseAsync(inAppBillingPurchase.ProductId, inAppBillingPurchase.PurchaseToken);
+            }
         }
 
         /// <summary>

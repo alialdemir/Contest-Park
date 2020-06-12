@@ -746,7 +746,7 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/Duel/DuelCancel",
+      "DownstreamPathTemplate": "/api/{version}/Duel/{duelId}/DuelCancel",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -754,7 +754,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/DuelCancel",
+      "UpstreamPathTemplate": "/api/{version}/Duel/{duelId}/DuelCancel",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
