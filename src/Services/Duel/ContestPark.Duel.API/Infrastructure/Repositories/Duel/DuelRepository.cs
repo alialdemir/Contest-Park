@@ -123,11 +123,12 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
         /// Kazamma/kaybetme durumlarını verir
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>
-        public DuelWinStatusModel WinStatus(string userId)
+        public DuelWinStatusModel WinStatus(string userId, BalanceTypes balanceType)
         {
             return _duelRepository.QuerySingleOrDefault<DuelWinStatusModel>("SP_WinStatus", new
             {
                 userId,
+                balanceType
             }, CommandType.StoredProcedure);
         }
 

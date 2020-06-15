@@ -328,12 +328,12 @@ namespace ContestPark.Mobile.Services.InAppBilling
         /// Ürünlerin indirimli fiyatını hesaplar
         /// </summary>
         /// <param name="productId"></param>
-        /// <returns></returns>
+        /// <returns>İndirimli ürün fiyatı</returns>
         private string CalculatorDiscountPrice(InAppBillingProduct product)
         {
             var myProduct = Products.FirstOrDefault(x => x.ProductId == product.ProductId);
 
-            if (product.ProductId == "com.contestpark.app.12money")//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
+            if (product.ProductId == SpecialProductId)//Eğer bakiye tipi para ise 12.99 tl olan ürüne en çok satılan diye yazı ekler
                 return ContestParkResources.BestSeller;
 
             if (string.IsNullOrEmpty(product.LocalizedPrice) || (myProduct.BalanceTypes == BalanceTypes.Money && !myProduct.IsSpecialOffer))

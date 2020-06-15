@@ -193,7 +193,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
 
             {
                 if (_winStatus == null)
-                    _winStatus = _duelRepository.WinStatus(RealUserId);
+                    _winStatus = _duelRepository.WinStatus(RealUserId, Event.BalanceType);
 
                 return _winStatus;
             }

@@ -16,11 +16,12 @@ namespace ContestPark.Duel.API.Infrastructure.Repositories.Duel
 
         Task<bool> UpdateDuelScores(int duelId, DuelTypes duelType, byte founderTotalScore, byte opponentTotalScore, byte founderFinishScore, byte opponentFinishScore, byte founderVictoryScore, byte opponentVictoryScore);
 
-        DuelWinStatusModel WinStatus(string userId);
+        DuelWinStatusModel WinStatus(string userId, BalanceTypes balanceType);
 
         int LastPlayingDuel(string userId);
 
         bool PlaysInTheLastHour(string founderUserId, string opponentUserId);
+
         bool IsDuelFinish(int duelId);
     }
 }
