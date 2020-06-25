@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    xmlns:config="clr-namespace:ContestPark.Mobile.Configs"
     xmlns:converter="clr-namespace:ContestPark.Mobile.Converters"
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:i18n="clr-namespace:ContestPark.Mobile.AppResources"
@@ -32,13 +33,12 @@
     </ContentPage.Resources>
     <pages:PopupPage.Content>
         <ScrollView>
-
             <yummy:PancakeView
                 BackgroundGradientEndColor="#645AFF"
                 BackgroundGradientStartColor="#A573FF"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" Spacing="0">
 
                     <!--  Close button  -->
                     <Image
@@ -348,6 +348,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
                                 <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -389,6 +390,16 @@
                                 Command="{Binding ShareCommand}"
                                 Icon="{StaticResource Share}"
                                 Text="{i18n:Translate Share}" />
+
+                            <!--  Admob  -->
+
+                            <components:AdMobView
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                AdUnitId="{x:Static config:GlobalSetting.BannerAdUnitId}"
+                                HeightRequest="60"
+                                UserPersonalizedAds="True" />
                         </Grid>
                     </Grid>
                 </StackLayout>

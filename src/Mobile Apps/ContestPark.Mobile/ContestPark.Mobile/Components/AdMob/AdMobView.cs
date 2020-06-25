@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace ContestPark.Mobile.Components.AdMob
+namespace ContestPark.Mobile.Components
 {
     public class AdMobView : View
     {

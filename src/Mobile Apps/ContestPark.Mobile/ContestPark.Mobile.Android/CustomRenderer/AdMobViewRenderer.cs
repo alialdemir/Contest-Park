@@ -2,7 +2,7 @@
 using Android.Gms.Ads;
 using Android.OS;
 using Android.Widget;
-using ContestPark.Mobile.Components.AdMob;
+using ContestPark.Mobile.Components;
 using ContestPark.Mobile.Droid.CustomRenderer;
 using Google.Ads.Mediation.Admob;
 using System;

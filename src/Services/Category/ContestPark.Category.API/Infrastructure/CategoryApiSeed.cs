@@ -226,7 +226,7 @@ namespace ContestPark.Category.API.Infrastructure
                         var category = categoryLocalized.Where(x => x.CategoryId == categoryOf.CategoryId).ToList();
                         var subCategoryLocalized1 = subCategoryLocalized.Where(x => x.SubCategoryId == categoryOf.SubCategoryId).ToList();
 
-                        var @event = new UpdateLevelIntegrationEvent(subCategory.DisplayPrice,
+                        var @event = new NewSubCategoryAddedIntegrationEvent(subCategory.DisplayPrice,
                                                                         subCategory.PicturePath,
                                                                         subCategory.Price,
                                                                         categoryOf.SubCategoryId,
