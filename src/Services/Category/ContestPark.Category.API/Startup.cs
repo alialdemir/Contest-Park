@@ -6,6 +6,7 @@ using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.Search;
 using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.UserLevel;
 using ContestPark.Category.API.IntegrationEvents.EventHandling;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Resources;
@@ -56,6 +57,7 @@ namespace ContestPark.Category.API
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
             services.AddTransient<IOpenCategoryRepository, OpenCategoryRepository>();
             services.AddTransient<IFollowSubCategoryRepository, FollowSubCategoryRepository>();
+            services.AddTransient<IUserLevelRepository, UserLevelRepository>();
 
             AddTransient(services);
 
