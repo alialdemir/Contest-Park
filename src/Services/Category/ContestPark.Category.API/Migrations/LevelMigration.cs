@@ -40,7 +40,6 @@ namespace ContestPark.Category.API.Migrations
 
                 .WithColumn("Level")
                 .AsInt16()
-                .ForeignKey("LevelUps", "Level")
                 .WithDefaultValue(1)
 
                 .WithColumn("Exp")
@@ -60,6 +59,12 @@ namespace ContestPark.Category.API.Migrations
                 .AsDateTime()
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
+
+            Create.ForeignKey()
+                        .FromTable("UserLevels")
+                        .ForeignColumn("Level")
+                        .ToTable("LevelUps")
+                        .PrimaryColumn("Level");
         }
 
         public override void Down()

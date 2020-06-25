@@ -42,7 +42,7 @@ namespace ContestPark.Category.API
 
             services.AddAuth(Configuration)
                     .AddMySql()
-                    .AddMvc(options=> options.EnableEndpointRouting = false)
+                    .AddMvc(options => options.EnableEndpointRouting = false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(CategoryResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
@@ -79,6 +79,7 @@ namespace ContestPark.Category.API
             services.AddTransient<ProfilePictureChangedIntegrationEventHandler>();
             services.AddTransient<NewSubCategoryAddedIntegrationEventHandler>();
             services.AddTransient<OpenSubCategoryAndFollowIntegrationEventHandler>();
+            services.AddTransient<UpdateLevelIntegrationEventHandler>();
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
@@ -132,6 +133,7 @@ namespace ContestPark.Category.API
             eventBus.Subscribe<ProfilePictureChangedIntegrationEvent, ProfilePictureChangedIntegrationEventHandler>();
             eventBus.Subscribe<NewSubCategoryAddedIntegrationEvent, NewSubCategoryAddedIntegrationEventHandler>();
             eventBus.Subscribe<OpenSubCategoryAndFollowIntegrationEvent, OpenSubCategoryAndFollowIntegrationEventHandler>();
+            eventBus.Subscribe<UpdateLevelIntegrationEvent, UpdateLevelIntegrationEventHandler>();
         }
     }
 }
