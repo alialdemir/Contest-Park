@@ -94,9 +94,9 @@ namespace ContestPark.Mobile.Models.Duel
 
         public string OpponentUserId { get; set; }
 
-        private byte _founderLevel = 1;
+        private short _founderLevel = 1;
 
-        public byte FounderLevel
+        public short FounderLevel
         {
             get { return _founderLevel; }
             set
@@ -106,9 +106,9 @@ namespace ContestPark.Mobile.Models.Duel
             }
         }
 
-        private byte _opponentLevel = 1;
+        private short _opponentLevel = 1;
 
-        public byte OpponentLevel
+        public short OpponentLevel
         {
             get { return _opponentLevel; }
             set

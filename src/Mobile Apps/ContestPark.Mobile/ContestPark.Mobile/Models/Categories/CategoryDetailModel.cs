@@ -3,13 +3,11 @@
     public class CategoryDetailModel : BaseModel
     {
         private bool _isSubCategoryFollowUpStatus;
-        private byte _level = 1;
         private string _picturePath;
 
         private string _description;
 
         private string _subCategoryName;
-
 
         /// <summary>
         /// Kategori açıklaması
@@ -39,19 +37,7 @@
             }
         }
 
-        public byte Level
-        {
-            get
-            {
-                return _level;
-            }
-            set
-            {
-                _level = value;
-
-                RaisePropertyChanged(() => Level);
-            }
-        }
+        public short Level { get; set; } = 1;
 
         public short SubCategoryId { get; set; }
 

@@ -35,5 +35,6 @@
         }
 
         public string UserId { get; set; }
+        public short Level { get; set; }
     }
 }

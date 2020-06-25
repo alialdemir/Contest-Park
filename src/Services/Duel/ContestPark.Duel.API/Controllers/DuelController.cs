@@ -57,7 +57,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("Invite")]
         [ProducesResponseType(typeof(UserModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> InviteDuel([FromBody]InviteDuelModel inviteDuel)
+        public async Task<IActionResult> InviteDuel([FromBody] InviteDuelModel inviteDuel)
         {
             Logger.LogInformation("Düello davet isteği geldi.");
 
@@ -91,6 +91,19 @@ namespace ContestPark.Duel.API.Controllers
 
             UserModel opponentUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == inviteDuel.OpponentUserId);
             UserModel founderUserModel = opponentUserInfo.FirstOrDefault(x => x.UserId == UserId);
+
+            #region Rakibin levelini alır
+
+            IEnumerable<UserLevelModel> userLevels = await _subCategoryService.UserLevel(new List<string>
+            {
+                inviteDuel.OpponentUserId,
+            }, inviteDuel.SubCategoryId);
+            if (userLevels != null && userLevels.Any())
+            {
+                opponentUserModel.Level = userLevels.FirstOrDefault().Level;
+            }
+
+            #endregion Rakibin levelini alır
 
             #region Eğer davet ettiği oyuncu bot ise kabul etmiş sayıyoruz
 
@@ -159,7 +172,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("AcceptInviteDuel")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AcceptInviteDuel([FromBody]AcceptInviteDuelModel acceptInvite)
+        public async Task<IActionResult> AcceptInviteDuel([FromBody] AcceptInviteDuelModel acceptInvite)
         {
             if (acceptInvite == null
                 || acceptInvite.SubCategoryId <= 0
@@ -200,7 +213,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("AddOpponent")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddOpponent([FromBody]StandbyModeModel standbyModeModel)// Oyunucunun karşısına rakip ekler
+        public async Task<IActionResult> AddOpponent([FromBody] StandbyModeModel standbyModeModel)// Oyunucunun karşısına rakip ekler
         {
             if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0)
             {
@@ -227,7 +240,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddStandbyMode([FromBody]StandbyModeModel standbyModeModel)
+        public async Task<IActionResult> AddStandbyMode([FromBody] StandbyModeModel standbyModeModel)
         {
             if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
             {
@@ -269,7 +282,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("ExitStandbyMode")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult ExitStandbyMode([FromBody]StandbyModeModel standbyModeModel)
+        public IActionResult ExitStandbyMode([FromBody] StandbyModeModel standbyModeModel)
         {
             if (standbyModeModel.Bet < 0 || standbyModeModel.SubCategoryId <= 0 || string.IsNullOrEmpty(standbyModeModel.ConnectionId))
             {
@@ -295,7 +308,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("{duelId}/DuelEscape")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult DuelEscape([FromRoute]int duelId)
+        public IActionResult DuelEscape([FromRoute] int duelId)
         {
             if (duelId <= 0)
                 return BadRequest();
@@ -323,7 +336,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpPost("{duelId}/DuelCancel")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult DuelCancel([FromRoute]int duelId)
+        public IActionResult DuelCancel([FromRoute] int duelId)
         {
             if (duelId <= 0)
             {
@@ -351,7 +364,7 @@ namespace ContestPark.Duel.API.Controllers
         [HttpGet("{duelId}")]
         [ProducesResponseType(typeof(DuelResultModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> DuelResult([FromRoute]int duelId)
+        public async Task<IActionResult> DuelResult([FromRoute] int duelId)
         {
             if (duelId <= 0)
                 return NotFound();
@@ -360,13 +373,17 @@ namespace ContestPark.Duel.API.Controllers
             if (result == null)
                 return NotFound();
 
-            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(new List<string>
+            List<string> userIds = new List<string>
             {
                 result.FounderUserId,
                 result.OpponentUserId
-            });
+            };
+
+            IEnumerable<UserModel> users = await _identityService.GetUserInfosAsync(userIds);
             if (users == null || users.Count() < 2)
                 return NotFound();
+
+            IEnumerable<UserLevelModel> userLevels = await _subCategoryService.UserLevel(userIds, result.SubCategoryId);
 
             UserModel founderUser = users.FirstOrDefault(x => x.UserId == result.FounderUserId);
             UserModel opponentUser = users.FirstOrDefault(x => x.UserId == result.OpponentUserId);
@@ -375,11 +392,16 @@ namespace ContestPark.Duel.API.Controllers
             result.FounderProfilePicturePath = founderUser.ProfilePicturePath;
             result.FounderUserName = founderUser.UserName;
 
+            if (userLevels != null && userLevels.Any(x => x.UserId == founderUser.UserId))
+                result.FounderLevel = userLevels.FirstOrDefault(x => x.UserId == founderUser.UserId).Level;
+
             result.IsFounder = result.FounderUserId == UserId;
 
             result.OpponentFullName = opponentUser.FullName;
             result.OpponentProfilePicturePath = opponentUser.ProfilePicturePath;
             result.OpponentUserName = opponentUser.UserName;
+            if (userLevels != null && userLevels.Any(x => x.UserId == opponentUser.UserId))
+                result.OpponentLevel = userLevels.FirstOrDefault(x => x.UserId == opponentUser.UserId).Level;
 
             SubCategoryModel subCategoryModel = await _subCategoryService.GetSubCategoryInfo(result.SubCategoryId, CurrentUserLanguage, UserId);
             if (subCategoryModel != null)

@@ -162,6 +162,16 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 ChangedGameCount(@event.FounderUserId);
 
                 AddPost(@event);
+
+                // Kurucu ve rakibin total puanları hesaplandı
+                byte founderTotalScore = (byte)(@event.FounderScore + founderFinishedTheGameScore + founderVictoryScore);
+                byte opponentTotalScore = (byte)(@event.OpponentScore + opponentFinishedTheGameScore + opponentVictoryScore);
+
+                UpdateLevel(@event.FounderUserId,
+                            @event.OpponentUserId,
+                            founderTotalScore,
+                            opponentTotalScore,
+                            @event.SubCategoryId);
             }
         }
 
@@ -190,7 +200,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         /// <returns>Komisyon düşülmüş bahis tutarı</returns>
         private decimal CaltulatorBetComission(decimal bet, byte betCommission)
         {
-            bet = bet * 2; // Düellolar iki kişi oynandığı için  çarpı 2 yaptık yani bahisin iki katı kazandıdı
+            bet *= 2; // Düellolar iki kişi oynandığı için  çarpı 2 yaptık yani bahisin iki katı kazandıdı
 
             decimal newBetCommission = bet - (bet * betCommission) / 100;// Bizim komisyon oranımız kadar kesinti yaptık
 
@@ -224,6 +234,25 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private void ChangedGameCount(string userId)
         {
             var @event = new ChangedGameCountIntegrationEvent(userId);
+
+            _eventBus.Publish(@event);
+        }
+
+        /// <summary>
+        /// Oyuncunun seviyesine parametreden gelen exp değeri ile toplar eğer level atlamışsa leveli atlatır
+        /// </summary>
+        /// <param name="founderUserId">Kurucu kullanıcı id</param>
+        /// <param name="opponentUserId">Rakip kullanıcı id</param>
+        /// <param name="founderExp">Kurucunun aldığı exp</param>
+        /// <param name="opponentExp">Rakibin aldığı exp</param>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        private void UpdateLevel(string founderUserId, string opponentUserId, byte founderExp, byte opponentExp, short subCategoryId)
+        {
+            var @event = new UpdateLevelIntegrationEvent(founderUserId,
+                                                         opponentUserId,
+                                                         founderExp,
+                                                         opponentExp,
+                                                         subCategoryId);
 
             _eventBus.Publish(@event);
         }

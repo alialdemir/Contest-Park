@@ -273,7 +273,7 @@ namespace ContestPark.Mobile.ViewModels
             DuelStarting.OpponentCoverPicturePath = opponentUserInfo.CoverPicturePath;
             DuelStarting.OpponentFullName = opponentUserInfo.FullName;
             DuelStarting.OpponentCountry = ContestParkResources.AwaitingOpponent;
-            //DuelStarting.OpponentLevel = opponentUserInfo.Level
+            DuelStarting.OpponentLevel = opponentUserInfo.Level;
 
             Device.StartTimer(new TimeSpan(0, 0, 15), () =>
             {
@@ -407,8 +407,6 @@ namespace ContestPark.Mobile.ViewModels
 
                 return;
             }
-
-            Analytics.TrackEvent($"{duelCreated.DuelId} düello founder id {duelCreated.FounderUserId} opponent id {duelCreated.OpponentUserId} arasında başlıyor");
 
             _settingsService.AddPendingDuelId(duelCreated.DuelId);
 

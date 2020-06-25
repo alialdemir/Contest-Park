@@ -57,7 +57,7 @@ namespace ContestPark.Duel.API
 
             services.AddAuth(Configuration)
                     .AddMySql()
-                    .AddMvc(options=> options.EnableEndpointRouting=false)
+                    .AddMvc(options => options.EnableEndpointRouting = false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(DuelResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

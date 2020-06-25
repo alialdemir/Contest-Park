@@ -820,18 +820,6 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/api/{version}/Notification/Sms",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.notification.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notification/Sms",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
       "DownstreamPathTemplate": "/api/{version}/Notification/SendSms",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

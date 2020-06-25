@@ -182,8 +182,6 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
         }
 
-        private DuelWinStatusModel _winStatus;
-
         /// <summary>
         /// Kazanma Kaybetme durumu
         /// </summary>
@@ -192,10 +190,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             get
 
             {
-                if (_winStatus == null)
-                    _winStatus = _duelRepository.WinStatus(RealUserId, Event.BalanceType);
-
-                return _winStatus;
+                return CurrentRound.WinStatus;
             }
         }
 
