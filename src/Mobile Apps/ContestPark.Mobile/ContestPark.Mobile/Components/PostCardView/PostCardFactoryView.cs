@@ -1,15 +1,12 @@
-﻿using ContestPark.Mobile.Components.AdMob;
-using ContestPark.Mobile.Components.PostCardView;
+﻿using ContestPark.Mobile.Components.PostCardView;
 using ContestPark.Mobile.Configs;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Post;
 using Prism.Navigation;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    
     public class PostCardFactoryView : ContentView
     {
         public static readonly BindableProperty NavigationServiceProperty = BindableProperty.Create(propertyName: nameof(NavigationService),
@@ -58,7 +55,7 @@ namespace ContestPark.Mobile.Components
                          {
                               AdUnitId = GlobalSetting.BannerAdUnitId,
                               UserPersonalizedAds = false,
-                              HeightRequest=60
+                              HeightRequest = 60
                          },
                     new StackLayout
                                 {
