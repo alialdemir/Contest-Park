@@ -11,5 +11,6 @@
         public string CoverPicturePath { get; set; }
 
         public string UserId { get; set; }
+        public short Level { get; set; }
     }
 }

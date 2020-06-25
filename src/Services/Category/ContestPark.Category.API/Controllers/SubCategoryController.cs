@@ -1,6 +1,7 @@
 ﻿using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
+using ContestPark.Category.API.Infrastructure.Repositories.UserLevel;
 using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Models;
 using ContestPark.Category.API.Resources;
@@ -28,6 +29,7 @@ namespace ContestPark.Category.API.Controllers
         private readonly ISubCategoryRepository _categoryRepository;
         private readonly IEventBus _eventBus;
         private readonly IBalanceService _balanceService;
+        private readonly IUserLevelRepository _userLevelRepository;
 
         #endregion Private Variables
 
@@ -38,12 +40,14 @@ namespace ContestPark.Category.API.Controllers
                                      ISubCategoryRepository categoryRepository,
                                      ILogger<SubCategoryController> logger,
                                      IBalanceService balanceService,
+                                     IUserLevelRepository userLevelRepository,
                                      IEventBus eventBus) : base(logger)
         {
             _followSubCategoryRepository = followSubCategoryRepository ?? throw new ArgumentNullException(nameof(followSubCategoryRepository));
             _openCategoryRepository = openCategoryRepository ?? throw new ArgumentNullException(nameof(openCategoryRepository));
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
             _balanceService = balanceService ?? throw new ArgumentNullException(nameof(balanceService));
+            _userLevelRepository = userLevelRepository;
             _eventBus = eventBus;
         }
 
@@ -60,7 +64,7 @@ namespace ContestPark.Category.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(typeof(ServiceModel<CategoryModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult Get([FromQuery]PagingModel pagingModel)
+        public IActionResult Get([FromQuery] PagingModel pagingModel)
         {
             ServiceModel<CategoryModel> result = new ServiceModel<CategoryModel>()
             {
@@ -165,7 +169,7 @@ namespace ContestPark.Category.API.Controllers
         [HttpPost("{subCategoryId}/Follow")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Post([FromRoute]short subCategoryId)
+        public async Task<IActionResult> Post([FromRoute] short subCategoryId)
         {
             if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
@@ -206,7 +210,7 @@ namespace ContestPark.Category.API.Controllers
         [Route("{subCategoryId}/UnFollow")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Delete([FromRoute]short subCategoryId)
+        public async Task<IActionResult> Delete([FromRoute] short subCategoryId)
         {
             if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
@@ -240,7 +244,7 @@ namespace ContestPark.Category.API.Controllers
         [Route("{subCategoryId}/FollowStatus")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult Get([FromRoute]short subCategoryId)
+        public IActionResult Get([FromRoute] short subCategoryId)
         {
             if (subCategoryId < 0 || string.IsNullOrEmpty(UserId))
                 return BadRequest();
@@ -259,7 +263,7 @@ namespace ContestPark.Category.API.Controllers
         [Route("{subCategoryId}")]
         [ProducesResponseType(typeof(SubCategoryDetailInfoModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetDetail([FromRoute]short subCategoryId)
+        public IActionResult GetDetail([FromRoute] short subCategoryId)
         {
             if (subCategoryId < 0)
                 return BadRequest();
@@ -283,7 +287,7 @@ namespace ContestPark.Category.API.Controllers
         [Route("{subCategoryId}/Info")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetSubCategoryInfo([FromRoute]short subCategoryId, [FromQuery]Languages language, [FromQuery]string userId)
+        public IActionResult GetSubCategoryInfo([FromRoute] short subCategoryId, [FromQuery] Languages language, [FromQuery] string userId)
         {
             if (subCategoryId < 0)
                 return BadRequest();
@@ -307,7 +311,7 @@ namespace ContestPark.Category.API.Controllers
         [HttpPost("{subCategoryId}/unlock")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UnLockSubCategory([FromRoute]short subCategoryId, [FromQuery]BalanceTypes balanceType = BalanceTypes.Gold)
+        public async Task<IActionResult> UnLockSubCategory([FromRoute] short subCategoryId, [FromQuery] BalanceTypes balanceType = BalanceTypes.Gold)
         {
             Logger.LogInformation("Alt kategori kilit açma isteği geldi. {subCategoryId} {balanceType} {userId}",
                                   subCategoryId,
@@ -352,6 +356,48 @@ namespace ContestPark.Category.API.Controllers
             _eventBus.Publish(@event);
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Kullanıcı idlerinin ilgili kategorideki leveli
+        /// </summary>
+        /// <param name="subCategoryId">Alt kategori id</param>
+        /// <param name="userIds">Kullanıcı id</param>
+        /// <returns>Kullanıcının o alt kategorideki leveli</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("{subCategoryId}/UserLevel")]
+        [ProducesResponseType(typeof(IEnumerable<UserLevelModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult UserLevel([FromRoute] short subCategoryId, [FromBody] List<string> userIds)
+        {
+            if (subCategoryId < 0 || userIds == null || !userIds.Any())
+                return BadRequest();
+
+            List<UserLevelModel> userLevels = new List<UserLevelModel>();
+
+            foreach (var userId in userIds)
+            {
+                if (userId.EndsWith("-bot"))
+                    continue;
+
+                userLevels.Add(new UserLevelModel
+                {
+                    UserId = UserId,
+                    Level = _userLevelRepository.GetUserLevel(userId, subCategoryId)
+                });
+            }
+
+            userLevels
+                .ForEach(x =>// Eğer user id'leri içinde bot varsa botun levelini gerçek kullanıcının levelini veriyoruz çünkü oyuncu ile botun leveli aynı olsun
+                {
+                    if (x.UserId.EndsWith("-bot"))
+                    {
+                        x.Level = userLevels.FirstOrDefault(x => !x.UserId.EndsWith("-bot")).Level;
+                    }
+                });
+
+            return Ok(userLevels);
         }
 
         #endregion Services

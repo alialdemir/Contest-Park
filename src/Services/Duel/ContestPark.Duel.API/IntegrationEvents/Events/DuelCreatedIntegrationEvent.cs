@@ -13,10 +13,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
                                            string founderUserId,
                                            string founderConnectionId,
                                            string founderFullName,
+                                           short founderLevel,
                                            string opponentCoverPicturePath,
                                            string opponentFullName,
                                            string opponentProfilePicturePath,
                                            string opponentUserId,
+                                           short opponentLevel,
                                            string opponentConnectionId)
         {
             DuelId = duelId;
@@ -27,10 +29,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
             FounderUserId = founderUserId;
             FounderConnectionId = founderConnectionId;
             FounderFullName = founderFullName;
+            FounderLevel = founderLevel;
             OpponentCoverPicturePath = opponentCoverPicturePath;
             OpponentFullName = opponentFullName;
             OpponentProfilePicturePath = opponentProfilePicturePath;
             OpponentUserId = opponentUserId;
+            OpponentLevel = opponentLevel;
             OpponentConnectionId = opponentConnectionId;
         }
 
@@ -40,7 +44,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public string FounderCoverPicturePath { get; set; }
 
         public string FounderFullName { get; set; }
-
+        public short FounderLevel { get; set; }
         public string FounderProfilePicturePath { get; set; }
 
         public string FounderUserId { get; set; }
@@ -52,6 +56,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.Events
         public string OpponentProfilePicturePath { get; set; }
 
         public string OpponentUserId { get; set; }
+        public short OpponentLevel { get; set; }
         public string OpponentConnectionId { get; }
     }
 }

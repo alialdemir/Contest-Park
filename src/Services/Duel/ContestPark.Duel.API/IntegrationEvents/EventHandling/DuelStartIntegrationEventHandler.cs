@@ -8,6 +8,7 @@ using ContestPark.Duel.API.Infrastructure.Repositories.Redis.UserAnswer;
 using ContestPark.Duel.API.IntegrationEvents.Events;
 using ContestPark.Duel.API.Models;
 using ContestPark.Duel.API.Resources;
+using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -27,6 +28,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private readonly IUserAnswerRepository _userAnswerRepository;
         private readonly IIdentityService _identityService;
         private readonly IContestDateRepository _contestDateRepository;
+        private readonly ISubCategoryService _subCategoryService;
         private readonly DuelSettings _duelSettings;
         private readonly ILogger<DuelStartIntegrationEventHandler> _logger;
 
@@ -41,6 +43,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                 IIdentityService identityService,
                                                 IContestDateRepository contestDateRepository,
                                                 IOptions<DuelSettings> settings,
+                                                ISubCategoryService subCategoryService,
                                                 ILogger<DuelStartIntegrationEventHandler> logger)
         {
             _logger = logger;
@@ -50,6 +53,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             _userAnswerRepository = userAnswerRepository;
             _identityService = identityService;
             _contestDateRepository = contestDateRepository;
+            _subCategoryService = subCategoryService;
             _duelSettings = settings.Value;
         }
 
@@ -115,7 +119,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                                     @event.OpponentUserId,
                                                                     @event.FounderLanguage,
                                                                     @event.OpponentLanguage);
-            ////////   bool? isWinStatus = null;
+            DuelWinStatusModel winStatus = null;
 
             if (@event.FounderUserId.EndsWith("-bot") || @event.OpponentUserId.EndsWith("-bot"))
             {
@@ -123,7 +127,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 {
                     string userId = @event.FounderUserId.EndsWith("-bot") ? @event.OpponentUserId : @event.FounderUserId;
 
-                    //////   isWinStatus = _duelRepository.WinStatus(userId);
+                    winStatus = _duelRepository.WinStatus(userId, @event.BalanceType);
                 }
                 catch (System.Exception ex)
                 {
@@ -141,21 +145,29 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 CorrectAnswer = (Stylish)(x.Answers.FindIndex(a => a.IsCorrectAnswer) + 1),
                 FounderAnswer = Stylish.NotSeeQuestion,
                 OpponentAnswer = Stylish.NotSeeQuestion,
-                /////  IsWinStatus = isWinStatus,
+                WinStatus = winStatus,
             }).ToList());
-
-            // Bakiyeler düşüldü
-            //  ChangeBalance(@event.FounderUserId, @event.OpponentUserId, @event.Bet, @event.BalanceType);
 
             // Bakiyeler düşüldü
             ChangeBalance(@event.FounderUserId, @event.Bet, @event.BalanceType);
             ChangeBalance(@event.OpponentUserId, @event.Bet, @event.BalanceType);
 
+            IEnumerable<UserLevelModel> userLevels = await _subCategoryService.UserLevel(new List<string>
+            {
+                @event.FounderUserId,
+                @event.OpponentUserId
+            }, @event.SubCategoryId);
+
+            short founderLevel = userLevels.FirstOrDefault(founderUser => founderUser.UserId == @event.FounderUserId).Level;
+            short opponentLevel = userLevels.FirstOrDefault(opponentUser => opponentUser.UserId == @event.OpponentUserId).Level;
+
             await PublishDuelCreatedEvent(duelId,
                                       @event.FounderUserId,
                                       @event.FounderConnectionId,
+                                      founderLevel,
                                       @event.OpponentUserId,
                                       @event.OpponentConnectionId,
+                                      opponentLevel,
                                       questions);
 
             _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
@@ -179,8 +191,10 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
         private async Task PublishDuelCreatedEvent(int duelId,
                                                    string founderUserId,
                                                    string founderConnectionId,
+                                                   short founderLevel,
                                                    string opponentUserId,
                                                    string opponentConnectionId,
+                                                   short opponentLevel,
                                                    IEnumerable<QuestionModel> questions)
         {
             // TODO: #issue 213
@@ -209,10 +223,12 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                              founderUserModel.UserId,
                                                              founderConnectionId,
                                                              founderUserModel.FullName,
+                                                             founderLevel,
                                                              opponentUserModel.CoverPicturePath,
                                                              opponentUserModel.FullName,
                                                              opponentUserModel.ProfilePicturePath,
                                                              opponentUserModel.UserId,
+                                                             opponentLevel,
                                                              opponentConnectionId);
 
             _eventBus.Publish(duelEvent);
