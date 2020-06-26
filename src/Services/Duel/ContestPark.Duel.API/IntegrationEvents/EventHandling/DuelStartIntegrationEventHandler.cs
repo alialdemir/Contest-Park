@@ -158,27 +158,27 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 @event.OpponentUserId
             }, @event.SubCategoryId);
 
-            try
-            {
-                if (userLevels != null && (userLevels.Any(x => x.UserId == @event.FounderUserId) || userLevels.Any(x => x.UserId == @event.OpponentUserId)))
-                {
-                    short founderLevel = userLevels.FirstOrDefault(x => x.UserId == @event.FounderUserId).Level;
-                    short opponentLevel = userLevels.FirstOrDefault(x => x.UserId == @event.OpponentUserId).Level;
+            //try
+            //{
+            //    if (userLevels != null && (userLevels.Any(x => x.UserId == @event.FounderUserId) || userLevels.Any(x => x.UserId == @event.OpponentUserId)))
+            //    {
+            //        short founderLevel = userLevels.FirstOrDefault(x => x.UserId == @event.FounderUserId).Level;
+            //        short opponentLevel = userLevels.FirstOrDefault(x => x.UserId == @event.OpponentUserId).Level;
 
-                    await PublishDuelCreatedEvent(duelId,
-                                                  @event.FounderUserId,
-                                                  @event.FounderConnectionId,
-                                                  founderLevel,
-                                                  @event.OpponentUserId,
-                                                  @event.OpponentConnectionId,
-                                                  opponentLevel,
-                                                  questions);
-                }
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogError(ex, "Level verisini çekerken hata oluştu.");
-            }
+            //        await PublishDuelCreatedEvent(duelId,
+            //                                      @event.FounderUserId,
+            //                                      @event.FounderConnectionId,
+            //                                      founderLevel,
+            //                                      @event.OpponentUserId,
+            //                                      @event.OpponentConnectionId,
+            //                                      opponentLevel,
+            //                                      questions);
+            //    }
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    _logger.LogError(ex, "Level verisini çekerken hata oluştu.");
+            //}
 
             _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
                                    duelId,
