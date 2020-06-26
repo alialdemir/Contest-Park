@@ -378,12 +378,14 @@ namespace ContestPark.Category.API.Controllers
 
             foreach (var userId in userIds)
             {
+                Logger.LogInformation("Leveli alınan user id {{userId}}", userId);
+
                 if (userId.EndsWith("-bot"))
                     continue;
 
                 userLevels.Add(new UserLevelModel
                 {
-                    UserId = UserId,
+                    UserId = userId,
                     Level = _userLevelRepository.GetUserLevel(userId, subCategoryId)
                 });
             }
@@ -391,7 +393,7 @@ namespace ContestPark.Category.API.Controllers
             userLevels
                 .ForEach(x =>// Eğer user id'leri içinde bot varsa botun levelini gerçek kullanıcının levelini veriyoruz çünkü oyuncu ile botun leveli aynı olsun
                 {
-                    if (x.UserId.EndsWith("-bot"))
+                    if (userLevels.Any(x => x.UserId.EndsWith("-bot")) && x.UserId.EndsWith("-bot"))
                     {
                         x.Level = userLevels.FirstOrDefault(x => !x.UserId.EndsWith("-bot")).Level;
                     }
