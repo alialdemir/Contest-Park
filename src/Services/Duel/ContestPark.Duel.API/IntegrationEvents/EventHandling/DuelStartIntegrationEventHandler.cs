@@ -177,7 +177,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
             }
             catch (System.Exception ex)
             {
-                _logger.LogError(ex);
+                _logger.LogError(ex, "Level verisini çekerken hata oluştu.");
             }
 
             _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
