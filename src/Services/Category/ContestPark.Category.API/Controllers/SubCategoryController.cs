@@ -376,7 +376,7 @@ namespace ContestPark.Category.API.Controllers
 
             List<UserLevelModel> userLevels = new List<UserLevelModel>();
 
-            foreach (var userId in userIds)
+            foreach (string userId in userIds)
             {
                 if (userId.EndsWith("-bot"))
                     continue;
