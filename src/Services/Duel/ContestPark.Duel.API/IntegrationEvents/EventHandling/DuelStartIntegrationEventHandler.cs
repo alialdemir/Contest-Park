@@ -158,17 +158,20 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 @event.OpponentUserId
             }, @event.SubCategoryId);
 
-            short founderLevel = userLevels.FirstOrDefault(founderUser => founderUser.UserId == @event.FounderUserId).Level;
-            short opponentLevel = userLevels.FirstOrDefault(opponentUser => opponentUser.UserId == @event.OpponentUserId).Level;
+            if (userLevels != null && userLevels.Any())
+            {
+                short founderLevel = userLevels.FirstOrDefault(founderUser => founderUser.UserId == @event.FounderUserId).Level;
+                short opponentLevel = userLevels.FirstOrDefault(opponentUser => opponentUser.UserId == @event.OpponentUserId).Level;
 
-            await PublishDuelCreatedEvent(duelId,
-                                      @event.FounderUserId,
-                                      @event.FounderConnectionId,
-                                      founderLevel,
-                                      @event.OpponentUserId,
-                                      @event.OpponentConnectionId,
-                                      opponentLevel,
-                                      questions);
+                await PublishDuelCreatedEvent(duelId,
+                                          @event.FounderUserId,
+                                          @event.FounderConnectionId,
+                                          founderLevel,
+                                          @event.OpponentUserId,
+                                          @event.OpponentConnectionId,
+                                          opponentLevel,
+                                          questions);
+            }
 
             _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
                                    duelId,
