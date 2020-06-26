@@ -11,7 +11,7 @@ using ContestPark.Duel.API.Resources;
 using ContestPark.Duel.API.Services.SubCategory;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using ServiceStack;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,7 +42,7 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                                                 IUserAnswerRepository userAnswerRepository,
                                                 IIdentityService identityService,
                                                 IContestDateRepository contestDateRepository,
-                                                IOptions<DuelSettings> settings,
+                                                Microsoft.Extensions.Options.IOptions<DuelSettings> settings,
                                                 ISubCategoryService subCategoryService,
                                                 ILogger<DuelStartIntegrationEventHandler> logger)
         {
@@ -158,27 +158,28 @@ namespace ContestPark.Duel.API.IntegrationEvents.EventHandling
                 @event.OpponentUserId
             }, @event.SubCategoryId);
 
-            //try
-            //{
-            //    if (userLevels != null && (userLevels.Any(x => x.UserId == @event.FounderUserId) || userLevels.Any(x => x.UserId == @event.OpponentUserId)))
-            //    {
-            //        short founderLevel = userLevels.FirstOrDefault(x => x.UserId == @event.FounderUserId).Level;
-            //        short opponentLevel = userLevels.FirstOrDefault(x => x.UserId == @event.OpponentUserId).Level;
+            if (userLevels != null && (userLevels.Any(x => x.UserId == @event.FounderUserId) || userLevels.Any(x => x.UserId == @event.OpponentUserId)))
+            {
+                short founderLevel = 1;
+                short opponentLevel = 1;
 
-            //        await PublishDuelCreatedEvent(duelId,
-            //                                      @event.FounderUserId,
-            //                                      @event.FounderConnectionId,
-            //                                      founderLevel,
-            //                                      @event.OpponentUserId,
-            //                                      @event.OpponentConnectionId,
-            //                                      opponentLevel,
-            //                                      questions);
-            //    }
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    _logger.LogError(ex, "Level verisini çekerken hata oluştu.");
-            //}
+                UserLevelModel founderLevelModel = userLevels.FirstOrDefault(x => x.UserId == @event.FounderUserId);
+                if (founderLevelModel != null)
+                    founderLevel = founderLevelModel.Level;
+
+                UserLevelModel opponentLevelModel = userLevels.FirstOrDefault(x => x.UserId == @event.OpponentUserId);
+                if (opponentLevelModel != null)
+                    opponentLevel = opponentLevelModel.Level;
+
+                await PublishDuelCreatedEvent(duelId,
+                                              @event.FounderUserId,
+                                              @event.FounderConnectionId,
+                                              founderLevel,
+                                              @event.OpponentUserId,
+                                              @event.OpponentConnectionId,
+                                              opponentLevel,
+                                              questions);
+            }
 
             _logger.LogInformation("Düello başlatıldı. {duelId} {FounderUserId} {OpponentUserId} {BalanceType} {SubCategoryId} {Bet}",
                                    duelId,

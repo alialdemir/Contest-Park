@@ -7,17 +7,19 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
     public class DuelCreatedIntegrationEvent : IntegrationEvent
     {
         public DuelCreatedIntegrationEvent(int duelId,
-                                           IEnumerable<QuestionModel> questions,
-                                           string founderCoverPicturePath,
-                                           string founderProfilePicturePath,
-                                           string founderUserId,
-                                           string founderConnectionId,
-                                           string founderFullName,
-                                           string opponentCoverPicturePath,
-                                           string opponentFullName,
-                                           string opponentProfilePicturePath,
-                                           string opponentUserId,
-                                           string opponentConnectionId)
+                                          IEnumerable<QuestionModel> questions,
+                                          string founderCoverPicturePath,
+                                          string founderProfilePicturePath,
+                                          string founderUserId,
+                                          string founderConnectionId,
+                                          string founderFullName,
+                                          short founderLevel,
+                                          string opponentCoverPicturePath,
+                                          string opponentFullName,
+                                          string opponentProfilePicturePath,
+                                          string opponentUserId,
+                                          short opponentLevel,
+                                          string opponentConnectionId)
         {
             DuelId = duelId;
             Questions = questions;
@@ -27,10 +29,12 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
             FounderUserId = founderUserId;
             FounderConnectionId = founderConnectionId;
             FounderFullName = founderFullName;
+            FounderLevel = founderLevel;
             OpponentCoverPicturePath = opponentCoverPicturePath;
             OpponentFullName = opponentFullName;
             OpponentProfilePicturePath = opponentProfilePicturePath;
             OpponentUserId = opponentUserId;
+            OpponentLevel = opponentLevel;
             OpponentConnectionId = opponentConnectionId;
         }
 
@@ -40,7 +44,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
         public string FounderCoverPicturePath { get; set; }
 
         public string FounderFullName { get; set; }
-
+        public short FounderLevel { get; set; }
         public string FounderProfilePicturePath { get; set; }
 
         public string FounderUserId { get; set; }
@@ -52,6 +56,7 @@ namespace ContestPark.Signalr.API.IntegrationEvents.Events
         public string OpponentProfilePicturePath { get; set; }
 
         public string OpponentUserId { get; set; }
+        public short OpponentLevel { get; set; }
         public string OpponentConnectionId { get; }
     }
 }

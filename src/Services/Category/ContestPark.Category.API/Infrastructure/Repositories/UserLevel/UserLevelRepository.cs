@@ -48,6 +48,9 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.UserLevel
         /// <returns>O kategorideki leveli</returns>
         public short GetUserLevel(string userId, short subCategoryId)
         {
+            if (userId.EndsWith("-bot"))
+                return 1;
+
             string sql = @"SELECT ul.Level
                            FROM UserLevels ul
                            WHERE ul.UserId = @userId
