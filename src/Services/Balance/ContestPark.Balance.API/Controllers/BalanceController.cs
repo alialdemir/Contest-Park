@@ -177,7 +177,7 @@ namespace ContestPark.Balance.API.Controllers
         [HttpPost("Code")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> BalanceCode([FromBody]BalanceCodeModel balanceCode)
+        public async Task<IActionResult> BalanceCode([FromBody] BalanceCodeModel balanceCode)
         {
             if (balanceCode == null || string.IsNullOrEmpty(balanceCode.Code))
                 return BadRequest();
@@ -232,7 +232,7 @@ namespace ContestPark.Balance.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(IbanNoModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> SendMoneyRequest([FromBody]IbanNoModel ibanNoModel)
+        public async Task<IActionResult> SendMoneyRequest([FromBody] IbanNoModel ibanNoModel)
         {
             Logger.LogInformation($"Para çekme isteği geldi. Ad soyad: {ibanNoModel.FullName} user Id: {UserId} Iban No: {ibanNoModel.IbanNo}");
 
@@ -309,7 +309,7 @@ namespace ContestPark.Balance.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(typeof(BalanceModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public IActionResult GetBalances(string userId, [FromQuery]BalanceTypes balanceType)
+        public IActionResult GetBalances(string userId, [FromQuery] BalanceTypes balanceType)
         {
             if (string.IsNullOrEmpty(userId))
                 return BadRequest();
@@ -346,7 +346,7 @@ namespace ContestPark.Balance.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> PurchaseV2([FromForm]PurchaseModel purchase)
+        public async Task<IActionResult> PurchaseV2([FromForm] PurchaseModel purchase)
         {
             if (purchase == null)
             {
@@ -374,10 +374,7 @@ namespace ContestPark.Balance.API.Controllers
         /// Bakiye satın aldığında hesaba yükleme işlemi yapar
         /// </summary>
         /// <param name="purchase">Satın alma bilgileri</param>
-        [HttpPost("Purchase")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Purchase([FromBody]PurchaseModel purchase)
+        private async Task<IActionResult> Purchase([FromBody] PurchaseModel purchase)
         {
             if (purchase == null)
             {
@@ -388,7 +385,6 @@ namespace ContestPark.Balance.API.Controllers
 
             if (string.IsNullOrEmpty(purchase.PackageName)
                 || string.IsNullOrEmpty(purchase.ProductId)
-                || string.IsNullOrEmpty(purchase.Token)
                 || string.IsNullOrEmpty(purchase.VerifyPurchase)
                  || !(purchase.Platform == Platforms.Android || purchase.Platform == Platforms.Ios))
             {

@@ -1,5 +1,6 @@
 ﻿using ContestPark.Balance.API.Enums;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace ContestPark.Balance.API.Models
 {
@@ -20,7 +21,7 @@ namespace ContestPark.Balance.API.Models
         /// <summary>
         /// App store token
         /// </summary>
-        //[Required]
+        [JsonIgnore]
         public string Token { get; set; }
 
         /// <summary>

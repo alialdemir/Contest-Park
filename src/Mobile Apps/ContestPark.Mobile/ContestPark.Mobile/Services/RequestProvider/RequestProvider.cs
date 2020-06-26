@@ -294,13 +294,13 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                     Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"File length: {((MediaModel)data).File.Length} ProductId: {purchase.ProductId} PackageName: {purchase.PackageName} TransactionId. {purchase.TransactionId} Paylaod: {purchase.Paylaod} VerifyPurchase: {purchase.VerifyPurchase} State: {purchase.State} Platform: {purchase.Platform}");
 
-                    multipartFormData.Add(new StringContent(purchase.ProductId), "productId");
                     multipartFormData.Add(new StringContent(purchase.PackageName), "packageName");
-                    multipartFormData.Add(new StringContent(purchase.TransactionId), "transactionId");
-                    multipartFormData.Add(new StringContent(purchase.Paylaod), "paylaod");
-                    multipartFormData.Add(new StringContent(purchase.VerifyPurchase), "verifyPurchase");
-                    multipartFormData.Add(new StringContent(purchase.State.ToString()), "state");
+                    multipartFormData.Add(new StringContent(purchase.ProductId), "productId");
                     multipartFormData.Add(new StringContent(purchase.Platform.ToString()), "platform");
+                    multipartFormData.Add(new StringContent(purchase.State.ToString()), "state");
+                    multipartFormData.Add(new StringContent(purchase.TransactionId), "transactionId");
+                    //  multipartFormData.Add(new StringContent(purchase.Paylaod), "paylaod");
+                    multipartFormData.Add(new StringContent(purchase.VerifyPurchase), "verifyPurchase");
                 }
 
                 #endregion Satın alma için eklendi

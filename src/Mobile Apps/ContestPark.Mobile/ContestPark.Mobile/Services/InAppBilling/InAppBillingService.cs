@@ -524,20 +524,20 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 if (purchase == null)
                 {
                     //Not purchased, alert the user
-                    Debug.WriteLine("Satın alma işlemi denendi ama başarısız oldu.");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Satın alma işlemi denendi ama başarısız oldu.");
                 }
                 else
                 {
                     //Purchased, save this information
 
-                    Debug.WriteLine($@"Satın alma işlemi gerçekleşti!\n
-                                       Product Id: {purchase.ProductId}
-                                       Id: {purchase.Id}
-                                       Auto renewing: {purchase.AutoRenewing}
-                                       Payload: {purchase.Payload}
-                                       Purchase token: {purchase.PurchaseToken}
-                                       State: {purchase.State.ToString()}
-                                       Consumption state: {purchase.ConsumptionState.ToString()} ");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent($@"Satın alma işlemi gerçekleşti!\n
+                                                                       Product Id: {purchase.ProductId}
+                                                                       Id: {purchase.Id}
+                                                                       Auto renewing: {purchase.AutoRenewing}
+                                                                       Payload: {purchase.Payload}
+                                                                       Purchase token: {purchase.PurchaseToken}
+                                                                       State: {purchase.State.ToString()}
+                                                                       Consumption state: {purchase.ConsumptionState.ToString()} ");
 
                     return new InAppBillingPurchaseModel
                     {
@@ -559,7 +559,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Uygulama içi satın alma hatası oluştu! Error Message: {ex.Message}");
+                Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"Uygulama içi satın alma hatası oluştu! Error Message: {ex.Message}");
 
                 await ShowErrorDisplayAlertAsync(ContestParkResources.GlobalErrorMessage);
             }
