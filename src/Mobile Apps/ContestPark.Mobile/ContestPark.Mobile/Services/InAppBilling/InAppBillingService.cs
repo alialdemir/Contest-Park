@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Services.InAppBilling
@@ -232,7 +233,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
         private string PurchaseTokenFilePath
         {
-            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "cp.txt"); }
+            get { return Path.Combine(FileSystem.CacheDirectory, "cp.txt"); }
         }
 
         #endregion Properties
