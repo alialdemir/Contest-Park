@@ -295,10 +295,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
                     multipartFormData.Add(new StringContent(purchase.ProductId), "productId");
                     multipartFormData.Add(new StringContent(purchase.PackageName), "packageName");
                     multipartFormData.Add(new StringContent(purchase.TransactionId), "TransactionId");
-                    multipartFormData.Add(new StringContent(purchase.Paylaod), "Paylaod");
-                    multipartFormData.Add(new StringContent(purchase.VerifyPurchase), "VerifyPurchase");
-                    multipartFormData.Add(new StringContent(((byte)purchase.State).ToString()), "State");
-                    multipartFormData.Add(new StringContent(((byte)purchase.Platform).ToString()), "platform");
+                    multipartFormData.Add(new StringContent(purchase.Paylaod), "paylaod");
+                    multipartFormData.Add(new StringContent(purchase.VerifyPurchase), "verifyPurchase");
+                    multipartFormData.Add(new StringContent(purchase.State.ToString()), "state");
+                    multipartFormData.Add(new StringContent(purchase.Platform.ToString()), "platform");
                 }
 
                 #endregion Satın alma için eklendi
@@ -321,7 +321,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
         /// <returns>MultipartFormDataContent</returns>
         private MultipartFormDataContent GetMultipartFormData(MediaModel media)
         {
-            if (media == null || media.File == null || string.IsNullOrEmpty(media.FileName))
+            if (media == null
+                || media.File == null
+                || media.File.Length == 0
+                || string.IsNullOrEmpty(media.FileName))
                 return null;
 
             StreamContent streamContent = new StreamContent(media.File);

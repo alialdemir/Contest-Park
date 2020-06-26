@@ -296,7 +296,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                                     Image = p1.Image,
                                     BalanceTypes = p1.BalanceTypes,
                                     DiscountBalanceAmount = p1.DiscountBalanceAmount,
-                                    RightText2TextDecorations = isDiscountPrice ? TextDecorations.None : TextDecorations.Strikethrough,
+                                    RightText2TextDecorations = isDiscountPrice || p1.IsSpecialOffer ? TextDecorations.None : TextDecorations.Strikethrough,
                                     RightText2TextColor = isDiscountPrice ? Color.FromHex("#ff8800") : Color.Black,
                                     DiscountPrice = CalculatorDiscountPrice(product)
                                 }).ToList();
