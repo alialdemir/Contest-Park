@@ -1,4 +1,4 @@
-﻿using ContestPark.Mobile.Components.AdMob;
+﻿using ContestPark.Mobile.Components;
 using ContestPark.Mobile.iOS.CustomRenderer;
 using CoreGraphics;
 using Foundation;
