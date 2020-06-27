@@ -33,24 +33,24 @@ namespace ContestPark.Category.API.IntegrationEvents.EventHandling
         /// </summary>
         public async Task Handle(UpdateLevelIntegrationEvent @event)
         {
-            if (@event.FounderUserId.EndsWith("-bot"))
+            if (!@event.FounderUserId.EndsWith("-bot"))
             {
                 bool isSuccess = await _userLevelRepository.UpdateLevel(@event.FounderUserId, @event.SubCategoryId, @event.FounderExp);
                 if (!isSuccess)
                 {
-                    _logger.LogError("Level güncelleme işlemi gerçekleşemedi, userId: {{userId}}, subCategoryId: {{subCategoryId}} exp: {{exp}}",
+                    _logger.LogError("Level güncelleme işlemi gerçekleşemedi, userId: {userId}, subCategoryId: {subCategoryId} exp: {exp}",
                                      @event.FounderUserId,
                                      @event.SubCategoryId,
                                      @event.FounderExp);
                 }
             }
 
-            if (@event.OpponentUserId.EndsWith("-bot"))
+            if (!@event.OpponentUserId.EndsWith("-bot"))
             {
                 bool isSuccess = await _userLevelRepository.UpdateLevel(@event.OpponentUserId, @event.SubCategoryId, @event.OpponentExp);
                 if (!isSuccess)
                 {
-                    _logger.LogError("Level güncelleme işlemi gerçekleşemedi, userId: {{userId}}, subCategoryId: {{subCategoryId}} exp: {{exp}}",
+                    _logger.LogError("Level güncelleme işlemi gerçekleşemedi, userId: {userId}, subCategoryId: {subCategoryId} exp: {exp}",
                                      @event.OpponentUserId,
                                      @event.SubCategoryId,
                                      @event.OpponentExp);
