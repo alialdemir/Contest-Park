@@ -186,13 +186,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
         private HttpClient CreateHttpClient(string contentType = "application/json")
         {
-            //   ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            //   ServicePointManager.ServerCertificateValidationCallback +=
-            //(sender, cert, chain, error) =>
-            //{
-            //    return true;
-            //};
-
             HttpClient httpClient = new HttpClient();
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(contentType));
@@ -292,8 +285,6 @@ namespace ContestPark.Mobile.Services.RequestProvider
                 {
                     PurchaseModel purchase = (PurchaseModel)data;
 
-                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"File length: {((MediaModel)data).File.Length} ProductId: {purchase.ProductId} PackageName: {purchase.PackageName} TransactionId. {purchase.TransactionId} Paylaod: {purchase.Paylaod} VerifyPurchase: {purchase.VerifyPurchase} State: {purchase.State} Platform: {purchase.Platform}");
-
                     multipartFormData.Add(new StringContent(purchase.PackageName), "packageName");
                     multipartFormData.Add(new StringContent(purchase.ProductId), "productId");
                     multipartFormData.Add(new StringContent(purchase.Platform.ToString()), "platform");
@@ -350,7 +341,7 @@ namespace ContestPark.Mobile.Services.RequestProvider
             {
                 case ".jpg": return "image/jpeg";
                 case ".png": return "image/png";
-                case ".conteststore":
+                case ".txt":
                     return "text/plain";
             }
 

@@ -4,6 +4,7 @@ using ContestPark.Mobile.Helpers;
 using ContestPark.Mobile.Models.Balance;
 using ContestPark.Mobile.Services.RequestProvider;
 using Prism.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Cp
@@ -83,6 +84,15 @@ namespace ContestPark.Mobile.Services.Cp
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/Purchase/v2");
 
             var result = await _requestProvider.PostAsync<string>(uri, purchase);
+
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($@"Satın alma işlemi service!", new Dictionary<string, string>
+                {
+                    { "HttpStatusCode", result.HttpStatusCode.ToString() },
+                    { "IsSuccess", result.IsSuccess.ToString() },
+                    { "ErrorMessage", result.Error.ErrorMessage },
+                    { "MemberNames",result.Error != null && result.Error.MemberNames !=null ? result.Error.MemberNames.Length.ToString() :"0"},
+                    { "Error",result.Error != null && result.Error.MemberNames !=null && result.Error.MemberNames.Length > 0 ? result.Error.MemberNames[0]:"hata yok" },
+                });
 
             return result.IsSuccess;
         }

@@ -401,7 +401,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 VerifyPurchase = purchaseInfo.VerifyPurchase,
                 Platform = GetCurrentPlatform(),
                 File = purchaseTokenStream,
-                FileName = "cp.conteststore"
+                FileName = "cp.txt"
             });
             if (isSuccessGoldPurchase)
             {
@@ -530,14 +530,17 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 {
                     //Purchased, save this information
 
-                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent($@"Satın alma işlemi gerçekleşti!\n
-                                                                       Product Id: {purchase.ProductId}
-                                                                       Id: {purchase.Id}
-                                                                       Auto renewing: {purchase.AutoRenewing}
-                                                                       Payload: {purchase.Payload}
-                                                                       Purchase token: {purchase.PurchaseToken}
-                                                                       State: {purchase.State.ToString()}
-                                                                       Consumption state: {purchase.ConsumptionState.ToString()} ");
+                    Microsoft.AppCenter.Analytics.Analytics.TrackEvent($@"Satın alma işlemi gerçekleşti!", new Dictionary<string, string>
+                {
+                    { "ProductId", purchase.ProductId },
+                    { "Id", purchase.Id },
+                    { "AutoRenewing", purchase.AutoRenewing.ToString() },
+                    { "Payload", purchase.Payload },
+                    //{ "PurchaseToken", purchaseInfo.PurchaseToken },
+                    { "TransactionDateUtc", purchase.TransactionDateUtc.ToLongDateString()},
+                    { "State", purchase.State.ToString() },
+                    { "ConsumptionState", purchase.ConsumptionState.ToString() },
+                });
 
                     return new InAppBillingPurchaseModel
                     {
