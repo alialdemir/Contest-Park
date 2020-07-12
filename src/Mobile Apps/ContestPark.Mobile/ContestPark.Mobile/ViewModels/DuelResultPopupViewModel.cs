@@ -314,22 +314,25 @@ namespace ContestPark.Mobile.ViewModels
                     .Publish();
             }
 
-            bool specialOffer = !_cacheService.IsExpired("SpecialOffer") && _cacheService.Get<bool>("SpecialOffer");
-            bool isStoreReview = !_cacheService.IsExpired("IsStoreReview") && _cacheService.Get<bool>("IsStoreReview");
-
-            if (DuelResult != null
-                && DuelResult.IsShowFireworks
-                && isStoreReview
-                && CrossStoreReview.Current != null
-                && CrossStoreReview.IsSupported)
+            if (Device.RuntimePlatform == Device.Android)
             {
-                RequestReview();
-            }
-            else if (!specialOffer)
-            {
-                NavigateToPopupAsync<SpecialOfferPopupView>();
+                bool specialOffer = !_cacheService.IsExpired("SpecialOffer") && _cacheService.Get<bool>("SpecialOffer");
+                bool isStoreReview = !_cacheService.IsExpired("IsStoreReview") && _cacheService.Get<bool>("IsStoreReview");
 
-                _cacheService.Add("SpecialOffer", true, TimeSpan.FromDays(1));
+                if (DuelResult != null
+                    && DuelResult.IsShowFireworks
+                    && isStoreReview
+                    && CrossStoreReview.Current != null
+                    && CrossStoreReview.IsSupported)
+                {
+                    RequestReview();
+                }
+                else if (!specialOffer)
+                {
+                    NavigateToPopupAsync<SpecialOfferPopupView>();
+
+                    _cacheService.Add("SpecialOffer", true, TimeSpan.FromDays(1));
+                }
             }
 
             return base.RemoveFirstPopupAsync<DuelResultPopupView>();
