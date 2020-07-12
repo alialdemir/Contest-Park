@@ -6,6 +6,7 @@ using ContestPark.Mobile.Models.Media;
 using ContestPark.Mobile.Models.Profile;
 using ContestPark.Mobile.Models.Token;
 using ContestPark.Mobile.Models.User;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ContestPark.Mobile.Services.Identity
@@ -20,7 +21,7 @@ namespace ContestPark.Mobile.Services.Identity
 
         Task<ProfileInfoModel> GetProfileInfoByUserName(string userName, bool isForceCache = false);
 
-        Task<RandomUserModel> GetRandomBotUser();
+        Task<List<RandomUserModel>> GetRandomBotUser();
 
         Task<UserToken> GetTokenAsync(LoginModel loginModel);
 

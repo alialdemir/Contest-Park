@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.AppResources;
 using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Categories;
+using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Services.Category;
 using ContestPark.Mobile.Services.Cp;
 using ContestPark.Mobile.Services.Identity;
@@ -84,6 +85,8 @@ namespace ContestPark.Mobile.Services.InviteDuel
             });
         }
 
+        public List<RandomUserModel> Users { get; set; } = new List<RandomUserModel>();
+
         /// <summary>
         /// Random düello daveti gösterir
         /// </summary>
@@ -98,15 +101,18 @@ namespace ContestPark.Mobile.Services.InviteDuel
                 return;
             }
 
-            // TODO: random bot user çekerken liste şeklinde çekelim mobile tarafta random davet atsın böylece sunucuya giden request sayısını azaltmış oluruz
-
-            var randomBotUser = await _identityService.GetRandomBotUser();
-            if (randomBotUser == null)
+            if (Users == null || !Users.Any())
             {
-                StartTimer(categories);
+                Users = await _identityService.GetRandomBotUser();
+                if (Users == null)
+                {
+                    StartTimer(categories);
 
-                return;
+                    return;
+                }
             }
+
+            RandomUserModel randomBotUser = Users.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
 
             SubCategoryModel subCategory = GetRandomSubCategory(categories);
             if (subCategory == null)

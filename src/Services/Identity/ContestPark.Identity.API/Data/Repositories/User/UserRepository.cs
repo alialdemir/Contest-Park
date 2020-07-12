@@ -213,12 +213,12 @@ namespace ContestPark.Identity.API.Data.Repositories.User
         /// Rastgele bot kullanıcı verir
         /// </summary>
         /// <returns>Rastgele bir kullanıcı</returns>
-        public RandomUserModel GetRandomBotUser()
+        public List<RandomUserModel> GetRandomBotUser()
         {
             string sql = @"SELECT a.Id, a.ProfilePicturePath, a.FullName FROM AspNetUsers a
                            WHERE a.IsBot = true
                            ORDER BY RAND()
-                           LIMIT 1";
+                           LIMIT 100";
 
             return _applicationDbContext
                                 .Users
@@ -229,7 +229,7 @@ namespace ContestPark.Identity.API.Data.Repositories.User
                                     ProfilePicturePath = u.ProfilePicturePath,
                                     FullName = u.FullName,
                                 })
-                                .FirstOrDefault();
+                                .ToList();
         }
 
         /// <summary>

@@ -305,7 +305,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [Route("Update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateUserInfo([FromBody]UpdateUserInfoModel updateUserInfo)
+        public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserInfoModel updateUserInfo)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
@@ -364,7 +364,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [Route("UpdateLanguage")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateLanguage([FromQuery]Languages language)
+        public async Task<IActionResult> UpdateLanguage([FromQuery] Languages language)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(UserId);
             if (user == null)
@@ -406,7 +406,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [System.Obsolete]
-        public IActionResult GetUserNameByPhoneNumber([FromQuery]string phoneNumber)
+        public IActionResult GetUserNameByPhoneNumber([FromQuery] string phoneNumber)
         {
             string userName = _userRepository.GetUserNameByPhoneNumber(phoneNumber);
             if (!string.IsNullOrEmpty(userName))
@@ -423,7 +423,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationResult), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SignUp([FromBody]SignUpModel signUpModel)
+        public async Task<IActionResult> SignUp([FromBody] SignUpModel signUpModel)
         {
             if (signUpModel == null)
                 return BadRequest();
@@ -557,7 +557,7 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         [Route("UserInfos")]
         [ProducesResponseType(typeof(List<UserModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetUserInfos([FromBody]List<string> userInfos, [FromQuery]bool includeCoverPicturePath = false)
+        public IActionResult GetUserInfos([FromBody] List<string> userInfos, [FromQuery] bool includeCoverPicturePath = false)
         {
             if (userInfos == null || userInfos.Count == 0)
                 return BadRequest();
@@ -575,10 +575,10 @@ namespace ContestPark.Identity.API.ControllersIdentityResource
         /// <returns>Kullanıcı id</returns>
         [HttpGet("RandomUser")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(RandomUserModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<RandomUserModel>), StatusCodes.Status200OK)]
         public IActionResult GetRandomUser()
         {
-            var user = _userRepository.GetRandomBotUser();
+            List<RandomUserModel> user = _userRepository.GetRandomBotUser();
             if (user == null)
                 return NotFound();
 

@@ -101,12 +101,27 @@ namespace ContestPark.Mobile.Services.Identity
         /// Rastgele bot kullanıcı bilgileri verir
         /// </summary>
         /// <returns>Kullanıcı bilgileri</returns>
-        public async Task<RandomUserModel> GetRandomBotUser()
+        public async Task<List<RandomUserModel>> GetRandomBotUser()
         {
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.GatewaEndpoint, $"{_apiUrlBase}/RandomUser");
-            var response = await _requestProvider.GetAsync<RandomUserModel>(uri);
+
+            bool isExpired = _cacheService.IsExpired(key: uri);
+            if (!isExpired)
+            {
+                return _cacheService.Get<List<RandomUserModel>>(uri);
+            }
+
+            var response = await _requestProvider.GetAsync<List<RandomUserModel>>(uri);
             if (!response.IsSuccess)
                 return null;
+
+            if (response.Data != null && response.IsSuccess)
+            {
+                if (isExpired)
+                    _cacheService.Empty(uri);
+
+                _cacheService.Add(uri, response.Data);
+            }
 
             return response.Data;
         }

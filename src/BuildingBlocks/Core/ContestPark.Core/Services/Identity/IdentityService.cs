@@ -131,9 +131,11 @@ namespace ContestPark.Core.Services.Identity
         /// <returns>Kullanıcı id</returns>
         public async Task<string> GetRandomUserId()
         {
-            UserIdModel user = await _requestProvider.GetAsync<UserIdModel>($"{baseUrl}/RandomUser");
+            List<UserIdModel> users = await _requestProvider.GetAsync<List<UserIdModel>>($"{baseUrl}/RandomUser");
+            if (users == null || !users.Any())
+                return string.Empty;
 
-            return user.UserId;
+            return users.FirstOrDefault().UserId;
         }
 
         #endregion Methods
