@@ -7,6 +7,7 @@ using ContestPark.Mobile.Services.Analytics;
 using ContestPark.Mobile.Services.Cache;
 using ContestPark.Mobile.Services.Cp;
 using ImTools;
+using Microsoft.AppCenter.Crashes;
 using Plugin.InAppBilling;
 using Plugin.InAppBilling.Abstractions;
 using Prism.Events;
@@ -390,6 +391,14 @@ namespace ContestPark.Mobile.Services.InAppBilling
 
             #endregion Ios purchase token çok uzun olduğu için text dosyasına yazıp gönderiyoruz
 
+            Crashes.TrackError(new Exception("Vertfy purchase"), new Dictionary<string, string>
+            {
+                {"VerifyPurchaselegth", purchaseInfo.VerifyPurchase.Length.ToString() },
+                {"PayloadLength", purchaseInfo.Payload.Length.ToString() },
+                {"IdLength", purchaseInfo.Id.Length.ToString() },
+                {"VerifyPurchase", purchaseInfo.VerifyPurchase},
+            });
+
             bool isSuccessGoldPurchase = await _balanceService.PurchaseAsync(new PurchaseModel
             {
                 ProductId = purchaseInfo.ProductId,
@@ -398,7 +407,7 @@ namespace ContestPark.Mobile.Services.InAppBilling
                 TransactionId = purchaseInfo.Id,
                 Token = "none",
                 Paylaod = purchaseInfo.Payload,
-                VerifyPurchase = purchaseInfo.VerifyPurchase,
+                VerifyPurchase = "test",//purchaseInfo.VerifyPurchase,
                 Platform = GetCurrentPlatform(),
                 File = purchaseTokenStream,
                 FileName = "cp.txt"
