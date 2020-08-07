@@ -194,7 +194,10 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
             if (_settingsService != null)
             {
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(_settingsService.CurrentUser.Language.ToLanguageCode()));
+                httpClient
+                    .DefaultRequestHeaders
+                    .AcceptLanguage
+                    .Add(new StringWithQualityHeaderValue(_settingsService.CurrentUser.Language.ToLanguageCode()));
 
                 string token = _settingsService.AuthAccessToken;
                 if (!string.IsNullOrEmpty(token))
@@ -298,13 +301,9 @@ namespace ContestPark.Mobile.Services.RequestProvider
 
                 return multipartFormData;
             }
-            else if (data != null)
-            {
-                string content = JsonConvert.SerializeObject(data);
-                return new StringContent(content, Encoding.UTF8, "application/json");
-            }
 
-            return null;
+            string content = JsonConvert.SerializeObject(data);
+            return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
         /// <summary>

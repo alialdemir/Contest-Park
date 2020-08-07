@@ -175,7 +175,7 @@ namespace ContestPark.Mobile.ViewModels
         /// <summary>
         /// Kategori search sayfasına gider
         /// </summary>
-        /// <param name="categoryId"></param>
+        /// <param name="categoryId">Kategori id</param>
         /// <returns></returns>
         private void ExecutGoToCategorySearchPageCommand(short categoryId = 0)
         {
