@@ -16,7 +16,6 @@ using ContestPark.Identity.API.IntegrationEvents;
 using ContestPark.Identity.API.IntegrationEvents.EventHandling;
 using ContestPark.Identity.API.IntegrationEvents.Events;
 using ContestPark.Identity.API.Resources;
-using ContestPark.Identity.API.Services;
 using ContestPark.Identity.API.Services.BlobStorage;
 using ContestPark.Identity.API.Services.Block;
 using ContestPark.Identity.API.Services.Follow;
@@ -144,7 +143,7 @@ namespace ContestPark.Identity.API
             services.AddLocalizationCustom();
 
             services.AddCustomIdentityServer(Configuration, connectionString)
-                    .AddMvc(options=> options.EnableEndpointRouting=false)
+                    .AddMvc(options => options.EnableEndpointRouting = false)
                     .AddJsonOptions()
                     .AddDataAnnotationsLocalization(typeof(IdentityResource).Name)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

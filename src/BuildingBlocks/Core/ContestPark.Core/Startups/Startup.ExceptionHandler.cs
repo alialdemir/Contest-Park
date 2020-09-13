@@ -40,7 +40,6 @@ namespace Microsoft.Extensions.DependencyInjection
                         StatusCode = context.Response.StatusCode,
                         Message = "An error ocurred."
                     };
-
 #if DEBUG
                     json.DeveloperMessage = exception;
 #endif
