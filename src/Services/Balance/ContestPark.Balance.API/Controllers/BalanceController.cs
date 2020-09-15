@@ -241,8 +241,6 @@ namespace ContestPark.Balance.API.Controllers
                 return BadRequest();
             }
 
-            return NotFound();// geçici olarak ppara çekme işlemlerini kapattık
-
             BalanceModel result = _balanceRepository.GetUserBalances(UserId);
             if (result == null || result.Money < 20.00m)
             {
