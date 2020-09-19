@@ -38,7 +38,7 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         /// <returns>True dönerse para çekebilir false dönerse çekemez</returns>
         public bool WithdrawalStatus(string userId)
         {
-            return _balanceRepository.QuerySingleOrDefault<bool>("FNC_WithdrawalStatus", new
+            return _balanceRepository.QuerySingleOrDefault<bool>("SP_WithdrawalStatus", new
             {
                 userId
             }, CommandType.StoredProcedure);
