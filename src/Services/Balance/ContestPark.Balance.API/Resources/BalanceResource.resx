@@ -132,4 +132,7 @@
   <data name="TheWithdrawalRequestFailed" xml:space="preserve">
     <value>The withdrawal request failed.</value>
   </data>
+  <data name="ToBeAbleToMakeAWithdrawalYouMustDoTenDuelsAfterTheTopUp" xml:space="preserve">
+    <value>To be able to make a withdrawal, you must do 10 duels after the top up.</value>
+  </data>
 </root>

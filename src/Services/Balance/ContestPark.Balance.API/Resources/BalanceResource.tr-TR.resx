@@ -132,4 +132,7 @@
   <data name="TheWithdrawalRequestFailed" xml:space="preserve">
     <value>Para çekme isteği başarısız oldu.</value>
   </data>
+  <data name="ToBeAbleToMakeAWithdrawalYouMustDoTenDuelsAfterTheTopUp" xml:space="preserve">
+    <value>Para çekme işlemi gerçekleştirebilmek için para yükleme işleminden sonra 10 düello yapmalısın.</value>
+  </data>
 </root>

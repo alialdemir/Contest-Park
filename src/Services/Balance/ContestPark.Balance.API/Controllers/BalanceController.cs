@@ -249,6 +249,13 @@ namespace ContestPark.Balance.API.Controllers
                 return NotFound();
             }
 
+            if (!_balanceRepository.WithdrawalStatus(UserId)) // Para çekme işlemi için yeteri kadar duello yapmış mı kontrol eder
+            {
+                Logger.LogInformation($"On kereden az düello yapıp para çekme isteği geldi user id: {UserId}");
+
+                return BadRequest(BalanceResource.ToBeAbleToMakeAWithdrawalYouMustDoTenDuelsAfterTheTopUp);
+            }
+
             Logger.LogInformation($"Para çekme isteği şuanki para miktarı. User Id: {UserId} Money: {result.Money}");
 
             bool isSuccess = await SendMoneyRequestUpdateBalanceAsync(-result.Money);// Önce hesaptan para düşüldü

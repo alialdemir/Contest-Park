@@ -104,5 +104,14 @@ namespace ContestPark.Balance.API.Resources {
                 return ResourceManager.GetString("TheWithdrawalRequestFailed", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To be able to make a withdrawal, you must do 10 duels after the top up..
+        /// </summary>
+        public static string ToBeAbleToMakeAWithdrawalYouMustDoTenDuelsAfterTheTopUp {
+            get {
+                return ResourceManager.GetString("ToBeAbleToMakeAWithdrawalYouMustDoTenDuelsAfterTheTopUp", resourceCulture);
+            }
+        }
     }
 }

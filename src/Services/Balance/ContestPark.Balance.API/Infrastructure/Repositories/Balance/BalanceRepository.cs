@@ -32,6 +32,19 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         #region Methods
 
         /// <summary>
+        /// Para çekme işlemi için yeteri kadar duello yapmış mı kontrol eder
+        /// </summary>
+        /// <param name="userId">Kullanıcı id</param>
+        /// <returns>True dönerse para çekebilir false dönerse çekemez</returns>
+        public bool WithdrawalStatus(string userId)
+        {
+            return _balanceRepository.QuerySingleOrDefault<bool>("FNC_WithdrawalStatus", new
+            {
+                userId
+            }, CommandType.StoredProcedure);
+        }
+
+        /// <summary>
         /// Kullanıcının tüm bakiye bilgilerini döner
         /// </summary>
         /// <param name="userId">Kullanıcı id</param>

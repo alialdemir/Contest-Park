@@ -8,5 +8,6 @@ namespace ContestPark.Balance.API.Infrastructure.Repositories.Balance
         BalanceModel GetUserBalances(string userId);
 
         Task<bool> UpdateBalanceAsync(ChangeBalanceModel changeBalance);
+        bool WithdrawalStatus(string userId);
     }
 }

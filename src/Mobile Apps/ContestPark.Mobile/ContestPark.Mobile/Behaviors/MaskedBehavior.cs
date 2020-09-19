@@ -47,7 +47,7 @@ namespace ContestPark.Mobile.Behaviors
             _positions = list;
         }
 
-        private void OnEntryTextChanged(object sender, TextChangedEventArgs args)
+        protected virtual void OnEntryTextChanged(object sender, TextChangedEventArgs args)
         {
             var entry = sender as Entry;
 
