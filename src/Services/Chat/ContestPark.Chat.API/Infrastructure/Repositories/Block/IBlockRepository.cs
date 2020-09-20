@@ -9,6 +9,8 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
 
         bool BlockingStatus(string skirterUserId, string deterredUserId);
 
+        bool MutualBlockingStatus(string skirterUserId, string deterredUserId);
+
         Task<bool> UnBlockAsync(string skirterUserId, string deterredUserId);
 
         ServiceModel<Model.BlockModel> UserBlockedList(string SkirterUserId, PagingModel paging);

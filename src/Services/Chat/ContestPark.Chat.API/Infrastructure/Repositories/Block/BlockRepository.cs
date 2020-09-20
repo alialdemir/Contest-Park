@@ -67,13 +67,36 @@ namespace ContestPark.Chat.API.Infrastructure.Repositories.Block
         /// <param name="skirterUserId">Engelleyen kullanıcı id</param>
         /// <param name="deterredUserId">Engellenen kullanıcı id</param>
         /// <returns>İki tarafdan biri engellemiş mi true değilse false</returns>
-        public bool BlockingStatus(string skirterUserId, string deterredUserId)
+        public bool MutualBlockingStatus(string skirterUserId, string deterredUserId)
         {
             string sql = @"SELECT (CASE
                            WHEN EXISTS(
                            SELECT NULL
                            FROM Blocks b WHERE (b.SkirterUserId=@skirterUserId AND b.DeterredUserId=@deterredUserId)
                               OR (b.SkirterUserId=@deterredUserId AND b.DeterredUserId=@skirterUserId))
+                           THEN 1
+                           ELSE 0
+                           END)";
+
+            return _blockRepository.QuerySingleOrDefault<bool>(sql, new
+            {
+                skirterUserId,
+                deterredUserId
+            });
+        }
+
+        /// <summary>
+        /// Sohbet tek taraflı engelleme durumu
+        /// </summary>
+        /// <param name="skirterUserId">Engelleyen kullanıcı id</param>
+        /// <param name="deterredUserId">Engellenen kullanıcı id</param>
+        /// <returns>İki tarafdan biri engellemiş mi true değilse false</returns>
+        public bool BlockingStatus(string skirterUserId, string deterredUserId)
+        {
+            string sql = @"SELECT (CASE
+                           WHEN EXISTS(
+                           SELECT NULL
+                           FROM Blocks b WHERE b.SkirterUserId=@skirterUserId AND b.DeterredUserId=@deterredUserId)
                            THEN 1
                            ELSE 0
                            END)";

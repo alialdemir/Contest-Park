@@ -98,7 +98,7 @@ namespace ContestPark.Chat.API.Controllers
         /// <returns>Konuşma detayı</returns>
         [HttpGet("{senderUserId}")]
         [ProducesResponseType(typeof(ServiceModel<ConversationDetailModel>), (int)HttpStatusCode.OK)]
-        public IActionResult Get([FromRoute]string senderUserId, [FromQuery] PagingModel paging)
+        public IActionResult Get([FromRoute] string senderUserId, [FromQuery] PagingModel paging)
         {
             ServiceModel<ConversationDetailModel> result = _messageRepository.ConversationDetail(UserId, senderUserId, paging);
 
@@ -123,7 +123,7 @@ namespace ContestPark.Chat.API.Controllers
         /// </summary>
         [HttpPost("{conversationId}/ReadMessages")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromRoute]long conversationId)
+        public async Task<IActionResult> Post([FromRoute] long conversationId)
         {
             bool isSuccess = await _conversationRepository.AllMessagesRead(UserId, conversationId);
 
@@ -161,12 +161,12 @@ namespace ContestPark.Chat.API.Controllers
         /// <param name="message">Mesaj bilgisi</param>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public IActionResult Post([FromBody]Model.Message message)
+        public IActionResult Post([FromBody] Model.Message message)
         {
             if (UserId == message.ReceiverUserId)
                 return BadRequest(ChatResource.YouCanNotMendMessagesToYourself);
 
-            if (_blockRepository.BlockingStatus(UserId, message.ReceiverUserId))
+            if (_blockRepository.MutualBlockingStatus(UserId, message.ReceiverUserId))
                 return BadRequest(ChatResource.ThereAreBetweenYouAndBlockThisUser_YouOrHeMayHaveBlockedYou);
 
             var @event = new SendMessageIntegrationEvent(UserId, message.ReceiverUserId, message.Text);
@@ -182,7 +182,7 @@ namespace ContestPark.Chat.API.Controllers
         [HttpDelete("{conversationId}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
-        public IActionResult RemoveMessages([FromRoute]long conversationId)
+        public IActionResult RemoveMessages([FromRoute] long conversationId)
         {
             if (conversationId <= 0)
                 return BadRequest();
@@ -203,7 +203,7 @@ namespace ContestPark.Chat.API.Controllers
         [HttpPost("block/{deterredUserId}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> BlockedAsync([FromRoute]string deterredUserId)
+        public async Task<IActionResult> BlockedAsync([FromRoute] string deterredUserId)
         {
             if (UserId == deterredUserId)
                 return BadRequest();
@@ -225,7 +225,7 @@ namespace ContestPark.Chat.API.Controllers
         [HttpDelete("unblock/{deterredUserId}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationResult), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UnBlockedAsync([FromRoute]string deterredUserId)
+        public async Task<IActionResult> UnBlockedAsync([FromRoute] string deterredUserId)
         {
             if (UserId == deterredUserId)
                 return BadRequest();
@@ -248,7 +248,7 @@ namespace ContestPark.Chat.API.Controllers
         [HttpGet("Block/Status/{userId}")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult BlockedStatus([FromRoute]string userId)
+        public IActionResult BlockedStatus([FromRoute] string userId)
         {
             if (UserId == userId || string.IsNullOrEmpty(userId))
                 return BadRequest();
@@ -268,14 +268,14 @@ namespace ContestPark.Chat.API.Controllers
         [HttpGet("Block/Status/{userId1}/{userId2}")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult BlockedStatus([FromRoute]string userId1, [FromRoute]string userId2)
+        public IActionResult BlockedStatus([FromRoute] string userId1, [FromRoute] string userId2)
         {
             if (userId1 == userId2 || string.IsNullOrEmpty(userId1) || string.IsNullOrEmpty(userId2))
                 return BadRequest();
 
             return Ok(new
             {
-                isBlocked = _blockRepository.BlockingStatus(userId1, userId2)
+                isBlocked = _blockRepository.MutualBlockingStatus(userId1, userId2)
             });
         }
 
@@ -286,7 +286,7 @@ namespace ContestPark.Chat.API.Controllers
         /// <returns>Engellenen kullanıcılar</returns>
         [HttpGet("Block")]
         [ProducesResponseType(typeof(ServiceModel<BlockModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> UserBlockedList([FromQuery]PagingModel paging)
+        public async Task<IActionResult> UserBlockedList([FromQuery] PagingModel paging)
         {
             ServiceModel<BlockModel> result = _blockRepository.UserBlockedList(UserId, paging);
             if (result == null || result.Items == null || result.Items.Count() == 0)
