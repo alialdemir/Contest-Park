@@ -104,6 +104,8 @@ namespace ContestPark.Mobile.Droid
 
             PancakeViewRenderer.Init();
 
+            Window.SetSoftInputMode(SoftInput.AdjustResize); // Klavye açılınca action bar gizlenmemesi için ekledim
+
             Window.AddFlags(WindowManagerFlags.KeepScreenOn);// Uygulama kilit ekranına düşmemesi için(rakip aranıyor ve düello ekranlarında kilit ekranına düşerse yenilmiş saymaması için ekledim
         }
 

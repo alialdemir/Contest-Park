@@ -78,6 +78,7 @@
                     </components:NonPersistentSelectedItemListView.Footer>
                 </components:NonPersistentSelectedItemListView>
             </yummy:PancakeView>
+
             <yummy:PancakeView
                 Grid.Row="1"
                 Padding="11"
@@ -107,6 +108,7 @@
                         Focused="TxtChatbox_Focused"
                         FontFamily="{StaticResource SofiaProRegular}"
                         FontSize="14"
+                        HeightRequest="55"
                         HorizontalOptions="FillAndExpand"
                         Keyboard="Chat"
                         MaxLength="140"

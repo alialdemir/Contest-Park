@@ -345,7 +345,7 @@ namespace ContestPark.Mobile.ViewModels
         {
             ServiceModel = await _chatService.ChatDetailAsync(SenderUserId, ServiceModel);
 
-            ListViewScrollToBottomCommand?.Execute(ServiceModel.PageNumber == 1 ? Items.Count - 1 : Items.Count / 3);
+            ListViewScrollToBottomCommand?.Execute(Items.Count - 1);
         }
 
         #endregion Methods

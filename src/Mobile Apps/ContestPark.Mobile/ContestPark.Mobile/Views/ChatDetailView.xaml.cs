@@ -1,6 +1,7 @@
 ﻿using ContestPark.Mobile.Models.Chat;
 using ContestPark.Mobile.ViewModels;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ContestPark.Mobile.Views
@@ -43,7 +44,7 @@ namespace ContestPark.Mobile.Views
             ViewModel.ListViewScrollToBottomCommand = new Command<int>((index) =>
             {
                 if (ViewModel.Items.Count > 0 && index >= 0 && index < ViewModel.Items.Count)
-                    lstMessages.ScrollTo(ViewModel.Items[index], ScrollToPosition.Center, true);
+                    lstMessages.ScrollTo(ViewModel.Items[index], ScrollToPosition.End, true);
             });
 
             ViewModel.EditorFocusCommand = new Command(() => txtChatbox.Focus());
@@ -70,7 +71,12 @@ namespace ContestPark.Mobile.Views
         /// <param name="e"></param>
         private void TxtChatbox_Focused(object sender, FocusEventArgs e)
         {
-            ViewModel.ListViewScrollToBottomCommand.Execute(0);
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(1000);
+
+                ViewModel.ListViewScrollToBottomCommand.Execute(ViewModel.Items.Count - 1);
+            });
         }
 
         /// <summary>
