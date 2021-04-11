@@ -62,7 +62,7 @@ namespace ContestPark.Identity.API.Configuration
                  new Client
                         {
                             ClientId = "web-client",
-                            ClientName = "ContestPark web client Client",
+                            ClientName = "ContestPark web client",
                             AccessTokenLifetime = 3600 * 24 * 90,// 3 month
                             AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                             RequireClientSecret = false,

@@ -9,7 +9,6 @@ namespace ContestPark.Identity.API.Certificate
         public static X509Certificate2 Get()
         {
             var assembly = typeof(Certificate).GetTypeInfo().Assembly;
-            var names = assembly.GetManifestResourceNames();
 
             /***********************************************************************************************
              *  Please note that here we are using a local certificate only for testing purposes. In a
