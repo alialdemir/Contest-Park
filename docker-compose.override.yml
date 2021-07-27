@@ -35,9 +35,6 @@ services:
       - ClouldFrontUrl=${CONTESTPARK_CLOUDFRONT_URL}
     ports:
       - "5101:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     
   contestpark.category.api:
     environment:
@@ -57,9 +54,6 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5102:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     
   contestpark.follow.api:
     environment:
@@ -77,9 +71,6 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5103:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     
   contestpark.balance.api:
     environment:
@@ -97,18 +88,12 @@ services:
       - AppSpecificSharedSecret=${CONTESTPARK_APP_SPECIFIC_SHARED_SECRET}
     ports:
       - "5104:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     
   contestpark.ocelotapigw.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "5105:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     
   contestpark.chat.api:
     environment:
@@ -126,8 +111,6 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5106:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     
   contestpark.signalr.api:
     environment:
@@ -143,8 +126,6 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5107:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   contestpark.post.api:
     environment:
@@ -162,9 +143,6 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5108:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       
   contestpark.duel.api:
     environment:
@@ -187,9 +165,6 @@ services:
       - AwsLogGroupName=${CONTESTPARK_AWS_LOG_GROUP_NAME}
     ports:
       - "5109:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
       
   contestpark.admin.api:
@@ -209,9 +184,6 @@ services:
       - SpotifySecretId=${CONTESTPARK_SPOTIFY_SECRETID}
     ports:
       - "5110:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   contestpark.backgroundtasks:
     environment:
@@ -225,9 +197,6 @@ services:
       - duelUrl=http://contestpark.duel.api
     ports:
       - "5111:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       
   contestpark.notification.api:
     environment:
@@ -250,9 +219,6 @@ services:
       - OneSignalApiKey=${CONTESTPARK_ONE_SIGNAL_API_KEY}
     ports:
       - "5112:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       
   contestpark.mission.api:
     environment:
@@ -266,6 +232,3 @@ services:
       - IsMigrateDatabase=true
     ports:
       - "5113:80"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

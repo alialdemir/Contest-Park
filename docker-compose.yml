@@ -9,9 +9,6 @@ services:
 
   redis.data:
     image: redis:alpine
-    volumes:
-      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-      - /mnt/xvdb/redis:/usr/local/etc/redis
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
