@@ -53,7 +53,7 @@ namespace ContestPark.Mobile.Components
             {
                 switch (QuestionType)
                 {
-                    case QuestionTypes.Music:
+                    case QuestionTypes.Lyrics:
                         Content = new MusicQuestion() { Question = Question, Link = Link }; break;
 
                     case QuestionTypes.Image:

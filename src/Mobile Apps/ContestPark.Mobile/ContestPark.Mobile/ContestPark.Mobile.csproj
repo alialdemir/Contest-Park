@@ -87,6 +87,9 @@
     <None Remove="Common\Images\verify.svg" />
     <None Remove="Common\Images\vs.png" />
     <None Remove="Helpers\icomoon.ttf" />
+    <None Remove="Components\VideoPlayer\" />
+    <None Remove="YoutubeExplode" />
+    <None Remove="Xamarin.CommunityToolkit" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common\Audios\AwaitingOpponent.mp3" />
@@ -190,15 +193,17 @@
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
     <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.1080" />
+    <PackageReference Include="YoutubeExplode" Version="6.0.5" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppResources\ContestParkResources.Designer.cs">
@@ -482,5 +487,8 @@
     <EmbeddedResource Update="Views\WinningsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\VideoPlayer\" />
   </ItemGroup>
 </Project>

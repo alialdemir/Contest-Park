@@ -3,16 +3,33 @@
     x:Class="ContestPark.Mobile.Components.MusicQuestion"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="musicQuestion"
     mc:Ignorable="d">
     <ContentView.Content>
-        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+
+        <Grid
+            ColumnSpacing="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <components:YoutubeVideoPlayer
+                Grid.Row="0"
+                Grid.Column="0"
+                Link="2vjPBrBU-TM" />
+        </Grid>
+        <!--<Grid HorizontalOptions="Center" VerticalOptions="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <!--<RowDefinition Height="Auto" />-->
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -31,7 +48,13 @@
                 VerticalOptions="CenterAndExpand"
                 VerticalTextAlignment="Center" />
 
-            <!--<Image Grid.Row="1" Grid.Column="0">
+            <components:YoutubeVideoPlayer
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Link="u_yIGGhubZs" />
+
+
+            <Image Grid.Row="1" Grid.Column="0">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=WindBackCommand, Source={x:Reference musicQuestion}}" />
                 </Image.GestureRecognizers>
@@ -65,7 +88,7 @@
                         Glyph="{StaticResource FastForward}"
                         Color="{StaticResource White}" />
                 </Image.Source>
-            </Image>-->
-        </Grid>
+            </Image>
+        </Grid>-->
     </ContentView.Content>
 </ContentView>
