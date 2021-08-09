@@ -8,18 +8,19 @@
   <ItemGroup>
     <None Remove="Migrations\Scripts\GetBalance.sql" />
     <None Remove="Migrations\Scripts\IsCodeActive.sql" />
+    <None Remove="Migrations\Scripts\FNC_FirstLoadMoney.sql" />
+    <None Remove="Migrations\Scripts\SP_IsExistsToken.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\IsCodeActive.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\GetBalance.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\UpdateBalance.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Scripts\FNC_FirstLoadMoney.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\SP_IsExistsToken.sql" />
   </ItemGroup>
 
   <ItemGroup>

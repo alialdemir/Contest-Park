@@ -1,12 +1,13 @@
-﻿CREATE PROCEDURE SP_RandomQuestions( 
-IN subCategoryId INT(11),
-IN founderUserId VARCHAR(255),
-IN opponentUserId VARCHAR(255),
-IN founderLanguge TINYINT,
-IN opponentLanguge TINYINT
-) 
-BEGIN 
+﻿
+CREATE PROCEDURE `SP_RandomQuestions`(
+	IN `subCategoryId` INT(11),
+	IN `founderUserId` VARCHAR(255),
+	IN `opponentUserId` VARCHAR(255),
+	IN `founderLanguge` TINYINT,
+	IN `opponentLanguge` TINYINT
 
+)
+BEGIN 
 SELECT 
 ddd.QuestionId, ddd.Link, ddd.AnswerType, ddd.QuestionType, ql.Question, ql.Language, al.CorrectStylish, al.Stylish1, al.Stylish2, al.Stylish3
 
@@ -25,4 +26,4 @@ LIMIT 7
 		   ql.`Language` IN (founderLanguge, opponentLanguge) AND 
 		   al.QuestionId = qoql.QuestionId AND
 			 al.`Language` = ql.`Language`;
-END;
+END

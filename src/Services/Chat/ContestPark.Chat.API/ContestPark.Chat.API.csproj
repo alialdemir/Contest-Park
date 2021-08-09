@@ -14,14 +14,11 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\AddMessage.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SeenAllChat.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\RemoveMessages.sql" />
     <EmbeddedResource Include="Migrations\Scripts\AllMessagesRead.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -48,7 +45,6 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Migrations\Scripts\RemoveMessages.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\ChatResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

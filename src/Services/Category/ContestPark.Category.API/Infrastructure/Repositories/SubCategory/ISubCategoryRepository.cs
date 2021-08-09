@@ -21,7 +21,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
 
         decimal GetSubCategoryPrice(short subCategoryId);
 
-        IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language);
+        IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language, PagingModel pagingModel);
 
         IEnumerable<SubCategoryModel> RecommendedSubcategories(string userId, Languages language);
     }

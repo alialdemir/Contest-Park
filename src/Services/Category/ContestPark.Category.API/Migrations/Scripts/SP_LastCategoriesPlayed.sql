@@ -1,24 +1,26 @@
-CREATE DEFINER=`CarDErmATEXe`@`%` PROCEDURE `SP_LastCategoriesPlayed`(
+﻿
+CREATE PROCEDURE `SP_LastCategoriesPlayed`(
 	IN `UserId` VARCHAR(255),
-	IN `LangId` TINYINT
-
+	IN `LangId` TINYINT,
+	IN `Offset` INT,
+	IN `PageSize` INT
 )
-LANGUAGE SQL
-NOT DETERMINISTIC
-NO SQL
-SQL SECURITY DEFINER
-COMMENT ''
+    NO SQL
 BEGIN
-SELECT d.SubCategoryId,
+SELECT * FROM 
+(
+SELECT
+d.SubCategoryId,
 sc.PicturePath,
-sc.Price,
-sc.DisplayPrice,
-scl.SubCategoryName
- FROM Duels d
- INNER JOIN SubCategories sc on d.SubCategoryId = sc.SubCategoryId
- INNER JOIN SubCategoryLangs scl on scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
+scl.SubCategoryName,
+1 as IsSubCategoryOpen
+FROM Duels d
+INNER JOIN SubCategories sc ON d.SubCategoryId = sc.SubCategoryId AND sc.Visibility = true
+INNER JOIN SubCategoryLangs scl on scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
 WHERE d.FounderUserId = UserId OR d.OpponentUserId = UserId
-GROUP BY d.SubCategoryId
+GROUP BY d.SubCategoryId, d.DuelId
 ORDER BY d.DuelId DESC
-LIMIT 10;
+) t
+GROUP BY t.SubCategoryId
+LIMIT Offset, PageSize;
 END

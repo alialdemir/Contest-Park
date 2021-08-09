@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notice;
 using ContestPark.Notification.API.Infrastructure.Repositories.Notification;
@@ -71,6 +72,8 @@ namespace ContestPark.Notification.API
 
             ConfigureIdentityService(services);
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -98,6 +101,8 @@ namespace ContestPark.Notification.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Notification V1");
 
             ConfigureEventBus(app);
         }

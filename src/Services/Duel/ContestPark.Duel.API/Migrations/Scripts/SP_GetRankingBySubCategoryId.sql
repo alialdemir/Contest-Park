@@ -1,9 +1,12 @@
-﻿CREATE PROCEDURE SP_GetRankingBySubCategoryId( 
+﻿
+CREATE PROCEDURE `SP_GetRankingBySubCategoryId`(
 	IN `subCategoryId` INT(11),
 	IN `balanceType` TINYINT,
-	IN `contestDateId` TINYINT
-) 
-BEGIN 
+	IN `contestDateId` TINYINT,
+	IN `Offset` INT,
+	IN `PageSize` INT
+)
+BEGIN
  SELECT CASE
                                   WHEN balanceType=1 THEN sr.DisplayTotalGoldScore
                                   WHEN balanceType=2 THEN sr.DisplayTotalMoneyScore
@@ -18,4 +21,4 @@ BEGIN
                             WHEN balanceType=2 THEN sr.TotalMoneyScore
                         END DESC
 LIMIT Offset, PageSize;
-END;
+END

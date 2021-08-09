@@ -33,9 +33,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="Migrations\Scripts\FNC_IsMissionCompleted.sql" />
+	  <EmbeddedResource Include="Migrations\Scripts\FNC_Mission1-2-3.sql" />
+	  <EmbeddedResource Include="Migrations\Scripts\SP_Check_Mission.sql" />
+	  <EmbeddedResource Include="Migrations\Scripts\SP_Missions.sql" />
+	  <EmbeddedResource Include="Migrations\Scripts\SP_TakesMissionReward.sql" />
+	</ItemGroup>
+	<ItemGroup>
 		<EmbeddedResource Update="Resources\MissionResource.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>MissionResource.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Migrations\Scripts\FNC_IsMissionCompleted.sql" />
+	  <None Remove="Migrations\Scripts\FNC_Mission1-2-3.sql" />
+	  <None Remove="Migrations\Scripts\SP_Check_Mission.sql" />
+	  <None Remove="Migrations\Scripts\SP_Missions.sql" />
+	  <None Remove="Migrations\Scripts\SP_TakesMissionReward.sql" />
 	</ItemGroup>
 </Project>

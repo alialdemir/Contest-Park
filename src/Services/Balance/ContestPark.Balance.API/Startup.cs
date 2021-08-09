@@ -12,6 +12,7 @@ using ContestPark.Balance.API.Resources;
 using ContestPark.Balance.API.Services.VerifyReceiptIos;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -66,6 +67,8 @@ namespace ContestPark.Balance.API
             services.AddTransient<ChangeBalanceIntegrationEventHandler>();
             services.AddTransient<MultiChangeBalanceIntegrationEventHandler>();
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -93,6 +96,8 @@ namespace ContestPark.Balance.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Balance v1");
 
             ConfigureEventBus(app);
         }

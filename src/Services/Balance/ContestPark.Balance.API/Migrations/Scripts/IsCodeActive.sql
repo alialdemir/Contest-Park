@@ -1,13 +1,10 @@
+﻿
 CREATE PROCEDURE `SP_IsCodeActive`(
 	IN `code` VARCHAR(256)
 ,
 	IN `userId` VARCHAR(256)
 )
-LANGUAGE SQL
-NOT DETERMINISTIC
-READS SQL DATA
-SQL SECURITY DEFINER
-COMMENT ''
+    READS SQL DATA
 BEGIN
 (SELECT r.Amount, r.BalanceType FROM `References` r
                            WHERE r.CODE = code

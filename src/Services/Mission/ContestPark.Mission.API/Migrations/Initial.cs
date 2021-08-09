@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Dapper.Extensions;
+﻿using System.Reflection;
+using ContestPark.Core.Dapper.Extensions;
 using FluentMigrator;
 
 namespace ContestPark.Mission.API.Migrations
@@ -104,6 +105,14 @@ namespace ContestPark.Mission.API.Migrations
               .AsDateTime()
               .NotNullable()
               .WithDefault(SystemMethods.CurrentDateTime));
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "FNC_IsMissionCompleted.sql",
+                                   "FNC_Mission1-2-3.sql",
+                                   "SP_Check_Mission.sql",
+                                   "SP_Missions.sql",
+                                   "SP_TakesMissionReward.sql"
+                                   );
         }
 
         public override void Down()

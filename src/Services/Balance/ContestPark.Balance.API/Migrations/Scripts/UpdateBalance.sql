@@ -1,8 +1,10 @@
-CREATE PROCEDURE SP_UpdateBalance(
-    Amount DECIMAL(13,2),
-    BalanceType TINYINT,
-    BalanceHistoryType TINYINT,
-    UserId VARCHAR(256)
+﻿
+CREATE PROCEDURE `SP_UpdateBalance`(
+	IN `Amount` DECIMAL(13,2),
+	IN `BalanceType` TINYINT,
+	IN `BalanceHistoryType` TINYINT,
+	IN `UserId` VARCHAR(256)
+
 )
 BEGIN
 DECLARE OldAmount DECIMAL;
@@ -14,12 +16,12 @@ BEGIN
 END;
 END CASE;
 
-UPDATE Balances
-SET Gold = CASE WHEN BalanceType = 1 THEN Gold + Amount ELSE Gold END,
-Money = CASE WHEN BalanceType = 2 THEN Money + Amount ELSE Money END,
+UPDATE Balances 
+SET Gold = CASE WHEN BalanceType = 1 THEN IF((Gold + Amount) >= 0, Gold + Amount, 0) ELSE Gold END,
+Money = CASE WHEN BalanceType = 2 THEN IF((Money + Amount) >= 0, Money + Amount, 0) ELSE Money END,
 ModifiedDate = CURRENT_TIMESTAMP()
 WHERE Balances.UserId=UserId;
 
 INSERT INTO BalanceHistories (UserId, OldAmount, NewAmount, BalanceHistoryType, BalanceType)
 VALUES (UserId, OldAmount, Amount +  OldAmount, BalanceHistoryType, BalanceType);
-END;
+END

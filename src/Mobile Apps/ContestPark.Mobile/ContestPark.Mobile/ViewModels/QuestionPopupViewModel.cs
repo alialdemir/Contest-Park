@@ -690,8 +690,8 @@ namespace ContestPark.Mobile.ViewModels
                 if (Time > 10 || Time <= 0)
                     Time = 10;
 
-                if (IsTimerEnable)
-                    Time -= 1;
+               // if (IsTimerEnable)
+                 //   Time -= 1;
 
                 if (Time == 0 && IsStylishClick)
                     UnableToReply();

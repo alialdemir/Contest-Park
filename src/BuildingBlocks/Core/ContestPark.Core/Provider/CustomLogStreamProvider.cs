@@ -30,7 +30,9 @@ namespace ContestPark.Core.Provider
             return loggerConfiguration;
 #endif
 
-            var cloudWatchLogsClient = new AmazonCloudWatchLogsClient(configuration["AwsAccessKeyId"], configuration["AwsSecretAccessKey"], Amazon.RegionEndpoint.EUCentral1);
+            var cloudWatchLogsClient = new AmazonCloudWatchLogsClient(configuration["AwsAccessKeyId"],
+                                                                      configuration["AwsSecretAccessKey"],
+                                                                      Amazon.RegionEndpoint.EUCentral1);
             loggerConfiguration.WriteTo.AmazonCloudWatch(new CloudWatchSinkOptions
             {
                 LogGroupName = configuration["AwsLogGroupName"],

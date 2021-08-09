@@ -102,7 +102,7 @@ namespace ContestPark.Category.API.Controllers
 
                 #region En son oynadıklarım
 
-                IEnumerable<SubCategoryModel> lastCategoriesPlayed = _categoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage);
+                IEnumerable<SubCategoryModel> lastCategoriesPlayed = _categoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage, pagingModel);
                 if (lastCategoriesPlayed != null && lastCategoriesPlayed.Any())
                 {
                     CategoryModel categoryModel = new CategoryModel()
@@ -390,7 +390,11 @@ namespace ContestPark.Category.API.Controllers
                 {
                     if (userLevels.Any(x => x.UserId.EndsWith("-bot")) && x.UserId.EndsWith("-bot"))
                     {
-                        x.Level = userLevels.FirstOrDefault(x => !x.UserId.EndsWith("-bot")).Level;
+                        UserLevelModel userLevel = userLevels.FirstOrDefault(x => !x.UserId.EndsWith("-bot"));
+                        if (userLevel != null)
+                        {
+                            x.Level = userLevel.Level;
+                        }
                     }
                 });
 

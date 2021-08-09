@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.StylishHorizontal"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    x:Name="stylishHorizontal">
+    <ContentView.Content>
+        <Grid Margin="22,0,22,0" RowSpacing="12">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="56" />
+                <RowDefinition Height="56" />
+            </Grid.RowDefinitions>
+
+            <components:StylishFrame
+                x:Name="Stylish1"
+                Grid.Row="0"
+                Grid.Column="0"
+                Answer="{Binding Path=Answers.Item1, Source={x:Reference stylishHorizontal}}"
+                AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference stylishHorizontal}}" />
+
+            <components:StylishFrame
+                x:Name="Stylish2"
+                Grid.Row="0"
+                Grid.Column="1"
+                Answer="{Binding Path=Answers.Item2, Source={x:Reference stylishHorizontal}}"
+                AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference stylishHorizontal}}" />
+
+            <components:StylishFrame
+                x:Name="Stylish3"
+                Grid.Row="1"
+                Grid.Column="0"
+                Answer="{Binding Path=Answers.Item3, Source={x:Reference stylishHorizontal}}"
+                AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference stylishHorizontal}}" />
+
+            <components:StylishFrame
+                x:Name="Stylish4"
+                Grid.Row="1"
+                Grid.Column="1"
+                Answer="{Binding Path=Answers.Item4, Source={x:Reference stylishHorizontal}}"
+                AnswerCommand="{Binding Path=AnswerCommand, Source={x:Reference stylishHorizontal}}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

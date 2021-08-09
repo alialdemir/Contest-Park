@@ -8,15 +8,19 @@
   <ItemGroup>
     <None Remove="Migrations\Scripts\SP_GetRankingBySubCategoryId.sql" />
     <None Remove="Migrations\Scripts\SP_RandomQuestions.sql" />
+    <None Remove="Migrations\Scripts\SP_DuelResult.sql" />
+    <None Remove="Migrations\Scripts\SP_GetRankingAllTimes.sql" />
+    <None Remove="Migrations\Scripts\SP_WinStatus.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\SP_GetRankingBySubCategoryId.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SP_RandomQuestions.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Scripts\SP_DuelResult.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\SP_GetRankingAllTimes.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\SP_WinStatus.sql" />
   </ItemGroup>
 
   <ItemGroup>

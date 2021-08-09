@@ -6,5 +6,7 @@
 
         public string SpotifyClientId { get; set; }
         public string SpotifySecretId { get; set; }
+        public bool IsMigrateDatabase { get; set; }
+        public string ConnectionString { get; set; }
     }
 }

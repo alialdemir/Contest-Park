@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Dapper.Extensions;
+﻿using System.Reflection;
+using ContestPark.Core.Dapper.Extensions;
 using FluentMigrator;
 
 namespace ContestPark.Notification.API.Migrations
@@ -8,6 +9,26 @@ namespace ContestPark.Notification.API.Migrations
     {
         public override void Up()
         {
+            this.CreateTableIfNotExists("NotificationTypes", table =>
+          table
+                .WithColumn("NotificationTypeId")
+                .AsByte()
+                .PrimaryKey()
+                .Identity()
+
+                .WithColumn("IsActive")
+                .AsBoolean()
+                .WithDefaultValue(true)
+
+                .WithColumn("ModifiedDate")
+                .AsDateTime()
+                .Nullable()
+
+                .WithColumn("CreatedDate")
+                .AsDateTime()
+                .NotNullable()
+                .WithDefault(SystemMethods.CurrentDateTime));
+
             this.CreateTableIfNotExists("Notifications", table =>
           table
                 .WithColumn("NotificationId")
@@ -29,6 +50,7 @@ namespace ContestPark.Notification.API.Migrations
 
                 .WithColumn("NotificationType")
                 .AsByte()
+                .ForeignKey("FK_Notifications_NotificationTypes", "NotificationTypes", "NotificationTypeId")
                 .NotNullable()
 
                 .WithColumn("PostId")
@@ -38,26 +60,6 @@ namespace ContestPark.Notification.API.Migrations
                 .WithColumn("Link")
                 .AsString()
                 .Nullable()
-
-                .WithColumn("ModifiedDate")
-                .AsDateTime()
-                .Nullable()
-
-                .WithColumn("CreatedDate")
-                .AsDateTime()
-                .NotNullable()
-                .WithDefault(SystemMethods.CurrentDateTime));
-
-            this.CreateTableIfNotExists("NotificationTypes", table =>
-          table
-                .WithColumn("NotificationTypeId")
-                .AsByte()
-                .PrimaryKey()
-                .Identity()
-
-                .WithColumn("IsActive")
-                .AsBoolean()
-                .WithDefaultValue(true)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -85,6 +87,7 @@ namespace ContestPark.Notification.API.Migrations
 
                 .WithColumn("NotificationType")
                 .AsByte()
+                .ForeignKey("FK_NotificationTypeLocalizeds_NotificationTypes", "NotificationTypes", "NotificationTypeId")
                 .NotNullable()
 
                 .WithColumn("ModifiedDate")
@@ -96,17 +99,7 @@ namespace ContestPark.Notification.API.Migrations
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
-            Create.ForeignKey()
-                        .FromTable("Notifications")// TODO: burada fk adı çok uzun olduğu için hata veriyor
-                        .ForeignColumn("NotificationType")
-                        .ToTable("NotificationTypes")
-                        .PrimaryColumn("NotificationTypeId");
-
-            Create.ForeignKey()
-                        .FromTable("NotificationTypeLocalizeds")
-                        .ForeignColumn("NotificationType")
-                        .ToTable("NotificationTypes")
-                        .PrimaryColumn("NotificationTypeId");
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "SP_Notifications.sql");
         }
 
         public override void Down()

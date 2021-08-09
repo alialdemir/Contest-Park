@@ -9,8 +9,6 @@ namespace ContestPark.Post.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "PostIsLike.sql", "PostLike.sql", "PostUnLike.sql", "AddComment.sql");
-
             this.CreateTableIfNotExists("Posts", table =>
             table
 
@@ -176,6 +174,17 @@ namespace ContestPark.Post.API.Migrations
                         .ForeignColumn("PostId")
                         .ToTable("Posts")
                         .PrimaryColumn("PostId");
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "AddComment.sql",
+                                   "FNC_PostIsLike.sql",
+                                   "PostIsLike.sql",
+                                   "PostLike.sql",
+                                   "PostUnLike.sql",
+                                   "SP_GetPostByUserId.sql",
+                                   "SP_GetPostDetailByPostId.sql",
+                                   "SP_GetPostsBySubcategoryId.sql"
+                                   );
         }
 
         public override void Down()

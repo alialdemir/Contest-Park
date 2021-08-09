@@ -1,13 +1,12 @@
-﻿using ContestPark.Mobile.Enums;
+﻿using System.Threading.Tasks;
+using ContestPark.Mobile.Enums;
 using ContestPark.Mobile.Models.Duel;
 using ContestPark.Mobile.Models.Duel.Quiz;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    
+
     public partial class Stylish : ContentView
     {
         #region Constructor

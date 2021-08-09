@@ -38,7 +38,7 @@ namespace ContestPark.Identity.API.Extensions
                    //apply to transient exceptions.
                    try
                    {
-                       /*
+                       /*   "
                               Her db context için eğer tablolar oluşmamışsa exception fırlatır migrate çalışır sonra tekrar kontrol eder
                        */
 

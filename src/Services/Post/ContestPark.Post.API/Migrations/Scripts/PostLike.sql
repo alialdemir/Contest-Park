@@ -1,13 +1,15 @@
-CREATE PROCEDURE SP_PostLike(
-    userId VARCHAR(255),
-    postId INT
+﻿
+CREATE PROCEDURE `SP_PostLike`(
+	IN `userId` VARCHAR(255),
+	IN `postId` INT
 )
 BEGIN
 
 INSERT INTO Likes (UserId, PostId) VALUES (userId, postId);
 
 UPDATE Posts SET
-LikeCount = (CASE WHEN LikeCount IS NOT NULL THEN LikeCount + 1 ELSE  1 END)
+LikeCount = (SELECT COUNT(*) FROM Likes l WHERE l.PostId = postId),
+ModifiedDate = CURRENT_TIMESTAMP()
 WHERE PostId = postId;
 
-END;
+END

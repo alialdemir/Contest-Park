@@ -11,6 +11,12 @@
     <Content Remove="wwwroot\**" />
     <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="wwwroot\**" />
+    <None Remove="Migrations\" />
+    <None Remove="Migrations\Scripts\" />
+    <None Remove="Migrations\Scripts\Admin_SP_AvgBet.sql" />
+    <None Remove="Migrations\Scripts\Admin_SP_DeleteQuestions.sql" />
+    <None Remove="Migrations\Scripts\Admin_SP_NewPost.sql" />
+    <None Remove="Migrations\Scripts\Admin_SP_NewUsers.sql" />
   </ItemGroup>
 
 
@@ -30,6 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\Admin_SP_AvgBet.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\Admin_SP_DeleteQuestions.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\Admin_SP_NewPost.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\Admin_SP_NewUsers.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Resources\AdminResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdminResource.Designer.cs</LastGenOutput>
@@ -42,5 +54,9 @@
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="SpotifyAPI.Web.Auth" Version="5.1.0" />
     <PackageReference Include="xFFmpeg.NET" Version="3.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Migrations\Scripts\" />
   </ItemGroup>
 </Project>

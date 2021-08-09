@@ -119,7 +119,11 @@ namespace ContestPark.Chat.API.Migrations
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
 
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "AllMessagesRead.sql", "RemoveMessages.sql", "AddMessage.sql", "SeenAllChat.sql");
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "AddMessage.sql",
+                                   "AllMessagesRead.sql",
+                                   "RemoveMessages.sql",
+                                   "SeenAllChat.sql");
         }
 
         public override void Down()

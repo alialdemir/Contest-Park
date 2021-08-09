@@ -9,12 +9,6 @@ namespace ContestPark.Duel.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
-                                   "SP_GetRankingBySubCategoryId.sql");
-
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
-                                   "SP_RandomQuestions.sql");
-
             this.CreateTableIfNotExists("ScoreRankings", table =>
            table
 
@@ -462,6 +456,14 @@ namespace ContestPark.Duel.API.Migrations
             //            .ForeignColumn("QuestionLocalizedId")
             //            .ToTable("QuestionLocalizeds")
             //            .PrimaryColumn("QuestionLocalizedId");
+
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "SP_DuelResult.sql",
+                                   "SP_GetRankingAllTimes.sql",
+                                   "SP_GetRankingBySubCategoryId.sql",
+                                   "SP_RandomQuestions.sql",
+                                   "SP_WinStatus.sql");
         }
 
         public override void Down()

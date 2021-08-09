@@ -1,6 +1,7 @@
-CREATE PROCEDURE SP_AllMessagesRead(
-    UserId VARCHAR(255),
-    ChatId TINYINT
+﻿
+CREATE PROCEDURE `SP_AllMessagesRead`(
+	IN `UserId` VARCHAR(255),
+	IN `ChatId` TINYINT
 )
 BEGIN
 
@@ -12,11 +13,13 @@ END,
 ReceiverUnreadMessageCount = CASE
     WHEN ReceiverUserId = UserId THEN  0
     ELSE ReceiverUnreadMessageCount
-END
+END,
+ModifiedDate = CURRENT_TIMESTAMP()
 WHERE Conversations.ConversationId = ChatId;
 
 UPDATE Messages SET
-ReceiverIsReadMessage=TRUE
+ReceiverIsReadMessage=TRUE,
+ModifiedDate = CURRENT_TIMESTAMP()
 WHERE Messages.ConversationId=ChatId;
 
-END;
+END

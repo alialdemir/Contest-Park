@@ -73,7 +73,7 @@ namespace ContestPark.Core.Controllers
 
         #region Methods
 
-        public BadRequestObjectResult BadRequest(object error, ErrorStatuCodes errorStatuCode = ErrorStatuCodes.None)
+        protected BadRequestObjectResult BadRequest(object error, ErrorStatuCodes errorStatuCode = ErrorStatuCodes.None)
         {
             if (error is string)
             {

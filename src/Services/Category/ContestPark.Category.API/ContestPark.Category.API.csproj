@@ -11,24 +11,25 @@
     <None Remove="Migrations\Scripts\SP_GetFollowedSubCategories.sql" />
     <None Remove="Migrations\Scripts\SP_GetSubCategoryDetail.sql" />
     <None Remove="Migrations\Scripts\SP_LastCategoriesPlayed.sql" />
+    <None Remove="Migrations\Scripts\SP_RecommendedSubcategories.sql" />
+    <None Remove="Migrations\Scripts\SP_UpdateLevel.sql" />
+    <None Remove="Migrations\Scripts\SP_WithdrawalStatus.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\SP_LastCategoriesPlayed.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SP_GetFollowedSubCategories.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SP_GetSubCategoryDetail.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SP_GetCategories.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Scripts\SP_ChangeFollowersCount.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Scripts\SP_RecommendedSubcategories.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\SP_UpdateLevel.sql" />
+    <EmbeddedResource Include="Migrations\Scripts\SP_WithdrawalStatus.sql" />
   </ItemGroup>
 
   <ItemGroup>

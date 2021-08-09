@@ -63,7 +63,7 @@ namespace ContestPark.Core.Dapper.Extensions
 
             dbConnection.Close();
 
-            return result > 0 && string.IsNullOrEmpty(dbName);
+            return true;// result > 0 && string.IsNullOrEmpty(dbName);
         }
 
         /// <summary>
@@ -86,7 +86,17 @@ namespace ContestPark.Core.Dapper.Extensions
                 if (string.IsNullOrEmpty(sqlScript))
                     continue;
 
-                runner.WithConnection(async (dbConnection, x) => await dbConnection.ExecuteAsync(sqlScript));
+                runner.WithConnection(async (dbConnection, x) =>
+                {
+                    try
+                    {
+                        await dbConnection.ExecuteAsync(sqlScript);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                });
             }
         }
 

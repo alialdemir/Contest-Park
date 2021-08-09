@@ -9,6 +9,7 @@ namespace ContestPark.Category.API.Migrations
             return new Assembly[]
             {
                 typeof(Initial).Assembly,
+                typeof(LevelMigration).Assembly,
             };
         }
     }

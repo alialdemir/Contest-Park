@@ -9,12 +9,6 @@ namespace ContestPark.Category.API.Migrations
     {
         public override void Up()
         {
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
-                                   "ChangeFollowersCount.sql",
-                                   "SP_GetSubCategoryDetail",
-                                   "SP_GetFollowedSubCategories",
-                                   "GetCategories.sql");
-
             this.CreateTableIfNotExists("Categories", table =>
           table
                 .WithColumn("CategoryId")
@@ -252,6 +246,16 @@ namespace ContestPark.Category.API.Migrations
                         .ForeignColumn("SubCategoryId")
                         .ToTable("SubCategories")
                         .PrimaryColumn("SubCategoryId");
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "SP_ChangeFollowersCount.sql",
+                                   "SP_GetCategories.sql",
+                                   "SP_GetFollowedSubCategories.sql",
+                                   "SP_GetSubCategoryDetail.sql",
+                                   "SP_LastCategoriesPlayed.sql",
+                                   "SP_RecommendedSubcategories.sql",
+                                   "SP_WithdrawalStatus.sql"
+                                   );
         }
 
         public override void Down()

@@ -1,11 +1,10 @@
-CREATE FUNCTION FNC_AddMessage(
-    senderUserId VARCHAR(256),
-    receiverUserId VARCHAR(256),
-    lastWriterUserId VARCHAR(256),
-    message VARCHAR(1000)    
-)
-RETURNS BIGINT
-READS SQL DATA
+﻿CREATE FUNCTION `FNC_AddMessage`(
+	`senderUserId` VARCHAR(255),
+	`receiverUserId` VARCHAR(255),
+	`lastWriterUserId` VARCHAR(255),
+	`message` VARCHAR(1000)
+) RETURNS bigint(20)
+    READS SQL DATA
 BEGIN
 DECLARE ConversationId BIGINT;
 
@@ -29,8 +28,9 @@ LastMessage = message ,
 LastMessageDate = NOW(),
 LastWriterUserId = lastWriterUserId,
 SenderUnreadMessageCount = CASE WHEN SenderUnreadMessageCount + 1 THEN  SenderUnreadMessageCount END,
-ReceiverUnreadMessageCount = CASE WHEN ReceiverUnreadMessageCount + 1 THEN  ReceiverUnreadMessageCount END
+ReceiverUnreadMessageCount = CASE WHEN ReceiverUnreadMessageCount + 1 THEN  ReceiverUnreadMessageCount END,
+ModifiedDate = CURRENT_TIMESTAMP()
 WHERE Conversations.ConversationId = ConversationId;
 
 RETURN ConversationId;
-END;
+END

@@ -1,13 +1,15 @@
-CREATE PROCEDURE SP_PostUnLike(
-    userId VARCHAR(255),
-    postId INT
+﻿
+CREATE PROCEDURE `SP_PostUnLike`(
+	IN `userId` VARCHAR(255),
+	IN `postId` INT
 )
 BEGIN
 
 DELETE FROM Likes l WHERE l.PostId = postId AND l.UserId = userId;
 
-UPDATE Posts p SET
-LikeCount = (CASE WHEN LikeCount IS NOT NULL THEN LikeCount - 1 ELSE  null END)
-WHERE p.PostId = postId;
+UPDATE Posts SET
+LikeCount = (SELECT COUNT(*) FROM Likes l WHERE l.PostId = postId),
+ModifiedDate = CURRENT_TIMESTAMP()
+WHERE PostId = postId;
 
-END;
+END

@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Follow.API.Infrastructure.MySql.Repositories;
 using ContestPark.Follow.API.Resources;
@@ -60,6 +61,8 @@ namespace ContestPark.Follow.API
 
             //services.AddTransient<NewUserRegisterIntegrationEventHandler>();
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -87,6 +90,8 @@ namespace ContestPark.Follow.API
 
             app.UseRequestLocalizationCustom()
                 .UseMvc();
+
+            app.UseSwaggerGen("Follow v1");
 
             ConfigureEventBus(app);
         }

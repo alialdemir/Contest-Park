@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Dapper.Extensions;
+﻿using System.Reflection;
+using ContestPark.Core.Dapper.Extensions;
 using FluentMigrator;
 
 namespace ContestPark.Category.API.Migrations
@@ -65,6 +66,10 @@ namespace ContestPark.Category.API.Migrations
                         .ForeignColumn("Level")
                         .ToTable("LevelUps")
                         .PrimaryColumn("Level");
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                "SP_UpdateLevel.sql"
+                              );
         }
 
         public override void Down()

@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.EventBus.IntegrationEventLogEF.Services;
 using ContestPark.Identity.API.Data;
@@ -66,6 +67,8 @@ namespace ContestPark.Identity.API
                 .UseCustomIdentityServer()
                 .UseRequestLocalizationCustom()
                 .UseMvc();
+
+            app.UseSwaggerGen("Identity V1");
 
             ConfigureEventBus(app);
         }
@@ -162,6 +165,8 @@ namespace ContestPark.Identity.API
             services.AddTransient<DeleteFileIntegrationEventHandler>();
             services.AddTransient<FollowIntegrationEventHandler>();
             services.AddTransient<UnFollowIntegrationEventHandler>();
+
+            services.AddSwagger();
 
             var container = new ContainerBuilder();
             container.Populate(services);

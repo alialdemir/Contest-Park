@@ -1,18 +1,20 @@
-CREATE PROCEDURE SP_GetFollowedSubCategories(
-    UserId VARCHAR(255),
-    LangId TINYINT,
-	Offset INT,
-	PageSize INT
+﻿
+CREATE PROCEDURE `SP_GetFollowedSubCategories`(
+	IN `UserId` VARCHAR(255),
+	IN `LangId` TINYINT,
+	IN `Offset` INT,
+	IN `PageSize` INT
 )
 BEGIN
 SELECT
 sc.SubCategoryId,
 scl.SubCategoryName,
-sc.PicturePath
+sc.PicturePath,
+1 AS IsSubCategoryOpen
 FROM FollowSubCategories fsc
 INNER JOIN SubCategories sc ON sc.SubCategoryId=fsc.SubCategoryId		
 INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
 WHERE fsc.UserId = UserId
-ORDER BY sc.DisplayOrder
+ORDER BY fsc.FollowSubCategoryId, sc.DisplayOrder DESC
 LIMIT Offset, PageSize;
-END;
+END

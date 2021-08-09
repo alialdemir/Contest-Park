@@ -34,13 +34,13 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.SubCategory
         /// <param name="userId">Kullanıcı id</param>
         /// <param name="language">Dil</param>
         /// <returns>En son oynadığı alt kategori listesi</returns>
-        public IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language)
+        public IEnumerable<SubCategoryModel> LastCategoriesPlayed(string userId, Languages language, PagingModel pagingModel)
         {
             return _subCategoryRepository.ToSpServiceModel<SubCategoryModel>("SP_LastCategoriesPlayed", new
             {
                 UserId = userId,
                 LangId = (int)language,
-            }).Items;
+            }, pagingModel).Items;
         }
 
         /// <summary>

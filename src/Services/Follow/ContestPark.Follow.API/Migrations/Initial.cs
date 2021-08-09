@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Dapper.Extensions;
+﻿using System.Reflection;
+using ContestPark.Core.Dapper.Extensions;
 using FluentMigrator;
 
 namespace ContestPark.Follow.API.Migrations
@@ -33,6 +34,9 @@ namespace ContestPark.Follow.API.Migrations
                 .AsDateTime()
                 .NotNullable()
                 .WithDefault(SystemMethods.CurrentDateTime));
+
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "FNC_IsFollow.sql");
         }
 
         public override void Down()

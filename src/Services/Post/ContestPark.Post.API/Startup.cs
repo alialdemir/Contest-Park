@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Post.API.Infrastructure.MySql;
 using ContestPark.Post.API.Infrastructure.MySql.Post;
@@ -67,6 +68,8 @@ namespace ContestPark.Post.API
             services.AddTransient<PostLikeIntegrationEventHandler>();
             services.AddTransient<PostUnLikeIntegrationEventHandler>();
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -94,6 +97,8 @@ namespace ContestPark.Post.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Post V1");
 
             ConfigureEventBus(app);
         }

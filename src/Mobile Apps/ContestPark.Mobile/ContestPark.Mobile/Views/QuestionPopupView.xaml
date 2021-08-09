@@ -80,7 +80,7 @@
                     <!--  Center End  -->
 
                     <!--  Stylish Start  -->
-
+                    <!--
                     <components:Stylish
                         x:Name="Stylishs"
                         Grid.Row="2"
@@ -88,6 +88,15 @@
                         AnswerType="{Binding CurrentQuestion.AnswerType}"
                         Answers="{Binding Answers}"
                         VerticalOptions="CenterAndExpand" />
+                    -->
+                    <components:StylishHorizontal
+                        x:Name="Stylishs"
+                        Grid.Row="2"
+                        AnswerCommand="{Binding AnswerCommand}"
+                        AnswerType="{Binding CurrentQuestion.AnswerType}"
+                        Answers="{Binding Answers}"
+                        BackgroundColor="Red"
+                        VerticalOptions="EndAndExpand" />
 
                     <!--  Stylish End  -->
                 </Grid>

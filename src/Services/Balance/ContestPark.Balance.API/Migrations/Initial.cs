@@ -219,7 +219,12 @@ namespace ContestPark.Balance.API.Migrations
                 .AsString(255)
                 .NotNullable());
 
-            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(), "UpdateBalance.sql", "GetBalance.sql", "IsCodeActive.sql");
+            Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
+                                   "FNC_FirstLoadMoney.sql",
+                                   "GetBalance.sql",
+                                   "IsCodeActive.sql",
+                                   "SP_IsExistsToken.sql",
+                                   "UpdateBalance.sql");
         }
 
         public override void Down()

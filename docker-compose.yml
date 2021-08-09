@@ -2,9 +2,8 @@ version: '3.4'
 
 services:
   mysql-data:
-    image: mysql:8.0.16
-    volumes:
-    - ./data:/var/lib/mysql
+    image: mysql:8.0.17
+    command: ["--log_bin_trust_function_creators=1", "--default-authentication-plugin=mysql_native_password", "--sql_mode=NO_AUTO_VALUE_ON_ZERO"]
     restart: always
 
   redis.data:

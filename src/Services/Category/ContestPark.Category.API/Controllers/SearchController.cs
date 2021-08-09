@@ -79,7 +79,7 @@ namespace ContestPark.Category.API.Controllers
             {
                 #region En son oynadıklarım
 
-                IEnumerable<SubCategoryModel> lastCategoriesPlayed = _subCategoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage);
+                IEnumerable<SubCategoryModel> lastCategoriesPlayed = _subCategoryRepository.LastCategoriesPlayed(UserId, CurrentUserLanguage, pagingModel);
                 if (lastCategoriesPlayed == null || !lastCategoriesPlayed.Any())
                     return NotFound();
 

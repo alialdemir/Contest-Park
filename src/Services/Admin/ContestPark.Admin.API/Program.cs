@@ -1,11 +1,16 @@
-﻿using ContestPark.Core.Provider;
+﻿using System;
+using System.IO;
+using ContestPark.Admin.API.Migrations;
+using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Extensions;
+using ContestPark.Core.Provider;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Events;
-using System;
-using System.IO;
 
 namespace ContestPark.Admin.API
 {
@@ -36,6 +41,22 @@ namespace ContestPark.Admin.API
                 var host = BuildWebHost(configuration, args);
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
+
+                host.MigrateDatabase((services, updateDatabase) =>
+                {
+                    var settings = services.GetService<IOptions<AdminSettings>>();
+
+                    if (!settings.Value.IsMigrateDatabase)
+                        return;
+
+                    updateDatabase(
+                        settings.Value.ConnectionString,
+                        MigrationAssembly.GetAssemblies(),
+                        () =>
+                        {
+               
+                        });
+                });
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
 

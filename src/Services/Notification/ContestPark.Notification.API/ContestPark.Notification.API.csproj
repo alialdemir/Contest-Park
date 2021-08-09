@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\Scripts\SP_Notifications.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -12,7 +12,7 @@ namespace ContestPark.Mobile.Configs
         /// <summary>
         /// Defines the DefaultEndpoint
         /// </summary>
-        public const string DefaultEndpoint = "https://api.contestpark.com";//"http://192.168.1.177:5105"; //"http://192.168.1.177:5105";
+        public const string DefaultEndpoint = "http://192.168.1.180:5105"; //"https://api.contestpark.com";//"http://192.168.1.177:5105";
 
         #endregion Constants
 
@@ -181,7 +181,7 @@ namespace ContestPark.Mobile.Configs
             TokenEndpoint = $"{connectBaseEndpoint}/token";
             LogoutEndpoint = $"{connectBaseEndpoint}/endsession";
 
-            SignalREndpoint = $"http://signalr.contestpark.com/contestparkhub";
+            SignalREndpoint = $"{DefaultEndpoint}/contestparkhub"; // $"http://signalr.contestpark.com/contestparkhub";
         }
 
         /// <summary>

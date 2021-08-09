@@ -1,14 +1,16 @@
-CREATE PROCEDURE SP_AddComment(
-    userId VARCHAR(255),
-    postId INT,
-    text VARCHAR(500)
+﻿
+CREATE PROCEDURE `SP_AddComment`(
+	IN `userId` VARCHAR(255),
+	IN `postId` INT,
+	IN `text` VARCHAR(500)
 )
 BEGIN
 
 INSERT INTO Comments (UserId, PostId, Text) VALUES (userId, postId, text);
 
 UPDATE Posts SET
-CommentCount = (CASE WHEN CommentCount IS NOT NULL THEN CommentCount + 1 ELSE  1 END)
+Posts.CommentCount = ( CASE WHEN Posts.CommentCount IS NOT NULL THEN Posts.CommentCount + 1 ELSE 1 END),
+Posts.ModifiedDate = CURRENT_TIMESTAMP()
 WHERE PostId = postId;
 
-END;
+END

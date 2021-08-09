@@ -18,6 +18,7 @@ using ContestPark.Admin.API.Services.Spotify;
 using ContestPark.Core.Middlewares;
 using ContestPark.Core.Services.NumberFormat;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -109,6 +110,8 @@ namespace ContestPark.Admin.API
 
             #endregion Event handler
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -138,6 +141,8 @@ namespace ContestPark.Admin.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Admin v1");
 
             ConfigureEventBus(app);
         }

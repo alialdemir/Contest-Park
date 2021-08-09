@@ -1,7 +1,13 @@
-CREATE PROCEDURE SP_ChangeFollowersCount(
-    SubcategoryId SMALLINT,
-    FollowerCount TINYINT
+﻿
+CREATE PROCEDURE `SP_ChangeFollowersCount`(
+	IN `SubcategoryId` SMALLINT,
+	IN `FollowerCount` TINYINT
 )
 BEGIN
-UPDATE SubCategories SET FollowerCount = SubCategories.FollowerCount + FollowerCount WHERE SubCategories.SubCategoryId=SubcategoryId;
-END;
+UPDATE
+SubCategories
+SET
+FollowerCount = SubCategories.FollowerCount + FollowerCount,
+ModifiedDate = CURRENT_TIMESTAMP()
+WHERE SubCategories.SubCategoryId=SubcategoryId;
+END

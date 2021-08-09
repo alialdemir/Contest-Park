@@ -1,892 +1,905 @@
 {
-  "ReRoutes": [
-    // Account
-    {
-      "DownstreamPathTemplate": "/connect/token",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/connect/token",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/PhoneNumber",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/PhoneNumber",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/GetUserName?phoneNumber={phoneNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/RandomUser",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/RandomUser",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/GetUserName?phoneNumber={phoneNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/ChangeCoverPicture",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/ChangeCoverPicture",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/Profile/{userName}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/Profile/{userName}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/UserInfo",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/UserInfo",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/GetRandomProfilePictures",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/GetRandomProfilePictures",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/ChangeProfilePicture",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/ChangeProfilePicture",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/Update",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/Update",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/UpdateLanguage?language={language}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/UpdateLanguage?language={language}",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/ChangePassword",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/ChangePassword",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/ChangePassword/code",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/ChangePassword/code",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword/codecheck?code={code}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword/codecheck?code={code}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Account",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.identity.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Account",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    // Category
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-      //"RateLimitOptions": {
-      //  "ClientWhitelist": [],
-      //  "EnableRateLimiting": true,
-      //  "Period": "1s",
-      //  "PeriodTimespan": 3600,
-      //  "Limit": 1000
-      //}
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/Follow",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/Follow",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/UnFollow",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/UnFollow",
-      "UpstreamHttpMethod": [ "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/FollowStatus",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/FollowStatus",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/unlock",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/unlock",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/SubCategory/User/{userName}?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/SubCategory/User/{userName}?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    // Search
-    {
-      "DownstreamPathTemplate": "/api/{version}/Search/Followed?pageSize={pageSize}?pageNumber={pageNumber}?q={q}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Search/Followed?pageSize={pageSize}&pageNumber={pageNumber}&q={q}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Search?pageSize={pageSize}?pageNumber={pageNumber}?categoryId={categoryId}?q={q}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.category.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Search?pageSize={pageSize}&pageNumber={pageNumber}&categoryId={categoryId}&q={q}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    // Balance
-    {
-      "DownstreamPathTemplate": "/api/{version}/Balance",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.balance.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Balance",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/RewardedVideo",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.balance.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/RewardedVideo",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Reward",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.balance.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Reward",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Balance/Purchase",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.balance.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Balance/Purchase",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Balance/Purchase/v2",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.balance.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Balance/Purchase/v2",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Balance/Code",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.balance.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Balance/Code",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    // Follow
-    {
-      "DownstreamPathTemplate": "/api/{version}/Follow/{followedUserId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.follow.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Follow/{followedUserId}",
-      "UpstreamHttpMethod": [ "Post", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Follow/{userId}/Following?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.follow.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Follow/{userId}/Following?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Follow/{userId}/Followers?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.follow.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Follow/{userId}/Followers?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    // Chat
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/block/{deterredUserId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/block/{deterredUserId}",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/Block/Status/{userId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/Block/Status/{userId}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/Block",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/Block",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
-      "UpstreamHttpMethod": [ "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/UnReadMessageCount",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/UnReadMessageCount",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.chat.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/UnLike",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/UnLike",
-      "UpstreamHttpMethod": [ "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/Subcategory/{subcategoryId}?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/Subcategory/{subcategoryId}?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/User/{userId}?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/User/{userId}?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Comment",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Comment",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Archive",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Archive",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}/TurnOffComment",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}/TurnOffComment",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.post.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}?pageSize={pageSize}?pageNumber={pageNumber}?balanceType={balanceType}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}?pageSize={pageSize}&pageNumber={pageNumber}&balanceType={balanceType}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}/Following?pageSize={pageSize}?pageNumber={pageNumber}?balanceType={balanceType}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}/Following?pageSize={pageSize}&pageNumber={pageNumber}&balanceType={balanceType}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Ranking/AllTimes?pageSize={pageSize}?pageNumber={pageNumber}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Ranking/AllTimes?pageSize={pageSize}&pageNumber={pageNumber}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel",
-      "UpstreamHttpMethod": [ "Post", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/{duelId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/{duelId}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/AddOpponent",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/AddOpponent",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/ExitStandbyMode",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/ExitStandbyMode",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/{duelId}/DuelEscape",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/{duelId}/DuelEscape",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/DuelCancel",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/DuelCancel",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/SaveAnswer",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/SaveAnswer",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/Invite",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/Invite",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.duel.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    // Notice
-    {
-      "DownstreamPathTemplate": "/api/{version}/Notice",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.notification.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notice",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    // Notification
-    {
-      "DownstreamPathTemplate": "/api/{version}/Notification",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.notification.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notification",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Notification/SendSms",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.notification.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notification/SendSms",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Notification/CheckSmsCode",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.notification.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Notification/CheckSmsCode",
-      "UpstreamHttpMethod": [ "Post" ]
-    },
-    // Signalr
-    {
-      "DownstreamPathTemplate": "/{catchAll}",
-      "DownstreamScheme": "ws",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.signalr.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/{catchAll}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
-    },
-    // Mission
-    {
-      "DownstreamPathTemplate": "/api/{version}/Mission",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.mission.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Mission",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/Mission/{missionId}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "contestpark.mission.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/Mission/{missionId}",
-      "UpstreamHttpMethod": [ "POST" ]
+    "ReRoutes": [
+        // Account
+        {
+            "DownstreamPathTemplate": "/connect/token",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/connect/token",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/PhoneNumber",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/PhoneNumber",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/GetUserName?phoneNumber={phoneNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/RandomUser",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/RandomUser",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/GetUserName?phoneNumber={phoneNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/ChangeCoverPicture",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/ChangeCoverPicture",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/Profile/{userName}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/Profile/{userName}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/UserInfo",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/UserInfo",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/GetRandomProfilePictures",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/GetRandomProfilePictures",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/ChangeProfilePicture",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/ChangeProfilePicture",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/Update",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/Update",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/UpdateLanguage?language={language}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/UpdateLanguage?language={language}",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/ChangePassword",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/ChangePassword",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/ChangePassword/code",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/ChangePassword/code",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword/codecheck?code={code}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account/ForgotYourPassword/codecheck?code={code}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Account",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.identity.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Account",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        // Category
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ],
+         //   "SwaggerKey": "category"
+            //"RateLimitOptions": {
+            //  "ClientWhitelist": [],
+            //  "EnableRateLimiting": true,
+            //  "Period": "1s",
+            //  "PeriodTimespan": 3600,
+            //  "Limit": 1000
+            //}
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/Follow",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/Follow",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/UnFollow",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/UnFollow",
+            "UpstreamHttpMethod": [ "Delete" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/FollowStatus",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/FollowStatus",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/unlock",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory/{subCategoryId}/unlock",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/SubCategory/User/{userName}?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/SubCategory/User/{userName}?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // Search
+        {
+            "DownstreamPathTemplate": "/api/{version}/Search/Followed?pageSize={pageSize}?pageNumber={pageNumber}?q={q}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Search/Followed?pageSize={pageSize}&pageNumber={pageNumber}&q={q}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Search?pageSize={pageSize}?pageNumber={pageNumber}?categoryId={categoryId}?q={q}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.category.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Search?pageSize={pageSize}&pageNumber={pageNumber}&categoryId={categoryId}&q={q}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // Balance
+        {
+            "DownstreamPathTemplate": "/api/{version}/Balance",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.balance.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Balance",
+            "UpstreamHttpMethod": [ "Get", "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/RewardedVideo",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.balance.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/RewardedVideo",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Reward",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.balance.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Reward",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Balance/Purchase",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.balance.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Balance/Purchase",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Balance/Purchase/v2",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.balance.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Balance/Purchase/v2",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Balance/Code",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.balance.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Balance/Code",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        // Follow
+        {
+            "DownstreamPathTemplate": "/api/{version}/Follow/{followedUserId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.follow.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Follow/{followedUserId}",
+            "UpstreamHttpMethod": [ "Post", "Delete" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Follow/{userId}/Following?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.follow.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Follow/{userId}/Following?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Follow/{userId}/Followers?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.follow.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Follow/{userId}/Followers?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // Chat
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/block/{deterredUserId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/block/{deterredUserId}",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/Block/Status/{userId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/Block/Status/{userId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/Block",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/Block",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
+            "UpstreamHttpMethod": [ "Delete" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/UnReadMessageCount",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/UnReadMessageCount",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}/ReadMessages",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/ReadMessages",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.chat.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Chat/{conversationId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}/UnLike",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}/UnLike",
+            "UpstreamHttpMethod": [ "Delete" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Like",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/Subcategory/{subcategoryId}?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/Subcategory/{subcategoryId}?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/User/{userId}?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/User/{userId}?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Comment",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Comment",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}/Archive",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}/Archive",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}/TurnOffComment",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}/TurnOffComment",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.post.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Post/{postId}?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}?pageSize={pageSize}?pageNumber={pageNumber}?balanceType={balanceType}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}?pageSize={pageSize}&pageNumber={pageNumber}&balanceType={balanceType}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}/Following?pageSize={pageSize}?pageNumber={pageNumber}?balanceType={balanceType}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Ranking/SubCategory/{subCategoryId}/Following?pageSize={pageSize}&pageNumber={pageNumber}&balanceType={balanceType}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Ranking/AllTimes?pageSize={pageSize}?pageNumber={pageNumber}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Ranking/AllTimes?pageSize={pageSize}&pageNumber={pageNumber}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel",
+            "UpstreamHttpMethod": [ "Post", "Delete" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/{duelId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/{duelId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/AddOpponent",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/AddOpponent",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/ExitStandbyMode",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/ExitStandbyMode",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/{duelId}/DuelEscape",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/{duelId}/DuelEscape",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/DuelCancel",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/DuelCancel",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/SaveAnswer",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/SaveAnswer",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/Invite",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/Invite",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.duel.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Duel/AcceptInviteDuel",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        // Notice
+        {
+            "DownstreamPathTemplate": "/api/{version}/Notice",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.notification.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Notice",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // Notification
+        {
+            "DownstreamPathTemplate": "/api/{version}/Notification",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.notification.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Notification",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Notification/SendSms",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.notification.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Notification/SendSms",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Notification/CheckSmsCode",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.notification.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Notification/CheckSmsCode",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        // Signalr
+        {
+            "DownstreamPathTemplate": "/{catchAll}",
+            "DownstreamScheme": "ws",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.signalr.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/{catchAll}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+        },
+        // Mission
+        {
+            "DownstreamPathTemplate": "/api/{version}/Mission",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.mission.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Mission",
+            "UpstreamHttpMethod": [ "GET" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{version}/Mission/{missionId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "contestpark.mission.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/{version}/Mission/{missionId}",
+            "UpstreamHttpMethod": [ "POST" ]
+        }
+    ],
+    //"SwaggerEndPoints": [
+    //    {
+    //        "Key": "category",
+    //        "Config": [
+    //            {
+    //                "Name": "Category API",
+    //                "Version": "v1",
+    //                "Url": "contestpark.category.api/swagger/v1/swagger.json"
+    //            }
+    //        ]
+    //    }
+    //],
+    "GlobalConfiguration": {
+        "RequestIdKey": "OcRequestId",
+        "AdministrationPath": "/administration"
+        //"RateLimitOptions": {
+        //  "DisableRateLimitHeaders": false,
+        //}
     }
-  ],
-  "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId",
-    "AdministrationPath": "/administration",
-    //"RateLimitOptions": {
-    //  "DisableRateLimitHeaders": false,
-    //}
-  }
 }

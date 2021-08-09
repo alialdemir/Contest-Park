@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\Scripts\FNC_IsFollow.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Resources\FollowResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FollowResource.Designer.cs</LastGenOutput>
@@ -39,4 +42,7 @@
     <PackageReference Include="ServiceStack.Redis" Version="5.8.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Migrations\Scripts\FNC_IsFollow.sql" />
+  </ItemGroup>
 </Project>

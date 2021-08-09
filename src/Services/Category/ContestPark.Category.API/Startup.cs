@@ -12,6 +12,7 @@ using ContestPark.Category.API.IntegrationEvents.Events;
 using ContestPark.Category.API.Resources;
 using ContestPark.Category.API.Services.Balance;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -85,6 +86,8 @@ namespace ContestPark.Category.API
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -112,6 +115,8 @@ namespace ContestPark.Category.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Category v1");
 
             ConfigureEventBus(app);
         }

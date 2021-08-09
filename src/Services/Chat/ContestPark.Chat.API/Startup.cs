@@ -8,6 +8,7 @@ using ContestPark.Chat.API.IntegrationEvents.Events;
 using ContestPark.Chat.API.Resources;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -65,6 +66,8 @@ namespace ContestPark.Chat.API
             services.AddTransient<SendMessageIntegrationEventHandler>();
             services.AddTransient<RemoveMessagesIntegrationEventHandler>();
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -92,6 +95,8 @@ namespace ContestPark.Chat.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Chat v1");
 
             ConfigureEventBus(app);
         }

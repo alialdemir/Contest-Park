@@ -4,6 +4,7 @@ using Autofac.Extensions.DependencyInjection;
 using ContestPark.Core.Services.Identity;
 using ContestPark.Core.Services.NumberFormat;
 using ContestPark.Core.Services.RequestProvider;
+using ContestPark.Core.Startups;
 using ContestPark.Duel.API.Infrastructure.Repositories.AskedQuestion;
 using ContestPark.Duel.API.Infrastructure.Repositories.ContestDate;
 using ContestPark.Duel.API.Infrastructure.Repositories.Duel;
@@ -125,6 +126,8 @@ namespace ContestPark.Duel.API
 
             #endregion Event handler
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -152,6 +155,8 @@ namespace ContestPark.Duel.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Duel v1");
 
             ConfigureEventBus(app);
         }

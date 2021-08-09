@@ -20,7 +20,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -67,8 +66,6 @@
     <AndroidUseAapt2>false</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
-    <AndroidLinkSkip>
-    </AndroidLinkSkip>
     <AndroidDexTool>dx</AndroidDexTool>
   </PropertyGroup>
   <ItemGroup>
@@ -242,9 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ContestPark.Mobile\ContestPark.Mobile.csproj">
-      <Project>
-        {e5de24e5-9f5f-4620-90e0-acffb9ea0e85}
-      </Project>
+      <Project>{32BAAC00-8285-414A-9A55-1396A9C0AD8D}</Project>
       <Name>
         ContestPark.Mobile
       </Name>

@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ContestPark.Core.Startups;
 using ContestPark.EventBus.Abstractions;
 using ContestPark.Mission.API.Infrastructure.Repositories.CompletedMission;
 using ContestPark.Mission.API.Infrastructure.Repositories.Mission;
@@ -47,6 +48,8 @@ namespace ContestPark.Mission.API
 
             // services.AddTransient<OpenSubCategoryAndFollowIntegrationEventHandler>();
 
+            services.AddSwagger();
+
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -74,6 +77,8 @@ namespace ContestPark.Mission.API
 
             app.UseRequestLocalizationCustom()
                .UseMvc();
+
+            app.UseSwaggerGen("Mission V1");
 
             ConfigureEventBus(app);
         }
