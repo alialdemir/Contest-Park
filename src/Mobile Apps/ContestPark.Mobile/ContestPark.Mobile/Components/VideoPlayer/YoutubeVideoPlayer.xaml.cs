@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Acr.UserDialogs;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using YoutubeExplode;
@@ -58,6 +59,8 @@ namespace ContestPark.Mobile.Components
 
             IsBusy = true;
 
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
+
             var youtube = new YoutubeClient();
 
             //// You can specify video ID or URL
@@ -86,6 +89,8 @@ namespace ContestPark.Mobile.Components
         private void MyMediaElement_MediaOpened(object sender, System.EventArgs e)
         {
             IsVideoRunning = true;
+
+            UserDialogs.Instance.HideLoading();
         }
 
         private void MyMediaElement_SeekCompleted(object sender, System.EventArgs e)
