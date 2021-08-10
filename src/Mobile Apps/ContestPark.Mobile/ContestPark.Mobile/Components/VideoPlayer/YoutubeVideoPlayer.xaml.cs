@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
@@ -10,6 +11,21 @@ namespace ContestPark.Mobile.Components
         public YoutubeVideoPlayer()
         {
             InitializeComponent();
+
+            MyMediaElement.SeekCompleted += MyMediaElement_SeekCompleted;
+            MyMediaElement.MediaOpened += MyMediaElement_MediaOpened;
+        }
+
+        public static readonly BindableProperty IsVideoRunningProperty = BindableProperty.Create(propertyName: nameof(IsVideoRunning),
+                                                                                  returnType: typeof(bool),
+                                                                                  defaultBindingMode: BindingMode.TwoWay,
+                                                                                  declaringType: typeof(YoutubeVideoPlayer),
+                                                                                  defaultValue: false);
+
+        public  bool IsVideoRunning
+        {
+            get => (bool)GetValue(IsVideoRunningProperty);
+            set => SetValue(IsVideoRunningProperty, value);
         }
 
         public static readonly BindableProperty LinkProperty = BindableProperty.Create(propertyName: nameof(Link),
@@ -62,7 +78,18 @@ namespace ContestPark.Mobile.Components
                 MyMediaElement.Source = streamInfo.Url;
             }
 
+            
+
             IsBusy = false;
+        }
+
+        private void MyMediaElement_MediaOpened(object sender, System.EventArgs e)
+        {
+            IsVideoRunning = true;
+        }
+
+        private void MyMediaElement_SeekCompleted(object sender, System.EventArgs e)
+        {
         }
 
         void MediaElement_MediaOpened(System.Object sender, System.EventArgs e)

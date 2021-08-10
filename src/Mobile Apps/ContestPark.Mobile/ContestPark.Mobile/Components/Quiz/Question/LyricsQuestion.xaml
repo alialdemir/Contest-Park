@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ContestPark.Mobile.Components.LyricsQuestion"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ContestPark.Mobile.Components"
+    x:Name="lyricsQuestion">
+    <ContentView.Content>
+        <Grid
+            ColumnSpacing="0"
+            HorizontalOptions="Center"
+            RowSpacing="0"
+            VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="65" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <components:YoutubeVideoPlayer
+                Grid.Row="0"
+                IsVideoRunning="{Binding Path=IsVideoRunning, Source={x:Reference lyricsQuestion}}"
+                Link="{Binding Path=Link, Source={x:Reference lyricsQuestion}}" />
+
+            <ScrollView x:Name="LyricsScrollView" Grid.Row="1">
+                <components:AnimatedText
+                    x:Name="animatedText"
+                    IsRunning="{Binding Path=IsVideoRunning, Source={x:Reference lyricsQuestion}}"
+                    LyricsScrollViewCommand="{Binding Path=LyricsScrollViewCommand, Source={x:Reference lyricsQuestion}}"
+                    Question="{Binding Path=Question, Source={x:Reference lyricsQuestion}}" />
+
+            </ScrollView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

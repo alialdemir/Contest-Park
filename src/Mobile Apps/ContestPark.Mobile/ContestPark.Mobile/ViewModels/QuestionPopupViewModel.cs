@@ -39,6 +39,7 @@ namespace ContestPark.Mobile.ViewModels
         private readonly OnSleepEvent _onSleepEvent;
         private readonly ISettingsService _settingsService;
         private SubscriptionToken _subscriptionToken;
+        private readonly DuelEndEvent _duelEndEvent;
 
         #endregion Private variables
 
@@ -58,6 +59,7 @@ namespace ContestPark.Mobile.ViewModels
             _duelSignalRService = duelSignalRService;
             _analyticsService = analyticsService;
             _onSleepEvent = eventAggregator.GetEvent<OnSleepEvent>();
+            _duelEndEvent = eventAggregator.GetEvent<DuelEndEvent>();
             _duelService = duelService;
             _adMobService = adMobService;
             _settingsService = settingsService;
@@ -484,9 +486,9 @@ namespace ContestPark.Mobile.ViewModels
             if (isShowAlert.HasValue && isShowAlert.Value)// useModalNavigation parametresini alert gösterilsinmi gösterilmesin mi diye kullandım
             {
                 bool isOkay = await DisplayAlertAsync(ContestParkResources.Exit,
-                                                  ContestParkResources.AreYouSureYouWantToLeave,
-                                                  ContestParkResources.Okay,
-                                                  ContestParkResources.Cancel);
+                                                      ContestParkResources.AreYouSureYouWantToLeave,
+                                                      ContestParkResources.Okay,
+                                                      ContestParkResources.Cancel);
 
                 if (!isOkay)
                     return;
@@ -511,6 +513,8 @@ namespace ContestPark.Mobile.ViewModels
             _audioService.Stop();
 
             _onSleepEvent.Unsubscribe(_subscriptionToken);
+
+            _duelEndEvent.Publish();
 
             Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
 
@@ -590,6 +594,10 @@ namespace ContestPark.Mobile.ViewModels
         /// </summary>
         private void QuestionExpectedPopup()
         {
+            // Şarkı sözleri düellosunda geçiş olmadığı için bu kısım kapatıldı 
+            if (CurrentQuestion.QuestionType == QuestionTypes.Lyrics)
+                return;
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 NavigateToPopupAsync<QuestionExpectedPopupView>(new NavigationParameters

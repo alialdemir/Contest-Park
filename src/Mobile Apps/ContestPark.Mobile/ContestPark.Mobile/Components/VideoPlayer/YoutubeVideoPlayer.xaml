@@ -8,7 +8,6 @@
     <ContentView.Content>
         <toolkit:MediaElement
             x:Name="MyMediaElement"
-            Margin="0,0,0,18"
             ShowsPlaybackControls="False"
             WidthRequest="350" />
     </ContentView.Content>

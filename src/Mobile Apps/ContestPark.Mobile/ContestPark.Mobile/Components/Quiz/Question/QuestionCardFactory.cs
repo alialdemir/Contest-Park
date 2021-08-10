@@ -33,7 +33,7 @@ namespace ContestPark.Mobile.Components
         public static readonly BindableProperty QuestionTypeProperty = BindableProperty.Create(propertyName: nameof(QuestionType),
                                                                                                returnType: typeof(QuestionTypes),
                                                                                                declaringType: typeof(QuestionCardFactory),
-                                                                                               defaultValue: QuestionTypes.Text);
+                                                                                               defaultValue: QuestionTypes.None);
 
         public QuestionTypes QuestionType
         {
@@ -53,14 +53,16 @@ namespace ContestPark.Mobile.Components
             {
                 switch (QuestionType)
                 {
-                    case QuestionTypes.Lyrics:
+                    case QuestionTypes.Music:
                         Content = new MusicQuestion() { Question = Question, Link = Link }; break;
+
+                    case QuestionTypes.Lyrics:
+                        Content = new LyricsQuestion() { Question = Question, Link = Link }; break;
 
                     case QuestionTypes.Image:
                         Content = new ImageQuestion() { Question = Question, Link = Link }; break;
 
                     case QuestionTypes.Text:
-                    default:
                         Content = new TextQuestion() { Question = Question }; break;
                 }
             }

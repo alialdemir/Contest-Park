@@ -90,6 +90,7 @@
     <None Remove="Components\VideoPlayer\" />
     <None Remove="YoutubeExplode" />
     <None Remove="Xamarin.CommunityToolkit" />
+    <None Remove="Components\AnimatedText\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common\Audios\AwaitingOpponent.mp3" />
@@ -490,5 +491,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\VideoPlayer\" />
+    <Folder Include="Components\AnimatedText\" />
   </ItemGroup>
 </Project>

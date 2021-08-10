@@ -38,19 +38,19 @@
                         </Grid.ColumnDefinitions>
 
                         <!--  Para ile oyna  -->
-                        <components:LinearGradientButton
+                        <!--<components:LinearGradientButton
                             Grid.Row="0"
                             Grid.Column="0"
                             Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
                             CommandParameter="2"
                             Style="{StaticResource PopupTopButton}"
                             Text="{i18n:Translate Money}"
-                            TextColor="{Binding Path=BindingContext.BalanceType, Source={x:Reference duelBettingPopupView}, Converter={StaticResource BetTabTextColorConverter}, ConverterParameter=2}" />
+                            TextColor="{Binding Path=BindingContext.BalanceType, Source={x:Reference duelBettingPopupView}, Converter={StaticResource BetTabTextColorConverter}, ConverterParameter=2}" />-->
 
                         <!--  Altınla oyna  -->
                         <components:LinearGradientButton
                             Grid.Row="0"
-                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
                             Command="{Binding Path=BindingContext.ChangeBalanceTypeCommand, Source={x:Reference duelBettingPopupView}}"
                             CommandParameter="1"
                             Style="{StaticResource PopupTopButton}"
