@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -100,6 +101,10 @@ namespace ContestPark.Post.API.Migrations
 
             #endregion Post text
 
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
+
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
@@ -153,6 +158,10 @@ namespace ContestPark.Post.API.Migrations
                 .WithColumn("PostId")
                 .AsInt32()
                 .NotNullable()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()

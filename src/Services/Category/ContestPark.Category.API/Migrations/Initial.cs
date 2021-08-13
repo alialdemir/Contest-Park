@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -23,6 +24,10 @@ namespace ContestPark.Category.API.Migrations
                 .WithColumn("DisplayOrder")
                 .AsBoolean()
                 .WithDefaultValue(0)
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -51,6 +56,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("Language")
                         .AsByte()
                         .NotNullable()
+
+                        .WithColumn("EntityStatus")
+                        .AsByte()
+                        .WithDefaultValue((byte)EntityStatus.Active)
 
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
@@ -164,6 +173,10 @@ namespace ContestPark.Category.API.Migrations
                         .AsBoolean()
                         .WithDefaultValue(true)
 
+                        .WithColumn("EntityStatus")
+                        .AsByte()
+                        .WithDefaultValue((byte)EntityStatus.Active)
+
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
@@ -195,6 +208,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("Language")
                         .AsByte()
                         .NotNullable()
+
+                        .WithColumn("EntityStatus")
+                        .AsByte()
+                        .WithDefaultValue((byte)EntityStatus.Active)
 
                         .WithColumn("ModifiedDate")
                         .AsDateTime()

@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -24,6 +25,10 @@ namespace ContestPark.Chat.API.Migrations
                 .WithColumn("DeterredUserId")
                 .AsString(255)
                 .NotNullable()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -109,6 +114,10 @@ namespace ContestPark.Chat.API.Migrations
 
                 .WithColumn("ReceiverIsReadMessage")
                 .AsBoolean()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()

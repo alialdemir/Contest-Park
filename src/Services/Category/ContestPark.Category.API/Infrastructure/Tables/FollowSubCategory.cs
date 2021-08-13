@@ -4,7 +4,7 @@ using Dapper;
 namespace ContestPark.Category.API.Infrastructure.Tables
 {
     [Table("FollowSubCategories")]
-    public class FollowSubCategory : EntityBase
+    public class FollowSubCategory : EntityBaseEffaceable
     {
         [Key]
         public int FollowSubCategoryId { get; set; }

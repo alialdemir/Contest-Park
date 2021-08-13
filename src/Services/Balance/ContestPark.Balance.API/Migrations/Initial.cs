@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -26,6 +27,10 @@ namespace ContestPark.Balance.API.Migrations
                 .AsDecimal(13, 2)
                 .NotNullable()
                 .WithDefaultValue(0)
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -67,6 +72,10 @@ namespace ContestPark.Balance.API.Migrations
                 .WithColumn("VerifyPurchase")
                 .AsString(36)
                 .Nullable()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -124,44 +133,9 @@ namespace ContestPark.Balance.API.Migrations
                  .AsString(255)
                  .NotNullable()
 
-                .WithColumn("ModifiedDate")
-                .AsDateTime()
-                .Nullable()
-
-                .WithColumn("CreatedDate")
-                .AsDateTime()
-                .NotNullable()
-                .WithDefault(SystemMethods.CurrentDateTime));
-
-            this.CreateTableIfNotExists("MoneyWithdrawRequests", table =>
-            table
-                .WithColumn("MoneyWithdrawRequestId")
-                .AsInt32()
-                .PrimaryKey()
-                .Identity()
-
-                .WithColumn("Amount")
-                .AsDecimal(13, 2)
-                .NotNullable()
-                .WithDefaultValue(0)
-
-                .WithColumn("UserId")
-                .AsString(255)
-                .Indexed("Indexed_UserId")
-                .NotNullable()
-
-                .WithColumn("IbanNo")
-                .AsString(26)
-                .NotNullable()
-
-                .WithColumn("Status")
+                .WithColumn("EntityStatus")
                 .AsByte()
-                .NotNullable()
-                .WithDefaultValue(1)
-
-                .WithColumn("FullName")
-                .AsString(255)
-                .NotNullable()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -198,7 +172,20 @@ namespace ContestPark.Balance.API.Migrations
 
                  .WithColumn("FinishDate")
                  .AsDateTime()
-                 .Nullable());
+                 .Nullable()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
+
+                .WithColumn("ModifiedDate")
+                .AsDateTime()
+                .Nullable()
+
+                .WithColumn("CreatedDate")
+                .AsDateTime()
+                .NotNullable()
+                .WithDefault(SystemMethods.CurrentDateTime));
 
             this.CreateTableIfNotExists("ReferenceCodes", table =>
             table
@@ -217,7 +204,20 @@ namespace ContestPark.Balance.API.Migrations
 
                 .WithColumn("Code")
                 .AsString(255)
-                .NotNullable());
+                .NotNullable()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
+
+                .WithColumn("ModifiedDate")
+                .AsDateTime()
+                .Nullable()
+
+                .WithColumn("CreatedDate")
+                .AsDateTime()
+                .NotNullable()
+                .WithDefault(SystemMethods.CurrentDateTime));
 
             Execute.ExecuteScripts(Assembly.GetExecutingAssembly(),
                                    "FNC_FirstLoadMoney.sql",

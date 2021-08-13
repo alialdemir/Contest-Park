@@ -10,6 +10,7 @@ namespace ContestPark.Category.API.Migrations
             {
                 typeof(Initial).Assembly,
                 typeof(LevelMigration).Assembly,
+                typeof(LyricsMigration).Assembly,
             };
         }
     }

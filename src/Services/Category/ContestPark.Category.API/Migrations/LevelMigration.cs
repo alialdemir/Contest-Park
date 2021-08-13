@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 
 namespace ContestPark.Category.API.Migrations
@@ -17,6 +18,10 @@ namespace ContestPark.Category.API.Migrations
 
                 .WithColumn("Exp")
                 .AsInt32()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -51,6 +56,10 @@ namespace ContestPark.Category.API.Migrations
                 .AsInt16()
                 .NotNullable()
                 .Indexed("SubCategoryId_Index")
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()

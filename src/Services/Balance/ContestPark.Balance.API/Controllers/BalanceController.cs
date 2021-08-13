@@ -1,7 +1,6 @@
 ﻿using ContestPark.Balance.API.Enums;
 using ContestPark.Balance.API.Infrastructure.Repositories.Balance;
 using ContestPark.Balance.API.Infrastructure.Repositories.BalanceHistory;
-using ContestPark.Balance.API.Infrastructure.Repositories.MoneyWithdrawRequest;
 using ContestPark.Balance.API.Infrastructure.Repositories.PurchaseHistory;
 using ContestPark.Balance.API.Infrastructure.Repositories.Reference;
 using ContestPark.Balance.API.Infrastructure.Repositories.ReferenceCode;
@@ -32,7 +31,6 @@ namespace ContestPark.Balance.API.Controllers
         private readonly IReferenceCodeRepostory _referenceCodeRepostory;
         private readonly IEventBus _eventBus;
         private readonly IVerifyReceiptIos _verifyReceiptIos;
-        private readonly IMoneyWithdrawRequestRepository _moneyWithdrawRequestRepository;
         private readonly IPurchaseHistoryRepository _purchaseHistoryRepository;
 
         #endregion Private Variables
@@ -45,7 +43,6 @@ namespace ContestPark.Balance.API.Controllers
                                  IReferenceCodeRepostory referenceCodeRepostory,
                                  IEventBus eventBus,
                                  IVerifyReceiptIos verifyReceiptIos,
-                                 IMoneyWithdrawRequestRepository moneyWithdrawRequestRepository,
                                  ILogger<BalanceController> logger,
                                  IPurchaseHistoryRepository purchaseHistoryRepository) : base(logger)
         {
@@ -55,7 +52,6 @@ namespace ContestPark.Balance.API.Controllers
             _referenceCodeRepostory = referenceCodeRepostory;
             _eventBus = eventBus;
             _verifyReceiptIos = verifyReceiptIos;
-            _moneyWithdrawRequestRepository = moneyWithdrawRequestRepository;
             _purchaseHistoryRepository = purchaseHistoryRepository ?? throw new ArgumentNullException(nameof(purchaseHistoryRepository));
         }
 
@@ -222,73 +218,6 @@ namespace ContestPark.Balance.API.Controllers
             }
 
             return Ok(result);
-        }
-
-        /// <summary>
-        /// Iban numarasına para gönderme isteği
-        /// </summary>
-        /// <param name="ibanNoModel">Iban no ve ad soyad</param>
-        /// <returns>Başarılı ise ok değilse hata mesajı</returns>
-        [HttpPost]
-        [ProducesResponseType(typeof(IbanNoModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> SendMoneyRequest([FromBody] IbanNoModel ibanNoModel)
-        {
-            Logger.LogInformation($"Para çekme isteği geldi. Ad soyad: {ibanNoModel.FullName} user Id: {UserId} Iban No: {ibanNoModel.IbanNo}");
-
-            if (ibanNoModel == null || string.IsNullOrEmpty(ibanNoModel.FullName) || string.IsNullOrEmpty(ibanNoModel.IbanNo))
-            {
-                return BadRequest();
-            }
-
-            BalanceModel result = _balanceRepository.GetUserBalances(UserId);
-            if (result == null || result.Money < 20.00m)
-            {
-                Logger.LogInformation($"Yetersiz bakiye ile para çekme talebi geldi.", UserId);
-
-                return NotFound();
-            }
-
-            if (!_balanceRepository.WithdrawalStatus(UserId)) // Para çekme işlemi için yeteri kadar duello yapmış mı kontrol eder
-            {
-                Logger.LogInformation($"On kereden az düello yapıp para çekme isteği geldi user id: {UserId}");
-
-                return BadRequest(BalanceResource.ToBeAbleToMakeAWithdrawalYouMustDoTenDuelsAfterTheTopUp);
-            }
-
-            Logger.LogInformation($"Para çekme isteği şuanki para miktarı. User Id: {UserId} Money: {result.Money}");
-
-            bool isSuccess = await SendMoneyRequestUpdateBalanceAsync(-result.Money);// Önce hesaptan para düşüldü
-            if (!isSuccess)
-            {
-                return BadRequest(BalanceResource.TheWithdrawalRequestFailed);
-            }
-
-            isSuccess = await _moneyWithdrawRequestRepository.Insert(new MoneyWithdrawRequest// Para çekme isteği geldiğine dair kayıt ekledik
-            {
-                UserId = UserId,
-                FullName = ibanNoModel.FullName,
-                IbanNo = ibanNoModel.IbanNo,
-                Amount = result.Money,
-                Status = Status.Active
-            });
-
-            if (!isSuccess)
-            {
-                Logger.LogCritical($@"CRITICAL: Bakiye çekme isteği sırasında hata oluştu. Ad soyad: {ibanNoModel.FullName}
-                                                                                           User Id: {UserId}
-                                                                                           Iban No: {ibanNoModel.IbanNo}");
-
-                await SendMoneyRequestUpdateBalanceAsync(result.Money);// hata oluşursa bakiye geri hesaba eklendi
-
-                return BadRequest(BalanceResource.TheWithdrawalRequestFailed);
-            }
-
-            // TODO: bizim tarafa mail gönder veya bir alert atılsın
-
-            Logger.LogInformation($"Para çekme isteği oluşturuldu. User Id: {UserId} Money: {-result.Money}");
-
-            return Ok();
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using Dapper;
 namespace ContestPark.Post.API.Infrastructure.Tables
 {
     [Table("Likes")]
-    public class Like : EntityBase
+    public class Like : EntityBaseEffaceable
     {
         [Key]
         public int LikeId { get; set; }

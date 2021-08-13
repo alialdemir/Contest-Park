@@ -4,7 +4,7 @@ using Dapper;
 namespace ContestPark.Follow.API.Infrastructure.Tables
 {
     [Table("Follows")]
-    public class Follow : EntityBase
+    public class Follow : EntityBaseEffaceable
     {
         [Key]
         public int FollowId { get; set; }

@@ -9,7 +9,6 @@ namespace ContestPark.Notification.API.Migrations
             return new Assembly[]
             {
                 typeof(Initial).Assembly,
-                typeof(NoticeMigration).Assembly,
             };
         }
     }

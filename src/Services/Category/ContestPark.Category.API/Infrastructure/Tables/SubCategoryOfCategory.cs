@@ -4,7 +4,7 @@ using Dapper;
 namespace ContestPark.Category.API.Infrastructure.Tables
 {
     [Table("SubCategoryRls")]// Adı çok uzun olduğu için kısa alt verdim
-    public class SubCategoryOfCategory : EntityBase
+    public class SubCategoryOfCategory : EntityBaseEffaceable
     {
         [Key]
         public short SubcategoriesOfCategoryId { get; set; }
