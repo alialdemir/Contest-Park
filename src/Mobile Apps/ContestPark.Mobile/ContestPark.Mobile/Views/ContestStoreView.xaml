@@ -38,7 +38,7 @@
                             HorizontalOptions="FillAndExpand"
                             Source="{image:ImageResource contest_store_header.png}"
                             VerticalOptions="FillAndExpand" />
-                        <Grid>
+                        <!--<Grid>
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -131,7 +131,7 @@
                                         WidthRequest="50" />
                                 </Grid>
                             </yummy:PancakeView>
-                        </Grid>
+                        </Grid>-->
                     </StackLayout>
                 </DataTemplate>
             </components:NonPersistentSelectedItemListView.HeaderTemplate>

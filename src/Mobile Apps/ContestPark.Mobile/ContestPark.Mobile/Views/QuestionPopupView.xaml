@@ -24,12 +24,12 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="49*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="47*" />
+                        <RowDefinition Height="17*" />
                     </Grid.RowDefinitions>
 
                     <yummy:PancakeView
-                        BackgroundGradientEndColor="#A573FF"
-                        BackgroundGradientStartColor="#645AFF"
+                        BackgroundGradientEndColor="#4048EF"
+                        BackgroundGradientStartColor="#5A7BEF"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand" />
 
@@ -75,7 +75,7 @@
                         HeightRequest="20"
                         HorizontalOptions="FillAndExpand"
                         Source="{image:ImageResource questioncenter.png}"
-                        TranslationY="-9" />
+                        TranslationY="105" />
 
                     <!--  Center End  -->
 
@@ -95,8 +95,7 @@
                         AnswerCommand="{Binding AnswerCommand}"
                         AnswerType="{Binding CurrentQuestion.AnswerType}"
                         Answers="{Binding Answers}"
-                        BackgroundColor="Red"
-                        VerticalOptions="EndAndExpand" />
+                        VerticalOptions="StartAndExpand" />
 
                     <!--  Stylish End  -->
                 </Grid>

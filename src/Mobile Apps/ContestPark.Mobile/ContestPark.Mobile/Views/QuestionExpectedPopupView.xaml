@@ -13,8 +13,8 @@
     <pages:PopupPage.Content>
         <yummy:PancakeView
             Margin="0,70,0,0"
-            BackgroundGradientEndColor="#A573FF"
-            BackgroundGradientStartColor="#645AFF"
+            BackgroundGradientEndColor="#4048EF"
+            BackgroundGradientStartColor="#5A7BEF"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
 

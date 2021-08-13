@@ -25,11 +25,11 @@
     </Shell.BackButtonBehavior>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding Path=BindingContext.InviteCommand, Source={x:Reference categoriesPage}}">
+        <!--<ToolbarItem Command="{Binding Path=BindingContext.InviteCommand, Source={x:Reference categoriesPage}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource Share}" />
             </ToolbarItem.IconImageSource>
-        </ToolbarItem>
+        </ToolbarItem>-->
         <ToolbarItem Command="{Binding Path=BindingContext.GotoNotificationsCommand, Source={x:Reference categoriesPage}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="{StaticResource icomoon}" Glyph="{StaticResource Notification}" />

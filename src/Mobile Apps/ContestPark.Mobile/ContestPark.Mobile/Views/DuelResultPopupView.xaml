@@ -34,15 +34,15 @@
     <pages:PopupPage.Content>
         <ScrollView>
             <yummy:PancakeView
-                BackgroundGradientEndColor="#645AFF"
-                BackgroundGradientStartColor="#A573FF"
+                BackgroundGradientEndColor="#4048EF"
+                BackgroundGradientStartColor="#5A7BEF"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
                 <StackLayout Orientation="Vertical" Spacing="0">
 
                     <!--  Close button  -->
                     <Image
-                        Margin="0,8,8,32"
+                        Margin="0,8,8,0"
                         HorizontalOptions="End"
                         VerticalOptions="Start">
                         <Image.GestureRecognizers>
@@ -240,13 +240,13 @@
                             VerticalOptions="StartAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
-                                <RowDefinition Height="70" />
+                                <RowDefinition Height="55" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
+                                <ColumnDefinition Width="55" />
                             </Grid.ColumnDefinitions>
 
                             <Label
@@ -267,7 +267,7 @@
                                 BorderWidth="3"
                                 CornerRadius="35"
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontSize="Subtitle"
                                 Text="{Binding DuelResult.MatchScore}"
                                 TextColor="#FFC72E" />
 
@@ -289,7 +289,7 @@
                                 BorderWidth="3"
                                 CornerRadius="35"
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontSize="Subtitle"
                                 Text="{Binding DuelResult.FinishBonus}"
                                 TextColor="#02CD72" />
 
@@ -311,7 +311,7 @@
                                 BorderWidth="3"
                                 CornerRadius="35"
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontSize="Subtitle"
                                 Text="{Binding DuelResult.VictoryBonus}"
                                 TextColor="#0EA0CE" />
 
@@ -333,7 +333,7 @@
                                 BorderWidth="3"
                                 CornerRadius="35"
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontSize="Subtitle"
                                 Text="{Binding DuelResult.TotalXp}"
                                 TextColor="#FE5353" />
                         </Grid>

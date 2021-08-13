@@ -1,9 +1,8 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ContestPark.Mobile.Components
 {
-    
+
     public partial class MusicQuestion : ContentView
     {
         #region Constructor
@@ -40,54 +39,5 @@ namespace ContestPark.Mobile.Components
         }
 
         #endregion Properties
-
-        //#region Commands
-
-        //public ICommand WindBackCommand
-        //{
-        //    get
-        //    {
-        //        return new Command(() =>
-        //        {
-        //            IAudioService audioService = ContestParkApp.Current.Container.Resolve<IAudioService>();
-        //            if (audioService == null)
-        //                return;
-
-        //            audioService.WindBack();
-        //        });
-        //    }
-        //}
-
-        //public ICommand PlayCommand
-        //{
-        //    get
-        //    {
-        //        return new Command(() =>
-        //        {
-        //            IAudioService audioService = ContestParkApp.Current.Container.Resolve<IAudioService>();
-        //            if (audioService == null || string.IsNullOrEmpty(Link))
-        //                return;
-
-        //            audioService.ToggleAudio(Link);
-        //        });
-        //    }
-        //}
-
-        //public ICommand FastForwardCommand
-        //{
-        //    get
-        //    {
-        //        return new Command(() =>
-        //        {
-        //            IAudioService audioService = ContestParkApp.Current.Container.Resolve<IAudioService>();
-        //            if (audioService == null)
-        //                return;
-
-        //            audioService.FastForward();
-        //        });
-        //    }
-        //}
-
-        //#endregion Commands
     }
 }

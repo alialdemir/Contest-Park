@@ -70,12 +70,12 @@
 
             <!--  Left menü  -->
 
-            <FontImageSource
+            <!--<FontImageSource
                 x:Key="IconConvertToCash"
                 FontFamily="{StaticResource icomoon}"
                 Glyph="{StaticResource MoneyBag}"
                 Size="{StaticResource SizeLeftMenuIcon}"
-                Color="{StaticResource White}" />
+                Color="{StaticResource White}" />-->
 
             <FontImageSource
                 x:Key="IconBalanceCode"
@@ -136,7 +136,7 @@
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#8265FF" />
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
                                     <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -177,12 +177,12 @@
         </Tab>
     </FlyoutItem>
 
-    <MenuItem
+    <!--<MenuItem
         x:Name="menuConvertToCash"
         Command="{Binding MenuItemClickCommand}"
         CommandParameter="IbanNoView"
         IconImageSource="{StaticResource IconConvertToCash}"
-        Text="{i18n:Translate ConvertToCash}" />
+        Text="{i18n:Translate ConvertToCash}" />-->
 
     <MenuItem
         Command="{Binding MenuItemClickCommand}"
@@ -202,7 +202,7 @@
         IconImageSource="{StaticResource IconSettings}"
         Text="{i18n:Translate Settings}" />
 
-    <MenuItem
+    <!--<MenuItem
         Command="{Binding MenuItemClickCommand}"
         CommandParameter="https://instagram.com/contestpark"
         IconImageSource="{StaticResource IconInstagram}"
@@ -218,5 +218,5 @@
         Command="{Binding MenuItemClickCommand}"
         CommandParameter="https://twitter.com/contestpark"
         IconImageSource="{StaticResource IconTwitter}"
-        Text="Twitter" />
+        Text="Twitter" />-->
 </Shell>

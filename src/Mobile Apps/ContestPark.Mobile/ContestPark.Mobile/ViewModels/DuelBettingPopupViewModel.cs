@@ -205,73 +205,74 @@ namespace ContestPark.Mobile.ViewModels
            }
     );
             }
-            else if (BalanceType == BalanceTypes.Money)
-            {
-                Items.AddRange(
-           new List<BetModel> {
-                                new BetModel
-                                {
-                                    Image = "prizeicon1.png",
-                                    BalanceType = BalanceType,
-                                    Description = "",
-                                    Title = ContestParkResources.Beginner,
-                                    Prize = 2.00m,
-                                    EntryFee = 1.00m,
-                                    CurrentIndex = 1,
-                                },
-                                new BetModel
-                                {
-                                    Image = "prizeicon2.png",
-                                    BalanceType = BalanceType,
-                                    Description = "",
-                                    Title = ContestParkResources.Novice,
-                                    Prize = 6.00m,
-                                    EntryFee = 3.00m,
-                                    CurrentIndex = 2,
-                                },
-                                new BetModel
-                                {
-                                    Image = "prizeicon3.png",
-                                    BalanceType = BalanceType,
-                                    Description = "",
-                                    Title = ContestParkResources.Advanced,
-                                    Prize = 8.00m,
-                                    EntryFee = 4.00m,
-                                    CurrentIndex = 3,
-                                },
-                                new BetModel
-                                {
-                                    Image = "prizeicon4.png",
-                                    BalanceType = BalanceType,
-                                    Description = "",
-                                    Title = ContestParkResources.Expert,
-                                    Prize = 10.00m,
-                                    EntryFee = 5.00m,
-                                    CurrentIndex = 4,
-                                },
-                                new BetModel
-                                {
-                                    Image = "prizeicon5.png",
-                                    BalanceType = BalanceType,
-                                    Description = "",
-                                    Title = ContestParkResources.Master,
-                                    Prize = 12.00m,
-                                    EntryFee = 6.00m,
-                                    CurrentIndex = 5,
-                                },
-                                new BetModel
-                                {
-                                    Image = "prizeicon6.png",
-                                    BalanceType = BalanceType,
-                                    Description = "",
-                                    Title = ContestParkResources.Genius,
-                                    Prize = 20.00m,
-                                    EntryFee = 10.00m,
-                                    CurrentIndex = 6,
-                                }
-           }
-    );
-            }
+            // Şarkı sözü yarışmasından dolayı para ile oynama kapatıldı
+    //        else if (BalanceType == BalanceTypes.Money)
+    //        {
+    //            Items.AddRange(
+    //       new List<BetModel> {
+    //                            new BetModel
+    //                            {
+    //                                Image = "prizeicon1.png",
+    //                                BalanceType = BalanceType,
+    //                                Description = "",
+    //                                Title = ContestParkResources.Beginner,
+    //                                Prize = 2.00m,
+    //                                EntryFee = 1.00m,
+    //                                CurrentIndex = 1,
+    //                            },
+    //                            new BetModel
+    //                            {
+    //                                Image = "prizeicon2.png",
+    //                                BalanceType = BalanceType,
+    //                                Description = "",
+    //                                Title = ContestParkResources.Novice,
+    //                                Prize = 6.00m,
+    //                                EntryFee = 3.00m,
+    //                                CurrentIndex = 2,
+    //                            },
+    //                            new BetModel
+    //                            {
+    //                                Image = "prizeicon3.png",
+    //                                BalanceType = BalanceType,
+    //                                Description = "",
+    //                                Title = ContestParkResources.Advanced,
+    //                                Prize = 8.00m,
+    //                                EntryFee = 4.00m,
+    //                                CurrentIndex = 3,
+    //                            },
+    //                            new BetModel
+    //                            {
+    //                                Image = "prizeicon4.png",
+    //                                BalanceType = BalanceType,
+    //                                Description = "",
+    //                                Title = ContestParkResources.Expert,
+    //                                Prize = 10.00m,
+    //                                EntryFee = 5.00m,
+    //                                CurrentIndex = 4,
+    //                            },
+    //                            new BetModel
+    //                            {
+    //                                Image = "prizeicon5.png",
+    //                                BalanceType = BalanceType,
+    //                                Description = "",
+    //                                Title = ContestParkResources.Master,
+    //                                Prize = 12.00m,
+    //                                EntryFee = 6.00m,
+    //                                CurrentIndex = 5,
+    //                            },
+    //                            new BetModel
+    //                            {
+    //                                Image = "prizeicon6.png",
+    //                                BalanceType = BalanceType,
+    //                                Description = "",
+    //                                Title = ContestParkResources.Genius,
+    //                                Prize = 20.00m,
+    //                                EntryFee = 10.00m,
+    //                                CurrentIndex = 6,
+    //                            }
+    //       }
+    //);
+    //        }
         }
 
         /// <summary>

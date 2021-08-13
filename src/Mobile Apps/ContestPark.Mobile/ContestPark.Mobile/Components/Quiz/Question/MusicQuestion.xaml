@@ -4,68 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Name="musicQuestion"
     mc:Ignorable="d">
-    <ContentView.Content>
-        <Grid HorizontalOptions="Center" VerticalOptions="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <!--<RowDefinition Height="Auto" />-->
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Label
-                Grid.Row="0"
-                Grid.ColumnSpan="3"
-                FontFamily="{StaticResource SofiaProRegular}"
-                FontSize="22"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Path=Question, Source={x:Reference musicQuestion}}"
-                TextColor="{StaticResource White}"
-                VerticalOptions="CenterAndExpand"
-                VerticalTextAlignment="Center" />
-
-            <!--<Image Grid.Row="1" Grid.Column="0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=WindBackCommand, Source={x:Reference musicQuestion}}" />
-                </Image.GestureRecognizers>
-                <Image.Source>
-                    <FontImageSource
-                        FontFamily="{StaticResource icomoon}"
-                        Glyph="{StaticResource WindBack}"
-                        Color="{StaticResource White}" />
-                </Image.Source>
-            </Image>
-
-            <Image Grid.Row="1" Grid.Column="0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=PlayCommand, Source={x:Reference musicQuestion}}" />
-                </Image.GestureRecognizers>
-                <Image.Source>
-                    <FontImageSource
-                        FontFamily="{StaticResource icomoon}"
-                        Glyph="{StaticResource Play}"
-                        Color="{StaticResource White}" />
-                </Image.Source>
-            </Image>
-
-            <Image Grid.Row="1" Grid.Column="0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=FastForwardCommand, Source={x:Reference musicQuestion}}" />
-                </Image.GestureRecognizers>
-                <Image.Source>
-                    <FontImageSource
-                        FontFamily="{StaticResource icomoon}"
-                        Glyph="{StaticResource FastForward}"
-                        Color="{StaticResource White}" />
-                </Image.Source>
-            </Image>-->
-        </Grid>
-    </ContentView.Content>
+    <ContentView.Content />
 </ContentView>
