@@ -20,7 +20,7 @@
             <components:YoutubeVideoPlayer
                 Grid.Row="0"
                 IsVideoRunning="{Binding Path=IsVideoRunning, Source={x:Reference lyricsQuestion}}"
-                Link="{Binding Path=Link, Source={x:Reference lyricsQuestion}}" />
+                YoutubeVideoId="{Binding Path=Link, Source={x:Reference lyricsQuestion}}" />
 
             <ScrollView x:Name="LyricsScrollView" Grid.Row="1">
                 <components:AnimatedText

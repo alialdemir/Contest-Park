@@ -92,8 +92,9 @@ namespace ContestPark.Mobile.ViewModels
 
         public override void Initialize(INavigationParameters parameters = null)
         {
+#if !DEBUG
             _adMobService.ShowInterstitial();// Düello sonucuna gelen kullanıcılara reklam gösterildi
-
+#endif
             if (parameters.ContainsKey("DuelId"))
                 _duelId = parameters.GetValue<int>("DuelId");
 

@@ -1,6 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
 using Acr.UserDialogs;
-using Xamarin.CommunityToolkit.UI.Views;
+using ContestPark.Mobile.Events;
+using ContestPark.Mobile.Models.VideoPlayer;
+using Prism.Events;
+using Prism.Ioc;
 using Xamarin.Forms;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
@@ -9,35 +12,38 @@ namespace ContestPark.Mobile.Components
 {
     public partial class YoutubeVideoPlayer : ContentView
     {
+        private readonly IEventAggregator _eventAggregator;
         public YoutubeVideoPlayer()
         {
             InitializeComponent();
 
-            MyMediaElement.SeekCompleted += MyMediaElement_SeekCompleted;
-            MyMediaElement.MediaOpened += MyMediaElement_MediaOpened;
+            _eventAggregator = ContestParkApp
+                                              .Current
+                                              .Container
+                                              .Resolve<IEventAggregator>();
         }
 
         public static readonly BindableProperty IsVideoRunningProperty = BindableProperty.Create(propertyName: nameof(IsVideoRunning),
-                                                                                  returnType: typeof(bool),
-                                                                                  defaultBindingMode: BindingMode.TwoWay,
-                                                                                  declaringType: typeof(YoutubeVideoPlayer),
-                                                                                  defaultValue: false);
+                                                                                                 returnType: typeof(bool),
+                                                                                                 defaultBindingMode: BindingMode.TwoWay,
+                                                                                                 declaringType: typeof(YoutubeVideoPlayer),
+                                                                                                 defaultValue: false);
 
-        public  bool IsVideoRunning
+        public bool IsVideoRunning
         {
             get => (bool)GetValue(IsVideoRunningProperty);
             set => SetValue(IsVideoRunningProperty, value);
         }
 
-        public static readonly BindableProperty LinkProperty = BindableProperty.Create(propertyName: nameof(Link),
-                                                                                  returnType: typeof(string),
-                                                                                  declaringType: typeof(YoutubeVideoPlayer),
-                                                                                  defaultValue: string.Empty);
+        public static readonly BindableProperty YoutubeVideoIdProperty = BindableProperty.Create(propertyName: nameof(YoutubeVideoId),
+                                                                                                 returnType: typeof(string),
+                                                                                                 declaringType: typeof(YoutubeVideoPlayer),
+                                                                                                 defaultValue: string.Empty);
 
-        public string Link
+        public string YoutubeVideoId
         {
-            get => (string)GetValue(LinkProperty);
-            set => SetValue(LinkProperty, value);
+            get => (string)GetValue(YoutubeVideoIdProperty);
+            set => SetValue(YoutubeVideoIdProperty, value);
         }
 
         public bool IsBusy { get; set; }
@@ -46,12 +52,15 @@ namespace ContestPark.Mobile.Components
         {
             base.OnPropertyChanged(propertyName);
 
-            if (propertyName == nameof(Link) || !string.IsNullOrEmpty(Link))
+            if (propertyName == nameof(YoutubeVideoId) || !string.IsNullOrEmpty(YoutubeVideoId))
             {
                 GetVideoContent();
             }
         }
 
+        /// <summary>
+        /// Youtube video id ile videoyu media elemente yükler
+        /// </summary>
         private async void GetVideoContent()
         {
             if (IsBusy || MyMediaElement.Source != null)
@@ -70,36 +79,65 @@ namespace ContestPark.Mobile.Components
             //var author = video.Author; // "Downloaded Video Author"
             //var duration = video.Duration; // "Downloaded Video Duration Count"
 
-            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(Link);
+            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(YoutubeVideoId);
 
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
             if (streamInfo != null)
             {
                 // Get the actual stream
-            //    var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
+                //    var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
 
                 MyMediaElement.Source = streamInfo.Url;
             }
 
-            
-
             IsBusy = false;
         }
 
-        private void MyMediaElement_MediaOpened(object sender, System.EventArgs e)
+        /// <summary>
+        /// Video başlatıldığında çalışır ve VideoPlayerOpenedEvent public eder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MediaOpenedEventHandle(object sender, System.EventArgs e)
         {
+            _eventAggregator
+                .GetEvent<VideoPlayerOpenedEvent>()
+                .Publish(new VideoPlayerModel
+                {
+                    MediaElement = MyMediaElement
+                });
+
             IsVideoRunning = true;
 
             UserDialogs.Instance.HideLoading();
         }
 
-        private void MyMediaElement_SeekCompleted(object sender, System.EventArgs e)
+        /// <summary>
+        /// Videp hataya uğradığında çalışır ve MediaFailedEvent public eder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MediaFailedEventHandle(object sender, System.EventArgs e)
         {
+            _eventAggregator
+                .GetEvent<MediaFailedEvent>()
+                .Publish(YoutubeVideoId);
+
+            IsVideoRunning = false;
         }
 
-        void MediaElement_MediaOpened(System.Object sender, System.EventArgs e)
+        /// <summary>
+        /// Video sonlandığında çalışır ve MediaEndedEvent public eder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MediaEndedEventHandle(object sender, System.EventArgs e)
         {
-            // MyActivityIndicator.IsVisible = false;
+            _eventAggregator
+                .GetEvent<MediaEndedEvent>()
+                .Publish(YoutubeVideoId);
+
+            IsVideoRunning = false;
         }
     }
 }

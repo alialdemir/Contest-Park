@@ -8,6 +8,9 @@
     <ContentView.Content>
         <toolkit:MediaElement
             x:Name="MyMediaElement"
+            MediaEnded="MediaEndedEventHandle"
+            MediaFailed="MediaFailedEventHandle"
+            MediaOpened="MediaOpenedEventHandle"
             ShowsPlaybackControls="False"
             WidthRequest="350" />
     </ContentView.Content>
