@@ -71,7 +71,7 @@ END) ) = 1 then 1
 ELSE 0
 end) as IsSubCategoryOpen
 
- FROM SubCategoryRls scr1, SubCategories sc, SubCategoryLangs scl,
+ FROM SubCategoryRls scr1, SubCategories sc, SubCategoryLocalizeds scl,
 (SELECT scr.CategoryId FROM 
 Duels d
 INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = d.SubCategoryId

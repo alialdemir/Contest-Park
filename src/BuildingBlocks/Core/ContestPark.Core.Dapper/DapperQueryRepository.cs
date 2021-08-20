@@ -1,4 +1,4 @@
-﻿,using ContestPark.Core.Dapper.Abctract;
+﻿using ContestPark.Core.Dapper.Abctract;
 using ContestPark.Core.Dapper.Interfaces;
 using ContestPark.Core.Database.Interfaces;
 using ContestPark.Core.Database.Models;

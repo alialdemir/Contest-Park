@@ -4,12 +4,12 @@ using Dapper;
 namespace ContestPark.Category.API.Infrastructure.Tables
 {
     [Table("Lyrics")]
-    public class Lyricy :EntityBase
+    public class Lyrics :EntityBase
     {
         [Key]
-        public int LyricyId { get; set; }
+        public int LyricsId { get; set; }
 
-        public int SongId { get; set; }
+        public short SongId { get; set; }
 
         public int Duration { get; set; }
 

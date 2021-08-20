@@ -1,4 +1,5 @@
-﻿using ContestPark.Core.Database.Models;
+﻿using System.Collections.Generic;
+using ContestPark.Core.Database.Models;
 using Dapper;
 
 namespace ContestPark.Category.API.Infrastructure.Tables
@@ -11,7 +12,7 @@ namespace ContestPark.Category.API.Infrastructure.Tables
 
         public string SongName { get; set; }
 
-        public int ArtistId { get; set; }
+        public short ArtistId { get; set; }
 
         public string ExternalId { get; set; }
 
@@ -31,6 +32,13 @@ namespace ContestPark.Category.API.Infrastructure.Tables
 
         public string PicturePath { get; set; }
 
+        public string CoverPicturePath { get; set; }
+
         public string Provider { get; set; }
+
+        public short SubCategoryId { get; set; }
+
+        public List<Lyrics> Lyricss { get; set; }
+
     }
 }

@@ -118,7 +118,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory
                             sc.PicturePath
                             FROM FollowSubCategories fsc
                             INNER JOIN SubCategories sc ON sc.SubCategoryId = fsc.SubCategoryId AND sc.Visibility = 1
-                            INNER JOIN SubCategoryLangs scl ON sc.SubCategoryId = scl.SubCategoryId AND scl.`Language` = @language
+                            INNER JOIN SubCategoryLocalizeds scl ON sc.SubCategoryId = scl.SubCategoryId AND scl.`Language` = @language
                             INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = sc.SubCategoryId
                             INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = scr.CategoryId AND cl.`Language` = @language
                             WHERE fsc.UserId = @userId AND scl.SubCategoryName LIKE '%{searchText}%'";

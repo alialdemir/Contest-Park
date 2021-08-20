@@ -31,6 +31,6 @@ THEN 1
 ELSE 0
 END) as IsSubCategoryFollowUpStatus
 FROM SubCategories sc		
-INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
+INNER JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
 WHERE sc.SubCategoryId= SubCategoryId;
 END

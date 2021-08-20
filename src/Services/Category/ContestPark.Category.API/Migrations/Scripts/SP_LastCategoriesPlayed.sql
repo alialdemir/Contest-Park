@@ -16,7 +16,7 @@ scl.SubCategoryName,
 1 as IsSubCategoryOpen
 FROM Duels d
 INNER JOIN SubCategories sc ON d.SubCategoryId = sc.SubCategoryId AND sc.Visibility = true
-INNER JOIN SubCategoryLangs scl on scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
+INNER JOIN SubCategoryLocalizeds scl on scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
 WHERE d.FounderUserId = UserId OR d.OpponentUserId = UserId
 GROUP BY d.SubCategoryId, d.DuelId
 ORDER BY d.DuelId DESC

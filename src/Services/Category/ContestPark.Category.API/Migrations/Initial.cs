@@ -53,6 +53,10 @@ namespace ContestPark.Category.API.Migrations
                         .AsString(250)
                         .NotNullable()
 
+                        .WithColumn("Slug")
+                        .AsString(150)
+                        .NotNullable()
+
                         .WithColumn("Language")
                         .AsByte()
                         .NotNullable()
@@ -186,7 +190,7 @@ namespace ContestPark.Category.API.Migrations
                         .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
-            this.CreateTableIfNotExists("SubCategoryLangs", table =>
+            this.CreateTableIfNotExists("SubCategoryLocalizeds", table =>
                   table
                         .WithColumn("SubCategoryLocalizedId")
                         .AsInt16()
@@ -199,6 +203,10 @@ namespace ContestPark.Category.API.Migrations
 
                         .WithColumn("SubCategoryName")
                         .AsString(250)
+                        .NotNullable()
+
+                        .WithColumn("Slug")
+                        .AsString(150)
                         .NotNullable()
 
                         .WithColumn("Description")
@@ -259,7 +267,7 @@ namespace ContestPark.Category.API.Migrations
                         .PrimaryColumn("CategoryId");
 
             Create.ForeignKey()
-                        .FromTable("SubCategoryLangs")
+                        .FromTable("SubCategoryLocalizeds")
                         .ForeignColumn("SubCategoryId")
                         .ToTable("SubCategories")
                         .PrimaryColumn("SubCategoryId");

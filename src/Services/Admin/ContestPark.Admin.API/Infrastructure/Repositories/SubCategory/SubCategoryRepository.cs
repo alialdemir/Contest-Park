@@ -57,7 +57,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
                            sc.Visibility,
                            sc.DisplayOrder
                            FROM SubCategories sc
-                           INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId
+                           INNER JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = sc.SubCategoryId
                            WHERE sc.SubCategoryId = @subCategoryId";
 
             var param = new
@@ -77,7 +77,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
                 Price = subCategory.Price,
                 SubCategoryId = subCategoryId,
                 Visibility = subCategory.Visibility,
-                LocalizedModels = _subCategoryRepository.QueryMultiple<LocalizedModel>("SELECT scl.`Language`, scl.SubCategoryName AS TEXT, scl.Description FROM SubCategoryLangs scl WHERE scl.SubCategoryId = @subCategoryId", param)
+                LocalizedModels = _subCategoryRepository.QueryMultiple<LocalizedModel>("SELECT scl.`Language`, scl.SubCategoryName AS TEXT, scl.Description FROM SubCategoryLocalizeds scl WHERE scl.SubCategoryId = @subCategoryId", param)
             };
         }
 
@@ -99,7 +99,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
                          scl.CreatedDate,
                          (SELECT COUNT(*) FROM SubCategoryRls scr WHERE scr.SubCategoryId = sc.SubCategoryId) AS LinkedCategories
                          FROM SubCategories sc
-                         INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId
+                         INNER JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = sc.SubCategoryId
                          WHERE scl.`Language` = @language
                          ORDER BY sc.CreatedDate DESC";
 
@@ -143,7 +143,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         /// <returns></returns>
         private async Task<bool> UpdateSubCategoryLang(short subCategoryId, IEnumerable<LocalizedModel> localizedModels)
         {
-            string sqlTemplate = @"UPDATE SubCategoryLangs
+            string sqlTemplate = @"UPDATE SubCategoryLocalizeds
                                    SET
                                    SubCategoryName = '@SubCategoryName',  ModifiedDate = CURRENT_TIMESTAMP(), Description = '@Description'
                                    WHERE SubCategoryId = @SubCategoryId AND LANGUAGE=@LANGUAGE;";
@@ -242,7 +242,7 @@ namespace ContestPark.Admin.API.Infrastructure.Repositories.SubCategory
         public ServiceModel<SubCategoryDropdownModel> GetSubCategoryDropList(Languages language, PagingModel paging)
         {
             string sql = @"SELECT scl.SubCategoryName, scl.SubCategoryId
-                           FROM SubCategoryLangs scl
+                           FROM SubCategoryLocalizeds scl
                            WHERE scl.`Language`=@language
                            ORDER BY scl.CreatedDate DESC";
 

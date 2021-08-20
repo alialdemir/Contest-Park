@@ -245,7 +245,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                                       ELSE 0
                                       end) as IsSubCategoryOpen
 
-                                      FROM SubCategoryLangs scl
+                                      FROM SubCategoryLocalizeds scl
                                       INNER JOIN SubCategories sc ON sc.SubCategoryId = scl.SubCategoryId
                                       INNER JOIN SubCategoryRls scr ON scr.SubCategoryId = sc.SubCategoryId
                                       INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = scr.CategoryId AND cl.`Language` = @language
@@ -313,7 +313,7 @@ namespace ContestPark.Category.API.Infrastructure.Repositories.Search
                             INNER JOIN Categories c ON cl.CategoryId = c.CategoryId
                             INNER JOIN SubCategoryRls scr ON c.CategoryId = scr.CategoryId
                             INNER JOIN SubCategories sc ON sc.SubCategoryId = scr.SubCategoryId
-                            INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = @language
+                            INNER JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = @language
 							WHERE cl.Text LIKE '%{searchText}%' AND cl.`Language` = @language AND c.Visibility = 1 AND (@categoryId = 0 OR cl.CategoryId = @categoryId )";
 
                 var searchCategories = _subCategoryRepository.ToServiceModel<SearchModel>(sql3, new

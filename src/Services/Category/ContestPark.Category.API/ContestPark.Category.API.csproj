@@ -14,6 +14,7 @@
     <None Remove="Migrations\Scripts\SP_RecommendedSubcategories.sql" />
     <None Remove="Migrations\Scripts\SP_UpdateLevel.sql" />
     <None Remove="Migrations\Scripts\SP_WithdrawalStatus.sql" />
+    <None Remove="SeedData\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <EmbeddedResource Include="Migrations\Scripts\SP_RecommendedSubcategories.sql" />
     <EmbeddedResource Include="Migrations\Scripts\SP_UpdateLevel.sql" />
     <EmbeddedResource Include="Migrations\Scripts\SP_WithdrawalStatus.sql" />
+    <EmbeddedResource Include="SeedData\tr.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,5 +62,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CategoryResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SeedData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="SeedData\tr.json" />
   </ItemGroup>
 </Project>
