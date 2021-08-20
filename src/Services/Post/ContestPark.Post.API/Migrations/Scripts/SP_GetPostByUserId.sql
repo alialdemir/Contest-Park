@@ -39,7 +39,7 @@ SELECT
 
                            FROM Posts p
                            LEFT JOIN SubCategories sc ON sc.SubCategoryId = p.SubCategoryId
-                           LEFT JOIN SubCategoryLangs scl ON scl.SubCategoryId = p.SubCategoryId AND scl.`Language`= language
+                           LEFT JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = p.SubCategoryId AND scl.`Language`= language
 WHERE p.IsArchive = 0 AND p.PostType <> 5 AND (p.OwnerUserId = profileUserId OR p.FounderUserId = profileUserId OR p.CompetitorUserId = profileUserId)
                            ORDER BY p.CreatedDate desc
 LIMIT Offset, PageSize;

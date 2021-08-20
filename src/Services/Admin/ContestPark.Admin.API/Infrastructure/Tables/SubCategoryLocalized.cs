@@ -4,7 +4,7 @@ using Dapper;
 
 namespace ContestPark.Admin.API.Infrastructure.Tables
 {
-    [Table("SubCategoryLangs")]
+    [Table("SubCategoryLocalizeds")]
     public class SubCategoryLocalized : EntityBase
     {
         [Key]

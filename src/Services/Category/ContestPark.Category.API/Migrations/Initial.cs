@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -24,6 +25,10 @@ namespace ContestPark.Category.API.Migrations
                 .AsBoolean()
                 .WithDefaultValue(0)
 
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
+
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
@@ -48,9 +53,17 @@ namespace ContestPark.Category.API.Migrations
                         .AsString(250)
                         .NotNullable()
 
+                        .WithColumn("Slug")
+                        .AsString(150)
+                        .NotNullable()
+
                         .WithColumn("Language")
                         .AsByte()
                         .NotNullable()
+
+                        .WithColumn("EntityStatus")
+                        .AsByte()
+                        .WithDefaultValue((byte)EntityStatus.Active)
 
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
@@ -164,6 +177,10 @@ namespace ContestPark.Category.API.Migrations
                         .AsBoolean()
                         .WithDefaultValue(true)
 
+                        .WithColumn("EntityStatus")
+                        .AsByte()
+                        .WithDefaultValue((byte)EntityStatus.Active)
+
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
                         .Nullable()
@@ -173,7 +190,7 @@ namespace ContestPark.Category.API.Migrations
                         .NotNullable()
                         .WithDefault(SystemMethods.CurrentDateTime));
 
-            this.CreateTableIfNotExists("SubCategoryLangs", table =>
+            this.CreateTableIfNotExists("SubCategoryLocalizeds", table =>
                   table
                         .WithColumn("SubCategoryLocalizedId")
                         .AsInt16()
@@ -188,6 +205,10 @@ namespace ContestPark.Category.API.Migrations
                         .AsString(250)
                         .NotNullable()
 
+                        .WithColumn("Slug")
+                        .AsString(150)
+                        .NotNullable()
+
                         .WithColumn("Description")
                         .AsString(250)
                         .NotNullable()
@@ -195,6 +216,10 @@ namespace ContestPark.Category.API.Migrations
                         .WithColumn("Language")
                         .AsByte()
                         .NotNullable()
+
+                        .WithColumn("EntityStatus")
+                        .AsByte()
+                        .WithDefaultValue((byte)EntityStatus.Active)
 
                         .WithColumn("ModifiedDate")
                         .AsDateTime()
@@ -242,7 +267,7 @@ namespace ContestPark.Category.API.Migrations
                         .PrimaryColumn("CategoryId");
 
             Create.ForeignKey()
-                        .FromTable("SubCategoryLangs")
+                        .FromTable("SubCategoryLocalizeds")
                         .ForeignColumn("SubCategoryId")
                         .ToTable("SubCategories")
                         .PrimaryColumn("SubCategoryId");

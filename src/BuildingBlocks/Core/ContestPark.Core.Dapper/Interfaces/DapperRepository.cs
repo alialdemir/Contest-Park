@@ -1,5 +1,6 @@
 ﻿using ContestPark.Core.Dapper.Abctract;
 using ContestPark.Core.Dapper.Interfaces;
+using ContestPark.Core.Database.Enums;
 using ContestPark.Core.Database.Interfaces;
 using Dapper;
 using Microsoft.Extensions.Logging;
@@ -220,10 +221,22 @@ namespace ContestPark.Core.Dapper
             try
             {
                 string idToString = (string)id;
+                int recordsAffected = 0;
 
                 var entity = FindById(id);
 
-                int recordsAffected = await _databaseConnection.Connection.DeleteAsync<TEntity>(entity);
+                if (entity.GetType() == typeof(IEntity))// Soft delete
+                {
+                    ((IEntity)entity).EntityStatus = EntityStatus.Deleted;
+
+                   bool isUpdeted = await UpdateAsync(entity);
+
+                    recordsAffected = isUpdeted ? 1 : 0;
+                }
+                else if (entity.GetType() == typeof(IEntityBaseEffaceable))// Hard delete
+                {
+                    recordsAffected = await _databaseConnection.Connection.DeleteAsync<TEntity>(entity);
+                }
 
                 return recordsAffected > 0;
             }
@@ -248,7 +261,16 @@ namespace ContestPark.Core.Dapper
         {
             try
             {
-                int recordsAffected = await _databaseConnection.Connection.DeleteAsync<TEntity>(predicate);
+                int recordsAffected = 0;
+
+                if (typeof(TEntity) == typeof(IEntity))// Soft delete
+                {
+                    recordsAffected = _databaseConnection.Connection.Update(predicate);
+                }
+                else if (typeof(TEntity) == typeof(IEntityBaseEffaceable))// Hard delete
+                {
+                      recordsAffected = await _databaseConnection.Connection.DeleteAsync<TEntity>(predicate);
+                }
 
                 return recordsAffected > 0;
             }

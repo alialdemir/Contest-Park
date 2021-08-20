@@ -4,7 +4,7 @@ using Dapper;
 namespace ContestPark.Chat.API.Infrastructure.Tables
 {
     [Table("Blocks")]
-    public class Block : EntityBase
+    public class Block : EntityBaseEffaceable
     {
         [Key]
         public int BlockId { get; set; }

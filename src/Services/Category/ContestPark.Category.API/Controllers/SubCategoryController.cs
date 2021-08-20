@@ -1,4 +1,9 @@
-﻿using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using ContestPark.Category.API.Infrastructure.Repositories.FollowSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.OpenSubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.SubCategory;
 using ContestPark.Category.API.Infrastructure.Repositories.UserLevel;
@@ -12,11 +17,6 @@ using ContestPark.EventBus.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace ContestPark.Category.API.Controllers
 {

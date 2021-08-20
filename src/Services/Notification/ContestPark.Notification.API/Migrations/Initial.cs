@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 
 namespace ContestPark.Notification.API.Migrations
@@ -19,6 +20,10 @@ namespace ContestPark.Notification.API.Migrations
                 .WithColumn("IsActive")
                 .AsBoolean()
                 .WithDefaultValue(true)
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
@@ -61,6 +66,10 @@ namespace ContestPark.Notification.API.Migrations
                 .AsString()
                 .Nullable()
 
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
+
                 .WithColumn("ModifiedDate")
                 .AsDateTime()
                 .Nullable()
@@ -89,6 +98,46 @@ namespace ContestPark.Notification.API.Migrations
                 .AsByte()
                 .ForeignKey("FK_NotificationTypeLocalizeds_NotificationTypes", "NotificationTypes", "NotificationTypeId")
                 .NotNullable()
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
+
+                .WithColumn("ModifiedDate")
+                .AsDateTime()
+                .Nullable()
+
+                .WithColumn("CreatedDate")
+                .AsDateTime()
+                .NotNullable()
+                .WithDefault(SystemMethods.CurrentDateTime));
+
+            this.CreateTableIfNotExists("Notices", table =>
+          table
+                .WithColumn("NoticeId")
+                .AsInt32()
+                .PrimaryKey()
+                .Identity()
+
+                .WithColumn("PicturePath")
+                .AsString(255)
+                .NotNullable()
+
+                .WithColumn("Link")
+                .AsString(255)
+                .NotNullable()
+
+                .WithColumn("Language")
+                .AsByte()
+                .NotNullable()
+
+                .WithColumn("IsActive")
+                .AsBoolean()
+                .WithDefaultValue(false)
+
+                .WithColumn("EntityStatus")
+                .AsByte()
+                .WithDefaultValue((byte)EntityStatus.Active)
 
                 .WithColumn("ModifiedDate")
                 .AsDateTime()

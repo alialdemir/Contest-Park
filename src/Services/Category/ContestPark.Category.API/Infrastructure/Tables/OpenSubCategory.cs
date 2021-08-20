@@ -4,7 +4,7 @@ using Dapper;
 namespace ContestPark.Category.API.Infrastructure.Tables
 {
     [Table("OpenSubCategories")]
-    public class OpenSubCategory : EntityBase
+    public class OpenSubCategory : EntityBaseEffaceable
     {
         [Key]
         public int OpenSubCategoryId { get; set; }

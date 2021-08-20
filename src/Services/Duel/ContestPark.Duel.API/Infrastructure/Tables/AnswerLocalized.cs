@@ -5,7 +5,7 @@ using Dapper;
 namespace ContestPark.Duel.API.Infrastructure.Tables
 {
     [Table("AnswerLocalizeds")]
-    public class AnswerLocalized : EntityBase
+    public class AnswerLocalized : EntityBaseEffaceable
     {
         [Key]
         public int AnswerLocalizedId { get; set; }

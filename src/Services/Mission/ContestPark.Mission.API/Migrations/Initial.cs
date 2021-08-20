@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 
 namespace ContestPark.Mission.API.Migrations
@@ -36,6 +37,10 @@ namespace ContestPark.Mission.API.Migrations
               .AsBoolean()
               .WithDefaultValue(true)
 
+              .WithColumn("EntityStatus")
+              .AsByte()
+              .WithDefaultValue((byte)EntityStatus.Active)
+
               .WithColumn("ModifiedDate")
               .AsDateTime()
               .Nullable()
@@ -68,6 +73,10 @@ namespace ContestPark.Mission.API.Migrations
               .AsByte()
               .NotNullable()
 
+              .WithColumn("EntityStatus")
+              .AsByte()
+              .WithDefaultValue((byte)EntityStatus.Active)
+
               .WithColumn("ModifiedDate")
               .AsDateTime()
               .Nullable()
@@ -96,6 +105,10 @@ namespace ContestPark.Mission.API.Migrations
               .WithColumn("MissionComplate")
               .AsBoolean()
               .NotNullable()
+
+              .WithColumn("EntityStatus")
+              .AsByte()
+              .WithDefaultValue((byte)EntityStatus.Active)
 
               .WithColumn("ModifiedDate")
               .AsDateTime()

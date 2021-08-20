@@ -69,7 +69,7 @@ FROM Categories c
 INNER JOIN SubCategoryRls sof ON sof.CategoryId=c.CategoryId
 INNER JOIN SubCategories sc ON sc.SubCategoryId= sof.SubCategoryId
 INNER JOIN CategoryLocalizeds cl ON cl.CategoryId = c.CategoryId
-INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId
+INNER JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = sc.SubCategoryId
 WHERE c.Visibility=true AND sc.Visibility=true  AND cl.`Language`= LangId  AND scl.`Language`= LangId
 ORDER BY sc.Price, c.DisplayOrder, sc.DisplayOrder
 LIMIT Offset, PageSize;

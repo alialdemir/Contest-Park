@@ -13,7 +13,7 @@ sc.PicturePath,
 1 AS IsSubCategoryOpen
 FROM FollowSubCategories fsc
 INNER JOIN SubCategories sc ON sc.SubCategoryId=fsc.SubCategoryId		
-INNER JOIN SubCategoryLangs scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
+INNER JOIN SubCategoryLocalizeds scl ON scl.SubCategoryId = sc.SubCategoryId AND scl.`Language` = LangId
 WHERE fsc.UserId = UserId
 ORDER BY fsc.FollowSubCategoryId, sc.DisplayOrder DESC
 LIMIT Offset, PageSize;

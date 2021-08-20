@@ -1,4 +1,5 @@
 ﻿using ContestPark.Core.Dapper.Extensions;
+using ContestPark.Core.Database.Enums;
 using FluentMigrator;
 using System.Reflection;
 
@@ -45,6 +46,10 @@ namespace ContestPark.Duel.API.Migrations
                .AsInt32()
                .NotNullable()
 
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
+
                .WithColumn("ModifiedDate")
                .AsDateTime()
                .Nullable()
@@ -86,6 +91,10 @@ namespace ContestPark.Duel.API.Migrations
                          .AsInt32()
                          .NotNullable()
 
+                         .WithColumn("EntityStatus")
+                         .AsByte()
+                         .WithDefaultValue((byte)EntityStatus.Active)
+
                          .WithColumn("ModifiedDate")
                          .AsDateTime()
                          .Nullable()
@@ -110,6 +119,10 @@ namespace ContestPark.Duel.API.Migrations
                .WithColumn("FinishDate")
                .AsDateTime()
                .NotNullable()
+
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
 
                .WithColumn("ModifiedDate")
                .AsDateTime()
@@ -184,6 +197,10 @@ namespace ContestPark.Duel.API.Migrations
                .AsByte()
                .NotNullable()
 
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
+
                .WithColumn("ModifiedDate")
                .AsDateTime()
                .Nullable()
@@ -237,6 +254,10 @@ namespace ContestPark.Duel.API.Migrations
                .AsByte()
                .Nullable()
 
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
+
                .WithColumn("ModifiedDate")
                .AsDateTime()
                .Nullable()
@@ -274,6 +295,10 @@ namespace ContestPark.Duel.API.Migrations
                .AsInt16()
                .NotNullable()
 
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
+
                .WithColumn("ModifiedDate")
                .AsDateTime()
                .Nullable()
@@ -298,6 +323,10 @@ namespace ContestPark.Duel.API.Migrations
                .WithColumn("Language")
                .AsByte()
                .NotNullable()
+
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
 
                .WithColumn("ModifiedDate")
                .AsDateTime()
@@ -364,6 +393,10 @@ namespace ContestPark.Duel.API.Migrations
                .WithColumn("QuestionId")
                .AsInt32()
                .NotNullable()
+
+               .WithColumn("EntityStatus")
+               .AsByte()
+               .WithDefaultValue((byte)EntityStatus.Active)
 
                .WithColumn("ModifiedDate")
                .AsDateTime()

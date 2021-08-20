@@ -66,7 +66,7 @@ namespace ContestPark.Duel.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> AddQuestion([FromForm]QuestionConfigModel configModel)// Oyunucunun karşısına rakip ekler
+        public async Task<IActionResult> AddQuestion([FromForm]QuestionConfigModel configModel)
         {
             if (configModel == null
                 || configModel.SubCategoryId <= 0
